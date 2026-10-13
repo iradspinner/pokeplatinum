@@ -19,7 +19,7 @@ outside.
 The placement tool (tools/oxide/place_rewards.py, the main track's) reads
 docs/oxide/reward-placements.tsv, one row per placement, and
 docs/oxide/trainer-roles.tsv, one row per trainer the census places. Each
-reward trainer and each new item ball takes one of the 46 spare story flags;
+reward trainer and each new item ball takes one of the spare flags (FLAG_POOL);
 this table adds no ball (a TM with no place of its own takes over a ball
 that holds a mart item), so the reward trainers alone draw on the pool.
 """
@@ -35,7 +35,7 @@ import subprocess
 import sys
 
 from ..encounters import learnsets as canon_ls, pokedex
-from . import b6, data, gauntlet, learncheck as lc, learnrewrite as lr, pool, splits, weather_moves
+from . import data, gauntlet, learncheck as lc, learnrewrite as lr, pool, required, splits, weather_moves
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(data.ROOT, "docs", "oxide")
@@ -44,7 +44,8 @@ ROLES = os.path.join(OUT, "trainer-roles.tsv")
 REPORT = os.path.join(OUT, "reward-table.md")
 NICHE = os.path.expanduser("~/oxide-trials/learnset-rewrite/checks-2-3.json")
 SPLITS = lc.SPLITS
-FLAG_POOL = 46          # the spare story flags tools/oxide/place_rewards.py hands out (2026-10-06)
+FLAG_POOL = 85          # the spare flags tools/oxide/place_rewards.py hands out to rewards (2026-10-13)
+SPREAD_FLAGS = 46       # the pool the approved spread was built with (2026-10-06), kept for --reshuffle
 TARGET = 100            # about 100 TMs, the former HMs included (Ian, 2026-09-28)
 FIRST_NEW_TM = 93       # TM93 on, past vanilla's 92 (include/constants/items.h, NUM_EXTRA_TMS)
 
@@ -160,7 +161,7 @@ def qualifies(c):
         return False, "the engine does not run it in full"
     if c in weather_moves.WEATHER_MOVES:
         return False, "weather: the player never sets it"
-    if c in b6.DEAD_MOVES:
+    if c in pool.DEAD_MOVES:
         return False, "the move pool's cut"
     if c in lc.TRAINER_ONLY:
         return False, "the user faints, which in a nuzlocke is a death"
@@ -249,7 +250,7 @@ def compat(species):
 @functools.lru_cache(maxsize=None)
 def learners(c):
     """The obtainable stages that may learn the move from a TM."""
-    return frozenset(s for s in b6.obtainable() if c in compat(s))
+    return frozenset(s for s in pool.obtainable() if c in compat(s))
 
 
 def lines(c):
@@ -527,12 +528,17 @@ def trainer_objects():
 
 @functools.lru_cache(maxsize=None)
 def readings():
-    """{trainer id: its stored reading on Ian's fight scale}."""
-    with open(os.path.join(HERE, "b6.json"), encoding="utf-8") as f:
-        stored = json.load(f)["trainers"]
-    line = b6.scale_line()
-    return {int(k): round(b6.on_scale(t["safe"], line), 1) for k, t in stored.items()
-            if isinstance(t, dict) and isinstance(t.get("safe"), (int, float))}
+    """{trainer id: its reading on Ian's old fight scale}, as the approved
+    table's roles list holds it (FROZEN_REF). The first scoring system that
+    made these readings was retired on 2026-10-13; the table stays frozen
+    as Ian approved it, so the readings it was built on stay with it rather
+    than being recomputed."""
+    out = subprocess.run(["git", "-C", data.ROOT, "show", f"{FROZEN_REF}:docs/oxide/trainer-roles.tsv"],
+                         capture_output=True, text=True, check=True).stdout
+    by_constant = {t["constant"]: k for k, t in data.oxide_trainers().items()}
+    rows = csv.DictReader((line for line in out.splitlines() if not line.startswith("#")), delimiter="\t")
+    return {by_constant[r["trainer_id"]]: float(r["reading"]) for r in rows
+            if r["reading"] and r["trainer_id"] in by_constant}
 
 
 @functools.lru_cache(maxsize=None)
@@ -540,7 +546,7 @@ def optional_trainers():
     """{split: [(reading, trainer id)]} of the trainers the player may pass
     by, standing on a map, with a stored reading; the split's median beside."""
     rows = collections.defaultdict(list)
-    for tr, p in b6.placements().items():
+    for tr, p in required.placements().items():
         if p["how"] in OPTIONAL and p["split"] in SPLITS and tr in readings() and tr in trainer_objects():
             rows[p["split"]].append((readings()[tr], tr))
     return {s: (sorted(r), statistics.median(x for x, _t in r)) for s, r in rows.items()}
@@ -580,7 +586,7 @@ def pick_trainer(target, used, side, gauntlet_ids):
 def gauntlet_sections():
     """[(area, label, split, [trainer ids])] from gauntlet.py's sections."""
     out = []
-    placed = b6.placements()
+    placed = required.placements()
     for area, sections in gauntlet.SECTIONS.items():
         for section in sections:
             ids = gauntlet.section_trainers(area, section)
@@ -614,7 +620,7 @@ def targets(total):
     """{split: its share of the TMs}, by the trainers the census places in
     it, the measure of a split's length (Ian, 2026-10-06: "an even spread
     across the splits, given how long each is")."""
-    weight = collections.Counter(p["split"] for p in b6.placements().values() if p["split"] in SPLITS)
+    weight = collections.Counter(p["split"] for p in required.placements().values() if p["split"] in SPLITS)
     whole = sum(weight.values())
     return {s: total * weight[s] / whole for s in SPLITS}
 
@@ -663,7 +669,7 @@ def build():
     fixed = [dict(p) for p in tm_places()]
     shops = [{"shop": m, "item": it} for _s, m, it in mart_tms()]
     cheap = [dict(p) for p in cheap_balls()]
-    flags_left = FLAG_POOL - len(used_trainers) - 1     # one for the Game Corner's new trainer
+    flags_left = SPREAD_FLAGS - len(used_trainers) - 1  # one for the Game Corner's new trainer
     own_item = {c: f"ITEM_{_key(st, c)}" for c in main if _key(st, c)}
 
     def options(c, s):
@@ -784,9 +790,27 @@ REPRICED = {
 }
 VACATED = {"ITEM_TM70": "ITEM_SITRUS_BERRY", "ITEM_TM28": "ITEM_LUM_BERRY"}
 
+# Items the table never held, placed where Ian chose (2026-10-13). They
+# were placed while the 46 spare flags of the day were all taken, so each
+# reuses a flag: a ball that held something else, a trainer that already
+# gives a reward (one flag for both, as Deanna's two), or a spare hidden
+# item slot. The pool grew to 85 the same day.
+ADDED = [
+    Row("ITEM_ICE_STONE", "1", "ball", "Fantina", "MAP_HEADER_WAYWARD_CAVE_1F", "", "ITEM_REVIVE", "", "",
+        "the one Ice Stone, in the dead end Camper Diego and Picnicker Tori guard as a two-trainer "
+        "battle (Ian, 2026-10-13: behind Wayward Cave's doubles); a Revive's ball today"),
+    Row("ITEM_ABILITY_CAPSULE", "1", "hidden", "Wake", "MAP_HEADER_PASTORIA_CITY", "585,855", "", "", "",
+        "hidden at the end of the strip between the southwest ponds, reached on foot "
+        "(Ian, 2026-10-13: in Pastoria)"),
+    Row("ITEM_ABILITY_PATCH", "1", "trainer", "Galactic", "MAP_HEADER_ROUTE_228", "", "",
+        "TRAINER_ACE_TRAINER_JOSE", "",
+        "the game's one Ability Patch, a second reward from a six-Pokemon optional fight "
+        "(Ian, 2026-10-13: in the Battle Zone)"),
+]
+
 
 def frozen_rows():
-    """The approved table's rows, with REPRICED applied."""
+    """The approved table's rows, with REPRICED applied and ADDED appended."""
     out = subprocess.run(["git", "-C", data.ROOT, "show", f"{FROZEN_REF}:docs/oxide/reward-placements.tsv"],
                          capture_output=True, text=True, check=True).stdout
     lines = [line for line in out.splitlines() if not line.startswith("#")]
@@ -808,6 +832,7 @@ def frozen_rows():
         rows[rows.index(old)] = other._replace(**{f: getattr(old, f) for f in place})
         rows[rows.index(other)] = old._replace(copies=str(copies), note=f"{why}; a TM place today ({other.replaces})",
                                                **{f: getattr(other, f) for f in place})
+    rows += ADDED
     rows.sort(key=lambda r: (si(r.split), r.kind, r.map, r.reward))
     return rows
 
@@ -835,7 +860,7 @@ def roles(rows):
             section_of[t] = f"{area}: {label}"
     ox = data.oxide_trainers()
     out = []
-    for tr, p in sorted(b6.placements().items(), key=lambda kv: (si(kv[1]["split"]), kv[0])):
+    for tr, p in sorted(required.placements().items(), key=lambda kv: (si(kv[1]["split"]), kv[0])):
         if tr not in ox:
             continue
         const = ox[tr]["constant"]
@@ -992,23 +1017,9 @@ def move_cell(c):
     return f"{name(c)} | {m['type'].title()} | {m['class'].title()} | {power} | {acc}"
 
 
-def section_readings():
-    """{(area, label): (clean share, deaths a run)} from gauntlet.py's second
-    reading, on the lists in the tree; empty where it cannot run."""
-    out = {}
-    for area, sections in gauntlet.SECTIONS.items():
-        for section in sections:
-            try:
-                _trs, r = gauntlet.section_reading(area, section)
-            except Exception:       # a reading the tree cannot make leaves its cell empty
-                continue
-            out[(area, section[0])] = (r["clean"], r["deaths"])
-    return out
-
-
 def parse_section_readings(path):
-    """{(area, label): (clean, deaths)} from the text `gauntlet.py` prints,
-    its areas in SECTIONS' order, so a reading made once need not be rerun."""
+    """{(area, label): (clean, deaths)} from a saved printout of the retired
+    gauntlet.py reading, its areas in SECTIONS' order."""
     import re
     areas = list(gauntlet.SECTIONS)
     out, k = {}, -1
@@ -1056,7 +1067,7 @@ def report(st, item, rows, facts, gauntlets=None, out=None):
       f"Department Store's and the Game Corner's {len(shop_tms)} TMs sold once each, unlocked by badge count "
       f"in order of usefulness. Every TM and each of element 7's {len(HELD)} held items has exactly one place, "
       f"every vanilla TM ball, gift and shop TM is repointed, and the reward trainers take {flags} of the "
-      f"{FLAG_POOL} spare story flags. The table's own check passes.")
+      f"{FLAG_POOL} spare flags. The table's own check passes.")
     p()
     p("**What can still move.** The move-rework cloud job changes the numbers of Hyper Beam, Giga Impact and "
       "the multi-hit moves, so their tiers, and with them their copies and places, are read on today's data. "
@@ -1199,8 +1210,9 @@ def report(st, item, rows, facts, gauntlets=None, out=None):
     p()
     p("The sections of the gauntlet proposal (balance plan, \"The gauntlets, reworked on Ian's rulings\"), with "
       "their trainers in walking order. A section of 2 to 5 mandatory trainers on the easier side of its "
-      "split's average; bosses stay outside. The reading is `gauntlet.py`'s second one on the lists in the "
-      "tree: clean clears, then deaths a run.")
+      "split's average; bosses stay outside. The reading, clean clears then deaths a run, is shown when a "
+      "saved printout of `gauntlet.py`'s second reading is given; that reading ran on the first scoring "
+      "system and was retired with it on 2026-10-13, and the perfect-line scorer will read the sections.")
     p()
     p("| Area | Section | Split | Trainers | Reading |")
     p("|---|---|---|---|---|")
@@ -1250,8 +1262,8 @@ def report(st, item, rows, facts, gauntlets=None, out=None):
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("what", nargs="?", default="write", choices=["write", "check"])
-    ap.add_argument("--no-gauntlets", action="store_true", help="leave the gauntlet readings out (faster)")
-    ap.add_argument("--gauntlet-reading", help="gauntlet.py's printed reading, used instead of running it again")
+    ap.add_argument("--gauntlet-reading", help="a saved printout of the retired gauntlet.py reading, for the "
+                                               "report's gauntlet column")
     ap.add_argument("--reshuffle", action="store_true",
                     help="write the spread's own table instead of the approved one (FROZEN_REF)")
     args = ap.parse_args(argv)
@@ -1263,8 +1275,7 @@ def main(argv=None):
     if not args.reshuffle:
         rows = frozen_rows()
     write(st, item, rows, facts)
-    readings_ = (parse_section_readings(args.gauntlet_reading) if args.gauntlet_reading
-                 else None if args.no_gauntlets else section_readings())
+    readings_ = parse_section_readings(args.gauntlet_reading) if args.gauntlet_reading else None
     report(st, item, rows, facts, readings_)
     print(f"set: {len(st.kept)} kept, {len(st.hms)} former HMs, {len(st.new)} new; "
           f"{len(rows)} placements; unplaced {facts['unplaced']}")

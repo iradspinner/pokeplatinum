@@ -69,8 +69,9 @@ Rules that bite:
   which bits are taken), and a computed power keeps table power 1, never 0.
 - A fix to a bug that is also in vanilla Platinum is its own commit with
   "VANILLA FIX" in the subject.
-- Before editing another track's files (see `.claude/rules/standing-rulings.md`),
-  stop and ask in the report. Ian answers through the Overseer.
+- No session owns files (Ian, 2026-10-13), but the fight simulator, its AI
+  and the scorer change only with Ian's approval: a job that needs to change
+  them stops and asks in the report. Ian answers through the Overseer.
 - In-game checks go in `docs/oxide/ingame-checklist.md`, in the section
   where a playtest day meets them. Questions go under the tracker's "Waiting
   on Ian". Tick the job's own tracker item. Keep the tracker under 9,000

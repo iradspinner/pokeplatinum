@@ -809,8 +809,9 @@ def check_calc_mechanics(results):
         "lariatwall": ("Gallade", "Steadfast", "Bastiodon", "Soundproof", "Darkest Lariat"),
         "breakwall": ("Gallade", "Steadfast", "Bastiodon", "Soundproof", "Brick Break"),
         "breakplain": ("Gallade", "Steadfast", "Bastiodon", "Soundproof", "Brick Break"),
-        # Fury Cutter since the move reworks (2026-10-06): three hits at 30,
-        # 40 and 50, against X-Scissor's single 80.
+        # Fury Cutter: three hits at 10, 20 and 30 (Ian, 2026-10-12; 30, 40
+        # and 50 from the move reworks of 2026-10-06), against X-Scissor's
+        # single 80.
         "cutter": ("Scyther", "Swarm", "Snorlax", "", "Fury Cutter"),
         "scissor": ("Scyther", "Swarm", "Snorlax", "", "X-Scissor"),
     }
@@ -849,17 +850,20 @@ def check_calc_mechanics(results):
                     and rolls["pixie"][0] > rolls["plain"][-1] and set(rolls["sap"]) == {0},
                     f"Night Slash {rolls['blunt'][-1]} to {rolls['sharp'][-1]}, "
                     f"Hyper Voice {rolls['plain'][-1]} to {rolls['pixie'][-1]}"))
-    # Fury Cutter's three hits come to 120 power in all, half again X-Scissor's
-    # 80 (a single 30, the old reading, would be under half of it), and the
-    # profile's hook gives each hit its own: 30, 40, then 50, which the
-    # total alone cannot tell from Kaizo's 20, 40, 60.
+    # Fury Cutter's three hits come to 60 power in all, three quarters of
+    # X-Scissor's 80 (a single 10, a one-hit reading, would be an eighth),
+    # and the profile's hook gives each hit its own: 10, 20, then 30 for
+    # Fury Cutter, and 20, 30, then 40 for Triple Kick, which the totals
+    # alone cannot tell apart from other splits (Ian, 2026-10-12).
     hook = subprocess.run(["node", "-e", (
         "const p = require(process.argv[1]).platinumOxideProfile;"
         "const f = p.hooks.moveBasePower[0];"
-        "const move = {bp: 30, hits: 3, named: (...n) => n.includes('Fury Cutter')};"
-        "console.log(JSON.stringify([0, 1, 2].map(h => {"
-        "  const ctx = {move, state: {hitCount: h, originalBasePower: 30}, desc: {}};"
-        "  return [f(ctx, 30), ctx.desc.moveBP]; })));"),
+        "const run = (name, bp) => {"
+        "  const move = {bp, hits: 3, named: (...n) => n.includes(name)};"
+        "  return [0, 1, 2].map(h => {"
+        "    const ctx = {move, state: {hitCount: h, originalBasePower: bp}, desc: {}};"
+        "    return [f(ctx, bp), ctx.desc.moveBP]; }); };"
+        "console.log(JSON.stringify([run('Fury Cutter', 10), run('Triple Kick', 20)]));"),
         os.path.join(root, "tools", "oxide", "encounters", "calc", "calc", "mechanics", "romhacks",
                      "profiles", "platinum-oxide.js")], capture_output=True, text=True)
     try:
@@ -867,9 +871,10 @@ def check_calc_mechanics(results):
     except ValueError:
         per_hit = hook.stderr[-160:]
     ratio = rolls["cutter"][-1] / rolls["scissor"][-1]
-    results.append(("Fury Cutter is three hits of 30, 40 and 50 in the calculator, as Oxide's "
-                    "engine has it",
-                    1.4 <= ratio <= 1.6 and per_hit == [[30, 120], [40, 120], [50, 120]],
+    results.append(("Fury Cutter is three hits of 10, 20 and 30, and Triple Kick 20, 30 and 40, "
+                    "in the calculator, as Oxide's engine has them",
+                    0.65 <= ratio <= 0.85 and per_hit == [[[10, 60], [20, 60], [30, 60]],
+                                                          [[20, 90], [30, 90], [40, 90]]],
                     f"{rolls['cutter'][-1]} against X-Scissor's {rolls['scissor'][-1]}; hits {per_hit}"))
     # Electro Ball's power is 40 when the user is the slower (Pikachu into
     # Electrode, as Thunder Shock), and 80 at twice the target's Speed

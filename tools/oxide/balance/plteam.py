@@ -91,7 +91,7 @@ def _other_learnsets():
 
 def species_name(sp):
     """A species constant as the calculator spells it."""
-    blob = fs.teamscore._blob()
+    blob = fs.calc.blob()
     n = sp[len("SPECIES_"):].replace("_", " ").title().replace(" ", "-")
     if n in blob["poks"] or n.replace("-", "") in blob["poks"]:
         return n if n in blob["poks"] else n.replace("-", "")
@@ -102,41 +102,69 @@ def species_name(sp):
     return alt if alt in blob["poks"] else n.replace("-", "")
 
 
-def chain(sp, caught, cap, holds=None, magnetic=False):
+# Level evolutions that also ask something the member is or has: its
+# personality (Wurmple: the coin's parity stands for it), its gender, or how
+# its Attack compares with its Defense (with equal IVs and a neutral nature,
+# as its base stats compare).
+_LEVEL_IF = {
+    "EVO_LEVEL_PID_LOW": lambda d, gender, coin: coin % 2 == 0,
+    "EVO_LEVEL_PID_HIGH": lambda d, gender, coin: coin % 2 == 1,
+    "EVO_LEVEL_FEMALE": lambda d, gender, coin: gender == "F",
+    "EVO_LEVEL_MALE": lambda d, gender, coin: gender == "M",
+    "EVO_LEVEL_ATK_GT_DEF": lambda d, gender, coin: d["base_stats"]["attack"] > d["base_stats"]["defense"],
+    "EVO_LEVEL_ATK_LT_DEF": lambda d, gender, coin: d["base_stats"]["attack"] < d["base_stats"]["defense"],
+    "EVO_LEVEL_ATK_EQ_DEF": lambda d, gender, coin: d["base_stats"]["attack"] == d["base_stats"]["defense"],
+    "EVO_LEVEL_NINJASK": lambda d, gender, coin: True,
+}
+
+
+def chain(sp, caught, cap, holds=None, magnetic=False, places=(), gender=None, coin=None):
     """[(species, from level)] as a member levels from `caught` to `cap`:
-    level evolutions (each delayed to its hold, if any), evolving by knowing
-    a move once the move is learned, and by a magnetic field where the run
-    has reached one; stones, trades and friendship are not taken."""
+    level evolutions (each delayed to its hold, if any), those that ask its
+    personality, gender or stats too, evolving by knowing a move once the
+    move is learned, and by a place (the magnetic field, the Moss and Ice
+    Rocks: `places` names those the run has reached, as place_maps does);
+    stones, held items, trades, friendship and Shedinja are not taken. Where
+    several evolutions are open (Eevee's), the last listed is taken, or with
+    a `coin` the coin's pick of them, the same coin always the same pick."""
     holds = holds or {}
+    places = set(places) | ({"LEVEL_MAGNETIC_FIELD"} if magnetic else set())
     path, cur, lvl = [(sp, caught)], sp, caught
     while True:
-        nxt = None
-        known = {mv for l, mv in mon_data(cur)["learnset"]["by_level"] if l <= cap}
-        for e in mon_data(cur).get("evolutions") or []:
+        open_ = []
+        d = mon_data(cur)
+        known = {mv for l, mv in d["learnset"]["by_level"] if l <= cap}
+        for e in d.get("evolutions") or []:
             kind, target = e[0], e[-1]
             if kind == "EVO_LEVEL" and isinstance(e[1], int):
                 at = max(e[1], holds.get(cur, 0), lvl)
                 if at <= cap:
-                    nxt = (target, at)
-            elif kind == "EVO_LEVEL_KNOW_MOVE" and e[1] in known:
-                at = max(lvl, next(l for l, mv in mon_data(cur)["learnset"]["by_level"] if mv == e[1]))
+                    open_.append((target, at))
+            elif kind in _LEVEL_IF and isinstance(e[1], int) and _LEVEL_IF[kind](d, gender, coin or 0):
+                at = max(e[1], holds.get(cur, 0), lvl)
                 if at <= cap:
-                    nxt = (target, at)
-            elif kind == "EVO_LEVEL_MAGNETIC_FIELD" and magnetic:
-                nxt = (target, lvl)
-        if not nxt:
+                    open_.append((target, at))
+            elif kind == "EVO_LEVEL_KNOW_MOVE" and e[1] in known:
+                at = max(lvl, next(l for l, mv in d["learnset"]["by_level"] if mv == e[1]))
+                if at <= cap:
+                    open_.append((target, at))
+            elif kind.startswith("EVO_LEVEL_") and kind[len("EVO_"):] in places:
+                open_.append((target, lvl))
+        if not open_:
             return path
+        nxt = open_[-1] if coin is None else open_[coin % len(open_)]
         cur, lvl = nxt
         path.append(nxt)
 
 
-def move_pool(sp, caught, cap, holds=None, magnetic=False, known=None):
+def move_pool(sp, caught, cap, holds=None, magnetic=False, known=None, places=(), gender=None, coin=None):
     """(final species, its move pool as the calculator names them): the
     capture rule's moves, the last four by the catch level (or `known`, the
     moves a record already has), and every level-up move learned after it up
-    to the cap, along its evolutions."""
+    to the cap, along its evolutions (chain's, with its places, gender and
+    coin)."""
     names = move_names()
-    path = chain(sp, caught, cap, holds, magnetic)
+    path = chain(sp, caught, cap, holds, magnetic, places, gender, coin)
     by_name = {v: k for k, v in names.items()}
     first = ([by_name[m] for m in known if m in by_name] if known is not None else
              [mv for l, mv in mon_data(sp)["learnset"]["by_level"] if l <= caught][-4:])
@@ -463,6 +491,21 @@ def read(st, boss_keys, flags, teams, fights, cfg, luck="real", seed0=0, procs=N
     return tally
 
 
+def round_size(keys, per_round):
+    """(team size, sixes a race round draws). A small box holds fewer
+    different sixes than a round draws (seven members make seven): a round
+    then takes them all, where it used to draw for ever (Lucas and Dawn 1,
+    goal 3, 2026-10-07); a box under six fields all it has."""
+    size = min(6, len(keys))
+    return size, min(per_round, math.comb(len(keys), size))
+
+
+def spread_room(keys, top):
+    """How many sixes drawn at random the labels can add beside the screen's
+    `top` ones: five, or as many as the box has left."""
+    return min(5, math.comb(len(keys), 6) - len(top)) if len(keys) > 6 else 0
+
+
 def race(st, keys, boss_keys, flags, screened, cfg, rounds=5, per_round=16, fights=4, elite=4, rate=0.3,
          log=print, seed=1):
     """Ian's member ratings, then halving: (finalists best first, the tally,
@@ -475,12 +518,13 @@ def race(st, keys, boss_keys, flags, screened, cfg, rounds=5, per_round=16, figh
     counts = {k: 1.0 + sum(k in s for s in screened) for k in keys}
     w = {k: c / sum(counts.values()) for k, c in counts.items()}
     tally = Tally()
+    size, per_round = round_size(keys, per_round)
     for r in range(rounds):
         teams = [tuple(s) for s in screened[:per_round // 2]] if r == 0 else []
         while len(teams) < per_round:
             pool_ = list(keys)
             six = []
-            for _ in range(6):
+            for _ in range(size):
                 pick = rng.choices(pool_, weights=[w[k] for k in pool_])[0]
                 six.append(pick)
                 pool_.remove(pick)
@@ -576,13 +620,15 @@ def improve(st, keys, boss_keys, flags, M, best, po, check=25, procs=None, round
 
 # ---- the whole search on one box ----------------------------------------------------------------------
 
-def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, procs=10, check=25, prepared=None):
+def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, procs=10, check=25, prepared=None,
+           model=None):
     """The five stages on one box, with a log and result.json in `out_dir`.
     `key` is the story fight (fights.json), `recs` the box's records with
     their whole move pools, `stock` the items the run has by then (in
     fightsim.player_items' form), `variant` the trainer's team a run with
     this starter meets. `ours`, a hand-played six's species names, is read
-    beside the finalists where one exists, against `bar`.
+    beside the finalists where one exists, against `bar`. `model`, networks
+    already trained for this boss, skips the labels and the training.
 
     The labels are the screen's top five sixes and five drawn at random from
     the box (labelled on the top sixes alone, which share a core, the first
@@ -622,21 +668,28 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
         log(f"our six ({', '.join(names[k] for k in mine)}): screen rank {rank} of {len(all_scores)}")
     log("moves picked: " + "; ".join(f"{names[k]} {', '.join(moves[k])}" for k in keys))
 
-    t1 = time.time()
-    rng = random.Random(fight)
-    spread = []
-    while len(spread) < 5 and len(keys) > 6:
-        s = sorted(rng.sample(keys, 6), key=keys.index)
-        if s not in sixes[:5] and s not in spread:
-            spread.append(s)
-    lab_dir = os.path.join(out_dir, "labels")
-    metas = label(st, sixes[:5] + spread, boss_keys, flags, f"team:{fight}", lab_dir, procs=procs)
-    log(f"labels: {sum(m['positions'] for m in metas)} positions from {sum(m['games'] for m in metas)} fights "
-        f"in {time.time() - t1:.0f} s")
-    t1 = time.time()
-    base = without([fight], os.path.join(ROOT, "subsets", f"no-{fight}-team"))
-    model = train(f"team-{fight}", [base, lab_dir])
-    log(f"networks {model} trained in {time.time() - t1:.0f} s")
+    if model is not None:
+        # Networks trained on another box of the same boss (goal 3's reuse,
+        # Ian's yes of 2026-10-07): the race is a shortlist either way, and
+        # the play-out check and the loop below still decide on this box.
+        log(f"networks {model} reused, no labels or training on this box")
+    else:
+        t1 = time.time()
+        rng = random.Random(fight)
+        spread = []
+        room = spread_room(keys, sixes[:5])
+        while len(spread) < room:
+            s = sorted(rng.sample(keys, 6), key=keys.index)
+            if s not in sixes[:5] and s not in spread:
+                spread.append(s)
+        lab_dir = os.path.join(out_dir, "labels")
+        metas = label(st, sixes[:5] + spread, boss_keys, flags, f"team:{fight}", lab_dir, procs=procs)
+        log(f"labels: {sum(m['positions'] for m in metas)} positions from {sum(m['games'] for m in metas)} "
+            f"fights in {time.time() - t1:.0f} s")
+        t1 = time.time()
+        base = without([fight], os.path.join(ROOT, "subsets", f"no-{fight}-team"))
+        model = train(f"team-{fight}", [base, lab_dir])
+        log(f"networks {model} trained in {time.time() - t1:.0f} s")
     cfg = {"value": model}
 
     t1 = time.time()
@@ -697,7 +750,8 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
                "finalists": [{"six": [names[k] for k in t], "real": r, "unlucky": u, "playouts": po.numbers(t)}
                              for t, r, u in results],
                "ours": {"network": ours_net, "playouts": ours_po} if mine else None, "bar": bar,
-               "winner": [names[k] for k in win], "playouts_on_winner": po.numbers(tuple(win)),
+               "winner": [names[k] for k in win], "winner_keys": list(win), "model": model,
+               "playouts_on_winner": po.numbers(tuple(win)),
                "winner_faints_to": losing_enemies(po.rows[tuple(win)]),
                # Every six the play-out check read, the loop's included.
                "checked": {", ".join(names[k] for k in t): po.numbers(t) for t in po.rows},

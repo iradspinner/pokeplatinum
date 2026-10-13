@@ -95,10 +95,10 @@ def check_rewards(results, data, root):
     unmatched = [r for r in placed if not r["item"]]
     shop = _all(data, "shop")
     dropped = sum(1 for r in rewards if r["kind"] in ("mart", "prize") and r["reward"] == "ITEM_NONE")
-    results.append(("every reward-table row shows once: trainers, balls and gifts, shops "
+    results.append(("every reward-table row shows once: trainers, balls, hidden items and gifts, shops "
                     "(a dropped shop slot sells nothing and is left out)",
                     trainer == kinds["trainer"]
-                    and len(placed) == kinds["ball"] + kinds["gift"]
+                    and len(placed) == kinds["ball"] + kinds["hidden"] + kinds["gift"]
                     and len(shop) == kinds["mart"] + kinds["prize"] - dropped and len(rewards) > 0,
                     f"from {where}: {dict(kinds)}, {dropped} shop slots dropped"))
     results.append(("every ball or gift reward found the place it replaces",

@@ -130,6 +130,9 @@ DIVERGED["events_stark_mountain_room_2"] += (
 # whose win gives the TM she gave for ten straight bonus rounds (Ian,
 # 2026-10-06).
 _why = "the optional trainer Rocco added beside the coins clerk (Ian, 2026-10-06)"
+DIVERGED["events_stark_mountain_outside"] += (
+    "; the Life Orb ball gives a PP Up instead (visible item script 7051), since the player "
+    "never gets a Life Orb (Ian, 2026-09-27 and 2026-10-13); its flag keeps its old name")
 DIVERGED["events_game_corner"] = (
     DIVERGED["events_game_corner"] + "; " + _why if "events_game_corner" in DIVERGED else _why)
 # The reward table (step 10 of docs/oxide/alpha-readiness.md, applied
@@ -137,6 +140,16 @@ DIVERGED["events_game_corner"] = (
 # balls; regenerating would bring back the base ROM's.
 _why = "item balls the reward table changed (2026-10-07)"
 for _m in ("jubilife_city", "mt_coronet_2f", "stark_mountain_room_1"):
+    DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
+                                if f"events_{_m}" in DIVERGED else _why)
+# Two of the items the table gained later (Ian, 2026-10-13); the third, the
+# Ability Patch, is a trainer reward in scripts_battles.
+for _m, _why in (
+    ("wayward_cave_1f", "its Revive ball holds the one Ice Stone (visible item script 7472; "
+                        "Ian, 2026-10-13)"),
+    ("pastoria_city", "a hidden Ability Capsule at the end of the strip between the southwest "
+                      "ponds (Ian, 2026-10-13)"),
+):
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
                                 if f"events_{_m}" in DIVERGED else _why)
 # Solaceon's "Utility Stop" vendors are gone (Ian, 2026-10-07; bulk_scripts.py

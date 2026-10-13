@@ -144,7 +144,7 @@ def _regular_abilities(mon):
     since the blob does not change."""
     got = _REGULAR.get(mon.species)
     if got is None:
-        ab = (fs.teamscore._blob()["poks"].get(mon.species) or {}).get("abilities") or {}
+        ab = (fs.calc.blob()["poks"].get(mon.species) or {}).get("abilities") or {}
         got = _REGULAR[mon.species] = (ab.get("0"), ab.get("1"))
     return got
 
@@ -217,18 +217,17 @@ def expected_hits(u, mv, d):
     """TrainerAI_ExpectedHitsDamage (the move reworks, Ian's answer of
     2026-10-07): one hit's estimate at the listed power to the whole move's.
     A two to five hit move counts 3.1 hits, or 5 under Skill Link (a Loaded
-    Dice is not seen, as the AI sees no held item there); Fury Cutter its
-    power plus 10 and 20 more over its power. Triple Kick (10, 20, 30) and
-    Triple Axel (20, 40, 60) the game rates by their three hits' sum over
-    the listed power, which is what the calculator's row already adds up
-    (gen4.js), so their row stands as it is."""
+    Dice is not seen, as the AI sees no held item there). The rising moves
+    (Fury Cutter 10, 20, 30 and Triple Kick 20, 30, 40) and Triple Axel
+    (20, 40, 60) the game rates by their three hits' sum, which is what the
+    calculator's row already adds up (its Oxide profile and gen4.js), so
+    their row stands as it is. Until 2026-10-12 the rising row was taken as
+    one hit and multiplied again."""
     p = mv.power
     if p <= 0:
         return d
     if mv.effect == "MULTI_HIT":
         return d * 5 if u.ability == "Skill Link" else d * 31 // 10
-    if mv.effect == fs.RISING_HITS:
-        return d * (p * 3 + 10 + 20) // p
     return d
 
 
@@ -2843,6 +2842,18 @@ def x_mortal_spin(c):
     return _spin_clears(c)
 
 
+def x_salt_cure(c):
+    """Expert_SaltCure (Oxide, Ian, 2026-10-12): nothing on a target already
+    salted or one Magic Guard spares; with the user or the target at half HP
+    or less, -3 at 80.5%; otherwise +2 at 72.7%, the score of a hit that
+    lowers Speed."""
+    if getattr(c.t, "salted", False) or ability_of(c.b, c.u, c.t) == "Magic Guard":
+        return 0
+    if c.hu <= 50 or c.ht <= 50:
+        return -3 if c.roll(80.5) else 0
+    return 2 if c.roll(72.7) else 0
+
+
 # Each Expert_Main label, by its routine above.
 EXPERT_ROUTINES = {
     "Expert_StatusSleep": x_status_sleep, "Expert_DrainMove": x_drain_move,
@@ -2906,7 +2917,7 @@ EXPERT_ROUTINES = {
     "Expert_RecoilMove": x_recoil_move, "Expert_Hex": x_doubled, "Expert_Venoshock": x_doubled,
     "Expert_Acrobatics": x_doubled, "Expert_BoltBeak": x_doubled,
     "Expert_RapidSpin": x_rapid_spin, "Expert_SpeedUpOnHit": x_speed_up_on_hit,
-    "Expert_MortalSpin": x_mortal_spin}
+    "Expert_MortalSpin": x_mortal_spin, "Expert_SaltCure": x_salt_cure}
 
 
 @functools.lru_cache(maxsize=None)

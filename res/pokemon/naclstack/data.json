@@ -45,7 +45,7 @@
     "learnset": {
         "by_level": [
             [
-                1,
+                0,
                 "MOVE_SALT_CURE"
             ],
             [
@@ -69,16 +69,16 @@
                 "MOVE_SMACK_DOWN"
             ],
             [
+                13,
+                "MOVE_ROCK_POLISH"
+            ],
+            [
                 16,
                 "MOVE_HEADBUTT"
             ],
             [
                 20,
                 "MOVE_IRON_DEFENSE"
-            ],
-            [
-                27,
-                "MOVE_ROCK_POLISH"
             ],
             [
                 30,

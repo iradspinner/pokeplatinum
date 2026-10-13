@@ -25,15 +25,11 @@ the facts they point at live in the docs, not here.
    ask Ian instead of acting. A date is not an order; on 2026-10-01 a dated
    note had two workflows switched back on that the new CPU had made
    unnecessary.
-3. Work out which track you are on and where its status lives:
-   - Phases 0 to 5 (the engine port and everything before it): the tracker.
-   - The encounter tool and the encounter authoring pass:
-     `docs/oxide/encounter-tool-build-plan.md`, plus exactly one paragraph at
-     the top of the tracker. Nothing else in the tracker.
-   - The balance track: `docs/oxide/balance-plan.md`, and nothing in the
-     tracker.
-   - The scoring track: `docs/oxide/trainer-scoring-handoff.md`, and nothing
-     in the tracker.
+3. All open work lives in `docs/oxide/tracker.md` (Ian, 2026-10-13): read
+   its first page, add your items there and tick them there. The old track
+   docs (`encounter-tool-build-plan.md`, `balance-plan.md`,
+   `trainer-scoring-handoff.md`) are reference for how those tools work, and
+   no session owns files.
 4. On a worktree branch, run `git merge oxide` before anything else, resolve
    any conflict in your own files, and run your own suites. A branch cut before
    a change on `oxide` otherwise finds out only at the integration gate: the

@@ -15,8 +15,8 @@ and the reading.
 ## Before asking Ian for anything
 
 1. Read the bug's entry under Phase 5 in `docs/oxide/tracker.md`: what is
-   known, what was ruled out, and which functions to break on. The bug track's
-   status home is those entries and nothing else in the tracker. A fixed bug's
+   known, what was ruled out, and which functions to break on. Bugs are tracked
+   there and nowhere else. A fixed bug's
    entry moves to `docs/oxide/tracker-archive.md`, which also keeps the fuller
    wording of the two open entries as they stood on 2026-09-23.
 2. Read the design doc's findings log for the area. The whiteout hang

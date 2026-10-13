@@ -1280,12 +1280,20 @@ Battles_TrainerReward_AceTrainerDeanna:
     CloseMessage
     Return
 
-@ TRAINER_ACE_TRAINER_JOSE: ITEM_TM64 x1, under FLAG_UNUSED_0x0096
+@ TRAINER_ACE_TRAINER_JOSE: ITEM_ABILITY_PATCH x1, ITEM_TM64 x1, under FLAG_UNUSED_0x0096
 Battles_TrainerReward_AceTrainerJose:
     GoToIfSet FLAG_UNUSED_0x0096, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_ABILITY_PATCH
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
     SetVar VAR_0x8004, ITEM_TM64
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    SetVar VAR_0x8004, ITEM_ABILITY_PATCH
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_TM64
+    SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     SetFlag FLAG_UNUSED_0x0096
     CloseMessage

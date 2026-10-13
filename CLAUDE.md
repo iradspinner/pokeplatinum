@@ -24,11 +24,15 @@ Then say in one or two sentences what this session will do, and do it.
   a landing: the gate reports stale scores and passes. Full readings happen
   only at milestones (once before alpha 1, then once after each round of
   alpha changes); between them the scorer reads only the fights Ian names,
-  and the simulator is frozen except for fixes he approves. The cheap
-  calculator estimate runs on request, in the background. A problem Ian
+  and the simulator is frozen except for fixes he approves. The first scoring
+  system's cheap estimate is retired (Ian, 2026-10-13): the scorer is the one
+  measure of a fight. A problem Ian
   reports is fixed as data, with common sense, never turned into a standing
-  rule, a generator rule or a gate check unless he asks for one. Every
-  landing commit says, in one line, "Difficulty: not material" or
+  rule, a generator rule or a gate check unless he asks for one. What counts
+  as material is read from the fight's shape in `docs/oxide/boss-shapes.md`:
+  a change to a boss's core, or to the player's core counterpiece to it, is
+  material, and a change to a one-off Pokemon is not (Ian, 2026-10-12).
+  Every landing commit says, in one line, "Difficulty: not material" or
   "Difficulty: material, <fights>". The rule exists because Roark's split
   was re-read more than 65 times before the alpha, and the full scorer costs
   60 to 75 hours a pass.
@@ -55,8 +59,8 @@ Then say in one or two sentences what this session will do, and do it.
 - When the permission check refuses an action a task needs, stop the task and
   tell Ian what was refused and why it was needed. Never work around it (Ian,
   2026-10-01).
-- Update your status home (below) at the end of every session and commit it;
-  a finished tracker block moves verbatim to `docs/oxide/tracker-archive.md`.
+- Update the tracker at the end of every session and commit it; a finished
+  tracker block moves verbatim to `docs/oxide/tracker-archive.md`.
   If any `docs/oxide/*.md` file changed this session, also run
   `tools/oxide/sync-docs.sh` to mirror it to the project folder on the G:
   drive, which a separate chat surface works from. It runs only on `oxide`,
@@ -73,14 +77,15 @@ Then say in one or two sentences what this session will do, and do it.
 - Stage files by name when committing, never `git add -A` or `git add .`;
   sessions share this checkout and a sweep commits another session's
   in-progress files under your message.
-- Several sessions run in parallel: the Oxide Overseer, the main track, the
-  encounter track, the balance track and the scoring track, plus cloud
-  sessions. Each edits only its own status home: the tracker for the main
-  track and the Overseer, `docs/oxide/encounter-tool-build-plan.md` for the
-  encounter tool (plus its one paragraph at the top of the tracker),
-  `docs/oxide/balance-plan.md` for the balance track, and
-  `docs/oxide/trainer-scoring-handoff.md` for the scoring track. Every track works on its own branch or worktree; the
-  Overseer merges each into `oxide` with `tools/oxide/merge-branch.sh`.
+- All open work lives in `docs/oxide/tracker.md`, its first page the road to
+  the alpha and what waits on Ian (Ian, 2026-10-13). The old track status
+  homes (`balance-plan.md`, `encounter-tool-build-plan.md`,
+  `trainer-scoring-handoff.md`) and `alpha-readiness.md` are reference now,
+  and no session owns files: the Oxide Overseer is the one standing session,
+  and Ian starts any other (the Kaizo study, a cloud job) himself. The fight
+  simulator, its AI and the scorer still change only with Ian's approval.
+  Every session works on its own branch or worktree, and the Overseer merges
+  each into `oxide` with `tools/oxide/merge-branch.sh`.
 - Do not "improve" a carried-over map, script or table while a faithful
   carry-over is being verified; `checkmap.py` compares against the base ROM.
   Cleanups (re-humanising generated scripts, unifying the clown gifts) are

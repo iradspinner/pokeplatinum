@@ -45,11 +45,7 @@
     "learnset": {
         "by_level": [
             [
-                1,
-                "MOVE_SLASH"
-            ],
-            [
-                1,
+                0,
                 "MOVE_SLASH"
             ],
             [

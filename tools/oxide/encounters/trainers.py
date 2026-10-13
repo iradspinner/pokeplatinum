@@ -7,12 +7,13 @@ with its split and level cap, and one trainer's team as the game builds it
 in battle (nature, ability, gender and default moves come from
 calc_trainers, which follows TrainerData_BuildParty).
 
-The split is the balance track's placement, read without building any party
+The split is the balance tools' placement, read without building any party
 so the whole list costs about three seconds once: a story fight's split from
-fights.json, else the split B6 places the trainer in, else the maps that
-field it. It is the order teamscore.resolve uses, and test_trainers holds
-the two to the same answer. A trainer with no split (the dummies, and the
-slots no map fields) has no cap and no score.
+fights.json, else the split the census places the trainer in
+(balance/required.py, placements), else the maps that field it. A trainer
+with no split (the dummies, and the slots no map fields) has no cap.
+Each trainer's difficulty is the fight scorer's stored reading
+(balance/pldifficulty.py); the tab never scores a team itself.
 
 Saving (piece 3) edits the file's text field by field with jsonstyle, never
 a reformat, so a change is an ordinary git diff. A save runs the trainer lint
@@ -28,7 +29,6 @@ import os
 import re
 import subprocess
 import tempfile
-import threading
 
 from . import calc_trainers
 from . import dex
@@ -88,14 +88,15 @@ def _stamp(root):
 
 @functools.lru_cache(maxsize=1)
 def split_map(root):
-    """{stem: split or None}, placed as teamscore.resolve places a fight."""
-    from ..balance import b6, data as bdata, splits as bsplits
+    """{stem: split or None}: a story fight's split, else the census's
+    placement, else the trainer's map's."""
+    from ..balance import data as bdata, required, splits as bsplits
     ids = calc_trainers._tables(root)["ids"]
     story = {}
     for fight in bdata.fights()["fights"]:
         for tr in fight["tr_ids"]:
             story.setdefault(tr, fight["split"])
-    placed = b6.placements()
+    placed = required.placements()
     out = {}
     for stem in stems(root):
         tr = ids.get("TRAINER_" + stem.upper())
@@ -121,12 +122,10 @@ def split_order():
 
 def summary(root=None):
     """One row per trainer for the list, rebuilt when a trainer file changes,
-    each with its stored score (or None) for the list to sort by."""
+    each with its stored difficulty (or None) for the list to sort by."""
     root = root or model.repo_root()
-    scores = stored_scores(root)
     hard = stored_difficulty(root)
-    return [dict(r, score=scores.get(r["stem"]), difficulty=hard.get(r["stem"]))
-            for r in _summary(root, _stamp(root))]
+    return [dict(r, difficulty=hard.get(r["stem"])) for r in _summary(root, _stamp(root))]
 
 
 # -- the difficulty number (Ian, 2026-10-07) ----------------------------------------
@@ -182,60 +181,6 @@ def _stored_difficulty(root, path, stamp):
     return out
 
 
-# -- the stored scores (Ian, 2026-09-27) ------------------------------------------
-# The list sorts by the numbers the balance plan reports, read from the
-# balance track's stored results without scoring anything: a story fight's
-# from pressure.json (Hesperid's two from calibrate.json), shared by every
-# variant of it (Barry's three starters), and an ordinary trainer's from
-# b6.json. Each goes onto Ian's fight scale by the plan's own line. A team
-# saved since its last rescore shows the score from before the save. When the
-# Balance Agent's rebuilt score lands, this function is the one to repoint.
-
-def _score_files():
-    from ..balance import b6, calibrate, pressure
-    return tuple(p for p in (pressure.OUT, calibrate.OUT, b6.OUT) if os.path.exists(p))
-
-
-def stored_scores(root=None):
-    """{stem: {"scale", "band", "fight"}} for every trainer with a stored score;
-    "fight" is the story fight's key, or None for an ordinary trainer."""
-    root = root or model.repo_root()
-    files = _score_files()
-    return _stored_scores(root, tuple(os.stat(p).st_mtime_ns for p in files))
-
-
-@functools.lru_cache(maxsize=2)
-def _stored_scores(root, stamp):
-    from ..balance import b6, calibrate, data as bdata
-    try:
-        line = b6.scale_line()
-    except (KeyError, ZeroDivisionError):  # no stored story fights to draw the line from
-        return {}
-    stem_of = {tr: name[len("TRAINER_"):].lower()
-               for name, tr in calc_trainers._tables(root)["ids"].items()}
-    rate = lambda safe: round(b6.on_scale(safe, line), 1)
-    out = {}
-    for tr, r in b6.load().get("trainers", {}).items():
-        stem = stem_of.get(int(tr))
-        if stem and r.get("safe") is not None:
-            out[stem] = {"scale": rate(r["safe"]), "fight": None}
-    stories = b6.story_scores()
-    fights = [(f["key"], f["tr_ids"]) for f in bdata.fights()["fights"]]
-    by_constant = {name: tr for name, tr in calc_trainers._tables(root)["ids"].items()}
-    fights += [(key, [by_constant[c]]) for c, _split, key, _label in calibrate.EXTRA if c in by_constant]
-    for key, ids in fights:
-        r = stories.get(key)
-        if not r or r.get("safe") is None:
-            continue
-        for tr in ids:
-            stem = stem_of.get(tr)
-            if stem:
-                out[stem] = {"scale": rate(r["safe"]), "fight": key}
-    for v in out.values():
-        v["band"] = b6.band(v["scale"])
-    return out
-
-
 def versions(root):
     """{stem: which version it is} for every trainer of a story fight kept
     once per starter ("if you chose Turtwig", "Dawn, if you chose Turtwig"),
@@ -283,8 +228,8 @@ def _summary(root, stamp):
 # ("scripted"), and a tag battle with a partner beside the player ("tag").
 # Its fourth kind, one trainer's own double, is a single team already, and
 # the list marks it from the trainer's file as before. A pair is shown and
-# saved as one fight, but its score is still each trainer's own until the
-# balance track scores pairs (the joint score comes after its niche check).
+# saved as one fight; its difficulty is the pair's own reading when the
+# scorer's store keys the pair, else the harder of its two trainers'.
 
 def pair_entries():
     """The finder's entries with two opponents, in its order."""
@@ -300,8 +245,8 @@ def pair_entry(key):
 
 
 def pair_rows(root=None):
-    """One row per pair for the list: both trainers' names, parties and
-    stored scores, the higher level, the split and its cap, and how the
+    """One row per pair for the list: both trainers' names and parties, the
+    pair's difficulty, the higher level, the split and its cap, and how the
     pair is fought. A trainer in two pairs (Ranger Ashlee on Route 225) is
     in both rows."""
     root = root or model.repo_root()
@@ -316,7 +261,7 @@ def pair_rows(root=None):
         out.append({
             "key": p["key"], "stems": p["stems"], "how": p["how"], "story": p.get("story"),
             "labels": [s["label"] for s in sides], "label": " & ".join(s["label"] for s in sides),
-            "parties": [s["party"] for s in sides], "scores": [s["score"] for s in sides],
+            "parties": [s["party"] for s in sides],
             # A pair's difficulty: its own reading when the store keys the
             # pair, else the harder of its two trainers' readings.
             "difficulty": stored_difficulty(root).get(p["key"]) or max(
@@ -332,22 +277,15 @@ def pair_rows(root=None):
 
 
 def pair_detail(root, key):
-    """Both trainers of a pair as the Trainers tab edits them, each with its
-    own estimate, and the pair's facts."""
+    """Both trainers of a pair as the Trainers tab edits them, and the
+    pair's facts."""
     p = pair_entry(key)
-    sides = []
-    for stem in p["stems"]:
-        d = detail(root, stem)
-        d["estimate"] = estimate(stem)
-        sides.append(d)
+    sides = [detail(root, stem) for stem in p["stems"]]
     split = p["split"] or sides[0]["split"]
     return {"key": key, "how": p["how"], "story": p.get("story"), "maps": p["maps"],
             "split": split, "cap": caps().get(split),
             "partners": [calc_trainers.trainer_name(root, load(root, st), st) for st in p["partners"]],
             "shared_tiles": p.get("shared_tiles"), "each_alone": p.get("each_alone"),
-            # The pair as one fight against both teams (teamscore takes a
-            # pair key and {stem: JSON} edits), beside each team's own.
-            "estimate": estimate(key),
             "sides": sides}
 
 
@@ -364,24 +302,10 @@ def _pair_edits(key, edits):
 
 
 def pair_preview(root, key, edits):
-    """Each edited side rebuilt and linted as `preview` does, and the pair's
-    estimate as one fight with every edit in place (none while either side
-    has a lint error, as for one trainer). Nothing is written."""
+    """Each edited side rebuilt and linted as `preview` does. Nothing is
+    written."""
     _pair_edits(key, edits)
-    sides = {stem: preview(root, stem, data) for stem, data in edits.items()}
-    errors = any(f["severity"] == "error" for s in sides.values() for f in s["findings"])
-    return {"sides": sides, "estimate": None if errors else estimate(key, edits)}
-
-
-def pair_score(key, edits):
-    """The balance track's full score of the pair as one fight, with the
-    unsaved edits in place: one at a time, pinned to one core, as for one
-    trainer."""
-    if edits:
-        _pair_edits(key, edits)          # refuses a stem outside the pair
-    else:
-        pair_entry(key)                  # a KeyError for an unknown pair
-    return full_score(key, edits or None)
+    return {"sides": {stem: preview(root, stem, data) for stem, data in edits.items()}}
 
 
 def pair_save(root, key, edits, folder=None, registry=None):
@@ -497,68 +421,24 @@ def detail(root, stem, data=None):
 
 
 def preview(root, stem, data):
-    """An unsaved edit rebuilt as the game would build it, with its lint and
-    the instant score. Nothing is written. A team the lint rejects may not
-    build at all, and then only the findings come back."""
+    """An unsaved edit rebuilt as the game would build it, with its lint.
+    Nothing is written. A team the lint rejects may not build at all, and
+    then only the findings come back."""
     findings = lint(root, data)
     try:
         shown = detail(root, stem, data)
     except (KeyError, ValueError, TypeError, IndexError, FileNotFoundError):
         shown = None
-    errors = any(f["severity"] == "error" for f in findings)
-    return {"detail": shown, "findings": findings,
-            "estimate": None if errors or shown is None else estimate(stem, data)}
-
-
-# -- the score (piece 4), agreed with the Balance Agent -----------------------------
-# The tool never scores by itself: both numbers are the balance track's
-# teamscore.py, which places the fight (a story fight's variants and tag
-# partner, weather, Trick Room) and returns the split and its cap.
-
-def estimate(stem, data=None):
-    """teamscore.estimate: the instant number for every edit, 0.01 to 0.06 s
-    once warm. {"error": why} for a trainer it does not score."""
-    from ..balance import teamscore
-    try:
-        return teamscore.estimate(stem, data)
-    except Exception as exc:              # a trainer with no capped split, or a team it cannot build
-        return {"error": str(exc)}
+    return {"detail": shown, "findings": findings}
 
 
 def warm():
-    """The estimate's first call builds the calculator data and every split's
-    side, about 4 to 9 seconds; the server does it at start, off to one side."""
-    from ..balance import pool, teamscore
+    """The pair finder reads every map's events, about 2.5 s; the server
+    reads it at start, off to one side, so the first trainer list is quick."""
     try:
-        pair_entries()          # the pair finder reads every map's events, about 2.5 s
+        pair_entries()
     except Exception:
         pass
-    for split in pool.SPLITS:
-        try:
-            teamscore.side(split)
-        except Exception:
-            pass
-
-
-_SCORING = threading.Lock()
-
-
-def full_score(stem, data=None):
-    """teamscore.score, the balance plan's own number: one Node process, 1 s
-    early in the game to 20 s late. One at a time, pinned to one core; the
-    affinity is this thread's, which the Node process inherits."""
-    from ..balance import teamscore
-    if not _SCORING.acquire(blocking=False):
-        return {"error": "a score is already running; one at a time"}
-    cores = sorted(os.sched_getaffinity(0))
-    try:
-        os.sched_setaffinity(0, {cores[-1]})
-        return teamscore.score(stem, data)
-    except Exception as exc:
-        return {"error": f"{type(exc).__name__}: {exc}"}
-    finally:
-        os.sched_setaffinity(0, set(cores))
-        _SCORING.release()
 
 
 def choices(root):

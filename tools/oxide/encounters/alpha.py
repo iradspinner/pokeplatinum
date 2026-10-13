@@ -538,7 +538,9 @@ def build(root=None):
             if r["reward"] != "ITEM_NONE":
                 put(split, zone, "shop", dict(reward, kind=kind))
             continue
-        bucket = "pickups" if kind == "ball" else "gifts"
+        # A hidden item is a pickup like a ball (Pastoria's Ability Capsule,
+        # 2026-10-13); only a gift an NPC script gives goes with the gifts.
+        bucket = "pickups" if kind in ("ball", "hidden") else "gifts"
         rows = [x for z in [zones.get((s, zone)) for s in SPLITS] if z for x in z[bucket]
                 if x["map"] == r.get("map") and x["placed"] is None]
         hit = next((x for x in rows if x["item"] == r["reward"]), None) \

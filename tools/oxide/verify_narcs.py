@@ -527,6 +527,8 @@ REWORK_DIG_DIVE = {91, 291}
 REWORK_MULTI_HIT_25 = {3, 4, 31, 131, 140, 154, 292}
 # Fury Cutter.
 REWORK_FURY_CUTTER = {210}
+# Triple Kick, on Fury Cutter's rising effect since 2026-10-12.
+REWORK_TRIPLE_KICK = {167}
 # The rampage moves: Thrash, Petal Dance, Outrage, Uproar.
 REWORK_RAMPAGE = {37, 80, 200, 253}
 
@@ -701,8 +703,14 @@ DIVERGED = {
         {
             "offsets": (0, 1, 3, 5),  # effect, power, accuracy
             "members": REWORK_FURY_CUTTER,
-            "why": "Fury Cutter as Kaizo's three hits of 30 rising by 10, at 100 accuracy "
-                   "(the move reworks, Ian, 2026-10-06)",
+            "why": "Fury Cutter as three hits rising by 10, at 100 accuracy (the move "
+                   "reworks, Ian, 2026-10-06), from 10 since 2026-10-12 (Ian): 10, 20, 30",
+        },
+        {
+            "offsets": (0, 1, 3),  # effect, power
+            "members": REWORK_TRIPLE_KICK,
+            "why": "Triple Kick on Fury Cutter's rising effect from 20: 20, 30, 40, still "
+                   "at 90 accuracy a hit (Ian, 2026-10-12)",
         },
         {
             "offsets": (6,),  # pp

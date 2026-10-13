@@ -24,7 +24,7 @@ ball     An item ball. place is the ball's object id on the map
          map holding that item; its entry in scripts_visible_items.s is
          repointed. A new ball has its tile as place, "x,z" or "x,z,y": the
          object goes at the end of the map's object events, under a new
-         visible-item entry and a spare story flag.
+         visible-item entry and a spare flag (spare_windows).
 hidden   A hidden item. place is its obtained flag (FLAG_OBTAINED_HIDDEN_...),
          or empty with replaces; its row in include/data/field/hidden_items.h
          is repointed. A new one ("x,z" or "x,z,y") takes one of the spare
@@ -562,24 +562,40 @@ def referenced_flags(tree, pattern):
     return used
 
 
+def spare_windows(flags):
+    """[(lo, hi)]: the stretches a spare flag may come from, each exclusive.
+    The game clears the map-local flags on every map change and the daily
+    flags each day, and works out trainer, Villa furniture, first-arrival and
+    Giratina flags from a number, so none of those lends one. The hidden
+    items' stretch lends only the flags pret marks unused, which no hidden
+    item's script reaches. Until 2026-10-13 only the story flags below the
+    hidden items were searched (46); Ian approved the wider search (39 more)."""
+    return [(flags["MAP_LOCAL_FLAGS_END"], flags["TRAINER_DEFEATED_FLAGS_START"]),
+            (flags["TRAINER_DEFEATED_FLAGS_END"], flags["FLAG_VILLA_FURNITURE_START"])]
+
+
 class SpareFlags:
-    """Story flags vanilla never used, handed out lowest first. A flag the
-    tree names anywhere is taken, including by this tool's own earlier
-    placements, which keep theirs."""
+    """Flags vanilla never used (pret's FLAG_UNUSED_ names), handed out
+    lowest first from spare_windows(). A flag the tree names anywhere is
+    taken, including by this tool's own earlier placements, which keep
+    theirs."""
 
     def __init__(self, tree):
         self.tree = tree
         self._free = None
 
+    def pool(self):
+        """[(value, name)]: every spare flag, taken or not."""
+        windows = spare_windows(self.tree.flags)
+        return sorted((v, n) for n, v in self.tree.flags.items()
+                      if SPARE_STORY.fullmatch(n) and any(lo < v < hi for lo, hi in windows))
+
     def take(self):
         if self._free is None:
-            lo = self.tree.flags["MAP_LOCAL_FLAGS_END"]
-            hi = self.tree.flags["HIDDEN_ITEM_FLAGS_START"]
             used = referenced_flags(self.tree, SPARE_STORY)
-            self._free = sorted((v, n) for n, v in self.tree.flags.items()
-                                if SPARE_STORY.fullmatch(n) and lo < v < hi and n not in used)
+            self._free = [(v, n) for v, n in self.pool() if n not in used]
         if not self._free:
-            raise TableError("no spare story flags are left")
+            raise TableError("no spare flags are left")
         return self._free.pop(0)[1]
 
 

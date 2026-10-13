@@ -195,6 +195,24 @@ function rolls(damage) {
 function run(blob, jobs) {
   const ctx = makeEngine(blob);
   const calc = ctx.calc;
+  // The Eviolite: the Generation 4 mechanics read "can still evolve" from the
+  // Generation 4 species table, which has no species added later, so a
+  // Naclstack's Eviolite did nothing. pressure.py passes the engine's answer
+  // (its evolution record in use) for each holder, and it is written into
+  // that table here, adding the species where the table lacks it.
+  ctx.__canEvolve = {};
+  for (const p of Object.values(jobs.pokemon)) {
+    if (typeof p.can_evolve === 'boolean') ctx.__canEvolve[p.species] = p.can_evolve;
+  }
+  vm.runInContext(`
+    (function () {
+      var table = SPECIES_BY_ID[${DAMAGE_GEN}];
+      for (var name in __canEvolve) {
+        var id = String(name).replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+        if (table[id]) table[id].nfe = __canEvolve[name];
+        else table[id] = { kind: 'Species', id: id, name: name, nfe: __canEvolve[name] };
+      }
+    })();`, ctx);
   const built = {};
   function mon(key) {
     if (built[key]) return built[key];

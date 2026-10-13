@@ -134,7 +134,7 @@ def _token_ids(token, text):
 
 _PARTNER_VAR = re.compile(r"^\s*SetVar(?:FromValue)?\s+VAR_PARTNER_TRAINER_ID,\s*(\w+)", re.M)
 # Stems of the trainers that fight beside the player, as the scores name
-# them (metrics.PARTNER_STEMS), and the rival's variants.
+# them (required.PARTNER_STEMS), and the rival's variants.
 PARTNER_PREFIXES = ("cheryl", "mira", "riley", "marley", "buck", "lucas", "dawn", "rival")
 
 
@@ -215,9 +215,9 @@ def pairs():
     double the player fights against two trainers, and each trainer's own
     double, sorted by split. The key is the two stems joined by "+", in
     order, and stays the same while both trainers keep their names."""
-    from . import b6
+    from . import required
     ids = {_stem(t["constant"]): tr_id for tr_id, t in data.oxide_trainers().items()}
-    placed = b6.placements()
+    placed = required.placements()
     order = splits.SPLITS + ["Post"]
 
     def split_of(stems):
@@ -247,16 +247,16 @@ def pairs():
             out.append({"key": stem, "stems": [stem], "how": "one trainer's double", "partner": False,
                         "partners": [], "maps": sorted(splits.trainer_maps().get(tr_id, ())),
                         "split": splits.trainer_split(tr_id)})
-    # How each is scored today: inside a story fight (fights.json, whose
-    # tag battles already count both opponents as one party), or as B6's
-    # placed trainers, one at a time.
+    # How each is placed: inside a story fight (fights.json, whose tag
+    # battles already count both opponents as one party), or as the
+    # census's placed trainers (required.placements), one at a time.
     fights = [(f["key"], {_stem(c) for c in f.get("trainers") or []}, f["split"])
               for f in data.fights()["fights"]]
     for p in out:
         story = next(((k, split) for k, stems, split in fights if set(p["stems"]) <= stems), None)
         p["story"] = story and story[0]
         p["placed"] = [st for st in p["stems"] if ids.get(st) in placed]
-        # A story fight's trainers are not B6's placed trainers, so their
+        # A story fight's trainers are not the census's placed trainers, so their
         # own split falls back to their map's (Lake Verity's is Roark's);
         # the pair takes the fight's split.
         if story:

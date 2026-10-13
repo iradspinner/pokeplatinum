@@ -29,6 +29,15 @@ def check_tree(results, d):
                     "every list matches" if not differ else f"differ: {differ[:5]}"))
 
 
+def check_hand_eggs(results, d):
+    """A species set by hand keeps its egg list as its file holds it, as it
+    keeps its level-up list; a run of write once reset Nacli's (2026-10-12)."""
+    differ = sorted(sp for sp in lg.by_hand() if sp in d.eggs
+                    and d.eggs[sp] != list((lg.pokedex.load(data.ROOT, sp) or {}).get("egg_moves") or []))
+    results.append(("a species set by hand keeps its egg list", not differ,
+                    f"{len(lg.by_hand())} species set by hand" if not differ else f"differ: {differ[:5]}"))
+
+
 def check_log(results, d):
     """Every change in the log names the rule behind it."""
     blank = [row for row in d.log if not row[4]]
@@ -68,6 +77,7 @@ def main():
     d = lg.build()
     check_writer(results)
     check_tree(results, d)
+    check_hand_eggs(results, d)
     check_log(results, d)
     check_limits(results, d)
     check_held_out(results)

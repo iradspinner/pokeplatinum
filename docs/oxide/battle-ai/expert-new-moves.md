@@ -7,15 +7,15 @@ A move is counted as learnable when any species' or form's level, TM, tutor or e
 | | Moves |
 |---|---|
 | learnable moves past id 467 | 161 |
-| scored by an Expert routine | 67 |
-| with none | 94 |
-| of those, judgment calls, left with none by Ian's ruling (below) | 11 |
+| scored by an Expert routine | 68 |
+| with none | 93 |
+| of those, judgment calls, left with none by Ian's ruling (below) | 10 |
 
-A move a routine names below is scored as that Platinum move is; the routines are described in [expert-1.md](expert-1.md) and [expert-2.md](expert-2.md), and the ones element 6 wrote in the README. Two are trimmed copies made for this pass, as element 6 made one of Thunder's for the Hisuian storms: `Expert_ClearSmog` keeps Haze's tests of the target's stages and drops those of the user's, and `Expert_MortalSpin` keeps Rapid Spin's clearing and drops its Speed raise.
+A move a routine names below is scored as that Platinum move is; the routines are described in [expert-1.md](expert-1.md) and [expert-2.md](expert-2.md), and the ones element 6 wrote in the README. Two are trimmed copies made for this pass, as element 6 made one of Thunder's for the Hisuian storms: `Expert_ClearSmog` keeps Haze's tests of the target's stages and drops those of the user's, and `Expert_MortalSpin` keeps Rapid Spin's clearing and drops its Speed raise. Salt Cure has a routine of its own, `Expert_SaltCure` (Ian, 2026-10-12), below.
 
 ## Judgment calls, settled
 
-Each of these is left with none, though a Platinum routine is near, because that routine would misjudge the move. Ian ruled on 2026-09-27 that they stay that way ("None, as left"); a routine of its own for any of them would be a new change of play.
+Each of these is left with none, though a Platinum routine is near, because that routine would misjudge the move. Ian ruled on 2026-09-27 that they stay that way ("None, as left"); a routine of its own for any of them would be a new change of play. Salt Cure was the eleventh, until Ian gave it one on 2026-10-12 (its entry below).
 
 - Core Enforcer: A hit that then suppresses an ability; Gastro Acid's routine takes points off against a weakened target, where a hit is worth the most.
 - Crafty Shield, Mat Block, Quick Guard and Wide Guard: Each shares Protect's subscript but stops only one kind of move (spread moves, priority moves, first-turn damage or status moves), which Protect's routine does not measure; worth a routine of its own for double battles.
@@ -23,7 +23,6 @@ Each of these is left with none, though a Platinum routine is near, because that
 - Guard Split: It averages the two battlers' Defense and Sp. Def; Guard Swap's routine reads stat stages, which it leaves alone, and Pain Split's reads HP.
 - Laser Focus: A critical-hit setup, as Focus Energy; Lock-On's routine, a coin flip for +2, is the other candidate.
 - Power Split: As Guard Split, for Attack and Sp. Atk.
-- Salt Cure: A hit that costs the target HP every turn; Bind's routine values trapping, which Salt Cure does not do, and Leech Seed's is for a status move.
 - Wonder Room: Trick Room's routine reads Speed and Power Trick's its user's own stats; neither measures a Defense and Sp. Def swap for everyone.
 
 ## Scored by a routine
@@ -166,7 +165,7 @@ Each of these is left with none, though a Platinum routine is near, because that
 - Relic Song: none, as Platinum's ThunderPunch: a hit with a chance of a status, here sleep; its form change has no Platinum equivalent (2026-10-07).
 - Retaliate: none, a plain hit, as Platinum's Tackle; its power doubles after an ally faints.
 - Sacred Sword: none, a plain hit, as Platinum's Tackle; it ignores the target's stat changes.
-- Salt Cure: none; the nearest is Platinum's Bind, whose routine would misjudge it (a judgment call, above).
+- Salt Cure: `Expert_SaltCure`, its own (Ian, 2026-10-12, reversing "None, as left" for this move). Without a routine the AI never used it, since Evaluate Attack docks a point from any attack weaker than the user's best, and Salt Cure's worth is the damage after the hit. The routine takes the score Platinum gives the hits that lower Speed, with the condition of Toxic and Leech Seed's routine: nothing on a target already salted or one Magic Guard spares; with the user or the target at half HP or less, -3 at 80.5%; otherwise +2 at 72.7%. Bind's routine was the nearest by effect, but it scores only a target already under Toxic, Curse, Perish Song or infatuation.
 - Scald: none, as Platinum's Flame Wheel.
 - Scale Shot: none, as Platinum's DoubleSlap.
 - Skitter Smack: none, as Platinum's Mist Ball.

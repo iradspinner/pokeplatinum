@@ -39,7 +39,8 @@ import random
 import sys
 import time
 
-import numpy as np
+from . import plthreads  # noqa: F401  (one numpy thread per process, before numpy loads)
+import numpy as np  # noqa: E402
 
 from . import data, fightsim as fs, pboxes, plscore, plteam, pool
 
@@ -131,7 +132,7 @@ def roll(split, seed):
 
 def records(caught, cap):
     """The box's members as the screen reads them, at the cap."""
-    blob = fs.teamscore._blob()["poks"]
+    blob = fs.calc.blob()["poks"]
     out = []
     for sp, split in caught:
         level = 5 if split is None else catch_level(sp, split)

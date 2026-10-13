@@ -245,6 +245,34 @@ def check_infiltrator(results):
     results.append(("Infiltrator passes a Substitute in fightsim's own attack", ok, str(got)))
 
 
+def check_salt_cure(results):
+    """Salt Cure salts the Pokemon it hits: an eighth of its maximum HP at
+    each turn's end, a quarter for a Water or Steel type, nothing for Magic
+    Guard or behind a Substitute, until it leaves the field
+    (MON_COND_CHECK_STATE_SALT_CURE). Purifying Salt takes no status at all."""
+    got = {}
+    for label, types, ability, sub in (("plain", ("Normal",), None, 0), ("water", ("Water",), None, 0),
+                                       ("magic guard", ("Normal",), "Magic Guard", 0),
+                                       ("substitute", ("Normal",), None, 25)):
+        b, p, foe = battle(["Salt Cure"], ["Tackle"], {("p", "Salt Cure"): [10] * 16}, b_types=types)
+        foe.ability, foe.sub = ability, sub
+        fs.attack(b, p, fs.move("Salt Cure"), foe, True)
+        hit = foe.hp
+        fs.end_of_turn(b)
+        got[label] = (hit - foe.hp, foe.salted)
+    b, p, foe = battle(["Salt Cure"], ["Tackle"], {("p", "Salt Cure"): [10] * 16})
+    fs.attack(b, p, fs.move("Salt Cure"), foe, True)
+    foe.reset_volatile()                 # what leaving the field does
+    left = foe.salted
+    salt = battle(["Tackle"], ["Tackle"], {})[2]
+    salt.ability = "Purifying Salt"
+    blocked = not any(fs.can_status(b, salt, st) for st in ("par", "brn", "psn", "tox", "slp", "frz"))
+    ok = (got == {"plain": (12, True), "water": (25, True), "magic guard": (0, True), "substitute": (0, False)}
+          and not left and blocked)
+    results.append(("Salt Cure's chip by type, and Purifying Salt's status immunity", ok,
+                    f"{got}, salted after leaving {left}, Purifying Salt blocks all {blocked}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -477,6 +505,7 @@ def main():
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
                   check_weather_rock, check_map_weather_replaced, check_permanent_trick_room,
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
+                  check_salt_cure,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

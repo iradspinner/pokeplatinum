@@ -374,7 +374,7 @@ tr.got .spname { font-weight: 600; }
 /* The Trainers tab as Ian approved it (2026-09-29, the redesign's Trainers
    board): the list, then the trainer in the centre: a header line with its
    save bar, the team as a sheet, the move lists while a move is edited, and
-   a row of cards for the score, threat and answers, and battle and AI. */
+   a row of cards for the difficulty, and battle and AI. */
 #trainmain { grid-template-columns: 330px minmax(720px, 1fr); }
 #trainlist { border-right: 1px solid var(--rule); background: var(--panel); }
 #trainfilter { width: 100%; box-sizing: border-box; }
@@ -416,7 +416,6 @@ tr.got .spname { font-weight: 600; }
 /* A study reading (the Kaizo study's rewrite, not the file's team) is italic. */
 .trscore.study { font-style: italic; }
 .stalenote { color: var(--warn); margin: 2px 0 0; }
-h3.oldscale { margin: 12px 0 0; font-size: 14px; color: var(--dim); }
 /* A pair (two trainers fought as one double): its row, a gap between the two
    parties, and its trainers folded under it, indented. */
 .trrow.pair .fold-pair { text-decoration: none; margin-right: 2px; }
@@ -507,24 +506,14 @@ button.linkish { background: none; border: 0; padding: 0; color: var(--dim); cur
 .finding.error { color: var(--error); }
 .finding.warn { color: var(--warn); }
 /* The cards under the sheet. */
-.trbottom { display: grid; grid-template-columns: 300px minmax(0, 1fr) 300px; gap: 14px;
+.trbottom { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 14px;
   align-items: start; }
-/* The score is the one number worth acting on here, so it is gold. */
+/* The difficulty is the one number worth acting on here, so it is gold. */
 .scorenum { font: 600 24px/1 var(--mono); color: var(--act); margin-right: 4px; }
 .scorenum.big { font-size: 40px; }
 .scorebig { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
 #trainmid table.grid { margin: 4px 0 8px; font-size: 15px; }
-.fullscore { border-top: 1px solid var(--rule); margin-top: 8px; padding-top: 6px; }
-.fullscore.stale .scorenum { color: var(--faint); }
 #trainmid ul.sub { margin: 0 0 6px; padding-left: 18px; }
-.threat { display: grid; grid-template-columns: 130px 1fr 1fr; column-gap: 12px; row-gap: 6px;
-  align-items: center; }
-.threat .barline { display: flex; align-items: center; gap: 8px; }
-.threat .track { flex: 1; height: 8px; border-radius: 999px; background: var(--sunken); }
-.threat .track i { display: block; height: 8px; border-radius: 999px; }
-.threat .thr { background: var(--stat-0); }
-.threat .ans { background: var(--stat-4); }
-.threat .num { font-size: 13px; width: 3em; text-align: right; }
 /* The AI flags: a fixed grid, every flag in its own cell (Ian, 2026-09-29). */
 .aihead { font-weight: 700; font-size: 14.5px; }
 .aigrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
@@ -2415,9 +2404,9 @@ function drawSim() {
 // rebuilds and lints it without writing, and Save writes it in the file's own
 // style (trainers.py). The page works out nothing itself.
 let TRAINERS = null, TRSEL = null, TRDETAIL = null, TRMEMBER = null, TRLISTS = null;
-// The list's order: "score" puts the hardest stored score first (Ian,
-// 2026-09-27), "order" is play order. A trainer with no stored score (a
-// rematch, a dummy, a facility trainer) follows the scored ones in play order.
+// The list's order: "score" puts the hardest difficulty first (Ian,
+// 2026-09-27; the scorer's number since 2026-10-07), "order" is play order.
+// A trainer not read yet follows the read ones in play order.
 let TRSORT = "score";
 // Whether a member's move lists show under the sheet ("moves") or not.
 let TRPANE = "trainer";
@@ -2428,9 +2417,6 @@ const moveStyle = c => {
   return t ? ` style="--t: var(--type-${t.toLowerCase()})"` : "";
 };
 let TREDIT = null, TRDIRTY = false, TRFINDINGS = [], TRFOCUS = null, TRSEQ = 0, TRTIMER = null;
-// The score (teamscore.py, the balance track's): the estimate follows every
-// edit; the full score runs on request and remembers the team it scored.
-let TRESTIMATE = null, TRSCORE = null, TRSCORING = false;
 // Constant to name and name to constant, for the species, move and item boxes.
 const TRNAMES = { species: new Map(), moves: new Map(), items: new Map() };
 const TRBY = { species: new Map(), moves: new Map(), items: new Map() };
@@ -2450,9 +2436,6 @@ function trainerItems() {
   const byStem = new Map(TRAINERS.rows.map(r => [r.stem, r]));
   const pairs = TRAINERS.pairs.map(p => Object.assign({}, p, {
     kind: "pair", members: p.stems.map(s => byStem.get(s)).filter(Boolean),
-    // The list sorts a pair by the harder of its two stored scores until
-    // the balance track scores pairs as one fight.
-    score: p.scores.filter(Boolean).sort((a, b) => b.scale - a.scale)[0] || null,
     party: p.parties.flat(),
   }));
   return pairs.concat(TRAINERS.rows.filter(r => !paired.has(r.stem))
@@ -2572,7 +2555,7 @@ function drawTrainerList() {
 }
 
 // A pair open in the editor: {key, info, sides, active}. Each side keeps its
-// own edit, rebuilt team, findings, estimate, unsaved flag and full score;
+// own edit, rebuilt team, findings and unsaved flag;
 // the one being worked on is loaded into TREDIT and the rest, so the single
 // trainer's editor code serves either side unchanged. Clicking into a
 // column makes its side the active one.
@@ -2580,14 +2563,14 @@ let TRPAIR = null;
 function stashSide() {
   if (!TRPAIR) return;
   Object.assign(TRPAIR.sides[TRPAIR.active], { edit: TREDIT, detail: TRDETAIL,
-    findings: TRFINDINGS, estimate: TRESTIMATE, dirty: TRDIRTY, score: TRSCORE });
+    findings: TRFINDINGS, dirty: TRDIRTY });
 }
 function loadSide(k) {
   const s = TRPAIR.sides[k];
   if (k !== TRPAIR.active) TRMEMBER = TRLISTS = TRFOCUS = null;
   TRPAIR.active = k;
   TREDIT = s.edit; TRDETAIL = s.detail; TRFINDINGS = s.findings;
-  TRESTIMATE = s.estimate; TRDIRTY = s.dirty; TRSCORE = s.score;
+  TRDIRTY = s.dirty;
 }
 function useSide(k) {
   if (!TRPAIR || k === TRPAIR.active) return;
@@ -2611,11 +2594,9 @@ async function selectPair(key) {
     d = await api("/api/pair/" + encodeURIComponent(key));
   } catch (e) { return toast(e.message, true); }
   const row = TRAINERS.pairs.find(p => p.key === key) || {};
-  // `estimate` and `score` are the pair's as one fight; each side keeps its own.
   TRPAIR = { key, info: Object.assign({ label: d.sides.map(s => s.label).join(" & ") }, d, { sides: undefined }),
-             estimate: d.estimate || null, score: null,
              active: 0, sides: d.sides.map(s => ({ stem: s.stem, edit: clone(s.data), detail: s,
-               findings: [], estimate: s.estimate || null, dirty: false, score: null })) };
+               findings: [], dirty: false })) };
   TRPAIR.info.label = row.label || TRPAIR.info.label;
   TRSEL = null;
   TRMEMBER = TRLISTS = TRFOCUS = null;
@@ -2637,8 +2618,7 @@ async function selectTrainer(stem) {
   TREDIT = clone(TRDETAIL.data);
   TRDIRTY = false;
   TRFINDINGS = [];
-  TRMEMBER = TRLISTS = TRFOCUS = TRSCORE = null;
-  TRESTIMATE = TRDETAIL.estimate || null;
+  TRMEMBER = TRLISTS = TRFOCUS = null;
   drawTrainer();
   remember();
 }
@@ -2650,9 +2630,7 @@ function onSide(k, fields) {
     if ("edit" in fields) TREDIT = fields.edit;
     if ("detail" in fields) TRDETAIL = fields.detail;
     if ("findings" in fields) TRFINDINGS = fields.findings;
-    if ("estimate" in fields) TRESTIMATE = fields.estimate;
     if ("dirty" in fields) TRDIRTY = fields.dirty;
-    if ("score" in fields) TRSCORE = fields.score;
   } else {
     Object.assign(TRPAIR.sides[k], fields);
   }
@@ -2675,38 +2653,16 @@ function sideOf(ev) {
 }
 
 // Both teams of the open pair as they are being edited, {stem: JSON}: what
-// its preview, its score and the staleness of that score all read.
+// its preview reads.
 function pairEdits() {
   stashSide();
   return Object.fromEntries(TRPAIR.sides.map(s => [s.stem, s.edit]));
 }
 
-// Score it: one trainer's team, or a pair as one fight with every edit in place.
-async function scoreTrainer() {
-  if (TRSCORING) return;
-  TRSCORING = true;
-  drawTrainerRight();
-  const pair = TRPAIR && TRPAIR.key, k = sideNow();
-  const data = pair ? pairEdits() : TREDIT, team = JSON.stringify(data);
-  try {
-    const url = pair ? `/api/pair/${encodeURIComponent(pair)}/score` : `/api/trainer/${activeStem()}/score`;
-    const r = await fetch(url, { method: "POST",
-      headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data }) });
-    const j = await r.json();
-    if (!r.ok || j.error) toast(j.error || "Not scored", true);
-    else if (pair && TRPAIR && TRPAIR.key === pair) TRPAIR.score = { result: j, team };
-    else if (!pair) onSide(k, { score: { result: j, team } });
-  } catch (e) { toast(e.message, true); }
-  TRSCORING = false;
-  drawTrainerRight();
-}
-
-// The score card for one trainer, or for a pair as one fight: `e` is the
-// estimate, `scored` the last full score ({result, team}), and `team` what
-// is being edited now, which says whether that full score is stale. The
-// stored score is the list's, from the last rescore.
-// The difficulty number first (Ian, 2026-10-07): the scorer's reading of this
-// fight as one number, with the three it comes from and whether it is stale.
+// The difficulty card (Ian, 2026-10-07): the scorer's reading of this fight
+// as one number, with the three it comes from and whether it is stale. The
+// tab never scores a team itself; an edit shows its difficulty once the
+// scorer reads the fight again.
 function hardBlock() {
   const row = TRAINERS && (TRPAIR ? TRAINERS.items.find(r => r.key === TRPAIR.key)
     : TRAINERS.rows.find(r => r.stem === TRSEL));
@@ -2722,46 +2678,6 @@ function hardBlock() {
     ${d.team === "study" ? `<p class="stalenote">Read on the Kaizo study's rewrite of this team, not the team
       in the file; the file's own team is not read yet.</p>` : ""}
     ${d.stale ? `<p class="stalenote">Stale: ${esc(d.stale)}. Goal 3 reads it again.</p>` : ""}`;
-}
-
-function scoreBlock(e = TRESTIMATE, scored = TRSCORE, team = JSON.stringify(TREDIT)) {
-  const errors = TRPAIR ? (stashSide(), TRPAIR.sides.some(s => s.findings.some(f => f.severity === "error")))
-    : TRFINDINGS.some(f => f.severity === "error");
-  const head = hardBlock() + `<h3 class="oldscale">The old fight scale${TRPAIR ? ", the pair as one fight" : ""}</h3>`;
-  if (!e) return head + `<p class="sub">${errors ? "Fix the errors to see the score." : "Working out the score."}</p>`;
-  if (e.error) return head + `<p class="sub">Not scored: ${esc(e.error)}.</p>`;
-  const pc = v => Math.round(v * 100) + "%";
-  const fit = e.fit || {};
-  const row = TRAINERS && (TRPAIR ? TRAINERS.items.find(r => r.key === TRPAIR.key)
-    : TRAINERS.rows.find(r => r.stem === TRSEL));
-  const stored = row && row.score ? row.score.scale.toFixed(1) : null;
-  let full = "";
-  if (scored) {
-    const s = scored.result, stale = scored.team !== team;
-    const refs = Object.entries(s.references || {}).map(([h, v]) =>
-      `<tr><td>${esc(tidy(h))}</td><td class="num">${v.scale}</td></tr>`).join("");
-    const unseen = Object.entries(s.unseen || {}).map(([k, v]) =>
-      `<li>${esc(fieldLabel(k))}: ${esc(v.join(", "))}</li>`).join("");
-    full = `<div class="fullscore${stale ? " stale" : ""}">
-      <p><b class="scorenum">${s.scale}</b> the full score (${esc(s.band)})${
-        stale ? `, <span class="sub">for the team before your last edit</span>` : ""}</p>
-      <p class="sub">Safe switch-ins ${pc(s.safe)}, threat ${pc(s.threat)} (with odds ${pc(s.threat_chance)}),
-        answers ${pc(s.answers)} (with bait ${pc(s.answers_bait)}); ${s.seconds} s.</p>
-      ${unseen ? `<p class="sub">Tactics the score cannot see:</p><ul class="sub">${unseen}</ul>` : ""}
-      ${refs ? `<table class="grid"><thead><tr><th>Same seat in</th><th class="num">Scale</th></tr></thead>
-        <tbody>${refs}</tbody></table>` : ""}</div>`;
-  }
-  return `${head}<div class="scorebig"><b class="scorenum big">${e.scale}</b>
-      <span class="sub">on the fight scale (${esc(e.band)}), an estimate</span></div>
-    <p class="sub">Safe switch-ins ${pc(e.safe)}, threat ${pc(e.threat)}, answers ${pc(e.answers)}.${
-      stored ? ` Stored score ${stored}.` : ""}</p>
-    <p class="sub">${esc(e.split)} split, cap ${e.cap}${e.weather ? ", " + esc(e.weather) : ""}${
-      e.trick_room ? ", Trick Room" : ""}. Against the full score the estimate is ${fit.story_mean_error}
-      off on average over the ${fit.story_n} story fights, ${fit.story_max_error} at worst.</p>
-    <p><button id="trscore"${TRSCORING ? " disabled" : ""}>${TRSCORING ? "Scoring"
-      : "Score it with the full scorer"}</button></p>
-    <p class="sub">The balance track's full scorer, 1 to 20 seconds.</p>
-    ${full}`;
 }
 
 async function openTrainer(stem) {
@@ -2788,17 +2704,16 @@ async function runPreview() {
   try {
     let r;
     if (pair) {
-      // Both teams go, so the pair's estimate has every unsaved edit in it;
-      // each side's rebuilt team and findings go back to its own column.
+      // Both teams go; each side's rebuilt team and findings go back to its
+      // own column.
       const out = await api(`/api/pair/${encodeURIComponent(pair)}/preview`, { method: "POST",
         headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: pairEdits() }) });
       if (TRSEQS[slot] !== seq || !TRPAIR || TRPAIR.key !== pair) return;
       TRPAIR.sides.forEach((s, i) => {
         const p = out.sides[s.stem];
         if (p) onSide(i, Object.assign(p.detail ? { detail: p.detail } : {},
-                                      { findings: p.findings, estimate: p.estimate }));
+                                      { findings: p.findings }));
       });
-      TRPAIR.estimate = out.estimate;
       drawTrainer();
       return;
     } else {
@@ -2807,7 +2722,7 @@ async function runPreview() {
     }
     if (TRSEQS[slot] !== seq || (TRPAIR ? TRPAIR.key : null) !== pair) return;
     onSide(k, Object.assign(r.detail ? { detail: r.detail } : {},
-                            { findings: r.findings, estimate: r.estimate }));
+                            { findings: r.findings }));
     drawTrainer();
     const f = TRMEMBER !== null && TREDIT.party[TRMEMBER];
     if (f && TRLISTS && (TRLISTS.species !== f.species || TRLISTS.level !== f.level
@@ -2839,8 +2754,7 @@ async function savePair() {
     }
     const n = Object.values(j.changed).reduce((t, c) => t + c.changed.length, 0);
     j.detail.sides.forEach((d, i) => Object.assign(TRPAIR.sides[i], { edit: clone(d.data), detail: d,
-      findings: [], estimate: d.estimate || null, dirty: false }));
-    TRPAIR.estimate = j.detail.estimate || null;
+      findings: [], dirty: false }));
     loadSide(TRPAIR.active);
     drawTrainer();
     toast(n ? `Saved ${n} change${n > 1 ? "s" : ""} across the pair` : "Nothing had changed");
@@ -2867,7 +2781,6 @@ async function saveTrainer() {
     TREDIT = clone(j.detail.data);
     TRDIRTY = false;
     TRFINDINGS = j.findings || [];
-    TRESTIMATE = j.detail.estimate || null;
     drawTrainer();
     toast(j.changed.length ? `Saved ${j.changed.length} change${j.changed.length > 1 ? "s" : ""}`
                            : "Nothing had changed");
@@ -3061,13 +2974,12 @@ const TR_TAIL = `<p class="sub">Click any cell to edit it in place: a level, a s
 // Runs `fn` with side k's state loaded, then puts the active side back, so
 // both sheets of a pair draw with the single editor's own code.
 function asSide(k, fn) {
-  const keep = [TREDIT, TRDETAIL, TRFINDINGS, TRESTIMATE, TRDIRTY, TRSCORE, TRMEMBER];
+  const keep = [TREDIT, TRDETAIL, TRFINDINGS, TRDIRTY, TRMEMBER];
   const s = TRPAIR.sides[k];
-  TREDIT = s.edit; TRDETAIL = s.detail; TRFINDINGS = s.findings; TRESTIMATE = s.estimate;
-  TRDIRTY = s.dirty; TRSCORE = s.score;
+  TREDIT = s.edit; TRDETAIL = s.detail; TRFINDINGS = s.findings; TRDIRTY = s.dirty;
   if (k !== TRPAIR.active) TRMEMBER = null;
   try { return fn(); }
-  finally { [TREDIT, TRDETAIL, TRFINDINGS, TRESTIMATE, TRDIRTY, TRSCORE, TRMEMBER] = keep; }
+  finally { [TREDIT, TRDETAIL, TRFINDINGS, TRDIRTY, TRMEMBER] = keep; }
 }
 
 // A pair: one header for the fight, then each team's sheet, the one being
@@ -3079,10 +2991,8 @@ function drawPair() {
   const menus = openMenus();
   const tops = TRPAIR.sides.map(s => Math.max(0, ...(s.edit.party || []).map(f => f.level || 0)));
   const sheets = TRPAIR.sides.map((s, k) => asSide(k, () => {
-    const e = TRESTIMATE;
     const html = `<div class="sidehead"><h2>${esc(TRDETAIL.label)}</h2>
-        <span class="sub"><code>${esc(s.stem)}.json</code>${e && !e.error ? `, its own estimate
-          <b class="num">${e.scale}</b>` : ""}${TRDIRTY ? ", unsaved" : ""}</span></div>
+        <span class="sub"><code>${esc(s.stem)}.json</code>${TRDIRTY ? ", unsaved" : ""}</span></div>
       ${findingsList()}
       <div class="sheet${k === TRPAIR.active ? " on" : ""}" data-side="${k}">${sheetHtml(k)}</div>`;
     return html.replace(/id="tr-/g, `id="tr${k}-`);
@@ -3180,27 +3090,8 @@ function battleCard() {
       d.items.map(i => esc(tidy(i.replace("ITEM_", "")))).join(", ")}.</p>` : ""}`;
 }
 
-// Threat and answers per Pokemon, as bars, from the estimate: the share of
-// the player's side each knocks out in two hits moving first, and the share
-// that does that to it.
-function threatCard(e) {
-  const mons = (e && !e.error && e.mons) || [];
-  const pc = v => Math.round(v * 100) + "%";
-  return `<h2>Threat and answers</h2>
-    ${mons.length ? `<div class="threat">
-      <span class="sub">Pokemon</span>
-      <span class="sub" title="Share of the player's side it knocks out in two hits, moving first">Threat</span>
-      <span class="sub" title="Share of the player's side that does that to it">Answers</span>
-      ${mons.map(m => `<span>${esc(m.species)} <span class="sub num">${m.level}</span></span>
-        <span class="barline"><span class="track"><i class="thr" style="width:${pc(m.threat)}"></i></span>
-          <span class="num">${pc(m.threat)}</span></span>
-        <span class="barline"><span class="track"><i class="ans" style="width:${pc(m.answers)}"></i></span>
-          <span class="num">${pc(m.answers)}</span></span>`).join("")}</div>`
-      : `<p class="sub">The bars follow the estimate.</p>`}`;
-}
-
 // The save bar in the header line, and the row of cards under the sheet:
-// the score, threat and answers, and the battle and AI settings. Redrawn on
+// the difficulty, and the battle and AI settings. Redrawn on
 // every edit without touching the sheet, so a box being typed in keeps its
 // focus.
 function drawTrainerRight() {
@@ -3219,11 +3110,8 @@ function drawTrainerRight() {
     <button id="trsave"${!dirty || errors ? " disabled" : ""}>Save${TRPAIR ? " both" : ""}</button>`;
   const bottom = $("#trbottom");
   if (!bottom) return;
-  const e = TRPAIR ? TRPAIR.estimate : TRESTIMATE;
   bottom.innerHTML = `
-    <section class="card">${TRPAIR ? scoreBlock(TRPAIR.estimate, TRPAIR.score,
-      JSON.stringify(pairEdits())) : scoreBlock()}</section>
-    <section class="card">${threatCard(e)}</section>
+    <section class="card">${hardBlock()}</section>
     <section class="card">${battleCard()}</section>`;
 }
 
@@ -4066,7 +3954,6 @@ $("#trainmid").addEventListener("click", ev => {
   }
   const id = ev.target.id;
   if (id === "trsave") return saveTrainer();
-  if (id === "trscore") return scoreTrainer();
   if (id === "trrevert") {
     TRDIRTY = false;
     if (TRPAIR) {

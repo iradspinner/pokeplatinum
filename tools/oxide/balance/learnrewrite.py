@@ -56,7 +56,7 @@ import sys
 
 from .. import jsonstyle
 from ..encounters import calc_trainers, learnsets as canon_ls, pokedex
-from . import b6, data, learncheck as lc, learnstudy as ls, pool, weather_moves
+from . import data, learncheck as lc, learnstudy as ls, pool, weather_moves
 
 BASE = "oxide"
 SPLITS = lc.SPLITS
@@ -1788,7 +1788,7 @@ def delay_demons(d, fam):
     for pre, level, target in lc.level_evolutions():
         if lc.family(pre) != fam or level < DEMON_LEVEL or not pool.pre_evolutions().get(pre):
             continue
-        if sum(lc.stats(target).values()) < DEMON_BST or target not in b6.obtainable():
+        if sum(lc.stats(target).values()) < DEMON_BST or target not in pool.obtainable():
             continue
         final_has = {m for lv, m in d.lists[target] if lv == 0 or level <= lv <= top()}
         on_pre = {m for lv, m in d.lists[pre]}
@@ -2096,9 +2096,12 @@ def build():
             if mv not in d.eggs[sp]:
                 d.eggs[sp].append(mv)
                 d.note(sp, 0, mv, "egg list", "Ian's ruling", why)
-    # A list set by hand stays as its file holds it (learnsets_by_hand.txt).
+    # A list set by hand stays as its file holds it (learnsets_by_hand.txt),
+    # and so does its egg list, the trainers' palette: until 2026-10-12 a run
+    # of write reset Nacli's hand-set egg list to Explosion alone (Ian).
     for sp, why in by_hand().items():
         d.lists[sp] = [list(e) for e in lc.learnset("rewrite", sp)]
+        d.eggs[sp] = list((pokedex.load(data.ROOT, sp) or {}).get("egg_moves") or [])
         d.note(sp, 0, "", "set by hand", "data", f"{why}; the rows above are not written")
     return d
 

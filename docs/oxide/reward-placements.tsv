@@ -28,6 +28,7 @@ ITEM_TM83	2	ball	Fantina	MAP_HEADER_ETERNA_CITY		ITEM_TM46			Expanding Force, ut
 ITEM_TM84	2	ball	Fantina	MAP_HEADER_ETERNA_FOREST_OUTSIDE		ITEM_TM82			Poison Jab, utility; a TM place today (ITEM_TM82)
 ITEM_TM44	2	ball	Fantina	MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM		ITEM_TM90			Wild Charge, utility; a TM place today (ITEM_TM90)
 ITEM_TM93	2	ball	Fantina	MAP_HEADER_OREBURGH_GATE_B1F		ITEM_TM31			Psychic Noise, utility; a TM place today (ITEM_TM31)
+ITEM_ICE_STONE	1	ball	Fantina	MAP_HEADER_WAYWARD_CAVE_1F		ITEM_REVIVE			the one Ice Stone, in the dead end Camper Diego and Picnicker Tori guard as a two-trainer battle (Ian, 2026-10-13: behind Wayward Cave's doubles); a Revive's ball today
 ITEM_TM11	2	ball	Fantina	MAP_HEADER_WAYWARD_CAVE_1F		ITEM_TM32			Spite, utility; a TM place today (ITEM_TM32)
 ITEM_TM85	2	ball	Fantina	MAP_HEADER_WAYWARD_CAVE_1F		ITEM_TM26			Skitter Smack, utility; a TM place today (ITEM_TM26)
 ITEM_HM04	2	gift	Fantina	MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM		ITEM_TM65			Strength, utility; a TM place today (ITEM_TM65)
@@ -68,6 +69,7 @@ ITEM_SITRUS_BERRY	1	ball	Wake	MAP_HEADER_ROUTE_213		ITEM_TM40			a TM place the s
 ITEM_LUM_BERRY	1	ball	Wake	MAP_HEADER_RUIN_MANIAC_CAVE_SHORT		ITEM_TM28			a TM place the spread leaves to another item
 ITEM_TM30	2	gift	Wake	MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE		ITEM_TM92			Shadow Ball, utility; a TM place today (ITEM_TM92)
 ITEM_TM81	2	gift	Wake	MAP_HEADER_PASTORIA_CITY_GYM		ITEM_TM55			X-Scissor, utility; a TM place today (ITEM_TM55)
+ITEM_ABILITY_CAPSULE	1	hidden	Wake	MAP_HEADER_PASTORIA_CITY	585,855				hidden at the end of the strip between the southwest ponds, reached on foot (Ian, 2026-10-13: in Pastoria)
 ITEM_TM02	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM74		4	Dragon Claw, utility; bought once, from 4 badges, giving 2
 ITEM_TM05	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM29		4	Dazzling Gleam, utility; bought once, from 4 badges, giving 2
 ITEM_TM41	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM10		4	Charm, strong; bought once, from 4 badges, giving 1
@@ -147,6 +149,7 @@ ITEM_TM27	1	trainer	Galactic	MAP_HEADER_ROUTE_225			TRAINER_ACE_TRAINER_QUINN		R
 ITEM_TM70	1	trainer	Galactic	MAP_HEADER_ROUTE_225			TRAINER_ACE_TRAINER_DEANNA		Outrage, strong since the rework (140, one turn, half as recoil): one copy, a second reward from Ace Trainer Deanna in Galactic's split, the first its power allows (Ian, 2026-10-07)
 ITEM_TM86	2	trainer	Galactic	MAP_HEADER_ROUTE_226			TRAINER_BIRD_KEEPER_GENEVA		Grass Knot, utility; an optional trainer late in the game; reading 2.8
 ITEM_TM87	1	trainer	Galactic	MAP_HEADER_ROUTE_227			TRAINER_ACE_TRAINER_MIKAYLA		Swagger, strong; an optional trainer late in the game; reading 2.7
+ITEM_ABILITY_PATCH	1	trainer	Galactic	MAP_HEADER_ROUTE_228			TRAINER_ACE_TRAINER_JOSE		the game's one Ability Patch, a second reward from a six-Pokemon optional fight (Ian, 2026-10-13: in the Battle Zone)
 ITEM_TM64	1	trainer	Galactic	MAP_HEADER_ROUTE_228			TRAINER_ACE_TRAINER_JOSE		Play Rough, strong; an optional trainer late in the game; reading 3.2
 ITEM_TM60	2	trainer	Galactic	MAP_HEADER_ROUTE_229			TRAINER_RANGER_DESHAWN		Drain Punch, utility; an optional trainer late in the game; reading 2.9
 ITEM_TM92	2	trainer	Galactic	MAP_HEADER_ROUTE_229			TRAINER_ACE_TRAINER_DANA		Trick Room, utility; an optional trainer late in the game; reading 2.7

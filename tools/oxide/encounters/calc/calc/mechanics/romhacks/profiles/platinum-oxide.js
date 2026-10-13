@@ -131,10 +131,12 @@ var platinumOxideProfile = (0, helpers_1.makeProfile)({
         moveBasePower: [
             function (ctx, basePower) {
                 var move = ctx.move;
-                // Fury Cutter since the move reworks (Ian, 2026-10-06; effect
-                // script 416): three hits, the first at the move's listed
-                // power and each later one 10 more, 30, 40 and 50.
-                if (move.named("Fury Cutter")) {
+                // Fury Cutter since the move reworks (Ian, 2026-10-06) and
+                // Triple Kick since 2026-10-12 (effect script 416): three
+                // hits, the first at the move's listed power and each later
+                // one 10 more, Fury Cutter 10, 20, 30 and Triple Kick 20,
+                // 30, 40 (Ian, 2026-10-12).
+                if (move.named("Fury Cutter") || move.named("Triple Kick")) {
                     var first = ctx.state.originalBasePower || move.bp || 30;
                     var hit = ctx.state.hitCount || 0;
                     var hits = move.hits || 1;

@@ -476,6 +476,7 @@
     ScriptEntry VisibleItems_Entry469
     ScriptEntry VisibleItems_Entry470
     ScriptEntry VisibleItems_Entry471
+    ScriptEntry VisibleItems_Entry472
     ScriptEntryEnd
 
 VisibleItems_Entry0:
@@ -2360,6 +2361,10 @@ VisibleItems_Entry470:
     GoTo VisibleItems_Entry468
 VisibleItems_Entry471:
     SetVarFromValue VAR_0x8008, ITEM_TM50
+    SetVarFromValue VAR_0x8009, 1
+    GoTo VisibleItems_Entry468
+VisibleItems_Entry472:
+    SetVarFromValue VAR_0x8008, ITEM_ICE_STONE
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry468:

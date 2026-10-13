@@ -1,20 +1,23 @@
-"""B3 acceptance: the player's side and the pressure scores.
+"""The calculator runner, the player's side and the census's flag numbers.
 
     PYTHONPATH=. python3 -m tools.oxide.balance.test_b3
 
-Runs one Node process for a handful of matchups and reads pressure.json;
-it does not rerun the fights (pressure.py does that, a split at a time).
-The plan's check is that damage agrees with the calculator's page and with
-Ian's in-game roll; the second waits on Ian (encounter build plan, M8).
+Runs one Node process for a handful of matchups through the runner every
+fight reading uses (calc.py). The plan's check is that damage agrees with
+the calculator's page and with Ian's in-game roll; the second waits on Ian
+(encounter build plan, M8). The first scoring system's own rules and stored
+scores, which this file also checked, were retired with it on 2026-10-13.
 """
-import collections
 import json
 import os
 import sys
 import tempfile
 
 from ..encounters import calc_export
-from . import data, metrics, pool, pressure, refpressure, rescore, splits
+from . import calc, pool, splits
+
+# The calculator's six base stat keys.
+STATS = ("hp", "at", "df", "sa", "sd", "sp")
 
 # The five matchups D5 checked on the calculator (level 50, every IV 31, no
 # EVs, a neutral nature), and the range it shows for each since the encounter
@@ -31,18 +34,6 @@ D5 = [("Garchomp", "Clefairy", "Earthquake", (126, 148)),
 # from his Battle Zone rulings of 2026-09-25.
 CAPS = {"Roark": 16, "Gardenia": 26, "Fantina": 33, "Maylene": 39, "Wake": 44,
         "Byron": 53, "Candice": 56, "HQ": 60, "Galactic": 65, "Volkner": 68, "Barry": 71, "League": 78}
-# Moves the calculator gives no number for, each reported, not scored. Since
-# the encounter track's Oxide profile (2026-09-26) it scores Electro Ball,
-# Heavy Slam, Psywave, Super Fang and Trump Card, which its Generation 4
-# mechanics had left out, so none remain and any new failure fails here.
-# Since item 22 (2026-09-26) the calculator takes Electro Ball's power from
-# the Speed ratio, as the engine's computed powers do.
-UNMODELLED = set()
-# The reference bosses add four of the same kind, each reported, not
-# scored: Nature's Madness (Super Fang's Fairy twin), Redux's Cyclone and
-# Acidic Payback (its own moves on the halve-HP and Metal Burst effects),
-# and Pain Split, which Null's table lists as a physical move of no power.
-REF_UNMODELLED = UNMODELLED | {"Nature's Madness", "Cyclone", "Acidic Payback", "Pain Split"}
 
 
 def _run(blob, jobs):
@@ -50,7 +41,7 @@ def _run(blob, jobs):
         path = os.path.join(tmp, "blob.json")
         with open(path, "w", encoding="utf-8") as f:
             json.dump(blob, f)
-        return pressure.run_node(path, jobs)
+        return calc.run_node(path, jobs)
 
 
 def check_damage(results, blob):
@@ -80,9 +71,30 @@ def check_damage(results, blob):
                     f"IVs 31 into Gengar {dark[0]}-{dark[-1]}, IVs 30 {fighting[0]}-{fighting[-1]}"))
 
 
+def check_eviolite(results, blob):
+    """The Eviolite works by the engine's rule, on any species that can still
+    evolve: an old one (Lileep), one added after Generation 4 (Naclstack),
+    and not on a final stage (Garganacl)."""
+    iv = {k: 31 for k in ("hp", "at", "df", "sa", "sd", "sp")}
+    ev = {k: 0 for k in iv}
+    mon = lambda sp, item=None: {"species": sp, "level": 50, "nature": "Hardy", "ivs": iv, "evs": ev, "item": item}
+    defenders = ("Lileep", "Naclstack", "Garganacl")
+    pk = {"att": mon("Barboach")}
+    for sp in defenders:
+        pk[sp + "+"] = mon(sp, "Eviolite")
+        pk[sp] = mon(sp)
+    out = _run(blob, {"pokemon": pk, "pairs": [["att", d, ["Mud Bomb", "Tackle"], None] for d in pk if d != "att"]})
+    top = {r["d"]: {m: v["rolls"][-1] for m, v in r["moves"].items()} for r in out["results"]}
+    ok = all(top[sp + "+"][m] < top[sp][m] for sp in ("Lileep", "Naclstack") for m in ("Mud Bomb", "Tackle")) \
+        and top["Garganacl+"] == top["Garganacl"]
+    results.append(("the Eviolite cuts damage to a species that can still evolve, of any generation", ok,
+                    "; ".join(f"{sp} {top[sp + '+']} with, {top[sp]} without" for sp in defenders)))
+
+
 def check_ref_overrides(results, blob):
-    """B3b's reference Pokemon bring their own game's species and move data.
-    Oxide's own data passed that way changes nothing; a move the engine has
+    """A Pokemon may bring its own species and move data (the runner's
+    species_data and move_data; the simulator passes Magnitude's rolled
+    powers this way). Oxide's own data passed that way changes nothing; a move the engine has
     never heard of, given Earthquake's data, hits exactly as Earthquake does;
     twice the power does more; and a Clefairy given the Flying type takes
     nothing from it."""
@@ -90,7 +102,7 @@ def check_ref_overrides(results, blob):
     ev = {k: 0 for k in iv}
     base = {"level": 50, "nature": "Hardy", "ivs": iv, "evs": ev}
     chomp, clef = blob["poks"]["Garchomp"], blob["poks"]["Clefairy"]
-    own = {"bs": metrics._norm_stats(chomp["bs"]), "types": chomp["types"]}
+    own = {"bs": {k: chomp["bs"][k] for k in STATS}, "types": chomp["types"]}
     quake = {"type": "Ground", "category": "Physical", "basePower": 100, "priority": 0}
     jobs = {"pokemon": {
         "chomp": dict(base, species="Garchomp"),
@@ -98,7 +110,7 @@ def check_ref_overrides(results, blob):
                     move_data={"Test Quake": quake, "Earthquake": dict(quake, basePower=200)}),
         "clef": dict(base, species="Clefairy"),
         "bird": dict(base, species="Clefairy",
-                     species_data={"bs": metrics._norm_stats(clef["bs"]), "types": ["Flying"]}),
+                     species_data={"bs": {k: clef["bs"][k] for k in STATS}, "types": ["Flying"]}),
     }, "pairs": [["chomp", "clef", ["Earthquake"], None],
                  ["own", "clef", ["Test Quake", "Earthquake"], None],
                  ["chomp", "bird", ["Earthquake"], None]]}
@@ -107,7 +119,7 @@ def check_ref_overrides(results, blob):
     ok = (own_row["Test Quake"]["rolls"] == plain["Earthquake"]["rolls"]
           and own_row["Earthquake"]["rolls"][0] > plain["Earthquake"]["rolls"][-1]
           and bird["Earthquake"]["rolls"][-1] == 0)
-    results.append(("a reference Pokemon's own species and move data are used", ok,
+    results.append(("a Pokemon's own species and move data are used", ok,
                     f"Earthquake {plain['Earthquake']['rolls'][0]}-{plain['Earthquake']['rolls'][-1]}, "
                     f"at 200 power {own_row['Earthquake']['rolls'][0]}, "
                     f"into a Flying Clefairy {bird['Earthquake']['rolls'][-1]}"))
@@ -179,208 +191,6 @@ def check_pool(results, blob):
                     not wrong, ", ".join(wrong)))
 
 
-def check_rules(results):
-    """A hit count, a charging turn and a Focus Sash, by hand."""
-    rolls = sorted(range(85, 101))
-    row = {"moves": {"Tackle": {"rolls": rolls, "priority": 0},
-                     "Fly": {"rolls": [200] * 16, "priority": 0}}}
-    cases = [
-        pressure.hits_to_ko(rolls, 186) == 2,                    # middle roll 93, 2 x 93 = 186
-        pressure.hits_to_ko(rolls, 187) == 3,
-        pressure.hits_to_ko([0] * 16, 10) is None,
-        pressure.turns("Fly", 1, None) == 2 and pressure.turns("Solar Beam", 1, "Sun") == 1,
-        pressure.turns("Hyper Beam", 2, None) == 3,
-        pressure.wins(row, {"hp": 150}, (60, 50), None),         # Fly, one hit, two turns
-        not pressure.wins(row, {"hp": 150}, (50, 50), None),     # a Speed tie counts for no one
-        not pressure.wins({"moves": {"Tackle": {"rolls": [100] * 16, "priority": 0}}},
-                          {"hp": 250}, (60, 50), None),          # three hits is too many
-        pressure.wins({"moves": {"Tackle": {"rolls": [100] * 16, "priority": 0}}},
-                      {"hp": 150}, (60, 50), None, sash=True),   # sash: 1 hit becomes 2
-        # Trick Room: the slower side goes first, a tie is still no one's,
-        # and priority still beats Speed either way.
-        pressure.moves_first(0, (50, 60), True) and not pressure.moves_first(0, (60, 50), True),
-        not pressure.moves_first(0, (50, 50), True),
-        pressure.moves_first(1, (60, 50), True) and not pressure.moves_first(-3, (50, 60), True),
-        pressure.wins(row, {"hp": 150}, (50, 60), None, trick_room=True),
-        not pressure.wins(row, {"hp": 150}, (60, 50), None, trick_room=True),
-    ]
-    results.append(("hits, charging turns, Speed ties, Focus Sash and Trick Room", all(cases),
-                    str([i for i, c in enumerate(cases) if not c])))
-
-
-def _branch_jobs():
-    jobs = {"pokemon": {}, "pairs": []}
-    pressure.add_branches(jobs, "b0.0", {"species": "Metagross",
-                                         "moves": ["Agility", "Meteor Mash"]},
-                          ["Meteor Mash"], [{"moves": ["Earthquake"]}], None)
-    keys = sorted(jobs["pokemon"])
-    return keys, jobs["pokemon"][keys[0]]["boosts"], len(jobs["pairs"])
-
-
-def _mon(hits):
-    """A per-Pokemon record as score_mons leaves it, for roll_up."""
-    rec = {k: 0.5 for k in ("threat", "answers", "answers_lock", "threat_chance",
-                            "answers_duel", "answers_sure", "answers_bait", "answers_branch")}
-    return dict(rec, variant=0, species="X", choice=False, _sure=set(), _side=3, _hits=hits)
-
-
-def check_b5_rules(results):
-    """B5's readings by hand: accuracy and its modifiers, a self-lowering
-    move's softer second hit, the one-on-one, and the cover."""
-    plain, rain = {"ability": None, "item": None}, "Rain"
-    powder = {"ability": None, "item": "Bright Powder"}
-    hit = lambda rolls, pr=0: {"rolls": rolls, "priority": pr, "category": "Special"}
-    two = {"moves": {"Tackle": hit([60] * 16)}, "speeds": (60, 50)}      # 2HKO on 100 HP
-    one = {"moves": {"Tackle": hit([120] * 16)}, "speeds": (50, 60)}     # OHKO on 100 HP
-    slow_two = {"moves": {"Tackle": hit([60] * 16)}, "speeds": (50, 60)}
-    cases = [
-        pressure.hit_chance("Thunder", plain, plain, None) == 0.7,
-        pressure.hit_chance("Thunder", plain, plain, rain) == 1.0,
-        pressure.hit_chance("Aerial Ace", plain, powder, None) == 1.0,       # never misses
-        pressure.hit_chance("High Jump Kick", plain, plain, None) == 0.9,    # "Hi Jump Kick"
-        abs(pressure.hit_chance("Thunder", plain, powder, None) - 0.63) < 1e-9,
-        pressure.hit_chance("Thunder", {"ability": "No Guard"}, powder, None) == 1.0,
-        pressure.hits_needed("Tackle", [60] * 16, 100) == 2,
-        pressure.hits_needed("Leaf Storm", [60] * 16, 100) == 3,             # 60, then 30, then 20
-        pressure.hits_needed("Superpower", [60] * 16, 100) == 2,             # 60, then 40
-        # Faster and 2HKO against a 2HKO: the player wins. Slower, it loses;
-        # against a boss that OHKOs it, it loses even moving first.
-        pressure.duel(two, slow_two, {"hp": 100, **plain}, {"hp": 100, **plain}, None, False) == 1.0,
-        pressure.duel(slow_two, two, {"hp": 100, **plain}, {"hp": 100, **plain}, None, False) == 0.0,
-        pressure.duel(two, one, {"hp": 100, **plain}, {"hp": 100, **plain}, None, False) == 0.0,
-        # A Focus Sash turns the OHKO into two hits, which the boss's 2HKO beats.
-        pressure.duel({"moves": {"Tackle": hit([120] * 16)}, "speeds": (50, 60)}, two,
-                      {"hp": 100, **plain}, {"hp": 100, **plain}, None, True) == 0.0,
-        # A Choice holder picks its strongest move into the lead; a wall
-        # immune to it switches in on it and wins, though it loses the plain
-        # one-on-one, where the boss would pick the move that beats it.
-        pressure.ai_pick({"moves": {"Thunder": hit([90] * 15 + [100]),
-                                    "Ice Beam": hit([60] * 16)}}) == "Thunder",
-        pressure.bait({"moves": {"Earthquake": hit([60] * 16)}, "speeds": (50, 60)},
-                      {"moves": {"Thunder": hit([0] * 16), "Ice Beam": hit([120] * 16)},
-                       "speeds": (60, 50)},
-                      "Thunder", {"hp": 100, **plain}, {"hp": 100, **plain}, None, False) == 1.0,
-        pressure.duel({"moves": {"Earthquake": hit([60] * 16)}, "speeds": (50, 60)},
-                      {"moves": {"Thunder": hit([0] * 16), "Ice Beam": hit([120] * 16)},
-                       "speeds": (60, 50)},
-                      {"hp": 100, **plain}, {"hp": 100, **plain}, None, False) == 0.0,
-        # Natural Gift and Fling spend the item: one hit or none.
-        pressure.hits_needed("Natural Gift", [60] * 16, 100) is None,
-        pressure.hits_needed("Fling", [120] * 16, 100) == 1,
-        pressure.boss_moves({"moves": ["Natural Gift", "Aqua Tail"], "item": "Watmel Berry"},
-                            {"moves": {"Natural Gift": {"category": "Physical"},
-                                       "Aqua Tail": {"category": "Physical"}}})
-        == ["Natural Gift", "Aqua Tail"],
-        pressure.cover([{"a"}, {"b"}, {"a", "b"}]) == 2,
-        # A setup move adds the boss as it stands after one use, both ways.
-        _branch_jobs() == (["b0.0+Agility"], {"spe": 2}, 2),
-        # Safe: of three player Pokemon, one is knocked out in one hit by
-        # two boss Pokemon, so two thirds can switch in.
-        pressure.roll_up([_mon({"p0", "p1"}), _mon({"p0"})])["safe"] == round(2 / 3, 3),
-        pressure.cover([{"a", "b"}, {"a"}, {"a"}]) == 1,
-        pressure.cover([{"a"}, set()]) is None,
-        pressure.unseen([[{"species": "Girafarig", "moves": ["Agility", "Baton Pass", "Earthquake"],
-                           "item": "Starf Berry", "ability": "Quick Feet"}]])
-        == {"unseen": {"setup": ["Girafarig Agility"], "passing": ["Girafarig Baton Pass"],
-                       "pinch items": ["Girafarig Starf Berry"]}, "unseen_count": 3.0},
-        # A Choice holder is called; an attacker with two status moves is
-        # a third; Sudowoodo's Stealth Rock and three gambles, 1 / 1.6.
-        pressure.predictability(
-            [[{"species": "Chatot", "item": "Choice Specs", "moves": ["Hyper Voice", "Chatter"]},
-              {"species": "Girafarig", "moves": ["Earthquake", "Agility", "Baton Pass", "Charge Beam"]},
-              {"species": "Sudowoodo", "moves": ["Stealth Rock", "Explosion", "Sucker Punch",
-                                                  "Focus Punch"]}]],
-            lambda mv: "Status" if mv in ("Agility", "Baton Pass", "Stealth Rock") else "Physical")
-        == round((1 + 1 / 3 + 1 / 1.6) / 3, 3),
-    ]
-    results.append(("B5: accuracy, self-lowering moves, one-on-one, baited locks, item moves, "
-                    "setup branches, safe switch-ins, cover, tactics", all(cases),
-                    str([i for i, c in enumerate(cases) if not c])))
-
-
-def check_ref_scores(results, blob):
-    """B3b: every reference hack is scored in every seat it fills, and no
-    boss move fails beyond the unmodelled ones. Whether each score is
-    current is check_fingerprints'."""
-    missing, failures, seats = [], set(), 0
-    for hack in refpressure.HACKS:
-        saved = refpressure.load(hack)["fights"]
-        for f in data.fights()["fights"]:
-            if not refpressure.parties(hack, f):
-                continue
-            seats += 1
-            r = saved.get(f["key"])
-            if r is None:
-                missing.append(f"{hack} {f['key']}")
-                continue
-            failures |= {e.split(" ", 1)[1].split(":")[0] for e in r["errors"]}
-    unknown = failures - REF_UNMODELLED
-    ok = not missing and not unknown
-    results.append(("B3b: every reference seat scored, no new failures", ok,
-                    f"missing {missing[:5]}, failures {sorted(unknown)}"
-                    if not ok else f"{seats} seats in {len(refpressure.HACKS)} hacks"))
-
-
-def check_scores(results, blob):
-    """Every story fight is scored, and no boss move fails. Whether each
-    score is current is check_fingerprints'."""
-    saved = pressure.load()["fights"]
-    keys = [f["key"] for f in data.fights()["fights"]]
-    missing = [k for k in keys if k not in saved]
-    sizes = {s: len(pool.pool(s, blob)) for s in pool.SPLITS}
-    boss_errors = [k for k in keys if k in saved
-                   and any(e.startswith("b") for e in saved[k]["errors"])]
-    unknown = {e.split(" ", 1)[1].split(":")[0] for k in keys if k in saved
-               for e in saved[k]["errors"]} - UNMODELLED
-    ok = not missing and not boss_errors and not unknown
-    results.append((f"all {len(keys)} fights scored; no boss move fails, and the player's "
-                    "failures are the unmodelled moves", ok,
-                    f"missing {missing}, boss errors {boss_errors}, "
-                    f"other failures {sorted(unknown)}" if not ok else
-                    f"{len(keys)} fights, pools {min(sizes.values())} to {max(sizes.values())}"))
-
-
-def check_fingerprint_rules(results):
-    """A fingerprint ignores a docstring but not code, and sees a changed
-    move, weather or party in the job it hashes."""
-    with tempfile.TemporaryDirectory(prefix="oxide-b3-fp-") as tmp:
-        texts = {"a": 'def f():\n    """One."""\n    return 1\n',
-                 "b": 'def f():\n    """Two, reworded."""\n    return 1\n',
-                 "c": 'def f():\n    """One."""\n    return 2\n'}
-        hashes = {}
-        for k, text in texts.items():
-            path = os.path.join(tmp, f"{k}.py")
-            with open(path, "w", encoding="utf-8") as f:
-                f.write(text)
-            hashes[k] = rescore._code_hash(path)
-    blob = {"title": "t", "type_chart": {}, "poks": {"A": {"bs": 1}, "B": {"bs": 2}},
-            "moves": {"Tackle": {"bp": 40}, "Ember": {"bp": 40}}}
-    job = {"pokemon": {"p0": {"species": "A", "moves": ["Tackle"]},
-                       "b0.0": {"species": "B", "moves": ["Ember"]}},
-           "pairs": [["b0.0", "p0", ["Ember"], None], ["p0", "b0.0", ["Tackle"], None]]}
-    base = rescore.fingerprint("pressure", job, {}, blob)
-    moved = json.loads(json.dumps(job))
-    moved["pairs"][0][3] = "Rain"
-    other = dict(blob, moves=dict(blob["moves"], Ember={"bp": 50}))
-    # A hidden ability no score can reach leaves the hash alone; a first
-    # ability, which the engine falls back to, does not.
-    hidden = dict(blob, poks=dict(blob["poks"], A={"bs": 1, "abilities": {"0": "X", "H": "Y"}}))
-    plain = dict(blob, poks=dict(blob["poks"], A={"bs": 1, "abilities": {"0": "X"}}))
-    first = dict(blob, poks=dict(blob["poks"], A={"bs": 1, "abilities": {"0": "Z"}}))
-    ok = (hashes["a"] == hashes["b"] != hashes["c"]
-          and base == rescore.fingerprint("pressure", json.loads(json.dumps(job)), {}, blob)
-          and base != rescore.fingerprint("pressure", moved, {}, blob)
-          and base != rescore.fingerprint("pressure", job, {}, other)
-          and base != rescore.fingerprint("pressure", job, {"parties": [[{"species": "B",
-                                                                          "moves": ["Ember"]}]]},
-                                          blob)
-          and rescore.fingerprint("pressure", job, {}, hidden)
-          == rescore.fingerprint("pressure", job, {}, plain)
-          != rescore.fingerprint("pressure", job, {}, first))
-    results.append(("a fingerprint sees code, moves, weather, parties and first abilities, "
-                    "not docstrings or hidden abilities", ok, ""))
-
-
 def check_flag_numbers(results):
     """The split map numbers the tree's own flag list rather than reading a
     shared build header: every hidden item's flag has a number of its own,
@@ -398,33 +208,15 @@ def check_flag_numbers(results):
                     else f"missing {missing[:3]}, {len(values) - len(set(values))} shared"))
 
 
-def check_fingerprints(results, blob):
-    """Which stored scores before B6 (the story fights, Hesperid's, the
-    reference seats, the shape grid) no longer match their inputs, or wait
-    for a second run to verify them (rescore.py). Reported, never failed:
-    scores never block a landing (Ian, 2026-10-07), and the gate lists them
-    as a warning. test_b6 reports B6's."""
-    problems = rescore.check(blob, ("pressure", "calibrate", "ref", "shape"))
-    kinds = collections.Counter(p for _n, p in problems)
-    results.append(("stored scores read; any stale ones are reported, not failed", True,
-                    f"STALE {dict(kinds)}; first {problems[:4]}; rescore.py, then --verify, when a "
-                    "reading is due" if problems else "all current"))
-
-
 def main():
     results = []
     blob = calc_export.build()
     check_engine(results)
     check_damage(results, blob)
+    check_eviolite(results, blob)
     check_ref_overrides(results, blob)
     check_pool(results, blob)
-    check_rules(results)
-    check_b5_rules(results)
-    check_scores(results, blob)
-    check_ref_scores(results, blob)
-    check_fingerprint_rules(results)
     check_flag_numbers(results)
-    check_fingerprints(results, blob)
     width = max(len(label) for label, _, _ in results)
     failed = 0
     for label, ok, note in results:

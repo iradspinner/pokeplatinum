@@ -45,20 +45,16 @@
     "learnset": {
         "by_level": [
             [
+                0,
+                "MOVE_SHADOW_CLAW"
+            ],
+            [
                 1,
                 "MOVE_GRUDGE"
             ],
             [
                 1,
-                "MOVE_SHADOW_CLAW"
-            ],
-            [
-                1,
                 "MOVE_SCARY_FACE"
-            ],
-            [
-                1,
-                "MOVE_SHADOW_CLAW"
             ],
             [
                 1,

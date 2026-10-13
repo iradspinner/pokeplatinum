@@ -566,6 +566,86 @@ def pool(split, blob):
     return out
 
 
+# ---- what the player can own at all, and its wild catches -------------------
+# These lived in the first scoring system (b6.py) and the retired wild
+# moveset study (learnwild.py) until 2026-10-13; they moved here unchanged.
+
+# Ian's rulings of 2026-09-27. Terrain is not ported: the four Terrain moves
+# say "But nothing happened!" (and the four Surge abilities and Seed Sower
+# do nothing), so the passes take them out of everything the player can get
+# (the moves that only read terrain, Ice Spinner, Terrain Pulse and the
+# rest, are plain hits and stay). The move-pool survey cuts eight more from
+# every learnset, and Splash and Teleport, whose species get a real move;
+# Steel Roller stays, its effect to be written.
+DEAD_MOVES = {"MOVE_ELECTRIC_TERRAIN", "MOVE_GRASSY_TERRAIN", "MOVE_MISTY_TERRAIN",
+              "MOVE_PSYCHIC_TERRAIN", "MOVE_TELEKINESIS", "MOVE_ALLY_SWITCH",
+              "MOVE_TOPSY_TURVY", "MOVE_FLOWER_SHIELD", "MOVE_FAIRY_LOCK", "MOVE_AROMATIC_MIST",
+              "MOVE_MAGNETIC_FLUX", "MOVE_SPEED_SWAP", "MOVE_SPLASH", "MOVE_TELEPORT"}
+
+
+def obtainable():
+    """Every species the player can come to own at all: the player's side at
+    the League; every scripted source, whatever its level (the side leaves
+    out one above its location's cap, such as a roamer); and the drawn
+    thirds of the legendary pool (availability-plan.json: not the reserve,
+    and not a third whose cavern is kept empty); with what each evolves
+    into."""
+    out = set(species_by_split()[SPLITS[-1]])
+    with open(SOURCES, encoding="utf-8") as f:
+        out |= {row["species"] for row in csv.DictReader(f)}
+    path = os.path.join(data.ROOT, "docs", "oxide", "encounters", "availability-plan.json")
+    with open(path, encoding="utf-8") as f:
+        drawn = json.load(f).get("pool", {})
+    empty = " ".join(drawn.get("empty") or []).lower()
+    for third, species in (drawn.get("thirds") or {}).items():
+        if third != "reserve" and third not in empty:
+            out |= set(species)
+    todo = list(out)
+    while todo:
+        for _need, target in evolve.evolutions(data.ROOT, todo.pop()):
+            if target not in out:
+                out.add(target)
+                todo.append(target)
+    return out
+
+
+def wild_encounters():
+    """Every slot of Oxide's wild tables, in the encounter design's splits:
+    [{"area", "split", "kind", "species", "lo", "hi"}], water arriving when
+    its rod or Surf does."""
+    sidecar = model.load_sidecar() or {}
+    area_split = progression.split_of(sidecar)
+    entries = sidecar.get("areas") or {}
+    out = []
+    for area in model.load_all():
+        split = area_split.get(area.name)
+        if not split:
+            continue
+        if area.land_active:
+            slots = area.slots
+            for sp, lv in slots:
+                out.append({"area": area.name, "split": split, "kind": "land", "species": sp,
+                            "lo": lv, "hi": lv})
+            for kind in ("day", "night"):
+                for j, sp in enumerate(area.data.get(kind) or []):
+                    if sp and sp != "SPECIES_NONE" and j < 2:
+                        lv = slots[2 + j][1]
+                        out.append({"area": area.name, "split": split, "kind": kind,
+                                    "species": sp, "lo": lv, "hi": lv})
+        water = (entries.get(area.name) or {}).get("water_split") or split
+        for kind in ("surf", "old_rod", "good_rod", "super_rod"):
+            if not area.kind_rate(kind):
+                continue
+            arrives = later(water, progression.rod_split(sidecar, kind))
+            if not arrives:
+                continue
+            for sp, lo, hi in area.kind_slots(kind):
+                if sp != "SPECIES_NONE":
+                    out.append({"area": area.name, "split": arrives, "kind": kind,
+                                "species": sp, "lo": lo, "hi": hi})
+    return out
+
+
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     blob = calc_export.build()

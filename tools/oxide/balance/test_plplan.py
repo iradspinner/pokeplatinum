@@ -78,7 +78,8 @@ def exact_odds():
             bad.append((label, "odds do not sum to 1"))
         for k in set(exact) | set(freq):
             p, f = exact.get(k, 0.0), freq.get(k, 0.0)
-            se = max((p * (1 - p) / n) ** 0.5, 1 / n)
+            q = min(max(p, 0.0), 1.0)      # a sum of odds can land a rounding hair above 1
+            se = max((q * (1 - q) / n) ** 0.5, 1 / n)
             z = abs(p - f) / se
             worst = max(worst, z)
             if z > 4 or (f > 0 and p == 0):
@@ -126,15 +127,20 @@ def turn_odds():
     """The exact enumeration of a turn agrees with the turn sampled at real
     odds: its outcomes' probabilities sum to one, and the chance that the
     target faints matches the sampled frequency (four standard errors).
-    Steenee's Razor Leaf on Lileep, and Lileep's Rock Tomb on Steenee while
-    Steenee Splashes, each at the first HP where the knockout is uncertain."""
+    Steenee's Razor Leaf on Lileep while Lileep uses Mega Drain, and Lileep's
+    Ancient Power on Steenee while Steenee Splashes, each at the first HP
+    where the knockout is uncertain. Lileep is found in Roark's team by
+    species, so a reordered team (his redesign of 2026-10-12 moved it from
+    third to second, and Acid became Mega Drain) does not break the test."""
     st, team, bk, flags, names = fight_state("roark")
     s_i = names.index("Steenee")
+    l_i = next(i for i, m in enumerate(pl.make_battle(st, team, bk, flags, s_i).b.mons)
+               if m.species == "Lileep")
 
     def start():
         b = pl.make_battle(st, team, bk, flags, s_i)
         b.b.mons[0].hp = 0
-        fs.switch_in(b, b.b, 2)
+        fs.switch_in(b, b.b, l_i)
         b.quick = {}
         return b
 
@@ -142,14 +148,14 @@ def turn_odds():
         return "move", next(m for m in mon.moves if m.name == name)
 
     cases = []
-    for side, mine, theirs in (("b", "Razor Leaf", "Ingrain"), ("p", "Splash", "Rock Tomb")):
+    for side, mine, theirs in (("b", "Razor Leaf", "Mega Drain"), ("p", "Splash", "Ancient Power")):
         for hp in range(2, 40):
             b = start()
             target = b.b.cur() if side == "b" else b.p.cur()
             target.hp = hp
             pa, aa = move(b.p.cur(), mine), move(b.b.cur(), theirs)
             outs = plplan.turn_outcomes(b, pa, aa, 1)
-            dead = sum(p for c, p in outs if not (c.b.mons[2] if side == "b" else c.p.mons[s_i]).alive())
+            dead = sum(p for c, p in outs if not (c.b.mons[l_i] if side == "b" else c.p.mons[s_i]).alive())
             if 0.05 < dead < 0.95:
                 cases.append((side, hp, b, pa, aa, outs, dead))
                 break
@@ -161,7 +167,7 @@ def turn_odds():
             rng = random.Random(i)
             c.dice, c.rng = pl.RunDice(rng, luck="real"), rng
             pl._turn(c, pa, aa)
-            hits += not (c.b.mons[2] if side == "b" else c.p.mons[s_i]).alive()
+            hits += not (c.b.mons[l_i] if side == "b" else c.p.mons[s_i]).alive()
         z = abs(dead - hits / n) / max((dead * (1 - dead) / n) ** 0.5, 1 / n)
         who = "Lileep" if side == "b" else "Steenee"
         check(f"{who} at {hp} HP: the turn's outcomes sum to one and its faint chance matches",

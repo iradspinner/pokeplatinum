@@ -13,10 +13,10 @@ Run `git worktree list`. For each worktree, check `git -C <path> status --porcel
 
 Each file is one of four kinds:
 
-- **A status home:** the tracker, the encounter build plan, or the balance plan.
+- **The tracker:** the one home of open work (Ian, 2026-10-13); the old track plans are reference.
 - **A live plan:** still being executed.
 - **A reference:** something an agent or a tool reads.
-- **History:** its lesson already lives in a rule, a skill, a tool or a status home.
+- **History:** its lesson already lives in a rule, a skill, a tool or the tracker.
 
 Then act on the classification:
 
@@ -31,7 +31,7 @@ Check every deferred instruction. Run `python3 tools/oxide/deferred_check.py -v`
 
 ## 3. The findings log
 
-The design doc's section 8 may lose an entry only when its lesson already lives in a working rule, a skill, a tool or a status home. If the lesson lives nowhere else, move it into the right skill first, then delete the entry. Several entries telling one story can be merged into one.
+The design doc's section 8 may lose an entry only when its lesson already lives in a working rule, a skill, a tool or the tracker. If the lesson lives nowhere else, move it into the right skill first, then delete the entry. Several entries telling one story can be merged into one.
 
 Do not touch the last two entries while any track is live. `integrate.sh` resolves a conflict in this section by keeping both sides, so an edit next to a concurrent append would resurrect what you removed.
 

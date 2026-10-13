@@ -170,9 +170,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Grass against powder, Electric against paralysis, 1.5x critical hits, Defog
   clearing hazards from both sides and screens only from the target's, Rapid
   Spin's Speed raise, and the rest the menu lists.
-- [ ] **Native moves at modern numbers.** Fury Cutter used five times in a row
-  goes 40, 80, 160, 160, 160 in power, so its damage stops growing after the
-  third hit; Roar and Whirlwind never miss.
+- [ ] **Native moves at modern numbers.** Fury Cutter hits three times in one
+  turn at 10, 20 and 30 power, and Triple Kick at 20, 30 and 40, each later
+  hit able to miss and end the move (Ian, 2026-10-12); Roar and Whirlwind
+  never miss.
 - [ ] **Fairy.** A Dragon move does nothing to Clefairy or Ralts, a Poison or
   Steel move does double, the summary screen reads FAIRY, and the Pokedex info
   page shows the NORMAL plate (the known gap) rather than garbage. The Poketch
@@ -263,8 +264,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   merged). In the kit ROM only, Sylveon has a stand-in evolution move. One
   Rare Candy evolves the kit's Eevee, and on evolving it learns Moonblast,
   with the forget-a-move prompt if it knows four. The Move Relearner then
-  lists Moonblast for it. No species outside the kit has an evolution move
-  until the balance track sets them.
+  lists Moonblast for it. Since 2026-10-12 fifteen lines outside the kit
+  have one; in the ordinary ROM, a Nacli reaching 24 learns Salt Cure as it
+  becomes Naclstack, and a Sewaddle evolving into Leavanny learns Slash.
 - [ ] **Single-use TMs** (the "Two TMs" entry, with `main-tm-single-use`
   merged). The TM Case shows TM01 x2; teaching it once leaves x1, and a
   second use empties it. An HM taught from the case stays.
@@ -433,6 +435,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
   Spore in a double battle lowers both foes' Speed; Drill Peck and Dragon
   Claw land critical hits noticeably more often than Peck or Scratch.
+- [ ] Roark's new team (Ian, 2026-10-13; `docs/oxide/roark-redesign.md`):
+  Naclstack leads and lays Stealth Rock; against a healthy Pokemon it uses
+  Salt Cure ("is being salt cured!", then a loss every turn, a quarter of
+  the HP on a Water type), not again on one already salted, and below about
+  70% HP it uses Recover. A Water move aimed at Lileep is drawn in by Storm
+  Drain and raises its Sp. Atk. Sandshrew moves before nearly everything in
+  the gym's sand, and its Rapid Spin raises its Speed. Cranidos's Mold
+  Breaker shows when it hits through Sturdy.
 - [ ] Level caps: before Roark nothing passes Lv. 16, from battle or candy;
   after beating him the badge message plays as before and Lv. 26 is the new
   ceiling. The Day Care man's level and price stop at the cap too.
@@ -490,6 +500,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Route 207: after Mira is found in Wayward Cave, the woman who asked for
   her says thank you and gives no evolution stones; her first line no longer
   promises any.
+- [ ] Wayward Cave 1F's Ice Stone (Ian, 2026-10-13): in the far northwest,
+  walking between Camper Diego and Picnicker Tori starts one battle against
+  both, and the ball in the nook behind them gives an Ice Stone, not a
+  Revive. Used on a Vulpix, it evolves into Alolan Ninetales.
 - [ ] The base ROM's overworld sprites and the teleporting Abra's removal
   (`carry-over` and `carry-over-abra`, merged): no Abra stands outside Sandgem's
   Pokemon Center or in any other town, on Routes 207, 221 or 224, on Mt.
@@ -699,6 +713,18 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   battle, and afterwards the Palmer scene plays, without Buck's part if you
   first arrived without the badge. Arriving with the badge the first time
   plays vanilla's whole scene, Buck included.
+- [ ] No Life Orb or Choice item reaches the player (Ian, 2026-10-13): the
+  item ball outside Stark Mountain gives a PP Up, and the man in Celestic
+  Town's northwest house gives BlackGlasses from 4:00 to 19:59 and Wise
+  Glasses at night, never a Choice Specs.
+- [ ] Pastoria's Ability Capsule (Ian, 2026-10-13): walk down the one-tile
+  strip between the two ponds in the city's southwest corner; pressing A at
+  its southern end finds a hidden Ability Capsule, and the Dowsing app shows
+  it there. Used on a Pokemon, it asks first, naming the other regular
+  ability.
+- [ ] The Ability Patch (Ian, 2026-10-13): beating Ace Trainer Jose on
+  Route 228 gives an Ability Patch and then TM64, straight after the win.
+  With a full Bag, talking to him again gives what was refused.
 - [ ] Stark Mountain's last room is empty after the Charon scene; Valor Cavern
   is empty after Galactic HQ.
 - [ ] Acuity Cavern: Uxie's sprite, but the cry and the level 50 battle are one

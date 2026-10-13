@@ -54,7 +54,7 @@ import sys
 import tempfile
 
 from ..encounters import calc_export
-from . import b6, data, pool, pressure, teamscore
+from . import calc, data, pool, required
 
 RUNS = 200
 MAX_TURNS = 80
@@ -195,8 +195,10 @@ RECOIL = {"RECOIL_THIRD": 1 / 3, "RECOIL_QUARTER": 1 / 4, "RECOIL_HALF": 1 / 2,
 # Skill Link, and a Loaded Dice turns a roll of two or three into four or
 # five, which leaves four and five at even odds.
 MULTI_HIT_ODDS = ((2, 35), (3, 35), (4, 15), (5, 15))
-# Fury Cutter: three hits rising by 10 from the listed power, each checking
-# accuracy and the move stopping at the first miss (effect_script_0416).
+# Fury Cutter and Triple Kick: three hits rising by 10 from the listed power,
+# each checking accuracy and the move stopping at the first miss
+# (effect_script_0416). The calculator's row is all three hits added up
+# (its Oxide profile, since 2026-10-07).
 RISING_HITS = "HIT_THREE_TIMES_RISING_10"
 RISING_COUNT = 3
 HEAL_HALF = {"RESTORE_HALF_HP", "HEAL_HALF_REMOVE_FLYING_TYPE"}
@@ -331,6 +333,7 @@ class Mon:
         self.confused = 0
         self.flinch = False
         self.seeded = False
+        self.salted = False           # Salt Cure: loses HP at each turn's end until it leaves
         self.yawn = 0
         self.protect_run = 0
         self.protecting = False
@@ -567,6 +570,8 @@ def can_status(b, target, status):
         return False
     if status == "par" and "Electric" in t:
         return False
+    if target.ability == "Purifying Salt":
+        return False             # Oxide: Purifying Salt allows no status at all
     return target.ability not in STATUS_ABILITIES.get(status, set())
 
 
@@ -1070,6 +1075,11 @@ def attack(b, att, mv, dfn, first):
         spin(b, att, dfn, e)
     if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
+    if e == "SALT_CURE":
+        # subscript_salt_cure: the target is salted once the hit lands,
+        # until it leaves the field; a chance-free effect, so Shield Dust
+        # and Sheer Force (sSheerForceEffects) leave it alone.
+        dfn.salted = True
     chance = mv.chance or 0
     if dfn.ability == "Shield Dust" or stripped:
         chance = 0
@@ -1661,7 +1671,7 @@ def use_damage(att, mv, dmg, hits):
 
 def scale_hits(att, mv, dmg, hits):
     """A row's damage for the hits this use rolled: a two to five hit move's
-    row counts row_hits hits, Fury Cutter's its first."""
+    row counts row_hits hits, a rising move's all three."""
     if mv.effect == RISING_HITS:
         return int(dmg * rising_scale(mv, hits))
     rh = row_hits(att, mv)
@@ -1691,23 +1701,27 @@ def row_hits(att, mv):
 
 
 def rising_scale(mv, hits):
-    """Fury Cutter's damage over `hits` hits, as a multiple of its first hit's
-    (its row): each hit 10 more power than the last."""
+    """A rising move's damage over `hits` hits, as a share of its row, which
+    adds up all three: each hit 10 more power than the last. Until
+    2026-10-12 this read the row as the first hit alone, so once the
+    calculator began adding the three (2026-10-07) Fury Cutter dealt about
+    four times its damage (Ian approved the fix)."""
     p = max(1, mv.power)
-    return sum(p + 10 * i for i in range(hits)) / p
+    return sum(p + 10 * i for i in range(hits)) / sum(p + 10 * i for i in range(RISING_COUNT))
 
 
 def expected_hit_scale(mv):
     """A move's expected damage as a multiple of its calculator row, for the
     reckonings that read rows (exp_damage, plfeat._expected), before the
-    first hit's accuracy: Fury Cutter's later hits each need accuracy again.
-    A two to five hit move's row counts three hits, close to its expected
-    3.1, so it is left as it is."""
+    first hit's accuracy: a rising move's later hits each need accuracy
+    again, and its row adds all three. A two to five hit move's row counts
+    three hits, close to its expected 3.1, so it is left as it is."""
     if mv.effect != RISING_HITS:
         return 1.0
     acc = 1.0 if mv.acc == 0 else min(1.0, mv.acc / 100)
     p = max(1, mv.power)
-    return sum((p + 10 * i) / p * acc ** i for i in range(RISING_COUNT))
+    full = sum(p + 10 * i for i in range(RISING_COUNT))
+    return sum((p + 10 * i) * acc ** i for i in range(RISING_COUNT)) / full
 
 
 @functools.lru_cache(maxsize=None)
@@ -2168,6 +2182,12 @@ def _end_of_turn_mon(b, side, m):
     if m.alive() and m.bound:
         m.bound -= 1
         hurt(b, m, m.maxhp // 16)
+        if battle_over(b):
+            return False
+    # Salt Cure (MON_COND_CHECK_STATE_SALT_CURE, after binding): an eighth
+    # of maximum HP, a quarter for a Water or Steel type; Magic Guard is spared.
+    if m.alive() and getattr(m, "salted", False) and m.ability != "Magic Guard":
+        hurt(b, m, m.maxhp // (4 if set(m.types) & {"Water", "Steel"} else 8))
         if battle_over(b):
             return False
     if m.taunt:
@@ -3020,7 +3040,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     trainer's Pokemon, a partner's teams (keys q0.0 and on), and the
     calculator's rows for every pair in every weather the fight can have;
     in a double battle also each ally's spread moves on its ally."""
-    blob = teamscore._blob()
+    blob = calc.blob()
     cap = cap or pool.caps()[split]
     side, can = side_at(split, cap, blob)
     # The strong third by stat total at the cap, as the gauntlet takes it.
@@ -3097,7 +3117,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         partner_keys.append(keys)
     # The weathers the fight can have: its own, its Pokemon's abilities', and
     # every weather move on either side.
-    weathers = {pressure.CALC_WEATHER.get(weather, weather) if weather else None}
+    weathers = {calc.CALC_WEATHER.get(weather, weather) if weather else None}
     for k, mv in moves.items():
         ab = pokemon[k].get("ability")
         if ab in ABILITY_WEATHER:
@@ -3168,7 +3188,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             for w in weathers:
                 for d in bkeys:
                     pairs.append([d, twin, party_hits(d), w])
-    out = pressure.run_node(teamscore._blob_path(), {"pokemon": pokemon, "pairs": pairs})
+    out = calc.run_node(calc.blob_path(), {"pokemon": pokemon, "pairs": pairs})
     rows, speed = {}, {}
     for r in out["results"]:
         rows[(r["weather"], r["a"], r["d"])] = r
@@ -3185,7 +3205,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     return {"pokemon": pokemon, "moves": moves, "info": info, "rows": rows, "speed": speed,
             "player": list(variants), "variants": variants, "group": group,
             "bosses": boss_keys, "partners": partner_keys,
-            "base_weather": pressure.CALC_WEATHER.get(weather, weather) if weather else None,
+            "base_weather": calc.CALC_WEATHER.get(weather, weather) if weather else None,
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
             "ai_twin": ai_twin}
 
@@ -3307,9 +3327,8 @@ BOXES = 8
 def _capture_areas():
     """[(split, [species by slot])] for every wild table the game rolls,
     and [(split, species, how)] for the scripted catches (one starter)."""
-    from . import learnwild
     areas = collections.defaultdict(list)
-    for e in learnwild.oxide_encounters():
+    for e in pool.wild_encounters():
         areas[(e["area"], e["split"])].append(e["species"])
     scripted = []
     for sp, rows in pool.catches().items():
@@ -3422,7 +3441,7 @@ def story(key, runs=RUNS):
     trainers = data.fight_trainers("oxide", fight)
     tr_ids = [t["tr_id"] for t in trainers]
     parties = [t["party"] for t in trainers]
-    weather = pressure.fight_weather(tr_ids)
+    weather = calc.fight_weather(tr_ids)
     cap = fight_cap(fight["split"], key)
     if fight.get("tag"):
         partners = [ox[p]["party"] for p in fight.get("partner_ids", []) if p in ox]
@@ -3439,12 +3458,13 @@ def story(key, runs=RUNS):
 
 
 def trainer(tr_id, runs=RUNS, split=None):
-    """An ordinary trainer's reading, in the split B6 places it in; a
-    doubles trainer plays as doubles unless PLAY_DOUBLES is off."""
+    """An ordinary trainer's reading, in the split the census places it in
+    (required.placements); a doubles trainer plays as doubles unless
+    PLAY_DOUBLES is off."""
     t = data.oxide_trainers()[tr_id]
-    split = split or b6.placements()[tr_id]["split"]
+    split = split or required.placements()[tr_id]["split"]
     doubles = t.get("battle_type") == "Doubles" and PLAY_DOUBLES and len(t["party"]) > 1
-    st = prepare(split, [t["party"]], pressure.fight_weather([tr_id]), trick_room_for([t["constant"]]),
+    st = prepare(split, [t["party"]], calc.fight_weather([tr_id]), trick_room_for([t["constant"]]),
                  cap=fight_cap(split), doubles=doubles)
     if doubles:
         st["battle"] = "doubles"
@@ -3461,7 +3481,7 @@ def split_reading(split, runs=RUNS, out=sys.stdout):
             r = story(f["key"], runs)
             rows.append((f["label"], r))
             print(f"  {f['label']:28} {r}", file=out, flush=True)
-    for tr, p in sorted(b6.placements().items()):
+    for tr, p in sorted(required.placements().items()):
         if p["split"] == split:
             r = trainer(tr, runs)
             rows.append((data.oxide_trainers()[tr]["name"], r))
