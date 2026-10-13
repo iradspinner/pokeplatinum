@@ -26,3 +26,7 @@ SPECIES_TOUCANNON   Beak Blast learned on evolving, from level 1 (Ian, 2026-10-1
 SPECIES_SEWADDLE    Pounce back at 2 where the multi-hit swap put Triple Axel, read as a 20-power move (Ian, 2026-10-12)
 SPECIES_SWADLOON    Struggle Bug 22 and Endure 29 as Sewaddle has them, so evolving at 20 loses nothing (Ian, 2026-10-12)
 SPECIES_BOUNSWEET   Leafage at 4 where the swap put Triple Axel, the rung before Razor Leaf 12 (Ian, 2026-10-12)
+SPECIES_KRICKETOT   kept as the rewrite left it when Fury Cutter went to 10, 20, 30, so the move change reshuffles no list (Ian, 2026-10-12)
+SPECIES_KRICKETUNE  kept as the rewrite left it when Fury Cutter went to 10, 20, 30 (Ian, 2026-10-12)
+SPECIES_PHEROMOSA   kept as the rewrite left it when Triple Kick went to 20, 30, 40 (Ian, 2026-10-12)
+SPECIES_QWILFISH    kept as the rewrite left it when the rising moves changed (Ian, 2026-10-12)
