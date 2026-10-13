@@ -73,6 +73,69 @@ The scorer's sixes, lead first:
 
 Golbat is in every six and Alolan Ninetales in both whose box has it, as against today's team. No six takes a Fire type, though boxes 1 and 2 hold Fletchinder, Raboot and Ponyta, and Raboot and Ponyta are in the screen's top ten sixes on box 2. Each box took 62 to 73 minutes.
 
+### The three boxes and the sixes they used
+
+Goal 3 rolls three boxes for Gardenia's split, one per seed: a nuzlocke run's first catch in each of the 25 areas open before her gym, each at the cap of 26 with a Hardy nature, IVs of 15 and its species' first ability (`tools/oxide/balance/plgoal3.py`). Every reading on this page used the same three boxes. Box 1 began with Turtwig, box 2 with Scorbunny and box 3 with Piplup. The six the scorer took against Ian's team is in bold.
+
+| Area | Box 1 | Box 2 | Box 3 |
+|---|---|---|---|
+| Rowan's Briefcase | **Grotle** | Raboot | Prinplup |
+| Twinleaf Town | Barboach | Barboach | Goldeen |
+| Route 201 | Luxio | **Staravia** | **Corvisquire** |
+| Verity Lakefront | Staravia | Masquerain | Dottler |
+| Lake Verity | Bibarel | Lombre | **Dubwool** |
+| Sandgem Town | Dustox | Bibarel | Bibarel |
+| Route 202 | Nidorino | Dottler | Nidorino |
+| Jubilife City | Pawmo | **Liepard** | Machop |
+| Route 203 | **Corvisquire** | Nidorino | Barboach |
+| Oreburgh City | Vullaby | **Vullaby** | **Vullaby** |
+| Oreburgh Gate | **Golbat** | **Golbat** | **Golbat** |
+| Route 207 | Fletchinder | Ponyta | Nuzleaf |
+| Oreburgh Mine | **Probopass** | Donphan | Onix |
+| Route 204 | Nuzleaf | Dubwool | Swadloon |
+| Ravaged Path | Goldeen | Naclstack | Lombre |
+| Route 218 | Krabby | Finneon | Krabby |
+| Route 219 | Tentacool | Tentacool | Tentacool |
+| Floaroma Town | **Cherrim** | Combee | Pachirisu |
+| Route 205 | Carvanha | Dolliv | Pawmo |
+| Valley Windworks | Plusle | **Tsareena** | Combee |
+| Eterna Forest | Swadloon | Swadloon | **Breloom** |
+| Eterna City | Lombre | Brionne | Frogadier |
+| Route 211 | **Alolan Ninetales** | **Alolan Ninetales** | **Tsareena** |
+| Mt. Coronet North | Snover | Bronzor | Carbink |
+| Floaroma Meadow | Combee | Nuzleaf | Cherrim |
+
+The run's items by this split are three Sitrus Berries and four type boosters (Hard Stone, Miracle Seed, Flame Plate and Draco Plate), which the scorer hands to the six it takes. Each box's six, lead first, against each team read on this page:
+
+| Box | Today's team | Version B | Ian's six |
+|---|---|---|---|
+| 1 | Alolan Ninetales, Barboach, Dustox, Golbat, Probopass, Cherrim | Alolan Ninetales, Bibarel, Golbat, Probopass, Cherrim, Plusle | Cherrim, Grotle, Corvisquire, Golbat, Probopass, Alolan Ninetales |
+| 2 | Liepard, Masquerain, Golbat, Tsareena, Alolan Ninetales, Bronzor | Alolan Ninetales, Masquerain, Liepard, Golbat, Dubwool, Bronzor | Tsareena, Staravia, Liepard, Vullaby, Golbat, Alolan Ninetales |
+| 3 | Dottler, Corvisquire, Bibarel, Vullaby, Golbat, Cherrim | Dottler, Goldeen, Corvisquire, Bibarel, Golbat, Breloom | Tsareena, Corvisquire, Dubwool, Vullaby, Golbat, Breloom |
+
+The sixes against Ian's team in full, each at level 26:
+
+| Box | Pokemon | Ability | Item | Moves |
+|---|---|---|---|---|
+| 1 | Cherrim (lead) | Flower Gift | Miracle Seed | Petal Dance, Draining Kiss, Tackle, Leech Seed |
+| 1 | Grotle | Shell Armor | Sitrus Berry | Bullet Seed, Rock Blast, Bite, Curse |
+| 1 | Corvisquire | Keen Eye | none | Dual Wingbeat, Steel Wing, Taunt, Leer |
+| 1 | Golbat | Inner Focus | Sitrus Berry | Dual Wingbeat, Leech Life, Poison Sting, Bite |
+| 1 | Probopass | Solid Rock | Hard Stone | Rock Blast, Metal Claw, Taunt, Tackle |
+| 1 | Alolan Ninetales | Magic Guard | Sitrus Berry | Icicle Spear, Disarming Voice, Payback, Disable |
+| 2 | Tsareena (lead) | Leaf Guard | Miracle Seed | Double Kick, Razor Leaf, Stomp, Taunt |
+| 2 | Staravia | Reckless | none | Dual Wingbeat, Bite, Tailwind, Tackle |
+| 2 | Liepard | Limber | Sitrus Berry | Assurance, Bullet Seed, Fury Swipes, Taunt |
+| 2 | Vullaby | Big Pecks | none | Pluck, Knock Off, Tailwind, Bone Rush |
+| 2 | Golbat | Inner Focus | Sitrus Berry | Dual Wingbeat, Leech Life, Poison Sting, Bite |
+| 2 | Alolan Ninetales | Magic Guard | Sitrus Berry | Icicle Spear, Disarming Voice, Payback, Disable |
+| 3 | Tsareena (lead) | Leaf Guard | Miracle Seed | Double Kick, Razor Leaf, Stomp, Taunt |
+| 3 | Corvisquire | Keen Eye | none | Dual Wingbeat, Steel Wing, Taunt, Leer |
+| 3 | Dubwool | Fluffy | Sitrus Berry | Fury Swipes, Double Kick, Guard Split, Swagger |
+| 3 | Vullaby | Big Pecks | none | Pluck, Knock Off, Tailwind, Bone Rush |
+| 3 | Golbat | Inner Focus | Sitrus Berry | Dual Wingbeat, Leech Life, Poison Sting, Bite |
+| 3 | Breloom | Technician | Sitrus Berry | Bullet Seed, Headbutt, Mach Punch, Leech Seed |
+
 ### How the fights go
 
 The reading's 225 fights at real odds were replayed on its own seeds with every turn written down, and the replay reproduces the reading's results exactly. Most fights follow the same course.
