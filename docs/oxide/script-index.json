@@ -5108,7 +5108,7 @@
      {"at": ["events_pastoria_city:425"], "daily": false, "flag": 507, "name": "FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pastoria_city:334"], "daily": false, "flag": 524, "name": "FLAG_HIDE_PASTORIA_CITY_GRUNT_M", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pastoria_city:440"], "daily": false, "flag": 669, "name": "FLAG_HIDE_PASTORIA_CITY_CROAGUNK", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_pastoria_city:487"], "commit": "uncommitted", "daily": false, "flag": 972, "name": "FLAG_UNUSED_0x03CC", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["events_pastoria_city:487"], "commit": "547b7d259", "daily": false, "flag": 972, "name": "FLAG_UNUSED_0x03CC", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["events_pastoria_city:123"], "daily": false, "flag": 1088, "name": "FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pastoria_city:455"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_pastoria_city:581"], "daily": false, "flag": 258, "name": "FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST", "op": "set", "origin": "vanilla", "reached": true},
@@ -5125,7 +5125,7 @@
     ],
     "item_balls": [
      {"count": 1, "daily": false, "event": "object_events", "file": "events_pastoria_city", "flag": 1088, "flag_name": "FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER", "item": "ITEM_MYSTIC_WATER", "item_id": 243, "line": 124, "origin": "vanilla", "reached": true},
-     {"commit": "uncommitted", "count": 1, "daily": false, "event": "object_events", "file": "events_pastoria_city", "flag": 972, "flag_name": "FLAG_UNUSED_0x03CC", "item": "ITEM_ABILITY_CAPSULE", "item_id": 133, "line": 488, "origin": "added", "reached": true, "source": "Oxide"}
+     {"commit": "547b7d259", "count": 1, "daily": false, "event": "object_events", "file": "events_pastoria_city", "flag": 972, "flag_name": "FLAG_UNUSED_0x03CC", "item": "ITEM_ABILITY_CAPSULE", "item_id": 133, "line": 488, "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "trainers": [
      {"command": "StartTrainerBattle", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 490, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_PASTORIA_CITY_TURTWIG", "value": 474, "when": ""}]}]},

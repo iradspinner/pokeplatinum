@@ -3142,7 +3142,7 @@ Trainer battles:
 Item balls:
 
 - ITEM_MYSTIC_WATER x1, one time, flag FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER. Vanilla. `events_pastoria_city.json:124`
-- ITEM_ABILITY_CAPSULE x1, one time, flag FLAG_UNUSED_0x03CC. Added by Oxide (not yet committed). `events_pastoria_city.json:488`
+- ITEM_ABILITY_CAPSULE x1, one time, flag FLAG_UNUSED_0x03CC. Added by Oxide (547b7d259). `events_pastoria_city.json:488`
 
 Hidden items:
 
