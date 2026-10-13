@@ -45,7 +45,7 @@
     "learnset": {
         "by_level": [
             [
-                1,
+                0,
                 "MOVE_HAMMER_ARM"
             ],
             [
@@ -65,20 +65,12 @@
                 "MOVE_HARDEN"
             ],
             [
-                1,
-                "MOVE_ROCK_BLAST"
-            ],
-            [
                 5,
                 "MOVE_ROCK_THROW"
             ],
             [
                 7,
                 "MOVE_MUD_SHOT"
-            ],
-            [
-                13,
-                "MOVE_ROCK_POLISH"
             ],
             [
                 16,
@@ -93,20 +85,8 @@
                 "MOVE_ROCK_SLIDE"
             ],
             [
-                38,
-                "MOVE_ROCK_TOMB"
-            ],
-            [
-                39,
-                "MOVE_SALT_CURE"
-            ],
-            [
                 40,
                 "MOVE_STEALTH_ROCK"
-            ],
-            [
-                42,
-                "MOVE_BRICK_BREAK"
             ],
             [
                 44,
@@ -131,10 +111,6 @@
             [
                 64,
                 "MOVE_BODY_PRESS"
-            ],
-            [
-                66,
-                "MOVE_BLOCK"
             ]
         ],
         "by_tm": [

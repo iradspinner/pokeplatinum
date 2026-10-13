@@ -49,6 +49,10 @@
                 "MOVE_TACKLE"
             ],
             [
+                1,
+                "MOVE_HARDEN"
+            ],
+            [
                 5,
                 "MOVE_ROCK_THROW"
             ],
@@ -59,6 +63,10 @@
             [
                 10,
                 "MOVE_SMACK_DOWN"
+            ],
+            [
+                13,
+                "MOVE_ROCK_POLISH"
             ],
             [
                 16,
@@ -114,7 +122,11 @@
         ],
         "by_tutor": [],
         "egg_moves": [
-            "MOVE_EXPLOSION"
+            "MOVE_EXPLOSION",
+            "MOVE_CURSE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_POWER_GEM",
+            "MOVE_RECOVER"
         ]
     },
     "evolutions": [
