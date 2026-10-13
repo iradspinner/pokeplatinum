@@ -784,9 +784,26 @@ REPRICED = {
 }
 VACATED = {"ITEM_TM70": "ITEM_SITRUS_BERRY", "ITEM_TM28": "ITEM_LUM_BERRY"}
 
+# Items the table never held, placed where Ian chose (2026-10-13). The 46
+# spare story flags are all taken, so each reuses a flag: a ball that held
+# something else, a trainer that already gives a reward (one flag for both,
+# as Deanna's two), or a spare hidden item slot.
+ADDED = [
+    Row("ITEM_ICE_STONE", "1", "ball", "Fantina", "MAP_HEADER_WAYWARD_CAVE_1F", "", "ITEM_REVIVE", "", "",
+        "the one Ice Stone, in the dead end Camper Diego and Picnicker Tori guard as a two-trainer "
+        "battle (Ian, 2026-10-13: behind Wayward Cave's doubles); a Revive's ball today"),
+    Row("ITEM_ABILITY_CAPSULE", "1", "hidden", "Wake", "MAP_HEADER_PASTORIA_CITY", "585,855", "", "", "",
+        "hidden at the end of the strip between the southwest ponds, reached on foot "
+        "(Ian, 2026-10-13: in Pastoria)"),
+    Row("ITEM_ABILITY_PATCH", "1", "trainer", "Galactic", "MAP_HEADER_ROUTE_228", "", "",
+        "TRAINER_ACE_TRAINER_JOSE", "",
+        "the game's one Ability Patch, a second reward from a six-Pokemon optional fight "
+        "(Ian, 2026-10-13: in the Battle Zone)"),
+]
+
 
 def frozen_rows():
-    """The approved table's rows, with REPRICED applied."""
+    """The approved table's rows, with REPRICED applied and ADDED appended."""
     out = subprocess.run(["git", "-C", data.ROOT, "show", f"{FROZEN_REF}:docs/oxide/reward-placements.tsv"],
                          capture_output=True, text=True, check=True).stdout
     lines = [line for line in out.splitlines() if not line.startswith("#")]
@@ -808,6 +825,7 @@ def frozen_rows():
         rows[rows.index(old)] = other._replace(**{f: getattr(old, f) for f in place})
         rows[rows.index(other)] = old._replace(copies=str(copies), note=f"{why}; a TM place today ({other.replaces})",
                                                **{f: getattr(other, f) for f in place})
+    rows += ADDED
     rows.sort(key=lambda r: (si(r.split), r.kind, r.map, r.reward))
     return rows
 

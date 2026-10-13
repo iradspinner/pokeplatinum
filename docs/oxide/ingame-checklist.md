@@ -500,6 +500,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Route 207: after Mira is found in Wayward Cave, the woman who asked for
   her says thank you and gives no evolution stones; her first line no longer
   promises any.
+- [ ] Wayward Cave 1F's Ice Stone (Ian, 2026-10-13): in the far northwest,
+  walking between Camper Diego and Picnicker Tori starts one battle against
+  both, and the ball in the nook behind them gives an Ice Stone, not a
+  Revive. Used on a Vulpix, it evolves into Alolan Ninetales.
 - [ ] The base ROM's overworld sprites and the teleporting Abra's removal
   (`carry-over` and `carry-over-abra`, merged): no Abra stands outside Sandgem's
   Pokemon Center or in any other town, on Routes 207, 221 or 224, on Mt.
@@ -713,6 +717,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   item ball outside Stark Mountain gives a PP Up, and the man in Celestic
   Town's northwest house gives BlackGlasses from 4:00 to 19:59 and Wise
   Glasses at night, never a Choice Specs.
+- [ ] Pastoria's Ability Capsule (Ian, 2026-10-13): walk down the one-tile
+  strip between the two ponds in the city's southwest corner; pressing A at
+  its southern end finds a hidden Ability Capsule, and the Dowsing app shows
+  it there. Used on a Pokemon, it asks first, naming the other regular
+  ability.
+- [ ] The Ability Patch (Ian, 2026-10-13): beating Ace Trainer Jose on
+  Route 228 gives an Ability Patch and then TM64, straight after the win.
+  With a full Bag, talking to him again gives what was refused.
 - [ ] Stark Mountain's last room is empty after the Charon scene; Valor Cavern
   is empty after Galactic HQ.
 - [ ] Acuity Cavern: Uxie's sprite, but the cry and the level 50 battle are one

@@ -86,7 +86,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_1F_REVIVE",
-            "script": 7028,
+            "script": 7472,
             "initial_dir": 0,
             "data": [  ],
             "movement_range_x": 0,

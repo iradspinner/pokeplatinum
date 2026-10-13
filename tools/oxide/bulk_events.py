@@ -142,6 +142,16 @@ _why = "item balls the reward table changed (2026-10-07)"
 for _m in ("jubilife_city", "mt_coronet_2f", "stark_mountain_room_1"):
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
                                 if f"events_{_m}" in DIVERGED else _why)
+# Two of the items the table gained later (Ian, 2026-10-13); the third, the
+# Ability Patch, is a trainer reward in scripts_battles.
+for _m, _why in (
+    ("wayward_cave_1f", "its Revive ball holds the one Ice Stone (visible item script 7472; "
+                        "Ian, 2026-10-13)"),
+    ("pastoria_city", "a hidden Ability Capsule at the end of the strip between the southwest "
+                      "ponds (Ian, 2026-10-13)"),
+):
+    DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
+                                if f"events_{_m}" in DIVERGED else _why)
 # Solaceon's "Utility Stop" vendors are gone (Ian, 2026-10-07; bulk_scripts.py
 # says why), so the north house's events are vanilla's again.
 DIVERGED["events_solaceon_town_north_house"] = (
