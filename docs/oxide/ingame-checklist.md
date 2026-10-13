@@ -709,6 +709,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   battle, and afterwards the Palmer scene plays, without Buck's part if you
   first arrived without the badge. Arriving with the badge the first time
   plays vanilla's whole scene, Buck included.
+- [ ] No Life Orb or Choice item reaches the player (Ian, 2026-10-13): the
+  item ball outside Stark Mountain gives a PP Up, and the man in Celestic
+  Town's northwest house gives BlackGlasses from 4:00 to 19:59 and Wise
+  Glasses at night, never a Choice Specs.
 - [ ] Stark Mountain's last room is empty after the Charon scene; Valor Cavern
   is empty after Galactic HQ.
 - [ ] Acuity Cavern: Uxie's sprite, but the cry and the level 50 battle are one

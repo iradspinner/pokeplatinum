@@ -33,21 +33,12 @@ CelesticTownNorthwestHouse_GymGuide:
     FacePlayer
     Message CelesticTownNorthwestHouse_Text_GlassesChangeTheWorld
     GetHour VAR_RESULT
+    /* Oxide: the player never gets a Choice item (Ian, 2026-09-27), so the
+       morning's Choice Specs is gone and the BlackGlasses runs from 4 to 20
+       (Ian, 2026-10-13). */
     GoToIfLt VAR_RESULT, 4, CelesticTownNorthwestHouse_TryGiveWiseGlasses
-    GoToIfLt VAR_RESULT, 10, CelesticTownNorthwestHouse_TryGiveChoiceSpecs
     GoToIfLt VAR_RESULT, 20, CelesticTownNorthwestHouse_TryGiveBlackGlasses
     GoTo CelesticTownNorthwestHouse_TryGiveWiseGlasses
-
-CelesticTownNorthwestHouse_TryGiveChoiceSpecs:
-    GoToIfSet FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_CHOICE_SPECS, CelesticTownNorthwestHouse_ExplainChoiceSpecs
-    Message CelesticTownNorthwestHouse_Text_ChangeHowWorldLooks
-    SetVar VAR_0x8004, ITEM_CHOICE_SPECS
-    SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CelesticTownNorthwestHouse_BagIsFull
-    Common_GiveItemQuantity
-    SetFlag FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_CHOICE_SPECS
-    Message CelesticTownNorthwestHouse_Text_MorningChoiceSpecs
-    GoTo CelesticTownNorthwestHouse_ExplainChoiceSpecs
 
 CelesticTownNorthwestHouse_TryGiveBlackGlasses:
     GoToIfSet FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_BLACKGLASSES, CelesticTownNorthwestHouse_ExplainBlackGlasses
@@ -70,13 +61,6 @@ CelesticTownNorthwestHouse_TryGiveWiseGlasses:
     SetFlag FLAG_RECEIVED_CELESTIC_TOWN_NORTHWEST_HOUSE_WISE_GLASSES
     Message CelesticTownNorthwestHouse_Text_NightWiseGlasses
     GoTo CelesticTownNorthwestHouse_ExplainWiseGlasses
-
-CelesticTownNorthwestHouse_ExplainChoiceSpecs:
-    Message CelesticTownNorthwestHouse_Text_ExplainChoiceSpecs
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
 
 CelesticTownNorthwestHouse_ExplainBlackGlasses:
     Message CelesticTownNorthwestHouse_Text_ExplainBlackGlasses

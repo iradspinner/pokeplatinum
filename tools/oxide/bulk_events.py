@@ -130,6 +130,9 @@ DIVERGED["events_stark_mountain_room_2"] += (
 # whose win gives the TM she gave for ten straight bonus rounds (Ian,
 # 2026-10-06).
 _why = "the optional trainer Rocco added beside the coins clerk (Ian, 2026-10-06)"
+DIVERGED["events_stark_mountain_outside"] += (
+    "; the Life Orb ball gives a PP Up instead (visible item script 7051), since the player "
+    "never gets a Life Orb (Ian, 2026-09-27 and 2026-10-13); its flag keeps its old name")
 DIVERGED["events_game_corner"] = (
     DIVERGED["events_game_corner"] + "; " + _why if "events_game_corner" in DIVERGED else _why)
 # The reward table (step 10 of docs/oxide/alpha-readiness.md, applied

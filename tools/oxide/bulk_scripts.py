@@ -214,6 +214,9 @@ DIVERGED["scripts_pastoria_city_north_house"] += (
 # its TM now the reward of the optional trainer beside her.
 _why = ("the prize counter skips TMs not yet offered or already bought and gives a sold "
         "TM's copies (include/data/sold_tms.h; Ian, 2026-10-06)")
+DIVERGED["scripts_celestic_town_northwest_house"] = (
+    "the morning Choice Specs removed, the BlackGlasses given from 4 to 20, since the player "
+    "never gets a Choice item (Ian, 2026-09-27 and 2026-10-13)")
 DIVERGED["scripts_veilstone_city_prize_exchange"] = (
     DIVERGED["scripts_veilstone_city_prize_exchange"] + "; " + _why
     if "scripts_veilstone_city_prize_exchange" in DIVERGED else _why)

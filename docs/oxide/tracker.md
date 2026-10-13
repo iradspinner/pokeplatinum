@@ -18,11 +18,10 @@ Before alpha 1, Ian decides: whether the comb's 271 ordinary trainers (Maylene's
 
 **Waiting on Ian**, each with its entry below:
 - QA itself, and the in-game checks (`ingame-checklist.md`; add new ones there).
-- Replacements for the Life Orb ball outside Stark Mountain and the Celestic Town Choice Specs, which break his ruling.
 - The Kaizo study's open questions: six decisions on the later ordinary trainers, three weather rocks that do nothing, and the retunes after step 15.
 - Older questions still open: element 6's four changes of play, the drafts of dialogue from `main-scripts` and `main-production`, the regional dex order, the water biome draft and the zone-by-zone land pass, the honey trees, the Box sim's ratings, the Amity Square and Snowpoint casts, one damage roll against the calculator, and the Frontier Brain teams (he builds them).
 
-**Next steps for the Overseer, in order:** the balance tools' retirement job, under way on `overseer-retire-b` (Ian approved it on 2026-10-13; 3 to 4 hours); the two item fixes once he picks replacements (half an hour); the checklist's stale QA checks (an hour); step 15's restart at his word; Gardenia's stages as the study brings them.
+**Next steps for the Overseer, in order:** the balance tools' retirement job, under way on `overseer-retire-b` (Ian approved it on 2026-10-13; 3 to 4 hours); the checklist's stale QA checks (an hour); step 15's restart at his word; Gardenia's stages as the study brings them.
 
 **To confirm the state after a restart**, and what a clean gate looks like: `docs/oxide/restart-checks.md`. **Files outside the repo that the tools need** are listed in the design doc, section 2.
 
@@ -54,7 +53,8 @@ Before alpha 1, Ian decides: whether the comb's 271 ordinary trainers (Maylene's
 Items the old status homes and plans held that this tracker lacked or held only in part; `consolidation-2026-10-13.md` has each one's source and evidence.
 
 **Rulings the game still breaks**
-- [ ] The Life Orb ball outside Stark Mountain (a vanilla ball, reached in Galactic's split) and the Celestic Town northwest house's Choice Specs on a morning visit break the ruling that the player never gets a Life Orb or a Choice item (Ian, 2026-09-27). Replacements wait on Ian.
+- [ ] Fixed on `overseer-items` (Ian, 2026-10-13), waiting on its in-game check (`ingame-checklist.md`, section 4): the Life Orb ball outside Stark Mountain gives a PP Up, and the Celestic Town northwest house's morning Choice Specs is gone (BlackGlasses from 4 to 20).
+- [ ] New items placed nowhere in the ordinary game: the Ice Stone (so Alolan Ninetales, from a super-wanted line, cannot be reached), the one Ability Patch, the Ability Capsule, Bottle Caps and Gold Bottle Caps, the 25 Mints and the Roseli Berry (found 2026-10-13). Element 7's 20 later held items are all placed, each behind an optional trainer from Gardenia's split to Volkner's (`reward-placements.tsv`). Their places, and the Ice Stone's in the stone census, wait on Ian at the item pass.
 - [ ] 48 trainer teams in `res/` and 35 of the comb's 271 waiting teams give two members the same held item, against the no-repeats ruling (Ian, 2026-10-12); fixed as each team is next touched.
 
 **Trainers and bosses**
