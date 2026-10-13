@@ -16,7 +16,8 @@ needs no list kept by hand. A check's module reads:
     on with a name worked out at run time (os.path.join(ROOT, "docs",
     "oxide", "learnset-sheets")). A module in the file's own tool package
     names its folders by the bare word too (os.path.join(HERE, "ui")).
-    Docstrings are left out, since they mention docs they never open.
+    Docstrings, printed messages and argparse help are left out, since they
+    mention docs for a person to open, not for the tool to read.
 
 Some changes run the whole gate: anything outside docs/, .claude/ and
 tools/oxide/ (the game's data and engine, the build), apart from Markdown at
@@ -112,6 +113,15 @@ def parse(path):
     docstrings = {id(n.value) for n in ast.walk(tree)
                   if isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant)
                   and isinstance(n.value.value, str)}
+    # Messages name docs for a reader to open, not for the tool to read: the
+    # text of a print() and of an argparse help, description or epilog.
+    for n in ast.walk(tree):
+        if not isinstance(n, ast.Call):
+            continue
+        said = list(n.args) if getattr(n.func, "id", "") == "print" else []
+        said += [k.value for k in n.keywords if k.arg in ("help", "description", "epilog")]
+        for part in said:
+            docstrings.update(id(c) for c in ast.walk(part) if isinstance(c, ast.Constant))
     imports, strings, dynamic, joins = [], [], False, []
     for n in ast.walk(tree):
         if isinstance(n, ast.Import):
