@@ -1026,7 +1026,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                     out = trainers.detail(model.repo_root(), parts[2])
                 except (KeyError, FileNotFoundError):
                     return self._send({"error": f"no such trainer: {parts[2]}"}, 404)
-                out["estimate"] = trainers.estimate(parts[2])
                 return self._send(out)
             if parts[1] == "moves":
                 return self._send(move_list())
@@ -1173,17 +1172,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 return self._send(out, 200 if out.get("pushed") else 502)
 
             # A pair (trainers.pair_*): edits to either side, keyed by file
-            # name; /preview rebuilds and lints them with the pair's estimate
-            # as one fight, /score runs the full scorer on it, and a plain
-            # POST saves both or neither.
+            # name; /preview rebuilds and lints them, and a plain POST saves
+            # both or neither.
             if len(parts) >= 3 and parts[0] == "api" and parts[1] == "pair":
                 root, key, edits = model.repo_root(), urllib.parse.unquote(parts[2]), body.get("data")
                 try:
                     if len(parts) > 3 and parts[3] == "preview":
                         return self._send(trainers.pair_preview(root, key, edits))
-                    if len(parts) > 3 and parts[3] == "score":
-                        out = trainers.pair_score(key, edits)
-                        return self._send(out, 409 if "error" in out else 200)
                     out = trainers.pair_save(root, key, edits)
                 except KeyError:
                     return self._send({"error": f"no such pair: {key}"}, 404)
@@ -1197,16 +1192,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                     return self._send({"error": "send the trainer as data"}, 400)
                 if len(parts) > 3 and parts[3] == "preview":
                     return self._send(trainers.preview(root, stem, data))
-                if len(parts) > 3 and parts[3] == "score":
-                    out = trainers.full_score(stem, data)
-                    return self._send(out, 409 if "error" in out else 200)
                 try:
                     out = trainers.save(root, stem, data)
                 except trainers.SaveRefused as exc:
                     return self._send({"error": str(exc), "findings": exc.findings}, 409)
-                saved = trainers.detail(root, stem)
-                saved["estimate"] = trainers.estimate(stem)
-                return self._send(dict(out, detail=saved))
+                return self._send(dict(out, detail=trainers.detail(root, stem)))
 
             if len(parts) >= 3 and parts[0] == "api" and parts[1] == "area":
                 name = parts[2]
@@ -1283,8 +1273,8 @@ def main(argv=None):
               f"port:\n    PYTHONPATH=. python3 -m tools.oxide.encounters.server "
               f"--port {a.port + 1}")
         return 1
-    # The team builder's instant score takes a few seconds the first time;
-    # doing it now, on the side, keeps the first edit quick.
+    # The pair finder takes a few seconds the first time; doing it now, on
+    # the side, keeps the first trainer list quick.
     threading.Thread(target=trainers.warm, daemon=True).start()
     # The Sync bridge watches the save file set in ~/.config/oxidex/settings.json.
     savewatch.WATCHER.start()
