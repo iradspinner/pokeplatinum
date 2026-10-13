@@ -33,7 +33,7 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 
 ## Gardenia (Eterna Gym, cap 26)
 
-**Status:** evidence and diagnosis done (2026-10-13, [gardenia-redesign.md](gardenia-redesign.md)); the team shape waits on Ian. The scorer reads today's team at 100, 99 and 89 percent won on goal 3's boxes 1 to 3 (96 mean, difficulty 3.5), above the 95 percent ceiling, and a version with fixed move pools and sun at 95 percent, the same within noise.
+**Status:** evidence and diagnosis done (2026-10-13, [gardenia-redesign.md](gardenia-redesign.md)). Today's team reads 96 percent won on goal 3's boxes (difficulty 3.5), above the 95 percent ceiling, and a version with fixed move pools and sun 95. Ian's own six-member sun team, on the study branch `study-gardenia-ian`, reads 52 percent (65, 64 and 27 by box; difficulty 23.6), well past the 80 percent the hardest bosses top out at; the dials for its next reading wait on Ian.
 
 **Identity.** The base ROM's team was a sun team (Cherrim with Sunny Day and a Heat Rock, Solar Beam, Weather Ball); the Kaizo study's draft, in the game today, dropped the sun because the player's Fire types gained more from it. Today's five are Roselia, Ludicolo, Exeggutor, Breloom and Roserade. Sun pays only from a setter that spends no turn (Drought) and for more than one member: in the fixed version, Exeggutor's turn-one Sunny Day cost it the fight.
 
@@ -49,4 +49,6 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 - Corvisquire's and Vullaby's availability and Flying moves.
 - Sun mechanics (Drought, Sunny Day, Chlorophyll, Weather Ball, Heat Rock), if her team uses the sun.
 - Rock, Electric, Fire or Ice moves on her members, the answers to the counterpieces.
-- The moves, abilities and items of her five.
+- The moves, abilities and items of her members.
+
+**Ian's six** (2026-10-13; faints made over the three boxes): Exeggutor's Zen Headbutt, Egg Bomb and a Fire Natural Gift that Harvest regrows (216), Cherrim's Weather Ball and Rock Tomb (210), Roserade's Weather Ball and Sludge Bomb (199), Breloom's Rock Tomb and Mach Punch (162), Lumineon (120), Solrock (92). The two Weather Balls, Fire in a sun that never ends, landed a quarter of all the player's faints. Five of the six carry a super-effective move on each counterpiece, and the trainer AI's replacement rule sends them at it in turn.

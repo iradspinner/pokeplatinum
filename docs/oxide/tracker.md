@@ -17,12 +17,12 @@ The one home of open work (Ian, 2026-10-13). Every session adds its items here a
 Before alpha 1, Ian decides: whether the comb's 271 ordinary trainers (Maylene's split to the League) land first, and which bosses besides Roark get the full redesign before the alpha.
 
 **Waiting on Ian**, each with its entry below:
-- Gardenia's team shape ([gardenia-redesign.md](gardenia-redesign.md), its summary): a sun team with two swaps (recommended) or a Grass team without sun; and whether Solar Beam may go over the boss ceiling.
+- Gardenia's dials for the next reading of his six ([gardenia-redesign.md](gardenia-redesign.md), its summary): the five non-aces at level 22 and Cherrim's Weather Ball for Leech Seed recommended; and whether the simulator fix for resist berries against multi-hit moves goes in first.
 - QA itself, and the in-game checks (`ingame-checklist.md`; add new ones there).
 - The Kaizo study's open questions: six decisions on the later ordinary trainers, three weather rocks that do nothing, and the retunes after step 15.
 - Older questions still open: element 6's four changes of play, the drafts of dialogue from `main-scripts` and `main-production`, the regional dex order, the water biome draft and the zone-by-zone land pass, the honey trees, the Box sim's ratings, the Amity Square and Snowpoint casts, one damage roll against the calculator, and the Frontier Brain teams (he builds them).
 
-**Next steps for the Overseer, in order:** Gardenia's sets and reading once Ian picks a shape (about 2 hours); step 15's restart at his word.
+**Next steps for the Overseer, in order:** Gardenia's next reading once Ian picks the dials (about 20 minutes of changes and 70 of reading); step 15's restart at his word.
 
 **To confirm the state after a restart**, and what a clean gate looks like: `docs/oxide/restart-checks.md`. **Files outside the repo that the tools need** are listed in the design doc, section 2.
 
@@ -60,7 +60,7 @@ Items the old status homes and plans held that this tracker lacked or held only 
 - [ ] 48 trainer teams in `res/` and 35 of the comb's 271 waiting teams give two members the same held item, against the no-repeats ruling (Ian, 2026-10-12); fixed as each team is next touched.
 
 **Trainers and bosses**
-- [ ] **Gardenia's redesign** (Ian asked on 2026-10-13, with the Overseer rather than the Kaizo study), stage by stage as Roark's was. Evidence and diagnosis done the same night (`gardenia-redesign.md`, `boss-shapes.md`): today's team reads 96 percent won (above the 95 ceiling), a fixed-pool sun version 95; Golbat and Alolan Ninetales decide the fight. Next: Ian's pick of a shape, then sets, the checks and a reading on goal 3's boxes. The study branch `study-gardenia-fixed` holds version B, not for landing.
+- [ ] **Gardenia's redesign** (Ian asked on 2026-10-13, with the Overseer rather than the Kaizo study), stage by stage as Roark's was. Evidence and diagnosis done the same night (`gardenia-redesign.md`, `boss-shapes.md`): today's team reads 96 percent won (above the 95 ceiling), a fixed-pool sun version 95; Golbat and Alolan Ninetales decide the fight. Ian then designed a six-member sun team (Drought Solrock, Cherrim, Chlorophyll Lumineon, Harvest Exeggutor, Breloom and Roserade, a resist berry on each), allocated on the study branch `study-gardenia-ian`: it reads 52 percent won (65, 64 and 27 by box; difficulty 23.6), the analysis in the redesign doc. Next: Ian's pick of the dials, then a reading on the same boxes. Ian's answer of the same day, not yet applied: Slugma, which evolves at 38 today, should evolve by Fantina's split (cap 33) at the latest, with Magcargo's level-up list checked against the new level. Found on the way, for his approval: the simulator halves every hit of a multi-hit move against a resist berry, where the game halves only the first. The study branches `study-gardenia-fixed` and `study-gardenia-ian` are not for landing.
 - [ ] The comb's 271 ordinary trainers (Maylene's split to the League) wait for a landing; Ian decides whether before alpha 1. The Kaizo study's six decisions on them, each recommended "accept" (the trainers past the faint band, Rocco rebuilt, Wake's ability weather, Brennan's Shedinja and Vincent's rain, the HQ grunts' two-Pokemon teams, Somnu read as a boss without Tyche's and Hermes's Explosions), are Ian's (`task4-summary` in the study's folder).
 - [ ] Three held items do nothing under permanent ability weather: Flint's Torkoal's Heat Rock, Moira's Abomasnow's Icy Rock (Mt. Coronet), Jonah's Hippowdon's Smooth Rock. Ian's call.
 - [ ] The study's retune candidates (Cynthia, Maylene, Flint, Lucian, Aaron, Bertha, Barry 3, Saturn 1, Argo, Barry 6, Aces Jose, Saul and Mariah) wait for step 15's readings; Ian chooses.
