@@ -6,12 +6,12 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 
 ## Roark (Oreburgh Gym, cap 16)
 
-**Status:** redesigned 2026-10-12, sets being built by the Kaizo study. The scorer's comparison with today's team is pending.
+**Status:** redesigned 2026-10-12. The scorer read the new team with three cuts at 98 to 100 percent won, against today's 92, so the cuts are to be revisited ([roark-redesign.md](roark-redesign.md)); Ian's choice of the next reading is pending.
 
 **Identity.** A Rock gym in permanent sand, where the sand is the gym's weapon. Each member asks a different question, and the bait the player always brings has to be played around, not walked through.
 
 **The boss's core:**
-- Naclstack's Salt Cure, a quarter of max HP a turn on Water types, and Purifying Salt.
+- Naclstack's Salt Cure, a quarter of max HP a turn on Water types, and Purifying Salt. The AI uses Salt Cure through its own Expert routine (2026-10-12); beside Mud Shot, which carries Platinum's Speed-drop routine, it salts about one turn in five.
 - Lileep's Storm Drain and its Mega Drain: the Water baits' attacks feed it, and Grass hits them.
 - Sandshrew's Sand Rush in the permanent sand, with Poison Jab or X-Scissor for Grass baits.
 - Anorith as the physical Grass-bait answer.
@@ -20,7 +20,8 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 
 **The player's core counterpieces** (from the scorer's sixes):
 - **Barboach**, in every six the scorer has taken to Roark. Water/Ground: both its attacking types hit Rock super-effectively, it resists Rock, Electric can't touch it, and sand doesn't hurt it.
-- **Turtwig**, Bibarel and Dustox in most sixes; Fletchinder in some.
+- **Turtwig**, Bibarel and Dustox in most sixes against today's team; Fletchinder in some.
+- Against the new team (2026-10-12 readings): **Nidorino** in every six, as the answer to Lileep; Bibarel in five of six and Barboach in four.
 
 **Material for this fight:**
 - Barboach's typing, its Water and Ground moves, or its availability before Roark.
