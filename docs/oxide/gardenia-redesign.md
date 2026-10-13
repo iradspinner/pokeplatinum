@@ -140,7 +140,7 @@ The sixes against Ian's team in full, each at level 26:
 
 The reading's 225 fights at real odds were replayed on its own seeds with every turn written down, and the replay reproduces the reading's results exactly. Most fights follow the same course.
 
-**The lead.** Solrock leads, and Drought's sun lasts the fight. Box 1 leads with its own Cherrim, whose Petal Dance knocks Solrock out by turn 2 in 38 of 75 fights. Boxes 2 and 3 lead with Tsareena, which needs two Razor Leafs and takes Zen Headbutts in return (Tsareena is Grass and Fighting in Oxide), so Solrock lasts to turn 3.6 and 4.7 on average there, and Stealth Rock goes up in 62 and 59 of the 75 fights.
+**The lead.** Solrock leads, and Drought's sun lasts the fight. Box 1 leads with its own Cherrim, whose Petal Dance knocks Solrock out by turn 2 in 38 of 75 fights. Boxes 2 and 3 lead with Tsareena (Grass and Fighting in Oxide, so Zen Headbutt is super-effective on it). On damage alone the lead is quick: Tsareena outspeeds Solrock, Razor Leaf knocks it out in two hits, and Tsareena lives through one Zen Headbutt unless it crits, so Solrock can fall on turn 2. The scorer plays a slower line. On box 3 it opens with Taunt in 61 of 75 fights, which stops the Stealth Rock Solrock picks on turn 1 (56 of 75) but costs a turn and lets Zen Headbutt land, and in some fights it follows with Stomp or a switch into a Zen Headbutt. Solrock falls by turn 3 in 36 of box 3's fights; the average of 4.7 comes from the fights where the opening went wrong. Stealth Rock actually went up in 34, 41 and 17 of the 75 fights on boxes 1, 2 and 3 (a first version of this page counted the turns Solrock chose it, which a Taunt or a knockout can stop).
 
 **The order.** The player picks the next foe by picking who lands each knockout, which is how Ian baits a boss; but with this team's coverage nearly every pick brings in a member with a super-effective hit. The usual order, with the player's Pokemon each member first meets (the counts are fights of 75):
 
@@ -150,7 +150,7 @@ The reading's 225 fights at real odds were replayed on its own seeds with every 
 | 2 | Exeggutor, on Tsareena (52) | Lumineon, on Golbat or Staravia (36) | Cherrim and Roserade on Ninetales or Golbat |
 | 3 | Exeggutor, on Tsareena or Breloom (66) | Lumineon, on Golbat (57) | Cherrim and Breloom on Golbat (their Rock Tomb); Roserade last |
 
-**The middle.** Box 1's fight turns on Roserade, which comes second. Probopass takes its Weather Balls at 39 percent a hit while Rock Blast chips it, and Alolan Ninetales finishes it with Icicle Spear: Ninetales is out for 48 of Roserade's 73 falls. Golbat then carries most of the rest with Dual Wingbeat and Leech Life, out for about half the falls of Exeggutor, Cherrim and Breloom. Box 2 runs the same way with Exeggutor first. Box 3 has no Ninetales, and its three Flying types carry the fight into three Rock Tombs, two Zen Headbutts, Lumineon's Electric Natural Gift and Stealth Rock.
+**The middle.** Box 1's fight turns on Roserade, which comes second. Probopass takes its Weather Balls at 39 percent a hit while Rock Blast chips it, and Alolan Ninetales finishes it with Icicle Spear: Ninetales is out for 48 of Roserade's 73 falls. Golbat then carries most of the rest with Dual Wingbeat and Leech Life, out for about half the falls of Exeggutor, Cherrim and Breloom. Box 2 runs the same way with Exeggutor first. Box 3 has no Ninetales, and its three Flying types carry the fight into three Rock Tombs, two Zen Headbutts and Lumineon's Electric Natural Gift.
 
 **The losses.** In box 1's 26 losses the player got past Solrock and Roserade and ran out against the back three: Lumineon was left standing in 24, Cherrim and Breloom in 16 each. In box 3's 55, Roserade was still at 95 percent of its HP in 52: the player never reached it.
 
@@ -185,7 +185,7 @@ The moves the player's 998 faints fell on (a faint to Stealth Rock on a switch-i
 
 | Member | Faints made | Falls on turn (boxes 1, 2, 3) | Its part |
 |---|---|---|---|
-| Solrock | 92 | 2.7, 3.6, 4.7 | Sets the sun and Stealth Rock. On box 3 its Zen Headbutt makes one faint a fight, on Tsareena, Breloom and Golbat. |
+| Solrock | 92 | 2.7, 3.6, 4.7 | Sets the sun, and Stealth Rock when nothing stops it (34, 41 and 17 fights of 75 by box). On box 3 its Zen Headbutt makes one faint a fight, on Tsareena, Breloom and Golbat. |
 | Cherrim | 210 | 12.7, 15.5, 14.5 | Comes in on Alolan Ninetales, where Weather Ball and Rock Tomb are both super-effective, and on Golbat for Rock Tomb. Weather Ball is the top killing move on boxes 2 and 3. |
 | Lumineon | 120 | 18.2, 17.3, 16.6 | Chlorophyll makes it the fastest Pokemon in the fight (104 Speed), but the sun halves Aqua Tail. It comes in on Golbat for its Electric Natural Gift and finishes weakened Pokemon late. |
 | Exeggutor | 216 | 14.5, 10.4, 9.4 | The bulkiest member, second on boxes 2 and 3 against Tsareena. Zen Headbutt takes 95 percent of Golbat's HP, and Harvest keeps its Fire Natural Gift coming. |
@@ -196,7 +196,7 @@ The turns count only the fights in which the member fell.
 
 ### Why box 3 collapses
 
-Box 3 has no Alolan Ninetales, so nothing in it outspeeds Roserade, and its answers to the other five are its three Flying types and Breloom. Ian's team is built against exactly that. Solrock's Zen Headbutt and Rock Tomb meet the lead and the Flying types, and it lives to turn 4.7 with Stealth Rock taxing every Flying switch-in. Exeggutor comes in on Tsareena and makes 111 faints in 75 fights, the most of any member on any box. When Golbat knocks Exeggutor out, the AI's rule sends Lumineon at it (48 of 64 times), and Cherrim or Breloom after that, each with a super-effective move. Golbat fainted in 68 of the 75 fights, and the 7 in which it survived were all won.
+Box 3 has no Alolan Ninetales, so nothing in it outspeeds Roserade, and its answers to the other five are its three Flying types and Breloom. Ian's team is built against exactly that. Solrock's Zen Headbutt and Rock Tomb meet the lead and the Flying types, and it lives to turn 4.7 on average, because the scorer spends Tsareena's first turn on the Taunt that keeps Stealth Rock off (it went up in only 17 of 75 fights). Exeggutor comes in on Tsareena and makes 111 faints in 75 fights, the most of any member on any box. When Golbat knocks Exeggutor out, the AI's rule sends Lumineon at it (48 of 64 times), and Cherrim or Breloom after that, each with a super-effective move. Golbat fainted in 68 of the 75 fights, and the 7 in which it survived were all won.
 
 ### Lumineon and Swagger, against the base ROM
 
