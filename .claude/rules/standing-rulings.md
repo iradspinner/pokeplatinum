@@ -346,6 +346,16 @@ read, so they are written here too. Each is a standing instruction.
   are judged against Oxide's box, not Kaizo's. Ian plans a boss by baiting
   matchups in the order he wants, so the main tax on him is moveset overlap
   and coverage, then switching or staying in by fight.
+  From Gardenia's redesign (Ian, 2026-10-13): a conditional move such as
+  Solar Beam may always be considered for a boss, with his okay when it
+  comes early (he kept it off his own sun team because its Drought sun
+  never ends, which makes it unconditional); a member may sit under its
+  evolution level, though not egregiously early; a trainer may know a
+  level-up move its species learns just after the split without any list
+  changing (Exeggutor's Egg Bomb at 27 in Gardenia's split); and a team may
+  be weaker than optimal on purpose (a Timid Solrock, a physical Exeggutor
+  on a lesser nature). A trainer's six IVs are one value, its iv_scale, so
+  a trainer's Hidden Power can only be Fighting or Dark.
 - Reports to Ian are one page (Ian, 2026-10-06). Any report, reading,
   study result or plan that comes to him starts with a one-page summary: the
   outcome, the action items (what he decides or does), the next steps, and
