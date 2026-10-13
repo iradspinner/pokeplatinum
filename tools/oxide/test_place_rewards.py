@@ -25,6 +25,9 @@ What it checks, without building a ROM:
    and a purchase bit of its own that survives the table losing and
    regaining rows; a prize takes the place and coin price of the one it
    replaces, or leaves the list; a second apply changes nothing.
+7. The spare flag pool lends only flags pret marks unused, outside the
+   stretches the game clears or works out from a number, and no hidden
+   item's script reaches one (Ian, 2026-10-13).
 
 The files the tool writes are taken from commit BASE, the last before the real
 table was applied, since the fixtures were written against them; a clone
@@ -40,6 +43,7 @@ Prints "passed" when every check passes.
 import argparse
 import contextlib
 import io
+import json
 import os
 import re
 import shutil
@@ -195,6 +199,33 @@ def check_routine(tree_root, placements, original):
     return {t: f for t, (_i, f) in branches.items()}
 
 
+def check_spare_pool():
+    """The spare flag pool against the stretches the game clears or
+    computes into, read from the working tree."""
+    tree = pr.Tree(ROOT)
+    flags = tree.flags
+    pool = pr.SpareFlags(tree).pool()
+    values = {v for v, _n in pool}
+    bad = [n for v, n in pool
+           if v <= flags["MAP_LOCAL_FLAGS_END"]
+           or flags["TRAINER_DEFEATED_FLAGS_START"] <= v <= flags["TRAINER_DEFEATED_FLAGS_END"]
+           or v >= flags["FLAG_VILLA_FURNITURE_START"]]
+    expect(not bad, f"spare flags in a stretch the game clears or computes into: {bad}")
+    expect(len(pool) == 86, f"the pool holds {len(pool)} flags, not the 86 pret marks unused in its stretches")
+    reached = []
+    for path in sorted(os.listdir(os.path.join(ROOT, "res/field/events"))):
+        if not path.startswith("events_") or not path.endswith(".json"):
+            continue
+        with open(os.path.join(ROOT, "res/field/events", path), encoding="utf-8") as f:
+            events = json.load(f)
+        for bg in events.get("bg_events", []):
+            script = bg.get("script")
+            if isinstance(script, int) and pr.HIDDEN_ITEM_SCRIPT <= script < pr.HIDDEN_ITEM_SCRIPT + 1000:
+                if flags["HIDDEN_ITEM_FLAGS_START"] + script - pr.HIDDEN_ITEM_SCRIPT in values:
+                    reached.append((path, script))
+    expect(not reached, f"a hidden item's script reaches a spare flag: {reached}")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--built-tree", help="a checkout with the fixture applied and its ROM built")
@@ -309,6 +340,12 @@ def main():
         run("apply", "--table", SHOPS, "--root", work, "--roles", none)
         expect(sold_tms(work)["ITEM_TM02"][2] == sold["ITEM_TM02"][2],
                "a sold TM's purchase bit moved when the others left the table and came back")
+
+    # 7: the spare flags (Ian, 2026-10-13). Every flag the pool lends lies
+    # outside the stretches the game clears (map-local, daily) or works out
+    # from a number (trainers, Villa furniture, first arrivals, Giratina),
+    # and no hidden item's script reaches one.
+    check_spare_pool()
 
     # With a built tree: every row read back out of its ROM.
     if a.built_tree:

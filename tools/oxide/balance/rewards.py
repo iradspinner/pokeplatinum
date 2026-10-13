@@ -19,7 +19,7 @@ outside.
 The placement tool (tools/oxide/place_rewards.py, the main track's) reads
 docs/oxide/reward-placements.tsv, one row per placement, and
 docs/oxide/trainer-roles.tsv, one row per trainer the census places. Each
-reward trainer and each new item ball takes one of the 46 spare story flags;
+reward trainer and each new item ball takes one of the spare flags (FLAG_POOL);
 this table adds no ball (a TM with no place of its own takes over a ball
 that holds a mart item), so the reward trainers alone draw on the pool.
 """
@@ -44,7 +44,8 @@ ROLES = os.path.join(OUT, "trainer-roles.tsv")
 REPORT = os.path.join(OUT, "reward-table.md")
 NICHE = os.path.expanduser("~/oxide-trials/learnset-rewrite/checks-2-3.json")
 SPLITS = lc.SPLITS
-FLAG_POOL = 46          # the spare story flags tools/oxide/place_rewards.py hands out (2026-10-06)
+FLAG_POOL = 85          # the spare flags tools/oxide/place_rewards.py hands out to rewards (2026-10-13)
+SPREAD_FLAGS = 46       # the pool the approved spread was built with (2026-10-06), kept for --reshuffle
 TARGET = 100            # about 100 TMs, the former HMs included (Ian, 2026-09-28)
 FIRST_NEW_TM = 93       # TM93 on, past vanilla's 92 (include/constants/items.h, NUM_EXTRA_TMS)
 
@@ -663,7 +664,7 @@ def build():
     fixed = [dict(p) for p in tm_places()]
     shops = [{"shop": m, "item": it} for _s, m, it in mart_tms()]
     cheap = [dict(p) for p in cheap_balls()]
-    flags_left = FLAG_POOL - len(used_trainers) - 1     # one for the Game Corner's new trainer
+    flags_left = SPREAD_FLAGS - len(used_trainers) - 1  # one for the Game Corner's new trainer
     own_item = {c: f"ITEM_{_key(st, c)}" for c in main if _key(st, c)}
 
     def options(c, s):
@@ -784,10 +785,11 @@ REPRICED = {
 }
 VACATED = {"ITEM_TM70": "ITEM_SITRUS_BERRY", "ITEM_TM28": "ITEM_LUM_BERRY"}
 
-# Items the table never held, placed where Ian chose (2026-10-13). The 46
-# spare story flags are all taken, so each reuses a flag: a ball that held
-# something else, a trainer that already gives a reward (one flag for both,
-# as Deanna's two), or a spare hidden item slot.
+# Items the table never held, placed where Ian chose (2026-10-13). They
+# were placed while the 46 spare flags of the day were all taken, so each
+# reuses a flag: a ball that held something else, a trainer that already
+# gives a reward (one flag for both, as Deanna's two), or a spare hidden
+# item slot. The pool grew to 85 the same day.
 ADDED = [
     Row("ITEM_ICE_STONE", "1", "ball", "Fantina", "MAP_HEADER_WAYWARD_CAVE_1F", "", "ITEM_REVIVE", "", "",
         "the one Ice Stone, in the dead end Camper Diego and Picnicker Tori guard as a two-trainer "
@@ -1074,7 +1076,7 @@ def report(st, item, rows, facts, gauntlets=None, out=None):
       f"Department Store's and the Game Corner's {len(shop_tms)} TMs sold once each, unlocked by badge count "
       f"in order of usefulness. Every TM and each of element 7's {len(HELD)} held items has exactly one place, "
       f"every vanilla TM ball, gift and shop TM is repointed, and the reward trainers take {flags} of the "
-      f"{FLAG_POOL} spare story flags. The table's own check passes.")
+      f"{FLAG_POOL} spare flags. The table's own check passes.")
     p()
     p("**What can still move.** The move-rework cloud job changes the numbers of Hyper Beam, Giga Impact and "
       "the multi-hit moves, so their tiers, and with them their copies and places, are read on today's data. "
