@@ -12,7 +12,7 @@ file checks the mechanics against cases traced by hand.
 import sys
 
 from . import data
-from . import metrics
+from . import pool
 from . import required as R
 
 # Totals at each trainer's first crossing, pinned so that a change to the
@@ -99,27 +99,48 @@ def check_gates(results):
 
 
 def check_late_visits(results):
-    """B2's 22 later visits (16 until the Kaizo comb's levels, step 12, put
-    six more teams in a later split than their map's; 18 until Somnu and
-    Moira at Lake Verity became a story fight): every one a crossing reaches
-    lands in a split whose cap covers its ace, and the rest are off the
-    story path."""
+    """The 22 later visits (required.late_visits; 16 until the Kaizo comb's
+    levels, step 12, put six more teams in a later split than their map's;
+    18 until Somnu and Moira at Lake Verity became a story fight): every one
+    a crossing reaches lands in a split whose closing boss's ace covers its
+    own, and the rest are off the story path."""
     first = R.first_crossings()
     ox = data.oxide_trainers()
-    rows, _ = metrics.all_metrics()
+    aces = pool.closing_aces()
     placed, off, wrong = 0, 0, []
-    for _split, tr_id in metrics.late_visits():
+    for _split, tr_id in R.late_visits():
         hit = first.get(ox[tr_id]["constant"])
         if not hit:
             off += 1
             continue
-        cap = rows["oxide"][metrics.CLOSING[hit[0]]]["ace_level"]
+        cap = aces[hit[0]]
         ace = max(m["level"] for m in ox[tr_id]["party"])
         placed += 1
         if ace > cap:
             wrong.append(ox[tr_id]["stem"])
     results.append(("the 22 later visits land under their split's cap", not wrong and placed == 15,
                     f"{placed} placed, {off} off the story path" + (f"; over cap {wrong}" if wrong else "")))
+
+
+def check_gauntlet_sections(results):
+    """The sections keep Ian's rulings: 2 to 5 trainers each, the built ten
+    (src/gauntlet.c), Victory Road 1F halved as the code lists it with its
+    2F and B1F detours left out, and Mt. Coronet's bosses and hard officers
+    out. Moved here from test_b6 when the first scoring system retired
+    (2026-10-13)."""
+    from . import gauntlet
+    sizes = {(area, s[0]): len(gauntlet.section_trainers(area, s))
+             for area, sections in gauntlet.SECTIONS.items() for s in sections}
+    coronet = {tr for s in gauntlet.SECTIONS["mt_coronet"]
+               for tr in gauntlet.section_trainers("mt_coronet", s)}
+    names = {tr: t["constant"] for tr, t in data.oxide_trainers().items()}
+    vr = [{names[tr] for tr in gauntlet.section_trainers("victory_road", s)}
+          for s in gauntlet.SECTIONS["victory_road"]]
+    ok = (len(sizes) == 10 and all(2 <= n <= 5 for n in sizes.values()) and not coronet & {520, 526, 834}
+          and vr == [{"TRAINER_PSYCHIC_BRYCE", "TRAINER_BIRD_KEEPER_HANA", "TRAINER_ACE_TRAINER_MARIAH"},
+                     {"TRAINER_BLACK_BELT_MILES", "TRAINER_DRAGON_TAMER_CLINTON", "TRAINER_VETERAN_EDGAR"}])
+    results.append(("gauntlet sections hold 2 to 5 trainers, bosses left out", ok,
+                    f"{len(sizes)} sections" if ok else f"{sizes}, Coronet {coronet}, 1F {vr}"))
 
 
 def check_totals(results):
@@ -134,7 +155,7 @@ def check_totals(results):
 def main():
     results = []
     for check in (check_crossings_resolve, check_sight_and_ledges, check_route_202, check_ian_examples,
-                  check_gates, check_late_visits, check_totals):
+                  check_gates, check_late_visits, check_gauntlet_sections, check_totals):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

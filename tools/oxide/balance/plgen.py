@@ -22,7 +22,7 @@ import time
 
 from . import plthreads  # noqa: F401  (one numpy thread per process, before numpy loads)
 
-from . import b6, data, fightsim as fs, pldata, plplan, plscore, splits  # noqa: E402
+from . import data, fightsim as fs, pldata, plplan, plscore, required, splits  # noqa: E402
 
 SPLITS = ("Roark", "Gardenia", "Fantina")
 HOLD_EVERY = 5            # every fifth trainer, in key order, is held out
@@ -32,7 +32,7 @@ READ_BOX = 0              # the box seed the readings use; the data's boxes star
 
 def trainer_split(key):
     """The scorer's own split for a trainer (plscore.prepare's rule)."""
-    return plscore.SPLIT_OVERRIDE.get(key) or (b6.placements()[key]["split"] if key in b6.placements()
+    return plscore.SPLIT_OVERRIDE.get(key) or (required.placements()[key]["split"] if key in required.placements()
                                                else splits.trainer_split(key))
 
 

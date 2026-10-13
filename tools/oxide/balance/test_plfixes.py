@@ -692,7 +692,7 @@ def sheer_force_life_orb_checks():
     calculator: one level 100 Nidoking's Flamethrower into a Snorlax with
     Sheer Force and a Life Orb, each alone, and neither (1.3, 1.3 and 1.69,
     within rounding)."""
-    from . import pressure, teamscore
+    from . import calc
     from .test_fightsim import battle as duel
     out = []
 
@@ -725,7 +725,7 @@ def sheer_force_life_orb_checks():
           "t": dict(mon, species="Snorlax", level=50, nature="Hardy", ability="Immunity", item="")}
     jobs = {"pokemon": pk, "pairs": [[k, "t", ["Flamethrower"], None] for k in ("both", "sf", "lo", "none")]}
     rows = {r["a"]: r["moves"]["Flamethrower"]["rolls"][-1]
-            for r in pressure.run_node(teamscore._blob_path(), jobs)["results"]}
+            for r in calc.run_node(calc.blob_path(), jobs)["results"]}
     ratio = {k: round(rows[k] / rows["none"], 3) for k in ("both", "sf", "lo")}
     out.append(("the calculator's row gives Sheer Force's 1.3 and the Life Orb's 1.3 together",
                 abs(ratio["sf"] - 1.3) < 0.03 and abs(ratio["lo"] - 1.3) < 0.03 and abs(ratio["both"] - 1.69) < 0.05,
@@ -886,7 +886,7 @@ def reckless_calc_checks():
     Staraptor with Reckless against the same with Intimidate. Catches the
     day the calculator learns a move's recoil, which would double the boost."""
     import types
-    from . import pressure, teamscore
+    from . import calc
     by_name = fs._by_calc_name()[0]
     moves = sorted(n for n, r in by_name.items() if (r.get("effect") or "") in fs.reckless_effects() and r.get("power"))
     ivs = {k: 31 for k in ("hp", "at", "df", "sp", "sa", "sd")}
@@ -894,7 +894,7 @@ def reckless_calc_checks():
     jobs = {"pokemon": {"r": dict(mon, ability="Reckless"), "i": dict(mon, ability="Intimidate"),
                         "t": dict(mon, species="Snorlax", level=50, ability="Thick Fat")},
             "pairs": [["r", "t", moves, None], ["i", "t", moves, None]]}
-    rows = {r["a"]: r["moves"] for r in pressure.run_node(teamscore._blob_path(), jobs)["results"]}
+    rows = {r["a"]: r["moves"] for r in calc.run_node(calc.blob_path(), jobs)["results"]}
     reckless = types.SimpleNamespace(ability="Reckless")
     off, small = [], []
     for n in moves:

@@ -23,8 +23,9 @@ later dated ruling wins; say which in the report.
   a landing: the gate reports stale scores and passes. Full readings happen
   only at milestones (once before alpha 1, then once after each round of
   alpha changes); between them the scorer reads only the fights Ian names,
-  and the simulator is frozen except for fixes he approves. The cheap
-  calculator estimate runs on request, in the background. A problem Ian
+  and the simulator is frozen except for fixes he approves. The first scoring
+  system's cheap estimate is retired (Ian, 2026-10-13): the scorer is the one
+  measure of a fight. A problem Ian
   reports is fixed as data, with common sense, never turned into a standing
   rule, a generator rule or a gate check unless he asks for one. What counts
   as material is read from the fight's shape in `docs/oxide/boss-shapes.md`:
@@ -178,7 +179,7 @@ is listed for Ian.
   percent won). The numbers are ordinal, and Oxide is not meant to be beaten
   on a first run. When a fight reads too hard, change the player's move pools first: they
   are sparse in interesting options and lack many modern moves. The scorer's
-  goals, the Kaizo study's comb and the full rescore come in the order the
+  goals, the Kaizo study's comb and the full readings come in the order the
   tracker's Scoring Agent entry and Scheduled list give.
 - **Every trainer team is set by hand** (Ian, 2026-09-27): in the finished
   ROM no trainer keeps default moves, so default movesets carry no weight in
@@ -222,8 +223,14 @@ trainers' palette only.
 ## Running a pass on this machine
 
 - There is no job limit; heavy or parallel jobs run under
-  `tools/oxide/capped`. A rescore runs its agreeing second pass by design.
-- The rescore's engine hash covers `calc_headless.js`, the calculator page's
-  `./calc/` scripts and the two functions lifted from `initialize.js`
-  (`applyExportedMoveData`, `toImportedBaseStats`). An edit to any of them
-  stales every stored score, and `test_b3` will say so.
+  `tools/oxide/capped`.
+- A fight is read by the perfect-line scorer, goal 3's driver
+  (`tools/oxide/balance/plgoal3.py`), and its difficulty number is
+  `pldifficulty.py`'s. The first scoring system (B2 to B6, the rescore and
+  the team builder's estimate) was retired on 2026-10-13; the balance plan's
+  banner names the last commit that has it.
+- Every reading's damage comes from the vendored calculator's engine, run
+  headless through `tools/oxide/balance/calc.py` (`calc_headless.js`, the
+  calculator page's `./calc/` scripts and the two functions lifted from
+  `initialize.js`). An edit to any of them changes every fight's numbers;
+  `test_b3` checks the runner against the page's damage.

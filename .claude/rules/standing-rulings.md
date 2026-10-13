@@ -12,8 +12,9 @@ read, so they are written here too. Each is a standing instruction.
   a landing: the gate reports stale scores and passes. Full readings happen
   only at milestones (once before alpha 1, then once after each round of
   alpha changes); between them the scorer reads only the fights Ian names,
-  and the simulator is frozen except for fixes he approves. The cheap
-  calculator estimate runs on request, in the background. A problem Ian
+  and the simulator is frozen except for fixes he approves. The first scoring
+  system's cheap estimate is retired (Ian, 2026-10-13): the scorer is the one
+  measure of a fight. A problem Ian
   reports is fixed as data, with common sense, never turned into a standing
   rule, a generator rule or a gate check unless he asks for one. What counts
   as material is read from the fight's shape in `docs/oxide/boss-shapes.md`:

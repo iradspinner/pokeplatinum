@@ -389,6 +389,95 @@ def summary():
     return out
 
 
+# ---- where the census places each ordinary trainer --------------------------
+# These three lived in the first scoring system (metrics.py and b6.py) until
+# it was retired on 2026-10-13; they moved here unchanged, since the item
+# census, the scorer, the reward table and the OxiDex all place trainers by
+# them.
+
+# Trainers who fight beside the player rather than against them.
+PARTNER_STEMS = ("cheryl", "mira", "riley", "marley", "buck", "lucas", "dawn")
+
+
+@functools.lru_cache(maxsize=None)
+def placed_filler():
+    """{split: [tr_id]} for every first-run Oxide trainer that is not a story
+    fight, a tag partner or a gym leader's rematch, by B1d's split map. The
+    post-game split is not scored."""
+    from . import splits
+    story = {i for f in data.fights()["fights"] for i in f["tr_ids"] + f["partner_ids"]}
+    out = {s: [] for s in data.fights()["splits"]}
+    for tr_id, t in data.oxide_trainers().items():
+        if tr_id in story or t["stem"].startswith(PARTNER_STEMS) or "rematch" in t["stem"]:
+            continue
+        split = splits.trainer_split(tr_id)
+        if split in out:
+            out[split].append(tr_id)
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def late_visits():
+    """[(split, tr_id)] for filler whose Oxide ace is above its split's cap.
+
+    B1d gives a trainer the split of its map, and a map takes the split in
+    which the player first reaches it. Part of a map can open later (Surf on
+    Route 219, the bike on Route 207, Strength in Oreburgh Gate's basement),
+    and a story revisit can add trainers (the grunts at Lake Verity). A
+    trainer above the cap cannot belong to its split under hard caps, so
+    placements() moves it to the split the player can first reach it in.
+    The cap is Ian's (fights.json), which since the Galactic split of
+    2026-09-25 can sit above the closing boss's ace."""
+    caps = data.fights()["caps"]
+    ox = data.oxide_trainers()
+    out = []
+    for split, ids in placed_filler().items():
+        cap = caps[split]
+        out += [(split, i) for i in ids if max(m["level"] for m in ox[i]["party"]) > cap]
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def placements():
+    """{tr_id: {"split", "how", "late"}} for every first-run ordinary
+    trainer (placed_filler: no story fight, tag partner or rematch). The
+    split is the one the player first meets it in on the story path (B1e)
+    where the model reaches it, else its map's (B1d); a trainer whose ace is
+    over that split's cap moves to the first split whose cap covers it
+    ("late"), as B1e found the late visits do. "how" is B1e's verdict,
+    required or avoidable, or why the model leaves it out."""
+    from . import pool
+    first = first_crossings()
+    _rows, left = report()
+    reason = {c: r for _h, r, ts in left for c in ts}
+    never = set(never_reached())
+    caps = pool.caps()
+    ox = data.oxide_trainers()
+    out = {}
+    for split, ids in placed_filler().items():
+        for tr in ids:
+            t = ox[tr]
+            if not t["party"]:
+                continue
+            c = t["constant"]
+            if c in first:
+                s, _header, how = first[c]
+            else:
+                s = split
+                how = reason.get(c) or ("behind a field move" if c in never else "not on a crossing")
+            if s not in caps:
+                continue
+            ace = max(m["level"] for m in t["party"])
+            late = False
+            if ace > caps[s]:
+                later = [x for x in pool.SPLITS[pool.split_index(s):] if caps[x] >= ace]
+                if not later:
+                    continue
+                s, late = later[0], True
+            out[tr] = {"split": s, "how": how, "late": late}
+    return out
+
+
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     rows, left = report()

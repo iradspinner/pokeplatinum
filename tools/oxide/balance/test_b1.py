@@ -17,7 +17,7 @@ from . import data
 # Sets per file, counted by hand from the raw JSON on 2026-09-22. A loader
 # that drops or duplicates members fails here before anything is scored.
 SET_COUNTS = {"vanilla": 1873, "renegade": 2823, "redux": 2829, "redux_hc": 2829,
-              "kaizo": 3077, "hardlove": 1871, "null": 2282, "unbound": 357}
+              "kaizo": 3077, "null": 2282, "unbound": 357}
 # Words a trainer's name must contain for a fight to count as found. The
 # calculator's data calls the rival "Pkmn Trainer Cedric".
 NAME_WORD = {"barry": "Cedric", "mars": "Mars", "jupiter": "Jupiter",
@@ -175,55 +175,13 @@ def check_megas_folded(results):
                         f"{megas} Megas folded" + (f"; over six: {over[:3]}" if over else "")))
 
 
-def check_hardlove_rom(results):
-    """Hardlove comes from the donor ROM. Its first seven gyms agree with the
-    calculator's file wherever that file is current; the League is the
-    ROM's own, at 82, with Lance an Elite Four member and Blue the Champion."""
-    from . import hardlove_rom
-    rom, calc = hardlove_rom.trainers(), data.calc_sets("hardlove")
-    members = sum(len(t["party"]) for t in rom.values())
-    results.append(("hardlove: every trainer in the ROM is read", (len(rom), members) == (737, 1909),
-                    f"{len(rom)} trainers, {members} Pokemon"))
-    # Falkner and Whitney are left out: the calculator's file has one old
-    # level and no Galarian forms there, and the ROM is the newer of the two.
-    diff = []
-    for tr_id in (21, 31, 34, 33, 32):
-        a = sorted((m["mega"] or m["species"], m["level"]) for m in rom[tr_id]["party"])
-        b = sorted((m["species"], m["level"]) for m in calc[tr_id]["party"])
-        if a != b:
-            diff.append(tr_id)
-    results.append(("hardlove: Bugsy to Pryce match the calculator's file", not diff,
-                    f"differ: {diff}" if diff else "5 gyms, species and levels"))
-    anchors = {m["species"]: m["types"] for t in rom.values() for m in t["party"]}
-    ok = (rom[244]["name"].startswith("Elite Four") and rom[727]["name"].startswith("Champion")
-          and anchors.get("Farfetch’d-Galar") == ["Fighting"]
-          and anchors.get("Ninetales-Alola") == ["Ice", "Fairy"])
-    results.append(("hardlove: League roles and form types read from the ROM", ok,
-                    f"244 {rom[244]['name']}, 727 {rom[727]['name']}"))
-
-
-def check_run_and_bun(results):
-    """Ian's Run & Bun sheet: every Pokemon has a level, every boss a full
-    set of moves. 76 filler trainers in the later splits have no moves on
-    the sheet itself, which is the sheet's gap, not the reader's."""
-    from . import run_and_bun
-    ts = run_and_bun.trainers()
-    members = sum(len(t["party"]) for t in ts.values())
-    no_level = sum(1 for t in ts.values() for m in t["party"] if m["level"] is None)
-    boss_gaps = [k for k, t in ts.items() if "[Boss]" in k and any(not m["moves"] for m in t["party"])]
-    results.append(("run_and_bun: the sheet reads whole",
-                    (len(ts), members, no_level, boss_gaps) == (436, 1832, 0, []),
-                    f"{len(ts)} trainers, {members} Pokemon, {no_level} without a level, "
-                    f"bosses without moves: {boss_gaps}"))
-
-
 def check_milestones_resolve(results):
     """Each hack built on another game has a counterpart for every gym, Elite
     Four seat and Champion, found under the name its milestone map gives."""
     seats = ("roark", "gardenia", "fantina", "maylene", "wake", "byron", "candice", "volkner",
              "aaron", "bertha", "flint", "lucian", "cynthia")
     by_key = {f["key"]: f for f in data.fights()["fights"]}
-    for hack in ("hardlove", "null", "unbound", "run_and_bun"):
+    for hack in ("null", "unbound"):
         want = data.fights()["milestones"][hack]
         missing = [k for k in seats if len(data.fight_trainers(hack, by_key[k])) != len(want[k])]
         results.append((f"{hack}: all 13 gym and League seats resolve", not missing,
@@ -450,7 +408,7 @@ def main():
     for check in (check_pinned_files, check_set_counts, check_oxide_members,
                   check_fights_resolve, check_sheet_levels,
                   check_league_after_volkner, check_roark, check_megas_folded,
-                  check_hardlove_rom, check_run_and_bun, check_milestones_resolve,
+                  check_milestones_resolve,
                   check_split_map, check_items_and_marts, check_tm_sources,
                   check_weather, check_item_reach, check_testkit):
         check(results)

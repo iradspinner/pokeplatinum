@@ -54,7 +54,7 @@ import sys
 import tempfile
 
 from ..encounters import calc_export
-from . import b6, data, pool, pressure, teamscore
+from . import calc, data, pool, required
 
 RUNS = 200
 MAX_TURNS = 80
@@ -3040,7 +3040,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     trainer's Pokemon, a partner's teams (keys q0.0 and on), and the
     calculator's rows for every pair in every weather the fight can have;
     in a double battle also each ally's spread moves on its ally."""
-    blob = teamscore._blob()
+    blob = calc.blob()
     cap = cap or pool.caps()[split]
     side, can = side_at(split, cap, blob)
     # The strong third by stat total at the cap, as the gauntlet takes it.
@@ -3117,7 +3117,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         partner_keys.append(keys)
     # The weathers the fight can have: its own, its Pokemon's abilities', and
     # every weather move on either side.
-    weathers = {pressure.CALC_WEATHER.get(weather, weather) if weather else None}
+    weathers = {calc.CALC_WEATHER.get(weather, weather) if weather else None}
     for k, mv in moves.items():
         ab = pokemon[k].get("ability")
         if ab in ABILITY_WEATHER:
@@ -3188,7 +3188,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             for w in weathers:
                 for d in bkeys:
                     pairs.append([d, twin, party_hits(d), w])
-    out = pressure.run_node(teamscore._blob_path(), {"pokemon": pokemon, "pairs": pairs})
+    out = calc.run_node(calc.blob_path(), {"pokemon": pokemon, "pairs": pairs})
     rows, speed = {}, {}
     for r in out["results"]:
         rows[(r["weather"], r["a"], r["d"])] = r
@@ -3205,7 +3205,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     return {"pokemon": pokemon, "moves": moves, "info": info, "rows": rows, "speed": speed,
             "player": list(variants), "variants": variants, "group": group,
             "bosses": boss_keys, "partners": partner_keys,
-            "base_weather": pressure.CALC_WEATHER.get(weather, weather) if weather else None,
+            "base_weather": calc.CALC_WEATHER.get(weather, weather) if weather else None,
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
             "ai_twin": ai_twin}
 
@@ -3327,9 +3327,8 @@ BOXES = 8
 def _capture_areas():
     """[(split, [species by slot])] for every wild table the game rolls,
     and [(split, species, how)] for the scripted catches (one starter)."""
-    from . import learnwild
     areas = collections.defaultdict(list)
-    for e in learnwild.oxide_encounters():
+    for e in pool.wild_encounters():
         areas[(e["area"], e["split"])].append(e["species"])
     scripted = []
     for sp, rows in pool.catches().items():
@@ -3442,7 +3441,7 @@ def story(key, runs=RUNS):
     trainers = data.fight_trainers("oxide", fight)
     tr_ids = [t["tr_id"] for t in trainers]
     parties = [t["party"] for t in trainers]
-    weather = pressure.fight_weather(tr_ids)
+    weather = calc.fight_weather(tr_ids)
     cap = fight_cap(fight["split"], key)
     if fight.get("tag"):
         partners = [ox[p]["party"] for p in fight.get("partner_ids", []) if p in ox]
@@ -3459,12 +3458,13 @@ def story(key, runs=RUNS):
 
 
 def trainer(tr_id, runs=RUNS, split=None):
-    """An ordinary trainer's reading, in the split B6 places it in; a
-    doubles trainer plays as doubles unless PLAY_DOUBLES is off."""
+    """An ordinary trainer's reading, in the split the census places it in
+    (required.placements); a doubles trainer plays as doubles unless
+    PLAY_DOUBLES is off."""
     t = data.oxide_trainers()[tr_id]
-    split = split or b6.placements()[tr_id]["split"]
+    split = split or required.placements()[tr_id]["split"]
     doubles = t.get("battle_type") == "Doubles" and PLAY_DOUBLES and len(t["party"]) > 1
-    st = prepare(split, [t["party"]], pressure.fight_weather([tr_id]), trick_room_for([t["constant"]]),
+    st = prepare(split, [t["party"]], calc.fight_weather([tr_id]), trick_room_for([t["constant"]]),
                  cap=fight_cap(split), doubles=doubles)
     if doubles:
         st["battle"] = "doubles"
@@ -3481,7 +3481,7 @@ def split_reading(split, runs=RUNS, out=sys.stdout):
             r = story(f["key"], runs)
             rows.append((f["label"], r))
             print(f"  {f['label']:28} {r}", file=out, flush=True)
-    for tr, p in sorted(b6.placements().items()):
+    for tr, p in sorted(required.placements().items()):
         if p["split"] == split:
             r = trainer(tr, runs)
             rows.append((data.oxide_trainers()[tr]["name"], r))

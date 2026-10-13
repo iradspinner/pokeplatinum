@@ -71,8 +71,9 @@ cd ~/pokeplatinum && git fetch && git reset --hard origin/oxide
 ## Part 3b: Python packages
 
 The helper scripts under `tools/oxide/` run on the system `python3` and need
-four packages that Ubuntu does not ship (numpy for the balance track's
-`fightfit.py` only). They are installed for the user:
+four packages that Ubuntu does not ship (numpy for the fight scorer and the
+census's map reach, whose tests the gate runs). They are installed for the
+user:
 
 ```
 python3 -m pip install --user --break-system-packages ndspy pillow openpyxl numpy

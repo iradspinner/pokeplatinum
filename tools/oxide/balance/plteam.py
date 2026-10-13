@@ -91,7 +91,7 @@ def _other_learnsets():
 
 def species_name(sp):
     """A species constant as the calculator spells it."""
-    blob = fs.teamscore._blob()
+    blob = fs.calc.blob()
     n = sp[len("SPECIES_"):].replace("_", " ").title().replace(" ", "-")
     if n in blob["poks"] or n.replace("-", "") in blob["poks"]:
         return n if n in blob["poks"] else n.replace("-", "")

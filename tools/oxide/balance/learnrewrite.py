@@ -56,7 +56,7 @@ import sys
 
 from .. import jsonstyle
 from ..encounters import calc_trainers, learnsets as canon_ls, pokedex
-from . import b6, data, learncheck as lc, learnstudy as ls, pool, weather_moves
+from . import data, learncheck as lc, learnstudy as ls, pool, weather_moves
 
 BASE = "oxide"
 SPLITS = lc.SPLITS
@@ -1788,7 +1788,7 @@ def delay_demons(d, fam):
     for pre, level, target in lc.level_evolutions():
         if lc.family(pre) != fam or level < DEMON_LEVEL or not pool.pre_evolutions().get(pre):
             continue
-        if sum(lc.stats(target).values()) < DEMON_BST or target not in b6.obtainable():
+        if sum(lc.stats(target).values()) < DEMON_BST or target not in pool.obtainable():
             continue
         final_has = {m for lv, m in d.lists[target] if lv == 0 or level <= lv <= top()}
         on_pre = {m for lv, m in d.lists[pre]}

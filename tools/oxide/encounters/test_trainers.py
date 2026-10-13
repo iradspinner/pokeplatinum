@@ -72,43 +72,10 @@ def check_read(results, root):
                     and all(r["version"].startswith("if you chose") for r in versioned)
                     and by["leader_roark"].get("version") is None,
                     f"{len(versioned)} rows"))
-    # The list places trainers without building parties; teamscore.resolve,
-    # which the score uses, builds them. The two must agree, except that the
-    # score refuses a split with no cap (Post), which the list still names.
-    from ..balance import teamscore
-    sample = [r["stem"] for r in rows if r["split"]][::40]
-    differ = []
-    for stem in sample:
-        try:
-            got = teamscore.resolve(stem)["split"]
-        except ValueError:
-            got = None
-        listed = trainers.split_map(root)[stem]
-        if got != (listed if listed in trainers.caps() else None):
-            differ.append(f"{stem}: list {listed}, score {got}")
-    results.append(("the list's split is the one the score uses (teamscore.resolve), "
-                    "which refuses a split with no cap",
-                    sample and not differ, f"{len(sample)} sampled; " + "; ".join(differ[:3])))
-    # The list sorts by the balance track's stored scores (Ian, 2026-09-27):
-    # a story fight's from pressure.json, shared by its variants, and an
-    # ordinary trainer's from b6.json, each on Ian's scale by the plan's line.
-    from ..balance import b6, pressure
-    line = b6.scale_line()
-    on = lambda safe: round(b6.on_scale(safe, line), 1)
-    by = {r["stem"]: r["score"] for r in rows}
-    tristan = b6.load()["trainers"]["1"]
-    barry = [by.get(s) for s in ("rival_route_201_piplup", "rival_route_201_turtwig",
-                                 "rival_route_201_chimchar")]
-    results.append(("each row carries its stored score: Roark's story fight, Tristan's own, and "
-                    "one score for every variant of a story fight",
-                    by["leader_roark"] == {"scale": on(pressure.load()["fights"]["roark"]["safe"]),
-                                           "fight": "roark", "band": by["leader_roark"]["band"]}
-                    and by["youngster_tristan"]["scale"] == on(tristan["safe"])
-                    and by["youngster_tristan"]["fight"] is None
-                    and all(barry) and barry[0]["fight"] == "barry_1"
-                    and len({json.dumps(b, sort_keys=True) for b in barry}) == 1
-                    and all("score" in r for r in rows),
-                    f"Roark {by['leader_roark']}, Tristan {by['youngster_tristan']}"))
+    # Every row carries its difficulty slot (the scorer's reading, or None),
+    # and no row carries the retired first scoring system's old fight scale.
+    results.append(("each row carries the difficulty slot and no old fight-scale score",
+                    all("difficulty" in r and "score" not in r for r in rows), ""))
     d = trainers.detail(root, "leader_roark")
     built = calc_trainers.build_trainer(root, "leader_roark")
     # The moves the tab shows are the file's own, by the calculator's name for
@@ -401,7 +368,6 @@ def check_edit_routes(results, root):
             strong = json.loads(json.dumps(d))
             strong["party"][3]["level"] = 30
             harder = post(port, "/api/trainer/leader_roark/preview", strong)
-            scored = post(port, "/api/trainer/leader_roark/score", strong)
             post_trainer = get(port, "/api/trainer/cameraman_tevin_rematch_1")
             bad = json.loads(json.dumps(d))
             bad["party"][0]["level"] = 0
@@ -424,19 +390,12 @@ def check_edit_routes(results, root):
                     "writes a good team", refused[0] == 409 and refused[1]["findings"]
                     and saved[0] == 200 and written["party"][1].get("nature") == "NATURE_ADAMANT",
                     f"{refused[0]} {saved[0]}"))
-    est, hard = preview[1].get("estimate") or {}, harder[1].get("estimate") or {}
-    results.append(("every preview carries teamscore's estimate with its margin, and a stronger "
-                    "unsaved team reads harder (Cranidos at 30)",
-                    est.get("kind") == "estimate" and est.get("split") == "Roark"
-                    and est.get("cap") == 16 and (est.get("fit") or {}).get("story_max_error")
-                    and hard.get("safe", 1) < est.get("safe", 0),
-                    f"{est.get('scale')} then {hard.get('scale')}"))
-    results.append(("Score it runs the full scorer on the unsaved team and gives the reference "
-                    "hacks' same seat; a Post trainer is not scored",
-                    scored[0] == 200 and scored[1].get("kind") == "score"
-                    and "vanilla" in (scored[1].get("references") or {})
-                    and "error" in (post_trainer[1].get("estimate") or {}),
-                    f"{scored[1].get('scale')} in {scored[1].get('seconds')} s"))
+    results.append(("a stronger unsaved team previews too (its fourth member at 30), and a Post trainer "
+                    "with no cap opens; no preview or team carries the retired estimate",
+                    harder[0] == 200 and harder[1]["detail"]["members"][3]["file"]["level"] == 30
+                    and post_trainer[0] == 200 and post_trainer[1].get("cap") is None
+                    and "estimate" not in preview[1] and "estimate" not in post_trainer[1],
+                    f"{harder[0]} {post_trainer[0]}"))
 
 
 SOMNU, MOIRA = "galactic_grunt_lake_verity_3", "galactic_grunt_lake_verity_4"
@@ -475,21 +434,10 @@ def check_pairs(results, root):
                     and any("Lucas" in n for n in tag["partners"]),
                     f"{len(ashlee)} rows for Ashlee"))
     d = trainers.pair_detail(root, LAKE_PAIR)
-    results.append(("a pair's view holds both teams, each with its members and its own estimate",
+    results.append(("a pair's view holds both teams, each with its members",
                     [s["stem"] for s in d["sides"]] == [SOMNU, MOIRA]
-                    and all(s["members"] and "estimate" in s for s in d["sides"])
+                    and all(s["members"] for s in d["sides"])
                     and d["split"] == "Candice", str([len(s["members"]) for s in d["sides"]])))
-    # The pair as one fight (teamscore takes the pair's key and {stem: JSON}).
-    joint = d.get("estimate") or {}
-    stronger = trainers.load(root, MOIRA)
-    for m in stronger["party"]:
-        m["level"] = m["level"] + 8
-    harder = trainers.pair_preview(root, LAKE_PAIR, {MOIRA: stronger}).get("estimate") or {}
-    results.append(("the pair has its own estimate as one fight in Candice's split, and an unsaved "
-                    "stronger team on one side reads harder",
-                    joint.get("kind") == "estimate" and joint.get("split") == "Candice"
-                    and not joint.get("error") and harder.get("safe", 1) < joint.get("safe", 0),
-                    f"{joint.get('scale')} then {harder.get('scale')}"))
 
     with tempfile.TemporaryDirectory() as tmp:
         folder = os.path.join(tmp, "data")
@@ -571,7 +519,6 @@ def check_pairs(results, root):
             bad = json.loads(json.dumps(moira))
             bad["party"][0]["level"] = 0
             refused = post(port, f"/api/pair/{LAKE_PAIR}", {SOMNU: trainers.load(root, SOMNU), MOIRA: bad})
-            scored = post(port, f"/api/pair/{LAKE_PAIR}/score", {MOIRA: moira})
             saved = post(port, f"/api/pair/{LAKE_PAIR}", {MOIRA: moira})
         finally:
             httpd.shutdown()
@@ -591,10 +538,6 @@ def check_pairs(results, root):
                     and refused[0] == 409 and saved[0] == 200
                     and list(saved[1]["changed"]) == [MOIRA],
                     f"{one[0]} {missing[0]} {preview[0]} {refused[0]} {saved[0]}"))
-    results.append(("/api/pair/<key>/score runs the full scorer on the pair as one fight, with "
-                    "the unsaved edit in place", scored[0] == 200 and scored[1].get("kind") == "score"
-                    and scored[1].get("split") == "Candice",
-                    f"{scored[1].get('scale')} in {scored[1].get('seconds')} s"))
 
 
 def check_routes(results):

@@ -2,6 +2,8 @@
 
 > **Reference since 2026-10-13.** Open work for the fight scorer lives in the tracker's first page and its open work (`docs/oxide/tracker.md`; Ian made it the one home of open work). This doc keeps how the fight scorer works and its history; its own lists of next steps are no longer kept up to date.
 
+> **Retired on 2026-10-13** with the first scoring system (Ian approved retiring the dead experiments): the September line search `plines.py`, `plkaizo.py` and `kaizoteams.py`, `plrescore.py` with `test_pline.py` and `perfectline.json`, `ppairs.py`, `plgoal2.py`, `plpolicy.py` and `plspeed.py`. `plscore.py` keeps the fight preparation, `plstep3.py` the three-gym fixtures and `plstudy.py` the blind and section readings; their runners went with the line search. The calculator runner moved from `pressure.py` to `calc.py`. The balance plan's banner names the last commit that has them all.
+
 ## Summary for Ian (kept current with every commit; last 2026-10-07)
 
 **Outcome.** The scorer reads a fight by playing it turn by turn in the

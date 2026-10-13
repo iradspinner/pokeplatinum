@@ -6,7 +6,7 @@ ruling landed on 2026-09-29; this is the moves half (Ian, 2026-09-30).
     PYTHONPATH=. python3 -m tools.oxide.balance.weather_moves            # the census
     PYTHONPATH=. python3 -m tools.oxide.balance.weather_moves --apply    # remove them
 
-A species the player cannot own (b6.obtainable: the League's side, every
+A species the player cannot own (pool.obtainable: the League's side, every
 scripted source, the drawn legendary thirds, and what each evolves into)
 keeps its weather moves, since only trainers use it. A form counts as
 owned when its species is. Egg lists are left alone: a nuzlocke has no
@@ -26,7 +26,7 @@ import sys
 
 from .. import jsonstyle
 from ..encounters import pokedex
-from . import b6, data
+from . import data, pool
 
 WEATHER_MOVES = {"MOVE_RAIN_DANCE", "MOVE_SUNNY_DAY", "MOVE_SANDSTORM", "MOVE_HAIL",
                  "MOVE_SNOWSCAPE", "MOVE_CHILLY_RECEPTION"}
@@ -71,7 +71,7 @@ def carried(rec):
 def census():
     """[(folder, species, owned, level entries, TMs, tutor moves)] for every
     record that carries a weather move."""
-    owned = b6.obtainable()
+    owned = pool.obtainable()
     rows = []
     for path, rel, sp in records():
         with open(path, encoding="utf-8") as f:
@@ -148,7 +148,7 @@ def rewrite_list(text, path, new):
 def apply(dry_run=False):
     """Removes every weather move from the owned records' lists; returns
     [(folder, what changed)]."""
-    owned = b6.obtainable()
+    owned = pool.obtainable()
     changes = []
     for path, rel, sp in records():
         if sp not in owned:
