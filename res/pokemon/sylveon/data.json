@@ -45,16 +45,12 @@
     "learnset": {
         "by_level": [
             [
-                1,
+                0,
                 "MOVE_DISARMING_VOICE"
             ],
             [
                 1,
                 "MOVE_FAIRY_WIND"
-            ],
-            [
-                1,
-                "MOVE_DISARMING_VOICE"
             ],
             [
                 1,
