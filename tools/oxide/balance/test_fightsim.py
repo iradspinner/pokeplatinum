@@ -273,6 +273,30 @@ def check_salt_cure(results):
                     f"{got}, salted after leaving {left}, Purifying Salt blocks all {blocked}"))
 
 
+def check_harvest(results):
+    """Harvest (battle_lib.c 4225, added 2026-10-13): a used-up berry grows
+    back at the turn's end while the holder has nothing, always in sun and
+    half the time otherwise; never while it holds an item or for a used-up
+    item that is not a berry; Cloud Nine turns the sun's certainty back into
+    the coin."""
+    def grows(weather, item=None, recycle="Occa Berry", cloud=False, seed=1):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {}, seed=seed)
+        foe.ability, foe.item, foe.recycle = "Harvest", item, recycle
+        if cloud:
+            p.ability = "Cloud Nine"
+        b.weather, b.weather_turns = weather, 0
+        fs.end_of_turn(b)
+        return foe.item == recycle and foe.recycle is None
+    sun = all(grows("Sun", seed=s) for s in range(40))
+    clear = sum(grows(None, seed=s) for s in range(400))
+    held = not any(grows("Sun", item="Leftovers", seed=s) for s in range(10))
+    not_berry = not any(grows("Sun", recycle="Focus Sash", seed=s) for s in range(10))
+    cloud = sum(grows("Sun", cloud=True, seed=s) for s in range(400))
+    ok = sun and 160 <= clear <= 240 and held and not_berry and 160 <= cloud <= 240
+    results.append(("Harvest regrows a used berry: always in sun, half the time otherwise", ok,
+                    f"sun {sun}, clear {clear}/400, held {held}, not a berry {not_berry}, Cloud Nine {cloud}/400"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -505,7 +529,7 @@ def main():
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
                   check_weather_rock, check_map_weather_replaced, check_permanent_trick_room,
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
-                  check_salt_cure,
+                  check_salt_cure, check_harvest,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

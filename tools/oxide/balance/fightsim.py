@@ -2148,6 +2148,14 @@ def _end_of_turn_mon(b, side, m):
     # turn's end but the one it came in on.
     if m.ability == "Speed Boost" and m.turns_in > 0:
         change_stages(m, {"spe": 1})
+    # Harvest (the same function, battle_lib.c 4225): a berry it used up,
+    # Natural Gift's included, grows back while it holds nothing, every turn
+    # in sun that Cloud Nine and Air Lock leave alone, and on a coin flip
+    # otherwise. Added with Ian's approval (2026-10-13) for Gardenia's
+    # Exeggutor; the berry checks just below can then use it this same turn.
+    if m.ability == "Harvest" and not m.item and m.recycle and m.recycle.endswith("Berry"):
+        if (b.weather == "Sun" and not weather_ignored(b)) or coin(b, "harvest"):
+            m.item, m.recycle = m.recycle, None
     if m.item == "Sitrus Berry" and 0 < m.hp <= m.maxhp // 2:
         heal(m, m.maxhp // 4)
         consume(m)
