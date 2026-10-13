@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Land one finished branch on `oxide`: merge it, build the merged tree here,
-# run the full gate on that ROM, and push only if the gate passes. Platinum Oxide project. The Overseer runs it for each
-# track or cloud branch it merges, after reading the branch's report (the
-# `cloud-job` skill has the review that comes first).
+# run the gate on that ROM, and push only if the gate passes. Platinum Oxide
+# project. The Overseer runs it for each track or cloud branch it merges,
+# after reading the branch's report (the `cloud-job` skill has the review that
+# comes first).
 #
 # Steps, stopping at the first failure with nothing pushed to `oxide`:
 #   1. On `oxide` with no uncommitted changes to tracked files; fetch, and
@@ -10,10 +11,15 @@
 #   2. Merge the branch. A conflict stops here: resolve it, commit the merge,
 #      and rerun with --merged. The tracker and the design doc conflict most;
 #      keep both sides' current entries (the `cloud-job` skill says how).
-#   3. integrate.sh --verify-only: `make rom`, then the base-ROM checks, the
-#      encounter and balance suites, the word limits. Any failure stops here.
-#      The ROM is copied to ~/oxide-playtest/pokeplatinum-oxide-<commit>.nds,
-#      the name Ian's saves follow.
+#   3. integrate.sh --verify-only --since origin/oxide: `make rom`, then the
+#      checks this landing can reach (Ian, 2026-10-13). origin/oxide is the tip
+#      before the landing, since step 1 fast-forwarded onto it and --merged
+#      leaves it there, so the scope is everything the push would add. A change
+#      to the game's data or engine still runs every check; --full runs them
+#      all whatever changed, for step 15's reading and the alpha ROM. Any
+#      failure stops here. The ROM is copied to
+#      ~/oxide-playtest/pokeplatinum-oxide-<commit>.nds, the name Ian's saves
+#      follow.
 #   4. Push `oxide` and run sync-docs.sh. GitHub's free build of the public
 #      repo then prints the ROM's SHA-1, which should match the copy.
 # From 2026-09-23 to 2026-09-29 the build ran on GitHub, because the old CPU
@@ -24,16 +30,18 @@
 #   tools/oxide/merge-branch.sh <branch>             # origin/<branch>, or any commit
 #   tools/oxide/merge-branch.sh --merged             # the merge is already committed
 #   tools/oxide/merge-branch.sh --no-push <branch>   # stop after the gate
+#   tools/oxide/merge-branch.sh --full <branch>      # every check, whatever changed
 set -uo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$REPO"
 
-MERGED=0; PUSH=1; BRANCH=""
+MERGED=0; PUSH=1; BRANCH=""; SCOPE=(--since origin/oxide)
 while [ $# -gt 0 ]; do
     case "$1" in
         --merged) MERGED=1 ;;
         --no-push) PUSH=0 ;;
+        --full) SCOPE=(--full) ;;
         -h|--help) sed -n '/^set -uo/q;2,$p' "$0"; exit 0 ;;
         -*) echo "merge-branch: unknown option $1" >&2; exit 2 ;;
         *) BRANCH="$1" ;;
@@ -78,8 +86,8 @@ fi
 HEAD_SHORT="$(git rev-parse --short=9 HEAD)"
 LOG="$(mktemp "${TMPDIR:-/tmp}/merge-branch-$HEAD_SHORT.XXXX.log")"
 say "building $HEAD_SHORT here and running the gate (log: $LOG)"
-bash tools/oxide/integrate.sh --verify-only >"$LOG" 2>&1; GATE_RC=$?
-grep -E '^(FAIL|WARN)|every count|^passed:|^failed:' "$LOG"
+bash tools/oxide/integrate.sh --verify-only "${SCOPE[@]}" >"$LOG" 2>&1; GATE_RC=$?
+grep -E '^(FAIL|WARN)|^scope:|every count|^passed:|^failed:|^not needed:' "$LOG"
 [ $GATE_RC -eq 0 ] || die "the gate failed (log above); oxide is merged locally but not pushed"
 ROM="$HOME/oxide-playtest/pokeplatinum-oxide-$HEAD_SHORT.nds"
 mkdir -p "$(dirname "$ROM")" && cp build/pokeplatinum.us.nds "$ROM" \

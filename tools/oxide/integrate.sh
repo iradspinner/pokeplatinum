@@ -23,6 +23,17 @@
 #      the summary is complete, and exits non-zero if any failed.
 #   5. tools/oxide/sync-docs.sh.
 #
+# With --since REF, step 4 runs only the checks the changes since REF can
+# reach (Ian, 2026-10-13: most of the gate's time went to tool suites that
+# most landings never touch). tools/oxide/gate_scope.py works out which, from
+# the code: a check runs when the landing changes its module, a tool module
+# its imports reach, or a file one of those modules names. A change to the
+# game's data or engine, to the build or to the gate itself runs everything.
+# The build, the docs mirror, the tracker's size, the scheduled items and the
+# doc viewer's test run on every landing. merge-branch.sh passes --since
+# origin/oxide; without --since, or with --full, every check runs, which is
+# the gate for step 15's reading, the alpha ROM and a cloud session.
+#
 # Usage:
 #   tools/oxide/integrate.sh              # the lot
 #   tools/oxide/integrate.sh --dry-run    # preconditions and what would merge, nothing changes
@@ -30,6 +41,8 @@
 #   tools/oxide/integrate.sh --no-push    # do not push oxide at the end
 #   tools/oxide/integrate.sh --verify-only  # steps 4 and 5 on the tree as it is:
 #                                           # no fetch, no merge, no push (the QA pass)
+#   tools/oxide/integrate.sh --since REF  # step 4 runs only what the changes since REF reach
+#   tools/oxide/integrate.sh --full       # every check, whatever --since says
 #   tools/oxide/integrate.sh --rom PATH   # check PATH, a ROM built elsewhere, instead of
 #                                         # building one; only the build's small helper
 #                                         # files are made, on two jobs
@@ -40,13 +53,16 @@ cd "$REPO"
 
 PY=python3
 
-DRY_RUN=0; BUILD=1; PUSH=1; VERIFY_ONLY=0; ROM_GIVEN=""
+DRY_RUN=0; BUILD=1; PUSH=1; VERIFY_ONLY=0; ROM_GIVEN=""; SINCE=""; FULL=0
 while [ $# -gt 0 ]; do
     case "$1" in
         --dry-run) DRY_RUN=1 ;;
         --no-build) BUILD=0 ;;
         --no-push) PUSH=0 ;;
         --verify-only) VERIFY_ONLY=1; PUSH=0 ;;
+        --since) SINCE="${2:-}"; shift ;;
+        --since=*) SINCE="${1#--since=}" ;;
+        --full) FULL=1 ;;
         --rom) ROM_GIVEN="${2:-}"; shift ;;
         --rom=*) ROM_GIVEN="${1#--rom=}" ;;
         -h|--help) sed -n '/^set -uo/q;2,$p' "$0"; exit 0 ;;
@@ -57,6 +73,9 @@ done
 if [ -n "$ROM_GIVEN" ] && [ ! -f "$ROM_GIVEN" ]; then
     echo "integrate: --rom $ROM_GIVEN: no such file" >&2; exit 2
 fi
+if [ -n "$SINCE" ] && ! git rev-parse --verify -q "$SINCE^{commit}" >/dev/null; then
+    echo "integrate: --since $SINCE: no such commit" >&2; exit 2
+fi
 
 BASE="$HOME/roms/base.nds"
 VANILLA="$HOME/roms/vanilla.nds"
@@ -64,7 +83,7 @@ ROM="${ROM_GIVEN:-build/pokeplatinum.us.nds}"
 # Test suites that check a built ROM read its path from OXIDE_ROM, so with
 # --rom they check the ROM given, not a stale one left in build/.
 export OXIDE_ROM="$ROM"
-PASS=(); FAIL=(); MERGED=(); WARN=()
+PASS=(); FAIL=(); MERGED=(); WARN=(); NOT_NEEDED=()
 
 say()  { printf '\n== %s ==\n' "$*"; }
 ok()   { PASS+=("$1"); printf 'PASS  %s\n' "$1"; }
@@ -72,14 +91,44 @@ bad()  { FAIL+=("$1"); printf 'FAIL  %s\n' "$1"; }
 warn() { WARN+=("$1"); printf 'WARN  %s\n' "$1"; }
 die()  { printf 'integrate: %s\n' "$*" >&2; exit 1; }
 
+# The scope of a --since run: the tool modules the changes reach, one path a
+# line, from gate_scope.py. Empty means every check runs.
+SCOPE_FILE=""
+# True when a check whose tool module is $1 must run: always on a full run,
+# and on a scoped one when the module is on gate_scope.py's list.
+needed() { [ -z "$SCOPE_FILE" ] || grep -qxF -- "$1" "$SCOPE_FILE"; }
+# True when any of the modules named must run.
+needed_any() { local m; for m in "$@"; do needed "$m" && return 0; done; return 1; }
+# The tool module a check runs, read from its command: the module after -m,
+# or the first tools/oxide/*.py argument. None (the build, a shell script)
+# means the check runs on every landing.
+entry_of() {
+    local prev="" a
+    for a in "$@"; do
+        if [ "$prev" = "-m" ]; then printf '%s.py\n' "${a//.//}"; return; fi
+        case "$a" in tools/oxide/*.py) printf '%s\n' "$a"; return ;; esac
+        prev="$a"
+    done
+}
+
 # Run a check. $1 is the label, the rest is the command. Passes when the exit
 # code is 0 and, if CHECK_EXPECT is set, when the output contains that text.
-# The last lines of output are printed either way so a failure is readable.
+# The last lines of output are printed either way so a failure is readable,
+# and any output line starting "gate warning: " becomes one of the gate's
+# warnings. On a scoped run a check whose module the landing does not reach
+# is counted as not needed and not run.
 check() {
     local label="$1"; shift
-    local out rc
+    local entry out rc line
+    entry="$(entry_of "$@")"
+    if [ -n "$entry" ] && ! needed "$entry"; then
+        NOT_NEEDED+=("$label"); return 0
+    fi
     out="$("$@" 2>&1)"; rc=$?
     printf '%s\n' "$out" | tail -n 3 | sed 's/^/      /'
+    while IFS= read -r line; do
+        warn "${line#gate warning: }"
+    done < <(printf '%s\n' "$out" | grep '^gate warning: ')
     if [ $rc -eq 0 ] && { [ -z "${CHECK_EXPECT:-}" ] || printf '%s' "$out" | grep -q -- "$CHECK_EXPECT"; }; then
         ok "$label"
     else
@@ -306,33 +355,27 @@ fi
 
 # ---------------------------------------------------------------- 4. verify
 say "verify"
-# The ROM of record is GitHub's build (oxide-rom.yml): the local ROM passes
-# when its SHA-1 matches the one a successful run printed. That workflow skips
-# a push that changes only Markdown, so the run to compare against is the
-# newest ancestor of HEAD that has one and differs from HEAD in Markdown alone;
-# its ROM is HEAD's ROM. The exclusion stays exactly `*.md`, the workflow's own
-# filter, because the build reads the rest of tools/. Prints "<sha1> <commit>".
-# No such run (not pushed, or still building) is a warning, not a failure.
-# The hash is read from the job's own log: `gh run view --log` comes back empty
-# for some finished runs whose logs GitHub still holds (2026-09-22).
-ci_hash() {
-    local c sha id job
-    declare -A run=()
-    while read -r sha id; do
-        [ -n "$sha" ] && run[$sha]="$id"
-    done < <(gh run list --workflow oxide-rom.yml --status success --limit 100 \
-             --json headSha,databaseId --jq '.[] | "\(.headSha) \(.databaseId)"' 2>/dev/null)
-    for c in $(git rev-list --max-count=200 HEAD); do
-        [ -n "${run[$c]:-}" ] || continue
-        git diff --quiet "$c" HEAD -- . ':(exclude)*.md' || continue
-        job="$(gh run view "${run[$c]}" --json jobs --jq '.jobs[0].databaseId' 2>/dev/null)"
-        printf '%s %s\n' "$(gh api "repos/{owner}/{repo}/actions/jobs/$job/logs" 2>/dev/null |
-            grep -o 'ROM SHA-1: [0-9a-f]\{40\}' | head -n 1 | cut -d' ' -f3)" "$c"
-        return 0
-    done
-    return 1
-}
-# With --rom, the ROM comes from GitHub and only the helpers the checks read
+# The scope. A local ROM is trusted without GitHub's build to compare it with
+# (Ian, 2026-10-06), so that comparison, which only ever warned on a landing
+# (the push comes after the gate), is gone (Ian, 2026-10-13).
+if [ -n "$SINCE" ] && [ $FULL -eq 0 ]; then
+    scope_out="$("$PY" tools/oxide/gate_scope.py "$SINCE" 2>&1)" || die "gate_scope.py failed: $scope_out"
+    case "$scope_out" in
+        full\ *) echo "scope: everything, because ${scope_out#full }" ;;
+        scoped\ *)
+            SCOPE_FILE="$(mktemp "${TMPDIR:-/tmp}/gate-scope.XXXX")"
+            trap 'rm -f "$SCOPE_FILE"' EXIT
+            printf '%s\n' "$scope_out" | tail -n +2 > "$SCOPE_FILE"
+            echo "scope: $(printf '%s\n' "$scope_out" | head -n 1 | cut -d' ' -f2-), so only the checks they reach run"
+            ;;
+        *) die "gate_scope.py said something unexpected: $scope_out" ;;
+    esac
+elif [ $FULL -eq 1 ]; then
+    echo "scope: everything (--full)"
+else
+    echo "scope: everything (no --since given)"
+fi
+# With --rom, the ROM was built elsewhere and only the helpers the checks read
 # from build/ are made: the generated headers, msgenc and enumproc, and the
 # sound archive's index. Two jobs, so this CPU is never loaded on every core.
 make_helpers() {
@@ -345,19 +388,6 @@ if [ $BUILD -eq 1 ]; then
         check "build helpers on two jobs (the ROM is $ROM_GIVEN, not built here)" make_helpers
     else
         check "make rom" make rom
-    fi
-    if [ -f "$ROM" ]; then
-        local_sha="$(sha1sum "$ROM" | cut -d' ' -f1)"
-        if ci="$(ci_hash)" && remote_sha="${ci%% *}" && [ -n "$remote_sha" ]; then
-            ci_commit="${ci#* }"
-            of="GitHub's build"
-            [ "$ci_commit" = "$(git rev-parse HEAD)" ] ||
-                of="GitHub's build of $(git rev-parse --short "$ci_commit") (HEAD differs from it only in Markdown)"
-            if [ "$local_sha" = "$remote_sha" ]; then ok "ROM matches $of ($local_sha)"
-            else bad "ROM $local_sha differs from $of, $remote_sha: rebuild before trusting it"; fi
-        else
-            warn "no finished GitHub build for HEAD to compare the ROM against ($local_sha)"
-        fi
     fi
     if [ -f "$ROM" ]; then
         refcheck "verify_narcs (species/moves/evo/learnsets)" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE"
@@ -383,7 +413,9 @@ else
 fi
 
 # The importer must find nothing left to import: every count 0.
-if [ $REFS -eq 1 ]; then
+if ! needed tools/oxide/import_base_rom.py; then
+    NOT_NEEDED+=("import_base_rom --dry-run")
+elif [ $REFS -eq 1 ]; then
 out="$("$PY" tools/oxide/import_base_rom.py --base "$BASE" --vanilla "$VANILLA" --dry-run 2>&1 | tail -n 1)"
 printf '      %s\n' "$out"
 if printf '%s' "$out" | grep -q "would change" && ! printf '%s' "$out" | grep -Eq "': [1-9]"; then
@@ -425,19 +457,21 @@ b1_missing=""
 for p in "$HOME/roms/balance-refs" build/tools/msgenc/msgenc build/generated/vars_flags.h; do
     [ -e "$p" ] || b1_missing="$b1_missing $p"
 done
-# All the balance suites run, because a change elsewhere can break what they
+# Every balance suite runs whenever a landing reaches it, and a change to the
+# game's data reaches them all, because a change elsewhere can break what they
 # guard: on 2026-09-26 the encounter track's table fold changed Roark's and
 # Gardenia's player pools, and test_b3 failed on oxide while the gate, which
 # then ran test_b1 alone, passed. test_b3 runs the calculator in one Node
 # process for about 30 seconds; test_learnstudy checks the learnset study's
 # reading of Kaizo, test_learncheck the learnset rules on Oxide's lists, and
-# test_learnrewrite that the species files are the generator's output (under
-# a minute together).
+# test_learnrewrite the generator's own rules, reporting without failing
+# which species files differ from its output (under a minute together).
+BALANCE_SUITES=(test_b1 test_b1e test_b3 test_learnstudy test_learncheck test_learnrewrite)
 if [ -z "$b1_missing" ]; then
-    for t in test_b1 test_b1e test_b3 test_learnstudy test_learncheck test_learnrewrite; do
+    for t in "${BALANCE_SUITES[@]}"; do
         CHECK_EXPECT="passed" check "balance $t" "$PY" -m "tools.oxide.balance.$t"
     done
-else
+elif needed_any $(printf 'tools/oxide/balance/%s.py ' "${BALANCE_SUITES[@]}"); then
     warn "balance suites skipped, missing:$b1_missing"
 fi
 # The fight scorer's fast tests read only the tree and need no build, each in
@@ -460,18 +494,21 @@ if "$PY" -c "import numpy" 2>/dev/null; then
     done
     if [ -d "$HOME/oxide-trials/three-gym-run" ]; then
         CHECK_EXPECT="passed" check "scorer test_plfixes" "$PY" -m tools.oxide.balance.test_plfixes
-    else
+    elif needed tools/oxide/balance/test_plfixes.py; then
         warn "scorer test_plfixes skipped: ~/oxide-trials/three-gym-run is missing"
     fi
 else
     CHECK_EXPECT="passed" check "scorer test_difficulty" "$PY" -m tools.oxide.balance.test_difficulty
-    warn "scorer tests skipped, numpy missing: test_weather_moves test_fightsim test_fightai test_plfeat test_plplan test_plfixes"
+    numpy_suites=(test_weather_moves test_fightsim test_fightai test_plfeat test_plplan test_plfixes)
+    if needed_any $(printf 'tools/oxide/balance/%s.py ' "${numpy_suites[@]}"); then
+        warn "scorer tests skipped, numpy missing: ${numpy_suites[*]}"
+    fi
 fi
-# R12 (availability against Ian's pick-list) is ignored here: vanilla was never
-# built for that list and fails it on purpose. It runs on the working tree.
-check "encounter lint on vanilla (--ref main --fail-on error, R12 ignored)" "$PY" -m tools.oxide.encounters.cli --ref main lint --fail-on error --ignore R12
 # The working tree passes every rule, R12 included since 2026-09-27: the
-# legendaries Ian keeps out of reach are warnings with his reason.
+# legendaries Ian keeps out of reach are warnings with his reason. The same
+# lint on vanilla (`--ref main`) was cut on 2026-10-13 (Ian): the encounter
+# tool's own tests already check that vanilla passes its rules, and it never
+# caught anything.
 check "encounter lint on the working tree (--fail-on error, R12 included)" "$PY" -m tools.oxide.encounters.cli lint --fail-on error
 
 # The script index (docs/oxide/script-index.md and .json) is generated from the
@@ -480,12 +517,14 @@ check "encounter lint on the working tree (--fail-on error, R12 included)" "$PY"
 # not wait on it (Ian, 2026-09-27). Both need the branch's full history, which
 # a shallow clone lacks, so there the comparison is skipped with a warning.
 CHECK_EXPECT="passed" check "script index: known facts (test_scriptindex)" "$PY" tools/oxide/test_scriptindex.py
-si_out="$("$PY" tools/oxide/scriptindex.py --check 2>&1)"; si_rc=$?
-case $si_rc in
-    0) echo "$si_out" ;;
-    1) warn "script index out of date: rerun tools/oxide/scriptindex.py and commit docs/oxide/script-index.md and .json" ;;
-    *) warn "script index not compared: $si_out" ;;
-esac
+if needed tools/oxide/scriptindex.py; then
+    si_out="$("$PY" tools/oxide/scriptindex.py --check 2>&1)"; si_rc=$?
+    case $si_rc in
+        0) echo "$si_out" ;;
+        1) warn "script index out of date: rerun tools/oxide/scriptindex.py and commit docs/oxide/script-index.md and .json" ;;
+        *) warn "script index not compared: $si_out" ;;
+    esac
+fi
 
 # The tracker holds open work only and every main-track session reads it in
 # full, so it is kept short: finished blocks move to tracker-archive.md. This
@@ -523,5 +562,6 @@ echo "merged:   ${MERGED[*]:-(nothing new)}"
 echo "passed:   ${#PASS[@]}"
 echo "failed:   ${#FAIL[@]}${FAIL[*]:+  -> ${FAIL[*]}}"
 echo "warnings: ${#WARN[@]}${WARN[*]:+  -> ${WARN[*]}}"
+[ -z "$SCOPE_FILE" ] || echo "not needed: ${#NOT_NEEDED[@]} checks this landing does not touch"
 echo "head:     $(git log --oneline -1)"
 [ ${#FAIL[@]} -eq 0 ]
