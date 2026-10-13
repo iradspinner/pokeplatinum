@@ -418,49 +418,46 @@ for t in tools/oxide/encounters/test_*.py; do
     CHECK_EXPECT="passed" check "encounter tool $name" "$PY" -m "tools.oxide.encounters.$name"
 done
 # The balance track's reference suite reads data kept outside the repo (the
-# reference hacks and the donor ROM) and two outputs of the build, so on a
+# reference hacks' calculator files) and two outputs of the build, so on a
 # machine or a --no-build run without any of them it is skipped with a
-# warning rather than failed. About a minute, mostly decoding Hardlove's text.
+# warning rather than failed. Under a minute.
 b1_missing=""
-for p in "$HOME/roms/balance-refs" "$HOME/roms/hardlove.nds" build/tools/msgenc/msgenc build/generated/vars_flags.h; do
+for p in "$HOME/roms/balance-refs" build/tools/msgenc/msgenc build/generated/vars_flags.h; do
     [ -e "$p" ] || b1_missing="$b1_missing $p"
 done
-# All the balance suites run, because a change elsewhere can stale their
-# saved results: on 2026-09-26 the encounter track's table fold changed
-# Roark's and Gardenia's player pools, and test_b3 failed on oxide while the
-# gate, which then ran test_b1 alone, passed. test_b3 runs the calculator in
-# one Node process for about 20 seconds; test_b6 checks the B6 scores and the
-# team builder's estimate, and test_learnstudy the learnset study's reading of
-# Kaizo and its rules, about a minute. test_learncheck reads the learnset
-# rules on Oxide's lists before the rewrite, and test_learnrewrite proves the
-# species files are the rewrite's generator's output (a few minutes together).
+# All the balance suites run, because a change elsewhere can break what they
+# guard: on 2026-09-26 the encounter track's table fold changed Roark's and
+# Gardenia's player pools, and test_b3 failed on oxide while the gate, which
+# then ran test_b1 alone, passed. test_b3 runs the calculator in one Node
+# process for about 30 seconds; test_learnstudy checks the learnset study's
+# reading of Kaizo, test_learncheck the learnset rules on Oxide's lists, and
+# test_learnrewrite that the species files are the generator's output (under
+# a minute together).
 if [ -z "$b1_missing" ]; then
     for t in test_b1 test_b1e test_b3 test_learnstudy test_learncheck test_learnrewrite; do
         CHECK_EXPECT="passed" check "balance $t" "$PY" -m "tools.oxide.balance.$t"
     done
-    # The first scoring system's suites (B2's structural metrics, B4's level
-    # curve and split shape, B6's audit and the team builder's estimate): the
-    # perfect-line scorer replaced that system as the judge of a fight on
-    # 2026-09-30, so they are reported and never block a landing (Ian,
-    # 2026-10-13, after test_b6 held up Roark's accepted team on its old
-    # score). test_b3 reports its own first-system checks the same way.
-    for t in test_b2 test_b4 test_b6; do
-        b_out="$("$PY" -m "tools.oxide.balance.$t" 2>&1)"; b_rc=$?
-        if [ $b_rc -eq 0 ]; then
-            ok "balance $t (first scoring system, reported only)"
-        else
-            warn "balance $t (first scoring system, reported only): $(printf '%s\n' "$b_out" | grep -m1 'FAIL' | sed 's/^ *FAIL *//' | cut -c1-120)"
-        fi
-    done
-    # Stale scores never block a landing (Ian, 2026-10-07): test_b3 and
-    # test_b6 report them and pass, and the gate lists them as a warning.
-    stale="$("$PY" -m tools.oxide.balance.rescore --stale 2>/dev/null | tail -1)"
-    case "$stale" in
-        "0 stale") ok "stored scores current" ;;
-        *) warn "stored scores stale, ${stale:-unread}; rescore when a reading is due" ;;
-    esac
 else
     warn "balance suites skipped, missing:$b1_missing"
+fi
+# The fight scorer's fast tests read only the tree and need no build, each in
+# about 2 to 10 seconds: the difficulty store and Ian's formula, the weather
+# ruling (no player species learns a weather move), the simulator's
+# mechanics, the AI mirror against trainer_ai.c, and the planner's network
+# features. All but the first need numpy, which the setup guide installs and
+# a cloud VM may lack, so without it they are skipped with a warning. The
+# first scoring system and its suites (B2's metrics, B4's level curve, B6's
+# audit, the stored-score fingerprints) were retired on 2026-10-13.
+# test_plplan stays out until its fixture, which predates Roark's redesign,
+# is updated; test_plfixes and test_plgoal3 read ~/oxide-trials, which a
+# cloud gate lacks.
+if "$PY" -c "import numpy" 2>/dev/null; then
+    for t in test_difficulty test_weather_moves test_fightsim test_fightai test_plfeat; do
+        CHECK_EXPECT="passed" check "scorer $t" "$PY" -m "tools.oxide.balance.$t"
+    done
+else
+    CHECK_EXPECT="passed" check "scorer test_difficulty" "$PY" -m tools.oxide.balance.test_difficulty
+    warn "scorer tests skipped, numpy missing: test_weather_moves test_fightsim test_fightai test_plfeat"
 fi
 # R12 (availability against Ian's pick-list) is ignored here: vanilla was never
 # built for that list and fails it on purpose. It runs on the working tree.
