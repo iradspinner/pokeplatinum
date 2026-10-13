@@ -798,7 +798,6 @@ SPECIES_PHEROMOSA	1	Feint	removed	removed	leaves the game or every player list
 SPECIES_PHEROMOSA	55	Speed Swap	removed	removed	leaves the game or every player list
 SPECIES_PHEROMOSA	51	Bug Bite	moved from 15	R25	below 50, the lowest catch, which would not know it
 SPECIES_PHEROMOSA	52	Double Kick	moved from 25	R25	below 50, the lowest catch, which would not know it
-SPECIES_PHEROMOSA	53	Triple Kick	moved from 30	R25	below 50, the lowest catch, which would not know it
 SPECIES_PHIONE	69	Rain Dance	removed	weather	the player never controls weather
 SPECIES_PICHU	0	DoubleSlap	egg list	Ian's ruling	Fury Swipes in its place
 SPECIES_PIDGEOT	1	Whirlwind	moved from 17 to level 1	R18	Roar's use is on a wild catch, which this list's level never is
@@ -1306,7 +1305,7 @@ SPECIES_AMBIPOM	50	Force Palm	added	R2	Byron's split; score 33
 SPECIES_AMBIPOM	58	Low Sweep	added	R2	HQ's split; score 42
 SPECIES_AMBIPOM	66	Swagger	added	late move	Volkner's split; score 50
 SPECIES_ANORITH	1	Harden	removed	R1	filler past the one a first split may carry
-SPECIES_ANORITH	27	Fury Cutter	moved from 37	R11	brought into Fantina's split; score 232
+SPECIES_ANORITH	27	Fury Cutter	moved from 37	R11	brought into Fantina's split; score 218
 SPECIES_ANORITH	29	Block	added	R7	Fantina's split; score 150
 SPECIES_ANORITH	40	Bulldoze	added	R5, R16 due	Wake's split; score 125
 SPECIES_ANORITH	34	Aerial Ace	added	R5	Maylene's split; score 70
@@ -1684,22 +1683,22 @@ SPECIES_CRUSTLE	56	Shell Smash	added	R2	Candice's split; score 63
 SPECIES_CRUSTLE	64	Skitter Smack	added	R2	Galactic's split; score 54
 SPECIES_CRUSTLE	66	Poison Jab	added	R5	Galactic's split; score 50
 SPECIES_CRUSTLE	72	Bulldoze	added	R2	League's split; score 40
-SPECIES_LEAFEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_LEAFEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_FLAREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_FLAREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_GLACEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_GLACEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_JOLTEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_JOLTEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_VAPOREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_VAPOREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_SYLVEON	5	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_SYLVEON	48	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_UMBREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_UMBREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_GLACEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_GLACEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_VAPOREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_VAPOREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_LEAFEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_LEAFEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_ESPEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_ESPEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_JOLTEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_JOLTEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_FLAREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_FLAREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_UMBREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_UMBREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_ESPEON	20	Confusion	moved from 15	R25	was below 20, the lowest level it is had at
 SPECIES_FLAREON	20	Ember	moved from 15	R25	was below 20, the lowest level it is had at
 SPECIES_GLACEON	21	Icy Wind	moved from 15	R25	was below 21, the lowest level it is had at
@@ -2114,17 +2113,15 @@ SPECIES_KINGLER	36	Secret Power	added	R2	Maylene's split; score 39
 SPECIES_KINGLER	58	Ice Punch	added	R5	HQ's split; score 97
 SPECIES_KINGLER	66	Razor Shell	added	R2	Volkner's split; score 73
 SPECIES_KINGLER	68	Liquidation	added	R2	Volkner's split; score 70
-SPECIES_KRICKETOT	3	Fury Cutter	added	R11	Roark's split; score 242
-SPECIES_KRICKETOT	2	Struggle Bug	added	check 1, R16	Roark's split; score 225
-SPECIES_KRICKETOT	5	Karate Chop	added	R4, R5	Roark's split; score 180
-SPECIES_KRICKETOT	7	Screech	added	R7	Roark's split; score 155
-SPECIES_KRICKETUNE	36	Throat Chop	added	R5	Fantina's split; score 61
-SPECIES_KRICKETUNE	52	Lunge	added	R2	Byron's split; score 61
-SPECIES_KRICKETUNE	57	Skitter Smack	added	R2	HQ's split; score 54
-SPECIES_KRICKETUNE	59	Strength	added	R2	HQ's split; score 34
-SPECIES_KRICKETUNE	61	Bulldoze	added	R5	HQ's split; score 27
-SPECIES_KRICKETUNE	65	Secret Power	added	R2	Galactic's split; score 32
-SPECIES_KRICKETUNE	67	Sticky Web	added	R2	Galactic's split; score -5
+SPECIES_KRICKETOT	3	Fury Cutter	added	R11	Roark's split; score 228
+SPECIES_KRICKETOT	2	Sticky Web	added	R7, R16	Roark's split; score 175
+SPECIES_KRICKETOT	5	Pin Missile	added	check 1	Roark's split; score 70
+SPECIES_KRICKETOT	7	Bullet Seed	added	R4, R5	Roark's split; score 36
+SPECIES_KRICKETUNE	52	Brick Break	added	R5	Byron's split; score 78
+SPECIES_KRICKETUNE	57	Lunge	added	R2	HQ's split; score 61
+SPECIES_KRICKETUNE	59	Skitter Smack	added	R2	HQ's split; score 54
+SPECIES_KRICKETUNE	65	Strength	added	late move	Galactic's split; score 76
+SPECIES_KRICKETUNE	67	Secret Power	added	R2	Galactic's split; score 32
 SPECIES_LAPRAS	54	Drill Run	added	R4, R5, R16	Candice's split; score 220
 SPECIES_LAPRAS	57	Psychic	added	R5	HQ's split; score 53
 SPECIES_LAPRAS	59	Thunderbolt	added	R5	HQ's split; score 53
@@ -2638,8 +2635,9 @@ SPECIES_PURRLOIN	3	Growl	removed	R1	filler past the one a first split may carry
 SPECIES_LIEPARD	3	Growl	removed	R25	below 20, the lowest level it is had at
 SPECIES_QWILFISH	51	Throat Chop	added	R5, R16 due	Byron's split; score 129
 SPECIES_QWILFISH	59	Scale Shot	added	R5	Candice's split; score 54
-SPECIES_QWILFISH	64	Flip Turn	added	late move	Galactic's split; score 85
-SPECIES_QWILFISH	66	Toxic	added	R2	Galactic's split; score 23
+SPECIES_QWILFISH	64	Twineedle	added	late move	Galactic's split; score 92
+SPECIES_QWILFISH	66	Flip Turn	added	R2	Galactic's split; score 42
+SPECIES_QWILFISH	72	Toxic	added	R2	League's split; score 23
 SPECIES_GALLADE	20	Fury Cutter	moved from 17	R25	was below 20, the lowest level it is had at
 SPECIES_GARDEVOIR	34	Wish	moved from 17	R25	was below 30, the lowest level it is had at
 SPECIES_RALTS	19	Draining Kiss	added	R11, R16	Fantina's split; score 272
@@ -2739,7 +2737,7 @@ SPECIES_SCIZOR	72	Strength	added	R2	Barry's split; score 34
 SPECIES_KLEAVOR	57	Steel Wing	added	R5	Candice's split; score 81
 SPECIES_KLEAVOR	62	Lunge	added	late move	Galactic's split; score 109
 SPECIES_SCIZOR	27	Pin Missile	added	check 24	branch parity by Maylene's cap; adds 70 to its kit
-SPECIES_SCIZOR	28	Secret Power	added	check 24	branch parity by Maylene's cap; adds 25 to its kit
+SPECIES_SCIZOR	28	Secret Power	added	check 24	branch parity by Maylene's cap; adds 28 to its kit
 SPECIES_SCIZOR	34	Rock Blast	added	check 24	branch parity by Maylene's cap; adds 5 to its kit
 SPECIES_SEEDOT	7	Growth	removed	R1	filler past the one a first split may carry
 SPECIES_NUZLEAF	7	Growth	removed	R25	below 14, the lowest level it is had at
@@ -3450,3 +3448,27 @@ SPECIES_DARKRAI	0	Dark Void	egg list	Ian's ruling	Ian, 2026-10-06: Officer Somnu
 SPECIES_TURTWIG	0		set by hand	data	Tackle and Withdraw at 5, as a starter knows (Ian's QA, 2026-10-07); the rows above are not written
 SPECIES_SCORBUNNY	0		set by hand	data	Tackle and Growl at 5, Ember 7 and Flame Charge 9 after (Ian's QA, 2026-10-07); the rows above are not written
 SPECIES_PIPLUP	0		set by hand	data	Pound and Growl at 5, Scary Face after it (Ian's QA, 2026-10-07); the rows above are not written
+SPECIES_LILEEP	0		set by hand	data	a Grass rung before Giga Drain: Mega Drain 13, Giga Drain 27 (Ian, 2026-10-12, on Roark's Lileep); the rows above are not written
+SPECIES_NACLI	0		set by hand	data	canon's Harden 1 and Rock Polish 13; egg list Curse, Ancient Power, Power Gem, Recover beside Explosion (Ian, 2026-10-12); the rows above are not written
+SPECIES_NACLSTACK	0		set by hand	data	Salt Cure learned on evolving (level 0), Rock Polish 13 as Nacli (Ian, 2026-10-12); the rows above are not written
+SPECIES_GARGANACL	0		set by hand	data	Hammer Arm learned on evolving; duplicates, Rock Polish 13, Rock Tomb 38, Salt Cure 39 and Brick Break 42 out (Ian, 2026-10-12); the rows above are not written
+SPECIES_ANNIHILAPE	0		set by hand	data	Shadow Punch learned on evolving, from level 1 (Ian, 2026-10-12, his ruling of 2026-09-30 on the donor's evolution moves); the rows above are not written
+SPECIES_ARMAROUGE	0		set by hand	data	Psyshock learned on evolving, from level 1 (Ian, 2026-10-12); the rows above are not written
+SPECIES_CHARJABUG	0		set by hand	data	Charge learned on evolving, from level 1 (Ian, 2026-10-12); the rows above are not written
+SPECIES_COFAGRIGUS	0		set by hand	data	Shadow Claw learned on evolving, from level 1 (Ian, 2026-10-12); the rows above are not written
+SPECIES_GLIMMORA	0		set by hand	data	Mortal Spin learned on evolving, from level 1 (Ian, 2026-10-12); the rows above are not written
+SPECIES_GRAPPLOCT	0		set by hand	data	Octolock learned on evolving, from level 1 (Ian, 2026-10-12); the rows above are not written
+SPECIES_LEAVANNY	0		set by hand	data	Slash learned on evolving, from level 1 (Ian, 2026-10-12); the rows above are not written
+SPECIES_LURANTIS	0		set by hand	data	Petal Blizzard learned on evolving, from level 1 (Ian, 2026-10-12); the rows above are not written
+SPECIES_NAGANADEL	0		set by hand	data	Air Cutter learned on evolving, from level 1 (Ian, 2026-10-12); the rows above are not written
+SPECIES_POLTEAGEIST	0		set by hand	data	Teatime learned on evolving, from level 1 (Ian, 2026-10-12); the rows above are not written
+SPECIES_SINISTCHA	0		set by hand	data	Matcha Gotcha learned on evolving, from level 1 (Ian, 2026-10-12); the rows above are not written
+SPECIES_SYLVEON	0		set by hand	data	Disarming Voice learned on evolving, from level 1 (Ian, 2026-10-12); the rows above are not written
+SPECIES_TOUCANNON	0		set by hand	data	Beak Blast learned on evolving, from level 1 (Ian, 2026-10-12); the rows above are not written
+SPECIES_SEWADDLE	0		set by hand	data	Pounce back at 2 where the multi-hit swap put Triple Axel, read as a 20-power move (Ian, 2026-10-12); the rows above are not written
+SPECIES_SWADLOON	0		set by hand	data	Struggle Bug 22 and Endure 29 as Sewaddle has them, so evolving at 20 loses nothing (Ian, 2026-10-12); the rows above are not written
+SPECIES_BOUNSWEET	0		set by hand	data	Leafage at 4 where the swap put Triple Axel, the rung before Razor Leaf 12 (Ian, 2026-10-12); the rows above are not written
+SPECIES_KRICKETOT	0		set by hand	data	kept as the rewrite left it when Fury Cutter went to 10, 20, 30, so the move change reshuffles no list (Ian, 2026-10-12); the rows above are not written
+SPECIES_KRICKETUNE	0		set by hand	data	kept as the rewrite left it when Fury Cutter went to 10, 20, 30 (Ian, 2026-10-12); the rows above are not written
+SPECIES_PHEROMOSA	0		set by hand	data	kept as the rewrite left it when Triple Kick went to 20, 30, 40 (Ian, 2026-10-12); the rows above are not written
+SPECIES_QWILFISH	0		set by hand	data	kept as the rewrite left it when the rising moves changed (Ian, 2026-10-12); the rows above are not written
