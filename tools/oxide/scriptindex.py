@@ -2170,6 +2170,20 @@ def render():
     return r.markdown(), r.json(), result
 
 
+# The commit each entry cites, in the Markdown ("Added by Oxide (2f5fc736c).",
+# or "(not yet committed)." before the commit exists) and in the JSON
+# ("commit": "2f5fc736c"). An index regenerated in the commit that changes the
+# scripts cites "not yet committed", and only the next commit could cite that
+# commit, so --check compares with the citations blanked (Ian, 2026-10-13):
+# it warned after every script change, while a real difference in what the
+# index says still shows.
+CITED_COMMIT = re.compile(r'\((?:[0-9a-f]{7,40}|not yet committed)\)|"commit": (?:"[^"]*"|null)')
+
+
+def without_citations(text):
+    return CITED_COMMIT.sub("(cited commit)", text)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--check", action="store_true",
@@ -2188,7 +2202,7 @@ def main():
         for path, text in ((OUT_MD, md), (OUT_JSON, js)):
             try:
                 with open(os.path.join(ROOT, path), encoding="utf-8") as f:
-                    if f.read() != text:
+                    if without_citations(f.read()) != without_citations(text):
                         stale.append(path)
             except OSError:
                 stale.append(path)
