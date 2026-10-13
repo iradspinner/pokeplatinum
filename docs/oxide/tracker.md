@@ -11,8 +11,8 @@ The one home of open work (Ian, 2026-10-13). Every session adds its items here a
 | Step | What | Who | Status | Time |
 |---|---|---|---|---|
 | 14 | Ian's QA: the test kit's eight checks of the week's systems (`qa-plan.md`), then the run with the battle recorder and the OxiDex's Alpha tab | Ian | under way | a day or two of play |
-| 15 | The one milestone reading before alpha 1: the bosses on goal 3's three boxes, detached from any session | Overseer | stopped on 2026-10-07 after 1 of 117 boxes; restarts on the commit QA settles on, at Ian's word | about 25 to 30 hours of machine time |
-| 16 | QA's hotfixes, then the alpha 1 ROM; every boss landed after step 13 is read before the ROM is fixed (Roark's read and accepted) | Overseer | after 14 and 15 | 1 to 2 hours of machine time a boss |
+| 15 | The one milestone reading before alpha 1: the bosses on goal 3's three boxes, detached from any session, on a commit that passed the full gate (`merge-branch.sh --full`) | Overseer | stopped on 2026-10-07 after 1 of 117 boxes; restarts on the commit QA settles on, at Ian's word | about 25 to 30 hours of machine time |
+| 16 | QA's hotfixes, then the alpha 1 ROM, built from a commit that passed the full gate; every boss landed after step 13 is read before the ROM is fixed (Roark's read and accepted) | Overseer | after 14 and 15 | 1 to 2 hours of machine time a boss |
 
 Before alpha 1, Ian decides: whether the comb's 271 ordinary trainers (Maylene's split to the League) land first, and which bosses besides Roark get the full redesign before the alpha.
 

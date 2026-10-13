@@ -146,8 +146,8 @@ stays on.
 
 GitHub builds every push to `oxide` on its own machines
 (`.github/workflows/oxide-rom.yml`) and prints the ROM's SHA-1 in the run's
-summary, and `integrate.sh` compares a local ROM with it. This public repo
-never uploads the ROM.
+summary, for comparing by hand if a build ever looks wrong; the gate no
+longer compares it (Ian, 2026-10-13). This public repo never uploads the ROM.
 
 ## Cloud sessions
 
@@ -160,13 +160,11 @@ the compiler itself on first use.
 Its checkout carries only its own branch, and the encounter tools read vanilla
 data from `main`, so run `git fetch --depth=1 origin main:main` before their
 tests (`integrate.sh` does it itself). Its environment must also allow
-`wrapdb.mesonbuild.com`, where meson fetches two subproject patches. Two
-harmless oddities: a first build spends about a minute on retries, because
-the session may reach only this repo on GitHub and two subproject downloads
-fall back to mirrors; and the gate always warns that it found no GitHub build
-to compare the ROM with, because the VM has no `gh`. The Overseer compares
-the hash after the merge instead. The environment passed its smoke test on
-2026-09-25: a clean build matched GitHub's SHA-1, and the gate had no failures.
+`wrapdb.mesonbuild.com`, where meson fetches two subproject patches. One
+harmless oddity: a first build spends about a minute on retries, because the
+session may reach only this repo on GitHub and two subproject downloads fall
+back to mirrors. The environment passed its smoke test on 2026-09-25: a clean
+build matched GitHub's SHA-1, and the gate had no failures.
 
 It has no `~/.claude/`, so Ian's writing rules and the rulings kept in memory
 are in `.claude/rules/` instead, and a repo copy of his style hook runs there.
@@ -205,7 +203,11 @@ byte-exact vanilla Rev 1 build (built once from `main`) is pinned at
 `~/roms/vanilla.nds` for `import_base_rom.py --vanilla` and
 `verify_narcs.py --ref`; don't rebuild it, reuse the pinned copy.
 `tools/oxide/merge-branch.sh <branch>` lands one branch: merge, a local build
-of the merged tree, the gate on that ROM, and a push only on a pass.
-`tools/oxide/sync-docs.sh` mirrors `docs/oxide/` to the project folder and
-complains about any file it has no mapping for. The full restart check-list,
-with what a clean gate looks like, is `docs/oxide/restart-checks.md`.
+of the merged tree, the gate on that ROM, and a push only on a pass. The gate
+runs only the checks the landing can reach (`tools/oxide/gate_scope.py` works
+them out from the code; a change to the game's data, the engine or the gate
+runs them all), and `--full` runs every check, as before step 15's reading and
+the alpha ROM (Ian, 2026-10-13). `tools/oxide/sync-docs.sh` mirrors
+`docs/oxide/` to the project folder, and a file it has no mapping for goes to
+`notes/` with a warning. The full restart check-list, with what a clean gate
+looks like, is `docs/oxide/restart-checks.md`.

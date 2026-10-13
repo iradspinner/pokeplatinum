@@ -108,7 +108,8 @@ Run these in order; skipping one is how the next session starts confused.
    `docs/oxide/ingame-checklist.md`. A commit message that says "blocked on
    Ian" without an entry is a gap.
 4. **Mirror.** `bash tools/oxide/sync-docs.sh` if any file under `docs/oxide/`
-   changed. It complains about a new file it has no mapping for; add the mapping.
+   changed. A new file it has no mapping for goes to `notes/` with a gate
+   warning; add a mapping when it belongs elsewhere.
    It runs only on `oxide` and refuses on any other branch, so a track branch
    adds the mapping and leaves the run to `merge-branch.sh`.
 5. **Commit and push** your branch (only the Overseer pushes `oxide`). Stage
