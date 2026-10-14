@@ -19,7 +19,7 @@
             "moves": [
                 "MOVE_HYPNOSIS",
                 "MOVE_DREAM_EATER",
-                "MOVE_PSYBEAM",
+                "MOVE_DRAIN_PUNCH",
                 "MOVE_DISABLE"
             ],
             "iv_scale": 255,
@@ -37,7 +37,7 @@
                 "MOVE_HYPNOSIS",
                 "MOVE_HEX",
                 "MOVE_NIGHTMARE",
-                "MOVE_LICK"
+                "MOVE_SLUDGE"
             ],
             "iv_scale": 255,
             "nature": "NATURE_TIMID",
@@ -51,10 +51,10 @@
             "level": 17,
             "item": "ITEM_LEFTOVERS",
             "moves": [
+                "MOVE_CURSE",
                 "MOVE_REST",
                 "MOVE_SLEEP_TALK",
-                "MOVE_BODY_SLAM",
-                "MOVE_YAWN"
+                "MOVE_BODY_SLAM"
             ],
             "iv_scale": 255,
             "nature": "NATURE_CAREFUL",
