@@ -2000,6 +2000,24 @@ def hard_press_checks():
              f"Magnezone's top roll at full HP {full}, at a quarter {quarter}")]
 
 
+def electro_ball_checks():
+    """Electro Ball on the calculator's real rows (approved 2026-10-14): a
+    Jolteon's into a Snorlax, Speeds 121 against 41 at the start, has 80
+    power; once the Jolteon is at +2 Speed and the Snorlax paralysed it has
+    150, so it hits 15/8 as hard in the readings' damage, where it kept the
+    opening 80."""
+    from .test_fightai import battle
+    b = battle([("Jolteon", 40, "Volt Absorb", ["Electro Ball"])], [("Snorlax", 40, "Thick Fat", ["Body Slam"])])
+    jol, lax = b.b.cur(), b.p.cur()
+    eb = fs.move("Electro Ball")
+    opening = pl.damage_of(b, jol, lax, eb, False, True)
+    lax.status, jol.stages["spe"] = "par", 2
+    later = pl.damage_of(b, jol, lax, eb, False, True)
+    ok = abs(later - opening * 150 / 80) <= 2
+    return [("Electro Ball's power follows the Speeds as they stand on the real rows", ok,
+             f"Jolteon's top roll at the opening Speeds {opening}, at +2 Speed on a paralysed Snorlax {later}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2478,6 +2496,7 @@ def main():
     results += technician_power_checks()
     results += stored_power_checks()
     results += hard_press_checks()
+    results += electro_ball_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

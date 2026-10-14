@@ -2308,6 +2308,14 @@ def state_mult(b, att, dfn, mv):
         # (TrainerAI_ComputedMovePower). Until 2026-10-14 it hit at 20 power
         # whatever the stages (Ian approved the fix).
         m *= power_ratio(att, 20, 20 + 20 * sum(s for s in att.stages.values() if s > 0))
+    if mv.const == "MOVE_ELECTRO_BALL":
+        # The engine reads the Speeds the turn order was worked out from, its
+        # stages, paralysis, Tailwind and items in them, as Gyro Ball does;
+        # the row has its power at the two Pokemon's starting Speeds. Until
+        # 2026-10-14 it kept the opening Speeds' power the whole fight (Ian
+        # approved the fix).
+        m *= power_ratio(att, electro_power(b.row_speed(att), b.row_speed(dfn)),
+                         electro_power(b.speed(att), b.speed(dfn)))
     if mv.const == "MOVE_HARD_PRESS":
         # BattleScript_ComputedMovePower: up to 100 by the share of its HP
         # the target has left, at least 1; the row is made at full HP. Until
@@ -2320,6 +2328,19 @@ def state_mult(b, att, dfn, mv):
         # Technician is judged; Magnitude, whose power is rolled, doubles.
         m *= power_ratio(att, mv.power, reach * mv.power) if mv.power > 1 else reach
     return m
+
+
+# Electro Ball's power by how many whole times over the target's Speed is
+# its user's (sElectroBallPower).
+ELECTRO_BALL_POWER = (40, 60, 80, 120, 150)
+
+
+def electro_power(user_speed, target_speed):
+    """Electro Ball's power (BattleScript_ComputedMovePower): the user's
+    Speed over the target's, in whole times, picks 40, 60, 80, 120 or 150,
+    a target with no Speed giving 40."""
+    ratio = user_speed // target_speed if target_speed else 0
+    return ELECTRO_BALL_POWER[min(ratio, len(ELECTRO_BALL_POWER) - 1)]
 
 
 def gyro_power(target_speed, user_speed):

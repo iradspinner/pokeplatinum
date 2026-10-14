@@ -1533,6 +1533,25 @@ def check_hard_press(results):
     results.append(("Hard Press weakens with its target's HP", got == want, f"{got}"))
 
 
+def check_electro_ball(results):
+    """Electro Ball (approved 2026-10-14; BattleScript_ComputedMovePower):
+    40, 60, 80, 120 or 150 power by how many whole times over the target's
+    Speed is the user's, the Speeds as they stand. The row of 60 stands for
+    the calculator's at the opening Speeds, 100 against 50, twice over: 80
+    power. At +2 Speed (200 against 50) it has 150; against a paralysed
+    target (100 against 12) 150 too; slower than its target, 40."""
+    def hit(own=0, target=0, par=False):
+        b, p, foe = battle(["Electro Ball"], ["Tackle"], {("p", "Electro Ball"): [80] * 16})
+        p.stages["spe"], foe.stages["spe"] = own, target
+        foe.status = "par" if par else None
+        return b.damage(p, foe, fs.move("Electro Ball"), roll=0)
+    got = {"opening Speeds": hit(), "at +2 Speed": hit(own=2), "on a paralysed target": hit(par=True),
+           "the target at +2 Speed": hit(target=2), "slower, at -2 Speed against +2": hit(own=-2, target=2)}
+    want = {"opening Speeds": 80, "at +2 Speed": 150, "on a paralysed target": 150,
+            "the target at +2 Speed": 60, "slower, at -2 Speed against +2": 40}
+    results.append(("Electro Ball's power follows the Speeds as they stand", got == want, f"{got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1775,7 +1794,7 @@ def main():
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
-                  check_hard_press,
+                  check_hard_press, check_electro_ball,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
