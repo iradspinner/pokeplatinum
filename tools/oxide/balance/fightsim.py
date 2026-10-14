@@ -201,6 +201,20 @@ MULTI_HIT_ODDS = ((2, 35), (3, 35), (4, 15), (5, 15))
 # (its Oxide profile, since 2026-10-07).
 RISING_HITS = "HIT_THREE_TIMES_RISING_10"
 RISING_COUNT = 3
+# Triple Axel (effect script 298) hits the same way at 20, 40 and 60: its
+# script adds 20 to a power that starts at 0 for every move, so its row
+# too is all three hits added up (the calculator's Oxide profile).
+AXEL_HITS = "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20"
+RISING = frozenset({RISING_HITS, AXEL_HITS})
+
+
+def rising_powers(mv):
+    """The powers of a rising move's three hits: Fury Cutter and Triple Kick
+    from the listed power up by 10 a hit, Triple Axel 20, 40 and 60."""
+    if mv.effect == AXEL_HITS:
+        return [20, 40, 60]
+    p = max(1, mv.power)
+    return [p + 10 * i for i in range(RISING_COUNT)]
 HEAL_HALF = {"RESTORE_HALF_HP", "HEAL_HALF_REMOVE_FLYING_TYPE"}
 # The share of its damage a draining move restores: half (Giga Drain, Dream
 # Eater, Horn Leech), three quarters (Draining Kiss, Oblivion Wing).
@@ -539,15 +553,19 @@ class Battle:
 
     # -- damage
 
-    def damage(self, att, dfn, mv, crit=None, roll=None, ai_view=False):
+    def damage(self, att, dfn, mv, crit=None, roll=None, ai_view=False, share=None):
         """One use's damage, or None when the calculator has no figure. With
-        ai_view: the top roll, no critical hit, as the AI reckons it."""
+        ai_view: the top roll, no critical hit, as the AI reckons it. With
+        share, (weight, whole), one hit of a move whose row adds up several
+        (hit_weights)."""
         rolls = self.rolls(att, dfn, mv)
         if rolls is None:
             return None
         base = rolls[-1] if ai_view else (rolls[roll] if roll is not None else self.rng.choice(rolls))
         if base <= 0:
             return 0
+        if share is not None:
+            base = base * share[0] / share[1]
         a_st, d_st = ("atk", "def") if mv.cat == "Physical" else ("spa", "spd")
         a, d = att.stages[a_st], dfn.stages[d_st]
         if dfn.ability == "Unaware" and att.ability != "Mold Breaker":
@@ -917,32 +935,115 @@ ROLLOUT = "DOUBLE_POWER_EACH_TURN_LOCK_INTO"   # Rollout and Ice Ball
 # and 296): Double Kick, Dual Wingbeat and the other HIT_TWICE moves,
 # Twineedle and Double Iron Bash.
 TWO_HITS = frozenset({"HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE_AND_FLINCH"})
+# Every effect whose hits the engine lands one at a time and the calculator's
+# row adds up (SetMultiHit in effect scripts 29, 44, 77, 296, 298 and 416):
+# the two to five hit moves, the two-hit moves and the three rising ones.
+# Triple Dive, Surging Strikes, Population Bomb and Beat Up are left out, as
+# neither side can have them today.
+HIT_BY_HIT = frozenset({"MULTI_HIT", "HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE_AND_FLINCH",
+                        "HIT_THREE_TIMES_RISING_10", "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20"})
+# The secondary effect each of the two-hit kin rolls once a hit (effect
+# scripts 77 and 296 set it for every hit): Twineedle's poison and Double
+# Iron Bash's flinch, at the move's chance.
+HIT_BY_HIT_EFFECT = {"POISON_MULTI_HIT": "psn", "HIT_TWICE_AND_FLINCH": "flinch"}
 
 
-def two_hit_holds(dfn, dmg, sturdy):
-    """A two-hit move's damage on a target at full HP, its hits taken one at
-    a time as the engine takes them (BattleControllerPlayer_UpdateHP runs
-    once a hit). The calculator's row adds the two hits up, each the same,
-    so the damage splits into halves. Sturdy holds a hit only while its
-    holder is at full HP, so it can hold the first hit and never the second.
-    A Focus Sash is armed by the first hit taken at full HP and stays armed
-    to the move's end (focusItemActivated, a flag cleared only when the move
-    is over), so it holds the second hit too and is used up if that one
-    would have knocked its holder out; when Sturdy took the first hit's
-    check the Sash is never armed. `sturdy` is whether Sturdy counts here
-    (a Mold Breaker attacker ignores it). Until 2026-10-13 the pair was one
-    hit, so Sturdy held against both (Ian approved the fix)."""
-    first, second = dmg - dmg // 2, dmg // 2
-    hp = dfn.hp
-    if sturdy:
-        if first >= hp:
-            reveal(dfn)
-            first = hp - 1
-        return first + second
-    if dfn.item == "Focus Sash" and first + second >= hp:
+def hit_weights(att, mv, hits):
+    """Each landed hit's share of the calculator's row, as whole-number
+    weights, and the row's whole weight: the row adds up row_hits equal hits
+    for a two to five hit move, two for the two-hit moves, and a rising
+    move's three hits at their powers."""
+    if mv.effect in RISING:
+        powers = rising_powers(mv)
+        return powers[:hits], sum(powers)
+    total = row_hits(att, mv) if mv.effect == "MULTI_HIT" else 2
+    return [1] * hits, total
+
+
+def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
+    """A move of several hits landed as the engine's multi-hit loop lands it
+    (BattleControllerPlayer_LoopMultiHit): the move's script runs again for
+    each hit, so each has its own damage and critical hit (hit_damage(i,
+    crit) works the i-th hit out as it comes, crits[i] its critical hit),
+    and each takes its own HP update and after-effects before the next. The
+    loop stops once a Pokemon has fainted, the target or the attacker (to
+    Rough Skin), or once the attacker is asleep (Effect Spore).
+
+    Each hit's HP update (BattleControllerPlayer_UpdateHP): a Substitute
+    takes the hit, and once it breaks the next hits land on the Pokemon
+    behind it; but after any hit on it this move, no later hit sets off an
+    on-hit ability or an added effect (SELF_TURN_FLAG_SUBSTITUTE_HIT lasts
+    the move). Sturdy holds a hit taken at full HP, so only the first. A
+    Focus Sash is armed by a hit taken at full HP, and a Focus Band's one in
+    ten is rolled at every hit; either, once armed, holds that hit and every
+    later one at 1 HP (focusItemActivated, a self turn flag cleared only when
+    the move is over), and the Sash is used up at the move's end if it held
+    one (subscript_move_followup_message). Endure holds every hit.
+
+    Then, hit by hit: the resist berry that halved the hit is used up, the
+    two-hit kin's added effect rolls, Rage rises, the target's on-hit ability
+    answers a contact hit (contact_ability, `chance` and `pick` the battle's
+    dice), King's Rock rolls, the target's berry is checked, and a Fire hit
+    thaws it. Until 2026-10-14 the move landed as one hit, with one critical
+    roll, one contact chance and one Sash or Band check (Ian approved the
+    fix). Returns the HP the hits took from dfn, its Substitute's aside."""
+    sturdy = dfn.ability == "Sturdy" and att.ability != "Mold Breaker"
+    armed = held = sub_hit = False
+    stripped = sheer_force_strips(att, mv)
+    added = HIT_BY_HIT_EFFECT.get(mv.effect)
+    total = 0
+    for i in range(hits):
+        if i and (not dfn.alive() or not att.alive() or att.status == "slp"):
+            break
+        dmg = hit_damage(i, crits[i])
+        if sub_blocks(att, dfn, mv):
+            dfn.sub = max(0, dfn.sub - dmg)
+            sub_hit = True
+            continue
+        enduring = getattr(dfn, "enduring", False)
+        on_sturdy = False
+        if not enduring:
+            if sturdy and dfn.hp == dfn.maxhp:
+                on_sturdy = True
+            else:
+                if dfn.item == "Focus Band" and not armed and band_holds(b, dfn):
+                    armed = True
+                if dfn.item == "Focus Sash" and dfn.hp == dfn.maxhp:
+                    armed = True
+        if dmg >= dfn.hp and (enduring or on_sturdy or armed):
+            dmg = dfn.hp - 1
+            if on_sturdy:
+                reveal(dfn)
+            elif not enduring:
+                held = True
+        dealt = min(dmg, dfn.hp)
+        dfn.hp -= dealt
+        total += dealt
+        dfn.hit_this_turn = (mv.cat, dealt)
+        if dealt <= 0:
+            continue
+        berry = resist_berry(b, dfn, mv)
+        if berry and dfn.item == berry:
+            consume(dfn)
+        if added and not sub_hit and dfn.alive() and not stripped and dfn.ability != "Shield Dust":
+            p = min(100, (mv.chance or 0) * (2 if att.ability == "Serene Grace" else 1)) / 100
+            if added == "psn" and chance("status", p, dfn):
+                give_status_by_move(b, att, dfn, mv, "psn")
+            elif added == "flinch" and first and chance("flinch", p, dfn):
+                dfn.flinch = True
+        if dfn.raging and dfn.alive():
+            change_stages(dfn, {"atk": 1})
+        if not sub_hit:
+            contact_ability(b, att, dfn, mv, dealt, chance, pick)
+            if first and att.item in ("King's Rock", "Razor Fang") and not dfn.flinch and dfn.alive() \
+                    and chance("kingsrock", 0.1, dfn):
+                dfn.flinch = True
+        berry_check(dfn)
+        if dfn.status == "frz" and mv.type == "Fire":
+            dfn.status = None
+    if held and dfn.item == "Focus Sash":
         consume(dfn)
-        return hp - 1
-    return first + second
+    return total
 
 
 def rollout_mult(att, mv):
@@ -1294,16 +1395,14 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     pick = lambda kind, n: b.rng.randrange(n)               # noqa: E731
     if targets is None:
         attack(b, att, mv, dfn, first)
-        after_hit(b, att, dfn, mv, b.last_dealt)
-        contact_ability(b, att, dfn, mv, b.last_dealt, chance, pick)
+        hit_aftermath(b, att, dfn, mv, chance, pick)
         destiny_bond(att, dfn)
         return
     # A double battle: a spread move hits each target at three quarters.
     b.spread = len(targets) > 1
     for t in targets:
         attack(b, att, mv, t, t not in b.moved)
-        after_hit(b, att, t, mv, b.last_dealt)
-        contact_ability(b, att, t, mv, b.last_dealt, chance, pick)
+        hit_aftermath(b, att, t, mv, chance, pick)
     b.spread = False
     for t in targets:
         destiny_bond(att, t)
@@ -1335,6 +1434,7 @@ def explode_first(b, att):
 
 def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
+    b.hits_landed = False                # a move of several hits that land_hits landed
     if not dfn.alive():
         return
     if mv.effect in SELF_KO and not explode_first(b, att):
@@ -1379,9 +1479,16 @@ def attack(b, att, mv, dfn, first):
     odds = multi_hit_odds(att, mv)
     if odds:
         hits = b.rng.choices([h for h, _w in odds], [w for _h, w in odds])[0]
-    elif mv.effect == RISING_HITS:
+    elif mv.effect in RISING:
         while hits < RISING_COUNT and (att.item == "Loaded Dice" or b.accuracy_hits(att, dfn, mv)):
             hits += 1
+    elif mv.effect in TWO_HITS:
+        hits = 2
+    if mv.effect in HIT_BY_HIT:
+        dealt = _attack_hits(b, att, mv, dfn, first, hits)
+        if dealt is None:
+            return
+        return _after_attack(b, att, mv, dfn, first, dealt)
     # Fixed-damage moves.
     dmg = fixed_damage(b, att, dfn, mv, b.rng.randint(5, 15) if mv.effect == "RANDOM_DAMAGE_1_TO_150_LEVEL" else 10)
     if mv.effect == "ONE_HIT_KO":
@@ -1428,13 +1535,10 @@ def attack(b, att, mv, dfn, first):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
     else:
-        # Focus Sash and Sturdy hold one hit from full HP: a move that hits
-        # twice or more lands its next hit on the 1 HP left. A two-hit move
-        # takes its hits one at a time (two_hit_holds).
+        # Focus Sash and Sturdy hold one hit from full HP; a move of several
+        # hits lands them one at a time (land_hits) and never comes here.
         full = dfn.hp == dfn.maxhp and hits < 2
-        if mv.effect in TWO_HITS and full:
-            dmg = two_hit_holds(dfn, dmg, dfn.ability == "Sturdy")
-        elif dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or dfn.ability == "Sturdy"):
+        if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or dfn.ability == "Sturdy"):
             if dfn.ability == "Sturdy":
                 reveal(dfn)
             dmg = dfn.hp - 1
@@ -1448,7 +1552,57 @@ def attack(b, att, mv, dfn, first):
         dfn.hit_this_turn = (mv.cat, dealt)
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
-    # The move's own effects.
+    _after_attack(b, att, mv, dfn, first, dealt)
+
+
+def crit_rate(b, att, dfn, mv):
+    """The chance a hit of mv lands critical: Oxide's rate at the attacker's
+    stage, 0 against Battle Armor or Shell Armor and in the first battle
+    (BtlCmd_CalcCrit)."""
+    if dfn.ability in ("Battle Armor", "Shell Armor") or b.st.get("first_battle"):
+        return 0.0
+    stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
+                                                               mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
+    if att.item in ("Scope Lens", "Razor Claw"):
+        stage += 1
+    return CRIT_RATE[min(stage, 4)]
+
+
+def _attack_hits(b, att, mv, dfn, first, hits):
+    """fightsim's own landing of a move of several hits (land_hits), on its
+    own dice: each hit rolls its critical hit and its damage roll. None when
+    the move has no row or deals nothing (an immunity or an ability that
+    takes it whole, handled as a single hit's would be); else the HP taken."""
+    rolls = b.rolls(att, dfn, mv)
+    if rolls is None:
+        return None
+    if rolls[-1] <= 0:
+        if dfn.ability in ZEROING and effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
+            reveal(dfn)
+            if dfn.ability == "Flash Fire" and mv.type == "Fire":
+                dfn.flash_fire = True
+            absorb(b, att, dfn, mv)
+        return None
+    rate = crit_rate(b, att, dfn, mv)
+    crits = [b.rng.random() < rate for _ in range(hits)]
+    weights, whole = hit_weights(att, mv, hits)
+
+    def hit_damage(i, crit):
+        d = b.damage(att, dfn, mv, crit=crit, share=(weights[i], whole)) or 0
+        return int(d * reckless_fix(att, mv)) if reckless_fix(att, mv) != 1.0 else d
+
+    b.hits_landed = True
+    dealt = land_hits(b, att, dfn, mv, first, hits, hit_damage, crits,
+                      lambda kind, p, victim: b.rng.random() < p, lambda kind, n: b.rng.randrange(n))
+    b.last_dealt = dealt
+    return dealt
+
+
+def _after_attack(b, att, mv, dfn, first, dealt):
+    """A damaging move's own effects once its hits have landed, dealt the
+    HP they took from dfn: recoil, draining, the Life Orb and the added
+    effects (a move of several hits rolls its own hit by hit in land_hits,
+    and has none here)."""
     e = mv.effect
     if e in RECOIL and att.ability != "Rock Head":
         hurt(b, att, max(1, int(dealt * RECOIL[e])))
@@ -1806,8 +1960,8 @@ def berry_first_hit(b, dfn, mv, dmg, hits):
         powers = [1, 1]
     elif mv.effect == "MULTI_HIT":
         powers = [1] * hits
-    elif mv.effect == RISING_HITS:
-        powers = [max(1, mv.power) + 10 * i for i in range(hits)]
+    elif mv.effect in RISING:
+        powers = rising_powers(mv)[:hits]
     else:
         return dmg
     if len(powers) < 2:
@@ -1917,7 +2071,8 @@ def gyro_power(target_speed, user_speed):
 def after_hit(b, att, dfn, mv, dealt):
     """After a damaging hit (dealt > 0): a resist berry that halved it is
     used up; Rage raises its user's Attack when hit; Shell Bell gives back
-    an eighth of the damage dealt."""
+    an eighth of the damage dealt. A move of several hits does the first two
+    hit by hit (land_hits), so after it only shell_bell runs."""
     if dealt <= 0:
         return
     berry = resist_berry(b, dfn, mv)
@@ -1925,8 +2080,26 @@ def after_hit(b, att, dfn, mv, dealt):
         consume(dfn)
     if dfn.raging and dfn.alive():
         change_stages(dfn, {"atk": 1})
-    if att.item == "Shell Bell" and att.alive():
+    shell_bell(att, dealt)
+
+
+def shell_bell(att, dealt):
+    """Shell Bell gives back an eighth of the damage the whole move dealt,
+    once it is over (shellBellDamageDealt adds up every hit)."""
+    if dealt > 0 and att.item == "Shell Bell" and att.alive():
         heal(att, max(1, dealt // 8))
+
+
+def hit_aftermath(b, att, dfn, mv, chance, pick):
+    """What follows a damaging move's hit on dfn: after_hit and the target's
+    on-hit ability for a move of one hit; for one of several, whose hits
+    land_hits took one at a time with their own aftermath, only the Shell
+    Bell on their total."""
+    if getattr(b, "hits_landed", False):
+        shell_bell(att, b.last_dealt)
+        return
+    after_hit(b, att, dfn, mv, b.last_dealt)
+    contact_ability(b, att, dfn, mv, b.last_dealt, chance, pick)
 
 
 def cure_berry(mon):
@@ -2168,7 +2341,7 @@ def use_damage(att, mv, dmg, hits):
 def scale_hits(att, mv, dmg, hits):
     """A row's damage for the hits this use rolled: a two to five hit move's
     row counts row_hits hits, a rising move's all three."""
-    if mv.effect == RISING_HITS:
+    if mv.effect in RISING:
         return int(dmg * rising_scale(mv, hits))
     rh = row_hits(att, mv)
     if mv.effect == "MULTI_HIT" and hits != rh:
@@ -2198,26 +2371,26 @@ def row_hits(att, mv):
 
 def rising_scale(mv, hits):
     """A rising move's damage over `hits` hits, as a share of its row, which
-    adds up all three: each hit 10 more power than the last. Until
-    2026-10-12 this read the row as the first hit alone, so once the
-    calculator began adding the three (2026-10-07) Fury Cutter dealt about
-    four times its damage (Ian approved the fix)."""
-    p = max(1, mv.power)
-    return sum(p + 10 * i for i in range(hits)) / sum(p + 10 * i for i in range(RISING_COUNT))
+    adds up all three (rising_powers). Until 2026-10-12 this read the row as
+    the first hit alone, so once the calculator began adding the three
+    (2026-10-07) Fury Cutter dealt about four times its damage (Ian approved
+    the fix)."""
+    powers = rising_powers(mv)
+    return sum(powers[:hits]) / sum(powers)
 
 
 def expected_hit_scale(mv):
     """A move's expected damage as a multiple of its calculator row, for the
     reckonings that read rows (exp_damage, plfeat._expected), before the
     first hit's accuracy: a rising move's later hits each need accuracy
-    again, and its row adds all three. A two to five hit move's row counts
-    three hits, close to its expected 3.1, so it is left as it is."""
-    if mv.effect != RISING_HITS:
+    again, and its row adds all three (Triple Axel's too since 2026-10-14).
+    A two to five hit move's row counts three hits, close to its expected
+    3.1, so it is left as it is."""
+    if mv.effect not in RISING:
         return 1.0
     acc = 1.0 if mv.acc == 0 else min(1.0, mv.acc / 100)
-    p = max(1, mv.power)
-    full = sum(p + 10 * i for i in range(RISING_COUNT))
-    return sum((p + 10 * i) * acc ** i for i in range(RISING_COUNT)) / full
+    powers = rising_powers(mv)
+    return sum(p * acc ** i for i, p in enumerate(powers)) / sum(powers)
 
 
 @functools.lru_cache(maxsize=None)

@@ -13,6 +13,7 @@ leaves them standing.
 import collections
 import functools
 import json
+import math
 import os
 import random
 
@@ -605,15 +606,19 @@ def rework_checks():
                 ok and enum == (0.35, 0.35, 0.15, 0.15),
                 f"hits {plain}; Skill Link {link}; Loaded Dice {dice}; enumerated {enum}"))
 
-    # A Focus Sash holds one hit, not a two to five hit move's total.
+    # A Focus Sash holds a single hit from full HP, and every hit of a two
+    # to five hit move after the first (focusItemActivated lasts the move;
+    # the engine's rule, approved 2026-10-14, where until then the move's
+    # total broke the Sash).
     b, p, foe = fresh(["Bullet Seed"], roll=150)
     foe.item = "Focus Sash"
     pl.attack(b, p, fs.move("Bullet Seed"), foe, True)
     b2, p2, foe2 = fresh(["Tackle"], roll=150)
     foe2.item = "Focus Sash"
     pl.attack(b2, p2, fs.move("Tackle"), foe2, True)
-    out.append(("a Focus Sash holds a single hit but not a multi-hit move", foe.hp == 0 and foe2.hp == 1,
-                f"Bullet Seed leaves {foe.hp}, Tackle {foe2.hp}"))
+    out.append(("a Focus Sash holds a single hit, and every hit of a multi-hit move from full HP",
+                (foe.hp, foe.item, foe2.hp, foe2.item) == (1, None, 1, None),
+                f"Bullet Seed leaves {foe.hp} ({foe.item}), Tackle {foe2.hp} ({foe2.item})"))
 
     # The rising moves, Fury Cutter 10, 20, 30 and Triple Kick 20, 30, 40
     # (Ian, 2026-10-12): the calculator's row adds up all three hits, and
@@ -1381,6 +1386,63 @@ def two_hit_checks():
              f"Double Kick's top row and Geodude's HP {rows}; over 40 tries each {dict(counts)}")]
 
 
+def hit_by_hit_checks():
+    """A move of several hits on the readings' path lands hit by hit
+    (perfectline.multi_hit, fightsim.land_hits; approved 2026-10-14). On
+    hand rows: Skill Link Bullet Seed at a critical stage of +2 rolls a
+    critical hit a hit, its totals spreading from 50 to 75 in steps of 5
+    (one roll gave 50 or 75); a Focus Band rolls at every hit, saving its
+    holder from five hits of 30 about 34 times in a hundred (one roll at the
+    lethal total, 10); and the planner's dice take the number of critical
+    hits as one event at the binomial odds. On the calculator's real rows,
+    a Skill Link Minccino's Tail Slap into a Rough Skin Gible costs it five
+    eighths of its 70 HP, 40, where one chance took 8."""
+    from . import plplan
+    from .test_fightai import battle
+    from .test_fightsim import battle as duel
+
+    def fresh(row, seed=1, item=None, stage=0, hp=400):
+        b, p, foe = duel(["Bullet Seed"], ["Tackle"], {("p", "Bullet Seed"): [row] * 16}, hp=hp, seed=seed)
+        b.dice = pl.RunDice(random.Random(seed), True)
+        b.rng = b.dice.rng
+        p.ability, p.crit_stage, foe.item = "Skill Link", stage, item
+        if not stage:
+            foe.ability = "Battle Armor"
+        return b, p, foe
+    totals = collections.Counter()
+    for s in range(400):
+        b, p, foe = fresh(50, seed=s, stage=2)
+        pl.attack(b, p, fs.move("Bullet Seed"), foe, True)
+        totals[400 - foe.hp] += 1
+    band = 0
+    for s in range(2000):
+        b, p, foe = fresh(150, seed=s, item="Focus Band", hp=100)
+        pl.attack(b, p, fs.move("Bullet Seed"), foe, True)
+        band += foe.hp == 1
+    b, p, foe = fresh(50, stage=1)
+    b.dice = plplan.EnumDice((), random.Random(0))
+    pl.attack(b, p, fs.move("Bullet Seed"), foe, True)
+    binom = tuple(round(math.comb(5, k) * (1 / 8) ** k * (7 / 8) ** (5 - k), 12) for k in range(6))
+    enumerated = [tuple(round(x, 12) for x in ev) for ev in b.dice.events]
+
+    b = battle([("Gible", 25, "Rough Skin", ["Tackle"])], [("Minccino", 25, "Skill Link", ["Tail Slap"])])
+    gible, minccino = b.b.cur(), b.p.cur()
+    lost = set()
+    for seed in range(20):
+        b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+        gible.hp, minccino.hp = gible.maxhp, minccino.maxhp
+        pl.use_move(b, minccino, fs.move("Tail Slap"), gible, True)
+        if gible.hp < gible.maxhp:
+            lost.add(minccino.maxhp - minccino.hp)
+    ok = (set(totals) <= {50, 55, 60, 65, 70, 75} and len(totals) >= 5 and 0.30 <= band / 2000 <= 0.39
+          and binom in enumerated and lost == {5 * (minccino.maxhp // 8)})
+    return [("the readings land a move of several hits hit by hit: a critical hit, the Focus Band and Rough Skin "
+             "per hit", ok,
+             f"Bullet Seed totals {dict(sorted(totals.items()))}; Focus Band held {band / 2000:.3f}; planner's "
+             f"critical-hit event {binom in enumerated}; Minccino ({minccino.maxhp} HP) lost {sorted(lost)} "
+             f"to Gible's Rough Skin")]
+
+
 def future_sight_checks():
     """Future Sight on the calculator's real rows and the readings' battle
     (approved 2026-10-13). The calculator rows the two moves with no type
@@ -2072,6 +2134,7 @@ def main():
     results += unburden_checks()
     results += intimidate_once_checks()
     results += two_hit_checks()
+    results += hit_by_hit_checks()
     results += future_sight_checks()
     results += disable_and_nightmare_checks()
     results += pivot_checks()

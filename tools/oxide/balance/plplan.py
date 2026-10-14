@@ -26,6 +26,7 @@ simulator, at the game's real odds, and comparing where it leads:
 import argparse
 import collections
 import json
+import math
 import multiprocessing as mp
 import os
 import random
@@ -271,6 +272,13 @@ class EnumDice:
     def pick_weighted(self, items, weights):
         tot = sum(weights)
         return items[self._ev(tuple(w / tot for w in weights))]
+
+    def crit_count(self, n, p):
+        """How many of a move's n hits land critical, each at p
+        (perfectline.crit_hits): one event at the binomial odds."""
+        if p >= 1:
+            return n
+        return self._ev(tuple(math.comb(n, k) * p ** k * (1 - p) ** (n - k) for k in range(n + 1)))
 
     def sleep(self, side):
         return 1 + self._ev((0.25,) * 4)

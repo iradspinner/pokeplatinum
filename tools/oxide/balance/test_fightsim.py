@@ -5,6 +5,7 @@
 Runs no Node: each check builds the calculator's rows itself, so what it
 tests is the simulator's own arithmetic and rules.
 """
+import collections
 import random
 import sys
 
@@ -601,6 +602,82 @@ def check_two_hit_holds(results):
                     f"(HP left, item, ability named) {got}"))
 
 
+def check_hits_one_by_one(results):
+    """A move of several hits lands hit by hit in fightsim's own battle, as
+    the engine's multi-hit loop runs it (approved 2026-10-14). Skill Link
+    Bullet Seed on rows of 50 is five hits of 10: at a critical stage of +2
+    each hit rolls its own critical hit at one in two, so the totals spread
+    from 50 to 75 in steps of 5 (one roll for the move gave only 50 and 75).
+    Five Fury Swipes into Rough Skin cost their user five eighths of its HP
+    (one chance took one eighth); an attacker at 30 HP faints on the second
+    hit and the loop stops there; Static, three in ten a hit, paralyses about
+    83 times in a hundred (one chance, 30)."""
+    def bullet(seed):
+        b, p, foe = battle(["Bullet Seed"], ["Tackle"], {("p", "Bullet Seed"): [50] * 16}, hp=400, seed=seed)
+        p.ability, p.crit_stage = "Skill Link", 2
+        fs.attack(b, p, fs.move("Bullet Seed"), foe, True)
+        return 400 - foe.hp
+    totals = collections.Counter(bullet(s) for s in range(400))
+
+    def swipes(ability, hp=160, seed=1):
+        b, p, foe = battle(["Fury Swipes"], ["Tackle"], {("p", "Fury Swipes"): [50] * 16}, hp=160, seed=seed)
+        p.ability, foe.ability, p.hp = "Skill Link", ability, hp
+        b.st["first_battle"] = True          # no critical hits to blur the numbers
+        fs.use_move(b, p, fs.move("Fury Swipes"), foe, True)
+        return p.hp, 160 - foe.hp, p.status
+    rough, fall = swipes("Rough Skin"), swipes("Rough Skin", hp=30)
+    static = sum(swipes("Static", seed=s)[2] == "par" for s in range(400)) / 400
+    ok = (set(totals) <= {50, 55, 60, 65, 70, 75} and len(totals) >= 5 and rough == (60, 50, None)
+          and fall == (0, 20, None) and 0.77 <= static <= 0.89)
+    results.append(("a move of several hits rolls a critical hit and the target's contact ability per hit", ok,
+                    f"Skill Link Bullet Seed totals {dict(sorted(totals.items()))}; into Rough Skin (HP left, "
+                    f"damage, status) {rough}, from 30 HP {fall}; Static paralysed {static:.2f}"))
+
+
+def check_hits_hold_and_heal(results):
+    """The holds and items of a move of several hits, hit by hit (approved
+    2026-10-14). A Focus Sash is armed by a hit taken at full HP and holds
+    that hit and every later one at 1 HP (focusItemActivated lasts the
+    move), then is used up: Skill Link Bullet Seed of 100 a hit leaves its
+    holder at 1 HP (the old total broke it). A Focus Band rolls its one in
+    ten at every hit and, once it holds, holds the rest: five hits of 30 into
+    100 HP are first lethal at the fourth, so it saves about 34 times in a
+    hundred (fightsim's own battle had no Band at all). A Sitrus Berry eaten
+    after the third hit of 22 keeps its holder in at 15 (the old total of
+    110 fainted it). A Substitute of 25 takes two hits of 20 and breaks, the
+    other three land on the Pokemon, and Rough Skin answers none of them,
+    since the move hit the Substitute (SELF_TURN_FLAG_SUBSTITUTE_HIT)."""
+    def hit(row, item=None, ability="Run Away", sub=0, seed=1, crits=False):
+        b, p, foe = battle(["Bullet Seed"], ["Tackle"], {("p", "Bullet Seed"): [row] * 16}, hp=100, seed=seed)
+        p.ability, foe.item, foe.ability, foe.sub = "Skill Link", item, ability, sub
+        b.st["first_battle"] = not crits
+        fs.use_move(b, p, fs.move("Bullet Seed"), foe, True)
+        return foe.hp, foe.item, foe.sub, p.hp
+    sash, sitrus, behind = hit(500, "Focus Sash"), hit(110, "Sitrus Berry"), hit(100, ability="Rough Skin", sub=25)
+    band = sum(hit(150, "Focus Band", seed=s)[0] == 1 for s in range(2000)) / 2000
+    ok = (sash == (1, None, 0, 100) and sitrus == (15, None, 0, 100) and behind == (40, None, 0, 100)
+          and 0.30 <= band <= 0.39)
+    results.append(("a move of several hits meets the Focus Sash, Focus Band, Sitrus Berry and Substitute hit by hit",
+                    ok, f"(HP, item, Substitute, attacker HP): Sash {sash}, Sitrus {sitrus}, behind a Substitute "
+                        f"{behind}; Focus Band held {band:.3f}"))
+
+
+def check_triple_axel(results):
+    """Triple Axel hits at 20, 40 and 60 (effect script 298), each hit
+    checking its accuracy and the move stopping at the first miss, as Fury
+    Cutter's rising hits do (approved 2026-10-14): on a row of 120 for all
+    three, a use deals 0, 20, 60 or 120 (one check for the whole row gave 0
+    or 120)."""
+    seen = collections.Counter()
+    for s in range(400):
+        b, p, foe = battle(["Triple Axel"], ["Tackle"], {("p", "Triple Axel"): [120] * 16}, hp=200, seed=s)
+        b.st["first_battle"] = True
+        fs.attack(b, p, fs.move("Triple Axel"), foe, True)
+        seen[200 - foe.hp] += 1
+    ok = set(seen) <= {0, 20, 60, 120} and seen[20] > 0 and seen[60] > 0 and seen[120] > seen[60]
+    results.append(("Triple Axel rises 20, 40, 60, each hit checking accuracy", ok, str(dict(sorted(seen.items())))))
+
+
 def check_future_sight(results):
     """Future Sight and Doom Desire (approved 2026-10-13; BtlCmd_TryFutureSight
     and the turn's end, SIDE_COND_CHECK_STATE_FUTURE_SIGHT): the damage is
@@ -1149,7 +1226,8 @@ def main():
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
                   check_salt_cure, check_harvest, check_berry_first_hit,
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
-                  check_intimidate_start, check_intimidate_proof, check_two_hit_holds, check_future_sight,
+                  check_intimidate_start, check_intimidate_proof, check_two_hit_holds,
+                  check_hits_one_by_one, check_hits_hold_and_heal, check_triple_axel, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean,

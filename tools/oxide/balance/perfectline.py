@@ -231,18 +231,21 @@ def player(mon):
     return mon.side == "p"
 
 
-def damage_of(b, att, dfn, mv, crit, top, roll=None):
+def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
     """fightsim's damage arithmetic with Oxide's critical hit: the top roll
     (top) or the bottom one, or roll index `roll`, stages (a crit ignores
     the ones that would weaken it), burn, Guts, Flash Fire's boost only once
     lit, the player's booster, screens (passed by a crit, Brick Break's kind
-    and an Infiltrator), 1.5x on a crit."""
+    and an Infiltrator), 1.5x on a crit. With share, (weight, whole), one
+    hit of a move whose row adds up several (fightsim.hit_weights)."""
     rolls = b.rolls(att, dfn, mv)
     if not rolls:
         return None
     base = rolls[min(roll, len(rolls) - 1)] if roll is not None else (rolls[-1] if top else rolls[0])
     if base <= 0:
         return 0
+    if share is not None:
+        base = base * share[0] / share[1]
     a_st, d_st = ("atk", "def") if mv.cat == "Physical" else ("spa", "spd")
     a, d = att.stages[a_st], dfn.stages[d_st]
     if dfn.ability == "Unaware" and att.ability != "Mold Breaker":
@@ -408,11 +411,11 @@ def _use_move(b, att, mv, dfn, first):
         return
     attack(b, att, mv, dfn, first)
     # A contact ability's chance hurts the player when the player's Pokemon
-    # takes it, and helps it when the trainer's does.
-    fs.after_hit(b, att, dfn, mv, b.last_dealt)
-    fs.contact_ability(b, att, dfn, mv, b.last_dealt,
-                       lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
-                       lambda kind, n: b.dice.choice(kind, n))
+    # takes it, and helps it when the trainer's does (fightsim.hit_aftermath:
+    # a move of several hits has had it hit by hit).
+    fs.hit_aftermath(b, att, dfn, mv,
+                     lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
+                     lambda kind, n: b.dice.choice(kind, n))
     fs.destiny_bond(att, dfn)
 
 
@@ -435,9 +438,10 @@ def confusion_damage(mon, roll):
 def rolled_hits(b, att, dfn, mv, trainer):
     """The hits this use makes: a two to five hit move's count
     (fs.multi_hit_odds), rolled by a run's dice and enumerated at its odds by
-    the planner's; Fury Cutter's hits until its first miss, each later hit
-    checking accuracy again unless a Loaded Dice skips the check. In the
-    strict search the trainer gets its most hits and the player its fewest."""
+    the planner's; a rising move's hits (Fury Cutter, Triple Kick, Triple
+    Axel) until its first miss, each later hit checking accuracy again unless
+    a Loaded Dice skips the check; two for the two-hit moves. In the strict
+    search the trainer gets its most hits and the player its fewest."""
     odds = fs.multi_hit_odds(att, mv)
     if odds:
         counts, weights = [h for h, _w in odds], [w for _h, w in odds]
@@ -447,16 +451,85 @@ def rolled_hits(b, att, dfn, mv, trainer):
         if pick is None:
             return max(counts) if trainer else min(counts)
         return pick(counts, weights)
-    if mv.effect == fs.RISING_HITS:
+    if mv.effect in fs.RISING:
         hits = 1
         while hits < fs.RISING_COUNT and (att.item == "Loaded Dice" or accuracy_hits(b, att, dfn, mv)):
             hits += 1
         return hits
-    return 1
+    return 2 if mv.effect in fs.TWO_HITS else 1
+
+
+def crit_hits(b, att, dfn, mv, hits, trainer):
+    """Each hit's critical hit for a move of several hits, as the engine's
+    CalcCrit runs once a hit (fightsim.crit_rate). Dice that enumerate a
+    turn (the planner's, crit_count) take the number of critical hits at its
+    binomial odds as one event, the first that many hits landing critical,
+    so a turn splits n + 1 ways rather than 2 to the n; any other dice roll
+    every hit, the stress test's doubled check included."""
+    rate = fs.crit_rate(b, att, dfn, mv)
+    if rate <= 0:
+        return [False] * hits
+    count = getattr(b.dice, "crit_count", None)
+    if count is not None:
+        k = count(hits, rate)
+        return [i < k for i in range(hits)]
+    return [b.dice.bad("crit", rate) if trainer else b.dice.good(rate, "crit") for _ in range(hits)]
+
+
+def multi_hit(b, att, mv, dfn, first, hits, trainer):
+    """A move of several hits landed hit by hit (fightsim.land_hits) on the
+    battle's dice: each hit's critical hit (crit_hits), and its damage roll,
+    each hit's own in a run, as the engine rolls one a hit, but one shared by
+    every hit when the dice enumerate a turn (the planner's), whose rolls are
+    grouped by the whole move's damage. None when the move has no row or
+    deals nothing (the single-hit zero branch's work done); else the HP
+    taken from dfn."""
+    rolls = b.rolls(att, dfn, mv)
+    if not rolls:
+        return None
+    if rolls[-1] <= 0:
+        if dfn.ability in fs.ZEROING and fs.effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
+            fs.reveal(dfn)
+            if dfn.ability == "Flash Fire" and mv.type == "Fire":
+                dfn.flash_fire = True
+            fs.absorb(b, att, dfn, mv)
+        return None
+    crits = crit_hits(b, att, dfn, mv, hits, trainer)
+    weights, whole = fs.hit_weights(att, mv, hits)
+    reckless = fs.reckless_fix(att, mv)
+
+    def one(i, crit, roll):
+        d = damage_of(b, att, dfn, mv, crit, top=trainer, roll=roll, share=(weights[i], whole)) or 0
+        return d if reckless == 1.0 else int(d * reckless)
+
+    shared = None
+    if b.dice.mode == "run":
+        grouped = getattr(b.dice, "roll_grouped", None)
+        if grouped:
+            # The whole move's damage at a roll, for grouping alone: a resist
+            # berry held now halves the first hit only.
+            berry = fs.resist_berry(b, dfn, mv)
+            held = bool(berry) and dfn.item == berry
+            shared = grouped(lambda r: sum(one(i, crits[i], r) * (2 if held and i else 1) for i in range(hits)),
+                             dfn.hp)
+
+    def hit_damage(i, crit):
+        roll = None
+        if b.dice.mode == "run":
+            roll = shared if shared is not None else b.dice.roll(trainer)
+        return one(i, crit, roll)
+
+    b.hits_landed = True
+    dealt = fs.land_hits(b, att, dfn, mv, first, hits, hit_damage, crits,
+                         lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
+                         lambda kind, n: b.dice.choice(kind, n))
+    b.last_dealt = dealt
+    return dealt
 
 
 def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
+    b.hits_landed = False                # a move of several hits that land_hits landed
     if not dfn.alive():
         return
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
@@ -503,6 +576,11 @@ def attack(b, att, mv, dfn, first):
     fs.rollout_after(att, mv, True)
     trainer = not player(att)
     hits = rolled_hits(b, att, dfn, mv, trainer)
+    if mv.effect in fs.HIT_BY_HIT:
+        dealt = multi_hit(b, att, mv, dfn, first, hits, trainer)
+        if dealt is not None:
+            _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=True)
+        return
     # Fixed damage (fightsim.fixed_damage). Psywave's roll goes the
     # trainer's way in the search, as a damage roll does, and rolls in a run.
     tenths = 10
@@ -594,13 +672,11 @@ def attack(b, att, mv, dfn, first):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
     else:
-        # Focus Sash and Sturdy hold one hit from full HP: a move that hits
-        # twice or more lands its next hit on the 1 HP left.
+        # Focus Sash and Sturdy hold one hit from full HP; a move of several
+        # hits lands them one at a time (multi_hit) and never comes here.
         full = dfn.hp == dfn.maxhp and hits < 2
         sturdy = dfn.ability == "Sturdy" and att.ability != "Mold Breaker"
-        if mv.effect in fs.TWO_HITS and full:
-            dmg = fs.two_hit_holds(dfn, dmg, sturdy)       # its two hits one at a time
-        elif dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or sturdy):
+        if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or sturdy):
             if sturdy:
                 fs.reveal(dfn)
             dmg = dfn.hp - 1
@@ -619,6 +695,14 @@ def attack(b, att, mv, dfn, first):
         dfn.hit_this_turn = (mv.cat, dealt)
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
+    _after_attack(b, att, mv, dfn, first, dealt, trainer)
+
+
+def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
+    """A damaging move's own effects once its hits have landed, dealt the
+    HP they took from dfn: recoil, draining, the Life Orb and the added
+    effects. A move of several hits (hit_by_hit) has rolled its King's
+    Rock and its own added effect hit by hit already (fightsim.land_hits)."""
     e = mv.effect
     if e == "STRUGGLE" and att.ability != "Magic Guard":
         # subscript_struggle: the user loses a quarter of its maximum HP.
@@ -700,7 +784,7 @@ def attack(b, att, mv, dfn, first):
     if e == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and first and not stripped:
         dfn.flinch = True
     # King's Rock and Razor Fang are item procs, in the budget (question 8).
-    if first and att.item in ("King's Rock", "Razor Fang") and not dfn.flinch \
+    if first and att.item in ("King's Rock", "Razor Fang") and not dfn.flinch and not hit_by_hit \
             and secondary("kingsrock", 0.1):
         dfn.flinch = True
     if dfn.ability == "Inner Focus":
