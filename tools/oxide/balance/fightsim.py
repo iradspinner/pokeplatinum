@@ -374,6 +374,10 @@ class Mon:
         self.disabled = None
         self.disabled_turns = 0
         self.nightmare = False           # Nightmare: a quarter of its HP each turn's end while it sleeps
+        # Encore: the move it is locked into, and the turn ends left on the
+        # count (moveEffectsData.encoredMove and encoredTurns).
+        self.encore = None
+        self.encore_turns = 0
         self.last = None
         self.turns_in = 0
         self.hit_this_turn = None        # (category, damage) of the last hit taken this turn
@@ -1136,6 +1140,7 @@ def use_move(b, att, mv, dfn, first, targets=None):
 def _use_move(b, att, mv, dfn, first, targets=None):
     if not att.alive():
         return
+    mv = encored_move(att, mv)
     # Its own record clears with its action, whatever happens
     # (BattleControllerPlayer_ClearFlags), and so does its Destiny Bond.
     att.last_hit_by = None
@@ -1486,6 +1491,37 @@ def disable(dfn, turns):
         return False
     dfn.disabled, dfn.disabled_turns = last.name, turns()
     return True
+
+
+# The moves Encore cannot lock a Pokemon into (sCannotEncoreMoves, matched by
+# effect): Transform, Mimic, Sketch, Mirror Move, Encore and Struggle.
+NO_ENCORE = frozenset({"TRANSFORM", "COPY_MOVE_FOR_BATTLE", "LEARN_MOVE_PERMANENT", "COPY_MOVE", "ENCORE",
+                       "STRUGGLE"})
+
+
+def encore(dfn, turns):
+    """Encore (effect script 90, BtlCmd_TryEncore): the target is locked into
+    its last move for the count turns() gives (3 to 7, Random % 5 + 3),
+    drawn only when it takes. It fails while the target is under one, before
+    it has used a move, and when that move is not one it knows, is one
+    Encore cannot lock or has no PP left; a Substitute does not stop it.
+    Whether it took."""
+    last = dfn.last
+    if dfn.encore is not None or last is None or last.effect in NO_ENCORE \
+            or not any(m.name == last.name for m in dfn.moves) or dfn.pp.get(last.name, 0) <= 0:
+        return False
+    dfn.encore, dfn.encore_turns = last.name, turns()
+    return True
+
+
+def encored_move(mon, mv):
+    """The move an encored Pokemon uses whatever it chose
+    (BattleControllerPlayer_FightCommand takes the Encore move first, so one
+    encored after it chose this turn uses the Encore move too); mv itself
+    otherwise, and for Struggle, which comes first."""
+    if mon.encore is None or mv.name == mon.encore or mv.effect == "STRUGGLE":
+        return mv
+    return next((m for m in mon.moves if m.name == mon.encore), mv)
 
 
 def nightmare(att, dfn, mv):
@@ -2304,6 +2340,8 @@ def status_move(b, att, mv, dfn, first):
             disable(dfn, lambda: b.rng.randint(3, 6))
     elif e == "STATUS_NIGHTMARE":
         nightmare(att, dfn, mv)
+    elif e == "ENCORE":
+        encore(dfn, lambda: b.rng.randint(3, 7))
     elif e == "INFATUATE":
         infatuate(att, dfn, att.ability == "Mold Breaker")
     elif e == "HEAL_IN_3_TURNS":
@@ -2529,8 +2567,9 @@ def _end_of_turn_mon(b, side, m):
     """One Pokemon's own conditions, in the engine's order
     (MON_COND_CHECK_STATE_*, battle_controller_player.c 1308 to 1335):
     Ingrain, Aqua Ring, its ability, its berry, Leftovers, Leech Seed, poison
-    and burn, Nightmare, Curse, binding, the counts (Disable, Taunt, Magnet
-    Rise, Heal Block), Yawn, then the Orbs. False once the battle is over."""
+    and burn, Nightmare, Curse, binding, the counts (Disable, Encore, Taunt,
+    Magnet Rise, Heal Block), Yawn, then the Orbs. False once the battle is
+    over."""
     if not m.alive():
         return True
     if m.ingrained and m.hp < m.maxhp and not heal_blocked(m):
@@ -2611,6 +2650,14 @@ def _end_of_turn_mon(b, side, m):
             m.disabled_turns -= 1
         else:
             m.disabled, m.disabled_turns = None, 0
+    # Encore's count (MON_COND_CHECK_STATE_ENCORE, after Disable's): it runs
+    # down in the same way, and ends at once if the move is no longer known
+    # or has no PP left.
+    if m.encore is not None:
+        if m.encore_turns and any(x.name == m.encore for x in m.moves) and m.pp.get(m.encore, 0) > 0:
+            m.encore_turns -= 1
+        else:
+            m.encore, m.encore_turns = None, 0
     if m.taunt:
         m.taunt -= 1
     if m.magnet_rise:
@@ -2854,6 +2901,8 @@ def _player_choice(b):
     side, me, foe = b.p, b.p.cur(), b.b.cur()
     if me.lock:
         return "move", me.lock[0]
+    if me.encore is not None:
+        return "move", encored_move(me, me.moves[0])      # Encore leaves it one move
     if me.charging is not None:
         return "move", me.charging
     t_me, t_foe, first = exchange(b, me, foe)

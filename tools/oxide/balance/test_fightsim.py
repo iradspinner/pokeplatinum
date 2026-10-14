@@ -743,6 +743,44 @@ def check_nightmare(results):
                     f"after a turn's end {one}; after it woke (HP, nightmare) {woke}; Magic Guard {guard}"))
 
 
+def check_encore(results):
+    """Encore (approved 2026-10-14; BtlCmd_TryEncore): the target is locked
+    into its last move for 3 to 7 turns after the Encore's own; a move it
+    chose before the Encore came is replaced by the Encore move as it comes
+    to be used (BattleControllerPlayer_FightCommand); the trainer's AI picks
+    only that move and scores a second Encore -8. Encore fails before the
+    target has moved and on a move Encore cannot lock (Encore itself)."""
+    rows = {("b", "Tackle"): [20] * 16, ("b", "Scratch"): [10] * 16}
+    b, p, foe = battle(["Encore", "Tackle"], ["Tackle", "Scratch"], rows)
+    early = fs.encore(foe, lambda: 4)
+    fs.use_move(b, foe, fs.move("Tackle"), p, True)
+    fs.use_move(b, p, fs.move("Encore"), foe, True)
+    hp = p.hp
+    fs.use_move(b, foe, fs.move("Scratch"), p, True)
+    swapped = hp - p.hp
+    picks = {fightai.choose(b, foe, p)[1].name for _ in range(30)}
+    second = fightai.basic(b, p, foe, fs.move("Encore"))
+    b2, p2, foe2 = battle(["Encore"], ["Encore"], {})
+    foe2.last = fs.move("Encore")
+    locked_encore = fs.encore(foe2, lambda: 4)
+    lengths = set()
+    for seed in range(200):
+        b3, p3, foe3 = battle(["Encore"], ["Tackle", "Scratch"], rows, seed=seed)
+        foe3.last = fs.move("Tackle")
+        fs.status_move(b3, p3, fs.move("Encore"), foe3, True)
+        n = 0
+        while foe3.encore is not None:
+            fs.end_of_turn(b3)
+            n += 1
+        lengths.add(n - 1)
+    ok = (not early and swapped == 20 and picks == {"Tackle"} and second == -8 and not locked_encore
+          and lengths == {3, 4, 5, 6, 7})
+    results.append(("Encore locks the target into its last move for 3 to 7 turns", ok,
+                    f"before it moved {early}; a Scratch chosen came out as Tackle for {swapped}; the AI picks "
+                    f"{sorted(picks)}; a second Encore {second}; onto Encore {locked_encore}; turns locked after "
+                    f"the Encore's own {sorted(lengths)}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -979,6 +1017,7 @@ def main():
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
+                  check_encore,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

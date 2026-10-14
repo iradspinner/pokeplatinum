@@ -341,6 +341,7 @@ def use_move(b, att, mv, dfn, first):
 def _use_move(b, att, mv, dfn, first):
     if not att.alive():
         return
+    mv = fs.encored_move(att, mv)        # the Encore move, whatever was chosen (fightsim.encored_move)
     att.last_hit_by = None           # cleared with its own action (fightsim.use_move)
     att.destiny_bond = False         # and its Destiny Bond with it
     b.status_src = att               # a status this move gives comes from att (Synchronize)
@@ -857,6 +858,8 @@ def status_move(b, att, mv, dfn, first):
             fs.disable(dfn, lambda: 3 + b.dice.choice("disable", 4))
     elif e == "STATUS_NIGHTMARE":
         fs.nightmare(att, dfn, mv)
+    elif e == "ENCORE":
+        fs.encore(dfn, lambda: 3 + b.dice.choice("encore", 5))     # fightsim.encore, 3 to 7 turns
     elif e == "INFATUATE":
         fs.infatuate(att, dfn, att.ability == "Mold Breaker")
     elif e == "HEAL_IN_3_TURNS":
@@ -930,7 +933,8 @@ def mon_key(m):
             m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
             m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
             m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False),
-            getattr(m, "disabled", None), getattr(m, "disabled_turns", 0), getattr(m, "nightmare", False))
+            getattr(m, "disabled", None), getattr(m, "disabled_turns", 0), getattr(m, "nightmare", False),
+            getattr(m, "encore", None), getattr(m, "encore_turns", 0))
 
 
 def side_key(s):
@@ -1114,6 +1118,8 @@ def player_actions(b):
                 continue
             if me.choice and mv.name != me.choice:
                 continue
+            if me.encore is not None and mv.name != me.encore:
+                continue                 # Encore leaves the one move to choose
             if mv.effect in fs.SELF_KO or mv.effect == "FAINT_AND_ATK_SP_ATK_DOWN_2":
                 continue
             f = fightai.figure(b, me, foe, mv)

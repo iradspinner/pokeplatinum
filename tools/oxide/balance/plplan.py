@@ -573,6 +573,8 @@ def options(b):
                 continue
             if me.choice and mv.name != me.choice:
                 continue
+            if me.encore is not None and mv.name != me.encore:
+                continue                 # Encore leaves the one move to choose
             if fightai.basic(b, me, foe, mv, fightai.figure(b, me, foe, mv)) <= -8:
                 continue
             out.append(("move", mv))
@@ -580,7 +582,7 @@ def options(b):
         b.rng = saved
     if not out:
         left = [m for m in me.moves if me.pp.get(m.name, 1) > 0 and not fs.tormented_out(me, m)
-                and not fs.disabled_out(me, m)]
+                and not fs.disabled_out(me, m) and (me.encore is None or m.name == me.encore)]
         out.append(("move", left[0] if left else fs.move("Struggle")))
     if not me.bound and fs.can_switch(me) and not fs.ability_trapped(b, me):
         out += [("switch", i) for i, m in enumerate(b.p.mons) if i != b.p.active and m.alive()]
