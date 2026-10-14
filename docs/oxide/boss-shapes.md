@@ -69,3 +69,5 @@ The balance pass of step 12 erased most of these themes, and Ian restated them o
 | Officer Hesperid | Lake Valor, Mt. Coronet 6F | Platinum Kaizo teambuilding with no holds barred (BrightPowder, Petaya Berry, Explosion with Pursuit and Baton Pass, Choice items), on rarely used Pokemon in weird combinations with atypical movesets: the weirder and harder, the better |
 | Officer Argo | Celestic Town, Mt. Coronet 6F | The loosest; free to change entirely |
 | Tyche and Hermes | Spear Pillar, one battle against both | Protect beside Explosion |
+
+The 24 fights in play order: Somnu 1 and Mars 1 (Valley Windworks); Moira 1 and Jupiter 1 (the Eterna building); Argo 1 and Cyrus 1 (Celestic Town); Hesperid 1 and Saturn 1 (Lake Valor), the Somnu and Moira double and Mars 2 (Lake Verity); Saturn 2 and Cyrus 2 (Galactic HQ); Moira 3 and Somnu 3 (Mt. Coronet 5F), Hesperid 2 and Argo 2 (6F), the Tyche and Hermes double and the Mars and Jupiter double (Spear Pillar), Cyrus 3 (Distortion World); Mars 4 and Jupiter 3 (Stark Mountain).

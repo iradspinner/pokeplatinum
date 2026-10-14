@@ -666,3 +666,12 @@ Ian made the tracker the one home of open work on 2026-10-13. These blocks left 
 - [x] The kit's older move sets 23 to 70: cut the list to moves a trainer or the player can carry before Ian samples them.
   All three done on 2026-10-13 (`ingame-checklist.md`): the move sets cut to the 34 a trainer or the player carries; Ace Trainer Shannon's Victreebel takes the weather check, Jackson's Wormadam stays, and Volkner's rematch takes the Rotom-Mow check; the HM line fixed.
 - [x] `tools/oxide/balance/b6.py` is a one-line shim while `~/oxide-trials/scorer-stage2/goal3_fights.py`, which plgoal3 loads, calls `b6.placements()` five times; renaming those calls to `required.placements()` lets the shim go. A scorer driver, so with Ian's say-so. Done on 2026-10-13 at Ian's word: the driver's two calls (and three comments) now name `required.placements`, and `b6.py` is deleted; goal 3's fight list reads the same 80 lines.
+
+## Moved out of the tracker on 2026-10-14
+
+Finished lines from Phase 4's element 5, 6 and 7 entries, verbatim.
+
+  - The catch-up, the eight changes of play and their three follow-ups (`cloud/element6-followups`, 2026-09-27) are done and in the archive; the README's change sections have every rule
+  - The Expert routines for moves added since Platinum are merged (170b5473a), and Ian's eleven judgment calls get none; the entry is in the archive.
+- [x] **7. Items, a curated subset**: done (2026-09-27 and 2026-09-28); the entry and Ian's answers on its follow-up are in the archive. For element 6: the AI's scoring knows none of the new held items (the branches' reports list which change a decision).
+  - The natives' 17 hidden abilities are written (2026-09-27, `cloud/element5-hidden-abilities`; the entry is in the archive, the report is the branch's last commit; test kit Abilities page 3).

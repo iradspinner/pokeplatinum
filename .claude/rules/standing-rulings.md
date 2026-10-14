@@ -38,6 +38,13 @@ read, so they are written here too. Each is a standing instruction.
   scorer (`fightsim.py`, `fightai.py`, `perfectline.py`, the `pl*.py` modules)
   still change only with Ian's approval of each fix. If Ian starts several
   track sessions in parallel again, ask him whether ownership comes back.
+  Ian approved, on 2026-10-14, every fix the verified gaps list
+  (`docs/oxide/simulator-gaps.md`) names, so that fights are not rescored
+  again and again: "fix everything except the Z and Max moves." Each fix
+  still matches Oxide's engine, gets a test that fails before it, and lands
+  through the Overseer; a new behaviour outside the list still needs his
+  approval. The Z-moves and Max moves are not fixed and no player or
+  trainer gets them; they were added by accident and are to be removed.
 - The cloud code review (`/code-review ultra`) is never built into a procedure;
   run it only when Ian asks for it.
 - Ian's user settings (`~/.claude/settings.json`) are his to edit. Hand him the
