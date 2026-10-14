@@ -2428,6 +2428,24 @@ def starf_berry_checks():
              f"raised {rose}; offered to the planner as five even outcomes {offered}")]
 
 
+def sticky_barb_checks():
+    """The Sticky Barb in the readings' battle (approved 2026-10-14): a
+    trainer's barb passes to the player's empty-handed Machop on its Karate
+    Chop, and at the turn's end it is the Machop that loses an eighth."""
+    from .test_fightai import battle
+    b = battle([("Ferrothorn", 30, "Iron Barbs", ["Leech Seed"], "Sticky Barb")], [("Machop", 30, "Guts", ["Karate Chop"])])
+    ferro, chop = b.b.cur(), b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, chop, fs.move("Karate Chop"), ferro, True)
+    moved = (chop.item, ferro.item)
+    before = chop.hp
+    fs.end_of_turn(b)
+    lost = before - chop.hp
+    ok = moved == ("Sticky Barb", None) and lost == chop.maxhp // 8
+    return [("the Sticky Barb passes to a contact attacker and hurts it at the turn's end", ok,
+             f"(Machop's item, Ferrothorn's) {moved}; Machop lost {lost} of {chop.maxhp} at the turn's end")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2927,6 +2945,7 @@ def main():
     results += unnerve_checks()
     results += steadfast_checks()
     results += starf_berry_checks()
+    results += sticky_barb_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

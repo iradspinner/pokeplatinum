@@ -2121,6 +2121,30 @@ def check_starf_berry(results):
                     f"stats raised over 60 draws {sorted(stats)}; kept at +6 in all {full}; kept above a quarter {above}"))
 
 
+def check_sticky_barb(results):
+    """The Sticky Barb (approved 2026-10-14; HOLD_EFFECT_DMG_USER_CONTACT_XFR):
+    an eighth of its holder's HP at each turn's end, none with Magic Guard;
+    a contact hit hands it to an attacker holding nothing, not a Water Gun,
+    not an attacker with an item of its own."""
+    def end(ability=None):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        foe.item, foe.ability = "Sticky Barb", ability
+        fs.end_of_turn(b)
+        return foe.hp
+
+    def hit(move, own=None):
+        b, p, foe = battle([move], ["Tackle"], {("p", move): [10] * 16})
+        b.st["first_battle"] = True
+        foe.item, p.item = "Sticky Barb", own
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return p.item, foe.item
+    got = {"the turn's end": end(), "the turn's end, Magic Guard": end("Magic Guard"),
+           "Tackle": hit("Tackle"), "Water Gun": hit("Water Gun"), "Tackle, holding Leftovers": hit("Tackle", "Leftovers")}
+    want = {"the turn's end": 88, "the turn's end, Magic Guard": 100, "Tackle": ("Sticky Barb", None),
+            "Water Gun": (None, "Sticky Barb"), "Tackle, holding Leftovers": ("Leftovers", "Sticky Barb")}
+    results.append(("the Sticky Barb hurts its holder and sticks to a contact attacker", got == want, f"{got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2370,6 +2394,7 @@ def main():
                   check_bad_dreams, check_marvel_scale, check_shed_skin,
                   check_suction_cups, check_plus_minus, check_stench, check_unnerve,
                   check_telepathy, check_steadfast, check_starf_berry,
+                  check_sticky_barb,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

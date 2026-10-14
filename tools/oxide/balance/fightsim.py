@@ -2272,16 +2272,24 @@ def contact_ability(b, att, dfn, mv, dealt, chance, pick):
     battle's dice."""
     if dealt <= 0:
         return
-    if dfn.ability and hit_ability(b, att, dfn, mv, chance):
-        return
-    if not mv.contact:
-        return
-    if att.alive() and dfn.ability and _struck_back(b, att, dfn, chance, pick):
-        return
-    if att.ability == "Poison Touch" and dfn.alive() and not dfn.status and chance("status", 0.3, dfn):
-        b.status_src = att
-        if give_status(b, dfn, "psn"):
-            reveal(att)
+    if not (dfn.ability and hit_ability(b, att, dfn, mv, chance)) and mv.contact:
+        if not (att.alive() and dfn.ability and _struck_back(b, att, dfn, chance, pick)):
+            if att.ability == "Poison Touch" and dfn.alive() and not dfn.status and chance("status", 0.3, dfn):
+                b.status_src = att
+                if give_status(b, dfn, "psn"):
+                    reveal(att)
+    if mv.contact:
+        sticky_barb(att, dfn)
+
+
+def sticky_barb(att, dfn):
+    """A contact hit on a Sticky Barb's holder hands the barb to an attacker
+    that stands and holds nothing (BattleSystem_TriggerHeldItemOnHit's
+    HOLD_EFFECT_DMG_USER_CONTACT_XFR; Knock Off, which takes the item
+    first, leaves nothing to hand). Until 2026-10-14 the barb did nothing
+    (Ian approved the fix)."""
+    if dfn.item == "Sticky Barb" and att.alive() and not att.item and att is not dfn:
+        att.item, dfn.item = dfn.item, None
 
 
 # The abilities a hit of these types raises a stat of (subscript_justified,
@@ -3720,6 +3728,13 @@ def _end_of_turn_mon(b, side, m):
         m.yawn -= 1
         if m.yawn == 0:
             give_status(b, m, "slp")
+    # A Sticky Barb takes an eighth of its holder's maximum HP, unless it has
+    # Magic Guard (BattleSystem_TriggerDetrimentalHeldItem, the last step,
+    # with the Orbs).
+    if m.alive() and m.item == "Sticky Barb" and m.ability != "Magic Guard":
+        hurt(b, m, max(1, m.maxhp // 8))
+        if battle_over(b):
+            return False
     # Toxic Orb and Flame Orb give their holder their status
     # (BattleSystem_TriggerDetrimentalHeldItem, the last step).
     if m.alive() and m.item in ("Toxic Orb", "Flame Orb") and not m.status:
