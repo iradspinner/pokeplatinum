@@ -792,6 +792,8 @@ def status_move(b, att, mv, dfn, first):
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in fs.HEAL_HALF:
+        if e == "HEAL_HALF_REMOVE_FLYING_TYPE" and att.hp < att.maxhp:
+            att.roosting = True          # Roost, as fightsim.status_move
         fs.heal(att, att.maxhp // 2)
     elif e == "HEAL_HALF_MORE_IN_SUN":
         frac = 2 / 3 if b.weather == "Sun" else 1 / 4 if b.weather else 1 / 2

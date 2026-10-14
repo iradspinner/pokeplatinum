@@ -854,6 +854,34 @@ def check_absorbing_abilities(results):
                     f"(HP from 50, the stage, status, ability named) {got}; Dry Skin from 50 in rain and sun {skin}"))
 
 
+def check_roost(results):
+    """Roost (approved 2026-10-14; subscript_roost and BasicTypeMulApplies):
+    it fails at full HP; otherwise it heals half, and until the turn ends
+    its user's Flying type meets no move, which the battle reads from the
+    user's twin without Flying (prepare's roost_twin). A pure Flying user
+    has a Normal and a Grass twin, and each move meets it on the one its
+    type hits neutrally: Earthquake on the Normal twin, Shadow Ball on the
+    Grass one. The next turn the Flying type is back."""
+    rows = {("b", "Earthquake"): [0] * 16, ("b", "Shadow Ball"): [30] * 16}
+    b, p, foe = battle(["Roost"], ["Earthquake", "Shadow Ball"], rows, p_types=("Flying",))
+    b.st["rows"][(None, "b0.0", "p0#roost0")] = {"moves": {"Earthquake": {"rolls": [40] * 16},
+                                                           "Shadow Ball": {"rolls": [99] * 16}}}
+    b.st["rows"][(None, "b0.0", "p0#roost1")] = {"moves": {"Earthquake": {"rolls": [77] * 16},
+                                                           "Shadow Ball": {"rolls": [30] * 16}}}
+    b.st["roost_twin"] = {"p0": [("p0#roost0", ["Normal"]), ("p0#roost1", ["Grass"])]}
+    quake, ball = fs.move("Earthquake"), fs.move("Shadow Ball")
+    full = fs.status_move(b, p, fs.move("Roost"), foe, True) or p.roosting
+    p.hp = 50
+    fs.status_move(b, p, fs.move("Roost"), foe, True)
+    roosted = (p.hp, p.roosting, b.damage(foe, p, quake, roll=0), b.damage(foe, p, ball, roll=0))
+    fs.end_of_turn(b)
+    after = (p.roosting, b.damage(foe, p, quake, roll=0))
+    ok = not full and roosted == (100, True, 40, 30) and after == (False, 0)
+    results.append(("Roost takes the Flying type off its user until the turn ends", ok,
+                    f"at full HP roosted {full}; after Roost from 50 (HP, roosting, Earthquake, Shadow Ball) {roosted}; "
+                    f"the next turn (roosting, Earthquake) {after}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1091,6 +1119,7 @@ def main():
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
+                  check_roost,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

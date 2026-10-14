@@ -1565,6 +1565,33 @@ def absorbing_ability_checks():
              f"Lanturn healed {healed} of {lanturn.maxhp}; Lileep after Water Gun (full HP, Sp. Atk stage) {rise}")]
 
 
+def roost_checks():
+    """Roost on the calculator's real rows (approved 2026-10-14): prepare
+    rows a Water and Flying Pelipper's twin typed Water alone, so once it
+    has roosted a Diglett's Earthquake reaches it and a Pikachu's
+    Thunderbolt hits it twice over rather than four times, in the readings'
+    damage, until the turn's end."""
+    from .test_fightai import battle
+    b = battle([("Pelipper", 26, "Keen Eye", ["Roost", "Water Pulse"])],
+               [("Diglett", 26, "Sand Veil", ["Earthquake"]), ("Pikachu", 26, "Static", ["Thunderbolt"])])
+    pel = b.b.cur()
+    dig, pika = b.p.mons
+    quake, bolt = fs.move("Earthquake"), fs.move("Thunderbolt")
+    twins = b.st["roost_twin"].get(pel.key)
+    before = (pl.damage_of(b, dig, pel, quake, False, True), pl.damage_of(b, pika, pel, bolt, False, True))
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pel.hp = pel.maxhp // 2
+    pl.use_move(b, pel, fs.move("Roost"), dig, True)
+    during = (pel.roosting, pl.damage_of(b, dig, pel, quake, False, True), pl.damage_of(b, pika, pel, bolt, False, True))
+    fs.end_of_turn(b)
+    after = (pel.roosting, pl.damage_of(b, dig, pel, quake, False, True))
+    ok = (twins and twins[0][1] == ["Water"] and before[0] == 0 and during[0] is True and during[1] > 0
+          and abs(during[2] * 2 - before[1]) <= 2 and after == (False, 0))
+    return [("Roost: the twin without Flying meets the foe's moves while Pelipper roosts", ok,
+             f"twins {twins}; before (Earthquake, Thunderbolt) {before}; while roosting (roosting, Earthquake, "
+             f"Thunderbolt) {during}; the next turn {after}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2028,6 +2055,7 @@ def main():
     results += ice_body_checks()
     results += readings_damage_checks()
     results += absorbing_ability_checks()
+    results += roost_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

@@ -378,6 +378,7 @@ class Mon:
         # count (moveEffectsData.encoredMove and encoredTurns).
         self.encore = None
         self.encore_turns = 0
+        self.roosting = False            # Roost: its Flying type meets no move until the turn ends
         self.last = None
         self.turns_in = 0
         self.hit_this_turn = None        # (category, damage) of the last hit taken this turn
@@ -471,15 +472,17 @@ class Battle:
 
     # -- reading the calculator's rows
 
-    def row(self, att, dfn):
+    def row(self, att, dfn, mv=None):
         # A Pokemon whose ability the gas has off reads its ability-blank twin's rows.
         ak = att.key if att.gas_stash is None else gas_key(self, att)
         dk = dfn.key if dfn.gas_stash is None else gas_key(self, dfn)
+        if dfn.roosting and mv is not None:
+            dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
         w = self.weather if (self.weather, ak, dk) in self.st["rows"] else None
         return self.st["rows"].get((w, ak, dk))
 
     def rolls(self, att, dfn, mv):
-        r = self.row(att, dfn)
+        r = self.row(att, dfn, mv)
         if not r:
             return None
         got = r["moves"].get(mv.name)
@@ -681,6 +684,21 @@ def reveal(mon):
 
 
 # ---- Neutralizing Gas (the simulator's support approved by Ian, 2026-10-13) --------------------------------
+
+def roost_key(b, mon, mv):
+    """The key of the rows a roosting Pokemon meets this move on (prepare's
+    roost_twin): its twin typed without Flying; for a pure Flying one,
+    whichever of its Normal and Grass twins this move's type hits neutrally,
+    as a type the chart cannot read would be hit. None for a Pokemon with
+    no twin."""
+    twins = (b.st.get("roost_twin") or {}).get(mon.key)
+    if not twins:
+        return None
+    for key, types in twins:
+        if len(twins) == 1 or effectiveness(b.st["chart"], mv.type, types) == 1:
+            return key
+    return twins[0][0]
+
 
 def gas_on(b):
     """BattleSystem_NeutralizingGasActive: a holder with HP on the field. The
@@ -2312,6 +2330,11 @@ def status_move(b, att, mv, dfn, first):
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in HEAL_HALF:
+        # Roost (effect script 214, subscript_roost) fails at full HP, as the
+        # other half heals do, and otherwise also roosts its user until the
+        # turn ends (TURN_FLAG_ROOSTING).
+        if e == "HEAL_HALF_REMOVE_FLYING_TYPE" and att.hp < att.maxhp:
+            att.roosting = True
         heal(att, att.maxhp // 2)
     elif e == "HEAL_HALF_MORE_IN_SUN":
         frac = 2 / 3 if b.weather == "Sun" else 1 / 4 if b.weather else 1 / 2
@@ -2607,6 +2630,7 @@ def _end_of_turn(b):
     if 0 < b.trick_room < 999:
         b.trick_room -= 1
     for m in order:
+        m.roosting = False          # a turn flag, gone with the turn
         if m.alive():
             m.protecting = False
             m.enduring = False
@@ -3777,6 +3801,42 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                             if (whole_field or d in holders) and (tdk, twin(d), w) not in seen:
                                 seen.add((tdk, twin(d), w))
                                 pairs.append([tdk, twin(d), ["Magnitude"], w])
+    # Roost: while its user roosts, its Flying type meets no move until the
+    # turn ends (BasicTypeMulApplies skips the chart's rows for a roosting
+    # defender's Flying type), which the calculator cannot know. So each
+    # Roost user with the Flying type gets a twin with its types less Flying
+    # (species_data with exact types, its own stats and weight kept, which
+    # the runner builds on an alias of its species, as the calculator's
+    # species table would otherwise keep a second type), rowed for every
+    # foe's moves into it, a player's Magnitude at each power included. A pure
+    # Flying Pokemon is left with no type the chart reads, which the
+    # calculator cannot be given; its Normal and Grass twins between them hit
+    # every move type neutrally (roost_key picks).
+    roost_twin = {}
+    for k in pkeys + qkeys + bkeys:
+        if not any(move(m).effect == "HEAL_HALF_REMOVE_FLYING_TYPE" for m in moves[k]):
+            continue
+        poks = blob["poks"].get(pokemon[k]["species"]) or {}
+        types = [t for t in (poks.get("types") or []) if t]
+        if "Flying" not in types or not poks.get("bs"):
+            continue
+        rest = [t for t in types if t != "Flying"]
+        foes = pkeys + qkeys if k.startswith("b") else bkeys
+        for i, tt in enumerate([rest] if rest else [["Normal"], ["Grass"]]):
+            t = f"{k}#roost{i}"
+            own = {"bs": dict(poks["bs"]), "types": tt, "exact_types": True}
+            if poks.get("weightkg") is not None:
+                own["weightkg"] = poks["weightkg"]
+            pokemon[t] = dict(pokemon[k], species_data=own)
+            roost_twin.setdefault(k, []).append((t, tt))
+            for w in weathers:
+                for d in foes:
+                    got = party_hits(d) if d in bkeys else hits(d)
+                    if got:
+                        pairs.append([d, t, got, w])
+                    if "Magnitude" in moves.get(d, ()) and not d.startswith("b"):
+                        for p in MAGNITUDE_POWERS:
+                            pairs.append([f"{d}#m{p}", t, ["Magnitude"], w])
     # The calculator is told to leave off the abilities the battle applies
     # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once.
     jobs = {k: dict(p, ability_on=False) if p.get("ability") in CALC_ABILITY_OFF else p
@@ -3800,7 +3860,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "bosses": boss_keys, "partners": partner_keys,
             "base_weather": calc.CALC_WEATHER.get(weather, weather) if weather else None,
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
-            "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin}
+            "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin}
 
 
 def effectiveness(blob_or_chart, atk_type, def_types):
