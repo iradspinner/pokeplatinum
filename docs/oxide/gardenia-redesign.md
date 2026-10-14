@@ -17,7 +17,7 @@ The locked team's reading came in on 2026-10-14 at 90 percent won (faints 2.04, 
 
 **Why the dials overshot.** I forecast 70 to 80 percent for the dials and they read 96, about 25 points off the other way. Speed did most of it: Golbat, in every six, now outspeeds Cherrim and Roserade as well as Breloom and Solrock, and in the first reading every fight Golbat survived was won. The berry fix lets its Dual Wingbeat knock out Breloom outright. Exeggutor's faints fell from 216 to 49, mostly because the player stopped losing: 136 of its 216 came in lost fights, where all six of the player's Pokemon go down. In won fights one level crosses two thresholds against Golbat (its Zen Headbutt no longer knocks out a healthy Golbat, and Golbat's Leech Life nearly knocks it out). Roserade was the one member still taking Pokemon at its old rate, so it goes back to Calm, faster than Golbat again.
 
-**What waits on Ian:** whether the soft barometer for "unsolvably hard" is the first reading's box 3 (27 percent won, difficulty 34.7), the box he nearly solved by hand, since the dials reading's box 3 reads 95 percent.
+**Settled:** the soft barometer for "unsolvably hard" is the first reading's box 3 (27 percent won, difficulty 34.7), the box Ian nearly solved by hand (2026-10-13).
 
 **Next steps:** none for the fight itself until a bigger change to it; Ian's Slugma answer (evolve by Fantina's split at the latest) waits in the tracker.
 
