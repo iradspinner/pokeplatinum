@@ -2,6 +2,8 @@
 
 This sorts every move in the game by who can have it, to answer Ian's question of 2026-10-14: how many moves sit in the data that no player and no trainer can use? It was read from origin/oxide at 0e3f757e81 and changes no game data.
 
+Since 2026-10-14 (f5672c2460, Ian's picks from `stranded-moves.md`), 46 of these moves have a player learner by level-up, which leaves (a) at 198, (b) at 15 and (e) at 599; the tables below are as audited. The 26 from (a) are Chip Away, Circle Throw, Dragon Darts, Electro Ball, Fiery Dance, Fillet Away, Fire Lash, Frost Breath, Glaciate, Hard Press, Heart Stamp, Heat Crash, Jaw Lock, Leaf Tornado, Mighty Cleave, Mystical Power, Parabolic Charge, Power Trip, Psychic Fangs, Rising Voltage, Storm Throw, Tachyon Cutter, Take Heart, Triple Dive, Twin Beam and Victory Dance. The 20 from (b) are Aeroblast, Coil, Core Enforcer, Diamond Storm, Doom Desire, Fiery Wrath, Freezing Glare, Horn Leech, Hurricane, Luster Purge, Mist Ball, Nature's Madness, Oblivion Wing, Origin Pulse, Power-Up Punch, Sacred Sword, Shift Gear, Thousand Arrows, Thousand Waves and Thunderous Kick. Upper Hand and Burning Jealousy wait on in-game checks 81 and 83, and Psycho Boost stays trainer only.
+
 ## Summary
 
 The audit covers 847 of the 923 move records. It leaves out the 53 Z-moves and 19 Max moves, which nobody gets (Ian, 2026-10-14), and the 4 placeholders (MOVE_NONE and the MOVE_UNUSED records). Learners come from every species and form record in res/pokemon, by level-up, TM, tutor and egg list, the 13 form records under forms/ included. A trainer carries a move when it is on one of the 768 trainer files the scorer reads, which are every named trainer and the dummy slots a map battles.
