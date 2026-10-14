@@ -800,7 +800,7 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     # King's Rock and Razor Fang are item procs, in the budget (question 8);
     # Stench counts as one (fightsim.flinch_item).
     if first and fs.flinch_item(att) and not dfn.flinch and not hit_by_hit \
-            and secondary("kingsrock", 0.1):
+            and not fs.item_flinch_blocked(att, dfn) and secondary("kingsrock", 0.1):
         dfn.flinch = True
     if dfn.ability == "Inner Focus" and not fs.mold(att, dfn):
         dfn.flinch = False       # Inner Focus: it never flinches, unless Mold Breaker gets past it

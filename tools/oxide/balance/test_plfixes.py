@@ -2557,6 +2557,27 @@ def soundproof_status_checks():
     return [("Soundproof stops Sing in the readings", ok, f"slept of 200 {out}")]
 
 
+def item_flinch_blocked_checks():
+    """Shield Dust against a King's Rock in the readings' battle (approved
+    2026-10-14): Cyrus's kind of King's Rock holder, moving first, never
+    flinches the player's Shield Dust Dustox over 400 hits, and flinches a
+    Compound Eyes one about one time in ten."""
+    from .test_fightai import battle
+    out = {}
+    for ab in ("Shield Dust", "Compound Eyes"):
+        b = battle([("Machamp", 40, "Guts", ["Cross Chop"], "King's Rock")], [("Dustox", 40, ab, ["Gust"])])
+        champ, dust = b.b.cur(), b.p.cur()
+        n = 0
+        for seed in range(400):
+            b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+            dust.hp, dust.flinch = dust.maxhp, False
+            pl.attack(b, champ, fs.move("Cross Chop"), dust, True)
+            n += bool(dust.flinch)
+        out[ab] = n
+    ok = out["Shield Dust"] == 0 and 20 <= out["Compound Eyes"] <= 65
+    return [("Shield Dust stops a King's Rock's flinch in the readings", ok, f"flinched of 400 {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3062,6 +3083,7 @@ def main():
     results += leech_seed_sap_checks()
     results += ghost_untrapped_checks()
     results += soundproof_status_checks()
+    results += item_flinch_blocked_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

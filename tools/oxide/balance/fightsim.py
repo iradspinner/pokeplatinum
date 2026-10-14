@@ -1140,6 +1140,14 @@ def flinch_item(att):
     return att.item in ("King's Rock", "Razor Fang") or att.ability == "Stench"
 
 
+def item_flinch_blocked(att, dfn):
+    """Whether dfn shrugs off the flinch of att's King's Rock, Razor Fang or
+    Stench (subscript_flinch_mon, whose side effect is then indirect):
+    Shield Dust, which Mold Breaker gets past, or a Covert Cloak. Until
+    2026-10-14 both let it through (Ian approved the fix)."""
+    return (dfn.ability == "Shield Dust" and not mold(att, dfn)) or dfn.item == "Covert Cloak"
+
+
 def hit_weights(att, mv, hits):
     """Each landed hit's share of the calculator's row, as whole-number
     weights, and the row's whole weight: the row adds up row_hits equal hits
@@ -1228,7 +1236,7 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
         if not sub_hit:
             contact_ability(b, att, dfn, mv, dealt, chance, pick)
             if first and flinch_item(att) and not dfn.flinch and dfn.alive() \
-                    and chance("kingsrock", 0.1, dfn):
+                    and not item_flinch_blocked(att, dfn) and chance("kingsrock", 0.1, dfn):
                 dfn.flinch = True
         berry_check(dfn, b)
         if dfn.status == "frz" and mv.type == "Fire":

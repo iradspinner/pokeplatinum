@@ -2227,6 +2227,28 @@ def check_soundproof_status(results):
     results.append(("Soundproof stops the status sound moves, unless Mold Breaker", got == want, f"{got}"))
 
 
+def check_item_flinch_blocked(results):
+    """Shield Dust and the Covert Cloak against a King's Rock (approved
+    2026-10-14; subscript_flinch_mon): a King's Rock holder's Double Kick
+    never flinches a Shield Dust target or one with a Covert Cloak, unless
+    the user has Mold Breaker (Shield Dust only); 1000 uses each."""
+    def flinches(ability=None, item=None, mold=False):
+        n = 0
+        for seed in range(1000):
+            b, p, foe = battle(["Double Kick"], ["Tackle"], {("p", "Double Kick"): [2] * 16}, seed=seed)
+            b.st["first_battle"] = True
+            p.item, p.ability = "King's Rock", "Mold Breaker" if mold else None
+            foe.ability, foe.item = ability, item
+            fs.attack(b, p, fs.move("Double Kick"), foe, True)
+            n += foe.flinch
+        return n
+    got = {"Shield Dust": flinches("Shield Dust"), "a Covert Cloak": flinches(item="Covert Cloak"),
+           "Shield Dust, Mold Breaker": flinches("Shield Dust", mold=True), "plain": flinches()}
+    ok = (got["Shield Dust"] == 0 and got["a Covert Cloak"] == 0
+          and 140 <= got["Shield Dust, Mold Breaker"] <= 240 and 140 <= got["plain"] <= 240)
+    results.append(("Shield Dust and a Covert Cloak stop a King's Rock's flinch", ok, f"flinched of 1000 {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2477,7 +2499,7 @@ def main():
                   check_suction_cups, check_plus_minus, check_stench, check_unnerve,
                   check_telepathy, check_steadfast, check_starf_berry,
                   check_sticky_barb, check_payback, check_leech_seed_sap,
-                  check_ghost_untrapped, check_soundproof_status,
+                  check_ghost_untrapped, check_soundproof_status, check_item_flinch_blocked,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
