@@ -98,7 +98,7 @@
     "evolutions": [
         [
             "EVO_LEVEL",
-            38,
+            30,
             "SPECIES_MAGCARGO"
         ]
     ],

@@ -13,6 +13,7 @@ leaves them standing.
 import collections
 import functools
 import json
+import math
 import os
 import random
 
@@ -605,15 +606,19 @@ def rework_checks():
                 ok and enum == (0.35, 0.35, 0.15, 0.15),
                 f"hits {plain}; Skill Link {link}; Loaded Dice {dice}; enumerated {enum}"))
 
-    # A Focus Sash holds one hit, not a two to five hit move's total.
+    # A Focus Sash holds a single hit from full HP, and every hit of a two
+    # to five hit move after the first (focusItemActivated lasts the move;
+    # the engine's rule, approved 2026-10-14, where until then the move's
+    # total broke the Sash).
     b, p, foe = fresh(["Bullet Seed"], roll=150)
     foe.item = "Focus Sash"
     pl.attack(b, p, fs.move("Bullet Seed"), foe, True)
     b2, p2, foe2 = fresh(["Tackle"], roll=150)
     foe2.item = "Focus Sash"
     pl.attack(b2, p2, fs.move("Tackle"), foe2, True)
-    out.append(("a Focus Sash holds a single hit but not a multi-hit move", foe.hp == 0 and foe2.hp == 1,
-                f"Bullet Seed leaves {foe.hp}, Tackle {foe2.hp}"))
+    out.append(("a Focus Sash holds a single hit, and every hit of a multi-hit move from full HP",
+                (foe.hp, foe.item, foe2.hp, foe2.item) == (1, None, 1, None),
+                f"Bullet Seed leaves {foe.hp} ({foe.item}), Tackle {foe2.hp} ({foe2.item})"))
 
     # The rising moves, Fury Cutter 10, 20, 30 and Triple Kick 20, 30, 40
     # (Ian, 2026-10-12): the calculator's row adds up all three hits, and
@@ -1282,10 +1287,579 @@ def neutralizing_gas_checks():
     return out
 
 
+def unburden_checks():
+    """Unburden counted once (Ian approved the fix, 2026-10-13). The engine
+    doubles its holder's Speed only once the item it came in with is gone
+    (BattleSystem_CompareBattlerSpeed reads canUnburden and an empty hand).
+    The calculator's page counts every ability as active, so its Speed for
+    an Unburden Pokemon came doubled from the first turn, and the battle
+    doubled it again once the item went: Jupiter 1's Pelipper read 92, then
+    184, where the game gives 46, then 92. On the calculator's real rows an
+    Unburden Pelipper holding its Sitrus Berry is now as fast as a Pressure
+    twin, twice as fast once the berry is eaten, and the player's Unburden
+    Pelipper, which comes in holding nothing, is never doubled."""
+    from .test_fightai import battle
+    b = battle([("Pelipper", 26, "Unburden", ["Water Pulse"], "Sitrus Berry"),
+                ("Pelipper", 26, "Pressure", ["Water Pulse"], "Sitrus Berry")],
+               [("Pelipper", 26, "Unburden", ["Water Pulse"])])
+    holder, twin, mine = b.b.mons[0], b.b.mons[1], b.p.cur()
+    plain = b.speed(twin)
+    held = b.speed(holder)
+    fs.consume(holder)
+    eaten = b.speed(holder)
+    empty = b.speed(mine)
+    ok = held == plain and eaten == 2 * plain and empty == plain
+    return [("Unburden doubles Speed once, after the item is gone, on the calculator's rows", ok,
+             f"Pressure twin {plain}; Unburden holding its berry {held}, after eating it {eaten}; "
+             f"the player's empty-handed Unburden {empty}")]
+
+
+def intimidate_once_checks():
+    """Intimidate counted once (Ian approved the fix, 2026-10-13). The
+    engine takes one Attack stage off each foe on the field as the holder
+    comes in (the switch-in check's Intimidate step), and from no Pokemon
+    that comes in later. The calculator's page counts every ability as
+    active, so its rows already took a stage off every physical hit into an
+    Intimidate Pokemon, from any attacker at any time, and the battle took a
+    second on entry: Mars 1's Torracat met Machop's Karate Chop at about
+    4/9 of its damage where one stage leaves 2/3. The rows now leave
+    Intimidate off, and the battle's stage is its only effect. The battle's
+    start is mended with it: the leads come in before their Intimidate
+    goes off, so a trainer lead's Intimidate lands on the player's lead,
+    which the player's own switch-in used to wipe."""
+    from .test_fightai import battle
+    tor = [("Torracat", 18, "Blaze", ["Double Kick"]), ("Torracat", 18, "Intimidate", ["Double Kick"])]
+    chops = [("Machop", 20, "Guts", ["Karate Chop"]), ("Machop", 20, "Guts", ["Karate Chop"])]
+    b = battle(tor, chops)
+    blaze, scary = b.b.mons
+    machop, second = b.p.mons
+    kc = fs.move("Karate Chop")
+    rows = (b.rolls(machop, scary, kc)[-1], b.rolls(machop, blaze, kc)[-1])
+    plain = pl.damage_of(b, machop, blaze, kc, False, True)
+    fs.switch_in(b, b.b, 1)              # the Intimidate Torracat comes in mid-battle
+    into = (machop.stages["atk"], pl.damage_of(b, machop, scary, kc, False, True))
+    fs.switch_in(b, b.p, 1)              # a Machop sent in after it keeps its Attack
+    late = (second.stages["atk"], pl.damage_of(b, second, scary, kc, False, True))
+    lead = battle(list(reversed(tor)), chops)
+    led = lead.p.cur().stages["atk"]
+    dogs = [("Mightyena", 20, "Intimidate", ["Bite"]), ("Mightyena", 20, "Quick Feet", ["Bite"])]
+    mine = battle(tor, dogs)
+    dk = fs.move("Double Kick")
+    theirs = (mine.b.cur().stages["atk"], mine.rolls(mine.b.cur(), mine.p.mons[0], dk)[-1],
+              mine.rolls(mine.b.cur(), mine.p.mons[1], dk)[-1])
+    one_stage = int(plain * 2 / 3)
+    ok = (rows[0] == rows[1] and into[0] == -1 and abs(into[1] - one_stage) <= 1 and late == (0, plain)
+          and led == -1 and theirs[0] == -1 and theirs[1] == theirs[2])
+    return [("Intimidate takes one stage, once, on entry; the rows leave it off", ok,
+             f"Karate Chop's top row into Intimidate and Blaze Torracat {rows}; plain {plain}; "
+             f"after Intimidate came in (stage, damage) {into}, one stage is {one_stage}; "
+             f"a Machop sent in later {late}; a trainer lead's Intimidate on the player's lead {led}; "
+             f"the player's Intimidate lead: the trainer's stage, Double Kick's top row into it and its twin {theirs}")]
+
+
+def two_hit_checks():
+    """Two-hit moves against Sturdy on the calculator's real rows and the
+    readings' attack (approved 2026-10-13). The calculator caps a row's
+    first hit into a full-HP Sturdy holder at its HP less one, and the
+    readings then held the two hits as one, so Machop's Double Kick never
+    finished a Sturdy Geodude. Now the first hit meets Sturdy and the
+    second finishes it whenever the two come to its HP, a single Karate
+    Chop is still held at 1 HP, and a Rock Head Geodude holding a Focus Sash
+    keeps 1 HP against the pair, as the engine's Sash does, and loses it."""
+    from .test_fightai import battle
+    b = battle([("Geodude", 12, "Sturdy", ["Tackle"]), ("Geodude", 12, "Rock Head", ["Tackle"], "Focus Sash")],
+               [("Machop", 20, "Guts", ["Double Kick", "Karate Chop"])])
+    sturdy, sash = b.b.mons
+    machop = b.p.cur()
+    counts = collections.Counter()
+    for seed in range(40):
+        b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+        for target, name in ((sturdy, "Double Kick"), (sturdy, "Karate Chop"), (sash, "Double Kick")):
+            target.hp, target.item = target.maxhp, b.st["pokemon"][target.key].get("item")
+            pl.attack(b, machop, fs.move(name), target, True)
+            counts[(target.ability, name, "fainted" if not target.alive() else f"{target.hp} HP",
+                    target.item)] += 1
+    rows = (max(b.rolls(machop, sturdy, fs.move("Double Kick"))), sturdy.maxhp)
+    want = {("Sturdy", "Double Kick", "fainted", None): 40, ("Sturdy", "Karate Chop", "1 HP", None): 40,
+            ("Rock Head", "Double Kick", "1 HP", None): 40}
+    return [("a two-hit move breaks Sturdy on the calculator's rows; a Focus Sash still holds", dict(counts) == want,
+             f"Double Kick's top row and Geodude's HP {rows}; over 40 tries each {dict(counts)}")]
+
+
+def protect_checks():
+    """Protect on the readings' path, on the calculator's real rows
+    (approved 2026-10-14). Croagunk uses Detect in a turn the player
+    switches Gengar out for Machop: the switch comes first, so no battler
+    acts after the Detect, which fails (BtlCmd_TryProtection) and leaves
+    the run at 0, where it worked and ran on to 1. A protecting Croagunk
+    still takes Gengar's Phantom Force, which has no MOVE_FLAG_CAN_PROTECT,
+    and its protection ends (subscript_feint), where Protect stopped it. A
+    Detect at a run of 4 works one time in eight on the readings' dice, and
+    the planner's dice offer it at exactly those odds (it was a
+    sixteenth)."""
+    from . import plplan
+    from .test_fightai import battle
+    b = battle([("Croagunk", 22, "Dry Skin", ["Detect", "Poison Jab"])],
+               [("Gengar", 26, "Cursed Body", ["Phantom Force", "Shadow Ball"]), ("Machop", 26, "Guts", ["Low Kick"])])
+    foe, gengar = b.b.cur(), b.p.cur()
+    rng = random.Random(1)
+    b.dice, b.rng = pl.RunDice(rng, True), rng
+    pl._turn(b, ("switch", 1), ("move", fs.move("Detect")))
+    slower = (foe.protecting, foe.protect_run, b.p.cur().species)
+    fs.switch_in(b, b.p, 0)
+    foe.hp, foe.protecting = foe.maxhp, True
+    pl.attack(b, gengar, fs.move("Phantom Force"), foe, True)
+    phantom = (foe.maxhp - foe.hp > 0, foe.protecting)
+    works = 0
+    for s in range(4000):
+        b.dice, b.rng = pl.RunDice(random.Random(s), True), random.Random(s)
+        foe.protecting, foe.protect_run = False, 4
+        pl.status_move(b, foe, fs.move("Detect"), gengar, True)
+        works += foe.protecting
+    foe.protecting, foe.protect_run = False, 4
+    b.dice = plplan.EnumDice((), random.Random(0))
+    pl.status_move(b, foe, fs.move("Detect"), gengar, True)
+    offered = b.dice.events
+    ok = slower == (False, 0, "Machop") and phantom == (True, False) and 0.105 <= works / 4000 <= 0.145 \
+        and offered == [(0.875, 0.125)]
+    return [("Protect on the readings' path: it fails acting last, Phantom Force passes it, its run floors at "
+             "an eighth", ok,
+             f"Detect as the player switches (protecting, run, in) {slower}; Phantom Force into Detect "
+             f"(hit, still protecting) "
+             f"{phantom}; Detect at run 4 worked {works / 4000:.3f}; planner's event {offered}")]
+
+
+def confusion_checks():
+    """Confusion on the readings' path, on the calculator's real rows
+    (approved 2026-10-14): a Machop's Dynamic Punch confuses an Oblivious
+    Slowpoke holding a Lum Berry, which cures it at once and is used up (it
+    waited for the turn's end), and leaves an Own Tempo Slowpoke unconfused
+    (it confused it); a Lumineon's Swagger into the player's side under
+    Safeguard raises the Attack and confuses nothing (it confused)."""
+    from .test_fightai import battle
+    b = battle([("Slowpoke", 16, "Oblivious", ["Tackle"], "Lum Berry"), ("Slowpoke", 16, "Own Tempo", ["Tackle"]),
+                ("Lumineon", 16, "Swift Swim", ["Swagger"])],
+               [("Machop", 16, "Guts", ["Dynamic Punch"])])
+    lum, slowpoke, lumineon = b.b.mons
+    machop = b.p.cur()
+    machop.stages["acc"] = 6                     # Dynamic Punch's 50% always lands
+    out = []
+    for target in (lum, slowpoke):
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        target.hp = target.maxhp
+        pl.attack(b, machop, fs.move("Dynamic Punch"), target, True)
+        out.append((target.ability, target.alive(), bool(target.confused), target.item))
+    machop.stages["acc"] = 0
+    b.p.safeguard = 5
+    lumineon.stages["acc"] = 6
+    pl.status_move(b, lumineon, fs.move("Swagger"), machop, True)
+    out.append(("Machop under Safeguard", bool(machop.confused), machop.stages["atk"]))
+    want = [("Oblivious", True, False, None), ("Own Tempo", True, False, None), ("Machop under Safeguard", False, 2)]
+    return [("the readings' confusion meets a Lum Berry at once, Own Tempo on a hit, and Safeguard", out == want,
+             f"(standing, confused, item; or confused, Attack stage) {out}")]
+
+
+def curse_rest_checks():
+    """The Ghost Curse and Rest on the readings' path, on the calculator's
+    real rows (approved 2026-10-14): a Haunter's Curse into a Machop behind
+    a Substitute fails and costs Haunter nothing (it cut half and cursed
+    through the Substitute), and into a Machop already cursed fails the same;
+    an Insomnia Hoothoot's Rest at half HP fails and names Insomnia (it slept
+    and healed)."""
+    from .test_fightai import battle
+    b = battle([("Haunter", 25, "Levitate", ["Curse"]), ("Hoothoot", 25, "Insomnia", ["Rest"])],
+               [("Machop", 25, "Guts", ["Karate Chop"])])
+    haunter, hoothoot = b.b.mons
+    machop = b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    machop.sub = machop.maxhp // 4
+    pl.status_move(b, haunter, fs.move("Curse"), machop, True)
+    behind = (haunter.maxhp - haunter.hp, machop.cursed)
+    machop.sub, machop.cursed = 0, True
+    pl.status_move(b, haunter, fs.move("Curse"), machop, True)
+    again = haunter.maxhp - haunter.hp
+    fs.switch_in(b, b.b, 1)
+    hoothoot.hp = hoothoot.maxhp // 2
+    pl.status_move(b, hoothoot, fs.move("Rest"), machop, True)
+    rest = (hoothoot.hp == hoothoot.maxhp, hoothoot.status, hoothoot.revealed)
+    return [("the readings' Ghost Curse fails behind a Substitute and on a cursed target; Insomnia stops Rest",
+             behind == (0, False) and again == 0 and rest == (False, None, "Insomnia"),
+             f"behind a Substitute (Haunter's HP lost, cursed) {behind}; already cursed, HP lost {again}; "
+             f"Insomnia's Rest (healed, status, named) {rest}")]
+
+
+def mist_intimidate_checks():
+    """Mist and Intimidate on the readings' path, on the calculator's real
+    rows (approved 2026-10-14): a Lombre's Mist keeps a Granbull's
+    Intimidate and a Glameow's Growl off its Attack (both cut it), the
+    trainer's AI then scores a second Mist -8, where it scored 0, and once
+    Mist is gone a Substitute keeps Intimidate off (it cut it)."""
+    from .test_fightai import battle
+    b = battle([("Glameow", 25, "Limber", ["Growl"]), ("Granbull", 25, "Intimidate", ["Bite"])],
+               [("Lombre", 25, "Swift Swim", ["Mist", "Water Gun"])])
+    glameow, granbull = b.b.mons
+    lombre = b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.status_move(b, lombre, fs.move("Mist"), glameow, True)
+    pl.status_move(b, glameow, fs.move("Growl"), lombre, True)
+    fs.switch_in(b, b.b, 1)
+    misted = (lombre.stages["atk"], getattr(b.p, "mist", 0))
+    score = fightai.basic(b, lombre, granbull, fs.move("Mist"), None)
+    b.p.mist, lombre.stages["atk"] = 0, 0
+    fs.switch_in(b, b.b, 0)
+    lombre.sub = lombre.maxhp // 4
+    fs.switch_in(b, b.b, 1)
+    behind = lombre.stages["atk"]
+    return [("the readings' Mist stops Growl and Intimidate, the AI reads it, and a Substitute stops Intimidate",
+             misted == (0, 5) and score == -8 and behind == 0,
+             f"under Mist (Attack, turns) {misted}; a second Mist scores {score}; behind a Substitute {behind}")]
+
+
+def ai_field_checks():
+    """The trainer's AI on the readings' path reads what the battle now sets
+    (approved 2026-10-14), on the calculator's real rows: a Munchlax whose
+    Lum Berry has cured a poison is offered Recycle by the planner's exact
+    odds of its AI (it was never offered, as the AI read an item nothing
+    set), and a Machop's Bug Bite that eats the Munchlax's Sitrus Berry
+    leaves the Machop marked as having eaten a Berry, which Belch needs."""
+    from . import plplan
+    from .test_fightai import battle
+    b = battle([("Munchlax", 20, "Pickup", ["Recycle", "Tackle"], "Lum Berry")],
+               [("Machop", 20, "Guts", ["Karate Chop", "Bug Bite"])])
+    munchlax, machop = b.b.cur(), b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    b.quick = {}
+    plplan.reset()
+    before = dict((a[1].name, round(p, 3)) for a, p in plplan.ai_distribution(b))
+    fs.give_status(b, munchlax, "tox")
+    plplan.reset()
+    after = dict((a[1].name, round(p, 3)) for a, p in plplan.ai_distribution(b))
+    munchlax.item, munchlax.hp = "Sitrus Berry", munchlax.maxhp
+    pl.attack(b, machop, fs.move("Bug Bite"), munchlax, True)
+    bitten = (munchlax.item, getattr(machop, "ate_berry", False))
+    ok = before.get("Recycle", 0) == 0 and after.get("Recycle", 0) > 0.5 and bitten == (None, True)
+    return [("the readings' AI offers Recycle once an item is used up; Bug Bite marks its user as having eaten",
+             ok, f"Recycle's odds before {before.get('Recycle', 0)}, after the Lum Berry {after.get('Recycle', 0)}; "
+                 f"after Bug Bite (Munchlax's item, Machop ate) {bitten}")]
+
+
+def pp_checks():
+    """PP on the readings' path, on the calculator's real rows (approved
+    2026-10-14): a Staravia's Fly costs one PP over its two turns, the
+    strike's turn already paid (it cost two), and its Quick Attack into a
+    Pressure Dusclops costs two (it cost one)."""
+    from .test_fightai import battle
+    b = battle([("Geodude", 30, "Rock Head", ["Tackle"]), ("Dusclops", 30, "Pressure", ["Night Shade"])],
+               [("Staravia", 30, "Reckless", ["Fly", "Quick Attack"])])
+    geodude, dusclops = b.b.mons
+    star = b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, star, fs.move("Fly"), geodude, True)
+    pl.use_move(b, star, star.charging, geodude, True)
+    fly = 15 - star.pp["Fly"]
+    fs.switch_in(b, b.b, 1)
+    pl.use_move(b, star, fs.move("Quick Attack"), dusclops, True)
+    quick = fs.move("Quick Attack").pp - star.pp["Quick Attack"]
+    return [("the readings charge PP once a choice, and Pressure adds one", (fly, quick, star.charging) == (1, 2, None),
+             f"Fly over its two turns {fly}; Quick Attack into Pressure {quick}")]
+
+
+def hit_by_hit_checks():
+    """A move of several hits on the readings' path lands hit by hit
+    (perfectline.multi_hit, fightsim.land_hits; approved 2026-10-14). On
+    hand rows: Skill Link Bullet Seed at a critical stage of +2 rolls a
+    critical hit a hit, its totals spreading from 50 to 75 in steps of 5
+    (one roll gave 50 or 75); a Focus Band rolls at every hit, saving its
+    holder from five hits of 30 about 34 times in a hundred (one roll at the
+    lethal total, 10); and the planner's dice take the number of critical
+    hits as one event at the binomial odds. On the calculator's real rows,
+    a Skill Link Minccino's Tail Slap into a Rough Skin Gible costs it five
+    eighths of its 70 HP, 40, where one chance took 8."""
+    from . import plplan
+    from .test_fightai import battle
+    from .test_fightsim import battle as duel
+
+    def fresh(row, seed=1, item=None, stage=0, hp=400):
+        b, p, foe = duel(["Bullet Seed"], ["Tackle"], {("p", "Bullet Seed"): [row] * 16}, hp=hp, seed=seed)
+        b.dice = pl.RunDice(random.Random(seed), True)
+        b.rng = b.dice.rng
+        p.ability, p.crit_stage, foe.item = "Skill Link", stage, item
+        if not stage:
+            foe.ability = "Battle Armor"
+        return b, p, foe
+    totals = collections.Counter()
+    for s in range(400):
+        b, p, foe = fresh(50, seed=s, stage=2)
+        pl.attack(b, p, fs.move("Bullet Seed"), foe, True)
+        totals[400 - foe.hp] += 1
+    band = 0
+    for s in range(2000):
+        b, p, foe = fresh(150, seed=s, item="Focus Band", hp=100)
+        pl.attack(b, p, fs.move("Bullet Seed"), foe, True)
+        band += foe.hp == 1
+    b, p, foe = fresh(50, stage=1)
+    b.dice = plplan.EnumDice((), random.Random(0))
+    pl.attack(b, p, fs.move("Bullet Seed"), foe, True)
+    binom = tuple(round(math.comb(5, k) * (1 / 8) ** k * (7 / 8) ** (5 - k), 12) for k in range(6))
+    enumerated = [tuple(round(x, 12) for x in ev) for ev in b.dice.events]
+
+    b = battle([("Gible", 25, "Rough Skin", ["Tackle"])], [("Minccino", 25, "Skill Link", ["Tail Slap"])])
+    gible, minccino = b.b.cur(), b.p.cur()
+    lost = set()
+    for seed in range(20):
+        b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+        gible.hp, minccino.hp = gible.maxhp, minccino.maxhp
+        pl.use_move(b, minccino, fs.move("Tail Slap"), gible, True)
+        if gible.hp < gible.maxhp:
+            lost.add(minccino.maxhp - minccino.hp)
+    ok = (set(totals) <= {50, 55, 60, 65, 70, 75} and len(totals) >= 5 and 0.30 <= band / 2000 <= 0.39
+          and binom in enumerated and lost == {5 * (minccino.maxhp // 8)})
+    return [("the readings land a move of several hits hit by hit: a critical hit, the Focus Band and Rough Skin "
+             "per hit", ok,
+             f"Bullet Seed totals {dict(sorted(totals.items()))}; Focus Band held {band / 2000:.3f}; planner's "
+             f"critical-hit event {binom in enumerated}; Minccino ({minccino.maxhp} HP) lost {sorted(lost)} "
+             f"to Gible's Rough Skin")]
+
+
+def future_sight_checks():
+    """Future Sight on the calculator's real rows and the readings' battle
+    (approved 2026-10-13). The calculator rows the two moves with no type
+    chart and no STAB: Kadabra's Doom Desire (140, Steel) and Future Sight
+    (120, Psychic) on a Fighting Machop stand at about 140 to 120, though
+    Psychic hits Machop twice over and is Kadabra's own type, and a Dark
+    Murkrow takes Future Sight in full. In the readings' battle the hit on
+    Machop waits: nothing at once, then the stored damage at the end of the
+    second turn after, on the Murkrow that has come in; meanwhile the
+    trainer's AI scores a second one -12, as Basic_CheckFutureSight reads
+    the side's mark, and a copy of the battle, as the planner and the
+    search make, carries the waiting hit."""
+    from .test_fightai import battle
+    b = battle([("Kadabra", 30, "Synchronize", ["Future Sight", "Doom Desire"])],
+               [("Machop", 30, "Guts", ["Karate Chop"]), ("Murkrow", 30, "Insomnia", ["Peck"])])
+    kad, machop, murkrow = b.b.cur(), b.p.mons[0], b.p.mons[1]
+    fsight, desire = fs.move("Future Sight"), fs.move("Doom Desire")
+    ratio = max(b.rolls(kad, machop, desire)) / max(b.rolls(kad, machop, fsight))
+    dark = max(b.rolls(kad, murkrow, fsight))
+    b.dice, b.rng = pl.RunDice(random.Random(4), True), random.Random(4)
+    pl.use_move(b, kad, fsight, machop, True)
+    at_once = machop.maxhp - machop.hp
+    waiting = getattr(b.p, "future", (None,))[0]
+    ai = fightai.basic(b, kad, machop, fsight)
+    copied = waiting is not None and pl.clone_battle(b).p.future == b.p.future
+    hp = []
+    for turn in range(3):
+        if turn == 1:
+            fs.switch_in(b, b.p, 1)          # the Dark Murkrow stands in the slot when it lands
+        fs.end_of_turn(b)
+        hp.append(murkrow.hp)
+    dmg = waiting[1] if waiting else None
+    ok = (1.12 <= ratio <= 1.22 and dark > 0 and at_once == 0 and waiting is not None and ai == -12 and copied
+          and hp == [murkrow.maxhp, murkrow.maxhp, murkrow.maxhp - dmg])
+    return [("Future Sight: a typeless row, and in the readings' battle it lands two turns on", ok,
+             f"Doom Desire over Future Sight on Machop {ratio:.3f}; Future Sight's top row on Murkrow {dark}; "
+             f"at once {at_once}; waiting {waiting}; the AI's Basic {ai}; the copy carries it {copied}; "
+             f"Murkrow's HP after each turn's end {hp} of {murkrow.maxhp}")]
+
+
+def disable_and_nightmare_checks():
+    """Disable and Nightmare on the calculator's real rows and the readings'
+    battle (approved 2026-10-13): after a Geodude's Tackle, Drowzee's Disable
+    keeps it out of the player's options and makes a Tackle chosen before it
+    fail, and the trainer's AI scores a second Disable -8; Gastly's
+    Nightmare on the sleeping Geodude takes a quarter of its HP at the
+    turn's end."""
+    from .test_fightai import battle
+    b = battle([("Drowzee", 20, "Insomnia", ["Disable", "Pound"]), ("Gastly", 20, "Levitate", ["Nightmare", "Lick"])],
+               [("Geodude", 20, "Sturdy", ["Tackle", "Rock Throw"])])
+    drowzee, gastly = b.b.mons
+    geo = b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(2), True), random.Random(2)
+    pl.use_move(b, geo, fs.move("Tackle"), drowzee, True)
+    pl.use_move(b, drowzee, fs.move("Disable"), geo, True)
+    options = sorted(a[1].name for a in pl.player_actions(b) if a[0] == "move")
+    before = drowzee.hp
+    pl.use_move(b, geo, fs.move("Tackle"), drowzee, True)
+    blocked = before - drowzee.hp
+    second = fightai.basic(b, drowzee, geo, fs.move("Disable"))
+    fs.switch_in(b, b.b, 1)
+    geo.status, geo.sleep = "slp", 3
+    pl.use_move(b, gastly, fs.move("Nightmare"), geo, True)
+    hp = geo.hp
+    fs.end_of_turn(b)
+    lost = hp - geo.hp
+    ok = options == ["Rock Throw"] and blocked == 0 and second == -8 and lost == max(1, geo.maxhp // 4)
+    return [("the readings' battle: Disable keeps the move out of the player's options, Nightmare bites", ok,
+             f"the player's moves after Disable {options}; Tackle dealt {blocked}; a second Disable {second}; "
+             f"Nightmare took {lost} of {geo.maxhp} at the turn's end")]
+
+
+def pivot_checks():
+    """U-turn after a knockout or a Substitute's hit (approved 2026-10-14;
+    subscript_attack_then_switch_out runs on any hit). On the calculator's
+    real rows, in the readings' turn: Liepard's U-turn that knocks Machop
+    out still takes Liepard out (Golbat in), as does one that only breaks a
+    Substitute, and one that leaves Machop standing; with the player's side
+    beaten, or nothing on the trainer's bench, Liepard stays."""
+    from .test_fightai import battle
+    foes = [("Liepard", 22, "Limber", ["U-turn"]), ("Golbat", 22, "Inner Focus", ["Bite"])]
+    mine = [("Machop", 20, "Guts", ["Karate Chop"]), ("Geodude", 20, "Rock Head", ["Tackle"])]
+    got = {}
+    for label, hp, sub in (("knocked out", 1, 0), ("behind a Substitute", None, 30), ("hit", None, 0)):
+        b = battle(foes, mine)
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        machop = b.p.cur()
+        machop.hp = hp or machop.hp
+        machop.sub = sub
+        uturn = fs.move("U-turn")
+        pl._turn(b, ("move", fs.move("Karate Chop")), ("move", uturn))
+        got[label] = b.b.cur().species
+    b = battle(foes, mine[:1])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    b.p.cur().hp = 1
+    pl._turn(b, ("move", fs.move("Karate Chop")), ("move", fs.move("U-turn")))
+    got["the player beaten"] = b.b.cur().species
+    b = battle(foes[:1], mine)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    b.p.cur().hp = 1
+    pl._turn(b, ("move", fs.move("Karate Chop")), ("move", fs.move("U-turn")))
+    got["no bench"] = b.b.cur().species
+    want = {"knocked out": "Golbat", "behind a Substitute": "Golbat", "hit": "Golbat",
+            "the player beaten": "Liepard", "no bench": "Liepard"}
+    return [("U-turn switches its user out after a knockout or a Substitute's hit, as the engine does",
+             got == want, f"the trainer's Pokemon after the turn {got}")]
+
+
+def ice_body_checks():
+    """Ice Body on the calculator's real rows (approved 2026-10-14): in a
+    fight held in hail, Moira's Galarian Mr. Mime at half HP gets a
+    sixteenth of its HP back at the turn's end, through fightsim's turn's
+    end, which the readings share; a Pressure twin gets nothing."""
+    from .test_fightai import battle
+    b = battle([("Mr. Mime-Galar", 26, "Ice Body", ["Freeze-Dry"]), ("Mr. Mime-Galar", 26, "Pressure", ["Freeze-Dry"])],
+               [("Machop", 26, "Guts", ["Karate Chop"])], weather="Hail")
+    body, twin = b.b.mons
+    body.hp, twin.hp = body.maxhp // 2, twin.maxhp // 2
+    before = (body.hp, twin.hp)
+    fs.end_of_turn(b)
+    fs.switch_in(b, b.b, 1)
+    fs.end_of_turn(b)
+    gained = (body.hp - before[0], twin.hp - before[1])
+    ok = b.weather == "Hail" and gained == (body.maxhp // 16, 0)
+    return [("Ice Body heals a sixteenth in hail on the real rows", ok,
+             f"weather {b.weather}; gained at the turn's end (Ice Body, Pressure) {gained} of {body.maxhp}")]
+
+
+def readings_damage_checks():
+    """The readings' damage (perfectline.damage_of) takes fightsim's own two
+    corrections (approved 2026-10-14), as the engine's damage has them
+    (battle_lib.c, BattleSystem_CalcMoveDamage): Reflect halves neither
+    Brick Break, which breaks it, nor an Infiltrator's hit, nor a critical
+    hit; and the calculator rows a Flash Fire attacker as always lit, so
+    its Fire move counts two thirds until a Fire hit has lit it. Rows of 30,
+    on a hand-built battle."""
+    from .test_fightsim import battle as hand
+    rows = {("p", "Brick Break"): [30] * 16, ("p", "Tackle"): [30] * 16, ("p", "Ember"): [30] * 16}
+    b, p, foe = hand(["Brick Break", "Tackle", "Ember"], ["Tackle"], rows)
+    b.b.screens["Reflect"] = 5
+
+    def both(name, crit=False):
+        mv = fs.move(name)
+        return pl.damage_of(b, p, foe, mv, crit, False), b.damage(p, foe, mv, crit=crit, roll=0)
+    got = {"Brick Break into Reflect": both("Brick Break"), "Tackle into Reflect": both("Tackle"),
+           "a critical Tackle into Reflect": both("Tackle", True)}
+    p.ability = "Infiltrator"
+    got["an Infiltrator's Tackle into Reflect"] = both("Tackle")
+    p.ability = "Flash Fire"
+    got["an unlit Flash Fire's Ember"] = both("Ember")
+    p.flash_fire = True
+    got["a lit Flash Fire's Ember"] = both("Ember")
+    want = {"Brick Break into Reflect": (30, 30), "Tackle into Reflect": (15, 15),
+            "a critical Tackle into Reflect": (45, 45), "an Infiltrator's Tackle into Reflect": (30, 30),
+            "an unlit Flash Fire's Ember": (20, 20), "a lit Flash Fire's Ember": (30, 30)}
+    return [("the readings' damage passes a screen as fightsim's does, and Flash Fire counts only when lit",
+             got == want, f"(readings, fightsim) {got}")]
+
+
+def absorbing_ability_checks():
+    """The absorbing abilities on the calculator's real rows, in the
+    readings' battle (approved 2026-10-14): a Volt Absorb Lanturn at half HP
+    takes a Pikachu's Thunderbolt whole and gets a quarter of its HP back,
+    and Roark's Storm Drain Lileep takes a Barboach's Water Gun and rises a
+    stage of Sp. Atk (Roark's readings move with this)."""
+    from .test_fightai import battle
+    b = battle([("Lanturn", 26, "Volt Absorb", ["Discharge"]), ("Lileep", 16, "Storm Drain", ["Mega Drain"])],
+               [("Pikachu", 26, "Static", ["Thunderbolt"]), ("Barboach", 16, "Oblivious", ["Water Gun"])])
+    lanturn, lileep = b.b.mons
+    pika, barb = b.p.mons
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    lanturn.hp = lanturn.maxhp // 2
+    before = lanturn.hp
+    pl.use_move(b, pika, fs.move("Thunderbolt"), lanturn, True)
+    healed = lanturn.hp - before
+    fs.switch_in(b, b.b, 1)
+    fs.switch_in(b, b.p, 1)
+    pl.use_move(b, barb, fs.move("Water Gun"), lileep, True)
+    rise = (lileep.hp == lileep.maxhp, lileep.stages["spa"])
+    ok = healed == lanturn.maxhp // 4 and rise == (True, 1)
+    return [("the readings' battle: Volt Absorb heals a quarter, Storm Drain raises Sp. Atk", ok,
+             f"Lanturn healed {healed} of {lanturn.maxhp}; Lileep after Water Gun (full HP, Sp. Atk stage) {rise}")]
+
+
+def roost_checks():
+    """Roost on the calculator's real rows (approved 2026-10-14): prepare
+    rows a Water and Flying Pelipper's twin typed Water alone, so once it
+    has roosted a Diglett's Earthquake reaches it and a Pikachu's
+    Thunderbolt hits it twice over rather than four times, in the readings'
+    damage, until the turn's end."""
+    from .test_fightai import battle
+    b = battle([("Pelipper", 26, "Keen Eye", ["Roost", "Water Pulse"])],
+               [("Diglett", 26, "Sand Veil", ["Earthquake"]), ("Pikachu", 26, "Static", ["Thunderbolt"])])
+    pel = b.b.cur()
+    dig, pika = b.p.mons
+    quake, bolt = fs.move("Earthquake"), fs.move("Thunderbolt")
+    twins = b.st["roost_twin"].get(pel.key)
+    before = (pl.damage_of(b, dig, pel, quake, False, True), pl.damage_of(b, pika, pel, bolt, False, True))
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pel.hp = pel.maxhp // 2
+    pl.use_move(b, pel, fs.move("Roost"), dig, True)
+    during = (pel.roosting, pl.damage_of(b, dig, pel, quake, False, True), pl.damage_of(b, pika, pel, bolt, False, True))
+    fs.end_of_turn(b)
+    after = (pel.roosting, pl.damage_of(b, dig, pel, quake, False, True))
+    ok = (twins and twins[0][1] == ["Water"] and before[0] == 0 and during[0] is True and during[1] > 0
+          and abs(during[2] * 2 - before[1]) <= 2 and after == (False, 0))
+    return [("Roost: the twin without Flying meets the foe's moves while Pelipper roosts", ok,
+             f"twins {twins}; before (Earthquake, Thunderbolt) {before}; while roosting (roosting, Earthquake, "
+             f"Thunderbolt) {during}; the next turn {after}")]
+
+
+def protean_checks():
+    """Protean on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a twin of Mars 1's Floragato for
+    each type its moves could make it; after its Play Rough it is a Fairy
+    type, so the next Play Rough has STAB, about half again its old row,
+    and Machop's Karate Chop meets a Fairy, half what it did on Grass."""
+    from .test_fightai import battle
+    b = battle([("Floragato", 20, "Protean", ["Play Rough", "Seed Bomb"])], [("Machop", 20, "Guts", ["Karate Chop"])])
+    flora, machop = b.b.cur(), b.p.cur()
+    rough, chop = fs.move("Play Rough"), fs.move("Karate Chop")
+    twins = sorted((b.st.get("protean_twin") or {}).get(flora.key, {}))
+    before = (pl.damage_of(b, flora, machop, rough, False, True), pl.damage_of(b, machop, flora, chop, False, True))
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    machop.hp = machop.maxhp * 10
+    pl.use_move(b, flora, rough, machop, True)
+    after = (list(flora.types), pl.damage_of(b, flora, machop, rough, False, True),
+             pl.damage_of(b, machop, flora, chop, False, True))
+    ok = (twins == ["Fairy"] and after[0] == ["Fairy"] and 1.4 <= after[1] / max(1, before[0]) <= 1.6
+          and abs(after[2] * 2 - before[1]) <= 2)
+    return [("Protean: Floragato becomes a Fairy type, with STAB for Play Rough, on its twin's rows", ok,
+             f"twins {twins}; before (Play Rough, Karate Chop) {before}; after (types, Play Rough, Karate Chop) {after}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
-    scores it +10 asleep, as the game does); Aqua Ring heals a sixteenth at
-    each turn's end (the Scoring Agent, 2026-10-01)."""
+    scores it +10 asleep, as the game does), and one that calls Rest does
+    nothing, as Rest fails on a sleeping user (2026-10-13); Aqua Ring heals a
+    sixteenth at each turn's end (the Scoring Agent, 2026-10-01)."""
     from .test_fightai import battle
     out = []
     b = battle([("Snorlax", 40, "Thick Fat", ["Sleep Talk", "Body Slam", "Aqua Ring"])],
@@ -1305,6 +1879,18 @@ def sleep_talk_and_aqua_ring_checks():
     fs.end_of_turn(b)
     out.append(("Aqua Ring heals a sixteenth at the turn's end", lax.hp - before == lax.maxhp // 16,
                 f"{before} -> {lax.hp} of {lax.maxhp}"))
+    # Rest fails on a sleeping user (approved 2026-10-13), so in the
+    # readings' battle a Sleep Talk that calls it leaves Snorlax's HP alone.
+    b = battle([("Snorlax", 40, "Thick Fat", ["Sleep Talk", "Rest"])], [("Machop", 40, "Guts", ["Cross Chop"])])
+    lax, champ = b.b.cur(), b.p.cur()
+    seen = set()
+    for seed in range(20):
+        b.rng, b.dice = random.Random(seed), pl.RunDice(random.Random(seed), True)
+        lax.hp, lax.status, lax.sleep = lax.maxhp // 2, "slp", 3
+        pl.use_move(b, lax, fs.move("Sleep Talk"), champ, True)
+        seen.add((lax.hp == lax.maxhp // 2, lax.sleep))
+    out.append(("search: a Sleep Talk that calls Rest leaves the sleeper's HP and sleep running down",
+                seen == {(True, 2)}, f"(HP unchanged, sleep left) {sorted(seen)}"))
     return out
 
 
@@ -1723,6 +2309,24 @@ def main():
     results += held_state_checks()
     results += study_effect_checks()
     results += neutralizing_gas_checks()
+    results += unburden_checks()
+    results += intimidate_once_checks()
+    results += two_hit_checks()
+    results += hit_by_hit_checks()
+    results += protect_checks()
+    results += pp_checks()
+    results += confusion_checks()
+    results += curse_rest_checks()
+    results += mist_intimidate_checks()
+    results += ai_field_checks()
+    results += future_sight_checks()
+    results += disable_and_nightmare_checks()
+    results += pivot_checks()
+    results += ice_body_checks()
+    results += readings_damage_checks()
+    results += absorbing_ability_checks()
+    results += roost_checks()
+    results += protean_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

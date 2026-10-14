@@ -208,6 +208,36 @@ def check_flag_numbers(results):
                     else f"missing {missing[:3]}, {len(values) - len(set(values))} shared"))
 
 
+def check_exact_types(results, blob):
+    """A Pokemon may bring exact types (species_data with exact_types, the
+    fight simulator's Roost and Protean twins), which the runner builds on an
+    alias of its species: the engine's deep merge of overrides would keep a
+    second type under one. A Pelipper typed Water alone takes Earthquake
+    and half Thunderbolt's damage; typed Water without the mark it stays
+    Water and Flying, as before."""
+    iv = {k: 31 for k in ("hp", "at", "df", "sp", "sa", "sd")}
+    ev = {k: 0 for k in iv}
+    base = {"level": 50, "nature": "Hardy", "ivs": iv, "evs": ev}
+    pel = blob["poks"]["Pelipper"]
+    own = {"bs": {k: pel["bs"][k] for k in STATS}, "types": ["Water"]}
+    jobs = {"pokemon": {
+        "dig": dict(base, species="Diglett"), "pika": dict(base, species="Pikachu"),
+        "pel": dict(base, species="Pelipper"),
+        "water": dict(base, species="Pelipper", species_data=dict(own, exact_types=True)),
+        "merged": dict(base, species="Pelipper", species_data=own),
+    }, "pairs": [[a, d, [m], None] for d in ("pel", "water", "merged")
+                 for a, m in (("dig", "Earthquake"), ("pika", "Thunderbolt"))]}
+    out = _run(blob, jobs)
+    top = {(r["a"], r["d"]): r["moves"][next(iter(r["moves"]))]["rolls"][-1] for r in out["results"]}
+    ok = (top[("dig", "pel")] == 0 and top[("dig", "water")] > 0 and top[("dig", "merged")] == 0
+          and abs(2 * top[("pika", "water")] - top[("pika", "pel")]) <= 2
+          and out["pokemon"]["water"]["types"] == ["Water"])
+    results.append(("a Pokemon with exact types is rowed on those types alone", ok,
+                    f"Earthquake (Water and Flying, Water alone, unmarked) {top[('dig', 'pel')]}, "
+                    f"{top[('dig', 'water')]}, {top[('dig', 'merged')]}; Thunderbolt {top[('pika', 'pel')]}, "
+                    f"{top[('pika', 'water')]}; the alias's types {out['pokemon']['water']['types']}"))
+
+
 def main():
     results = []
     blob = calc_export.build()
@@ -215,6 +245,7 @@ def main():
     check_damage(results, blob)
     check_eviolite(results, blob)
     check_ref_overrides(results, blob)
+    check_exact_types(results, blob)
     check_pool(results, blob)
     check_flag_numbers(results)
     width = max(len(label) for label, _, _ in results)
