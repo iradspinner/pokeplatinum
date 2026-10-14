@@ -217,5 +217,6 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_THROAT_CHOP]                      = subscript_throat_chop,
     [MOVE_SUBSCRIPT_PTR_LUNAR_BLESSING]                   = subscript_lunar_blessing,
     [MOVE_SUBSCRIPT_PTR_RECOIL_1_3_CHANCE_TO_CONFUSE]     = subscript_recoil_1_3_chance_to_confuse,
+    [MOVE_SUBSCRIPT_PTR_REDUCE_TARGET_PP_HIT]             = subscript_reduce_target_pp_hit,
 };
 // clang-format on
