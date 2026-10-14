@@ -51,10 +51,10 @@
             "level": 17,
             "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_CURSE",
                 "MOVE_REST",
                 "MOVE_SLEEP_TALK",
-                "MOVE_BODY_SLAM"
+                "MOVE_BODY_SLAM",
+                "MOVE_BITE"
             ],
             "iv_scale": 255,
             "nature": "NATURE_CAREFUL",
