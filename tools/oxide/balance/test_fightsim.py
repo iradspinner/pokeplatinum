@@ -1517,6 +1517,22 @@ def check_stored_power(results):
     results.append(("Stored Power and Power Trip gain 20 power a raised stage", got == want, f"{got}"))
 
 
+def check_hard_press(results):
+    """Hard Press (approved 2026-10-14; BattleScript_ComputedMovePower): up
+    to 100 power by the share of its HP the target has left, at least 1. A
+    row of 100 stands for the calculator's at full HP; a Technician holder's
+    row of 100 gains its half once the power falls to 60."""
+    def hit(hp, tech=False):
+        b, p, foe = battle(["Hard Press"], ["Tackle"], {("p", "Hard Press"): [100] * 16})
+        p.ability = "Technician" if tech else None
+        foe.hp = hp
+        return b.damage(p, foe, fs.move("Hard Press"), roll=0)
+    got = {"full HP": hit(100), "half HP": hit(50), "a quarter": hit(25), "1 HP": hit(1),
+           "half HP, Technician": hit(50, tech=True)}
+    want = {"full HP": 100, "half HP": 50, "a quarter": 25, "1 HP": 1, "half HP, Technician": 75}
+    results.append(("Hard Press weakens with its target's HP", got == want, f"{got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1759,6 +1775,7 @@ def main():
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
+                  check_hard_press,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -1983,6 +1983,23 @@ def stored_power_checks():
              f"Espeon's top roll at no stage {plain}, at +2 Sp. Atk and +1 Speed {boosted}")]
 
 
+def hard_press_checks():
+    """Hard Press on the calculator's real rows (approved 2026-10-14): a
+    Magnezone's into a Snorlax at a quarter of its HP has 25 power, a
+    quarter of its full-HP row's 100, in the readings' damage, where it hit
+    as at full HP."""
+    from .test_fightai import battle
+    b = battle([("Magnezone", 40, "Sturdy", ["Hard Press"])], [("Snorlax", 40, "Thick Fat", ["Body Slam"])])
+    mag, lax = b.b.cur(), b.p.cur()
+    hp = fs.move("Hard Press")
+    full = pl.damage_of(b, mag, lax, hp, False, True)
+    lax.hp = lax.maxhp // 4
+    quarter = pl.damage_of(b, mag, lax, hp, False, True)
+    ok = abs(quarter - full / 4) <= 2
+    return [("Hard Press into a target at a quarter of its HP has a quarter the power on the real rows", ok,
+             f"Magnezone's top roll at full HP {full}, at a quarter {quarter}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2460,6 +2477,7 @@ def main():
     results += drop_answer_checks()
     results += technician_power_checks()
     results += stored_power_checks()
+    results += hard_press_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

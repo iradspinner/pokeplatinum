@@ -2308,6 +2308,12 @@ def state_mult(b, att, dfn, mv):
         # (TrainerAI_ComputedMovePower). Until 2026-10-14 it hit at 20 power
         # whatever the stages (Ian approved the fix).
         m *= power_ratio(att, 20, 20 + 20 * sum(s for s in att.stages.values() if s > 0))
+    if mv.const == "MOVE_HARD_PRESS":
+        # BattleScript_ComputedMovePower: up to 100 by the share of its HP
+        # the target has left, at least 1; the row is made at full HP. Until
+        # 2026-10-14 it hit at full power whatever the target's HP (Ian
+        # approved the fix).
+        m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
     reach = reach_mult(mv, dfn)
     if reach > 1:
         # The effect scripts double the power (POWER_MULTI 20) before
