@@ -55,7 +55,7 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 
 ## The named Galactic fights: Ian's themes (2026-10-13)
 
-The balance pass of step 12 erased most of these themes, and Ian restated them on 2026-10-13. The named Galactic fights are mostly anything goes, so long as each is fun, interesting and thematic: their designs may break the trainer-design limits on purpose. Each keeps its theme across its fights, rising in power.
+The balance pass of step 12 erased most of these themes, and Ian restated them on 2026-10-13. The named Galactic fights are mostly anything goes, so long as each is fun, interesting and thematic: their designs may break the trainer-design limits on purpose. Each keeps its theme across its fights, rising in power. Each team is a full redesign, worked in play order (Ian, 2026-10-13), and no comb landing overwrites one (the tracker's comb entry lists the files).
 
 | Trainer | Fights | Theme |
 |---|---|---|
@@ -67,5 +67,5 @@ The balance pass of step 12 erased most of these themes, and Ian restated them o
 | Officer Moira | Eterna 3F, Lake Verity, Mt. Coronet 5F | Future Sight on every member that can learn it, with Ice and hail |
 | Somnu and Moira | Lake Verity, one battle against both | Three each: sleep beside Future Sight and hail |
 | Officer Hesperid | Lake Valor, Mt. Coronet 6F | Platinum Kaizo teambuilding with no holds barred (BrightPowder, Petaya Berry, Explosion with Pursuit and Baton Pass, Choice items), on rarely used Pokemon in weird combinations with atypical movesets: the weirder and harder, the better |
-| Officer Argo | Celestic Town | The loosest; free to change entirely |
+| Officer Argo | Celestic Town, Mt. Coronet 6F | The loosest; free to change entirely |
 | Tyche and Hermes | Spear Pillar, one battle against both | Protect beside Explosion |
