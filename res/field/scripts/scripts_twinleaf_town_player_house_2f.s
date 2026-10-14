@@ -888,11 +888,13 @@ TestKit_MoveSets4:
     AddListMenuEntry TestKit_Text_MenuSet83, 1
     AddListMenuEntry TestKit_Text_MenuSet84, 2
     AddListMenuEntry TestKit_Text_MenuSet85, 3
+    AddListMenuEntry TestKit_Text_MenuSet86, 4
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet82
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet83
     GoToIfEq VAR_0x8004, 2, TestKit_MoveSet84
     GoToIfEq VAR_0x8004, 3, TestKit_MoveSet85
+    GoToIfEq VAR_0x8004, 4, TestKit_MoveSet86
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -2010,6 +2012,25 @@ TestKit_MoveSet85:
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SOFTBOILED
     SetVar VAR_0x8006, MOVE_EERIE_SPELL
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 86: Burning Bulwark's burn (Ian, 2026-10-14): it protects its user as
+   Protect does and burns an attacker that makes contact with it, as Baneful
+   Bunker poisons one. Against a wild Rattata that knows Tackle and Swift,
+   picking one at random: a Tackle into the bulwark brings "MEW protected
+   itself!" and then "The wild RATTATA was burned!"; once it is burned,
+   later Tackles bring only the first line, as does a Swift, which makes no
+   contact. Used two turns running it can fail, as Protect can, so use
+   Splash between. Before the change it was a plain Protect. */
+TestKit_MoveSet86:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    SetVar VAR_0x8006, MOVE_BURNING_BULWARK
     SetVar VAR_0x8007, MOVE_RECOVER
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_TACKLE

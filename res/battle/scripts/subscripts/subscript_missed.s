@@ -29,9 +29,11 @@ _058:
 _063:
     // Oxide: a side guard names itself; the C leaves MOVE_NONE here when the
     // defender's own Protect stopped the move, or names the defender's
-    // Spiky Shield or Baneful Bunker when the move made contact with it.
+    // Spiky Shield, Baneful Bunker or Burning Bulwark when the move made
+    // contact with it.
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_SPIKY_SHIELD, _spiky_shield
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_BANEFUL_BUNKER, _baneful_bunker
+    CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_BURNING_BULWARK, _burning_bulwark
     CompareVarToValue OPCODE_NEQ, BTLVAR_MSG_MOVE_TEMP, MOVE_NONE, _side_guard
     // {0} protected itself!
     PrintMessage BattleStrings_Text_PokemonProtectedItself_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
@@ -68,6 +70,22 @@ _baneful_bunker:
     UpdateVarFromVar OPCODE_SET, BTLVAR_SIDE_EFFECT_MON, BTLVAR_ATTACKER
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_MOVE_EFFECT
     Call BATTLE_SUBSCRIPT_POISON
+    GoTo _179
+
+_burning_bulwark:
+    // {0} protected itself!
+    PrintMessage BattleStrings_Text_PokemonProtectedItself_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
+    Wait 
+    WaitButtonABTime 30
+    // Oxide: burn the attacker if it has no status yet, as hg-engine does
+    // (Ian, 2026-10-14). The burn subscript's own checks decide the rest:
+    // Fire types, Safeguard and the attacker's own Substitute stop it
+    // without a word, and Water Veil, Water Bubble, Purifying Salt and
+    // Leaf Guard in the sun stop it and say so, as for Baneful Bunker.
+    CompareMonDataToValue OPCODE_NEQ, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_NONE, _179
+    UpdateVarFromVar OPCODE_SET, BTLVAR_SIDE_EFFECT_MON, BTLVAR_ATTACKER
+    UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_MOVE_EFFECT
+    Call BATTLE_SUBSCRIPT_BURN
     GoTo _179
 
 _side_guard:

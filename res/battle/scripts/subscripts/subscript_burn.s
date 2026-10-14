@@ -94,6 +94,10 @@ _211:
 _212:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _312
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY, _312
+    // Oxide: a burn that comes as a move's effect on the attacker (Beak
+    // Blast's heat, Burning Bulwark) fails without a word, as the poison
+    // subscript has it for Baneful Bunker.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_MOVE_EFFECT, _312
     WaitButtonABTime 30
     Call BATTLE_SUBSCRIPT_BUT_IT_FAILED
     GoTo _312
@@ -109,6 +113,7 @@ _228:
 _246:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _312
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY, _312
+    CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_MOVE_EFFECT, _312 // Oxide: a Fire type, without a word
     WaitButtonABTime 30
     // It doesn’t affect {0}...
     PrintMessage BattleStrings_Text_ItDoesntAffectPokemon_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
@@ -117,9 +122,14 @@ _246:
 _264:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _312
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY, _312
+    // Oxide: a move's effect on the attacker names the ability without
+    // printing the attacker's move a second time.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_MOVE_EFFECT, _prevents_burns
     PrintAttackMessage 
     Wait 
     WaitButtonABTime 30
+
+_prevents_burns:
     // {0}’s {1} prevents burns!
     PrintMessage BattleStrings_Text_PokemonsAbilityPreventsBurns_Ally, TAG_NICKNAME_ABILITY, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON
     GoTo _305
@@ -129,6 +139,7 @@ _264:
 
 _294:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _312
+    CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_MOVE_EFFECT, _312 // Oxide: Safeguard, without a word
     WaitButtonABTime 30
     // {0} is protected by Safeguard!
     PrintMessage BattleStrings_Text_PokemonIsProtectedBySafeguard_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON

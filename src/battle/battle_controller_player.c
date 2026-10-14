@@ -3372,14 +3372,16 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         battleCtx->msgMoveTemp = battleCtx->turnFlags[defender].protecting ? MOVE_NONE : sideGuard;
 
         // Oxide: Spiky Shield hurts an attacker that made contact with it,
-        // and Baneful Bunker poisons it, as in hg-engine
-        // (BtlCmd_checkprotectcontactmoves); the missed subscript does it
-        // once it has said the defender protected itself. The accuracy roll
-        // came first, and a miss it rolled would stop the poison, though
-        // the shield stopped the move before any roll in the later games.
+        // Baneful Bunker poisons it and Burning Bulwark burns it, as in
+        // hg-engine (BtlCmd_checkprotectcontactmoves); the missed subscript
+        // does it once it has said the defender protected itself. The
+        // accuracy roll came first, and a miss it rolled would stop the
+        // poison or the burn, though the shield stopped the move before any
+        // roll in the later games, so the miss is cleared here.
         if (battleCtx->turnFlags[defender].protecting
             && (battleCtx->moveProtect[defender] == MOVE_SPIKY_SHIELD
-                || battleCtx->moveProtect[defender] == MOVE_BANEFUL_BUNKER)
+                || battleCtx->moveProtect[defender] == MOVE_BANEFUL_BUNKER
+                || battleCtx->moveProtect[defender] == MOVE_BURNING_BULWARK)
             && Battler_MoveMakesContact(battleCtx, attacker, move)) {
             battleCtx->msgMoveTemp = battleCtx->moveProtect[defender];
             battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
