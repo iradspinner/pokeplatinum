@@ -2169,6 +2169,23 @@ def check_payback(results):
     results.append(("Payback doubles once, not on top of the calculator's own doubling", got == want, f"{got}"))
 
 
+def check_leech_seed_sap(results):
+    """Leech Seed's sap (approved 2026-10-14; MON_COND_CHECK_STATE_LEECH_SEED
+    and subscript_leech_seed_effect): an eighth from the seeded Pokemon to
+    its seeder, the seeder given only what the sap took, and nothing at all
+    the turn the seeder is down."""
+    def tick(seeded_hp, seeder_hp):
+        b, p, foe = battle(["Leech Seed"], ["Tackle"], {})
+        foe.seeded = True
+        foe.hp, p.hp = seeded_hp, seeder_hp
+        fs.end_of_turn(b)
+        return foe.hp, p.hp
+    got = {"full": tick(100, 10), "the seeded at 3 HP": tick(3, 10), "the seeder down": tick(100, 0)}
+    want = {"full": (88, 22), "the seeded at 3 HP": (0, 13), "the seeder down": (100, 0)}
+    results.append(("Leech Seed gives what it saps, and saps nothing with its seeder down", got == want,
+                    f"(the seeded's HP, the seeder's) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2418,7 +2435,7 @@ def main():
                   check_bad_dreams, check_marvel_scale, check_shed_skin,
                   check_suction_cups, check_plus_minus, check_stench, check_unnerve,
                   check_telepathy, check_steadfast, check_starf_berry,
-                  check_sticky_barb, check_payback,
+                  check_sticky_barb, check_payback, check_leech_seed_sap,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

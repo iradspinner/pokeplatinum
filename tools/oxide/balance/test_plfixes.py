@@ -2498,6 +2498,31 @@ def payback_checks():
              f"slower in the rows {slower}; top rolls (Payback, Bite) {rows}; dealt moving first, second {second}")]
 
 
+def leech_seed_sap_checks():
+    """Leech Seed in the readings' battle (approved 2026-10-14): Gardenia's
+    kind of Leech Seed Cherrim, at low HP, gets back only the 3 HP a
+    seeded Machop had left; with the Cherrim fainted the seeded Machop
+    loses nothing at the turn's end."""
+    from .test_fightai import battle
+    out = {}
+    for case in ("low", "seeder down"):
+        b = battle([("Cherrim", 24, "Flower Gift", ["Leech Seed"])], [("Machop", 24, "Guts", ["Karate Chop"])])
+        cherrim, chop = b.b.cur(), b.p.cur()
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        chop.seeded = True
+        cherrim.hp = 10
+        if case == "low":
+            chop.hp = 3
+        else:
+            cherrim.hp = 0
+        before = (chop.hp, cherrim.hp)
+        fs.end_of_turn(b)
+        out[case] = (before, (chop.hp, cherrim.hp))
+    ok = out["low"][1] == (0, 13) and out["seeder down"][1] == out["seeder down"][0]
+    return [("Leech Seed gives back what it saps and saps nothing with its seeder down, in the readings", ok,
+             f"(Machop's HP, Cherrim's) before and after {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3000,6 +3025,7 @@ def main():
     results += sticky_barb_checks()
     results += rivalry_checks()
     results += payback_checks()
+    results += leech_seed_sap_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

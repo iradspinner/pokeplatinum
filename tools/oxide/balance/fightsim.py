@@ -3653,15 +3653,22 @@ def _end_of_turn_mon(b, side, m):
     # MON_COND_CHECK_STATE_LEECH_SEED skips a Magic Guard holder whole: no
     # HP sapped and none given (added 2026-10-14, Ian approved the fix).
     if m.seeded and m.ability != "Magic Guard":
+        # The step also needs a standing Pokemon in the seeder's slot, so the
+        # turn its seeder faints nothing is sapped; and the seeder is given
+        # what the sap took (subscript_leech_seed_effect reads BTLVAR_HIT_DAMAGE),
+        # never more than the HP the seeded Pokemon had left. Until 2026-10-14
+        # the sap ran with the seeder down and always gave a full eighth (Ian
+        # approved the fix).
         foe = foe_of(b, m)
-        amount = m.maxhp // 8
-        hurt(b, m, amount)
         if foe.alive():
+            amount = m.maxhp // 8
+            sapped = min(amount, m.hp)
+            hurt(b, m, amount)
             # Leech Seed heals no blocked seeder, and a Liquid Ooze holder's
             # sap hurts the seeder instead (drain).
-            drain(b, foe, m, amount)
-        if battle_over(b):
-            return False
+            drain(b, foe, m, sapped)
+            if battle_over(b):
+                return False
     if m.alive():
         if m.status in ("psn", "tox") and m.ability == "Poison Heal":
             heal(m, m.maxhp // 8)        # Poison Heal: poison heals it an eighth instead
