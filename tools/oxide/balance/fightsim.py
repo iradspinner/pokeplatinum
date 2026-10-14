@@ -1298,6 +1298,27 @@ def heal(mon, amount):
     mon.hp = min(mon.maxhp, mon.hp + max(0, amount))
 
 
+def drain(b, att, dfn, gain):
+    """What a drain gives att off dfn, a draining move's hit or Leech Seed's
+    sap (subscript_drain_half_damage_dealt, _three_quarters, the Dream Eater
+    and Leech Seed subscripts): `gain` HP back, unless dfn has Liquid Ooze,
+    which the engine checks first, before Heal Block, and which turns the
+    heal into that much damage to att, unless att has Magic Guard (then the
+    message names both abilities). Heal Block on att stops only the heal.
+    Until 2026-10-14 Liquid Ooze did nothing (Ian approved the fix)."""
+    if gain <= 0:
+        return
+    if dfn.ability == "Liquid Ooze":
+        if att.ability == "Magic Guard":
+            reveal(att)
+            reveal(dfn)
+        else:
+            hurt(b, att, gain)
+        return
+    if not heal_blocked(att):
+        heal(att, gain)
+
+
 def foe_of(b, mon):
     """The foe it faces: in a double battle the first standing one."""
     side = b.b if mon.side == "p" else b.p
@@ -1704,9 +1725,10 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     if e in RECOIL and att.ability not in RECOIL_PROOF:
         hurt(b, att, max(1, int(dealt * RECOIL[e])))
     # Draining (subscript_drain_half_damage_dealt, _three_quarters): Heal Block
-    # on the user stops the heal, not the damage.
-    if e in DRAIN and not heal_blocked(att):
-        heal(att, int(dealt * DRAIN[e]))
+    # on the user stops the heal, not the damage, and Liquid Ooze turns it
+    # into damage (drain).
+    if e in DRAIN:
+        drain(b, att, dfn, int(dealt * DRAIN[e]))
     if e == "RECHARGE_AFTER":
         att.recharge = True
     if e in SELF_KO or e == "FINAL_GAMBIT":
@@ -3137,8 +3159,10 @@ def _end_of_turn_mon(b, side, m):
         foe = foe_of(b, m)
         amount = m.maxhp // 8
         hurt(b, m, amount)
-        if foe.alive() and not heal_blocked(foe):     # Leech Seed heals no blocked seeder
-            heal(foe, amount)
+        if foe.alive():
+            # Leech Seed heals no blocked seeder, and a Liquid Ooze holder's
+            # sap hurts the seeder instead (drain).
+            drain(b, foe, m, amount)
         if battle_over(b):
             return False
     if m.alive():

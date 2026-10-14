@@ -1377,6 +1377,41 @@ def check_magic_guard(results):
                     f"recoil and crash: HP; binding and Leech Seed: HP, bind count, the foe's HP from 50)"))
 
 
+def check_liquid_ooze(results):
+    """Liquid Ooze (approved 2026-10-14; subscript_drain_half_damage_dealt
+    and subscript_leech_seed_effect): what a drain would give its user, a
+    draining hit's or Leech Seed's, it takes from the user instead, before
+    Heal Block is looked at, unless the user has Magic Guard; a target
+    without it gives the heal as before."""
+    def giga(ooze, guard=False, blocked=False):
+        b, p, foe = battle(["Giga Drain"], ["Tackle"], {("p", "Giga Drain"): [40] * 16})
+        b.st["first_battle"] = True
+        p.hp = 50
+        foe.ability = "Liquid Ooze" if ooze else None
+        p.ability = "Magic Guard" if guard else None
+        p.heal_block = 5 if blocked else 0
+        fs.attack(b, p, fs.move("Giga Drain"), foe, True)
+        return p.hp
+
+    def seed(ooze, guard=False):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        p.hp = 50
+        foe.ability = "Liquid Ooze" if ooze else None
+        p.ability = "Magic Guard" if guard else None
+        foe.seeded = True
+        fs.end_of_turn(b)
+        return p.hp, foe.hp
+    got = {"Giga Drain into Liquid Ooze": giga(True), "Giga Drain, a Magic Guard user": giga(True, guard=True),
+           "Giga Drain under Heal Block": giga(True, blocked=True), "Giga Drain, no ooze": giga(False),
+           "Leech Seed on Liquid Ooze": seed(True), "Leech Seed, a Magic Guard seeder": seed(True, guard=True),
+           "Leech Seed, no ooze": seed(False)}
+    want = {"Giga Drain into Liquid Ooze": 30, "Giga Drain, a Magic Guard user": 50, "Giga Drain under Heal Block": 30,
+            "Giga Drain, no ooze": 70, "Leech Seed on Liquid Ooze": (38, 88),
+            "Leech Seed, a Magic Guard seeder": (50, 88), "Leech Seed, no ooze": (62, 88)}
+    results.append(("Liquid Ooze turns a drain's heal into damage, unless Magic Guard", got == want,
+                    f"the user's HP from 50 (and the seeded one's from 100) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1617,7 +1652,7 @@ def main():
                   check_curse_and_rest, check_mist_and_intimidate, check_ai_fields, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
-                  check_roost, check_protean, check_magic_guard,
+                  check_roost, check_protean, check_magic_guard, check_liquid_ooze,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

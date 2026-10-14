@@ -713,11 +713,12 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         fs.hurt(b, att, max(1, att.maxhp // 4))
     if e in fs.RECOIL and att.ability not in fs.RECOIL_PROOF:     # Rock Head and Magic Guard
         fs.hurt(b, att, max(1, int(dealt * fs.RECOIL[e])))
-    if e in fs.DRAIN and not fs.heal_blocked(att):
+    if e in fs.DRAIN:
         # Big Root raises what a draining move restores by 30%; Heal Block on
-        # the user stops the heal, not the damage.
+        # the user stops the heal, not the damage, and the target's Liquid
+        # Ooze turns it into damage (fightsim.drain).
         gain = int(dealt * fs.DRAIN[e])
-        fs.heal(att, int(gain * 1.3) if att.item == "Big Root" else gain)
+        fs.drain(b, att, dfn, int(gain * 1.3) if att.item == "Big Root" else gain)
     if e in ("EAT_BERRY",) and dfn.item and "Berry" in dfn.item:
         # Bug Bite and Pluck eat the target's berry and take its effect.
         berry, dfn.item = dfn.item, None

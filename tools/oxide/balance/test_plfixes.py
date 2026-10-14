@@ -1885,6 +1885,35 @@ def magic_guard_checks():
              f"(HP lost coming in, HP lost to the seed, Cherrim's heal, maximum HP) {out}")]
 
 
+def liquid_ooze_checks():
+    """Liquid Ooze on the calculator's real rows in the readings' battle
+    (approved 2026-10-14): the Tentacool in Roark's and Gardenia's boxes
+    can carry it, and then Gardenia's Roserade loses to its Giga Drain what
+    it would have healed, and her Cherrim to its Leech Seed, where a Clear
+    Body Tentacool heals them both."""
+    from .test_fightai import battle
+    b = battle([("Roserade", 26, "Natural Cure", ["Giga Drain"]), ("Cherrim", 24, "Flower Gift", ["Leech Seed"])],
+               [("Tentacool", 26, "Liquid Ooze", ["Bubble Beam"]), ("Tentacool", 26, "Clear Body", ["Bubble Beam"])])
+    rose, cherrim = b.b.mons
+    out = {}
+    for i, cool in enumerate(b.p.mons):
+        fs.switch_in(b, b.p, i)
+        fs.switch_in(b, b.b, 0)
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        rose.hp, cool.hp = rose.maxhp // 2, cool.maxhp
+        pl.use_move(b, rose, fs.move("Giga Drain"), cool, True)
+        drained = (cool.maxhp - cool.hp, rose.hp - rose.maxhp // 2)
+        fs.switch_in(b, b.b, 1)
+        cherrim.hp = cherrim.maxhp // 2
+        pl.use_move(b, cherrim, fs.move("Leech Seed"), cool, True)
+        fs.end_of_turn(b)
+        out[cool.ability] = drained + (cherrim.hp - cherrim.maxhp // 2,)
+    ooze, plain = out["Liquid Ooze"], out["Clear Body"]
+    ok = ooze[1] == -(ooze[0] // 2) and ooze[2] < 0 and plain[1] == plain[0] // 2 and plain[2] > 0
+    return [("Liquid Ooze: Roserade's Giga Drain and Cherrim's Leech Seed hurt them on the real rows", ok,
+             f"(Giga Drain's damage, Roserade's HP change, Cherrim's HP change at the turn's end) {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2358,6 +2387,7 @@ def main():
     results += roost_checks()
     results += protean_checks()
     results += magic_guard_checks()
+    results += liquid_ooze_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
