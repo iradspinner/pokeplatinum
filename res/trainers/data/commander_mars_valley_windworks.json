@@ -12,12 +12,12 @@
         {
             "species": "SPECIES_LIEPARD",
             "form": 0,
-            "level": 17,
+            "level": 18,
             "item": "ITEM_BLACKGLASSES",
             "moves": [
                 "MOVE_THUNDER_WAVE",
                 "MOVE_TAUNT",
-                "MOVE_FAINT_ATTACK",
+                "MOVE_DARK_PULSE",
                 "MOVE_U_TURN"
             ],
             "iv_scale": 255,
@@ -29,10 +29,10 @@
         {
             "species": "SPECIES_TORRACAT",
             "form": 0,
-            "level": 17,
+            "level": 18,
             "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_FLAME_WHEEL",
+                "MOVE_FIRE_FANG",
                 "MOVE_DOUBLE_KICK",
                 "MOVE_WILL_O_WISP",
                 "MOVE_U_TURN"
@@ -46,10 +46,10 @@
         {
             "species": "SPECIES_FLORAGATO",
             "form": 0,
-            "level": 17,
+            "level": 18,
             "item": "ITEM_MIRACLE_SEED",
             "moves": [
-                "MOVE_RAZOR_LEAF",
+                "MOVE_SEED_BOMB",
                 "MOVE_PLAY_ROUGH",
                 "MOVE_BITE",
                 "MOVE_QUICK_ATTACK"
@@ -63,13 +63,13 @@
         {
             "species": "SPECIES_GOLBAT",
             "form": 0,
-            "level": 17,
-            "item": "ITEM_LEFTOVERS",
+            "level": 18,
+            "item": "ITEM_SHARP_BEAK",
             "moves": [
-                "MOVE_WING_ATTACK",
-                "MOVE_BITE",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_HAZE"
+                "MOVE_DUAL_WINGBEAT",
+                "MOVE_LEECH_LIFE",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_CONFUSE_RAY"
             ],
             "iv_scale": 255,
             "nature": "NATURE_HASTY",
@@ -85,8 +85,8 @@
             "moves": [
                 "MOVE_FAKE_OUT",
                 "MOVE_FACADE",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_SHOCK_WAVE"
+                "MOVE_KNOCK_OFF",
+                "MOVE_THUNDERBOLT"
             ],
             "iv_scale": 255,
             "nature": "NATURE_JOLLY",

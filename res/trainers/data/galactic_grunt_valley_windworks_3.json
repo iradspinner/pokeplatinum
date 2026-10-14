@@ -19,7 +19,7 @@
             "moves": [
                 "MOVE_HYPNOSIS",
                 "MOVE_DREAM_EATER",
-                "MOVE_DRAIN_PUNCH",
+                "MOVE_PSYBEAM",
                 "MOVE_DISABLE"
             ],
             "iv_scale": 255,
@@ -37,7 +37,7 @@
                 "MOVE_HYPNOSIS",
                 "MOVE_HEX",
                 "MOVE_NIGHTMARE",
-                "MOVE_SLUDGE"
+                "MOVE_LICK"
             ],
             "iv_scale": 255,
             "nature": "NATURE_TIMID",
@@ -54,7 +54,7 @@
                 "MOVE_REST",
                 "MOVE_SLEEP_TALK",
                 "MOVE_BODY_SLAM",
-                "MOVE_BITE"
+                "MOVE_YAWN"
             ],
             "iv_scale": 255,
             "nature": "NATURE_CAREFUL",
