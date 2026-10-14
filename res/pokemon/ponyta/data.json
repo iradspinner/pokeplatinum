@@ -50,6 +50,7 @@
             [ 30, "MOVE_QUICK_ATTACK" ],
             [ 37, "MOVE_HEAT_WAVE" ],
             [ 42, "MOVE_BOUNCE" ],
+            [ 44, "MOVE_FIRE_LASH" ],
             [ 46, "MOVE_FLARE_BLITZ" ]
         ],
         "by_tm": [

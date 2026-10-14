@@ -89,6 +89,10 @@
                 "MOVE_SIGNAL_BEAM"
             ],
             [
+                38,
+                "MOVE_RISING_VOLTAGE"
+            ],
+            [
                 40,
                 "MOVE_BUG_BUZZ"
             ],

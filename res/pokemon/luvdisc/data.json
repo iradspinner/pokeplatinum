@@ -47,6 +47,7 @@
             [ 14, "MOVE_TAKE_DOWN" ],
             [ 17, "MOVE_LUCKY_CHANT" ],
             [ 19, "MOVE_ICY_WIND" ],
+            [ 20, "MOVE_HEART_STAMP" ],
             [ 22, "MOVE_ATTRACT" ],
             [ 27, "MOVE_SWEET_KISS" ],
             [ 31, "MOVE_WATER_PULSE" ],

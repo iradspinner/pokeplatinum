@@ -57,6 +57,7 @@
             [ 52, "MOVE_IRON_HEAD" ],
             [ 58, "MOVE_ROCK_TOMB" ],
             [ 61, "MOVE_PAYBACK" ],
+            [ 66, "MOVE_DOOM_DESIRE" ],
             [ 67, "MOVE_HEAL_BLOCK" ],
             [ 69, "MOVE_BODY_PRESS" ]
         ],

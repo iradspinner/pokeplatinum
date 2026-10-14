@@ -42,6 +42,7 @@
             [ 25, "MOVE_YAWN" ],
             [ 30, "MOVE_PSYBEAM" ],
             [ 33, "MOVE_DOUBLE_EDGE" ],
+            [ 36, "MOVE_MYSTICAL_POWER" ],
             [ 38, "MOVE_HEAL_BELL" ],
             [ 41, "MOVE_SAFEGUARD" ],
             [ 43, "MOVE_SIGNAL_BEAM" ],

@@ -47,6 +47,7 @@
             [ 36, "MOVE_AGILITY" ],
             [ 43, "MOVE_ICE_BEAM" ],
             [ 50, "MOVE_REFLECT" ],
+            [ 54, "MOVE_GLACIATE" ],
             [ 57, "MOVE_ROOST" ],
             [ 64, "MOVE_TAILWIND" ],
             [ 66, "MOVE_AIR_SLASH" ],

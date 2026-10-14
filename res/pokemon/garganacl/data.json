@@ -97,6 +97,10 @@
                 "MOVE_EARTHQUAKE"
             ],
             [
+                52,
+                "MOVE_DIAMOND_STORM"
+            ],
+            [
                 54,
                 "MOVE_ROCK_BLAST"
             ],

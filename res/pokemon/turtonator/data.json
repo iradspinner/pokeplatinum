@@ -101,6 +101,10 @@
                 "MOVE_FIRE_SPIN"
             ],
             [
+                50,
+                "MOVE_HEAT_CRASH"
+            ],
+            [
                 54,
                 "MOVE_SCALE_SHOT"
             ],

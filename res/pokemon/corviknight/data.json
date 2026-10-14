@@ -89,6 +89,10 @@
                 "MOVE_U_TURN"
             ],
             [
+                47,
+                "MOVE_POWER_TRIP"
+            ],
+            [
                 49,
                 "MOVE_BRAVE_BIRD"
             ],
@@ -99,6 +103,10 @@
             [
                 55,
                 "MOVE_BODY_PRESS"
+            ],
+            [
+                57,
+                "MOVE_SHIFT_GEAR"
             ],
             [
                 61,

@@ -49,6 +49,7 @@
             [ 61, "MOVE_DIVE" ],
             [ 63, "MOVE_SCALD" ],
             [ 69, "MOVE_EARTH_POWER" ],
+            [ 72, "MOVE_TAKE_HEART" ],
             [ 76, "MOVE_HEART_SWAP" ]
         ],
         "by_tm": [

@@ -69,6 +69,10 @@
                 "MOVE_SKITTER_SMACK"
             ],
             [
+                30,
+                "MOVE_CIRCLE_THROW"
+            ],
+            [
                 35,
                 "MOVE_TAUNT"
             ],

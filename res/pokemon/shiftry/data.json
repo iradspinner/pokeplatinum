@@ -38,6 +38,7 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 0, "MOVE_LEAF_TORNADO" ],
             [ 1, "MOVE_FAINT_ATTACK" ],
             [ 1, "MOVE_WHIRLWIND" ],
             [ 1, "MOVE_NASTY_PLOT" ],

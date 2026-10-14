@@ -54,6 +54,7 @@
             [ 47, "MOVE_EARTHQUAKE" ],
             [ 57, "MOVE_ROCK_TOMB" ],
             [ 59, "MOVE_IRON_DEFENSE" ],
+            [ 61, "MOVE_MIGHTY_CLEAVE" ],
             [ 65, "MOVE_FIRE_PUNCH" ],
             [ 70, "MOVE_HYPER_BEAM" ],
             [ 73, "MOVE_THROAT_CHOP" ]

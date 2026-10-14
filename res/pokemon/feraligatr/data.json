@@ -49,6 +49,7 @@
             [ 30, "MOVE_AGILITY" ],
             [ 32, "MOVE_CRUNCH" ],
             [ 34, "MOVE_BULLDOZE" ],
+            [ 35, "MOVE_CHIP_AWAY" ],
             [ 37, "MOVE_SLASH" ],
             [ 42, "MOVE_BRICK_BREAK" ],
             [ 45, "MOVE_SCREECH" ],

@@ -54,6 +54,7 @@
             [ 34, "MOVE_ROCK_POLISH" ],
             [ 38, "MOVE_CURSE" ],
             [ 41, "MOVE_IRON_HEAD" ],
+            [ 44, "MOVE_HARD_PRESS" ],
             [ 46, "MOVE_CRUNCH" ],
             [ 49, "MOVE_DOUBLE_EDGE" ],
             [ 54, "MOVE_ROCK_SLIDE" ],

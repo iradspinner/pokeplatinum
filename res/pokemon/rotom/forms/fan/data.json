@@ -45,6 +45,7 @@
             [ 29, "MOVE_OMINOUS_WIND" ],
             [ 35, "MOVE_HEX" ],
             [ 36, "MOVE_SUBSTITUTE" ],
+            [ 38, "MOVE_PARABOLIC_CHARGE" ],
             [ 43, "MOVE_CHARGE" ],
             [ 45, "MOVE_DARK_PULSE" ],
             [ 50, "MOVE_DISCHARGE" ],

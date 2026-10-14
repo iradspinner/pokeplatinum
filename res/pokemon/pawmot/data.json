@@ -101,6 +101,10 @@
                 "MOVE_WILD_CHARGE"
             ],
             [
+                46,
+                "MOVE_THUNDEROUS_KICK"
+            ],
+            [
                 49,
                 "MOVE_CLOSE_COMBAT"
             ],

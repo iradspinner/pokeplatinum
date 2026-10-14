@@ -53,6 +53,7 @@
             [ 46, "MOVE_TRICK" ],
             [ 48, "MOVE_DAZZLING_GLEAM" ],
             [ 53, "MOVE_SIGNAL_BEAM" ],
+            [ 58, "MOVE_LUSTER_PURGE" ],
             [ 61, "MOVE_SWAGGER" ]
         ],
         "by_tm": [

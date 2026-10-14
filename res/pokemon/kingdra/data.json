@@ -55,6 +55,7 @@
             [ 54, "MOVE_SCALE_SHOT" ],
             [ 57, "MOVE_DRAGON_PULSE" ],
             [ 58, "MOVE_DRAGON_DANCE" ],
+            [ 62, "MOVE_CORE_ENFORCER" ],
             [ 65, "MOVE_BOUNCE" ],
             [ 67, "MOVE_DRACO_METEOR" ],
             [ 73, "MOVE_IRON_HEAD" ]

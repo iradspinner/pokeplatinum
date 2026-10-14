@@ -44,11 +44,13 @@
             [ 31, "MOVE_EMBARGO" ],
             [ 32, "MOVE_ROCK_THROW" ],
             [ 34, "MOVE_COSMIC_POWER" ],
+            [ 35, "MOVE_TWIN_BEAM" ],
             [ 42, "MOVE_HEAL_BLOCK" ],
             [ 45, "MOVE_PSYCHIC" ],
             [ 53, "MOVE_FUTURE_SIGHT" ],
             [ 55, "MOVE_EARTH_POWER" ],
             [ 57, "MOVE_AURA_SPHERE" ],
+            [ 59, "MOVE_MIST_BALL" ],
             [ 62, "MOVE_MOONBLAST" ],
             [ 64, "MOVE_SIGNAL_BEAM" ],
             [ 70, "MOVE_MOONLIGHT" ]

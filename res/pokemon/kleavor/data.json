@@ -97,6 +97,10 @@
                 "MOVE_ACROBATICS"
             ],
             [
+                48,
+                "MOVE_MIGHTY_CLEAVE"
+            ],
+            [
                 51,
                 "MOVE_LEECH_LIFE"
             ],

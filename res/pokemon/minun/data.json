@@ -46,6 +46,7 @@
             [ 17, "MOVE_ENCORE" ],
             [ 21, "MOVE_CHARM" ],
             [ 27, "MOVE_ICY_WIND" ],
+            [ 28, "MOVE_ELECTRO_BALL" ],
             [ 29, "MOVE_SWIFT" ],
             [ 31, "MOVE_FAKE_TEARS" ],
             [ 35, "MOVE_CHARGE" ],

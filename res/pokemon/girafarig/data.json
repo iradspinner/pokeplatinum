@@ -51,6 +51,7 @@
             [ 23, "MOVE_BATON_PASS" ],
             [ 28, "MOVE_ASSURANCE" ],
             [ 32, "MOVE_DOUBLE_HIT" ],
+            [ 34, "MOVE_TWIN_BEAM" ],
             [ 37, "MOVE_PSYCHIC" ],
             [ 41, "MOVE_ZEN_HEADBUTT" ],
             [ 46, "MOVE_CRUNCH" ],

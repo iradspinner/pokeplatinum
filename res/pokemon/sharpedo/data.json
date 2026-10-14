@@ -55,6 +55,7 @@
             [ 42, "MOVE_POISON_FANG" ],
             [ 45, "MOVE_AGILITY" ],
             [ 50, "MOVE_SKULL_BASH" ],
+            [ 54, "MOVE_TRIPLE_DIVE" ],
             [ 56, "MOVE_NIGHT_SLASH" ],
             [ 58, "MOVE_FIRE_FANG" ],
             [ 60, "MOVE_POISON_JAB" ],

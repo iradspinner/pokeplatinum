@@ -55,6 +55,7 @@
             [ 39, "MOVE_THROAT_CHOP" ],
             [ 42, "MOVE_TAUNT" ],
             [ 44, "MOVE_QUICK_ATTACK" ],
+            [ 46, "MOVE_JAW_LOCK" ],
             [ 47, "MOVE_EMBARGO" ],
             [ 52, "MOVE_TAKE_DOWN" ],
             [ 57, "MOVE_THIEF" ],

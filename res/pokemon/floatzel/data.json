@@ -54,6 +54,7 @@
             [ 39, "MOVE_WHIRLPOOL" ],
             [ 43, "MOVE_BUBBLE_BEAM" ],
             [ 45, "MOVE_AGILITY" ],
+            [ 54, "MOVE_TRIPLE_DIVE" ],
             [ 67, "MOVE_SWAGGER" ]
         ],
         "by_tm": [

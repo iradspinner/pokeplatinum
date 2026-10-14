@@ -38,6 +38,7 @@
             [ 7, "MOVE_BITE" ],
             [ 11, "MOVE_VINE_WHIP" ],
             [ 27, "MOVE_FAINT_ATTACK" ],
+            [ 28, "MOVE_LEAF_TORNADO" ],
             [ 29, "MOVE_BULLET_SEED" ],
             [ 30, "MOVE_SPIT_UP" ],
             [ 31, "MOVE_STOCKPILE" ],

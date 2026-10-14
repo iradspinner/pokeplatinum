@@ -46,6 +46,7 @@
             [ 19, "MOVE_HEADBUTT" ],
             [ 28, "MOVE_ICE_FANG" ],
             [ 31, "MOVE_CRUNCH" ],
+            [ 34, "MOVE_FROST_BREATH" ],
             [ 37, "MOVE_ICE_BEAM" ],
             [ 42, "MOVE_ROCK_BLAST" ],
             [ 44, "MOVE_POWER_GEM" ],
