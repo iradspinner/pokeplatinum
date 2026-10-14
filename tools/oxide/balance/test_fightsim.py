@@ -1895,6 +1895,25 @@ def check_sand_force(results):
     results.append(("Sand Force raises Ground, Rock and Steel moves in sand", got == want, f"{got}"))
 
 
+def check_bad_dreams(results):
+    """Bad Dreams (approved 2026-10-14; MON_COND_CHECK_STATE_BAD_DREAMS): a
+    sleeping foe of its holder loses an eighth of its HP at each turn's
+    end; an awake one loses nothing, nor a Magic Guard one, nor any once
+    the holder has fainted."""
+    def end(status="slp", ability=None, holder_up=True):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        foe.ability = "Bad Dreams"
+        if not holder_up:
+            foe.hp = 0
+        p.status, p.sleep, p.ability = status, 3 if status == "slp" else 0, ability
+        fs.end_of_turn(b)
+        return p.hp
+    got = {"asleep": end(), "awake": end(status=None), "asleep, Magic Guard": end(ability="Magic Guard"),
+           "the holder fainted": end(holder_up=False)}
+    want = {"asleep": 88, "awake": 100, "asleep, Magic Guard": 100, "the holder fainted": 100}
+    results.append(("Bad Dreams takes an eighth from a sleeping foe at the turn's end", got == want, f"{got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2141,6 +2160,7 @@ def main():
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
                   check_knockout_boost, check_trapping_exemptions, check_accuracy_abilities,
                   check_download, check_weather_abilities, check_sand_force,
+                  check_bad_dreams,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -3560,6 +3560,18 @@ def _end_of_turn_mon(b, side, m):
         hurt(b, m, m.maxhp // (4 if set(m.types) & {"Water", "Steel"} else 8))
         if battle_over(b):
             return False
+    # Bad Dreams (MON_COND_CHECK_STATE_BAD_DREAMS, after Salt Cure): a
+    # sleeping Pokemon without Magic Guard loses an eighth of its maximum HP
+    # for each foe with Bad Dreams standing on the field; the message names
+    # the holder's ability. Until 2026-10-14 it did nothing (Ian approved
+    # the fix).
+    if m.alive() and m.status == "slp" and m.ability != "Magic Guard":
+        for foe in (b.b if m.side == "p" else b.p).on_field():
+            if m.alive() and foe.alive() and foe.ability == "Bad Dreams":
+                reveal(foe)
+                hurt(b, m, max(1, m.maxhp // 8))
+                if battle_over(b):
+                    return False
     # Disable's count (MON_COND_CHECK_STATE_DISABLE, before Taunt's): it
     # runs down a turn's end at a time, and the move is free again at the
     # turn's end after it reached 0, or at once if the Pokemon no longer

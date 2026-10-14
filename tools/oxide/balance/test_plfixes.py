@@ -2245,6 +2245,23 @@ def sand_force_checks():
     return [("Sand Force: Power Gem at 13/10 in sand on the real rows", ok, f"(Sand Force, Sturdy) top rolls {got}")]
 
 
+def bad_dreams_checks():
+    """Bad Dreams in the readings' battle (approved 2026-10-14): Somnu's
+    Mt. Coronet Darkrai's Dark Void puts a Machop to sleep, and at the
+    turn's end it loses an eighth of its HP."""
+    from .test_fightai import battle
+    b = battle([("Darkrai", 40, "Bad Dreams", ["Dark Void"])], [("Machop", 40, "Guts", ["Karate Chop"])])
+    dark, chop = b.b.cur(), b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    chop.status, chop.sleep = "slp", 3
+    before = chop.hp
+    fs.end_of_turn(b)
+    lost = before - chop.hp
+    ok = lost == chop.maxhp // 8 and dark.revealed == "Bad Dreams"
+    return [("Bad Dreams: a sleeping Machop loses an eighth at the turn's end", ok,
+             f"lost {lost} of {chop.maxhp}; Darkrai's ability named {dark.revealed}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2735,6 +2752,7 @@ def main():
     results += download_checks()
     results += weather_ability_checks()
     results += sand_force_checks()
+    results += bad_dreams_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
