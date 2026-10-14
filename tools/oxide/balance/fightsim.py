@@ -2129,6 +2129,19 @@ def contact_ability(b, att, dfn, mv, dealt, chance, pick):
             reveal(att)
 
 
+# The abilities a hit of these types raises a stat of (subscript_justified,
+# subscript_rattled, by CurrentMoveType).
+HIT_RAISE = {"Justified": ({"Dark"}, "atk"), "Rattled": ({"Bug", "Ghost", "Dark"}, "spe")}
+
+
+def hit_type(b, mv):
+    """The type a move hits with as the battle records it: Weather Ball's
+    from the weather, every other move's its own."""
+    if mv.name == "Weather Ball":
+        return {"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
+    return mv.type
+
+
 def hit_ability(b, att, dfn, mv, chance):
     """The defender's on-hit abilities that any damaging hit sets off,
     contact or not (BattleSystem_TriggerAbilityOnHit's switch); whether one
@@ -2136,8 +2149,14 @@ def hit_ability(b, att, dfn, mv, chance):
     power, is one of its moves with PP left after the use and no move of
     its is disabled already, is disabled for three turn ends after this
     one's (disabledTurns 3, Disable's own count), its holder fainted or
-    not. Until 2026-10-14 it did nothing (Ian approved the fix)."""
+    not. Justified gains a stage of Attack from a Dark hit, and Rattled one
+    of Speed from a Bug, Ghost or Dark one, while their holder stands, each
+    raised directly (raise_own). Until 2026-10-14 none of the three did
+    anything (Ian approved the fix)."""
     a = dfn.ability
+    if a in HIT_RAISE:
+        types, stat = HIT_RAISE[a]
+        return dfn.alive() and hit_type(b, mv) in types and raise_own(dfn, stat, 1)
     if a == "Cursed Body":
         if (att.alive() and att is not dfn and att.disabled is None and mv.power
                 and any(m.name == mv.name for m in att.moves) and att.pp.get(mv.name, 0) > 0

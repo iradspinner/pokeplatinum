@@ -1690,6 +1690,37 @@ def check_cursed_body(results):
                     f"(the user's disabled move, its turns) {got}"))
 
 
+def check_justified_rattled(results):
+    """Justified and Rattled (approved 2026-10-14;
+    BattleSystem_TriggerAbilityOnHit): a Dark hit raises a Justified
+    holder's Attack a stage, a Bug, Ghost or Dark hit a Rattled holder's
+    Speed, contact or not, once a hit, but not after a knockout, not
+    through a Substitute and not past +6."""
+    def hit(move, ability, hp=100, stage=0, sub=0, rows=10):
+        b, p, foe = battle([move], ["Tackle"], {("p", move): [rows] * 16})
+        b.st["first_battle"] = True
+        foe.ability, foe.hp, foe.sub = ability, hp, sub
+        stat = {"Justified": "atk", "Rattled": "spe"}[ability]
+        foe.stages[stat] = stage
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return foe.stages[stat]
+    got = {"Justified, Bite": hit("Bite", "Justified"), "Justified, Tackle": hit("Tackle", "Justified"),
+           "Justified, Dark Pulse at +6": hit("Dark Pulse", "Justified", stage=6),
+           "Justified, a knockout": hit("Dark Pulse", "Justified", hp=5),
+           "Justified, a Substitute": hit("Dark Pulse", "Justified", sub=25),
+           "Rattled, Bug Buzz": hit("Bug Buzz", "Rattled"), "Rattled, Shadow Ball": hit("Shadow Ball", "Rattled"),
+           "Rattled, Pin Missile's hits": hit("Pin Missile", "Rattled", rows=6),
+           "Rattled, Ember": hit("Ember", "Rattled")}
+    want = {"Justified, Bite": 1, "Justified, Tackle": 0, "Justified, Dark Pulse at +6": 6,
+            "Justified, a knockout": 0, "Justified, a Substitute": 0,
+            "Rattled, Bug Buzz": 1, "Rattled, Shadow Ball": 1, "Rattled, Pin Missile's hits": None, "Rattled, Ember": 0}
+    hits = got.pop("Rattled, Pin Missile's hits")
+    want.pop("Rattled, Pin Missile's hits")
+    ok = got == want and 2 <= hits <= 5
+    results.append(("Justified and Rattled rise on their hits", ok, f"the stage after the hit {got}; "
+                                                                     f"Speed after a Pin Missile of 2 to 5 hits {hits}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1933,7 +1964,7 @@ def main():
                   check_roost, check_protean, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
-                  check_oblivious_taunt, check_cursed_body,
+                  check_oblivious_taunt, check_cursed_body, check_justified_rattled,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

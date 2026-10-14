@@ -2099,6 +2099,24 @@ def cursed_body_checks():
     return [("Cursed Body disables the player's move about three times in ten", ok, f"disabled in {disabled} of 300 hits")]
 
 
+def justified_checks():
+    """Justified in the readings' battle (approved 2026-10-14): Lucian's
+    Justified Gallade gains a stage of Attack from a player's Bite, and its
+    Close Combat then hits half again as hard; a Steadfast one gains none."""
+    from .test_fightai import battle
+    out = {}
+    for ab in ("Justified", "Steadfast"):
+        b = battle([("Gallade", 40, ab, ["Close Combat"])], [("Houndour", 40, "Flash Fire", ["Bite"])])
+        gal, dog = b.b.cur(), b.p.cur()
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        before = pl.damage_of(b, gal, dog, fs.move("Close Combat"), False, True)
+        pl.use_move(b, dog, fs.move("Bite"), gal, True)
+        out[ab] = (gal.stages["atk"], before, pl.damage_of(b, gal, dog, fs.move("Close Combat"), False, True))
+    ok = out["Justified"][0] == 1 and out["Steadfast"][0] == 0 and abs(out["Justified"][2] - out["Justified"][1] * 1.5) <= 2
+    return [("Justified: a Bite raises Gallade's Attack in the readings' battle", ok,
+             f"(Attack stage, Close Combat's top roll before, after) {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2582,6 +2600,7 @@ def main():
     results += mold_breaker_checks()
     results += oblivious_taunt_checks()
     results += cursed_body_checks()
+    results += justified_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
