@@ -631,7 +631,7 @@ def can_status(b, target, status):
     if target.status or not target.alive() or (target.sub and getattr(b, "passing_sub", None) is not target):
         return False
     side = b.p if target.side == "p" else b.b
-    if side.safeguard:
+    if side.safeguard and getattr(b, "passing_safeguard", None) is not target:
         return False
     t = set(target.types)
     # Oxide's Corrosion: a poison its holder gives with a move, as a status
@@ -1719,8 +1719,9 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     if dfn.ability == "Inner Focus":
         dfn.flinch = False       # Inner Focus: it never flinches
     if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and b.rng.random() * 100 < chance \
-            and not dfn.confused:
+            and not confusion_blocked(b, att, dfn, hit=True):
         dfn.confused = b.rng.randint(2, 5)
+        confusion_berry(dfn)
     if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance and not stat_drop_blocked(b, dfn, HIT_FOE_STAGES[e]):
         change_stages(dfn, HIT_FOE_STAGES[e])
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
@@ -2162,6 +2163,37 @@ def hit_aftermath(b, att, dfn, mv, chance, pick):
     contact_ability(b, att, dfn, mv, b.last_dealt, chance, pick)
 
 
+def confusion_blocked(b, att, dfn, hit=False):
+    """Whether subscript_confuse keeps att's move from confusing dfn: Own
+    Tempo, which a Mold Breaker attacker ignores (its message names it,
+    though not for a hit's added confusion); a confusion already running;
+    Safeguard on dfn's side, which an Infiltrator attacker passes
+    (CheckSafeguard); and for a hit (`hit`) a Covert Cloak, as Shield Dust,
+    which zeroes every added effect's chance, does. A Substitute has stopped
+    the move before this. Until 2026-10-14 only Own Tempo stopped it, and
+    not for a hit (Ian approved the fix)."""
+    if dfn.ability == "Own Tempo" and att.ability != "Mold Breaker":
+        if not hit:
+            reveal(dfn)
+        return True
+    if dfn.confused:
+        return True
+    if hit and dfn.item == "Covert Cloak":
+        return True
+    side = b.p if dfn.side == "p" else b.b
+    return bool(side.safeguard) and att.ability != "Infiltrator"
+
+
+def confusion_berry(mon):
+    """A Lum or Persim Berry cures confusion the moment it sets in, after
+    the move (BattleSystem_TriggerHeldItemOnStatus), and is used up; the
+    turn's end, which waited for it until 2026-10-14, is too late for a
+    holder that moves after."""
+    if mon.confused and mon.item in ("Lum Berry", "Persim Berry"):
+        mon.confused = 0
+        consume(mon)
+
+
 def cure_berry(mon):
     """A status-curing berry (or Lum) cures the status it was just given,
     and is used up."""
@@ -2312,10 +2344,13 @@ def give_status_by_move(b, att, dfn, mv, status):
     which an Infiltrator passes dfn's Substitute (can_status reads
     b.passing_sub, set only here and only for the call)."""
     b.passing_sub = dfn if dfn.sub and not sub_blocks(att, dfn, mv) else None
+    # An Infiltrator's move passes Safeguard too (CheckSafeguard,
+    # BattleSystem_InfiltratorPassesEffect), read by can_status.
+    b.passing_safeguard = dfn if att is not dfn and att.ability == "Infiltrator" else None
     try:
         return give_status(b, dfn, status)
     finally:
-        b.passing_sub = None
+        b.passing_sub = b.passing_safeguard = None
 
 
 def move_fails_first(att, mv, dfn, first):
@@ -2615,13 +2650,15 @@ def status_move(b, att, mv, dfn, first):
             return
         give_status_by_move(b, att, dfn, mv, STATUS_OF[e])
     elif e == "STATUS_CONFUSE":
-        if not sub_blocks(att, dfn, mv) and not dfn.confused and dfn.ability != "Own Tempo":
+        if not sub_blocks(att, dfn, mv) and not confusion_blocked(b, att, dfn):
             dfn.confused = b.rng.randint(2, 5)
+            confusion_berry(dfn)
     elif e in ("ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
         if not sub_blocks(att, dfn, mv):
             change_stages(dfn, {"atk": 2} if e.startswith("ATK") else {"spa": 1})
-            if not dfn.confused and dfn.ability != "Own Tempo":
+            if not confusion_blocked(b, att, dfn):
                 dfn.confused = b.rng.randint(2, 5)
+                confusion_berry(dfn)
     elif e == "STATUS_SLEEP_NEXT_TURN":
         if not dfn.status and not dfn.yawn and not sub_blocks(att, dfn, mv):
             dfn.yawn = 2

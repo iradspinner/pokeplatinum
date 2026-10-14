@@ -1429,6 +1429,36 @@ def protect_checks():
              f"{phantom}; Detect at run 4 worked {works / 4000:.3f}; planner's event {offered}")]
 
 
+def confusion_checks():
+    """Confusion on the readings' path, on the calculator's real rows
+    (approved 2026-10-14): a Machop's Dynamic Punch confuses an Oblivious
+    Slowpoke holding a Lum Berry, which cures it at once and is used up (it
+    waited for the turn's end), and leaves an Own Tempo Slowpoke unconfused
+    (it confused it); a Lumineon's Swagger into the player's side under
+    Safeguard raises the Attack and confuses nothing (it confused)."""
+    from .test_fightai import battle
+    b = battle([("Slowpoke", 16, "Oblivious", ["Tackle"], "Lum Berry"), ("Slowpoke", 16, "Own Tempo", ["Tackle"]),
+                ("Lumineon", 16, "Swift Swim", ["Swagger"])],
+               [("Machop", 16, "Guts", ["Dynamic Punch"])])
+    lum, slowpoke, lumineon = b.b.mons
+    machop = b.p.cur()
+    machop.stages["acc"] = 6                     # Dynamic Punch's 50% always lands
+    out = []
+    for target in (lum, slowpoke):
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        target.hp = target.maxhp
+        pl.attack(b, machop, fs.move("Dynamic Punch"), target, True)
+        out.append((target.ability, target.alive(), bool(target.confused), target.item))
+    machop.stages["acc"] = 0
+    b.p.safeguard = 5
+    lumineon.stages["acc"] = 6
+    pl.status_move(b, lumineon, fs.move("Swagger"), machop, True)
+    out.append(("Machop under Safeguard", bool(machop.confused), machop.stages["atk"]))
+    want = [("Oblivious", True, False, None), ("Own Tempo", True, False, None), ("Machop under Safeguard", False, 2)]
+    return [("the readings' confusion meets a Lum Berry at once, Own Tempo on a hit, and Safeguard", out == want,
+             f"(standing, confused, item; or confused, Attack stage) {out}")]
+
+
 def pp_checks():
     """PP on the readings' path, on the calculator's real rows (approved
     2026-10-14): a Staravia's Fly costs one PP over its two turns, the
@@ -2201,6 +2231,7 @@ def main():
     results += hit_by_hit_checks()
     results += protect_checks()
     results += pp_checks()
+    results += confusion_checks()
     results += future_sight_checks()
     results += disable_and_nightmare_checks()
     results += pivot_checks()

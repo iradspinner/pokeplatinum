@@ -793,6 +793,56 @@ def check_pp_engine(results):
                     f"Tackle at 1 PP into Pressure leaves {p.pp['Tackle']}"))
 
 
+def check_confusion_blockers(results):
+    """Confusion as subscript_confuse gives it (approved 2026-10-14). A
+    hit's added confusion (Dynamic Punch, its chance 100) misses an Own
+    Tempo target unless the attacker has Mold Breaker, a target behind
+    Safeguard unless the attacker has Infiltrator, and a Covert Cloak
+    holder; Confuse Ray and Swagger meet the same Own Tempo and Safeguard
+    (Swagger's Attack rise still lands), and Own Tempo is named there. A Lum
+    Berry cures the confusion as it sets in and is used up. An Infiltrator's
+    Toxic passes Safeguard too. Before, a hit confused through all of them,
+    the moves through Safeguard, and the Lum Berry waited for the turn's
+    end."""
+    def confuse(name, ability=None, attacker=None, safeguard=False, item=None):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [10] * 16}, hp=200)
+        p.stages["acc"] = 6                 # Dynamic Punch's 50% always lands
+        foe.ability, p.ability, foe.item = ability or foe.ability, attacker or p.ability, item
+        b.b.safeguard = 5 if safeguard else 0
+        mv = fs.move(name)
+        (fs.status_move if mv.cat == "Status" else fs.attack)(b, p, mv, foe, True)
+        return bool(foe.confused), foe.revealed, foe.item, foe.stages["atk"], foe.status
+    cases = {"plain": {}, "Own Tempo": {"ability": "Own Tempo"},
+             "Own Tempo, Mold Breaker": {"ability": "Own Tempo", "attacker": "Mold Breaker"},
+             "Safeguard": {"safeguard": True}, "Safeguard, Infiltrator": {"safeguard": True, "attacker": "Infiltrator"},
+             "Lum Berry": {"item": "Lum Berry"}}
+    got = {f"Dynamic Punch, {k}": confuse("Dynamic Punch", **kw) for k, kw in cases.items()}
+    got["Dynamic Punch, Covert Cloak"] = confuse("Dynamic Punch", item="Covert Cloak")
+    got.update({f"Confuse Ray, {k}": confuse("Confuse Ray", **kw) for k, kw in cases.items()})
+    got["Swagger, Safeguard"] = confuse("Swagger", safeguard=True)
+    got["Toxic, Safeguard, Infiltrator"] = confuse("Toxic", safeguard=True, attacker="Infiltrator")
+    got["Toxic, Safeguard"] = confuse("Toxic", safeguard=True)
+    want = {"Dynamic Punch, plain": (True, None, None, 0, None),
+            "Dynamic Punch, Own Tempo": (False, None, None, 0, None),
+            "Dynamic Punch, Own Tempo, Mold Breaker": (True, None, None, 0, None),
+            "Dynamic Punch, Safeguard": (False, None, None, 0, None),
+            "Dynamic Punch, Safeguard, Infiltrator": (True, None, None, 0, None),
+            "Dynamic Punch, Lum Berry": (False, None, None, 0, None),
+            "Dynamic Punch, Covert Cloak": (False, None, "Covert Cloak", 0, None),
+            "Confuse Ray, plain": (True, None, None, 0, None),
+            "Confuse Ray, Own Tempo": (False, "Own Tempo", None, 0, None),
+            "Confuse Ray, Own Tempo, Mold Breaker": (True, None, None, 0, None),
+            "Confuse Ray, Safeguard": (False, None, None, 0, None),
+            "Confuse Ray, Safeguard, Infiltrator": (True, None, None, 0, None),
+            "Confuse Ray, Lum Berry": (False, None, None, 0, None),
+            "Swagger, Safeguard": (False, None, None, 2, None),
+            "Toxic, Safeguard, Infiltrator": (False, None, None, 0, "tox"),
+            "Toxic, Safeguard": (False, None, None, 0, None)}
+    bad = {k: v for k, v in got.items() if v != want[k]}
+    results.append(("confusion meets Own Tempo, Safeguard, a Covert Cloak and a Lum Berry as the engine's does", not bad,
+                    f"(confused, named, item, Attack stage, status) off: {bad}" if bad else "every case as wanted"))
+
+
 def check_future_sight(results):
     """Future Sight and Doom Desire (approved 2026-10-13; BtlCmd_TryFutureSight
     and the turn's end, SIDE_COND_CHECK_STATE_FUTURE_SIGHT): the damage is
@@ -1343,7 +1393,8 @@ def main():
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds,
                   check_hits_one_by_one, check_hits_hold_and_heal, check_triple_axel,
-                  check_protect_flag, check_protect_odds, check_pp_engine, check_future_sight,
+                  check_protect_flag, check_protect_odds, check_pp_engine, check_confusion_blockers,
+                  check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean,

@@ -793,9 +793,10 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         dfn.flinch = True
     if dfn.ability == "Inner Focus":
         dfn.flinch = False       # Inner Focus: it never flinches
-    if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and chance and not dfn.confused \
-            and status_lands("confusehit"):
+    if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and chance \
+            and not fs.confusion_blocked(b, att, dfn, hit=True) and status_lands("confusehit"):
         dfn.confused = b.dice.confusion(dfn.side)
+        fs.confusion_berry(dfn)          # a Lum Berry cures it at once
     if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100) \
             and not fs.stat_drop_blocked(b, dfn, fs.HIT_FOE_STAGES[e]):
         fs.change_stages(dfn, fs.HIT_FOE_STAGES[e])
@@ -841,13 +842,15 @@ def status_move(b, att, mv, dfn, first):
             return
         fs.give_status_by_move(b, att, dfn, mv, fs.STATUS_OF[e])
     elif e == "STATUS_CONFUSE":
-        if not fs.sub_blocks(att, dfn, mv) and not dfn.confused and dfn.ability != "Own Tempo":
+        if not fs.sub_blocks(att, dfn, mv) and not fs.confusion_blocked(b, att, dfn):
             dfn.confused = b.dice.confusion(dfn.side)
+            fs.confusion_berry(dfn)
     elif e in ("ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
         if not fs.sub_blocks(att, dfn, mv):
             fs.change_stages(dfn, {"atk": 2} if e.startswith("ATK") else {"spa": 1})
-            if not dfn.confused and dfn.ability != "Own Tempo":
+            if not fs.confusion_blocked(b, att, dfn):
                 dfn.confused = b.dice.confusion(dfn.side)
+                fs.confusion_berry(dfn)
     elif e == "STATUS_SLEEP_NEXT_TURN":
         if not dfn.status and not dfn.yawn and not fs.sub_blocks(att, dfn, mv):
             dfn.yawn = 2
