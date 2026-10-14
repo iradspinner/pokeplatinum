@@ -3335,6 +3335,16 @@ def battle_over(b):
     return not b.p.alive() or not b.b.alive()
 
 
+def helps(b, mon, kind, p):
+    """A chance at p that helps mon, through the battle's dice when it has
+    them, so the planner enumerates it and a trainer's luck is the player's
+    bad luck, else through its own rng."""
+    dice = getattr(b, "dice", None)
+    if dice is None:
+        return b.rng.random() < p
+    return dice.bad(kind, p) if mon.side == "b" else dice.good(p, kind)
+
+
 def coin(b, kind="tie"):
     """A fair coin through the battle's dice (so the planner enumerates it),
     or its own rng for a battle fightsim plays alone."""
@@ -3510,6 +3520,12 @@ def _end_of_turn_mon(b, side, m):
     # turn's end but the one it came in on.
     if m.ability == "Speed Boost" and m.turns_in > 0:
         change_stages(m, {"spe": 1})
+    # Shed Skin (the same step): a status is cured one time in three
+    # (Oxide's Generation 5 odds), the message naming the ability. Until
+    # 2026-10-14 it did nothing (Ian approved the fix).
+    if m.ability == "Shed Skin" and m.status and helps(b, m, "shedskin", 1 / 3):
+        m.status, m.sleep, m.toxic = None, 0, 0
+        reveal(m)
     # Harvest (the same function, battle_lib.c 4225): a berry it used up,
     # Natural Gift's included, grows back while it holds nothing, every turn
     # in sun that Cloud Nine and Air Lock leave alone, and on a coin flip

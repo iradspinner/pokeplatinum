@@ -2278,6 +2278,31 @@ def marvel_scale_checks():
              f"Cross Chop's top roll with no status {plain}, paralysed {scaled}")]
 
 
+def shed_skin_checks():
+    """Shed Skin through the readings' dice (approved 2026-10-14): a
+    trainer's Shed Skin Gabite, burned, is cured about one turn end in three
+    on a run's real odds, and the planner's dice offer the cure as an event
+    at those odds."""
+    from .test_fightai import battle
+    from . import plplan
+    b = battle([("Gabite", 30, "Shed Skin", ["Dragon Claw"])], [("Machop", 30, "Guts", ["Karate Chop"])])
+    gab = b.b.cur()
+    cured = 0
+    for seed in range(300):
+        b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+        gab.status, gab.hp = "brn", gab.maxhp
+        fs.end_of_turn(b)
+        cured += gab.status is None
+    gab.status = "brn"
+    d = plplan.EnumDice((), random.Random(0))
+    b.dice = d
+    fs.end_of_turn(b)
+    offered = any(abs(probs[1] - 1 / 3) < 1e-9 for probs in d.events if len(probs) == 2)
+    ok = 70 <= cured <= 130 and offered
+    return [("Shed Skin cures about a third of the time on the readings' dice", ok,
+             f"cured {cured} of 300; offered to the planner at a third {offered}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2770,6 +2795,7 @@ def main():
     results += sand_force_checks()
     results += bad_dreams_checks()
     results += marvel_scale_checks()
+    results += shed_skin_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

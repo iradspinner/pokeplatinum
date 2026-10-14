@@ -1932,6 +1932,22 @@ def check_marvel_scale(results):
     results.append(("Marvel Scale raises Defense while its holder has a status", got == want, f"{got}"))
 
 
+def check_shed_skin(results):
+    """Shed Skin (approved 2026-10-14; BattleSystem_TriggerTurnEndAbility):
+    one time in three a poisoned holder is cured at the turn's end, before
+    the poison bites, so a cured one loses nothing; over 600 turn ends."""
+    cured = unhurt = 0
+    for seed in range(600):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {}, seed=seed)
+        foe.ability, foe.status = "Shed Skin", "psn"
+        fs.end_of_turn(b)
+        cured += foe.status is None
+        unhurt += foe.status is None and foe.hp == 100
+    ok = 160 <= cured <= 240 and unhurt == cured
+    results.append(("Shed Skin cures a status one time in three at the turn's end", ok,
+                    f"cured {cured} of 600, at full HP when cured {unhurt}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2178,7 +2194,7 @@ def main():
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
                   check_knockout_boost, check_trapping_exemptions, check_accuracy_abilities,
                   check_download, check_weather_abilities, check_sand_force,
-                  check_bad_dreams, check_marvel_scale,
+                  check_bad_dreams, check_marvel_scale, check_shed_skin,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
