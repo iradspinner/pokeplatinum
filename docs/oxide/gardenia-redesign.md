@@ -1,8 +1,25 @@
 # Gardenia's redesign: the evidence, the comparisons and Ian's six
 
-Ian asked on 2026-10-13, before an overnight run, for the Roark process on Gardenia. The first stage (the end of this page) read today's team against a version with fixed move pools and offered two team shapes. Ian then designed his own six-member sun team, which the scorer read the same afternoon; this page opens with that reading and why it comes out as it does.
+Ian asked on 2026-10-13, before an overnight run, for the Roark process on Gardenia. The first stage (the end of this page) read today's team against a version with fixed move pools and offered two team shapes. Ian then designed his own six-member sun team, which the scorer read the same afternoon, and tuned it with three of the dials that reading suggested. This page opens with the team as he locked it in, then the first reading and why it came out as it did.
 
-## Summary: Ian's six-member sun team
+## Summary: the team locked in (2026-10-13, evening)
+
+**Outcome.** Ian locked Gardenia in on his six-member sun team with three dials: his own levels (Solrock 23, Cherrim 24, Lumineon 25, Exeggutor 24, Breloom 24, Roserade 26 at the cap), Leech Seed in place of Cherrim's Weather Ball, and Roserade on Calm, back from the Sassy the dials reading used. It is in the game from this landing, with the simulator's berry fix (867e75ba3) behind every reading after the first.
+
+| Won at real odds | Box 1 | Box 2 | Box 3 | Mean | Difficulty |
+|---|---|---|---|---|---|
+| Today's team, before | 100% | 99% | 89% | 96% | 3.5 |
+| Ian's six | 65% | 64% | 27% | 52% | 23.6 |
+| Ian's six with the three dials, Roserade Sassy | 96% | 99% | 95% | 96% | 3.0 |
+| The locked team, Roserade Calm | read next | | | | |
+
+**Why the dials overshot.** I forecast 70 to 80 percent for the dials and they read 96, about 25 points off the other way. Speed did most of it: Golbat, in every six, now outspeeds Cherrim and Roserade as well as Breloom and Solrock, and in the first reading every fight Golbat survived was won. The berry fix lets its Dual Wingbeat knock out Breloom outright. Exeggutor's faints fell from 216 to 49, mostly because the player stopped losing: 136 of its 216 came in lost fights, where all six of the player's Pokemon go down. In won fights one level crosses two thresholds against Golbat (its Zen Headbutt no longer knocks out a healthy Golbat, and Golbat's Leech Life nearly knocks it out). Roserade was the one member still taking Pokemon at its old rate, so it goes back to Calm, faster than Golbat again.
+
+**What waits on Ian:** whether the soft barometer for "unsolvably hard" is the first reading's box 3 (27 percent won, difficulty 34.7), the box he nearly solved by hand, since the dials reading's box 3 reads 95 percent.
+
+**Next steps:** the locked team's reading on the same boxes, after Mars 1's reading (each about 70 minutes).
+
+## The first reading of Ian's six (2026-10-13, afternoon)
 
 **Outcome.** Ian's team reads far harder than any version so far: won 52 percent of fights at real odds over goal 3's three boxes (65, 64 and 27), with 4.4 faints a fight and a difficulty of 23.6. Today's team reads 96 percent (3.5), and the Roark Ian accepted 86 (8.2). His rulings put Oxide's hardest bosses at about 80 percent won, so this is well past them, and box 3, which has no Alolan Ninetales, wins about one fight in four. Before the reading I forecast 75 to 88 percent, about 30 points too kind; the section on my forecast says what I missed.
 
@@ -14,10 +31,7 @@ Ian asked on 2026-10-13, before an overnight run, for the Roark process on Garde
 
 **A finding for the simulator.** It halves every hit of a two-to-five-hit move when the target holds a resist berry; the game halves only the first, because the battle script that halves the hit also uses the berry up. Here that makes Breloom's Coba Berry stronger than in the game: Golbat's Dual Wingbeat knocks out a full-health Breloom in the game and leaves it at a tenth of its HP in the reading. Ian approved the fix the same day and it is in (commit 867e75ba3): Dual Wingbeat now knocks that Breloom out in 200 tries of 200, against 17 before. This page's reading was made before it; the next one takes it in.
 
-**What waits on Ian:**
-1. The dials for the next reading (the table at the end). I recommend the five non-aces at level 22 with Roserade at the cap, and Cherrim's Weather Ball for Leech Seed. The first keeps every design choice; the second leaves the sun's Fire hammer on the ace alone, as his Solar Beam call did. Ian means to weaken Cherrim's set a little (2026-10-13), since nothing in box 3 but a second Golbat would answer it; the exact change is his.
-
-**Next steps:** on his pick, the change on the study branch and the checks (about 20 minutes), the reading on the same three boxes (about 70 minutes), and the comparison here. A quicker probe can come first: 25 fights a box on the same sixes, about 15 minutes a variant.
+**Ian's answers:** he approved the berry fix, took the first three dials with his own levels in place of the flat 22, read them (the table above), then put Roserade back on Calm and locked the fight in. The Leech Seed swap is the weakening of Cherrim's set he wanted, since nothing in box 3 but a second Golbat answered it.
 
 ## Ian's six
 

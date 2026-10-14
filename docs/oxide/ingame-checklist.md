@@ -438,6 +438,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Drain and raises its Sp. Atk. Sandshrew moves before nearly everything in
   the gym's sand, and its Rapid Spin raises its Speed. Cranidos's Mold
   Breaker shows when it hits through Sturdy.
+- [ ] Gardenia's new team (Ian, 2026-10-13; `docs/oxide/gardenia-redesign.md`):
+  six Pokemon, Solrock leading, and Drought's sun lasts the whole fight.
+  Exeggutor's Harvest gives back its Occa Berry each turn in the sun, so its
+  Natural Gift (Fire) comes again and again. Cherrim's Flower Gift shows in
+  the sun, and Lumineon (Chlorophyll) moves before anything in the box. Each
+  member holds a different resist berry, and a two-hit move into one (Golbat's
+  Dual Wingbeat into Breloom's Coba Berry) is weakened on its first hit only.
 - [ ] Level caps: before Roark nothing passes Lv. 16, from battle or candy;
   after beating him the badge message plays as before and Lv. 26 is the new
   ceiling. The Day Care man's level and price stop at the cap too.

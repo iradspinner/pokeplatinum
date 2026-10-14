@@ -33,7 +33,7 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 
 ## Gardenia (Eterna Gym, cap 26)
 
-**Status:** evidence and diagnosis done (2026-10-13, [gardenia-redesign.md](gardenia-redesign.md)). Today's team reads 96 percent won on goal 3's boxes (difficulty 3.5), above the 95 percent ceiling, and a version with fixed move pools and sun 95. Ian's own six-member sun team, on the study branch `study-gardenia-ian`, reads 52 percent (65, 64 and 27 by box; difficulty 23.6), well past the 80 percent the hardest bosses top out at; the dials for its next reading wait on Ian.
+**Status:** in the game since 2026-10-13: Ian's six-member sun team, locked in with his levels (Solrock 23, Cherrim 24, Lumineon 25, Exeggutor 24, Breloom 24, Roserade 26), Leech Seed in place of Cherrim's Weather Ball, and Roserade on Calm ([gardenia-redesign.md](gardenia-redesign.md)). His six read 52 percent won before the dials and 96 with them (Roserade then Sassy); the locked team's own reading is next.
 
 **Identity.** The base ROM's team was a sun team (Cherrim with Sunny Day and a Heat Rock, Solar Beam, Weather Ball); the Kaizo study's draft, in the game today, dropped the sun because the player's Fire types gained more from it. Today's five are Roselia, Ludicolo, Exeggutor, Breloom and Roserade. Sun pays only from a setter that spends no turn (Drought) and for more than one member: in the fixed version, Exeggutor's turn-one Sunny Day cost it the fight.
 
