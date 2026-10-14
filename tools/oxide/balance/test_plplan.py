@@ -218,6 +218,24 @@ def future_sight_through_planner():
           f"{foe.maxhp}; merged with a later one {merged}")
 
 
+def disabled_left_out():
+    """A disabled move (approved 2026-10-13) is left out of the planner's
+    options, its plain policy's attack and its last resort, as the engine
+    keeps it out of the choice."""
+    st, team, bk, flags, names = fight_state("roark")
+    b = pl.make_battle(st, team, bk, flags, names.index("Barboach"))
+    me = b.p.cur()
+    best = plplan.strongest(b)[1].name
+    me.disabled, me.disabled_turns = best, 3
+    opts = [a[1].name for a in plplan.options(b) if a[0] == "move"]
+    after = plplan.strongest(b)[1].name
+    plain = plplan.plain(b)
+    check("a disabled move is out of the planner's options and its plain attack",
+          best not in opts and after != best and not (plain[0] == "move" and plain[1].name == best),
+          f"the strongest {best}, then {after}; options {opts}; plain {plain[0]} "
+          f"{plain[1].name if plain[0] == 'move' else plain[1]}")
+
+
 def main():
     print("the planner's pieces")
     pick_odds_rules()
@@ -227,6 +245,7 @@ def main():
     turn_odds()
     exact_odds()
     future_sight_through_planner()
+    disabled_left_out()
     print(f"\n{sum(RESULTS)}/{len(RESULTS)} passed")
     return 0 if all(RESULTS) else 1
 

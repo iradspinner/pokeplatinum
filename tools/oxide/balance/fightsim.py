@@ -369,6 +369,11 @@ class Mon:
         self.lock = None                 # (move, turns) for Outrage and kin
         self.choice = None
         self.taunt = 0
+        # Disable: the move it cannot choose or use, and the turn ends left
+        # on the count (moveEffectsData.disabledMove and disabledTurns).
+        self.disabled = None
+        self.disabled_turns = 0
+        self.nightmare = False           # Nightmare: a quarter of its HP each turn's end while it sleeps
         self.last = None
         self.turns_in = 0
         self.hit_this_turn = None        # (category, damage) of the last hit taken this turn
@@ -1156,6 +1161,9 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     if att.flinch:
         att.flinch = False
         return could_not_act(b, att, mv, dfn, targets)
+    if disabled_out(att, mv):
+        att.choice = None            # subscript_move_is_disabled lets go of a Choice item's lock
+        return could_not_act(b, att, mv, dfn, targets)
     if att.confused:
         att.confused -= 1
         if att.confused and b.rng.random() < 0.5:
@@ -1426,7 +1434,8 @@ def sleep_talk_pick(b, att):
     the play-outs replay a turn's chances by script, and a pick from the
     battle's own generator differed between replays (it broke Kaizo
     Fantina's labels, whose Spiritomb sleeps and talks)."""
-    picks = [m for m in att.moves if m.effect not in SLEEP_TALK_SKIPS and m.effect not in TWO_TURN]
+    picks = [m for m in att.moves if m.effect not in SLEEP_TALK_SKIPS and m.effect not in TWO_TURN
+             and not disabled_out(att, m)]
     if not picks:
         return None
     dice = getattr(b, "dice", None)
@@ -1451,6 +1460,37 @@ def tormented_out(mon, mv):
     CHECK_INVALID_TORMENTED), which a switch or a turn it could not act
     clears."""
     return mon.tormented and mon.last is not None and mon.last.name == mv.name
+
+
+def disabled_out(mon, mv):
+    """Whether Disable rules this move out: it cannot be chosen
+    (BattleSystem_CheckInvalidMoves' CHECK_INVALID_DISABLED), Sleep Talk
+    cannot call it (BtlCmd_TrySleepTalk asks the same check), and it fails
+    if it was chosen before the Disable came (CHECK_STATUS_STATE_DISABLE)."""
+    return mon.disabled is not None and mv.name == mon.disabled
+
+
+def disable(dfn, turns):
+    """Disable (effect script 86, BtlCmd_TryDisable): the target's last move
+    is disabled for the count turns() gives (3 to 6, Random % 4 + 3), drawn
+    only when it takes. It fails while one of the target's moves is disabled,
+    before the target has used a move, when that move is not one it knows,
+    and when it has no PP left; a Substitute does not stop it. Whether it
+    took."""
+    last = dfn.last
+    if dfn.disabled is not None or last is None or not any(m.name == last.name for m in dfn.moves) \
+            or dfn.pp.get(last.name, 0) <= 0:
+        return False
+    dfn.disabled, dfn.disabled_turns = last.name, turns()
+    return True
+
+
+def nightmare(att, dfn, mv):
+    """Nightmare (effect script 107, subscript_nightmare_start): only on a
+    sleeping target that is not in one already and has no Substitute in the
+    way (an Infiltrator's passes)."""
+    if dfn.status == "slp" and not dfn.nightmare and not sub_blocks(att, dfn, mv):
+        dfn.nightmare = True
 
 
 def consume(mon):
@@ -2255,6 +2295,12 @@ def status_move(b, att, mv, dfn, first):
             dfn.taunt = b.rng.randint(3, 5)
     elif e == "TORMENT":
         dfn.tormented = True             # subscript_torment_start: fails if already tormented
+    elif e == "DISABLE":
+        # subscript_disable_start fails on a target in the air or underground.
+        if not (dfn.charging is not None and dfn.charging.effect in INVULNERABLE):
+            disable(dfn, lambda: b.rng.randint(3, 6))
+    elif e == "STATUS_NIGHTMARE":
+        nightmare(att, dfn, mv)
     elif e == "INFATUATE":
         infatuate(att, dfn, att.ability == "Mold Breaker")
     elif e == "HEAL_IN_3_TURNS":
@@ -2480,8 +2526,8 @@ def _end_of_turn_mon(b, side, m):
     """One Pokemon's own conditions, in the engine's order
     (MON_COND_CHECK_STATE_*, battle_controller_player.c 1308 to 1335):
     Ingrain, Aqua Ring, its ability, its berry, Leftovers, Leech Seed, poison
-    and burn, Curse, binding, the counts (Taunt, Magnet Rise, Heal Block),
-    Yawn, then the Orbs. False once the battle is over."""
+    and burn, Nightmare, Curse, binding, the counts (Disable, Taunt, Magnet
+    Rise, Heal Block), Yawn, then the Orbs. False once the battle is over."""
     if not m.alive():
         return True
     if m.ingrained and m.hp < m.maxhp and not heal_blocked(m):
@@ -2528,6 +2574,16 @@ def _end_of_turn_mon(b, side, m):
             hurt(b, m, m.maxhp * m.toxic // 16)
         if battle_over(b):
             return False
+    # Nightmare (MON_COND_CHECK_STATE_NIGHTMARE, between the burn and Curse):
+    # a quarter of its maximum HP while it sleeps, none with Magic Guard;
+    # once it is awake the nightmare ends.
+    if m.alive() and m.nightmare:
+        if m.status != "slp":
+            m.nightmare = False
+        elif m.ability != "Magic Guard":
+            hurt(b, m, max(1, m.maxhp // 4))
+            if battle_over(b):
+                return False
     if m.alive() and m.cursed and m.ability != "Magic Guard":
         hurt(b, m, m.maxhp // 4)
         if battle_over(b):
@@ -2543,6 +2599,15 @@ def _end_of_turn_mon(b, side, m):
         hurt(b, m, m.maxhp // (4 if set(m.types) & {"Water", "Steel"} else 8))
         if battle_over(b):
             return False
+    # Disable's count (MON_COND_CHECK_STATE_DISABLE, before Taunt's): it
+    # runs down a turn's end at a time, and the move is free again at the
+    # turn's end after it reached 0, or at once if the Pokemon no longer
+    # knows it. Three to six turns after the Disable's own, then.
+    if m.disabled is not None:
+        if m.disabled_turns and any(x.name == m.disabled for x in m.moves):
+            m.disabled_turns -= 1
+        else:
+            m.disabled, m.disabled_turns = None, 0
     if m.taunt:
         m.taunt -= 1
     if m.magnet_rise:
@@ -2582,7 +2647,7 @@ def exp_damage(b, att, dfn, mv):
 
 def best_attack(b, att, dfn):
     usable = [m for m in att.moves if m.damaging() and att.pp.get(m.name, 1) > 0
-              and (not att.choice or m.name == att.choice)]
+              and (not att.choice or m.name == att.choice) and not disabled_out(att, m)]
     if not usable:
         return None, 0.0
     return max(((m, exp_damage(b, att, dfn, m)) for m in usable), key=lambda x: x[1])
@@ -2813,7 +2878,7 @@ def _player_choice(b):
     # A status or setup move when it turns the exchange: it costs a turn.
     safe_turns = t_foe - (0 if first else 1)
     for mv in me.moves:
-        if mv.cat != "Status" or me.pp.get(mv.name, 1) <= 0 or me.taunt:
+        if mv.cat != "Status" or me.pp.get(mv.name, 1) <= 0 or me.taunt or disabled_out(me, mv):
             continue
         e = mv.effect
         if e in STATUS_OF and can_status(b, foe, STATUS_OF[e]) and safe_turns >= 2:
@@ -2864,7 +2929,8 @@ def safe_attack(b, me, foe):
     """The player's best attack, leaving out any that could faint the user
     while one that cannot still does damage."""
     usable = [m for m in me.moves if m.damaging() and me.pp.get(m.name, 1) > 0
-              and (not me.choice or m.name == me.choice) and not tormented_out(me, m)]
+              and (not me.choice or m.name == me.choice) and not tormented_out(me, m)
+              and not disabled_out(me, m)]
     safe = [m for m in usable if not self_risk(b, me, foe, m)]
     pick = safe if any(exp_damage(b, me, foe, m) > 0 for m in safe) else usable
     if not pick:
@@ -3006,7 +3072,7 @@ def player_choice_doubles(b, me):
     best = None
     for mv in me.moves:
         if me.pp.get(mv.name, 1) <= 0 or (me.choice and mv.name != me.choice) or (me.taunt and mv.cat == "Status") \
-                or move_heal_blocked(me, mv):
+                or move_heal_blocked(me, mv) or disabled_out(me, mv):
             continue
         if not mv.damaging():
             for f in foes:

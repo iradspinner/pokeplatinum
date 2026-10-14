@@ -673,6 +673,76 @@ def check_sleep_talk_rest(results):
                     f"(HP, status, sleep) after Sleep Talk asleep {sorted(asleep)}; Rest awake {awake}"))
 
 
+def check_disable(results):
+    """Disable (approved 2026-10-13; BtlCmd_TryDisable): the target's last
+    move is disabled for 3 to 6 turns after the Disable's own; the move
+    fails if used, the trainer's AI rules it out (a base score of 0, as
+    CheckInvalidMoves gives) and picks its other move, Sleep Talk never
+    calls it, and the player's attack reckoning leaves it out. Disable
+    fails before the target has moved and while one of its moves is
+    disabled, and the AI scores a second Disable -8."""
+    rows = {("b", "Tackle"): [20] * 16, ("b", "Scratch"): [10] * 16, ("p", "Tackle"): [20] * 16}
+    b, p, foe = battle(["Disable", "Tackle"], ["Tackle", "Scratch"], rows)
+    early = fs.disable(foe, lambda: 4)
+    fs.use_move(b, foe, fs.move("Tackle"), p, True)
+    fs.use_move(b, p, fs.move("Disable"), foe, True)
+    took = p.hp
+    fs.use_move(b, foe, fs.move("Tackle"), p, True)
+    blocked = took - p.hp
+    picks = {fightai.choose(b, foe, p)[1].name for _ in range(30)}
+    second = fightai.basic(b, p, foe, fs.move("Disable"))
+    foe.moves = [fs.move("Sleep Talk"), fs.move("Tackle"), fs.move("Scratch")]
+    foe.status, foe.sleep = "slp", 3
+    talked = {fs.sleep_talk_pick(b, foe).name for _ in range(30)}
+    p.disabled = "Tackle"
+    reckoned = fs.best_attack(b, p, foe)[0]
+    lengths = set()
+    for seed in range(200):
+        b2, p2, foe2 = battle(["Disable"], ["Tackle"], rows, seed=seed)
+        foe2.last = fs.move("Tackle")
+        fs.status_move(b2, p2, fs.move("Disable"), foe2, True)
+        n = 0
+        while foe2.disabled is not None:
+            fs.end_of_turn(b2)
+            n += 1
+        lengths.add(n - 1)
+    ok = (not early and blocked == 0 and picks == {"Scratch"} and second == -8 and talked == {"Scratch"}
+          and reckoned is None and lengths == {3, 4, 5, 6})
+    results.append(("Disable locks the target's last move out for 3 to 6 turns, for the AI too", ok,
+                    f"before it moved {early}; Tackle after Disable dealt {blocked}; the AI picks {sorted(picks)}; "
+                    f"a second Disable {second}; Sleep Talk calls {sorted(talked)}; the player's best attack "
+                    f"with Tackle disabled {reckoned}; turns blocked after the Disable's own {sorted(lengths)}"))
+
+
+def check_nightmare(results):
+    """Nightmare (approved 2026-10-13): only on a sleeping target without a
+    Substitute; a quarter of its maximum HP at each turn's end while it
+    sleeps, nothing for Magic Guard; once it is awake the nightmare ends,
+    and the AI scores a second Nightmare -10 (Basic_CheckNightmare reads the
+    real state now)."""
+    def cast(status=None, ability=None, sub=0):
+        b, p, foe = battle(["Nightmare"], ["Tackle"], {}, p_types=("Ghost",))
+        foe.status, foe.sleep, foe.ability, foe.sub = status, 3 if status else 0, ability, sub
+        fs.status_move(b, p, fs.move("Nightmare"), foe, True)
+        return b, p, foe
+    awake = cast()[2].nightmare
+    behind = cast("slp", sub=25)[2].nightmare
+    b, p, foe = cast("slp")
+    second = fightai.basic(b, p, foe, fs.move("Nightmare"))
+    fs.end_of_turn(b)
+    one = foe.hp
+    foe.status, foe.sleep = None, 0
+    fs.end_of_turn(b)
+    woke = (foe.hp, foe.nightmare)
+    b, p, foe = cast("slp", "Magic Guard")
+    fs.end_of_turn(b)
+    guard = foe.hp
+    ok = (not awake and not behind and second == -10 and one == 75 and woke == (75, False) and guard == 100)
+    results.append(("Nightmare: a quarter a turn while asleep, ending as it wakes", ok,
+                    f"on an awake target {awake}, behind a Substitute {behind}; a second one {second}; "
+                    f"after a turn's end {one}; after it woke (HP, nightmare) {woke}; Magic Guard {guard}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -908,7 +978,7 @@ def main():
                   check_salt_cure, check_harvest, check_berry_first_hit,
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds, check_future_sight,
-                  check_sleep_talk_rest,
+                  check_sleep_talk_rest, check_disable, check_nightmare,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

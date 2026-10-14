@@ -1421,6 +1421,38 @@ def future_sight_checks():
              f"Murkrow's HP after each turn's end {hp} of {murkrow.maxhp}")]
 
 
+def disable_and_nightmare_checks():
+    """Disable and Nightmare on the calculator's real rows and the readings'
+    battle (approved 2026-10-13): after a Geodude's Tackle, Drowzee's Disable
+    keeps it out of the player's options and makes a Tackle chosen before it
+    fail, and the trainer's AI scores a second Disable -8; Gastly's
+    Nightmare on the sleeping Geodude takes a quarter of its HP at the
+    turn's end."""
+    from .test_fightai import battle
+    b = battle([("Drowzee", 20, "Insomnia", ["Disable", "Pound"]), ("Gastly", 20, "Levitate", ["Nightmare", "Lick"])],
+               [("Geodude", 20, "Sturdy", ["Tackle", "Rock Throw"])])
+    drowzee, gastly = b.b.mons
+    geo = b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(2), True), random.Random(2)
+    pl.use_move(b, geo, fs.move("Tackle"), drowzee, True)
+    pl.use_move(b, drowzee, fs.move("Disable"), geo, True)
+    options = sorted(a[1].name for a in pl.player_actions(b) if a[0] == "move")
+    before = drowzee.hp
+    pl.use_move(b, geo, fs.move("Tackle"), drowzee, True)
+    blocked = before - drowzee.hp
+    second = fightai.basic(b, drowzee, geo, fs.move("Disable"))
+    fs.switch_in(b, b.b, 1)
+    geo.status, geo.sleep = "slp", 3
+    pl.use_move(b, gastly, fs.move("Nightmare"), geo, True)
+    hp = geo.hp
+    fs.end_of_turn(b)
+    lost = hp - geo.hp
+    ok = options == ["Rock Throw"] and blocked == 0 and second == -8 and lost == max(1, geo.maxhp // 4)
+    return [("the readings' battle: Disable keeps the move out of the player's options, Nightmare bites", ok,
+             f"the player's moves after Disable {options}; Tackle dealt {blocked}; a second Disable {second}; "
+             f"Nightmare took {lost} of {geo.maxhp} at the turn's end")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -1879,6 +1911,7 @@ def main():
     results += intimidate_once_checks()
     results += two_hit_checks()
     results += future_sight_checks()
+    results += disable_and_nightmare_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

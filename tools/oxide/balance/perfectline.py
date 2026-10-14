@@ -363,6 +363,9 @@ def _use_move(b, att, mv, dfn, first):
     if att.flinch:
         att.flinch = False
         return fs.could_not_act(b, att, mv, dfn)
+    if fs.disabled_out(att, mv):
+        att.choice = None                # subscript_move_is_disabled lets go of a Choice item's lock
+        return fs.could_not_act(b, att, mv, dfn)
     if att.confused:
         att.confused -= 1
         if att.confused and (b.dice.bad("confusion", 0.5) if player(att) else b.dice.good(0.5, "confusion")):
@@ -847,6 +850,13 @@ def status_move(b, att, mv, dfn, first):
             dfn.taunt = b.dice.taunt(dfn.side)
     elif e == "TORMENT":
         dfn.tormented = True             # subscript_torment_start: fails if already tormented
+    elif e == "DISABLE":
+        # fightsim.disable, its 3 to 6 turns from the battle's dice; it fails
+        # on a target in the air or underground (subscript_disable_start).
+        if not (dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE):
+            fs.disable(dfn, lambda: 3 + b.dice.choice("disable", 4))
+    elif e == "STATUS_NIGHTMARE":
+        fs.nightmare(att, dfn, mv)
     elif e == "INFATUATE":
         fs.infatuate(att, dfn, att.ability == "Mold Breaker")
     elif e == "HEAL_IN_3_TURNS":
@@ -919,7 +929,8 @@ def mon_key(m):
             None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
             m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
             m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
-            m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False))
+            m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False),
+            getattr(m, "disabled", None), getattr(m, "disabled_turns", 0), getattr(m, "nightmare", False))
 
 
 def side_key(s):
@@ -1099,7 +1110,7 @@ def player_actions(b):
     try:
         for mv in me.moves:
             if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status") or fs.tormented_out(me, mv) \
-                    or fs.move_heal_blocked(me, mv):
+                    or fs.move_heal_blocked(me, mv) or fs.disabled_out(me, mv):
                 continue
             if me.choice and mv.name != me.choice:
                 continue
