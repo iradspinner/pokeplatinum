@@ -1845,6 +1845,35 @@ def check_download(results):
     results.append(("Download raises one stat a stage on entry, by the foe then in", got == want, f"{got}"))
 
 
+def check_weather_abilities(results):
+    """The weather's turn-end abilities (approved 2026-10-14;
+    BtlCmd_EndOfTurnWeatherEffect): Rain Dish heals a sixteenth in rain,
+    Hydration cures its status in rain, Solar Power loses an eighth in sun,
+    and Sand Rush and Sand Force take no sandstorm damage; none of them acts
+    in other weather or while Cloud Nine is out."""
+    def end(ability, weather, hp=50, status=None, cloud=False):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        foe.ability, foe.hp, foe.status = ability, hp, status
+        if cloud:
+            p.ability = "Cloud Nine"
+        b.weather, b.weather_turns = weather, 0
+        fs.end_of_turn(b)
+        return foe.hp, foe.status
+    got = {"Rain Dish in rain": end("Rain Dish", "Rain"), "Rain Dish in sun": end("Rain Dish", "Sun"),
+           "Rain Dish under Cloud Nine": end("Rain Dish", "Rain", cloud=True),
+           "Hydration in rain": end("Hydration", "Rain", hp=100, status="par"),
+           "Hydration in sun": end("Hydration", "Sun", hp=100, status="par"),
+           "Solar Power in sun": end("Solar Power", "Sun"), "Solar Power in rain": end("Solar Power", "Rain"),
+           "Sand Rush in sand": end("Sand Rush", "Sand"), "Sand Force in sand": end("Sand Force", "Sand"),
+           "plain in sand": end(None, "Sand")}
+    want = {"Rain Dish in rain": (56, None), "Rain Dish in sun": (50, None), "Rain Dish under Cloud Nine": (50, None),
+            "Hydration in rain": (100, None), "Hydration in sun": (100, "par"),
+            "Solar Power in sun": (38, None), "Solar Power in rain": (50, None),
+            "Sand Rush in sand": (50, None), "Sand Force in sand": (50, None), "plain in sand": (44, None)}
+    results.append(("Rain Dish, Hydration and Solar Power at the turn's end; Sand Rush and Sand Force spared sand",
+                    got == want, f"(HP from 50, status) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2090,7 +2119,7 @@ def main():
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
                   check_knockout_boost, check_trapping_exemptions, check_accuracy_abilities,
-                  check_download,
+                  check_download, check_weather_abilities,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

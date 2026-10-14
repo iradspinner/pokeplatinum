@@ -2202,6 +2202,34 @@ def download_checks():
              f"(Sp. Atk stage on entry, Tri Attack's top roll at no stage) {out}")]
 
 
+def weather_ability_checks():
+    """The weather's turn-end abilities on the real rows' battle (approved
+    2026-10-14): in a fight held in rain, a Rain Dish Lombre (in Roark's and
+    Gardenia's boxes) gets a sixteenth back at the turn's end and a
+    paralysed Hydration Vaporeon is cured; in a sandstorm a Sand Force
+    Shellos, a Water type the sand would bite, takes no damage. (Every Sand
+    Rush holder in Oxide is a Ground type, which the sand spares anyway.)"""
+    from .test_fightai import battle
+    b = battle([("Geodude", 20, "Sturdy", ["Tackle"])],
+               [("Lombre", 20, "Rain Dish", ["Water Gun"]), ("Vaporeon", 20, "Hydration", ["Water Gun"])], weather="Rain")
+    lombre, vap = b.p.mons
+    lombre.hp = lombre.maxhp // 2
+    before = lombre.hp
+    fs.end_of_turn(b)
+    healed = lombre.hp - before
+    fs.switch_in(b, b.p, 1)
+    vap.status = "par"
+    fs.end_of_turn(b)
+    cured = vap.status is None
+    s = battle([("Shellos", 20, "Sand Force", ["Mud-Slap"])], [("Geodude", 20, "Sturdy", ["Tackle"])], weather="Sand")
+    shellos = s.b.cur()
+    fs.end_of_turn(s)
+    spared = shellos.hp == shellos.maxhp
+    ok = b.weather == "Rain" and healed == lombre.maxhp // 16 and cured and s.weather == "Sand" and spared
+    return [("Rain Dish heals, Hydration cures, Sand Force is spared the sand on the real rows", ok,
+             f"Lombre healed {healed} of {lombre.maxhp}; Vaporeon cured {cured}; Shellos at full HP after the sand {spared}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2690,6 +2718,7 @@ def main():
     results += trapping_checks()
     results += accuracy_ability_checks()
     results += download_checks()
+    results += weather_ability_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

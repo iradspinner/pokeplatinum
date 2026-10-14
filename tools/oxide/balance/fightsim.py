@@ -3393,7 +3393,11 @@ def _end_of_turn(b):
             b.weather = None
     if b.weather in ("Sand", "Hail"):
         safe = {"Sand": {"Rock", "Ground", "Steel"}, "Hail": {"Ice"}}[b.weather]
-        shield = {"Sand": "Sand Veil", "Hail": "Snow Cloak"}[b.weather]
+        # The abilities the weather's bite passes over (BtlCmd_EndOfTurnWeatherEffect):
+        # Sand Veil, and Oxide's Sand Rush and Sand Force, in sand; Snow
+        # Cloak in hail. Sand Rush and Sand Force were bitten until
+        # 2026-10-14 (Ian approved the fix).
+        shield = {"Sand": ("Sand Veil", "Sand Rush", "Sand Force"), "Hail": ("Snow Cloak",)}[b.weather]
         for m in order:
             if b.weather == "Hail" and m.ability == "Ice Body":
                 # BtlCmd_EndOfTurnWeatherEffect: Ice Body heals a sixteenth in
@@ -3402,15 +3406,22 @@ def _end_of_turn(b):
                 if m.alive() and m.hp < m.maxhp and not weather_ignored(b):
                     heal(m, max(1, m.maxhp // 16))
                 continue
-            if m.alive() and not set(m.types) & safe and m.ability not in (shield, "Magic Guard"):
+            if m.alive() and not set(m.types) & safe and m.ability not in shield and m.ability != "Magic Guard":
                 hurt(b, m, m.maxhp // 16)
                 if battle_over(b):
                     return
     if b.weather in ("Rain", "Sun") and not weather_ignored(b):
-        # Dry Skin (BtlCmd_EndOfTurnWeatherEffect): an eighth of maximum HP
-        # back in rain, below full HP, and an eighth lost in sun.
+        # BtlCmd_EndOfTurnWeatherEffect, a Pokemon at a time in speed order:
+        # Dry Skin gets an eighth of maximum HP back in rain, below full HP,
+        # and loses an eighth in sun; Rain Dish a sixteenth back in rain,
+        # below full HP; Hydration cures its status in rain; Solar Power
+        # loses an eighth in sun. The heals and the loss name the ability, and
+        # Hydration's cure does. Rain Dish, Hydration and Solar Power did
+        # nothing until 2026-10-14 (Ian approved the fix).
         for m in order:
-            if m.alive() and m.ability == "Dry Skin":
+            if not m.alive():
+                continue
+            if m.ability == "Dry Skin":
                 if b.weather == "Rain":
                     if m.hp < m.maxhp:
                         heal(m, max(1, m.maxhp // 8))
@@ -3418,6 +3429,17 @@ def _end_of_turn(b):
                     hurt(b, m, max(1, m.maxhp // 8))
                     if battle_over(b):
                         return
+            elif b.weather == "Rain" and m.ability == "Rain Dish" and m.hp < m.maxhp:
+                heal(m, max(1, m.maxhp // 16))
+                reveal(m)
+            elif b.weather == "Rain" and m.ability == "Hydration" and m.status:
+                m.status, m.sleep, m.toxic = None, 0, 0
+                reveal(m)
+            elif b.weather == "Sun" and m.ability == "Solar Power":
+                hurt(b, m, max(1, m.maxhp // 8))
+                reveal(m)
+                if battle_over(b):
+                    return
     for m in order:
         side = b.p if m.side == "p" else b.b
         if not _end_of_turn_mon(b, side, m):
