@@ -1282,6 +1282,33 @@ def neutralizing_gas_checks():
     return out
 
 
+def unburden_checks():
+    """Unburden counted once (Ian approved the fix, 2026-10-13). The engine
+    doubles its holder's Speed only once the item it came in with is gone
+    (BattleSystem_CompareBattlerSpeed reads canUnburden and an empty hand).
+    The calculator's page counts every ability as active, so its Speed for
+    an Unburden Pokemon came doubled from the first turn, and the battle
+    doubled it again once the item went: Jupiter 1's Pelipper read 92, then
+    184, where the game gives 46, then 92. On the calculator's real rows an
+    Unburden Pelipper holding its Sitrus Berry is now as fast as a Pressure
+    twin, twice as fast once the berry is eaten, and the player's Unburden
+    Pelipper, which comes in holding nothing, is never doubled."""
+    from .test_fightai import battle
+    b = battle([("Pelipper", 26, "Unburden", ["Water Pulse"], "Sitrus Berry"),
+                ("Pelipper", 26, "Pressure", ["Water Pulse"], "Sitrus Berry")],
+               [("Pelipper", 26, "Unburden", ["Water Pulse"])])
+    holder, twin, mine = b.b.mons[0], b.b.mons[1], b.p.cur()
+    plain = b.speed(twin)
+    held = b.speed(holder)
+    fs.consume(holder)
+    eaten = b.speed(holder)
+    empty = b.speed(mine)
+    ok = held == plain and eaten == 2 * plain and empty == plain
+    return [("Unburden doubles Speed once, after the item is gone, on the calculator's rows", ok,
+             f"Pressure twin {plain}; Unburden holding its berry {held}, after eating it {eaten}; "
+             f"the player's empty-handed Unburden {empty}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does); Aqua Ring heals a sixteenth at
@@ -1723,6 +1750,7 @@ def main():
     results += held_state_checks()
     results += study_effect_checks()
     results += neutralizing_gas_checks()
+    results += unburden_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

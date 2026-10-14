@@ -223,6 +223,13 @@ WEATHER_STAND_IN = "Pressure"
 GAS_PROOF = {"Neutralizing Gas", "Multitype", "Zen Mode", "Stance Change", "Shields Down", "Schooling",
              "Disguise", "Battle Bond", "Power Construct", "Comatose", "RKS System", "Gulp Missile",
              "Ice Face", "As One (Glastrier)", "As One (Spectrier)", "Zero to Hero", "Tera Shift"}
+# The abilities the battle applies itself as it runs, which prepare() asks
+# the calculator to leave off its rows and Speeds (its page counts every
+# ability as active from the start). Unburden: the engine doubles its
+# holder's Speed only once the item it came in with is gone
+# (BattleSystem_CompareBattlerSpeed reads canUnburden and an empty hand),
+# which Battle.speed does, where the calculator doubled it from the first turn.
+CALC_ABILITY_OFF = frozenset({"Unburden"})
 
 
 # ---- genders (Ian, 2026-10-03) -------------------------------------------------------------
@@ -3397,7 +3404,11 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                             if (whole_field or d in holders) and (tdk, twin(d), w) not in seen:
                                 seen.add((tdk, twin(d), w))
                                 pairs.append([tdk, twin(d), ["Magnitude"], w])
-    out = calc.run_node(calc.blob_path(), {"pokemon": pokemon, "pairs": pairs})
+    # The calculator is told to leave off the abilities the battle applies
+    # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once.
+    jobs = {k: dict(p, ability_on=False) if p.get("ability") in CALC_ABILITY_OFF else p
+            for k, p in pokemon.items()}
+    out = calc.run_node(calc.blob_path(), {"pokemon": jobs, "pairs": pairs})
     rows, speed = {}, {}
     for r in out["results"]:
         rows[(r["weather"], r["a"], r["d"])] = r

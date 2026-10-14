@@ -217,8 +217,11 @@ function run(blob, jobs) {
   function mon(key) {
     if (built[key]) return built[key];
     const p = jobs.pokemon[key];
+    // The page turns every ability on. A Pokemon may carry ability_on false
+    // when the fight simulator applies its ability itself as the battle runs
+    // (fightsim.CALC_ABILITY_OFF), so the rows do not count it a second time.
     built[key] = new calc.Pokemon(GEN, p.species, {
-      level: p.level, ability: p.ability || undefined, abilityOn: true,
+      level: p.level, ability: p.ability || undefined, abilityOn: p.ability_on === undefined ? true : !!p.ability_on,
       item: p.item || '', nature: p.nature || 'Hardy',
       ivs: stats(p.ivs), evs: stats(p.evs),
       // B5: a setup branch's stat stages ({"atk": 1, "spe": -1}).
