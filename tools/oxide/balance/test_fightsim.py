@@ -549,6 +549,58 @@ def check_intimidate_start(results):
                     f"singles (player's lead, trainer's lead) {singles}; doubles' four Attack stages {doubles}"))
 
 
+def check_intimidate_proof(results):
+    """Intimidate's blockers in Oxide (BtlCmd_ChangeStatStage, approved
+    2026-10-13): Inner Focus, Own Tempo, Oblivious and Scrappy stop it, as
+    Hyper Cutter does, and the engine's message names the ability; any other
+    Pokemon loses a stage. Both ways round: the player's Intimidate on the
+    trainer's Pokemon and the trainer's on the player's."""
+    got = {}
+    for ab in ("Inner Focus", "Own Tempo", "Oblivious", "Scrappy", "Hyper Cutter", "Run Away"):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        p.ability, foe.ability = "Intimidate", ab
+        fs.switch_in(b, b.p, 0)
+        theirs = (foe.stages["atk"], foe.revealed)
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        p.ability, foe.ability = ab, "Intimidate"
+        fs.switch_in(b, b.b, 0)
+        got[ab] = (theirs, (p.stages["atk"], p.revealed))
+    want = {ab: ((0, ab), (0, ab)) for ab in ("Inner Focus", "Own Tempo", "Oblivious", "Scrappy", "Hyper Cutter")}
+    want["Run Away"] = ((-1, None), (-1, None))
+    results.append(("Inner Focus, Own Tempo, Oblivious and Scrappy stop Intimidate, and are named", got == want,
+                    f"(Attack stage, ability named) on the trainer's side and on the player's: {got}"))
+
+
+def check_two_hit_holds(results):
+    """A two-hit move meets Sturdy and a Focus Sash hit by hit, in
+    fightsim's own attack (approved 2026-10-13). Rows of 120 are two hits of
+    60 on a full 100 HP target: Sturdy lets the first land, as it would not
+    knock out, and cannot hold the second, so the target faints; a row of
+    240 has its first hit held at 1 HP by Sturdy, which is named, and the
+    second finishes it. A Focus Sash, armed by the first hit at full HP,
+    holds the second too, as the engine's focusItemActivated flag does, and
+    is used up; on a Sturdy holder the Sash is never armed, and it faints.
+    A single hit of 120 is still held by Sturdy, and a two-hit move into a
+    Sturdy target below full HP is plain damage."""
+    def hit(move, row, ability=None, item=None, hp=100):
+        b, p, foe = battle([move], ["Tackle"], {("p", move): [row] * 16})
+        b.st["first_battle"] = True          # no critical hits to blur the numbers
+        foe.ability, foe.item, foe.hp = ability or "Run Away", item, hp
+        fs.attack(b, p, fs.move(move), foe, True)
+        return foe.hp, foe.item, foe.revealed
+    got = {"Sturdy, 60 and 60": hit("Double Kick", 120, "Sturdy"),
+           "Sturdy, 120 and 120": hit("Double Kick", 240, "Sturdy"),
+           "Focus Sash": hit("Double Kick", 120, item="Focus Sash"),
+           "Sturdy with a Focus Sash": hit("Double Kick", 120, "Sturdy", "Focus Sash"),
+           "Sturdy, one hit": hit("Karate Chop", 120, "Sturdy"),
+           "Sturdy at 90 HP": hit("Double Kick", 60, "Sturdy", hp=90)}
+    want = {"Sturdy, 60 and 60": (0, None, None), "Sturdy, 120 and 120": (0, None, "Sturdy"),
+            "Focus Sash": (1, None, None), "Sturdy with a Focus Sash": (0, "Focus Sash", None),
+            "Sturdy, one hit": (1, None, "Sturdy"), "Sturdy at 90 HP": (30, None, None)}
+    results.append(("a two-hit move meets Sturdy hit by hit; a Focus Sash holds both", got == want,
+                    f"(HP left, item, ability named) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -783,7 +835,7 @@ def main():
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
                   check_salt_cure, check_harvest, check_berry_first_hit,
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
-                  check_intimidate_start,
+                  check_intimidate_start, check_intimidate_proof, check_two_hit_holds,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

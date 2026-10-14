@@ -569,7 +569,9 @@ def attack(b, att, mv, dfn, first):
         # twice or more lands its next hit on the 1 HP left.
         full = dfn.hp == dfn.maxhp and hits < 2
         sturdy = dfn.ability == "Sturdy" and att.ability != "Mold Breaker"
-        if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or sturdy):
+        if mv.effect in fs.TWO_HITS and full:
+            dmg = fs.two_hit_holds(dfn, dmg, sturdy)       # its two hits one at a time
+        elif dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or sturdy):
             if sturdy:
                 fs.reveal(dfn)
             dmg = dfn.hp - 1

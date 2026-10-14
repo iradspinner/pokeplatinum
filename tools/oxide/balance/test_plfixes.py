@@ -1352,6 +1352,35 @@ def intimidate_once_checks():
              f"the player's Intimidate lead: the trainer's stage, Double Kick's top row into it and its twin {theirs}")]
 
 
+def two_hit_checks():
+    """Two-hit moves against Sturdy on the calculator's real rows and the
+    readings' attack (approved 2026-10-13). The calculator caps a row's
+    first hit into a full-HP Sturdy holder at its HP less one, and the
+    readings then held the two hits as one, so Machop's Double Kick never
+    finished a Sturdy Geodude. Now the first hit meets Sturdy and the
+    second finishes it whenever the two come to its HP, a single Karate
+    Chop is still held at 1 HP, and a Rock Head Geodude holding a Focus Sash
+    keeps 1 HP against the pair, as the engine's Sash does, and loses it."""
+    from .test_fightai import battle
+    b = battle([("Geodude", 12, "Sturdy", ["Tackle"]), ("Geodude", 12, "Rock Head", ["Tackle"], "Focus Sash")],
+               [("Machop", 20, "Guts", ["Double Kick", "Karate Chop"])])
+    sturdy, sash = b.b.mons
+    machop = b.p.cur()
+    counts = collections.Counter()
+    for seed in range(40):
+        b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+        for target, name in ((sturdy, "Double Kick"), (sturdy, "Karate Chop"), (sash, "Double Kick")):
+            target.hp, target.item = target.maxhp, b.st["pokemon"][target.key].get("item")
+            pl.attack(b, machop, fs.move(name), target, True)
+            counts[(target.ability, name, "fainted" if not target.alive() else f"{target.hp} HP",
+                    target.item)] += 1
+    rows = (max(b.rolls(machop, sturdy, fs.move("Double Kick"))), sturdy.maxhp)
+    want = {("Sturdy", "Double Kick", "fainted", None): 40, ("Sturdy", "Karate Chop", "1 HP", None): 40,
+            ("Rock Head", "Double Kick", "1 HP", None): 40}
+    return [("a two-hit move breaks Sturdy on the calculator's rows; a Focus Sash still holds", dict(counts) == want,
+             f"Double Kick's top row and Geodude's HP {rows}; over 40 tries each {dict(counts)}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does); Aqua Ring heals a sixteenth at
@@ -1795,6 +1824,7 @@ def main():
     results += neutralizing_gas_checks()
     results += unburden_checks()
     results += intimidate_once_checks()
+    results += two_hit_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

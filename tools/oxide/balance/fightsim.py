@@ -705,8 +705,25 @@ def intimidate_foes(b, mons):
     for new in mons:
         if new.ability == "Intimidate":
             for foe in (b.b if new.side == "p" else b.p).on_field():
-                if foe.alive() and not stat_drop_blocked(b, foe, {"atk": -1}):
+                if foe.alive() and not intimidate_blocked(b, foe):
                     change_stages(foe, {"atk": -1})
+
+
+# The abilities Oxide's engine lets stop Intimidate beside those that stop
+# any lowering of Attack (BtlCmd_ChangeStatStage, Generation 8's rule):
+# Inner Focus, Own Tempo, Oblivious and Scrappy. The game's other answers to
+# Intimidate (Rattled, Defiant, Competitive, Mirror Armor) are not modelled.
+INTIMIDATE_PROOF = frozenset({"Inner Focus", "Own Tempo", "Oblivious", "Scrappy"})
+
+
+def intimidate_blocked(b, foe):
+    """Whether foe's ability stops an Intimidate: one of the four that stop
+    it alone, or one that stops any drop of Attack (stat_drop_blocked). The
+    engine's message names the ability either way."""
+    if foe.ability in INTIMIDATE_PROOF:
+        reveal(foe)
+        return True
+    return stat_drop_blocked(b, foe, {"atk": -1})
 
 
 def open_battle(b):
@@ -794,6 +811,36 @@ def change_stages(mon, changes):
 
 
 ROLLOUT = "DOUBLE_POWER_EACH_TURN_LOCK_INTO"   # Rollout and Ice Ball
+# The effects that hit exactly twice (SetMultiHit 2 in effect scripts 44, 77
+# and 296): Double Kick, Dual Wingbeat and the other HIT_TWICE moves,
+# Twineedle and Double Iron Bash.
+TWO_HITS = frozenset({"HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE_AND_FLINCH"})
+
+
+def two_hit_holds(dfn, dmg, sturdy):
+    """A two-hit move's damage on a target at full HP, its hits taken one at
+    a time as the engine takes them (BattleControllerPlayer_UpdateHP runs
+    once a hit). The calculator's row adds the two hits up, each the same,
+    so the damage splits into halves. Sturdy holds a hit only while its
+    holder is at full HP, so it can hold the first hit and never the second.
+    A Focus Sash is armed by the first hit taken at full HP and stays armed
+    to the move's end (focusItemActivated, a flag cleared only when the move
+    is over), so it holds the second hit too and is used up if that one
+    would have knocked its holder out; when Sturdy took the first hit's
+    check the Sash is never armed. `sturdy` is whether Sturdy counts here
+    (a Mold Breaker attacker ignores it). Until 2026-10-13 the pair was one
+    hit, so Sturdy held against both (Ian approved the fix)."""
+    first, second = dmg - dmg // 2, dmg // 2
+    hp = dfn.hp
+    if sturdy:
+        if first >= hp:
+            reveal(dfn)
+            first = hp - 1
+        return first + second
+    if dfn.item == "Focus Sash" and first + second >= hp:
+        consume(dfn)
+        return hp - 1
+    return first + second
 
 
 def rollout_mult(att, mv):
@@ -1168,9 +1215,12 @@ def attack(b, att, mv, dfn, first):
         dealt = 0
     else:
         # Focus Sash and Sturdy hold one hit from full HP: a move that hits
-        # twice or more lands its next hit on the 1 HP left.
+        # twice or more lands its next hit on the 1 HP left. A two-hit move
+        # takes its hits one at a time (two_hit_holds).
         full = dfn.hp == dfn.maxhp and hits < 2
-        if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or dfn.ability == "Sturdy"):
+        if mv.effect in TWO_HITS and full:
+            dmg = two_hit_holds(dfn, dmg, dfn.ability == "Sturdy")
+        elif dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or dfn.ability == "Sturdy"):
             if dfn.ability == "Sturdy":
                 reveal(dfn)
             dmg = dfn.hp - 1
