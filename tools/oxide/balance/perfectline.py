@@ -391,6 +391,7 @@ def _use_move(b, att, mv, dfn, first):
     att.last = mv
     if att.item and att.item.startswith("Choice") and not att.choice:
         att.choice = mv.name
+    fs.protean(b, att, mv)               # Protean retypes its user before the move runs
     if fs.commit_move(att, mv):
         return                       # Last Resort before every other move was used
     if mv.effect in fs.TWO_TURN and att.charging is None and not fs.charge_skipped(b, att, mv):
@@ -945,7 +946,8 @@ def mon_key(m):
             m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
             m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False),
             getattr(m, "disabled", None), getattr(m, "disabled_turns", 0), getattr(m, "nightmare", False),
-            getattr(m, "encore", None), getattr(m, "encore_turns", 0))
+            getattr(m, "encore", None), getattr(m, "encore_turns", 0),
+            getattr(m, "protean_type", None), getattr(m, "protean_used", False))
 
 
 def side_key(s):

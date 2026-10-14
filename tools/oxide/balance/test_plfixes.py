@@ -1592,6 +1592,29 @@ def roost_checks():
              f"Thunderbolt) {during}; the next turn {after}")]
 
 
+def protean_checks():
+    """Protean on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a twin of Mars 1's Floragato for
+    each type its moves could make it; after its Play Rough it is a Fairy
+    type, so the next Play Rough has STAB, about half again its old row,
+    and Machop's Karate Chop meets a Fairy, half what it did on Grass."""
+    from .test_fightai import battle
+    b = battle([("Floragato", 20, "Protean", ["Play Rough", "Seed Bomb"])], [("Machop", 20, "Guts", ["Karate Chop"])])
+    flora, machop = b.b.cur(), b.p.cur()
+    rough, chop = fs.move("Play Rough"), fs.move("Karate Chop")
+    twins = sorted((b.st.get("protean_twin") or {}).get(flora.key, {}))
+    before = (pl.damage_of(b, flora, machop, rough, False, True), pl.damage_of(b, machop, flora, chop, False, True))
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    machop.hp = machop.maxhp * 10
+    pl.use_move(b, flora, rough, machop, True)
+    after = (list(flora.types), pl.damage_of(b, flora, machop, rough, False, True),
+             pl.damage_of(b, machop, flora, chop, False, True))
+    ok = (twins == ["Fairy"] and after[0] == ["Fairy"] and 1.4 <= after[1] / max(1, before[0]) <= 1.6
+          and abs(after[2] * 2 - before[1]) <= 2)
+    return [("Protean: Floragato becomes a Fairy type, with STAB for Play Rough, on its twin's rows", ok,
+             f"twins {twins}; before (Play Rough, Karate Chop) {before}; after (types, Play Rough, Karate Chop) {after}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2056,6 +2079,7 @@ def main():
     results += readings_damage_checks()
     results += absorbing_ability_checks()
     results += roost_checks()
+    results += protean_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

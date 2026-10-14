@@ -335,6 +335,7 @@ class Mon:
         self.hp = self.maxhp
         self.stats = info["stats"]
         self.types = [t.title() for t in info.get("types") or []]
+        self.base_types = list(self.types)          # its own types, which a switch brings back (Protean)
         self.ability = info.get("ability") or rec.get("ability")
         self.item = info.get("item") or rec.get("item")
         self.moves = [move(m) for m in moves][:4]
@@ -379,6 +380,13 @@ class Mon:
         self.encore = None
         self.encore_turns = 0
         self.roosting = False            # Roost: its Flying type meets no move until the turn ends
+        # Protean and Libero: once a stay on the field the user takes its
+        # move's type alone; the type it took, and whether it has.
+        # Leaving the field brings back the types Protean took away.
+        if getattr(self, "protean_type", None) is not None:
+            self.types = list(self.base_types)
+        self.protean_type = None
+        self.protean_used = False
         self.last = None
         self.turns_in = 0
         self.hit_this_turn = None        # (category, damage) of the last hit taken this turn
@@ -476,6 +484,10 @@ class Battle:
         # A Pokemon whose ability the gas has off reads its ability-blank twin's rows.
         ak = att.key if att.gas_stash is None else gas_key(self, att)
         dk = dfn.key if dfn.gas_stash is None else gas_key(self, dfn)
+        if att.protean_type:
+            ak = protean_key(self, att) or ak     # a Protean user's twin of its new type
+        if dfn.protean_type:
+            dk = protean_key(self, dfn) or dk
         if dfn.roosting and mv is not None:
             dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
         w = self.weather if (self.weather, ak, dk) in self.st["rows"] else None
@@ -684,6 +696,29 @@ def reveal(mon):
 
 
 # ---- Neutralizing Gas (the simulator's support approved by Ian, 2026-10-13) --------------------------------
+
+def protean_key(b, mon):
+    """The key of the rows of a Pokemon its Protean has retyped: its twin
+    of that one type (prepare's protean_twin), or None without one."""
+    return ((b.st.get("protean_twin") or {}).get(mon.key) or {}).get(mon.protean_type)
+
+
+def protean(b, mon, mv):
+    """Protean and Libero (BEFORE_MOVE_STATE_PROTEAN): once a stay on the
+    field, the first move, Struggle aside, whose type its user is not wholly
+    already makes the user that type alone, so the move takes STAB and the
+    user meets moves as that type, until it leaves the field. The rows
+    follow through its twin of that type (protean_key) and the type checks
+    through mon.types; the message names the ability."""
+    if mon.ability not in ("Protean", "Libero") or mon.protean_used or mv.effect == "STRUGGLE":
+        return
+    t = ({"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
+         if mv.name == "Weather Ball" else mv.type)
+    if set(mon.types) == {t}:
+        return
+    mon.protean_used, mon.protean_type, mon.types = True, t, [t]
+    reveal(mon)
+
 
 def roost_key(b, mon, mv):
     """The key of the rows a roosting Pokemon meets this move on (prepare's
@@ -1238,6 +1273,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     att.last = mv
     if att.item and att.item.startswith("Choice") and not att.choice:
         att.choice = mv.name
+    protean(b, att, mv)
     if commit_move(att, mv):
         return                   # Last Resort before every other move was used
     # Charging moves: the first turn only charges (Fly and Dig vanish).
@@ -3837,6 +3873,38 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                     if "Magnitude" in moves.get(d, ()) and not d.startswith("b"):
                         for p in MAGNITUDE_POWERS:
                             pairs.append([f"{d}#m{p}", t, ["Magnitude"], w])
+    # Protean and Libero retype their holder to its first move's type
+    # (protean), which the calculator's Generation 4 rows cannot know: they
+    # give the holder no STAB for it and meet moves on its own types. So
+    # each holder gets a twin per type its moves could make it (species_data
+    # with that one type, exactly, as Roost's twins have it; its own stats and
+    # weight kept), rowed both ways against every foe.
+    protean_twin = {}
+    for k in pkeys + qkeys + bkeys:
+        if pokemon[k].get("ability") not in ("Protean", "Libero"):
+            continue
+        poks = blob["poks"].get(pokemon[k]["species"]) or {}
+        own_types = {t for t in (poks.get("types") or []) if t}
+        if not poks.get("bs"):
+            continue
+        foes = pkeys + qkeys if k.startswith("b") else bkeys
+        mine = party_hits(k) if k in bkeys else hits(k)
+        for kind in sorted({move(m).type for m in moves[k] if move(m).effect != "STRUGGLE"}):
+            if own_types == {kind}:
+                continue
+            t = f"{k}#pt{kind}"
+            own = {"bs": dict(poks["bs"]), "types": [kind], "exact_types": True}
+            if poks.get("weightkg") is not None:
+                own["weightkg"] = poks["weightkg"]
+            pokemon[t] = dict(pokemon[k], species_data=own)
+            protean_twin.setdefault(k, {})[kind] = t
+            for w in weathers:
+                for d in foes:
+                    if mine:
+                        pairs.append([t, d, mine, w])
+                    got = party_hits(d) if d in bkeys else hits(d)
+                    if got:
+                        pairs.append([d, t, got, w])
     # The calculator is told to leave off the abilities the battle applies
     # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once.
     jobs = {k: dict(p, ability_on=False) if p.get("ability") in CALC_ABILITY_OFF else p
@@ -3860,7 +3928,8 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "bosses": boss_keys, "partners": partner_keys,
             "base_weather": calc.CALC_WEATHER.get(weather, weather) if weather else None,
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
-            "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin}
+            "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
+            "protean_twin": protean_twin}
 
 
 def effectiveness(blob_or_chart, atk_type, def_types):

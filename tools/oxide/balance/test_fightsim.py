@@ -882,6 +882,39 @@ def check_roost(results):
                     f"the next turn (roosting, Earthquake) {after}"))
 
 
+def check_protean(results):
+    """Protean (approved 2026-10-14; BEFORE_MOVE_STATE_PROTEAN): once a stay
+    on the field, the first move whose type its user is not wholly already
+    makes the user that type alone, and its rows then come from its twin of
+    that type (prepare's protean_twin), both ways, until it leaves. A move of
+    its own single type changes nothing and leaves Protean unspent; the next
+    move after the change changes nothing either; leaving the field brings
+    its own type back and Protean with it."""
+    rows = {("p", "Ember"): [30] * 16, ("p", "Tackle"): [20] * 16, ("b", "Tackle"): [10] * 16}
+    b, p, foe = battle(["Tackle", "Ember"], ["Tackle"], rows)
+    b.st["first_battle"] = True              # no critical hits to blur the numbers
+    p.ability = "Protean"
+    b.st["rows"][(None, "p0#ptFire", "b0.0")] = {"moves": {"Ember": {"rolls": [45] * 16},
+                                                            "Tackle": {"rolls": [13] * 16}}}
+    b.st["rows"][(None, "b0.0", "p0#ptFire")] = {"moves": {"Tackle": {"rolls": [7] * 16}}}
+    b.st["protean_twin"] = {"p0": {"Fire": "p0#ptFire"}}
+    tackle, ember = fs.move("Tackle"), fs.move("Ember")
+    fs.use_move(b, p, tackle, foe, True)
+    own = (list(p.types), p.protean_used)
+    fs.use_move(b, p, ember, foe, True)
+    changed = (list(p.types), b.damage(p, foe, ember, roll=0), b.damage(p, foe, tackle, roll=0),
+               b.damage(foe, p, tackle, roll=0))
+    fs.use_move(b, p, tackle, foe, True)
+    kept = list(p.types)
+    p.reset_volatile()                       # what leaving the field does
+    back = (list(p.types), p.protean_used, b.damage(p, foe, ember, roll=0))
+    ok = (own == (["Normal"], False) and changed == (["Fire"], 45, 13, 7) and kept == ["Fire"]
+          and back == (["Normal"], False, 30))
+    results.append(("Protean retypes its user on its first off-type move, once a stay", ok,
+                    f"after its own type's move (types, spent) {own}; after Ember (types, Ember, Tackle, the foe's "
+                    f"Tackle) {changed}; after another Tackle {kept}; after leaving (types, spent, Ember) {back}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1119,7 +1152,7 @@ def main():
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
-                  check_roost,
+                  check_roost, check_protean,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
