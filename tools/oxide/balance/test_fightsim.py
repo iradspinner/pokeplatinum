@@ -1575,6 +1575,80 @@ def check_sacred_sword(results):
                     f"(at +2 Defense, at -2) {got}; landed of 2000 against +6 evasion {hits}"))
 
 
+def check_mold_breaker(results):
+    """Mold Breaker (approved 2026-10-14; Battler_IgnorableAbility) gets past
+    each ability the engine asks that function about, unless the target
+    holds an Ability Shield: the status immunities (a Mold Breaker's
+    Hypnosis sleeps an Insomnia target, its Thunder Wave paralyses a Limber
+    one, its Toxic poisons an Immunity one, its Spore sleeps a Leaf Guard
+    one in sun and an Overcoat one, though never a Grass type), Clear Body,
+    Hyper Cutter and Simple against its drops, Inner Focus and Shield Dust
+    against its flinch, Battle Armor and Shell Armor against its critical
+    hits, and Soundproof against its Perish Song."""
+    def status(move, ability, mold=True, shield=False, types=("Normal",), weather=None):
+        b, p, foe = battle([move], ["Tackle"], {}, b_types=types)
+        b.weather = weather
+        p.ability = "Mold Breaker" if mold else None
+        foe.ability = ability
+        foe.item = "Ability Shield" if shield else None
+        p.stages["acc"] = 6
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return foe.status
+
+    def drop(move, ability, mold=True):
+        b, p, foe = battle([move], ["Tackle"], {})
+        p.ability = "Mold Breaker" if mold else None
+        foe.ability = ability
+        fs.status_move(b, p, fs.move(move), foe, True)
+        return {k: v for k, v in foe.stages.items() if v}
+
+    def flinch(ability, mold=True):
+        b, p, foe = battle(["Rock Slide"], ["Tackle"], {("p", "Rock Slide"): [10] * 16})
+        b.rng = FixedDice(0.0)                  # every chance lands
+        p.ability = "Mold Breaker" if mold else None
+        foe.ability = ability
+        fs.attack(b, p, fs.move("Rock Slide"), foe, True)
+        return foe.flinch
+
+    def crit(ability, mold=True):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        p.ability = "Mold Breaker" if mold else None
+        foe.ability = ability
+        return fs.crit_rate(b, p, foe, fs.move("Tackle")) > 0
+
+    def perish(mold=True):
+        b, p, foe = battle(["Perish Song"], ["Tackle"], {})
+        p.ability = "Mold Breaker" if mold else None
+        foe.ability = "Soundproof"
+        fs.status_move(b, p, fs.move("Perish Song"), foe, True)
+        return foe.perish
+    got = {"Hypnosis, Insomnia": (status("Hypnosis", "Insomnia"), status("Hypnosis", "Insomnia", mold=False),
+                                  status("Hypnosis", "Insomnia", shield=True)),
+           "Thunder Wave, Limber": (status("Thunder Wave", "Limber"), status("Thunder Wave", "Limber", mold=False)),
+           "Toxic, Immunity": (status("Toxic", "Immunity"), status("Toxic", "Immunity", mold=False)),
+           "Spore, Leaf Guard in sun": (status("Spore", "Leaf Guard", weather="Sun"),
+                                        status("Spore", "Leaf Guard", mold=False, weather="Sun")),
+           "Spore, Overcoat": (status("Spore", "Overcoat"), status("Spore", "Overcoat", mold=False)),
+           "Spore, a Grass type": (status("Spore", None, types=("Grass",)),),
+           "Growl, Clear Body": (drop("Growl", "Clear Body"), drop("Growl", "Clear Body", mold=False)),
+           "Growl, Hyper Cutter": (drop("Growl", "Hyper Cutter"), drop("Growl", "Hyper Cutter", mold=False)),
+           "Growl, Simple": (drop("Growl", "Simple"), drop("Growl", "Simple", mold=False)),
+           "Rock Slide, Inner Focus": (flinch("Inner Focus"), flinch("Inner Focus", mold=False)),
+           "Rock Slide, Shield Dust": (flinch("Shield Dust"), flinch("Shield Dust", mold=False)),
+           "critical hits, Shell Armor": (crit("Shell Armor"), crit("Shell Armor", mold=False)),
+           "critical hits, Battle Armor": (crit("Battle Armor"), crit("Battle Armor", mold=False)),
+           "Perish Song, Soundproof": (perish(), perish(mold=False))}
+    want = {"Hypnosis, Insomnia": ("slp", None, None), "Thunder Wave, Limber": ("par", None),
+            "Toxic, Immunity": ("tox", None), "Spore, Leaf Guard in sun": ("slp", None),
+            "Spore, Overcoat": ("slp", None), "Spore, a Grass type": (None,),
+            "Growl, Clear Body": ({"atk": -1}, {}), "Growl, Hyper Cutter": ({"atk": -1}, {}),
+            "Growl, Simple": ({"atk": -1}, {"atk": -2}), "Rock Slide, Inner Focus": (True, False),
+            "Rock Slide, Shield Dust": (True, False), "critical hits, Shell Armor": (True, False),
+            "critical hits, Battle Armor": (True, False), "Perish Song, Soundproof": (4, 0)}
+    results.append(("Mold Breaker gets past the abilities the engine lets it ignore", got == want,
+                    f"(Mold Breaker, without it, against an Ability Shield) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1817,7 +1891,7 @@ def main():
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
-                  check_hard_press, check_electro_ball, check_sacred_sword,
+                  check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

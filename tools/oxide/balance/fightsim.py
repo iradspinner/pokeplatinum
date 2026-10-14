@@ -649,6 +649,24 @@ IGNORE_TARGET_STAGES = frozenset({"MOVE_SACRED_SWORD", "MOVE_DARKEST_LARIAT", "M
 
 # ---- the rules of a turn --------------------------------------------------------------------
 
+def mold(att, dfn):
+    """Battler_IgnorableAbility: att's Mold Breaker gets past dfn's ability
+    wherever the engine asks that function, unless dfn holds an Ability
+    Shield (Oxide, element 7). Until 2026-10-14 the simulator honoured it
+    for Sturdy, Unaware, Damp, Own Tempo, Oblivious and the absorbing
+    abilities alone (Ian approved the fix)."""
+    return att is not None and att is not dfn and att.ability == "Mold Breaker" and dfn.item != "Ability Shield"
+
+
+def status_ability_ignored(b, target):
+    """Whether the status about to be given comes from a Mold Breaker's move,
+    which the status subscripts' ability checks let through
+    (CheckIgnorableAbility on every path but Toxic Spikes'). b.status_src is
+    the move's user while a move runs, and the ability's holder, no one, or
+    the foe for an ability's, a hazard's or Synchronize's status."""
+    return mold(getattr(b, "status_src", None), target)
+
+
 def can_status(b, target, status):
     # A Substitute stops a status unless a move's own effect passes it
     # (give_status_by_move, for an Infiltrator attacker).
@@ -671,6 +689,8 @@ def can_status(b, target, status):
         return False
     if status == "par" and "Electric" in t:
         return False
+    if status_ability_ignored(b, target):
+        return True              # a Mold Breaker's move passes the abilities below
     if target.ability == "Purifying Salt":
         return False             # Oxide: Purifying Salt allows no status at all
     return target.ability not in STATUS_ABILITIES.get(status, set())
@@ -912,7 +932,7 @@ def lower_stats(b, src, mon, changes, intimidate=False):
             continue
         if stat_drop_blocked(b, mon, {stat: v}, src=src, intimidate=intimidate) or mon.stages[stat] <= -6:
             continue
-        change_stages(mon, {stat: v})
+        change_stages(mon, {stat: v}, simple=not mold(src, mon))     # Mold Breaker gets past Simple too
         fell.append(stat)
         if src is not None and src.side != mon.side and mon.ability in DEFIANT_STAT:
             raise_own(mon, DEFIANT_STAT[mon.ability], 2)
@@ -955,7 +975,9 @@ def stat_drop_blocked(b, mon, changes, src=None, intimidate=False):
         return True
     if mon.item == "Clear Amulet":
         return True
-    ab = mon.ability
+    # A Mold Breaker src gets past the abilities (AbilityBlocksSpecificStatReduction
+    # and the Clear Body test ask Battler_IgnorableAbility).
+    ab = None if mold(src, mon) else mon.ability
     if ab in ("Clear Body", "White Smoke") or (intimidate and ab in INTIMIDATE_PROOF) \
             or (ab == "Hyper Cutter" and falls <= {"atk"}) \
             or (ab == "Keen Eye" and falls <= {"acc"}) or (ab == "Big Pecks" and falls <= {"def"}):
@@ -979,20 +1001,24 @@ POWDER = {"Cotton Spore", "Poison Powder", "Sleep Powder", "Stun Spore", "Spore"
           "Rage Powder", "Magic Powder"}
 
 
-def powder_immune(target, mv):
-    return mv.name in POWDER and ("Grass" in target.types or target.ability == "Overcoat")
+def powder_immune(target, mv, att=None):
+    """A Grass type meets no powder or spore move, and Overcoat none unless
+    att has Mold Breaker (BattleSystem_TriggerImmunityAbility asks
+    Battler_IgnorableAbility; the Grass type's immunity is the type's)."""
+    return mv.name in POWDER and ("Grass" in target.types or (target.ability == "Overcoat" and not mold(att, target)))
 
 
 def leaf_guarded(b, target):
-    """Leaf Guard keeps every major status off its holder in sun. The engine
-    knows it; the AI does not, so this is not part of can_status."""
-    return target.ability == "Leaf Guard" and b.weather == "Sun"
+    """Leaf Guard keeps every major status off its holder in sun, unless a
+    Mold Breaker's move gives it. The engine knows it; the AI does not, so
+    this is not part of can_status."""
+    return target.ability == "Leaf Guard" and b.weather == "Sun" and not status_ability_ignored(b, target)
 
 
 def give_status(b, target, status):
     if not can_status(b, target, status) or leaf_guarded(b, target):
-        if target.alive() and not target.status and (target.ability in STATUS_ABILITIES.get(status, ())
-                                                     or leaf_guarded(b, target)):
+        if target.alive() and not target.status and not status_ability_ignored(b, target) \
+                and (target.ability in STATUS_ABILITIES.get(status, ()) or leaf_guarded(b, target)):
             reveal(target)
         return False
     target.status = status
@@ -1118,7 +1144,7 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
         berry = resist_berry(b, dfn, mv)
         if berry and dfn.item == berry:
             consume(dfn)
-        if added and not sub_hit and dfn.alive() and not stripped and dfn.ability != "Shield Dust":
+        if added and not sub_hit and dfn.alive() and not stripped and (dfn.ability != "Shield Dust" or mold(att, dfn)):
             p = min(100, (mv.chance or 0) * (2 if att.ability == "Serene Grace" else 1)) / 100
             if added == "psn" and chance("status", p, dfn):
                 give_status_by_move(b, att, dfn, mv, "psn")
@@ -1679,7 +1705,7 @@ def attack(b, att, mv, dfn, first):
     if dmg is None:
         stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                   mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
-        crit = (b.rng.random() < CRIT_RATE[min(stage, 4)] and dfn.ability not in ("Battle Armor", "Shell Armor")
+        crit = (b.rng.random() < CRIT_RATE[min(stage, 4)] and not crit_proof(att, dfn)
                 and not b.st.get("first_battle"))
         dmg = b.damage(att, dfn, mv, crit=crit)
         if dmg is None:
@@ -1731,11 +1757,18 @@ def attack(b, att, mv, dfn, first):
     _after_attack(b, att, mv, dfn, first, dealt)
 
 
+def crit_proof(att, dfn):
+    """Battle Armor and Shell Armor keep critical hits off their holder
+    unless att's Mold Breaker gets past them (BtlCmd_CalcCrit asks
+    Battler_IgnorableAbility)."""
+    return dfn.ability in ("Battle Armor", "Shell Armor") and not mold(att, dfn)
+
+
 def crit_rate(b, att, dfn, mv):
     """The chance a hit of mv lands critical: Oxide's rate at the attacker's
-    stage, 0 against Battle Armor or Shell Armor and in the first battle
-    (BtlCmd_CalcCrit)."""
-    if dfn.ability in ("Battle Armor", "Shell Armor") or b.st.get("first_battle"):
+    stage, 0 against Battle Armor or Shell Armor (unless Mold Breaker) and
+    in the first battle (BtlCmd_CalcCrit)."""
+    if crit_proof(att, dfn) or b.st.get("first_battle"):
         return 0.0
     stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                                                mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
@@ -1821,8 +1854,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         # and Sheer Force (sSheerForceEffects) leave it alone.
         dfn.salted = True
     chance = mv.chance or 0
-    if dfn.ability == "Shield Dust" or stripped:
-        chance = 0
+    if (dfn.ability == "Shield Dust" and not mold(att, dfn)) or stripped:
+        chance = 0               # Shield Dust, unless Mold Breaker gets past it
     if att.ability == "Serene Grace":
         chance *= 2
     if e in HIT_STATUS and b.rng.random() * 100 < chance:
@@ -1835,8 +1868,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         dfn.flinch = True
     if e == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and first and not stripped:
         dfn.flinch = True
-    if dfn.ability == "Inner Focus":
-        dfn.flinch = False       # Inner Focus: it never flinches
+    if dfn.ability == "Inner Focus" and not mold(att, dfn):
+        dfn.flinch = False       # Inner Focus: it never flinches, unless Mold Breaker gets past it
     if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and b.rng.random() * 100 < chance \
             and not confusion_blocked(b, att, dfn, hit=True):
         dfn.confused = b.rng.randint(2, 5)
@@ -2251,8 +2284,8 @@ def spin(b, att, dfn, e):
     stage (subscript_rapid_spin); Mortal Spin first poisons its target
     (subscript_mortal_spin) as a secondary effect, which a Substitute,
     Shield Dust and Covert Cloak stop."""
-    if (e == "MORTAL_SPIN" and dfn.alive() and not sub_blocks(att, dfn) and dfn.ability != "Shield Dust"
-            and dfn.item != "Covert Cloak"):
+    if (e == "MORTAL_SPIN" and dfn.alive() and not sub_blocks(att, dfn)
+            and (dfn.ability != "Shield Dust" or mold(att, dfn)) and dfn.item != "Covert Cloak"):
         give_status_by_move(b, att, dfn, None, "psn")
     att.bound = 0
     att.seeded = False
@@ -2873,7 +2906,7 @@ def status_move(b, att, mv, dfn, first):
         # Wave fails on a Ground type while Hypnosis still sleeps a Dark one.
         if mv.name == "Thunder Wave" and effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
             return
-        if powder_immune(dfn, mv):
+        if powder_immune(dfn, mv, att):
             return
         if not b.accuracy_hits(att, dfn, mv):
             return
@@ -3020,7 +3053,7 @@ def status_move(b, att, mv, dfn, first):
         # Perish Song: every Pokemon on the field faints at the end of the
         # third turn after this one unless it switches out first.
         for m in (b.p.on_field() + b.b.on_field()):
-            if m.alive() and not m.perish and m.ability != "Soundproof":
+            if m.alive() and not m.perish and (m.ability != "Soundproof" or mold(att, m)):
                 m.perish = 4
     elif e == "HIT_IN_3_TURNS":
         pass

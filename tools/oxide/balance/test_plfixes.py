@@ -2036,6 +2036,31 @@ def sacred_sword_checks():
              f"(Sacred Sword, Close Combat) at the target's Defense stage 0, +2, -2: {out}")]
 
 
+def mold_breaker_checks():
+    """Mold Breaker on the calculator's real rows in the readings' battle
+    (approved 2026-10-14): Roark's Mold Breaker Cranidos's Rock Slide now
+    flinches an Inner Focus Zubat, which every one of his boxes holds, and
+    can land a critical hit on a Shell Armor Turtwig (box 1's six takes
+    one); a Rock Head Cranidos does neither."""
+    from .test_fightai import battle
+    out = {}
+    for ab in ("Mold Breaker", "Rock Head"):
+        b = battle([("Cranidos", 16, ab, ["Rock Slide"])],
+                   [("Zubat", 16, "Inner Focus", ["Bite"]), ("Turtwig", 16, "Shell Armor", ["Tackle"])])
+        cran = b.b.cur()
+        zubat, turtwig = b.p.mons
+        flinched = 0
+        for seed in range(200):
+            b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+            zubat.hp, zubat.flinch = zubat.maxhp * 10, False     # it outlasts the hit, so a flinch can show
+            pl.attack(b, cran, fs.move("Rock Slide"), zubat, True)
+            flinched += zubat.flinch
+        out[ab] = (flinched, fs.crit_rate(b, cran, turtwig, fs.move("Rock Slide")) > 0)
+    ok = out["Mold Breaker"][0] > 30 and out["Mold Breaker"][1] and out["Rock Head"] == (0, False)
+    return [("Mold Breaker: Cranidos flinches an Inner Focus Zubat and crits a Shell Armor Turtwig", ok,
+             f"(flinches in 200 Rock Slides, can land a critical hit on Turtwig) {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2516,6 +2541,7 @@ def main():
     results += hard_press_checks()
     results += electro_ball_checks()
     results += sacred_sword_checks()
+    results += mold_breaker_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

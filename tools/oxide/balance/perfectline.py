@@ -289,8 +289,8 @@ def give_status(b, target, status):
     if not hasattr(b, "dice"):
         return _FS_GIVE_STATUS(b, target, status)
     if not fs.can_status(b, target, status) or fs.leaf_guarded(b, target):
-        if target.alive() and not target.status and (target.ability in fs.STATUS_ABILITIES.get(status, ())
-                                                     or fs.leaf_guarded(b, target)):
+        if target.alive() and not target.status and not fs.status_ability_ignored(b, target) \
+                and (target.ability in fs.STATUS_ABILITIES.get(status, ()) or fs.leaf_guarded(b, target)):
             fs.reveal(target)
         return False
     target.status = status
@@ -614,7 +614,7 @@ def attack(b, att, mv, dfn, first):
         # The first battle (Barry on Route 201) has no critical hits on either
         # side: BtlCmd_CalcCrit sets the multiplier to 1 under
         # BATTLE_STATUS_FIRST_BATTLE (src/battle/battle_script.c).
-        if dfn.ability not in ("Battle Armor", "Shell Armor") and not b.st.get("first_battle"):
+        if not fs.crit_proof(att, dfn) and not b.st.get("first_battle"):     # the armour, unless Mold Breaker
             stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                       mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
             if att.item in ("Scope Lens", "Razor Claw"):
@@ -764,8 +764,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     if e == "SALT_CURE":
         dfn.salted = True        # as fightsim: salted once the hit lands, chance-free
     chance = mv.chance or 0
-    if dfn.ability == "Shield Dust" or stripped:
-        chance = 0
+    if (dfn.ability == "Shield Dust" and not fs.mold(att, dfn)) or stripped:
+        chance = 0               # Shield Dust, unless Mold Breaker gets past it
     if att.ability == "Serene Grace":
         chance = min(100, chance * 2)
     # A secondary status lands at its chance (Ian, 2026-10-02); under the
@@ -795,8 +795,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     if first and att.item in ("King's Rock", "Razor Fang") and not dfn.flinch and not hit_by_hit \
             and secondary("kingsrock", 0.1):
         dfn.flinch = True
-    if dfn.ability == "Inner Focus":
-        dfn.flinch = False       # Inner Focus: it never flinches
+    if dfn.ability == "Inner Focus" and not fs.mold(att, dfn):
+        dfn.flinch = False       # Inner Focus: it never flinches, unless Mold Breaker gets past it
     if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and chance \
             and not fs.confusion_blocked(b, att, dfn, hit=True) and status_lands("confusehit"):
         dfn.confused = b.dice.confusion(dfn.side)
@@ -834,7 +834,7 @@ def status_move(b, att, mv, dfn, first):
         if mv.name == "Thunder Wave" and fs.effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
             return
         # Grass types and Overcoat are immune to powder and spore moves.
-        if fs.powder_immune(dfn, mv):
+        if fs.powder_immune(dfn, mv, att):
             return
         if not accuracy_hits(b, att, dfn, mv):
             return
@@ -994,7 +994,7 @@ def status_move(b, att, mv, dfn, first):
         att.baton = True
     elif e == "ALL_FAINT_3_TURNS":
         for m in (b.p.on_field() + b.b.on_field()):
-            if m.alive() and not m.perish and m.ability != "Soundproof":
+            if m.alive() and not m.perish and (m.ability != "Soundproof" or fs.mold(att, m)):
                 m.perish = 4
 
 
