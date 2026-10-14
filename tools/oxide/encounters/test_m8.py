@@ -201,7 +201,10 @@ def check_endpoints(results):
     # included, and a species lists the moves only an earlier stage learns.
     drought = sorted(r["name"] for r in out["rows"] if "DROUGHT" in r["abilities"])
     results.append(("each list row carries its abilities, the hidden one included",
-                    drought == ["Groudon", "Magcargo", "Ninetales", "Slugma", "Torkoal", "Vulpix"],
+                    # Groudon's Drought is a regular slot; Torkoal's, Vulpix's and
+                    # Ninetales's are hidden. Not the whole list, which grows
+                    # with each team that takes Drought (Solrock, 2026-10-13).
+                    {"Groudon", "Torkoal", "Vulpix", "Ninetales"} <= set(drought),
                     f"Drought: {drought}"))
     rose = server.dex_detail("SPECIES_ROSERADE")
     own = ({m["move"] for m in rose["learnset"]} | {m["move"] for m in rose["machine_moves"]}

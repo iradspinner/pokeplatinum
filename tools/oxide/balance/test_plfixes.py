@@ -5,7 +5,10 @@ simulator, each checked on that fight (the Overseer, 2026-09-30).
 
 The checks use Roark's team as it stood before his redesign of 2026-10-12
 (Nosepass and Geodude with Block, Lileep with Acid, Larvitar, Cranidos),
-saved in test_plfixes_roark.json, so a later Roark leaves them standing.
+saved in test_plfixes_roark.json, and Gardenia's as it stood before Ian's
+six of 2026-10-13 (Breloom with Stun Spore, Ludicolo, a Natural Cure
+Roserade), saved in test_plfixes_gardenia.json, so a later team for either
+leaves them standing.
 """
 import collections
 import functools
@@ -18,9 +21,19 @@ from . import data, fightai, plscore, perfectline as pl, fightsim as fs
 # The scorer reads a trainer's team through data.oxide_trainers() and its
 # genders and abilities through plscore.with_genders(); both are pointed at
 # the saved team here, before anything reads them.
-ROARK_FIXTURE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_plfixes_roark.json")
-with open(ROARK_FIXTURE, encoding="utf-8") as _f:
-    ROARK = json.load(_f)
+_HERE = os.path.dirname(os.path.abspath(__file__))
+
+
+def _fixture(name):
+    with open(os.path.join(_HERE, name), encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+# Each saved team, by its trainer file's stem. The names are written out so
+# the gate's scope tool sees which files this test reads.
+PINNED = {"leader_roark": _fixture("test_plfixes_roark.json"),
+          "leader_gardenia": _fixture("test_plfixes_gardenia.json")}
+ROARK = PINNED["leader_roark"]
 _live_trainers = data.oxide_trainers
 _live_genders = plscore.with_genders
 
@@ -28,15 +41,16 @@ _live_genders = plscore.with_genders
 @functools.lru_cache(maxsize=None)
 def _pinned_trainers(root=data.ROOT):
     out = dict(_live_trainers(root))
-    party = data.calc_trainers.build_trainer(root, "leader_roark", ROARK)
-    tr_id = party[0][1]["tr_id"]
-    out[tr_id] = dict(out[tr_id], ai=party[0][1].get("ai"), party=[data._mon(sp, s) for sp, s in party])
+    for stem, team in PINNED.items():
+        party = data.calc_trainers.build_trainer(root, stem, team)
+        tr_id = party[0][1]["tr_id"]
+        out[tr_id] = dict(out[tr_id], ai=party[0][1].get("ai"), party=[data._mon(sp, s) for sp, s in party])
     return out
 
 
 def _pinned_genders(t, tr=None):
-    if tr is None and t.get("stem") == "leader_roark":
-        tr = ROARK
+    if tr is None and t.get("stem") in PINNED:
+        tr = PINNED[t["stem"]]
     return _live_genders(t, tr)
 
 
