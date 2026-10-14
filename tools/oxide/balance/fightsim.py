@@ -1091,7 +1091,7 @@ def give_status(b, target, status):
     if status == "tox":
         target.toxic = 0
     synchronize(b, target, status)
-    cure_berry(target)
+    cure_berry(target, b)
     return True
 
 
@@ -1215,7 +1215,7 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
         if dealt <= 0:
             continue
         berry = resist_berry(b, dfn, mv)
-        if berry and dfn.item == berry:
+        if berry_works(b, dfn, berry):
             consume(dfn)
         if added and not sub_hit and dfn.alive() and not stripped and (dfn.ability != "Shield Dust" or mold(att, dfn)):
             p = min(100, (mv.chance or 0) * (2 if att.ability == "Serene Grace" else 1)) / 100
@@ -1230,7 +1230,7 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
             if first and flinch_item(att) and not dfn.flinch and dfn.alive() \
                     and chance("kingsrock", 0.1, dfn):
                 dfn.flinch = True
-        berry_check(dfn)
+        berry_check(dfn, b)
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
     if held and dfn.item == "Focus Sash":
@@ -1420,7 +1420,7 @@ def hurt(b, mon, amount):
     # replacement has come in, so hazards on that replacement do not count.
     if getattr(b, "mid_turn", False):
         mon.hurt_this_turn = True
-    berry_check(mon)
+    berry_check(mon, b)
     if not mon.hp and mon.ability == "Neutralizing Gas" and b.st.get("gas"):
         gas_update(b, check=False)       # the gas goes with its holder's last HP
 
@@ -1432,8 +1432,27 @@ PINCH_BERRIES = {"Apicot Berry": "spd", "Liechi Berry": "atk", "Ganlon Berry": "
                  "Salac Berry": "spe", "Petaya Berry": "spa"}
 
 
-def berry_check(mon):
-    if not mon.alive() or not mon.item:
+def unnerved(b, mon):
+    """Whether mon cannot eat the Berry it holds (BerryBlockedByUnnerve): a
+    foe with Unnerve stands on the field. That stops every Berry the engine
+    eats from its holder's hand, the pinch and healing ones, the cure ones,
+    a resist Berry's halving and the Custap Berry; Natural Gift, Bug Bite,
+    Pluck and Harvest are not eating. b None (a check made with no battle)
+    has no foe. Until 2026-10-14 Unnerve did nothing (Ian approved the
+    fix)."""
+    if b is None or not mon.item or not mon.item.endswith("Berry"):
+        return False
+    foes = (b.b if mon.side == "p" else b.p).on_field()
+    return any(f.alive() and f.ability == "Unnerve" for f in foes)
+
+
+def berry_works(b, mon, berry):
+    """Whether mon still holds this resist Berry and may eat it."""
+    return bool(berry) and mon.item == berry and not unnerved(b, mon)
+
+
+def berry_check(mon, b=None):
+    if not mon.alive() or not mon.item or unnerved(b, mon):
         return
     # Gluttony eats a pinch berry at half its HP, not a quarter.
     if mon.item in PINCH_BERRIES and mon.hp * (2 if mon.ability == "Gluttony" else 4) <= mon.maxhp:
@@ -1966,7 +1985,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and b.rng.random() * 100 < chance \
             and not confusion_blocked(b, att, dfn, hit=True):
         dfn.confused = b.rng.randint(2, 5)
-        confusion_berry(dfn)
+        confusion_berry(dfn, b)
     if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance:
         lower_stats(b, att, dfn, HIT_FOE_STAGES[e])
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
@@ -2370,7 +2389,7 @@ def berry_first_hit(b, dfn, mv, dmg, hits):
     Berry Breloom at a tenth of its HP where the game knocks it out (Ian
     approved the fix)."""
     berry = resist_berry(b, dfn, mv)
-    if not berry or dfn.item != berry:
+    if not berry_works(b, dfn, berry):
         return dmg
     if mv.effect == "HIT_TWICE":
         powers = [1, 1]
@@ -2522,8 +2541,8 @@ def state_mult(b, att, dfn, mv):
     m *= marvel_scale(att, dfn, mv)
     m *= plus_minus(b, att, mv)
     berry = resist_berry(b, dfn, mv)
-    if berry and dfn.item != berry:
-        m *= 2
+    if berry and not berry_works(b, dfn, berry):
+        m *= 2               # the row's halving gone with the Berry, or held off by Unnerve
     if mv.effect == "INCREASE_POWER_WITH_LESS_HP":
         m *= power_ratio(att, 20, flail_power(att))
     if mv.effect == "DECREASE_POWER_WITH_LESS_USER_HP":
@@ -2596,7 +2615,7 @@ def after_hit(b, att, dfn, mv, dealt):
     if dealt <= 0:
         return
     berry = resist_berry(b, dfn, mv)
-    if berry and dfn.item == berry:
+    if berry_works(b, dfn, berry):
         consume(dfn)
     if dfn.raging and dfn.alive():
         change_stages(dfn, {"atk": 1})
@@ -2643,20 +2662,20 @@ def confusion_blocked(b, att, dfn, hit=False):
     return bool(side.safeguard) and att.ability != "Infiltrator"
 
 
-def confusion_berry(mon):
+def confusion_berry(mon, b=None):
     """A Lum or Persim Berry cures confusion the moment it sets in, after
     the move (BattleSystem_TriggerHeldItemOnStatus), and is used up; the
     turn's end, which waited for it until 2026-10-14, is too late for a
-    holder that moves after."""
-    if mon.confused and mon.item in ("Lum Berry", "Persim Berry"):
+    holder that moves after. Unnerve holds it (unnerved)."""
+    if mon.confused and mon.item in ("Lum Berry", "Persim Berry") and not unnerved(b, mon):
         mon.confused = 0
         consume(mon)
 
 
-def cure_berry(mon):
+def cure_berry(mon, b=None):
     """A status-curing berry (or Lum) cures the status it was just given,
-    and is used up."""
-    if mon.status and mon.status in CURE_BERRY.get(mon.item, ()):
+    and is used up; Unnerve holds it (unnerved)."""
+    if mon.status and mon.status in CURE_BERRY.get(mon.item, ()) and not unnerved(b, mon):
         mon.status, mon.sleep, mon.toxic = None, 0, 0
         consume(mon)
 
@@ -3014,12 +3033,13 @@ def trick_room_for(constants, flag=False):
     return bool(flag) or any(c in permanent_trick_room() for c in constants)
 
 
-def custap_fires(mon):
+def custap_fires(mon, b=None):
     """A Custap Berry puts its holder first in its priority bracket, like a
     Quick Claw that always fires, at a quarter of its HP or less (half with
-    Gluttony), once (HOLD_EFFECT_PINCH_PRIORITY)."""
+    Gluttony), once (HOLD_EFFECT_PINCH_PRIORITY), unless Unnerve holds it
+    (BattleSystem_CompareBattlerSpeed asks BerryBlockedByUnnerve)."""
     return (mon.item == "Custap Berry" and mon.alive()
-            and mon.hp * (2 if mon.ability == "Gluttony" else 4) <= mon.maxhp)
+            and mon.hp * (2 if mon.ability == "Gluttony" else 4) <= mon.maxhp and not unnerved(b, mon))
 
 
 def knockout_boost(att, dfn, before):
@@ -3148,13 +3168,13 @@ def status_move(b, att, mv, dfn, first):
     elif e == "STATUS_CONFUSE":
         if not sub_blocks(att, dfn, mv) and not confusion_blocked(b, att, dfn):
             dfn.confused = b.rng.randint(2, 5)
-            confusion_berry(dfn)
+            confusion_berry(dfn, b)
     elif e in ("ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
         if not sub_blocks(att, dfn, mv):
             change_stages(dfn, {"atk": 2} if e.startswith("ATK") else {"spa": 1})
             if not confusion_blocked(b, att, dfn):
                 dfn.confused = b.rng.randint(2, 5)
-                confusion_berry(dfn)
+                confusion_berry(dfn, b)
     elif e == "STATUS_SLEEP_NEXT_TURN":
         if not dfn.status and not dfn.yawn and not sub_blocks(att, dfn, mv):
             dfn.yawn = 2
@@ -3197,7 +3217,7 @@ def status_move(b, att, mv, dfn, first):
         # so a Sleep Talk that calls Rest does nothing, and at full HP.
         if not rest_blocked(b, att) and att.hp < att.maxhp and att.status != "slp":
             att.hp, att.status, att.sleep, att.toxic = att.maxhp, "slp", 2, 0
-            cure_berry(att)          # a Chesto or Lum Berry wakes it at once
+            cure_berry(att, b)          # a Chesto or Lum Berry wakes it at once
     elif e == "SWALLOW":
         heal(att, att.maxhp // 4)
     elif e == "SET_LIGHT_SCREEN":
@@ -3407,7 +3427,7 @@ def end_order(b):
         """Whether m1 goes after m2 (the comparison's nonzero result)."""
         if not m1.alive() or not m2.alive():
             return not m1.alive() and m2.alive()
-        q1, q2 = quick.get(m1.key) or custap_fires(m1), quick.get(m2.key) or custap_fires(m2)
+        q1, q2 = quick.get(m1.key) or custap_fires(m1, b), quick.get(m2.key) or custap_fires(m2, b)
         s1, s2 = b.speed(m1), b.speed(m2)
         if q1 != q2:
             return q2
@@ -3570,10 +3590,10 @@ def _end_of_turn_mon(b, side, m):
     if m.ability == "Harvest" and not m.item and m.recycle and m.recycle.endswith("Berry"):
         if (b.weather == "Sun" and not weather_ignored(b)) or coin(b, "harvest"):
             m.item, m.recycle = m.recycle, None
-    if m.item == "Sitrus Berry" and 0 < m.hp <= m.maxhp // 2:
+    if m.item == "Sitrus Berry" and 0 < m.hp <= m.maxhp // 2 and not unnerved(b, m):
         heal(m, m.maxhp // 4)
         consume(m)
-    if m.item == "Lum Berry" and (m.status or m.confused):
+    if m.item == "Lum Berry" and (m.status or m.confused) and not unnerved(b, m):
         m.status, m.confused = None, 0
         consume(m)
     if m.item == "Leftovers" or (m.item == "Black Sludge" and "Poison" in m.types):

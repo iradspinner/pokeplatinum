@@ -299,7 +299,7 @@ def give_status(b, target, status):
     if status == "tox":
         target.toxic = 0
     fs.synchronize(b, target, status)
-    fs.cure_berry(target)
+    fs.cure_berry(target, b)
     return True
 
 
@@ -513,7 +513,7 @@ def multi_hit(b, att, mv, dfn, first, hits, trainer):
             # The whole move's damage at a roll, for grouping alone: a resist
             # berry held now halves the first hit only.
             berry = fs.resist_berry(b, dfn, mv)
-            held = bool(berry) and dfn.item == berry
+            held = fs.berry_works(b, dfn, berry)
             shared = grouped(lambda r: sum(one(i, crits[i], r) * (2 if held and i else 1) for i in range(hits)),
                              dfn.hp)
 
@@ -699,7 +699,7 @@ def attack(b, att, mv, dfn, first):
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
         b.last_dealt = dealt
-        fs.berry_check(dfn)
+        fs.berry_check(dfn, b)
         dfn.hit_this_turn = (mv.cat, dealt)
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
@@ -805,7 +805,7 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and chance \
             and not fs.confusion_blocked(b, att, dfn, hit=True) and status_lands("confusehit"):
         dfn.confused = b.dice.confusion(dfn.side)
-        fs.confusion_berry(dfn)          # a Lum Berry cures it at once
+        fs.confusion_berry(dfn, b)          # a Lum Berry cures it at once
     if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100):
         fs.lower_stats(b, att, dfn, fs.HIT_FOE_STAGES[e])     # Mirror Armor, the blockers, Defiant
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
@@ -852,13 +852,13 @@ def status_move(b, att, mv, dfn, first):
     elif e == "STATUS_CONFUSE":
         if not fs.sub_blocks(att, dfn, mv) and not fs.confusion_blocked(b, att, dfn):
             dfn.confused = b.dice.confusion(dfn.side)
-            fs.confusion_berry(dfn)
+            fs.confusion_berry(dfn, b)
     elif e in ("ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
         if not fs.sub_blocks(att, dfn, mv):
             fs.change_stages(dfn, {"atk": 2} if e.startswith("ATK") else {"spa": 1})
             if not fs.confusion_blocked(b, att, dfn):
                 dfn.confused = b.dice.confusion(dfn.side)
-                fs.confusion_berry(dfn)
+                fs.confusion_berry(dfn, b)
     elif e == "STATUS_SLEEP_NEXT_TURN":
         if not dfn.status and not dfn.yawn and not fs.sub_blocks(att, dfn, mv):
             dfn.yawn = 2
@@ -903,7 +903,7 @@ def status_move(b, att, mv, dfn, first):
         # Talk reaches it, and at full HP (subscript_rest).
         if not fs.rest_blocked(b, att) and att.hp < att.maxhp and att.status != "slp":
             att.hp, att.status, att.sleep, att.toxic = att.maxhp, "slp", 2, 0
-            fs.cure_berry(att)       # a Chesto or Lum Berry wakes it at once
+            fs.cure_berry(att, b)       # a Chesto or Lum Berry wakes it at once
     elif e == "SWALLOW":
         fs.heal(att, att.maxhp // 4)
     elif e == "SET_LIGHT_SCREEN":
@@ -1448,7 +1448,7 @@ def play_turn(b, pa, rng, one_crit=True):
     b.dice.rng = rng
     # Quick Claw is rolled before anyone chooses, and the trainer's AI reads
     # the roll (BattleSystem_CompareBattlerSpeed sees speedRand).
-    b.quick = {m.key: fs.custap_fires(m) or (m.item == "Quick Claw" and (b.dice.good(0.2, "quickclaw") if player(m) else b.dice.bad("quickclaw", 0.2)))
+    b.quick = {m.key: fs.custap_fires(m, b) or (m.item == "Quick Claw" and (b.dice.good(0.2, "quickclaw") if player(m) else b.dice.bad("quickclaw", 0.2)))
                for m in (b.p.cur(), b.b.cur())}
     aa = fightai.choose(b, b.b.cur(), b.p.cur())
     _turn(b, pa, aa)

@@ -2011,6 +2011,46 @@ def check_stench(results):
                     f"flinched in 1000 two-hit Double Kicks {got}"))
 
 
+def check_unnerve(results):
+    """Unnerve (approved 2026-10-14; BerryBlockedByUnnerve): while a foe with
+    it stands, a Pokemon cannot eat its Berry: a Sitrus Berry at half HP, a
+    Lum Berry against a status, a resist Berry's halving (the row's half is
+    taken back off), a Custap Berry's turn order; once the holder has
+    fainted the Berries work again. Berry Juice is no Berry."""
+    def sitrus(unnerve=True, holder_up=True, item="Sitrus Berry"):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        foe.ability = "Unnerve" if unnerve else None
+        if not holder_up:
+            foe.hp = 0
+        p.item = item
+        fs.hurt(b, p, 60)
+        return p.hp, p.item
+    def lum():
+        b, p, foe = battle(["Tackle"], ["Thunder Wave"], {})
+        p.ability = "Unnerve"
+        foe.item = "Lum Berry"
+        b.status_src = p
+        fs.give_status(b, foe, "par")
+        return foe.status, foe.item
+    def resist():
+        b, p, foe = battle(["Ember"], ["Tackle"], {("p", "Ember"): [20] * 16}, b_types=("Grass",))
+        b.st["pokemon"]["b0.0"]["item"] = foe.item = "Occa Berry"
+        p.ability = "Unnerve"
+        return b.damage(p, foe, fs.move("Ember"), roll=0), foe.item
+    def custap():
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        p.ability = "Unnerve"
+        foe.item, foe.hp = "Custap Berry", 20
+        return fs.custap_fires(foe, b), fs.custap_fires(foe)
+    got = {"Sitrus under Unnerve": sitrus(), "Sitrus": sitrus(unnerve=False),
+           "Sitrus, the holder fainted": sitrus(holder_up=False), "Berry Juice under Unnerve": sitrus(item="Berry Juice"),
+           "Lum under Unnerve": lum(), "a resist Berry under Unnerve": resist(), "Custap under Unnerve": custap()}
+    want = {"Sitrus under Unnerve": (40, "Sitrus Berry"), "Sitrus": (65, None), "Sitrus, the holder fainted": (65, None),
+            "Berry Juice under Unnerve": (60, None), "Lum under Unnerve": ("par", "Lum Berry"),
+            "a resist Berry under Unnerve": (40, "Occa Berry"), "Custap under Unnerve": (False, True)}
+    results.append(("Unnerve keeps the other side from eating its Berries", got == want, f"{got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2258,7 +2298,7 @@ def main():
                   check_knockout_boost, check_trapping_exemptions, check_accuracy_abilities,
                   check_download, check_weather_abilities, check_sand_force,
                   check_bad_dreams, check_marvel_scale, check_shed_skin,
-                  check_suction_cups, check_plus_minus, check_stench,
+                  check_suction_cups, check_plus_minus, check_stench, check_unnerve,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

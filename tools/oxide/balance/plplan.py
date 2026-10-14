@@ -353,7 +353,7 @@ def quick_outcomes(b):
     field fires one time in five, drawn before anyone chooses."""
     out = [({}, 1.0)]
     for m in (b.p.cur(), b.b.cur()):
-        if fs.custap_fires(m):
+        if fs.custap_fires(m, b):
             out = [(dict(q, **{m.key: True}), p) for q, p in out]      # a Custap Berry that fires
         elif m.item == "Quick Claw":
             out = [(dict(q, **{m.key: f}), p * (0.2 if f else 0.8)) for q, p in out for f in (False, True)]
@@ -1117,7 +1117,7 @@ def real_turn(b, a, rng):
     """perfectline.play_turn, returning the trainer's choice as well."""
     b.rng = rng
     b.dice.rng = rng
-    b.quick = {m.key: fs.custap_fires(m) or (m.item == "Quick Claw" and (b.dice.good(0.2, "quickclaw") if pl.player(m) else b.dice.bad("quickclaw", 0.2)))
+    b.quick = {m.key: fs.custap_fires(m, b) or (m.item == "Quick Claw" and (b.dice.good(0.2, "quickclaw") if pl.player(m) else b.dice.bad("quickclaw", 0.2)))
                for m in (b.p.cur(), b.b.cur())}
     aa = fightai.choose(b, b.b.cur(), b.p.cur())
     pl._turn(b, a, aa)

@@ -2356,6 +2356,36 @@ def stench_checks():
     return [("Stench: Weezing's Sludge Bomb flinches about one time in ten", ok, f"flinched of 400 {out}")]
 
 
+def unnerve_checks():
+    """Unnerve on the calculator's real rows (approved 2026-10-14): the
+    player's Sitrus Berry, which the scorer hands out, does not fire under
+    a trainer's Unnerve Tyranitar, and the player's Unnerve Corvisquire (in
+    Roark's and Gardenia's boxes) keeps Roark's kind of Passho Berry
+    Sandshrew from halving its Water hit, so a Water Gun lands at the row's
+    whole worth."""
+    from .test_fightai import battle
+    b = battle([("Tyranitar", 40, "Unnerve", ["Crunch"])], [("Machamp", 40, "Guts", ["Cross Chop"], "Sitrus Berry")])
+    champ = b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    fs.hurt(b, champ, champ.hp - champ.maxhp // 2 + 1)
+    kept = champ.item == "Sitrus Berry" and champ.hp < champ.maxhp // 2
+    c = battle([("Sandshrew", 16, "Sand Veil", ["Rock Slide"], "Passho Berry")],
+               [("Corvisquire", 16, "Unnerve", ["Water Gun"]), ("Corvisquire", 16, "Keen Eye", ["Water Gun"])])
+    shrew = c.b.cur()
+    unnerve, keen = c.p.mons
+    gun = fs.move("Water Gun")
+    # Unnerve works while its holder is on the field, whoever attacks, so
+    # each Corvisquire is read with itself sent in.
+    c.p.active = 1
+    halved = pl.damage_of(c, keen, shrew, gun, False, False)
+    c.p.active = 0
+    whole = pl.damage_of(c, unnerve, shrew, gun, False, False)
+    ok = kept and abs(whole - halved * 2) <= 2
+    return [("Unnerve keeps a Sitrus Berry uneaten and a Passho Berry from halving, on the real rows", ok,
+             f"Machamp kept its Sitrus Berry below half HP {kept}; Water Gun's bottom roll into the Passho "
+             f"Sandshrew from a Keen Eye Corvisquire {halved}, from an Unnerve one {whole}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2852,6 +2882,7 @@ def main():
     results += suction_cups_checks()
     results += plus_minus_checks()
     results += stench_checks()
+    results += unnerve_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
