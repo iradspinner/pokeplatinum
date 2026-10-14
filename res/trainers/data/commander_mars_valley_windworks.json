@@ -32,7 +32,7 @@
             "level": 18,
             "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_FIRE_FANG",
+                "MOVE_FLAME_WHEEL",
                 "MOVE_DOUBLE_KICK",
                 "MOVE_WILL_O_WISP",
                 "MOVE_U_TURN"
@@ -64,11 +64,11 @@
             "species": "SPECIES_GOLBAT",
             "form": 0,
             "level": 18,
-            "item": "ITEM_SHARP_BEAK",
+            "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_DUAL_WINGBEAT",
                 "MOVE_LEECH_LIFE",
-                "MOVE_ZEN_HEADBUTT",
+                "MOVE_BITE",
                 "MOVE_CONFUSE_RAY"
             ],
             "iv_scale": 255,
@@ -86,7 +86,7 @@
                 "MOVE_FAKE_OUT",
                 "MOVE_FACADE",
                 "MOVE_KNOCK_OFF",
-                "MOVE_THUNDERBOLT"
+                "MOVE_SHOCK_WAVE"
             ],
             "iv_scale": 255,
             "nature": "NATURE_JOLLY",
