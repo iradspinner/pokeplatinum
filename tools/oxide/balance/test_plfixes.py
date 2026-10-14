@@ -1509,6 +1509,37 @@ def ice_body_checks():
              f"weather {b.weather}; gained at the turn's end (Ice Body, Pressure) {gained} of {body.maxhp}")]
 
 
+def readings_damage_checks():
+    """The readings' damage (perfectline.damage_of) takes fightsim's own two
+    corrections (approved 2026-10-14), as the engine's damage has them
+    (battle_lib.c, BattleSystem_CalcMoveDamage): Reflect halves neither
+    Brick Break, which breaks it, nor an Infiltrator's hit, nor a critical
+    hit; and the calculator rows a Flash Fire attacker as always lit, so
+    its Fire move counts two thirds until a Fire hit has lit it. Rows of 30,
+    on a hand-built battle."""
+    from .test_fightsim import battle as hand
+    rows = {("p", "Brick Break"): [30] * 16, ("p", "Tackle"): [30] * 16, ("p", "Ember"): [30] * 16}
+    b, p, foe = hand(["Brick Break", "Tackle", "Ember"], ["Tackle"], rows)
+    b.b.screens["Reflect"] = 5
+
+    def both(name, crit=False):
+        mv = fs.move(name)
+        return pl.damage_of(b, p, foe, mv, crit, False), b.damage(p, foe, mv, crit=crit, roll=0)
+    got = {"Brick Break into Reflect": both("Brick Break"), "Tackle into Reflect": both("Tackle"),
+           "a critical Tackle into Reflect": both("Tackle", True)}
+    p.ability = "Infiltrator"
+    got["an Infiltrator's Tackle into Reflect"] = both("Tackle")
+    p.ability = "Flash Fire"
+    got["an unlit Flash Fire's Ember"] = both("Ember")
+    p.flash_fire = True
+    got["a lit Flash Fire's Ember"] = both("Ember")
+    want = {"Brick Break into Reflect": (30, 30), "Tackle into Reflect": (15, 15),
+            "a critical Tackle into Reflect": (45, 45), "an Infiltrator's Tackle into Reflect": (30, 30),
+            "an unlit Flash Fire's Ember": (20, 20), "a lit Flash Fire's Ember": (30, 30)}
+    return [("the readings' damage passes a screen as fightsim's does, and Flash Fire counts only when lit",
+             got == want, f"(readings, fightsim) {got}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -1970,6 +2001,7 @@ def main():
     results += disable_and_nightmare_checks()
     results += pivot_checks()
     results += ice_body_checks()
+    results += readings_damage_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

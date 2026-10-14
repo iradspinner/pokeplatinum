@@ -234,8 +234,9 @@ def player(mon):
 def damage_of(b, att, dfn, mv, crit, top, roll=None):
     """fightsim's damage arithmetic with Oxide's critical hit: the top roll
     (top) or the bottom one, or roll index `roll`, stages (a crit ignores
-    the ones that would weaken it), burn, Guts, the player's booster,
-    screens, 1.5x on a crit."""
+    the ones that would weaken it), burn, Guts, Flash Fire's boost only once
+    lit, the player's booster, screens (passed by a crit, Brick Break's kind
+    and an Infiltrator), 1.5x on a crit."""
     rolls = b.rolls(att, dfn, mv)
     if not rolls:
         return None
@@ -255,13 +256,18 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None):
         mult *= 0.5
     if att.ability == "Guts" and att.status:
         mult *= 1.5
-    if att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
+    if att.ability == "Flash Fire" and mv.type == "Fire" and not att.flash_fire:
+        mult *= 2 / 3        # the calculator's row has Flash Fire always lit (fightsim's Battle.damage)
+    elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
         mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
     if att.side == "p" and fs.BOOSTER_TYPE.get(att.item) == mv.type:
         mult *= 1.2
     side = b.p if dfn.side == "p" else b.b
     screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
-    if side.screens[screen] and not crit:
+    # A screen halves neither a critical hit, nor Brick Break's kind, which
+    # breaks it, nor an Infiltrator's hit (battle_lib.c, BattleSystem_CalcMoveDamage),
+    # as fightsim's Battle.damage has it.
+    if side.screens[screen] and not crit and mv.effect != "REMOVE_SCREENS" and att.ability != "Infiltrator":
         mult *= 0.5
     if crit:
         mult *= CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
