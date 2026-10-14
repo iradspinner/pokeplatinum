@@ -1855,6 +1855,36 @@ def protean_checks():
              f"twins {twins}; before (Play Rough, Karate Chop) {before}; after (types, Play Rough, Karate Chop) {after}")]
 
 
+def magic_guard_checks():
+    """Magic Guard in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a Magic Guard Clefable (Gardenia's boxes field a
+    Magic Guard Alolan Ninetales the same way) now comes in over Stealth Rock
+    and takes Gardenia's Cherrim's Leech Seed at no cost, where a Cute Charm
+    Clefable loses an eighth to each; the seeding Cherrim heals nothing off
+    the first."""
+    from .test_fightai import battle
+    b = battle([("Cherrim", 24, "Flower Gift", ["Leech Seed", "Petal Blizzard"])],
+               [("Clefable", 25, "Magic Guard", ["Moonblast"]), ("Clefable", 25, "Cute Charm", ["Moonblast"]),
+                ("Barboach", 25, "Oblivious", ["Water Gun"])])
+    cherrim = b.b.cur()
+    guard, plain, _barb = b.p.mons
+    fs.switch_in(b, b.p, 2)
+    b.p.hazards["rocks"] = 1
+    out = {}
+    for i, mon in ((0, guard), (1, plain)):
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        fs.switch_in(b, b.p, i)
+        entered = mon.maxhp - mon.hp
+        cherrim.hp = cherrim.maxhp // 2
+        pl.use_move(b, cherrim, fs.move("Leech Seed"), mon, True)
+        before, healer = mon.hp, cherrim.hp
+        fs.end_of_turn(b)
+        out[mon.ability] = (entered, before - mon.hp, cherrim.hp - healer, mon.maxhp)
+    ok = out["Magic Guard"][:3] == (0, 0, 0) and out["Cute Charm"][0] > 0 and out["Cute Charm"][1] == out["Cute Charm"][3] // 8
+    return [("Magic Guard: a Clefable takes no Stealth Rock and no Leech Seed on the real rows", ok,
+             f"(HP lost coming in, HP lost to the seed, Cherrim's heal, maximum HP) {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2327,6 +2357,7 @@ def main():
     results += absorbing_ability_checks()
     results += roost_checks()
     results += protean_checks()
+    results += magic_guard_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

@@ -1295,6 +1295,88 @@ def check_protean(results):
                     f"Tackle) {changed}; after another Tackle {kept}; after leaving (types, spent, Ember) {back}"))
 
 
+class FixedDice:
+    """A stand-in for a battle's random source: every chance roll reads
+    `value` (0.0 passes every check, 0.999 fails every one), every range its
+    low end, every pick the first."""
+
+    def __init__(self, value):
+        self.value = value
+
+    def random(self):
+        return self.value
+
+    def randint(self, a, b):
+        return a
+
+    def randrange(self, n):
+        return 0
+
+    def choice(self, seq):
+        return seq[0]
+
+    def choices(self, seq, weights=None, k=1):
+        return [seq[0]] * k
+
+
+def check_magic_guard(results):
+    """Magic Guard (approved 2026-10-14) keeps every damage off its holder
+    but a move's own hit, where the engine checks it: the hazards
+    (subscript_hazards_check jumps a holder past Toxic Spikes, Spikes and
+    Stealth Rock, so a Poison type holding it leaves the Toxic Spikes down),
+    a hit's recoil (subscript_recoil_1_3), a missed Jump Kick's crash
+    (subscript_crash_on_miss), binding (subscript_bind_effect, its count
+    still running down) and Leech Seed (MON_COND_CHECK_STATE_LEECH_SEED,
+    which then heals its seeder nothing). A plain Pokemon beside it takes
+    each, as before."""
+    def entry(ability, types=("Normal",)):
+        b = field({"p0": (("Normal",), ["Tackle"]), "p1": (types, ["Tackle"]), "b0.0": (("Normal",), ["Tackle"])}, {})
+        b.p.mons[1].ability = ability
+        b.p.hazards = {"rocks": 1, "spikes": 1, "tspikes": 1}
+        fs.switch_in(b, b.p, 1)
+        new = b.p.cur()
+        return new.hp, new.status, b.p.hazards["tspikes"]
+
+    def recoil(ability):
+        b, p, foe = battle(["Double-Edge"], ["Tackle"], {("p", "Double-Edge"): [30] * 16})
+        b.st["first_battle"] = True
+        p.ability = ability
+        fs.attack(b, p, fs.move("Double-Edge"), foe, True)
+        return p.hp
+
+    def crash(ability):
+        b, p, foe = battle(["Jump Kick"], ["Tackle"], {("p", "Jump Kick"): [40] * 16})
+        p.ability = ability
+        b.rng = FixedDice(0.999)             # the Jump Kick misses
+        fs.attack(b, p, fs.move("Jump Kick"), foe, True)
+        return p.hp
+
+    def turn_end(ability, what):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        foe.ability = ability
+        p.hp = 50
+        if what == "bound":
+            foe.bound = 3
+        else:
+            foe.seeded = True
+        fs.end_of_turn(b)
+        return foe.hp, foe.bound, p.hp
+    got = {"hazards": entry("Magic Guard"), "hazards, a Poison type": entry("Magic Guard", ("Poison",)),
+           "recoil": recoil("Magic Guard"), "crash": crash("Magic Guard"),
+           "bound": turn_end("Magic Guard", "bound"), "seeded": turn_end("Magic Guard", "seeded")}
+    plain = {"hazards": entry(None), "hazards, a Poison type": entry(None, ("Poison",)),
+             "recoil": recoil(None), "crash": crash(None),
+             "bound": turn_end(None, "bound"), "seeded": turn_end(None, "seeded")}
+    want = {"hazards": (100, None, 1), "hazards, a Poison type": (100, None, 1), "recoil": 100, "crash": 100,
+            "bound": (100, 2, 50), "seeded": (100, 0, 50)}
+    want_plain = {"hazards": (76, "psn", 1), "hazards, a Poison type": (76, None, 0), "recoil": 90, "crash": 50,
+                  "bound": (94, 2, 50), "seeded": (88, 0, 62)}
+    ok = got == want and plain == want_plain
+    results.append(("Magic Guard keeps off the hazards, recoil, a crash, binding and Leech Seed", ok,
+                    f"Magic Guard {got}; plain {plain} (hazards: HP, status, Toxic Spikes layers left; "
+                    f"recoil and crash: HP; binding and Leech Seed: HP, bind count, the foe's HP from 50)"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1535,7 +1617,7 @@ def main():
                   check_curse_and_rest, check_mist_and_intimidate, check_ai_fields, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
-                  check_roost, check_protean,
+                  check_roost, check_protean, check_magic_guard,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

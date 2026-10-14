@@ -191,6 +191,10 @@ HIT_SELF_STAGES = {  # (stages, certain)
 RECOIL = {"RECOIL_THIRD": 1 / 3, "RECOIL_QUARTER": 1 / 4, "RECOIL_HALF": 1 / 2,
           "RECOIL_BURN_HIT": 1 / 3, "RECOIL_PARALYZE_HIT": 1 / 3,
           "RECOIL_CONFUSE_HIT": 1 / 3}           # Raging Fury (effect 417)
+# The abilities that spare their holder a hit's recoil: subscript_recoil_1_2,
+# _1_3 and _1_4 each stop at Rock Head and then at Magic Guard (Magic Guard
+# added 2026-10-14, Ian approved the fix).
+RECOIL_PROOF = frozenset({"Rock Head", "Magic Guard"})
 # The move reworks (Ian, 2026-10-06; effects 416 to 420). A two to five hit
 # move rolls its hits on Generation 5's spread (BtlCmd_SetMultiHit): five with
 # Skill Link, and a Loaded Dice turns a roll of two or three into four or
@@ -1557,7 +1561,9 @@ def attack(b, att, mv, dfn, first):
             return
         consume(att, eaten=False)
     if not b.accuracy_hits(att, dfn, mv):
-        if mv.effect == "CRASH_ON_MISS":
+        # subscript_crash_on_miss spares a Magic Guard user (added 2026-10-14,
+        # Ian approved the fix).
+        if mv.effect == "CRASH_ON_MISS" and att.ability != "Magic Guard":
             hurt(b, att, att.maxhp // 2)
         rollout_after(att, mv, False)
         return
@@ -1695,7 +1701,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     e = mv.effect
     if e in BREAKS_PROTECT:
         dfn.protecting = False
-    if e in RECOIL and att.ability != "Rock Head":
+    if e in RECOIL and att.ability not in RECOIL_PROOF:
         hurt(b, att, max(1, int(dealt * RECOIL[e])))
     # Draining (subscript_drain_half_damage_dealt, _three_quarters): Heal Block
     # on the user stops the heal, not the damage.
@@ -2918,10 +2924,16 @@ def switch_in(b, side, index, slot=0, lead=False):
         # ability off, and a holder's arrival or departure turns the others'
         # off or on at once.
         gas_update(b, check=False)
-    if side.hazards["rocks"]:
+    # subscript_hazards_check sends a Magic Guard holder straight past Toxic
+    # Spikes, Spikes and Stealth Rock (to Sticky Web, which the simulator does
+    # not lay), so it takes no hazard damage and no poison, and a Poison type
+    # holding it does not soak up the Toxic Spikes either. Until 2026-10-14
+    # every hazard reached it (Ian approved the fix).
+    guarded = new.ability == "Magic Guard"
+    if side.hazards["rocks"] and not guarded:
         eff = b.st["rock_eff"].get(new.key, 1)
         hurt(b, new, int(new.maxhp * eff / 8))
-    grounded = "Flying" not in new.types and new.ability != "Levitate"
+    grounded = "Flying" not in new.types and new.ability != "Levitate" and not guarded
     if grounded and side.hazards["spikes"]:
         hurt(b, new, new.maxhp * {1: 1, 2: 1.5, 3: 2}[side.hazards["spikes"]] // 8)
     if grounded and side.hazards["tspikes"]:
@@ -3119,7 +3131,9 @@ def _end_of_turn_mon(b, side, m):
         consume(m)
     if m.item == "Leftovers" or (m.item == "Black Sludge" and "Poison" in m.types):
         heal(m, m.maxhp // 16)
-    if m.seeded:
+    # MON_COND_CHECK_STATE_LEECH_SEED skips a Magic Guard holder whole: no
+    # HP sapped and none given (added 2026-10-14, Ian approved the fix).
+    if m.seeded and m.ability != "Magic Guard":
         foe = foe_of(b, m)
         amount = m.maxhp // 8
         hurt(b, m, amount)
@@ -3154,7 +3168,10 @@ def _end_of_turn_mon(b, side, m):
             return False
     if m.alive() and m.bound:
         m.bound -= 1
-        hurt(b, m, m.maxhp // 16)
+        # subscript_bind_effect hurts no Magic Guard holder, though its count
+        # still runs down (added 2026-10-14, Ian approved the fix).
+        if m.ability != "Magic Guard":
+            hurt(b, m, m.maxhp // 16)
         if battle_over(b):
             return False
     # Salt Cure (MON_COND_CHECK_STATE_SALT_CURE, after binding): an eighth
@@ -3489,12 +3506,14 @@ def _player_choice(b):
 def self_risk(b, me, foe, mv):
     """Whether the move could faint its user: recoil from its top roll (up
     to the foe's HP), or the crash of a miss. A nuzlocke player does not
-    trade a Pokemon for a hit when another move will do."""
-    if mv.effect in RECOIL and me.ability != "Rock Head":
+    trade a Pokemon for a hit when another move will do. Rock Head and
+    Magic Guard spare it the recoil, and Magic Guard the crash, as the
+    battle does."""
+    if mv.effect in RECOIL and me.ability not in RECOIL_PROOF:
         r = b.rolls(me, foe, mv)
         top = b.damage(me, foe, mv, roll=len(r) - 1) if r else 0
         return int(min(top or 0, foe.hp) * RECOIL[mv.effect]) >= me.hp
-    if mv.effect == "CRASH_ON_MISS" and mv.acc and mv.acc < 100:
+    if mv.effect == "CRASH_ON_MISS" and mv.acc and mv.acc < 100 and me.ability != "Magic Guard":
         return me.maxhp // 2 >= me.hp
     return False
 

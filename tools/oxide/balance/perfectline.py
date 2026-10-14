@@ -571,8 +571,8 @@ def attack(b, att, mv, dfn, first):
             return
         fs.consume(att, eaten=False)     # spent, not eaten (Belch)
     if not accuracy_hits(b, att, dfn, mv):
-        if mv.effect == "CRASH_ON_MISS":
-            fs.hurt(b, att, att.maxhp // 2)
+        if mv.effect == "CRASH_ON_MISS" and att.ability != "Magic Guard":
+            fs.hurt(b, att, att.maxhp // 2)       # Magic Guard spares it (fightsim.attack)
         fs.rollout_after(att, mv, False)
         return
     fs.rollout_after(att, mv, True)
@@ -711,7 +711,7 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     if e == "STRUGGLE" and att.ability != "Magic Guard":
         # subscript_struggle: the user loses a quarter of its maximum HP.
         fs.hurt(b, att, max(1, att.maxhp // 4))
-    if e in fs.RECOIL and att.ability != "Rock Head":
+    if e in fs.RECOIL and att.ability not in fs.RECOIL_PROOF:     # Rock Head and Magic Guard
         fs.hurt(b, att, max(1, int(dealt * fs.RECOIL[e])))
     if e in fs.DRAIN and not fs.heal_blocked(att):
         # Big Root raises what a draining move restores by 30%; Heal Block on
