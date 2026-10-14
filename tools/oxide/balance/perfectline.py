@@ -988,7 +988,7 @@ def status_move(b, att, mv, dfn, first):
         fs.pain_split(b, att, dfn)
     elif e == "FORCE_SWITCH":
         bench = foe_side.bench()
-        if bench and not getattr(dfn, "ingrained", False):
+        if bench and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False):     # Suction Cups
             nxt = bench[b.dice.choice("roar", len(bench))]
             fs.switch_in(b, foe_side, foe_side.mons.index(nxt))
     elif e == "FAINT_AND_ATK_SP_ATK_DOWN_2":

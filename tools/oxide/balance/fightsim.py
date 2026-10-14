@@ -2041,6 +2041,17 @@ def taunt_blocked(att, dfn):
     return False
 
 
+def anchored(att, dfn):
+    """Whether Suction Cups keeps dfn in against Roar or Whirlwind
+    (subscript_force_target_to_switch_or_flee's CheckIgnorableAbility, so a
+    Mold Breaker user gets past it); the message names the ability. Until
+    2026-10-14 Roar dragged it out (Ian approved the fix)."""
+    if dfn.ability == "Suction Cups" and not mold(att, dfn):
+        reveal(dfn)
+        return True
+    return False
+
+
 def magnet_rise(att):
     """Magnet Rise (effect script 252): five turns in which Ground moves fail
     on its user, counted down at each turn's end and cleared by a switch. It
@@ -3234,7 +3245,7 @@ def status_move(b, att, mv, dfn, first):
         pain_split(b, att, dfn)
     elif e == "FORCE_SWITCH":
         bench = foe_side.bench()
-        if bench and not getattr(dfn, "ingrained", False):
+        if bench and not anchored(att, dfn) and not getattr(dfn, "ingrained", False):
             nxt = b.rng.choice(bench)
             switch_in(b, foe_side, foe_side.mons.index(nxt))
     elif e == "FAINT_AND_ATK_SP_ATK_DOWN_2":

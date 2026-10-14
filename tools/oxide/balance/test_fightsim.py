@@ -1948,6 +1948,25 @@ def check_shed_skin(results):
                     f"cured {cured} of 600, at full HP when cured {unhurt}"))
 
 
+def check_suction_cups(results):
+    """Suction Cups (approved 2026-10-14; subscript_force_target_to_switch_or_flee)
+    keeps its holder in against Roar and Whirlwind, naming the ability,
+    unless the user has Mold Breaker; another target is dragged out."""
+    def roar(ability, mold=False):
+        b = field({"p0": (("Normal",), ["Roar"]), "b0.0": (("Normal",), ["Tackle"]), "b0.1": (("Normal",), ["Tackle"])}, {})
+        p, foe = b.p.cur(), b.b.cur()
+        p.ability = "Mold Breaker" if mold else None
+        foe.ability = ability
+        p.stages["acc"] = 6
+        fs.status_move(b, p, fs.move("Roar"), foe, True)
+        return b.b.active, foe.revealed
+    got = {"Suction Cups": roar("Suction Cups"), "Suction Cups against Mold Breaker": roar("Suction Cups", mold=True),
+           "plain": roar(None)}
+    want = {"Suction Cups": (0, "Suction Cups"), "Suction Cups against Mold Breaker": (1, None), "plain": (1, None)}
+    results.append(("Suction Cups stands up to Roar, unless Mold Breaker", got == want,
+                    f"(the trainer's active slot after Roar, the ability named) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2195,6 +2214,7 @@ def main():
                   check_knockout_boost, check_trapping_exemptions, check_accuracy_abilities,
                   check_download, check_weather_abilities, check_sand_force,
                   check_bad_dreams, check_marvel_scale, check_shed_skin,
+                  check_suction_cups,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

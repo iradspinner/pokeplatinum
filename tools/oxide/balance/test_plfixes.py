@@ -2303,6 +2303,22 @@ def shed_skin_checks():
              f"cured {cured} of 300; offered to the planner at a third {offered}")]
 
 
+def suction_cups_checks():
+    """Suction Cups in the readings' battle (approved 2026-10-14): the
+    player's Roar leaves a trainer's Suction Cups Octillery in, and drags a
+    Sniper one out for its partner."""
+    from .test_fightai import battle
+    out = {}
+    for ab in ("Suction Cups", "Sniper"):
+        b = battle([("Octillery", 30, ab, ["Octazooka"]), ("Geodude", 30, "Sturdy", ["Tackle"])],
+                   [("Houndour", 30, "Flash Fire", ["Roar"])])
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        pl.use_move(b, b.p.cur(), fs.move("Roar"), b.b.cur(), True)
+        out[ab] = b.b.cur().species
+    ok = out == {"Suction Cups": "Octillery", "Sniper": "Geodude"}
+    return [("Suction Cups keeps Octillery in against the player's Roar", ok, f"the trainer's Pokemon after Roar {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2796,6 +2812,7 @@ def main():
     results += bad_dreams_checks()
     results += marvel_scale_checks()
     results += shed_skin_checks()
+    results += suction_cups_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
