@@ -517,6 +517,38 @@ def check_gas_doubles(results):
                     f"under the gas (abilities, Attack stage) {under}; after the holder fell {after}"))
 
 
+def check_intimidate_start(results):
+    """The battle's start (open_battle, added 2026-10-13): every lead comes
+    in before any lead's Intimidate goes off, as the engine runs the
+    switch-in check over all of them at once, so each side's Intimidate
+    lands on the other side's leads. Sent in one after another, the
+    player's lead reset its stages on its own way in and lost the stage the
+    trainer's lead had taken. In a double battle each holder takes a stage
+    off both foes."""
+    b, p, foe = battle(["Tackle"], ["Tackle"], {})
+    p.ability = foe.ability = "Intimidate"
+    fs.open_battle(b)
+    singles = (p.stages["atk"], foe.stages["atk"])
+    st = {"rows": {}, "speed": {}, "info": {}, "pokemon": {}, "moves": {}, "chart": _chart(),
+          "rock_eff": {}, "base_weather": None, "trick_room": False}
+    for key in ("p0", "p1", "b0.0", "b0.1"):
+        st["info"][key] = {"hp": 100, "stats": {"atk": 100, "def": 100}, "types": ["Normal"],
+                           "ability": "Intimidate" if key in ("p1", "b0.0") else "Run Away", "item": None}
+        st["pokemon"][key] = {"species": key, "level": 50}
+        st["moves"][key] = ["Tackle"]
+        st["speed"][(None, key)] = 100 if key.startswith("p") else 50
+    mons = {s: [fs.Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], s) for k in st["info"] if k[0] == s]
+            for s in "pb"}
+    d = fs.Battle(st, fs.Side(mons["p"], "p"), fs.Side(mons["b"], "b"), random.Random(1), ai_flags=7)
+    d.doubles = True
+    d.p.active, d.p.active2, d.b.active, d.b.active2 = 0, 1, 0, 1
+    fs.open_battle(d)
+    doubles = [m.stages["atk"] for m in d.p.mons + d.b.mons]
+    ok = singles == (-1, -1) and doubles == [-1, -1, -1, -1]
+    results.append(("both leads come in before their Intimidate, so each lands on the other side", ok,
+                    f"singles (player's lead, trainer's lead) {singles}; doubles' four Attack stages {doubles}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -751,6 +783,7 @@ def main():
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
                   check_salt_cure, check_harvest, check_berry_first_hit,
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
+                  check_intimidate_start,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

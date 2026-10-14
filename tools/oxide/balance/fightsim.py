@@ -229,7 +229,11 @@ GAS_PROOF = {"Neutralizing Gas", "Multitype", "Zen Mode", "Stance Change", "Shie
 # holder's Speed only once the item it came in with is gone
 # (BattleSystem_CompareBattlerSpeed reads canUnburden and an empty hand),
 # which Battle.speed does, where the calculator doubled it from the first turn.
-CALC_ABILITY_OFF = frozenset({"Unburden"})
+# Intimidate: the engine takes one Attack stage off each foe on the field as
+# its holder comes in, and none off a foe that comes in later
+# (intimidate_foes), where the calculator took a stage off every physical
+# hit into the holder, at any time and on top of the battle's own stage.
+CALC_ABILITY_OFF = frozenset({"Unburden", "Intimidate"})
 
 
 # ---- genders (Ian, 2026-10-03) -------------------------------------------------------------
@@ -677,10 +681,11 @@ def gas_update(b, check=True):
     return False
 
 
-def entry_abilities(b, mons):
+def entry_abilities(b, mons, intimidate=True):
     """The switch-in check's ability steps for these Pokemon, each step over
     all of them in the order given (monSpeedOrder): the weather abilities, the
-    announcement the trainer's AI reads (BattleAI_SetAbility), Intimidate."""
+    announcement the trainer's AI reads (BattleAI_SetAbility), Intimidate.
+    The battle's leads leave Intimidate to open_battle (intimidate False)."""
     for new in mons:
         weather = ABILITY_WEATHER.get(new.ability)
         if weather:
@@ -688,11 +693,40 @@ def entry_abilities(b, mons):
     for new in mons:
         if new.ability in ENTRY_ANNOUNCED:
             reveal(new)
+    if intimidate:
+        intimidate_foes(b, mons)
+
+
+def intimidate_foes(b, mons):
+    """Intimidate's step of the switch-in check for these Pokemon, in the
+    order given: one Attack stage off each foe on the field. This stage is
+    Intimidate's only effect, since prepare() keeps it out of the
+    calculator's rows (CALC_ABILITY_OFF)."""
     for new in mons:
         if new.ability == "Intimidate":
             for foe in (b.b if new.side == "p" else b.p).on_field():
                 if foe.alive() and not stat_drop_blocked(b, foe, {"atk": -1}):
                     change_stages(foe, {"atk": -1})
+
+
+def open_battle(b):
+    """The battle's start (BATTLE_CONTROL_SHOW_BATTLE_MON): every lead comes
+    in first, and only then does the switch-in check run over all of them,
+    fastest first (BattleSystem_TriggerEffectOnSwitch by monSpeedOrder), so
+    each side's Intimidate lands on the other side's leads. Sending the leads
+    in one after another, as the battles did until 2026-10-13, let the
+    player's lead's own switch-in reset the stage a trainer lead's Intimidate
+    had just taken off it. The weather and the announcements go off as each
+    lead comes in, as before: only a trainer lead has a weather ability, and
+    in a double battle the trainers' leads keep the order they had."""
+    leads = []
+    for side in (b.b, b.p):
+        switch_in(b, side, side.active, lead=True)
+        leads.append(side.mons[side.active])
+        if side.active2 is not None:
+            switch_in(b, side, side.active2, slot=1, lead=True)
+            leads.append(side.mons[side.active2])
+    intimidate_foes(b, sorted(leads, key=b.speed, reverse=not b.trick_room))
 
 
 def stat_drop_blocked(b, mon, changes):
@@ -2086,8 +2120,10 @@ def status_move(b, att, mv, dfn, first):
         pass
 
 
-def switch_in(b, side, index, slot=0):
-    """A Pokemon comes in to a slot: volatile state resets, hazards bite."""
+def switch_in(b, side, index, slot=0, lead=False):
+    """A Pokemon comes in to a slot: volatile state resets, hazards bite.
+    A lead at the battle's start (`lead`) leaves its Intimidate to
+    open_battle, which runs it once every lead is in."""
     leaving = side.cur() if slot == 0 else (side.mons[side.active2] if side.active2 is not None else None)
     b.status_src = None          # hazards give their status from no foe
     gas = b.st.get("gas")
@@ -2142,7 +2178,7 @@ def switch_in(b, side, index, slot=0):
             give_status(b, new, "psn" if side.hazards["tspikes"] == 1 else "tox")
     if gas and gas_update(b):
         return                   # the gas wore off: the whole field's entry abilities went off, the newcomer's with them
-    entry_abilities(b, [new])
+    entry_abilities(b, [new], intimidate=not lead)
 
 
 def end_of_turn(b):
@@ -2695,8 +2731,7 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
     b = Battle(st, Side(pm, "p"), Side(bm, "b"), rng, weather=st.get("base_weather"),
                trick_room=trick_room, ai_flags=flags)
     b.p.active = player_replacement(b) or 0
-    for side in (b.b, b.p):
-        switch_in(b, side, side.active)
+    open_battle(b)
     while b.turn < MAX_TURNS:
         if not b.p.alive() or not b.b.alive():
             break
@@ -2884,10 +2919,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
     b.b.active2 = len(boss_groups[0]) if len(boss_groups) == 2 else (1 if len(bm) > 1 else None)
     b.p.active = 0
     b.p.active2 = len(pm) if part else (1 if len(pm) > 1 else None)
-    for side in (b.b, b.p):
-        switch_in(b, side, side.active)
-        if side.active2 is not None:
-            switch_in(b, side, side.active2, slot=1)
+    open_battle(b)
 
     def flags_for(mon):
         return flags_of.get(mon.owner, boss_flags[0])

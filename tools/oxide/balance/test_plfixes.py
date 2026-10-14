@@ -1309,6 +1309,49 @@ def unburden_checks():
              f"the player's empty-handed Unburden {empty}")]
 
 
+def intimidate_once_checks():
+    """Intimidate counted once (Ian approved the fix, 2026-10-13). The
+    engine takes one Attack stage off each foe on the field as the holder
+    comes in (the switch-in check's Intimidate step), and from no Pokemon
+    that comes in later. The calculator's page counts every ability as
+    active, so its rows already took a stage off every physical hit into an
+    Intimidate Pokemon, from any attacker at any time, and the battle took a
+    second on entry: Mars 1's Torracat met Machop's Karate Chop at about
+    4/9 of its damage where one stage leaves 2/3. The rows now leave
+    Intimidate off, and the battle's stage is its only effect. The battle's
+    start is mended with it: the leads come in before their Intimidate
+    goes off, so a trainer lead's Intimidate lands on the player's lead,
+    which the player's own switch-in used to wipe."""
+    from .test_fightai import battle
+    tor = [("Torracat", 18, "Blaze", ["Double Kick"]), ("Torracat", 18, "Intimidate", ["Double Kick"])]
+    chops = [("Machop", 20, "Guts", ["Karate Chop"]), ("Machop", 20, "Guts", ["Karate Chop"])]
+    b = battle(tor, chops)
+    blaze, scary = b.b.mons
+    machop, second = b.p.mons
+    kc = fs.move("Karate Chop")
+    rows = (b.rolls(machop, scary, kc)[-1], b.rolls(machop, blaze, kc)[-1])
+    plain = pl.damage_of(b, machop, blaze, kc, False, True)
+    fs.switch_in(b, b.b, 1)              # the Intimidate Torracat comes in mid-battle
+    into = (machop.stages["atk"], pl.damage_of(b, machop, scary, kc, False, True))
+    fs.switch_in(b, b.p, 1)              # a Machop sent in after it keeps its Attack
+    late = (second.stages["atk"], pl.damage_of(b, second, scary, kc, False, True))
+    lead = battle(list(reversed(tor)), chops)
+    led = lead.p.cur().stages["atk"]
+    dogs = [("Mightyena", 20, "Intimidate", ["Bite"]), ("Mightyena", 20, "Quick Feet", ["Bite"])]
+    mine = battle(tor, dogs)
+    dk = fs.move("Double Kick")
+    theirs = (mine.b.cur().stages["atk"], mine.rolls(mine.b.cur(), mine.p.mons[0], dk)[-1],
+              mine.rolls(mine.b.cur(), mine.p.mons[1], dk)[-1])
+    one_stage = int(plain * 2 / 3)
+    ok = (rows[0] == rows[1] and into[0] == -1 and abs(into[1] - one_stage) <= 1 and late == (0, plain)
+          and led == -1 and theirs[0] == -1 and theirs[1] == theirs[2])
+    return [("Intimidate takes one stage, once, on entry; the rows leave it off", ok,
+             f"Karate Chop's top row into Intimidate and Blaze Torracat {rows}; plain {plain}; "
+             f"after Intimidate came in (stage, damage) {into}, one stage is {one_stage}; "
+             f"a Machop sent in later {late}; a trainer lead's Intimidate on the player's lead {led}; "
+             f"the player's Intimidate lead: the trainer's stage, Double Kick's top row into it and its twin {theirs}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does); Aqua Ring heals a sixteenth at
@@ -1751,6 +1794,7 @@ def main():
     results += study_effect_checks()
     results += neutralizing_gas_checks()
     results += unburden_checks()
+    results += intimidate_once_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

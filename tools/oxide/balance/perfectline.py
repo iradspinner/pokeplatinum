@@ -1465,8 +1465,7 @@ def make_battle(st, team, boss_keys, flags, lead):
     b.dice = SearchDice(b.luck)
     b.declined = frozenset()
     b.p.active = lead
-    for side in (b.b, b.p):
-        fs.switch_in(b, side, side.active)
+    fs.open_battle(b)            # both leads in, then their Intimidate
     b.luck_spent = b.luck.spent
     return b
 
