@@ -2113,6 +2113,21 @@ def taunt_blocked(att, dfn):
     return False
 
 
+def soundproofed(att, dfn, mv):
+    """Whether Soundproof stops att's sound move at dfn
+    (BattleSystem_TriggerImmunityAbility over sSoundMoves, which
+    fightai.BASIC_SOUND copies; Mold Breaker gets past it); the message
+    names the ability. The calculator's rows already stop the damaging ones;
+    this is for the status ones (Growl, Roar, Sing, Supersonic, Screech,
+    Metal Sound, Grass Whistle, Confide, Noble Roar and Parting Shot), which
+    went through until 2026-10-14 (Ian approved the fix)."""
+    if (att is not dfn and mv.const in fightai.BASIC_SOUND and dfn.ability == "Soundproof"
+            and not mold(att, dfn)):
+        reveal(dfn)
+        return True
+    return False
+
+
 def anchored(att, dfn):
     """Whether Suction Cups keeps dfn in against Roar or Whirlwind
     (subscript_force_target_to_switch_or_flee's CheckIgnorableAbility, so a
@@ -3221,6 +3236,8 @@ def status_move(b, att, mv, dfn, first):
             return
         if absorb(b, att, dfn, mv):
             return               # Thunder Wave into Volt Absorb, Spore into Sap Sipper: taken whole
+        if soundproofed(att, dfn, mv):
+            return               # Sing, Growl or Roar into Soundproof
     if e in STATUS_OF:
         if sub_blocks(att, dfn, mv):
             return

@@ -847,6 +847,8 @@ def status_move(b, att, mv, dfn, first):
             return
         if fs.absorb(b, att, dfn, mv):
             return               # a status move of the ability's type is taken whole (fightsim.absorb)
+        if fs.soundproofed(att, dfn, mv):
+            return               # Sing, Growl or Roar into Soundproof (fightsim.soundproofed)
     if e in fs.STATUS_OF:
         if fs.sub_blocks(att, dfn, mv):
             return

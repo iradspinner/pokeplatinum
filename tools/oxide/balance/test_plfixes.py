@@ -2539,6 +2539,24 @@ def ghost_untrapped_checks():
              f"(Mean Look landed, a switch offered) {out}")]
 
 
+def soundproof_status_checks():
+    """Soundproof in the readings' battle (approved 2026-10-14): a trainer's
+    Sing never sleeps the player's Soundproof Snover over 200 uses, while a
+    Snow Warning one sleeps about as often as Sing lands."""
+    from .test_fightai import battle
+    out = {}
+    for ab in ("Soundproof", "Snow Warning"):
+        slept = 0
+        for seed in range(200):
+            b = battle([("Jigglypuff", 30, "Cute Charm", ["Sing"])], [("Snover", 30, ab, ["Powder Snow"])])
+            b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+            pl.use_move(b, b.b.cur(), fs.move("Sing"), b.p.cur(), True)
+            slept += b.p.cur().status == "slp"
+        out[ab] = slept
+    ok = out["Soundproof"] == 0 and 70 <= out["Snow Warning"] <= 150
+    return [("Soundproof stops Sing in the readings", ok, f"slept of 200 {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3043,6 +3061,7 @@ def main():
     results += payback_checks()
     results += leech_seed_sap_checks()
     results += ghost_untrapped_checks()
+    results += soundproof_status_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

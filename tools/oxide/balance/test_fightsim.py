@@ -2205,6 +2205,28 @@ def check_ghost_untrapped(results):
     results.append(("a Ghost type is never trapped", got == want, f"held in {got}"))
 
 
+def check_soundproof_status(results):
+    """Soundproof against the status sound moves (approved 2026-10-14;
+    BattleSystem_TriggerImmunityAbility): a sure Sing, Growl and Roar do
+    nothing to a Soundproof target and name the ability, unless the user has
+    Mold Breaker; a plain target sleeps, loses a stage and is dragged out."""
+    def use(move, ability, mold=False):
+        b = field({"p0": (("Normal",), [move]), "b0.0": (("Normal",), ["Tackle"]), "b0.1": (("Normal",), ["Tackle"])}, {})
+        p, foe = b.p.cur(), b.b.cur()
+        p.ability = "Mold Breaker" if mold else None
+        foe.ability = ability
+        p.stages["acc"] = 6
+        fs.status_move(b, p, fs.move(move), foe, True)
+        return {"Sing": foe.status, "Growl": foe.stages["atk"], "Roar": b.b.active}[move], foe.revealed
+    got = {f"{m}, {label}": use(m, ab, mold) for m in ("Sing", "Growl", "Roar")
+           for label, ab, mold in (("Soundproof", "Soundproof", False), ("Mold Breaker", "Soundproof", True),
+                                   ("plain", None, False))}
+    want = {"Sing, Soundproof": (None, "Soundproof"), "Sing, Mold Breaker": ("slp", None), "Sing, plain": ("slp", None),
+            "Growl, Soundproof": (0, "Soundproof"), "Growl, Mold Breaker": (-1, None), "Growl, plain": (-1, None),
+            "Roar, Soundproof": (0, "Soundproof"), "Roar, Mold Breaker": (1, None), "Roar, plain": (1, None)}
+    results.append(("Soundproof stops the status sound moves, unless Mold Breaker", got == want, f"{got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2455,7 +2477,7 @@ def main():
                   check_suction_cups, check_plus_minus, check_stench, check_unnerve,
                   check_telepathy, check_steadfast, check_starf_berry,
                   check_sticky_barb, check_payback, check_leech_seed_sap,
-                  check_ghost_untrapped,
+                  check_ghost_untrapped, check_soundproof_status,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
