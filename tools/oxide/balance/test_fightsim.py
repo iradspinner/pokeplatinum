@@ -1989,6 +1989,28 @@ def check_plus_minus(results):
                     f"alone {alone}; beside Minus (Thunderbolt, Tackle) {paired}; beside Static {unpaired}"))
 
 
+def check_stench(results):
+    """Stench (approved 2026-10-14; BattleControllerPlayer_CheckExtraFlinch):
+    its holder's hits flinch one time in ten as a King's Rock's do, the
+    holder's own King's Rock not adding a second chance; each hit of a move
+    of several rolls it (land_hits). Double Kick into a slower target, 1000
+    uses each."""
+    def flinches(ability, item=None):
+        n = 0
+        for seed in range(1000):
+            b, p, foe = battle(["Double Kick"], ["Tackle"], {("p", "Double Kick"): [2] * 16}, seed=seed)
+            b.st["first_battle"] = True
+            p.ability, p.item = ability, item
+            fs.attack(b, p, fs.move("Double Kick"), foe, True)
+            n += foe.flinch
+        return n
+    got = {"Stench": flinches("Stench"), "Stench and a King's Rock": flinches("Stench", "King's Rock"),
+           "plain": flinches(None)}
+    ok = 140 <= got["Stench"] <= 240 and 140 <= got["Stench and a King's Rock"] <= 240 and got["plain"] == 0
+    results.append(("Stench flinches as a King's Rock does, and does not add to one", ok,
+                    f"flinched in 1000 two-hit Double Kicks {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2236,7 +2258,7 @@ def main():
                   check_knockout_boost, check_trapping_exemptions, check_accuracy_abilities,
                   check_download, check_weather_abilities, check_sand_force,
                   check_bad_dreams, check_marvel_scale, check_shed_skin,
-                  check_suction_cups, check_plus_minus,
+                  check_suction_cups, check_plus_minus, check_stench,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

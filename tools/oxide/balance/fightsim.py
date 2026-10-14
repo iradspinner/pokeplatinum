@@ -1131,6 +1131,15 @@ HIT_BY_HIT = frozenset({"MULTI_HIT", "HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE
 HIT_BY_HIT_EFFECT = {"POISON_MULTI_HIT": "psn", "HIT_TWICE_AND_FLINCH": "flinch"}
 
 
+def flinch_item(att):
+    """Whether att's hits carry King's Rock's one in ten to flinch
+    (BattleControllerPlayer_CheckExtraFlinch): a King's Rock or Razor Fang,
+    or Stench, which counts as a King's Rock when its holder has none and
+    does not add to one (Generation 5). Stench did nothing until 2026-10-14
+    (Ian approved the fix)."""
+    return att.item in ("King's Rock", "Razor Fang") or att.ability == "Stench"
+
+
 def hit_weights(att, mv, hits):
     """Each landed hit's share of the calculator's row, as whole-number
     weights, and the row's whole weight: the row adds up row_hits equal hits
@@ -1218,7 +1227,7 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
             change_stages(dfn, {"atk": 1})
         if not sub_hit:
             contact_ability(b, att, dfn, mv, dealt, chance, pick)
-            if first and att.item in ("King's Rock", "Razor Fang") and not dfn.flinch and dfn.alive() \
+            if first and flinch_item(att) and not dfn.flinch and dfn.alive() \
                     and chance("kingsrock", 0.1, dfn):
                 dfn.flinch = True
         berry_check(dfn)

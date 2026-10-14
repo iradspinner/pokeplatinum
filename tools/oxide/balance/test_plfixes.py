@@ -2336,6 +2336,26 @@ def plus_minus_checks():
              f"(Plus, Lightning Rod) top rolls {got}")]
 
 
+def stench_checks():
+    """Stench in the readings' battle (approved 2026-10-14): a Stench
+    Weezing moving first flinches a Snorlax with Sludge Bomb about one time
+    in ten over 400 hits, a Levitate one never."""
+    from .test_fightai import battle
+    out = {}
+    for ab in ("Stench", "Levitate"):
+        b = battle([("Weezing", 40, ab, ["Sludge Bomb"])], [("Snorlax", 40, "Thick Fat", ["Body Slam"])])
+        wee, lax = b.b.cur(), b.p.cur()
+        n = 0
+        for seed in range(400):
+            b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+            lax.hp, lax.flinch, lax.status = lax.maxhp, False, None
+            pl.attack(b, wee, fs.move("Sludge Bomb"), lax, True)
+            n += lax.flinch
+        out[ab] = n
+    ok = 20 <= out["Stench"] <= 65 and out["Levitate"] == 0
+    return [("Stench: Weezing's Sludge Bomb flinches about one time in ten", ok, f"flinched of 400 {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2831,6 +2851,7 @@ def main():
     results += shed_skin_checks()
     results += suction_cups_checks()
     results += plus_minus_checks()
+    results += stench_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

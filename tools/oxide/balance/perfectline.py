@@ -795,8 +795,9 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         dfn.flinch = True
     if e == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and first and not stripped:
         dfn.flinch = True
-    # King's Rock and Razor Fang are item procs, in the budget (question 8).
-    if first and att.item in ("King's Rock", "Razor Fang") and not dfn.flinch and not hit_by_hit \
+    # King's Rock and Razor Fang are item procs, in the budget (question 8);
+    # Stench counts as one (fightsim.flinch_item).
+    if first and fs.flinch_item(att) and not dfn.flinch and not hit_by_hit \
             and secondary("kingsrock", 0.1):
         dfn.flinch = True
     if dfn.ability == "Inner Focus" and not fs.mold(att, dfn):
