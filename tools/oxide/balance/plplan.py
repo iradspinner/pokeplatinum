@@ -26,6 +26,7 @@ simulator, at the game's real odds, and comparing where it leads:
 import argparse
 import collections
 import json
+import math
 import multiprocessing as mp
 import os
 import random
@@ -272,6 +273,13 @@ class EnumDice:
         tot = sum(weights)
         return items[self._ev(tuple(w / tot for w in weights))]
 
+    def crit_count(self, n, p):
+        """How many of a move's n hits land critical, each at p
+        (perfectline.crit_hits): one event at the binomial odds."""
+        if p >= 1:
+            return n
+        return self._ev(tuple(math.comb(n, k) * p ** k * (1 - p) ** (n - k) for k in range(n + 1)))
+
     def sleep(self, side):
         return 1 + self._ev((0.25,) * 4)
 
@@ -336,7 +344,7 @@ def merge_key(c):
         return (s.active, tuple(((m.hp * HP_BUCKETS + m.maxhp - 1) // m.maxhp,) + pl.mon_key(m)[1:]
                                 for m in s.mons),
                 tuple(s.screens.values()), s.tailwind, tuple(s.hazards.values()), s.safeguard,
-                getattr(s, "wish", 0), s.future, s.future_sight)
+                getattr(s, "wish", 0), s.future, s.future_sight, getattr(s, "mist", 0))
     return side(c.p), side(c.b), c.weather, c.weather_turns, c.trick_room
 
 

@@ -5,6 +5,7 @@
 Runs no Node: each check builds the calculator's rows itself, so what it
 tests is the simulator's own arithmetic and rules.
 """
+import collections
 import random
 import sys
 
@@ -601,6 +602,385 @@ def check_two_hit_holds(results):
                     f"(HP left, item, ability named) {got}"))
 
 
+def check_hits_one_by_one(results):
+    """A move of several hits lands hit by hit in fightsim's own battle, as
+    the engine's multi-hit loop runs it (approved 2026-10-14). Skill Link
+    Bullet Seed on rows of 50 is five hits of 10: at a critical stage of +2
+    each hit rolls its own critical hit at one in two, so the totals spread
+    from 50 to 75 in steps of 5 (one roll for the move gave only 50 and 75).
+    Five Fury Swipes into Rough Skin cost their user five eighths of its HP
+    (one chance took one eighth); an attacker at 30 HP faints on the second
+    hit and the loop stops there; Static, three in ten a hit, paralyses about
+    83 times in a hundred (one chance, 30)."""
+    def bullet(seed):
+        b, p, foe = battle(["Bullet Seed"], ["Tackle"], {("p", "Bullet Seed"): [50] * 16}, hp=400, seed=seed)
+        p.ability, p.crit_stage = "Skill Link", 2
+        fs.attack(b, p, fs.move("Bullet Seed"), foe, True)
+        return 400 - foe.hp
+    totals = collections.Counter(bullet(s) for s in range(400))
+
+    def swipes(ability, hp=160, seed=1):
+        b, p, foe = battle(["Fury Swipes"], ["Tackle"], {("p", "Fury Swipes"): [50] * 16}, hp=160, seed=seed)
+        p.ability, foe.ability, p.hp = "Skill Link", ability, hp
+        b.st["first_battle"] = True          # no critical hits to blur the numbers
+        fs.use_move(b, p, fs.move("Fury Swipes"), foe, True)
+        return p.hp, 160 - foe.hp, p.status
+    rough, fall = swipes("Rough Skin"), swipes("Rough Skin", hp=30)
+    static = sum(swipes("Static", seed=s)[2] == "par" for s in range(400)) / 400
+    ok = (set(totals) <= {50, 55, 60, 65, 70, 75} and len(totals) >= 5 and rough == (60, 50, None)
+          and fall == (0, 20, None) and 0.77 <= static <= 0.89)
+    results.append(("a move of several hits rolls a critical hit and the target's contact ability per hit", ok,
+                    f"Skill Link Bullet Seed totals {dict(sorted(totals.items()))}; into Rough Skin (HP left, "
+                    f"damage, status) {rough}, from 30 HP {fall}; Static paralysed {static:.2f}"))
+
+
+def check_hits_hold_and_heal(results):
+    """The holds and items of a move of several hits, hit by hit (approved
+    2026-10-14). A Focus Sash is armed by a hit taken at full HP and holds
+    that hit and every later one at 1 HP (focusItemActivated lasts the
+    move), then is used up: Skill Link Bullet Seed of 100 a hit leaves its
+    holder at 1 HP (the old total broke it). A Focus Band rolls its one in
+    ten at every hit and, once it holds, holds the rest: five hits of 30 into
+    100 HP are first lethal at the fourth, so it saves about 34 times in a
+    hundred (fightsim's own battle had no Band at all). A Sitrus Berry eaten
+    after the third hit of 22 keeps its holder in at 15 (the old total of
+    110 fainted it). A Substitute of 25 takes two hits of 20 and breaks, the
+    other three land on the Pokemon, and Rough Skin answers none of them,
+    since the move hit the Substitute (SELF_TURN_FLAG_SUBSTITUTE_HIT)."""
+    def hit(row, item=None, ability="Run Away", sub=0, seed=1, crits=False):
+        b, p, foe = battle(["Bullet Seed"], ["Tackle"], {("p", "Bullet Seed"): [row] * 16}, hp=100, seed=seed)
+        p.ability, foe.item, foe.ability, foe.sub = "Skill Link", item, ability, sub
+        b.st["first_battle"] = not crits
+        fs.use_move(b, p, fs.move("Bullet Seed"), foe, True)
+        return foe.hp, foe.item, foe.sub, p.hp
+    sash, sitrus, behind = hit(500, "Focus Sash"), hit(110, "Sitrus Berry"), hit(100, ability="Rough Skin", sub=25)
+    band = sum(hit(150, "Focus Band", seed=s)[0] == 1 for s in range(2000)) / 2000
+    ok = (sash == (1, None, 0, 100) and sitrus == (15, None, 0, 100) and behind == (40, None, 0, 100)
+          and 0.30 <= band <= 0.39)
+    results.append(("a move of several hits meets the Focus Sash, Focus Band, Sitrus Berry and Substitute hit by hit",
+                    ok, f"(HP, item, Substitute, attacker HP): Sash {sash}, Sitrus {sitrus}, behind a Substitute "
+                        f"{behind}; Focus Band held {band:.3f}"))
+
+
+def check_triple_axel(results):
+    """Triple Axel hits at 20, 40 and 60 (effect script 298), each hit
+    checking its accuracy and the move stopping at the first miss, as Fury
+    Cutter's rising hits do (approved 2026-10-14): on a row of 120 for all
+    three, a use deals 0, 20, 60 or 120 (one check for the whole row gave 0
+    or 120)."""
+    seen = collections.Counter()
+    for s in range(400):
+        b, p, foe = battle(["Triple Axel"], ["Tackle"], {("p", "Triple Axel"): [120] * 16}, hp=200, seed=s)
+        b.st["first_battle"] = True
+        fs.attack(b, p, fs.move("Triple Axel"), foe, True)
+        seen[200 - foe.hp] += 1
+    ok = set(seen) <= {0, 20, 60, 120} and seen[20] > 0 and seen[60] > 0 and seen[120] > seen[60]
+    results.append(("Triple Axel rises 20, 40, 60, each hit checking accuracy", ok, str(dict(sorted(seen.items())))))
+
+
+def check_protect_flag(results):
+    """Protect stops only a move flagged MOVE_FLAG_CAN_PROTECT
+    (BattleControllerPlayer_CheckMoveHitOverrides; approved 2026-10-14):
+    Tackle and Toxic are stopped, while Shadow Force's strike, Feint and
+    Mighty Cleave hit, the first two ending the protection
+    (subscript_feint), and Stealth Rock and a Ghost's Curse land. Feint
+    fails on a target that is not protecting (BtlCmd_TryFeint). A contact
+    move into Spiky Shield costs its user an eighth of its HP, none with
+    Magic Guard or for a move without contact; Baneful Bunker poisons the
+    user. A Rollout stopped by Protect ends its run."""
+    names = ["Tackle", "Toxic", "Shadow Force", "Feint", "Mighty Cleave", "Stealth Rock", "Curse", "Ember", "Rollout"]
+
+    def into(name, protecting=True, guard="Protect", ability=None):
+        b, p, foe = battle(names, ["Protect", "Spiky Shield", "Baneful Bunker"], {("p", n): [30] * 16 for n in names},
+                           p_types=("Ghost",))
+        b.st["first_battle"] = True
+        p.ability = ability or p.ability
+        foe.protecting, foe.last = protecting, fs.move(guard)
+        mv = fs.move(name)
+        if mv.cat == "Status":
+            fs.status_move(b, p, mv, foe, True)
+        else:
+            fs.attack(b, p, mv, foe, True)
+        return (100 - foe.hp, foe.status, foe.protecting, b.b.hazards["rocks"], foe.cursed, 100 - p.hp, p.status,
+                p.lock is not None)
+    got = {n: into(n) for n in ("Tackle", "Toxic", "Shadow Force", "Feint", "Mighty Cleave", "Stealth Rock", "Curse")}
+    got["Feint, no Protect"] = into("Feint", protecting=False)
+    got["Tackle into Spiky Shield"] = into("Tackle", guard="Spiky Shield")
+    got["Magic Guard Tackle into Spiky Shield"] = into("Tackle", guard="Spiky Shield", ability="Magic Guard")
+    got["Ember into Spiky Shield"] = into("Ember", guard="Spiky Shield")
+    got["Tackle into Baneful Bunker"] = into("Tackle", guard="Baneful Bunker")
+    b, p, foe = battle(["Rollout"], ["Protect"], {("p", "Rollout"): [10] * 16})
+    fs.attack(b, p, fs.move("Rollout"), foe, True)
+    locked = p.lock is not None
+    foe.protecting = True
+    fs.attack(b, p, fs.move("Rollout"), foe, True)
+    want = {"Tackle": (0, None, True, 0, False, 0, None, False), "Toxic": (0, None, True, 0, False, 0, None, False),
+            "Shadow Force": (30, None, False, 0, False, 0, None, False),
+            "Feint": (30, None, False, 0, False, 0, None, False),
+            "Mighty Cleave": (30, None, True, 0, False, 0, None, False),
+            "Stealth Rock": (0, None, True, 1, False, 0, None, False),
+            "Curse": (0, None, True, 0, True, 50, None, False),
+            "Feint, no Protect": (0, None, False, 0, False, 0, None, False),
+            "Tackle into Spiky Shield": (0, None, True, 0, False, 12, None, False),
+            "Magic Guard Tackle into Spiky Shield": (0, None, True, 0, False, 0, None, False),
+            "Ember into Spiky Shield": (0, None, True, 0, False, 0, None, False),
+            "Tackle into Baneful Bunker": (0, None, True, 0, False, 0, "psn", False)}
+    ok = got == want and locked and p.lock is None and p.rollout == 0
+    results.append(("Protect stops only a move it can; Feint and Shadow Force break it; Spiky Shield and "
+                    "Baneful Bunker answer contact", ok,
+                    f"(damage, status, still protecting, rocks, cursed, user's HP lost, user's status, locked) "
+                    f"{ {k: v for k, v in got.items() if v != want.get(k)} or 'as wanted'}; Rollout locked {locked}, "
+                    f"after Protect {p.lock}"))
+
+
+def check_protect_odds(results):
+    """BtlCmd_TryProtection's odds (approved 2026-10-14): a first Protect
+    works, a repeat at a half, a quarter, then an eighth, which stays the
+    floor (sProtectSuccessRate), and it fails outright when its user acts
+    last (waitingBattlers of 1), which ends the run. Over 4000 tries at runs
+    of 3, 4 and 5 it works about one time in eight (it was 1/8, 1/16, 1/32),
+    and a slower user's Protect at run 0 never works (it did)."""
+    def rate(run, first=True, n=4000):
+        works = 0
+        for s in range(n):
+            b, p, foe = battle(["Protect"], ["Tackle"], {}, seed=s)
+            p.protect_run = run
+            fs.status_move(b, p, fs.move("Protect"), foe, first)
+            works += p.protecting
+        return works / n
+    runs = {k: rate(k) for k in (3, 4, 5)}
+    b, p, foe = battle(["Protect"], ["Tackle"], {})
+    p.protect_run = 2
+    fs.status_move(b, p, fs.move("Protect"), foe, False)
+    last = (p.protecting, p.protect_run)
+    ok = all(0.105 <= r <= 0.145 for r in runs.values()) and rate(0, first=False, n=200) == 0 and last == (False, 0)
+    results.append(("Protect's run floors at one in eight, and a Protect that acts last fails", ok,
+                    f"works at runs 3, 4, 5: {runs}; acting last: (protecting, run) {last}"))
+
+
+def check_pp_engine(results):
+    """PP as the engine charges it (BattleControllerPlayer_DecrementPP,
+    approved 2026-10-14): once, on a turn the battler chose its command, so
+    Fly's strike and a Rollout's locked uses cost nothing (a charging or
+    locked battler cannot choose, and its turn is marked paid), and one more
+    for each Pressure holder it meets on the other side: a Tackle into one
+    costs 2, as do Stealth Rock, Haze and Growl, which count the whole side,
+    while Sleep Talk, whose target is its user, costs 1; a cost above the PP
+    left leaves 0 (a Pressure Tackle at its last PP, Rain Dance at its one).
+    Before, every use of every move cost 1."""
+    def used(names, *turns, ability=None):
+        b, p, foe = battle(names, ["Tackle"], {("p", n): [10] * 16 for n in names}, hp=400)
+        foe.ability = ability or foe.ability
+        for name in turns:
+            mv = next(m for m in p.moves if m.name == name)
+            fs.use_move(b, p, p.charging or (p.lock[0] if p.lock else mv), foe, True)
+        return {m.name: m.pp - p.pp[m.name] for m in p.moves}
+    fly = used(["Fly"], "Fly", "Fly")
+    rollout = used(["Rollout"], "Rollout", "Rollout", "Rollout", "Rollout")
+    pressure = used(["Tackle", "Stealth Rock", "Haze", "Growl"], "Tackle", "Stealth Rock", "Haze", "Growl",
+                    ability="Pressure")
+    own = used(["Swords Dance", "Rain Dance"], "Swords Dance", "Rain Dance", ability="Pressure")
+    sleep_talk = used(["Sleep Talk"], "Sleep Talk", ability="Pressure")
+    b, p, foe = battle(["Tackle"], ["Tackle"], {})
+    foe.ability, p.pp["Tackle"] = "Pressure", 1
+    fs.use_move(b, p, fs.move("Tackle"), foe, True)
+    ok = (fly == {"Fly": 1} and rollout == {"Rollout": 1}
+          and pressure == {"Tackle": 2, "Stealth Rock": 2, "Haze": 2, "Growl": 2}
+          and own == {"Swords Dance": 1, "Rain Dance": 1} and sleep_talk == {"Sleep Talk": 1} and p.pp["Tackle"] == 0)
+    results.append(("PP is spent once a choice, and Pressure adds one", ok,
+                    f"PP spent: Fly over its two turns {fly}, Rollout over four uses {rollout}; into Pressure "
+                    f"{pressure}, Swords Dance and Rain Dance at their 1 PP {own}, Sleep Talk {sleep_talk}; "
+                    f"Tackle at 1 PP into Pressure leaves {p.pp['Tackle']}"))
+
+
+def check_confusion_blockers(results):
+    """Confusion as subscript_confuse gives it (approved 2026-10-14). A
+    hit's added confusion (Dynamic Punch, its chance 100) misses an Own
+    Tempo target unless the attacker has Mold Breaker, a target behind
+    Safeguard unless the attacker has Infiltrator, and a Covert Cloak
+    holder; Confuse Ray and Swagger meet the same Own Tempo and Safeguard
+    (Swagger's Attack rise still lands), and Own Tempo is named there. A Lum
+    Berry cures the confusion as it sets in and is used up. An Infiltrator's
+    Toxic passes Safeguard too. Before, a hit confused through all of them,
+    the moves through Safeguard, and the Lum Berry waited for the turn's
+    end."""
+    def confuse(name, ability=None, attacker=None, safeguard=False, item=None):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [10] * 16}, hp=200)
+        p.stages["acc"] = 6                 # Dynamic Punch's 50% always lands
+        foe.ability, p.ability, foe.item = ability or foe.ability, attacker or p.ability, item
+        b.b.safeguard = 5 if safeguard else 0
+        mv = fs.move(name)
+        (fs.status_move if mv.cat == "Status" else fs.attack)(b, p, mv, foe, True)
+        return bool(foe.confused), foe.revealed, foe.item, foe.stages["atk"], foe.status
+    cases = {"plain": {}, "Own Tempo": {"ability": "Own Tempo"},
+             "Own Tempo, Mold Breaker": {"ability": "Own Tempo", "attacker": "Mold Breaker"},
+             "Safeguard": {"safeguard": True}, "Safeguard, Infiltrator": {"safeguard": True, "attacker": "Infiltrator"},
+             "Lum Berry": {"item": "Lum Berry"}}
+    got = {f"Dynamic Punch, {k}": confuse("Dynamic Punch", **kw) for k, kw in cases.items()}
+    got["Dynamic Punch, Covert Cloak"] = confuse("Dynamic Punch", item="Covert Cloak")
+    got.update({f"Confuse Ray, {k}": confuse("Confuse Ray", **kw) for k, kw in cases.items()})
+    got["Swagger, Safeguard"] = confuse("Swagger", safeguard=True)
+    got["Toxic, Safeguard, Infiltrator"] = confuse("Toxic", safeguard=True, attacker="Infiltrator")
+    got["Toxic, Safeguard"] = confuse("Toxic", safeguard=True)
+    want = {"Dynamic Punch, plain": (True, None, None, 0, None),
+            "Dynamic Punch, Own Tempo": (False, None, None, 0, None),
+            "Dynamic Punch, Own Tempo, Mold Breaker": (True, None, None, 0, None),
+            "Dynamic Punch, Safeguard": (False, None, None, 0, None),
+            "Dynamic Punch, Safeguard, Infiltrator": (True, None, None, 0, None),
+            "Dynamic Punch, Lum Berry": (False, None, None, 0, None),
+            "Dynamic Punch, Covert Cloak": (False, None, "Covert Cloak", 0, None),
+            "Confuse Ray, plain": (True, None, None, 0, None),
+            "Confuse Ray, Own Tempo": (False, "Own Tempo", None, 0, None),
+            "Confuse Ray, Own Tempo, Mold Breaker": (True, None, None, 0, None),
+            "Confuse Ray, Safeguard": (False, None, None, 0, None),
+            "Confuse Ray, Safeguard, Infiltrator": (True, None, None, 0, None),
+            "Confuse Ray, Lum Berry": (False, None, None, 0, None),
+            "Swagger, Safeguard": (False, None, None, 2, None),
+            "Toxic, Safeguard, Infiltrator": (False, None, None, 0, "tox"),
+            "Toxic, Safeguard": (False, None, None, 0, None)}
+    bad = {k: v for k, v in got.items() if v != want[k]}
+    results.append(("confusion meets Own Tempo, Safeguard, a Covert Cloak and a Lum Berry as the engine's does", not bad,
+                    f"(confused, named, item, Attack stage, status) off: {bad}" if bad else "every case as wanted"))
+
+
+def check_curse_and_rest(results):
+    """The Ghost Curse's and Rest's failures (approved 2026-10-14). A Ghost
+    type's Curse (subscript_curse_ghost) cuts half its user's HP and curses
+    the target, but fails at no cost behind a Substitute, on a target
+    already cursed, and on one in the air; an Infiltrator's passes the
+    Substitute. Rest (subscript_rest) fails on Insomnia, Vital Spirit,
+    Purifying Salt, Sweet Veil and Leaf Guard in sun, naming the ability,
+    though Cloud Nine lets a Leaf Guard holder rest. Before, the Curse cut
+    and cursed in every case and Rest worked for all of them."""
+    def curse(sub=0, cursed=False, flying=False, ability=None):
+        b, p, foe = battle(["Curse"], ["Fly"], {}, p_types=("Ghost",))
+        foe.sub, foe.cursed, p.ability = sub, cursed, ability or p.ability
+        foe.charging = fs.move("Fly") if flying else None
+        fs.status_move(b, p, fs.move("Curse"), foe, True)
+        return 100 - p.hp, foe.cursed
+    curses = {"plain": curse(), "Substitute": curse(sub=25), "cursed": curse(cursed=True), "in the air": curse(flying=True),
+              "Infiltrator through a Substitute": curse(sub=25, ability="Infiltrator")}
+
+    def rest(ability, weather=None, cloud=False):
+        b, p, foe = battle(["Rest"], ["Tackle"], {})
+        p.ability, p.hp, b.weather = ability, 40, weather
+        if cloud:
+            foe.ability = "Cloud Nine"
+        fs.status_move(b, p, fs.move("Rest"), foe, True)
+        return p.hp, p.status, p.revealed
+    rests = {ab: rest(ab) for ab in ("Insomnia", "Vital Spirit", "Purifying Salt", "Sweet Veil", "Run Away")}
+    rests["Leaf Guard in sun"] = rest("Leaf Guard", "Sun")
+    rests["Leaf Guard in sun, Cloud Nine"] = rest("Leaf Guard", "Sun", cloud=True)
+    want_c = {"plain": (50, True), "Substitute": (0, False), "cursed": (0, True), "in the air": (0, False),
+              "Infiltrator through a Substitute": (50, True)}
+    want_r = {"Insomnia": (40, None, "Insomnia"), "Vital Spirit": (40, None, "Vital Spirit"),
+              "Purifying Salt": (40, None, "Purifying Salt"), "Sweet Veil": (40, None, "Sweet Veil"),
+              "Run Away": (100, "slp", None), "Leaf Guard in sun": (40, None, "Leaf Guard"),
+              "Leaf Guard in sun, Cloud Nine": (100, "slp", None)}
+    results.append(("the Ghost Curse fails through a Substitute or on a cursed target; Rest fails on the abilities "
+                    "that keep its user awake", curses == want_c and rests == want_r,
+                    f"Curse (user's HP lost, target cursed) {curses}; Rest (HP, status, named) {rests}"))
+
+
+def check_mist_and_intimidate(results):
+    """Mist, and Intimidate against a Substitute, Mist and a Clear Amulet
+    (approved 2026-10-14). Mist (BtlCmd_TryMist) keeps the other side from
+    lowering its side's stats for five turn ends, Growl and a hit's drop
+    alike, and a second Mist while one runs fails; an Infiltrator's Growl
+    and Mud-Slap pass it. An Intimidate
+    coming in passes over a foe behind a Substitute (subscript_intimidate),
+    and Mist and a Clear Amulet stop it (BtlCmd_ChangeStatStage), Mist
+    before Inner Focus is named. The trainer's AI reads the side's Mist, so
+    a second Mist scores -8. Before, Mist did nothing and Intimidate cut all
+    three."""
+    def growl(mist_on, attacker=None):
+        b, p, foe = battle(["Mist"], ["Growl", "Mud-Slap"], {("b", "Mud-Slap"): [5] * 16})
+        if mist_on:
+            fs.status_move(b, p, fs.move("Mist"), foe, True)
+        foe.ability = attacker or foe.ability
+        foe.stages["acc"] = 6
+        fs.status_move(b, foe, fs.move("Growl"), p, True)
+        fs.attack(b, foe, fs.move("Mud-Slap"), p, True)
+        return p.stages["atk"], p.stages["acc"]
+    b, p, foe = battle(["Mist"], ["Tackle"], {})
+    fs.status_move(b, p, fs.move("Mist"), foe, True)
+    turns = [b.p.mist]
+    fs.end_of_turn(b)
+    fs.end_of_turn(b)
+    fs.status_move(b, p, fs.move("Mist"), foe, True)       # fails while one runs
+    turns.append(b.p.mist)
+    for _ in range(3):
+        fs.end_of_turn(b)
+    turns.append(b.p.mist)
+    fs.status_move(b, p, fs.move("Mist"), foe, True)       # a fresh one once the last ran out
+    ai = fightai.basic(b, p, foe, fs.move("Mist"), None)
+
+    def intimidated(sub=0, mist_on=False, item=None, ability=None):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        p.sub, p.item, p.ability = sub, item, ability or p.ability
+        b.p.mist = 5 if mist_on else 0
+        foe.ability = "Intimidate"
+        fs.switch_in(b, b.b, 0)
+        return p.stages["atk"], p.revealed
+    got = {"Growl and Mud-Slap": growl(False), "under Mist": growl(True),
+           "an Infiltrator under Mist": growl(True, "Infiltrator"),
+           "Intimidate": intimidated(), "behind a Substitute": intimidated(sub=25),
+           "Intimidate under Mist": intimidated(mist_on=True),
+           "Intimidate on Inner Focus under Mist": intimidated(mist_on=True, ability="Inner Focus"),
+           "Intimidate on a Clear Amulet": intimidated(item="Clear Amulet")}
+    want = {"Growl and Mud-Slap": (-1, -1), "under Mist": (0, 0), "an Infiltrator under Mist": (-1, -1),
+            "Intimidate": (-1, None), "behind a Substitute": (0, None), "Intimidate under Mist": (0, None),
+            "Intimidate on Inner Focus under Mist": (0, None), "Intimidate on a Clear Amulet": (0, None)}
+    ok = got == want and turns == [5, 3, 0] and ai == -8
+    results.append(("Mist stops the other side's drops for five turns; Intimidate passes a Substitute, and Mist and "
+                    "a Clear Amulet stop it", ok,
+                    f"(Attack, accuracy or named) {got}; Mist's turns {turns}; the AI's score for a second Mist {ai}"))
+
+
+def check_ai_fields(results):
+    """The fields the trainer's AI reads, set as the engine's state is
+    (approved 2026-10-14). Last Resort's count (BattleSystem_UpdateLastResort)
+    counts each other move the first time it is used since its user came
+    in, and a switch clears it; a Berry used up is eaten
+    (BattleScript_RecordBerryEaten), one Natural Gift spends is not, and
+    Belch is then no longer an invalid choice; Recycle reads the item last
+    used up, so it scores 0 once there is one. The readings' keys tell the
+    count and the Berry apart only for a Last Resort or Belch user. Before,
+    the AI read a count, a Berry and an item that nothing set."""
+    b, p, foe = battle(["Tackle", "Growl", "Last Resort"], ["Recycle", "Belch", "Natural Gift"], {})
+    for name in ("Tackle", "Tackle", "Growl", "Last Resort"):
+        fs.use_move(b, p, fs.move(name), foe, True)
+    counted = p.last_resort_count
+    keyed = pl_key_has(p), pl_key_has(foe)
+    fs.switch_in(b, b.p, 0)
+    cleared = p.last_resort_count
+    recycle_before = fightai.basic(b, foe, p, fs.move("Recycle"), None)
+    belch_before = fightai.invalid(b, foe, fs.move("Belch"))
+    foe.item = "Oran Berry"
+    foe.hp = 40
+    fs.berry_check(foe)
+    ate = (foe.ate_berry, foe.recycle)
+    recycle_after = fightai.basic(b, foe, p, fs.move("Recycle"), None)
+    belch_after = fightai.invalid(b, foe, fs.move("Belch"))
+    b2, p2, foe2 = battle(["Tackle"], ["Natural Gift"], {("b", "Natural Gift"): [10] * 16})
+    foe2.item = "Oran Berry"
+    fs.attack(b2, foe2, fs.move("Natural Gift"), p2, True)
+    spent = (foe2.item, foe2.ate_berry)
+    ok = (counted, cleared, ate, recycle_before, recycle_after, belch_before, belch_after, spent) == \
+        (2, 0, (True, "Oran Berry"), -10, 0, True, False, (None, False)) and keyed == (True, True)
+    results.append(("the battle sets Last Resort's count, the Berry eaten and the item to recycle, as the AI reads them",
+                    ok, f"count {counted}, after a switch {cleared}; Berry eaten (eaten, recycle) {ate}; Recycle "
+                        f"scored {recycle_before} then {recycle_after}; Belch invalid {belch_before} then "
+                        f"{belch_after}; Natural Gift (item, eaten) {spent}; keyed by Last Resort, by Belch {keyed}"))
+
+
+def pl_key_has(mon):
+    """Whether the readings' keys carry mon's Last Resort count (mon_key) or
+    its Berry eaten (_ai_mon): only a Last Resort or a Belch user's."""
+    from . import perfectline as pl
+    return pl.mon_key(mon)[-1] is not None or pl._ai_mon(mon)[-1] is not None
+
+
 def check_future_sight(results):
     """Future Sight and Doom Desire (approved 2026-10-13; BtlCmd_TryFutureSight
     and the turn's end, SIDE_COND_CHECK_STATE_FUTURE_SIGHT): the damage is
@@ -1149,7 +1529,10 @@ def main():
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
                   check_salt_cure, check_harvest, check_berry_first_hit,
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
-                  check_intimidate_start, check_intimidate_proof, check_two_hit_holds, check_future_sight,
+                  check_intimidate_start, check_intimidate_proof, check_two_hit_holds,
+                  check_hits_one_by_one, check_hits_hold_and_heal, check_triple_axel,
+                  check_protect_flag, check_protect_odds, check_pp_engine, check_confusion_blockers,
+                  check_curse_and_rest, check_mist_and_intimidate, check_ai_fields, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean,

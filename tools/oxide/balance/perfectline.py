@@ -231,18 +231,21 @@ def player(mon):
     return mon.side == "p"
 
 
-def damage_of(b, att, dfn, mv, crit, top, roll=None):
+def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
     """fightsim's damage arithmetic with Oxide's critical hit: the top roll
     (top) or the bottom one, or roll index `roll`, stages (a crit ignores
     the ones that would weaken it), burn, Guts, Flash Fire's boost only once
     lit, the player's booster, screens (passed by a crit, Brick Break's kind
-    and an Infiltrator), 1.5x on a crit."""
+    and an Infiltrator), 1.5x on a crit. With share, (weight, whole), one
+    hit of a move whose row adds up several (fightsim.hit_weights)."""
     rolls = b.rolls(att, dfn, mv)
     if not rolls:
         return None
     base = rolls[min(roll, len(rolls) - 1)] if roll is not None else (rolls[-1] if top else rolls[0])
     if base <= 0:
         return 0
+    if share is not None:
+        base = base * share[0] / share[1]
     a_st, d_st = ("atk", "def") if mv.cat == "Physical" else ("spa", "spd")
     a, d = att.stages[a_st], dfn.stages[d_st]
     if dfn.ability == "Unaware" and att.ability != "Mold Breaker":
@@ -385,7 +388,7 @@ def _use_move(b, att, mv, dfn, first):
     if (att.taunt and mv.cat == "Status") or fs.tormented_out(att, mv) or fs.move_heal_blocked(att, mv):
         return fs.could_not_act(b, att, mv, dfn)
     fs.mark_hit(b, mv, dfn, True)
-    att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
+    fs.spend_pp(b, att, mv, dfn)       # once a choice, and Pressure's (fightsim.spend_pp)
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
         att.protect_run = 0
     att.last = mv
@@ -408,11 +411,11 @@ def _use_move(b, att, mv, dfn, first):
         return
     attack(b, att, mv, dfn, first)
     # A contact ability's chance hurts the player when the player's Pokemon
-    # takes it, and helps it when the trainer's does.
-    fs.after_hit(b, att, dfn, mv, b.last_dealt)
-    fs.contact_ability(b, att, dfn, mv, b.last_dealt,
-                       lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
-                       lambda kind, n: b.dice.choice(kind, n))
+    # takes it, and helps it when the trainer's does (fightsim.hit_aftermath:
+    # a move of several hits has had it hit by hit).
+    fs.hit_aftermath(b, att, dfn, mv,
+                     lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
+                     lambda kind, n: b.dice.choice(kind, n))
     fs.destiny_bond(att, dfn)
 
 
@@ -435,9 +438,10 @@ def confusion_damage(mon, roll):
 def rolled_hits(b, att, dfn, mv, trainer):
     """The hits this use makes: a two to five hit move's count
     (fs.multi_hit_odds), rolled by a run's dice and enumerated at its odds by
-    the planner's; Fury Cutter's hits until its first miss, each later hit
-    checking accuracy again unless a Loaded Dice skips the check. In the
-    strict search the trainer gets its most hits and the player its fewest."""
+    the planner's; a rising move's hits (Fury Cutter, Triple Kick, Triple
+    Axel) until its first miss, each later hit checking accuracy again unless
+    a Loaded Dice skips the check; two for the two-hit moves. In the strict
+    search the trainer gets its most hits and the player its fewest."""
     odds = fs.multi_hit_odds(att, mv)
     if odds:
         counts, weights = [h for h, _w in odds], [w for _h, w in odds]
@@ -447,16 +451,85 @@ def rolled_hits(b, att, dfn, mv, trainer):
         if pick is None:
             return max(counts) if trainer else min(counts)
         return pick(counts, weights)
-    if mv.effect == fs.RISING_HITS:
+    if mv.effect in fs.RISING:
         hits = 1
         while hits < fs.RISING_COUNT and (att.item == "Loaded Dice" or accuracy_hits(b, att, dfn, mv)):
             hits += 1
         return hits
-    return 1
+    return 2 if mv.effect in fs.TWO_HITS else 1
+
+
+def crit_hits(b, att, dfn, mv, hits, trainer):
+    """Each hit's critical hit for a move of several hits, as the engine's
+    CalcCrit runs once a hit (fightsim.crit_rate). Dice that enumerate a
+    turn (the planner's, crit_count) take the number of critical hits at its
+    binomial odds as one event, the first that many hits landing critical,
+    so a turn splits n + 1 ways rather than 2 to the n; any other dice roll
+    every hit, the stress test's doubled check included."""
+    rate = fs.crit_rate(b, att, dfn, mv)
+    if rate <= 0:
+        return [False] * hits
+    count = getattr(b.dice, "crit_count", None)
+    if count is not None:
+        k = count(hits, rate)
+        return [i < k for i in range(hits)]
+    return [b.dice.bad("crit", rate) if trainer else b.dice.good(rate, "crit") for _ in range(hits)]
+
+
+def multi_hit(b, att, mv, dfn, first, hits, trainer):
+    """A move of several hits landed hit by hit (fightsim.land_hits) on the
+    battle's dice: each hit's critical hit (crit_hits), and its damage roll,
+    each hit's own in a run, as the engine rolls one a hit, but one shared by
+    every hit when the dice enumerate a turn (the planner's), whose rolls are
+    grouped by the whole move's damage. None when the move has no row or
+    deals nothing (the single-hit zero branch's work done); else the HP
+    taken from dfn."""
+    rolls = b.rolls(att, dfn, mv)
+    if not rolls:
+        return None
+    if rolls[-1] <= 0:
+        if dfn.ability in fs.ZEROING and fs.effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
+            fs.reveal(dfn)
+            if dfn.ability == "Flash Fire" and mv.type == "Fire":
+                dfn.flash_fire = True
+            fs.absorb(b, att, dfn, mv)
+        return None
+    crits = crit_hits(b, att, dfn, mv, hits, trainer)
+    weights, whole = fs.hit_weights(att, mv, hits)
+    reckless = fs.reckless_fix(att, mv)
+
+    def one(i, crit, roll):
+        d = damage_of(b, att, dfn, mv, crit, top=trainer, roll=roll, share=(weights[i], whole)) or 0
+        return d if reckless == 1.0 else int(d * reckless)
+
+    shared = None
+    if b.dice.mode == "run":
+        grouped = getattr(b.dice, "roll_grouped", None)
+        if grouped:
+            # The whole move's damage at a roll, for grouping alone: a resist
+            # berry held now halves the first hit only.
+            berry = fs.resist_berry(b, dfn, mv)
+            held = bool(berry) and dfn.item == berry
+            shared = grouped(lambda r: sum(one(i, crits[i], r) * (2 if held and i else 1) for i in range(hits)),
+                             dfn.hp)
+
+    def hit_damage(i, crit):
+        roll = None
+        if b.dice.mode == "run":
+            roll = shared if shared is not None else b.dice.roll(trainer)
+        return one(i, crit, roll)
+
+    b.hits_landed = True
+    dealt = fs.land_hits(b, att, dfn, mv, first, hits, hit_damage, crits,
+                         lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
+                         lambda kind, n: b.dice.choice(kind, n))
+    b.last_dealt = dealt
+    return dealt
 
 
 def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
+    b.hits_landed = False                # a move of several hits that land_hits landed
     if not dfn.alive():
         return
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
@@ -477,8 +550,10 @@ def attack(b, att, mv, dfn, first):
         return
     if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE and not fs.reaches(mv, dfn):
         return
-    if dfn.protecting and mv.effect not in ("REMOVE_PROTECT",):
-        return
+    if fs.protected(b, att, mv, dfn):
+        return                   # only a move Protect can stop (fightsim.protected)
+    if mv.effect == "REMOVE_PROTECT" and not dfn.protecting:
+        return                   # Feint and Hyperspace Hole fail on a target not protecting (BtlCmd_TryFeint)
     if fs.lifted(dfn, mv):
         return
     if mv.effect == "HIT_FIRST_IF_TARGET_ATTACKING":
@@ -494,7 +569,7 @@ def attack(b, att, mv, dfn, first):
     if mv.name in ("Natural Gift", "Fling"):
         if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
             return
-        fs.consume(att)
+        fs.consume(att, eaten=False)     # spent, not eaten (Belch)
     if not accuracy_hits(b, att, dfn, mv):
         if mv.effect == "CRASH_ON_MISS":
             fs.hurt(b, att, att.maxhp // 2)
@@ -503,6 +578,11 @@ def attack(b, att, mv, dfn, first):
     fs.rollout_after(att, mv, True)
     trainer = not player(att)
     hits = rolled_hits(b, att, dfn, mv, trainer)
+    if mv.effect in fs.HIT_BY_HIT:
+        dealt = multi_hit(b, att, mv, dfn, first, hits, trainer)
+        if dealt is not None:
+            _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=True)
+        return
     # Fixed damage (fightsim.fixed_damage). Psywave's roll goes the
     # trainer's way in the search, as a damage roll does, and rolls in a run.
     tenths = 10
@@ -594,13 +674,11 @@ def attack(b, att, mv, dfn, first):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
     else:
-        # Focus Sash and Sturdy hold one hit from full HP: a move that hits
-        # twice or more lands its next hit on the 1 HP left.
+        # Focus Sash and Sturdy hold one hit from full HP; a move of several
+        # hits lands them one at a time (multi_hit) and never comes here.
         full = dfn.hp == dfn.maxhp and hits < 2
         sturdy = dfn.ability == "Sturdy" and att.ability != "Mold Breaker"
-        if mv.effect in fs.TWO_HITS and full:
-            dmg = fs.two_hit_holds(dfn, dmg, sturdy)       # its two hits one at a time
-        elif dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or sturdy):
+        if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or sturdy):
             if sturdy:
                 fs.reveal(dfn)
             dmg = dfn.hp - 1
@@ -619,7 +697,17 @@ def attack(b, att, mv, dfn, first):
         dfn.hit_this_turn = (mv.cat, dealt)
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
+    _after_attack(b, att, mv, dfn, first, dealt, trainer)
+
+
+def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
+    """A damaging move's own effects once its hits have landed, dealt the
+    HP they took from dfn: recoil, draining, the Life Orb and the added
+    effects. A move of several hits (hit_by_hit) has rolled its King's
+    Rock and its own added effect hit by hit already (fightsim.land_hits)."""
     e = mv.effect
+    if e in fs.BREAKS_PROTECT:
+        dfn.protecting = False   # subscript_feint: the hit ends the target's protection
     if e == "STRUGGLE" and att.ability != "Magic Guard":
         # subscript_struggle: the user loses a quarter of its maximum HP.
         fs.hurt(b, att, max(1, att.maxhp // 4))
@@ -633,6 +721,7 @@ def attack(b, att, mv, dfn, first):
     if e in ("EAT_BERRY",) and dfn.item and "Berry" in dfn.item:
         # Bug Bite and Pluck eat the target's berry and take its effect.
         berry, dfn.item = dfn.item, None
+        att.ate_berry = True             # the attacker has eaten it (Belch)
         if berry == "Sitrus Berry":
             fs.heal(att, att.maxhp // 4)
         elif berry == "Oran Berry":
@@ -700,16 +789,17 @@ def attack(b, att, mv, dfn, first):
     if e == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and first and not stripped:
         dfn.flinch = True
     # King's Rock and Razor Fang are item procs, in the budget (question 8).
-    if first and att.item in ("King's Rock", "Razor Fang") and not dfn.flinch \
+    if first and att.item in ("King's Rock", "Razor Fang") and not dfn.flinch and not hit_by_hit \
             and secondary("kingsrock", 0.1):
         dfn.flinch = True
     if dfn.ability == "Inner Focus":
         dfn.flinch = False       # Inner Focus: it never flinches
-    if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and chance and not dfn.confused \
-            and status_lands("confusehit"):
+    if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and chance \
+            and not fs.confusion_blocked(b, att, dfn, hit=True) and status_lands("confusehit"):
         dfn.confused = b.dice.confusion(dfn.side)
+        fs.confusion_berry(dfn)          # a Lum Berry cures it at once
     if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100) \
-            and not fs.stat_drop_blocked(b, dfn, fs.HIT_FOE_STAGES[e]):
+            and not fs.stat_drop_blocked(b, dfn, fs.HIT_FOE_STAGES[e], src=att):
         fs.change_stages(dfn, fs.HIT_FOE_STAGES[e])
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
         fs.start_heal_block(att, dfn, mv)
@@ -734,7 +824,7 @@ def status_move(b, att, mv, dfn, first):
     own_side = b.p if player(att) else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
     if targets_foe and dfn.alive():
-        if dfn.protecting:
+        if fs.protected(b, att, mv, dfn):
             return
         # Only Thunder Wave among the status moves meets the type chart
         # (BattleControllerPlayer_CheckTypeChart): it fails on a Ground type,
@@ -753,13 +843,15 @@ def status_move(b, att, mv, dfn, first):
             return
         fs.give_status_by_move(b, att, dfn, mv, fs.STATUS_OF[e])
     elif e == "STATUS_CONFUSE":
-        if not fs.sub_blocks(att, dfn, mv) and not dfn.confused and dfn.ability != "Own Tempo":
+        if not fs.sub_blocks(att, dfn, mv) and not fs.confusion_blocked(b, att, dfn):
             dfn.confused = b.dice.confusion(dfn.side)
+            fs.confusion_berry(dfn)
     elif e in ("ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
         if not fs.sub_blocks(att, dfn, mv):
             fs.change_stages(dfn, {"atk": 2} if e.startswith("ATK") else {"spa": 1})
-            if not dfn.confused and dfn.ability != "Own Tempo":
+            if not fs.confusion_blocked(b, att, dfn):
                 dfn.confused = b.dice.confusion(dfn.side)
+                fs.confusion_berry(dfn)
     elif e == "STATUS_SLEEP_NEXT_TURN":
         if not dfn.status and not dfn.yawn and not fs.sub_blocks(att, dfn, mv):
             dfn.yawn = 2
@@ -778,12 +870,11 @@ def status_move(b, att, mv, dfn, first):
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in fs.FOE_STAGES:
-        if not fs.sub_blocks(att, dfn, mv) and not fs.stat_drop_blocked(b, dfn, fs.FOE_STAGES[e]):
+        if not fs.sub_blocks(att, dfn, mv) and not fs.stat_drop_blocked(b, dfn, fs.FOE_STAGES[e], src=att):
             fs.change_stages(dfn, fs.FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:
-            fs.hurt(b, att, att.maxhp // 2)
-            dfn.cursed = True
+            fs.ghost_curse(b, att, dfn, mv)      # it fails, at no cost, through a Substitute or on a cursed target
         else:
             fs.change_stages(att, {"atk": 1, "def": 1, "spe": -1})
     elif e == "MAX_ATK_LOSE_HALF_MAX_HP":
@@ -800,9 +891,10 @@ def status_move(b, att, mv, dfn, first):
         frac = 2 / 3 if b.weather == "Sun" else 1 / 4 if b.weather else 1 / 2
         fs.heal(att, int(att.maxhp * frac))
     elif e == "REST":
-        # As fightsim's: Rest fails at full HP and on a sleeping user, which
-        # is how a Sleep Talk reaches it (subscript_rest).
-        if att.hp < att.maxhp and att.status != "slp":
+        # As fightsim's: Rest fails on the abilities that keep its user awake
+        # (fightsim.rest_blocked), on a sleeping user, which is how a Sleep
+        # Talk reaches it, and at full HP (subscript_rest).
+        if not fs.rest_blocked(b, att) and att.hp < att.maxhp and att.status != "slp":
             att.hp, att.status, att.sleep, att.toxic = att.maxhp, "slp", 2, 0
             fs.cure_berry(att)       # a Chesto or Lum Berry wakes it at once
     elif e == "SWALLOW":
@@ -831,10 +923,14 @@ def status_move(b, att, mv, dfn, first):
     elif e == "TOXIC_SPIKES":
         foe_side.hazards["tspikes"] = min(2, foe_side.hazards["tspikes"] + 1)
     elif e == "PROTECT" or e == "SURVIVE_WITH_1_HP":
-        # A first Protect works. A repeat works at 1/2^run: for the player
-        # its failing is bad luck, for the trainer its working is.
-        p_work = 1 / (2 ** att.protect_run)
-        if att.protect_run == 0:
+        # BtlCmd_TryProtection: it fails when no battler acts after its user
+        # (fightsim.moves_last). Otherwise a first one works, and a repeat at
+        # fightsim.protect_odds, an eighth at worst: for the player its
+        # failing is bad luck, for the trainer its working is.
+        p_work = fs.protect_odds(att)
+        if fs.moves_last(b, first):
+            works = False
+        elif att.protect_run == 0:
             works = True
         elif player(att):
             works = not b.dice.bad("protectfail", 1 - p_work)
@@ -843,7 +939,7 @@ def status_move(b, att, mv, dfn, first):
         if works:
             att.protecting = e == "PROTECT"
             att.enduring = e == "SURVIVE_WITH_1_HP"
-            att.protect_run += 1
+            att.protect_run = min(att.protect_run + 1, fs.PROTECT_RUN_CAP)
         else:
             att.protect_run = 0
     elif e == "SET_SUBSTITUTE":
@@ -858,6 +954,8 @@ def status_move(b, att, mv, dfn, first):
             m.status = None
     elif e == "PREVENT_STATUS":
         own_side.safeguard = 5
+    elif e == "PREVENT_STAT_REDUCTION":
+        fs.mist(own_side)                # Mist, five turns (fightsim.mist)
     elif e == "TAUNT":
         if not dfn.taunt:
             dfn.taunt = b.dice.taunt(dfn.side)
@@ -914,6 +1012,7 @@ def clone_side(s):
     c.name, c.active, c.active2 = s.name, s.active, s.active2
     c.screens = dict(s.screens)
     c.tailwind, c.safeguard, c.wish = s.tailwind, s.safeguard, getattr(s, "wish", 0)
+    c.mist = getattr(s, "mist", 0)
     c.hazards = dict(s.hazards)
     c.future, c.future_sight = s.future, s.future_sight        # a waiting Future Sight (tuples, shared safely)
     return c
@@ -947,12 +1046,15 @@ def mon_key(m):
             m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False),
             getattr(m, "disabled", None), getattr(m, "disabled_turns", 0), getattr(m, "nightmare", False),
             getattr(m, "encore", None), getattr(m, "encore_turns", 0),
-            getattr(m, "protean_type", None), getattr(m, "protean_used", False))
+            getattr(m, "protean_type", None), getattr(m, "protean_used", False),
+            # Last Resort works, and the AI rates it, by the moves used since it came in.
+            getattr(m, "last_resort_count", 0) if getattr(m, "last_resort", False) else None)
 
 
 def side_key(s):
     return (s.active, tuple(mon_key(m) for m in s.mons), tuple(s.screens.values()), s.tailwind,
-            tuple(s.hazards.values()), s.safeguard, getattr(s, "wish", 0), s.future, s.future_sight)
+            tuple(s.hazards.values()), s.safeguard, getattr(s, "wish", 0), s.future, s.future_sight,
+            getattr(s, "mist", 0))
 
 
 def state_key(b):
@@ -965,7 +1067,7 @@ def shape_key(b):
     def side(sd):
         return (sd.active, tuple(mon_key(m)[1:] for m in sd.mons), tuple(sd.screens.values()),
                 sd.tailwind, tuple(sd.hazards.values()), sd.safeguard, getattr(sd, "wish", 0),
-                sd.future, sd.future_sight)
+                sd.future, sd.future_sight, getattr(sd, "mist", 0))
     return (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room,
             getattr(b, "declined", frozenset()))
 
@@ -991,10 +1093,12 @@ def _ai_mon(m):
     move by name (Mirror Move, Encore, Copycat and Baton Pass read the move),
     its turns in up to the four Roar reads, the moves the AI has seen it
     use, the ability a message has named, trapping and rooting, the type
-    the last hit was recorded with, and the Custap pinch."""
+    the last hit was recorded with, the Custap pinch, and for a Belch user
+    whether it has eaten a Berry."""
     return (m.key, None if m.last is None else m.last.name, max(-1, min(m.turns_in, 4)),
             tuple(x.name for x in m.shown), m.revealed, m.trapped_by is not None, m.ingrained,
-            m.last_hit_type, m.hp <= m.maxhp // 4, m.hp <= m.maxhp // 2, m.aqua_ring, m.flash_fire)
+            m.last_hit_type, m.hp <= m.maxhp // 4, m.hp <= m.maxhp // 2, m.aqua_ring, m.flash_fire,
+            getattr(m, "ate_berry", False) if getattr(m, "belch", False) else None)
 
 
 def ai_key(b):
@@ -1015,7 +1119,7 @@ def ai_key(b):
             b.p.active, b.b.active, tuple(b.p.screens.values()), tuple(b.b.screens.values()),
             b.p.tailwind, b.b.tailwind, tuple(b.p.hazards.values()), tuple(b.b.hazards.values()),
             b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick,
-            b.p.future_sight, b.b.future_sight)
+            b.p.future_sight, b.b.future_sight, getattr(b.p, "mist", 0) > 0, getattr(b.b, "mist", 0) > 0)
 
 
 _AI_CACHE = {}
