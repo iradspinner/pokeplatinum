@@ -1745,6 +1745,13 @@ def attack(b, att, mv, dfn, first):
     b.hits_landed = False                # a move of several hits that land_hits landed
     if not dfn.alive():
         return
+    # Telepathy: its holder takes no damaging move from its partner
+    # (BattleControllerPlayer_PriorityBlock, which Mold Breaker gets past),
+    # a spread move's in a double battle; the message names the ability.
+    # Until 2026-10-14 the partner's spread moves hit it (Ian approved the fix).
+    if att is not dfn and att.side == dfn.side and dfn.ability == "Telepathy" and mv.power and not mold(att, dfn):
+        reveal(dfn)
+        return
     if mv.effect in SELF_KO and not explode_first(b, att):
         return
     if mv.effect == FUTURE_SIGHT:

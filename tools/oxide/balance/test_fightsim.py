@@ -2051,6 +2051,31 @@ def check_unnerve(results):
     results.append(("Unnerve keeps the other side from eating its Berries", got == want, f"{got}"))
 
 
+def check_telepathy(results):
+    """Telepathy (approved 2026-10-14; BattleControllerPlayer_PriorityBlock):
+    in a double battle its holder takes nothing from its partner's
+    Earthquake, unless the partner has Mold Breaker, while the foes take it
+    as before."""
+    def quake(ability, mold=False):
+        rows = {("b0.0", "p0"): {"Earthquake": 30}}
+        b = field({"p0": (("Normal",), ["Tackle"]), "b0.0": (("Normal",), ["Earthquake"]),
+                   "b0.1": (("Normal",), ["Tackle"])}, rows)
+        b.doubles, b.moved, b.b.active2 = True, set(), 1
+        b.st["rows"][(None, "b0.0", "b0.1")] = {"moves": {"Earthquake": {"rolls": [30] * 16}}}
+        quaker, ally = b.b.mons
+        quaker.ability = "Mold Breaker" if mold else None
+        ally.ability = ability
+        targets = fs.targets_of(b, quaker, fs.move("Earthquake"), None)
+        fs.use_move(b, quaker, fs.move("Earthquake"), targets[0], True, targets=targets)
+        return ally.hp, b.p.cur().hp < 100
+    got = {"Telepathy": quake("Telepathy"), "Telepathy, a Mold Breaker partner": quake("Telepathy", mold=True),
+           "plain": quake(None)}
+    ok = (got["Telepathy"] == (100, True) and got["Telepathy, a Mold Breaker partner"][0] < 100
+          and got["plain"][0] < 100 and got["plain"][1])
+    results.append(("Telepathy takes no damage from its partner's spread move", ok,
+                    f"(the partner's HP, the foe hit) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2299,6 +2324,7 @@ def main():
                   check_download, check_weather_abilities, check_sand_force,
                   check_bad_dreams, check_marvel_scale, check_shed_skin,
                   check_suction_cups, check_plus_minus, check_stench, check_unnerve,
+                  check_telepathy,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
