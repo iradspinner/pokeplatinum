@@ -1948,6 +1948,17 @@ def rest_blocked(b, att):
     return True
 
 
+def taunt_blocked(att, dfn):
+    """Whether Oblivious keeps Taunt off dfn (subscript_taunt_start's
+    CheckIgnorableAbility, Generation 6's rule), unless att has Mold
+    Breaker; the message names the ability. Until 2026-10-14 an Oblivious
+    target was taunted (Ian approved the fix)."""
+    if dfn.ability == "Oblivious" and not mold(att, dfn):
+        reveal(dfn)
+        return True
+    return False
+
+
 def magnet_rise(att):
     """Magnet Rise (effect script 252): five turns in which Ground moves fail
     on its user, counted down at each turn's end and cleared by a switch. It
@@ -3017,7 +3028,7 @@ def status_move(b, att, mv, dfn, first):
     elif e == "PREVENT_STAT_REDUCTION":
         mist(own_side)
     elif e == "TAUNT":
-        if not dfn.taunt:
+        if not dfn.taunt and not taunt_blocked(att, dfn):
             dfn.taunt = b.rng.randint(3, 5)
     elif e == "TORMENT":
         dfn.tormented = True             # subscript_torment_start: fails if already tormented

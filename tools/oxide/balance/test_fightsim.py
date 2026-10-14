@@ -1649,6 +1649,22 @@ def check_mold_breaker(results):
                     f"(Mold Breaker, without it, against an Ability Shield) {got}"))
 
 
+def check_oblivious_taunt(results):
+    """Oblivious keeps Taunt off its holder (approved 2026-10-14;
+    subscript_taunt_start), naming the ability, unless Taunt's user has Mold
+    Breaker; another target is taunted for three to five turns."""
+    def taunt(ability, mold=False):
+        b, p, foe = battle(["Taunt"], ["Tackle"], {})
+        p.ability = "Mold Breaker" if mold else None
+        foe.ability = ability
+        fs.status_move(b, p, fs.move("Taunt"), foe, True)
+        return foe.taunt, foe.revealed
+    got = {"Oblivious": taunt("Oblivious"), "Oblivious against Mold Breaker": taunt("Oblivious", mold=True),
+           "plain": taunt(None)}
+    ok = got["Oblivious"] == (0, "Oblivious") and got["Oblivious against Mold Breaker"][0] >= 3 and got["plain"][0] >= 3
+    results.append(("Oblivious stops Taunt, unless Mold Breaker", ok, f"(Taunt's turns, the ability named) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1892,6 +1908,7 @@ def main():
                   check_roost, check_protean, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
+                  check_oblivious_taunt,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -959,7 +959,7 @@ def status_move(b, att, mv, dfn, first):
     elif e == "PREVENT_STAT_REDUCTION":
         fs.mist(own_side)                # Mist, five turns (fightsim.mist)
     elif e == "TAUNT":
-        if not dfn.taunt:
+        if not dfn.taunt and not fs.taunt_blocked(att, dfn):     # Oblivious, unless Mold Breaker
             dfn.taunt = b.dice.taunt(dfn.side)
     elif e == "TORMENT":
         dfn.tormented = True             # subscript_torment_start: fails if already tormented

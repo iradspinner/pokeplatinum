@@ -2061,6 +2061,24 @@ def mold_breaker_checks():
              f"(flinches in 200 Rock Slides, can land a critical hit on Turtwig) {out}")]
 
 
+def oblivious_taunt_checks():
+    """Oblivious against Taunt in the readings' battle (approved 2026-10-14):
+    a trainer's Taunt fails on the player's Oblivious Slowpoke and lands on
+    an Own Tempo one."""
+    from .test_fightai import battle
+    b = battle([("Murkrow", 20, "Insomnia", ["Taunt"])],
+               [("Slowpoke", 20, "Oblivious", ["Water Pulse"]), ("Slowpoke", 20, "Own Tempo", ["Water Pulse"])])
+    crow = b.b.cur()
+    out = {}
+    for i, poke in enumerate(b.p.mons):
+        fs.switch_in(b, b.p, i)
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        pl.use_move(b, crow, fs.move("Taunt"), poke, True)
+        out[poke.ability] = poke.taunt
+    ok = out["Oblivious"] == 0 and out["Own Tempo"] >= 3
+    return [("Oblivious keeps a trainer's Taunt off a Slowpoke in the readings' battle", ok, f"Taunt's turns {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2542,6 +2560,7 @@ def main():
     results += electro_ball_checks()
     results += sacred_sword_checks()
     results += mold_breaker_checks()
+    results += oblivious_taunt_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
