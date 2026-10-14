@@ -1914,6 +1914,24 @@ def check_bad_dreams(results):
     results.append(("Bad Dreams takes an eighth from a sleeping foe at the turn's end", got == want, f"{got}"))
 
 
+def check_marvel_scale(results):
+    """Marvel Scale (approved 2026-10-14; BattleSystem_CalcMoveDamage): half
+    again to its holder's Defense while it has a status, so a physical hit
+    (or Psyshock, which hits Defense) does two thirds, a special one all;
+    nothing without a status, nothing against Mold Breaker. Rows of 60."""
+    def hit(move, status="brn", mold=False, ability="Marvel Scale"):
+        b, p, foe = battle([move], ["Tackle"], {("p", move): [60] * 16})
+        p.ability = "Mold Breaker" if mold else None
+        foe.ability, foe.status = ability, status
+        return b.damage(p, foe, fs.move(move), roll=0)
+    got = {"Tackle, burned": hit("Tackle"), "Psyshock, burned": hit("Psyshock"), "Surf, burned": hit("Surf"),
+           "Tackle, no status": hit("Tackle", status=None), "Tackle, Mold Breaker": hit("Tackle", mold=True),
+           "Tackle, no Marvel Scale": hit("Tackle", ability=None)}
+    want = {"Tackle, burned": 40, "Psyshock, burned": 40, "Surf, burned": 60, "Tackle, no status": 60,
+            "Tackle, Mold Breaker": 60, "Tackle, no Marvel Scale": 60}
+    results.append(("Marvel Scale raises Defense while its holder has a status", got == want, f"{got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2160,7 +2178,7 @@ def main():
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
                   check_knockout_boost, check_trapping_exemptions, check_accuracy_abilities,
                   check_download, check_weather_abilities, check_sand_force,
-                  check_bad_dreams,
+                  check_bad_dreams, check_marvel_scale,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

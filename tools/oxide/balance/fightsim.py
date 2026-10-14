@@ -2458,6 +2458,22 @@ def doubled_power(att, mv):
     return power_ratio(att, mv.power, 2 * mv.power) if mv.power > 1 else 2
 
 
+# The special moves that hit the target's Defense (BattleSystem_CalcMoveDamage).
+AGAINST_DEFENSE = frozenset({"MOVE_PSYSHOCK", "MOVE_PSYSTRIKE", "MOVE_SECRET_SWORD"})
+
+
+def marvel_scale(att, dfn, mv):
+    """Marvel Scale's half again to its holder's Defense while it has a
+    status (BattleSystem_CalcMoveDamage, which Mold Breaker gets past), for
+    a hit on Defense: a physical one, or Psyshock's kind. The calculator's
+    rows are made with no status, so they never carry it. The factor on the
+    hit; until 2026-10-14 it was never applied (Ian approved the fix)."""
+    if dfn.ability == "Marvel Scale" and dfn.status and not mold(att, dfn) \
+            and (mv.cat == "Physical" or mv.const in AGAINST_DEFENSE):
+        return 2 / 3
+    return 1.0
+
+
 def state_mult(b, att, dfn, mv):
     """What a hit's row lacks as the fight runs: a pinch ability's 1.5 at a
     third of its HP or less; a resist berry gone (the row still halves the
@@ -2468,6 +2484,7 @@ def state_mult(b, att, dfn, mv):
     m = 1.0
     if PINCH_ABILITY.get(att.ability) == mv.type and att.hp * 3 <= att.maxhp:
         m *= 1.5
+    m *= marvel_scale(att, dfn, mv)
     berry = resist_berry(b, dfn, mv)
     if berry and dfn.item != berry:
         m *= 2

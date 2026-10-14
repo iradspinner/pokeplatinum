@@ -2262,6 +2262,22 @@ def bad_dreams_checks():
              f"lost {lost} of {chop.maxhp}; Darkrai's ability named {dark.revealed}")]
 
 
+def marvel_scale_checks():
+    """Marvel Scale on the calculator's real rows (approved 2026-10-14):
+    Cynthia's Milotic, once burned or paralysed, takes two thirds of a
+    Machamp's Cross Chop in the readings' damage, where it took it whole."""
+    from .test_fightai import battle
+    b = battle([("Milotic", 40, "Marvel Scale", ["Scald"])], [("Machamp", 40, "Guts", ["Cross Chop"])])
+    milo, champ = b.b.cur(), b.p.cur()
+    chop = fs.move("Cross Chop")
+    plain = pl.damage_of(b, champ, milo, chop, False, True)
+    milo.status = "par"
+    scaled = pl.damage_of(b, champ, milo, chop, False, True)
+    ok = abs(scaled - plain * 2 / 3) <= 2
+    return [("Marvel Scale: a paralysed Milotic takes two thirds of a Cross Chop on the real rows", ok,
+             f"Cross Chop's top roll with no status {plain}, paralysed {scaled}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2753,6 +2769,7 @@ def main():
     results += weather_ability_checks()
     results += sand_force_checks()
     results += bad_dreams_checks()
+    results += marvel_scale_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
