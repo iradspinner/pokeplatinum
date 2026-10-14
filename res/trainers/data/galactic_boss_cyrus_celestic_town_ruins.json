@@ -32,7 +32,7 @@
             "level": 52,
             "item": "ITEM_BLACKGLASSES",
             "moves": [
-                "MOVE_NIGHT_SLASH",
+                "MOVE_CRUNCH",
                 "MOVE_BRAVE_BIRD",
                 "MOVE_SUCKER_PUNCH",
                 "MOVE_HEAT_WAVE"
