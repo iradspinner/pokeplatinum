@@ -1453,6 +1453,42 @@ def disable_and_nightmare_checks():
              f"Nightmare took {lost} of {geo.maxhp} at the turn's end")]
 
 
+def pivot_checks():
+    """U-turn after a knockout or a Substitute's hit (approved 2026-10-14;
+    subscript_attack_then_switch_out runs on any hit). On the calculator's
+    real rows, in the readings' turn: Liepard's U-turn that knocks Machop
+    out still takes Liepard out (Golbat in), as does one that only breaks a
+    Substitute, and one that leaves Machop standing; with the player's side
+    beaten, or nothing on the trainer's bench, Liepard stays."""
+    from .test_fightai import battle
+    foes = [("Liepard", 22, "Limber", ["U-turn"]), ("Golbat", 22, "Inner Focus", ["Bite"])]
+    mine = [("Machop", 20, "Guts", ["Karate Chop"]), ("Geodude", 20, "Rock Head", ["Tackle"])]
+    got = {}
+    for label, hp, sub in (("knocked out", 1, 0), ("behind a Substitute", None, 30), ("hit", None, 0)):
+        b = battle(foes, mine)
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        machop = b.p.cur()
+        machop.hp = hp or machop.hp
+        machop.sub = sub
+        uturn = fs.move("U-turn")
+        pl._turn(b, ("move", fs.move("Karate Chop")), ("move", uturn))
+        got[label] = b.b.cur().species
+    b = battle(foes, mine[:1])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    b.p.cur().hp = 1
+    pl._turn(b, ("move", fs.move("Karate Chop")), ("move", fs.move("U-turn")))
+    got["the player beaten"] = b.b.cur().species
+    b = battle(foes[:1], mine)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    b.p.cur().hp = 1
+    pl._turn(b, ("move", fs.move("Karate Chop")), ("move", fs.move("U-turn")))
+    got["no bench"] = b.b.cur().species
+    want = {"knocked out": "Golbat", "behind a Substitute": "Golbat", "hit": "Golbat",
+            "the player beaten": "Liepard", "no bench": "Liepard"}
+    return [("U-turn switches its user out after a knockout or a Substitute's hit, as the engine does",
+             got == want, f"the trainer's Pokemon after the turn {got}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -1912,6 +1948,7 @@ def main():
     results += two_hit_checks()
     results += future_sight_checks()
     results += disable_and_nightmare_checks()
+    results += pivot_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

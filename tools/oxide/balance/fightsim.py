@@ -1382,6 +1382,11 @@ def attack(b, att, mv, dfn, first):
             change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         spin(b, att, dfn, e)
+    if e == "SWITCH_HIT":
+        # U-turn, Volt Switch and Flip Turn switch their user out after any
+        # hit, a knockout or a hit on a Substitute too (effect script 228's
+        # subscript_attack_then_switch_out runs ON_HIT); the turn does it.
+        att.u_turn = True
     if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
     if e == "SALT_CURE":
@@ -1411,8 +1416,6 @@ def attack(b, att, mv, dfn, first):
         dfn.confused = b.rng.randint(2, 5)
     if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance and not stat_drop_blocked(b, dfn, HIT_FOE_STAGES[e]):
         change_stages(dfn, HIT_FOE_STAGES[e])
-    if e == "SWITCH_HIT":
-        att.u_turn = True
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
         start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
@@ -2997,9 +3000,9 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
             first = i == 0 and len(order) == 2
             use_move(b, mon, mv, target, first)
             if getattr(mon, "u_turn", False):
-                mon.u_turn = False
+                mon.u_turn = False       # as perfectline._turn: no switch for a fallen user or a beaten side
                 side = b.p if mon.side == "p" else b.b
-                if side.bench():
+                if mon.alive() and (b.b if mon.side == "p" else b.p).alive() and side.bench():
                     idx = player_replacement(b) if side is b.p else fightai.replacement(b, side, foe_of(b, mon))
                     if idx is not None and idx != side.active:
                         switch_in(b, side, idx)

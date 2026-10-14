@@ -656,6 +656,8 @@ def attack(b, att, mv, dfn, first):
             fs.change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         fs.spin(b, att, dfn, e)
+    if e == "SWITCH_HIT":
+        att.u_turn = True        # after a knockout and a Substitute's hit too (fightsim.attack)
     if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
         return
     if e == "SALT_CURE":
@@ -700,8 +702,6 @@ def attack(b, att, mv, dfn, first):
     if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100) \
             and not fs.stat_drop_blocked(b, dfn, fs.HIT_FOE_STAGES[e]):
         fs.change_stages(dfn, fs.HIT_FOE_STAGES[e])
-    if e == "SWITCH_HIT":
-        att.u_turn = True
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
         fs.start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
@@ -1256,9 +1256,15 @@ def _turn(c, pa, aa):
         first = i == 0 and len(order) == 2
         use_move(c, mon, mv, target, first)
         if getattr(mon, "u_turn", False):
+            # subscript_attack_then_switch_out: no switch once the target's
+            # side has nothing left (CheckBlackOut), with no one to send in
+            # (TryReplaceFaintedMon), or when the user fell on the way (Rough
+            # Skin, Destiny Bond). The replacement comes now, before a fainted
+            # target's own at the turn's end, picked against the slot as it
+            # stands, as BattleAI_PostKOSwitchIn reads it.
             mon.u_turn = False
             side = c.p if player(mon) else c.b
-            if side.bench():
+            if mon.alive() and (c.b if player(mon) else c.p).alive() and side.bench():
                 if side is c.p:
                     idx = fs.player_replacement(c)
                 else:
