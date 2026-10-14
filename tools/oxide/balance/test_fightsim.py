@@ -2186,6 +2186,25 @@ def check_leech_seed_sap(results):
                     f"(the seeded's HP, the seeder's) {got}"))
 
 
+def check_ghost_untrapped(results):
+    """A Ghost type is never trapped (approved 2026-10-14; Battler_IsTrapped,
+    Oxide's Generation 6 rule): not by a bind, Block or Mean Look, nor by
+    its own Ingrain, where a Normal type is held by each."""
+    def held(types, how):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {}, p_types=types)
+        if how == "bind":
+            p.bound = 3
+        elif how == "Mean Look":
+            p.trapped_by = foe.key
+        else:
+            p.ingrained = True
+        return fs.trapped(b, p)
+    got = {f"{t[0]}, {how}": held(t, how) for t in (("Normal",), ("Ghost",)) for how in ("bind", "Mean Look", "Ingrain")}
+    want = {"Normal, bind": True, "Normal, Mean Look": True, "Normal, Ingrain": True,
+            "Ghost, bind": False, "Ghost, Mean Look": False, "Ghost, Ingrain": False}
+    results.append(("a Ghost type is never trapped", got == want, f"held in {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2436,6 +2455,7 @@ def main():
                   check_suction_cups, check_plus_minus, check_stench, check_unnerve,
                   check_telepathy, check_steadfast, check_starf_berry,
                   check_sticky_barb, check_payback, check_leech_seed_sap,
+                  check_ghost_untrapped,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

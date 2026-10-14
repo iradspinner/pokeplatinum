@@ -2523,6 +2523,22 @@ def leech_seed_sap_checks():
              f"(Machop's HP, Cherrim's) before and after {out}")]
 
 
+def ghost_untrapped_checks():
+    """A Ghost type under Mean Look in the readings' choices (approved
+    2026-10-14): a trainer's Gengar's Mean Look holds the player's Machop
+    in, while a Haunter is still offered its switch."""
+    from .test_fightai import battle
+    out = {}
+    for lead in (("Machop", 40, "Guts", ["Karate Chop"]), ("Haunter", 40, "Levitate", ["Lick"])):
+        b = battle([("Gengar", 40, "Cursed Body", ["Mean Look"])], [lead, ("Snorlax", 40, "Thick Fat", ["Body Slam"])])
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        pl.use_move(b, b.b.cur(), fs.move("Mean Look"), b.p.cur(), True)
+        out[lead[0]] = (b.p.cur().trapped_by is not None, any(a[0] == "switch" for a in pl.player_actions(b)))
+    ok = out == {"Machop": (True, False), "Haunter": (True, True)}
+    return [("a Ghost type under Mean Look is still offered its switch in the readings", ok,
+             f"(Mean Look landed, a switch offered) {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3026,6 +3042,7 @@ def main():
     results += rivalry_checks()
     results += payback_checks()
     results += leech_seed_sap_checks()
+    results += ghost_untrapped_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

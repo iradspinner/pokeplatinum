@@ -1480,12 +1480,20 @@ def berry_check(mon, b=None):
         consume(mon)
 
 
+def untrappable(mon):
+    """Whether nothing can trap mon (Battler_IsTrapped returns at once): it
+    holds a Shed Shell (HOLD_EFFECT_SWITCH), or it is a Ghost type, by
+    Oxide's Generation 6 rule, which frees it from a bind, Block, Mean Look
+    and its own Ingrain as well as the trapping abilities. Both came in on
+    2026-10-14, the Ghost type's freedom from the moves after the gaps list
+    (Ian approved the fixes)."""
+    return mon.item == "Shed Shell" or "Ghost" in mon.types
+
+
 def can_switch(mon):
     """False while Block, Mean Look or its own Ingrain holds it in, unless
-    it holds a Shed Shell, which frees its holder from everything that
-    traps (Battler_IsTrapped's HOLD_EFFECT_SWITCH, added 2026-10-14, Ian
-    approved the fix)."""
-    if mon.item == "Shed Shell":
+    nothing can trap it (untrappable)."""
+    if untrappable(mon):
         return True
     return mon.trapped_by is None and not mon.ingrained
 
@@ -1493,9 +1501,9 @@ def can_switch(mon):
 def trapped(b, mon):
     """Whether mon cannot switch out (Battler_IsTrapped, the party menu's
     test): a bind, Block, Mean Look or its own Ingrain (can_switch), or a
-    foe's trapping ability (ability_trapped). A Shed Shell frees it from
-    them all."""
-    if mon.item == "Shed Shell":
+    foe's trapping ability (ability_trapped); never a Shed Shell holder or a
+    Ghost type (untrappable)."""
+    if untrappable(mon):
         return False
     return bool(mon.bound) or not can_switch(mon) or ability_trapped(b, mon)
 
