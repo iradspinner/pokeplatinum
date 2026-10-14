@@ -1137,7 +1137,9 @@ def rollout_mult(att, mv):
         return 1
     # The hit's place in the run, taken before rollout_after moved the count
     # on: the first hit is 1x, then 2x, 4x...; Defense Curl doubles each.
-    return 2 ** getattr(att, "rollout_hit", 0) * (2 if getattr(att, "curled", False) else 1)
+    # BtlCmd_CalcRolloutPower sets the power, so Technician is judged on it.
+    times = 2 ** getattr(att, "rollout_hit", 0) * (2 if getattr(att, "curled", False) else 1)
+    return power_ratio(att, mv.power, mv.power * times) if mv.power > 1 else times
 
 
 def rollout_after(att, mv, hit):
@@ -1677,16 +1679,17 @@ def attack(b, att, mv, dfn, first):
         dmg = berry_first_hit(b, dfn, mv, dmg, hits)
         if mv.effect == "DOUBLE_POWER_IF_MOVING_SECOND" and not first:
             dmg *= 2
+        # A doubled power meets Technician after it is doubled (doubled_power).
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
-            dmg *= 2
+            dmg = int(dmg * doubled_power(att, mv))
         if mv.effect == "DOUBLE_POWER_IF_HIT" and att.hit_this_turn:
-            dmg *= 2
+            dmg = int(dmg * doubled_power(att, mv))
         if mv.effect == "DOUBLE_POWER_WHEN_BELOW_HALF" and dfn.hp * 2 <= dfn.maxhp:
-            dmg *= 2
+            dmg = int(dmg * doubled_power(att, mv))
         if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and dfn.status == "slp":
-            dmg *= 2
+            dmg = int(dmg * doubled_power(att, mv))
         if doubled(att, dfn, mv):
-            dmg *= 2
+            dmg = int(dmg * doubled_power(att, mv))
     if dmg <= 0:
         if dfn.ability in ZEROING and effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
             reveal(dfn)              # an absorbing ability, Levitate or Wonder Guard took it
@@ -2250,11 +2253,39 @@ def spin(b, att, dfn, e):
         change_stages(att, {"spe": 1})
 
 
+def technician(att, power):
+    """A move's power after Technician, which BattleSystem_CalcMoveDamage
+    applies once the power is worked out and its multipliers are in (a
+    doubling's POWER_MULTI, Flail's and Gyro Ball's figures): half again for
+    a power of 60 or less, in whole numbers."""
+    return power * 15 // 10 if att.ability == "Technician" and power <= 60 else power
+
+
+def power_ratio(att, row, now):
+    """How a hit at power `now` compares with its row, made at power `row`:
+    now over row, with Technician judged at each, so its half again comes off
+    a power that has passed 60 and goes on one that has fallen to 60. Until
+    2026-10-14 a row's Technician stayed whatever the power became, so a
+    Technician holder's Flail read at 300 near 1 HP where the engine gives
+    200 (Ian approved the fix)."""
+    return technician(att, now) / technician(att, row) if row > 0 else 1.0
+
+
+def doubled_power(att, mv):
+    """What a doubling of a move's power (the effect scripts' POWER_MULTI of
+    20, or Assurance's doubled power) gives its hit: two, or less for a
+    Technician holder whose row already had Technician's half and whose
+    doubled power is past 60."""
+    return power_ratio(att, mv.power, 2 * mv.power) if mv.power > 1 else 2
+
+
 def state_mult(b, att, dfn, mv):
     """What a hit's row lacks as the fight runs: a pinch ability's 1.5 at a
     third of its HP or less; a resist berry gone (the row still halves the
     hit, so this doubles it back); Flail's power by HP (the row has full
-    HP's 20); Water Spout's by HP (the row has full HP's 150)."""
+    HP's 20); Water Spout's by HP (the row has full HP's 150); Gyro Ball's
+    by the Speeds; a doubling for a Pokemon in the air, underground or
+    underwater. Each power is judged for Technician (power_ratio)."""
     m = 1.0
     if PINCH_ABILITY.get(att.ability) == mv.type and att.hp * 3 <= att.maxhp:
         m *= 1.5
@@ -2262,15 +2293,19 @@ def state_mult(b, att, dfn, mv):
     if berry and dfn.item != berry:
         m *= 2
     if mv.effect == "INCREASE_POWER_WITH_LESS_HP":
-        m *= flail_power(att) / 20
+        m *= power_ratio(att, 20, flail_power(att))
     if mv.effect == "DECREASE_POWER_WITH_LESS_USER_HP":
-        m *= max(1, 150 * att.hp // att.maxhp) / 150
+        m *= power_ratio(att, 150, max(1, 150 * att.hp // att.maxhp))
     if mv.effect == "POWER_BASED_ON_LOW_SPEED":
         # Gyro Ball: the row has its power at both Pokemon's starting Speeds;
         # the game takes the turn's, stages and paralysis in them, and so
         # does the trainer's AI (TrainerAI_CalcDamage's MOVE_GYRO_BALL case).
-        m *= gyro_power(b.speed(dfn), b.speed(att)) / gyro_power(b.row_speed(dfn), b.row_speed(att))
-    m *= max(1, reach_mult(mv, dfn))
+        m *= power_ratio(att, gyro_power(b.row_speed(dfn), b.row_speed(att)), gyro_power(b.speed(dfn), b.speed(att)))
+    reach = reach_mult(mv, dfn)
+    if reach > 1:
+        # The effect scripts double the power (POWER_MULTI 20) before
+        # Technician is judged; Magnitude, whose power is rolled, doubles.
+        m *= power_ratio(att, mv.power, reach * mv.power) if mv.power > 1 else reach
     return m
 
 

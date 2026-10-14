@@ -652,17 +652,18 @@ def attack(b, att, mv, dfn, first):
         if mv.effect == "DOUBLE_POWER_IF_MOVING_SECOND" and not first:
             dmg *= 2
         if mv.effect == "HIT_BEFORE_SWITCH" and getattr(att, "pursuing", False):
-            dmg *= 2
+            dmg = int(dmg * fs.doubled_power(att, mv))     # BtlCmd_TryPursuit's POWER_MULTI 20
+        # A doubled power meets Technician after it is doubled (fs.doubled_power).
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
-            dmg *= 2
+            dmg = int(dmg * fs.doubled_power(att, mv))
         if mv.effect == "DOUBLE_POWER_IF_HIT" and att.hit_this_turn:
-            dmg *= 2
+            dmg = int(dmg * fs.doubled_power(att, mv))
         if mv.effect == "DOUBLE_POWER_WHEN_BELOW_HALF" and dfn.hp * 2 <= dfn.maxhp:
-            dmg *= 2
+            dmg = int(dmg * fs.doubled_power(att, mv))
         if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and dfn.status == "slp":
-            dmg *= 2
+            dmg = int(dmg * fs.doubled_power(att, mv))
         if fs.doubled(att, dfn, mv):
-            dmg *= 2
+            dmg = int(dmg * fs.doubled_power(att, mv))
     if dmg <= 0:
         if dfn.ability in fs.ZEROING and fs.effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
             fs.reveal(dfn)           # an absorbing ability, Levitate or Wonder Guard took it

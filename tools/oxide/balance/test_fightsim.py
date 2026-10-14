@@ -1455,6 +1455,48 @@ def check_drop_answers(results):
                                  f"(the target's stages, the user's) {got}"))
 
 
+def check_technician_power(results):
+    """Technician (approved 2026-10-14; BattleSystem_CalcMoveDamage) adds half
+    again to a power of 60 or less once the power is worked out, so a row
+    made with it at one power keeps it only while the power stays at 60 or
+    less. Rows of 30 for a Technician holder stand for 20 power with its
+    half (Flail at full HP), of 20 for a plain holder; 45 and 30 for Rollout
+    and Ice Ball's 30; 90 and 60 for Revenge's 60; 150 for either's Water
+    Spout at full HP's 150. Each hit then lands as the power it has: Flail at 200 near
+    1 HP, Water Spout at 45 power at a third of HP (Technician's 67 then),
+    Rollout's second hit at 60 (90 with it) and its third at 120, Revenge
+    doubled to 120."""
+    def hit(name, row, tech, hp=100, setup=None):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [row] * 16})
+        p.ability = "Technician" if tech else None
+        p.hp = hp
+        if setup:
+            setup(p)
+        return b.damage(p, foe, fs.move(name), roll=0)
+
+    def revenge(row, tech):
+        b, p, foe = battle(["Revenge"], ["Tackle"], {("p", "Revenge"): [row] * 16})
+        b.st["first_battle"] = True
+        p.ability = "Technician" if tech else None
+        p.hit_this_turn = ("Physical", 10)
+        foe.hp = foe.maxhp = 500
+        fs.attack(b, p, fs.move("Revenge"), foe, False)
+        return 500 - foe.hp
+
+    def rolled(n):
+        return lambda p: setattr(p, "rollout_hit", n)
+    got = {"Flail at 1 HP": (hit("Flail", 30, True, hp=1), hit("Flail", 20, False, hp=1)),
+           "Flail at 40 of 100": (hit("Flail", 30, True, hp=40), hit("Flail", 20, False, hp=40)),
+           "Water Spout at 30 of 100": (hit("Water Spout", 150, True, hp=30), hit("Water Spout", 150, False, hp=30)),
+           "Rollout's second hit": (hit("Rollout", 45, True, setup=rolled(1)), hit("Rollout", 30, False, setup=rolled(1))),
+           "Rollout's third hit": (hit("Rollout", 45, True, setup=rolled(2)), hit("Rollout", 30, False, setup=rolled(2))),
+           "Revenge after a hit": (revenge(90, True), revenge(60, False))}
+    want = {"Flail at 1 HP": (200, 200), "Flail at 40 of 100": (60, 40), "Water Spout at 30 of 100": (67, 45),
+            "Rollout's second hit": (90, 60), "Rollout's third hit": (120, 120), "Revenge after a hit": (120, 120)}
+    results.append(("Technician is judged on the power a move has as it lands", got == want,
+                    f"(Technician, plain) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1696,7 +1738,7 @@ def main():
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_magic_guard, check_liquid_ooze,
-                  check_drop_answers,
+                  check_drop_answers, check_technician_power,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -1936,6 +1936,36 @@ def drop_answer_checks():
              f"(the foe's Attack stage, Staravia's, the foe's top hit now, at no stage) {out}")]
 
 
+def technician_power_checks():
+    """Technician on the calculator's real rows (approved 2026-10-14): the
+    calculator rows a Technician Breloom's Reversal at full HP's 20 power
+    with Technician's half, half again a Poison Heal Breloom's; near 1 HP
+    Reversal hits at 200 power, past Technician's reach, so the two now hit
+    alike in the readings' damage, where the Technician one hit half again
+    as hard. Pursuit into a switching target doubles to 80 the same way."""
+    from .test_fightai import battle
+    b = battle([("Breloom", 30, "Technician", ["Reversal", "Pursuit"]), ("Breloom", 30, "Poison Heal", ["Reversal", "Pursuit"])],
+               [("Snorlax", 30, "Thick Fat", ["Body Slam"])])
+    tech, plain = b.b.mons
+    lax = b.p.cur()
+    rev, pur = fs.move("Reversal"), fs.move("Pursuit")
+    full = (pl.damage_of(b, tech, lax, rev, False, True), pl.damage_of(b, plain, lax, rev, False, True))
+    tech.hp = plain.hp = 1
+    low = (pl.damage_of(b, tech, lax, rev, False, True), pl.damage_of(b, plain, lax, rev, False, True))
+    pursuit = []
+    for mon in (tech, plain):
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        mon.pursuing = True
+        lax.hp = lax.maxhp
+        pl.attack(b, mon, pur, lax, True)
+        mon.pursuing = False
+        pursuit.append(lax.maxhp - lax.hp)
+    ok = (abs(full[0] - full[1] * 1.5) <= 2 and abs(low[0] - low[1]) <= 2
+          and abs(pursuit[0] - pursuit[1]) <= 2 and pursuit[1] > 0)
+    return [("Technician comes off Reversal near 1 HP and off a doubled Pursuit on the real rows", ok,
+             f"Reversal (Technician, Poison Heal) at full HP {full}, at 1 HP {low}; Pursuit into a switch {pursuit}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2411,6 +2441,7 @@ def main():
     results += magic_guard_checks()
     results += liquid_ooze_checks()
     results += drop_answer_checks()
+    results += technician_power_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
