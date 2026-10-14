@@ -601,6 +601,56 @@ def check_two_hit_holds(results):
                     f"(HP left, item, ability named) {got}"))
 
 
+def check_future_sight(results):
+    """Future Sight and Doom Desire (approved 2026-10-13; BtlCmd_TryFutureSight
+    and the turn's end, SIDE_COND_CHECK_STATE_FUTURE_SIGHT): the damage is
+    worked out as the move is used and lands at the
+    end of the second turn after, on whoever then stands in the target's
+    slot; a second use fails while one waits there, and the trainer's AI
+    scores another -12 while one waits on either side. A hit that comes due
+    on a fainted slot is lost, and the side's mark stays, as the engine
+    clears it only as one lands. A Substitute takes the hit, and Sturdy holds
+    it at full HP."""
+    def set_up(row=40, seed=1):
+        b, p, foe = battle(["Future Sight"], ["Tackle"], {("p", "Future Sight"): [row] * 16}, seed=seed)
+        extra = fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Tackle"], "b")
+        b.b.mons.append(extra)
+        fs.use_move(b, p, fs.move("Future Sight"), foe, True)
+        return b, p, foe, extra
+    b, p, foe, extra = set_up()
+    at_once = foe.maxhp - foe.hp
+    again = fs.foresee(b, p, fs.move("Future Sight"), foe, 40)
+    ai = fightai.basic(b, foe, p, fs.move("Future Sight"))
+    hp = []
+    for turn in range(3):
+        if turn == 1:
+            fs.switch_in(b, b.b, 1)              # the target leaves; its replacement stands in the slot
+        fs.end_of_turn(b)
+        hp.append((foe.hp, extra.hp))
+    b, p, foe, extra = set_up()
+    fs.end_of_turn(b)
+    fs.end_of_turn(b)
+    foe.hp = 0
+    fs.end_of_turn(b)
+    lost = (extra.hp, b.b.future, b.b.future_sight)
+    b, p, foe, extra = set_up()
+    foe.sub = 30
+    for _ in range(3):
+        fs.end_of_turn(b)
+    sub = (foe.hp, foe.sub)
+    b, p, foe, extra = set_up(row=150)
+    foe.ability = "Sturdy"
+    for _ in range(3):
+        fs.end_of_turn(b)
+    ok = (at_once == 0 and not again and ai == -12 and hp == [(100, 100), (100, 100), (100, 60)]
+          and lost == (100, (None, None), True) and sub == (100, 0) and foe.hp == 1)
+    results.append(("Future Sight lands two turns on, on whoever stands in the slot", ok,
+                    f"at once {at_once}; a second use {again}; the AI's Basic {ai}; (target, replacement) HP "
+                    f"after each turn's end {hp}; due on a "
+                    f"fainted slot (replacement HP, waiting, mark) {lost}; into a Substitute (HP, Substitute) "
+                    f"{sub}; 150 into a full Sturdy {foe.hp}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -835,7 +885,7 @@ def main():
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
                   check_salt_cure, check_harvest, check_berry_first_hit,
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
-                  check_intimidate_start, check_intimidate_proof, check_two_hit_holds,
+                  check_intimidate_start, check_intimidate_proof, check_two_hit_holds, check_future_sight,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

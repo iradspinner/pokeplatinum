@@ -211,6 +211,7 @@ TWO_TURN = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE", "CHARGE_TURN_HIGH_CR
             "CHARGE_TURN_SP_ATK_UP", "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS"}  # Meteor Beam, Electro Shot
 INVULNERABLE = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE"}
 SELF_KO = {"HALVE_DEFENSE", "EXPLOSION", "FAINT_AND_ATK_SP_ATK_DOWN_2"}
+FUTURE_SIGHT = "HIT_IN_3_TURNS"                 # Future Sight and Doom Desire
 WEATHER_OF = {"WEATHER_RAIN": "Rain", "WEATHER_SUN": "Sun", "WEATHER_SANDSTORM": "Sand",
               "WEATHER_HAIL": "Hail"}
 ABILITY_WEATHER = {"Drizzle": "Rain", "Drought": "Sun", "Sand Stream": "Sand", "Snow Warning": "Hail"}
@@ -424,6 +425,12 @@ class Side:
         self.hazards = {"rocks": 0, "spikes": 0, "tspikes": 0}
         self.safeguard = 0
         self.wish = 0                    # Wish's turn ends left: it heals at the second
+        # Future Sight and Doom Desire waiting on each of the side's two slots
+        # (fieldConditions.futureSight*): (turn ends left, damage, move, the
+        # user's side, the user's slot), or None; and the side's
+        # SIDE_CONDITION_FUTURE_SIGHT, which the trainer's AI reads.
+        self.future = (None, None)
+        self.future_sight = False
 
     def cur(self):
         return self.mons[self.active]
@@ -908,6 +915,104 @@ def fixed_damage(b, att, dfn, mv, tenths=10):
     return att.hp                                 # Final Gambit; attack() faints the user
 
 
+def slot_of(side, mon):
+    """The slot mon stands in on its side: 0, or 1 in a double battle."""
+    return 1 if side.active2 is not None and side.mons[side.active2] is mon else 0
+
+
+def foresee(b, att, mv, dfn, dmg):
+    """Future Sight and Doom Desire as they are used (effect script 148,
+    BtlCmd_TryFutureSight). The damage is worked out now, the roll made now,
+    with no type chart and no critical hit (BattleSystem_CalcMoveDamage, as
+    the calculator's rows for these two moves already have it), and kept on
+    the target's slot for the turn's end at which the count, three now, has
+    run down to 0 (future_sight_ends). The move fails while one waits on that
+    slot. Whether it was set."""
+    side = b.p if dfn.side == "p" else b.b
+    slot = slot_of(side, dfn)
+    if side.future[slot] is not None:
+        return False
+    own = b.p if att.side == "p" else b.b
+    pending = list(side.future)
+    pending[slot] = (3, dmg, mv.name, att.side, slot_of(own, att))
+    side.future, side.future_sight = tuple(pending), True
+    return True
+
+
+# The accuracy check a Future Sight makes as it lands, when the battle plays
+# with dice: perfectline's, which it sets here (fightsim cannot import it).
+DICE_ACCURACY = None
+
+
+def future_sight_ends(b, order):
+    """The first step of the turn's side conditions
+    (SIDE_COND_CHECK_STATE_FUTURE_SIGHT), over the battlers in end order:
+    each Future Sight waiting on a slot counts down, and on reaching 0 lands
+    on whoever then stands there, if it has HP; the side's condition clears
+    only as one lands. The hit checks accuracy for the Pokemon now in its
+    user's slot, misses a target in the air or underground, goes to a
+    Substitute, and is held by Sturdy or a Focus Sash at full HP or by a
+    Focus Band (subscript_future_sight_damage's CheckHoldOnWith1HP); no type
+    chart, no Endure; Rage rises. False once the battle is over."""
+    visits = []
+    for m in order:
+        side = b.p if m.side == "p" else b.b
+        visits.append((side, slot_of(side, m), m))
+    for side in (b.p, b.b):
+        for slot in (0, 1):
+            if side.future[slot] is not None and not any(s is side and k == slot for s, k, _m in visits):
+                visits.append((side, slot, None))          # an empty slot in a double battle
+    for side, slot, m in visits:
+        pending = side.future[slot]
+        if pending is None:
+            continue
+        turns, dmg, name, user_side, user_slot = pending
+        future = list(side.future)
+        future[slot] = (turns - 1,) + pending[1:] if turns > 1 else None
+        side.future = tuple(future)
+        if turns > 1 or m is None or not m.alive():
+            continue
+        side.future_sight = False
+        users = b.p if user_side == "p" else b.b
+        user = users.mons[users.active] if user_slot == 0 else (
+            users.mons[users.active2] if users.active2 is not None else None)
+        mv = move(name)
+        if m.charging is not None and m.charging.effect in INVULNERABLE:
+            continue
+        if user is not None:
+            dice = getattr(b, "dice", None)
+            if not (DICE_ACCURACY(b, user, m, mv) if dice is not None and DICE_ACCURACY else
+                    b.accuracy_hits(user, m, mv)):
+                continue
+        if m.sub:
+            m.sub = max(0, m.sub - dmg)
+            continue
+        if m.hp == m.maxhp and m.ability == "Sturdy":
+            if dmg >= m.hp:
+                reveal(m)
+                dmg = m.hp - 1
+        elif dmg >= m.hp and m.item == "Focus Sash" and m.hp == m.maxhp:
+            dmg = m.hp - 1
+            consume(m)
+        elif dmg >= m.hp and m.item == "Focus Band" and band_holds(b, m):
+            dmg = m.hp - 1
+        hurt(b, m, dmg)
+        if getattr(m, "raging", False) and m.alive():
+            change_stages(m, {"atk": 1})
+        if battle_over(b):
+            return False
+    return True
+
+
+def band_holds(b, mon):
+    """A Focus Band's one in ten, through the battle's dice when it has them
+    (bad luck for the player when the trainer's band holds)."""
+    dice = getattr(b, "dice", None)
+    if dice is None:
+        return b.rng.random() < 0.1
+    return dice.bad("focusband", 0.1) if mon.side == "b" else dice.good(0.1, "focusband")
+
+
 def ohko_blocked(b, att, dfn, mv):
     """A one-hit KO move fails on a type it cannot hit, a higher-level
     target, or Sturdy unless the user has Mold Breaker (BtlCmd_TryOHKOMove)."""
@@ -1133,6 +1238,14 @@ def attack(b, att, mv, dfn, first):
     if not dfn.alive():
         return
     if mv.effect in SELF_KO and not explode_first(b, att):
+        return
+    if mv.effect == FUTURE_SIGHT:
+        # Future Sight and Doom Desire strike later (foresee). As used they
+        # pass Protect, the air and the ground and every immunity, and roll
+        # no accuracy (effect script 148 sets SYSCTL_NONSTANDARD_ACC_CHECK).
+        dmg = b.damage(att, dfn, mv, crit=False)
+        if dmg is not None:
+            foresee(b, att, mv, dfn, dmg)
         return
     if dfn.charging is not None and dfn.charging.effect in INVULNERABLE and not reaches(mv, dfn):
         return
@@ -1502,8 +1615,8 @@ def resist_berry(b, dfn, mv):
     move's type, against a super-effective hit (any Normal move for the
     Chilan Berry)."""
     berry = _row_item(b, dfn)
-    if mv.cat == "Status" or RESIST_BERRY.get(berry) != mv.type:
-        return None
+    if mv.cat == "Status" or mv.effect == FUTURE_SIGHT or RESIST_BERRY.get(berry) != mv.type:
+        return None                  # Future Sight never meets the type chart, nor a resist berry
     if berry != "Chilan Berry" and effectiveness(b.st["chart"], mv.type, dfn.types) <= 1:
         return None
     return berry
@@ -2304,7 +2417,8 @@ def _end_of_turn(b):
     move's weather counts down (ending before it acts on its last turn) and
     sand and hail strike each Pokemon (subscript_weather_continues, by
     GetMonBySpeedOrder). Each Pokemon's own conditions (_end_of_turn_mon).
-    Side conditions: Perish Song, then Trick Room's count."""
+    Side conditions: Future Sight (future_sight_ends), Perish Song, then
+    Trick Room's count."""
     b.status_src = None          # no foe gives what the turn's end gives
     order = end_order(b)
     for side in (b.p, b.b):
@@ -2337,6 +2451,8 @@ def _end_of_turn(b):
         side = b.p if m.side == "p" else b.b
         if not _end_of_turn_mon(b, side, m):
             return
+    if not future_sight_ends(b, order):
+        return
     for m in order:
         if m.alive() and m.perish:
             m.perish -= 1

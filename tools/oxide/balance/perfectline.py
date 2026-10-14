@@ -327,6 +327,9 @@ def accuracy_hits(b, att, dfn, mv):
     return not b.dice.good(1 - acc / 100)      # the trainer's miss is the player's luck
 
 
+fs.DICE_ACCURACY = accuracy_hits   # a landing Future Sight checks its accuracy on these dice
+
+
 def use_move(b, att, mv, dfn, first):
     """One move, then the switch-in check that ends it, where a Neutralizing
     Gas whose holder fell wears off (fightsim.use_move)."""
@@ -446,6 +449,20 @@ def attack(b, att, mv, dfn, first):
     if not dfn.alive():
         return
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
+        return
+    if mv.effect == fs.FUTURE_SIGHT:
+        # Future Sight and Doom Desire (fightsim.foresee): the damage is
+        # worked out now, with no critical hit, its roll made now by the
+        # battle's dice, and lands at the turn's end two turns on.
+        top = not player(att)
+        roll = None
+        if b.dice.mode == "run":
+            grouped = getattr(b.dice, "roll_grouped", None)
+            roll = grouped(lambda r: damage_of(b, att, dfn, mv, False, top, roll=r) or 0, dfn.hp) \
+                if grouped else b.dice.roll(top)
+        dmg = damage_of(b, att, dfn, mv, False, top, roll=roll)
+        if dmg is not None:
+            fs.foresee(b, att, mv, dfn, dmg)
         return
     if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE and not fs.reaches(mv, dfn):
         return
@@ -871,6 +888,7 @@ def clone_side(s):
     c.screens = dict(s.screens)
     c.tailwind, c.safeguard, c.wish = s.tailwind, s.safeguard, getattr(s, "wish", 0)
     c.hazards = dict(s.hazards)
+    c.future, c.future_sight = s.future, s.future_sight        # a waiting Future Sight (tuples, shared safely)
     return c
 
 
@@ -904,7 +922,7 @@ def mon_key(m):
 
 def side_key(s):
     return (s.active, tuple(mon_key(m) for m in s.mons), tuple(s.screens.values()), s.tailwind,
-            tuple(s.hazards.values()), s.safeguard, getattr(s, "wish", 0))
+            tuple(s.hazards.values()), s.safeguard, getattr(s, "wish", 0), s.future, s.future_sight)
 
 
 def state_key(b):
@@ -916,7 +934,8 @@ def shape_key(b):
     """The state without its HP totals and luck: what `vector` leaves out."""
     def side(sd):
         return (sd.active, tuple(mon_key(m)[1:] for m in sd.mons), tuple(sd.screens.values()),
-                sd.tailwind, tuple(sd.hazards.values()), sd.safeguard, getattr(sd, "wish", 0))
+                sd.tailwind, tuple(sd.hazards.values()), sd.safeguard, getattr(sd, "wish", 0),
+                sd.future, sd.future_sight)
     return (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room,
             getattr(b, "declined", frozenset()))
 
@@ -965,7 +984,8 @@ def ai_key(b):
     return (uk, tk, bench, tuple((m.key, m.alive(), m.status) for m in b.p.mons),
             b.p.active, b.b.active, tuple(b.p.screens.values()), tuple(b.b.screens.values()),
             b.p.tailwind, b.b.tailwind, tuple(b.p.hazards.values()), tuple(b.b.hazards.values()),
-            b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick)
+            b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick,
+            b.p.future_sight, b.b.future_sight)
 
 
 _AI_CACHE = {}

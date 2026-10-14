@@ -336,7 +336,7 @@ def merge_key(c):
         return (s.active, tuple(((m.hp * HP_BUCKETS + m.maxhp - 1) // m.maxhp,) + pl.mon_key(m)[1:]
                                 for m in s.mons),
                 tuple(s.screens.values()), s.tailwind, tuple(s.hazards.values()), s.safeguard,
-                getattr(s, "wish", 0))
+                getattr(s, "wish", 0), s.future, s.future_sight)
     return side(c.p), side(c.b), c.weather, c.weather_turns, c.trick_room
 
 

@@ -190,6 +190,34 @@ def keyed_dice_share_luck():
           a == bb and nxt != a[0], (a[0], bb[0], nxt))
 
 
+def future_sight_through_planner():
+    """A waiting Future Sight (approved 2026-10-13) rides through the
+    planner: its copy of a battle carries the hit, every outcome of the turn
+    it comes due on has it landed, and positions that differ only in a
+    waiting hit are never merged as one."""
+    st, team, bk, flags, names = fight_state("roark")
+    b = pl.make_battle(st, team, bk, flags, names.index("Steenee"))
+    b.quick = {}
+    foe = b.b.cur()
+    due = (1, 12, "Future Sight", "p", 0)
+    b.b.future, b.b.future_sight = (due, None), True
+    c = plplan.clone(b)
+    copied = c.b.future == b.b.future and c.b.future_sight
+    pa = ("move", next(m for m in b.p.cur().moves if m.name == "Splash"))
+    aa = ("move", next(m for m in foe.moves if m.cat == "Status" and m.range != "SINGLE_TARGET")
+          if any(m.cat == "Status" and m.range != "SINGLE_TARGET" for m in foe.moves) else foe.moves[0])
+    outs = plplan.turn_outcomes(b, pa, aa, 1)
+    landed = all(o.b.future == (None, None) and not o.b.future_sight for o, _p in outs)
+    hp = sorted({o.b.mons[b.b.active].hp for o, _p in outs})
+    later = plplan.clone(b)
+    later.b.future = ((2,) + due[1:], None)
+    merged = plplan.merge_key(later) == plplan.merge_key(b)
+    check("a waiting Future Sight rides through the planner's copies and turns",
+          copied and landed and not merged and outs and max(hp) <= foe.maxhp - 12,
+          f"copied {copied}; landed in every outcome {landed}; the target's HP after the turn {hp} of "
+          f"{foe.maxhp}; merged with a later one {merged}")
+
+
 def main():
     print("the planner's pieces")
     pick_odds_rules()
@@ -198,6 +226,7 @@ def main():
     keyed_dice_share_luck()
     turn_odds()
     exact_odds()
+    future_sight_through_planner()
     print(f"\n{sum(RESULTS)}/{len(RESULTS)} passed")
     return 0 if all(RESULTS) else 1
 

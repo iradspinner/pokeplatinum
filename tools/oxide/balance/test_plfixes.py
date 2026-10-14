@@ -1381,6 +1381,46 @@ def two_hit_checks():
              f"Double Kick's top row and Geodude's HP {rows}; over 40 tries each {dict(counts)}")]
 
 
+def future_sight_checks():
+    """Future Sight on the calculator's real rows and the readings' battle
+    (approved 2026-10-13). The calculator rows the two moves with no type
+    chart and no STAB: Kadabra's Doom Desire (140, Steel) and Future Sight
+    (120, Psychic) on a Fighting Machop stand at about 140 to 120, though
+    Psychic hits Machop twice over and is Kadabra's own type, and a Dark
+    Murkrow takes Future Sight in full. In the readings' battle the hit on
+    Machop waits: nothing at once, then the stored damage at the end of the
+    second turn after, on the Murkrow that has come in; meanwhile the
+    trainer's AI scores a second one -12, as Basic_CheckFutureSight reads
+    the side's mark, and a copy of the battle, as the planner and the
+    search make, carries the waiting hit."""
+    from .test_fightai import battle
+    b = battle([("Kadabra", 30, "Synchronize", ["Future Sight", "Doom Desire"])],
+               [("Machop", 30, "Guts", ["Karate Chop"]), ("Murkrow", 30, "Insomnia", ["Peck"])])
+    kad, machop, murkrow = b.b.cur(), b.p.mons[0], b.p.mons[1]
+    fsight, desire = fs.move("Future Sight"), fs.move("Doom Desire")
+    ratio = max(b.rolls(kad, machop, desire)) / max(b.rolls(kad, machop, fsight))
+    dark = max(b.rolls(kad, murkrow, fsight))
+    b.dice, b.rng = pl.RunDice(random.Random(4), True), random.Random(4)
+    pl.use_move(b, kad, fsight, machop, True)
+    at_once = machop.maxhp - machop.hp
+    waiting = getattr(b.p, "future", (None,))[0]
+    ai = fightai.basic(b, kad, machop, fsight)
+    copied = waiting is not None and pl.clone_battle(b).p.future == b.p.future
+    hp = []
+    for turn in range(3):
+        if turn == 1:
+            fs.switch_in(b, b.p, 1)          # the Dark Murkrow stands in the slot when it lands
+        fs.end_of_turn(b)
+        hp.append(murkrow.hp)
+    dmg = waiting[1] if waiting else None
+    ok = (1.12 <= ratio <= 1.22 and dark > 0 and at_once == 0 and waiting is not None and ai == -12 and copied
+          and hp == [murkrow.maxhp, murkrow.maxhp, murkrow.maxhp - dmg])
+    return [("Future Sight: a typeless row, and in the readings' battle it lands two turns on", ok,
+             f"Doom Desire over Future Sight on Machop {ratio:.3f}; Future Sight's top row on Murkrow {dark}; "
+             f"at once {at_once}; waiting {waiting}; the AI's Basic {ai}; the copy carries it {copied}; "
+             f"Murkrow's HP after each turn's end {hp} of {murkrow.maxhp}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does); Aqua Ring heals a sixteenth at
@@ -1825,6 +1865,7 @@ def main():
     results += unburden_checks()
     results += intimidate_once_checks()
     results += two_hit_checks()
+    results += future_sight_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
