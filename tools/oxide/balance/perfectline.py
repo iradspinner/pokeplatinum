@@ -250,8 +250,8 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
     a, d = att.stages[a_st], dfn.stages[d_st]
     if dfn.ability == "Unaware" and att.ability != "Mold Breaker":
         a = 0                    # Unaware ignores the attacker's stages
-    if att.ability == "Unaware":
-        d = 0                    # and, on its own attack, the target's
+    if att.ability == "Unaware" or mv.const in fs.IGNORE_TARGET_STAGES:
+        d = 0                    # and, on its own attack, the target's, as Sacred Sword's kind does
     if crit:
         a, d = max(a, 0), min(d, 0)
     mult = fs.stage_mult(a) / fs.stage_mult(d) * fs.state_mult(b, att, dfn, mv)
@@ -315,7 +315,8 @@ def accuracy_hits(b, att, dfn, mv):
         acc = 100 if b.weather == "Rain" else 50 if b.weather == "Sun" else acc
     if mv.effect == "BLIZZARD" and b.weather == "Hail":
         return True
-    s = max(-6, min(6, att.stages["acc"] - dfn.stages["eva"]))
+    eva = 0 if mv.const in fs.IGNORE_TARGET_STAGES else dfn.stages["eva"]     # Sacred Sword's kind
+    s = max(-6, min(6, att.stages["acc"] - eva))
     acc = acc * ((3 + s) / 3 if s >= 0 else 3 / (3 - s))
     if att.ability == "Compound Eyes":
         acc *= 1.3

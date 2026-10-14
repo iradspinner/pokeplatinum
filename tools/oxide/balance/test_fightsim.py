@@ -1552,6 +1552,29 @@ def check_electro_ball(results):
     results.append(("Electro Ball's power follows the Speeds as they stand", got == want, f"{got}"))
 
 
+def check_sacred_sword(results):
+    """Sacred Sword, Chip Away and Darkest Lariat (approved 2026-10-14;
+    BattleSystem_CalcMoveDamage, BattleControllerPlayer_CheckMoveHitAccuracy)
+    ignore their target's Defense stages, raised or lowered, and its evasion
+    stages, as an Unaware attacker does; another move meets them. Rows of
+    40; the accuracy over 2000 uses against +6 evasion."""
+    def hit(name, stage):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [40] * 16})
+        foe.stages["def"] = stage
+        return b.damage(p, foe, fs.move(name), roll=0)
+
+    def lands(name):
+        b, p, foe = battle([name], ["Tackle"], {})
+        foe.stages["eva"] = 6
+        return sum(b.accuracy_hits(p, foe, fs.move(name)) for _ in range(2000))
+    got = {name: (hit(name, 2), hit(name, -2)) for name in ("Sacred Sword", "Chip Away", "Darkest Lariat", "Close Combat")}
+    hits = {name: lands(name) for name in ("Sacred Sword", "Close Combat")}
+    ok = (all(got[n] == (40, 40) for n in ("Sacred Sword", "Chip Away", "Darkest Lariat"))
+          and got["Close Combat"] == (20, 80) and hits["Sacred Sword"] == 2000 and hits["Close Combat"] < 800)
+    results.append(("Sacred Sword, Chip Away and Darkest Lariat ignore the target's stages", ok,
+                    f"(at +2 Defense, at -2) {got}; landed of 2000 against +6 evasion {hits}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1794,7 +1817,7 @@ def main():
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
-                  check_hard_press, check_electro_ball,
+                  check_hard_press, check_electro_ball, check_sacred_sword,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

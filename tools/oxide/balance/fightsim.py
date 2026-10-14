@@ -586,8 +586,8 @@ class Battle:
         a, d = att.stages[a_st], dfn.stages[d_st]
         if dfn.ability == "Unaware" and att.ability != "Mold Breaker":
             a = 0                # Unaware ignores the attacker's stages
-        if att.ability == "Unaware":
-            d = 0                # and, on its own attack, the target's
+        if att.ability == "Unaware" or mv.const in IGNORE_TARGET_STAGES:
+            d = 0                # and, on its own attack, the target's, as Sacred Sword's kind does
         if crit:
             a, d = max(a, 0), min(d, 0)
         mult = stage_mult(a) / stage_mult(d) * state_mult(self, att, dfn, mv)
@@ -623,7 +623,8 @@ class Battle:
             acc = 100 if self.weather == "Rain" else 50 if self.weather == "Sun" else acc
         if mv.effect == "BLIZZARD" and self.weather == "Hail":
             return True
-        s = max(-6, min(6, att.stages["acc"] - dfn.stages["eva"]))
+        eva = 0 if mv.const in IGNORE_TARGET_STAGES else dfn.stages["eva"]
+        s = max(-6, min(6, att.stages["acc"] - eva))
         acc = acc * ((3 + s) / 3 if s >= 0 else 3 / (3 - s))
         if att.ability == "Compound Eyes":
             acc *= 1.3
@@ -636,6 +637,14 @@ class Battle:
 
 def stage_mult(s):
     return (2 + s) / 2 if s >= 0 else 2 / (2 - s)
+
+
+# The moves that ignore their target's stat stages, raised or lowered, its
+# defensive ones in the damage (BattleSystem_CalcMoveDamage) and its evasion
+# in the accuracy check (BattleControllerPlayer_CheckMoveHitAccuracy), as an
+# Unaware attacker does. Until 2026-10-14 the readings and fightsim's own
+# damage weakened them by the target's stages (Ian approved the fix).
+IGNORE_TARGET_STAGES = frozenset({"MOVE_SACRED_SWORD", "MOVE_DARKEST_LARIAT", "MOVE_CHIP_AWAY"})
 
 
 # ---- the rules of a turn --------------------------------------------------------------------

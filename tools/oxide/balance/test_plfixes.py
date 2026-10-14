@@ -2018,6 +2018,24 @@ def electro_ball_checks():
              f"Jolteon's top roll at the opening Speeds {opening}, at +2 Speed on a paralysed Snorlax {later}")]
 
 
+def sacred_sword_checks():
+    """Sacred Sword on the calculator's real rows in the readings' damage
+    (approved 2026-10-14): a Gallade's against a Snorlax at +2 Defense and
+    at -2 hits as at no stage, where it hit half and twice as hard; its
+    Close Combat still meets the stages."""
+    from .test_fightai import battle
+    b = battle([("Gallade", 40, "Justified", ["Sacred Sword", "Close Combat"])], [("Snorlax", 40, "Thick Fat", ["Body Slam"])])
+    gal, lax = b.b.cur(), b.p.cur()
+    ss, cc = fs.move("Sacred Sword"), fs.move("Close Combat")
+    out = {}
+    for st in (0, 2, -2):
+        lax.stages["def"] = st
+        out[st] = (pl.damage_of(b, gal, lax, ss, False, True), pl.damage_of(b, gal, lax, cc, False, True))
+    ok = out[2][0] == out[0][0] == out[-2][0] and out[2][1] < out[0][1] < out[-2][1]
+    return [("Sacred Sword ignores the target's Defense stages on the real rows", ok,
+             f"(Sacred Sword, Close Combat) at the target's Defense stage 0, +2, -2: {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2497,6 +2515,7 @@ def main():
     results += stored_power_checks()
     results += hard_press_checks()
     results += electro_ball_checks()
+    results += sacred_sword_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
