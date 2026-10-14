@@ -100,7 +100,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Talk to the kit NPC: the top menu responds to the D-pad and A, fits the
   screen, and its entry before Warp reads "Meister’s trade", not "See you
   next week". The Warp menu's last entry reads "Gauntlet: Victory Road". Move
-  sets page 3 ends with "More sets", which opens sets 82 to 84. The Items
+  sets page 3 ends with "More sets", which opens sets 82 to 86. The Items
   menu's Ice Stone, abilities, Mints and Caps, and TMs entries, and the
   Meister's trade, each print their own line.
 - [ ] **Element 4, the move sets.** Sets 1 to 22 passed in rounds 1 to 3
@@ -292,6 +292,20 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   (84). Watch the strike animations of Sky Attack, Dig and Dive, which were
   the second halves of two-turn animations: Mew should be drawn whole
   throughout.
+- [ ] **Eerie Spell's drain** (set 85 on the move-set menu's fourth page,
+  `overseer-eerie-spell`; Ian, 2026-10-14). Switch Mew in on the first turn
+  against the wild Chansey, which knows only Softboiled, then use Eerie Spell
+  every turn. The first two hits are each followed by "It reduced the PP of
+  the wild CHANSEY's SOFTBOILED by 3!", and the third by the same line
+  ending "by 1!". Chansey then uses Struggle, and the fourth hit brings no PP
+  line. Before the change no hit drained PP.
+- [ ] **Burning Bulwark's burn** (set 86 on the move-set menu's fourth
+  page, `overseer-eerie-spell`; Ian, 2026-10-14). Against the wild Rattata,
+  switch Mew in on the first turn, then alternate Burning Bulwark and
+  Splash. When Rattata's Tackle meets the bulwark, "MEW protected itself!"
+  is followed by "The wild RATTATA was burned!" and the burn icon on its
+  health box; a later Tackle into it brings only "MEW protected itself!",
+  as does a Swift. Before the change it was a plain Protect.
 - [ ] **The move reworks, for normal play** (the kit cannot run them):
   Petal Dance hitting both foes in a double battle; Dig still digging out of
   a cave from the field menu; a trainer's Hyper Beam, Giga Impact or Outrage
