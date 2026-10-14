@@ -211,6 +211,7 @@ TWO_TURN = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE", "CHARGE_TURN_HIGH_CR
             "CHARGE_TURN_SP_ATK_UP", "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS"}  # Meteor Beam, Electro Shot
 INVULNERABLE = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE"}
 SELF_KO = {"HALVE_DEFENSE", "EXPLOSION", "FAINT_AND_ATK_SP_ATK_DOWN_2"}
+FUTURE_SIGHT = "HIT_IN_3_TURNS"                 # Future Sight and Doom Desire
 WEATHER_OF = {"WEATHER_RAIN": "Rain", "WEATHER_SUN": "Sun", "WEATHER_SANDSTORM": "Sand",
               "WEATHER_HAIL": "Hail"}
 ABILITY_WEATHER = {"Drizzle": "Rain", "Drought": "Sun", "Sand Stream": "Sand", "Snow Warning": "Hail"}
@@ -223,6 +224,17 @@ WEATHER_STAND_IN = "Pressure"
 GAS_PROOF = {"Neutralizing Gas", "Multitype", "Zen Mode", "Stance Change", "Shields Down", "Schooling",
              "Disguise", "Battle Bond", "Power Construct", "Comatose", "RKS System", "Gulp Missile",
              "Ice Face", "As One (Glastrier)", "As One (Spectrier)", "Zero to Hero", "Tera Shift"}
+# The abilities the battle applies itself as it runs, which prepare() asks
+# the calculator to leave off its rows and Speeds (its page counts every
+# ability as active from the start). Unburden: the engine doubles its
+# holder's Speed only once the item it came in with is gone
+# (BattleSystem_CompareBattlerSpeed reads canUnburden and an empty hand),
+# which Battle.speed does, where the calculator doubled it from the first turn.
+# Intimidate: the engine takes one Attack stage off each foe on the field as
+# its holder comes in, and none off a foe that comes in later
+# (intimidate_foes), where the calculator took a stage off every physical
+# hit into the holder, at any time and on top of the battle's own stage.
+CALC_ABILITY_OFF = frozenset({"Unburden", "Intimidate"})
 
 
 # ---- genders (Ian, 2026-10-03) -------------------------------------------------------------
@@ -323,6 +335,7 @@ class Mon:
         self.hp = self.maxhp
         self.stats = info["stats"]
         self.types = [t.title() for t in info.get("types") or []]
+        self.base_types = list(self.types)          # its own types, which a switch brings back (Protean)
         self.ability = info.get("ability") or rec.get("ability")
         self.item = info.get("item") or rec.get("item")
         self.moves = [move(m) for m in moves][:4]
@@ -357,6 +370,23 @@ class Mon:
         self.lock = None                 # (move, turns) for Outrage and kin
         self.choice = None
         self.taunt = 0
+        # Disable: the move it cannot choose or use, and the turn ends left
+        # on the count (moveEffectsData.disabledMove and disabledTurns).
+        self.disabled = None
+        self.disabled_turns = 0
+        self.nightmare = False           # Nightmare: a quarter of its HP each turn's end while it sleeps
+        # Encore: the move it is locked into, and the turn ends left on the
+        # count (moveEffectsData.encoredMove and encoredTurns).
+        self.encore = None
+        self.encore_turns = 0
+        self.roosting = False            # Roost: its Flying type meets no move until the turn ends
+        # Protean and Libero: once a stay on the field the user takes its
+        # move's type alone; the type it took, and whether it has.
+        # Leaving the field brings back the types Protean took away.
+        if getattr(self, "protean_type", None) is not None:
+            self.types = list(self.base_types)
+        self.protean_type = None
+        self.protean_used = False
         self.last = None
         self.turns_in = 0
         self.hit_this_turn = None        # (category, damage) of the last hit taken this turn
@@ -413,6 +443,12 @@ class Side:
         self.hazards = {"rocks": 0, "spikes": 0, "tspikes": 0}
         self.safeguard = 0
         self.wish = 0                    # Wish's turn ends left: it heals at the second
+        # Future Sight and Doom Desire waiting on each of the side's two slots
+        # (fieldConditions.futureSight*): (turn ends left, damage, move, the
+        # user's side, the user's slot), or None; and the side's
+        # SIDE_CONDITION_FUTURE_SIGHT, which the trainer's AI reads.
+        self.future = (None, None)
+        self.future_sight = False
 
     def cur(self):
         return self.mons[self.active]
@@ -444,15 +480,21 @@ class Battle:
 
     # -- reading the calculator's rows
 
-    def row(self, att, dfn):
+    def row(self, att, dfn, mv=None):
         # A Pokemon whose ability the gas has off reads its ability-blank twin's rows.
         ak = att.key if att.gas_stash is None else gas_key(self, att)
         dk = dfn.key if dfn.gas_stash is None else gas_key(self, dfn)
+        if att.protean_type:
+            ak = protean_key(self, att) or ak     # a Protean user's twin of its new type
+        if dfn.protean_type:
+            dk = protean_key(self, dfn) or dk
+        if dfn.roosting and mv is not None:
+            dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
         w = self.weather if (self.weather, ak, dk) in self.st["rows"] else None
         return self.st["rows"].get((w, ak, dk))
 
     def rolls(self, att, dfn, mv):
-        r = self.row(att, dfn)
+        r = self.row(att, dfn, mv)
         if not r:
             return None
         got = r["moves"].get(mv.name)
@@ -605,6 +647,39 @@ ZEROING = {"Volt Absorb", "Water Absorb", "Flash Fire", "Motor Drive", "Dry Skin
            "Storm Drain", "Sap Sipper", "Levitate", "Wonder Guard", "Soundproof", "Bulletproof"}
 
 
+# The abilities that take a move of one type whole and give their holder
+# something for it (BattleSystem_TriggerImmunityAbility): a quarter of its
+# maximum HP back, or a stage of one stat.
+ABSORB_HEAL = {"Volt Absorb": "Electric", "Water Absorb": "Water", "Dry Skin": "Water"}
+ABSORB_STAGE = {"Lightning Rod": ("Electric", "spa"), "Storm Drain": ("Water", "spa"),
+                "Sap Sipper": ("Grass", "atk"), "Motor Drive": ("Electric", "spe")}
+
+
+def absorb(b, att, dfn, mv):
+    """Whether dfn's ability takes this move whole, as
+    BattleSystem_TriggerImmunityAbility does for a move of its type from
+    another Pokemon, damaging or not, unless the user has Mold Breaker; if
+    so its holder gets its due: a quarter of its maximum HP
+    (subscript_ability_restores_hp, nothing at full HP) or a stage of its
+    stat, raised directly so Simple does not double it
+    (subscript_absorb_and_*_up_1_stage, nothing at +6). The ability is
+    named either way."""
+    ab = dfn.ability
+    kind = ABSORB_HEAL.get(ab) or (ABSORB_STAGE[ab][0] if ab in ABSORB_STAGE else None)
+    if kind is None or kind != mv.type or att is dfn or att.ability == "Mold Breaker":
+        return False
+    reveal(dfn)
+    if ab in ABSORB_HEAL:
+        if dfn.hp < dfn.maxhp:
+            heal(dfn, max(1, dfn.maxhp // 4))
+    else:
+        stat = ABSORB_STAGE[ab][1]
+        if dfn.stages[stat] < 6:
+            dfn.stages[stat] += 1
+            dfn.stat_raised = True
+    return True
+
+
 # The abilities that take a move whole, which the AI's damage estimate does
 # not see (fightai.figure costs the move on an ability-blank twin).
 AI_BLIND_ABSORBS = {"Volt Absorb", "Water Absorb", "Flash Fire", "Motor Drive", "Dry Skin", "Lightning Rod",
@@ -621,6 +696,44 @@ def reveal(mon):
 
 
 # ---- Neutralizing Gas (the simulator's support approved by Ian, 2026-10-13) --------------------------------
+
+def protean_key(b, mon):
+    """The key of the rows of a Pokemon its Protean has retyped: its twin
+    of that one type (prepare's protean_twin), or None without one."""
+    return ((b.st.get("protean_twin") or {}).get(mon.key) or {}).get(mon.protean_type)
+
+
+def protean(b, mon, mv):
+    """Protean and Libero (BEFORE_MOVE_STATE_PROTEAN): once a stay on the
+    field, the first move, Struggle aside, whose type its user is not wholly
+    already makes the user that type alone, so the move takes STAB and the
+    user meets moves as that type, until it leaves the field. The rows
+    follow through its twin of that type (protean_key) and the type checks
+    through mon.types; the message names the ability."""
+    if mon.ability not in ("Protean", "Libero") or mon.protean_used or mv.effect == "STRUGGLE":
+        return
+    t = ({"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
+         if mv.name == "Weather Ball" else mv.type)
+    if set(mon.types) == {t}:
+        return
+    mon.protean_used, mon.protean_type, mon.types = True, t, [t]
+    reveal(mon)
+
+
+def roost_key(b, mon, mv):
+    """The key of the rows a roosting Pokemon meets this move on (prepare's
+    roost_twin): its twin typed without Flying; for a pure Flying one,
+    whichever of its Normal and Grass twins this move's type hits neutrally,
+    as a type the chart cannot read would be hit. None for a Pokemon with
+    no twin."""
+    twins = (b.st.get("roost_twin") or {}).get(mon.key)
+    if not twins:
+        return None
+    for key, types in twins:
+        if len(twins) == 1 or effectiveness(b.st["chart"], mv.type, types) == 1:
+            return key
+    return twins[0][0]
+
 
 def gas_on(b):
     """BattleSystem_NeutralizingGasActive: a holder with HP on the field. The
@@ -670,10 +783,11 @@ def gas_update(b, check=True):
     return False
 
 
-def entry_abilities(b, mons):
+def entry_abilities(b, mons, intimidate=True):
     """The switch-in check's ability steps for these Pokemon, each step over
     all of them in the order given (monSpeedOrder): the weather abilities, the
-    announcement the trainer's AI reads (BattleAI_SetAbility), Intimidate."""
+    announcement the trainer's AI reads (BattleAI_SetAbility), Intimidate.
+    The battle's leads leave Intimidate to open_battle (intimidate False)."""
     for new in mons:
         weather = ABILITY_WEATHER.get(new.ability)
         if weather:
@@ -681,11 +795,57 @@ def entry_abilities(b, mons):
     for new in mons:
         if new.ability in ENTRY_ANNOUNCED:
             reveal(new)
+    if intimidate:
+        intimidate_foes(b, mons)
+
+
+def intimidate_foes(b, mons):
+    """Intimidate's step of the switch-in check for these Pokemon, in the
+    order given: one Attack stage off each foe on the field. This stage is
+    Intimidate's only effect, since prepare() keeps it out of the
+    calculator's rows (CALC_ABILITY_OFF)."""
     for new in mons:
         if new.ability == "Intimidate":
             for foe in (b.b if new.side == "p" else b.p).on_field():
-                if foe.alive() and not stat_drop_blocked(b, foe, {"atk": -1}):
+                if foe.alive() and not intimidate_blocked(b, foe):
                     change_stages(foe, {"atk": -1})
+
+
+# The abilities Oxide's engine lets stop Intimidate beside those that stop
+# any lowering of Attack (BtlCmd_ChangeStatStage, Generation 8's rule):
+# Inner Focus, Own Tempo, Oblivious and Scrappy. The game's other answers to
+# Intimidate (Rattled, Defiant, Competitive, Mirror Armor) are not modelled.
+INTIMIDATE_PROOF = frozenset({"Inner Focus", "Own Tempo", "Oblivious", "Scrappy"})
+
+
+def intimidate_blocked(b, foe):
+    """Whether foe's ability stops an Intimidate: one of the four that stop
+    it alone, or one that stops any drop of Attack (stat_drop_blocked). The
+    engine's message names the ability either way."""
+    if foe.ability in INTIMIDATE_PROOF:
+        reveal(foe)
+        return True
+    return stat_drop_blocked(b, foe, {"atk": -1})
+
+
+def open_battle(b):
+    """The battle's start (BATTLE_CONTROL_SHOW_BATTLE_MON): every lead comes
+    in first, and only then does the switch-in check run over all of them,
+    fastest first (BattleSystem_TriggerEffectOnSwitch by monSpeedOrder), so
+    each side's Intimidate lands on the other side's leads. Sending the leads
+    in one after another, as the battles did until 2026-10-13, let the
+    player's lead's own switch-in reset the stage a trainer lead's Intimidate
+    had just taken off it. The weather and the announcements go off as each
+    lead comes in, as before: only a trainer lead has a weather ability, and
+    in a double battle the trainers' leads keep the order they had."""
+    leads = []
+    for side in (b.b, b.p):
+        switch_in(b, side, side.active, lead=True)
+        leads.append(side.mons[side.active])
+        if side.active2 is not None:
+            switch_in(b, side, side.active2, slot=1, lead=True)
+            leads.append(side.mons[side.active2])
+    intimidate_foes(b, sorted(leads, key=b.speed, reverse=not b.trick_room))
 
 
 def stat_drop_blocked(b, mon, changes):
@@ -753,6 +913,36 @@ def change_stages(mon, changes):
 
 
 ROLLOUT = "DOUBLE_POWER_EACH_TURN_LOCK_INTO"   # Rollout and Ice Ball
+# The effects that hit exactly twice (SetMultiHit 2 in effect scripts 44, 77
+# and 296): Double Kick, Dual Wingbeat and the other HIT_TWICE moves,
+# Twineedle and Double Iron Bash.
+TWO_HITS = frozenset({"HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE_AND_FLINCH"})
+
+
+def two_hit_holds(dfn, dmg, sturdy):
+    """A two-hit move's damage on a target at full HP, its hits taken one at
+    a time as the engine takes them (BattleControllerPlayer_UpdateHP runs
+    once a hit). The calculator's row adds the two hits up, each the same,
+    so the damage splits into halves. Sturdy holds a hit only while its
+    holder is at full HP, so it can hold the first hit and never the second.
+    A Focus Sash is armed by the first hit taken at full HP and stays armed
+    to the move's end (focusItemActivated, a flag cleared only when the move
+    is over), so it holds the second hit too and is used up if that one
+    would have knocked its holder out; when Sturdy took the first hit's
+    check the Sash is never armed. `sturdy` is whether Sturdy counts here
+    (a Mold Breaker attacker ignores it). Until 2026-10-13 the pair was one
+    hit, so Sturdy held against both (Ian approved the fix)."""
+    first, second = dmg - dmg // 2, dmg // 2
+    hp = dfn.hp
+    if sturdy:
+        if first >= hp:
+            reveal(dfn)
+            first = hp - 1
+        return first + second
+    if dfn.item == "Focus Sash" and first + second >= hp:
+        consume(dfn)
+        return hp - 1
+    return first + second
 
 
 def rollout_mult(att, mv):
@@ -818,6 +1008,104 @@ def fixed_damage(b, att, dfn, mv, tenths=10):
     if e == "SET_HP_EQUAL_TO_USER":
         return max(0, dfn.hp - att.hp)            # fails when the target has no more HP than the user
     return att.hp                                 # Final Gambit; attack() faints the user
+
+
+def slot_of(side, mon):
+    """The slot mon stands in on its side: 0, or 1 in a double battle."""
+    return 1 if side.active2 is not None and side.mons[side.active2] is mon else 0
+
+
+def foresee(b, att, mv, dfn, dmg):
+    """Future Sight and Doom Desire as they are used (effect script 148,
+    BtlCmd_TryFutureSight). The damage is worked out now, the roll made now,
+    with no type chart and no critical hit (BattleSystem_CalcMoveDamage, as
+    the calculator's rows for these two moves already have it), and kept on
+    the target's slot for the turn's end at which the count, three now, has
+    run down to 0 (future_sight_ends). The move fails while one waits on that
+    slot. Whether it was set."""
+    side = b.p if dfn.side == "p" else b.b
+    slot = slot_of(side, dfn)
+    if side.future[slot] is not None:
+        return False
+    own = b.p if att.side == "p" else b.b
+    pending = list(side.future)
+    pending[slot] = (3, dmg, mv.name, att.side, slot_of(own, att))
+    side.future, side.future_sight = tuple(pending), True
+    return True
+
+
+# The accuracy check a Future Sight makes as it lands, when the battle plays
+# with dice: perfectline's, which it sets here (fightsim cannot import it).
+DICE_ACCURACY = None
+
+
+def future_sight_ends(b, order):
+    """The first step of the turn's side conditions
+    (SIDE_COND_CHECK_STATE_FUTURE_SIGHT), over the battlers in end order:
+    each Future Sight waiting on a slot counts down, and on reaching 0 lands
+    on whoever then stands there, if it has HP; the side's condition clears
+    only as one lands. The hit checks accuracy for the Pokemon now in its
+    user's slot, misses a target in the air or underground, goes to a
+    Substitute, and is held by Sturdy or a Focus Sash at full HP or by a
+    Focus Band (subscript_future_sight_damage's CheckHoldOnWith1HP); no type
+    chart, no Endure; Rage rises. False once the battle is over."""
+    visits = []
+    for m in order:
+        side = b.p if m.side == "p" else b.b
+        visits.append((side, slot_of(side, m), m))
+    for side in (b.p, b.b):
+        for slot in (0, 1):
+            if side.future[slot] is not None and not any(s is side and k == slot for s, k, _m in visits):
+                visits.append((side, slot, None))          # an empty slot in a double battle
+    for side, slot, m in visits:
+        pending = side.future[slot]
+        if pending is None:
+            continue
+        turns, dmg, name, user_side, user_slot = pending
+        future = list(side.future)
+        future[slot] = (turns - 1,) + pending[1:] if turns > 1 else None
+        side.future = tuple(future)
+        if turns > 1 or m is None or not m.alive():
+            continue
+        side.future_sight = False
+        users = b.p if user_side == "p" else b.b
+        user = users.mons[users.active] if user_slot == 0 else (
+            users.mons[users.active2] if users.active2 is not None else None)
+        mv = move(name)
+        if m.charging is not None and m.charging.effect in INVULNERABLE:
+            continue
+        if user is not None:
+            dice = getattr(b, "dice", None)
+            if not (DICE_ACCURACY(b, user, m, mv) if dice is not None and DICE_ACCURACY else
+                    b.accuracy_hits(user, m, mv)):
+                continue
+        if m.sub:
+            m.sub = max(0, m.sub - dmg)
+            continue
+        if m.hp == m.maxhp and m.ability == "Sturdy":
+            if dmg >= m.hp:
+                reveal(m)
+                dmg = m.hp - 1
+        elif dmg >= m.hp and m.item == "Focus Sash" and m.hp == m.maxhp:
+            dmg = m.hp - 1
+            consume(m)
+        elif dmg >= m.hp and m.item == "Focus Band" and band_holds(b, m):
+            dmg = m.hp - 1
+        hurt(b, m, dmg)
+        if getattr(m, "raging", False) and m.alive():
+            change_stages(m, {"atk": 1})
+        if battle_over(b):
+            return False
+    return True
+
+
+def band_holds(b, mon):
+    """A Focus Band's one in ten, through the battle's dice when it has them
+    (bad luck for the player when the trainer's band holds)."""
+    dice = getattr(b, "dice", None)
+    if dice is None:
+        return b.rng.random() < 0.1
+    return dice.bad("focusband", 0.1) if mon.side == "b" else dice.good(0.1, "focusband")
 
 
 def ohko_blocked(b, att, dfn, mv):
@@ -938,6 +1226,7 @@ def use_move(b, att, mv, dfn, first, targets=None):
 def _use_move(b, att, mv, dfn, first, targets=None):
     if not att.alive():
         return
+    mv = encored_move(att, mv)
     # Its own record clears with its action, whatever happens
     # (BattleControllerPlayer_ClearFlags), and so does its Destiny Bond.
     att.last_hit_by = None
@@ -963,6 +1252,9 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     if att.flinch:
         att.flinch = False
         return could_not_act(b, att, mv, dfn, targets)
+    if disabled_out(att, mv):
+        att.choice = None            # subscript_move_is_disabled lets go of a Choice item's lock
+        return could_not_act(b, att, mv, dfn, targets)
     if att.confused:
         att.confused -= 1
         if att.confused and b.rng.random() < 0.5:
@@ -981,6 +1273,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     att.last = mv
     if att.item and att.item.startswith("Choice") and not att.choice:
         att.choice = mv.name
+    protean(b, att, mv)
     if commit_move(att, mv):
         return                   # Last Resort before every other move was used
     # Charging moves: the first turn only charges (Fly and Dig vanish).
@@ -1045,6 +1338,14 @@ def attack(b, att, mv, dfn, first):
     if not dfn.alive():
         return
     if mv.effect in SELF_KO and not explode_first(b, att):
+        return
+    if mv.effect == FUTURE_SIGHT:
+        # Future Sight and Doom Desire strike later (foresee). As used they
+        # pass Protect, the air and the ground and every immunity, and roll
+        # no accuracy (effect script 148 sets SYSCTL_NONSTANDARD_ACC_CHECK).
+        dmg = b.damage(att, dfn, mv, crit=False)
+        if dmg is not None:
+            foresee(b, att, mv, dfn, dmg)
         return
     if dfn.charging is not None and dfn.charging.effect in INVULNERABLE and not reaches(mv, dfn):
         return
@@ -1120,6 +1421,7 @@ def attack(b, att, mv, dfn, first):
             reveal(dfn)              # an absorbing ability, Levitate or Wonder Guard took it
             if dfn.ability == "Flash Fire" and mv.type == "Fire":
                 dfn.flash_fire = True
+            absorb(b, att, dfn, mv)  # and a heal or a stage for the ones that give one
         return
     # The hit lands: Substitute, Focus Sash and Sturdy, then the damage.
     if sub_blocks(att, dfn, mv):
@@ -1127,9 +1429,12 @@ def attack(b, att, mv, dfn, first):
         dealt = 0
     else:
         # Focus Sash and Sturdy hold one hit from full HP: a move that hits
-        # twice or more lands its next hit on the 1 HP left.
+        # twice or more lands its next hit on the 1 HP left. A two-hit move
+        # takes its hits one at a time (two_hit_holds).
         full = dfn.hp == dfn.maxhp and hits < 2
-        if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or dfn.ability == "Sturdy"):
+        if mv.effect in TWO_HITS and full:
+            dmg = two_hit_holds(dfn, dmg, dfn.ability == "Sturdy")
+        elif dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or dfn.ability == "Sturdy"):
             if dfn.ability == "Sturdy":
                 reveal(dfn)
             dmg = dfn.hp - 1
@@ -1170,6 +1475,11 @@ def attack(b, att, mv, dfn, first):
             change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         spin(b, att, dfn, e)
+    if e == "SWITCH_HIT":
+        # U-turn, Volt Switch and Flip Turn switch their user out after any
+        # hit, a knockout or a hit on a Substitute too (effect script 228's
+        # subscript_attack_then_switch_out runs ON_HIT); the turn does it.
+        att.u_turn = True
     if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
     if e == "SALT_CURE":
@@ -1199,8 +1509,6 @@ def attack(b, att, mv, dfn, first):
         dfn.confused = b.rng.randint(2, 5)
     if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance and not stat_drop_blocked(b, dfn, HIT_FOE_STAGES[e]):
         change_stages(dfn, HIT_FOE_STAGES[e])
-    if e == "SWITCH_HIT":
-        att.u_turn = True
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
         start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
@@ -1222,7 +1530,8 @@ def sleep_talk_pick(b, att):
     the play-outs replay a turn's chances by script, and a pick from the
     battle's own generator differed between replays (it broke Kaizo
     Fantina's labels, whose Spiritomb sleeps and talks)."""
-    picks = [m for m in att.moves if m.effect not in SLEEP_TALK_SKIPS and m.effect not in TWO_TURN]
+    picks = [m for m in att.moves if m.effect not in SLEEP_TALK_SKIPS and m.effect not in TWO_TURN
+             and not disabled_out(att, m)]
     if not picks:
         return None
     dice = getattr(b, "dice", None)
@@ -1247,6 +1556,68 @@ def tormented_out(mon, mv):
     CHECK_INVALID_TORMENTED), which a switch or a turn it could not act
     clears."""
     return mon.tormented and mon.last is not None and mon.last.name == mv.name
+
+
+def disabled_out(mon, mv):
+    """Whether Disable rules this move out: it cannot be chosen
+    (BattleSystem_CheckInvalidMoves' CHECK_INVALID_DISABLED), Sleep Talk
+    cannot call it (BtlCmd_TrySleepTalk asks the same check), and it fails
+    if it was chosen before the Disable came (CHECK_STATUS_STATE_DISABLE)."""
+    return mon.disabled is not None and mv.name == mon.disabled
+
+
+def disable(dfn, turns):
+    """Disable (effect script 86, BtlCmd_TryDisable): the target's last move
+    is disabled for the count turns() gives (3 to 6, Random % 4 + 3), drawn
+    only when it takes. It fails while one of the target's moves is disabled,
+    before the target has used a move, when that move is not one it knows,
+    and when it has no PP left; a Substitute does not stop it. Whether it
+    took."""
+    last = dfn.last
+    if dfn.disabled is not None or last is None or not any(m.name == last.name for m in dfn.moves) \
+            or dfn.pp.get(last.name, 0) <= 0:
+        return False
+    dfn.disabled, dfn.disabled_turns = last.name, turns()
+    return True
+
+
+# The moves Encore cannot lock a Pokemon into (sCannotEncoreMoves, matched by
+# effect): Transform, Mimic, Sketch, Mirror Move, Encore and Struggle.
+NO_ENCORE = frozenset({"TRANSFORM", "COPY_MOVE_FOR_BATTLE", "LEARN_MOVE_PERMANENT", "COPY_MOVE", "ENCORE",
+                       "STRUGGLE"})
+
+
+def encore(dfn, turns):
+    """Encore (effect script 90, BtlCmd_TryEncore): the target is locked into
+    its last move for the count turns() gives (3 to 7, Random % 5 + 3),
+    drawn only when it takes. It fails while the target is under one, before
+    it has used a move, and when that move is not one it knows, is one
+    Encore cannot lock or has no PP left; a Substitute does not stop it.
+    Whether it took."""
+    last = dfn.last
+    if dfn.encore is not None or last is None or last.effect in NO_ENCORE \
+            or not any(m.name == last.name for m in dfn.moves) or dfn.pp.get(last.name, 0) <= 0:
+        return False
+    dfn.encore, dfn.encore_turns = last.name, turns()
+    return True
+
+
+def encored_move(mon, mv):
+    """The move an encored Pokemon uses whatever it chose
+    (BattleControllerPlayer_FightCommand takes the Encore move first, so one
+    encored after it chose this turn uses the Encore move too); mv itself
+    otherwise, and for Struggle, which comes first."""
+    if mon.encore is None or mv.name == mon.encore or mv.effect == "STRUGGLE":
+        return mv
+    return next((m for m in mon.moves if m.name == mon.encore), mv)
+
+
+def nightmare(att, dfn, mv):
+    """Nightmare (effect script 107, subscript_nightmare_start): only on a
+    sleeping target that is not in one already and has no Substitute in the
+    way (an Infiltrator's passes)."""
+    if dfn.status == "slp" and not dfn.nightmare and not sub_blocks(att, dfn, mv):
+        dfn.nightmare = True
 
 
 def consume(mon):
@@ -1411,8 +1782,8 @@ def resist_berry(b, dfn, mv):
     move's type, against a super-effective hit (any Normal move for the
     Chilan Berry)."""
     berry = _row_item(b, dfn)
-    if mv.cat == "Status" or RESIST_BERRY.get(berry) != mv.type:
-        return None
+    if mv.cat == "Status" or mv.effect == FUTURE_SIGHT or RESIST_BERRY.get(berry) != mv.type:
+        return None                  # Future Sight never meets the type chart, nor a resist berry
     if berry != "Chilan Berry" and effectiveness(b.st["chart"], mv.type, dfn.types) <= 1:
         return None
     return berry
@@ -1953,6 +2324,8 @@ def status_move(b, att, mv, dfn, first):
             return
         if not b.accuracy_hits(att, dfn, mv):
             return
+        if absorb(b, att, dfn, mv):
+            return               # Thunder Wave into Volt Absorb, Spore into Sap Sipper: taken whole
     if e in STATUS_OF:
         if sub_blocks(att, dfn, mv):
             return
@@ -1993,12 +2366,19 @@ def status_move(b, att, mv, dfn, first):
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in HEAL_HALF:
+        # Roost (effect script 214, subscript_roost) fails at full HP, as the
+        # other half heals do, and otherwise also roosts its user until the
+        # turn ends (TURN_FLAG_ROOSTING).
+        if e == "HEAL_HALF_REMOVE_FLYING_TYPE" and att.hp < att.maxhp:
+            att.roosting = True
         heal(att, att.maxhp // 2)
     elif e == "HEAL_HALF_MORE_IN_SUN":
         frac = 2 / 3 if b.weather == "Sun" else 1 / 4 if b.weather else 1 / 2
         heal(att, int(att.maxhp * frac))
     elif e == "REST":
-        if att.hp < att.maxhp:
+        # subscript_rest fails at full HP and on a Pokemon already asleep
+        # ("is already asleep!"), so a Sleep Talk that calls Rest does nothing.
+        if att.hp < att.maxhp and att.status != "slp":
             att.hp, att.status, att.sleep, att.toxic = att.maxhp, "slp", 2, 0
             cure_berry(att)          # a Chesto or Lum Berry wakes it at once
     elif e == "SWALLOW":
@@ -2049,6 +2429,14 @@ def status_move(b, att, mv, dfn, first):
             dfn.taunt = b.rng.randint(3, 5)
     elif e == "TORMENT":
         dfn.tormented = True             # subscript_torment_start: fails if already tormented
+    elif e == "DISABLE":
+        # subscript_disable_start fails on a target in the air or underground.
+        if not (dfn.charging is not None and dfn.charging.effect in INVULNERABLE):
+            disable(dfn, lambda: b.rng.randint(3, 6))
+    elif e == "STATUS_NIGHTMARE":
+        nightmare(att, dfn, mv)
+    elif e == "ENCORE":
+        encore(dfn, lambda: b.rng.randint(3, 7))
     elif e == "INFATUATE":
         infatuate(att, dfn, att.ability == "Mold Breaker")
     elif e == "HEAL_IN_3_TURNS":
@@ -2079,8 +2467,10 @@ def status_move(b, att, mv, dfn, first):
         pass
 
 
-def switch_in(b, side, index, slot=0):
-    """A Pokemon comes in to a slot: volatile state resets, hazards bite."""
+def switch_in(b, side, index, slot=0, lead=False):
+    """A Pokemon comes in to a slot: volatile state resets, hazards bite.
+    A lead at the battle's start (`lead`) leaves its Intimidate to
+    open_battle, which runs it once every lead is in."""
     leaving = side.cur() if slot == 0 else (side.mons[side.active2] if side.active2 is not None else None)
     b.status_src = None          # hazards give their status from no foe
     gas = b.st.get("gas")
@@ -2135,7 +2525,7 @@ def switch_in(b, side, index, slot=0):
             give_status(b, new, "psn" if side.hazards["tspikes"] == 1 else "tox")
     if gas and gas_update(b):
         return                   # the gas wore off: the whole field's entry abilities went off, the newcomer's with them
-    entry_abilities(b, [new])
+    entry_abilities(b, [new], intimidate=not lead)
 
 
 def end_of_turn(b):
@@ -2209,9 +2599,10 @@ def _end_of_turn(b):
     Field conditions (BattleControllerPlayer_CheckFieldConditions): the
     sides' screens, Tailwind and Safeguard count down, Wish lands, then a
     move's weather counts down (ending before it acts on its last turn) and
-    sand and hail strike each Pokemon (subscript_weather_continues, by
-    GetMonBySpeedOrder). Each Pokemon's own conditions (_end_of_turn_mon).
-    Side conditions: Perish Song, then Trick Room's count."""
+    sand and hail strike each Pokemon, Ice Body healing in hail instead
+    (subscript_weather_continues, by GetMonBySpeedOrder). Each Pokemon's own conditions (_end_of_turn_mon).
+    Side conditions: Future Sight (future_sight_ends), Perish Song, then
+    Trick Room's count."""
     b.status_src = None          # no foe gives what the turn's end gives
     order = end_order(b)
     for side in (b.p, b.b):
@@ -2236,14 +2627,35 @@ def _end_of_turn(b):
         safe = {"Sand": {"Rock", "Ground", "Steel"}, "Hail": {"Ice"}}[b.weather]
         shield = {"Sand": "Sand Veil", "Hail": "Snow Cloak"}[b.weather]
         for m in order:
+            if b.weather == "Hail" and m.ability == "Ice Body":
+                # BtlCmd_EndOfTurnWeatherEffect: Ice Body heals a sixteenth in
+                # hail in place of the hail's bite, below full HP, unless
+                # Cloud Nine or Air Lock is out.
+                if m.alive() and m.hp < m.maxhp and not weather_ignored(b):
+                    heal(m, max(1, m.maxhp // 16))
+                continue
             if m.alive() and not set(m.types) & safe and m.ability not in (shield, "Magic Guard"):
                 hurt(b, m, m.maxhp // 16)
                 if battle_over(b):
                     return
+    if b.weather in ("Rain", "Sun") and not weather_ignored(b):
+        # Dry Skin (BtlCmd_EndOfTurnWeatherEffect): an eighth of maximum HP
+        # back in rain, below full HP, and an eighth lost in sun.
+        for m in order:
+            if m.alive() and m.ability == "Dry Skin":
+                if b.weather == "Rain":
+                    if m.hp < m.maxhp:
+                        heal(m, max(1, m.maxhp // 8))
+                else:
+                    hurt(b, m, max(1, m.maxhp // 8))
+                    if battle_over(b):
+                        return
     for m in order:
         side = b.p if m.side == "p" else b.b
         if not _end_of_turn_mon(b, side, m):
             return
+    if not future_sight_ends(b, order):
+        return
     for m in order:
         if m.alive() and m.perish:
             m.perish -= 1
@@ -2254,6 +2666,7 @@ def _end_of_turn(b):
     if 0 < b.trick_room < 999:
         b.trick_room -= 1
     for m in order:
+        m.roosting = False          # a turn flag, gone with the turn
         if m.alive():
             m.protecting = False
             m.enduring = False
@@ -2269,8 +2682,9 @@ def _end_of_turn_mon(b, side, m):
     """One Pokemon's own conditions, in the engine's order
     (MON_COND_CHECK_STATE_*, battle_controller_player.c 1308 to 1335):
     Ingrain, Aqua Ring, its ability, its berry, Leftovers, Leech Seed, poison
-    and burn, Curse, binding, the counts (Taunt, Magnet Rise, Heal Block),
-    Yawn, then the Orbs. False once the battle is over."""
+    and burn, Nightmare, Curse, binding, the counts (Disable, Encore, Taunt,
+    Magnet Rise, Heal Block), Yawn, then the Orbs. False once the battle is
+    over."""
     if not m.alive():
         return True
     if m.ingrained and m.hp < m.maxhp and not heal_blocked(m):
@@ -2317,6 +2731,16 @@ def _end_of_turn_mon(b, side, m):
             hurt(b, m, m.maxhp * m.toxic // 16)
         if battle_over(b):
             return False
+    # Nightmare (MON_COND_CHECK_STATE_NIGHTMARE, between the burn and Curse):
+    # a quarter of its maximum HP while it sleeps, none with Magic Guard;
+    # once it is awake the nightmare ends.
+    if m.alive() and m.nightmare:
+        if m.status != "slp":
+            m.nightmare = False
+        elif m.ability != "Magic Guard":
+            hurt(b, m, max(1, m.maxhp // 4))
+            if battle_over(b):
+                return False
     if m.alive() and m.cursed and m.ability != "Magic Guard":
         hurt(b, m, m.maxhp // 4)
         if battle_over(b):
@@ -2332,6 +2756,23 @@ def _end_of_turn_mon(b, side, m):
         hurt(b, m, m.maxhp // (4 if set(m.types) & {"Water", "Steel"} else 8))
         if battle_over(b):
             return False
+    # Disable's count (MON_COND_CHECK_STATE_DISABLE, before Taunt's): it
+    # runs down a turn's end at a time, and the move is free again at the
+    # turn's end after it reached 0, or at once if the Pokemon no longer
+    # knows it. Three to six turns after the Disable's own, then.
+    if m.disabled is not None:
+        if m.disabled_turns and any(x.name == m.disabled for x in m.moves):
+            m.disabled_turns -= 1
+        else:
+            m.disabled, m.disabled_turns = None, 0
+    # Encore's count (MON_COND_CHECK_STATE_ENCORE, after Disable's): it runs
+    # down in the same way, and ends at once if the move is no longer known
+    # or has no PP left.
+    if m.encore is not None:
+        if m.encore_turns and any(x.name == m.encore for x in m.moves) and m.pp.get(m.encore, 0) > 0:
+            m.encore_turns -= 1
+        else:
+            m.encore, m.encore_turns = None, 0
     if m.taunt:
         m.taunt -= 1
     if m.magnet_rise:
@@ -2371,7 +2812,7 @@ def exp_damage(b, att, dfn, mv):
 
 def best_attack(b, att, dfn):
     usable = [m for m in att.moves if m.damaging() and att.pp.get(m.name, 1) > 0
-              and (not att.choice or m.name == att.choice)]
+              and (not att.choice or m.name == att.choice) and not disabled_out(att, m)]
     if not usable:
         return None, 0.0
     return max(((m, exp_damage(b, att, dfn, m)) for m in usable), key=lambda x: x[1])
@@ -2575,6 +3016,8 @@ def _player_choice(b):
     side, me, foe = b.p, b.p.cur(), b.b.cur()
     if me.lock:
         return "move", me.lock[0]
+    if me.encore is not None:
+        return "move", encored_move(me, me.moves[0])      # Encore leaves it one move
     if me.charging is not None:
         return "move", me.charging
     t_me, t_foe, first = exchange(b, me, foe)
@@ -2602,7 +3045,7 @@ def _player_choice(b):
     # A status or setup move when it turns the exchange: it costs a turn.
     safe_turns = t_foe - (0 if first else 1)
     for mv in me.moves:
-        if mv.cat != "Status" or me.pp.get(mv.name, 1) <= 0 or me.taunt:
+        if mv.cat != "Status" or me.pp.get(mv.name, 1) <= 0 or me.taunt or disabled_out(me, mv):
             continue
         e = mv.effect
         if e in STATUS_OF and can_status(b, foe, STATUS_OF[e]) and safe_turns >= 2:
@@ -2653,7 +3096,8 @@ def safe_attack(b, me, foe):
     """The player's best attack, leaving out any that could faint the user
     while one that cannot still does damage."""
     usable = [m for m in me.moves if m.damaging() and me.pp.get(m.name, 1) > 0
-              and (not me.choice or m.name == me.choice) and not tormented_out(me, m)]
+              and (not me.choice or m.name == me.choice) and not tormented_out(me, m)
+              and not disabled_out(me, m)]
     safe = [m for m in usable if not self_risk(b, me, foe, m)]
     pick = safe if any(exp_damage(b, me, foe, m) > 0 for m in safe) else usable
     if not pick:
@@ -2688,8 +3132,7 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
     b = Battle(st, Side(pm, "p"), Side(bm, "b"), rng, weather=st.get("base_weather"),
                trick_room=trick_room, ai_flags=flags)
     b.p.active = player_replacement(b) or 0
-    for side in (b.b, b.p):
-        switch_in(b, side, side.active)
+    open_battle(b)
     while b.turn < MAX_TURNS:
         if not b.p.alive() or not b.b.alive():
             break
@@ -2721,9 +3164,9 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
             first = i == 0 and len(order) == 2
             use_move(b, mon, mv, target, first)
             if getattr(mon, "u_turn", False):
-                mon.u_turn = False
+                mon.u_turn = False       # as perfectline._turn: no switch for a fallen user or a beaten side
                 side = b.p if mon.side == "p" else b.b
-                if side.bench():
+                if mon.alive() and (b.b if mon.side == "p" else b.p).alive() and side.bench():
                     idx = player_replacement(b) if side is b.p else fightai.replacement(b, side, foe_of(b, mon))
                     if idx is not None and idx != side.active:
                         switch_in(b, side, idx)
@@ -2796,7 +3239,7 @@ def player_choice_doubles(b, me):
     best = None
     for mv in me.moves:
         if me.pp.get(mv.name, 1) <= 0 or (me.choice and mv.name != me.choice) or (me.taunt and mv.cat == "Status") \
-                or move_heal_blocked(me, mv):
+                or move_heal_blocked(me, mv) or disabled_out(me, mv):
             continue
         if not mv.damaging():
             for f in foes:
@@ -2877,10 +3320,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
     b.b.active2 = len(boss_groups[0]) if len(boss_groups) == 2 else (1 if len(bm) > 1 else None)
     b.p.active = 0
     b.p.active2 = len(pm) if part else (1 if len(pm) > 1 else None)
-    for side in (b.b, b.p):
-        switch_in(b, side, side.active)
-        if side.active2 is not None:
-            switch_in(b, side, side.active2, slot=1)
+    open_battle(b)
 
     def flags_for(mon):
         return flags_of.get(mon.owner, boss_flags[0])
@@ -3397,7 +3837,79 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                             if (whole_field or d in holders) and (tdk, twin(d), w) not in seen:
                                 seen.add((tdk, twin(d), w))
                                 pairs.append([tdk, twin(d), ["Magnitude"], w])
-    out = calc.run_node(calc.blob_path(), {"pokemon": pokemon, "pairs": pairs})
+    # Roost: while its user roosts, its Flying type meets no move until the
+    # turn ends (BasicTypeMulApplies skips the chart's rows for a roosting
+    # defender's Flying type), which the calculator cannot know. So each
+    # Roost user with the Flying type gets a twin with its types less Flying
+    # (species_data with exact types, its own stats and weight kept, which
+    # the runner builds on an alias of its species, as the calculator's
+    # species table would otherwise keep a second type), rowed for every
+    # foe's moves into it, a player's Magnitude at each power included. A pure
+    # Flying Pokemon is left with no type the chart reads, which the
+    # calculator cannot be given; its Normal and Grass twins between them hit
+    # every move type neutrally (roost_key picks).
+    roost_twin = {}
+    for k in pkeys + qkeys + bkeys:
+        if not any(move(m).effect == "HEAL_HALF_REMOVE_FLYING_TYPE" for m in moves[k]):
+            continue
+        poks = blob["poks"].get(pokemon[k]["species"]) or {}
+        types = [t for t in (poks.get("types") or []) if t]
+        if "Flying" not in types or not poks.get("bs"):
+            continue
+        rest = [t for t in types if t != "Flying"]
+        foes = pkeys + qkeys if k.startswith("b") else bkeys
+        for i, tt in enumerate([rest] if rest else [["Normal"], ["Grass"]]):
+            t = f"{k}#roost{i}"
+            own = {"bs": dict(poks["bs"]), "types": tt, "exact_types": True}
+            if poks.get("weightkg") is not None:
+                own["weightkg"] = poks["weightkg"]
+            pokemon[t] = dict(pokemon[k], species_data=own)
+            roost_twin.setdefault(k, []).append((t, tt))
+            for w in weathers:
+                for d in foes:
+                    got = party_hits(d) if d in bkeys else hits(d)
+                    if got:
+                        pairs.append([d, t, got, w])
+                    if "Magnitude" in moves.get(d, ()) and not d.startswith("b"):
+                        for p in MAGNITUDE_POWERS:
+                            pairs.append([f"{d}#m{p}", t, ["Magnitude"], w])
+    # Protean and Libero retype their holder to its first move's type
+    # (protean), which the calculator's Generation 4 rows cannot know: they
+    # give the holder no STAB for it and meet moves on its own types. So
+    # each holder gets a twin per type its moves could make it (species_data
+    # with that one type, exactly, as Roost's twins have it; its own stats and
+    # weight kept), rowed both ways against every foe.
+    protean_twin = {}
+    for k in pkeys + qkeys + bkeys:
+        if pokemon[k].get("ability") not in ("Protean", "Libero"):
+            continue
+        poks = blob["poks"].get(pokemon[k]["species"]) or {}
+        own_types = {t for t in (poks.get("types") or []) if t}
+        if not poks.get("bs"):
+            continue
+        foes = pkeys + qkeys if k.startswith("b") else bkeys
+        mine = party_hits(k) if k in bkeys else hits(k)
+        for kind in sorted({move(m).type for m in moves[k] if move(m).effect != "STRUGGLE"}):
+            if own_types == {kind}:
+                continue
+            t = f"{k}#pt{kind}"
+            own = {"bs": dict(poks["bs"]), "types": [kind], "exact_types": True}
+            if poks.get("weightkg") is not None:
+                own["weightkg"] = poks["weightkg"]
+            pokemon[t] = dict(pokemon[k], species_data=own)
+            protean_twin.setdefault(k, {})[kind] = t
+            for w in weathers:
+                for d in foes:
+                    if mine:
+                        pairs.append([t, d, mine, w])
+                    got = party_hits(d) if d in bkeys else hits(d)
+                    if got:
+                        pairs.append([d, t, got, w])
+    # The calculator is told to leave off the abilities the battle applies
+    # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once.
+    jobs = {k: dict(p, ability_on=False) if p.get("ability") in CALC_ABILITY_OFF else p
+            for k, p in pokemon.items()}
+    out = calc.run_node(calc.blob_path(), {"pokemon": jobs, "pairs": pairs})
     rows, speed = {}, {}
     for r in out["results"]:
         rows[(r["weather"], r["a"], r["d"])] = r
@@ -3416,7 +3928,8 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "bosses": boss_keys, "partners": partner_keys,
             "base_weather": calc.CALC_WEATHER.get(weather, weather) if weather else None,
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
-            "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin}
+            "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
+            "protean_twin": protean_twin}
 
 
 def effectiveness(blob_or_chart, atk_type, def_types):

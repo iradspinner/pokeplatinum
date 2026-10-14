@@ -517,6 +517,404 @@ def check_gas_doubles(results):
                     f"under the gas (abilities, Attack stage) {under}; after the holder fell {after}"))
 
 
+def check_intimidate_start(results):
+    """The battle's start (open_battle, added 2026-10-13): every lead comes
+    in before any lead's Intimidate goes off, as the engine runs the
+    switch-in check over all of them at once, so each side's Intimidate
+    lands on the other side's leads. Sent in one after another, the
+    player's lead reset its stages on its own way in and lost the stage the
+    trainer's lead had taken. In a double battle each holder takes a stage
+    off both foes."""
+    b, p, foe = battle(["Tackle"], ["Tackle"], {})
+    p.ability = foe.ability = "Intimidate"
+    fs.open_battle(b)
+    singles = (p.stages["atk"], foe.stages["atk"])
+    st = {"rows": {}, "speed": {}, "info": {}, "pokemon": {}, "moves": {}, "chart": _chart(),
+          "rock_eff": {}, "base_weather": None, "trick_room": False}
+    for key in ("p0", "p1", "b0.0", "b0.1"):
+        st["info"][key] = {"hp": 100, "stats": {"atk": 100, "def": 100}, "types": ["Normal"],
+                           "ability": "Intimidate" if key in ("p1", "b0.0") else "Run Away", "item": None}
+        st["pokemon"][key] = {"species": key, "level": 50}
+        st["moves"][key] = ["Tackle"]
+        st["speed"][(None, key)] = 100 if key.startswith("p") else 50
+    mons = {s: [fs.Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], s) for k in st["info"] if k[0] == s]
+            for s in "pb"}
+    d = fs.Battle(st, fs.Side(mons["p"], "p"), fs.Side(mons["b"], "b"), random.Random(1), ai_flags=7)
+    d.doubles = True
+    d.p.active, d.p.active2, d.b.active, d.b.active2 = 0, 1, 0, 1
+    fs.open_battle(d)
+    doubles = [m.stages["atk"] for m in d.p.mons + d.b.mons]
+    ok = singles == (-1, -1) and doubles == [-1, -1, -1, -1]
+    results.append(("both leads come in before their Intimidate, so each lands on the other side", ok,
+                    f"singles (player's lead, trainer's lead) {singles}; doubles' four Attack stages {doubles}"))
+
+
+def check_intimidate_proof(results):
+    """Intimidate's blockers in Oxide (BtlCmd_ChangeStatStage, approved
+    2026-10-13): Inner Focus, Own Tempo, Oblivious and Scrappy stop it, as
+    Hyper Cutter does, and the engine's message names the ability; any other
+    Pokemon loses a stage. Both ways round: the player's Intimidate on the
+    trainer's Pokemon and the trainer's on the player's."""
+    got = {}
+    for ab in ("Inner Focus", "Own Tempo", "Oblivious", "Scrappy", "Hyper Cutter", "Run Away"):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        p.ability, foe.ability = "Intimidate", ab
+        fs.switch_in(b, b.p, 0)
+        theirs = (foe.stages["atk"], foe.revealed)
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        p.ability, foe.ability = ab, "Intimidate"
+        fs.switch_in(b, b.b, 0)
+        got[ab] = (theirs, (p.stages["atk"], p.revealed))
+    want = {ab: ((0, ab), (0, ab)) for ab in ("Inner Focus", "Own Tempo", "Oblivious", "Scrappy", "Hyper Cutter")}
+    want["Run Away"] = ((-1, None), (-1, None))
+    results.append(("Inner Focus, Own Tempo, Oblivious and Scrappy stop Intimidate, and are named", got == want,
+                    f"(Attack stage, ability named) on the trainer's side and on the player's: {got}"))
+
+
+def check_two_hit_holds(results):
+    """A two-hit move meets Sturdy and a Focus Sash hit by hit, in
+    fightsim's own attack (approved 2026-10-13). Rows of 120 are two hits of
+    60 on a full 100 HP target: Sturdy lets the first land, as it would not
+    knock out, and cannot hold the second, so the target faints; a row of
+    240 has its first hit held at 1 HP by Sturdy, which is named, and the
+    second finishes it. A Focus Sash, armed by the first hit at full HP,
+    holds the second too, as the engine's focusItemActivated flag does, and
+    is used up; on a Sturdy holder the Sash is never armed, and it faints.
+    A single hit of 120 is still held by Sturdy, and a two-hit move into a
+    Sturdy target below full HP is plain damage."""
+    def hit(move, row, ability=None, item=None, hp=100):
+        b, p, foe = battle([move], ["Tackle"], {("p", move): [row] * 16})
+        b.st["first_battle"] = True          # no critical hits to blur the numbers
+        foe.ability, foe.item, foe.hp = ability or "Run Away", item, hp
+        fs.attack(b, p, fs.move(move), foe, True)
+        return foe.hp, foe.item, foe.revealed
+    got = {"Sturdy, 60 and 60": hit("Double Kick", 120, "Sturdy"),
+           "Sturdy, 120 and 120": hit("Double Kick", 240, "Sturdy"),
+           "Focus Sash": hit("Double Kick", 120, item="Focus Sash"),
+           "Sturdy with a Focus Sash": hit("Double Kick", 120, "Sturdy", "Focus Sash"),
+           "Sturdy, one hit": hit("Karate Chop", 120, "Sturdy"),
+           "Sturdy at 90 HP": hit("Double Kick", 60, "Sturdy", hp=90)}
+    want = {"Sturdy, 60 and 60": (0, None, None), "Sturdy, 120 and 120": (0, None, "Sturdy"),
+            "Focus Sash": (1, None, None), "Sturdy with a Focus Sash": (0, "Focus Sash", None),
+            "Sturdy, one hit": (1, None, "Sturdy"), "Sturdy at 90 HP": (30, None, None)}
+    results.append(("a two-hit move meets Sturdy hit by hit; a Focus Sash holds both", got == want,
+                    f"(HP left, item, ability named) {got}"))
+
+
+def check_future_sight(results):
+    """Future Sight and Doom Desire (approved 2026-10-13; BtlCmd_TryFutureSight
+    and the turn's end, SIDE_COND_CHECK_STATE_FUTURE_SIGHT): the damage is
+    worked out as the move is used and lands at the
+    end of the second turn after, on whoever then stands in the target's
+    slot; a second use fails while one waits there, and the trainer's AI
+    scores another -12 while one waits on either side. A hit that comes due
+    on a fainted slot is lost, and the side's mark stays, as the engine
+    clears it only as one lands. A Substitute takes the hit, and Sturdy holds
+    it at full HP."""
+    def set_up(row=40, seed=1):
+        b, p, foe = battle(["Future Sight"], ["Tackle"], {("p", "Future Sight"): [row] * 16}, seed=seed)
+        extra = fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Tackle"], "b")
+        b.b.mons.append(extra)
+        fs.use_move(b, p, fs.move("Future Sight"), foe, True)
+        return b, p, foe, extra
+    b, p, foe, extra = set_up()
+    at_once = foe.maxhp - foe.hp
+    again = fs.foresee(b, p, fs.move("Future Sight"), foe, 40)
+    ai = fightai.basic(b, foe, p, fs.move("Future Sight"))
+    hp = []
+    for turn in range(3):
+        if turn == 1:
+            fs.switch_in(b, b.b, 1)              # the target leaves; its replacement stands in the slot
+        fs.end_of_turn(b)
+        hp.append((foe.hp, extra.hp))
+    b, p, foe, extra = set_up()
+    fs.end_of_turn(b)
+    fs.end_of_turn(b)
+    foe.hp = 0
+    fs.end_of_turn(b)
+    lost = (extra.hp, b.b.future, b.b.future_sight)
+    b, p, foe, extra = set_up()
+    foe.sub = 30
+    for _ in range(3):
+        fs.end_of_turn(b)
+    sub = (foe.hp, foe.sub)
+    b, p, foe, extra = set_up(row=150)
+    foe.ability = "Sturdy"
+    for _ in range(3):
+        fs.end_of_turn(b)
+    ok = (at_once == 0 and not again and ai == -12 and hp == [(100, 100), (100, 100), (100, 60)]
+          and lost == (100, (None, None), True) and sub == (100, 0) and foe.hp == 1)
+    results.append(("Future Sight lands two turns on, on whoever stands in the slot", ok,
+                    f"at once {at_once}; a second use {again}; the AI's Basic {ai}; (target, replacement) HP "
+                    f"after each turn's end {hp}; due on a "
+                    f"fainted slot (replacement HP, waiting, mark) {lost}; into a Substitute (HP, Substitute) "
+                    f"{sub}; 150 into a full Sturdy {foe.hp}"))
+
+
+def check_sleep_talk_rest(results):
+    """Rest fails on a Pokemon already asleep (subscript_rest: "is already
+    asleep!", approved 2026-10-13), which is how a Sleep Talk reaches it:
+    with Rest its only other move, Sleep Talk at 40 of 100 HP leaves the
+    sleeper at 40 and its sleep running down, where it used to heal it to
+    full and start a fresh sleep. Rest used awake still heals to full and
+    sleeps two turns."""
+    asleep = set()
+    for seed in range(20):
+        b, p, foe = battle(["Sleep Talk", "Rest"], ["Tackle"], {}, seed=seed)
+        p.hp, p.status, p.sleep = 40, "slp", 3
+        fs.use_move(b, p, fs.move("Sleep Talk"), foe, True)
+        asleep.add((p.hp, p.status, p.sleep))
+    b, p, foe = battle(["Rest"], ["Tackle"], {})
+    p.hp = 40
+    fs.use_move(b, p, fs.move("Rest"), foe, True)
+    awake = (p.hp, p.status, p.sleep)
+    ok = asleep == {(40, "slp", 2)} and awake == (100, "slp", 2)
+    results.append(("a Sleep Talk that calls Rest fails; Rest awake still heals", ok,
+                    f"(HP, status, sleep) after Sleep Talk asleep {sorted(asleep)}; Rest awake {awake}"))
+
+
+def check_disable(results):
+    """Disable (approved 2026-10-13; BtlCmd_TryDisable): the target's last
+    move is disabled for 3 to 6 turns after the Disable's own; the move
+    fails if used, the trainer's AI rules it out (a base score of 0, as
+    CheckInvalidMoves gives) and picks its other move, Sleep Talk never
+    calls it, and the player's attack reckoning leaves it out. Disable
+    fails before the target has moved and while one of its moves is
+    disabled, and the AI scores a second Disable -8."""
+    rows = {("b", "Tackle"): [20] * 16, ("b", "Scratch"): [10] * 16, ("p", "Tackle"): [20] * 16}
+    b, p, foe = battle(["Disable", "Tackle"], ["Tackle", "Scratch"], rows)
+    early = fs.disable(foe, lambda: 4)
+    fs.use_move(b, foe, fs.move("Tackle"), p, True)
+    fs.use_move(b, p, fs.move("Disable"), foe, True)
+    took = p.hp
+    fs.use_move(b, foe, fs.move("Tackle"), p, True)
+    blocked = took - p.hp
+    picks = {fightai.choose(b, foe, p)[1].name for _ in range(30)}
+    second = fightai.basic(b, p, foe, fs.move("Disable"))
+    foe.moves = [fs.move("Sleep Talk"), fs.move("Tackle"), fs.move("Scratch")]
+    foe.status, foe.sleep = "slp", 3
+    talked = {fs.sleep_talk_pick(b, foe).name for _ in range(30)}
+    p.disabled = "Tackle"
+    reckoned = fs.best_attack(b, p, foe)[0]
+    lengths = set()
+    for seed in range(200):
+        b2, p2, foe2 = battle(["Disable"], ["Tackle"], rows, seed=seed)
+        foe2.last = fs.move("Tackle")
+        fs.status_move(b2, p2, fs.move("Disable"), foe2, True)
+        n = 0
+        while foe2.disabled is not None:
+            fs.end_of_turn(b2)
+            n += 1
+        lengths.add(n - 1)
+    ok = (not early and blocked == 0 and picks == {"Scratch"} and second == -8 and talked == {"Scratch"}
+          and reckoned is None and lengths == {3, 4, 5, 6})
+    results.append(("Disable locks the target's last move out for 3 to 6 turns, for the AI too", ok,
+                    f"before it moved {early}; Tackle after Disable dealt {blocked}; the AI picks {sorted(picks)}; "
+                    f"a second Disable {second}; Sleep Talk calls {sorted(talked)}; the player's best attack "
+                    f"with Tackle disabled {reckoned}; turns blocked after the Disable's own {sorted(lengths)}"))
+
+
+def check_nightmare(results):
+    """Nightmare (approved 2026-10-13): only on a sleeping target without a
+    Substitute; a quarter of its maximum HP at each turn's end while it
+    sleeps, nothing for Magic Guard; once it is awake the nightmare ends,
+    and the AI scores a second Nightmare -10 (Basic_CheckNightmare reads the
+    real state now)."""
+    def cast(status=None, ability=None, sub=0):
+        b, p, foe = battle(["Nightmare"], ["Tackle"], {}, p_types=("Ghost",))
+        foe.status, foe.sleep, foe.ability, foe.sub = status, 3 if status else 0, ability, sub
+        fs.status_move(b, p, fs.move("Nightmare"), foe, True)
+        return b, p, foe
+    awake = cast()[2].nightmare
+    behind = cast("slp", sub=25)[2].nightmare
+    b, p, foe = cast("slp")
+    second = fightai.basic(b, p, foe, fs.move("Nightmare"))
+    fs.end_of_turn(b)
+    one = foe.hp
+    foe.status, foe.sleep = None, 0
+    fs.end_of_turn(b)
+    woke = (foe.hp, foe.nightmare)
+    b, p, foe = cast("slp", "Magic Guard")
+    fs.end_of_turn(b)
+    guard = foe.hp
+    ok = (not awake and not behind and second == -10 and one == 75 and woke == (75, False) and guard == 100)
+    results.append(("Nightmare: a quarter a turn while asleep, ending as it wakes", ok,
+                    f"on an awake target {awake}, behind a Substitute {behind}; a second one {second}; "
+                    f"after a turn's end {one}; after it woke (HP, nightmare) {woke}; Magic Guard {guard}"))
+
+
+def check_encore(results):
+    """Encore (approved 2026-10-14; BtlCmd_TryEncore): the target is locked
+    into its last move for 3 to 7 turns after the Encore's own; a move it
+    chose before the Encore came is replaced by the Encore move as it comes
+    to be used (BattleControllerPlayer_FightCommand); the trainer's AI picks
+    only that move and scores a second Encore -8. Encore fails before the
+    target has moved and on a move Encore cannot lock (Encore itself)."""
+    rows = {("b", "Tackle"): [20] * 16, ("b", "Scratch"): [10] * 16}
+    b, p, foe = battle(["Encore", "Tackle"], ["Tackle", "Scratch"], rows)
+    early = fs.encore(foe, lambda: 4)
+    fs.use_move(b, foe, fs.move("Tackle"), p, True)
+    fs.use_move(b, p, fs.move("Encore"), foe, True)
+    hp = p.hp
+    fs.use_move(b, foe, fs.move("Scratch"), p, True)
+    swapped = hp - p.hp
+    picks = {fightai.choose(b, foe, p)[1].name for _ in range(30)}
+    second = fightai.basic(b, p, foe, fs.move("Encore"))
+    b2, p2, foe2 = battle(["Encore"], ["Encore"], {})
+    foe2.last = fs.move("Encore")
+    locked_encore = fs.encore(foe2, lambda: 4)
+    lengths = set()
+    for seed in range(200):
+        b3, p3, foe3 = battle(["Encore"], ["Tackle", "Scratch"], rows, seed=seed)
+        foe3.last = fs.move("Tackle")
+        fs.status_move(b3, p3, fs.move("Encore"), foe3, True)
+        n = 0
+        while foe3.encore is not None:
+            fs.end_of_turn(b3)
+            n += 1
+        lengths.add(n - 1)
+    ok = (not early and swapped == 20 and picks == {"Tackle"} and second == -8 and not locked_encore
+          and lengths == {3, 4, 5, 6, 7})
+    results.append(("Encore locks the target into its last move for 3 to 7 turns", ok,
+                    f"before it moved {early}; a Scratch chosen came out as Tackle for {swapped}; the AI picks "
+                    f"{sorted(picks)}; a second Encore {second}; onto Encore {locked_encore}; turns locked after "
+                    f"the Encore's own {sorted(lengths)}"))
+
+
+def check_ice_body(results):
+    """Ice Body (approved 2026-10-14; BtlCmd_EndOfTurnWeatherEffect): a
+    sixteenth of maximum HP back at each turn's end in hail, below full HP,
+    and none of the hail's bite; nothing in sand, and nothing while Cloud
+    Nine or Air Lock is out."""
+    def end(weather, hp=50, cloud=False):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        foe.ability, foe.hp = "Ice Body", hp
+        if cloud:
+            p.ability = "Cloud Nine"
+        b.weather, b.weather_turns = weather, 0
+        fs.end_of_turn(b)
+        return foe.hp
+    got = {"hail": end("Hail"), "hail at full HP": end("Hail", 100), "sand": end("Sand"),
+           "hail under Cloud Nine": end("Hail", cloud=True)}
+    want = {"hail": 56, "hail at full HP": 100, "sand": 44, "hail under Cloud Nine": 50}
+    results.append(("Ice Body heals a sixteenth in hail", got == want, f"HP from 50 after a turn's end {got}"))
+
+
+def check_absorbing_abilities(results):
+    """The absorbing abilities do their whole job (approved 2026-10-14;
+    BattleSystem_TriggerImmunityAbility): a move of the ability's type is
+    taken whole, damaging or not, and Volt Absorb, Water Absorb and Dry Skin
+    give back a quarter of maximum HP (none at full HP) while Lightning Rod,
+    Storm Drain, Sap Sipper and Motor Drive raise Sp. Atk, Sp. Atk, Attack
+    and Speed a stage (none at +6); a Mold Breaker user is taken in by none.
+    Dry Skin heals an eighth at the turn's end in rain and loses an eighth in
+    sun. Rows of 0 stand for the calculator's, which already give these
+    hits no damage."""
+    def take(ability, move, hp=50, stage=0, mold=False):
+        b, p, foe = battle([move], ["Tackle"], {("p", move): [0] * 16})
+        foe.ability, foe.hp = ability, hp
+        stat = {"Lightning Rod": "spa", "Storm Drain": "spa", "Sap Sipper": "atk", "Motor Drive": "spe"}.get(ability)
+        if stat:
+            foe.stages[stat] = stage
+        if mold:
+            p.ability = "Mold Breaker"
+        p.stages["acc"] = 6                  # Thunder Wave's 90 always lands
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return (foe.hp, foe.stages[stat] if stat else None, foe.status, foe.revealed)
+    got = {"Volt Absorb, Thunderbolt": take("Volt Absorb", "Thunderbolt"),
+           "Volt Absorb at full HP": take("Volt Absorb", "Thunderbolt", hp=100),
+           "Volt Absorb, Thunder Wave": take("Volt Absorb", "Thunder Wave"),
+           "Water Absorb, Water Gun": take("Water Absorb", "Water Gun"),
+           "Dry Skin, Water Gun": take("Dry Skin", "Water Gun"),
+           "Lightning Rod, Thunderbolt": take("Lightning Rod", "Thunderbolt"),
+           "Storm Drain, Water Gun": take("Storm Drain", "Water Gun"),
+           "Sap Sipper, Spore": take("Sap Sipper", "Spore"),
+           "Motor Drive at +6": take("Motor Drive", "Thunderbolt", stage=6),
+           "Volt Absorb against Mold Breaker": take("Volt Absorb", "Thunderbolt", mold=True)}
+    want = {"Volt Absorb, Thunderbolt": (75, None, None, "Volt Absorb"),
+            "Volt Absorb at full HP": (100, None, None, "Volt Absorb"),
+            "Volt Absorb, Thunder Wave": (75, None, None, "Volt Absorb"),
+            "Water Absorb, Water Gun": (75, None, None, "Water Absorb"),
+            "Dry Skin, Water Gun": (75, None, None, "Dry Skin"),
+            "Lightning Rod, Thunderbolt": (50, 1, None, "Lightning Rod"),
+            "Storm Drain, Water Gun": (50, 1, None, "Storm Drain"),
+            "Sap Sipper, Spore": (50, 1, None, "Sap Sipper"),
+            "Motor Drive at +6": (50, 6, None, "Motor Drive"),
+            "Volt Absorb against Mold Breaker": (50, None, None, "Volt Absorb")}
+
+    def weather(w):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        foe.ability, foe.hp = "Dry Skin", 50
+        b.weather, b.weather_turns = w, 0
+        fs.end_of_turn(b)
+        return foe.hp
+    skin = (weather("Rain"), weather("Sun"))
+    ok = got == want and skin == (62, 38)
+    results.append(("the absorbing abilities heal or raise their stat; Dry Skin in rain and sun", ok,
+                    f"(HP from 50, the stage, status, ability named) {got}; Dry Skin from 50 in rain and sun {skin}"))
+
+
+def check_roost(results):
+    """Roost (approved 2026-10-14; subscript_roost and BasicTypeMulApplies):
+    it fails at full HP; otherwise it heals half, and until the turn ends
+    its user's Flying type meets no move, which the battle reads from the
+    user's twin without Flying (prepare's roost_twin). A pure Flying user
+    has a Normal and a Grass twin, and each move meets it on the one its
+    type hits neutrally: Earthquake on the Normal twin, Shadow Ball on the
+    Grass one. The next turn the Flying type is back."""
+    rows = {("b", "Earthquake"): [0] * 16, ("b", "Shadow Ball"): [30] * 16}
+    b, p, foe = battle(["Roost"], ["Earthquake", "Shadow Ball"], rows, p_types=("Flying",))
+    b.st["rows"][(None, "b0.0", "p0#roost0")] = {"moves": {"Earthquake": {"rolls": [40] * 16},
+                                                           "Shadow Ball": {"rolls": [99] * 16}}}
+    b.st["rows"][(None, "b0.0", "p0#roost1")] = {"moves": {"Earthquake": {"rolls": [77] * 16},
+                                                           "Shadow Ball": {"rolls": [30] * 16}}}
+    b.st["roost_twin"] = {"p0": [("p0#roost0", ["Normal"]), ("p0#roost1", ["Grass"])]}
+    quake, ball = fs.move("Earthquake"), fs.move("Shadow Ball")
+    full = fs.status_move(b, p, fs.move("Roost"), foe, True) or p.roosting
+    p.hp = 50
+    fs.status_move(b, p, fs.move("Roost"), foe, True)
+    roosted = (p.hp, p.roosting, b.damage(foe, p, quake, roll=0), b.damage(foe, p, ball, roll=0))
+    fs.end_of_turn(b)
+    after = (p.roosting, b.damage(foe, p, quake, roll=0))
+    ok = not full and roosted == (100, True, 40, 30) and after == (False, 0)
+    results.append(("Roost takes the Flying type off its user until the turn ends", ok,
+                    f"at full HP roosted {full}; after Roost from 50 (HP, roosting, Earthquake, Shadow Ball) {roosted}; "
+                    f"the next turn (roosting, Earthquake) {after}"))
+
+
+def check_protean(results):
+    """Protean (approved 2026-10-14; BEFORE_MOVE_STATE_PROTEAN): once a stay
+    on the field, the first move whose type its user is not wholly already
+    makes the user that type alone, and its rows then come from its twin of
+    that type (prepare's protean_twin), both ways, until it leaves. A move of
+    its own single type changes nothing and leaves Protean unspent; the next
+    move after the change changes nothing either; leaving the field brings
+    its own type back and Protean with it."""
+    rows = {("p", "Ember"): [30] * 16, ("p", "Tackle"): [20] * 16, ("b", "Tackle"): [10] * 16}
+    b, p, foe = battle(["Tackle", "Ember"], ["Tackle"], rows)
+    b.st["first_battle"] = True              # no critical hits to blur the numbers
+    p.ability = "Protean"
+    b.st["rows"][(None, "p0#ptFire", "b0.0")] = {"moves": {"Ember": {"rolls": [45] * 16},
+                                                            "Tackle": {"rolls": [13] * 16}}}
+    b.st["rows"][(None, "b0.0", "p0#ptFire")] = {"moves": {"Tackle": {"rolls": [7] * 16}}}
+    b.st["protean_twin"] = {"p0": {"Fire": "p0#ptFire"}}
+    tackle, ember = fs.move("Tackle"), fs.move("Ember")
+    fs.use_move(b, p, tackle, foe, True)
+    own = (list(p.types), p.protean_used)
+    fs.use_move(b, p, ember, foe, True)
+    changed = (list(p.types), b.damage(p, foe, ember, roll=0), b.damage(p, foe, tackle, roll=0),
+               b.damage(foe, p, tackle, roll=0))
+    fs.use_move(b, p, tackle, foe, True)
+    kept = list(p.types)
+    p.reset_volatile()                       # what leaving the field does
+    back = (list(p.types), p.protean_used, b.damage(p, foe, ember, roll=0))
+    ok = (own == (["Normal"], False) and changed == (["Fire"], 45, 13, 7) and kept == ["Fire"]
+          and back == (["Normal"], False, 30))
+    results.append(("Protean retypes its user on its first off-type move, once a stay", ok,
+                    f"after its own type's move (types, spent) {own}; after Ember (types, Ember, Tackle, the foe's "
+                    f"Tackle) {changed}; after another Tackle {kept}; after leaving (types, spent, Ember) {back}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -751,6 +1149,10 @@ def main():
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
                   check_salt_cure, check_harvest, check_berry_first_hit,
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
+                  check_intimidate_start, check_intimidate_proof, check_two_hit_holds, check_future_sight,
+                  check_sleep_talk_rest, check_disable, check_nightmare,
+                  check_encore, check_ice_body, check_absorbing_abilities,
+                  check_roost, check_protean,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

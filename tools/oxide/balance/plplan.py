@@ -336,7 +336,7 @@ def merge_key(c):
         return (s.active, tuple(((m.hp * HP_BUCKETS + m.maxhp - 1) // m.maxhp,) + pl.mon_key(m)[1:]
                                 for m in s.mons),
                 tuple(s.screens.values()), s.tailwind, tuple(s.hazards.values()), s.safeguard,
-                getattr(s, "wish", 0))
+                getattr(s, "wish", 0), s.future, s.future_sight)
     return side(c.p), side(c.b), c.weather, c.weather_turns, c.trick_room
 
 
@@ -569,17 +569,20 @@ def options(b):
     try:
         for mv in me.moves:
             if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status") or fs.tormented_out(me, mv) \
-                    or fs.move_heal_blocked(me, mv):
+                    or fs.move_heal_blocked(me, mv) or fs.disabled_out(me, mv):
                 continue
             if me.choice and mv.name != me.choice:
                 continue
+            if me.encore is not None and mv.name != me.encore:
+                continue                 # Encore leaves the one move to choose
             if fightai.basic(b, me, foe, mv, fightai.figure(b, me, foe, mv)) <= -8:
                 continue
             out.append(("move", mv))
     finally:
         b.rng = saved
     if not out:
-        left = [m for m in me.moves if me.pp.get(m.name, 1) > 0 and not fs.tormented_out(me, m)]
+        left = [m for m in me.moves if me.pp.get(m.name, 1) > 0 and not fs.tormented_out(me, m)
+                and not fs.disabled_out(me, m) and (me.encore is None or m.name == me.encore)]
         out.append(("move", left[0] if left else fs.move("Struggle")))
     if not me.bound and fs.can_switch(me) and not fs.ability_trapped(b, me):
         out += [("switch", i) for i, m in enumerate(b.p.mons) if i != b.p.active and m.alive()]
@@ -665,7 +668,8 @@ def strongest(b):
     mv, d = fs.safe_attack(b, me, foe)
     if mv is not None and d > 0:
         return "move", mv
-    left = [m for m in me.moves if me.pp.get(m.name, 1) > 0 and not fs.tormented_out(me, m)]
+    left = [m for m in me.moves if me.pp.get(m.name, 1) > 0 and not fs.tormented_out(me, m)
+            and not fs.disabled_out(me, m)]
     return "move", left[0] if left else fs.move("Struggle")
 
 
@@ -749,7 +753,7 @@ def plain(b):
     first = fs.moves_first(b, me, foe)
     attacks = [m for m in me.moves if m.damaging() and me.pp.get(m.name, 1) > 0
                and (not me.choice or m.name == me.choice) and m.effect not in fs.SELF_KO
-               and not fs.tormented_out(me, m)]
+               and not fs.tormented_out(me, m) and not fs.disabled_out(me, m)]
     for m in sorted(attacks, key=lambda m: -m.pri):
         if (m.acc == 0 or m.acc >= 90) and pl.dmg_low(b, me, foe, m) >= foe.hp and (m.pri > 0 or first):
             return "move", m
