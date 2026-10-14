@@ -149,13 +149,26 @@ def _regular_abilities(mon):
     return got
 
 
+def gas_hidden(b, mon):
+    """Whether the AI reads no ability for mon because of Neutralizing Gas
+    (AICmd_LoadBattlerAbility and AICmd_CheckBattlerAbility ask
+    BattleSystem_NeutralizingGasSuppresses before anything else). That check
+    does not see an Ability Shield, so the AI reads none for a shield's
+    holder too, though the battle leaves its ability on."""
+    if getattr(mon, "gas_stash", None) is not None:
+        return True
+    return (mon.item == "Ability Shield" and bool(mon.ability) and mon.ability not in fs.GAS_PROOF
+            and bool(b.st.get("gas")) and fs.gas_on(b))
+
+
 def ability_of(b, u, mon):
     """AICmd_LoadBattlerAbility as the AI's Pokemon u reads mon (trainer_ai.c
-    1217 to 1260): no ability under Gastro Acid; its own side's real ability;
-    for a foe, the ability a battle message has named (mon.revealed), else the
-    real one if it traps, else a fresh coin between its species' two regular
-    slots. Each call is its own flip, as each command is."""
-    if getattr(mon, "suppressed", False):
+    1217 to 1260): no ability under Gastro Acid or Neutralizing Gas; its own
+    side's real ability; for a foe, the ability a battle message has named
+    (mon.revealed), else the real one if it traps, else a fresh coin between
+    its species' two regular slots. Each call is its own flip, as each
+    command is."""
+    if getattr(mon, "suppressed", False) or gas_hidden(b, mon):
         return None
     # Its own side reads the real ability; so does the player, whose plan
     # knows the trainer's Pokemon (the guess is the trainer AI's alone).
@@ -175,7 +188,7 @@ def check_ability(b, u, mon, name):
     """AICmd_CheckBattlerAbility (1262 to 1317): "have", "not" or "unknown".
     An unannounced foe whose species has two slots is unknown when either is
     the ability asked about, and read as its first slot otherwise. No flip."""
-    if getattr(mon, "suppressed", False):
+    if getattr(mon, "suppressed", False) or gas_hidden(b, mon):
         ab = None
     elif mon.side == u.side or u.side == "p":
         ab = mon.ability

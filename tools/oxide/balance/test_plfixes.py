@@ -1223,6 +1223,65 @@ def explosion_checks():
     return out
 
 
+def neutralizing_gas_checks():
+    """Neutralizing Gas (the simulator's support approved by Ian,
+    2026-10-13) on the calculator's own rows and in the readings' battle.
+    prepare() rows each Pokemon that can meet a holder on an ability-blank
+    twin, so a Levitate Bronzor's twin takes the holder's Earthquake where
+    Bronzor reads 0, and a Huge Power Azumarill's twin hits the holder half
+    as hard. In perfectline's battle the gas sends them to those rows while
+    the holder is in, and when it leaves at the start of a turn, Mightyena's
+    Intimidate goes off again on the Pokemon that replaces it."""
+    zero = dict.fromkeys(("hp", "at", "df", "sa", "sd", "sp"), 0)
+
+    def foe(species, ability, moves):
+        return {"species": species, "level": 30, "item": None, "ability": ability, "nature": "Hardy",
+                "ivs": dict.fromkeys(zero, 31), "evs": dict(zero), "moves": moves, "sub_index": 0, "mega": None}
+
+    def rec(species, ability, moves):
+        return {"constant": "SPECIES_" + species.upper(), "species": species, "how": "plan", "level": 30,
+                "nature": "Hardy", "ivs": dict(IV), "evs": dict(zero), "ability": ability, "moves": moves,
+                "fill": False, "label": species}
+    party = [foe("Weezing-Galar", "Neutralizing Gas", ["Earthquake", "Sludge Bomb"]),
+             foe("Skuntank", "Aftermath", ["Earthquake", "Crunch"])]
+    recs = [rec("Bronzor", "Levitate", ["Confusion", "Tackle"]), rec("Azumarill", "Huge Power", ["Aqua Tail"]),
+            rec("Mightyena", "Intimidate", ["Bite"])]
+    st = fs.prepare("Fantina", [party], None, cap=30, given_side=recs)
+    st["held"] = {}          # no boosters, so a hit reads its row as it stands
+    rows = st["rows"]
+
+    def top(a, d, move):
+        return max(rows[(None, a, d)]["moves"][move]["rolls"])
+    quake = (top("b0.0", "p0", "Earthquake"), top("b0.0", "p0#ng", "Earthquake"))
+    tail = (top("p1", "b0.0", "Aqua Tail"), top("p1#ng", "b0.0", "Aqua Tail"))
+    twins = (st["gas"], st["gas_twin"].get("p0"), st["gas_twin"].get("p1"), st["gas_twin"].get("p2"))
+    out = [("prepare rows a twin with its ability blank for each Pokemon that can meet the gas", twins ==
+            (True, "p0#ng", "p1#ng", "p2#ng") and quake[0] == 0 and quake[1] > 0
+            and 1.8 <= tail[0] / tail[1] <= 2.2,
+            f"twins {twins}; Earthquake on Bronzor and its twin {quake}; Aqua Tail from Azumarill and its twin {tail}")]
+    b = pl.make_battle(st, ["p0", "p1", "p2"], st["bosses"][0], 7, 0)
+    bronzor, weezing = b.p.cur(), b.b.cur()
+    under = (bronzor.ability, pl.damage_of(b, weezing, bronzor, fs.move("Earthquake"), False, True))
+    copied = pl.clone_battle(b).gas_flag
+    b2 = pl.make_battle(st, ["p1", "p0", "p2"], st["bosses"][0], 7, 0)
+    hp_hit = pl.damage_of(b2, b2.p.cur(), b2.b.cur(), fs.move("Aqua Tail"), False, True)
+    b3 = pl.make_battle(st, ["p2", "p0", "p1"], st["bosses"][0], 7, 0)
+    dog = b3.p.cur()
+    before = (dog.ability, b3.b.cur().stages["atk"])
+    pl._turn(b3, ("move", fs.move("Bite")), ("switch", 1))
+    after = (dog.ability, b3.b.cur().species, b3.b.cur().stages["atk"])
+    fs.switch_in(b, b.b, 1)
+    left = (bronzor.ability, pl.damage_of(b, b.b.cur(), bronzor, fs.move("Earthquake"), False, True))
+    ok = (under[0] is None and under[1] and copied and hp_hit == tail[1] and before == (None, 0)
+          and after == ("Intimidate", "Skuntank", -1) and left == ("Levitate", 0))
+    out.append(("the readings' battle: the twins' rows while the holder is in, the real ones after; "
+                "Intimidate again on the replacement", ok,
+                f"Bronzor under the gas (ability, Earthquake) {under}, the copy keeps the gas {copied}; "
+                f"Azumarill's Aqua Tail {hp_hit}; Mightyena before {before}, after the holder left {after}; "
+                f"Bronzor after (ability, Skuntank's Earthquake) {left}"))
+    return out
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does); Aqua Ring heals a sixteenth at
@@ -1663,6 +1722,7 @@ def main():
     results += wish_spite_recycle_checks()
     results += held_state_checks()
     results += study_effect_checks()
+    results += neutralizing_gas_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

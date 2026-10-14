@@ -218,6 +218,11 @@ ABILITY_WEATHER = {"Drizzle": "Rain", "Drought": "Sun", "Sand Stream": "Sand", "
 # and the stand-in the player's side takes when both its regular slots held one.
 NO_WEATHER_ABILITY = set(ABILITY_WEATHER) | {"Cloud Nine", "Air Lock"}
 WEATHER_STAND_IN = "Pressure"
+# The abilities Neutralizing Gas leaves on (BattleSystem_NeutralizingGasSuppresses):
+# another holder's gas, and those Generation 9 marks as impossible to suppress.
+GAS_PROOF = {"Neutralizing Gas", "Multitype", "Zen Mode", "Stance Change", "Shields Down", "Schooling",
+             "Disguise", "Battle Bond", "Power Construct", "Comatose", "RKS System", "Gulp Missile",
+             "Ice Face", "As One (Glastrier)", "As One (Spectrier)", "Zero to Hero", "Tera Shift"}
 
 
 # ---- genders (Ian, 2026-10-03) -------------------------------------------------------------
@@ -305,6 +310,10 @@ def _gender_of(rec):
 
 class Mon:
     """One Pokemon in a battle."""
+
+    # While Neutralizing Gas has its ability off, the ability waits here and
+    # `ability` reads None (gas_update); None while the gas leaves it alone.
+    gas_stash = None
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -436,8 +445,11 @@ class Battle:
     # -- reading the calculator's rows
 
     def row(self, att, dfn):
-        w = self.weather if (self.weather, att.key, dfn.key) in self.st["rows"] else None
-        return self.st["rows"].get((w, att.key, dfn.key))
+        # A Pokemon whose ability the gas has off reads its ability-blank twin's rows.
+        ak = att.key if att.gas_stash is None else gas_key(self, att)
+        dk = dfn.key if dfn.gas_stash is None else gas_key(self, dfn)
+        w = self.weather if (self.weather, ak, dk) in self.st["rows"] else None
+        return self.st["rows"].get((w, ak, dk))
 
     def rolls(self, att, dfn, mv):
         r = self.row(att, dfn)
@@ -469,8 +481,10 @@ class Battle:
 
     def row_speed(self, mon):
         """The calculator's Speed for this Pokemon in this weather, as its
-        damage rows have it: no stages, no status."""
-        return int(self.st["speed"].get((self.weather, mon.key)) or self.st["speed"].get((None, mon.key)) or 1)
+        damage rows have it: no stages, no status. Under Neutralizing Gas its
+        ability-blank twin's, so Swift Swim and the like stop counting."""
+        key = mon.key if mon.gas_stash is None else gas_key(self, mon)
+        return int(self.st["speed"].get((self.weather, key)) or self.st["speed"].get((None, key)) or 1)
 
     def faster(self, a, b):
         """Whether a moves before b at equal priority; ties at random."""
@@ -507,6 +521,8 @@ class Battle:
             mult *= 1.5
         if att.ability == "Flash Fire" and mv.type == "Fire" and not att.flash_fire:
             mult *= 2 / 3        # the calculator's row has Flash Fire always lit
+        elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
+            mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
         if att.side == "p" and BOOSTER_TYPE.get(att.item) == mv.type:
             mult *= 1.2          # the player's rows are item-free; a booster adds its fifth here
         side = self.p if dfn.side == "p" else self.b
@@ -602,6 +618,74 @@ def reveal(mon):
     models: an entry announcement, a hit the ability turns to nothing, Sturdy
     holding, a status or a stat drop the ability stops."""
     mon.revealed = mon.ability
+
+
+# ---- Neutralizing Gas (the simulator's support approved by Ian, 2026-10-13) --------------------------------
+
+def gas_on(b):
+    """BattleSystem_NeutralizingGasActive: a holder with HP on the field. The
+    engine works it out afresh at every read, so the gas starts and stops
+    with its holder's arrival, fainting or leaving."""
+    return any(m.ability == "Neutralizing Gas" and m.alive() for m in b.p.on_field() + b.b.on_field())
+
+
+def gas_key(b, mon):
+    """The calculator's key for mon's rows and Speed while the gas has its
+    ability off: its ability-blank twin (prepare's st["gas_twin"]), or its own
+    key where the twin would read the same."""
+    return (b.st.get("gas_twin") or {}).get(mon.key, mon.key)
+
+
+def gas_update(b, check=True):
+    """Neutralizing Gas as the battle stands now. While a holder with HP is
+    on the field every other battler's ability reads as none (Battler_Ability):
+    it waits in gas_stash, save an Ability Shield holder's and the GAS_PROOF
+    ones. Once no holder is, each comes back. With `check`, the switch-in
+    check's gas step follows (SWITCH_IN_CHECK_STATE_NEUTRALIZING_GAS): a gas
+    on the field is noted (FIELD_CONDITION_NEUTRALIZING_GAS), and once a
+    noted gas has gone every battler on the field sets off its entry
+    abilities again, fastest first, as the engine resets their announcements.
+    Returns whether that happened. The engine runs the check when a move
+    ends (BattleControllerPlayer_MoveEnd) and when a Pokemon comes in, so a
+    holder knocked out by a move takes its re-announced Intimidate into an
+    empty slot, while one that leaves or falls at the turn's end has it land
+    on the Pokemon that replaces it."""
+    on = gas_on(b)
+    for m in b.p.on_field() + b.b.on_field():
+        if on:
+            if m.gas_stash is None and m.ability and m.ability not in GAS_PROOF and m.item != "Ability Shield":
+                m.gas_stash, m.ability = m.ability, None
+        elif m.gas_stash is not None:
+            m.ability, m.gas_stash = m.gas_stash, None
+    if not check:
+        return False
+    if on:
+        b.gas_flag = True
+        return False
+    if getattr(b, "gas_flag", False):
+        b.gas_flag = False
+        mons = [m for m in b.p.on_field() + b.b.on_field() if m.alive()]
+        entry_abilities(b, sorted(mons, key=b.speed, reverse=not b.trick_room))
+        return True
+    return False
+
+
+def entry_abilities(b, mons):
+    """The switch-in check's ability steps for these Pokemon, each step over
+    all of them in the order given (monSpeedOrder): the weather abilities, the
+    announcement the trainer's AI reads (BattleAI_SetAbility), Intimidate."""
+    for new in mons:
+        weather = ABILITY_WEATHER.get(new.ability)
+        if weather:
+            b.weather, b.weather_turns = weather, 0
+    for new in mons:
+        if new.ability in ENTRY_ANNOUNCED:
+            reveal(new)
+    for new in mons:
+        if new.ability == "Intimidate":
+            for foe in (b.b if new.side == "p" else b.p).on_field():
+                if foe.alive() and not stat_drop_blocked(b, foe, {"atk": -1}):
+                    change_stages(foe, {"atk": -1})
 
 
 def stat_drop_blocked(b, mon, changes):
@@ -754,6 +838,8 @@ def hurt(b, mon, amount):
     if getattr(b, "mid_turn", False):
         mon.hurt_this_turn = True
     berry_check(mon)
+    if not mon.hp and mon.ability == "Neutralizing Gas" and b.st.get("gas"):
+        gas_update(b, check=False)       # the gas goes with its holder's last HP
 
 
 # A pinch berry raises a stat by one stage once its holder is at a quarter of
@@ -840,8 +926,16 @@ def sleep_tick(att):
 
 
 def use_move(b, att, mv, dfn, first, targets=None):
-    """One move, from its user's turn check to its last effect. `first`:
-    whether the target has not moved yet this turn."""
+    """One move, from its user's turn check to its last effect, and then the
+    switch-in check that ends every action (BattleControllerPlayer_MoveEnd),
+    where a Neutralizing Gas whose holder fell during the move wears off.
+    `first`: whether the target has not moved yet this turn."""
+    _use_move(b, att, mv, dfn, first, targets)
+    if b.st.get("gas"):
+        gas_update(b)
+
+
+def _use_move(b, att, mv, dfn, first, targets=None):
     if not att.alive():
         return
     # Its own record clears with its action, whatever happens
@@ -941,6 +1035,8 @@ def explode_first(b, att):
             m.ability == "Damp" and m.alive() for m in b.p.on_field() + b.b.on_field()):
         return False
     att.hp = 0
+    if att.ability == "Neutralizing Gas" and b.st.get("gas"):
+        gas_update(b, check=False)       # a holder's gas is gone before its blast lands, so the target's ability counts
     return True
 
 
@@ -1987,9 +2083,13 @@ def switch_in(b, side, index, slot=0):
     """A Pokemon comes in to a slot: volatile state resets, hazards bite."""
     leaving = side.cur() if slot == 0 else (side.mons[side.active2] if side.active2 is not None else None)
     b.status_src = None          # hazards give their status from no foe
+    gas = b.st.get("gas")
+    if gas:
+        gas_update(b, check=False)
     if leaving is not None and leaving.alive() and leaving is not side.mons[index]:
         # As it leaves: Natural Cure cures its status, and Oxide's
         # Regenerator gives back a third of its HP (BtlCmd_TryRestoreStatusOnSwitch).
+        # Neutralizing Gas on the field stops both: the ability reads None.
         if leaving.ability == "Natural Cure":
             leaving.status, leaving.sleep, leaving.toxic = None, 0, 0
         if leaving.ability == "Regenerator":
@@ -2000,6 +2100,8 @@ def switch_in(b, side, index, slot=0):
                 foe.trapped_by = None
             if foe.infatuated == leaving.key:
                 foe.infatuated = None    # love ends when its object leaves (battle_lib's switch-out)
+        if leaving.gas_stash is not None and leaving is not side.mons[index]:
+            leaving.ability, leaving.gas_stash = leaving.gas_stash, None   # its party record keeps its ability
     if slot == 0:
         side.cur().reset_volatile()
         side.active = index
@@ -2015,6 +2117,11 @@ def switch_in(b, side, index, slot=0):
     # faint replacement sent in after the end of the turn.
     new.turns_in = -1 if getattr(b, "mid_turn", False) else 0
     new.toxic = 0                # Toxic's count starts again on a switch
+    if gas:
+        # The gas reads live: a newcomer under it meets the hazards with its
+        # ability off, and a holder's arrival or departure turns the others'
+        # off or on at once.
+        gas_update(b, check=False)
     if side.hazards["rocks"]:
         eff = b.st["rock_eff"].get(new.key, 1)
         hurt(b, new, int(new.maxhp * eff / 8))
@@ -2026,20 +2133,18 @@ def switch_in(b, side, index, slot=0):
             side.hazards["tspikes"] = 0
         else:
             give_status(b, new, "psn" if side.hazards["tspikes"] == 1 else "tox")
-    weather = ABILITY_WEATHER.get(new.ability)
-    if weather:
-        b.weather, b.weather_turns = weather, 0
-    if new.ability in ENTRY_ANNOUNCED:
-        reveal(new)
-    if new.ability == "Intimidate":
-        for foe in (b.b if side is b.p else b.p).on_field():
-            if foe.alive() and not stat_drop_blocked(b, foe, {"atk": -1}):
-                change_stages(foe, {"atk": -1})
+    if gas and gas_update(b):
+        return                   # the gas wore off: the whole field's entry abilities went off, the newcomer's with them
+    entry_abilities(b, [new])
 
 
 def end_of_turn(b):
     _end_of_turn(b)
     b.mid_turn = False
+    if b.st.get("gas"):
+        # A holder that fell at the turn's end takes its gas with it now; the
+        # announcements it owes wait for its replacement's switch-in check.
+        gas_update(b, check=False)
 
 
 def battle_over(b):
@@ -3225,6 +3330,73 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             for w in weathers:
                 for d in bkeys:
                     pairs.append([d, twin, party_hits(d), w])
+    # Neutralizing Gas: while a holder stands on the field every other
+    # battler's ability is off (Battler_Ability), which the calculator's
+    # Generation 4 engine does not know. So each Pokemon that can meet a
+    # holder gets a twin with its ability blank (the stand-in, as for the
+    # AI's twin), rowed both ways against each holder it can face; in a
+    # double battle the gas reaches the whole field, so there every pair a
+    # battle can read is rowed again with each side's twins. A variant
+    # ("p0~1") shares its Pokemon's twin, since only the ability differs.
+    holders = [k for k in pkeys + qkeys + bkeys if pokemon[k].get("ability") == "Neutralizing Gas"]
+    gas_twin = {}
+    if holders:
+        ours = pkeys + qkeys
+
+        def gassed(k):
+            ab = pokemon[k].get("ability")
+            return bool(ab) and ab not in GAS_PROOF and ab != WEATHER_STAND_IN \
+                and pokemon[k].get("item") != "Ability Shield"
+
+        def twin(k):
+            if not gassed(k):
+                return k
+            t = k.split("~")[0] + "#ng"
+            if t not in pokemon:
+                pokemon[t] = dict(pokemon[k], ability=WEATHER_STAND_IN)
+            gas_twin[k] = t
+            return t
+
+        def hits_of(k):
+            return party_hits(k) if k in bkeys else hits(k)
+        seen = set()
+
+        def row_twice(a, d, w):
+            # a and d are base keys; the twins stand in where the gas reaches.
+            ta, td = twin(a), twin(d)
+            if (ta, td) == (a, d):
+                return
+            for x, y, mv in ((ta, td, hits_of(a)), (td, ta, hits_of(d))):
+                if (x, y, w) not in seen and mv:
+                    seen.add((x, y, w))
+                    pairs.append([x, y, mv, w])
+        whole_field = doubles or bool(partners)
+        for w in weathers:
+            for a in ours:
+                for d in bkeys:
+                    if whole_field or (a in holders) != (d in holders):
+                        row_twice(a, d, w)
+            if whole_field:
+                for group in (ours, bkeys):
+                    for a in group:
+                        if spread(a):
+                            for d in group:
+                                ta, td = twin(a), twin(d)
+                                if d != a and (ta, td) != (a, d) and (ta, td, w) not in seen:
+                                    seen.add((ta, td, w))
+                                    pairs.append([ta, td, spread(a), w])
+        # Magnitude's power keys, for a twin that can meet the gas.
+        for k in ours:
+            if "Magnitude" in moves.get(k, ()) and twin(k) != k:
+                for p in MAGNITUDE_POWERS:
+                    dk, tdk = f"{k}#m{p}", f"{twin(k)}#m{p}"
+                    pokemon.setdefault(tdk, dict(pokemon[dk], ability=WEATHER_STAND_IN))
+                    gas_twin[dk] = tdk
+                    for w in weathers:
+                        for d in bkeys:
+                            if (whole_field or d in holders) and (tdk, twin(d), w) not in seen:
+                                seen.add((tdk, twin(d), w))
+                                pairs.append([tdk, twin(d), ["Magnitude"], w])
     out = calc.run_node(calc.blob_path(), {"pokemon": pokemon, "pairs": pairs})
     rows, speed = {}, {}
     for r in out["results"]:
@@ -3244,7 +3416,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "bosses": boss_keys, "partners": partner_keys,
             "base_weather": calc.CALC_WEATHER.get(weather, weather) if weather else None,
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
-            "ai_twin": ai_twin}
+            "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin}
 
 
 def effectiveness(blob_or_chart, atk_type, def_types):
