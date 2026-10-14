@@ -651,6 +651,28 @@ def check_future_sight(results):
                     f"{sub}; 150 into a full Sturdy {foe.hp}"))
 
 
+def check_sleep_talk_rest(results):
+    """Rest fails on a Pokemon already asleep (subscript_rest: "is already
+    asleep!", approved 2026-10-13), which is how a Sleep Talk reaches it:
+    with Rest its only other move, Sleep Talk at 40 of 100 HP leaves the
+    sleeper at 40 and its sleep running down, where it used to heal it to
+    full and start a fresh sleep. Rest used awake still heals to full and
+    sleeps two turns."""
+    asleep = set()
+    for seed in range(20):
+        b, p, foe = battle(["Sleep Talk", "Rest"], ["Tackle"], {}, seed=seed)
+        p.hp, p.status, p.sleep = 40, "slp", 3
+        fs.use_move(b, p, fs.move("Sleep Talk"), foe, True)
+        asleep.add((p.hp, p.status, p.sleep))
+    b, p, foe = battle(["Rest"], ["Tackle"], {})
+    p.hp = 40
+    fs.use_move(b, p, fs.move("Rest"), foe, True)
+    awake = (p.hp, p.status, p.sleep)
+    ok = asleep == {(40, "slp", 2)} and awake == (100, "slp", 2)
+    results.append(("a Sleep Talk that calls Rest fails; Rest awake still heals", ok,
+                    f"(HP, status, sleep) after Sleep Talk asleep {sorted(asleep)}; Rest awake {awake}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -886,6 +908,7 @@ def main():
                   check_salt_cure, check_harvest, check_berry_first_hit,
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds, check_future_sight,
+                  check_sleep_talk_rest,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

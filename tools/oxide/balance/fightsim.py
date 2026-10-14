@@ -2202,7 +2202,9 @@ def status_move(b, att, mv, dfn, first):
         frac = 2 / 3 if b.weather == "Sun" else 1 / 4 if b.weather else 1 / 2
         heal(att, int(att.maxhp * frac))
     elif e == "REST":
-        if att.hp < att.maxhp:
+        # subscript_rest fails at full HP and on a Pokemon already asleep
+        # ("is already asleep!"), so a Sleep Talk that calls Rest does nothing.
+        if att.hp < att.maxhp and att.status != "slp":
             att.hp, att.status, att.sleep, att.toxic = att.maxhp, "slp", 2, 0
             cure_berry(att)          # a Chesto or Lum Berry wakes it at once
     elif e == "SWALLOW":

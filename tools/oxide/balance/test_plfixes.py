@@ -1423,8 +1423,9 @@ def future_sight_checks():
 
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
-    scores it +10 asleep, as the game does); Aqua Ring heals a sixteenth at
-    each turn's end (the Scoring Agent, 2026-10-01)."""
+    scores it +10 asleep, as the game does), and one that calls Rest does
+    nothing, as Rest fails on a sleeping user (2026-10-13); Aqua Ring heals a
+    sixteenth at each turn's end (the Scoring Agent, 2026-10-01)."""
     from .test_fightai import battle
     out = []
     b = battle([("Snorlax", 40, "Thick Fat", ["Sleep Talk", "Body Slam", "Aqua Ring"])],
@@ -1444,6 +1445,18 @@ def sleep_talk_and_aqua_ring_checks():
     fs.end_of_turn(b)
     out.append(("Aqua Ring heals a sixteenth at the turn's end", lax.hp - before == lax.maxhp // 16,
                 f"{before} -> {lax.hp} of {lax.maxhp}"))
+    # Rest fails on a sleeping user (approved 2026-10-13), so in the
+    # readings' battle a Sleep Talk that calls it leaves Snorlax's HP alone.
+    b = battle([("Snorlax", 40, "Thick Fat", ["Sleep Talk", "Rest"])], [("Machop", 40, "Guts", ["Cross Chop"])])
+    lax, champ = b.b.cur(), b.p.cur()
+    seen = set()
+    for seed in range(20):
+        b.rng, b.dice = random.Random(seed), pl.RunDice(random.Random(seed), True)
+        lax.hp, lax.status, lax.sleep = lax.maxhp // 2, "slp", 3
+        pl.use_move(b, lax, fs.move("Sleep Talk"), champ, True)
+        seen.add((lax.hp == lax.maxhp // 2, lax.sleep))
+    out.append(("search: a Sleep Talk that calls Rest leaves the sleeper's HP and sleep running down",
+                seen == {(True, 2)}, f"(HP unchanged, sleep left) {sorted(seen)}"))
     return out
 
 
