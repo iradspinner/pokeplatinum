@@ -1315,6 +1315,61 @@ def sleep_tick(att):
     return False
 
 
+# The ranges whose PP cost counts every Pressure holder standing on the other
+# side, and those that count none (BattleControllerPlayer_DecrementPP's switch);
+# any other range counts its target's own Pressure.
+PRESSURE_ALL = frozenset({"ALL_ADJACENT", "FIELD", "ADJACENT_OPPONENTS", "OPPONENT_SIDE"})
+PRESSURE_NONE = frozenset({"USER_SIDE", "USER", "USER_OR_ALLY", "ALLY"})
+# The ranges whose defender is the user itself or no one at the PP step, so
+# a single target's Pressure never counts for them.
+PRESSURE_NO_TARGET = frozenset({"SINGLE_TARGET_SPECIAL", "ALL"})
+
+
+def pp_cost(b, att, mv, dfn, targets=None):
+    """The PP a move costs as it is used (BattleControllerPlayer_DecrementPP):
+    one, and one more for each Pressure holder it meets on the other side
+    (Oxide counts only the opponents', the later games' rule): every one
+    standing for a move of the whole side or field and for Imprison and
+    Snatch, none for a move of the user's own side, its target's own for any
+    other. A Spikes or Toxic Spikes that fails at its last layer skips the
+    Pressure (BtlCmd_TrySpikes and TryToxicSpikes set skipPressureCheck).
+    Until 2026-10-14 every move cost one (Ian approved the fix)."""
+    foes = [m for m in (b.b if att.side == "p" else b.p).on_field() if m.alive()]
+    if mv.effect == "SET_SPIKES" or mv.effect == "TOXIC_SPIKES":
+        side = b.b if att.side == "p" else b.p
+        if side.hazards["spikes" if mv.effect == "SET_SPIKES" else "tspikes"] >= (3 if mv.effect == "SET_SPIKES" else 2):
+            return 1
+    if mv.name in ("Imprison", "Snatch") or mv.range in PRESSURE_ALL:
+        return 1 + sum(m.ability == "Pressure" for m in foes)
+    if mv.range in PRESSURE_NONE or mv.range in PRESSURE_NO_TARGET:
+        return 1
+    hit = targets if targets else [dfn]
+    return 1 + sum(1 for t in hit if t is not None and t is not att and t.side != att.side
+                   and t.ability == "Pressure")
+
+
+def paid_already(att, mv):
+    """Whether this turn's move costs no PP: a battler held in a charge or a
+    Rollout cannot choose its command, and the engine marks its turn as paid
+    (Battler_CanPickCommand false, so ppDecremented is set as commands are
+    chosen), so the strike of a charging move and every locked Rollout or Ice
+    Ball after the first cost nothing (Ian approved the fix of 2026-10-14)."""
+    if att.charging is not None:
+        return True
+    return att.lock is not None and att.lock[0].name == mv.name
+
+
+def spend_pp(b, att, mv, dfn, targets=None):
+    """The PP step of a move: nothing on a turn already paid (paid_already),
+    else pp_cost, never below 0 (the engine sets 0 when the cost is more
+    than what is left)."""
+    if paid_already(att, mv):
+        return
+    cost = pp_cost(b, att, mv, dfn, targets)
+    left = att.pp.get(mv.name, 1)
+    att.pp[mv.name] = left - 1 if cost == 1 else max(0, left - cost)
+
+
 def use_move(b, att, mv, dfn, first, targets=None):
     """One move, from its user's turn check to its last effect, and then the
     switch-in check that ends every action (BattleControllerPlayer_MoveEnd),
@@ -1369,7 +1424,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     if (att.taunt and mv.cat == "Status") or tormented_out(att, mv) or move_heal_blocked(att, mv):
         return could_not_act(b, att, mv, dfn, targets)
     mark_hit(b, mv, dfn, True, targets)
-    att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
+    spend_pp(b, att, mv, dfn, targets)
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
         att.protect_run = 0
     att.last = mv

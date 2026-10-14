@@ -1429,6 +1429,27 @@ def protect_checks():
              f"{phantom}; Detect at run 4 worked {works / 4000:.3f}; planner's event {offered}")]
 
 
+def pp_checks():
+    """PP on the readings' path, on the calculator's real rows (approved
+    2026-10-14): a Staravia's Fly costs one PP over its two turns, the
+    strike's turn already paid (it cost two), and its Quick Attack into a
+    Pressure Dusclops costs two (it cost one)."""
+    from .test_fightai import battle
+    b = battle([("Geodude", 30, "Rock Head", ["Tackle"]), ("Dusclops", 30, "Pressure", ["Night Shade"])],
+               [("Staravia", 30, "Reckless", ["Fly", "Quick Attack"])])
+    geodude, dusclops = b.b.mons
+    star = b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, star, fs.move("Fly"), geodude, True)
+    pl.use_move(b, star, star.charging, geodude, True)
+    fly = 15 - star.pp["Fly"]
+    fs.switch_in(b, b.b, 1)
+    pl.use_move(b, star, fs.move("Quick Attack"), dusclops, True)
+    quick = fs.move("Quick Attack").pp - star.pp["Quick Attack"]
+    return [("the readings charge PP once a choice, and Pressure adds one", (fly, quick, star.charging) == (1, 2, None),
+             f"Fly over its two turns {fly}; Quick Attack into Pressure {quick}")]
+
+
 def hit_by_hit_checks():
     """A move of several hits on the readings' path lands hit by hit
     (perfectline.multi_hit, fightsim.land_hits; approved 2026-10-14). On
@@ -2179,6 +2200,7 @@ def main():
     results += two_hit_checks()
     results += hit_by_hit_checks()
     results += protect_checks()
+    results += pp_checks()
     results += future_sight_checks()
     results += disable_and_nightmare_checks()
     results += pivot_checks()

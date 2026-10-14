@@ -758,6 +758,41 @@ def check_protect_odds(results):
                     f"works at runs 3, 4, 5: {runs}; acting last: (protecting, run) {last}"))
 
 
+def check_pp_engine(results):
+    """PP as the engine charges it (BattleControllerPlayer_DecrementPP,
+    approved 2026-10-14): once, on a turn the battler chose its command, so
+    Fly's strike and a Rollout's locked uses cost nothing (a charging or
+    locked battler cannot choose, and its turn is marked paid), and one more
+    for each Pressure holder it meets on the other side: a Tackle into one
+    costs 2, as do Stealth Rock, Haze and Growl, which count the whole side,
+    while Sleep Talk, whose target is its user, costs 1; a cost above the PP
+    left leaves 0 (a Pressure Tackle at its last PP, Rain Dance at its one).
+    Before, every use of every move cost 1."""
+    def used(names, *turns, ability=None):
+        b, p, foe = battle(names, ["Tackle"], {("p", n): [10] * 16 for n in names}, hp=400)
+        foe.ability = ability or foe.ability
+        for name in turns:
+            mv = next(m for m in p.moves if m.name == name)
+            fs.use_move(b, p, p.charging or (p.lock[0] if p.lock else mv), foe, True)
+        return {m.name: m.pp - p.pp[m.name] for m in p.moves}
+    fly = used(["Fly"], "Fly", "Fly")
+    rollout = used(["Rollout"], "Rollout", "Rollout", "Rollout", "Rollout")
+    pressure = used(["Tackle", "Stealth Rock", "Haze", "Growl"], "Tackle", "Stealth Rock", "Haze", "Growl",
+                    ability="Pressure")
+    own = used(["Swords Dance", "Rain Dance"], "Swords Dance", "Rain Dance", ability="Pressure")
+    sleep_talk = used(["Sleep Talk"], "Sleep Talk", ability="Pressure")
+    b, p, foe = battle(["Tackle"], ["Tackle"], {})
+    foe.ability, p.pp["Tackle"] = "Pressure", 1
+    fs.use_move(b, p, fs.move("Tackle"), foe, True)
+    ok = (fly == {"Fly": 1} and rollout == {"Rollout": 1}
+          and pressure == {"Tackle": 2, "Stealth Rock": 2, "Haze": 2, "Growl": 2}
+          and own == {"Swords Dance": 1, "Rain Dance": 1} and sleep_talk == {"Sleep Talk": 1} and p.pp["Tackle"] == 0)
+    results.append(("PP is spent once a choice, and Pressure adds one", ok,
+                    f"PP spent: Fly over its two turns {fly}, Rollout over four uses {rollout}; into Pressure "
+                    f"{pressure}, Swords Dance and Rain Dance at their 1 PP {own}, Sleep Talk {sleep_talk}; "
+                    f"Tackle at 1 PP into Pressure leaves {p.pp['Tackle']}"))
+
+
 def check_future_sight(results):
     """Future Sight and Doom Desire (approved 2026-10-13; BtlCmd_TryFutureSight
     and the turn's end, SIDE_COND_CHECK_STATE_FUTURE_SIGHT): the damage is
@@ -1308,7 +1343,7 @@ def main():
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds,
                   check_hits_one_by_one, check_hits_hold_and_heal, check_triple_axel,
-                  check_protect_flag, check_protect_odds, check_future_sight,
+                  check_protect_flag, check_protect_odds, check_pp_engine, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean,
