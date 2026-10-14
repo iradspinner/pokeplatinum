@@ -457,6 +457,7 @@ class Side:
         self.tailwind = 0
         self.hazards = {"rocks": 0, "spikes": 0, "tspikes": 0}
         self.safeguard = 0
+        self.mist = 0                    # Mist's turns left (sideConditions.mistTurns)
         self.wish = 0                    # Wish's turn ends left: it heals at the second
         # Future Sight and Doom Desire waiting on each of the side's two slots
         # (fieldConditions.futureSight*): (turn ends left, damage, move, the
@@ -826,7 +827,8 @@ def intimidate_foes(b, mons):
     for new in mons:
         if new.ability == "Intimidate":
             for foe in (b.b if new.side == "p" else b.p).on_field():
-                if foe.alive() and not intimidate_blocked(b, foe):
+                # subscript_intimidate passes over a foe behind a Substitute.
+                if foe.alive() and not foe.sub and not intimidate_blocked(b, foe):
                     change_stages(foe, {"atk": -1})
 
 
@@ -838,13 +840,13 @@ INTIMIDATE_PROOF = frozenset({"Inner Focus", "Own Tempo", "Oblivious", "Scrappy"
 
 
 def intimidate_blocked(b, foe):
-    """Whether foe's ability stops an Intimidate: one of the four that stop
-    it alone, or one that stops any drop of Attack (stat_drop_blocked). The
-    engine's message names the ability either way."""
-    if foe.ability in INTIMIDATE_PROOF:
-        reveal(foe)
-        return True
-    return stat_drop_blocked(b, foe, {"atk": -1})
+    """Whether an Intimidate's drop is stopped: by what stops any drop from
+    the other side (stat_drop_blocked: Mist, the Clear Amulet and the
+    abilities), with the four that stop Intimidate alone checked where
+    BtlCmd_ChangeStatStage checks them, after Mist, the Clear Amulet, Clear
+    Body and White Smoke and before Hyper Cutter. The engine's message names
+    the ability that stops it."""
+    return stat_drop_blocked(b, foe, {"atk": -1}, intimidate=True)
 
 
 def open_battle(b):
@@ -867,19 +869,38 @@ def open_battle(b):
     intimidate_foes(b, sorted(leads, key=b.speed, reverse=not b.trick_room))
 
 
-def stat_drop_blocked(b, mon, changes):
-    """Whether mon's ability stops a drop the foe inflicts (Clear Body and
-    White Smoke stop any; Hyper Cutter Attack, Keen Eye accuracy, Big Pecks
-    Defense); the ability that stops it is named."""
+def stat_drop_blocked(b, mon, changes, src=None, intimidate=False):
+    """Whether a drop from the other side is stopped, in BtlCmd_ChangeStatStage's
+    order: Mist on mon's side, which an Infiltrator `src` passes; a Clear
+    Amulet (Oxide, element 7); then mon's ability, named as it stops it:
+    Clear Body and White Smoke any drop, with `intimidate` Inner Focus, Own
+    Tempo, Oblivious and Scrappy, Hyper Cutter an Attack drop, Keen Eye an
+    accuracy drop, Big Pecks a Defense drop. Mist and the Amulet were
+    added on 2026-10-14 (Ian approved the fix)."""
     falls = {k for k, v in changes.items() if v < 0}
     if not falls:
         return False
+    side = b.p if mon.side == "p" else b.b
+    if getattr(side, "mist", 0) and (src is None or src.ability != "Infiltrator"):
+        return True
+    if mon.item == "Clear Amulet":
+        return True
     ab = mon.ability
-    if ab in ("Clear Body", "White Smoke") or (ab == "Hyper Cutter" and falls <= {"atk"}) \
+    if ab in ("Clear Body", "White Smoke") or (intimidate and ab in INTIMIDATE_PROOF) \
+            or (ab == "Hyper Cutter" and falls <= {"atk"}) \
             or (ab == "Keen Eye" and falls <= {"acc"}) or (ab == "Big Pecks" and falls <= {"def"}):
         reveal(mon)
         return True
     return False
+
+
+def mist(side):
+    """Mist (BtlCmd_TryMist): five turns in which the other side's moves and
+    abilities cannot lower the stats of this side's Pokemon
+    (stat_drop_blocked), counted down at each turn's end; it fails while
+    one runs. Until 2026-10-14 the move did nothing (Ian approved the fix)."""
+    if not side.mist:
+        side.mist = 5
 
 
 # The powder and spore moves (battle_lib.c, sPowderMoves): Grass types and
@@ -1722,7 +1743,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
             and not confusion_blocked(b, att, dfn, hit=True):
         dfn.confused = b.rng.randint(2, 5)
         confusion_berry(dfn)
-    if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance and not stat_drop_blocked(b, dfn, HIT_FOE_STAGES[e]):
+    if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance \
+            and not stat_drop_blocked(b, dfn, HIT_FOE_STAGES[e], src=att):
         change_stages(dfn, HIT_FOE_STAGES[e])
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
         start_heal_block(att, dfn, mv)
@@ -2712,7 +2734,7 @@ def status_move(b, att, mv, dfn, first):
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in FOE_STAGES:
-        if not sub_blocks(att, dfn, mv) and not stat_drop_blocked(b, dfn, FOE_STAGES[e]):
+        if not sub_blocks(att, dfn, mv) and not stat_drop_blocked(b, dfn, FOE_STAGES[e], src=att):
             change_stages(dfn, FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:
@@ -2787,6 +2809,8 @@ def status_move(b, att, mv, dfn, first):
             m.status = None
     elif e == "PREVENT_STATUS":
         own_side.safeguard = 5
+    elif e == "PREVENT_STAT_REDUCTION":
+        mist(own_side)
     elif e == "TAUNT":
         if not dfn.taunt:
             dfn.taunt = b.rng.randint(3, 5)
@@ -2972,6 +2996,7 @@ def _end_of_turn(b):
         side.screens = {k: max(0, v - 1) for k, v in side.screens.items()}
         side.tailwind = max(0, side.tailwind - 1)
         side.safeguard = max(0, side.safeguard - 1)
+        side.mist = max(0, getattr(side, "mist", 0) - 1)
     for m in order:
         side = b.p if m.side == "p" else b.b
         if side.wish and m is side.cur():

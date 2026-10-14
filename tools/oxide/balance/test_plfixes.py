@@ -1488,6 +1488,33 @@ def curse_rest_checks():
              f"Insomnia's Rest (healed, status, named) {rest}")]
 
 
+def mist_intimidate_checks():
+    """Mist and Intimidate on the readings' path, on the calculator's real
+    rows (approved 2026-10-14): a Lombre's Mist keeps a Granbull's
+    Intimidate and a Glameow's Growl off its Attack (both cut it), the
+    trainer's AI then scores a second Mist -8, where it scored 0, and once
+    Mist is gone a Substitute keeps Intimidate off (it cut it)."""
+    from .test_fightai import battle
+    b = battle([("Glameow", 25, "Limber", ["Growl"]), ("Granbull", 25, "Intimidate", ["Bite"])],
+               [("Lombre", 25, "Swift Swim", ["Mist", "Water Gun"])])
+    glameow, granbull = b.b.mons
+    lombre = b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.status_move(b, lombre, fs.move("Mist"), glameow, True)
+    pl.status_move(b, glameow, fs.move("Growl"), lombre, True)
+    fs.switch_in(b, b.b, 1)
+    misted = (lombre.stages["atk"], getattr(b.p, "mist", 0))
+    score = fightai.basic(b, lombre, granbull, fs.move("Mist"), None)
+    b.p.mist, lombre.stages["atk"] = 0, 0
+    fs.switch_in(b, b.b, 0)
+    lombre.sub = lombre.maxhp // 4
+    fs.switch_in(b, b.b, 1)
+    behind = lombre.stages["atk"]
+    return [("the readings' Mist stops Growl and Intimidate, the AI reads it, and a Substitute stops Intimidate",
+             misted == (0, 5) and score == -8 and behind == 0,
+             f"under Mist (Attack, turns) {misted}; a second Mist scores {score}; behind a Substitute {behind}")]
+
+
 def pp_checks():
     """PP on the readings' path, on the calculator's real rows (approved
     2026-10-14): a Staravia's Fly costs one PP over its two turns, the
@@ -2262,6 +2289,7 @@ def main():
     results += pp_checks()
     results += confusion_checks()
     results += curse_rest_checks()
+    results += mist_intimidate_checks()
     results += future_sight_checks()
     results += disable_and_nightmare_checks()
     results += pivot_checks()

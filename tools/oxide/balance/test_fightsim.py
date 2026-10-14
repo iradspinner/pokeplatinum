@@ -882,6 +882,61 @@ def check_curse_and_rest(results):
                     f"Curse (user's HP lost, target cursed) {curses}; Rest (HP, status, named) {rests}"))
 
 
+def check_mist_and_intimidate(results):
+    """Mist, and Intimidate against a Substitute, Mist and a Clear Amulet
+    (approved 2026-10-14). Mist (BtlCmd_TryMist) keeps the other side from
+    lowering its side's stats for five turn ends, Growl and a hit's drop
+    alike, and a second Mist while one runs fails; an Infiltrator's Growl
+    and Mud-Slap pass it. An Intimidate
+    coming in passes over a foe behind a Substitute (subscript_intimidate),
+    and Mist and a Clear Amulet stop it (BtlCmd_ChangeStatStage), Mist
+    before Inner Focus is named. The trainer's AI reads the side's Mist, so
+    a second Mist scores -8. Before, Mist did nothing and Intimidate cut all
+    three."""
+    def growl(mist_on, attacker=None):
+        b, p, foe = battle(["Mist"], ["Growl", "Mud-Slap"], {("b", "Mud-Slap"): [5] * 16})
+        if mist_on:
+            fs.status_move(b, p, fs.move("Mist"), foe, True)
+        foe.ability = attacker or foe.ability
+        foe.stages["acc"] = 6
+        fs.status_move(b, foe, fs.move("Growl"), p, True)
+        fs.attack(b, foe, fs.move("Mud-Slap"), p, True)
+        return p.stages["atk"], p.stages["acc"]
+    b, p, foe = battle(["Mist"], ["Tackle"], {})
+    fs.status_move(b, p, fs.move("Mist"), foe, True)
+    turns = [b.p.mist]
+    fs.end_of_turn(b)
+    fs.end_of_turn(b)
+    fs.status_move(b, p, fs.move("Mist"), foe, True)       # fails while one runs
+    turns.append(b.p.mist)
+    for _ in range(3):
+        fs.end_of_turn(b)
+    turns.append(b.p.mist)
+    fs.status_move(b, p, fs.move("Mist"), foe, True)       # a fresh one once the last ran out
+    ai = fightai.basic(b, p, foe, fs.move("Mist"), None)
+
+    def intimidated(sub=0, mist_on=False, item=None, ability=None):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        p.sub, p.item, p.ability = sub, item, ability or p.ability
+        b.p.mist = 5 if mist_on else 0
+        foe.ability = "Intimidate"
+        fs.switch_in(b, b.b, 0)
+        return p.stages["atk"], p.revealed
+    got = {"Growl and Mud-Slap": growl(False), "under Mist": growl(True),
+           "an Infiltrator under Mist": growl(True, "Infiltrator"),
+           "Intimidate": intimidated(), "behind a Substitute": intimidated(sub=25),
+           "Intimidate under Mist": intimidated(mist_on=True),
+           "Intimidate on Inner Focus under Mist": intimidated(mist_on=True, ability="Inner Focus"),
+           "Intimidate on a Clear Amulet": intimidated(item="Clear Amulet")}
+    want = {"Growl and Mud-Slap": (-1, -1), "under Mist": (0, 0), "an Infiltrator under Mist": (-1, -1),
+            "Intimidate": (-1, None), "behind a Substitute": (0, None), "Intimidate under Mist": (0, None),
+            "Intimidate on Inner Focus under Mist": (0, None), "Intimidate on a Clear Amulet": (0, None)}
+    ok = got == want and turns == [5, 3, 0] and ai == -8
+    results.append(("Mist stops the other side's drops for five turns; Intimidate passes a Substitute, and Mist and "
+                    "a Clear Amulet stop it", ok,
+                    f"(Attack, accuracy or named) {got}; Mist's turns {turns}; the AI's score for a second Mist {ai}"))
+
+
 def check_future_sight(results):
     """Future Sight and Doom Desire (approved 2026-10-13; BtlCmd_TryFutureSight
     and the turn's end, SIDE_COND_CHECK_STATE_FUTURE_SIGHT): the damage is
@@ -1433,7 +1488,7 @@ def main():
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds,
                   check_hits_one_by_one, check_hits_hold_and_heal, check_triple_axel,
                   check_protect_flag, check_protect_odds, check_pp_engine, check_confusion_blockers,
-                  check_curse_and_rest, check_future_sight,
+                  check_curse_and_rest, check_mist_and_intimidate, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean,

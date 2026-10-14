@@ -798,7 +798,7 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         dfn.confused = b.dice.confusion(dfn.side)
         fs.confusion_berry(dfn)          # a Lum Berry cures it at once
     if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100) \
-            and not fs.stat_drop_blocked(b, dfn, fs.HIT_FOE_STAGES[e]):
+            and not fs.stat_drop_blocked(b, dfn, fs.HIT_FOE_STAGES[e], src=att):
         fs.change_stages(dfn, fs.HIT_FOE_STAGES[e])
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
         fs.start_heal_block(att, dfn, mv)
@@ -869,7 +869,7 @@ def status_move(b, att, mv, dfn, first):
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in fs.FOE_STAGES:
-        if not fs.sub_blocks(att, dfn, mv) and not fs.stat_drop_blocked(b, dfn, fs.FOE_STAGES[e]):
+        if not fs.sub_blocks(att, dfn, mv) and not fs.stat_drop_blocked(b, dfn, fs.FOE_STAGES[e], src=att):
             fs.change_stages(dfn, fs.FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:
@@ -953,6 +953,8 @@ def status_move(b, att, mv, dfn, first):
             m.status = None
     elif e == "PREVENT_STATUS":
         own_side.safeguard = 5
+    elif e == "PREVENT_STAT_REDUCTION":
+        fs.mist(own_side)                # Mist, five turns (fightsim.mist)
     elif e == "TAUNT":
         if not dfn.taunt:
             dfn.taunt = b.dice.taunt(dfn.side)
@@ -1009,6 +1011,7 @@ def clone_side(s):
     c.name, c.active, c.active2 = s.name, s.active, s.active2
     c.screens = dict(s.screens)
     c.tailwind, c.safeguard, c.wish = s.tailwind, s.safeguard, getattr(s, "wish", 0)
+    c.mist = getattr(s, "mist", 0)
     c.hazards = dict(s.hazards)
     c.future, c.future_sight = s.future, s.future_sight        # a waiting Future Sight (tuples, shared safely)
     return c
@@ -1047,7 +1050,8 @@ def mon_key(m):
 
 def side_key(s):
     return (s.active, tuple(mon_key(m) for m in s.mons), tuple(s.screens.values()), s.tailwind,
-            tuple(s.hazards.values()), s.safeguard, getattr(s, "wish", 0), s.future, s.future_sight)
+            tuple(s.hazards.values()), s.safeguard, getattr(s, "wish", 0), s.future, s.future_sight,
+            getattr(s, "mist", 0))
 
 
 def state_key(b):
@@ -1060,7 +1064,7 @@ def shape_key(b):
     def side(sd):
         return (sd.active, tuple(mon_key(m)[1:] for m in sd.mons), tuple(sd.screens.values()),
                 sd.tailwind, tuple(sd.hazards.values()), sd.safeguard, getattr(sd, "wish", 0),
-                sd.future, sd.future_sight)
+                sd.future, sd.future_sight, getattr(sd, "mist", 0))
     return (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room,
             getattr(b, "declined", frozenset()))
 
@@ -1110,7 +1114,7 @@ def ai_key(b):
             b.p.active, b.b.active, tuple(b.p.screens.values()), tuple(b.b.screens.values()),
             b.p.tailwind, b.b.tailwind, tuple(b.p.hazards.values()), tuple(b.b.hazards.values()),
             b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick,
-            b.p.future_sight, b.b.future_sight)
+            b.p.future_sight, b.b.future_sight, getattr(b.p, "mist", 0) > 0, getattr(b.b, "mist", 0) > 0)
 
 
 _AI_CACHE = {}
