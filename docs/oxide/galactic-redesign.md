@@ -5,43 +5,39 @@ scratch around its trainer's theme (`boss-shapes.md`), in play order, the
 order the boss readings follow. This page holds the drafts, the plan for the
 fights not yet drafted, and what each reading found.
 
-## Summary (2026-10-13)
+## Summary (2026-10-13, late)
 
-The first four fights in play order are drafted. Mars 1 (the crazy cat lady)
-is being read. Somnu 1, Moira 1 and Jupiter 1 are written on the study
-branch `overseer-galactic-teams` and are not in the game yet. Somnu 1's
-reading starts after the locked Gardenia's tonight; Jupiter 1's waits for the
-Neutralizing Gas simulator change, which a helper is building now; Moira 1's
-waits on Ian's answer below. No comb landing will overwrite any of these
-teams (the tracker's comb entry lists the protected files).
+Mars 1's first reading was far too hard, and the checks on the simulator
+found that several drafted mechanics do not run there. Nothing new is read
+until the fixes Ian approved have landed.
 
-What Ian decides:
-
-1. **Future Sight in the simulator.** Moira's theme is Future Sight, and the
-   simulator runs it as an ordinary hit on the turn it is used. In Oxide's
-   engine it is the Generation 4 move: the damage is fixed when it is used,
-   ignores type, and lands at the end of the second turn after, on whatever
-   stands in that slot. May the simulator follow the engine (Doom Desire
-   shares the code)? Moira 1's reading waits on it.
-2. **The three drafts below.** Each is a first try at "a full redesign".
-   Notes on style now steer the other 21 before they are built.
-3. **The species plan** further down, one line per fight. Anything to move
-   or cut is cheap to change at this stage.
-4. **A Drizzle Zapdos for Jupiter's last fight** needs Zapdos's hidden
-   ability (today Static) to become Drizzle. The weather ruling allows it,
-   since a player could reach it only with the single Ability Patch. Yes or
-   no.
-
-Next steps, in order:
-
-| Step | Takes |
+| Fight | State |
 |---|---|
-| Mars 1's reading finishes | about 10 more minutes |
-| The locked Gardenia's reading | about 70 minutes |
-| Somnu 1's reading | about an hour |
-| Jupiter 1's reading, once Neutralizing Gas lands | about 70 minutes |
-| Moira 1's reading, once Future Sight is approved and built | about an hour |
-| Drafting Argo 1 and Cyrus 1 (Byron's split), then Candice's four | 30 to 45 minutes a fight |
+| Mars 1 | Read: 51 percent won (boxes 44, 13 and 97). Ian chose three dials for the second reading |
+| Somnu 1 | Ian's changes applied (below); waits for the fixes |
+| Moira 1 | Shape approved by Ian; waits for Future Sight's fix |
+| Jupiter 1 | Waits for the Unburden fix, since its Pelipper would read four times as fast |
+| Argo 1, Cyrus 1 | Drafted, not yet put to Ian |
+
+What changed tonight, by Ian's answers. Somnu 1: Drowzee takes Drain Punch
+for Disable, so it can hurt the Dark lead it puts to sleep; Gastly takes
+Sludge for Lick, so Normal types stop walling it; Munchlax becomes a Yawn
+tank (Yawn, Body Slam, Crunch, Brick Break). Mars 1: Torracat's Fire Fang
+becomes Flame Wheel, Golbat's Zen Headbutt becomes Bite and its Sharp Beak
+Leftovers, and Purugly's Thunderbolt becomes Shock Wave. He approved six
+simulator fixes (the table at the end), and asked for a verified list of
+every move, ability and item the simulator does not run, which a helper is
+building.
+
+What Ian decides next: the rest of the gaps list once it is ready, Argo 1's
+and Cyrus 1's drafts, and the Drizzle Zapdos for Jupiter's last fight
+(Zapdos's hidden ability, today Static, would become Drizzle).
+
+| Next step | Takes |
+|---|---|
+| The six simulator fixes, built and reviewed | one to two hours |
+| Readings of Somnu 1, Mars 1, Jupiter 1 and Moira 1, in that order | about 70 minutes each |
+| The verified gaps list | a few hours |
 
 ## The drafts
 
@@ -49,23 +45,26 @@ Next steps, in order:
 
 | Pokemon | Level | Ability | Item | Nature | Moves |
 |---|---|---|---|---|---|
-| Drowzee | 17 | Insomnia | Quick Claw | Bold | Hypnosis, Dream Eater, Psybeam, Disable |
-| Gastly | 17 | Levitate | Colbur Berry | Timid | Hypnosis, Hex, Nightmare, Lick |
-| Munchlax | 17 | Guts | Leftovers | Careful | Rest, Sleep Talk, Body Slam, Yawn |
+| Drowzee | 17 | Insomnia | Quick Claw | Bold | Hypnosis, Dream Eater, Psybeam, Drain Punch |
+| Gastly | 17 | Levitate | Colbur Berry | Timid | Hypnosis, Hex, Nightmare, Sludge |
+| Munchlax | 17 | Guts | Leftovers | Careful | Yawn, Body Slam, Crunch, Brick Break |
 | Butterfree | 18 | Compound Eyes | Charti Berry | Modest | Sleep Powder, Air Cutter, Psybeam, Silver Wind |
 
-Each member carries a different kind of sleep. Drowzee, the hypnotist,
-leads with Hypnosis and Dream Eater, and its Quick Claw now and then puts the
-lead to sleep before the lead can hit it. Gastly punishes a sleeper: Hex
-doubles against any status, and Nightmare is the theme's signature, while its
-Colbur Berry carries it through one Bite. Munchlax sleeps on purpose, Rest
-and then Sleep Talk into a Body Slam that Guts raises while it sleeps, and
-its Yawn pushes the player to switch. Butterfree's Compound Eyes Sleep Powder
-lands about 97 times in 100 on anything that is not Grass. The player's Grass
-types are immune to powders, which makes them the natural answer, and Air
-Cutter is there to punish them. Somnu fights at Valley Windworks just before
-Mars, so her ace sits a level under Mars's Purugly, and the scorer reads her
-at 18 on the same three boxes.
+Ian's note on the first draft: outside Butterfree, each member was easy to
+wall. The numbers bore it out. At level 18 the three boxes all hold Vullaby
+and Nuzleaf, and Drowzee's Psybeam and Dream Eater do nothing to them, so
+Drowzee could put a Dark lead to sleep and then not touch it; Drain Punch
+does about half of Nuzleaf's HP and a third to half of the Normal walls.
+Gastly's Ghost moves do nothing to Bibarel, Wooloo or Staravia; Sludge does
+40 to 70 percent of theirs and knocks out Nuzleaf. Munchlax was never walled
+by Normal or Dark types (Body Slam does about half of theirs), but each box
+carries a Rock type that takes a fifth from it, and asleep it attacked only
+one turn in three, since Sleep Talk picked Rest and Yawn as often as Body
+Slam. As a Yawn tank it forces switches and hits the walls that come in:
+Brick Break for the Rock types, Crunch for Ghosts. Drowzee and Munchlax are
+the slowest Pokemon on the field (Speed 24 and 11 against 27 to 36 for the
+walls), so their sleep moves come after the player has hit them; Gastly and
+Butterfree are the fast ones.
 
 ### Moira 1, the Eterna building's 3F (Future Sight, Ice and hail)
 
@@ -104,6 +103,36 @@ the two after (the engine's Generation 4 rule, not the later games' four
 turns), and after the Gardenia readings' lesson on speed it is the piece most
 likely to decide the fight. The target is a step below Gardenia: 75 to 85 percent won if
 Gardenia reads 70 to 80.
+
+### Mars 1, Valley Windworks (the crazy cat lady)
+
+| Pokemon | Level | Ability | Item | Nature | Moves |
+|---|---|---|---|---|---|
+| Liepard | 18 | Prankster | BlackGlasses | Timid | Thunder Wave, Taunt, Dark Pulse, U-turn |
+| Torracat | 18 | Intimidate | Eviolite | Impish | Flame Wheel, Double Kick, Will-O-Wisp, U-turn |
+| Floragato | 18 | Protean | Miracle Seed | Adamant | Seed Bomb, Play Rough, Bite, Quick Attack |
+| Golbat | 18 | Inner Focus | Leftovers | Hasty | Dual Wingbeat, Leech Life, Bite, Confuse Ray |
+| Purugly | 19 | Thick Fat | Sitrus Berry | Jolly | Fake Out, Facade, Knock Off, Shock Wave |
+
+The first reading, on the team before Ian's three dials, at level 19:
+
+| Box | Won | Faints | The six |
+|---|---|---|---|
+| 1 | 44% | 4.83 | Grotle, Luxio, Dustox, Fletchinder, Nosepass, Krabby |
+| 2 | 13% | 5.68 | Raboot, Surskit, Bibarel, Nidorino, Ponyta, Nacli |
+| 3 | 97% | 2.27 | Nidorino, Machop, Vullaby, Zubat, Onix, Pachirisu |
+
+Box 3 had Machop for Purugly and Liepard and Onix for Torracat and Golbat;
+the other two had no Fighting answer in their six. In the replayed fights
+the faints fell to Purugly's Facade and Thunderbolt, Torracat's Fire Fang
+(90 power in Oxide), Golbat's Zen Headbutt, Dual Wingbeat and Leech Life,
+Liepard's Dark Pulse and Floragato's Seed Bomb. Liepard and Purugly
+outspeed every Pokemon in the three boxes on base Speed alone, so Speed
+natures were no lever. The reading was also bent by the simulator: Protean
+did nothing (Floragato hit softer than in the game), and Torracat's
+Intimidate counted twice against every physical attacker and lowered box
+3's Inner Focus Zubat, which the game protects. Ian's three dials take the top killers but Facade
+a rung down and leave the cats' speed and pivots alone.
 
 ## The plan for the other 21
 
@@ -145,13 +174,21 @@ Drapion and Spiritomb.
 
 ## Simulator gaps met so far
 
-The drafts avoid moves the simulator does not run, except where a theme
-needs one. Each fix below waits on Ian's approval.
+Each verdict below comes from a test battle or the code that runs the
+effect, after a name search in the code proved unreliable (it passed Future
+Sight and Baton Pass). The helper's full list will replace this table.
 
 | Gap | Where it matters | State |
 |---|---|---|
-| Neutralizing Gas only announces itself | Jupiter 1's Galarian Weezing | Approved on 2026-10-13; being built |
-| Future Sight and Doom Desire land at once, typed | Moira's three fights | Asked above |
-| Bad Dreams does nothing | Somnu 3's Darkrai | To ask before Somnu 3 is read |
-| Parting Shot does nothing | Incineroar, if Mars's doubles want it | Not used yet |
-| Clear Smog, Struggle Bug, Frost Breath and Relic Song run as plain hits | none | Avoided |
+| Neutralizing Gas only announced itself | Jupiter 1's Galarian Weezing | Fixed, landed 93ad73726 |
+| Future Sight and Doom Desire land at once, typed | Moira's fights | Approved 2026-10-13, being built |
+| A Sleep Talk that calls Rest heals; the game's Rest fails on a sleeper | any Rest and Sleep Talk user | Approved, being built |
+| Disable and Nightmare do nothing | Somnu 1's Gastly | Approved, being built |
+| Intimidate lowers Inner Focus, Own Tempo, Oblivious and Scrappy; two-hit moves never finish a Sturdy Pokemon | Mars 1, Cyrus 1, every Double Kick user | Approved, being built |
+| Intimidate counted twice (calculator and battle) | every Intimidate user | Approved, being built |
+| Unburden counted twice | Jupiter 1's Pelipper | Approved, being built |
+| Protean does nothing | Mars 1's Floragato | Open |
+| Ice Body never heals; Encore does nothing; Magic Guard does not stop hazards | Moira 1 | Open |
+| Unnerve does not stop Sitrus Berries; Mummy and Cursed Body do nothing | Argo 1 | Open |
+| Baton Pass does nothing; Dream Eater hits an awake target | none of the drafts | Open |
+| Download re-picked for each foe | Cyrus 1's Porygon-Z | Open, small |
