@@ -1857,7 +1857,9 @@ def attack(b, att, mv, dfn, first):
         dmg = use_damage(att, mv, dmg, hits)
         dmg = berry_first_hit(b, dfn, mv, dmg, hits)
         if mv.effect == "DOUBLE_POWER_IF_MOVING_SECOND" and not first:
-            dmg *= 2
+            # BtlCmd_CalcPaybackPower: twice the power once the target has
+            # acted this turn (moved, switched or used an item).
+            dmg = int(dmg * doubled_power(att, mv))
         # A doubled power meets Technician after it is doubled (doubled_power).
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
             dmg = int(dmg * doubled_power(att, mv))
@@ -2599,6 +2601,16 @@ def state_mult(b, att, dfn, mv):
         # calculator's Generation 4 path has no Sand Force. Until 2026-10-14
         # it did nothing (Ian approved the fix).
         m *= 1.3
+    if mv.const == "MOVE_PAYBACK" and b.row_speed(att) <= b.row_speed(dfn):
+        # The calculator rows Payback at twice its power for a user no
+        # faster than its target (gen4.js: turnOrder 'last'), and the battle
+        # then doubles it again when the target has acted first. The engine
+        # doubles it once, on the turn's own order (BtlCmd_CalcPaybackPower),
+        # and the trainer's AI reckons it at its table power. So the row goes
+        # back to that power here, Technician judged at each, and attack()
+        # doubles it as the turn runs. Until 2026-10-14 a slower Payback user
+        # hit at four times the power (Ian approved the fix).
+        m *= power_ratio(att, 2 * mv.power, mv.power)
     if mv.const in ("MOVE_STORED_POWER", "MOVE_POWER_TRIP"):
         # BattleScript_ComputedMovePower: 20, and 20 more for each stage its
         # user has raised a stat, accuracy and evasion included; the row is

@@ -2471,6 +2471,33 @@ def rivalry_checks():
              f"Spark's top roll into the male and the female Bibarel {got}")]
 
 
+def payback_checks():
+    """Payback on the calculator's real rows (approved 2026-10-14): a slow
+    Machamp's Payback into a faster Jolteon, which the calculator rows at
+    twice its power, reads at its table power, as its Bite of the same 60
+    does (to the calculator's rounding), and doubles once when it moves
+    second; it read at twice the Bite, and four times once doubled."""
+    from .test_fightai import battle
+    b = battle([("Jolteon", 40, "Volt Absorb", ["Thunderbolt"])], [("Machamp", 40, "Guts", ["Payback", "Bite"])])
+    jolt, champ = b.b.cur(), b.p.cur()
+    pay, bite = fs.move("Payback"), fs.move("Bite")
+    rows = (pl.damage_of(b, champ, jolt, pay, False, True), pl.damage_of(b, champ, jolt, bite, False, True))
+    second = []
+    for first in (True, False):
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        jolt.hp = jolt.maxhp
+        b.st["first_battle"] = True
+        pl.attack(b, champ, pay, jolt, first)
+        second.append(jolt.maxhp - jolt.hp)
+    b.st["first_battle"] = False
+    slower = b.row_speed(champ) <= b.row_speed(jolt)
+    # The halved row and a row made at 60 differ only by the calculator's
+    # rounding, a point or two.
+    ok = slower and abs(rows[0] - rows[1]) <= 2 and abs(second[1] - 2 * second[0]) <= 2
+    return [("Payback reads at its table power on the real rows and doubles once", ok,
+             f"slower in the rows {slower}; top rolls (Payback, Bite) {rows}; dealt moving first, second {second}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2972,6 +2999,7 @@ def main():
     results += starf_berry_checks()
     results += sticky_barb_checks()
     results += rivalry_checks()
+    results += payback_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

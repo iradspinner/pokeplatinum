@@ -655,7 +655,9 @@ def attack(b, att, mv, dfn, first):
         # A resist berry halves only the first hit (fightsim.berry_first_hit).
         dmg = fs.berry_first_hit(b, dfn, mv, dmg, hits)
         if mv.effect == "DOUBLE_POWER_IF_MOVING_SECOND" and not first:
-            dmg *= 2
+            # Payback doubles once the target has acted (fs.state_mult has
+            # taken the calculator's own doubling off its row).
+            dmg = int(dmg * fs.doubled_power(att, mv))
         if mv.effect == "HIT_BEFORE_SWITCH" and getattr(att, "pursuing", False):
             dmg = int(dmg * fs.doubled_power(att, mv))     # BtlCmd_TryPursuit's POWER_MULTI 20
         # A doubled power meets Technician after it is doubled (fs.doubled_power).

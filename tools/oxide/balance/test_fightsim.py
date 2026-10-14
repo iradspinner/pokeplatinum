@@ -2145,6 +2145,30 @@ def check_sticky_barb(results):
     results.append(("the Sticky Barb hurts its holder and sticks to a contact attacker", got == want, f"{got}"))
 
 
+def check_payback(results):
+    """Payback (approved 2026-10-14; BtlCmd_CalcPaybackPower): doubled once
+    when the target has acted first. The calculator's row already doubles it
+    for a user no faster than its target, so a row of 40 there is a 20 hit
+    at the table's power: 20 moving first, 40 moving second, where it read
+    40 and 80. A faster user's row of 20 is its table power: 20 and 40. A
+    Technician holder's slower row of 40 is 30 at its own 90 power (60 and
+    half again), and 40 moving second, at 120 with no Technician."""
+    def hit(p_speed, b_speed, first, ability=None, row=40):
+        b, p, foe = battle(["Payback"], ["Tackle"], {("p", "Payback"): [row] * 16},
+                           p_speed=p_speed, b_speed=b_speed)
+        b.st["first_battle"] = True
+        p.ability = ability
+        fs.attack(b, p, fs.move("Payback"), foe, first)
+        return 100 - foe.hp
+    got = {"slower, first": hit(50, 100, True), "slower, second": hit(50, 100, False),
+           "faster, first": hit(100, 50, True, row=20), "faster, second": hit(100, 50, False, row=20),
+           "slower Technician, first": hit(50, 100, True, "Technician"),
+           "slower Technician, second": hit(50, 100, False, "Technician")}
+    want = {"slower, first": 20, "slower, second": 40, "faster, first": 20, "faster, second": 40,
+            "slower Technician, first": 30, "slower Technician, second": 40}
+    results.append(("Payback doubles once, not on top of the calculator's own doubling", got == want, f"{got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2394,7 +2418,7 @@ def main():
                   check_bad_dreams, check_marvel_scale, check_shed_skin,
                   check_suction_cups, check_plus_minus, check_stench, check_unnerve,
                   check_telepathy, check_steadfast, check_starf_berry,
-                  check_sticky_barb,
+                  check_sticky_barb, check_payback,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
