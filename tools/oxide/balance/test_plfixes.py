@@ -2117,6 +2117,23 @@ def justified_checks():
              f"(Attack stage, Close Combat's top roll before, after) {out}")]
 
 
+def moxie_checks():
+    """Moxie in the readings' battle (approved 2026-10-14): Cyrus 1's kind of
+    Moxie Honchkrow knocks out a weakened Pikachu with Brave Bird and rises
+    a stage of Attack; an Insomnia one does not."""
+    from .test_fightai import battle
+    out = {}
+    for ab in ("Moxie", "Insomnia"):
+        b = battle([("Honchkrow", 40, ab, ["Brave Bird"])], [("Pikachu", 40, "Static", ["Thunderbolt"])])
+        crow, pika = b.b.cur(), b.p.cur()
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        pika.hp = 1
+        pl.use_move(b, crow, fs.move("Brave Bird"), pika, True)
+        out[ab] = (pika.alive(), crow.stages["atk"])
+    ok = out["Moxie"] == (False, 1) and out["Insomnia"] == (False, 0)
+    return [("Moxie: Honchkrow rises on a knockout in the readings' battle", ok, f"(Pikachu standing, Attack stage) {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2601,6 +2618,7 @@ def main():
     results += oblivious_taunt_checks()
     results += cursed_body_checks()
     results += justified_checks()
+    results += moxie_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

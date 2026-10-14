@@ -410,6 +410,7 @@ def _use_move(b, att, mv, dfn, first):
     if mv.cat == "Status":
         status_move(b, att, mv, dfn, first)
         return
+    before = dfn.hp
     attack(b, att, mv, dfn, first)
     # A contact ability's chance hurts the player when the player's Pokemon
     # takes it, and helps it when the trainer's does (fightsim.hit_aftermath:
@@ -418,6 +419,7 @@ def _use_move(b, att, mv, dfn, first):
                      lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
                      lambda kind, n: b.dice.choice(kind, n))
     fs.destiny_bond(att, dfn)
+    fs.knockout_boost(att, dfn, before)      # Moxie and Beast Boost
 
 
 def struggle_damage(att, dfn, roll):

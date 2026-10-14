@@ -1721,6 +1721,34 @@ def check_justified_rattled(results):
                                                                      f"Speed after a Pin Missile of 2 to 5 hits {hits}"))
 
 
+def check_knockout_boost(results):
+    """Moxie and Beast Boost (approved 2026-10-14; BtlCmd_TryBeastBoost):
+    a move of its holder that faints its target raises Moxie's Attack and
+    Beast Boost's highest stat a stage; a hit that leaves the target
+    standing raises nothing, nor does a knockout at +6, nor Destiny Bond's
+    taking the user down with it."""
+    def ko(ability, hp=10, stage=0, bond=False, stats=None):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {("p", "Tackle"): [40] * 16})
+        b.st["first_battle"] = True
+        p.ability = ability
+        if stats:
+            p.stats = dict(p.stats, **stats)
+        p.stages["atk"] = stage
+        foe.hp = hp
+        foe.destiny_bond = bond
+        fs.use_move(b, p, fs.move("Tackle"), foe, True)
+        return {k: v for k, v in p.stages.items() if v}, p.alive()
+    got = {"Moxie, a knockout": ko("Moxie"), "Moxie, no knockout": ko("Moxie", hp=100),
+           "Moxie at +6": ko("Moxie", stage=6), "Moxie into Destiny Bond": ko("Moxie", bond=True),
+           "Beast Boost, Speed highest": ko("Beast Boost", stats={"spe": 150}),
+           "Beast Boost, a tie": ko("Beast Boost")}
+    want = {"Moxie, a knockout": ({"atk": 1}, True), "Moxie, no knockout": ({}, True),
+            "Moxie at +6": ({"atk": 6}, True), "Moxie into Destiny Bond": ({}, False),
+            "Beast Boost, Speed highest": ({"spe": 1}, True), "Beast Boost, a tie": ({"atk": 1}, True)}
+    results.append(("Moxie and Beast Boost rise on a knockout", got == want,
+                    f"(the user's stages, standing) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1965,6 +1993,7 @@ def main():
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
+                  check_knockout_boost,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

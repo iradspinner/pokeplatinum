@@ -1591,18 +1591,22 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     chance = lambda kind, p, victim: b.rng.random() < p      # noqa: E731
     pick = lambda kind, n: b.rng.randrange(n)               # noqa: E731
     if targets is None:
+        before = dfn.hp
         attack(b, att, mv, dfn, first)
         hit_aftermath(b, att, dfn, mv, chance, pick)
         destiny_bond(att, dfn)
+        knockout_boost(att, dfn, before)
         return
     # A double battle: a spread move hits each target at three quarters.
     b.spread = len(targets) > 1
+    before = {id(t): t.hp for t in targets}
     for t in targets:
         attack(b, att, mv, t, t not in b.moved)
         hit_aftermath(b, att, t, mv, chance, pick)
     b.spread = False
     for t in targets:
         destiny_bond(att, t)
+        knockout_boost(att, t, before[id(t)])
 
 
 def confusion_damage(mon, rng):
@@ -2868,6 +2872,28 @@ def custap_fires(mon):
     Gluttony), once (HOLD_EFFECT_PINCH_PRIORITY)."""
     return (mon.item == "Custap Berry" and mon.alive()
             and mon.hp * (2 if mon.ability == "Gluttony" else 4) <= mon.maxhp)
+
+
+def knockout_boost(att, dfn, before):
+    """Moxie and Beast Boost after a move (BtlCmd_TryBeastBoost, run from
+    subscript_faint_check_destiny_bond once Destiny Bond has had its turn):
+    when att's move took HP from dfn and fainted it (`before`, its HP as the
+    move began) and att still stands, Moxie raises att's Attack a stage and
+    Beast Boost its highest stat, Attack, Defense, Sp. Atk, Sp. Def then
+    Speed winning a tie, by the stats without stages; nothing at +6.
+    Until 2026-10-14 neither did anything (Ian approved the fix)."""
+    if att.ability not in ("Moxie", "Beast Boost") or att is dfn or not att.alive():
+        return
+    if dfn.alive() or before <= 0:
+        return
+    if att.ability == "Moxie":
+        stat = "atk"
+    else:
+        order = ("atk", "def", "spa", "spd", "spe")
+        stat = max(order, key=lambda s: (att.stats.get(s, 0), -order.index(s)))
+    if att.stages[stat] < 6:
+        change_stages(att, {stat: 1})
+        reveal(att)
 
 
 def destiny_bond(att, dfn):
