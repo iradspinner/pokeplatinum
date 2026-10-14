@@ -2480,6 +2480,13 @@ def state_mult(b, att, dfn, mv):
         # the game takes the turn's, stages and paralysis in them, and so
         # does the trainer's AI (TrainerAI_CalcDamage's MOVE_GYRO_BALL case).
         m *= power_ratio(att, gyro_power(b.row_speed(dfn), b.row_speed(att)), gyro_power(b.speed(dfn), b.speed(att)))
+    if (att.ability == "Sand Force" and b.weather == "Sand" and not weather_ignored(b)
+            and mv.type in ("Ground", "Rock", "Steel")):
+        # BattleSystem_CalcMoveDamage: Ground, Rock and Steel moves at 13/10
+        # power in a sandstorm that Cloud Nine and Air Lock leave alone; the
+        # calculator's Generation 4 path has no Sand Force. Until 2026-10-14
+        # it did nothing (Ian approved the fix).
+        m *= 1.3
     if mv.const in ("MOVE_STORED_POWER", "MOVE_POWER_TRIP"):
         # BattleScript_ComputedMovePower: 20, and 20 more for each stage its
         # user has raised a stat, accuracy and evasion included; the row is

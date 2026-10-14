@@ -2230,6 +2230,21 @@ def weather_ability_checks():
              f"Lombre healed {healed} of {lombre.maxhp}; Vaporeon cured {cured}; Shellos at full HP after the sand {spared}")]
 
 
+def sand_force_checks():
+    """Sand Force on the calculator's real rows (approved 2026-10-14): in a
+    sandstorm a Sand Force Probopass's Power Gem hits 13/10 as hard as a
+    Sturdy one's in the readings' damage, where the two read alike."""
+    from .test_fightai import battle
+    b = battle([("Probopass", 40, "Sand Force", ["Power Gem"]), ("Probopass", 40, "Sturdy", ["Power Gem"])],
+               [("Pikachu", 40, "Static", ["Thunderbolt"])], weather="Sand")
+    force, sturdy = b.b.mons
+    pika = b.p.cur()
+    gem = fs.move("Power Gem")
+    got = (pl.damage_of(b, force, pika, gem, False, True), pl.damage_of(b, sturdy, pika, gem, False, True))
+    ok = b.weather == "Sand" and abs(got[0] - got[1] * 1.3) <= 2
+    return [("Sand Force: Power Gem at 13/10 in sand on the real rows", ok, f"(Sand Force, Sturdy) top rolls {got}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2719,6 +2734,7 @@ def main():
     results += accuracy_ability_checks()
     results += download_checks()
     results += weather_ability_checks()
+    results += sand_force_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

@@ -1874,6 +1874,27 @@ def check_weather_abilities(results):
                     got == want, f"(HP from 50, status) {got}"))
 
 
+def check_sand_force(results):
+    """Sand Force (approved 2026-10-14; BattleSystem_CalcMoveDamage): Ground,
+    Rock and Steel moves at 13/10 power in a sandstorm, not in other weather,
+    not another type's move, not under Cloud Nine. Rows of 100."""
+    def hit(move, weather="Sand", cloud=False, ability="Sand Force"):
+        b, p, foe = battle([move], ["Tackle"], {("p", move): [100] * 16})
+        p.ability = ability
+        if cloud:
+            foe.ability = "Cloud Nine"
+        b.weather = weather
+        return b.damage(p, foe, fs.move(move), roll=0)
+    got = {"Rock Slide in sand": hit("Rock Slide"), "Earthquake in sand": hit("Earthquake"),
+           "Iron Head in sand": hit("Iron Head"), "Tackle in sand": hit("Tackle"),
+           "Rock Slide in rain": hit("Rock Slide", weather="Rain"),
+           "Rock Slide under Cloud Nine": hit("Rock Slide", cloud=True),
+           "Rock Slide, no Sand Force": hit("Rock Slide", ability=None)}
+    want = {"Rock Slide in sand": 130, "Earthquake in sand": 130, "Iron Head in sand": 130, "Tackle in sand": 100,
+            "Rock Slide in rain": 100, "Rock Slide under Cloud Nine": 100, "Rock Slide, no Sand Force": 100}
+    results.append(("Sand Force raises Ground, Rock and Steel moves in sand", got == want, f"{got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2119,7 +2140,7 @@ def main():
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
                   check_knockout_boost, check_trapping_exemptions, check_accuracy_abilities,
-                  check_download, check_weather_abilities,
+                  check_download, check_weather_abilities, check_sand_force,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
