@@ -2152,6 +2152,37 @@ def trapping_checks():
              f"switches offered {out}")]
 
 
+def accuracy_ability_checks():
+    """No Guard and Keen Eye in the readings' accuracy (approved 2026-10-14):
+    Maylene's rematch's kind of No Guard Machamp lands every Dynamic Punch,
+    and the player's No Guard Machop every one into a Guts Machamp; a Keen
+    Eye Starly's Tackle ignores a +6 evasion that leaves a Reckless one at
+    about a third, over 300 uses each."""
+    from .test_fightai import battle
+    b = battle([("Machamp", 40, "No Guard", ["Dynamic Punch"]), ("Machamp", 40, "Guts", ["Dynamic Punch"])],
+               [("Machop", 40, "No Guard", ["Dynamic Punch"]), ("Starly", 40, "Keen Eye", ["Tackle"]),
+                ("Starly", 40, "Reckless", ["Tackle"])])
+    guard, guts = b.b.mons
+    chop, keen, reckless = b.p.mons
+    dp, tackle = fs.move("Dynamic Punch"), fs.move("Tackle")
+
+    def lands(att, dfn, mv, eva=0):
+        dfn.stages["eva"] = eva
+        n = 0
+        for seed in range(300):
+            b.dice = pl.RunDice(random.Random(seed), True)
+            n += pl.accuracy_hits(b, att, dfn, mv)
+        dfn.stages["eva"] = 0
+        return n
+    got = {"No Guard Machamp's Dynamic Punch": lands(guard, chop, dp),
+           "No Guard Machop's Dynamic Punch": lands(chop, guts, dp),
+           "Keen Eye Tackle into +6": lands(keen, guts, tackle, eva=6),
+           "Reckless Tackle into +6": lands(reckless, guts, tackle, eva=6)}
+    ok = (got["No Guard Machamp's Dynamic Punch"] == got["No Guard Machop's Dynamic Punch"] == 300
+          and got["Keen Eye Tackle into +6"] == 300 and got["Reckless Tackle into +6"] < 150)
+    return [("No Guard and Keen Eye in the readings' accuracy", ok, f"landed of 300 {got}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2638,6 +2669,7 @@ def main():
     results += justified_checks()
     results += moxie_checks()
     results += trapping_checks()
+    results += accuracy_ability_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

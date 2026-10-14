@@ -615,17 +615,18 @@ class Battle:
             mult *= rollout_mult(att, mv)
         return max(1, int(base * mult))
 
-    def accuracy_hits(self, att, dfn, mv):
-        if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY":
+    def accuracy_hits(self, att, dfn, mv, first=True):
+        """Whether the move lands (BattleControllerPlayer_CheckMoveHitAccuracy
+        and the hit overrides). `first`: whether the target has yet to move
+        this turn, for the Zoom Lens."""
+        if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or no_guard(att, dfn, mv):
             return True
         acc = mv.acc
         if mv.effect in ("THUNDER", "HURRICANE"):           # Oxide: Hurricane as Thunder in weather
             acc = 100 if self.weather == "Rain" else 50 if self.weather == "Sun" else acc
         if mv.effect == "BLIZZARD" and self.weather == "Hail":
             return True
-        eva = 0 if mv.const in IGNORE_TARGET_STAGES else dfn.stages["eva"]
-        s = max(-6, min(6, att.stages["acc"] - eva))
-        acc = acc * ((3 + s) / 3 if s >= 0 else 3 / (3 - s))
+        acc *= accuracy_scale(att, dfn, mv, first)
         if att.ability == "Compound Eyes":
             acc *= 1.3
         if att.item == "Wide Lens":
@@ -637,6 +638,36 @@ class Battle:
 
 def stage_mult(s):
     return (2 + s) / 2 if s >= 0 else 2 / (2 - s)
+
+
+def no_guard(att, dfn, mv):
+    """No Guard on either side lands every move but a one-hit KO move, whose
+    check is its own (BattleControllerPlayer_CheckMoveHitOverrides skips
+    the accuracy roll's miss, and the semi-invulnerable test after it, for
+    a move without SYSCTL_NONSTANDARD_ACC_CHECK). Until 2026-10-14 accuracy
+    was rolled as usual both ways (Ian approved the fix)."""
+    return (att.ability == "No Guard" or dfn.ability == "No Guard") and mv.effect != "ONE_HIT_KO"
+
+
+def accuracy_scale(att, dfn, mv, first=True):
+    """The accuracy check's stage factor and the abilities and item beside it
+    that both battles share (BattleControllerPlayer_CheckMoveHitAccuracy):
+    an Unaware target (unless Mold Breaker gets past it) ignores the
+    attacker's accuracy stages; an Unaware, Keen Eye or Illuminate attacker,
+    and Sacred Sword's kind, ignore the target's evasion stages; a confused
+    Tangled Feet target halves the accuracy (Mold Breaker gets past it); a
+    Zoom Lens adds a fifth against a target that has already moved this turn
+    (not `first`). Until 2026-10-14 every stage counted and neither Tangled
+    Feet nor the Zoom Lens did anything (Ian approved the fix)."""
+    acc_st = 0 if dfn.ability == "Unaware" and not mold(att, dfn) else att.stages["acc"]
+    ignore_eva = mv.const in IGNORE_TARGET_STAGES or att.ability in ("Unaware", "Keen Eye", "Illuminate")
+    s = max(-6, min(6, acc_st - (0 if ignore_eva else dfn.stages["eva"])))
+    scale = (3 + s) / 3 if s >= 0 else 3 / (3 - s)
+    if dfn.ability == "Tangled Feet" and dfn.confused and not mold(att, dfn):
+        scale *= 0.5
+    if att.item == "Zoom Lens" and not first:
+        scale *= 1.2
+    return scale
 
 
 # The moves that ignore their target's stat stages, raised or lowered, its
@@ -1663,8 +1694,9 @@ def attack(b, att, mv, dfn, first):
         if dmg is not None:
             foresee(b, att, mv, dfn, dmg)
         return
-    if dfn.charging is not None and dfn.charging.effect in INVULNERABLE and not reaches(mv, dfn):
-        return
+    if dfn.charging is not None and dfn.charging.effect in INVULNERABLE and not reaches(mv, dfn) \
+            and not no_guard(att, dfn, mv):
+        return                   # No Guard reaches it there (no_guard)
     if protected(b, att, mv, dfn):
         return
     if mv.effect == "REMOVE_PROTECT" and not dfn.protecting:
@@ -1685,7 +1717,7 @@ def attack(b, att, mv, dfn, first):
         if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
             return
         consume(att, eaten=False)
-    if not b.accuracy_hits(att, dfn, mv):
+    if not b.accuracy_hits(att, dfn, mv, first):
         # subscript_crash_on_miss spares a Magic Guard user (added 2026-10-14,
         # Ian approved the fix).
         if mv.effect == "CRASH_ON_MISS" and att.ability != "Magic Guard":
@@ -1700,7 +1732,7 @@ def attack(b, att, mv, dfn, first):
     if odds:
         hits = b.rng.choices([h for h, _w in odds], [w for _h, w in odds])[0]
     elif mv.effect in RISING:
-        while hits < RISING_COUNT and (att.item == "Loaded Dice" or b.accuracy_hits(att, dfn, mv)):
+        while hits < RISING_COUNT and (att.item == "Loaded Dice" or b.accuracy_hits(att, dfn, mv, first)):
             hits += 1
     elif mv.effect in TWO_HITS:
         hits = 2
@@ -3014,7 +3046,7 @@ def status_move(b, att, mv, dfn, first):
             return
         if powder_immune(dfn, mv, att):
             return
-        if not b.accuracy_hits(att, dfn, mv):
+        if not b.accuracy_hits(att, dfn, mv, first):
             return
         if absorb(b, att, dfn, mv):
             return               # Thunder Wave into Volt Absorb, Spore into Sap Sipper: taken whole

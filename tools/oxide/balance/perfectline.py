@@ -306,18 +306,19 @@ def give_status(b, target, status):
 fs.give_status = give_status   # Yawn and Toxic Spikes inside fightsim reach this one
 
 
-def accuracy_hits(b, att, dfn, mv):
-    """The trainer's moves hit; the player's may miss, at the budget."""
-    if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY":
+def accuracy_hits(b, att, dfn, mv, first=True):
+    """Whether the move lands, a miss bad luck for its user's side.
+    `first`: whether the target has yet to move this turn (the Zoom Lens)."""
+    if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or fs.no_guard(att, dfn, mv):
         return True
     acc = mv.acc
     if mv.effect in ("THUNDER", "HURRICANE"):               # Oxide: Hurricane as Thunder in weather
         acc = 100 if b.weather == "Rain" else 50 if b.weather == "Sun" else acc
     if mv.effect == "BLIZZARD" and b.weather == "Hail":
         return True
-    eva = 0 if mv.const in fs.IGNORE_TARGET_STAGES else dfn.stages["eva"]     # Sacred Sword's kind
-    s = max(-6, min(6, att.stages["acc"] - eva))
-    acc = acc * ((3 + s) / 3 if s >= 0 else 3 / (3 - s))
+    # The stages, with Unaware, Keen Eye and Sacred Sword's kind, Tangled
+    # Feet and the Zoom Lens (fightsim.accuracy_scale).
+    acc *= fs.accuracy_scale(att, dfn, mv, first)
     if att.ability == "Compound Eyes":
         acc *= 1.3
     if att.item == "Wide Lens":
@@ -326,10 +327,10 @@ def accuracy_hits(b, att, dfn, mv):
         acc *= 0.8
     if dfn.item in ("Bright Powder", "BrightPowder", "Lax Incense"):
         acc *= 0.9
-    if dfn.ability in ("Sand Veil",) and b.weather == "Sand":
+    if dfn.ability in ("Sand Veil",) and b.weather == "Sand" and not fs.mold(att, dfn):
         acc *= 0.8
-    if dfn.ability in ("Snow Cloak",) and b.weather == "Hail":
-        acc *= 0.8
+    if dfn.ability in ("Snow Cloak",) and b.weather == "Hail" and not fs.mold(att, dfn):
+        acc *= 0.8               # Mold Breaker gets past both (Battler_IgnorableAbility)
     if acc >= 100:
         return True
     if player(att):
@@ -438,7 +439,7 @@ def confusion_damage(mon, roll):
     return int(base * roll / 100)
 
 
-def rolled_hits(b, att, dfn, mv, trainer):
+def rolled_hits(b, att, dfn, mv, trainer, first=True):
     """The hits this use makes: a two to five hit move's count
     (fs.multi_hit_odds), rolled by a run's dice and enumerated at its odds by
     the planner's; a rising move's hits (Fury Cutter, Triple Kick, Triple
@@ -456,7 +457,7 @@ def rolled_hits(b, att, dfn, mv, trainer):
         return pick(counts, weights)
     if mv.effect in fs.RISING:
         hits = 1
-        while hits < fs.RISING_COUNT and (att.item == "Loaded Dice" or accuracy_hits(b, att, dfn, mv)):
+        while hits < fs.RISING_COUNT and (att.item == "Loaded Dice" or accuracy_hits(b, att, dfn, mv, first)):
             hits += 1
         return hits
     return 2 if mv.effect in fs.TWO_HITS else 1
@@ -551,8 +552,9 @@ def attack(b, att, mv, dfn, first):
         if dmg is not None:
             fs.foresee(b, att, mv, dfn, dmg)
         return
-    if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE and not fs.reaches(mv, dfn):
-        return
+    if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE and not fs.reaches(mv, dfn) \
+            and not fs.no_guard(att, dfn, mv):
+        return                   # No Guard reaches it there (fightsim.no_guard)
     if fs.protected(b, att, mv, dfn):
         return                   # only a move Protect can stop (fightsim.protected)
     if mv.effect == "REMOVE_PROTECT" and not dfn.protecting:
@@ -573,14 +575,14 @@ def attack(b, att, mv, dfn, first):
         if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
             return
         fs.consume(att, eaten=False)     # spent, not eaten (Belch)
-    if not accuracy_hits(b, att, dfn, mv):
+    if not accuracy_hits(b, att, dfn, mv, first):
         if mv.effect == "CRASH_ON_MISS" and att.ability != "Magic Guard":
             fs.hurt(b, att, att.maxhp // 2)       # Magic Guard spares it (fightsim.attack)
         fs.rollout_after(att, mv, False)
         return
     fs.rollout_after(att, mv, True)
     trainer = not player(att)
-    hits = rolled_hits(b, att, dfn, mv, trainer)
+    hits = rolled_hits(b, att, dfn, mv, trainer, first)
     if mv.effect in fs.HIT_BY_HIT:
         dealt = multi_hit(b, att, mv, dfn, first, hits, trainer)
         if dealt is not None:
@@ -838,7 +840,7 @@ def status_move(b, att, mv, dfn, first):
         # Grass types and Overcoat are immune to powder and spore moves.
         if fs.powder_immune(dfn, mv, att):
             return
-        if not accuracy_hits(b, att, dfn, mv):
+        if not accuracy_hits(b, att, dfn, mv, first):
             return
         if fs.absorb(b, att, dfn, mv):
             return               # a status move of the ability's type is taken whole (fightsim.absorb)

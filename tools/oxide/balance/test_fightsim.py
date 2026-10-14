@@ -1781,6 +1781,41 @@ def check_trapping_exemptions(results):
                     f"held in {got}"))
 
 
+def check_accuracy_abilities(results):
+    """The accuracy check's abilities and the Zoom Lens (approved 2026-10-14;
+    BattleControllerPlayer_CheckMoveHitAccuracy and its overrides): No Guard
+    on either side lands every move, even on a Pokemon mid-Fly; Keen Eye
+    and an Unaware attacker ignore the target's evasion; an Unaware target
+    ignores the attacker's accuracy stages; a confused Tangled Feet target
+    halves the accuracy; a Zoom Lens adds a fifth once the target has moved.
+    Landed of 2000 uses of 50-accuracy Dynamic Punch or 100-accuracy Tackle."""
+    def lands(move, att_ab=None, dfn_ab=None, acc=0, eva=0, confused=0, item=None, first=True):
+        b, p, foe = battle([move], ["Tackle"], {})
+        p.ability, foe.ability, p.item = att_ab, dfn_ab, item
+        p.stages["acc"], foe.stages["eva"], foe.confused = acc, eva, confused
+        return sum(b.accuracy_hits(p, foe, fs.move(move), first) for _ in range(2000))
+    got = {"No Guard user": lands("Dynamic Punch", att_ab="No Guard"),
+           "No Guard target": lands("Dynamic Punch", dfn_ab="No Guard"),
+           "Keen Eye into +6 evasion": lands("Tackle", att_ab="Keen Eye", eva=6),
+           "Unaware into +6 evasion": lands("Tackle", att_ab="Unaware", eva=6),
+           "+6 accuracy into Unaware": lands("Dynamic Punch", dfn_ab="Unaware", acc=6),
+           "plain into +6 evasion": lands("Tackle", eva=6),
+           "Tangled Feet, confused": lands("Tackle", dfn_ab="Tangled Feet", confused=3),
+           "Zoom Lens, the target moved": lands("Dynamic Punch", item="Zoom Lens", first=False),
+           "Zoom Lens, the target yet to move": lands("Dynamic Punch", item="Zoom Lens")}
+    b, p, foe = battle(["Tackle"], ["Fly"], {("p", "Tackle"): [10] * 16})
+    p.ability, foe.charging = "No Guard", fs.move("Fly")
+    fs.attack(b, p, fs.move("Tackle"), foe, True)
+    mid_fly = foe.hp
+    ok = (got["No Guard user"] == got["No Guard target"] == 2000 and got["Keen Eye into +6 evasion"] == 2000
+          and got["Unaware into +6 evasion"] == 2000 and 850 <= got["+6 accuracy into Unaware"] <= 1150
+          and got["plain into +6 evasion"] < 800 and 850 <= got["Tangled Feet, confused"] <= 1150
+          and 1080 <= got["Zoom Lens, the target moved"] <= 1320 and 850 <= got["Zoom Lens, the target yet to move"] <= 1150
+          and mid_fly == 90)
+    results.append(("No Guard, Keen Eye, Unaware, Tangled Feet and the Zoom Lens in the accuracy check", ok,
+                    f"landed of 2000 {got}; a No Guard Tackle into a Pokemon mid-Fly leaves it at {mid_fly}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2025,7 +2060,7 @@ def main():
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
-                  check_knockout_boost, check_trapping_exemptions,
+                  check_knockout_boost, check_trapping_exemptions, check_accuracy_abilities,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
