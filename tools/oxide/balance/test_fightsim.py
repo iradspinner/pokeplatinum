@@ -937,6 +937,50 @@ def check_mist_and_intimidate(results):
                     f"(Attack, accuracy or named) {got}; Mist's turns {turns}; the AI's score for a second Mist {ai}"))
 
 
+def check_ai_fields(results):
+    """The fields the trainer's AI reads, set as the engine's state is
+    (approved 2026-10-14). Last Resort's count (BattleSystem_UpdateLastResort)
+    counts each other move the first time it is used since its user came
+    in, and a switch clears it; a Berry used up is eaten
+    (BattleScript_RecordBerryEaten), one Natural Gift spends is not, and
+    Belch is then no longer an invalid choice; Recycle reads the item last
+    used up, so it scores 0 once there is one. The readings' keys tell the
+    count and the Berry apart only for a Last Resort or Belch user. Before,
+    the AI read a count, a Berry and an item that nothing set."""
+    b, p, foe = battle(["Tackle", "Growl", "Last Resort"], ["Recycle", "Belch", "Natural Gift"], {})
+    for name in ("Tackle", "Tackle", "Growl", "Last Resort"):
+        fs.use_move(b, p, fs.move(name), foe, True)
+    counted = p.last_resort_count
+    keyed = pl_key_has(p), pl_key_has(foe)
+    fs.switch_in(b, b.p, 0)
+    cleared = p.last_resort_count
+    recycle_before = fightai.basic(b, foe, p, fs.move("Recycle"), None)
+    belch_before = fightai.invalid(b, foe, fs.move("Belch"))
+    foe.item = "Oran Berry"
+    foe.hp = 40
+    fs.berry_check(foe)
+    ate = (foe.ate_berry, foe.recycle)
+    recycle_after = fightai.basic(b, foe, p, fs.move("Recycle"), None)
+    belch_after = fightai.invalid(b, foe, fs.move("Belch"))
+    b2, p2, foe2 = battle(["Tackle"], ["Natural Gift"], {("b", "Natural Gift"): [10] * 16})
+    foe2.item = "Oran Berry"
+    fs.attack(b2, foe2, fs.move("Natural Gift"), p2, True)
+    spent = (foe2.item, foe2.ate_berry)
+    ok = (counted, cleared, ate, recycle_before, recycle_after, belch_before, belch_after, spent) == \
+        (2, 0, (True, "Oran Berry"), -10, 0, True, False, (None, False)) and keyed == (True, True)
+    results.append(("the battle sets Last Resort's count, the Berry eaten and the item to recycle, as the AI reads them",
+                    ok, f"count {counted}, after a switch {cleared}; Berry eaten (eaten, recycle) {ate}; Recycle "
+                        f"scored {recycle_before} then {recycle_after}; Belch invalid {belch_before} then "
+                        f"{belch_after}; Natural Gift (item, eaten) {spent}; keyed by Last Resort, by Belch {keyed}"))
+
+
+def pl_key_has(mon):
+    """Whether the readings' keys carry mon's Last Resort count (mon_key) or
+    its Berry eaten (_ai_mon): only a Last Resort or a Belch user's."""
+    from . import perfectline as pl
+    return pl.mon_key(mon)[-1] is not None or pl._ai_mon(mon)[-1] is not None
+
+
 def check_future_sight(results):
     """Future Sight and Doom Desire (approved 2026-10-13; BtlCmd_TryFutureSight
     and the turn's end, SIDE_COND_CHECK_STATE_FUTURE_SIGHT): the damage is
@@ -1488,7 +1532,7 @@ def main():
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds,
                   check_hits_one_by_one, check_hits_hold_and_heal, check_triple_axel,
                   check_protect_flag, check_protect_odds, check_pp_engine, check_confusion_blockers,
-                  check_curse_and_rest, check_mist_and_intimidate, check_future_sight,
+                  check_curse_and_rest, check_mist_and_intimidate, check_ai_fields, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean,

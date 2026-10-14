@@ -779,8 +779,10 @@ def _basic_effect(b, u, t, mv):
         return -10 if ability_of(b, u, t) == "Sticky Hold" or not t.item else 0
     if e == "GROUND_TRAP_USER_CONTINUOUS_HEAL":                     # Basic_CheckAlreadyIngrained
         return -10 if u.ingrained else 0
-    if e == "RECYCLE":
-        return -10 if not getattr(u, "recycle_item", None) else 0
+    if e == "RECYCLE":                                              # Basic_CheckCanRecycle
+        # LoadRecycleItem reads the item the user last used up, which the
+        # battle keeps as mon.recycle (fightsim.consume).
+        return -10 if not getattr(u, "recycle", None) else 0
     if e == "MAKE_SHARED_MOVES_UNUSEABLE":                          # Basic_CheckCanImprison
         return -10 if getattr(u, "imprisoning", False) or getattr(t, "sealed", ()) else 0
     if e == "HEAL_STATUS":                                          # Basic_CheckCanRefreshStatus

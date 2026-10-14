@@ -1515,6 +1515,34 @@ def mist_intimidate_checks():
              f"under Mist (Attack, turns) {misted}; a second Mist scores {score}; behind a Substitute {behind}")]
 
 
+def ai_field_checks():
+    """The trainer's AI on the readings' path reads what the battle now sets
+    (approved 2026-10-14), on the calculator's real rows: a Munchlax whose
+    Lum Berry has cured a poison is offered Recycle by the planner's exact
+    odds of its AI (it was never offered, as the AI read an item nothing
+    set), and a Machop's Bug Bite that eats the Munchlax's Sitrus Berry
+    leaves the Machop marked as having eaten a Berry, which Belch needs."""
+    from . import plplan
+    from .test_fightai import battle
+    b = battle([("Munchlax", 20, "Pickup", ["Recycle", "Tackle"], "Lum Berry")],
+               [("Machop", 20, "Guts", ["Karate Chop", "Bug Bite"])])
+    munchlax, machop = b.b.cur(), b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    b.quick = {}
+    plplan.reset()
+    before = dict((a[1].name, round(p, 3)) for a, p in plplan.ai_distribution(b))
+    fs.give_status(b, munchlax, "tox")
+    plplan.reset()
+    after = dict((a[1].name, round(p, 3)) for a, p in plplan.ai_distribution(b))
+    munchlax.item, munchlax.hp = "Sitrus Berry", munchlax.maxhp
+    pl.attack(b, machop, fs.move("Bug Bite"), munchlax, True)
+    bitten = (munchlax.item, getattr(machop, "ate_berry", False))
+    ok = before.get("Recycle", 0) == 0 and after.get("Recycle", 0) > 0.5 and bitten == (None, True)
+    return [("the readings' AI offers Recycle once an item is used up; Bug Bite marks its user as having eaten",
+             ok, f"Recycle's odds before {before.get('Recycle', 0)}, after the Lum Berry {after.get('Recycle', 0)}; "
+                 f"after Bug Bite (Munchlax's item, Machop ate) {bitten}")]
+
+
 def pp_checks():
     """PP on the readings' path, on the calculator's real rows (approved
     2026-10-14): a Staravia's Fly costs one PP over its two turns, the
@@ -2290,6 +2318,7 @@ def main():
     results += confusion_checks()
     results += curse_rest_checks()
     results += mist_intimidate_checks()
+    results += ai_field_checks()
     results += future_sight_checks()
     results += disable_and_nightmare_checks()
     results += pivot_checks()

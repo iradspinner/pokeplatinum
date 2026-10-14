@@ -569,7 +569,7 @@ def attack(b, att, mv, dfn, first):
     if mv.name in ("Natural Gift", "Fling"):
         if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
             return
-        fs.consume(att)
+        fs.consume(att, eaten=False)     # spent, not eaten (Belch)
     if not accuracy_hits(b, att, dfn, mv):
         if mv.effect == "CRASH_ON_MISS":
             fs.hurt(b, att, att.maxhp // 2)
@@ -721,6 +721,7 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     if e in ("EAT_BERRY",) and dfn.item and "Berry" in dfn.item:
         # Bug Bite and Pluck eat the target's berry and take its effect.
         berry, dfn.item = dfn.item, None
+        att.ate_berry = True             # the attacker has eaten it (Belch)
         if berry == "Sitrus Berry":
             fs.heal(att, att.maxhp // 4)
         elif berry == "Oran Berry":
@@ -1045,7 +1046,9 @@ def mon_key(m):
             m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False),
             getattr(m, "disabled", None), getattr(m, "disabled_turns", 0), getattr(m, "nightmare", False),
             getattr(m, "encore", None), getattr(m, "encore_turns", 0),
-            getattr(m, "protean_type", None), getattr(m, "protean_used", False))
+            getattr(m, "protean_type", None), getattr(m, "protean_used", False),
+            # Last Resort works, and the AI rates it, by the moves used since it came in.
+            getattr(m, "last_resort_count", 0) if getattr(m, "last_resort", False) else None)
 
 
 def side_key(s):
@@ -1090,10 +1093,12 @@ def _ai_mon(m):
     move by name (Mirror Move, Encore, Copycat and Baton Pass read the move),
     its turns in up to the four Roar reads, the moves the AI has seen it
     use, the ability a message has named, trapping and rooting, the type
-    the last hit was recorded with, and the Custap pinch."""
+    the last hit was recorded with, the Custap pinch, and for a Belch user
+    whether it has eaten a Berry."""
     return (m.key, None if m.last is None else m.last.name, max(-1, min(m.turns_in, 4)),
             tuple(x.name for x in m.shown), m.revealed, m.trapped_by is not None, m.ingrained,
-            m.last_hit_type, m.hp <= m.maxhp // 4, m.hp <= m.maxhp // 2, m.aqua_ring, m.flash_fire)
+            m.last_hit_type, m.hp <= m.maxhp // 4, m.hp <= m.maxhp // 2, m.aqua_ring, m.flash_fire,
+            getattr(m, "ate_berry", False) if getattr(m, "belch", False) else None)
 
 
 def ai_key(b):

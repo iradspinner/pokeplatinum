@@ -355,6 +355,15 @@ class Mon:
         self.item = info.get("item") or rec.get("item")
         self.moves = [move(m) for m in moves][:4]
         self.pp = {m.name: m.pp for m in self.moves}
+        # Whether it knows a move whose rule reads its own history, for the
+        # keys that must tell such histories apart (perfectline.mon_key and
+        # _ai_mon): Last Resort reads the moves used since it came in, Belch
+        # whether it has eaten a Berry this battle.
+        self.last_resort = any(m.effect == "FAIL_IF_NOT_USED_ALL_OTHER_MOVES" for m in self.moves)
+        self.belch = any(m.const == "MOVE_BELCH" for m in self.moves)
+        # A Berry it ate this battle (berryEatenMask, kept by party slot, so
+        # through switching), which Belch needs and the trainer's AI reads.
+        self.ate_berry = False
         self.ivs = rec.get("ivs") or {}
         self.gender = _gender_of(rec)    # "M", "F" or None (genderless): Attract, Cute Charm
         self.recycle = None              # the item it last used up, for Recycle
@@ -432,6 +441,7 @@ class Mon:
         self.loafing = False             # Truant: it loafs on its next turn
         self.had_item = bool(getattr(self, "item", None))   # Unburden: it came in holding an item
         self.used_moves = frozenset()    # Last Resort: the moves used since it came in
+        self.last_resort_count = 0       # how many of them, Last Resort aside (moveEffectsData.lastResortCount)
 
     def alive(self):
         return self.hp > 0
@@ -1545,7 +1555,7 @@ def attack(b, att, mv, dfn, first):
     if mv.name in ("Natural Gift", "Fling"):
         if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
             return
-        consume(att)
+        consume(att, eaten=False)
     if not b.accuracy_hits(att, dfn, mv):
         if mv.effect == "CRASH_ON_MISS":
             hurt(b, att, att.maxhp // 2)
@@ -1897,10 +1907,14 @@ def nightmare(att, dfn, mv):
         dfn.nightmare = True
 
 
-def consume(mon):
+def consume(mon, eaten=True):
     """A held item used up (BtlCmd_RemoveItem): gone, and kept for Recycle.
     The engine keeps one per battle position, so a Pokemon could recycle
-    what the one before it used; here each Pokemon keeps its own."""
+    what the one before it used; here each Pokemon keeps its own. A Berry
+    used up is eaten (BattleScript_RecordBerryEaten, for Belch), unless
+    Natural Gift or Fling spent it (eaten False)."""
+    if eaten and mon.item and mon.item.endswith("Berry"):
+        mon.ate_berry = True
     mon.recycle, mon.item = mon.item, None
 
 
@@ -2302,6 +2316,11 @@ def commit_move(att, mv):
     att.raging = mv.effect == "RAISE_ATK_WHEN_HIT"
     others = {m.name for m in att.moves if m.name != mv.name}
     fails = mv.effect == "FAIL_IF_NOT_USED_ALL_OTHER_MOVES" and (not others or not others <= att.used_moves)
+    # BattleSystem_UpdateLastResort's count, which the trainer's AI reads
+    # (Expert_LastResort): each move other than Last Resort the first time it
+    # is used since its user came in, four at most.
+    if mv.effect != "FAIL_IF_NOT_USED_ALL_OTHER_MOVES" and mv.name not in att.used_moves and att.last_resort_count < 4:
+        att.last_resort_count += 1
     att.used_moves = att.used_moves | {mv.name}
     if att.ability == "Truant":
         att.loafing = True
