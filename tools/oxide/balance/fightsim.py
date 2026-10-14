@@ -1375,8 +1375,23 @@ def berry_check(mon):
 
 
 def can_switch(mon):
-    """False while Block, Mean Look or its own Ingrain holds it in."""
+    """False while Block, Mean Look or its own Ingrain holds it in, unless
+    it holds a Shed Shell, which frees its holder from everything that
+    traps (Battler_IsTrapped's HOLD_EFFECT_SWITCH, added 2026-10-14, Ian
+    approved the fix)."""
+    if mon.item == "Shed Shell":
+        return True
     return mon.trapped_by is None and not mon.ingrained
+
+
+def trapped(b, mon):
+    """Whether mon cannot switch out (Battler_IsTrapped, the party menu's
+    test): a bind, Block, Mean Look or its own Ingrain (can_switch), or a
+    foe's trapping ability (ability_trapped). A Shed Shell frees it from
+    them all."""
+    if mon.item == "Shed Shell":
+        return False
+    return bool(mon.bound) or not can_switch(mon) or ability_trapped(b, mon)
 
 
 def heal(mon, amount):
@@ -2538,8 +2553,15 @@ def synchronize(b, target, status):
 
 
 def ability_trapped(b, mon):
-    """Held in by the foe's ability: Magnet Pull holds a Steel type, Shadow
-    Tag anything without it, Arena Trap anything grounded."""
+    """Held in by the foe's ability (Battler_IsTrapped): Magnet Pull holds a
+    Steel type, Shadow Tag anything without it, Arena Trap anything grounded:
+    not a Flying type, a Levitate holder, an Air Balloon's or one under
+    Magnet Rise, unless an Iron Ball brings it down. A Ghost type and a Shed
+    Shell holder are never held (Oxide, Generation 6's rule). Until
+    2026-10-14 the Ghost type, the Shed Shell and the Air Balloon were not
+    exempt (Ian approved the fix)."""
+    if "Ghost" in mon.types or mon.item == "Shed Shell":
+        return False
     foe = foe_of(b, mon)
     if not foe.alive():
         return False
@@ -2548,7 +2570,10 @@ def ability_trapped(b, mon):
     if foe.ability == "Shadow Tag":
         return mon.ability != "Shadow Tag"
     if foe.ability == "Arena Trap":
-        return "Flying" not in mon.types and mon.ability != "Levitate" and not mon.magnet_rise
+        if mon.item == "Iron Ball":
+            return True
+        return ("Flying" not in mon.types and mon.ability != "Levitate" and not mon.magnet_rise
+                and mon.item != "Air Balloon")
     return False
 
 

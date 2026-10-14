@@ -592,7 +592,7 @@ def options(b):
         left = [m for m in me.moves if me.pp.get(m.name, 1) > 0 and not fs.tormented_out(me, m)
                 and not fs.disabled_out(me, m) and (me.encore is None or m.name == me.encore)]
         out.append(("move", left[0] if left else fs.move("Struggle")))
-    if not me.bound and fs.can_switch(me) and not fs.ability_trapped(b, me):
+    if not fs.trapped(b, me):
         out += [("switch", i) for i, m in enumerate(b.p.mons) if i != b.p.active and m.alive()]
     return out
 
@@ -768,7 +768,7 @@ def plain(b):
     pair = (me.key, foe.key)
     if getattr(b, "pair", None) != pair:
         b.pair = pair
-        if getattr(b, "plain_switches", 0) < PLAIN_SWITCHES and not me.bound and fs.can_switch(me) and not fs.ability_trapped(b, me) \
+        if getattr(b, "plain_switches", 0) < PLAIN_SWITCHES and not fs.trapped(b, me) \
                 and b.p.bench():
             won, left, _t = duel(b)
             if not won and left < 0:

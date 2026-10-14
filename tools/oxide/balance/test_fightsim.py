@@ -1749,6 +1749,38 @@ def check_knockout_boost(results):
                     f"(the user's stages, standing) {got}"))
 
 
+def check_trapping_exemptions(results):
+    """The trapping abilities' exemptions (approved 2026-10-14;
+    Battler_IsTrapped): Shadow Tag, Arena Trap and Magnet Pull never hold a
+    Ghost type or a Shed Shell holder, Arena Trap none floating on an Air
+    Balloon, though an Iron Ball brings a Flying type down into it; a Shed
+    Shell frees its holder from a bind and from Block too."""
+    def held(trap, types=("Normal",), item=None, bound=False, blocked=False):
+        b = field({"p0": (types, ["Tackle"]), "p1": (("Normal",), ["Tackle"]), "b0.0": (("Normal",), ["Tackle"])}, {})
+        me = b.p.cur()
+        b.b.cur().ability = trap
+        me.item = item
+        me.bound = 3 if bound else 0
+        me.trapped_by = "b0.0" if blocked else None
+        return fs.trapped(b, me)
+    got = {"Shadow Tag": held("Shadow Tag"), "Shadow Tag, a Ghost": held("Shadow Tag", ("Ghost",)),
+           "Shadow Tag, a Shed Shell": held("Shadow Tag", item="Shed Shell"),
+           "Magnet Pull, a Steel type": held("Magnet Pull", ("Steel",)),
+           "Magnet Pull, a Steel and Ghost type": held("Magnet Pull", ("Steel", "Ghost")),
+           "Arena Trap": held("Arena Trap"), "Arena Trap, an Air Balloon": held("Arena Trap", item="Air Balloon"),
+           "Arena Trap, a Flying type": held("Arena Trap", ("Flying",)),
+           "Arena Trap, a Flying type with an Iron Ball": held("Arena Trap", ("Flying",), item="Iron Ball"),
+           "a bind": held(None, bound=True), "a bind, a Shed Shell": held(None, bound=True, item="Shed Shell"),
+           "Block": held(None, blocked=True), "Block, a Shed Shell": held(None, blocked=True, item="Shed Shell")}
+    want = {"Shadow Tag": True, "Shadow Tag, a Ghost": False, "Shadow Tag, a Shed Shell": False,
+            "Magnet Pull, a Steel type": True, "Magnet Pull, a Steel and Ghost type": False,
+            "Arena Trap": True, "Arena Trap, an Air Balloon": False, "Arena Trap, a Flying type": False,
+            "Arena Trap, a Flying type with an Iron Ball": True, "a bind": True, "a bind, a Shed Shell": False,
+            "Block": True, "Block, a Shed Shell": False}
+    results.append(("the trapping abilities spare a Ghost type and a Shed Shell holder", got == want,
+                    f"held in {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1993,7 +2025,7 @@ def main():
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
-                  check_knockout_boost,
+                  check_knockout_boost, check_trapping_exemptions,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

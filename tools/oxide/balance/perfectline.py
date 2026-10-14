@@ -1249,7 +1249,7 @@ def player_actions(b):
             out.append(("move", mv))
     finally:
         b.rng = saved
-    if not me.bound and fs.can_switch(me) and not fs.ability_trapped(b, me):
+    if not fs.trapped(b, me):            # a bind, Block, Ingrain, a trapping ability; a Shed Shell frees it
         for i, m in enumerate(b.p.mons):
             if i != b.p.active and m.alive():
                 out.append(("switch", i))

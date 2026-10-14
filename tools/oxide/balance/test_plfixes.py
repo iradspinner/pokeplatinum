@@ -2134,6 +2134,24 @@ def moxie_checks():
     return [("Moxie: Honchkrow rises on a knockout in the readings' battle", ok, f"(Pikachu standing, Attack stage) {out}")]
 
 
+def trapping_checks():
+    """Shadow Tag in the readings' choices (approved 2026-10-14): against
+    Saturn's kind of Shadow Tag Gothitelle the player's Machop may not
+    switch, while a Ghost Gastly and a Machop holding a Shed Shell are each
+    offered their switches."""
+    from .test_fightai import battle
+    out = {}
+    for label, lead, item in (("Machop", ("Machop", 40, "Guts", ["Karate Chop"]), None),
+                              ("Gastly", ("Gastly", 40, "Levitate", ["Lick"]), None),
+                              ("Machop, a Shed Shell", ("Machop", 40, "Guts", ["Karate Chop"]), "Shed Shell")):
+        b = battle([("Gothitelle", 40, "Shadow Tag", ["Psychic"])], [lead, ("Snorlax", 40, "Thick Fat", ["Body Slam"])])
+        b.p.cur().item = item
+        out[label] = any(a[0] == "switch" for a in pl.player_actions(b))
+    ok = out == {"Machop": False, "Gastly": True, "Machop, a Shed Shell": True}
+    return [("Shadow Tag holds a Machop but not a Ghost or a Shed Shell holder in the readings' choices", ok,
+             f"switches offered {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2619,6 +2637,7 @@ def main():
     results += cursed_body_checks()
     results += justified_checks()
     results += moxie_checks()
+    results += trapping_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
