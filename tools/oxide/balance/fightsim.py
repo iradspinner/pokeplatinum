@@ -632,6 +632,39 @@ ZEROING = {"Volt Absorb", "Water Absorb", "Flash Fire", "Motor Drive", "Dry Skin
            "Storm Drain", "Sap Sipper", "Levitate", "Wonder Guard", "Soundproof", "Bulletproof"}
 
 
+# The abilities that take a move of one type whole and give their holder
+# something for it (BattleSystem_TriggerImmunityAbility): a quarter of its
+# maximum HP back, or a stage of one stat.
+ABSORB_HEAL = {"Volt Absorb": "Electric", "Water Absorb": "Water", "Dry Skin": "Water"}
+ABSORB_STAGE = {"Lightning Rod": ("Electric", "spa"), "Storm Drain": ("Water", "spa"),
+                "Sap Sipper": ("Grass", "atk"), "Motor Drive": ("Electric", "spe")}
+
+
+def absorb(b, att, dfn, mv):
+    """Whether dfn's ability takes this move whole, as
+    BattleSystem_TriggerImmunityAbility does for a move of its type from
+    another Pokemon, damaging or not, unless the user has Mold Breaker; if
+    so its holder gets its due: a quarter of its maximum HP
+    (subscript_ability_restores_hp, nothing at full HP) or a stage of its
+    stat, raised directly so Simple does not double it
+    (subscript_absorb_and_*_up_1_stage, nothing at +6). The ability is
+    named either way."""
+    ab = dfn.ability
+    kind = ABSORB_HEAL.get(ab) or (ABSORB_STAGE[ab][0] if ab in ABSORB_STAGE else None)
+    if kind is None or kind != mv.type or att is dfn or att.ability == "Mold Breaker":
+        return False
+    reveal(dfn)
+    if ab in ABSORB_HEAL:
+        if dfn.hp < dfn.maxhp:
+            heal(dfn, max(1, dfn.maxhp // 4))
+    else:
+        stat = ABSORB_STAGE[ab][1]
+        if dfn.stages[stat] < 6:
+            dfn.stages[stat] += 1
+            dfn.stat_raised = True
+    return True
+
+
 # The abilities that take a move whole, which the AI's damage estimate does
 # not see (fightai.figure costs the move on an ability-blank twin).
 AI_BLIND_ABSORBS = {"Volt Absorb", "Water Absorb", "Flash Fire", "Motor Drive", "Dry Skin", "Lightning Rod",
@@ -1334,6 +1367,7 @@ def attack(b, att, mv, dfn, first):
             reveal(dfn)              # an absorbing ability, Levitate or Wonder Guard took it
             if dfn.ability == "Flash Fire" and mv.type == "Fire":
                 dfn.flash_fire = True
+            absorb(b, att, dfn, mv)  # and a heal or a stage for the ones that give one
         return
     # The hit lands: Substitute, Focus Sash and Sturdy, then the damage.
     if sub_blocks(att, dfn, mv):
@@ -2236,6 +2270,8 @@ def status_move(b, att, mv, dfn, first):
             return
         if not b.accuracy_hits(att, dfn, mv):
             return
+        if absorb(b, att, dfn, mv):
+            return               # Thunder Wave into Volt Absorb, Spore into Sap Sipper: taken whole
     if e in STATUS_OF:
         if sub_blocks(att, dfn, mv):
             return
@@ -2543,6 +2579,18 @@ def _end_of_turn(b):
                 hurt(b, m, m.maxhp // 16)
                 if battle_over(b):
                     return
+    if b.weather in ("Rain", "Sun") and not weather_ignored(b):
+        # Dry Skin (BtlCmd_EndOfTurnWeatherEffect): an eighth of maximum HP
+        # back in rain, below full HP, and an eighth lost in sun.
+        for m in order:
+            if m.alive() and m.ability == "Dry Skin":
+                if b.weather == "Rain":
+                    if m.hp < m.maxhp:
+                        heal(m, max(1, m.maxhp // 8))
+                else:
+                    hurt(b, m, max(1, m.maxhp // 8))
+                    if battle_over(b):
+                        return
     for m in order:
         side = b.p if m.side == "p" else b.b
         if not _end_of_turn_mon(b, side, m):

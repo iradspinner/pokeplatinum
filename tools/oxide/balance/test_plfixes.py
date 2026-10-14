@@ -1540,6 +1540,31 @@ def readings_damage_checks():
              got == want, f"(readings, fightsim) {got}")]
 
 
+def absorbing_ability_checks():
+    """The absorbing abilities on the calculator's real rows, in the
+    readings' battle (approved 2026-10-14): a Volt Absorb Lanturn at half HP
+    takes a Pikachu's Thunderbolt whole and gets a quarter of its HP back,
+    and Roark's Storm Drain Lileep takes a Barboach's Water Gun and rises a
+    stage of Sp. Atk (Roark's readings move with this)."""
+    from .test_fightai import battle
+    b = battle([("Lanturn", 26, "Volt Absorb", ["Discharge"]), ("Lileep", 16, "Storm Drain", ["Mega Drain"])],
+               [("Pikachu", 26, "Static", ["Thunderbolt"]), ("Barboach", 16, "Oblivious", ["Water Gun"])])
+    lanturn, lileep = b.b.mons
+    pika, barb = b.p.mons
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    lanturn.hp = lanturn.maxhp // 2
+    before = lanturn.hp
+    pl.use_move(b, pika, fs.move("Thunderbolt"), lanturn, True)
+    healed = lanturn.hp - before
+    fs.switch_in(b, b.b, 1)
+    fs.switch_in(b, b.p, 1)
+    pl.use_move(b, barb, fs.move("Water Gun"), lileep, True)
+    rise = (lileep.hp == lileep.maxhp, lileep.stages["spa"])
+    ok = healed == lanturn.maxhp // 4 and rise == (True, 1)
+    return [("the readings' battle: Volt Absorb heals a quarter, Storm Drain raises Sp. Atk", ok,
+             f"Lanturn healed {healed} of {lanturn.maxhp}; Lileep after Water Gun (full HP, Sp. Atk stage) {rise}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2002,6 +2027,7 @@ def main():
     results += pivot_checks()
     results += ice_body_checks()
     results += readings_damage_checks()
+    results += absorbing_ability_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

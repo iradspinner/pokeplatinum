@@ -800,6 +800,60 @@ def check_ice_body(results):
     results.append(("Ice Body heals a sixteenth in hail", got == want, f"HP from 50 after a turn's end {got}"))
 
 
+def check_absorbing_abilities(results):
+    """The absorbing abilities do their whole job (approved 2026-10-14;
+    BattleSystem_TriggerImmunityAbility): a move of the ability's type is
+    taken whole, damaging or not, and Volt Absorb, Water Absorb and Dry Skin
+    give back a quarter of maximum HP (none at full HP) while Lightning Rod,
+    Storm Drain, Sap Sipper and Motor Drive raise Sp. Atk, Sp. Atk, Attack
+    and Speed a stage (none at +6); a Mold Breaker user is taken in by none.
+    Dry Skin heals an eighth at the turn's end in rain and loses an eighth in
+    sun. Rows of 0 stand for the calculator's, which already give these
+    hits no damage."""
+    def take(ability, move, hp=50, stage=0, mold=False):
+        b, p, foe = battle([move], ["Tackle"], {("p", move): [0] * 16})
+        foe.ability, foe.hp = ability, hp
+        stat = {"Lightning Rod": "spa", "Storm Drain": "spa", "Sap Sipper": "atk", "Motor Drive": "spe"}.get(ability)
+        if stat:
+            foe.stages[stat] = stage
+        if mold:
+            p.ability = "Mold Breaker"
+        p.stages["acc"] = 6                  # Thunder Wave's 90 always lands
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return (foe.hp, foe.stages[stat] if stat else None, foe.status, foe.revealed)
+    got = {"Volt Absorb, Thunderbolt": take("Volt Absorb", "Thunderbolt"),
+           "Volt Absorb at full HP": take("Volt Absorb", "Thunderbolt", hp=100),
+           "Volt Absorb, Thunder Wave": take("Volt Absorb", "Thunder Wave"),
+           "Water Absorb, Water Gun": take("Water Absorb", "Water Gun"),
+           "Dry Skin, Water Gun": take("Dry Skin", "Water Gun"),
+           "Lightning Rod, Thunderbolt": take("Lightning Rod", "Thunderbolt"),
+           "Storm Drain, Water Gun": take("Storm Drain", "Water Gun"),
+           "Sap Sipper, Spore": take("Sap Sipper", "Spore"),
+           "Motor Drive at +6": take("Motor Drive", "Thunderbolt", stage=6),
+           "Volt Absorb against Mold Breaker": take("Volt Absorb", "Thunderbolt", mold=True)}
+    want = {"Volt Absorb, Thunderbolt": (75, None, None, "Volt Absorb"),
+            "Volt Absorb at full HP": (100, None, None, "Volt Absorb"),
+            "Volt Absorb, Thunder Wave": (75, None, None, "Volt Absorb"),
+            "Water Absorb, Water Gun": (75, None, None, "Water Absorb"),
+            "Dry Skin, Water Gun": (75, None, None, "Dry Skin"),
+            "Lightning Rod, Thunderbolt": (50, 1, None, "Lightning Rod"),
+            "Storm Drain, Water Gun": (50, 1, None, "Storm Drain"),
+            "Sap Sipper, Spore": (50, 1, None, "Sap Sipper"),
+            "Motor Drive at +6": (50, 6, None, "Motor Drive"),
+            "Volt Absorb against Mold Breaker": (50, None, None, "Volt Absorb")}
+
+    def weather(w):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        foe.ability, foe.hp = "Dry Skin", 50
+        b.weather, b.weather_turns = w, 0
+        fs.end_of_turn(b)
+        return foe.hp
+    skin = (weather("Rain"), weather("Sun"))
+    ok = got == want and skin == (62, 38)
+    results.append(("the absorbing abilities heal or raise their stat; Dry Skin in rain and sun", ok,
+                    f"(HP from 50, the stage, status, ability named) {got}; Dry Skin from 50 in rain and sun {skin}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1036,7 +1090,7 @@ def main():
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
-                  check_encore, check_ice_body,
+                  check_encore, check_ice_body, check_absorbing_abilities,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

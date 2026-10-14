@@ -587,6 +587,7 @@ def attack(b, att, mv, dfn, first):
             fs.reveal(dfn)           # an absorbing ability, Levitate or Wonder Guard took it
             if dfn.ability == "Flash Fire" and mv.type == "Fire":
                 dfn.flash_fire = True
+            fs.absorb(b, att, dfn, mv)   # and a heal or a stage for the ones that give one
         return
     if fs.sub_blocks(att, dfn, mv):
         dfn.sub = max(0, dfn.sub - dmg)
@@ -744,6 +745,8 @@ def status_move(b, att, mv, dfn, first):
             return
         if not accuracy_hits(b, att, dfn, mv):
             return
+        if fs.absorb(b, att, dfn, mv):
+            return               # a status move of the ability's type is taken whole (fightsim.absorb)
     if e in fs.STATUS_OF:
         if fs.sub_blocks(att, dfn, mv):
             return
