@@ -1497,6 +1497,26 @@ def check_technician_power(results):
                     f"(Technician, plain) {got}"))
 
 
+def check_stored_power(results):
+    """Stored Power and Power Trip (approved 2026-10-14;
+    BattleScript_ComputedMovePower): 20 power and 20 more for each stage its
+    user has raised, accuracy and evasion included, lowered stages counting
+    nothing. A row of 20 stands for the calculator's at no stage. With +2
+    Sp. Atk and +1 Speed, Stored Power has 80 power and its +2 Sp. Atk
+    doubles the hit again: 160; Power Trip at +1 Attack and +1 evasion, -2
+    Defense, 60 power and +1 Attack: 90."""
+    def hit(name, stages):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [20] * 16})
+        p.stages.update(stages)
+        return b.damage(p, foe, fs.move(name), roll=0)
+    got = {"Stored Power at no stage": hit("Stored Power", {}),
+           "Stored Power at +2 Sp. Atk, +1 Speed": hit("Stored Power", {"spa": 2, "spe": 1}),
+           "Power Trip at +1 Attack, +1 evasion, -2 Defense": hit("Power Trip", {"atk": 1, "eva": 1, "def": -2})}
+    want = {"Stored Power at no stage": 20, "Stored Power at +2 Sp. Atk, +1 Speed": 160,
+            "Power Trip at +1 Attack, +1 evasion, -2 Defense": 90}
+    results.append(("Stored Power and Power Trip gain 20 power a raised stage", got == want, f"{got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1738,7 +1758,7 @@ def main():
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_magic_guard, check_liquid_ooze,
-                  check_drop_answers, check_technician_power,
+                  check_drop_answers, check_technician_power, check_stored_power,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

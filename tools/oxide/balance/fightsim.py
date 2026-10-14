@@ -2301,6 +2301,13 @@ def state_mult(b, att, dfn, mv):
         # the game takes the turn's, stages and paralysis in them, and so
         # does the trainer's AI (TrainerAI_CalcDamage's MOVE_GYRO_BALL case).
         m *= power_ratio(att, gyro_power(b.row_speed(dfn), b.row_speed(att)), gyro_power(b.speed(dfn), b.speed(att)))
+    if mv.const in ("MOVE_STORED_POWER", "MOVE_POWER_TRIP"):
+        # BattleScript_ComputedMovePower: 20, and 20 more for each stage its
+        # user has raised a stat, accuracy and evasion included; the row is
+        # made with none raised. The trainer's AI reckons it the same way
+        # (TrainerAI_ComputedMovePower). Until 2026-10-14 it hit at 20 power
+        # whatever the stages (Ian approved the fix).
+        m *= power_ratio(att, 20, 20 + 20 * sum(s for s in att.stages.values() if s > 0))
     reach = reach_mult(mv, dfn)
     if reach > 1:
         # The effect scripts double the power (POWER_MULTI 20) before

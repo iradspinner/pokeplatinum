@@ -1966,6 +1966,23 @@ def technician_power_checks():
              f"Reversal (Technician, Poison Heal) at full HP {full}, at 1 HP {low}; Pursuit into a switch {pursuit}")]
 
 
+def stored_power_checks():
+    """Stored Power on the calculator's real rows (approved 2026-10-14): an
+    Espeon's at +2 Sp. Atk and +1 Speed has 80 power, four times its row's
+    20, and the +2 Sp. Atk doubles it again, so it hits eight times as hard
+    as at no stage in the readings' damage, where it hit twice as hard."""
+    from .test_fightai import battle
+    b = battle([("Espeon", 40, "Synchronize", ["Stored Power"])], [("Snorlax", 40, "Thick Fat", ["Body Slam"])])
+    esp, lax = b.b.cur(), b.p.cur()
+    sp = fs.move("Stored Power")
+    plain = pl.damage_of(b, esp, lax, sp, False, True)
+    esp.stages["spa"], esp.stages["spe"] = 2, 1
+    boosted = pl.damage_of(b, esp, lax, sp, False, True)
+    ok = abs(boosted - plain * 8) <= 8
+    return [("Stored Power at +2 Sp. Atk and +1 Speed hits eight times as hard on the real rows", ok,
+             f"Espeon's top roll at no stage {plain}, at +2 Sp. Atk and +1 Speed {boosted}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2442,6 +2459,7 @@ def main():
     results += liquid_ooze_checks()
     results += drop_answer_checks()
     results += technician_power_checks()
+    results += stored_power_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
