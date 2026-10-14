@@ -2105,15 +2105,21 @@ CONTACT_STATUS = {"Static": "par", "Poison Point": "psn", "Flame Body": "brn"}
 
 
 def contact_ability(b, att, dfn, mv, dealt, chance, pick):
-    """The defender's ability after a contact move hurt it (Static, Poison
-    Point, Flame Body, Effect Spore, Cute Charm at 3 in 10; Rough Skin and
-    Oxide's Iron Barbs an eighth of the attacker's HP), as battle_lib's
-    on-hit switch has them: only when the move did damage (not to a
-    Substitute) and its user still stands, a status only on an attacker with
-    none. When none of those acted, Oxide's Poison Touch poisons the target
-    3 times in 10 (battle_lib, after the switch). `chance(kind, p, victim)`
-    and `pick(kind, n)` are the battle's dice."""
-    if not mv.contact or dealt <= 0:
+    """The defender's ability after a move hurt it, as battle_lib's on-hit
+    switch has them (BattleSystem_TriggerAbilityOnHit): only when the move did
+    damage (not to a Substitute). Those any damaging hit sets off come first
+    (hit_ability: Cursed Body); then, for a contact move whose user still
+    stands, Static, Poison Point, Flame Body, Effect Spore and Cute Charm at
+    3 in 10, a status only on an attacker with none, and Rough Skin and
+    Oxide's Iron Barbs an eighth of the attacker's HP. When none of those
+    acted, Oxide's Poison Touch poisons the target 3 times in 10 (battle_lib,
+    after the switch). `chance(kind, p, victim)` and `pick(kind, n)` are the
+    battle's dice."""
+    if dealt <= 0:
+        return
+    if dfn.ability and hit_ability(b, att, dfn, mv, chance):
+        return
+    if not mv.contact:
         return
     if att.alive() and dfn.ability and _struck_back(b, att, dfn, chance, pick):
         return
@@ -2121,6 +2127,25 @@ def contact_ability(b, att, dfn, mv, dealt, chance, pick):
         b.status_src = att
         if give_status(b, dfn, "psn"):
             reveal(att)
+
+
+def hit_ability(b, att, dfn, mv, chance):
+    """The defender's on-hit abilities that any damaging hit sets off,
+    contact or not (BattleSystem_TriggerAbilityOnHit's switch); whether one
+    acted. Cursed Body: three times in ten the attacker's move, if it has
+    power, is one of its moves with PP left after the use and no move of
+    its is disabled already, is disabled for three turn ends after this
+    one's (disabledTurns 3, Disable's own count), its holder fainted or
+    not. Until 2026-10-14 it did nothing (Ian approved the fix)."""
+    a = dfn.ability
+    if a == "Cursed Body":
+        if (att.alive() and att is not dfn and att.disabled is None and mv.power
+                and any(m.name == mv.name for m in att.moves) and att.pp.get(mv.name, 0) > 0
+                and chance("cursedbody", 0.3, att)):
+            att.disabled, att.disabled_turns = mv.name, 3
+            return True
+        return False
+    return False
 
 
 def _struck_back(b, att, dfn, chance, pick):

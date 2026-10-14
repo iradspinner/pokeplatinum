@@ -2079,6 +2079,26 @@ def oblivious_taunt_checks():
     return [("Oblivious keeps a trainer's Taunt off a Slowpoke in the readings' battle", ok, f"Taunt's turns {out}")]
 
 
+def cursed_body_checks():
+    """Cursed Body in the readings' battle (approved 2026-10-14): Fantina's
+    and Candice's Cursed Body holders disable the player's move about three
+    times in ten; here a Jellicent's against a Pikachu's Thunderbolt over 300
+    hits, through the battle's dice."""
+    from .test_fightai import battle
+    b = battle([("Jellicent", 30, "Cursed Body", ["Hex"])], [("Pikachu", 30, "Static", ["Thunderbolt", "Quick Attack"])])
+    jelly, pika = b.b.cur(), b.p.cur()
+    bolt = fs.move("Thunderbolt")
+    disabled = 0
+    for seed in range(300):
+        b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+        jelly.hp, pika.disabled, pika.disabled_turns = jelly.maxhp, None, 0
+        pika.pp["Thunderbolt"] = 10
+        pl.use_move(b, pika, bolt, jelly, True)
+        disabled += pika.disabled == "Thunderbolt"
+    ok = 60 <= disabled <= 120
+    return [("Cursed Body disables the player's move about three times in ten", ok, f"disabled in {disabled} of 300 hits")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2561,6 +2581,7 @@ def main():
     results += sacred_sword_checks()
     results += mold_breaker_checks()
     results += oblivious_taunt_checks()
+    results += cursed_body_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

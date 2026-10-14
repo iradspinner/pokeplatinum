@@ -1665,6 +1665,31 @@ def check_oblivious_taunt(results):
     results.append(("Oblivious stops Taunt, unless Mold Breaker", ok, f"(Taunt's turns, the ability named) {got}"))
 
 
+def check_cursed_body(results):
+    """Cursed Body (approved 2026-10-14; BattleSystem_TriggerAbilityOnHit):
+    three times in ten a damaging move that hits its holder, contact or not,
+    is disabled for its user for three turn ends after this one, even when
+    the hit faints the holder, but not when the user already has a move
+    disabled; a status move sets nothing off. With every chance landing."""
+    def hit(move, ability="Cursed Body", hp=100, disabled=None, value=0.0):
+        b, p, foe = battle([move, "Tackle"], ["Tackle"], {("p", move): [30] * 16})
+        b.st["first_battle"] = True
+        foe.ability, foe.hp = ability, hp
+        p.disabled = disabled
+        b.rng = FixedDice(value)
+        mv = fs.move(move)
+        fs.use_move(b, p, mv, foe, True)
+        return p.disabled, p.disabled_turns
+    got = {"Water Gun": hit("Water Gun"), "Tackle": hit("Tackle"), "a knockout": hit("Water Gun", hp=10),
+           "another move disabled": hit("Water Gun", disabled="Tackle"), "Growl": hit("Growl"),
+           "no Cursed Body": hit("Water Gun", ability=None), "the 30% missed": hit("Water Gun", value=0.5)}
+    want = {"Water Gun": ("Water Gun", 3), "Tackle": ("Tackle", 3), "a knockout": ("Water Gun", 3),
+            "another move disabled": ("Tackle", 0), "Growl": (None, 0), "no Cursed Body": (None, 0),
+            "the 30% missed": (None, 0)}
+    results.append(("Cursed Body disables the move that hit it three times in ten", got == want,
+                    f"(the user's disabled move, its turns) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1908,7 +1933,7 @@ def main():
                   check_roost, check_protean, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
-                  check_oblivious_taunt,
+                  check_oblivious_taunt, check_cursed_body,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
