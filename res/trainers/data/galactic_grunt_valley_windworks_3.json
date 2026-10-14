@@ -12,72 +12,72 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PINECO",
+            "species": "SPECIES_DROWZEE",
             "form": 0,
-            "level": 18,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 17,
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
-                "MOVE_TOXIC_SPIKES",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_BUG_BITE",
-                "MOVE_PROTECT"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_RELAXED",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_EEVEE",
-            "form": 0,
-            "level": 18,
-            "item": "ITEM_SILK_SCARF",
-            "moves": [
-                "MOVE_COVET",
-                "MOVE_SWIFT",
-                "MOVE_FAKE_TEARS",
-                "MOVE_CHARM"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_JOLLY",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
-        },
-        {
-            "species": "SPECIES_BARBOACH",
-            "form": 0,
-            "level": 18,
-            "item": "ITEM_PASSHO_BERRY",
-            "moves": [
-                "MOVE_WATER_PULSE",
-                "MOVE_MUD_BOMB",
-                "MOVE_SPARK",
-                "MOVE_ROCK_TOMB"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_SWALOT",
-            "form": 0,
-            "level": 19,
-            "item": "ITEM_SITRUS_BERRY",
-            "moves": [
-                "MOVE_YAWN",
+                "MOVE_HYPNOSIS",
                 "MOVE_DREAM_EATER",
-                "MOVE_SLUDGE_BOMB",
-                "MOVE_GIGA_DRAIN"
+                "MOVE_PSYBEAM",
+                "MOVE_DISABLE"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_CALM",
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GASTLY",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_COLBUR_BERRY",
+            "moves": [
+                "MOVE_HYPNOSIS",
+                "MOVE_HEX",
+                "MOVE_NIGHTMARE",
+                "MOVE_LICK"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MUNCHLAX",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_REST",
+                "MOVE_SLEEP_TALK",
+                "MOVE_BODY_SLAM",
+                "MOVE_YAWN"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BUTTERFREE",
+            "form": 0,
+            "level": 18,
+            "item": "ITEM_CHARTI_BERRY",
+            "moves": [
+                "MOVE_SLEEP_POWDER",
+                "MOVE_AIR_CUTTER",
+                "MOVE_PSYBEAM",
+                "MOVE_SILVER_WIND"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [
