@@ -327,6 +327,196 @@ def check_berry_first_hit(results):
                     f"two hits {twice}, five hits {five}, one hit {single}, no berry held {no_berry}"))
 
 
+def gas_field(abilities, rows, items=None, start=True):
+    """A singles battle as prepare() makes one with Neutralizing Gas in it.
+    abilities is {key: ability} in party order, the player's keys p0, p1 and
+    the trainer's b0.0, b0.1, the first of each leading; rows is {(attacker,
+    target): {move: damage}}, where a key ending "#ng" is that Pokemon's
+    ability-blank twin, the row the gas sends it to. Every Pokemon has 100 HP
+    and the same Speed as its twin; each knows the moves its rows name."""
+    st = {"rows": {}, "speed": {}, "info": {}, "pokemon": {}, "moves": {}, "chart": _chart(),
+          "rock_eff": {}, "base_weather": None, "trick_room": False, "gas_twin": {},
+          "gas": "Neutralizing Gas" in abilities.values()}
+    known = {}
+    for (a, _d), got in rows.items():
+        known.setdefault(a.split("#")[0], set()).update(got)
+    for k, ability in abilities.items():
+        st["info"][k] = {"hp": 100, "stats": {"atk": 100, "def": 100, "spa": 100, "spd": 100, "spe": 100},
+                         "types": ["Normal"], "ability": ability, "item": (items or {}).get(k)}
+        st["pokemon"][k] = {"species": k, "level": 50}
+        st["moves"][k] = sorted(known.get(k, {"Tackle"}))
+        st["speed"][(None, k)] = st["speed"][(None, k + "#ng")] = 100 if k[0] == "p" else 50
+        st["gas_twin"][k] = k + "#ng"
+    for (a, d), got in rows.items():
+        st["rows"][(None, a, d)] = {"moves": {m: {"rolls": [v] * 16} for m, v in got.items()}}
+    side = {s: [fs.Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], s) for k in abilities if k[0] == s]
+            for s in "pb"}
+    b = fs.Battle(st, fs.Side(side["p"], "p"), fs.Side(side["b"], "b"), random.Random(1), ai_flags=7)
+    if start:
+        for s in (b.b, b.p):
+            fs.switch_in(b, s, s.active)
+    return b
+
+
+def check_neutralizing_gas(results):
+    """Neutralizing Gas (the simulator's support approved by Ian, 2026-10-13;
+    battle_lib.c's BattleSystem_NeutralizingGasActive and Battler_Ability):
+    while its holder is in, every other Pokemon on the field has no ability,
+    so a Ground move lands on a Levitate Pokemon, the hazards reach it, and
+    a Huge Power attacker hits from its ability-blank row, which the
+    calculator works out at half. A Pokemon that comes in under the gas
+    sets off nothing."""
+    quake = {("b0.0", "p0"): {"Earthquake": 0}, ("b0.0", "p0#ng"): {"Earthquake": 30},
+             ("b0.0", "p1"): {"Earthquake": 0}, ("b0.0", "p1#ng"): {"Earthquake": 30}}
+    got = {}
+    for holder in ("Neutralizing Gas", "Stench"):
+        b = gas_field({"p0": "Levitate", "p1": "Levitate", "b0.0": holder}, quake)
+        p, foe = b.p.cur(), b.b.cur()
+        ground = b.damage(foe, p, fs.move("Earthquake"), roll=0)
+        fs.use_move(b, foe, fs.move("Earthquake"), p, True)
+        took = 100 - p.hp
+        b.p.hazards["spikes"] = 1
+        fs.switch_in(b, b.p, 1)
+        got[holder] = (ground, took > 0, 100 - b.p.cur().hp, p.ability)
+    hp_rows = {("p0", "b0.0"): {"Waterfall": 40}, ("p0#ng", "b0.0"): {"Waterfall": 20}}
+    power = {}
+    for holder in ("Neutralizing Gas", "Stench"):
+        b = gas_field({"p0": "Huge Power", "b0.0": holder}, hp_rows)
+        power[holder] = b.damage(b.p.cur(), b.b.cur(), fs.move("Waterfall"), roll=0)
+    came = {}
+    for holder in ("Neutralizing Gas", "Stench"):
+        b = gas_field({"p0": "Run Away", "p1": "Intimidate", "p2": "Drizzle", "b0.0": holder}, {})
+        fs.switch_in(b, b.p, 1)
+        fs.switch_in(b, b.p, 2)
+        came[holder] = (b.b.cur().stages["atk"], b.weather, b.p.mons[1].ability)
+    ok = (got == {"Neutralizing Gas": (30, True, 12, "Levitate"), "Stench": (0, False, 0, "Levitate")}
+          and power == {"Neutralizing Gas": 20, "Stench": 40}
+          and came == {"Neutralizing Gas": (0, None, "Intimidate"), "Stench": (-1, "Rain", "Intimidate")})
+    results.append(("Neutralizing Gas: a Levitate Pokemon is grounded, Huge Power reads its blank row, "
+                    "a newcomer sets off nothing", ok,
+                    f"Earthquake, hit, Spikes, ability back on the bench {got}; Huge Power's hit {power}; "
+                    f"after Intimidate and Drizzle came in: Attack stage, weather, ability {came}"))
+
+
+def check_gas_wears_off(results):
+    """When the gas goes, every Pokemon on the field sets off its entry
+    abilities again at the next switch-in check (the engine resets their
+    announcements). The engine runs that check when a move ends and when a
+    Pokemon comes in: so a holder that leaves, or falls at the turn's end,
+    has the re-announced Intimidate land on its replacement, while a holder
+    knocked out by a move takes it into an empty slot, and its replacement
+    keeps its Attack."""
+    def run(how):
+        b = gas_field({"p0": "Intimidate", "b0.0": "Neutralizing Gas", "b0.1": "Stench"},
+                      {("p0#ng", "b0.0"): {"Tackle": 50}})
+        p, holder = b.p.cur(), b.b.cur()
+        under = (p.ability, holder.stages["atk"])
+        if how == "switch":
+            fs.switch_in(b, b.b, 1)
+        elif how == "knocked out":
+            holder.hp = 1
+            fs.use_move(b, p, fs.move("Tackle"), holder, True)
+            back = p.ability
+            fs.switch_in(b, b.b, 1)
+            return under, back, b.b.cur().stages["atk"]
+        else:
+            holder.hp, holder.status = 1, "psn"
+            fs.end_of_turn(b)
+            back = p.ability
+            fs.switch_in(b, b.b, 1)
+            return under, back, b.b.cur().stages["atk"]
+        return under, p.ability, b.b.cur().stages["atk"]
+    got = {how: run(how) for how in ("switch", "knocked out", "turn's end")}
+    want = {"switch": ((None, 0), "Intimidate", -1), "knocked out": ((None, 0), "Intimidate", 0),
+            "turn's end": ((None, 0), "Intimidate", -1)}
+    results.append(("the gas wears off: Intimidate again on the replacement, unless a move knocked the holder out",
+                    got == want, f"(under the gas, ability back, replacement's Attack stage) {got}"))
+
+
+def check_gas_exceptions(results):
+    """What the engine reads past the gas, or the gas stops on purpose. As a
+    Pokemon leaves, Natural Cure and Regenerator do nothing while the gas is
+    on (BtlCmd_TryRestoreStatusOnSwitch asks BattleSystem_NeutralizingGasSuppresses),
+    and its party record keeps its ability. A lit Flash Fire keeps burning
+    (the boost reads BATTLEMON_FLASH_FIRE, not the ability). An Ability
+    Shield keeps its holder's ability on, though the AI's ability commands,
+    which ask the gas first and never see the shield, read none; so they do
+    for any foe under the gas, even one a message has named. A holder's
+    Explosion leaves its HP at 0 before the blast is worked out, so the
+    target's Sturdy holds against it. The gas leaves Multitype alone."""
+    leave = {}
+    for holder in ("Neutralizing Gas", "Stench"):
+        b = gas_field({"p0": "Regenerator", "p1": "Natural Cure", "p2": "Run Away", "b0.0": holder}, {})
+        regen, cure = b.p.mons[0], b.p.mons[1]
+        regen.hp = 50
+        fs.switch_in(b, b.p, 1)
+        cure.status = "psn"
+        fs.switch_in(b, b.p, 2)
+        leave[holder] = (regen.hp, cure.status, regen.ability, cure.ability)
+    fire = {}
+    for holder in ("Neutralizing Gas", "Stench"):
+        for lit in (True, False):
+            b = gas_field({"p0": "Flash Fire", "b0.0": holder},
+                          {("p0", "b0.0"): {"Ember": 30}, ("p0#ng", "b0.0"): {"Ember": 20}})
+            b.p.cur().flash_fire = lit
+            fire[holder, lit] = b.damage(b.p.cur(), b.b.cur(), fs.move("Ember"), roll=0)
+    b = gas_field({"p0": "Levitate", "b0.0": "Neutralizing Gas"},
+                  {("b0.0", "p0"): {"Earthquake": 0}, ("b0.0", "p0#ng"): {"Earthquake": 30}},
+                  items={"p0": "Ability Shield"})
+    p, holder = b.p.cur(), b.b.cur()
+    shield = (p.ability, b.damage(holder, p, fs.move("Earthquake"), roll=0), fightai.ability_of(b, holder, p),
+              fightai.check_ability(b, holder, p, "Levitate"))
+    b = gas_field({"p0": "Intimidate", "b0.0": "Stench", "b0.1": "Neutralizing Gas"}, {})
+    p = b.p.cur()
+    named = [fightai.ability_of(b, b.b.cur(), p)]
+    fs.switch_in(b, b.b, 1)
+    named.append(fightai.ability_of(b, b.b.cur(), p))
+    fs.switch_in(b, b.b, 0)
+    named += [fightai.ability_of(b, b.b.cur(), p), b.b.cur().stages["atk"]]
+    blast = {}
+    for mv in ("Explosion", "Tackle"):
+        b = gas_field({"p0": "Sturdy", "b0.0": "Neutralizing Gas"},
+                      {("b0.0", "p0"): {mv: 200}, ("b0.0", "p0#ng"): {mv: 200}})
+        fs.use_move(b, b.b.cur(), fs.move(mv), b.p.cur(), True)
+        blast[mv] = b.p.cur().hp
+    proof = gas_field({"p0": "Multitype", "b0.0": "Neutralizing Gas"}, {}).p.cur().ability
+    ok = (leave == {"Neutralizing Gas": (50, "psn", "Regenerator", "Natural Cure"),
+                    "Stench": (83, None, "Regenerator", "Natural Cure")}
+          and fire == {("Neutralizing Gas", True): 30, ("Neutralizing Gas", False): 20,
+                       ("Stench", True): 30, ("Stench", False): 20}
+          and shield == ("Levitate", 0, None, "unknown")
+          and named == ["Intimidate", None, "Intimidate", -1]
+          and blast == {"Explosion": 1, "Tackle": 0} and proof == "Multitype")
+    results.append(("the gas's exceptions: switch-out abilities, a lit Flash Fire, an Ability Shield, "
+                    "the AI's reads, Explosion, Multitype", ok,
+                    f"leaving (HP, status, abilities) {leave}; Ember {fire}; shield (ability, Earthquake, "
+                    f"AI load, AI check) {shield}; AI's read before, under, after the gas and Attack stage {named}; "
+                    f"HP after a 200 hit {blast}; Multitype {proof}"))
+
+
+def check_gas_doubles(results):
+    """In a double battle the gas reaches the whole field: the holder's
+    partner loses its ability as the foes do. When a move knocks the holder
+    out, every Pokemon left standing sets off its entry abilities again, so
+    the partner's Intimidate lands on both foes."""
+    b = gas_field({"p0": "Levitate", "p1": "Huge Power", "b0.0": "Neutralizing Gas", "b0.1": "Intimidate"},
+                  {("p0#ng", "b0.0"): {"Tackle": 50}}, start=False)
+    b.doubles, b.moved = True, set()
+    b.p.active, b.p.active2, b.b.active, b.b.active2 = 0, 1, 0, 1
+    for side in (b.b, b.p):
+        fs.switch_in(b, side, side.active)
+        fs.switch_in(b, side, side.active2, slot=1)
+    p0, p1, holder, partner = b.p.mons[0], b.p.mons[1], b.b.mons[0], b.b.mons[1]
+    under = (p0.ability, p1.ability, partner.ability, holder.ability, p0.stages["atk"])
+    holder.hp = 1
+    fs.use_move(b, p0, fs.move("Tackle"), holder, True)
+    after = (p0.ability, p1.ability, partner.ability, p0.stages["atk"], p1.stages["atk"])
+    ok = (under == (None, None, None, "Neutralizing Gas", 0)
+          and after == ("Levitate", "Huge Power", "Intimidate", -1, -1))
+    results.append(("doubles: the gas reaches the whole field, and its end re-arms the partner's Intimidate", ok,
+                    f"under the gas (abilities, Attack stage) {under}; after the holder fell {after}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -560,6 +750,7 @@ def main():
                   check_weather_rock, check_map_weather_replaced, check_permanent_trick_room,
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
                   check_salt_cure, check_harvest, check_berry_first_hit,
+                  check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

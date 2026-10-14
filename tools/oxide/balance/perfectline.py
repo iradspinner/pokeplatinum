@@ -255,6 +255,8 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None):
         mult *= 0.5
     if att.ability == "Guts" and att.status:
         mult *= 1.5
+    if att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
+        mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
     if att.side == "p" and fs.BOOSTER_TYPE.get(att.item) == mv.type:
         mult *= 1.2
     side = b.p if dfn.side == "p" else b.b
@@ -326,6 +328,14 @@ def accuracy_hits(b, att, dfn, mv):
 
 
 def use_move(b, att, mv, dfn, first):
+    """One move, then the switch-in check that ends it, where a Neutralizing
+    Gas whose holder fell wears off (fightsim.use_move)."""
+    _use_move(b, att, mv, dfn, first)
+    if b.st.get("gas"):
+        fs.gas_update(b)
+
+
+def _use_move(b, att, mv, dfn, first):
     if not att.alive():
         return
     att.last_hit_by = None           # cleared with its own action (fightsim.use_move)
@@ -872,6 +882,7 @@ def clone_battle(b):
     c.log = []
     c.luck_spent = b.luck_spent
     c.declined = getattr(b, "declined", frozenset())
+    c.gas_flag = getattr(b, "gas_flag", False)       # a Neutralizing Gas noted on the field
     return c
 
 
