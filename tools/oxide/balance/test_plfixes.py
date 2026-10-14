@@ -2386,6 +2386,25 @@ def unnerve_checks():
              f"Sandshrew from a Keen Eye Corvisquire {halved}, from an Unnerve one {whole}")]
 
 
+def steadfast_checks():
+    """Steadfast in the readings' battle (approved 2026-10-14): the player's
+    Steadfast Dubwool (box 3 of Gardenia's reading takes one) flinched by a
+    Fake Out rises a stage of Speed; a Fluffy one does not."""
+    from .test_fightai import battle
+    out = {}
+    for ab in ("Steadfast", "Fluffy"):
+        b = battle([("Ambipom", 30, "Technician", ["Fake Out"])], [("Dubwool", 30, ab, ["Double Kick"])])
+        pom, wool = b.b.cur(), b.p.cur()
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        pl.use_move(b, pom, fs.move("Fake Out"), wool, True)
+        flinched = wool.flinch
+        pl.use_move(b, wool, fs.move("Double Kick"), pom, False)
+        out[ab] = (flinched, wool.stages["spe"])
+    ok = out == {"Steadfast": (True, 1), "Fluffy": (True, 0)}
+    return [("Steadfast: a flinched Dubwool rises a stage of Speed in the readings' battle", ok,
+             f"(flinched, Speed stage) {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2883,6 +2902,7 @@ def main():
     results += plus_minus_checks()
     results += stench_checks()
     results += unnerve_checks()
+    results += steadfast_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

@@ -1548,6 +1548,17 @@ def could_not_act(b, att, mv, dfn, targets=None):
     mark_hit(b, mv, dfn, False, targets)
 
 
+def flinched(att):
+    """A flinch stops att's move (subscript_flinched): Steadfast then raises
+    its Speed a stage through the stat-stage subscript, the message naming
+    the ability. Steadfast did nothing until 2026-10-14 (Ian approved the
+    fix)."""
+    att.flinch = False
+    if att.ability == "Steadfast" and att.stages["spe"] < 6:
+        change_stages(att, {"spe": 1})
+        reveal(att)
+
+
 def sleep_tick(att):
     """One move attempt while asleep (the sleep check in
     battle_controller_player.c). The engine's counter is att.sleep + 1, set
@@ -1655,7 +1666,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
             if mv.effect not in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):
                 return could_not_act(b, att, mv, dfn, targets)
     if att.flinch:
-        att.flinch = False
+        flinched(att)                # Steadfast answers it
         return could_not_act(b, att, mv, dfn, targets)
     if disabled_out(att, mv):
         att.choice = None            # subscript_move_is_disabled lets go of a Choice item's lock

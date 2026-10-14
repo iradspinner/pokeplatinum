@@ -373,7 +373,7 @@ def _use_move(b, att, mv, dfn, first):
             if mv.effect not in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):
                 return fs.could_not_act(b, att, mv, dfn)
     if att.flinch:
-        att.flinch = False
+        fs.flinched(att)                 # Steadfast answers it
         return fs.could_not_act(b, att, mv, dfn)
     if fs.disabled_out(att, mv):
         att.choice = None                # subscript_move_is_disabled lets go of a Choice item's lock

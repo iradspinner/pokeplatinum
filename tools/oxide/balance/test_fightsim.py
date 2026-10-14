@@ -2076,6 +2076,23 @@ def check_telepathy(results):
                     f"(the partner's HP, the foe hit) {got}"))
 
 
+def check_steadfast(results):
+    """Steadfast (approved 2026-10-14; subscript_flinched): a flinch that
+    stops its holder's move raises its Speed a stage, nothing at +6; a
+    holder that does not flinch gains nothing."""
+    def turn(ability, flinch=True, stage=0):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {("p", "Tackle"): [10] * 16})
+        p.ability, p.flinch, p.stages["spe"] = ability, flinch, stage
+        fs.use_move(b, p, fs.move("Tackle"), foe, False)
+        return p.stages["spe"], foe.hp
+    got = {"Steadfast, flinched": turn("Steadfast"), "Steadfast at +6": turn("Steadfast", stage=6),
+           "Steadfast, not flinched": turn("Steadfast", flinch=False), "plain, flinched": turn(None)}
+    want = {"Steadfast, flinched": (1, 100), "Steadfast at +6": (6, 100), "Steadfast, not flinched": (0, 90),
+            "plain, flinched": (0, 100)}
+    results.append(("Steadfast gains a stage of Speed when it flinches", got == want,
+                    f"(its Speed stage, the foe's HP) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2324,7 +2341,7 @@ def main():
                   check_download, check_weather_abilities, check_sand_force,
                   check_bad_dreams, check_marvel_scale, check_shed_skin,
                   check_suction_cups, check_plus_minus, check_stench, check_unnerve,
-                  check_telepathy,
+                  check_telepathy, check_steadfast,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
