@@ -1458,6 +1458,20 @@ def berry_check(mon, b=None):
     if mon.item in PINCH_BERRIES and mon.hp * (2 if mon.ability == "Gluttony" else 4) <= mon.maxhp:
         change_stages(mon, {PINCH_BERRIES[mon.item]: 1})
         consume(mon)
+    elif mon.item == "Starf Berry" and mon.hp * (2 if mon.ability == "Gluttony" else 4) <= mon.maxhp:
+        # HOLD_EFFECT_PINCH_RANDOM_UP: at a quarter of its HP (half with
+        # Gluttony) one of the five stats other than accuracy and evasion
+        # that can still rise, drawn at random, rises two stages through the
+        # stat-stage subscript (so Simple doubles it); with none that can,
+        # the Berry stays uneaten. Until 2026-10-14 it did nothing (Ian
+        # approved the fix).
+        room = [s for s in ("atk", "def", "spa", "spd", "spe") if mon.stages[s] < 6]
+        if room:
+            dice = getattr(b, "dice", None) if b is not None else None
+            pick = (dice.choice("starf", len(room)) if dice is not None
+                    else b.rng.randrange(len(room)) if b is not None and getattr(b, "rng", None) is not None else 0)
+            change_stages(mon, {room[pick]: 2})
+            consume(mon)
     elif mon.item == "Sitrus Berry" and mon.hp * 2 <= mon.maxhp:
         heal(mon, mon.maxhp // 4)
         consume(mon)

@@ -2093,6 +2093,34 @@ def check_steadfast(results):
                     f"(its Speed stage, the foe's HP) {got}"))
 
 
+def check_starf_berry(results):
+    """The Starf Berry (approved 2026-10-14; HOLD_EFFECT_PINCH_RANDOM_UP): at a
+    quarter of its HP its holder raises one of Attack, Defense, Sp. Atk, Sp.
+    Def and Speed two stages, drawn among those below +6, and eats it; at
+    +6 in all five it stays uneaten; above a quarter nothing happens."""
+    seen = set()
+    for seed in range(60):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {}, seed=seed)
+        foe.item = "Starf Berry"
+        fs.hurt(b, foe, 76)
+        rose = {k: v for k, v in foe.stages.items() if v}
+        seen.add((tuple(rose.items()), foe.item))
+    stats = {r[0][0] for r, item in seen if r}
+    b, p, foe = battle(["Tackle"], ["Tackle"], {})
+    foe.item = "Starf Berry"
+    foe.stages.update({s: 6 for s in ("atk", "def", "spa", "spd", "spe")})
+    fs.hurt(b, foe, 76)
+    full = foe.item
+    b, p, foe = battle(["Tackle"], ["Tackle"], {})
+    foe.item = "Starf Berry"
+    fs.hurt(b, foe, 50)
+    above = foe.item
+    ok = (all(len(r) == 1 and r[0][1] == 2 and item is None for r, item in seen)
+          and stats == {"atk", "def", "spa", "spd", "spe"} and full == "Starf Berry" and above == "Starf Berry")
+    results.append(("the Starf Berry raises a random stat two stages at a quarter HP", ok,
+                    f"stats raised over 60 draws {sorted(stats)}; kept at +6 in all {full}; kept above a quarter {above}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2341,7 +2369,7 @@ def main():
                   check_download, check_weather_abilities, check_sand_force,
                   check_bad_dreams, check_marvel_scale, check_shed_skin,
                   check_suction_cups, check_plus_minus, check_stench, check_unnerve,
-                  check_telepathy, check_steadfast,
+                  check_telepathy, check_steadfast, check_starf_berry,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -2405,6 +2405,29 @@ def steadfast_checks():
              f"(flinched, Speed stage) {out}")]
 
 
+def starf_berry_checks():
+    """The Starf Berry through the readings' dice (approved 2026-10-14):
+    Hesperid's kind of Starf Berry holder, hit to a quarter of its HP, eats
+    it and raises one stat two stages, and the planner's dice offer the
+    five stats as one event at even odds."""
+    from .test_fightai import battle
+    from . import plplan
+    b = battle([("Slaking", 40, "Truant", ["Giga Impact"], "Starf Berry")], [("Machamp", 40, "Guts", ["Cross Chop"])])
+    lax = b.b.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    fs.hurt(b, lax, lax.hp - lax.maxhp // 4)
+    rose = {k: v for k, v in lax.stages.items() if v}
+    lax.item, lax.stages = "Starf Berry", dict.fromkeys(fs.STAGE_KEYS, 0)
+    lax.hp = lax.maxhp
+    d = plplan.EnumDice((), random.Random(0))
+    b.dice = d
+    fs.hurt(b, lax, lax.hp - lax.maxhp // 4)
+    offered = any(len(probs) == 5 and all(abs(q - 0.2) < 1e-9 for q in probs) for probs in d.events)
+    ok = len(rose) == 1 and list(rose.values()) == [2] and offered
+    return [("the Starf Berry fires at a quarter HP on the readings' dice", ok,
+             f"raised {rose}; offered to the planner as five even outcomes {offered}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2903,6 +2926,7 @@ def main():
     results += stench_checks()
     results += unnerve_checks()
     results += steadfast_checks()
+    results += starf_berry_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
