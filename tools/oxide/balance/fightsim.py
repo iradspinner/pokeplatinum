@@ -835,32 +835,79 @@ def entry_abilities(b, mons, intimidate=True):
 
 def intimidate_foes(b, mons):
     """Intimidate's step of the switch-in check for these Pokemon, in the
-    order given: one Attack stage off each foe on the field. This stage is
-    Intimidate's only effect, since prepare() keeps it out of the
-    calculator's rows (CALC_ABILITY_OFF)."""
+    order given: one Attack stage off each foe on the field, through what any
+    drop from the other side meets (lower_stats: the blockers, Mirror Armor,
+    Defiant and Competitive). This stage is Intimidate's only effect, since
+    prepare() keeps it out of the calculator's rows (CALC_ABILITY_OFF). Then
+    a Rattled foe gains a stage of Speed, whether or not its Attack fell
+    (subscript_intimidate, Generation 8's rule), raised directly, so Simple
+    does not double it (AbilityStatChange). Until 2026-10-14 Mirror Armor,
+    Defiant, Competitive and Rattled did nothing here (Ian approved the
+    fix)."""
     for new in mons:
         if new.ability == "Intimidate":
             for foe in (b.b if new.side == "p" else b.p).on_field():
                 # subscript_intimidate passes over a foe behind a Substitute.
-                if foe.alive() and not foe.sub and not intimidate_blocked(b, foe):
-                    change_stages(foe, {"atk": -1})
+                if foe.alive() and not foe.sub:
+                    lower_stats(b, new, foe, {"atk": -1}, intimidate=True)
+                    if foe.ability == "Rattled" and foe.alive():
+                        raise_own(foe, "spe", 1)
 
 
 # The abilities Oxide's engine lets stop Intimidate beside those that stop
 # any lowering of Attack (BtlCmd_ChangeStatStage, Generation 8's rule):
 # Inner Focus, Own Tempo, Oblivious and Scrappy. The game's other answers to
-# Intimidate (Rattled, Defiant, Competitive, Mirror Armor) are not modelled.
+# Intimidate (Mirror Armor, Defiant, Competitive, Rattled) meet it in
+# lower_stats and intimidate_foes.
 INTIMIDATE_PROOF = frozenset({"Inner Focus", "Own Tempo", "Oblivious", "Scrappy"})
+# Defiant and Competitive answer each stat another side lowers with two
+# stages of this one (BtlCmd_TryDefiant).
+DEFIANT_STAT = {"Defiant": "atk", "Competitive": "spa"}
 
 
-def intimidate_blocked(b, foe):
-    """Whether an Intimidate's drop is stopped: by what stops any drop from
-    the other side (stat_drop_blocked: Mist, the Clear Amulet and the
-    abilities), with the four that stop Intimidate alone checked where
-    BtlCmd_ChangeStatStage checks them, after Mist, the Clear Amulet, Clear
-    Body and White Smoke and before Hyper Cutter. The engine's message names
-    the ability that stops it."""
-    return stat_drop_blocked(b, foe, {"atk": -1}, intimidate=True)
+def raise_own(mon, stat, stages):
+    """A stat an ability raises on its own holder (AbilityStatChange, or
+    TryDefiant's direct raise): the stages straight on, so Simple does not
+    double them, nothing at +6 or with no HP; the message names the
+    ability. Whether it rose."""
+    if not mon.alive() or mon.stages[stat] >= 6:
+        return False
+    mon.stages[stat] = min(6, mon.stages[stat] + stages)
+    mon.stat_raised = True
+    reveal(mon)
+    return True
+
+
+def lower_stats(b, src, mon, changes, intimidate=False):
+    """src's move or ability lowering mon's stats from the other side, one
+    stat at a time in the order given, as each of the subscripts' calls to
+    BtlCmd_ChangeStatStage takes one. Mirror Armor (unless src has Mold
+    Breaker) turns a drop back on src while src stands, which then takes it
+    as its own: no blocker of its own side checked and no Defiant. Otherwise
+    the drop meets stat_drop_blocked, does nothing at -6, and once it lands
+    (Simple doubling it) a Defiant or Competitive holder answers with two
+    stages of Attack or Sp. Atk (TryDefiant, once a stat). The stats that
+    fell. Until 2026-10-14 a change of several stats was blocked or let
+    through whole, so Hyper Cutter stopped Tickle's Defense drop with its
+    Attack one, and Mirror Armor and Defiant did nothing (Ian approved the
+    fix)."""
+    fell = []
+    for stat, v in changes.items():
+        if v >= 0:
+            change_stages(mon, {stat: v})
+            continue
+        if (src is not None and src is not mon and src.side != mon.side and src.alive()
+                and mon.ability == "Mirror Armor" and src.ability != "Mold Breaker"):
+            if src.stages[stat] > -6:
+                change_stages(src, {stat: v}, simple=False)
+            continue
+        if stat_drop_blocked(b, mon, {stat: v}, src=src, intimidate=intimidate) or mon.stages[stat] <= -6:
+            continue
+        change_stages(mon, {stat: v})
+        fell.append(stat)
+        if src is not None and src.side != mon.side and mon.ability in DEFIANT_STAT:
+            raise_own(mon, DEFIANT_STAT[mon.ability], 2)
+    return fell
 
 
 def open_battle(b):
@@ -949,9 +996,10 @@ def give_status(b, target, status):
     return True
 
 
-def change_stages(mon, changes):
-    # Simple doubles every change to its own stages.
-    mult = 2 if getattr(mon, "ability", None) == "Simple" else 1
+def change_stages(mon, changes, simple=True):
+    # Simple doubles every change to its own stages; a drop Mirror Armor
+    # turns back keeps the size it had (simple False).
+    mult = 2 if simple and getattr(mon, "ability", None) == "Simple" else 1
     for k, v in changes.items():
         before = mon.stages[k]
         mon.stages[k] = max(-6, min(6, mon.stages[k] + v * mult))
@@ -1781,9 +1829,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
             and not confusion_blocked(b, att, dfn, hit=True):
         dfn.confused = b.rng.randint(2, 5)
         confusion_berry(dfn)
-    if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance \
-            and not stat_drop_blocked(b, dfn, HIT_FOE_STAGES[e], src=att):
-        change_stages(dfn, HIT_FOE_STAGES[e])
+    if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance:
+        lower_stats(b, att, dfn, HIT_FOE_STAGES[e])
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
         start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
@@ -2781,8 +2828,8 @@ def status_move(b, att, mv, dfn, first):
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in FOE_STAGES:
-        if not sub_blocks(att, dfn, mv) and not stat_drop_blocked(b, dfn, FOE_STAGES[e], src=att):
-            change_stages(dfn, FOE_STAGES[e])
+        if not sub_blocks(att, dfn, mv):
+            lower_stats(b, att, dfn, FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:
             ghost_curse(b, att, dfn, mv)

@@ -1412,6 +1412,49 @@ def check_liquid_ooze(results):
                     f"the user's HP from 50 (and the seeded one's from 100) {got}"))
 
 
+def check_drop_answers(results):
+    """The answers to a stat drop from the other side (approved 2026-10-14;
+    BtlCmd_ChangeStatStage, BtlCmd_TryDefiant, subscript_intimidate):
+    Defiant gains two stages of Attack and Competitive two of Sp. Atk for
+    each stat that falls, Intimidate's drop included; Mirror Armor turns the
+    drop back on the Pokemon that made it; Rattled gains a stage of Speed
+    from Intimidate even when Mist stops the drop. A drop of two stats is
+    taken a stat at a time, so Hyper Cutter keeps Tickle off Attack alone."""
+    def intimidated(ability, mist=False):
+        b = field({"p0": (("Normal",), ["Tackle"]), "p1": (("Normal",), ["Tackle"]),
+                   "b0.0": (("Normal",), ["Tackle"])}, {})
+        b.p.mons[1].ability = "Intimidate"
+        foe = b.b.cur()
+        foe.ability = ability
+        if mist:
+            b.b.mist = 5
+        fs.switch_in(b, b.p, 1)
+        return foe.stages["atk"], foe.stages["spa"], foe.stages["spe"], b.p.cur().stages["atk"]
+
+    def used(name, ability, rows=None):
+        b, p, foe = battle([name], ["Tackle"], rows or {})
+        foe.ability = ability
+        mv = fs.move(name)
+        (fs.status_move if mv.cat == "Status" else fs.attack)(b, p, mv, foe, True)
+        return {k: v for k, v in foe.stages.items() if v}, {k: v for k, v in p.stages.items() if v}
+    got = {"Intimidate, Defiant": intimidated("Defiant"), "Intimidate, Competitive": intimidated("Competitive"),
+           "Intimidate, Mirror Armor": intimidated("Mirror Armor"), "Intimidate, Rattled": intimidated("Rattled"),
+           "Intimidate, Rattled under Mist": intimidated("Rattled", mist=True),
+           "Growl, Defiant": used("Growl", "Defiant"), "Growl, Mirror Armor": used("Growl", "Mirror Armor"),
+           "Tickle, Hyper Cutter": used("Tickle", "Hyper Cutter"), "Tickle, Defiant": used("Tickle", "Defiant"),
+           "Rock Tomb, Competitive": used("Rock Tomb", "Competitive", {("p", "Rock Tomb"): [10] * 16}),
+           "Rock Tomb, Mirror Armor": used("Rock Tomb", "Mirror Armor", {("p", "Rock Tomb"): [10] * 16})}
+    want = {"Intimidate, Defiant": (1, 0, 0, 0), "Intimidate, Competitive": (-1, 2, 0, 0),
+            "Intimidate, Mirror Armor": (0, 0, 0, -1), "Intimidate, Rattled": (-1, 0, 1, 0),
+            "Intimidate, Rattled under Mist": (0, 0, 1, 0),
+            "Growl, Defiant": ({"atk": 1}, {}), "Growl, Mirror Armor": ({}, {"atk": -1}),
+            "Tickle, Hyper Cutter": ({"def": -1}, {}), "Tickle, Defiant": ({"atk": 3, "def": -1}, {}),
+            "Rock Tomb, Competitive": ({"spe": -1, "spa": 2}, {}), "Rock Tomb, Mirror Armor": ({}, {"spe": -1})}
+    results.append(("Defiant, Competitive, Mirror Armor and Rattled answer a drop; drops go a stat at a time",
+                    got == want, f"Intimidate (the foe's Attack, Sp. Atk, Speed; the holder's Attack) and moves "
+                                 f"(the target's stages, the user's) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1653,6 +1696,7 @@ def main():
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_magic_guard, check_liquid_ooze,
+                  check_drop_answers,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -1914,6 +1914,28 @@ def liquid_ooze_checks():
              f"(Giga Drain's damage, Roserade's HP change, Cherrim's HP change at the turn's end) {out}")]
 
 
+def drop_answer_checks():
+    """The answers to Intimidate on the calculator's real rows (approved
+    2026-10-14): a player's Intimidate Staravia leading against Mars 2's
+    kind of Defiant Primeape leaves it at +1 Attack, so its Close Combat on
+    the Staravia hits half again as hard as at no stage; against a Mirror
+    Armor Corviknight it is Staravia's own Attack that falls."""
+    from .test_fightai import battle
+    out = {}
+    for foe in (("Primeape", 30, "Defiant", ["Close Combat"]), ("Corviknight", 30, "Mirror Armor", ["Brave Bird"])):
+        b = battle([foe], [("Staravia", 30, "Intimidate", ["Wing Attack"])])
+        u, t = b.b.cur(), b.p.cur()
+        mv = u.moves[0]
+        now = pl.damage_of(b, u, t, mv, False, True)
+        stages = (u.stages["atk"], t.stages["atk"])
+        u.stages["atk"] = 0
+        out[u.ability] = stages + (now, pl.damage_of(b, u, t, mv, False, True))
+    ok = (out["Defiant"][:2] == (1, 0) and out["Mirror Armor"][:2] == (0, -1)
+          and abs(out["Defiant"][2] - out["Defiant"][3] * 1.5) <= 2)
+    return [("Defiant and Mirror Armor answer a lead's Intimidate on the real rows", ok,
+             f"(the foe's Attack stage, Staravia's, the foe's top hit now, at no stage) {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2388,6 +2410,7 @@ def main():
     results += protean_checks()
     results += magic_guard_checks()
     results += liquid_ooze_checks()
+    results += drop_answer_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

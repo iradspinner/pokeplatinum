@@ -799,9 +799,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
             and not fs.confusion_blocked(b, att, dfn, hit=True) and status_lands("confusehit"):
         dfn.confused = b.dice.confusion(dfn.side)
         fs.confusion_berry(dfn)          # a Lum Berry cures it at once
-    if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100) \
-            and not fs.stat_drop_blocked(b, dfn, fs.HIT_FOE_STAGES[e], src=att):
-        fs.change_stages(dfn, fs.HIT_FOE_STAGES[e])
+    if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100):
+        fs.lower_stats(b, att, dfn, fs.HIT_FOE_STAGES[e])     # Mirror Armor, the blockers, Defiant
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
         fs.start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
@@ -871,8 +870,8 @@ def status_move(b, att, mv, dfn, first):
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in fs.FOE_STAGES:
-        if not fs.sub_blocks(att, dfn, mv) and not fs.stat_drop_blocked(b, dfn, fs.FOE_STAGES[e], src=att):
-            fs.change_stages(dfn, fs.FOE_STAGES[e])
+        if not fs.sub_blocks(att, dfn, mv):
+            fs.lower_stats(b, att, dfn, fs.FOE_STAGES[e])     # stat by stat (fightsim.lower_stats)
     elif e == "CURSE":
         if "Ghost" in att.types:
             fs.ghost_curse(b, att, dfn, mv)      # it fails, at no cost, through a Substitute or on a cursed target
