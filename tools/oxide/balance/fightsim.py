@@ -4864,9 +4864,19 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                     if got:
                         pairs.append([d, t, got, w])
     # The calculator is told to leave off the abilities the battle applies
-    # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once.
-    jobs = {k: dict(p, ability_on=False) if p.get("ability") in CALC_ABILITY_OFF else p
-            for k, p in pokemon.items()}
+    # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once,
+    # and each Pokemon's gender as the battle has it (calc_gender: "M", "F",
+    # or "N" for none), which Rivalry reads (BattleSystem_CalcMoveDamage: a
+    # quarter more against its own gender, a quarter less against the
+    # other, nothing against a genderless one). Until 2026-10-14 it was told
+    # no gender, took every Pokemon as male, and gave a Rivalry holder its
+    # quarter more against every male and female foe alike (Ian approved the
+    # fix).
+    jobs = {}
+    for k, p in pokemon.items():
+        job = dict(p, ability_on=False) if p.get("ability") in CALC_ABILITY_OFF else dict(p)
+        job["calc_gender"] = _gender_of(p) or "N"
+        jobs[k] = job
     out = calc.run_node(calc.blob_path(), {"pokemon": jobs, "pairs": pairs})
     rows, speed = {}, {}
     for r in out["results"]:

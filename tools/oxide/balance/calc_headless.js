@@ -256,6 +256,9 @@ function run(blob, jobs) {
     // (fightsim.CALC_ABILITY_OFF), so the rows do not count it a second time.
     built[key] = new calc.Pokemon(GEN, name, {
       level: p.level, ability: p.ability || undefined, abilityOn: p.ability_on === undefined ? true : !!p.ability_on,
+      // The battle's gender ("M", "F" or "N"), for Rivalry; without one the
+      // page's own default (the species' fixed gender, else male) stands.
+      gender: p.calc_gender || undefined,
       item: p.item || '', nature: p.nature || 'Hardy',
       ivs: stats(p.ivs), evs: stats(p.evs),
       // B5: a setup branch's stat stages ({"atk": 1, "spe": -1}).

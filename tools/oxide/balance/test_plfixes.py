@@ -2446,6 +2446,31 @@ def sticky_barb_checks():
              f"(Machop's item, Ferrothorn's) {moved}; Machop lost {lost} of {chop.maxhp} at the turn's end")]
 
 
+def rivalry_checks():
+    """Rivalry on the calculator's real rows (approved 2026-10-14): prepare
+    gives the calculator each Pokemon's gender, so a male Rivalry Luxray's
+    Spark hits a male Bibarel a quarter harder and a female one a quarter
+    softer (5/3 between them), where both read the same quarter harder; a
+    Pressure Luxray hits the two alike."""
+    def rec(sp, lv, ab, mv, gender):
+        return {"species": sp, "level": lv, "ability": ab, "item": None, "nature": "Hardy", "ivs": IV, "evs": EV,
+                "moves": mv, "gender": gender}
+    bosses = [rec("Luxray", 30, "Rivalry", ["Spark"], "male"), rec("Luxray", 30, "Pressure", ["Spark"], "male")]
+    side = [dict(rec("Bibarel", 30, "Simple", ["Tackle"], g), constant="SPECIES_BIBAREL", how="test", fill=False)
+            for g in ("male", "female")]
+    st = fs.prepare("Roark", [bosses], None, given_side=side)
+    b = pl.make_battle(st, ["p0", "p1"], st["bosses"][0], 7, 0)
+    rival, plain = b.b.mons
+    male, female = b.p.mons
+    spark = fs.move("Spark")
+    got = {lux.ability: (pl.damage_of(b, lux, male, spark, False, True), pl.damage_of(b, lux, female, spark, False, True))
+           for lux in (rival, plain)}
+    r = got["Rivalry"]
+    ok = (male.gender, female.gender) == ("M", "F") and abs(r[0] / r[1] - 5 / 3) < 0.08 and got["Pressure"][0] == got["Pressure"][1]
+    return [("Rivalry reads the two Pokemon's genders on the real rows", ok,
+             f"Spark's top roll into the male and the female Bibarel {got}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2946,6 +2971,7 @@ def main():
     results += steadfast_checks()
     results += starf_berry_checks()
     results += sticky_barb_checks()
+    results += rivalry_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
