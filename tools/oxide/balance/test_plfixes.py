@@ -2183,6 +2183,25 @@ def accuracy_ability_checks():
     return [("No Guard and Keen Eye in the readings' accuracy", ok, f"landed of 300 {got}")]
 
 
+def download_checks():
+    """Download on the calculator's real rows (approved 2026-10-14): the
+    Cynthia rematch's kind of Download Porygon-Z, leading against a
+    Geodude (Defense far above its Sp. Def), comes in at +1 Sp. Atk, a real
+    stage, and its rows now read as a Pressure twin's at no stage, where
+    they carried the boost themselves and no stage showed."""
+    from .test_fightai import battle
+    out = {}
+    for ab in ("Download", "Pressure"):
+        b = battle([("Porygon-Z", 40, ab, ["Tri Attack"])], [("Geodude", 40, "Sturdy", ["Tackle"])])
+        pz, geo = b.b.cur(), b.p.cur()
+        stage = pz.stages["spa"]
+        pz.stages["spa"] = 0
+        out[ab] = (stage, pl.damage_of(b, pz, geo, fs.move("Tri Attack"), False, True))
+    ok = out["Download"][0] == 1 and out["Pressure"][0] == 0 and out["Download"][1] == out["Pressure"][1]
+    return [("Download: Porygon-Z leads at +1 Sp. Atk against a Geodude, its rows without the boost", ok,
+             f"(Sp. Atk stage on entry, Tri Attack's top roll at no stage) {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2670,6 +2689,7 @@ def main():
     results += moxie_checks()
     results += trapping_checks()
     results += accuracy_ability_checks()
+    results += download_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

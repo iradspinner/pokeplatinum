@@ -253,7 +253,10 @@ GAS_PROOF = {"Neutralizing Gas", "Multitype", "Zen Mode", "Stance Change", "Shie
 # its holder comes in, and none off a foe that comes in later
 # (intimidate_foes), where the calculator took a stage off every physical
 # hit into the holder, at any time and on top of the battle's own stage.
-CALC_ABILITY_OFF = frozenset({"Unburden", "Intimidate"})
+# Download: the engine raises one stat a stage as its holder comes in, from
+# the foes then on the field (download), where the calculator raised the
+# stat in each row by that row's defender.
+CALC_ABILITY_OFF = frozenset({"Unburden", "Intimidate", "Download"})
 
 
 # ---- genders (Ian, 2026-10-03) -------------------------------------------------------------
@@ -880,8 +883,9 @@ def gas_update(b, check=True):
 def entry_abilities(b, mons, intimidate=True):
     """The switch-in check's ability steps for these Pokemon, each step over
     all of them in the order given (monSpeedOrder): the weather abilities, the
-    announcement the trainer's AI reads (BattleAI_SetAbility), Intimidate.
-    The battle's leads leave Intimidate to open_battle (intimidate False)."""
+    announcement the trainer's AI reads (BattleAI_SetAbility), Intimidate,
+    then Download. The battle's leads leave Intimidate and Download to
+    open_battle (intimidate False), as both read the foes on the field."""
     for new in mons:
         weather = ABILITY_WEATHER.get(new.ability)
         if weather:
@@ -891,6 +895,30 @@ def entry_abilities(b, mons, intimidate=True):
             reveal(new)
     if intimidate:
         intimidate_foes(b, mons)
+        for new in mons:
+            download(b, new)
+
+
+def download(b, mon):
+    """Download's step of the switch-in check (SWITCH_IN_CHECK_STATE_DOWNLOAD),
+    once a stay on the field: the foes on the field with HP and no
+    Substitute have their Defense and their Sp. Def added up, each at its
+    stage (sStatStageBoosts); a Defense total no lower raises its holder's
+    Sp. Atk a stage, a lower one its Attack, through the stat-stage subscript
+    (so Simple doubles it); with no such foe, nothing. prepare() keeps it
+    out of the calculator's rows (CALC_ABILITY_OFF), which picked the stat
+    again for each defender and never made it a stage Haze or a switch
+    clears. Until 2026-10-14 the battle only announced it (Ian approved the
+    fix)."""
+    if mon.ability != "Download" or not mon.alive():
+        return
+    foes = [f for f in (b.b if mon.side == "p" else b.p).on_field() if f.alive() and not f.sub]
+    if not foes:
+        return
+    defense = sum(int(f.stats.get("def", 0) * stage_mult(f.stages["def"])) for f in foes)
+    sp_def = sum(int(f.stats.get("spd", 0) * stage_mult(f.stages["spd"])) for f in foes)
+    if defense + sp_def:
+        change_stages(mon, {"spa" if defense >= sp_def else "atk": 1})
 
 
 def intimidate_foes(b, mons):
@@ -987,7 +1015,10 @@ def open_battle(b):
         if side.active2 is not None:
             switch_in(b, side, side.active2, slot=1, lead=True)
             leads.append(side.mons[side.active2])
-    intimidate_foes(b, sorted(leads, key=b.speed, reverse=not b.trick_room))
+    ordered = sorted(leads, key=b.speed, reverse=not b.trick_room)
+    intimidate_foes(b, ordered)
+    for lead in ordered:
+        download(b, lead)                # after Intimidate, as the switch-in check runs them
 
 
 def stat_drop_blocked(b, mon, changes, src=None, intimidate=False):

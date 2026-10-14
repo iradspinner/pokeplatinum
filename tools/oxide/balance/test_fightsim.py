@@ -1816,6 +1816,35 @@ def check_accuracy_abilities(results):
                     f"landed of 2000 {got}; a No Guard Tackle into a Pokemon mid-Fly leaves it at {mid_fly}"))
 
 
+def check_download(results):
+    """Download (approved 2026-10-14; SWITCH_IN_CHECK_STATE_DOWNLOAD): as its
+    holder comes in it raises Sp. Atk a stage when the foe's Defense is no
+    lower than its Sp. Def, at their stages, and Attack otherwise; a foe
+    behind a Substitute counts for nothing, and with none to read it does
+    nothing. The battle's leads read each other once both are in."""
+    def enter(foe_def, foe_spd, def_stage=0, sub=0):
+        b = field({"p0": (("Normal",), ["Tackle"]), "p1": (("Normal",), ["Tackle"]), "b0.0": (("Normal",), ["Tackle"])}, {})
+        b.p.mons[1].ability = "Download"
+        foe = b.b.cur()
+        foe.stats = dict(foe.stats, **{"def": foe_def, "spd": foe_spd})
+        foe.stages["def"], foe.sub = def_stage, sub
+        fs.switch_in(b, b.p, 1)
+        return {k: v for k, v in b.p.cur().stages.items() if v}
+
+    def leads():
+        b = field({"p0": (("Normal",), ["Tackle"]), "b0.0": (("Normal",), ["Tackle"])}, {})
+        b.p.cur().ability = "Download"
+        b.b.cur().stats = dict(b.b.cur().stats, **{"def": 80, "spd": 120})
+        fs.open_battle(b)
+        return {k: v for k, v in b.p.cur().stages.items() if v}
+    got = {"a low Defense": enter(80, 120), "a low Sp. Def": enter(120, 80), "equal": enter(100, 100),
+           "a high Defense at -2": enter(150, 100, def_stage=-2), "behind a Substitute": enter(80, 120, sub=25),
+           "the leads": leads()}
+    want = {"a low Defense": {"atk": 1}, "a low Sp. Def": {"spa": 1}, "equal": {"spa": 1},
+            "a high Defense at -2": {"atk": 1}, "behind a Substitute": {}, "the leads": {"atk": 1}}
+    results.append(("Download raises one stat a stage on entry, by the foe then in", got == want, f"{got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2061,6 +2090,7 @@ def main():
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
                   check_knockout_boost, check_trapping_exemptions, check_accuracy_abilities,
+                  check_download,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
