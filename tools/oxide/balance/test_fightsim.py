@@ -843,6 +843,45 @@ def check_confusion_blockers(results):
                     f"(confused, named, item, Attack stage, status) off: {bad}" if bad else "every case as wanted"))
 
 
+def check_curse_and_rest(results):
+    """The Ghost Curse's and Rest's failures (approved 2026-10-14). A Ghost
+    type's Curse (subscript_curse_ghost) cuts half its user's HP and curses
+    the target, but fails at no cost behind a Substitute, on a target
+    already cursed, and on one in the air; an Infiltrator's passes the
+    Substitute. Rest (subscript_rest) fails on Insomnia, Vital Spirit,
+    Purifying Salt, Sweet Veil and Leaf Guard in sun, naming the ability,
+    though Cloud Nine lets a Leaf Guard holder rest. Before, the Curse cut
+    and cursed in every case and Rest worked for all of them."""
+    def curse(sub=0, cursed=False, flying=False, ability=None):
+        b, p, foe = battle(["Curse"], ["Fly"], {}, p_types=("Ghost",))
+        foe.sub, foe.cursed, p.ability = sub, cursed, ability or p.ability
+        foe.charging = fs.move("Fly") if flying else None
+        fs.status_move(b, p, fs.move("Curse"), foe, True)
+        return 100 - p.hp, foe.cursed
+    curses = {"plain": curse(), "Substitute": curse(sub=25), "cursed": curse(cursed=True), "in the air": curse(flying=True),
+              "Infiltrator through a Substitute": curse(sub=25, ability="Infiltrator")}
+
+    def rest(ability, weather=None, cloud=False):
+        b, p, foe = battle(["Rest"], ["Tackle"], {})
+        p.ability, p.hp, b.weather = ability, 40, weather
+        if cloud:
+            foe.ability = "Cloud Nine"
+        fs.status_move(b, p, fs.move("Rest"), foe, True)
+        return p.hp, p.status, p.revealed
+    rests = {ab: rest(ab) for ab in ("Insomnia", "Vital Spirit", "Purifying Salt", "Sweet Veil", "Run Away")}
+    rests["Leaf Guard in sun"] = rest("Leaf Guard", "Sun")
+    rests["Leaf Guard in sun, Cloud Nine"] = rest("Leaf Guard", "Sun", cloud=True)
+    want_c = {"plain": (50, True), "Substitute": (0, False), "cursed": (0, True), "in the air": (0, False),
+              "Infiltrator through a Substitute": (50, True)}
+    want_r = {"Insomnia": (40, None, "Insomnia"), "Vital Spirit": (40, None, "Vital Spirit"),
+              "Purifying Salt": (40, None, "Purifying Salt"), "Sweet Veil": (40, None, "Sweet Veil"),
+              "Run Away": (100, "slp", None), "Leaf Guard in sun": (40, None, "Leaf Guard"),
+              "Leaf Guard in sun, Cloud Nine": (100, "slp", None)}
+    results.append(("the Ghost Curse fails through a Substitute or on a cursed target; Rest fails on the abilities "
+                    "that keep its user awake", curses == want_c and rests == want_r,
+                    f"Curse (user's HP lost, target cursed) {curses}; Rest (HP, status, named) {rests}"))
+
+
 def check_future_sight(results):
     """Future Sight and Doom Desire (approved 2026-10-13; BtlCmd_TryFutureSight
     and the turn's end, SIDE_COND_CHECK_STATE_FUTURE_SIGHT): the damage is
@@ -1394,7 +1433,7 @@ def main():
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds,
                   check_hits_one_by_one, check_hits_hold_and_heal, check_triple_axel,
                   check_protect_flag, check_protect_odds, check_pp_engine, check_confusion_blockers,
-                  check_future_sight,
+                  check_curse_and_rest, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean,

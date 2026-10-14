@@ -873,8 +873,7 @@ def status_move(b, att, mv, dfn, first):
             fs.change_stages(dfn, fs.FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:
-            fs.hurt(b, att, att.maxhp // 2)
-            dfn.cursed = True
+            fs.ghost_curse(b, att, dfn, mv)      # it fails, at no cost, through a Substitute or on a cursed target
         else:
             fs.change_stages(att, {"atk": 1, "def": 1, "spe": -1})
     elif e == "MAX_ATK_LOSE_HALF_MAX_HP":
@@ -891,9 +890,10 @@ def status_move(b, att, mv, dfn, first):
         frac = 2 / 3 if b.weather == "Sun" else 1 / 4 if b.weather else 1 / 2
         fs.heal(att, int(att.maxhp * frac))
     elif e == "REST":
-        # As fightsim's: Rest fails at full HP and on a sleeping user, which
-        # is how a Sleep Talk reaches it (subscript_rest).
-        if att.hp < att.maxhp and att.status != "slp":
+        # As fightsim's: Rest fails on the abilities that keep its user awake
+        # (fightsim.rest_blocked), on a sleeping user, which is how a Sleep
+        # Talk reaches it, and at full HP (subscript_rest).
+        if not fs.rest_blocked(b, att) and att.hp < att.maxhp and att.status != "slp":
             att.hp, att.status, att.sleep, att.toxic = att.maxhp, "slp", 2, 0
             fs.cure_berry(att)       # a Chesto or Lum Berry wakes it at once
     elif e == "SWALLOW":

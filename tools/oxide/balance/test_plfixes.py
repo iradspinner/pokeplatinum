@@ -1459,6 +1459,35 @@ def confusion_checks():
              f"(standing, confused, item; or confused, Attack stage) {out}")]
 
 
+def curse_rest_checks():
+    """The Ghost Curse and Rest on the readings' path, on the calculator's
+    real rows (approved 2026-10-14): a Haunter's Curse into a Machop behind
+    a Substitute fails and costs Haunter nothing (it cut half and cursed
+    through the Substitute), and into a Machop already cursed fails the same;
+    an Insomnia Hoothoot's Rest at half HP fails and names Insomnia (it slept
+    and healed)."""
+    from .test_fightai import battle
+    b = battle([("Haunter", 25, "Levitate", ["Curse"]), ("Hoothoot", 25, "Insomnia", ["Rest"])],
+               [("Machop", 25, "Guts", ["Karate Chop"])])
+    haunter, hoothoot = b.b.mons
+    machop = b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    machop.sub = machop.maxhp // 4
+    pl.status_move(b, haunter, fs.move("Curse"), machop, True)
+    behind = (haunter.maxhp - haunter.hp, machop.cursed)
+    machop.sub, machop.cursed = 0, True
+    pl.status_move(b, haunter, fs.move("Curse"), machop, True)
+    again = haunter.maxhp - haunter.hp
+    fs.switch_in(b, b.b, 1)
+    hoothoot.hp = hoothoot.maxhp // 2
+    pl.status_move(b, hoothoot, fs.move("Rest"), machop, True)
+    rest = (hoothoot.hp == hoothoot.maxhp, hoothoot.status, hoothoot.revealed)
+    return [("the readings' Ghost Curse fails behind a Substitute and on a cursed target; Insomnia stops Rest",
+             behind == (0, False) and again == 0 and rest == (False, None, "Insomnia"),
+             f"behind a Substitute (Haunter's HP lost, cursed) {behind}; already cursed, HP lost {again}; "
+             f"Insomnia's Rest (healed, status, named) {rest}")]
+
+
 def pp_checks():
     """PP on the readings' path, on the calculator's real rows (approved
     2026-10-14): a Staravia's Fly costs one PP over its two turns, the
@@ -2232,6 +2261,7 @@ def main():
     results += protect_checks()
     results += pp_checks()
     results += confusion_checks()
+    results += curse_rest_checks()
     results += future_sight_checks()
     results += disable_and_nightmare_checks()
     results += pivot_checks()

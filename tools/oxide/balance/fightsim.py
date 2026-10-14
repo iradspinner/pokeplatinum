@@ -1756,6 +1756,46 @@ def sleep_talk_pick(b, att):
     return rng.choice(picks) if rng is not None else picks[0]
 
 
+def ghost_curse(b, att, dfn, mv):
+    """A Ghost type's Curse (effect script 109, subscript_curse_ghost): it
+    fails, costing nothing, on a target with no HP, out of reach in the air
+    or underground, behind a Substitute (an Infiltrator's Curse passes it),
+    or already cursed; else its user cuts half its maximum HP and curses the
+    target, which loses a quarter of its own at each turn's end. Until
+    2026-10-14 it cut the HP and cursed in every case (Ian approved the
+    fix). Whether it took."""
+    if not dfn.alive() or dfn.cursed or sub_blocks(att, dfn, mv) \
+            or (dfn.charging is not None and dfn.charging.effect in INVULNERABLE):
+        return False
+    hurt(b, att, att.maxhp // 2)
+    dfn.cursed = True
+    return True
+
+
+# The abilities that keep their own holder from Rest (subscript_rest); Sweet
+# Veil keeps its partner awake too, and Leaf Guard only in sun.
+REST_PROOF = frozenset({"Insomnia", "Vital Spirit", "Purifying Salt", "Sweet Veil"})
+
+
+def rest_blocked(b, att):
+    """Whether subscript_rest keeps att awake before anything else is
+    checked: Insomnia, Vital Spirit or Oxide's Purifying Salt; a Sweet Veil
+    of its own or, in a double battle, its partner's; or Leaf Guard in sun
+    that Cloud Nine and Air Lock leave alone (CheckIgnoreWeather). The
+    message names the ability ("stayed awake because of its"). Until
+    2026-10-14 only full HP and sleep stopped Rest (Ian approved the fix)."""
+    holder = att if att.ability in REST_PROOF else None
+    if holder is None and getattr(b, "doubles", False):
+        ally = ally_of(b, att)
+        holder = ally if ally is not None and ally.ability == "Sweet Veil" else None
+    if holder is None and att.ability == "Leaf Guard" and b.weather == "Sun" and not weather_ignored(b):
+        holder = att
+    if holder is None:
+        return False
+    reveal(holder)
+    return True
+
+
 def magnet_rise(att):
     """Magnet Rise (effect script 252): five turns in which Ground moves fail
     on its user, counted down at each turn's end and cleared by a switch. It
@@ -2676,8 +2716,7 @@ def status_move(b, att, mv, dfn, first):
             change_stages(dfn, FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:
-            hurt(b, att, att.maxhp // 2)
-            dfn.cursed = True
+            ghost_curse(b, att, dfn, mv)
         else:
             change_stages(att, {"atk": 1, "def": 1, "spe": -1})
     elif e == "MAX_ATK_LOSE_HALF_MAX_HP":
@@ -2697,9 +2736,10 @@ def status_move(b, att, mv, dfn, first):
         frac = 2 / 3 if b.weather == "Sun" else 1 / 4 if b.weather else 1 / 2
         heal(att, int(att.maxhp * frac))
     elif e == "REST":
-        # subscript_rest fails at full HP and on a Pokemon already asleep
-        # ("is already asleep!"), so a Sleep Talk that calls Rest does nothing.
-        if att.hp < att.maxhp and att.status != "slp":
+        # subscript_rest fails on the abilities that keep its user awake
+        # (rest_blocked), on a Pokemon already asleep ("is already asleep!"),
+        # so a Sleep Talk that calls Rest does nothing, and at full HP.
+        if not rest_blocked(b, att) and att.hp < att.maxhp and att.status != "slp":
             att.hp, att.status, att.sleep, att.toxic = att.maxhp, "slp", 2, 0
             cure_berry(att)          # a Chesto or Lum Berry wakes it at once
     elif e == "SWALLOW":
