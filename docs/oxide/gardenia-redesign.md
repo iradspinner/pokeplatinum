@@ -12,11 +12,10 @@ Ian asked on 2026-10-13, before an overnight run, for the Roark process on Garde
 
 **Lumineon** is fifth of six by faints. No six takes a Fire type, because the team's three Rock Tombs and Solrock's Ground Natural Gift already beat them, so Lumineon has no Fire type to punish, which is how it was the hardest member in the base ROM; and the sun halves Aqua Tail. Swagger was used 280 times in 225 fights and shows no effect on the win rate.
 
-**A finding for the simulator.** It halves every hit of a two-to-five-hit move when the target holds a resist berry; the game halves only the first, because the battle script that halves the hit also uses the berry up. Here that makes Breloom's Coba Berry stronger than in the game: Golbat's Dual Wingbeat knocks out a full-health Breloom in the game and leaves it at a tenth of its HP in the reading. The fix is Ian's to approve, and it would make the next reading a little easier.
+**A finding for the simulator.** It halves every hit of a two-to-five-hit move when the target holds a resist berry; the game halves only the first, because the battle script that halves the hit also uses the berry up. Here that makes Breloom's Coba Berry stronger than in the game: Golbat's Dual Wingbeat knocks out a full-health Breloom in the game and leaves it at a tenth of its HP in the reading. Ian approved the fix the same day and it is in (commit 867e75ba3): Dual Wingbeat now knocks that Breloom out in 200 tries of 200, against 17 before. This page's reading was made before it; the next one takes it in.
 
 **What waits on Ian:**
-1. The dials for the next reading (the table at the end). I recommend the five non-aces at level 22 with Roserade at the cap, and Cherrim's Weather Ball for Leech Seed. The first keeps every design choice; the second leaves the sun's Fire hammer on the ace alone, as his Solar Beam call did.
-2. Whether the simulator fix goes in first.
+1. The dials for the next reading (the table at the end). I recommend the five non-aces at level 22 with Roserade at the cap, and Cherrim's Weather Ball for Leech Seed. The first keeps every design choice; the second leaves the sun's Fire hammer on the ace alone, as his Solar Beam call did. Ian means to weaken Cherrim's set a little (2026-10-13), since nothing in box 3 but a second Golbat would answer it; the exact change is his.
 
 **Next steps:** on his pick, the change on the study branch and the checks (about 20 minutes), the reading on the same three boxes (about 70 minutes), and the comparison here. A quicker probe can come first: 25 fights a box on the same sixes, about 15 minutes a variant.
 
