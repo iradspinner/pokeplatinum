@@ -31,3 +31,4 @@ SPECIES_KRICKETUNE  kept as the rewrite left it when Fury Cutter went to 10, 20,
 SPECIES_PHEROMOSA   kept as the rewrite left it when Triple Kick went to 20, 30, 40 (Ian, 2026-10-12)
 SPECIES_QWILFISH    kept as the rewrite left it when the rising moves changed (Ian, 2026-10-12)
 SPECIES_ALOLAN_NINETALES kept as its file holds it when Ian placed the Ice Stone (the Overseer, 2026-10-13): caught wild at 13 from Gardenia's split, it would lose the catch's moves to a stone evolution's late, sparse list
+SPECIES_WORMADAM    Quiver Dance at 36, as the Trash cloak learns it, and Swagger moved to 39 (Ian, 2026-10-14, on wormadam-forms.md)
