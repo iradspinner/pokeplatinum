@@ -781,6 +781,25 @@ def check_encore(results):
                     f"the Encore's own {sorted(lengths)}"))
 
 
+def check_ice_body(results):
+    """Ice Body (approved 2026-10-14; BtlCmd_EndOfTurnWeatherEffect): a
+    sixteenth of maximum HP back at each turn's end in hail, below full HP,
+    and none of the hail's bite; nothing in sand, and nothing while Cloud
+    Nine or Air Lock is out."""
+    def end(weather, hp=50, cloud=False):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        foe.ability, foe.hp = "Ice Body", hp
+        if cloud:
+            p.ability = "Cloud Nine"
+        b.weather, b.weather_turns = weather, 0
+        fs.end_of_turn(b)
+        return foe.hp
+    got = {"hail": end("Hail"), "hail at full HP": end("Hail", 100), "sand": end("Sand"),
+           "hail under Cloud Nine": end("Hail", cloud=True)}
+    want = {"hail": 56, "hail at full HP": 100, "sand": 44, "hail under Cloud Nine": 50}
+    results.append(("Ice Body heals a sixteenth in hail", got == want, f"HP from 50 after a turn's end {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -1017,7 +1036,7 @@ def main():
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
-                  check_encore,
+                  check_encore, check_ice_body,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -2504,8 +2504,8 @@ def _end_of_turn(b):
     Field conditions (BattleControllerPlayer_CheckFieldConditions): the
     sides' screens, Tailwind and Safeguard count down, Wish lands, then a
     move's weather counts down (ending before it acts on its last turn) and
-    sand and hail strike each Pokemon (subscript_weather_continues, by
-    GetMonBySpeedOrder). Each Pokemon's own conditions (_end_of_turn_mon).
+    sand and hail strike each Pokemon, Ice Body healing in hail instead
+    (subscript_weather_continues, by GetMonBySpeedOrder). Each Pokemon's own conditions (_end_of_turn_mon).
     Side conditions: Future Sight (future_sight_ends), Perish Song, then
     Trick Room's count."""
     b.status_src = None          # no foe gives what the turn's end gives
@@ -2532,6 +2532,13 @@ def _end_of_turn(b):
         safe = {"Sand": {"Rock", "Ground", "Steel"}, "Hail": {"Ice"}}[b.weather]
         shield = {"Sand": "Sand Veil", "Hail": "Snow Cloak"}[b.weather]
         for m in order:
+            if b.weather == "Hail" and m.ability == "Ice Body":
+                # BtlCmd_EndOfTurnWeatherEffect: Ice Body heals a sixteenth in
+                # hail in place of the hail's bite, below full HP, unless
+                # Cloud Nine or Air Lock is out.
+                if m.alive() and m.hp < m.maxhp and not weather_ignored(b):
+                    heal(m, max(1, m.maxhp // 16))
+                continue
             if m.alive() and not set(m.types) & safe and m.ability not in (shield, "Magic Guard"):
                 hurt(b, m, m.maxhp // 16)
                 if battle_over(b):

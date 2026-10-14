@@ -1489,6 +1489,26 @@ def pivot_checks():
              got == want, f"the trainer's Pokemon after the turn {got}")]
 
 
+def ice_body_checks():
+    """Ice Body on the calculator's real rows (approved 2026-10-14): in a
+    fight held in hail, Moira's Galarian Mr. Mime at half HP gets a
+    sixteenth of its HP back at the turn's end, through fightsim's turn's
+    end, which the readings share; a Pressure twin gets nothing."""
+    from .test_fightai import battle
+    b = battle([("Mr. Mime-Galar", 26, "Ice Body", ["Freeze-Dry"]), ("Mr. Mime-Galar", 26, "Pressure", ["Freeze-Dry"])],
+               [("Machop", 26, "Guts", ["Karate Chop"])], weather="Hail")
+    body, twin = b.b.mons
+    body.hp, twin.hp = body.maxhp // 2, twin.maxhp // 2
+    before = (body.hp, twin.hp)
+    fs.end_of_turn(b)
+    fs.switch_in(b, b.b, 1)
+    fs.end_of_turn(b)
+    gained = (body.hp - before[0], twin.hp - before[1])
+    ok = b.weather == "Hail" and gained == (body.maxhp // 16, 0)
+    return [("Ice Body heals a sixteenth in hail on the real rows", ok,
+             f"weather {b.weather}; gained at the turn's end (Ice Body, Pressure) {gained} of {body.maxhp}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -1949,6 +1969,7 @@ def main():
     results += future_sight_checks()
     results += disable_and_nightmare_checks()
     results += pivot_checks()
+    results += ice_body_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
