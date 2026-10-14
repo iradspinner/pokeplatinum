@@ -1006,6 +1006,7 @@ def attack(b, att, mv, dfn, first):
         if dmg is None:
             return
         dmg = use_damage(att, mv, dmg, hits)
+        dmg = berry_first_hit(b, dfn, mv, dmg, hits)
         if mv.effect == "DOUBLE_POWER_IF_MOVING_SECOND" and not first:
             dmg *= 2
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
@@ -1319,6 +1320,34 @@ def resist_berry(b, dfn, mv):
     if berry != "Chilan Berry" and effectiveness(b.st["chart"], mv.type, dfn.types) <= 1:
         return None
     return berry
+
+
+def berry_first_hit(b, dfn, mv, dmg, hits):
+    """A move that hits more than once loses only its first hit to a resist
+    berry. The battle script that halves a hit also uses the berry up
+    (subscript_type_resist_berry.s, run from each hit's update of HP), so
+    every later hit lands in full; the calculator's row halves them all, so
+    each hit after the first gets its half back. `hits` is the hits this use
+    rolled; a Double Kick-style move always hits twice. Until 2026-10-13 the
+    simulator halved every hit, and Golbat's Dual Wingbeat left a Coba
+    Berry Breloom at a tenth of its HP where the game knocks it out (Ian
+    approved the fix)."""
+    berry = resist_berry(b, dfn, mv)
+    if not berry or dfn.item != berry:
+        return dmg
+    if mv.effect == "HIT_TWICE":
+        powers = [1, 1]
+    elif mv.effect == "MULTI_HIT":
+        powers = [1] * hits
+    elif mv.effect == RISING_HITS:
+        powers = [max(1, mv.power) + 10 * i for i in range(hits)]
+    else:
+        return dmg
+    if len(powers) < 2:
+        return dmg
+    # The row is every hit at half; the game is the first at half and the
+    # rest whole, which is the row times 2 less the first hit's share.
+    return int(dmg * (2 - powers[0] / sum(powers)))
 
 
 # The moves that reach a Pokemon in the air from Fly or Bounce (their effect

@@ -297,6 +297,36 @@ def check_harvest(results):
                     f"sun {sun}, clear {clear}/400, held {held}, not a berry {not_berry}, Cloud Nine {cloud}/400"))
 
 
+def check_berry_first_hit(results):
+    """A resist berry halves only a multi-hit move's first hit (added
+    2026-10-13): the battle script that halves the hit uses the berry up, so
+    the later hits land in full. The calculator's row halves every hit, so a
+    two-hit row of 40 deals 60 and a five-hit Skill Link row of 50 deals 90;
+    a single hit stays halved; the berry is gone afterwards, and the next use
+    lands whole. The test chart has no Flying, so Double Hit into a Chilan
+    Berry (which halves any Normal move) stands in for Dual Wingbeat into a
+    Coba Berry."""
+    def hit(move, row, types, berry, skill_link=False):
+        b, p, foe = battle([move], ["Tackle"], {("p", move): [row] * 16}, b_types=types, hp=200)
+        b.st["pokemon"]["b0.0"]["item"] = foe.item = berry
+        foe.ability = "Shell Armor"          # no critical hits to blur the numbers
+        if skill_link:
+            p.ability = "Skill Link"
+        fs.use_move(b, p, fs.move(move), foe, True)
+        first = foe.maxhp - foe.hp
+        before = foe.hp
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return first, before - foe.hp, foe.item
+    twice = hit("Double Hit", 40, ("Normal",), "Chilan Berry")
+    five = hit("Bullet Seed", 50, ("Water",), "Rindo Berry", skill_link=True)
+    single = hit("Razor Leaf", 40, ("Water",), "Rindo Berry")
+    b, _p, foe = battle(["Double Hit"], ["Tackle"], {})
+    no_berry = fs.berry_first_hit(b, foe, fs.move("Double Hit"), 40, 1) == 40
+    ok = twice == (60, 80, None) and five == (90, 100, None) and single == (40, 80, None) and no_berry
+    results.append(("a resist berry halves only a multi-hit move's first hit, then is gone", ok,
+                    f"two hits {twice}, five hits {five}, one hit {single}, no berry held {no_berry}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -529,7 +559,7 @@ def main():
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
                   check_weather_rock, check_map_weather_replaced, check_permanent_trick_room,
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
-                  check_salt_cure, check_harvest,
+                  check_salt_cure, check_harvest, check_berry_first_hit,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
