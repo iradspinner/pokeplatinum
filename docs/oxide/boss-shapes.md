@@ -52,3 +52,20 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 - The moves, abilities and items of her members.
 
 **Ian's six** (2026-10-13; faints made over the three boxes): Exeggutor's Zen Headbutt, Egg Bomb and a Fire Natural Gift that Harvest regrows (216), Cherrim's Weather Ball and Rock Tomb (210), Roserade's Weather Ball and Sludge Bomb (199), Breloom's Rock Tomb and Mach Punch (162), Lumineon (120), Solrock (92). The two Weather Balls, Fire in a sun that never ends, landed a quarter of all the player's faints. Five of the six carry a super-effective move on each counterpiece, and the trainer AI's replacement rule sends them at it in turn.
+
+## The named Galactic fights: Ian's themes (2026-10-13)
+
+The balance pass of step 12 erased most of these themes, and Ian restated them on 2026-10-13. The named Galactic fights are mostly anything goes, so long as each is fun, interesting and thematic: their designs may break the trainer-design limits on purpose. Each keeps its theme across its fights, rising in power.
+
+| Trainer | Fights | Theme |
+|---|---|---|
+| Cyrus | Celestic ruins, Galactic HQ, Distortion World | Power: 18 different Pokemon over the three fights, no repeats, with his canon picks (Weavile, Honchkrow, Houndoom, Gyarados, Crobat) spread among them |
+| Mars | Valley Windworks, Lake Verity, Spear Pillar, Stark Mountain | The crazy cat lady: mostly cats, with her canon bat |
+| Jupiter | Eterna building, Spear Pillar, Stark Mountain | Nuisance and storm together, around Tangela (Tangrowth later) and Skuntank. Ian's idea for her last fight: a Drizzle Zapdos. He hesitates over Drapion and Spiritomb, Aaron's and Cynthia's keys |
+| Saturn | Valor Cavern, Galactic HQ | Slow giants; the HQ fight in permanent Trick Room |
+| Officer Somnu | Valley Windworks, Lake Verity, Mt. Coronet 5F | Sleep |
+| Officer Moira | Eterna 3F, Lake Verity, Mt. Coronet 5F | Future Sight on every member that can learn it, with Ice and hail |
+| Somnu and Moira | Lake Verity, one battle against both | Three each: sleep beside Future Sight and hail |
+| Officer Hesperid | Lake Valor, Mt. Coronet 6F | Platinum Kaizo teambuilding with no holds barred (BrightPowder, Petaya Berry, Explosion with Pursuit and Baton Pass, Choice items), on rarely used Pokemon in weird combinations with atypical movesets: the weirder and harder, the better |
+| Officer Argo | Celestic Town | The loosest; free to change entirely |
+| Tyche and Hermes | Spear Pillar, one battle against both | Protect beside Explosion |

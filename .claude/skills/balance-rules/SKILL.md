@@ -177,7 +177,12 @@ is listed for Ian.
   above 95 percent won, spiking with the boss's importance, the hardest
   topping out near the easiest of Kaizo's bosses on Oxide's box (about 80
   percent won). The numbers are ordinal, and Oxide is not meant to be beaten
-  on a first run. When a fight reads too hard, change the player's move pools first: they
+  on a first run. Two soft guides for reading a fight (Ian, 2026-10-13): box
+  3 of the first reading of his six-member Gardenia (27 percent won) is the
+  barometer for "unsolvably hard", and only the Cyrus fights, the Elite Four
+  with Cynthia, and perhaps a Galactic double may read as hard as that whole
+  reading (52 percent won). Small changes swing a fight hard, speed above all:
+  read any change against the speed tiers of the player's likely answers. When a fight reads too hard, change the player's move pools first: they
   are sparse in interesting options and lack many modern moves. The scorer's
   goals, the Kaizo study's comb and the full readings come in the order the
   tracker's Scoring Agent entry and Scheduled list give.
