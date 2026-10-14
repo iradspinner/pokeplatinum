@@ -678,6 +678,86 @@ def check_triple_axel(results):
     results.append(("Triple Axel rises 20, 40, 60, each hit checking accuracy", ok, str(dict(sorted(seen.items())))))
 
 
+def check_protect_flag(results):
+    """Protect stops only a move flagged MOVE_FLAG_CAN_PROTECT
+    (BattleControllerPlayer_CheckMoveHitOverrides; approved 2026-10-14):
+    Tackle and Toxic are stopped, while Shadow Force's strike, Feint and
+    Mighty Cleave hit, the first two ending the protection
+    (subscript_feint), and Stealth Rock and a Ghost's Curse land. Feint
+    fails on a target that is not protecting (BtlCmd_TryFeint). A contact
+    move into Spiky Shield costs its user an eighth of its HP, none with
+    Magic Guard or for a move without contact; Baneful Bunker poisons the
+    user. A Rollout stopped by Protect ends its run."""
+    names = ["Tackle", "Toxic", "Shadow Force", "Feint", "Mighty Cleave", "Stealth Rock", "Curse", "Ember", "Rollout"]
+
+    def into(name, protecting=True, guard="Protect", ability=None):
+        b, p, foe = battle(names, ["Protect", "Spiky Shield", "Baneful Bunker"], {("p", n): [30] * 16 for n in names},
+                           p_types=("Ghost",))
+        b.st["first_battle"] = True
+        p.ability = ability or p.ability
+        foe.protecting, foe.last = protecting, fs.move(guard)
+        mv = fs.move(name)
+        if mv.cat == "Status":
+            fs.status_move(b, p, mv, foe, True)
+        else:
+            fs.attack(b, p, mv, foe, True)
+        return (100 - foe.hp, foe.status, foe.protecting, b.b.hazards["rocks"], foe.cursed, 100 - p.hp, p.status,
+                p.lock is not None)
+    got = {n: into(n) for n in ("Tackle", "Toxic", "Shadow Force", "Feint", "Mighty Cleave", "Stealth Rock", "Curse")}
+    got["Feint, no Protect"] = into("Feint", protecting=False)
+    got["Tackle into Spiky Shield"] = into("Tackle", guard="Spiky Shield")
+    got["Magic Guard Tackle into Spiky Shield"] = into("Tackle", guard="Spiky Shield", ability="Magic Guard")
+    got["Ember into Spiky Shield"] = into("Ember", guard="Spiky Shield")
+    got["Tackle into Baneful Bunker"] = into("Tackle", guard="Baneful Bunker")
+    b, p, foe = battle(["Rollout"], ["Protect"], {("p", "Rollout"): [10] * 16})
+    fs.attack(b, p, fs.move("Rollout"), foe, True)
+    locked = p.lock is not None
+    foe.protecting = True
+    fs.attack(b, p, fs.move("Rollout"), foe, True)
+    want = {"Tackle": (0, None, True, 0, False, 0, None, False), "Toxic": (0, None, True, 0, False, 0, None, False),
+            "Shadow Force": (30, None, False, 0, False, 0, None, False),
+            "Feint": (30, None, False, 0, False, 0, None, False),
+            "Mighty Cleave": (30, None, True, 0, False, 0, None, False),
+            "Stealth Rock": (0, None, True, 1, False, 0, None, False),
+            "Curse": (0, None, True, 0, True, 50, None, False),
+            "Feint, no Protect": (0, None, False, 0, False, 0, None, False),
+            "Tackle into Spiky Shield": (0, None, True, 0, False, 12, None, False),
+            "Magic Guard Tackle into Spiky Shield": (0, None, True, 0, False, 0, None, False),
+            "Ember into Spiky Shield": (0, None, True, 0, False, 0, None, False),
+            "Tackle into Baneful Bunker": (0, None, True, 0, False, 0, "psn", False)}
+    ok = got == want and locked and p.lock is None and p.rollout == 0
+    results.append(("Protect stops only a move it can; Feint and Shadow Force break it; Spiky Shield and "
+                    "Baneful Bunker answer contact", ok,
+                    f"(damage, status, still protecting, rocks, cursed, user's HP lost, user's status, locked) "
+                    f"{ {k: v for k, v in got.items() if v != want.get(k)} or 'as wanted'}; Rollout locked {locked}, "
+                    f"after Protect {p.lock}"))
+
+
+def check_protect_odds(results):
+    """BtlCmd_TryProtection's odds (approved 2026-10-14): a first Protect
+    works, a repeat at a half, a quarter, then an eighth, which stays the
+    floor (sProtectSuccessRate), and it fails outright when its user acts
+    last (waitingBattlers of 1), which ends the run. Over 4000 tries at runs
+    of 3, 4 and 5 it works about one time in eight (it was 1/8, 1/16, 1/32),
+    and a slower user's Protect at run 0 never works (it did)."""
+    def rate(run, first=True, n=4000):
+        works = 0
+        for s in range(n):
+            b, p, foe = battle(["Protect"], ["Tackle"], {}, seed=s)
+            p.protect_run = run
+            fs.status_move(b, p, fs.move("Protect"), foe, first)
+            works += p.protecting
+        return works / n
+    runs = {k: rate(k) for k in (3, 4, 5)}
+    b, p, foe = battle(["Protect"], ["Tackle"], {})
+    p.protect_run = 2
+    fs.status_move(b, p, fs.move("Protect"), foe, False)
+    last = (p.protecting, p.protect_run)
+    ok = all(0.105 <= r <= 0.145 for r in runs.values()) and rate(0, first=False, n=200) == 0 and last == (False, 0)
+    results.append(("Protect's run floors at one in eight, and a Protect that acts last fails", ok,
+                    f"works at runs 3, 4, 5: {runs}; acting last: (protecting, run) {last}"))
+
+
 def check_future_sight(results):
     """Future Sight and Doom Desire (approved 2026-10-13; BtlCmd_TryFutureSight
     and the turn's end, SIDE_COND_CHECK_STATE_FUTURE_SIGHT): the damage is
@@ -1227,7 +1307,8 @@ def main():
                   check_salt_cure, check_harvest, check_berry_first_hit,
                   check_neutralizing_gas, check_gas_wears_off, check_gas_exceptions, check_gas_doubles,
                   check_intimidate_start, check_intimidate_proof, check_two_hit_holds,
-                  check_hits_one_by_one, check_hits_hold_and_heal, check_triple_axel, check_future_sight,
+                  check_hits_one_by_one, check_hits_hold_and_heal, check_triple_axel,
+                  check_protect_flag, check_protect_odds, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean,

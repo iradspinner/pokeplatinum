@@ -1386,6 +1386,49 @@ def two_hit_checks():
              f"Double Kick's top row and Geodude's HP {rows}; over 40 tries each {dict(counts)}")]
 
 
+def protect_checks():
+    """Protect on the readings' path, on the calculator's real rows
+    (approved 2026-10-14). Croagunk uses Detect in a turn the player
+    switches Gengar out for Machop: the switch comes first, so no battler
+    acts after the Detect, which fails (BtlCmd_TryProtection) and leaves
+    the run at 0, where it worked and ran on to 1. A protecting Croagunk
+    still takes Gengar's Phantom Force, which has no MOVE_FLAG_CAN_PROTECT,
+    and its protection ends (subscript_feint), where Protect stopped it. A
+    Detect at a run of 4 works one time in eight on the readings' dice, and
+    the planner's dice offer it at exactly those odds (it was a
+    sixteenth)."""
+    from . import plplan
+    from .test_fightai import battle
+    b = battle([("Croagunk", 22, "Dry Skin", ["Detect", "Poison Jab"])],
+               [("Gengar", 26, "Cursed Body", ["Phantom Force", "Shadow Ball"]), ("Machop", 26, "Guts", ["Low Kick"])])
+    foe, gengar = b.b.cur(), b.p.cur()
+    rng = random.Random(1)
+    b.dice, b.rng = pl.RunDice(rng, True), rng
+    pl._turn(b, ("switch", 1), ("move", fs.move("Detect")))
+    slower = (foe.protecting, foe.protect_run, b.p.cur().species)
+    fs.switch_in(b, b.p, 0)
+    foe.hp, foe.protecting = foe.maxhp, True
+    pl.attack(b, gengar, fs.move("Phantom Force"), foe, True)
+    phantom = (foe.maxhp - foe.hp > 0, foe.protecting)
+    works = 0
+    for s in range(4000):
+        b.dice, b.rng = pl.RunDice(random.Random(s), True), random.Random(s)
+        foe.protecting, foe.protect_run = False, 4
+        pl.status_move(b, foe, fs.move("Detect"), gengar, True)
+        works += foe.protecting
+    foe.protecting, foe.protect_run = False, 4
+    b.dice = plplan.EnumDice((), random.Random(0))
+    pl.status_move(b, foe, fs.move("Detect"), gengar, True)
+    offered = b.dice.events
+    ok = slower == (False, 0, "Machop") and phantom == (True, False) and 0.105 <= works / 4000 <= 0.145 \
+        and offered == [(0.875, 0.125)]
+    return [("Protect on the readings' path: it fails acting last, Phantom Force passes it, its run floors at "
+             "an eighth", ok,
+             f"Detect as the player switches (protecting, run, in) {slower}; Phantom Force into Detect "
+             f"(hit, still protecting) "
+             f"{phantom}; Detect at run 4 worked {works / 4000:.3f}; planner's event {offered}")]
+
+
 def hit_by_hit_checks():
     """A move of several hits on the readings' path lands hit by hit
     (perfectline.multi_hit, fightsim.land_hits; approved 2026-10-14). On
@@ -2135,6 +2178,7 @@ def main():
     results += intimidate_once_checks()
     results += two_hit_checks()
     results += hit_by_hit_checks()
+    results += protect_checks()
     results += future_sight_checks()
     results += disable_and_nightmare_checks()
     results += pivot_checks()

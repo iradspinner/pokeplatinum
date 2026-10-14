@@ -100,7 +100,7 @@ def pokedex_moves():
 class Move:
     """One move as the simulator reads it."""
     __slots__ = ("name", "type", "cat", "power", "acc", "pri", "effect", "chance", "range",
-                 "contact", "sound", "pp", "const", "reflectable")
+                 "contact", "sound", "pp", "const", "reflectable", "protect")
 
     def __init__(self, name):
         by, compact = _by_calc_name()
@@ -119,6 +119,7 @@ class Move:
         self.contact = "MAKES_CONTACT" in flags
         self.sound = "SOUND" in " ".join(flags)
         self.reflectable = any("MAGIC_COAT" in f for f in flags)
+        self.protect = "CAN_PROTECT" in flags        # MOVE_FLAG_CAN_PROTECT: Protect stops it
         self.pp = rec.get("pp") or 10
 
     def damaging(self):
@@ -1449,8 +1450,10 @@ def attack(b, att, mv, dfn, first):
         return
     if dfn.charging is not None and dfn.charging.effect in INVULNERABLE and not reaches(mv, dfn):
         return
-    if dfn.protecting and mv.effect not in ("REMOVE_PROTECT",):
+    if protected(b, att, mv, dfn):
         return
+    if mv.effect == "REMOVE_PROTECT" and not dfn.protecting:
+        return                   # Feint and Hyperspace Hole fail on a target not protecting (BtlCmd_TryFeint)
     if lifted(dfn, mv):
         return
     if mv.effect == "HIT_FIRST_IF_TARGET_ATTACKING":        # Sucker Punch
@@ -1604,6 +1607,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     effects (a move of several hits rolls its own hit by hit in land_hits,
     and has none here)."""
     e = mv.effect
+    if e in BREAKS_PROTECT:
+        dfn.protecting = False
     if e in RECOIL and att.ability != "Rock Head":
         hurt(b, att, max(1, int(dealt * RECOIL[e])))
     # Draining (subscript_drain_half_damage_dealt, _three_quarters): Heal Block
@@ -2463,6 +2468,57 @@ def destiny_bond(att, dfn):
         att.hp = 0
 
 
+# The effects whose hit ends its target's protection for the rest of the turn
+# (subscript_feint, run on the hit): Feint and Hyperspace Hole, the strike of
+# Shadow Force and Phantom Force, and Hyperspace Fury.
+BREAKS_PROTECT = frozenset({"REMOVE_PROTECT", "SHADOW_FORCE", "USER_DEF_DOWN_HIT_REMOVE_PROTECT"})
+# Protect's run of successes counts no higher than this (sProtectSuccessRate's
+# last row): a fourth Protect in a row, and every one after, works one time
+# in eight.
+PROTECT_RUN_CAP = 3
+
+
+def protected(b, att, mv, dfn):
+    """Whether dfn's Protect stops att's move, as
+    BattleControllerPlayer_CheckMoveHitOverrides decides: only a move flagged
+    MOVE_FLAG_CAN_PROTECT, so Feint, Shadow Force, Phantom Force, Future
+    Sight, Curse, the hazards and the rest pass it. A stopped move lets go
+    of its user's lock (Battler_UnlockMoveChoice ends a Rollout's run); a
+    contact move stopped by Spiky Shield costs its user an eighth of its
+    maximum HP unless it has Magic Guard, and one stopped by Baneful Bunker
+    poisons a user with no status (subscript_missed). Oxide's other
+    protecting moves (King's Shield, Obstruct, Silk Trap, Burning Bulwark)
+    only protect. Until 2026-10-14 Protect stopped every move but Feint
+    (Ian approved the fix)."""
+    if not dfn.protecting or not mv.protect:
+        return False
+    rollout_after(att, mv, False)
+    guard = dfn.last.name if dfn.last is not None else None
+    if mv.contact and att.alive():
+        if guard == "Spiky Shield" and att.ability != "Magic Guard":
+            hurt(b, att, max(1, att.maxhp // 8))
+        elif guard == "Baneful Bunker" and not att.status:
+            b.status_src = dfn
+            give_status(b, att, "psn")
+    return True
+
+
+def moves_last(b, first):
+    """Whether no battler acts after this one this turn (BtlCmd_TryProtection's
+    waitingBattlers of 1): a double battle marks it as each acts
+    (run_doubles), and in a single battle it is the move whose target has
+    already moved, or that has no move against it."""
+    last = getattr(b, "moving_last", None)
+    return (not first) if last is None else last
+
+
+def protect_odds(att):
+    """The chance a Protect, Detect or Endure works after att's run of
+    successes (sProtectSuccessRate): certain, then a half, a quarter and an
+    eighth, which stays the floor."""
+    return 1 / (2 ** min(att.protect_run, PROTECT_RUN_CAP))
+
+
 def lifted(dfn, mv):
     """Whether Magnet Rise makes this Ground move fail on dfn (the type
     check's MOVE_STATUS_MAGNET_RISE): not on a Pokemon rooted by Ingrain or
@@ -2486,7 +2542,7 @@ def status_move(b, att, mv, dfn, first):
     own_side = b.p if att.side == "p" else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
     if targets_foe and dfn.alive():
-        if dfn.protecting:
+        if protected(b, att, mv, dfn):
             return
         # The engine runs the type chart only for moves with power, and for
         # Thunder Wave (BattleControllerPlayer_CheckTypeChart), so Thunder
@@ -2579,10 +2635,12 @@ def status_move(b, att, mv, dfn, first):
     elif e == "TOXIC_SPIKES":
         foe_side.hazards["tspikes"] = min(2, foe_side.hazards["tspikes"] + 1)
     elif e == "PROTECT" or e == "SURVIVE_WITH_1_HP":
-        if b.rng.random() < 1 / (2 ** att.protect_run):
+        # BtlCmd_TryProtection: it fails when no battler acts after its user,
+        # and otherwise works at protect_odds; a failure ends the run.
+        if not moves_last(b, first) and b.rng.random() < protect_odds(att):
             att.protecting = e == "PROTECT"
             att.enduring = e == "SURVIVE_WITH_1_HP"
-            att.protect_run += 1
+            att.protect_run = min(att.protect_run + 1, PROTECT_RUN_CAP)
         else:
             att.protect_run = 0
     elif e == "SET_SUBSTITUTE":
@@ -3518,16 +3576,20 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
         keyed = [(-move_priority(mon, mv), -b.speed(mon) if not b.trick_room else b.speed(mon), rng.random(),
                   mon, mv, t)
                  for mon, mv, t in acts]
-        for *_k, mon, mv, t in sorted(keyed, key=lambda x: x[:3]):
+        ordered = sorted(keyed, key=lambda x: x[:3])
+        for i, (*_k, mon, mv, t) in enumerate(ordered):
             if not mon.alive():
                 continue
             if t is not None and not t.alive():
                 t = None
             tl = targets_of(b, mon, mv, t)
             first = bool(tl) and tl[0] not in b.moved
+            # No standing battler acts after this one (moves_last, for Protect).
+            b.moving_last = not any(later[3].alive() for later in ordered[i + 1:])
             use_move(b, mon, mv, tl[0] if tl else foe_of(b, mon), first,
                      targets=tl if mv.damaging() else None)
             b.moved.add(mon)
+        b.moving_last = None
         end_of_turn(b)
         for mon in b.p.on_field() + b.b.on_field():
             if mon.lock:

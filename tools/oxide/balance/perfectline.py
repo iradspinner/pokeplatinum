@@ -550,8 +550,10 @@ def attack(b, att, mv, dfn, first):
         return
     if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE and not fs.reaches(mv, dfn):
         return
-    if dfn.protecting and mv.effect not in ("REMOVE_PROTECT",):
-        return
+    if fs.protected(b, att, mv, dfn):
+        return                   # only a move Protect can stop (fightsim.protected)
+    if mv.effect == "REMOVE_PROTECT" and not dfn.protecting:
+        return                   # Feint and Hyperspace Hole fail on a target not protecting (BtlCmd_TryFeint)
     if fs.lifted(dfn, mv):
         return
     if mv.effect == "HIT_FIRST_IF_TARGET_ATTACKING":
@@ -704,6 +706,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     effects. A move of several hits (hit_by_hit) has rolled its King's
     Rock and its own added effect hit by hit already (fightsim.land_hits)."""
     e = mv.effect
+    if e in fs.BREAKS_PROTECT:
+        dfn.protecting = False   # subscript_feint: the hit ends the target's protection
     if e == "STRUGGLE" and att.ability != "Magic Guard":
         # subscript_struggle: the user loses a quarter of its maximum HP.
         fs.hurt(b, att, max(1, att.maxhp // 4))
@@ -818,7 +822,7 @@ def status_move(b, att, mv, dfn, first):
     own_side = b.p if player(att) else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
     if targets_foe and dfn.alive():
-        if dfn.protecting:
+        if fs.protected(b, att, mv, dfn):
             return
         # Only Thunder Wave among the status moves meets the type chart
         # (BattleControllerPlayer_CheckTypeChart): it fails on a Ground type,
@@ -915,10 +919,14 @@ def status_move(b, att, mv, dfn, first):
     elif e == "TOXIC_SPIKES":
         foe_side.hazards["tspikes"] = min(2, foe_side.hazards["tspikes"] + 1)
     elif e == "PROTECT" or e == "SURVIVE_WITH_1_HP":
-        # A first Protect works. A repeat works at 1/2^run: for the player
-        # its failing is bad luck, for the trainer its working is.
-        p_work = 1 / (2 ** att.protect_run)
-        if att.protect_run == 0:
+        # BtlCmd_TryProtection: it fails when no battler acts after its user
+        # (fightsim.moves_last). Otherwise a first one works, and a repeat at
+        # fightsim.protect_odds, an eighth at worst: for the player its
+        # failing is bad luck, for the trainer its working is.
+        p_work = fs.protect_odds(att)
+        if fs.moves_last(b, first):
+            works = False
+        elif att.protect_run == 0:
             works = True
         elif player(att):
             works = not b.dice.bad("protectfail", 1 - p_work)
@@ -927,7 +935,7 @@ def status_move(b, att, mv, dfn, first):
         if works:
             att.protecting = e == "PROTECT"
             att.enduring = e == "SURVIVE_WITH_1_HP"
-            att.protect_run += 1
+            att.protect_run = min(att.protect_run + 1, fs.PROTECT_RUN_CAP)
         else:
             att.protect_run = 0
     elif e == "SET_SUBSTITUTE":
