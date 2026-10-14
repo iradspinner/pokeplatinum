@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_SOLROCK",
             "form": 0,
-            "level": 25,
+            "level": 23,
             "item": "ITEM_SHUCA_BERRY",
             "moves": [
                 "MOVE_ZEN_HEADBUTT",
@@ -30,13 +30,13 @@
         {
             "species": "SPECIES_CHERRIM",
             "form": 0,
-            "level": 25,
+            "level": 24,
             "item": "ITEM_KEBIA_BERRY",
             "moves": [
                 "MOVE_PETAL_BLIZZARD",
                 "MOVE_SYNTHESIS",
                 "MOVE_ROCK_TOMB",
-                "MOVE_WEATHER_BALL"
+                "MOVE_LEECH_SEED"
             ],
             "iv_scale": 255,
             "nature": "NATURE_DOCILE",
@@ -64,7 +64,7 @@
         {
             "species": "SPECIES_EXEGGUTOR",
             "form": 0,
-            "level": 25,
+            "level": 24,
             "item": "ITEM_OCCA_BERRY",
             "moves": [
                 "MOVE_SLEEP_POWDER",
@@ -81,7 +81,7 @@
         {
             "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 25,
+            "level": 24,
             "item": "ITEM_COBA_BERRY",
             "moves": [
                 "MOVE_MACH_PUNCH",
@@ -107,7 +107,7 @@
                 "MOVE_STUN_SPORE"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_CALM",
+            "nature": "NATURE_SASSY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
