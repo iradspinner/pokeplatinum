@@ -1967,6 +1967,28 @@ def check_suction_cups(results):
                     f"(the trainer's active slot after Roar, the ability named) {got}"))
 
 
+def check_plus_minus(results):
+    """Plus and Minus (approved 2026-10-14; BattleSystem_CalcMoveDamage):
+    half again to a special move only beside a partner with Plus or Minus,
+    so a holder alone hits as its row; in a double battle beside a Minus
+    partner its Thunderbolt is half again as strong, its Tackle not. Rows
+    of 40, made without the ability as prepare() now makes them."""
+    rows = {("p0", "b0.0"): {"Thunderbolt": 40, "Tackle": 40}}
+    b = field({"p0": (("Electric",), ["Thunderbolt", "Tackle"]), "p1": (("Electric",), ["Tackle"]),
+               "b0.0": (("Normal",), ["Tackle"])}, rows)
+    plusle, minun = b.p.mons
+    foe = b.b.cur()
+    plusle.ability, minun.ability = "Plus", "Minus"
+    alone = b.damage(plusle, foe, fs.move("Thunderbolt"), roll=0)
+    b.doubles, b.p.active2 = True, 1
+    paired = (b.damage(plusle, foe, fs.move("Thunderbolt"), roll=0), b.damage(plusle, foe, fs.move("Tackle"), roll=0))
+    minun.ability = "Static"
+    unpaired = b.damage(plusle, foe, fs.move("Thunderbolt"), roll=0)
+    ok = alone == 40 and paired == (60, 40) and unpaired == 40 and "Plus" in fs.CALC_ABILITY_OFF
+    results.append(("Plus and Minus raise special moves only beside a partner with either", ok,
+                    f"alone {alone}; beside Minus (Thunderbolt, Tackle) {paired}; beside Static {unpaired}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2214,7 +2236,7 @@ def main():
                   check_knockout_boost, check_trapping_exemptions, check_accuracy_abilities,
                   check_download, check_weather_abilities, check_sand_force,
                   check_bad_dreams, check_marvel_scale, check_shed_skin,
-                  check_suction_cups,
+                  check_suction_cups, check_plus_minus,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

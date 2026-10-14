@@ -2319,6 +2319,23 @@ def suction_cups_checks():
     return [("Suction Cups keeps Octillery in against the player's Roar", ok, f"the trainer's Pokemon after Roar {out}")]
 
 
+def plus_minus_checks():
+    """Plus on the calculator's real rows (approved 2026-10-14): prepare now
+    rows a Plus Plusle without its boost, so in a single battle its
+    Thunderbolt reads as a Lightning Rod Plusle's, where it read half again
+    as hard."""
+    from .test_fightai import battle
+    b = battle([("Plusle", 30, "Plus", ["Thunderbolt"]), ("Plusle", 30, "Lightning Rod", ["Thunderbolt"])],
+               [("Snorlax", 30, "Thick Fat", ["Body Slam"])])
+    plus, rod = b.b.mons
+    lax = b.p.cur()
+    bolt = fs.move("Thunderbolt")
+    got = (pl.damage_of(b, plus, lax, bolt, False, True), pl.damage_of(b, rod, lax, bolt, False, True))
+    ok = got[0] == got[1]
+    return [("Plus: a lone Plusle's Thunderbolt reads as a Lightning Rod one's on the real rows", ok,
+             f"(Plus, Lightning Rod) top rolls {got}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -2813,6 +2830,7 @@ def main():
     results += marvel_scale_checks()
     results += shed_skin_checks()
     results += suction_cups_checks()
+    results += plus_minus_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

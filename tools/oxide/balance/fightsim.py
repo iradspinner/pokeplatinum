@@ -255,8 +255,10 @@ GAS_PROOF = {"Neutralizing Gas", "Multitype", "Zen Mode", "Stance Change", "Shie
 # hit into the holder, at any time and on top of the battle's own stage.
 # Download: the engine raises one stat a stage as its holder comes in, from
 # the foes then on the field (download), where the calculator raised the
-# stat in each row by that row's defender.
-CALC_ABILITY_OFF = frozenset({"Unburden", "Intimidate", "Download"})
+# stat in each row by that row's defender. Plus and Minus: the engine
+# raises a special move only beside a partner with either (plus_minus), where
+# the calculator raised it in every row.
+CALC_ABILITY_OFF = frozenset({"Unburden", "Intimidate", "Download", "Plus", "Minus"})
 
 
 # ---- genders (Ian, 2026-10-03) -------------------------------------------------------------
@@ -2473,6 +2475,19 @@ def doubled_power(att, mv):
 AGAINST_DEFENSE = frozenset({"MOVE_PSYSHOCK", "MOVE_PSYSTRIKE", "MOVE_SECRET_SWORD"})
 
 
+def plus_minus(b, att, mv):
+    """Plus and Minus (BattleSystem_CalcMoveDamage, Generation 5's rule): half
+    again to the holder's Sp. Atk for a special move while a partner on its
+    side also has Plus or Minus, so never in a single battle. prepare()
+    keeps both out of the calculator's rows (CALC_ABILITY_OFF), which raised
+    every special move of a holder alone. Until 2026-10-14 the rows' boost
+    stood in every battle (Ian approved the fix)."""
+    if att.ability not in ("Plus", "Minus") or mv.cat != "Special" or not getattr(b, "doubles", False):
+        return 1.0
+    ally = ally_of(b, att)
+    return 1.5 if ally is not None and ally.ability in ("Plus", "Minus") else 1.0
+
+
 def marvel_scale(att, dfn, mv):
     """Marvel Scale's half again to its holder's Defense while it has a
     status (BattleSystem_CalcMoveDamage, which Mold Breaker gets past), for
@@ -2496,6 +2511,7 @@ def state_mult(b, att, dfn, mv):
     if PINCH_ABILITY.get(att.ability) == mv.type and att.hp * 3 <= att.maxhp:
         m *= 1.5
     m *= marvel_scale(att, dfn, mv)
+    m *= plus_minus(b, att, mv)
     berry = resist_berry(b, dfn, mv)
     if berry and dfn.item != berry:
         m *= 2
