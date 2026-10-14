@@ -40,10 +40,14 @@
             [ 10, "MOVE_MAGICAL_LEAF" ],
             [ 19, "MOVE_LEECH_SEED" ],
             [ 28, "MOVE_SYNTHESIS" ],
+            [ 29, "MOVE_QUICK_ATTACK" ],
             [ 46, "MOVE_NATURAL_GIFT" ],
             [ 55, "MOVE_WORRY_SEED" ],
             [ 64, "MOVE_AROMATHERAPY" ],
-            [ 73, "MOVE_ENERGY_BALL" ]
+            [ 65, "MOVE_AIR_SLASH" ],
+            [ 73, "MOVE_ENERGY_BALL" ],
+            [ 77, "MOVE_LEAF_STORM" ],
+            [ 78, "MOVE_SEED_FLARE" ]
         ],
         "by_tm": [
             "TM05",
@@ -68,7 +72,9 @@
         ],
         "by_tutor": [
             "MOVE_MUD_SLAP",
+            "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
             "MOVE_ENDEAVOR",
             "MOVE_SYNTHESIS",
             "MOVE_ZEN_HEADBUTT",

@@ -42,7 +42,10 @@
             [ 49, "MOVE_SNATCH" ],
             [ 57, "MOVE_PSYCHO_SHIFT" ],
             [ 65, "MOVE_ZEN_HEADBUTT" ],
-            [ 73, "MOVE_COSMIC_POWER" ]
+            [ 73, "MOVE_COSMIC_POWER" ],
+            [ 76, "MOVE_RECOVER" ],
+            [ 77, "MOVE_PSYCHO_BOOST" ],
+            [ 78, "MOVE_EXTREME_SPEED" ]
         ],
         "by_tm": [
             "TM03",

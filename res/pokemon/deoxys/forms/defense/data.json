@@ -38,11 +38,17 @@
             [ 9, "MOVE_NIGHT_SHADE" ],
             [ 25, "MOVE_KNOCK_OFF" ],
             [ 33, "MOVE_PURSUIT" ],
+            [ 34, "MOVE_SPIKES" ],
             [ 41, "MOVE_PSYCHIC" ],
             [ 49, "MOVE_SNATCH" ],
             [ 57, "MOVE_PSYCHO_SHIFT" ],
             [ 65, "MOVE_ZEN_HEADBUTT" ],
-            [ 73, "MOVE_COSMIC_POWER" ]
+            [ 73, "MOVE_COSMIC_POWER" ],
+            [ 74, "MOVE_AMNESIA" ],
+            [ 75, "MOVE_RECOVER" ],
+            [ 76, "MOVE_PSYCHO_BOOST" ],
+            [ 77, "MOVE_COUNTER" ],
+            [ 78, "MOVE_MIRROR_COAT" ]
         ],
         "by_tm": [
             "TM03",

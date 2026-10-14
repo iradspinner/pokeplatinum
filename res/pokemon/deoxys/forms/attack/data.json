@@ -40,9 +40,12 @@
             [ 33, "MOVE_PURSUIT" ],
             [ 41, "MOVE_PSYCHIC" ],
             [ 49, "MOVE_SNATCH" ],
+            [ 50, "MOVE_SUPERPOWER" ],
             [ 57, "MOVE_PSYCHO_SHIFT" ],
             [ 65, "MOVE_ZEN_HEADBUTT" ],
-            [ 73, "MOVE_COSMIC_POWER" ]
+            [ 73, "MOVE_COSMIC_POWER" ],
+            [ 77, "MOVE_ZAP_CANNON" ],
+            [ 78, "MOVE_PSYCHO_BOOST" ]
         ],
         "by_tm": [
             "TM03",
@@ -102,6 +105,7 @@
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
+            "MOVE_SUPERPOWER",
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
