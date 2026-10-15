@@ -1897,6 +1897,27 @@ def check_core_enforcer(results):
                     f"(ability, suppressed, Earthquake on it) {gone}; {got}"))
 
 
+def check_captivate(results):
+    """Captivate (approved 2026-10-14; effect script 265): two stages of Sp.
+    Atk off a target of the other gender only; nothing between two of one
+    gender or from or into a genderless Pokemon; an Oblivious target is
+    spared, named, unless the user has Mold Breaker."""
+    def captivate(user, target, ability=None, mold=False):
+        b, p, foe = battle(["Captivate"], ["Tackle"], {})
+        p.gender, foe.gender, foe.ability = user, target, ability
+        p.ability = "Mold Breaker" if mold else None
+        fs.status_move(b, p, fs.move("Captivate"), foe, True)
+        return foe.stages["spa"], foe.revealed
+    got = {"male on female": captivate("M", "F"), "female on male": captivate("F", "M"),
+           "male on male": captivate("M", "M"), "genderless user": captivate(None, "F"),
+           "genderless target": captivate("M", None), "Oblivious": captivate("M", "F", "Oblivious"),
+           "Oblivious, Mold Breaker": captivate("M", "F", "Oblivious", True)}
+    want = {"male on female": (-2, None), "female on male": (-2, None), "male on male": (0, None),
+            "genderless user": (0, None), "genderless target": (0, None), "Oblivious": (0, "Oblivious"),
+            "Oblivious, Mold Breaker": (-2, None)}
+    results.append(("Captivate lowers Sp. Atk only across the genders", got == want, f"(stage, named) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3184,8 +3205,8 @@ def main():
                   check_wandering_spirit, check_color_change, check_forecast, check_soak,
                   check_conversion, check_conversion2, check_camouflage, check_burn_up,
                   check_double_shock, check_skill_swap, check_role_play, check_entrainment,
-                  check_worry_seed, check_gastro_acid, check_core_enforcer, check_magic_guard,
-                  check_liquid_ooze,
+                  check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
+                  check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

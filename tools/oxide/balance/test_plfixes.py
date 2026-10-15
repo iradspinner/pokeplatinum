@@ -3045,6 +3045,30 @@ def core_enforcer_checks():
              f"twins {twins}; Earthquake before {before}; after Core Enforcer (its ability, Earthquake) {after}")]
 
 
+def captivate_checks():
+    """Captivate in the readings' battle, on the genders prepare gives the
+    battle (approved 2026-10-14): a female trainer's Persian's Captivate
+    takes two stages of Sp. Atk off a male Bibarel and none off a female
+    one."""
+    def rec(sp, ab, mv, gender):
+        return {"species": sp, "level": 30, "ability": ab, "item": None, "nature": "Hardy", "ivs": IV, "evs": EV,
+                "moves": mv, "gender": gender}
+    side = [dict(rec("Bibarel", "Simple", ["Tackle"], g), constant="SPECIES_BIBAREL", how="test", fill=False)
+            for g in ("male", "female")]
+    st = fs.prepare("Roark", [[rec("Persian", "Limber", ["Captivate"], "female")]], None, given_side=side)
+    out = {}
+    for i, label in ((0, "male"), (1, "female")):
+        b = pl.make_battle(st, ["p0", "p1"], st["bosses"][0], 7, i)
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        persian, bib = b.b.cur(), b.p.cur()
+        bib.ability = None          # Simple would double the drop
+        pl.use_move(b, persian, fs.move("Captivate"), bib, True)
+        out[label] = (persian.gender, bib.gender, bib.stages["spa"])
+    ok = out == {"male": ("F", "M", -2), "female": ("F", "F", 0)}
+    return [("Captivate: a female Persian's lowers a male Bibarel's Sp. Atk and leaves a female's", ok,
+             f"(Persian's gender, Bibarel's, its Sp. Atk stage) {out}")]
+
+
 def calc_terrain(tr_ids):
     from . import calc
     return getattr(calc, "fight_terrain", lambda _ids: None)(tr_ids)
@@ -3577,6 +3601,7 @@ def main():
     results += worry_seed_checks()
     results += gastro_acid_checks()
     results += core_enforcer_checks()
+    results += captivate_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

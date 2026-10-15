@@ -4206,6 +4206,19 @@ def _types_spent(ff):
                 yield k, [x for x in own if x != t] or ["???"], ff.ability(k)
 
 
+def captivates(att, dfn):
+    """Captivate's own checks (effect script 265) before its two stages of
+    Sp. Atk: a target's Oblivious makes it ineffective, the message naming
+    the ability, unless the user's Mold Breaker gets past it; a genderless
+    user or target, or two of one gender, make it fail. Whether the drop may
+    land. Until 2026-10-14 it landed whatever the genders (Ian approved the
+    fix)."""
+    if dfn.ability == "Oblivious" and not mold(att, dfn):
+        reveal(dfn)
+        return False
+    return bool(att.gender and dfn.gender and att.gender != dfn.gender)
+
+
 def lifted(dfn, mv):
     """Whether Magnet Rise makes this Ground move fail on dfn (the type
     check's MOVE_STATUS_MAGNET_RISE): not on a Pokemon rooted by Ingrain or
@@ -4270,6 +4283,9 @@ def status_move(b, att, mv, dfn, first):
         change_stages(att, SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
+    elif e == "SP_ATK_DOWN_2_OPPOSITE_GENDER":
+        if captivates(att, dfn) and not sub_blocks(att, dfn, mv):
+            lower_stats(b, att, dfn, FOE_STAGES[e])     # Captivate, only across the genders
     elif e in FOE_STAGES:
         if not sub_blocks(att, dfn, mv):
             lower_stats(b, att, dfn, FOE_STAGES[e])

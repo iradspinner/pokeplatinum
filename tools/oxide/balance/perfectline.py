@@ -891,6 +891,9 @@ def status_move(b, att, mv, dfn, first):
         fs.change_stages(att, fs.SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
+    elif e == "SP_ATK_DOWN_2_OPPOSITE_GENDER":
+        if fs.captivates(att, dfn) and not fs.sub_blocks(att, dfn, mv):
+            fs.lower_stats(b, att, dfn, fs.FOE_STAGES[e])     # Captivate, only across the genders (fightsim.captivates)
     elif e in fs.FOE_STAGES:
         if not fs.sub_blocks(att, dfn, mv):
             fs.lower_stats(b, att, dfn, fs.FOE_STAGES[e])     # stat by stat (fightsim.lower_stats)
