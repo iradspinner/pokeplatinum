@@ -2115,6 +2115,46 @@ def check_crash_on_miss(results):
                     f"(user's HP lost, target's HP lost) {got}"))
 
 
+def check_bind(results):
+    """Binding (approved 2026-10-14; subscript_bind_start, Oxide's
+    MON_COND_CHECK_STATE_BIND): Fire Spin binds for a count of 3 to 6 (the
+    low end on these dice, 6 with a Grip Claw); each turn's end lowers it,
+    and while it stays above 0 the target loses an eighth of its maximum HP,
+    a sixth when the binder holds a Binding Band, so a count of 3 costs two
+    eighths and then frees it, held in until then. The bind ends at once
+    when the binder leaves, switched out or replaced after a knockout."""
+    def bind(item=None):
+        b = field({"p0": (("Normal",), ["Fire Spin"]), "p1": (("Normal",), ["Tackle"]),
+                   "b0.0": (("Normal",), ["Tackle"])}, {("p0", "b0.0"): {"Fire Spin": 10}})
+        b.rng = FixedDice(0.5)
+        p, foe = b.p.cur(), b.b.cur()
+        p.item = item
+        fs.attack(b, p, fs.move("Fire Spin"), foe, True)
+        return b, p, foe
+    out = {}
+    for label, item in (("plain", None), ("Grip Claw", "Grip Claw"), ("Binding Band", "Binding Band")):
+        b, p, foe = bind(item)
+        count = foe.bound
+        trail = []
+        for _ in range(3):
+            fs.end_of_turn(b)
+            trail.append((foe.hp, foe.bound, fs.trapped(b, foe)))
+        out[label] = (count, trail)
+    b, p, foe = bind()
+    fs.switch_in(b, b.p, 1)
+    out["the binder switches out"] = (foe.bound, fs.trapped(b, foe))
+    b, p, foe = bind()
+    p.hp = 0
+    fs.switch_in(b, b.p, 1)
+    out["the binder is replaced after a knockout"] = (foe.bound, fs.trapped(b, foe))
+    want = {"plain": (3, [(78, 2, True), (66, 1, True), (66, 0, False)]),
+            "Grip Claw": (6, [(78, 5, True), (66, 4, True), (54, 3, True)]),
+            "Binding Band": (3, [(74, 2, True), (58, 1, True), (58, 0, False)]),
+            "the binder switches out": (0, False), "the binder is replaced after a knockout": (0, False)}
+    results.append(("a bind lasts its count, an eighth a turn, and ends with its binder", out == want,
+                    f"(count, [(HP, count, trapped) after each turn end]) {out}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2190,7 +2230,7 @@ def check_magic_guard(results):
     want = {"hazards": (100, None, 1), "hazards, a Poison type": (100, None, 1), "recoil": 100, "crash": 100,
             "bound": (100, 2, 50), "seeded": (100, 0, 50)}
     want_plain = {"hazards": (76, "psn", 1), "hazards, a Poison type": (76, None, 0), "recoil": 90, "crash": 80,
-                  "bound": (94, 2, 50), "seeded": (88, 0, 62)}
+                  "bound": (88, 2, 50), "seeded": (88, 0, 62)}
     ok = got == want and plain == want_plain
     results.append(("Magic Guard keeps off the hazards, recoil, a crash, binding and Leech Seed", ok,
                     f"Magic Guard {got}; plain {plain} (hazards: HP, status, Toxic Spikes layers left; "
@@ -3405,7 +3445,7 @@ def main():
                   check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
-                  check_crash_on_miss,
+                  check_crash_on_miss, check_bind,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,

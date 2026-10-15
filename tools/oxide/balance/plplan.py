@@ -290,7 +290,7 @@ class EnumDice:
         return 3 + self._ev((1 / 3,) * 3)
 
     def bind(self, side):
-        return 2 + self._ev((0.25,) * 4)
+        return 3 + self._ev((0.25,) * 4)
 
     def outrage(self, side):
         return 2 + self._ev((0.5, 0.5))
@@ -645,7 +645,7 @@ class ModeDice:
         return 4
 
     def bind(self, side):
-        return 3
+        return 4
 
     def outrage(self, side):
         return 2

@@ -53,7 +53,7 @@ FIRST_CHANCE = True
 SLEEP_ON = {"p": 4, "b": 1}
 CONFUSION_ON = {"p": 5, "b": 2}
 TAUNT_ON = {"p": 5, "b": 3}
-BIND_ON = {"p": 5, "b": 2}
+BIND_ON = {"p": 6, "b": 3}
 OUTRAGE_TURNS = {"p": 2, "b": 3}
 
 FREE = 1.0
@@ -209,7 +209,7 @@ class RunDice:
         return self.rng.randint(3, 5)
 
     def bind(self, side):
-        return self.rng.randint(2, 5)
+        return self.rng.randint(3, 6)            # subscript_bind_start's Random 3, 3
 
     def outrage(self, side):
         return self.rng.randint(2, 3)
@@ -848,7 +848,9 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
         fs.start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
-        dfn.bound = b.dice.bind(dfn.side)
+        # The count, 3 to 6 on the battle's dice and 6 with a Grip Claw, and
+        # the binder, whose leaving ends it (fightsim.Mon.bound).
+        dfn.bound, dfn.bound_by = 6 if att.item == "Grip Claw" else b.dice.bind(dfn.side), att.key
     if e in ("REMOVE_HELD_ITEM", "STEAL_HELD_ITEM"):
         dfn.item = None
 

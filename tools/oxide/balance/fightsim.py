@@ -462,7 +462,12 @@ class Mon:
         self.last_hit_by = None          # the move last aimed at it since it last acted
         self.last_hit_type = None        # that move's type as the battle recorded it (Weather Ball)
         self.crit_stage = 0
+        # A binding move's count (VOLATILE_CONDITION_BIND): set to 3 to 6, 6
+        # with a Grip Claw (subscript_bind_start's Random 3, 3), it falls by
+        # one each turn's end, which costs HP while it stays above 0; and the
+        # binder's key (bindTarget), whose leaving frees it.
         self.bound = 0
+        self.bound_by = None
         self.enduring = False
         self.cursed = False
         self.u_turn = False
@@ -2020,6 +2025,13 @@ def berry_check(mon, b=None):
         consume(mon)
 
 
+def binding_band(b, mon):
+    """Whether the Pokemon that bound mon stands on the field holding a
+    Binding Band (HOLD_EFFECT_BINDING_BAND, read at each turn's end)."""
+    foes = (b.b if mon.side == "p" else b.p).on_field()
+    return any(f.key == getattr(mon, "bound_by", None) and f.item == "Binding Band" for f in foes)
+
+
 def untrappable(mon):
     """Whether nothing can trap mon (Battler_IsTrapped returns at once): it
     holds a Shed Shell (HOLD_EFFECT_SWITCH), or it is a Ghost type, by
@@ -2674,7 +2686,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
         start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
-        dfn.bound = b.rng.randint(2, 5)
+        dfn.bound, dfn.bound_by = 6 if att.item == "Grip Claw" else b.rng.randint(3, 6), att.key
     if e in ("REMOVE_HELD_ITEM", "STEAL_HELD_ITEM"):
         dfn.item = None
 
@@ -4587,6 +4599,12 @@ def switch_in(b, side, index, slot=0, lead=False):
         for foe in (b.b if side is b.p else b.p).mons:
             if foe.trapped_by == leaving.key:
                 foe.trapped_by = None
+            if foe.bound and getattr(foe, "bound_by", None) == leaving.key:
+                # The bind ends when its binder leaves, by a switch or a
+                # knockout's replacement (BattleSystem_InitBattleMon clears
+                # the binds bindTarget names); until 2026-10-15 it outlasted
+                # the binder (Ian approved the fix).
+                foe.bound, foe.bound_by = 0, None
             if foe.infatuated == leaving.key:
                 foe.infatuated = None    # love ends when its object leaves (battle_lib's switch-out)
         if leaving.gas_stash is not None and leaving is not side.mons[index]:
@@ -4909,11 +4927,17 @@ def _end_of_turn_mon(b, side, m):
         if battle_over(b):
             return False
     if m.alive() and m.bound:
+        # MON_COND_CHECK_STATE_BIND: the count falls, and while it stays
+        # above 0 the bound Pokemon loses an eighth of its maximum HP, a
+        # sixth when its binder holds a Binding Band (Oxide's later-games
+        # figures); at 0 the bind ends with no damage. subscript_bind_effect
+        # hurts no Magic Guard holder, though its count still runs down
+        # (added 2026-10-14). Until 2026-10-15 it took Platinum's sixteenth on
+        # each of 2 to 5 turns and freed the Pokemon a turn early (Ian
+        # approved the fix).
         m.bound -= 1
-        # subscript_bind_effect hurts no Magic Guard holder, though its count
-        # still runs down (added 2026-10-14, Ian approved the fix).
-        if m.ability != "Magic Guard":
-            hurt(b, m, m.maxhp // 16)
+        if m.bound and m.ability != "Magic Guard":
+            hurt(b, m, engine_divide(m.maxhp, 6 if binding_band(b, m) else 8))
         if battle_over(b):
             return False
     # Salt Cure (MON_COND_CHECK_STATE_SALT_CURE, after binding): an eighth

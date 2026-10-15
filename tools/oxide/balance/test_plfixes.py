@@ -3246,6 +3246,30 @@ def crash_checks():
              f"(HP lost, lowest allowed, highest allowed, target untouched) {out}")]
 
 
+def bind_checks():
+    """Sand Tomb in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Hippowdon binds the player's Bibarel
+    on the battle's dice; each turn's end then costs it an eighth of its
+    maximum HP while the count lasts, and the bind ends when the Hippowdon
+    switches out."""
+    from .test_fightai import battle
+    b = battle([("Hippowdon", 40, "Sand Stream", ["Sand Tomb"]), ("Gastrodon", 40, "Sticky Hold", ["Tackle"])],
+               [("Bibarel", 40, "Unaware", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    b.weather, b.weather_turns = None, 0
+    hip, bib = b.b.cur(), b.p.cur()
+    pl.use_move(b, hip, fs.move("Sand Tomb"), bib, True)
+    count = bib.bound
+    hp = bib.hp
+    fs.end_of_turn(b)
+    lost = hp - bib.hp
+    fs.switch_in(b, b.b, 1)
+    got = (3 <= count <= 6, lost == bib.maxhp // 8, bib.bound, fs.trapped(b, bib))
+    return [("the readings' Sand Tomb takes an eighth a turn and ends with its binder", got == (True, True, 0, False),
+             f"(count {count} in 3 to 6, an eighth lost ({lost} of {bib.maxhp}), count after the binder left, "
+             f"trapped) {got}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3826,6 +3850,7 @@ def main():
     results += dream_eater_checks()
     results += focus_punch_checks()
     results += crash_checks()
+    results += bind_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)
