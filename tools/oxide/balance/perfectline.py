@@ -575,8 +575,8 @@ def attack(b, att, mv, dfn, first):
         return
     if fs.loses_type_fails(att, mv):
         return                           # Burn Up or Double Shock without its type (fightsim.lose_type)
-    if fs.dream_eater_fails(att, dfn, mv) or fs.lost_focus(att, mv):
-        return                           # Dream Eater awake or behind a Substitute; Focus Punch once hit
+    if fs.dream_eater_fails(att, dfn, mv) or fs.lost_focus(att, mv) or fs.snore_fails(att, mv):
+        return                           # Dream Eater awake or behind a Substitute; Focus Punch once hit; Snore awake
     spit = fs.spit_up_key(att) if mv.effect == "SPIT_UP" else None
     if mv.effect == "SPIT_UP" and spit is None:
         return                           # Spit Up with nothing stored (fightsim.spit_up_key)

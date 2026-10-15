@@ -154,7 +154,10 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               "BURN_HIT_DOUBLE_POWER_ON_STATUS": "brn", "POISON_HIT_DOUBLE_POWER_ON_POISONED": "psn"}
 FLINCH_HIT = {"FLINCH_HIT", "FLINCH_BURN_HIT", "FLINCH_PARALYZE_HIT", "FLINCH_FREEZE_HIT",
               "FLINCH_MINIMIZE_DOUBLE_HIT", "FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE",
-              "UPPER_HAND"}                       # at its 100%, as Fake Out's target flinches
+              "UPPER_HAND",                       # at its 100%, as Fake Out's target flinches
+              # Snore (effect script 92) flinches at its 30%, set before its
+              # damage; until 2026-10-15 it never did (Ian approved the fix).
+              "DAMAGE_WHILE_ASLEEP"}
 # Stat changes: (on whom, {stat: stages}); a hit's change comes with its chance.
 SELF_STAGES = {
     "ATK_UP": {"atk": 1}, "ATK_UP_2": {"atk": 2}, "DEF_UP": {"def": 1}, "DEF_UP_2": {"def": 2},
@@ -2897,7 +2900,7 @@ def attack(b, att, mv, dfn, first):
         return
     if loses_type_fails(att, mv):
         return                           # Burn Up or Double Shock without its type (lose_type)
-    if dream_eater_fails(att, dfn, mv) or lost_focus(att, mv):
+    if dream_eater_fails(att, dfn, mv) or lost_focus(att, mv) or snore_fails(att, mv):
         return
     spit = spit_up_key(att) if mv.effect == "SPIT_UP" else None
     if mv.effect == "SPIT_UP" and spit is None:
@@ -3130,6 +3133,14 @@ def dream_eater_fails(att, dfn, mv):
     the sleep status. Until 2026-10-15 it hit an awake target and drained
     half (Ian approved the fix)."""
     return mv.effect == "RECOVER_DAMAGE_SLEEP" and (dfn.status != "slp" or sub_blocks(att, dfn, mv))
+
+
+def snore_fails(att, mv):
+    """Snore (effect script 92) fails when its user is awake, before its
+    accuracy is checked, as the script reads the sleep status first; a
+    sleeper that wakes this turn is awake by then. Until 2026-10-15 an
+    awake Snore hit (Ian approved the fix)."""
+    return mv.effect == "DAMAGE_WHILE_ASLEEP" and att.status != "slp"
 
 
 def lost_focus(att, mv):

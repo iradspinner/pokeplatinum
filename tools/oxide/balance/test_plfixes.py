@@ -4097,6 +4097,30 @@ def secret_power_checks():
     return [("the readings' Secret Power adds its terrain's effect", ok, f"of 100 hits, effects landed {out}")]
 
 
+def snore_checks():
+    """Snore in the readings' battle on the calculator's real rows (approved
+    2026-10-14): a trainer's sleeping Whiscash's Snore hits the player's
+    Bibarel and flinches it about three times in ten, and an awake one's
+    Snore fails."""
+    from .test_fightai import battle
+    b = battle([("Whiscash", 30, "Oblivious", ["Snore"])], [("Bibarel", 30, "Unaware", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    whi, bib = b.b.cur(), b.p.cur()
+    bib.hp = bib.maxhp = 100000
+    flinches = 0
+    for _ in range(100):
+        whi.status, whi.sleep, bib.flinch = "slp", 3, False
+        pl.attack(b, whi, fs.move("Snore"), bib, True)
+        flinches += bib.flinch
+    asleep = bib.maxhp - bib.hp
+    whi.status, whi.sleep = None, 0
+    before = bib.hp
+    pl.attack(b, whi, fs.move("Snore"), bib, True)
+    ok = asleep > 0 and 15 <= flinches <= 45 and bib.hp == before
+    return [("the readings' Snore flinches asleep and fails awake", ok,
+             f"100 sleeping Snores dealt {asleep}, flinched {flinches}; awake it dealt {before - bib.hp}")]
+
+
 def main():
     results = []
 
@@ -4605,6 +4629,7 @@ def main():
     results += acupressure_checks()
     results += trainer_frustration_checks()
     results += secret_power_checks()
+    results += snore_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

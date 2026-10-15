@@ -4186,6 +4186,21 @@ def check_secret_power(results):
                     f"(accuracy, Attack, status, flinch) {out}"))
 
 
+def check_snore(results):
+    """Snore (approved 2026-10-14; effect script 92): asleep, it hits and
+    flinches a target yet to move at its 30%; awake, it fails."""
+    out = {}
+    for status, dice in (("slp", 0.0), ("slp", 0.5), (None, 0.0)):
+        b, p, foe = battle(["Snore"], ["Tackle"], {("p", "Snore"): [10] * 16}, hp=500)
+        p.status, p.sleep = status, 3 if status else 0
+        b.rng = FixedDice(dice)
+        foe.ability = "Shell Armor"
+        fs.attack(b, p, fs.move("Snore"), foe, True)
+        out[(status, dice)] = (500 - foe.hp, foe.flinch)
+    want = {("slp", 0.0): (10, True), ("slp", 0.5): (10, False), (None, 0.0): (0, False)}
+    results.append(("Snore hits and flinches asleep and fails awake", out == want, f"(damage, flinch) {out}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4450,7 +4465,7 @@ def main():
                   check_black_sludge, check_water_bubble, check_eerie_spell,
                   check_burning_bulwark,
                   check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
-                  check_trainer_frustration, check_secret_power,
+                  check_trainer_frustration, check_secret_power, check_snore,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
