@@ -2915,6 +2915,27 @@ def steal_item(att, dfn):
     att.item, dfn.item = dfn.item, None
 
 
+def swap_items(att, dfn, mv):
+    """Trick and Switcheroo (effect script 177, subscript_exchange_items and
+    BtlCmd_TrySwapItems) once the move has reached its target: an AI
+    trainer's always fails outside the Battle Frontier. The player's swaps
+    the two Pokemon's items unless the target's Substitute stands in the
+    way, either has Multitype or holds a Griseous Orb, either slot's item
+    was knocked off this battle, neither holds anything, or the target's
+    Sticky Hold keeps its item (named; Mold Breaker gets past it). Until
+    2026-10-15 nobody's Trick did anything (Ian approved the fix)."""
+    if att.side != "p" or sub_blocks(att, dfn, mv):
+        return
+    if "Multitype" in (att.ability, dfn.ability) or "Griseous Orb" in (att.item, dfn.item):
+        return
+    if att.knocked_off or dfn.knocked_off or not (att.item or dfn.item):
+        return
+    if dfn.ability == "Sticky Hold" and not mold(att, dfn):
+        reveal(dfn)
+        return
+    att.item, dfn.item = dfn.item, att.item
+
+
 def recycle(att):
     """Recycle (effect script 184, BtlCmd_TryRecycle): the item its user
     last used up comes back, if it now holds nothing."""
@@ -4598,6 +4619,8 @@ def status_move(b, att, mv, dfn, first):
         change_stages(dfn, {"atk": -2, "spa": -2})
     elif e == "PASS_STATS_AND_STATUS":
         att.baton = True
+    elif e == "SWITCH_HELD_ITEMS":
+        swap_items(att, dfn, mv)
     elif e in FORM_MOVES:
         # The status moves that change a type or an ability (FORM_MOVES).
         FORM_MOVES[e](b, att, mv, dfn, lambda kind, n: b.rng.randrange(n))

@@ -2188,6 +2188,38 @@ def check_steal_item(results):
                     f"(thief's item, target's item) {got}"))
 
 
+def check_swap_items(results):
+    """Trick and Switcheroo (approved 2026-10-14; effect script 177,
+    BtlCmd_TrySwapItems): the player's swaps its item with its target's, an
+    empty hand too; nothing swaps when neither holds an item, through a
+    Substitute, into Sticky Hold (unless Mold Breaker) or once either's item
+    was knocked off. A trainer's Trick swaps nothing."""
+    def trick(user_item="Charcoal", foe_item="Leftovers", foe_ability=None, ability=None, sub=0,
+              knocked=False, trainer=False, name="Trick"):
+        if trainer:
+            b, p, foe = battle(["Tackle"], [name], {})
+            p, foe = foe, p
+        else:
+            b, p, foe = battle([name], ["Tackle"], {})
+        b.rng = FixedDice(0.5)
+        p.item, foe.item, foe.ability, p.ability, foe.sub = user_item, foe_item, foe_ability, ability, sub
+        foe.knocked_off = knocked
+        fs.status_move(b, p, fs.move(name), foe, True)
+        return p.item, foe.item
+    got = {"Trick": trick(), "Switcheroo": trick(name="Switcheroo"), "an empty hand": trick(user_item=None),
+           "neither holds one": trick(user_item=None, foe_item=None), "through a Substitute": trick(sub=30),
+           "Sticky Hold": trick(foe_ability="Sticky Hold"),
+           "Sticky Hold, Mold Breaker": trick(foe_ability="Sticky Hold", ability="Mold Breaker"),
+           "the target's item knocked off": trick(foe_item=None, knocked=True), "a trainer's Trick": trick(trainer=True)}
+    want = {"Trick": ("Leftovers", "Charcoal"), "Switcheroo": ("Leftovers", "Charcoal"),
+            "an empty hand": ("Leftovers", None), "neither holds one": (None, None),
+            "through a Substitute": ("Charcoal", "Leftovers"), "Sticky Hold": ("Charcoal", "Leftovers"),
+            "Sticky Hold, Mold Breaker": ("Leftovers", "Charcoal"), "the target's item knocked off": ("Charcoal", None),
+            "a trainer's Trick": ("Charcoal", "Leftovers")}
+    results.append(("Trick and Switcheroo swap items for the player's side only", got == want,
+                    f"(user's item, target's item) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3478,7 +3510,7 @@ def main():
                   check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
-                  check_crash_on_miss, check_bind, check_steal_item,
+                  check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,

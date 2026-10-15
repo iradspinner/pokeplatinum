@@ -1044,6 +1044,8 @@ def status_move(b, att, mv, dfn, first):
         fs.change_stages(dfn, {"atk": -2, "spa": -2})
     elif e == "PASS_STATS_AND_STATUS":
         att.baton = True
+    elif e == "SWITCH_HELD_ITEMS":
+        fs.swap_items(att, dfn, mv)      # the player's Trick and Switcheroo only (fightsim.swap_items)
     elif e in fs.FORM_MOVES:
         # The status moves that change a type or an ability (fightsim.FORM_MOVES),
         # a choice among several on the battle's dice.

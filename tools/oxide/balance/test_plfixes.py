@@ -3297,6 +3297,31 @@ def steal_item_checks():
              f"(thief's item, target's item[, hit]) {out}")]
 
 
+def swap_items_checks():
+    """Trick in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Alakazam's Trick gives its Charcoal
+    to a trainer's Rotom and takes the Rotom's Leftovers, which then heal
+    the Alakazam at the turn's end; the Rotom's own Trick on the Alakazam
+    swaps nothing."""
+    from .test_fightai import battle
+    b = battle([("Rotom", 40, "Levitate", ["Trick", "Thunderbolt"], "Leftovers")],
+               [("Alakazam", 40, "Synchronize", ["Trick", "Psychic"], "Charcoal")])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    rot, zam = b.b.cur(), b.p.cur()
+    rot.item = "Leftovers"
+    pl.use_move(b, rot, fs.move("Trick"), zam, True)
+    after_trainer = (zam.item, rot.item)
+    pl.use_move(b, zam, fs.move("Trick"), rot, False)
+    after_player = (zam.item, rot.item)
+    zam.hp = zam.maxhp // 2
+    hp = zam.hp
+    fs.end_of_turn(b)
+    got = (after_trainer, after_player, zam.hp - hp)
+    ok = got == (("Charcoal", "Leftovers"), ("Leftovers", "Charcoal"), zam.maxhp // 16)
+    return [("the readings' Trick swaps for the player and not for the trainer", ok,
+             f"(items after the Rotom's Trick, after the Alakazam's, HP the Leftovers gave back) {got}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3879,6 +3904,7 @@ def main():
     results += crash_checks()
     results += bind_checks()
     results += steal_item_checks()
+    results += swap_items_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)
