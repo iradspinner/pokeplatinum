@@ -1148,6 +1148,8 @@ def status_move(b, att, mv, dfn, first):
         fs.swap_stages(att, dfn, ("def", "spd"))      # Guard Swap (fightsim.swap_stages)
     elif e == "SWAP_ATK_SP_ATK_STAT_CHANGES":
         fs.swap_stages(att, dfn, ("atk", "spa"))      # Power Swap (fightsim.swap_stages)
+    elif e == "SWAP_STAT_CHANGES":
+        fs.heart_swap(att, dfn)          # every stage and Focus Energy exchanged (fightsim.heart_swap)
     elif e == "HALVE_FIRE_DAMAGE":
         fs.water_sport(att)              # Fire moves at half power while it stands (fightsim.sport_half)
     elif e == "HALVE_ELECTRIC_DAMAGE":

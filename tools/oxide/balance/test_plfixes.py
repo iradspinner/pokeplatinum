@@ -5033,6 +5033,18 @@ def clangorous_soul_checks():
     ok = got == (bib.maxhp // 3, (1, 1, 1, 1, 1))
     return [("the readings' Clangorous Soul raises all five stats", ok, f"(HP lost, stages) {got} of {bib.maxhp}")]
 
+def heart_swap_checks():
+    """Heart Swap in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel takes a trainer's Geodude's
+    +2 Defense and +1 Speed and hands it its own -1 Attack."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Heart Swap"])])
+    geo.stages.update({"def": 2, "spe": 1})
+    bib.stages["atk"] = -1
+    pl.status_move(b, bib, fs.move("Heart Swap"), geo, True)
+    got = ((bib.stages["def"], bib.stages["spe"], bib.stages["atk"]), (geo.stages["def"], geo.stages["spe"], geo.stages["atk"]))
+    ok = got == ((2, 1, 0), (0, 0, -1))
+    return [("the readings' Heart Swap exchanges the stages", ok, f"(Bibarel's, Geodude's) Defense, Speed, Attack {got}")]
+
 def main():
     results = []
 
@@ -5592,6 +5604,7 @@ def main():
     results += axe_kick_checks()
     results += always_critical_checks()
     results += clangorous_soul_checks()
+    results += heart_swap_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

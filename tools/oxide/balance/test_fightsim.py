@@ -5360,6 +5360,19 @@ def check_clangorous_soul(results):
     want = {"full": (200, 1, 1, 1), "a third": (100, 0, 0, 0), "all at +6": (300, 6, 6, 6)}
     results.append(("Clangorous Soul trades a third of its HP for all five stats", out == want, str(out)))
 
+def check_heart_swap(results):
+    """Heart Swap (approved 2026-10-14; effect script 250): the user and its
+    target exchange every stat stage and their Focus Energy, through a
+    Substitute too."""
+    b, p, foe = battle(["Heart Swap"], ["Tackle"], {})
+    p.stages.update({"atk": -2, "eva": 1})
+    foe.stages.update({"spa": 3, "spe": 1, "acc": -1})
+    foe.crit_stage, foe.sub = 2, 30
+    fs.status_move(b, p, fs.move("Heart Swap"), foe, True)
+    got = (p.stages["spa"], p.stages["spe"], p.stages["acc"], p.stages["atk"], foe.stages["atk"], foe.stages["eva"],
+           foe.stages["spa"], p.crit_stage, foe.crit_stage)
+    results.append(("Heart Swap exchanges every stage and Focus Energy", got == (3, 1, -1, 0, -2, 1, 0, 2, 0), str(got)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5642,7 +5655,7 @@ def main():
                   check_fell_stinger, check_prevent_escape_hit,
                   check_poltergeist, check_belch, check_first_impression,
                   check_axe_kick, check_always_critical,
-                  check_clangorous_soul,
+                  check_clangorous_soul, check_heart_swap,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

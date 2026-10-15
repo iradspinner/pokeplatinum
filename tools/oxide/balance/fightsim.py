@@ -4305,6 +4305,17 @@ def swap_stages(att, dfn, stats):
         att.stages[k], dfn.stages[k] = dfn.stages[k], att.stages[k]
 
 
+def heart_swap(att, dfn):
+    """Heart Swap (effect script 250, subscript_exchange_all_stat_stages):
+    the user and its target exchange all seven stat stages, accuracy and
+    evasion with them, and each takes the other's Focus Energy
+    (VOLATILE_CONDITION_FOCUS_ENERGY, crit_stage here), a Substitute in the
+    way or not, as the subscript has no Substitute check. Until 2026-10-15
+    no stage moved (Ian approved the fix)."""
+    swap_stages(att, dfn, STAGE_KEYS)
+    att.crit_stage, dfn.crit_stage = dfn.crit_stage, att.crit_stage
+
+
 def psycho_shift(b, att, dfn, mv):
     """Psycho Shift (effect script 234, CheckCanShareStatus and
     subscript_give_target_own_status): it fails when its user has no
@@ -6559,6 +6570,8 @@ def status_move(b, att, mv, dfn, first):
         swap_stages(att, dfn, ("def", "spd"))     # Guard Swap
     elif e == "SWAP_ATK_SP_ATK_STAT_CHANGES":
         swap_stages(att, dfn, ("atk", "spa"))     # Power Swap
+    elif e == "SWAP_STAT_CHANGES":
+        heart_swap(att, dfn)
     elif e == "HALVE_FIRE_DAMAGE":
         water_sport(att)
     elif e == "HALVE_ELECTRIC_DAMAGE":
