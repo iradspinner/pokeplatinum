@@ -590,6 +590,8 @@ def attack(b, att, mv, dfn, first):
     if fs.dream_eater_fails(att, dfn, mv) or fs.lost_focus(att, mv) or (mv.effect == "DAMAGE_WHILE_ASLEEP"
                                                                        and fs.snore_fails(att, mv)):
         return                           # Dream Eater awake or behind a Substitute; Focus Punch once hit; Snore awake
+    if mv.effect in fs.FAILS_BEFORE and fs.fails_before(att, dfn, mv):
+        return                           # Poltergeist on a target with no item (fightsim.fails_before)
     spit = fs.spit_up_key(att) if mv.effect == "SPIT_UP" else None
     if mv.effect == "SPIT_UP" and spit is None:
         return                           # Spit Up with nothing stored (fightsim.spit_up_key)

@@ -5259,6 +5259,19 @@ def check_prevent_escape_hit(results):
             ("Spirit Shackle", 0, "Sheer Force", None): "p0"}
     results.append(("Anchor Shot and its kin trap the target their hit lands on", out == want, str(out)))
 
+def check_poltergeist(results):
+    """Poltergeist (approved 2026-10-14; effect script 345): it fails on a
+    target holding no item, and hits one whose item Embargo holds back."""
+    out = {}
+    for item, off in (("Leftovers", None), (None, None), (None, "Leftovers")):
+        b, p, foe = battle(["Poltergeist"], ["Tackle"], {("p", "Poltergeist"): [10] * 16}, hp=500)
+        b.rng = FixedDice(0.5)
+        foe.item, foe.item_off = item, off
+        fs.attack(b, p, fs.move("Poltergeist"), foe, True)
+        out[(item, off)] = foe.hp
+    want = {("Leftovers", None): 490, (None, None): 500, (None, "Leftovers"): 490}
+    results.append(("Poltergeist fails on a target with no item", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5539,6 +5552,7 @@ def main():
                   check_embargo, check_magic_room,
                   check_relic_song, check_clanging_scales, check_matcha_gotcha,
                   check_fell_stinger, check_prevent_escape_hit,
+                  check_poltergeist,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -3327,6 +3327,8 @@ def attack(b, att, mv, dfn, first):
     if dream_eater_fails(att, dfn, mv) or lost_focus(att, mv) or (mv.effect == "DAMAGE_WHILE_ASLEEP"
                                                                  and snore_fails(att, mv)):
         return
+    if mv.effect in FAILS_BEFORE and fails_before(att, dfn, mv):
+        return                           # Poltergeist on a target with no item (fails_before)
     spit = spit_up_key(att) if mv.effect == "SPIT_UP" else None
     if mv.effect == "SPIT_UP" and spit is None:
         return
@@ -3643,6 +3645,23 @@ def dream_eater_fails(att, dfn, mv):
     the sleep status. Until 2026-10-15 it hit an awake target and drained
     half (Ian approved the fix)."""
     return mv.effect == "RECOVER_DAMAGE_SLEEP" and (dfn.status != "slp" or sub_blocks(att, dfn, mv))
+
+
+# The moves whose own effect script can fail them before their accuracy,
+# a Protect or the target's reach is checked, each looked at once by effect
+# (fails_before).
+FAILS_BEFORE = frozenset({"POLTERGEIST"})
+
+
+def fails_before(att, dfn, mv):
+    """Whether mv, one of FAILS_BEFORE, fails in its effect script before
+    it is aimed. Poltergeist (effect script 345): against a target that
+    holds no item (BATTLEMON_HELD_ITEM, the item itself, so one that
+    Embargo or Magic Room holds back still counts). Until 2026-10-15 it hit
+    whatever the target held (Ian approved the fix)."""
+    if mv.effect == "POLTERGEIST":
+        return dfn.item is None and dfn.item_off is None
+    return False
 
 
 def snore_fails(att, mv):

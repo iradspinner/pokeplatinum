@@ -4931,6 +4931,21 @@ def prevent_escape_hit_checks():
     ok = out == {"Anchor Shot": (True, True, True), "Tackle": (True, False, False)}
     return [("the readings' Anchor Shot traps its target", ok, f"(hit, held by Bibarel, trapped) {out}")]
 
+def poltergeist_checks():
+    """Poltergeist in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel's Poltergeist hits a
+    trainer's Geodude holding an Oran Berry and fails on one holding
+    nothing."""
+    out = {}
+    for item in ("Oran Berry", None):
+        b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Poltergeist"])])
+        geo.item = item
+        hp = geo.hp
+        pl.attack(b, bib, fs.move("Poltergeist"), geo, True)
+        out[item] = hp - geo.hp
+    ok = out["Oran Berry"] > 0 and out[None] == 0
+    return [("the readings' Poltergeist fails on a target with no item", ok, f"HP taken {out}")]
+
 def main():
     results = []
 
@@ -5484,6 +5499,7 @@ def main():
     results += matcha_gotcha_checks()
     results += fell_stinger_checks()
     results += prevent_escape_hit_checks()
+    results += poltergeist_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
