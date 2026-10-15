@@ -5523,6 +5523,27 @@ def check_assist(results):
     want = {"alone": 500, "a fainted mate's Tackle": (490, fs.move("Assist").pp - 1)}
     results.append(("Assist uses a party member's move", out == want, str(out)))
 
+def check_snatch(results):
+    """Snatch (approved 2026-10-14; effect script 195): used before the foe
+    moves, it takes the foe's next move Snatch may take for its own user,
+    the foe paying the PP; a move it may not take, and one after a Snatch
+    used last, are the foe's own; the wait ends with the turn."""
+    out = {}
+    for case in ("taken", "used last", "not snatchable"):
+        b, p, foe = battle(["Snatch"], ["Swords Dance", "Thunder Wave"], {})
+        b.rng = FixedDice(0.5)
+        fs.status_move(b, p, fs.move("Snatch"), foe, case != "used last")
+        mv = fs.move("Thunder Wave" if case == "not snatchable" else "Swords Dance")
+        fs.use_move(b, foe, mv, p, False)
+        out[case] = (p.stages["atk"], foe.stages["atk"], p.status, foe.pp[mv.name] < mv.pp)
+    b, p, foe = battle(["Snatch"], ["Swords Dance"], {})
+    fs.status_move(b, p, fs.move("Snatch"), foe, True)
+    fs.end_of_turn(b)
+    out["a turn on"] = (p.snatching, b.snatching)
+    want = {"taken": (2, 0, None, True), "used last": (0, 2, None, True), "not snatchable": (0, 0, "par", True),
+            "a turn on": (False, False)}
+    results.append(("Snatch takes the foe's next snatchable move", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5808,6 +5829,7 @@ def main():
                   check_clangorous_soul, check_heart_swap, check_heal_pulse,
                   check_lunar_dance, check_grudge, check_octolock,
                   check_aurora_veil, check_teatime, check_assist,
+                  check_snatch,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

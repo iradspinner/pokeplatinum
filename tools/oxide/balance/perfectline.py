@@ -442,6 +442,10 @@ def _use_move(b, att, mv, dfn, first):
         if mv is None:
             return
     if mv.cat == "Status":
+        thief = fs.snatched(b, att, mv) if b.snatching and mv.snatch else None
+        if thief is not None:
+            status_move(b, thief, mv, att, first)     # a waiting Snatch user takes it (fightsim.snatched)
+            return
         status_move(b, att, mv, dfn, first)
         return
     before = dfn.hp
@@ -1081,6 +1085,8 @@ def status_move(b, att, mv, dfn, first):
         fs.aurora_veil(b, att)           # five turns of both screens' halving, in hail (fightsim.aurora_veil)
     elif e == "TEATIME":
         fs.teatime(b, lambda kind, n: b.dice.choice(kind, n))     # every Berry on the field eaten (fightsim.teatime)
+    elif e == "STEAL_STATUS_MOVE":
+        fs.snatch(b, att, first)         # it waits to take the foe's next move Snatch may take (fightsim.snatched)
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in fs.HEAL_HALF:
@@ -1305,6 +1311,8 @@ def clone_battle(b):
         c.split = True               # stats averaged in this battle (fightsim.share_stats)
     if b.magic_room:
         c.magic_room = b.magic_room  # Magic Room's turns (fightsim.magic_room)
+    if b.snatching:
+        c.snatching = True           # a Snatch waits this turn (fightsim.snatch)
     return c
 
 

@@ -5141,6 +5141,17 @@ def assist_checks():
     ok = out[0][0] > 0 and out[1][0] > 0 and out[0][0] != out[1][0]
     return [("the readings' Assist uses a party member's move", ok, f"(HP taken, last move) for each pick {out}")]
 
+def snatch_checks():
+    """Snatch in a whole turn of the readings' battle on the calculator's
+    real rows (approved 2026-10-14): the player's Liepard's Snatch takes a
+    trainer's Geodude's Swords Dance, so the Liepard's Attack rises two
+    stages and the Geodude's stays."""
+    b, geo, lie = b8_battle([("Geodude", 30, "Sturdy", ["Swords Dance"])], [("Liepard", 30, "Limber", ["Snatch"])])
+    pl._turn(b, ("move", fs.move("Snatch")), ("move", fs.move("Swords Dance")))
+    got = (lie.stages["atk"], geo.stages["atk"], geo.pp["Swords Dance"] < fs.move("Swords Dance").pp)
+    return [("the readings' Snatch takes the trainer's Swords Dance", got == (2, 0, True),
+             f"(Liepard's Attack, Geodude's Attack, the Geodude paid) {got}")]
+
 def main():
     results = []
 
@@ -5708,6 +5719,7 @@ def main():
     results += aurora_veil_checks()
     results += teatime_checks()
     results += assist_checks()
+    results += snatch_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

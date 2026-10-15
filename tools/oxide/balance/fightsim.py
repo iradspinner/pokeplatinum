@@ -101,7 +101,7 @@ def pokedex_moves():
 class Move:
     """One move as the simulator reads it."""
     __slots__ = ("name", "type", "cat", "power", "acc", "pri", "effect", "chance", "range",
-                 "contact", "sound", "pp", "const", "reflectable", "protect", "mirror")
+                 "contact", "sound", "pp", "const", "reflectable", "protect", "mirror", "snatch")
 
     def __init__(self, name):
         by, compact = _by_calc_name()
@@ -122,6 +122,7 @@ class Move:
         self.reflectable = any("MAGIC_COAT" in f for f in flags)
         self.protect = "CAN_PROTECT" in flags        # MOVE_FLAG_CAN_PROTECT: Protect stops it
         self.mirror = "CAN_MIRROR_MOVE" in flags     # MOVE_FLAG_CAN_MIRROR_MOVE: Mirror Move can copy it
+        self.snatch = "CAN_SNATCH" in flags          # MOVE_FLAG_CAN_SNATCH: Snatch can take it
         self.pp = rec.get("pp") or 10
 
     def damaging(self):
@@ -532,6 +533,9 @@ class Mon:
     # Grudge (MOVE_EFFECT_GRUDGE): set by the move until its user next tries
     # to act or leaves, under the rare flag (grudge).
     grudge = False
+    # Snatch (TurnFlags.snatching): it waits this turn to take the next move
+    # Snatch may take (snatched); a turn flag, cleared with the turn.
+    snatching = False
     # Octolock (OXIDE_MON_FLAG_OCTOLOCKED): held as Mean Look holds it, and
     # a stage of Defense and Sp. Def lost at each turn's end, under the rare
     # flag (octolock).
@@ -783,6 +787,9 @@ class Battle:
     # A move Magic Coat is turning back is running (coat_bounces), so it is
     # not turned again.
     reflecting = False
+    # Whether a Pokemon waits with Snatch this turn (Mon.snatching), so the
+    # status moves look for one only then; cleared with the turn.
+    snatching = False
     # Magic Room's turns left (magicRoomTurns): no held item on the field
     # works while they run (lock_item); left on the class while 0.
     magic_room = 0
@@ -3306,6 +3313,10 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         if mv is None:
             return
     if mv.cat == "Status":
+        thief = snatched(b, att, mv) if b.snatching and mv.snatch else None
+        if thief is not None:
+            status_move(b, thief, mv, att, first)     # the move is the Snatch user's (snatched)
+            return
         status_move(b, att, mv, dfn, first)
         return
     chance = lambda kind, p, victim: b.rng.random() < p      # noqa: E731
@@ -4341,6 +4352,33 @@ def swap_stages(att, dfn, stats):
     moved (Ian approved the fix)."""
     for k in stats:
         att.stages[k], dfn.stages[k] = dfn.stages[k], att.stages[k]
+
+
+def snatch(b, att, first):
+    """Snatch (effect script 195, TrySnatch): it fails when no battler acts
+    after its user this turn (moves_last); otherwise its user waits for the
+    rest of the turn to take the next move Snatch may take (snatched)."""
+    if not moves_last(b, first):
+        att.snatching = b.snatching = True
+
+
+def snatched(b, att, mv):
+    """The Pokemon that takes att's status move mv, one Snatch may take
+    (MOVE_FLAG_CAN_SNATCH), or None (BattleControllerPlayer_MoveStolen): the
+    first Pokemon on the field in speed order that waits with Snatch, whose
+    wait it ends. It then uses the move as its own, aimed at att, att having
+    paid for it (subscript_snatch), and pays one PP more of its Snatch when
+    att has Pressure (BattleSystem_DecPPForPressure). Until 2026-10-15
+    Snatch did nothing (Ian approved the fix)."""
+    waiting = sorted((m for m in b.p.on_field() + b.b.on_field() if m is not att and m.snatching),
+                     key=lambda m: -b.speed(m))
+    if not waiting:
+        return None
+    thief = waiting[0]
+    thief.snatching = False
+    if att.ability == "Pressure" and thief.pp.get("Snatch", 0) > 0:
+        thief.pp["Snatch"] -= 1
+    return thief
 
 
 def teatime(b, pick):
@@ -6632,6 +6670,8 @@ def status_move(b, att, mv, dfn, first):
         aurora_veil(b, att)
     elif e == "TEATIME":
         teatime(b, lambda kind, n: b.rng.randrange(n))
+    elif e == "STEAL_STATUS_MOVE":
+        snatch(b, att, first)
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in HEAL_HALF:
@@ -7294,10 +7334,14 @@ def _end_of_turn(b):
     if b.guarded:
         b.p.guard = b.b.guard = None     # the side guards are turn flags too
         b.guarded = False
+    if b.snatching:
+        b.snatching = False              # no Snatch waits past the turn
     for m in order:
         m.roosting = False          # a turn flag, gone with the turn
         if m.magic_coat:
             m.magic_coat = False    # Magic Coat's turn flag too
+        if m.snatching:
+            m.snatching = False     # and Snatch's
         if m.alive():
             m.protecting = False
             m.enduring = False
