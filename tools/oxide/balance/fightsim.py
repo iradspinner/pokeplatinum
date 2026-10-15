@@ -4850,10 +4850,39 @@ def status_move(b, att, mv, dfn, first):
         pass
 
 
-def switch_in(b, side, index, slot=0, lead=False):
+def baton_state(mon):
+    """What Baton Pass hands its replacement (BattleSystem_InitBattleMon
+    under SYSCTL_BATON_PASS): the stat stages; of the volatile conditions
+    Focus Energy's critical rate, being held by Mean Look or Block,
+    confusion, a Ghost's Curse and the Substitute with its HP
+    (VOLATILE_CONDITION_BATON_PASSED); and of the move effects Leech Seed,
+    Perish Song's count, Ingrain, Aqua Ring, a suppressed ability (Gastro
+    Acid), Heal Block's and Magnet Rise's turns (MOVE_EFFECT_BATON_PASSED).
+    Everything else (Taunt, Encore, Disable, Torment, Yawn, a bind, love,
+    Salt Cure, Stockpile, Imprison) stays behind."""
+    return {"stages": dict(mon.stages), "crit_stage": mon.crit_stage, "trapped_by": mon.trapped_by,
+            "confused": mon.confused, "cursed": mon.cursed, "sub": mon.sub, "seeded": mon.seeded,
+            "perish": mon.perish, "ingrained": mon.ingrained, "aqua_ring": mon.aqua_ring,
+            "heal_block": mon.heal_block, "magnet_rise": mon.magnet_rise,
+            "suppressed": getattr(mon, "suppressed", False)}
+
+
+def baton_pass(b, side, index):
+    """Baton Pass's switch (effect script 127, subscript_baton_pass): its
+    user leaves, as any switch does (Natural Cure and Regenerator on the
+    way out), and the replacement comes in carrying baton_state, before the
+    hazards and its own entry abilities; a foe that the user's Mean Look or
+    Block held stays held by the replacement, and the user's binds and
+    love end (BattleSystem_InitBattleMon). Until 2026-10-15 Baton Pass did
+    nothing and its user stayed in (Ian approved the fix)."""
+    switch_in(b, side, index, passed=baton_state(side.cur()))
+
+
+def switch_in(b, side, index, slot=0, lead=False, passed=None):
     """A Pokemon comes in to a slot: volatile state resets, hazards bite.
     A lead at the battle's start (`lead`) leaves its Intimidate to
-    open_battle, which runs it once every lead is in."""
+    open_battle, which runs it once every lead is in. `passed`: what a Baton
+    Pass hands the newcomer (baton_state)."""
     leaving = side.cur() if slot == 0 else (side.mons[side.active2] if side.active2 is not None else None)
     b.status_src = None          # hazards give their status from no foe
     gas = b.st.get("gas")
@@ -4870,7 +4899,9 @@ def switch_in(b, side, index, slot=0, lead=False):
     if leaving is not None:
         for foe in (b.b if side is b.p else b.p).mons:
             if foe.trapped_by == leaving.key:
-                foe.trapped_by = None
+                # A Baton Pass keeps a foe held by its user (the Mean Look
+                # clearing is skipped under SYSCTL_BATON_PASS).
+                foe.trapped_by = None if passed is None else side.mons[index].key
             if leaving.imprisoning and foe.sealed:
                 foe.sealed = frozenset()     # the Imprison ends with its user (moveEffectsMask cleared)
             if foe.bound and getattr(foe, "bound_by", None) == leaving.key:
@@ -4899,6 +4930,12 @@ def switch_in(b, side, index, slot=0, lead=False):
     new.turns_in = -1 if getattr(b, "mid_turn", False) else 0
     new.toxic = 0                # Toxic's count starts again on a switch
     seal_newcomer(b, side, new)
+    if passed is not None:
+        suppressed = passed.pop("suppressed")
+        for k, v in passed.items():
+            setattr(new, k, v)
+        if suppressed:
+            suppress(b, new)         # Gastro Acid's suppression goes with the baton
     if gas:
         # The gas reads live: a newcomer under it meets the hazards with its
         # ability off, and a holder's arrival or departure turns the others'
@@ -5649,13 +5686,14 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
             target = foe_of(b, mon)
             first = i == 0 and len(order) == 2
             use_move(b, mon, mv, target, first)
-            if getattr(mon, "u_turn", False):
-                mon.u_turn = False       # as perfectline._turn: no switch for a fallen user or a beaten side
+            if getattr(mon, "u_turn", False) or getattr(mon, "baton", False):
+                passing = mon.baton
+                mon.u_turn = mon.baton = False   # as perfectline._turn: no switch for a fallen user or a beaten side
                 side = b.p if mon.side == "p" else b.b
                 if mon.alive() and (b.b if mon.side == "p" else b.p).alive() and side.bench():
                     idx = player_replacement(b) if side is b.p else fightai.replacement(b, side, foe_of(b, mon))
                     if idx is not None and idx != side.active:
-                        switch_in(b, side, idx)
+                        (baton_pass if passing else switch_in)(b, side, idx)
         end_of_turn(b)
         for mon in (b.p.cur(), b.b.cur()):
             if mon.lock:

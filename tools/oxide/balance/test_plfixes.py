@@ -3427,6 +3427,26 @@ def imprison_checks():
              (["Confusion", "Shadow Ball"], ["Shadow Ball"], -10), f"(options before, after, a second Imprison) {got}")]
 
 
+def baton_pass_checks():
+    """Baton Pass in a whole turn of the readings' battle on the
+    calculator's real rows (approved 2026-10-14): a trainer's Ninjask at +2
+    Speed and +1 Attack Baton Passes, the trainer's AI sends in its Scizor
+    with both stages, and the player's Staraptor's Close Combat, moving
+    after, hits the Scizor rather than the Ninjask."""
+    from .test_fightai import battle
+    b = battle([("Ninjask", 40, "Speed Boost", ["Baton Pass"]), ("Scizor", 40, "Technician", ["Bullet Punch"])],
+               [("Staraptor", 40, "Reckless", ["Close Combat"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    nin = b.b.cur()
+    nin.stages.update(spe=2, atk=1)
+    pl._turn(b, ("move", fs.move("Close Combat")), ("move", fs.move("Baton Pass")))
+    new = b.b.cur()
+    got = (new.species, new.stages["spe"], new.stages["atk"], new.hp < new.maxhp, nin.hp == nin.maxhp)
+    return [("the readings' Baton Pass sends in the replacement with the stages", got ==
+             ("Scizor", 2 + (new.ability == "Speed Boost"), 1, True, True),
+             f"(newcomer, Speed stage, Attack stage, newcomer hit, Ninjask untouched) {got}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -4015,6 +4035,7 @@ def main():
     results += stockpile_checks()
     results += natural_gift_checks()
     results += imprison_checks()
+    results += baton_pass_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)

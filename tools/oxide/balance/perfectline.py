@@ -1469,14 +1469,17 @@ def _turn(c, pa, aa):
         target = fs.foe_of(c, mon)
         first = i == 0 and len(order) == 2
         use_move(c, mon, mv, target, first)
-        if getattr(mon, "u_turn", False):
+        if getattr(mon, "u_turn", False) or getattr(mon, "baton", False):
             # subscript_attack_then_switch_out: no switch once the target's
             # side has nothing left (CheckBlackOut), with no one to send in
             # (TryReplaceFaintedMon), or when the user fell on the way (Rough
             # Skin, Destiny Bond). The replacement comes now, before a fainted
             # target's own at the turn's end, picked against the slot as it
-            # stands, as BattleAI_PostKOSwitchIn reads it.
-            mon.u_turn = False
+            # stands, as BattleAI_PostKOSwitchIn reads it. Baton Pass
+            # (subscript_baton_pass) switches the same way, through the same
+            # party list, and hands the replacement its state (fightsim.baton_pass).
+            passing = mon.baton
+            mon.u_turn = mon.baton = False
             side = c.p if player(mon) else c.b
             if mon.alive() and (c.b if player(mon) else c.p).alive() and side.bench():
                 if side is c.p:
@@ -1484,7 +1487,7 @@ def _turn(c, pa, aa):
                 else:
                     idx = fightai.replacement(c, side, fs.foe_of(c, mon))
                 if idx is not None and idx != side.active:
-                    fs.switch_in(c, side, idx)
+                    (fs.baton_pass if passing else fs.switch_in)(c, side, idx)
     fs.end_of_turn(c)
     for mon in (c.p.cur(), c.b.cur()):
         if mon.lock:

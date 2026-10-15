@@ -2376,6 +2376,42 @@ def check_imprison(results):
     results.append(("Imprison seals the moves its user knows while it stays", out == want, f"{out}"))
 
 
+def check_baton_pass(results):
+    """Baton Pass (approved 2026-10-14; effect script 127, subscript_baton_pass,
+    BattleSystem_InitBattleMon under SYSCTL_BATON_PASS): in a turn its user
+    switches out for the replacement, which keeps the stat stages, the
+    Substitute, confusion, Focus Energy's rate, Leech Seed, Perish Song's
+    count, Aqua Ring and Magnet Rise (confusion one turn down, as its use
+    spent one), and loses the Torment, the Encore, the bind and the
+    Stockpile; a foe the user held with Mean Look stays held, and with
+    nobody to send in it fails."""
+    def turn(bench=True):
+        mons = {"p0": (("Normal",), ["Baton Pass"]), "b0.0": (("Normal",), ["Growl"])}
+        if bench:
+            mons["p1"] = (("Normal",), ["Tackle"])
+        b = field(mons, {})
+        b.rng = FixedDice(0.5)
+        p, foe = b.p.cur(), b.b.cur()
+        p.stages.update(atk=2, spe=1)
+        p.sub, p.confused, p.crit_stage, p.seeded, p.perish, p.aqua_ring, p.magnet_rise = 25, 3, 2, True, 3, True, 4
+        p.tormented, p.encore, p.encore_turns, p.bound, p.stockpile = True, "Baton Pass", 2, 3, 2
+        foe.trapped_by = p.key
+        b.turn = 1
+        fs.use_move(b, p, fs.move("Baton Pass"), foe, True)
+        side = b.p
+        if p.baton and side.bench():
+            fs.baton_pass(b, side, side.mons.index(side.bench()[0]))
+        new = b.p.cur()
+        return (new.key, new.stages["atk"], new.stages["spe"], new.sub, new.confused, new.crit_stage, new.seeded,
+                new.perish, new.aqua_ring, new.magnet_rise, new.tormented, new.encore, new.bound, new.stockpile,
+                foe.trapped_by)
+    got = {"passed": turn(), "no one to send in": turn(bench=False)[:2]}
+    want = {"passed": ("p1", 2, 1, 25, 2, 2, True, 3, True, 4, False, None, 0, 0, "p1"), "no one to send in": ("p0", 2)}
+    results.append(("Baton Pass switches its user out and hands on what the engine passes", got == want,
+                    f"(newcomer, Attack, Speed, Substitute, confusion, crit stage, seeded, Perish, Aqua Ring, "
+                    f"Magnet Rise, Torment, Encore, bind, Stockpile, the foe held by) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3668,7 +3704,7 @@ def main():
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
                   check_pluck, check_chatter, check_stockpile,
-                  check_natural_gift, check_imprison,
+                  check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
