@@ -938,6 +938,8 @@ def status_move(b, att, mv, dfn, first):
     foe_side = b.p if player(dfn) else b.b
     own_side = b.p if player(att) else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
+    if e == "FAINT_AND_ATK_SP_ATK_DOWN_2" and not fs.memento_faints(att, dfn):
+        return                           # Memento faints its user before its checks, or with no target does nothing
     if targets_foe and dfn.alive():
         if fs.protected(b, att, mv, dfn):
             return
@@ -1142,8 +1144,7 @@ def status_move(b, att, mv, dfn, first):
             nxt = bench[b.dice.choice("roar", len(bench))]
             fs.switch_in(b, foe_side, foe_side.mons.index(nxt))
     elif e == "FAINT_AND_ATK_SP_ATK_DOWN_2":
-        att.hp = 0
-        fs.change_stages(dfn, {"atk": -2, "spa": -2})
+        fs.memento_drops(b, att, dfn, mv)    # no drops through a Substitute, the blockers met (fightsim.memento_drops)
     elif e == "PASS_STATS_AND_STATUS":
         att.baton = True
     elif e == "SWITCH_HELD_ITEMS":

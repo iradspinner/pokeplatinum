@@ -4463,6 +4463,30 @@ def check_psycho_shift(results):
                     f"(user's status, target's, the target's sleep count set) {out}"))
 
 
+def check_memento(results):
+    """Memento (approved 2026-10-14; effect script 168, subscript_memento):
+    its user faints before the move's checks, so a miss and a Protect
+    still cost it, and the target's Attack and Sp. Atk fall two stages
+    each, but not through a Substitute or Clear Body, and not the Attack
+    of a Hyper Cutter holder; with no target nothing happens."""
+    out = {}
+    for setup in (None, "sub", "Clear Body", "Hyper Cutter", "protect", "miss", "no target"):
+        b, p, foe = battle(["Memento"], ["Tackle"], {})
+        b.rng = FixedDice(0.5)
+        foe.sub = 25 if setup == "sub" else 0
+        foe.ability = setup if setup in ("Clear Body", "Hyper Cutter") else None
+        foe.protecting = setup == "protect"
+        foe.stages["eva"] = 6 if setup == "miss" else 0
+        if setup == "no target":
+            foe.hp = 0
+        fs.status_move(b, p, fs.move("Memento"), foe, True)
+        out[setup] = (p.hp == 0, foe.stages["atk"], foe.stages["spa"])
+    want = {None: (True, -2, -2), "sub": (True, 0, 0), "Clear Body": (True, 0, 0), "Hyper Cutter": (True, 0, -2),
+            "protect": (True, 0, 0), "miss": (True, 0, 0), "no target": (False, 0, 0)}
+    results.append(("Memento faints its user first and its drops meet the blockers", out == want,
+                    f"(user fainted, target's Attack, Sp. Atk) {out}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4731,7 +4755,7 @@ def main():
                   check_raise_speed_hit, check_trump_card,
                   check_teeter_dance, check_smelling_salts, check_magic_coat, check_present,
                   check_water_sport, check_acrobatics, check_guard_swap,
-                  check_power_swap, check_psycho_shift,
+                  check_power_swap, check_psycho_shift, check_memento,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

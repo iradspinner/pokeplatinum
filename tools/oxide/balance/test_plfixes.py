@@ -4338,6 +4338,26 @@ def psycho_shift_checks():
     return [("the readings' Psycho Shift hands its user's status on", ok, f"Noctowl {noc.status}, Bibarel {bib.status}")]
 
 
+def memento_checks():
+    """Memento in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Jumpluff's Memento into the player's
+    Bibarel behind a Substitute faints the Jumpluff and lowers nothing,
+    and into a protecting Bibarel still faints it."""
+    from .test_fightai import battle
+    out = {}
+    for setup in ("sub", "protect"):
+        b = battle([("Jumpluff", 40, "Chlorophyll", ["Memento"])], [("Bibarel", 40, "Unaware", ["Substitute", "Protect"])])
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        jum, bib = b.b.cur(), b.p.cur()
+        bib.sub = bib.maxhp // 4 if setup == "sub" else 0
+        bib.protecting = setup == "protect"
+        pl.status_move(b, jum, fs.move("Memento"), bib, True)
+        out[setup] = (jum.hp, bib.stages["atk"], bib.stages["spa"])
+    ok = out == {"sub": (0, 0, 0), "protect": (0, 0, 0)}
+    return [("the readings' Memento faints its user and meets a Substitute", ok,
+             f"(Jumpluff's HP, Bibarel's Attack and Sp. Atk) {out}")]
+
+
 def main():
     results = []
 
@@ -4858,6 +4878,7 @@ def main():
     results += guard_swap_checks()
     results += power_swap_checks()
     results += psycho_shift_checks()
+    results += memento_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

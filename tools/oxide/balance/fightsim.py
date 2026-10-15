@@ -3770,6 +3770,30 @@ def psycho_shift(b, att, dfn, mv):
         att.status, att.sleep, att.toxic = None, 0, 0
 
 
+def memento_faints(att, dfn):
+    """Memento (effect script 168): with a target to aim at, its user
+    faints as the script starts (BATTLEMON_CUR_HP set to 0), before the
+    accuracy check or the target's Protect, so a miss or a Protect still
+    costs it; with none (BattleControllerPlayer_HasNoTarget, before the
+    script) nothing happens. Whether the user fainted. Until 2026-10-15 a
+    miss, a Protect or a target on its hidden turn spared it, and a
+    Memento with no target fainted it (Ian approved the fix)."""
+    if not dfn.alive():
+        return False
+    att.hp = 0
+    return True
+
+
+def memento_drops(b, att, dfn, mv):
+    """Memento's drops once it lands (subscript_memento): none through a
+    Substitute; otherwise Attack and Sp. Atk two stages each through the
+    stat-down subscript, which Clear Body, White Smoke, Hyper Cutter and
+    Mist meet as any drop does (lower_stats). Until 2026-10-15 both drops
+    passed a Substitute and every blocker (Ian approved the fix)."""
+    if not sub_blocks(att, dfn, mv):
+        lower_stats(b, att, dfn, {"atk": -2, "spa": -2})
+
+
 def refresh(att):
     """Refresh (effect script 193, subscript_recover_psn_prz_brn): its user's
     own poison, bad poison, burn or paralysis is cured
@@ -5567,6 +5591,8 @@ def status_move(b, att, mv, dfn, first):
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
     if e == "CONFUSE_ALL":
         teeter_dance_others(b, att, mv, dfn, first)     # Teeter Dance's other targets in a double battle
+    if e == "FAINT_AND_ATK_SP_ATK_DOWN_2" and not memento_faints(att, dfn):
+        return                           # Memento with no target: nothing happens
     if targets_foe and dfn.alive():
         if protected(b, att, mv, dfn):
             return
@@ -5754,8 +5780,7 @@ def status_move(b, att, mv, dfn, first):
             nxt = b.rng.choice(bench)
             switch_in(b, foe_side, foe_side.mons.index(nxt))
     elif e == "FAINT_AND_ATK_SP_ATK_DOWN_2":
-        att.hp = 0
-        change_stages(dfn, {"atk": -2, "spa": -2})
+        memento_drops(b, att, dfn, mv)
     elif e == "PASS_STATS_AND_STATUS":
         att.baton = True
     elif e == "SWITCH_HELD_ITEMS":
