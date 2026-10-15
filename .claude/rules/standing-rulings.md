@@ -180,7 +180,9 @@ read, so they are written here too. Each is a standing instruction.
   learnset rules), so the team search can weigh a Starly kept for Brave Bird
   by Maylene's split (Ian, 2026-10-15); this comes in before the readings
   resume. So that a hold's cost counts, each box seed is one run through
-  the game, every fight's box that run's catches by its split, and a
+  the game, every fight's box that run's catches by its split, each area
+  rolled once at the run's first visit among the options open then, so
+  boxes keep today's sizes and nobody waits for Surf or a rod; and a
   held-back version is offered at a fight only if no earlier fight of the
   seed used the catch in a form the hold rules out; once a reading uses
   one, the seed's later fights see the line as the hold left it, so each
