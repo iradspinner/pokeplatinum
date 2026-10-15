@@ -4640,6 +4640,26 @@ def punishment_checks():
              f"top roll {plain} plain, {raised} at +2 Defense (about {want} wanted)")]
 
 
+def sticky_web_checks():
+    """Sticky Web in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Swadloon lays a web on the trainer's
+    side, which costs the trainer's Bibarel a stage of Speed as it comes in
+    and spares its Starly; the planner is offered the move once, not twice."""
+    b, geo, swa = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"]), ("Bibarel", 30, "Unaware", ["Tackle"]),
+                             ("Starly", 30, "Keen Eye", ["Tackle"])], [("Swadloon", 30, "Chlorophyll", ["Sticky Web"])])
+    web = fs.move("Sticky Web")
+    offered = [("move", web) in pl.player_actions(b)]
+    pl.status_move(b, swa, web, geo, True)
+    offered.append(("move", web) in pl.player_actions(b))
+    fs.switch_in(b, b.b, 1)
+    bib = b.b.cur().stages["spe"]
+    fs.switch_in(b, b.b, 2)
+    sta = b.b.cur().stages["spe"]
+    ok = b.b.web == 1 and bib == -1 and sta == 0 and offered == [True, False]
+    return [("the readings' Sticky Web slows a grounded newcomer", ok,
+             f"web {b.b.web}; Bibarel's Speed stage {bib}, Starly's {sta}; offered {offered}")]
+
+
 def main():
     results = []
 
@@ -5176,6 +5196,7 @@ def main():
     results += life_dew_checks()
     results += mud_sport_checks()
     results += punishment_checks()
+    results += sticky_web_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

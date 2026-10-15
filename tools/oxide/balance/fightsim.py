@@ -668,6 +668,10 @@ class Side:
     # Lucky Chant's turns left (SIDE_CONDITION_LUCKY_CHANT): no critical hit
     # lands on the side while it runs; left on the class while 0.
     lucky_chant = 0
+    # Sticky Web on the side (SIDE_CONDITION_STICKY_WEB), 1 while laid: each
+    # grounded Pokemon that comes in loses a stage of Speed (web_catch);
+    # Rapid Spin, Mortal Spin and Defog clear it; left on the class while 0.
+    web = 0
 
     def __init__(self, mons, name):
         self.mons, self.name = mons, name
@@ -4748,6 +4752,8 @@ def spin(b, att, dfn, e):
     att.seeded = False
     side = b.p if att.side == "p" else b.b
     side.hazards = dict.fromkeys(side.hazards, 0)
+    if side.web:
+        side.web = 0                 # Oxide's Rapid Spin and Mortal Spin clear Sticky Web too (BtlCmd_RapidSpin)
     if e == "REMOVE_HAZARDS_AND_BINDING" and att.alive():
         change_stages(att, {"spe": 1})
 
@@ -6096,6 +6102,8 @@ def status_move(b, att, mv, dfn, first):
         foe_side.hazards["spikes"] = min(3, foe_side.hazards["spikes"] + 1)
     elif e == "TOXIC_SPIKES":
         foe_side.hazards["tspikes"] = min(2, foe_side.hazards["tspikes"] + 1)
+    elif e == "STICKY_WEB":
+        lay_web(b, att)
     elif e == "PROTECT" or e == "SURVIVE_WITH_1_HP":
         # BtlCmd_TryProtection: it fails when no battler acts after its user,
         # and otherwise works at protect_odds; a failure ends the run.
@@ -6204,6 +6212,46 @@ def status_move(b, att, mv, dfn, first):
         pass
 
 
+def lay_web(b, att):
+    """Sticky Web (effect script 326, BtlCmd_TryStickyWeb): a web on the
+    side across from its user, failing while one is laid. Until 2026-10-15
+    the move did nothing (Ian approved the fix)."""
+    side = b.b if att.side == "p" else b.p
+    if not side.web:
+        side.web = 1
+
+
+def web_grounded(b, mon):
+    """Whether a newcomer meets Sticky Web (Battler_IsGrounded): not a Flying
+    type, a Levitate holder or an Air Balloon's, unless an Iron Ball or
+    Gravity holds it down; a newcomer has no Magnet Rise or Smack Down yet."""
+    return (("Flying" not in mon.types and mon.ability != "Levitate" and mon.item != "Air Balloon")
+            or mon.item == "Iron Ball" or bool(b.gravity))
+
+
+def web_catch(mon):
+    """A grounded newcomer caught in Sticky Web (BtlCmd_CheckStickyWeb): Clear
+    Body and White Smoke keep its Speed, Contrary raises it a stage instead,
+    a Clear Amulet keeps it, and at -6 nothing happens; otherwise it falls a
+    stage, made directly, so Simple does not double it and Mist and Magic
+    Guard do not stop it, and Defiant or Competitive answers the drop, as
+    the other side laid the web."""
+    ab = mon.ability
+    if ab in ("Clear Body", "White Smoke"):
+        reveal(mon)
+        return
+    if ab == "Contrary":
+        if mon.stages["spe"] < 6:
+            mon.stages["spe"] += 1
+            mon.stat_raised = True
+        return
+    if mon.item == "Clear Amulet" or mon.stages["spe"] <= -6:
+        return
+    change_stages(mon, {"spe": -1}, simple=False)
+    if ab in DEFIANT_STAT:
+        raise_own(mon, DEFIANT_STAT[ab], 2)
+
+
 def baton_state(mon):
     """What Baton Pass hands its replacement (BattleSystem_InitBattleMon
     under SYSCTL_BATON_PASS): the stat stages; of the volatile conditions
@@ -6306,8 +6354,8 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
         # off or on at once.
         gas_update(b, check=False)
     # subscript_hazards_check sends a Magic Guard holder straight past Toxic
-    # Spikes, Spikes and Stealth Rock (to Sticky Web, which the simulator does
-    # not lay), so it takes no hazard damage and no poison, and a Poison type
+    # Spikes, Spikes and Stealth Rock (to Sticky Web, laid since 2026-10-15,
+    # which still catches it), so it takes no hazard damage and no poison, and a Poison type
     # holding it does not soak up the Toxic Spikes either. Until 2026-10-14
     # every hazard reached it (Ian approved the fix).
     guarded = new.ability == "Magic Guard"
@@ -6324,6 +6372,8 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
             side.hazards["tspikes"] = 0
         else:
             give_status(b, new, "psn" if side.hazards["tspikes"] == 1 else "tox")
+    if side.web and new.alive() and web_grounded(b, new):
+        web_catch(new)               # Sticky Web last, past Magic Guard (subscript_hazards_check)
     if gas and gas_update(b):
         return                   # the gas wore off: the whole field's entry abilities went off, the newcomer's with them
     entry_abilities(b, [new], intimidate=not lead, trace_now=not lead)

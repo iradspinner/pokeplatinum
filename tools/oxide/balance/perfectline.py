@@ -1078,6 +1078,8 @@ def status_move(b, att, mv, dfn, first):
         foe_side.hazards["spikes"] = min(3, foe_side.hazards["spikes"] + 1)
     elif e == "TOXIC_SPIKES":
         foe_side.hazards["tspikes"] = min(2, foe_side.hazards["tspikes"] + 1)
+    elif e == "STICKY_WEB":
+        fs.lay_web(b, att)               # a web across the field (fightsim.lay_web, caught in fightsim.switch_in)
     elif e == "PROTECT" or e == "SURVIVE_WITH_1_HP":
         # BtlCmd_TryProtection: it fails when no battler acts after its user
         # (fightsim.moves_last). Otherwise a first one works, and a repeat at
@@ -1214,6 +1216,8 @@ def clone_side(s):
     c.mist = getattr(s, "mist", 0)
     if s.lucky_chant:
         c.lucky_chant = s.lucky_chant    # left on the class while 0 (fightsim.Side)
+    if s.web:
+        c.web = s.web                    # Sticky Web, left on the class while 0 (fightsim.Side)
     c.hazards = dict(s.hazards)
     c.future, c.future_sight = s.future, s.future_sight        # a waiting Future Sight (tuples, shared safely)
     return c
@@ -1285,9 +1289,11 @@ def side_key(s):
     key = (s.active, tuple(mon_key(m) for m in s.mons), tuple(s.screens.values()), s.tailwind,
            tuple(s.hazards.values()), s.safeguard, getattr(s, "wish", 0), s.future, s.future_sight,
            getattr(s, "mist", 0))
-    # Lucky Chant's turns, kept out of the key while there are none, so the
-    # keys of a fight without it stay as they were.
-    return key + (("lucky chant", s.lucky_chant),) if s.lucky_chant else key
+    # Lucky Chant's turns and Sticky Web, kept out of the key while there
+    # are none, so the keys of a fight without them stay as they were.
+    if s.lucky_chant or s.web:
+        key += (("lucky chant", s.lucky_chant, "web", s.web),)
+    return key
 
 
 def _field_extra(b):
@@ -1312,7 +1318,9 @@ def shape_key(b):
         key = (sd.active, tuple(mon_key(m)[1:] for m in sd.mons), tuple(sd.screens.values()),
                sd.tailwind, tuple(sd.hazards.values()), sd.safeguard, getattr(sd, "wish", 0),
                sd.future, sd.future_sight, getattr(sd, "mist", 0))
-        return key + (("lucky chant", sd.lucky_chant),) if sd.lucky_chant else key
+        if sd.lucky_chant or sd.web:
+            key += (("lucky chant", sd.lucky_chant, "web", sd.web),)
+        return key
     key = (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room, getattr(b, "declined", frozenset()))
     return key + _field_extra(b) if b.gravity or b.last_move is not None else key
 
@@ -1365,17 +1373,18 @@ def ai_key(b):
             b.p.tailwind, b.b.tailwind, tuple(b.p.hazards.values()), tuple(b.b.hazards.values()),
             b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick,
             b.p.future_sight, b.b.future_sight, getattr(b.p, "mist", 0) > 0, getattr(b.b, "mist", 0) > 0) \
-        + (_ai_field(b) if b.gravity or b.p.lucky_chant or b.b.lucky_chant else ())
+        + (_ai_field(b) if b.gravity or b.p.lucky_chant or b.b.lucky_chant or b.p.web or b.b.web else ())
 
 
 def _ai_field(b):
-    """The field states this batch adds that the trainer's AI reads, kept
-    out of its key while none is there: Lucky Chant on either side
-    (Basic_CheckLuckyChant) and Gravity (Basic_CheckGravity, the barred
-    moves, the type check)."""
-    if not (b.p.lucky_chant or b.b.lucky_chant or b.gravity):
+    """The field states the later batches add that the trainer's AI reads,
+    kept out of its key while none is there: Lucky Chant on either side
+    (Basic_CheckLuckyChant), Gravity (Basic_CheckGravity, the barred
+    moves, the type check) and Sticky Web on either side (Basic_CheckStickyWeb,
+    Basic_CheckDefog, Expert_Defog, Expert_RapidSpin)."""
+    if not (b.p.lucky_chant or b.b.lucky_chant or b.gravity or b.p.web or b.b.web):
         return ()
-    return (("field", b.p.lucky_chant > 0, b.b.lucky_chant > 0, b.gravity > 0),)
+    return (("field", b.p.lucky_chant > 0, b.b.lucky_chant > 0, b.gravity > 0, b.p.web, b.b.web),)
 
 
 _AI_CACHE = {}

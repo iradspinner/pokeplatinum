@@ -4840,6 +4840,47 @@ def check_punishment(results):
     results.append(("Punishment's power rises with the target's raised stages", out == want, str(out)))
 
 
+def check_sticky_web(results):
+    """Sticky Web (approved 2026-10-14; effect script 326, the hazards
+    check): a web on the foe's side, once; each grounded newcomer there
+    loses a stage of Speed, a Magic Guard holder too, a Flying type none,
+    Clear Body none, Contrary gains one, Simple loses one, Defiant answers
+    with two of Attack; the trainer's AI refuses a second web, and Rapid
+    Spin clears it."""
+    out = {}
+    for case in ("plain", "Flying", "Magic Guard", "Clear Body", "Contrary", "Simple", "Defiant"):
+        b, p, foe = battle(["Sticky Web"], ["Tackle", "Rapid Spin"], {("b", "Rapid Spin"): [5] * 16})
+        b.rng = FixedDice(0.0)
+        extra = fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Tackle", "Rapid Spin"], "b")
+        b.b.mons.append(extra)
+        fs.status_move(b, p, fs.move("Sticky Web"), foe, True)
+        if case == "Flying":
+            extra.types = ["Flying"]
+        elif case != "plain":
+            extra.ability = case
+        fs.switch_in(b, b.b, 1)
+        out[case] = (extra.stages["spe"], extra.stages["atk"])
+        if case == "plain":
+            out["laid"] = (b.b.web, b.p.web)
+            fs.status_move(b, p, fs.move("Sticky Web"), extra, True)
+            out["laid twice"] = b.b.web
+    b, p, foe = battle(["Sticky Web"], ["Rapid Spin"], {("b", "Rapid Spin"): [5] * 16})
+    b.rng = FixedDice(0.5)
+    fs.status_move(b, p, fs.move("Sticky Web"), foe, True)
+    fs.attack(b, foe, fs.move("Rapid Spin"), p, True)
+    out["after Rapid Spin"] = b.b.web
+    # The trainer's AI on a web already laid on the player's side.
+    b, p, foe = battle(["Tackle"], ["Sticky Web"], {})
+    b.p.mons.append(fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p"))
+    out["AI's first web"] = fightai.basic(b, foe, p, fs.move("Sticky Web"), 0)
+    fs.status_move(b, foe, fs.move("Sticky Web"), p, True)
+    out["AI's second web"] = fightai.basic(b, foe, p, fs.move("Sticky Web"), 0)
+    want = {"plain": (-1, 0), "laid": (1, 0), "laid twice": 1, "after Rapid Spin": 0, "Flying": (0, 0),
+            "Magic Guard": (-1, 0), "Clear Body": (0, 0), "Contrary": (1, 0), "Simple": (-1, 0),
+            "Defiant": (-1, 2), "AI's first web": 0, "AI's second web": -10}
+    results.append(("Sticky Web lowers a grounded newcomer's Speed", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5113,7 +5154,7 @@ def main():
                   check_power_trick, check_bide, check_transform,
                   check_sp_def_2_hit, check_tearful_look, check_venom_drench, check_false_swipe,
                   check_clear_smog, check_incinerate, check_life_dew,
-                  check_mud_sport, check_punishment,
+                  check_mud_sport, check_punishment, check_sticky_web,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

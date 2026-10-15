@@ -887,7 +887,7 @@ def _basic_effect(b, u, t, mv):
     if e == "POLTERGEIST":
         return -10 if not t.item else 0
     if e == "STICKY_WEB":
-        return -10 if getattr(foe, "sticky_web", False) or not foe.bench() else 0
+        return -10 if getattr(foe, "web", 0) or not foe.bench() else 0
     if e == "SET_AURORA_VEIL":
         if getattr(own, "aurora_veil", 0):
             return -8
@@ -967,11 +967,11 @@ def _basic_defog(b, u, t, own, foe):
     nothing to clear on either side."""
     if t.stages["eva"] > -6 or foe.screens["Light Screen"] or foe.screens["Reflect"] \
             or getattr(foe, "aurora_veil", 0) or any(own.hazards.values()) \
-            or getattr(own, "sticky_web", False) or b.weather == "Fog":
+            or getattr(own, "web", 0) or b.weather == "Fog":
         return 0
     if not foe.bench():
         return -10
-    return 0 if any(foe.hazards.values()) or getattr(foe, "sticky_web", False) else -10
+    return 0 if any(foe.hazards.values()) or getattr(foe, "web", 0) else -10
 
 
 # ---- Evaluate Attack
