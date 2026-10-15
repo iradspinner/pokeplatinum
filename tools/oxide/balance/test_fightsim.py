@@ -1544,6 +1544,35 @@ def check_forecast(results):
                     f"types {got}; burnable in sun {burns}; HP after hail from 50 {hail}; after leaving {left}"))
 
 
+def check_soak(results):
+    """Soak (approved 2026-10-14; subscript_change_target_to_water_type): its
+    target becomes pure Water, a Water and Ground one too, and reads its
+    Water twin's rows; nothing through a Substitute, into Multitype, into a
+    pure Water target or into one in the air; leaving brings its own types
+    back."""
+    def soak(types=("Normal",), ability=None, sub=0, flying=False):
+        b, p, foe = battle(["Soak", "Tackle"], ["Tackle"], {("p", "Tackle"): [10] * 16}, b_types=types)
+        foe.ability, foe.sub = ability, sub
+        if flying:
+            foe.charging = fs.move("Fly")
+        b.st["form_twin"] = {"b0.0": {"ability": None, "twins": {(("Water",), None): "b0.0#fmWater@"}}}
+        b.st["rows"][(None, "p0", "b0.0#fmWater@")] = {"moves": {"Tackle": {"rolls": [7] * 16}}}
+        fs.status_move(b, p, fs.move("Soak"), foe, True)
+        return b, p, foe
+    b, p, foe = soak()
+    soaked = (list(foe.types), b.damage(p, foe, fs.move("Tackle"), roll=0))
+    foe.reset_volatile()
+    back = list(foe.types)
+    got = {"Water and Ground": soak(("Water", "Ground"))[2].types, "a Substitute": soak(sub=25)[2].types,
+           "Multitype": soak(ability="Multitype")[2].types, "pure Water": soak(("Water",))[2].types,
+           "in the air": soak(flying=True)[2].types}
+    want = {"Water and Ground": ["Water"], "a Substitute": ["Normal"], "Multitype": ["Normal"],
+            "pure Water": ["Water"], "in the air": ["Normal"]}
+    ok = soaked == (["Water"], 7) and back == ["Normal"] and got == want
+    results.append(("Soak makes its target pure Water", ok,
+                    f"soaked (types, Tackle on its twin) {soaked}; after leaving {back}; {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2828,8 +2857,8 @@ def main():
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_form_twins, check_trace, check_mummy,
-                  check_wandering_spirit, check_color_change, check_forecast, check_magic_guard,
-                  check_liquid_ooze,
+                  check_wandering_spirit, check_color_change, check_forecast, check_soak,
+                  check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

@@ -3823,6 +3823,50 @@ def protect_odds(att):
     return 1 / (2 ** min(att.protect_run, PROTECT_RUN_CAP))
 
 
+def out_of_reach(att, dfn, mv):
+    """Whether dfn is in the air, underground or underwater where mv cannot
+    reach it (MOVE_STATUS_SEMI_INVULNERABLE), as a hit's check has it."""
+    return (dfn.charging is not None and dfn.charging.effect in INVULNERABLE and not reaches(mv, dfn)
+            and not no_guard(att, dfn, mv))
+
+
+# The status moves that change a type or an ability: each effect's function
+# of (battle, user, move, target, pick), pick(kind, n) the battle's dice for
+# a choice among n; both battles' status_move run them.
+FORM_MOVES = {}
+
+
+def form_move(effect):
+    def add(fn):
+        FORM_MOVES[effect] = fn
+        return fn
+    return add
+
+
+@form_move("CHANGE_TO_WATER_TYPE")
+def soak(b, att, mv, dfn, pick):
+    """Soak (effect script 284, subscript_change_target_to_water_type): its
+    target becomes pure Water until it leaves, unless the move cannot reach
+    it, a Substitute stands in front of it, its ability is Multitype, or it
+    is pure Water already. Its rows then come from its Water twin (form_key).
+    Until 2026-10-14 Soak did nothing (Ian approved the fix)."""
+    if out_of_reach(att, dfn, mv) or sub_blocks(att, dfn, mv) or dfn.ability == "Multitype" or dfn.types == ["Water"]:
+        return False
+    set_types(dfn, ["Water"])
+    return True
+
+
+@form_change
+def _soaked(ff):
+    """Soak: any foe of a Soak user but a pure Water one or a Multitype one
+    may be made pure Water."""
+    for k in ff.keys():
+        if any(m.effect == "CHANGE_TO_WATER_TYPE" for m in ff.moves(k)):
+            for f in ff.foes(k):
+                if ff.types(f) != ["Water"] and ff.ability(f) != "Multitype":
+                    yield f, ["Water"], ff.ability(f)
+
+
 def lifted(dfn, mv):
     """Whether Magnet Rise makes this Ground move fail on dfn (the type
     check's MOVE_STATUS_MAGNET_RISE): not on a Pokemon rooted by Ingrain or
@@ -3998,6 +4042,9 @@ def status_move(b, att, mv, dfn, first):
         change_stages(dfn, {"atk": -2, "spa": -2})
     elif e == "PASS_STATS_AND_STATUS":
         att.baton = True
+    elif e in FORM_MOVES:
+        # The status moves that change a type or an ability (FORM_MOVES).
+        FORM_MOVES[e](b, att, mv, dfn, lambda kind, n: b.rng.randrange(n))
     elif e == "ALL_FAINT_3_TURNS":
         # Perish Song: every Pokemon on the field faints at the end of the
         # third turn after this one unless it switches out first.

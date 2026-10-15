@@ -1005,6 +1005,10 @@ def status_move(b, att, mv, dfn, first):
         fs.change_stages(dfn, {"atk": -2, "spa": -2})
     elif e == "PASS_STATS_AND_STATUS":
         att.baton = True
+    elif e in fs.FORM_MOVES:
+        # The status moves that change a type or an ability (fightsim.FORM_MOVES),
+        # a choice among several on the battle's dice.
+        fs.FORM_MOVES[e](b, att, mv, dfn, lambda kind, n: b.dice.choice(kind, n))
     elif e == "ALL_FAINT_3_TURNS":
         for m in (b.p.on_field() + b.b.on_field()):
             if m.alive() and not m.perish and (m.ability != "Soundproof" or fs.mold(att, m)):

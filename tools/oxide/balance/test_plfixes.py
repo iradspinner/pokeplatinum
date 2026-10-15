@@ -2765,6 +2765,28 @@ def forecast_checks():
              f"types at the start {start}; status after Will-O-Wisp {burned}; after Rain Dance (weather, types) {rain}")]
 
 
+def soak_checks():
+    """Soak on the calculator's real rows and the readings' move (approved
+    2026-10-14): prepare rows a Geodude on a pure Water twin, as a Staryu's
+    Soak can make it one; after the Soak, Staryu's Thunderbolt hits it where
+    its Ground type took nothing, and Staryu's Water Gun lands at half
+    power where it landed four times over."""
+    from .test_fightai import battle
+    b = battle([("Geodude", 30, "Rock Head", ["Rock Throw"])],
+               [("Staryu", 30, "Illuminate", ["Soak", "Thunderbolt", "Water Gun"])])
+    geo, star = b.b.cur(), b.p.cur()
+    bolt, gun = fs.move("Thunderbolt"), fs.move("Water Gun")
+    twins = sorted(((b.st.get("form_twin") or {}).get(geo.key) or {}).get("twins", {}), key=repr)
+    before = (pl.damage_of(b, star, geo, bolt, False, True), pl.damage_of(b, star, geo, gun, False, True))
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, star, fs.move("Soak"), geo, True)
+    after = (list(geo.types), pl.damage_of(b, star, geo, bolt, False, True), pl.damage_of(b, star, geo, gun, False, True))
+    ok = (twins == [(("Water",), None)] and before[0] == 0 and after[0] == ["Water"] and after[1] > 0
+          and abs(after[2] * 8 - before[1]) <= 12)
+    return [("Soak: a Geodude made pure Water meets Thunderbolt and Water Gun on its Water twin", ok,
+             f"twins {twins}; before (Thunderbolt, Water Gun) {before}; after Soak (types, Thunderbolt, Water Gun) {after}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3280,6 +3302,7 @@ def main():
     results += wandering_spirit_checks()
     results += color_change_checks()
     results += forecast_checks()
+    results += soak_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
