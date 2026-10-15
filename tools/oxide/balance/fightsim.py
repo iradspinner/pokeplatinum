@@ -3303,6 +3303,14 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         give_status_by_move(b, att, dfn, mv, "brn")
     if e == "TRI_ATTACK" and b.rng.random() * 100 < chance:
         give_status_by_move(b, att, dfn, mv, b.rng.choice(["brn", "par", "frz"]))
+    if e == "SECRET_POWER" and b.rng.random() * 100 < chance:
+        what = secret_power_effect(b.st.get("terrain"))     # its terrain's stage, status or flinch
+        if isinstance(what, dict):
+            lower_stats(b, att, dfn, what)
+        elif what == "flinch":
+            dfn.flinch = dfn.flinch or first
+        else:
+            give_status_by_move(b, att, dfn, mv, what)
     if e in FLINCH_HIT and first and b.rng.random() * 100 < chance:
         dfn.flinch = True
     if e == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and first and not stripped:
@@ -5203,6 +5211,26 @@ CAMOUFLAGE_TYPE = {"TERRAIN_PLAIN": "Ground", "TERRAIN_SAND": "Ground", "TERRAIN
                    "TERRAIN_PUDDLE": "Grass", "TERRAIN_MOUNTAIN": "Rock", "TERRAIN_CAVE": "Rock",
                    "TERRAIN_SNOW": "Ice", "TERRAIN_WATER": "Water", "TERRAIN_ICE": "Ice",
                    "TERRAIN_BUILDING": "Normal", "TERRAIN_GREAT_MARSH": "Ground", "TERRAIN_BRIDGE": "Flying"}
+
+
+# The added effect Secret Power takes from its battle terrain (effect
+# script 197, BtlCmd_GetTerrainSecondaryEffect, data/terrain/
+# to_secondary_effect.h): a stage down on the target, a status, or a
+# flinch; every terrain after the bridge's counts as the special one,
+# paralysis.
+SECRET_POWER_EFFECT = {"TERRAIN_PLAIN": {"acc": -1}, "TERRAIN_SAND": {"acc": -1}, "TERRAIN_GRASS": "slp",
+                       "TERRAIN_PUDDLE": "slp", "TERRAIN_MOUNTAIN": "flinch", "TERRAIN_CAVE": "flinch",
+                       "TERRAIN_SNOW": "frz", "TERRAIN_WATER": {"atk": -1}, "TERRAIN_ICE": "frz",
+                       "TERRAIN_BUILDING": "par", "TERRAIN_GREAT_MARSH": {"spe": -1},
+                       "TERRAIN_BRIDGE": {"eva": -1}}
+
+
+def secret_power_effect(terrain):
+    """Secret Power's added effect on this battle terrain (st["terrain"],
+    calc.fight_terrain), a building's paralysis where the fight names none,
+    as Camouflage takes a building's type there. Until 2026-10-15 the hit
+    had no added effect (Ian approved the fix)."""
+    return SECRET_POWER_EFFECT.get(terrain or "TERRAIN_BUILDING", "par")
 
 
 def camouflage_type(terrain):
@@ -7337,7 +7365,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
             "foresight_twin": foresight_twin, "ground_twin": ground_twin, "miracle_twin": miracle_twin,
             "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
-            "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo}
+            "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo, "terrain": terrain}
 
 
 def effectiveness(blob_or_chart, atk_type, def_types):

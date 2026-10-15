@@ -4162,6 +4162,30 @@ def check_trainer_frustration(results):
     results.append(("a trainer's Frustration is rowed at its base friendship's power", got == want, str(got)))
 
 
+def check_secret_power(results):
+    """Secret Power (approved 2026-10-14; effect script 197,
+    BtlCmd_GetTerrainSecondaryEffect): at its 30% chance the hit adds its
+    battle terrain's effect, an accuracy drop on plain ground, paralysis
+    in a building and where the fight names no terrain, a flinch on a
+    mountain, an Attack drop on water, sleep in grass; above the chance,
+    nothing."""
+    out = {}
+    for terrain, dice in (("TERRAIN_PLAIN", 0.0), ("TERRAIN_BUILDING", 0.0), (None, 0.0), ("TERRAIN_MOUNTAIN", 0.0),
+                          ("TERRAIN_WATER", 0.0), ("TERRAIN_GRASS", 0.0), ("TERRAIN_PLAIN", 0.5)):
+        b, p, foe = battle(["Secret Power"], ["Tackle"], {("p", "Secret Power"): [10] * 16}, hp=500)
+        b.st["terrain"] = terrain
+        b.rng = FixedDice(dice)
+        foe.ability = "Shell Armor"
+        fs.attack(b, p, fs.move("Secret Power"), foe, True)
+        out[(terrain, dice)] = (foe.stages["acc"], foe.stages["atk"], foe.status, foe.flinch)
+    want = {("TERRAIN_PLAIN", 0.0): (-1, 0, None, False), ("TERRAIN_BUILDING", 0.0): (0, 0, "par", False),
+            (None, 0.0): (0, 0, "par", False), ("TERRAIN_MOUNTAIN", 0.0): (0, 0, None, True),
+            ("TERRAIN_WATER", 0.0): (0, -1, None, False), ("TERRAIN_GRASS", 0.0): (0, 0, "slp", False),
+            ("TERRAIN_PLAIN", 0.5): (0, 0, None, False)}
+    results.append(("Secret Power adds its terrain's effect at its chance", out == want,
+                    f"(accuracy, Attack, status, flinch) {out}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4426,7 +4450,7 @@ def main():
                   check_black_sludge, check_water_bubble, check_eerie_spell,
                   check_burning_bulwark,
                   check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
-                  check_trainer_frustration,
+                  check_trainer_frustration, check_secret_power,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -863,6 +863,18 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         for st in order:
             if fs.give_status_by_move(b, att, dfn, mv, st):
                 break
+    if e == "SECRET_POWER" and chance:
+        # Its battle terrain's added effect (fightsim.secret_power_effect): a
+        # stage down and a flinch are luck, a status lands as the others do.
+        what = fs.secret_power_effect(b.st.get("terrain"))
+        if isinstance(what, dict):
+            if secondary("statdrop", chance / 100):
+                fs.lower_stats(b, att, dfn, what)
+        elif what == "flinch":
+            if first and secondary("flinch", chance / 100):
+                dfn.flinch = True
+        elif status_lands("status"):
+            fs.give_status_by_move(b, att, dfn, mv, what)
     # A flinch and a stat change are not status conditions: they are luck,
     # at the move's chance (design.md, question 10).
     if e in fs.FLINCH_HIT and first and chance and secondary("flinch", chance / 100):

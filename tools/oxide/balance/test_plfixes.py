@@ -4074,6 +4074,29 @@ def trainer_frustration_checks():
              f"Frustration's top {fru} against Body Slam's {slam} ({fru / slam:.2f}); the AI's figure {ai}")]
 
 
+def secret_power_checks():
+    """Secret Power in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): on plain ground (trainer 1's Route 202) a
+    trainer's Zigzagoon's Secret Power lowers the player's Bibarel's
+    accuracy about three times in ten, and in a building it paralyses."""
+    from .test_fightai import battle
+    out = {}
+    for terrain in ("TERRAIN_PLAIN", "TERRAIN_BUILDING"):
+        b = battle([("Zigzagoon", 20, "Pickup", ["Secret Power"])], [("Bibarel", 20, "Unaware", ["Tackle"])])
+        b.st = dict(b.st, terrain=terrain)
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        zig, bib = b.b.cur(), b.p.cur()
+        bib.hp = bib.maxhp = 100000
+        n = 0
+        for _ in range(100):
+            bib.stages["acc"], bib.status = 0, None
+            pl.attack(b, zig, fs.move("Secret Power"), bib, True)
+            n += bib.stages["acc"] == -1 if terrain == "TERRAIN_PLAIN" else bib.status == "par"
+        out[terrain] = n
+    ok = all(15 <= n <= 45 for n in out.values())
+    return [("the readings' Secret Power adds its terrain's effect", ok, f"of 100 hits, effects landed {out}")]
+
+
 def main():
     results = []
 
@@ -4581,6 +4604,7 @@ def main():
     results += miracle_eye_checks()
     results += acupressure_checks()
     results += trainer_frustration_checks()
+    results += secret_power_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
