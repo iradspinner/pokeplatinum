@@ -404,6 +404,8 @@ def _use_move(b, att, mv, dfn, first):
     fs.protean(b, att, mv)               # Protean retypes its user before the move runs
     if fs.commit_move(att, mv):
         return                       # Last Resort before every other move was used
+    if mv.effect in ("FLY", "BOUNCE") and att.smacked:
+        return                       # brought down by Smack Down, it cannot fly (fightsim.smack_down)
     if mv.effect in fs.TWO_TURN and att.charging is None and not fs.charge_skipped(b, att, mv):
         att.charging = mv
         fs.change_stages(att, fs.CHARGE_STAGES.get(mv.effect, {}))   # Skull Bash, Meteor Beam, Electro Shot
@@ -814,6 +816,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     fs.slap_wakes(dfn, mv)       # Wake-Up Slap's doubled hit wakes its target (fightsim.slap_wakes)
     if e == "THROAT_CHOP":
         fs.throat_chop(att, dfn, stripped)     # its hold on the target's sound moves (fightsim.throat_chop)
+    if e == "SMACK_DOWN":
+        fs.smack_down(b, att, dfn)       # down until it leaves (fightsim.smack_down)
     if e == "SALT_CURE":
         dfn.salted = True        # as fightsim: salted once the hit lands, chance-free
     if e == "CORE_ENFORCER" and getattr(dfn, "acted_turn", None) == b.turn:
@@ -1172,6 +1176,8 @@ def mon_key(m):
         key += ("locked on", m.locked_on, m.lock_on_by)
     if m.foresight:
         key += ("foresight",)
+    if m.smacked:
+        key += ("smacked down",)
     return key + _form(m) if m.formed else key
 
 

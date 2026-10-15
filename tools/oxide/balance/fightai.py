@@ -1029,11 +1029,15 @@ def script_eff(b, u, t, mv):
     Tinted Lens), with plain STAB's 1.5 divided back out at the four exact
     values, and any immunity flag (the chart, Levitate, Magnet Rise, an Air
     Balloon, Wonder Guard) reading 0. Scrappy and Foresight get Normal and
-    Fighting past a Ghost; an Iron Ball, Thousand Arrows or Gravity grounds
+    Fighting past a Ghost; an Iron Ball, Thousand Arrows, Smack Down or Gravity grounds
     a Flying type; Freeze-Dry hits Water. A neutral STAB hit (60), or one
     Filter or Tinted Lens scaled, matches none of the five, as in the game."""
     ty = "Normal" if u.ability == "Normalize" else move_type(b, u, mv)
-    grounded = t.item == "Iron Ball" or mv.const == "MOVE_THOUSAND_ARROWS"
+    # Brought down: an Iron Ball, Thousand Arrows, or Smack Down's mark, by
+    # which Battler_Ability reads no Levitate and BasicTypeMulApplies skips
+    # the Flying type's immunity (the mark since 2026-10-15, as the
+    # simulator now keeps it).
+    grounded = t.item == "Iron Ball" or mv.const == "MOVE_THOUSAND_ARROWS" or t.smacked
     if ty == "Ground" and not grounded and (
             (t.ability == "Levitate" and not mold(u, t)) or getattr(t, "magnet_rise", 0)
             or t.item == "Air Balloon"):

@@ -3678,6 +3678,31 @@ def trainer_return_checks():
              f"Return's top {ret} against Body Slam's {slam} ({ret / slam:.2f}); the AI's figure {ai}")]
 
 
+def smack_down_checks():
+    """Smack Down in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Nacli's Mud Shot cannot touch a
+    trainer's Starly until its Smack Down brings the Starly down, and then
+    hits from the Starly's twin's row without Flying; the trainer's AI
+    reads the grounding in its type check too."""
+    from .test_fightai import battle
+    b = battle([("Starly", 25, "Keen Eye", ["Quick Attack"])], [("Nacli", 25, "Purifying Salt", ["Smack Down", "Mud Shot"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    sta, nac = b.b.cur(), b.p.cur()
+    sta.hp = sta.maxhp = 100000
+    shot = fs.move("Mud Shot")
+    pl.use_move(b, nac, shot, sta, True)
+    before = sta.maxhp - sta.hp
+    ai_before = fightai.script_eff(b, nac, sta, shot)
+    pl.use_move(b, nac, fs.move("Smack Down"), sta, True)
+    mid = sta.maxhp - sta.hp
+    pl.use_move(b, nac, shot, sta, True)
+    after = sta.maxhp - sta.hp - mid
+    ai_after = fightai.script_eff(b, nac, sta, shot)
+    ok = before == 0 and getattr(sta, "smacked", False) and after > 0 and ai_before == 0 and ai_after > 0
+    return [("the readings' Smack Down lets Ground moves hit a flier", ok,
+             f"Mud Shot dealt {before} before and {after} after; the AI's effectiveness {ai_before} then {ai_after}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4332,6 +4357,7 @@ def main():
     results += foresight_checks()
     results += trainer_magnitude_checks()
     results += trainer_return_checks()
+    results += smack_down_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()

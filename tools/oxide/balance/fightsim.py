@@ -391,6 +391,10 @@ class Mon:
     # Minimize's mark (MOVE_EFFECT_MINIMIZE), which Stomp and Steamroller
     # double on; cleared when it leaves.
     minimized = False
+    # Smack Down's mark (MOVE_EFFECT_SMACKED_DOWN): brought to the ground
+    # until it leaves, its Levitate off and its Flying type no shield
+    # against Ground moves (grounded).
+    smacked = False
     # Foresight and Odor Sleuth (VOLATILE_CONDITION_FORESIGHT): its raised
     # evasion stops counting, and Normal and Fighting moves meet its Ghost
     # type; cleared when it leaves.
@@ -453,6 +457,8 @@ class Mon:
             self.locked_on, self.lock_on_by = 0, None     # a Baton Pass hands it on (baton_state)
         if self.foresight:
             self.foresight = False       # statusVolatile; VOLATILE_CONDITION_BATON_PASSED leaves it out
+        if self.smacked:
+            self.smacked = False         # moveEffectsMask; MOVE_EFFECT_BATON_PASSED leaves Smack Down's out
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
         self.rollout = 0
@@ -629,6 +635,8 @@ class Battle:
             dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
         if dfn.foresight and mv is not None:
             dk = foresight_key(self, dfn, mv, att) or dk     # an identified Ghost, its twin without Ghost
+        if mv is not None and dfn.smacked:
+            dk = ground_key(self, dfn, mv, att) or dk        # a grounded flier, its twin without Flying or Levitate
         rows = self.st["rows"]
         # A type or ability another move or ability changed (form_key) reads
         # the changed Pokemon's twin: the pair of twins when both are
@@ -815,6 +823,46 @@ def foresight_key(b, mon, mv, att):
     if not identified(mon, move_type_used(att.ability, mv, att.ivs, att.item, b.weather)):
         return None
     return (b.st.get("foresight_twin") or {}).get(mon.key)
+
+
+def grounded(b, mon):
+    """Whether mon is held to the ground against Ground moves: Smack Down's
+    mark on it. BattleSystem_ApplyTypeChart then skips the Flying type's
+    immunity to Ground moves (BasicTypeMulApplies) and Battler_Ability reads
+    no Levitate, so a Ground move meets its other type alone, read from its
+    twin (prepare's ground_twin)."""
+    return mon.smacked
+
+
+def ground_key(b, mon, mv, att):
+    """The key of the rows a grounded Flying or Levitate Pokemon meets a
+    Ground move on (prepare's ground_twin), or None."""
+    if not grounded(b, mon) or move_type_used(att.ability, mv, att.ivs, att.item, b.weather) != "Ground":
+        return None
+    return (b.st.get("ground_twin") or {}).get(mon.key)
+
+
+def smack_down(b, att, dfn):
+    """Smack Down's hit (effect script 406, subscript_smack_down, ON_HIT):
+    on a target left standing, with no Substitute in the way, not already
+    down and with no Gravity in force, a Pokemon on the hidden turn of Fly
+    or Bounce is pulled out of it, and one under Magnet Rise loses it; it,
+    and a Flying type or a Levitate holder, is then down until it leaves
+    (Ingrain and an Iron Ball hold a Pokemon down already). Down, its Fly,
+    Bounce and Magnet Rise fail (effect scripts 155, 263 and 252), Arena
+    Trap holds it, and Ground moves hit it (grounded). Until 2026-10-15 the
+    hit grounded nothing (Ian approved the fix)."""
+    if dfn.smacked or getattr(b, "gravity", 0):
+        return
+    if dfn.charging is not None and dfn.charging.effect in ("FLY", "BOUNCE"):
+        dfn.charging = None              # UnlockMoveChoice and ToggleVanish: out of the air
+    elif dfn.ingrained or dfn.item == "Iron Ball":
+        return
+    elif dfn.magnet_rise:
+        dfn.magnet_rise = 0
+    elif "Flying" not in dfn.types and dfn.ability != "Levitate":
+        return
+    dfn.smacked = True
 
 
 def locked_onto(att, dfn):
@@ -2569,6 +2617,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     protean(b, att, mv)
     if commit_move(att, mv):
         return                   # Last Resort before every other move was used
+    if mv.effect in ("FLY", "BOUNCE") and att.smacked:
+        return                   # brought down, it cannot take to the air (effect scripts 155 and 263)
     # Charging moves: the first turn only charges (Fly and Dig vanish).
     if mv.effect in TWO_TURN and att.charging is None and not charge_skipped(b, att, mv):
         att.charging = mv
@@ -2997,6 +3047,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     slap_wakes(dfn, mv)              # Wake-Up Slap's doubled hit wakes its target (slap_wakes)
     if e == "THROAT_CHOP":
         throat_chop(att, dfn, stripped)
+    if e == "SMACK_DOWN":
+        smack_down(b, att, dfn)
     if e == "SALT_CURE":
         # subscript_salt_cure: the target is salted once the hit lands,
         # until it leaves the field; a chance-free effect, so Shield Dust
@@ -3184,9 +3236,10 @@ def anchored(att, dfn):
 def magnet_rise(att):
     """Magnet Rise (effect script 252): five turns in which Ground moves fail
     on its user, counted down at each turn's end and cleared by a switch. It
-    fails while one is running, on a Levitate user, and on one rooted by
-    Ingrain (Oxide adds Smack Down, which the simulator does not model)."""
-    if not att.magnet_rise and att.ability != "Levitate" and not att.ingrained:
+    fails while one is running, on a Levitate user, on one rooted by
+    Ingrain, and on one Smack Down brought down (Oxide's effect script 252;
+    the mark is kept since 2026-10-15)."""
+    if not att.magnet_rise and att.ability != "Levitate" and not att.ingrained and not att.smacked:
         att.magnet_rise = 5
 
 
@@ -4089,8 +4142,8 @@ def ability_trapped(b, mon):
     if foe.ability == "Arena Trap":
         if mon.item == "Iron Ball":
             return True
-        return ("Flying" not in mon.types and mon.ability != "Levitate" and not mon.magnet_rise
-                and mon.item != "Air Balloon")
+        return ((("Flying" not in mon.types and mon.ability != "Levitate") or mon.smacked) and not mon.magnet_rise
+                and mon.item != "Air Balloon")     # a Pokemon Smack Down brought down is held (Oxide)
     return False
 
 
@@ -6771,6 +6824,39 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                        if move(m).type in IDENTIFIED_TYPES or pokemon[d].get("ability") == "Normalize"]
                 if got:
                     pairs.append([d, t, got, w])
+    # Smack Down holds a Flying type or a Levitate holder to the ground
+    # (grounded), which the calculator's rows cannot know: they read its
+    # Ground immunity. So each such Pokemon whose foes can bring it down
+    # gets a twin typed without Flying (Normal for a pure Flying one, which
+    # Ground moves hit neutrally), with Levitate blanked to the stand-in and
+    # an Air Balloon taken off, made as Roost's twins are, and rowed for
+    # every foe's Ground moves into it, Magnitude at each power included.
+    ground_twin = {}
+    for k in pkeys + qkeys + bkeys:
+        foes = pkeys + qkeys if k.startswith("b") else bkeys
+        if not any(move(m).effect == "SMACK_DOWN" for d in foes for m in moves[d]):
+            continue
+        poks = blob["poks"].get(pokemon[k]["species"]) or {}
+        types = [t for t in (poks.get("types") or []) if t]
+        levitate = pokemon[k].get("ability") == "Levitate"
+        if not ("Flying" in types or levitate) or not poks.get("bs"):
+            continue
+        t = f"{k}#gd"
+        own = {"bs": dict(poks["bs"]), "types": [x for x in types if x != "Flying"] or ["Normal"], "exact_types": True}
+        if poks.get("weightkg") is not None:
+            own["weightkg"] = poks["weightkg"]
+        pokemon[t] = dict(pokemon[k], species_data=own,
+                          ability=WEATHER_STAND_IN if levitate else pokemon[k].get("ability"),
+                          item=None if pokemon[k].get("item") == "Air Balloon" else pokemon[k].get("item"))
+        ground_twin[k] = t
+        for w in weathers:
+            for d in foes:
+                got = [m for m in (party_hits(d) if d in bkeys else hits(d)) if move(m).type == "Ground"]
+                if got:
+                    pairs.append([d, t, got, w])
+                if "Magnitude" in moves.get(d, ()):
+                    for p in MAGNITUDE_POWERS:
+                        pairs.append([f"{d}#m{p}", t, ["Magnitude"], w])
     # Protean and Libero retype their holder to its first move's type
     # (protean), which the calculator's Generation 4 rows cannot know: they
     # give the holder no STAB for it and meet moves on its own types. So
@@ -6844,7 +6930,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "base_weather": calc.CALC_WEATHER.get(weather, weather) if weather else None,
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
-            "foresight_twin": foresight_twin,
+            "foresight_twin": foresight_twin, "ground_twin": ground_twin,
             "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo}
 
 

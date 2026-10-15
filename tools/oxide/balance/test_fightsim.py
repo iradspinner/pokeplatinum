@@ -2682,6 +2682,56 @@ def check_trainer_return(results):
                     f"Return's power by key {power}"))
 
 
+def check_smack_down(results):
+    """Smack Down (approved 2026-10-14; effect script 406,
+    subscript_smack_down): its hit brings a Flying type down until it
+    leaves, so Ground moves then hit it from its twin's rows without Flying;
+    it pulls a Pokemon out of Fly's hidden turn, and takes away Magnet Rise.
+    Down, a Pokemon's Fly and Magnet Rise fail. A Pokemon on the ground, or
+    behind a Substitute, gets no mark."""
+    def setup(types=("Flying",)):
+        b, p, foe = battle(["Smack Down", "Earthquake"], ["Fly", "Magnet Rise", "Tackle"],
+                           {("p", "Smack Down"): [5] * 16, ("p", "Earthquake"): [0] * 16}, b_types=types, hp=500)
+        b.st["rows"][(None, "p0", "b0.0#gd")] = {"moves": {"Earthquake": {"rolls": [10] * 16}}}
+        b.st["ground_twin"] = {"b0.0": "b0.0#gd"}
+        b.rng = FixedDice(0.5)
+        foe.ability = "Shell Armor"
+        return b, p, foe
+
+    def quake(b, p, foe):
+        before = foe.hp
+        fs.attack(b, p, fs.move("Earthquake"), foe, True)
+        return before - foe.hp
+    out = {}
+    b, p, foe = setup()
+    out["a flier"] = (quake(b, p, foe), fs.attack(b, p, fs.move("Smack Down"), foe, True) or
+                      getattr(foe, "smacked", None), quake(b, p, foe))
+    fs._use_move(b, foe, fs.move("Fly"), p, False)
+    fs._use_move(b, foe, fs.move("Magnet Rise"), p, False)
+    out["its Fly and Magnet Rise"] = (foe.charging, foe.magnet_rise)
+    foe.reset_volatile()
+    out["after leaving"] = (getattr(foe, "smacked", None), quake(b, p, foe))
+    b, p, foe = setup()
+    foe.charging = fs.move("Fly")
+    fs.attack(b, p, fs.move("Smack Down"), foe, True)
+    out["in the air"] = (foe.charging, getattr(foe, "smacked", None))
+    b, p, foe = setup(types=("Normal",))
+    foe.magnet_rise = 4
+    fs.attack(b, p, fs.move("Smack Down"), foe, True)
+    out["under Magnet Rise"] = (foe.magnet_rise, getattr(foe, "smacked", None))
+    b, p, foe = setup(types=("Normal",))
+    fs.attack(b, p, fs.move("Smack Down"), foe, True)
+    out["on the ground"] = getattr(foe, "smacked", None)
+    b, p, foe = setup()
+    foe.sub = 100
+    fs.attack(b, p, fs.move("Smack Down"), foe, True)
+    out["behind a Substitute"] = getattr(foe, "smacked", None)
+    want = {"a flier": (0, True, 10), "its Fly and Magnet Rise": (None, 0), "after leaving": (False, 0),
+            "in the air": (None, True), "under Magnet Rise": (0, True), "on the ground": False,
+            "behind a Substitute": False}
+    results.append(("Smack Down brings a flier down until it leaves, so Ground moves hit it", out == want, str(out)))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -4071,7 +4121,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return, check_smack_down,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
