@@ -3131,6 +3131,16 @@ def slap_wakes(dfn, mv):
         dfn.status, dfn.sleep = None, 0
 
 
+def salts_cure(dfn, mv):
+    """Smelling Salts' doubled hit cures its target's paralysis once it has
+    landed and left the target standing (subscript_heal_target_paralysis,
+    ON_HIT, which skips a target at 0 HP); chance-free, so Shield Dust and
+    Sheer Force leave it alone. Until 2026-10-15 the target stayed
+    paralysed (Ian approved the fix)."""
+    if mv.effect == "DOUBLE_POWER_AND_CURE_PARALYSIS" and dfn.alive() and dfn.status == "par":
+        dfn.status = None
+
+
 def dream_eater_fails(att, dfn, mv):
     """Dream Eater (effect script 8) "wasn't affected" by a target that is
     not asleep, or one behind a Substitute an Infiltrator does not pass
@@ -3284,6 +3294,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         return
     if e == "DOUBLE_POWER_HEAL_SLEEP":
         slap_wakes(dfn, mv)          # Wake-Up Slap's doubled hit wakes its target (slap_wakes)
+    if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":
+        salts_cure(dfn, mv)          # Smelling Salts' doubled hit cures its target (salts_cure)
     if e == "FLING" and b.flung:
         fling_effect(b, att, dfn, mv, b.flung, first, lambda kind, n: b.rng.randrange(n))
     if e == "THROAT_CHOP":
@@ -4216,6 +4228,12 @@ def doubled(att, dfn, mv):
         return dfn.status in ("psn", "tox")
     if e == "DOUBLE_POWER_IF_TARGET_HIT":
         return bool(dfn.hit_this_turn) or dfn.hurt_this_turn
+    if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":
+        # Smelling Salts (effect script 171) on a paralysed target with no
+        # Substitute in the way (CheckSubstitute skips the doubling and the
+        # cure, an Infiltrator passing it). Until 2026-10-15 it never
+        # doubled (Ian approved the fix).
+        return dfn.status == "par" and not sub_blocks(att, dfn, mv)
     if e == "FLINCH_MINIMIZE_DOUBLE_HIT":
         # Stomp and Steamroller (effect script 150) on a target that has used
         # Minimize since it came in (MOVE_EFFECT_MINIMIZE, set by

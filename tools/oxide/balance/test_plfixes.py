@@ -4167,6 +4167,38 @@ def teeter_dance_checks():
     return [("the readings' Teeter Dance confuses its target", bool(bib.confused), f"Bibarel confused {bib.confused}")]
 
 
+def smelling_salts_checks():
+    """Smelling Salts in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Makuhita's Smelling Salts on the
+    player's paralysed Bibarel hits twice as hard as on a healthy one, and
+    cures the paralysis."""
+    from .test_fightai import battle
+
+    class Top(pl.RunDice):
+        """Run dice that roll the top damage, never miss and never crit."""
+        def roll(self, top):
+            return 15
+
+        def bad(self, kind, p):
+            return False
+
+        def good(self, p, kind=None):
+            return False
+    b = battle([("Makuhita", 30, "Thick Fat", ["Smelling Salts"])], [("Bibarel", 30, "Unaware", ["Tackle"])])
+    b.dice, b.rng = Top(random.Random(1), True), random.Random(1)
+    mak, bib = b.b.cur(), b.p.cur()
+    bib.hp = bib.maxhp = 100000
+    mv = fs.move("Smelling Salts")
+    pl.attack(b, mak, mv, bib, True)
+    plain = bib.maxhp - bib.hp
+    bib.status, bib.hp = "par", bib.maxhp
+    pl.attack(b, mak, mv, bib, True)
+    salted = bib.maxhp - bib.hp
+    ok = plain > 0 and salted == 2 * plain and bib.status is None
+    return [("the readings' Smelling Salts doubles on paralysis and cures it", ok,
+             f"healthy {plain}, paralysed {salted}, the status after {bib.status}")]
+
+
 def main():
     results = []
 
@@ -4679,6 +4711,7 @@ def main():
     results += raise_speed_hit_checks()
     results += trump_card_checks()
     results += teeter_dance_checks()
+    results += smelling_salts_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

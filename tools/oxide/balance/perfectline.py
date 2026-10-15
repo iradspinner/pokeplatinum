@@ -829,6 +829,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         return
     if e == "DOUBLE_POWER_HEAL_SLEEP":
         fs.slap_wakes(dfn, mv)   # Wake-Up Slap's doubled hit wakes its target (fightsim.slap_wakes)
+    if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":
+        fs.salts_cure(dfn, mv)   # Smelling Salts' doubled hit cures its target (fightsim.salts_cure)
     if e == "FLING" and b.flung:
         fs.fling_effect(b, att, dfn, mv, b.flung, first, lambda kind, n: b.dice.choice(kind, n))
     if e == "THROAT_CHOP":

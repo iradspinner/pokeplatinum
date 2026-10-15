@@ -4280,6 +4280,23 @@ def check_teeter_dance(results):
     results.append(("Teeter Dance confuses every other Pokemon on the field", out == want, str(out)))
 
 
+def check_smelling_salts(results):
+    """Smelling Salts (approved 2026-10-14; effect script 171): it doubles on
+    a paralysed target and then cures it; a target not paralysed takes the
+    plain hit, and a paralysed one behind a Substitute neither doubles nor
+    is cured."""
+    out = {}
+    for status, sub in (("par", 0), (None, 0), ("par", 200)):
+        b, p, foe = battle(["Smelling Salts"], ["Tackle"], {("p", "Smelling Salts"): [10] * 16}, hp=500)
+        b.rng = FixedDice(0.5)
+        foe.ability, foe.status, foe.sub = "Shell Armor", status, sub
+        fs.attack(b, p, fs.move("Smelling Salts"), foe, True)
+        out[(status, sub)] = (500 - foe.hp + (200 - foe.sub if sub else 0), foe.status)
+    want = {("par", 0): (20, None), (None, 0): (10, None), ("par", 200): (10, "par")}
+    results.append(("Smelling Salts doubles on paralysis and cures it", out == want,
+                    f"(damage, the target's status after) {out}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4546,7 +4563,7 @@ def main():
                   check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
                   check_trainer_frustration, check_secret_power, check_snore,
                   check_raise_speed_hit, check_trump_card,
-                  check_teeter_dance,
+                  check_teeter_dance, check_smelling_salts,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
