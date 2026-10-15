@@ -4946,6 +4946,24 @@ def poltergeist_checks():
     ok = out["Oran Berry"] > 0 and out[None] == 0
     return [("the readings' Poltergeist fails on a target with no item", ok, f"HP taken {out}")]
 
+def belch_checks():
+    """Belch in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel's Belch takes nothing from
+    a trainer's Geodude before the Bibarel has eaten its Oran Berry, and
+    hits once it has."""
+    out = {}
+    for eaten in (False, True):
+        b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Belch"])])
+        bib.item = "Oran Berry"
+        if eaten:
+            bib.hp = bib.maxhp // 2 - 1
+            fs.berry_check(bib, b)       # the Bibarel eats its Berry at half HP
+        hp = geo.hp
+        pl.attack(b, bib, fs.move("Belch"), geo, True)
+        out[eaten] = (bib.item, hp - geo.hp)
+    ok = out[False] == ("Oran Berry", 0) and out[True][0] is None and out[True][1] > 0
+    return [("the readings' Belch fails before a Berry is eaten", ok, f"(Bibarel's item, HP taken) {out}")]
+
 def main():
     results = []
 
@@ -5500,6 +5518,7 @@ def main():
     results += fell_stinger_checks()
     results += prevent_escape_hit_checks()
     results += poltergeist_checks()
+    results += belch_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

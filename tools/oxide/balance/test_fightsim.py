@@ -5272,6 +5272,23 @@ def check_poltergeist(results):
     want = {("Leftovers", None): 490, (None, None): 500, (None, "Leftovers"): 490}
     results.append(("Poltergeist fails on a target with no item", out == want, str(out)))
 
+def check_belch(results):
+    """Belch (approved 2026-10-14; effect script 396): it fails until its
+    user has eaten a Berry, and hits once it has, a switch between them
+    keeping the record."""
+    out = {}
+    for eaten in (False, True):
+        b, p, foe = battle(["Belch"], ["Tackle"], {("p", "Belch"): [10] * 16}, hp=500)
+        b.rng = FixedDice(0.5)
+        if eaten:
+            p.item = "Oran Berry"
+            fs.consume(p)
+            p.reset_volatile()
+        fs.attack(b, p, fs.move("Belch"), foe, True)
+        out[eaten] = foe.hp
+    want = {False: 500, True: 490}
+    results.append(("Belch fails until its user has eaten a Berry", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5552,7 +5569,7 @@ def main():
                   check_embargo, check_magic_room,
                   check_relic_song, check_clanging_scales, check_matcha_gotcha,
                   check_fell_stinger, check_prevent_escape_hit,
-                  check_poltergeist,
+                  check_poltergeist, check_belch,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
