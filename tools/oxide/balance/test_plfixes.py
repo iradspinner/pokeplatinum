@@ -2917,6 +2917,30 @@ def double_shock_checks():
              f"after (types, Earthquake) {after}")]
 
 
+def skill_swap_checks():
+    """Skill Swap on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Sylveon on a Levitate twin and a
+    trainer's Bronzor on an ability-blank one, as a swap between them can
+    make; after Sylveon's Skill Swap its Earthquake reaches Bronzor, where
+    it took nothing, and the Bronzor's Earthquake no longer reaches it."""
+    from .test_fightai import battle
+    b = battle([("Bronzor", 30, "Levitate", ["Earthquake"])], [("Sylveon", 30, "Cute Charm", ["Skill Swap", "Earthquake"])])
+    bronzor, syl = b.b.cur(), b.p.cur()
+    quake = fs.move("Earthquake")
+    twins = {m.species: sorted(((b.st.get("form_twin") or {}).get(m.key) or {}).get("twins", {}), key=repr)
+             for m in (bronzor, syl)}
+    before = (pl.damage_of(b, syl, bronzor, quake, False, True), pl.damage_of(b, bronzor, syl, quake, False, True))
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, syl, fs.move("Skill Swap"), bronzor, True)
+    after = (syl.ability, bronzor.ability, pl.damage_of(b, syl, bronzor, quake, False, True),
+             pl.damage_of(b, bronzor, syl, quake, False, True))
+    ok = (twins == {"Bronzor": [(None, None)], "Sylveon": [(None, "Levitate")]} and before[0] == 0 and before[1] > 0
+          and after[:2] == ("Levitate", "Cute Charm") and after[2] > 0 and after[3] == 0)
+    return [("Skill Swap: Sylveon takes Bronzor's Levitate, on both twins' rows", ok,
+             f"twins {twins}; Earthquake before (Sylveon's, Bronzor's) {before}; after (Sylveon's ability, "
+             f"Bronzor's, the two Earthquakes) {after}")]
+
+
 def calc_terrain(tr_ids):
     from . import calc
     return getattr(calc, "fight_terrain", lambda _ids: None)(tr_ids)
@@ -3443,6 +3467,7 @@ def main():
     results += camouflage_checks()
     results += burn_up_checks()
     results += double_shock_checks()
+    results += skill_swap_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

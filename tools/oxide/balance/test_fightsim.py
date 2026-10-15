@@ -1716,6 +1716,37 @@ def check_double_shock(results):
                     f"third {back}; a pure Electric user {pure}"))
 
 
+def check_skill_swap(results):
+    """Skill Swap (approved 2026-10-14; subscript_exchange_abilities): a
+    Levitate user and a Static target swap, both named, and the target then
+    reads its Levitate twin, a Substitute notwithstanding; nothing when
+    either ability refuses (Wonder Guard), with an Ability Shield on
+    either, or into a target in the air; leaving brings each its own back."""
+    def swap(own="Levitate", theirs="Static", item=None, foe_item=None, sub=0, flying=False):
+        rows = {("p", "Earthquake"): [30] * 16}
+        b, p, foe = battle(["Skill Swap", "Earthquake"], ["Tackle"], rows)
+        p.ability, p.item, foe.ability, foe.item, foe.sub = own, item, theirs, foe_item, sub
+        if flying:
+            foe.charging = fs.move("Fly")
+        b.st["form_twin"] = {"b0.0": {"ability": None, "twins": {(None, "Levitate"): "b0.0#fm@Levitate"}}}
+        b.st["rows"][(None, "p0", "b0.0#fm@Levitate")] = {"moves": {"Earthquake": {"rolls": [0] * 16}}}
+        fs.status_move(b, p, fs.move("Skill Swap"), foe, True)
+        return b, p, foe
+    b, p, foe = swap(sub=25)
+    swapped = (p.ability, foe.ability, p.revealed, foe.revealed, b.damage(p, foe, fs.move("Earthquake"), roll=0))
+    p.reset_volatile()
+    foe.reset_volatile()
+    back = (p.ability, foe.ability)
+    got = {"Wonder Guard": swap(theirs="Wonder Guard")[2].ability, "its own Ability Shield": swap(item="Ability Shield")[2].ability,
+           "the target's Ability Shield": swap(foe_item="Ability Shield")[2].ability, "in the air": swap(flying=True)[2].ability}
+    want = {"Wonder Guard": "Wonder Guard", "its own Ability Shield": "Static", "the target's Ability Shield": "Static",
+            "in the air": "Static"}
+    ok = swapped == ("Static", "Levitate", "Static", "Levitate", 0) and back == ("Levitate", "Static") and got == want
+    results.append(("Skill Swap exchanges its user's and its target's abilities", ok,
+                    f"(user's, target's, both named, Earthquake on the target) {swapped}; after leaving {back}; "
+                    f"the target's ability {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3002,7 +3033,7 @@ def main():
                   check_roost, check_protean, check_form_twins, check_trace, check_mummy,
                   check_wandering_spirit, check_color_change, check_forecast, check_soak,
                   check_conversion, check_conversion2, check_camouflage, check_burn_up,
-                  check_double_shock, check_magic_guard, check_liquid_ooze,
+                  check_double_shock, check_skill_swap, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

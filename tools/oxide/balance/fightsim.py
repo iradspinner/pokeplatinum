@@ -3952,6 +3952,43 @@ def _converted2(ff):
                     yield k, [d], ff.ability(k)
 
 
+@form_move("SWITCH_ABILITIES")
+def skill_swap(b, att, mv, dfn, pick):
+    """Skill Swap (effect script 191, subscript_exchange_abilities): the user
+    and its standing target swap abilities, both named, unless the move
+    cannot reach the target, either ability refuses a swap
+    (Ability_ChangeFails) or is kept by an Ability Shield, either holds a
+    Griseous Orb, or neither has an ability; a Substitute does not stop it.
+    A Truant either gains loafs on its next turn (set_ability). Each then
+    reads its twin for its new ability (form_key). Until 2026-10-14 Skill
+    Swap did nothing (Ian approved the fix)."""
+    a, d = raw_ability(att), raw_ability(dfn)
+    if (not dfn.alive() or out_of_reach(att, dfn, mv) or refuses(a, "swap") or refuses(d, "swap")
+            or {"Ability Shield", "Griseous Orb"} & {att.item, dfn.item} or (a is None and d is None)):
+        return False
+    set_ability(b, att, d)
+    set_ability(b, dfn, a, acted=getattr(dfn, "acted_turn", None) == b.turn)
+    return True
+
+
+@form_change
+def _skill_swapped(ff):
+    """Skill Swap: its user may take the ability of any foe a swap reaches,
+    and that foe the user's."""
+    keep = {"Ability Shield", "Griseous Orb"}
+    for k in ff.keys():
+        a = ff.ability(k)
+        if (not any(m.effect == "SWITCH_ABILITIES" for m in ff.moves(k)) or refuses(a, "swap")
+                or ff.pokemon[k].get("item") in keep):
+            continue
+        for f in ff.foes(k):
+            d = ff.ability(f)
+            if refuses(d, "swap") or ff.pokemon[f].get("item") in keep or (a is None and d is None):
+                continue
+            yield k, None, d
+            yield f, None, a
+
+
 # The type Camouflage gives on each battle terrain (data/terrain/to_type.h,
 # sTerrainCamouflageType); every terrain after the bridge's (the Elite
 # Four's rooms, the Distortion World) counts as the special one, Normal.
