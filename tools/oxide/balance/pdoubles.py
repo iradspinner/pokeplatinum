@@ -33,7 +33,7 @@ def prepare_story(fight, cap):
     partners = [ox[p]["party"] for p in fight.get("partner_ids", []) if p in ox]
     st = fs.prepare(fight["split"], parties, weather,
                     fs.trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
-                    partners=partners, doubles=True)
+                    partners=partners, doubles=True, terrain=calc.fight_terrain([t["tr_id"] for t in trainers]))
     st["battle"] = "tag"
     st["group_flags"] = [t["ai"] for t in trainers]
     st["partner_flags"] = ox[fight["partner_ids"][0]]["ai"] if fight.get("partner_ids") else 0
@@ -43,7 +43,7 @@ def prepare_story(fight, cap):
 def prepare_trainer(t, split, cap):
     """The fightsim state of one trainer's double battle."""
     st = fs.prepare(split, [t["party"]], calc.fight_weather([t["tr_id"]]), fs.trick_room_for([t["constant"]]),
-                    cap=cap, doubles=True)
+                    cap=cap, doubles=True, terrain=calc.fight_terrain([t["tr_id"]]))
     st["battle"] = "doubles"
     st["group_flags"] = [t["ai"]]
     return st

@@ -347,13 +347,16 @@ def use_move(b, att, mv, dfn, first):
     _use_move(b, att, mv, dfn, first)
     if b.st.get("gas"):
         fs.gas_update(b)
+    fs.move_end(b)          # a waiting Trace (fightsim.move_end)
 
 
 def _use_move(b, att, mv, dfn, first):
     if not att.alive():
         return
+    att.acted_turn = b.turn          # its action this turn has begun (fightsim._use_move)
     mv = fs.encored_move(att, mv)        # the Encore move, whatever was chosen (fightsim.encored_move)
-    att.last_hit_by = None           # cleared with its own action (fightsim.use_move)
+    att.conversion2_src = (att.last_hit_by, att.last_hit_type) if att.last_hit_by is not None else None
+    att.last_hit_by = None           # cleared with its own action, after Conversion 2 has read it (fightsim.use_move)
     att.destiny_bond = False         # and its Destiny Bond with it
     b.status_src = att               # a status this move gives comes from att (Synchronize)
     if att.recharge:
@@ -536,6 +539,8 @@ def attack(b, att, mv, dfn, first):
     b.hits_landed = False                # a move of several hits that land_hits landed
     if not dfn.alive():
         return
+    if fs.loses_type_fails(att, mv):
+        return                           # Burn Up or Double Shock without its type (fightsim.lose_type)
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
         return
     if mv.effect == fs.FUTURE_SIGHT:
@@ -763,12 +768,16 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
             fs.change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         fs.spin(b, att, dfn, e)
+    if e in fs.LOSES_TYPE:
+        fs.lose_type(att, fs.LOSES_TYPE[e])     # Burn Up and Double Shock, a Substitute's hit too (fightsim.lose_type)
     if e == "SWITCH_HIT":
         att.u_turn = True        # after a knockout and a Substitute's hit too (fightsim.attack)
     if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
         return
     if e == "SALT_CURE":
         dfn.salted = True        # as fightsim: salted once the hit lands, chance-free
+    if e == "CORE_ENFORCER" and getattr(dfn, "acted_turn", None) == b.turn:
+        fs.suppress(b, dfn)      # Core Enforcer on a target that has moved this turn (fightsim._after_attack)
     if e == "DECREASE_LAST_MOVE_PP_HIT" and dealt > 0:
         fs.spite(dfn, 3)         # Eerie Spell drains 3 PP after its hit, chance-free (fightsim._after_attack)
     chance = mv.chance or 0
@@ -837,6 +846,8 @@ def status_move(b, att, mv, dfn, first):
     if targets_foe and dfn.alive():
         if fs.protected(b, att, mv, dfn):
             return
+        if fs.status_out_of_reach(att, dfn, mv):
+            return               # a target on its hidden turn of Fly and the like (fightsim.status_out_of_reach)
         # Only Thunder Wave among the status moves meets the type chart
         # (BattleControllerPlayer_CheckTypeChart): it fails on a Ground type,
         # while Hypnosis sleeps a Dark type and Will-O-Wisp burns a Normal one.
@@ -882,6 +893,9 @@ def status_move(b, att, mv, dfn, first):
         fs.change_stages(att, fs.SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
+    elif e == "SP_ATK_DOWN_2_OPPOSITE_GENDER":
+        if fs.captivates(att, dfn) and not fs.sub_blocks(att, dfn, mv):
+            fs.lower_stats(b, att, dfn, fs.FOE_STAGES[e])     # Captivate, only across the genders (fightsim.captivates)
     elif e in fs.FOE_STAGES:
         if not fs.sub_blocks(att, dfn, mv):
             fs.lower_stats(b, att, dfn, fs.FOE_STAGES[e])     # stat by stat (fightsim.lower_stats)
@@ -1003,6 +1017,10 @@ def status_move(b, att, mv, dfn, first):
         fs.change_stages(dfn, {"atk": -2, "spa": -2})
     elif e == "PASS_STATS_AND_STATUS":
         att.baton = True
+    elif e in fs.FORM_MOVES:
+        # The status moves that change a type or an ability (fightsim.FORM_MOVES),
+        # a choice among several on the battle's dice.
+        fs.FORM_MOVES[e](b, att, mv, dfn, lambda kind, n: b.dice.choice(kind, n))
     elif e == "ALL_FAINT_3_TURNS":
         for m in (b.p.on_field() + b.b.on_field()):
             if m.alive() and not m.perish and (m.ability != "Soundproof" or fs.mold(att, m)):
@@ -1049,19 +1067,31 @@ def _name(x):
     return None if x is None else x.name
 
 
+def _form(m):
+    """A type or ability the battle changed (fightsim.set_types, set_ability,
+    suppress, Forecast): its types, whether its ability is suppressed, and
+    the ability its record holds. Empty while nothing has changed, so the
+    keys of a fight without these changes stay as they were."""
+    if not (getattr(m, "retyped", False) or getattr(m, "ability_was", None) is not None
+            or getattr(m, "suppressed", False)):
+        return ()
+    return ("form", tuple(m.types), m.suppressed, fs.raw_ability(m))
+
+
 def mon_key(m):
-    return (m.hp, m.status, m.sleep, m.toxic, tuple(m.stages.values()), m.confused, m.flinch,
-            m.seeded, m.yawn, m.protect_run, m.sub, _name(m.charging), m.recharge,
-            (m.lock[0].name, m.lock[1]) if m.lock else None, m.choice, m.taunt,
-            None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
-            m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
-            m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
-            m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False),
-            getattr(m, "disabled", None), getattr(m, "disabled_turns", 0), getattr(m, "nightmare", False),
-            getattr(m, "encore", None), getattr(m, "encore_turns", 0),
-            getattr(m, "protean_type", None), getattr(m, "protean_used", False),
-            # Last Resort works, and the AI rates it, by the moves used since it came in.
-            getattr(m, "last_resort_count", 0) if getattr(m, "last_resort", False) else None)
+    key = (m.hp, m.status, m.sleep, m.toxic, tuple(m.stages.values()), m.confused, m.flinch,
+           m.seeded, m.yawn, m.protect_run, m.sub, _name(m.charging), m.recharge,
+           (m.lock[0].name, m.lock[1]) if m.lock else None, m.choice, m.taunt,
+           None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
+           m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
+           m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
+           m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False),
+           getattr(m, "disabled", None), getattr(m, "disabled_turns", 0), getattr(m, "nightmare", False),
+           getattr(m, "encore", None), getattr(m, "encore_turns", 0),
+           getattr(m, "protean_type", None), getattr(m, "protean_used", False),
+           # Last Resort works, and the AI rates it, by the moves used since it came in.
+           getattr(m, "last_resort_count", 0) if getattr(m, "last_resort", False) else None)
+    return key + _form(m) if m.formed else key
 
 
 def side_key(s):

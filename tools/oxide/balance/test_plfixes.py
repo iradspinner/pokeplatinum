@@ -2652,6 +2652,489 @@ def burning_bulwark_checks():
              f"(Scovillain untouched, the Machop's status) {out}")]
 
 
+def trace_checks():
+    """Trace on the calculator's real rows and the readings' battle
+    (approved 2026-10-14): prepare rows Moira 1's Kirlia on a twin for the
+    one foe's ability that changes its rows (Bronzor's Levitate; Diglett's
+    Arena Trap changes none), and nothing more; leading against Bronzor it
+    traces Levitate, so Diglett's Earthquake misses it where it hit before.
+    A Synchronize Kirlia gets no twin and still takes the Earthquake."""
+    from .test_fightai import battle
+    foes = [("Bronzor", 26, "Levitate", ["Confusion"]), ("Diglett", 26, "Arena Trap", ["Earthquake"])]
+    quake = fs.move("Earthquake")
+    out = {}
+    for ability in ("Trace", "Synchronize"):
+        b = battle([("Kirlia", 26, ability, ["Psychic", "Magical Leaf"])], foes)
+        kirlia = b.b.cur()
+        twins = sorted(((b.st.get("form_twin") or {}).get(kirlia.key) or {}).get("twins", {}), key=repr)
+        out[ability] = (kirlia.ability, b.p.mons[0].revealed, twins,
+                        pl.damage_of(b, b.p.mons[1], kirlia, quake, False, True))
+    t, s = out["Trace"], out["Synchronize"]
+    ok = (t[0] == "Levitate" and t[1] == "Levitate" and t[2] == [(None, "Levitate")] and t[3] == 0
+          and s[0] == "Synchronize" and s[2] == [] and s[3] > 0)
+    return [("Trace: Moira 1's Kirlia copies Levitate on its twin's rows, and Earthquake misses it", ok,
+             f"(its ability, Bronzor's named, its twins, Diglett's Earthquake) with Trace {t}; with Synchronize {s}")]
+
+
+def mummy_checks():
+    """Mummy on the calculator's real rows and the readings' move (approved
+    2026-10-14): prepare rows a Huge Power Azumarill on its ability-blank
+    twin, as it can take Mummy from Argo 1's drafted Cofagrigus; its first
+    Aqua Tail into Cofagrigus gives it Mummy, and its next hits half as
+    hard."""
+    from .test_fightai import battle
+    b = battle([("Cofagrigus", 40, "Mummy", ["Will-O-Wisp", "Hex"])], [("Azumarill", 40, "Huge Power", ["Aqua Tail"])])
+    cof, azu = b.b.cur(), b.p.cur()
+    tail = fs.move("Aqua Tail")
+    twins = sorted(((b.st.get("form_twin") or {}).get(azu.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, azu, cof, tail, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    cof.hp = cof.maxhp * 10
+    pl.use_move(b, azu, tail, cof, True)
+    after = (azu.ability, azu.revealed, pl.damage_of(b, azu, cof, tail, False, True))
+    ok = twins == [(None, None)] and after[:2] == ("Mummy", "Mummy") and 1.8 <= before / max(1, after[2]) <= 2.2
+    return [("Mummy: Azumarill's Aqua Tail into Cofagrigus takes its Huge Power away", ok,
+             f"Azumarill's twins {twins}; Aqua Tail before {before}; after (its ability, named, Aqua Tail) {after}")]
+
+
+def wandering_spirit_checks():
+    """Wandering Spirit on the calculator's real rows and the readings' move
+    (approved 2026-10-14): a Huge Power Azumarill's Aqua Tail into a
+    Runerigus swaps their abilities, so Azumarill's next Aqua Tail hits
+    half as hard and Runerigus's Shadow Claw twice as hard, each on the
+    twin prepare made for the swap."""
+    from .test_fightai import battle
+    b = battle([("Runerigus", 40, "Wandering Spirit", ["Shadow Claw"])], [("Azumarill", 40, "Huge Power", ["Aqua Tail"])])
+    run, azu = b.b.cur(), b.p.cur()
+    tail, claw = fs.move("Aqua Tail"), fs.move("Shadow Claw")
+    before = (pl.damage_of(b, azu, run, tail, False, True), pl.damage_of(b, run, azu, claw, False, True))
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    run.hp = run.maxhp * 10
+    pl.use_move(b, azu, tail, run, True)
+    after = (azu.ability, run.ability, pl.damage_of(b, azu, run, tail, False, True),
+             pl.damage_of(b, run, azu, claw, False, True))
+    ok = (after[:2] == ("Wandering Spirit", "Huge Power") and 1.8 <= before[0] / max(1, after[2]) <= 2.2
+          and 1.8 <= after[3] / max(1, before[1]) <= 2.2)
+    return [("Wandering Spirit: Azumarill and Runerigus swap Huge Power on their twins' rows", ok,
+             f"before (Aqua Tail, Shadow Claw) {before}; after (Azumarill's ability, Runerigus's, Aqua Tail, "
+             f"Shadow Claw) {after}")]
+
+
+def color_change_checks():
+    """Color Change on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows Artist William's Kecleon on a twin of
+    each type its foes' moves hit with (Water and Electric here); after a
+    Squirtle's Water Gun it is a Water type, so a Pikachu's Thunderbolt hits
+    it twice as hard as before."""
+    from .test_fightai import battle
+    b = battle([("Kecleon", 32, "Color Change", ["Slash", "Shadow Claw"])],
+               [("Squirtle", 32, "Torrent", ["Water Gun"]), ("Pikachu", 32, "Static", ["Thunderbolt"])])
+    kec = b.b.cur()
+    squirtle, pika = b.p.mons
+    bolt = fs.move("Thunderbolt")
+    twins = sorted(((b.st.get("form_twin") or {}).get(kec.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, pika, kec, bolt, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    kec.hp = kec.maxhp * 10
+    pl.use_move(b, squirtle, fs.move("Water Gun"), kec, True)
+    after = (list(kec.types), pl.damage_of(b, pika, kec, bolt, False, True))
+    ok = (twins == [(("Electric",), None), (("Water",), None)] and after[0] == ["Water"]
+          and abs(after[1] - 2 * before) <= 2)
+    return [("Color Change: Kecleon turns Water after Water Gun, and Thunderbolt doubles on its twin's rows", ok,
+             f"twins {twins}; Thunderbolt before {before}; after Water Gun (types, Thunderbolt) {after}")]
+
+
+def forecast_checks():
+    """Forecast in the readings' battle (approved 2026-10-14): Camper
+    Zackary's Castform leading in a sunny fight is a Fire type from the
+    battle's start, as its rows already had it, so a Vulpix's Will-O-Wisp
+    cannot burn it; after a Rain Dance it is a Water type."""
+    from .test_fightai import battle
+    b = battle([("Castform", 24, "Forecast", ["Water Pulse", "Ember"])],
+               [("Vulpix", 24, "Flash Fire", ["Will-O-Wisp", "Rain Dance"])], weather="Sun")
+    cast, vulpix = b.b.cur(), b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    start = list(cast.types)
+    vulpix.stages["acc"] = 6
+    pl.use_move(b, vulpix, fs.move("Will-O-Wisp"), cast, True)
+    burned = cast.status
+    pl.use_move(b, vulpix, fs.move("Rain Dance"), cast, True)
+    rain = (b.weather, list(cast.types))
+    ok = start == ["Fire"] and burned is None and rain == ("Rain", ["Water"])
+    return [("Forecast: Castform is Fire in sun, unburnt by Will-O-Wisp, and Water after Rain Dance", ok,
+             f"types at the start {start}; status after Will-O-Wisp {burned}; after Rain Dance (weather, types) {rain}")]
+
+
+def soak_checks():
+    """Soak on the calculator's real rows and the readings' move (approved
+    2026-10-14): prepare rows a Geodude on a pure Water twin, as a Staryu's
+    Soak can make it one; after the Soak, Staryu's Thunderbolt hits it where
+    its Ground type took nothing, and Staryu's Water Gun lands at half
+    power where it landed four times over."""
+    from .test_fightai import battle
+    b = battle([("Geodude", 30, "Rock Head", ["Rock Throw"])],
+               [("Staryu", 30, "Illuminate", ["Soak", "Thunderbolt", "Water Gun"])])
+    geo, star = b.b.cur(), b.p.cur()
+    bolt, gun = fs.move("Thunderbolt"), fs.move("Water Gun")
+    twins = sorted(((b.st.get("form_twin") or {}).get(geo.key) or {}).get("twins", {}), key=repr)
+    before = (pl.damage_of(b, star, geo, bolt, False, True), pl.damage_of(b, star, geo, gun, False, True))
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, star, fs.move("Soak"), geo, True)
+    after = (list(geo.types), pl.damage_of(b, star, geo, bolt, False, True), pl.damage_of(b, star, geo, gun, False, True))
+    ok = (twins == [(("Water",), None)] and before[0] == 0 and after[0] == ["Water"] and after[1] > 0
+          and abs(after[2] * 8 - before[1]) <= 12)
+    return [("Soak: a Geodude made pure Water meets Thunderbolt and Water Gun on its Water twin", ok,
+             f"twins {twins}; before (Thunderbolt, Water Gun) {before}; after Soak (types, Thunderbolt, Water Gun) {after}")]
+
+
+def conversion_checks():
+    """Conversion on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows Scientist Travon's Porygon on a
+    Psychic and a Bug twin, the types of its Psybeam and Signal Beam; after
+    its Conversion, whichever it took, a Machop's Karate Chop lands at a
+    quarter of what it did on Porygon's Normal type."""
+    from .test_fightai import battle
+    b = battle([("Porygon", 24, "Analytic", ["Psybeam", "Signal Beam", "Conversion", "Recover"])],
+               [("Machop", 24, "Guts", ["Karate Chop"])])
+    pory, machop = b.b.cur(), b.p.cur()
+    chop = fs.move("Karate Chop")
+    twins = sorted(((b.st.get("form_twin") or {}).get(pory.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, machop, pory, chop, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, pory, fs.move("Conversion"), machop, True)
+    after = (list(pory.types), pl.damage_of(b, machop, pory, chop, False, True))
+    ok = (twins == [(("Bug",), None), (("Psychic",), None)] and after[0] in (["Bug"], ["Psychic"])
+          and abs(after[1] * 4 - before) <= 6)
+    return [("Conversion: Porygon takes one of its moves' types, and Karate Chop quarters on its twin", ok,
+             f"twins {twins}; Karate Chop before {before}; after Conversion (types, Karate Chop) {after}")]
+
+
+def conversion2_checks():
+    """Conversion 2 on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Porygon2 on a twin of each type
+    that resists a Machop's Karate Chop; after a Karate Chop and its
+    Conversion 2 it is one of them, and the next Karate Chop lands at half
+    or less of what it did."""
+    from .test_fightai import battle
+    b = battle([("Porygon2", 30, "Download", ["Conversion 2", "Tri Attack"])], [("Machop", 30, "Guts", ["Karate Chop"])])
+    pory, machop = b.b.cur(), b.p.cur()
+    chop = fs.move("Karate Chop")
+    twins = sorted(t[0][0] for t in ((b.st.get("form_twin") or {}).get(pory.key) or {}).get("twins", {}))
+    before = pl.damage_of(b, machop, pory, chop, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pory.hp = pory.maxhp * 10
+    pl.use_move(b, machop, chop, pory, True)
+    pl.use_move(b, pory, fs.move("Conversion 2"), machop, False)
+    after = (list(pory.types), pl.damage_of(b, machop, pory, chop, False, True))
+    resist = ["Bug", "Fairy", "Flying", "Ghost", "Poison", "Psychic"]
+    ok = twins == resist and after[0][0] in resist and after[1] * 2 <= before
+    return [("Conversion 2: Porygon2 takes a type that resists Karate Chop, on its twin's rows", ok,
+             f"twins {twins}; Karate Chop before {before}; after (types, Karate Chop) {after}")]
+
+
+def camouflage_checks():
+    """Camouflage on the calculator's real rows and the readings' move
+    (approved 2026-10-14): a fight's terrain comes from its trainer's map's
+    backdrop (Roark's gym a building, Spear Pillar a mountain, Route 202
+    plain ground), and prepare rows a Camouflage user on its twin of that
+    terrain's type; on Route 202's ground, a Staryu's Camouflage makes it a
+    Ground type, so a Pikachu's Thunderbolt then reads 0."""
+    by = {t["constant"]: t["tr_id"] for t in data.oxide_trainers().values()}
+    terrains = tuple(calc_terrain([by[c]]) for c in ("TRAINER_LEADER_ROARK", "TRAINER_COMMANDER_MARS_SPEAR_PILLAR",
+                                                   "TRAINER_YOUNGSTER_TRISTAN"))
+
+    def rec(sp, ab, mv):
+        return {"species": sp, "level": 30, "ability": ab, "item": None, "nature": "Hardy", "ivs": IV, "evs": EV,
+                "moves": mv}
+    side = [dict(rec("Staryu", "Illuminate", ["Camouflage", "Water Gun"]), constant="SPECIES_STARYU", how="test",
+                 fill=False)]
+    st = fs.prepare("Gardenia", [[rec("Pikachu", "Static", ["Thunderbolt"])]], None, given_side=side,
+                    terrain=terrains[2])
+    b = pl.make_battle(st, ["p0"], st["bosses"][0], 7, 0)
+    star, pika = b.p.cur(), b.b.cur()
+    bolt = fs.move("Thunderbolt")
+    twins = sorted(((st.get("form_twin") or {}).get(star.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, pika, star, bolt, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, star, fs.move("Camouflage"), pika, True)
+    after = (list(star.types), pl.damage_of(b, pika, star, bolt, False, True))
+    ok = (terrains == ("TERRAIN_BUILDING", "TERRAIN_MOUNTAIN", "TERRAIN_PLAIN") and twins == [(("Ground",), None)]
+          and before > 0 and after == (["Ground"], 0))
+    return [("Camouflage: Staryu takes Route 202's Ground type, and Thunderbolt then misses it", ok,
+             f"terrains (Roark, Spear Pillar, Route 202) {terrains}; twins {twins}; Thunderbolt before {before}; "
+             f"after Camouflage (types, Thunderbolt) {after}")]
+
+
+def burn_up_checks():
+    """Burn Up on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Ponyta on its typeless twins, as
+    its Burn Up can leave it with no type; after one Burn Up into a
+    Squirtle, the Squirtle's Water Gun lands at half what it did on the Fire
+    type, and a second Burn Up fails."""
+    from .test_fightai import battle
+    b = battle([("Squirtle", 30, "Torrent", ["Water Gun"])], [("Ponyta", 30, "Run Away", ["Burn Up"])])
+    squirtle, pony = b.b.cur(), b.p.cur()
+    gun = fs.move("Water Gun")
+    twins = sorted(((b.st.get("form_twin") or {}).get(pony.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, squirtle, pony, gun, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    squirtle.hp = squirtle.maxhp * 10
+    pl.use_move(b, pony, fs.move("Burn Up"), squirtle, True)
+    first = squirtle.maxhp * 10 - squirtle.hp
+    pl.use_move(b, pony, fs.move("Burn Up"), squirtle, True)
+    second = squirtle.maxhp * 10 - squirtle.hp - first
+    after = (list(pony.types), pl.damage_of(b, squirtle, pony, gun, False, True))
+    ok = (twins == [(("???",), None)] and first > 0 and second == 0 and after[0] == ["???"]
+          and after[1] is not None and abs(after[1] * 2 - before) <= 3)
+    return [("Burn Up: Ponyta loses its Fire type, then Water Gun halves and a second Burn Up fails", ok,
+             f"twins {twins}; Water Gun before {before}; the two Burn Ups' damage ({first}, {second}); "
+             f"after (types, Water Gun) {after}")]
+
+
+def double_shock_checks():
+    """Double Shock on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Pawmot on a Fighting twin, its Volt
+    Absorb kept, as its Double Shock can leave it Fighting alone; after one
+    into a Squirtle, the Squirtle's Earthquake lands at half what it did on
+    the Electric type, and a second Double Shock fails."""
+    from .test_fightai import battle
+    b = battle([("Squirtle", 40, "Torrent", ["Earthquake"])], [("Pawmot", 40, "Volt Absorb", ["Double Shock"])])
+    squirtle, paw = b.b.cur(), b.p.cur()
+    quake = fs.move("Earthquake")
+    twins = sorted(((b.st.get("form_twin") or {}).get(paw.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, squirtle, paw, quake, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    squirtle.hp = squirtle.maxhp * 10
+    pl.use_move(b, paw, fs.move("Double Shock"), squirtle, True)
+    first = squirtle.maxhp * 10 - squirtle.hp
+    pl.use_move(b, paw, fs.move("Double Shock"), squirtle, True)
+    second = squirtle.maxhp * 10 - squirtle.hp - first
+    after = (list(paw.types), pl.damage_of(b, squirtle, paw, quake, False, True))
+    ok = (twins == [(("Fighting",), "Volt Absorb")] and first > 0 and second == 0 and after[0] == ["Fighting"]
+          and after[1] is not None and abs(after[1] * 2 - before) <= 3)
+    return [("Double Shock: Pawmot loses its Electric type, so Earthquake halves and a second fails", ok,
+             f"twins {twins}; Earthquake before {before}; the two Double Shocks' damage ({first}, {second}); "
+             f"after (types, Earthquake) {after}")]
+
+
+def skill_swap_checks():
+    """Skill Swap on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Sylveon on a Levitate twin and a
+    trainer's Bronzor on an ability-blank one, as a swap between them can
+    make; after Sylveon's Skill Swap its Earthquake reaches Bronzor, where
+    it took nothing, and the Bronzor's Earthquake no longer reaches it."""
+    from .test_fightai import battle
+    b = battle([("Bronzor", 30, "Levitate", ["Earthquake"])], [("Sylveon", 30, "Cute Charm", ["Skill Swap", "Earthquake"])])
+    bronzor, syl = b.b.cur(), b.p.cur()
+    quake = fs.move("Earthquake")
+    twins = {m.species: sorted(((b.st.get("form_twin") or {}).get(m.key) or {}).get("twins", {}), key=repr)
+             for m in (bronzor, syl)}
+    before = (pl.damage_of(b, syl, bronzor, quake, False, True), pl.damage_of(b, bronzor, syl, quake, False, True))
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, syl, fs.move("Skill Swap"), bronzor, True)
+    after = (syl.ability, bronzor.ability, pl.damage_of(b, syl, bronzor, quake, False, True),
+             pl.damage_of(b, bronzor, syl, quake, False, True))
+    ok = (twins == {"Bronzor": [(None, None)], "Sylveon": [(None, "Levitate")]} and before[0] == 0 and before[1] > 0
+          and after[:2] == ("Levitate", "Cute Charm") and after[2] > 0 and after[3] == 0)
+    return [("Skill Swap: Sylveon takes Bronzor's Levitate, on both twins' rows", ok,
+             f"twins {twins}; Earthquake before (Sylveon's, Bronzor's) {before}; after (Sylveon's ability, "
+             f"Bronzor's, the two Earthquakes) {after}")]
+
+
+def role_play_checks():
+    """Role Play on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a trainer's Soundproof Mr. Mime on a
+    twin for each foe's ability it could copy whose rows differ from its own
+    (a Bronzor's Levitate, and a Diglett's Arena Trap, which would leave it
+    without Soundproof); after its Role Play on Bronzor, the Diglett's
+    Earthquake takes nothing from it, where it hit."""
+    from .test_fightai import battle
+    b = battle([("Mr. Mime", 30, "Soundproof", ["Role Play", "Psychic"])],
+               [("Bronzor", 30, "Levitate", ["Confusion"]), ("Diglett", 30, "Arena Trap", ["Earthquake"])])
+    mime = b.b.cur()
+    bronzor, dig = b.p.mons
+    quake = fs.move("Earthquake")
+    twins = sorted(((b.st.get("form_twin") or {}).get(mime.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, dig, mime, quake, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, mime, fs.move("Role Play"), bronzor, True)
+    after = (mime.ability, pl.damage_of(b, dig, mime, quake, False, True))
+    ok = twins == [(None, "Levitate"), (None, None)] and before > 0 and after == ("Levitate", 0)
+    return [("Role Play: Mr. Mime copies Bronzor's Levitate, and Earthquake misses it on its twin", ok,
+             f"twins {twins}; Earthquake before {before}; after Role Play (its ability, Earthquake) {after}")]
+
+
+def entrainment_checks():
+    """Entrainment on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a trainer's Bronzor on its
+    ability-blank twin, as a Swarm Leavanny's Entrainment can give it Swarm,
+    which changes no row; after the Entrainment the Leavanny's Earthquake
+    reaches the Bronzor, which its Levitate had kept off."""
+    from .test_fightai import battle
+    b = battle([("Bronzor", 30, "Levitate", ["Confusion"])], [("Leavanny", 30, "Swarm", ["Entrainment", "Earthquake"])])
+    bronzor, lea = b.b.cur(), b.p.cur()
+    quake = fs.move("Earthquake")
+    twins = sorted(((b.st.get("form_twin") or {}).get(bronzor.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, lea, bronzor, quake, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, lea, fs.move("Entrainment"), bronzor, True)
+    after = (bronzor.ability, pl.damage_of(b, lea, bronzor, quake, False, True))
+    ok = twins == [(None, None)] and before == 0 and after[0] == "Swarm" and after[1] > 0
+    return [("Entrainment: a Bronzor given Swarm loses Levitate on its twin's rows", ok,
+             f"twins {twins}; Earthquake before {before}; after Entrainment (its ability, Earthquake) {after}")]
+
+
+def worry_seed_checks():
+    """Worry Seed on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Levitate Bronzor on its
+    ability-blank twin, as Lady Melissa's Cherrim's Worry Seed can give it
+    Insomnia; after it, the Cherrim's Earthquake reaches the Bronzor, and
+    a sleeping Bronzor wakes."""
+    from .test_fightai import battle
+    b = battle([("Cherrim", 30, "Flower Gift", ["Worry Seed", "Earthquake"])], [("Bronzor", 30, "Levitate", ["Confusion"])])
+    cherrim, bronzor = b.b.cur(), b.p.cur()
+    quake = fs.move("Earthquake")
+    twins = sorted(((b.st.get("form_twin") or {}).get(bronzor.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, cherrim, bronzor, quake, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    bronzor.status, bronzor.sleep = "slp", 3
+    pl.use_move(b, cherrim, fs.move("Worry Seed"), bronzor, True)
+    after = (bronzor.ability, bronzor.status, pl.damage_of(b, cherrim, bronzor, quake, False, True))
+    ok = twins == [(None, None)] and before == 0 and after[:2] == ("Insomnia", None) and after[2] > 0
+    return [("Worry Seed: a Bronzor given Insomnia wakes and loses Levitate on its twin's rows", ok,
+             f"twins {twins}; Earthquake before {before}; after Worry Seed (its ability, status, Earthquake) {after}")]
+
+
+def gastro_acid_checks():
+    """Gastro Acid on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Levitate Bronzor on its
+    ability-blank twin, as Pkmn Ranger Ashlee's Arbok's Gastro Acid can
+    suppress it; after it, the Arbok's Earthquake reaches the Bronzor."""
+    from .test_fightai import battle
+    b = battle([("Arbok", 30, "Intimidate", ["Gastro Acid", "Earthquake"])], [("Bronzor", 30, "Levitate", ["Confusion"])])
+    arbok, bronzor = b.b.cur(), b.p.cur()
+    quake = fs.move("Earthquake")
+    twins = sorted(((b.st.get("form_twin") or {}).get(bronzor.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, arbok, bronzor, quake, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, arbok, fs.move("Gastro Acid"), bronzor, True)
+    after = (bronzor.ability, getattr(bronzor, "suppressed", False), pl.damage_of(b, arbok, bronzor, quake, False, True))
+    ok = twins == [(None, None)] and before == 0 and after[:2] == (None, True) and after[2] > 0
+    return [("Gastro Acid: a suppressed Bronzor loses Levitate on its twin's rows", ok,
+             f"twins {twins}; Earthquake before {before}; after Gastro Acid (ability, suppressed, Earthquake) {after}")]
+
+
+def core_enforcer_checks():
+    """Core Enforcer on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Levitate Bronzor on its
+    ability-blank twin, as a Kingdra's Core Enforcer can suppress it; once
+    the Bronzor has moved, the Kingdra's Core Enforcer takes its Levitate,
+    and the Kingdra's Earthquake then reaches it."""
+    from .test_fightai import battle
+    b = battle([("Kingdra", 50, "Sniper", ["Core Enforcer", "Earthquake"])], [("Bronzor", 50, "Levitate", ["Confusion"])])
+    king, bronzor = b.b.cur(), b.p.cur()
+    quake = fs.move("Earthquake")
+    twins = sorted(((b.st.get("form_twin") or {}).get(bronzor.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, king, bronzor, quake, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    bronzor.hp = bronzor.maxhp * 10
+    pl.use_move(b, bronzor, fs.move("Confusion"), king, True)
+    pl.use_move(b, king, fs.move("Core Enforcer"), bronzor, False)
+    after = (bronzor.ability, pl.damage_of(b, king, bronzor, quake, False, True))
+    ok = twins == [(None, None)] and before == 0 and after[0] is None and after[1] > 0
+    return [("Core Enforcer: a Bronzor that has moved loses Levitate on its twin's rows", ok,
+             f"twins {twins}; Earthquake before {before}; after Core Enforcer (its ability, Earthquake) {after}")]
+
+
+def captivate_checks():
+    """Captivate in the readings' battle, on the genders prepare gives the
+    battle (approved 2026-10-14): a female trainer's Persian's Captivate
+    takes two stages of Sp. Atk off a male Bibarel and none off a female
+    one."""
+    def rec(sp, ab, mv, gender):
+        return {"species": sp, "level": 30, "ability": ab, "item": None, "nature": "Hardy", "ivs": IV, "evs": EV,
+                "moves": mv, "gender": gender}
+    side = [dict(rec("Bibarel", "Simple", ["Tackle"], g), constant="SPECIES_BIBAREL", how="test", fill=False)
+            for g in ("male", "female")]
+    st = fs.prepare("Roark", [[rec("Persian", "Limber", ["Captivate"], "female")]], None, given_side=side)
+    out = {}
+    for i, label in ((0, "male"), (1, "female")):
+        b = pl.make_battle(st, ["p0", "p1"], st["bosses"][0], 7, i)
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        persian, bib = b.b.cur(), b.p.cur()
+        bib.ability = None          # Simple would double the drop
+        pl.use_move(b, persian, fs.move("Captivate"), bib, True)
+        out[label] = (persian.gender, bib.gender, bib.stages["spa"])
+    ok = out == {"male": ("F", "M", -2), "female": ("F", "F", 0)}
+    return [("Captivate: a female Persian's lowers a male Bibarel's Sp. Atk and leaves a female's", ok,
+             f"(Persian's gender, Bibarel's, its Sp. Atk stage) {out}")]
+
+
+def vanished_status_checks():
+    """A status move into a target on its hidden turn, in the readings'
+    battle on the calculator's real rows (approved 2026-10-14): a trainer's
+    Staraptor takes Fly's first turn, and a Raichu's Thunder Wave aimed at it
+    then misses; the same Thunder Wave paralyses it once Fly has landed."""
+    from .test_fightai import battle
+    b = battle([("Staraptor", 30, "Reckless", ["Fly"])], [("Raichu", 40, "Lightning Rod", ["Thunder Wave"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    star, rai = b.b.cur(), b.p.cur()
+    pl.use_move(b, star, fs.move("Fly"), rai, True)
+    up = star.charging is not None
+    pl.use_move(b, rai, fs.move("Thunder Wave"), star, False)
+    missed = star.status
+    pl.use_move(b, star, star.charging, rai, True)
+    landed_fly = star.charging is None and rai.hp < rai.maxhp
+    pl.use_move(b, rai, fs.move("Thunder Wave"), star, False)
+    got = (up, missed, landed_fly, star.status)
+    return [("the readings' Thunder Wave misses a Staraptor in the air and paralyses it after", got ==
+             (True, None, True, "par"), f"(in the air, its status after, Fly landed, its status then) {got}")]
+
+
+def row_neutral_checks():
+    """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
+    on the calculator's real rows (2026-10-14): a Pokemon with each of them,
+    every one that some species has, reads exactly the rows and Speed of the
+    same Pokemon with the stand-in, both ways, over single-hit moves of
+    every kind (physical and special, contact and not, a sound move, a punch,
+    Fire, Water, Grass, Bug, Ground and Electric) at full HP, no status and
+    no stages. So a change between them, or to or from the stand-in, needs
+    no twin. And a fight with a Mummy holder twins only the holder's foes
+    with a contact move, not its partners."""
+    blob = fs.calc.blob()
+    have = {a for p in blob["poks"].values() for a in (p.get("abilities") or {}).values() if a}
+    neutral = sorted(fs.ROW_NEUTRAL & have)
+    moves = ["Flamethrower", "Surf", "Energy Ball", "X-Scissor", "Earthquake", "Thunder Punch", "Hyper Voice",
+             "Body Slam", "Aqua Jet"]
+
+    def rec(ab, i):
+        return {"constant": "SPECIES_SNORLAX", "species": "Snorlax", "how": "test", "level": 30, "nature": "Hardy",
+                "ivs": IV, "evs": EV, "ability": ab, "moves": moves, "fill": False, "label": f"Snorlax {i}"}
+    side = [rec(fs.WEATHER_STAND_IN, 0)] + [rec(ab, i + 1) for i, ab in enumerate(neutral)]
+    foe = {"species": "Machamp", "level": 30, "ability": "No Guard", "item": None, "nature": "Hardy", "ivs": IV,
+           "evs": EV, "moves": moves}
+    st = fs.prepare("Fantina", [[foe]], None, given_side=side)
+    rows, speed = st["rows"], st["speed"]
+
+    def rolls(a, d):
+        return {m: tuple(r.get("rolls") or ()) for m, r in rows[(None, a, d)]["moves"].items()}
+    differ = [ab for i, ab in enumerate(neutral, 1)
+              if rolls(f"p{i}", "b0.0") != rolls("p0", "b0.0") or rolls("b0.0", f"p{i}") != rolls("b0.0", "p0")
+              or speed[(None, f"p{i}")] != speed[(None, "p0")]]
+    from .test_fightai import battle
+    b = battle([("Cofagrigus", 40, "Mummy", ["Hex"]), ("Hitmonchan", 40, "Iron Fist", ["Mach Punch"])],
+               [("Azumarill", 40, "Huge Power", ["Aqua Tail"])])
+    twinned = sorted(b.st.get("form_twin") or {})
+    ok = len(neutral) >= 25 and differ == [] and twinned == ["p0"]
+    return [("the abilities twins need not carry change no row, and Mummy twins only its holder's contact foes", ok,
+             f"{len(neutral)} abilities checked, differing {differ}; twinned in a Mummy fight {twinned}")]
+
+
+def calc_terrain(tr_ids):
+    from . import calc
+    return getattr(calc, "fight_terrain", lambda _ids: None)(tr_ids)
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3162,6 +3645,26 @@ def main():
     results += water_bubble_checks()
     results += eerie_spell_checks()
     results += burning_bulwark_checks()
+    results += trace_checks()
+    results += mummy_checks()
+    results += wandering_spirit_checks()
+    results += color_change_checks()
+    results += forecast_checks()
+    results += soak_checks()
+    results += conversion_checks()
+    results += conversion2_checks()
+    results += camouflage_checks()
+    results += burn_up_checks()
+    results += double_shock_checks()
+    results += skill_swap_checks()
+    results += role_play_checks()
+    results += entrainment_checks()
+    results += worry_seed_checks()
+    results += gastro_acid_checks()
+    results += core_enforcer_checks()
+    results += captivate_checks()
+    results += vanished_status_checks()
+    results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

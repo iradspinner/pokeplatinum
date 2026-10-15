@@ -1295,6 +1295,665 @@ def check_protean(results):
                     f"Tackle) {changed}; after another Tackle {kept}; after leaving (types, spent, Ember) {back}"))
 
 
+def check_form_twins(results):
+    """The rows of a changed type or ability (batch 3's mechanism, approved
+    2026-10-14; prepare's form_twin, read by form_key): a Pokemon whose types
+    or ability the battle has changed meets moves, and attacks, on its twin
+    of that change, both ways, and takes its twin's Speed; both changed at
+    once with no twin for the pair, it reads the twin of its new types; left
+    with no type, it meets each move on the twin the move's type hits
+    neutrally and attacks on the one of another type than the move's;
+    leaving the field brings back its own types, ability and rows. A
+    suppressed Levitate holder reads its ability-blank twin."""
+    rows = {("p", "Tackle"): [20] * 16, ("p", "Ember"): [20] * 16, ("p", "Shadow Ball"): [0] * 16,
+            ("b", "Tackle"): [10] * 16, ("b", "Vine Whip"): [10] * 16}
+    b, p, foe = battle(["Tackle", "Ember", "Shadow Ball"], ["Tackle", "Vine Whip"], rows)
+    b.st["first_battle"] = True
+    foe.ability = "Levitate"
+    water, power, blank = "b0.0#fmWater@Levitate", "b0.0#fm@Huge Power", "b0.0#fm@"
+    normal, grass = "b0.0#fmNormal@Levitate", "b0.0#fmGrass@Levitate"
+    b.st["form_twin"] = {"b0.0": {"ability": "Levitate", "twins": {
+        (("Water",), "Levitate"): water, (None, "Huge Power"): power, (None, None): blank,
+        (("???",), "Levitate"): ((normal, ["Normal"]), (grass, ["Grass"]))}}}
+    for twin, mine, theirs, speed in ((water, 15, 12, 50), (power, 20, 30, 70), (blank, 25, 10, 50),
+                                      (normal, 22, 11, 50), (grass, 9, 14, 50)):
+        b.st["rows"][(None, "p0", twin)] = {"moves": {"Tackle": {"rolls": [mine] * 16},
+                                                     "Ember": {"rolls": [mine] * 16},
+                                                     "Shadow Ball": {"rolls": [0 if twin == normal else mine] * 16}}}
+        b.st["rows"][(None, twin, "p0")] = {"moves": {"Tackle": {"rolls": [theirs] * 16},
+                                                     "Vine Whip": {"rolls": [theirs] * 16}}}
+        b.st["speed"][(None, twin)] = speed
+    tackle, ember, ball, whip = (fs.move(n) for n in ("Tackle", "Ember", "Shadow Ball", "Vine Whip"))
+
+    def read():
+        return (b.damage(p, foe, tackle, roll=0), b.damage(foe, p, tackle, roll=0), b.row_speed(foe))
+    own = read()
+    fs.set_types(foe, ["Water"])
+    soaked = (list(foe.types), read())
+    fs.set_ability(b, foe, "Huge Power")
+    both = (foe.ability, foe.revealed, read())
+    foe.reset_volatile()
+    back = (list(foe.types), foe.ability, read())
+    fs.set_ability(b, foe, "Huge Power")
+    changed = read()
+    foe.reset_volatile()
+    fs.set_types(foe, ["???"])
+    typeless = (b.damage(p, foe, ember, roll=0), b.damage(p, foe, ball, roll=0),
+                b.damage(foe, p, tackle, roll=0), b.damage(foe, p, whip, roll=0))
+    foe.reset_volatile()
+    fs.suppress(b, foe)
+    blanked = (foe.ability, read())
+    foe.reset_volatile()
+    ok = (own == (20, 10, 50) and soaked == (["Water"], (15, 12, 50)) and both == ("Huge Power", "Huge Power", (15, 12, 50))
+          and back == (["Normal"], "Levitate", (20, 10, 50)) and changed == (20, 30, 70)
+          and typeless == (22, 9, 14, 11) and blanked == (None, (25, 10, 50)) and foe.ability == "Levitate")
+    results.append(("a changed type or ability reads its twin's rows and Speed until it leaves", ok,
+                    f"own (hit, hit back, Speed) {own}; Water {soaked}; Water and Huge Power {both}; after leaving "
+                    f"{back}; Huge Power alone {changed}; no type (Ember, Shadow Ball, its Tackle, its Vine Whip) "
+                    f"{typeless}; suppressed {blanked}"))
+
+
+def check_trace(results):
+    """Trace (approved 2026-10-14; SWITCH_IN_CHECK_STATE_TRACE,
+    ChooseTraceTarget, subscript_trace): once every lead is in, a Trace
+    lead copies the foe's Intimidate, which then goes off on the foe as the
+    foe's own goes off on it, and both abilities are named. A Trace lead
+    facing another Trace, which refuses, waits, and traces the Pokemon that
+    replaces it; leaving brings Trace back. A holder still waiting traces as
+    a move ends once its foe's ability can be copied. Under Neutralizing Gas
+    it waits, and traces once the gas has gone."""
+    mons = {"p0": (("Normal",), ["Tackle"]), "p1": (("Normal",), ["Tackle"]),
+            "b0.0": (("Normal",), ["Tackle"]), "b0.1": (("Normal",), ["Tackle"])}
+
+    def leads(p_ab, b_ab, p1_ab="Levitate", gas=False):
+        b = field(mons, {("b0.0", "p0"): {"Tackle": 10}, ("b0.0", "p1"): {"Tackle": 10}})
+        b.st["first_battle"] = True
+        b.st["gas"] = gas
+        b.p.mons[0].ability, b.p.mons[1].ability, b.b.mons[0].ability = p_ab, p1_ab, b_ab
+        fs.open_battle(b)
+        return b, b.p.mons[0], b.p.mons[1], b.b.mons[0]
+    b, dog, _p1, kir = leads("Intimidate", "Trace")
+    intimidated = (kir.ability, kir.revealed, dog.revealed, dog.stages["atk"], kir.stages["atk"])
+    b, ralts, p1, kir = leads("Trace", "Trace")
+    waiting = (kir.ability, ralts.ability)
+    fs.switch_in(b, b.p, 1)
+    replaced = kir.ability
+    fs.switch_in(b, b.b, 1)
+    left = (kir.ability, kir.traced)
+    b, ralts, _p1, kir = leads("Trace", "Trace")
+    fs.set_ability(b, ralts, "Static")       # its foe's ability can now be copied
+    fs.use_move(b, ralts, fs.move("Tackle"), kir, True)
+    after_move = kir.ability
+    b, weezing, p1, kir = leads("Neutralizing Gas", "Trace", p1_ab="Static", gas=True)
+    gassed = (kir.ability, kir.gas_stash)
+    fs.switch_in(b, b.p, 1)
+    cleared = kir.ability
+    ok = (intimidated == ("Intimidate", "Intimidate", "Intimidate", -1, -1) and waiting == ("Trace", "Trace")
+          and replaced == "Levitate" and left == ("Trace", False) and after_move == "Static"
+          and gassed == (None, "Trace") and cleared == "Static")
+    results.append(("Trace copies a foe's ability as the switch-in check runs", ok,
+                    f"against Intimidate (its ability, named, the foe's named, the foe's and its Attack) {intimidated}; "
+                    f"against Trace {waiting}, then the replacement's {replaced}, after leaving {left}; after a move "
+                    f"{after_move}; under the gas {gassed}, once it has gone {cleared}"))
+
+
+def check_mummy(results):
+    """Mummy (approved 2026-10-14; BattleSystem_TriggerAbilityOnHit,
+    subscript_mummy): a contact hit on its holder gives the attacker Mummy,
+    named, even when the hit knocks the holder out; a move without contact
+    does not, nor does a contact hit into an attacker with an Ability Shield
+    or one whose ability refuses (Multitype). The attacker then passes
+    Mummy on by the same rule. A Levitate attacker that takes Mummy reads
+    its ability-blank twin, so Earthquake reaches it; leaving brings
+    Levitate back."""
+    def hit(move="Tackle", ability="Levitate", item=None, hp=100):
+        rows = {("p", "Tackle"): [10] * 16, ("p", "Water Gun"): [10] * 16, ("b", "Earthquake"): [0] * 16}
+        b, p, foe = battle(["Tackle", "Water Gun"], ["Earthquake", "Tackle"], rows)
+        b.st["first_battle"] = True
+        p.ability, p.item, foe.ability = ability, item, "Mummy"
+        b.st["form_twin"] = {"p0": {"ability": "Levitate", "twins": {(None, None): "p0#ng"}}}
+        b.st["rows"][(None, "b0.0", "p0#ng")] = {"moves": {"Earthquake": {"rolls": [30] * 16},
+                                                         "Tackle": {"rolls": [10] * 16}}}
+        foe.hp = hp
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return b, p, foe
+    b, p, foe = hit()
+    took = (p.ability, p.revealed, b.damage(foe, p, fs.move("Earthquake"), roll=0))
+    fs.use_move(b, foe, fs.move("Tackle"), p, True)          # the holder's Tackle meets Mummy on p: nothing new
+    p.reset_volatile()
+    back = (p.ability, b.damage(foe, p, fs.move("Earthquake"), roll=0))
+    fainted = hit(hp=5)[1].ability
+    water = hit("Water Gun")[1].ability
+    shield = hit(item="Ability Shield")[1].ability
+    multitype = hit(ability="Multitype")[1].ability
+    # The attacker that took Mummy passes it on to the next contact attacker.
+    b, p, foe = hit()
+    foe.ability = "Static"
+    fs.use_move(b, foe, fs.move("Tackle"), p, True)
+    passed = foe.ability
+    ok = (took == ("Mummy", "Mummy", 30) and back == ("Levitate", 0) and fainted == "Mummy"
+          and water == "Levitate" and shield == "Levitate" and multitype == "Multitype" and passed == "Mummy")
+    results.append(("Mummy passes itself to a contact attacker", ok,
+                    f"after Tackle (ability, named, Earthquake on it) {took}; after leaving {back}; the hit that "
+                    f"faints the holder {fainted}; Water Gun {water}; an Ability Shield {shield}; Multitype {multitype}; "
+                    f"passed on {passed}"))
+
+
+def check_wandering_spirit(results):
+    """Wandering Spirit (approved 2026-10-14; BattleSystem_TriggerAbilityOnHit,
+    subscript_wandering_spirit): a contact hit on its holder swaps the two
+    abilities, both named, and the holder then meets moves on its twin for
+    the attacker's Levitate; no swap for a move without contact, an Ability
+    Shield on either side, or an attacker whose ability refuses a swap
+    (Wonder Guard). A holder given Truant before it has moved this turn
+    still moves, and loafs on the next."""
+    def hit(move="Tackle", ability="Levitate", item=None, foe_item=None):
+        rows = {("p", "Tackle"): [10] * 16, ("p", "Water Gun"): [10] * 16, ("b", "Earthquake"): [30] * 16}
+        b, p, foe = battle(["Tackle", "Water Gun"], ["Earthquake"], rows)
+        b.st["first_battle"] = True
+        p.ability, p.item, foe.ability, foe.item = ability, item, "Wandering Spirit", foe_item
+        b.st["form_twin"] = {"b0.0": {"ability": None, "twins": {(None, "Levitate"): "b0.0#fm@Levitate"}}}
+        b.st["rows"][(None, "p0", "b0.0#fm@Levitate")] = {"moves": {"Tackle": {"rolls": [10] * 16}}}
+        b.st["rows"][(None, "b0.0#fm@Levitate", "p0")] = {"moves": {"Earthquake": {"rolls": [0] * 16}}}
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return b, p, foe
+    b, p, foe = hit()
+    swapped = (p.ability, foe.ability, p.revealed, foe.revealed, b.damage(foe, p, fs.move("Earthquake"), roll=0))
+    water = hit("Water Gun")[2].ability
+    shields = (hit(item="Ability Shield")[2].ability, hit(foe_item="Ability Shield")[2].ability)
+    guard = hit(ability="Wonder Guard")[2].ability
+    b, p, foe = hit(ability="Truant")
+    loafs = []
+    for _ in range(3):
+        fs.use_move(b, foe, fs.move("Earthquake"), p, False)
+        loafs.append(p.hp)
+        fs.end_of_turn(b)
+    ok = (swapped == ("Wandering Spirit", "Levitate", "Wandering Spirit", "Levitate", 0) and water == "Wandering Spirit"
+          and shields == ("Wandering Spirit", "Wandering Spirit") and guard == "Wandering Spirit"
+          and foe.ability == "Truant" and loafs == [70, 70, 40])
+    results.append(("Wandering Spirit swaps abilities with a contact attacker", ok,
+                    f"(attacker's, holder's, both named, Earthquake from the holder) {swapped}; Water Gun {water}; "
+                    f"Ability Shields {shields}; Wonder Guard {guard}; the attacker's HP as the holder, now Truant, "
+                    f"moves three turns {loafs}"))
+
+
+def check_color_change(results):
+    """Color Change (approved 2026-10-14; BattleSystem_TriggerAbilityOnHit,
+    subscript_color_change): a damaging hit makes its holder the move's type
+    as the battle records it, named, and its rows are then its twin's of
+    that type; Weather Ball in rain makes it Water, and a Normalize
+    attacker's Water Gun makes it Normal. Nothing for a move of its own
+    type, a status move, Struggle, a hit Sheer Force boosts, or the hit
+    that knocks it out; leaving brings its own type back."""
+    moves = ["Water Gun", "Tackle", "Ember", "Weather Ball", "Struggle", "Thunder Wave"]
+
+    def hit(move, ability=None, weather=None, hp=100, types=("Fire",)):
+        b, p, foe = battle(moves, ["Tackle"], {("p", m): [10] * 16 for m in moves}, b_types=types)
+        b.st["first_battle"] = True
+        p.ability, foe.ability, b.weather, foe.hp = ability, "Color Change", weather, hp
+        b.st["form_twin"] = {"b0.0": {"ability": None, "twins": {(("Water",), None): "b0.0#fmWater@"}}}
+        b.st["rows"][(None, "p0", "b0.0#fmWater@")] = {"moves": {"Water Gun": {"rolls": [5] * 16}}}
+        b.st["rows"][(None, "b0.0#fmWater@", "p0")] = {"moves": {"Tackle": {"rolls": [10] * 16}}}
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return b, p, foe
+    b, p, foe = hit("Water Gun")
+    water = (list(foe.types), foe.revealed, b.damage(p, foe, fs.move("Water Gun"), roll=0))
+    foe.reset_volatile()
+    back = list(foe.types)
+    got = {"Weather Ball in rain": hit("Weather Ball", weather="Rain")[2].types,
+           "Normalize's Water Gun": hit("Water Gun", ability="Normalize")[2].types,
+           "Ember": hit("Ember")[2].types, "Thunder Wave": hit("Thunder Wave")[2].types,
+           "Struggle": hit("Struggle")[2].types, "Sheer Force's Ember": hit("Ember", ability="Sheer Force",
+                                                                            types=("Normal",))[2].types,
+           "the knockout": hit("Water Gun", hp=5)[2].types}
+    want = {"Weather Ball in rain": ["Water"], "Normalize's Water Gun": ["Normal"], "Ember": ["Fire"],
+            "Thunder Wave": ["Fire"], "Struggle": ["Fire"], "Sheer Force's Ember": ["Normal"], "the knockout": ["Fire"]}
+    ok = water == (["Water"], "Color Change", 5) and back == ["Fire"] and got == want
+    results.append(("Color Change takes the type of the move that hit its holder", ok,
+                    f"after Water Gun (types, named, Water Gun again) {water}; after leaving {back}; {got}"))
+
+
+def check_forecast(results):
+    """Forecast (approved 2026-10-14; BattleSystem_TriggerFormChange): as a
+    move ends, Castform takes the weather's type, Fire in sun (so no burn
+    lands), Water in rain, Ice in hail (so the hail spares it), and Normal
+    again in sand, with no weather, or with Cloud Nine on the field; a
+    Castform without Forecast keeps its type, and leaving brings Normal
+    back."""
+    def turn(weather, ability="Forecast", foe_ability=None):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        b.st["first_battle"] = True
+        foe.species, foe.ability, p.ability, b.weather = "Castform", ability, foe_ability, weather
+        fs.use_move(b, p, fs.move("Tackle"), foe, True)
+        return b, foe
+    got = {w or "none": turn(w)[1].types for w in ("Sun", "Rain", "Hail", "Sand", None)}
+    got["sun, Cloud Nine"] = turn("Sun", foe_ability="Cloud Nine")[1].types
+    got["sun, no Forecast"] = turn("Sun", ability=None)[1].types
+    b, cast = turn("Sun")
+    burns = fs.can_status(b, cast, "brn")
+    b, cast = turn("Hail")
+    cast.hp = 50
+    fs.end_of_turn(b)
+    hail = cast.hp
+    cast.reset_volatile()
+    left = cast.types
+    want = {"Sun": ["Fire"], "Rain": ["Water"], "Hail": ["Ice"], "Sand": ["Normal"], "none": ["Normal"],
+            "sun, Cloud Nine": ["Normal"], "sun, no Forecast": ["Normal"]}
+    ok = got == want and not burns and hail == 50 and left == ["Normal"]
+    results.append(("Forecast gives Castform the weather's type", ok,
+                    f"types {got}; burnable in sun {burns}; HP after hail from 50 {hail}; after leaving {left}"))
+
+
+def check_soak(results):
+    """Soak (approved 2026-10-14; subscript_change_target_to_water_type): its
+    target becomes pure Water, a Water and Ground one too, and reads its
+    Water twin's rows; nothing through a Substitute, into Multitype, into a
+    pure Water target or into one in the air; leaving brings its own types
+    back."""
+    def soak(types=("Normal",), ability=None, sub=0, flying=False):
+        b, p, foe = battle(["Soak", "Tackle"], ["Tackle"], {("p", "Tackle"): [10] * 16}, b_types=types)
+        foe.ability, foe.sub = ability, sub
+        if flying:
+            foe.charging = fs.move("Fly")
+        b.st["form_twin"] = {"b0.0": {"ability": None, "twins": {(("Water",), None): "b0.0#fmWater@"}}}
+        b.st["rows"][(None, "p0", "b0.0#fmWater@")] = {"moves": {"Tackle": {"rolls": [7] * 16}}}
+        fs.status_move(b, p, fs.move("Soak"), foe, True)
+        return b, p, foe
+    b, p, foe = soak()
+    soaked = (list(foe.types), b.damage(p, foe, fs.move("Tackle"), roll=0))
+    foe.reset_volatile()
+    back = list(foe.types)
+    got = {"Water and Ground": soak(("Water", "Ground"))[2].types, "a Substitute": soak(sub=25)[2].types,
+           "Multitype": soak(ability="Multitype")[2].types, "pure Water": soak(("Water",))[2].types,
+           "in the air": soak(flying=True)[2].types}
+    want = {"Water and Ground": ["Water"], "a Substitute": ["Normal"], "Multitype": ["Normal"],
+            "pure Water": ["Water"], "in the air": ["Normal"]}
+    ok = soaked == (["Water"], 7) and back == ["Normal"] and got == want
+    results.append(("Soak makes its target pure Water", ok,
+                    f"soaked (types, Tackle on its twin) {soaked}; after leaving {back}; {got}"))
+
+
+def check_conversion(results):
+    """Conversion (approved 2026-10-14; BtlCmd_TryConversion): its user takes
+    the type of one of its other moves that it is not of already, at random
+    among them (Ember and Water Gun here, Tackle and Curse being Normal for
+    a Normal type), and reads its twin of that type; it fails on Multitype
+    and for a Ghost type whose other moves are Ghost ones, Curse counting as
+    Ghost there."""
+    def convert(types=("Normal",), moves=("Conversion", "Tackle", "Ember", "Water Gun", "Curse"), ability=None, seed=1):
+        b, p, foe = battle(list(moves), ["Tackle"], {("p", "Tackle"): [10] * 16}, p_types=types, seed=seed)
+        p.ability = ability
+        b.st["form_twin"] = {"p0": {"ability": None, "twins": {(("Fire",), None): "p0#fmFire@",
+                                                               (("Water",), None): "p0#fmWater@"}}}
+        b.st["rows"][(None, "p0#fmFire@", "b0.0")] = {"moves": {"Tackle": {"rolls": [6] * 16}}}
+        fs.status_move(b, p, fs.move("Conversion"), foe, True)
+        return b, p, foe
+    picked = collections.Counter(tuple(convert(seed=s)[1].types) for s in range(200))
+    b, p, foe = convert(moves=("Conversion", "Tackle", "Ember"))
+    fire = (list(p.types), b.damage(p, foe, fs.move("Tackle"), roll=0))
+    multitype = convert(ability="Multitype")[1].types
+    ghost = convert(types=("Ghost",), moves=("Conversion", "Curse", "Shadow Ball"))[1].types
+    ok = (set(picked) == {("Fire",), ("Water",)} and min(picked.values()) > 60 and fire == (["Fire"], 6)
+          and multitype == ["Normal"] and ghost == ["Ghost"])
+    results.append(("Conversion takes the type of another of its user's moves", ok,
+                    f"types over 200 uses {dict(picked)}; Ember alone (types, Tackle on the twin) {fire}; "
+                    f"Multitype {multitype}; a Ghost with Curse and Shadow Ball {ghost}"))
+
+
+def check_conversion2(results):
+    """Conversion 2 (approved 2026-10-14; BtlCmd_TryConversion2): after an
+    Ember, its user takes a type that resists Fire (Water, in this chart)
+    and reads its twin of it; it fails with no move aimed at it since it
+    last acted, once it has acted since that move, and on Multitype."""
+    def convert(hit_first=True, acted_between=False, ability=None):
+        rows = {("b", "Ember"): [10] * 16, ("b", "Tackle"): [10] * 16, ("p", "Tackle"): [10] * 16}
+        b, p, foe = battle(["Conversion 2", "Tackle"], ["Ember", "Tackle"], rows)
+        b.st["first_battle"] = True
+        p.ability = ability
+        b.st["form_twin"] = {"p0": {"ability": None, "twins": {(("Water",), None): "p0#fmWater@"}}}
+        b.st["rows"][(None, "b0.0", "p0#fmWater@")] = {"moves": {"Ember": {"rolls": [5] * 16}}}
+        if hit_first:
+            fs.use_move(b, foe, fs.move("Ember"), p, True)
+        if acted_between:
+            fs.use_move(b, p, fs.move("Tackle"), foe, True)
+        fs.use_move(b, p, fs.move("Conversion 2"), foe, False)
+        return b, p, foe
+    b, p, foe = convert()
+    water = (list(p.types), b.damage(foe, p, fs.move("Ember"), roll=0))
+    got = {"no move aimed at it": convert(hit_first=False)[1].types,
+           "after acting since": convert(acted_between=True)[1].types,
+           "Multitype": convert(ability="Multitype")[1].types}
+    want = {"no move aimed at it": ["Normal"], "after acting since": ["Normal"], "Multitype": ["Normal"]}
+    ok = water == (["Water"], 5) and got == want
+    results.append(("Conversion 2 takes a type that resists the last move aimed at its user", ok,
+                    f"after Ember (types, Ember on the twin) {water}; {got}"))
+
+
+def check_camouflage(results):
+    """Camouflage (approved 2026-10-14; BtlCmd_TryCamouflage): its user takes
+    its terrain's type, Normal indoors and Rock on a mountain, and is marked
+    so for the trainer's AI, which then refuses a second Camouflage; it
+    fails on a user of that type already and on Multitype; leaving brings
+    its own type back."""
+    def camo(types=("Fire",), terrain=None, ability=None):
+        b, p, foe = battle(["Camouflage", "Tackle"], ["Tackle"], {}, p_types=types)
+        if terrain:
+            b.st["camouflage"] = fs.camouflage_type(terrain)
+        p.ability = ability
+        fs.status_move(b, p, fs.move("Camouflage"), foe, True)
+        return b, p, foe
+    b, p, foe = camo()
+    indoors = (list(p.types), p.camouflaged, fightai.basic(b, p, foe, fs.move("Camouflage"), None))
+    p.reset_volatile()
+    back = (list(p.types), p.camouflaged)
+    got = {"a mountain": camo(terrain="TERRAIN_MOUNTAIN")[1].types, "a Normal user indoors": camo(("Normal",))[1].types,
+           "Multitype": camo(ability="Multitype")[1].types, "the Elite Four's room": camo(terrain="TERRAIN_AARON")[1].types}
+    want = {"a mountain": ["Rock"], "a Normal user indoors": ["Normal"], "Multitype": ["Fire"],
+            "the Elite Four's room": ["Normal"]}
+    ok = indoors == (["Normal"], True, -10) and back == (["Fire"], False) and got == want
+    results.append(("Camouflage takes its terrain's type", ok,
+                    f"indoors (types, marked, the AI's score for another) {indoors}; after leaving {back}; {got}"))
+
+
+def check_burn_up(results):
+    """Burn Up (approved 2026-10-14; effect script 393,
+    subscript_remove_user_fire_type): once it hits, a Substitute too, a pure
+    Fire user is left with no type and reads its typeless twin, and a Fire
+    and Flying one is left Flying; a second Burn Up then fails; one that
+    misses its target in the air, or meets Protect, spends nothing; leaving
+    brings Fire back."""
+    def burn(types=("Fire",), sub=0, guard=None):
+        rows = {("p", "Burn Up"): [20] * 16, ("b", "Tackle"): [10] * 16}
+        b, p, foe = battle(["Burn Up"], ["Tackle"], rows, p_types=types)
+        b.st["first_battle"] = True
+        foe.sub = sub
+        if guard == "Protect":
+            foe.protecting = True
+        elif guard == "Fly":
+            foe.charging = fs.move("Fly")
+        b.st["form_twin"] = {"p0": {"ability": None, "twins": {
+            (("???",), None): (("p0#fmNormal@", ["Normal"]), ("p0#fmGrass@", ["Grass"]))}}}
+        b.st["rows"][(None, "b0.0", "p0#fmNormal@")] = {"moves": {"Tackle": {"rolls": [7] * 16}}}
+        fs.use_move(b, p, fs.move("Burn Up"), foe, True)
+        return b, p, foe
+    b, p, foe = burn()
+    spent = (list(p.types), foe.hp, b.damage(foe, p, fs.move("Tackle"), roll=0))
+    fs.use_move(b, p, fs.move("Burn Up"), foe, True)
+    again = foe.hp
+    p.reset_volatile()
+    back = list(p.types)
+    got = {"Fire and Flying": burn(("Fire", "Flying"))[1].types, "a Substitute": burn(sub=25)[1].types,
+           "Protect": burn(guard="Protect")[1].types, "Fly": burn(guard="Fly")[1].types}
+    want = {"Fire and Flying": ["Flying"], "a Substitute": ["???"], "Protect": ["Fire"], "Fly": ["Fire"]}
+    ok = spent == (["???"], 80, 7) and again == 80 and back == ["Fire"] and got == want
+    results.append(("Burn Up takes its user's Fire type away, and fails without it", ok,
+                    f"after one (types, the target's HP, Tackle on the typeless twin) {spent}; the target's HP after "
+                    f"a second {again}; after leaving {back}; {got}"))
+
+
+def check_double_shock(results):
+    """Double Shock (approved 2026-10-14; effect script 394,
+    subscript_remove_user_electric_type): it lands once a stay, an Electric
+    and Fighting user then left Fighting and a pure Electric one with no
+    type, so the second fails; leaving brings Electric back, and with it the
+    move."""
+    def shock(types):
+        b, p, foe = battle(["Double Shock"], ["Tackle"], {("p", "Double Shock"): [20] * 16}, p_types=types)
+        b.st["first_battle"] = True
+        fs.use_move(b, p, fs.move("Double Shock"), foe, True)
+        return b, p, foe
+    b, p, foe = shock(("Electric", "Fighting"))
+    first = (list(p.types), foe.hp)
+    fs.use_move(b, p, fs.move("Double Shock"), foe, True)
+    second = foe.hp
+    p.reset_volatile()
+    fs.use_move(b, p, fs.move("Double Shock"), foe, True)
+    back = foe.hp
+    pure = shock(("Electric",))[1].types
+    ok = first == (["Fighting"], 80) and second == 80 and back == 60 and pure == ["???"]
+    results.append(("Double Shock lands once a stay, taking its user's Electric type away", ok,
+                    f"after one (types, the target's HP) {first}; after a second {second}; after leaving and a "
+                    f"third {back}; a pure Electric user {pure}"))
+
+
+def check_skill_swap(results):
+    """Skill Swap (approved 2026-10-14; subscript_exchange_abilities): a
+    Levitate user and a Static target swap, both named, and the target then
+    reads its Levitate twin, a Substitute notwithstanding; nothing when
+    either ability refuses (Wonder Guard), with an Ability Shield on
+    either, or into a target in the air; leaving brings each its own back."""
+    def swap(own="Levitate", theirs="Static", item=None, foe_item=None, sub=0, flying=False):
+        rows = {("p", "Earthquake"): [30] * 16}
+        b, p, foe = battle(["Skill Swap", "Earthquake"], ["Tackle"], rows)
+        p.ability, p.item, foe.ability, foe.item, foe.sub = own, item, theirs, foe_item, sub
+        if flying:
+            foe.charging = fs.move("Fly")
+        b.st["form_twin"] = {"b0.0": {"ability": None, "twins": {(None, "Levitate"): "b0.0#fm@Levitate"}}}
+        b.st["rows"][(None, "p0", "b0.0#fm@Levitate")] = {"moves": {"Earthquake": {"rolls": [0] * 16}}}
+        fs.status_move(b, p, fs.move("Skill Swap"), foe, True)
+        return b, p, foe
+    b, p, foe = swap(sub=25)
+    swapped = (p.ability, foe.ability, p.revealed, foe.revealed, b.damage(p, foe, fs.move("Earthquake"), roll=0))
+    p.reset_volatile()
+    foe.reset_volatile()
+    back = (p.ability, foe.ability)
+    got = {"Wonder Guard": swap(theirs="Wonder Guard")[2].ability, "its own Ability Shield": swap(item="Ability Shield")[2].ability,
+           "the target's Ability Shield": swap(foe_item="Ability Shield")[2].ability, "in the air": swap(flying=True)[2].ability}
+    want = {"Wonder Guard": "Wonder Guard", "its own Ability Shield": "Static", "the target's Ability Shield": "Static",
+            "in the air": "Static"}
+    ok = swapped == ("Static", "Levitate", "Static", "Levitate", 0) and back == ("Levitate", "Static") and got == want
+    results.append(("Skill Swap exchanges its user's and its target's abilities", ok,
+                    f"(user's, target's, both named, Earthquake on the target) {swapped}; after leaving {back}; "
+                    f"the target's ability {got}"))
+
+
+def check_role_play(results):
+    """Role Play (approved 2026-10-14; effect script 178,
+    subscript_copy_ability): its user takes the target's Levitate, both
+    named, and reads its twin for it, the target's Ability Shield and
+    Substitute notwithstanding; nothing when the target's ability refuses
+    (Wonder Guard) or is none, nor for a user with Multitype or an Ability
+    Shield; leaving brings its own back."""
+    def play(own="Static", theirs="Levitate", item=None, foe_item=None, sub=0):
+        b, p, foe = battle(["Role Play"], ["Earthquake"], {("b", "Earthquake"): [30] * 16})
+        p.ability, p.item, foe.ability, foe.item, foe.sub = own, item, theirs, foe_item, sub
+        b.st["form_twin"] = {"p0": {"ability": None, "twins": {(None, "Levitate"): "p0#fm@Levitate"}}}
+        b.st["rows"][(None, "b0.0", "p0#fm@Levitate")] = {"moves": {"Earthquake": {"rolls": [0] * 16}}}
+        fs.status_move(b, p, fs.move("Role Play"), foe, True)
+        return b, p, foe
+    b, p, foe = play(foe_item="Ability Shield", sub=25)
+    copied = (p.ability, p.revealed, foe.revealed, b.damage(foe, p, fs.move("Earthquake"), roll=0))
+    p.reset_volatile()
+    back = p.ability
+    got = {"Wonder Guard": play(theirs="Wonder Guard")[1].ability, "no ability": play(theirs=None)[1].ability,
+           "Multitype": play(own="Multitype")[1].ability, "its own Ability Shield": play(item="Ability Shield")[1].ability}
+    want = {"Wonder Guard": "Static", "no ability": "Static", "Multitype": "Multitype", "its own Ability Shield": "Static"}
+    ok = copied == ("Levitate", "Levitate", "Levitate", 0) and back == "Static" and got == want
+    results.append(("Role Play copies its target's ability", ok,
+                    f"(its ability, named, the target's named, Earthquake on it) {copied}; after leaving {back}; {got}"))
+
+
+def check_entrainment(results):
+    """Entrainment (approved 2026-10-14; subscript_entrainment): its target
+    takes the user's Static, named, and its Levitate is gone from its rows
+    (its blank twin's), so Earthquake reaches it; nothing through a
+    Substitute, into a Truant target, into one that has the ability
+    already, from a Wonder Guard user, or into an Ability Shield. A Truant
+    given to a target that has not moved yet this turn lets it move now
+    and makes it loaf on the next."""
+    def entrain(own="Static", theirs="Levitate", sub=0, foe_item=None):
+        rows = {("p", "Earthquake"): [0] * 16, ("b", "Tackle"): [10] * 16}
+        b, p, foe = battle(["Entrainment", "Earthquake"], ["Tackle"], rows)
+        p.ability, foe.ability, foe.sub, foe.item = own, theirs, sub, foe_item
+        b.st["form_twin"] = {"b0.0": {"ability": "Levitate", "twins": {(None, None): "b0.0#ng"}}}
+        b.st["rows"][(None, "p0", "b0.0#ng")] = {"moves": {"Earthquake": {"rolls": [30] * 16}}}
+        fs.use_move(b, p, fs.move("Entrainment"), foe, True)
+        return b, p, foe
+    b, p, foe = entrain()
+    given = (foe.ability, foe.revealed, b.damage(p, foe, fs.move("Earthquake"), roll=0))
+    foe.reset_volatile()
+    back = foe.ability
+    got = {"a Substitute": entrain(sub=25)[2].ability, "a Truant target": entrain(theirs="Truant")[2].ability,
+           "the same ability": entrain(theirs="Static")[2].ability, "Wonder Guard": entrain(own="Wonder Guard")[2].ability,
+           "an Ability Shield": entrain(foe_item="Ability Shield")[2].ability}
+    want = {"a Substitute": "Levitate", "a Truant target": "Truant", "the same ability": "Static",
+            "Wonder Guard": "Levitate", "an Ability Shield": "Levitate"}
+    b, p, foe = entrain(own="Truant")
+    hp = []
+    for _ in range(3):
+        fs.use_move(b, foe, fs.move("Tackle"), p, False)
+        hp.append(p.hp)
+        fs.end_of_turn(b)
+    ok = given == ("Static", "Static", 30) and back == "Levitate" and got == want and hp == [90, 90, 80]
+    results.append(("Entrainment gives its target the user's ability", ok,
+                    f"(target's ability, named, Earthquake on it) {given}; after leaving {back}; {got}; "
+                    f"the user's HP as a target given Truant moves three turns {hp}"))
+
+
+def check_worry_seed(results):
+    """Worry Seed (approved 2026-10-14; subscript_give_target_insomnia): a
+    sleeping Levitate target takes Insomnia, named, wakes, can be put to
+    sleep no more, and reads its ability-blank twin, so Earthquake reaches
+    it; nothing through a Substitute, into Truant or Multitype, or into an
+    Ability Shield."""
+    def seed(theirs="Levitate", sub=0, item=None):
+        rows = {("p", "Earthquake"): [0] * 16}
+        b, p, foe = battle(["Worry Seed", "Earthquake"], ["Tackle"], rows)
+        foe.ability, foe.sub, foe.item = theirs, sub, item
+        foe.status, foe.sleep = "slp", 3
+        b.st["form_twin"] = {"b0.0": {"ability": "Levitate", "twins": {(None, None): "b0.0#ng"}}}
+        b.st["rows"][(None, "p0", "b0.0#ng")] = {"moves": {"Earthquake": {"rolls": [30] * 16}}}
+        fs.use_move(b, p, fs.move("Worry Seed"), foe, True)
+        return b, p, foe
+    b, p, foe = seed()
+    took = (foe.ability, foe.revealed, foe.status, fs.can_status(b, foe, "slp"),
+            b.damage(p, foe, fs.move("Earthquake"), roll=0))
+    got = {"a Substitute": seed(sub=25)[2].ability, "Truant": seed(theirs="Truant")[2].ability,
+           "Multitype": seed(theirs="Multitype")[2].ability, "an Ability Shield": seed(item="Ability Shield")[2].ability}
+    want = {"a Substitute": "Levitate", "Truant": "Truant", "Multitype": "Multitype", "an Ability Shield": "Levitate"}
+    ok = took == ("Insomnia", "Insomnia", None, False, 30) and got == want
+    results.append(("Worry Seed gives its target Insomnia, which wakes it", ok,
+                    f"(ability, named, status, can sleep, Earthquake on it) {took}; {got}"))
+
+
+def check_gastro_acid(results):
+    """Gastro Acid (approved 2026-10-14; subscript_suppress_target_ability):
+    a Levitate target's ability reads as none, unnamed, so the trainer's AI
+    reads none either, and its blank twin's rows let Earthquake reach it;
+    nothing through a Substitute, into Multitype or an Ability Shield;
+    leaving brings Levitate back. On a Neutralizing Gas holder it ends the
+    gas, and the user's own ability comes back as the move ends."""
+    def acid(theirs="Levitate", sub=0, item=None, own=None):
+        rows = {("p", "Earthquake"): [0] * 16}
+        b, p, foe = battle(["Gastro Acid", "Earthquake"], ["Tackle"], rows)
+        b.st["gas"] = theirs == "Neutralizing Gas"
+        p.ability, foe.ability, foe.sub, foe.item = own, theirs, sub, item
+        if b.st["gas"]:
+            fs.gas_update(b)
+        b.st["form_twin"] = {"b0.0": {"ability": "Levitate", "twins": {(None, None): "b0.0#ng"}}}
+        b.st["rows"][(None, "p0", "b0.0#ng")] = {"moves": {"Earthquake": {"rolls": [30] * 16}}}
+        fs.use_move(b, p, fs.move("Gastro Acid"), foe, True)
+        return b, p, foe
+    b, p, foe = acid()
+    gone = (foe.ability, foe.suppressed, foe.revealed, fightai.ability_of(b, p, foe),
+            b.damage(p, foe, fs.move("Earthquake"), roll=0))
+    foe.reset_volatile()
+    back = (foe.ability, foe.suppressed)
+    got = {"a Substitute": acid(sub=25)[2].ability, "Multitype": acid(theirs="Multitype")[2].ability,
+           "an Ability Shield": acid(item="Ability Shield")[2].ability}
+    want = {"a Substitute": "Levitate", "Multitype": "Multitype", "an Ability Shield": "Levitate"}
+    b, p, foe = acid(theirs="Neutralizing Gas", own="Static")
+    gas = (foe.ability, fs.gas_on(b), p.ability)
+    ok = gone == (None, True, None, None, 30) and back == ("Levitate", False) and got == want and gas == (None, False, "Static")
+    results.append(("Gastro Acid suppresses its target's ability until it leaves", ok,
+                    f"(ability, suppressed, named, the AI's read, Earthquake on it) {gone}; after leaving {back}; {got}; "
+                    f"on a gas holder (its ability, gas on, the user's ability) {gas}"))
+
+
+def check_core_enforcer(results):
+    """Core Enforcer (approved 2026-10-14; subscript_core_enforcer): its hit
+    suppresses the ability of a target that has moved this turn, which then
+    reads its blank twin; nothing for a target that has not moved yet, one
+    behind a Substitute, one it knocks out, or Multitype."""
+    def enforce(moved=True, sub=0, hp=100, ability="Levitate"):
+        rows = {("p", "Core Enforcer"): [10] * 16, ("p", "Earthquake"): [0] * 16, ("b", "Tackle"): [5] * 16}
+        b, p, foe = battle(["Core Enforcer", "Earthquake"], ["Tackle"], rows)
+        b.st["first_battle"] = True
+        foe.ability, foe.sub, foe.hp = ability, sub, hp
+        b.st["form_twin"] = {"b0.0": {"ability": "Levitate", "twins": {(None, None): "b0.0#ng"}}}
+        b.st["rows"][(None, "p0", "b0.0#ng")] = {"moves": {"Earthquake": {"rolls": [30] * 16}}}
+        if moved:
+            fs.use_move(b, foe, fs.move("Tackle"), p, True)
+        fs.use_move(b, p, fs.move("Core Enforcer"), foe, not moved)
+        return b, p, foe
+    b, p, foe = enforce()
+    gone = (foe.ability, foe.suppressed, b.damage(p, foe, fs.move("Earthquake"), roll=0))
+    got = {"not moved yet": enforce(moved=False)[2].ability, "a Substitute": enforce(sub=25)[2].ability,
+           "knocked out": enforce(hp=5)[2].ability, "Multitype": enforce(ability="Multitype")[2].ability}
+    want = {"not moved yet": "Levitate", "a Substitute": "Levitate", "knocked out": "Levitate",
+            "Multitype": "Multitype"}
+    ok = gone == (None, True, 30) and got == want
+    results.append(("Core Enforcer suppresses a target that has moved this turn", ok,
+                    f"(ability, suppressed, Earthquake on it) {gone}; {got}"))
+
+
+def check_captivate(results):
+    """Captivate (approved 2026-10-14; effect script 265): two stages of Sp.
+    Atk off a target of the other gender only; nothing between two of one
+    gender or from or into a genderless Pokemon; an Oblivious target is
+    spared, named, unless the user has Mold Breaker."""
+    def captivate(user, target, ability=None, mold=False):
+        b, p, foe = battle(["Captivate"], ["Tackle"], {})
+        p.gender, foe.gender, foe.ability = user, target, ability
+        p.ability = "Mold Breaker" if mold else None
+        fs.status_move(b, p, fs.move("Captivate"), foe, True)
+        return foe.stages["spa"], foe.revealed
+    got = {"male on female": captivate("M", "F"), "female on male": captivate("F", "M"),
+           "male on male": captivate("M", "M"), "genderless user": captivate(None, "F"),
+           "genderless target": captivate("M", None), "Oblivious": captivate("M", "F", "Oblivious"),
+           "Oblivious, Mold Breaker": captivate("M", "F", "Oblivious", True)}
+    want = {"male on female": (-2, None), "female on male": (-2, None), "male on male": (0, None),
+            "genderless user": (0, None), "genderless target": (0, None), "Oblivious": (0, "Oblivious"),
+            "Oblivious, Mold Breaker": (-2, None)}
+    results.append(("Captivate lowers Sp. Atk only across the genders", got == want, f"(stage, named) {got}"))
+
+
+def check_status_into_vanished(results):
+    """A status move aimed at a foe misses it on the hidden turn of Fly,
+    Bounce, Shadow Force or Phantom Force (approved 2026-10-14;
+    BattleControllerPlayer_CheckMoveHitOverrides sets
+    MOVE_STATUS_SEMI_INVULNERABLE): Thunder Wave, Toxic, Yawn, Growl and
+    Taunt take nothing there, and each lands on a target that is not hidden.
+    No Guard on either side reaches the target; Memento, whose script sets
+    every SYSCTL_HIT_DURING flag, still lowers its stats; and Spikes, aimed at
+    the foe's side, still lands. Dig and Dive are one-turn hits in Oxide, so a
+    target given either as its charging move is not hidden at all."""
+    def use(name, vanish=None, ability=None, foe_ability=None):
+        b, p, foe = battle([name], ["Tackle"], {})
+        p.ability, foe.ability = ability, foe_ability
+        foe.charging = fs.move(vanish) if vanish else None
+        fs.status_move(b, p, fs.move(name), foe, True)
+        return foe.status, foe.yawn, foe.stages["atk"], bool(foe.taunt), b.b.hazards["spikes"]
+    names = ("Thunder Wave", "Toxic", "Yawn", "Growl", "Taunt")
+    plain = {n: use(n) for n in names}
+    flying = {n: use(n, "Fly") for n in names}
+    hidden = {v: use("Thunder Wave", v) for v in ("Bounce", "Shadow Force", "Phantom Force")}
+    one_turn = {v: use("Thunder Wave", v) for v in ("Dig", "Dive")}
+    guard = {"the user's No Guard": use("Thunder Wave", "Fly", ability="No Guard"),
+             "the target's No Guard": use("Thunder Wave", "Fly", foe_ability="No Guard")}
+    reach = {"Memento": use("Memento", "Fly"), "Spikes": use("Spikes", "Fly")}
+    nothing = (None, 0, 0, False, 0)
+    paralysed = ("par", 0, 0, False, 0)
+    ok = (plain == {"Thunder Wave": paralysed, "Toxic": ("tox", 0, 0, False, 0), "Yawn": (None, 2, 0, False, 0),
+                    "Growl": (None, 0, -1, False, 0), "Taunt": (None, 0, 0, True, 0)}
+          and all(v == nothing for v in flying.values()) and all(v == nothing for v in hidden.values())
+          and all(v == paralysed for v in one_turn.values()) and all(v == paralysed for v in guard.values())
+          and reach == {"Memento": (None, 0, -2, False, 0), "Spikes": (None, 0, 0, False, 1)})
+    results.append(("a status move misses a target on the hidden turn of Fly and the like", ok,
+                    f"(status, Yawn, Attack stage, taunted, Spikes) plain {plain}; into Fly {flying}; {hidden}; "
+                    f"one-turn {one_turn}; {guard}; {reach}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2578,7 +3237,12 @@ def main():
                   check_curse_and_rest, check_mist_and_intimidate, check_ai_fields, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
-                  check_roost, check_protean, check_magic_guard, check_liquid_ooze,
+                  check_roost, check_protean, check_form_twins, check_trace, check_mummy,
+                  check_wandering_spirit, check_color_change, check_forecast, check_soak,
+                  check_conversion, check_conversion2, check_camouflage, check_burn_up,
+                  check_double_shock, check_skill_swap, check_role_play, check_entrainment,
+                  check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
+                  check_status_into_vanished, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

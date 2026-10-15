@@ -54,6 +54,34 @@ def fight_weather(tr_ids):
     return None
 
 
+# The battle terrain each map backdrop gives (field_battle_data_transfer.c,
+# sTerrainForBackground). The engine first reads the tile the player stands
+# on (CalcTerrain: ice, tall grass, sand, snow, mud, a cave floor, water),
+# which the simulator does not know, so a fight's terrain is its backdrop's.
+TERRAIN_OF_BACKGROUND = {
+    "BACKGROUND_PLAIN": "TERRAIN_PLAIN", "BACKGROUND_WATER": "TERRAIN_WATER", "BACKGROUND_CITY": "TERRAIN_BUILDING",
+    "BACKGROUND_FOREST": "TERRAIN_GRASS", "BACKGROUND_MOUNTAIN": "TERRAIN_MOUNTAIN", "BACKGROUND_SNOW": "TERRAIN_SNOW",
+    "BACKGROUND_INDOORS_1": "TERRAIN_BUILDING", "BACKGROUND_INDOORS_2": "TERRAIN_BUILDING",
+    "BACKGROUND_INDOORS_3": "TERRAIN_BUILDING", "BACKGROUND_CAVE_1": "TERRAIN_CAVE", "BACKGROUND_CAVE_2": "TERRAIN_CAVE",
+    "BACKGROUND_CAVE_3": "TERRAIN_CAVE", "BACKGROUND_AARON": "TERRAIN_AARON", "BACKGROUND_BERTHA": "TERRAIN_BERTHA",
+    "BACKGROUND_FLINT": "TERRAIN_FLINT", "BACKGROUND_LUCIAN": "TERRAIN_LUCIAN", "BACKGROUND_CYNTHIA": "TERRAIN_CYNTHIA",
+    "BACKGROUND_DISTORTION_WORLD": "TERRAIN_DISTORTION_WORLD",
+}
+
+
+def fight_terrain(tr_ids):
+    """The battle terrain of a fight (BattleSystem_GetTerrain, which
+    Camouflage reads): the backdrop's of the first map, by name, that
+    battles one of its trainers, or None."""
+    heads = splits.headers()
+    for tr in tr_ids:
+        for h in sorted(splits.trainer_maps().get(tr, ())):
+            bg = heads.get(h, {}).get("battleBG")
+            if bg in TERRAIN_OF_BACKGROUND:
+                return TERRAIN_OF_BACKGROUND[bg]
+    return None
+
+
 @functools.lru_cache(maxsize=None)
 def can_evolve():
     """{calculator name: whether the species can still evolve}, from Oxide's

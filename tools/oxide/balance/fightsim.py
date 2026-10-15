@@ -350,6 +350,10 @@ class Mon:
     # While Neutralizing Gas has its ability off, the ability waits here and
     # `ability` reads None (gas_update); None while the gas leaves it alone.
     gas_stash = None
+    # Whether the battle has changed its types or ability (set_types,
+    # set_ability, suppress, forecast), so the reads that follow such a
+    # change (form_key, the search's keys) need look no further otherwise.
+    formed = False
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -415,11 +419,32 @@ class Mon:
         self.roosting = False            # Roost: its Flying type meets no move until the turn ends
         # Protean and Libero: once a stay on the field the user takes its
         # move's type alone; the type it took, and whether it has.
-        # Leaving the field brings back the types Protean took away.
-        if getattr(self, "protean_type", None) is not None:
+        # Leaving the field brings back the types Protean took away, and any
+        # other type or ability the battle changed (set_types, set_ability,
+        # suppress), as the engine reloads both from the party record when a
+        # Pokemon comes back in (BattleSystem_InitBattleMon).
+        if getattr(self, "protean_type", None) is not None or getattr(self, "retyped", False):
             self.types = list(self.base_types)
         self.protean_type = None
         self.protean_used = False
+        self.retyped = False             # its types are the battle's, not its own
+        # The types its rows must now be read with (form_key), when a move or
+        # an ability other than Protean and Forecast changed them; None for
+        # its own rows.
+        self.row_types = None
+        if getattr(self, "suppressed", False):
+            self.ability = self.suppress_stash
+        # Gastro Acid and Core Enforcer: its ability reads as none until it
+        # leaves (MOVE_EFFECT_ABILITY_SUPPRESSED), and waits here meanwhile.
+        self.suppressed, self.suppress_stash = False, None
+        if getattr(self, "ability_was", None) is not None:
+            self.ability = self.ability_was[0]
+        # The ability it came in with, kept as a one-item tuple once the
+        # battle has written another (set_ability); None while unchanged.
+        self.ability_was = None
+        self.traced = False              # Trace has gone off this stay (traceAnnounced)
+        self.camouflaged = False         # Camouflage has retyped it (MOVE_EFFECT_CAMOUFLAGE)
+        self.formed = False
         self.last = None
         self.turns_in = 0
         self.hit_this_turn = None        # (category, damage) of the last hit taken this turn
@@ -523,10 +548,23 @@ class Battle:
             ak = protean_key(self, att) or ak     # a Protean user's twin of its new type
         if dfn.protean_type:
             dk = protean_key(self, dfn) or dk
-        if dfn.roosting and mv is not None:
+        if dfn.roosting and mv is not None and "Flying" in dfn.types:
             dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
-        w = self.weather if (self.weather, ak, dk) in self.st["rows"] else None
-        return self.st["rows"].get((w, ak, dk))
+        rows = self.st["rows"]
+        # A type or ability another move or ability changed (form_key) reads
+        # the changed Pokemon's twin: the pair of twins when both are
+        # changed, else the one change against the other's rows, as far as
+        # prepare() rowed them.
+        fa = form_key(self, att, mv) if att.formed else None
+        fd = form_key(self, dfn, mv, defending=True) if dfn.formed else None
+        if fa or fd:
+            for a, d in ((fa or ak, fd or dk), (fa or ak, dk), (ak, fd or dk)):
+                w = self.weather if (self.weather, a, d) in rows else None
+                got = rows.get((w, a, d))
+                if got is not None:
+                    return got
+        w = self.weather if (self.weather, ak, dk) in rows else None
+        return rows.get((w, ak, dk))
 
     def rolls(self, att, dfn, mv):
         r = self.row(att, dfn, mv)
@@ -559,9 +597,15 @@ class Battle:
     def row_speed(self, mon):
         """The calculator's Speed for this Pokemon in this weather, as its
         damage rows have it: no stages, no status. Under Neutralizing Gas its
-        ability-blank twin's, so Swift Swim and the like stop counting."""
+        ability-blank twin's, so Swift Swim and the like stop counting, and
+        after a changed ability its twin's (form_key), so a traced Swift Swim
+        starts counting."""
+        speed = self.st["speed"]
         key = mon.key if mon.gas_stash is None else gas_key(self, mon)
-        return int(self.st["speed"].get((self.weather, key)) or self.st["speed"].get((None, key)) or 1)
+        twin = form_key(self, mon) if mon.formed else None
+        if twin and ((self.weather, twin) in speed or (None, twin) in speed):
+            key = twin
+        return int(speed.get((self.weather, key)) or speed.get((None, key)) or 1)
 
     def faster(self, a, b):
         """Whether a moves before b at equal priority; ties at random."""
@@ -837,6 +881,408 @@ def roost_key(b, mon, mv):
     return twins[0][0]
 
 
+# ---- types and abilities the battle changes (batch 3 of the fixes Ian approved on 2026-10-14) ----
+#
+# A move or an ability can rewrite a Pokemon's types (Soak, Color Change,
+# Conversion, Burn Up) or its ability (Trace, Mummy, Skill Swap, Worry
+# Seed) in the middle of a battle, or turn its ability off (Gastro Acid),
+# and the change lasts until the Pokemon leaves the field, since the engine
+# reloads both from the party record as it comes back in
+# (BattleSystem_InitBattleMon). The calculator's rows are made once per
+# fight with each Pokemon's own types and ability. So prepare() makes a
+# twin of each Pokemon for each change its fight can produce, as the moves
+# and abilities on both sides decide (FORM_CHANGES), and rows it both ways
+# against every foe it can face; the battle reads a changed Pokemon's rows
+# from its twin (form_key). A fight with none of these moves and abilities
+# gets no twin. A change of ability needs a twin only when the old or the
+# new ability changes the calculator's rows (row_ability), so most
+# abilities share one twin, or need none.
+
+# The calculator's files a Generation 4 row runs through: gen4.js, what it
+# calls, and Oxide's profile.
+CALC_ROW_FILES = ("mechanics/gen4.js", "mechanics/util.js", "mechanics/romhacks/helpers.js",
+                  "mechanics/romhacks/index.js", "mechanics/romhacks/profiles/platinum-oxide.js",
+                  "mechanics/romhacks/profiles/platinum-oxide-data.js", "move.js", "pokemon.js", "stats.js",
+                  "field.js", "items.js")
+# The abilities the calculator reads that never change one of the
+# simulator's rows, which are made at full HP, with no status, stat stage,
+# screen or Intimidate (CALC_ABILITY_OFF) and with one hit's effects at a
+# time, so a twin need not carry them: those it reads only between a
+# multi-hit move's hits (checkMultihitBoost: Mummy and Wandering Spirit
+# hand the attacker their ability, Gooey, Weak Armor, Water Compaction and
+# Seed Sower answer a hit), which the battle runs hit by hit itself where it
+# runs them at all; Intimidate's blockers and answers (checkIntimidate:
+# Clear Body, White Smoke, Hyper Cutter, Inner Focus, Own Tempo, Oblivious,
+# Mirror Armor, Defiant, Competitive, Guard Dog); those of stat stages
+# (Simple, Contrary, Unaware) and of screens (Infiltrator); those of a
+# status (Guts, Marvel Scale, Quick Feet, Merciless) or of a third of HP
+# (Blaze, Torrent, Overgrow, Swarm), which the battle applies itself as it
+# runs; and Protean and Libero, which only the later generations' STAB
+# reads (getStabMod), where the battle retypes the holder itself. A check in
+# test_plfixes holds the calculator to it.
+ROW_NEUTRAL = frozenset({
+    "Mummy", "Wandering Spirit", "Lingering Aroma", "Gooey", "Weak Armor", "Water Compaction", "Seed Sower",
+    "Clear Body", "White Smoke", "Hyper Cutter", "Full Metal Body", "Strong Body", "Inner Focus", "Own Tempo",
+    "Oblivious", "Mirror Armor", "Defiant", "Competitive", "Guard Dog", "Simple", "Contrary", "Unaware",
+    "Infiltrator", "Guts", "Marvel Scale", "Quick Feet", "Merciless", "Blaze", "Torrent", "Overgrow", "Swarm",
+    "Protean", "Libero"})
+
+
+@functools.lru_cache(maxsize=None)
+def row_abilities():
+    """The abilities that can change a calculator row: each ability that a
+    file the Generation 4 row runs through spells out, a superset that costs
+    at most a twin too many, less those prepare() keeps off the rows
+    (CALC_ABILITY_OFF) and ROW_NEUTRAL."""
+    names = set()
+    for p in calc.blob()["poks"].values():
+        names.update(a for a in (p.get("abilities") or {}).values() if a)
+    base = os.path.join(data.ROOT, "tools", "oxide", "encounters", "calc", "calc")
+    found = set()
+    for rel in CALC_ROW_FILES:
+        with open(os.path.join(base, rel), encoding="utf-8") as fh:
+            found.update(re.findall(r"""['"]([A-Z][A-Za-z' -]+)['"]""", fh.read()))
+    return frozenset(found & names) - CALC_ABILITY_OFF - ROW_NEUTRAL
+
+
+def row_ability(ability):
+    """The ability as a calculator row reads it: itself when it can change a
+    row, else None, which a twin makes with the stand-in."""
+    return ability if ability in row_abilities() else None
+
+
+# What each ability refuses (battle_lib.c's sAbilityChangeFlags, Oxide's
+# table after hg-engine's AbilityFlags; Ability_ChangeFails): "trace", Trace
+# cannot copy it; "copy", Role Play cannot copy it; "swap", Skill Swap and
+# Wandering Spirit cannot take it; "suppress", it cannot be suppressed or
+# replaced (Gastro Acid, Core Enforcer, Worry Seed, Mummy, Role Play's user,
+# Entrainment's target); "entrain", Entrainment cannot pass it on. Every
+# other ability refuses nothing.
+_ALL_CHANGES = frozenset({"trace", "copy", "swap", "suppress", "entrain"})
+_NO_COPYING = frozenset({"trace", "copy", "entrain"})
+_NO_TAKING = frozenset({"trace", "copy", "swap", "entrain"})
+ABILITY_REFUSES = {
+    "Wonder Guard": frozenset({"copy", "swap", "entrain"}), "Trace": _NO_COPYING, "Forecast": _NO_COPYING,
+    "Multitype": _ALL_CHANGES, "Flower Gift": _NO_COPYING, "Illusion": _NO_TAKING, "Imposter": _NO_COPYING,
+    "Zen Mode": _ALL_CHANGES, "Stance Change": _ALL_CHANGES, "Shields Down": _ALL_CHANGES,
+    "Schooling": _ALL_CHANGES, "Disguise": _ALL_CHANGES, "Battle Bond": _ALL_CHANGES,
+    "Power Construct": _ALL_CHANGES, "Comatose": _ALL_CHANGES, "Receiver": _NO_COPYING,
+    "Power of Alchemy": _NO_COPYING, "RKS System": _ALL_CHANGES, "Gulp Missile": frozenset({"suppress"}),
+    "Ice Face": _ALL_CHANGES, "Neutralizing Gas": _NO_TAKING, "Hunger Switch": _NO_TAKING,
+    "As One (Glastrier)": _ALL_CHANGES, "As One (Spectrier)": _ALL_CHANGES, "Zero to Hero": _ALL_CHANGES,
+    "Commander": _NO_TAKING, "Protosynthesis": _NO_TAKING, "Quark Drive": _NO_TAKING,
+    "Embody Aspect (Teal)": _NO_TAKING, "Embody Aspect (Hearthflame)": _NO_TAKING,
+    "Embody Aspect (Wellspring)": _NO_TAKING, "Embody Aspect (Cornerstone)": _NO_TAKING,
+    "Tera Shift": _ALL_CHANGES, "Tera Shell": _NO_TAKING, "Teraform Zero": _NO_TAKING,
+    "Poison Puppeteer": _NO_TAKING,
+}
+
+
+def refuses(ability, change):
+    """Ability_ChangeFails: whether this ability refuses this kind of change."""
+    return change in ABILITY_REFUSES.get(ability, ())
+
+
+def raw_ability(mon):
+    """The ability the battle's record holds (BATTLEMON_ABILITY), which the
+    moves and abilities that change one read and write: under Neutralizing
+    Gas or Gastro Acid, the one they have off."""
+    if mon.gas_stash is not None:
+        return mon.gas_stash
+    if getattr(mon, "suppressed", False):
+        return mon.suppress_stash
+    return mon.ability
+
+
+# The abilities that cure their holder's status or confusion at once
+# (BattleSystem_RecoverStatusByAbility, run as each move ends and in the
+# switch-in check), and what each cures. It matters only to a Pokemon that
+# gains one while it has the status, which a changed ability can do.
+ABILITY_CURES = {"Immunity": ("psn", "tox"), "Pastel Veil": ("psn", "tox"), "Limber": ("par",),
+                 "Insomnia": ("slp",), "Vital Spirit": ("slp",), "Water Veil": ("brn",),
+                 "Water Bubble": ("brn",), "Magma Armor": ("frz",),
+                 "Purifying Salt": ("psn", "tox", "par", "slp", "brn", "frz")}
+
+
+def ability_cures(mon):
+    """BattleSystem_RecoverStatusByAbility for mon as its ability now reads:
+    the status, confusion or love its ability forbids is cured, the message
+    naming the ability."""
+    if mon.status and mon.status in ABILITY_CURES.get(mon.ability, ()):
+        mon.status, mon.sleep, mon.toxic = None, 0, 0
+        reveal(mon)
+    if mon.ability == "Own Tempo" and mon.confused:
+        mon.confused = 0
+        reveal(mon)
+    if mon.ability == "Oblivious" and mon.infatuated:
+        mon.infatuated = None
+        reveal(mon)
+
+
+def set_ability(b, mon, new, acted=True):
+    """A script writes mon's ability (UpdateMonData on BATTLEMON_ABILITY,
+    which also tells the trainer's AI, BattleAI_SetAbility), for as long as
+    mon stays in: under Neutralizing Gas or Gastro Acid the new ability waits
+    where the old one did. A Pokemon given Truant loafs on its next turn
+    (the scripts set its parity from the turn count), so on this turn only
+    if it has acted already (`acted`). Then its new ability may cure a status
+    (ability_cures)."""
+    if getattr(mon, "ability_was", None) is None:
+        mon.ability_was = (raw_ability(mon),)
+    if mon.gas_stash is not None:
+        mon.gas_stash = new
+    elif getattr(mon, "suppressed", False):
+        mon.suppress_stash = new
+    else:
+        mon.ability = new
+    mon.formed = True
+    mon.revealed = new
+    if new == "Truant":
+        mon.loafing = acted
+    ability_cures(mon)
+
+
+def set_types(mon, types):
+    """A move or an ability rewrites mon's types (BATTLEMON_TYPE_1 and _2)
+    until it leaves: the battle's type checks read them at once, and its rows
+    come from its twin of those types (form_key). "???" is the type a pure
+    Fire Burn Up or pure Electric Double Shock user is left with, which no
+    move's type meets."""
+    mon.types = list(types)
+    mon.retyped = mon.formed = True
+    mon.row_types = tuple(types)
+
+
+def suppress(b, mon):
+    """Gastro Acid's and Core Enforcer's effect on mon (MOVE_EFFECT_ABILITY_SUPPRESSED):
+    its ability reads as none until it leaves (Battler_Ability), its rows
+    and Speed then its ability-blank twin's (form_key). It fails on an
+    ability already suppressed, on one that refuses (refuses "suppress"),
+    and on an Ability Shield's holder. Whether it took. Neutralizing Gas
+    stops with its holder's (BattleSystem_NeutralizingGasActive), which the
+    move's end then finds (gas_update)."""
+    raw = raw_ability(mon)
+    if getattr(mon, "suppressed", False) or refuses(raw, "suppress") or mon.item == "Ability Shield":
+        return False
+    mon.suppressed, mon.suppress_stash = True, raw
+    mon.ability, mon.gas_stash = None, None
+    mon.formed = True
+    return True
+
+
+def form_key(b, mon, mv=None, defending=False):
+    """The key of the rows mon meets now that a move or an ability other than
+    Protean has changed its types or its ability (prepare's form_twin): its
+    twin of those types and that ability as the rows read it (row_ability),
+    else its twin of the changed types alone, else of the changed ability
+    alone. A Pokemon left with no type ("???") has a Normal and a Grass twin,
+    as Roost's pure Flying one has: as the target, the one this move's type
+    hits neutrally, which is how a typeless Pokemon is hit; as the attacker,
+    the one of another type than the move's, so it takes no STAB. None
+    while nothing has changed, or with no twin for the change."""
+    if mon.row_types is None and mon.ability_was is None and not mon.suppressed:
+        return None
+    own = (b.st.get("form_twin") or {}).get(mon.key)
+    if not own:
+        return None
+    ab = row_ability(mon.ability)
+    for sig in ((mon.row_types, ab), (mon.row_types, own["ability"]), (None, ab)):
+        if sig == (None, own["ability"]):
+            return mon.key
+        got = own["twins"].get(sig)
+        if got is None:
+            continue
+        if isinstance(got, str):
+            return got
+        if mv is None:
+            return got[0][0]
+        for key, types in got:
+            if (effectiveness(b.st["chart"], mv.type, types) == 1) if defending else mv.type not in types:
+                return key
+        return got[0][0]
+    return None
+
+
+# Each kind of change a fight can produce: a function of the fight's
+# Pokemon (FormFight) that yields (key, types, ability) for each change the
+# Pokemon of that key can undergo, types None where they stay its own and
+# ability the one it is left with; a change that changes two Pokemon at once
+# (Skill Swap, Wandering Spirit) yields its partner's as a fourth item, so
+# the two twins are rowed against each other. The fixes add their own
+# (form_change).
+FORM_CHANGES = []
+
+
+def form_change(fn):
+    FORM_CHANGES.append(fn)
+    return fn
+
+
+class FormFight:
+    """What FORM_CHANGES read of a fight being prepared: its Pokemon by key,
+    their moves, sides, foes, types and abilities, its weathers and the type
+    its terrain gives Camouflage."""
+
+    def __init__(self, pokemon, moves, blob, pkeys, qkeys, bkeys, weathers, camouflage):
+        self.pokemon, self.move_names, self.blob = pokemon, moves, blob
+        self.pkeys, self.qkeys, self.bkeys = list(pkeys), list(qkeys), list(bkeys)
+        self.weathers, self.camouflage = weathers, camouflage
+
+    def keys(self):
+        return self.pkeys + self.qkeys + self.bkeys
+
+    def foes(self, k):
+        """The keys k can face: the trainer's for the player's and a
+        partner's Pokemon, theirs for the trainer's."""
+        return self.bkeys if k[0] in "pq" else self.pkeys + self.qkeys
+
+    def allies(self, k):
+        """The other Pokemon of k's side (a variant of k, the same Pokemon
+        with its other ability, left out)."""
+        side = self.bkeys if k[0] == "b" else self.pkeys + self.qkeys
+        return [g for g in side if g.split("~")[0] != k.split("~")[0]]
+
+    def ability(self, k):
+        return self.pokemon[k].get("ability")
+
+    def types(self, k):
+        own = self.pokemon[k].get("species_data") or self.blob["poks"].get(self.pokemon[k]["species"]) or {}
+        return [t for t in (own.get("types") or []) if t]
+
+    def moves(self, k):
+        return [move(m) for m in self.move_names.get(k, ())]
+
+    def contact(self, k):
+        return any(mv.contact and mv.damaging() for mv in self.moves(k))
+
+    def hit_types(self, k):
+        """The types k's damaging moves can hit with: Weather Ball in each of
+        the fight's weathers, Hidden Power and Natural Gift as the Pokemon's
+        IVs and item make them, and Normalize, Pixilate and Liquid Voice as
+        they turn a move (move_type_used)."""
+        rec, out = self.pokemon[k], set()
+        for mv in self.moves(k):
+            if not mv.damaging():
+                continue
+            if mv.name == "Weather Ball" and rec.get("ability") != "Normalize":
+                out |= {WEATHER_BALL_TYPE.get(w, "Normal") for w in self.weathers}
+            else:
+                out.add(move_type_used(rec.get("ability"), mv, rec.get("ivs"), rec.get("item"), None))
+        return out
+
+
+# Weather Ball's type in each weather (BattleSystem_CalcMoveType).
+WEATHER_BALL_TYPE = {"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}
+# The Normal moves Pixilate leaves alone (battle_lib.c, sMovesKeepTheirType).
+KEEP_TYPE = frozenset({"MOVE_HIDDEN_POWER", "MOVE_WEATHER_BALL", "MOVE_NATURAL_GIFT", "MOVE_JUDGMENT",
+                       "MOVE_TECHNO_BLAST", "MOVE_MULTI_ATTACK", "MOVE_TERRAIN_PULSE", "MOVE_STRUGGLE"})
+
+
+def move_type_used(ability, mv, ivs, item, weather):
+    """The type a move hits with as the battle records it (battleCtx->moveType,
+    which Color Change reads): Normalize makes every move Normal; Weather Ball
+    the weather's; Hidden Power the IVs'; Natural Gift the Berry's; Pixilate
+    a Normal move with power Fairy and Liquid Voice a sound move Water
+    (BattleSystem_SetMoveTypeByAbility); every other move its own type."""
+    if ability == "Normalize":
+        return "Normal"
+    if mv.name == "Weather Ball":
+        return WEATHER_BALL_TYPE.get(weather, "Normal")
+    if mv.effect == "RANDOM_POWER_BASED_ON_IVS":
+        return fightai.hidden_power_type(ivs) or mv.type
+    if mv.name == "Natural Gift":
+        return (fightai._gift_type(item) if item else None) or mv.type
+    if ability == "Pixilate" and mv.type == "Normal" and mv.power and mv.const not in KEEP_TYPE:
+        return "Fairy"
+    if ability == "Liquid Voice" and mv.const in fightai.SOUND_MOVES:
+        return "Water"
+    return mv.type
+
+
+def form_twins(ff, pairs, hits_of, spread, whole_field, gas_twin):
+    """The twins for every change FORM_CHANGES finds in the fight ff:
+    {key: {"ability": its own ability as rows read it, "twins": {(types,
+    ability): twin key, or ((key, types), ...) for no type}}}. Each twin is
+    the Pokemon's record with that ability (row_ability's, or the stand-in)
+    and, for changed types, species_data with exactly those types (its own
+    stats and weight kept, as Roost's twins have them); twins of one
+    Pokemon's two variants are shared, since only the ability differs, and
+    an ability-blank one is Neutralizing Gas's twin where that exists. Each
+    twin is rowed both ways in every weather against every foe, a player's
+    Magnitude at each power included, in a double battle against its
+    allies' spread moves, and against the twin of a change's partner. Two
+    changes made apart from each other on both sides at once read the one
+    change against the other's own rows (Battle.row). The rows are appended
+    to `pairs`."""
+    def sig_of(types, ability):
+        return (tuple(types) if types else None, row_ability(ability))
+    want, links = collections.defaultdict(set), set()
+    for fn in FORM_CHANGES:
+        for item in fn(ff):
+            k, sig = item[0], sig_of(item[1], item[2])
+            if sig != (None, row_ability(ff.ability(k))):
+                want[k].add(sig)
+            if len(item) > 3:
+                f, fsig = item[3][0], sig_of(item[3][1], item[3][2])
+                if fsig != (None, row_ability(ff.ability(f))):
+                    want[f].add(fsig)
+                links.add(((k, sig), (f, fsig)))
+    out, made, named = {}, {}, {}
+    for k in sorted(want):
+        root = k.split("~")[0]
+        rec = ff.pokemon[k]
+        own = dict(rec.get("species_data") or ff.blob["poks"].get(rec["species"]) or {})
+        entry = {"ability": row_ability(ff.ability(k)), "twins": {}}
+        for types, ab in sorted(want[k], key=repr):
+            choices = ([("Normal",), ("Grass",)] if types == ("???",) else [types])
+            got = []
+            for tt in choices:
+                name = f"{root}#fm{'/'.join(tt) if tt else ''}@{ab or ''}"
+                if tt is None and ab is None and gas_twin.get(k):
+                    name = gas_twin[k]
+                if name not in ff.pokemon:
+                    twin = dict(rec, ability=ab or WEATHER_STAND_IN)
+                    if tt:
+                        data_ = {"bs": dict(own.get("bs") or {}), "types": list(tt), "exact_types": True}
+                        if own.get("weightkg") is not None:
+                            data_["weightkg"] = own["weightkg"]
+                        twin["species_data"] = data_
+                    ff.pokemon[name] = twin
+                made.setdefault(k, [])
+                if name not in made[k]:
+                    made[k].append(name)
+                got.append((name, list(tt) if tt else None))
+            entry["twins"][(types, ab)] = got[0][0] if len(got) == 1 else tuple(got)
+            named[(k, (types, ab))] = [n for n, _t in got]
+        out[k] = entry
+    seen = {(a, d, w) for a, d, _m, w in pairs}
+
+    def add(a, d, mv, w):
+        if mv and (a, d, w) not in seen:
+            seen.add((a, d, w))
+            pairs.append([a, d, mv, w])
+    for k in sorted(made):
+        for t in made[k]:
+            for w in ff.weathers:
+                for d in ff.foes(k):
+                    add(t, d, hits_of(k), w)
+                    add(d, t, hits_of(d), w)
+                    if "Magnitude" in ff.move_names.get(d, ()) and d[0] in "pq":
+                        for p in MAGNITUDE_POWERS:
+                            add(f"{d}#m{p}", t, ["Magnitude"], w)
+                if whole_field:
+                    for a in ff.allies(k):
+                        add(a, t, spread(a), w)
+                        add(t, a, spread(k), w)
+    for (k, sig), (f, fsig) in sorted(links, key=repr):
+        for t in named.get((k, sig), []):
+            for u in named.get((f, fsig), []):
+                for w in ff.weathers:
+                    add(t, u, hits_of(k), w)
+                    add(u, t, hits_of(f), w)
+    return out
+
+
 def gas_on(b):
     """BattleSystem_NeutralizingGasActive: a holder with HP on the field. The
     engine works it out afresh at every read, so the gas starts and stops
@@ -885,12 +1331,57 @@ def gas_update(b, check=True):
     return False
 
 
-def entry_abilities(b, mons, intimidate=True):
+def trace(b):
+    """The switch-in check's Trace step (SWITCH_IN_CHECK_STATE_TRACE), over
+    every Pokemon on the field, fastest first: a Trace holder that has not
+    traced since it came in (traceAnnounced), standing and holding no
+    Griseous Orb, copies the ability of a foe on the field that stands and
+    whose ability does not refuse Trace (ChooseTraceTarget, which in a
+    double battle picks between two such foes at random); the message names
+    both abilities (subscript_trace). With no such foe it waits, and the
+    check, which runs again as every move ends and each Pokemon comes in,
+    tries again then. The holders that traced, in that order. Until
+    2026-10-14 Trace was only announced (Ian approved the fix)."""
+    out = []
+    field = [m for m in b.p.on_field() + b.b.on_field() if m.alive()]
+    if not any(m.ability == "Trace" and not m.traced for m in field):
+        return out
+    for m in sorted(field, key=b.speed, reverse=not b.trick_room):
+        if m.ability != "Trace" or m.traced or m.item == "Griseous Orb" or not m.alive():
+            continue
+        foes = [f for f in (b.b if m.side == "p" else b.p).on_field()
+                if f.alive() and not refuses(raw_ability(f), "trace")]
+        if not foes:
+            continue
+        target = foes[1] if len(foes) > 1 and coin(b, "trace") else foes[0]
+        m.traced = True
+        set_ability(b, m, raw_ability(target), acted=getattr(m, "acted_turn", None) == b.turn)
+        target.revealed = raw_ability(target)
+        out.append(m)
+    return out
+
+
+@form_change
+def _traced(ff):
+    """Trace: its holder can copy the ability of any foe it faces that does
+    not refuse Trace."""
+    for k in ff.keys():
+        if ff.ability(k) == "Trace":
+            for f in ff.foes(k):
+                if not refuses(ff.ability(f), "trace"):
+                    yield k, None, ff.ability(f)
+
+
+def entry_abilities(b, mons, intimidate=True, trace_now=True):
     """The switch-in check's ability steps for these Pokemon, each step over
-    all of them in the order given (monSpeedOrder): the weather abilities, the
-    announcement the trainer's AI reads (BattleAI_SetAbility), Intimidate,
-    then Download. The battle's leads leave Intimidate and Download to
-    open_battle (intimidate False), as both read the foes on the field."""
+    all of them in the order given (monSpeedOrder): Trace over the whole
+    field first (trace), whose holders then join the steps after it with the
+    ability they copied; the weather abilities, the announcement the
+    trainer's AI reads (BattleAI_SetAbility), Intimidate, then Download. The
+    battle's leads leave Trace, Intimidate and Download to open_battle
+    (trace_now and intimidate False), as those read the foes on the field."""
+    if trace_now:
+        mons = list(mons) + [m for m in trace(b) if m not in mons]
     for new in mons:
         weather = ABILITY_WEATHER.get(new.ability)
         if weather:
@@ -902,6 +1393,7 @@ def entry_abilities(b, mons, intimidate=True):
         intimidate_foes(b, mons)
         for new in mons:
             download(b, new)
+    forecast(b)                          # the check's form step comes after these
 
 
 def download(b, mon):
@@ -1021,9 +1513,13 @@ def open_battle(b):
             switch_in(b, side, side.active2, slot=1, lead=True)
             leads.append(side.mons[side.active2])
     ordered = sorted(leads, key=b.speed, reverse=not b.trick_room)
+    # Trace first, once every lead is in; a traced weather ability then sets
+    # its weather before the leads' Intimidate and Download go off.
+    entry_abilities(b, trace(b), intimidate=False, trace_now=False)
     intimidate_foes(b, ordered)
     for lead in ordered:
         download(b, lead)                # after Intimidate, as the switch-in check runs them
+    forecast(b)
 
 
 def stat_drop_blocked(b, mon, changes, src=None, intimidate=False):
@@ -1670,14 +2166,54 @@ def use_move(b, att, mv, dfn, first, targets=None):
     _use_move(b, att, mv, dfn, first, targets)
     if b.st.get("gas"):
         gas_update(b)
+    move_end(b)
+
+
+def move_end(b):
+    """The rest of the switch-in check that ends every move
+    (BattleControllerPlayer_MoveEnd), beyond Neutralizing Gas's step: a Trace
+    holder still waiting for a foe it can copy traces now (trace), and its
+    new ability's entry steps follow; then Castform takes the weather's form
+    (forecast)."""
+    if any(m.ability == "Trace" and not m.traced for m in b.p.on_field() + b.b.on_field()):
+        traced = trace(b)
+        if traced:
+            entry_abilities(b, traced, trace_now=False)
+    forecast(b)
+
+
+# Castform's type in each weather (BattleSystem_TriggerFormChange).
+FORECAST_TYPE = {"Sun": "Fire", "Rain": "Water", "Hail": "Ice"}
+
+
+def forecast(b):
+    """Castform's form check (BattleSystem_TriggerFormChange, in the
+    switch-in check and after every move): a Castform standing with Forecast
+    takes the weather's type alone, Fire in sun, Water in rain, Ice in hail,
+    and Normal in any other weather or none, or with Cloud Nine or Air Lock
+    on the field, whenever it is not of that type already. The battle's type
+    checks (a burn, a freeze, the hail, the trainer's AI) read it at once;
+    its rows need no twin, since the calculator types it by each row's
+    weather (checkForecast). A Castform that has lost Forecast keeps the form
+    it has, and leaving brings its own type back. Until 2026-10-14 it stayed
+    Normal in every weather (Ian approved the fix)."""
+    for m in b.p.on_field() + b.b.on_field():
+        if m.species != "Castform" or not m.alive() or m.ability != "Forecast":
+            continue
+        want = "Normal" if weather_ignored(b) else FORECAST_TYPE.get(b.weather, "Normal")
+        if want not in m.types:
+            m.types, m.retyped, m.formed = [want], True, True
 
 
 def _use_move(b, att, mv, dfn, first, targets=None):
     if not att.alive():
         return
+    att.acted_turn = b.turn      # its action this turn has begun (a Truant given later this turn: set_ability)
     mv = encored_move(att, mv)
     # Its own record clears with its action, whatever happens
-    # (BattleControllerPlayer_ClearFlags), and so does its Destiny Bond.
+    # (BattleControllerPlayer_ClearFlags), and so does its Destiny Bond. The
+    # record as it stood is what this action's Conversion 2 reads.
+    att.conversion2_src = (att.last_hit_by, att.last_hit_type) if att.last_hit_by is not None else None
     att.last_hit_by = None
     att.destiny_bond = False
     b.status_src = att           # a status this move gives comes from att (Synchronize)
@@ -1789,6 +2325,8 @@ def attack(b, att, mv, dfn, first):
     b.hits_landed = False                # a move of several hits that land_hits landed
     if not dfn.alive():
         return
+    if loses_type_fails(att, mv):
+        return                           # Burn Up or Double Shock without its type (lose_type)
     # Telepathy: its holder takes no damaging move from its partner
     # (BattleControllerPlayer_PriorityBlock, which Mold Breaker gets past),
     # a spread move's in a double battle; the message names the ability.
@@ -2006,6 +2544,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
             change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         spin(b, att, dfn, e)
+    if e in LOSES_TYPE:
+        lose_type(att, LOSES_TYPE[e])    # Burn Up and Double Shock: after the hit, a Substitute's too
     if e == "SWITCH_HIT":
         # U-turn, Volt Switch and Flip Turn switch their user out after any
         # hit, a knockout or a hit on a Substitute too (effect script 228's
@@ -2018,6 +2558,13 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         # until it leaves the field; a chance-free effect, so Shield Dust
         # and Sheer Force (sSheerForceEffects) leave it alone.
         dfn.salted = True
+    if e == "CORE_ENFORCER" and getattr(dfn, "acted_turn", None) == b.turn:
+        # Core Enforcer (effect script 413, subscript_core_enforcer): once
+        # the hit is in, a standing target with no Substitute that has moved
+        # this turn loses its ability until it leaves, as Gastro Acid takes
+        # it (suppress). Until 2026-10-14 it was a plain hit (Ian approved
+        # the fix).
+        suppress(b, dfn)
     if e == "DECREASE_LAST_MOVE_PP_HIT" and dealt > 0:
         # Eerie Spell (effect script 421, subscript_reduce_target_pp_hit,
         # Oxide's engine since 2026-10-14): once its hit has landed on the
@@ -2379,13 +2926,114 @@ def hit_ability(b, att, dfn, mv, chance):
             att.disabled, att.disabled_turns = mv.name, 3
             return True
         return False
+    if a == "Color Change":
+        return color_change(b, att, dfn, mv)
     return False
+
+
+def color_change(b, att, dfn, mv):
+    """Color Change (BattleSystem_TriggerAbilityOnHit, subscript_color_change):
+    a move with power that did damage to its holder, Struggle aside and not
+    one Sheer Force boosts, makes the holder that move's type alone while it
+    stands and is not of that type already, the type as the battle records
+    it (move_type_used: Weather Ball's weather's, Hidden Power's and Natural
+    Gift's own, a Normalize, Pixilate or Liquid Voice user's); the message
+    names the ability. Its rows then come from its twin of that type
+    (form_key) until it leaves. Whether it acted. Until 2026-10-14 Color
+    Change did nothing (Ian approved the fix)."""
+    t = move_type_used(att.ability, mv, att.ivs, att.item or att.recycle, b.weather)
+    if (not dfn.alive() or not mv.power or mv.effect == "STRUGGLE" or sheer_force_active(att, mv)
+            or t in dfn.types):
+        return False
+    set_types(dfn, [t])
+    reveal(dfn)
+    return True
+
+
+@form_change
+def _color_changed(ff):
+    """Color Change: its holder can become the type of any damaging move its
+    foes can hit it with (FormFight.hit_types) but its own."""
+    for k in ff.keys():
+        if ff.ability(k) == "Color Change":
+            own = set(ff.types(k))
+            for t in sorted({t for f in ff.foes(k) for t in ff.hit_types(f)} - own):
+                yield k, [t], ff.ability(k)
+
+
+def mummy(b, att, dfn):
+    """Mummy (BattleSystem_TriggerAbilityOnHit, subscript_mummy): a contact
+    move that hurt its holder, standing or not, passes Mummy to the attacker
+    while it stands, unless its ability is Mummy already, refuses to be
+    replaced, or is kept by an Ability Shield; the message names the
+    attacker's new ability. Its rows are then its ability-blank twin's
+    (form_key), so Levitate, Huge Power and the like are gone with the old
+    ability. Whether it acted. Until 2026-10-14 Mummy did nothing (Ian
+    approved the fix)."""
+    raw = raw_ability(att)
+    if not att.alive() or att is dfn or raw == "Mummy" or refuses(raw, "suppress") or att.item == "Ability Shield":
+        return False
+    set_ability(b, att, "Mummy")
+    return True
+
+
+@form_change
+def _mummified(ff):
+    """Mummy: any foe of a holder with a contact move and an ability Mummy
+    can replace may take Mummy. The holder's partner that takes it in turn,
+    from a foe that has, keeps its own rows: a second step, left out to keep
+    the preparation from growing with every contact move in the box."""
+    for h in ff.keys():
+        if ff.ability(h) != "Mummy":
+            continue
+        for k in ff.foes(h):
+            ab = ff.ability(k)
+            if (ab != "Mummy" and not refuses(ab, "suppress") and ff.pokemon[k].get("item") != "Ability Shield"
+                    and ff.contact(k)):
+                yield k, None, "Mummy"
+
+
+def wandering_spirit(b, att, dfn):
+    """Wandering Spirit (BattleSystem_TriggerAbilityOnHit,
+    subscript_wandering_spirit): a contact move that hurt its holder swaps
+    the holder's ability with the attacker's while the attacker stands,
+    unless the attacker's is Wandering Spirit already or refuses a swap, or
+    either holds an Ability Shield; both are named, and a Truant either gains
+    loafs on its next turn. Each then reads its twin for its new ability
+    (form_key). Whether it acted. Until 2026-10-14 Wandering Spirit did
+    nothing (Ian approved the fix)."""
+    raw, own = raw_ability(att), raw_ability(dfn)
+    if (not att.alive() or att is dfn or raw == "Wandering Spirit" or refuses(raw, "swap")
+            or "Ability Shield" in (att.item, dfn.item)):
+        return False
+    set_ability(b, att, own)
+    set_ability(b, dfn, raw, acted=getattr(dfn, "acted_turn", None) == b.turn)
+    return True
+
+
+@form_change
+def _spirit_swapped(ff):
+    """Wandering Spirit: its holder can take the ability of any foe with a
+    contact move whose ability a swap can take, and that foe takes Wandering
+    Spirit."""
+    for k in ff.keys():
+        if ff.ability(k) != "Wandering Spirit" or ff.pokemon[k].get("item") == "Ability Shield":
+            continue
+        for f in ff.foes(k):
+            ab = ff.ability(f)
+            if (ab != "Wandering Spirit" and not refuses(ab, "swap") and ff.contact(f)
+                    and ff.pokemon[f].get("item") != "Ability Shield"):
+                yield k, None, ab, (f, None, "Wandering Spirit")
 
 
 def _struck_back(b, att, dfn, chance, pick):
     """The defender's on-hit ability; whether it acted."""
     a = dfn.ability
     b.status_src = dfn           # a status the ability gives comes from dfn (Synchronize)
+    if a == "Mummy":
+        return mummy(b, att, dfn)
+    if a == "Wandering Spirit":
+        return wandering_spirit(b, att, dfn)
     if a == "Aftermath":
         # A contact move that fainted it costs its user a quarter of its
         # HP, unless Magic Guard or a Damp Pokemon on the field stops it.
@@ -3235,6 +3883,409 @@ def protect_odds(att):
     return 1 / (2 ** min(att.protect_run, PROTECT_RUN_CAP))
 
 
+def out_of_reach(att, dfn, mv):
+    """Whether dfn is in the air, underground or underwater where mv cannot
+    reach it (MOVE_STATUS_SEMI_INVULNERABLE), as a hit's check has it."""
+    return (dfn.charging is not None and dfn.charging.effect in INVULNERABLE and not reaches(mv, dfn)
+            and not no_guard(att, dfn, mv))
+
+
+# The status moves whose effect scripts set every SYSCTL_HIT_DURING flag, so
+# that they reach a target on its hidden turn: Memento (effect script 168).
+# Helping Hand's script (176) sets them too, but it aims at an ally, whom the
+# check below never reaches.
+REACHES_VANISHED = frozenset({"FAINT_AND_ATK_SP_ATK_DOWN_2"})
+
+
+def status_out_of_reach(att, dfn, mv):
+    """BattleControllerPlayer_CheckMoveHitOverrides for a status move: one
+    aimed at a foe misses it on the hidden turn of Fly, Bounce, Shadow Force
+    or Phantom Force (MOVE_STATUS_SEMI_INVULNERABLE), unless No Guard is on
+    either side (out_of_reach) or its script reaches there (REACHES_VANISHED).
+    A move whose defender is its own user (OWN_RANGES) never meets the check,
+    and one aimed at the foe's side (Spikes, Stealth Rock) passes it. Dig and
+    Dive are one-turn hits in Oxide's move data (the move reworks), so no
+    Pokemon is ever underground or underwater. Until 2026-10-14 every status
+    move reached a hidden target (Ian approved the fix)."""
+    return (mv.range not in OWN_RANGES and mv.range != "OPPONENT_SIDE" and mv.effect not in REACHES_VANISHED
+            and out_of_reach(att, dfn, mv))
+
+
+# The status moves that change a type or an ability: each effect's function
+# of (battle, user, move, target, pick), pick(kind, n) the battle's dice for
+# a choice among n; both battles' status_move run them.
+FORM_MOVES = {}
+
+
+def form_move(effect):
+    def add(fn):
+        FORM_MOVES[effect] = fn
+        return fn
+    return add
+
+
+@form_move("CHANGE_TO_WATER_TYPE")
+def soak(b, att, mv, dfn, pick):
+    """Soak (effect script 284, subscript_change_target_to_water_type): its
+    target becomes pure Water until it leaves, unless the move cannot reach
+    it, a Substitute stands in front of it, its ability is Multitype, or it
+    is pure Water already. Its rows then come from its Water twin (form_key).
+    Until 2026-10-14 Soak did nothing (Ian approved the fix)."""
+    if out_of_reach(att, dfn, mv) or sub_blocks(att, dfn, mv) or dfn.ability == "Multitype" or dfn.types == ["Water"]:
+        return False
+    set_types(dfn, ["Water"])
+    return True
+
+
+@form_change
+def _soaked(ff):
+    """Soak: any foe of a Soak user but a pure Water one or a Multitype one
+    may be made pure Water."""
+    for k in ff.keys():
+        if any(m.effect == "CHANGE_TO_WATER_TYPE" for m in ff.moves(k)):
+            for f in ff.foes(k):
+                if ff.types(f) != ["Water"] and ff.ability(f) != "Multitype":
+                    yield f, ["Water"], ff.ability(f)
+
+
+def conversion_type(mv, types):
+    """The type Conversion reads for one of its user's moves (BtlCmd_TryConversion):
+    its own, but Curse's Mystery type counts as Ghost for a Ghost type and
+    Normal for any other."""
+    if mv.type == "Mystery":
+        return "Ghost" if "Ghost" in types else "Normal"
+    return mv.type
+
+
+@form_move("CONVERSION")
+def conversion(b, att, mv, dfn, pick):
+    """Conversion (subscript_conversion, BtlCmd_TryConversion): its user
+    takes the type of one of its moves, Conversion aside, that it is not of
+    already, each such move as likely as the next; it fails on Multitype or
+    with no such move. Its rows then come from its twin of that type
+    (form_key). Until 2026-10-14 Conversion did nothing (Ian approved the
+    fix)."""
+    if att.ability == "Multitype":
+        return False
+    options = [t for t in (conversion_type(m, att.types) for m in att.moves if m.effect != "CONVERSION")
+               if t not in att.types]
+    if not options:
+        return False
+    set_types(att, [options[pick("conversion", len(options)) if len(options) > 1 else 0]])
+    return True
+
+
+@form_change
+def _converted(ff):
+    """Conversion: its user may take the type of any of its other moves but
+    its own types."""
+    for k in ff.keys():
+        mvs = ff.moves(k)
+        if ff.ability(k) != "Multitype" and any(m.effect == "CONVERSION" for m in mvs):
+            own = ff.types(k)
+            for t in sorted({conversion_type(m, own) for m in mvs if m.effect != "CONVERSION"} - set(own)):
+                yield k, [t], ff.ability(k)
+
+
+@form_move("CONVERSION2")
+def conversion2(b, att, mv, dfn, pick):
+    """Conversion 2 (subscript_conversion_2, BtlCmd_TryConversion2): its
+    user takes, alone, a type that resists or is immune to the type of the
+    last move aimed at it since it last acted (conversion2Move, which a
+    move at its own side or the field leaves unset), one it is not of
+    already, each as likely as the next (a random entry of the type chart's
+    table). It fails on Multitype, with no such move, or with no such type.
+    Its rows then come from its twin of that type (form_key). Until
+    2026-10-14 Conversion 2 did nothing (Ian approved the fix)."""
+    src = getattr(att, "conversion2_src", None)
+    if att.ability == "Multitype" or src is None or src[0].range == "OPPONENT_SIDE":
+        return False
+    hit_by = src[1] or src[0].type
+    options = sorted(d for d, m in (b.st["chart"].get(hit_by) or {}).items() if m < 1 and d not in att.types)
+    if not options:
+        return False
+    set_types(att, [options[pick("conversion2", len(options)) if len(options) > 1 else 0]])
+    return True
+
+
+@form_change
+def _converted2(ff):
+    """Conversion 2: its user may take any type that resists a move its foes
+    can aim at it, its own types aside."""
+    chart = ff.blob["type_chart"]
+    for k in ff.keys():
+        if ff.ability(k) == "Multitype" or not any(m.effect == "CONVERSION2" for m in ff.moves(k)):
+            continue
+        aimed = set()
+        for f in ff.foes(k):
+            aimed |= ff.hit_types(f)
+            aimed |= {m.type for m in ff.moves(f) if not m.damaging() and m.range not in OWN_RANGES | {"OPPONENT_SIDE"}}
+        own = set(ff.types(k))
+        for t in sorted(aimed):
+            for d, m in sorted((chart.get(t) or {}).items()):
+                if m < 1 and d not in own:
+                    yield k, [d], ff.ability(k)
+
+
+@form_move("SWITCH_ABILITIES")
+def skill_swap(b, att, mv, dfn, pick):
+    """Skill Swap (effect script 191, subscript_exchange_abilities): the user
+    and its standing target swap abilities, both named, unless the move
+    cannot reach the target, either ability refuses a swap
+    (Ability_ChangeFails) or is kept by an Ability Shield, either holds a
+    Griseous Orb, or neither has an ability; a Substitute does not stop it.
+    A Truant either gains loafs on its next turn (set_ability). Each then
+    reads its twin for its new ability (form_key). Until 2026-10-14 Skill
+    Swap did nothing (Ian approved the fix)."""
+    a, d = raw_ability(att), raw_ability(dfn)
+    if (not dfn.alive() or out_of_reach(att, dfn, mv) or refuses(a, "swap") or refuses(d, "swap")
+            or {"Ability Shield", "Griseous Orb"} & {att.item, dfn.item} or (a is None and d is None)):
+        return False
+    set_ability(b, att, d)
+    set_ability(b, dfn, a, acted=getattr(dfn, "acted_turn", None) == b.turn)
+    return True
+
+
+@form_change
+def _skill_swapped(ff):
+    """Skill Swap: its user may take the ability of any foe a swap reaches,
+    and that foe the user's."""
+    keep = {"Ability Shield", "Griseous Orb"}
+    for k in ff.keys():
+        a = ff.ability(k)
+        if (not any(m.effect == "SWITCH_ABILITIES" for m in ff.moves(k)) or refuses(a, "swap")
+                or ff.pokemon[k].get("item") in keep):
+            continue
+        for f in ff.foes(k):
+            d = ff.ability(f)
+            if refuses(d, "swap") or ff.pokemon[f].get("item") in keep or (a is None and d is None):
+                continue
+            yield k, None, d, (f, None, a)
+
+
+@form_move("COPY_ABILITY")
+def role_play(b, att, mv, dfn, pick):
+    """Role Play (effect script 178, subscript_copy_ability): the user takes
+    its standing target's ability, both named, unless the user's ability is
+    Multitype or cannot be replaced, it holds a Griseous Orb or an Ability
+    Shield, the move cannot reach the target, or the target's ability
+    refuses to be copied or is none (BtlCmd_CheckAbilityChange's copy kind);
+    a Substitute does not stop it, nor the target's own Ability Shield. A
+    Truant it takes makes it loaf on its next turn (set_ability). Its rows
+    then come from its twin for that ability (form_key). Until 2026-10-14
+    Role Play did nothing (Ian approved the fix)."""
+    a, d = raw_ability(att), raw_ability(dfn)
+    if (att.ability == "Multitype" or att.item in ("Griseous Orb", "Ability Shield") or not dfn.alive()
+            or out_of_reach(att, dfn, mv) or refuses(d, "copy") or refuses(a, "suppress") or d is None):
+        return False
+    set_ability(b, att, d)
+    dfn.revealed = d
+    return True
+
+
+@form_change
+def _role_played(ff):
+    """Role Play: its user may take the ability of any foe whose ability can
+    be copied."""
+    for k in ff.keys():
+        a = ff.ability(k)
+        if (not any(m.effect == "COPY_ABILITY" for m in ff.moves(k)) or a == "Multitype" or refuses(a, "suppress")
+                or ff.pokemon[k].get("item") in ("Griseous Orb", "Ability Shield")):
+            continue
+        for f in ff.foes(k):
+            d = ff.ability(f)
+            if d and not refuses(d, "copy"):
+                yield k, None, d
+
+
+@form_move("ENTRAINMENT")
+def entrainment(b, att, mv, dfn, pick):
+    """Entrainment (effect script 384, subscript_entrainment): once the move
+    lands, its standing target takes the user's ability, named, unless the
+    move cannot reach it, a Substitute stands in front of it, the user's
+    ability refuses to be passed on, the target's cannot be replaced, is
+    Truant or is the user's already (BtlCmd_CheckAbilityChange's entrainment
+    kind), or the target holds an Ability Shield. A target given Truant
+    loafs on its next turn (set_ability). Its rows then come from its twin
+    for that ability (form_key). Until 2026-10-14 Entrainment did nothing
+    (Ian approved the fix)."""
+    a, d = raw_ability(att), raw_ability(dfn)
+    if (not dfn.alive() or out_of_reach(att, dfn, mv) or sub_blocks(att, dfn, mv) or refuses(a, "entrain")
+            or refuses(d, "suppress") or d in ("Truant", a) or dfn.item == "Ability Shield"):
+        return False
+    set_ability(b, dfn, a, acted=getattr(dfn, "acted_turn", None) == b.turn)
+    return True
+
+
+@form_change
+def _entrained(ff):
+    """Entrainment: any foe of its user whose ability can be replaced may
+    take the user's."""
+    for k in ff.keys():
+        a = ff.ability(k)
+        if not any(m.effect == "ENTRAINMENT" for m in ff.moves(k)) or refuses(a, "entrain"):
+            continue
+        for f in ff.foes(k):
+            d = ff.ability(f)
+            if not refuses(d, "suppress") and d not in ("Truant", a) and ff.pokemon[f].get("item") != "Ability Shield":
+                yield f, None, a
+
+
+@form_move("SET_ABILITY_TO_INSOMNIA")
+def worry_seed(b, att, mv, dfn, pick):
+    """Worry Seed (effect script 247, subscript_give_target_insomnia): once
+    the move lands, its standing target's ability becomes Insomnia, named,
+    unless the move cannot reach it, a Substitute stands in front of it,
+    its ability cannot be replaced or is Truant (BtlCmd_CheckAbilityChange's
+    overwrite kind), or it holds an Ability Shield or a Griseous Orb. A
+    sleeping target wakes as the move ends (RecoverStatusByAbility), and no
+    sleep reaches it after. Its rows then come from its twin for Insomnia,
+    which changes no row (form_key). Until 2026-10-14 Worry Seed did nothing
+    (Ian approved the fix)."""
+    d = raw_ability(dfn)
+    if (not dfn.alive() or out_of_reach(att, dfn, mv) or sub_blocks(att, dfn, mv) or refuses(d, "suppress")
+            or d == "Truant" or dfn.item in ("Ability Shield", "Griseous Orb")):
+        return False
+    set_ability(b, dfn, "Insomnia")
+    return True
+
+
+@form_change
+def _worried(ff):
+    """Worry Seed: any foe of its user whose ability can be replaced may
+    take Insomnia."""
+    for k in ff.keys():
+        if not any(m.effect == "SET_ABILITY_TO_INSOMNIA" for m in ff.moves(k)):
+            continue
+        for f in ff.foes(k):
+            d = ff.ability(f)
+            if (not refuses(d, "suppress") and d != "Truant"
+                    and ff.pokemon[f].get("item") not in ("Ability Shield", "Griseous Orb")):
+                yield f, None, "Insomnia"
+
+
+@form_move("SUPRESS_ABILITY")
+def gastro_acid(b, att, mv, dfn, pick):
+    """Gastro Acid (effect script 239, subscript_suppress_target_ability):
+    once the move lands on its standing target, with no Substitute in front
+    of it and not in the air or underground, the target's ability reads as
+    none until it leaves (suppress), unless it is suppressed already, its
+    ability cannot be suppressed, or it holds an Ability Shield. Nothing
+    names the ability. A Neutralizing Gas holder's gas stops with it, as the
+    move's end then finds (gas_update). Its rows then come from its
+    ability-blank twin (form_key). Until 2026-10-14 Gastro Acid did nothing
+    (Ian approved the fix)."""
+    if not dfn.alive() or out_of_reach(att, dfn, mv) or sub_blocks(att, dfn, mv):
+        return False
+    return suppress(b, dfn)
+
+
+@form_change
+def _suppressed(ff):
+    """Gastro Acid and Core Enforcer: any foe of their user whose ability can
+    be suppressed may lose it."""
+    for k in ff.keys():
+        if not any(m.effect in SUPPRESSES for m in ff.moves(k)):
+            continue
+        for f in ff.foes(k):
+            if not refuses(ff.ability(f), "suppress") and ff.pokemon[f].get("item") != "Ability Shield":
+                yield f, None, None
+
+
+# The moves that suppress their target's ability: Gastro Acid and Core
+# Enforcer.
+SUPPRESSES = frozenset({"SUPRESS_ABILITY", "CORE_ENFORCER"})
+
+
+# The type Camouflage gives on each battle terrain (data/terrain/to_type.h,
+# sTerrainCamouflageType); every terrain after the bridge's (the Elite
+# Four's rooms, the Distortion World) counts as the special one, Normal.
+CAMOUFLAGE_TYPE = {"TERRAIN_PLAIN": "Ground", "TERRAIN_SAND": "Ground", "TERRAIN_GRASS": "Grass",
+                   "TERRAIN_PUDDLE": "Grass", "TERRAIN_MOUNTAIN": "Rock", "TERRAIN_CAVE": "Rock",
+                   "TERRAIN_SNOW": "Ice", "TERRAIN_WATER": "Water", "TERRAIN_ICE": "Ice",
+                   "TERRAIN_BUILDING": "Normal", "TERRAIN_GREAT_MARSH": "Ground", "TERRAIN_BRIDGE": "Flying"}
+
+
+def camouflage_type(terrain):
+    """Camouflage's type on this battle terrain (calc.fight_terrain), a
+    building's Normal where the fight names none."""
+    return CAMOUFLAGE_TYPE.get(terrain or "TERRAIN_BUILDING", "Normal")
+
+
+@form_move("CAMOUFLAGE")
+def camouflage(b, att, mv, dfn, pick):
+    """Camouflage (effect script 213, BtlCmd_TryCamouflage): its user takes,
+    alone, the type its battle terrain gives (st["camouflage"], from the map's
+    backdrop), and is marked so (MOVE_EFFECT_CAMOUFLAGE, which the trainer's
+    AI reads); it fails on Multitype or when the user is of that type
+    already. Its rows then come from its twin of that type (form_key). Until
+    2026-10-14 Camouflage did nothing (Ian approved the fix)."""
+    t = b.st.get("camouflage") or "Normal"
+    if att.ability == "Multitype" or t in att.types:
+        return False
+    set_types(att, [t])
+    att.camouflaged = True
+    return True
+
+
+@form_change
+def _camouflaged(ff):
+    """Camouflage: its user may take its terrain's type, unless it has it."""
+    for k in ff.keys():
+        mvs = ff.moves(k)
+        if (ff.ability(k) != "Multitype" and any(m.effect == "CAMOUFLAGE" for m in mvs)
+                and ff.camouflage not in ff.types(k)):
+            yield k, [ff.camouflage], ff.ability(k)
+
+
+# The hits that take their user's own type away once they land, and fail
+# without it: Burn Up's Fire and Double Shock's Electric (effect scripts 393
+# and 394).
+LOSES_TYPE = {"REMOVE_USER_FIRE_TYPE_HIT": "Fire", "REMOVE_USER_ELECTRIC_TYPE_HIT": "Electric"}
+
+
+def loses_type_fails(att, mv):
+    """Whether Burn Up or Double Shock fails at once, its user not of the
+    type it spends (the effect script's first check, before anything else is
+    worked out), so Double Shock lands once a stay."""
+    return mv.effect in LOSES_TYPE and LOSES_TYPE[mv.effect] not in att.types
+
+
+def lose_type(mon, t):
+    """subscript_remove_user_fire_type and _electric_type: once the move has
+    hit, a Substitute included, its user loses the type t until it leaves; a
+    dual type keeps its other type alone, and a user that had no other is
+    left with none ("???", which no move's type meets). Its rows then come
+    from its twin without t (form_key). Until 2026-10-14 neither move ever
+    failed and its user kept its type (Ian approved the fix)."""
+    rest = [x for x in mon.types if x != t]
+    set_types(mon, rest or ["???"])
+
+
+@form_change
+def _types_spent(ff):
+    """Burn Up and Double Shock: their user, if it has the type, may lose
+    it."""
+    for k in ff.keys():
+        own = ff.types(k)
+        for t in {LOSES_TYPE[m.effect] for m in ff.moves(k) if m.effect in LOSES_TYPE}:
+            if t in own:
+                yield k, [x for x in own if x != t] or ["???"], ff.ability(k)
+
+
+def captivates(att, dfn):
+    """Captivate's own checks (effect script 265) before its two stages of
+    Sp. Atk: a target's Oblivious makes it ineffective, the message naming
+    the ability, unless the user's Mold Breaker gets past it; a genderless
+    user or target, or two of one gender, make it fail. Whether the drop may
+    land. Until 2026-10-14 it landed whatever the genders (Ian approved the
+    fix)."""
+    if dfn.ability == "Oblivious" and not mold(att, dfn):
+        reveal(dfn)
+        return False
+    return bool(att.gender and dfn.gender and att.gender != dfn.gender)
+
+
 def lifted(dfn, mv):
     """Whether Magnet Rise makes this Ground move fail on dfn (the type
     check's MOVE_STATUS_MAGNET_RISE): not on a Pokemon rooted by Ingrain or
@@ -3260,6 +4311,8 @@ def status_move(b, att, mv, dfn, first):
     if targets_foe and dfn.alive():
         if protected(b, att, mv, dfn):
             return
+        if status_out_of_reach(att, dfn, mv):
+            return               # a target on its hidden turn of Fly and the like (status_out_of_reach)
         # The engine runs the type chart only for moves with power, and for
         # Thunder Wave (BattleControllerPlayer_CheckTypeChart), so Thunder
         # Wave fails on a Ground type while Hypnosis still sleeps a Dark one.
@@ -3299,6 +4352,9 @@ def status_move(b, att, mv, dfn, first):
         change_stages(att, SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
+    elif e == "SP_ATK_DOWN_2_OPPOSITE_GENDER":
+        if captivates(att, dfn) and not sub_blocks(att, dfn, mv):
+            lower_stats(b, att, dfn, FOE_STAGES[e])     # Captivate, only across the genders
     elif e in FOE_STAGES:
         if not sub_blocks(att, dfn, mv):
             lower_stats(b, att, dfn, FOE_STAGES[e])
@@ -3410,6 +4466,9 @@ def status_move(b, att, mv, dfn, first):
         change_stages(dfn, {"atk": -2, "spa": -2})
     elif e == "PASS_STATS_AND_STATUS":
         att.baton = True
+    elif e in FORM_MOVES:
+        # The status moves that change a type or an ability (FORM_MOVES).
+        FORM_MOVES[e](b, att, mv, dfn, lambda kind, n: b.rng.randrange(n))
     elif e == "ALL_FAINT_3_TURNS":
         # Perish Song: every Pokemon on the field faints at the end of the
         # third turn after this one unless it switches out first.
@@ -3484,7 +4543,7 @@ def switch_in(b, side, index, slot=0, lead=False):
             give_status(b, new, "psn" if side.hazards["tspikes"] == 1 else "tox")
     if gas and gas_update(b):
         return                   # the gas wore off: the whole field's entry abilities went off, the newcomer's with them
-    entry_abilities(b, [new], intimidate=not lead)
+    entry_abilities(b, [new], intimidate=not lead, trace_now=not lead)
 
 
 def end_of_turn(b):
@@ -4662,11 +5721,12 @@ def family(species):
 
 
 def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False,
-            given_side=None):
+            given_side=None, terrain=None):
     """Everything a fight's battles read: the strong third of the side, the
     trainer's Pokemon, a partner's teams (keys q0.0 and on), and the
     calculator's rows for every pair in every weather the fight can have;
-    in a double battle also each ally's spread moves on its ally."""
+    in a double battle also each ally's spread moves on its ally. `terrain`
+    is the fight's battle terrain (calc.fight_terrain), for Camouflage."""
     blob = calc.blob()
     cap = cap or pool.caps()[split]
     side, can = side_at(split, cap, blob)
@@ -4950,6 +6010,13 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                     got = party_hits(d) if d in bkeys else hits(d)
                     if got:
                         pairs.append([d, t, got, w])
+    # The types and abilities other moves and abilities can change
+    # (FORM_CHANGES): a twin for each change the fight can produce, rowed
+    # both ways against every foe (form_twins). None in a fight without them.
+    camo = camouflage_type(terrain)
+    form_twin = form_twins(FormFight(pokemon, moves, blob, pkeys, qkeys, bkeys, weathers, camo), pairs,
+                           lambda k: party_hits(k) if k in bkeys else hits(k), spread,
+                           doubles or bool(partners), gas_twin)
     # The calculator is told to leave off the abilities the battle applies
     # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once,
     # and each Pokemon's gender as the battle has it (calc_gender: "M", "F",
@@ -4984,7 +6051,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "base_weather": calc.CALC_WEATHER.get(weather, weather) if weather else None,
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
-            "protean_twin": protean_twin}
+            "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo}
 
 
 def effectiveness(blob_or_chart, atk_type, def_types):
@@ -5224,13 +6291,14 @@ def story(key, runs=RUNS):
         partners = [ox[p]["party"] for p in fight.get("partner_ids", []) if p in ox]
         st = prepare(fight["split"], parties, weather,
                      trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
-                     partners=partners, doubles=True)
+                     partners=partners, doubles=True, terrain=calc.fight_terrain(tr_ids))
         st["battle"] = "tag"
         st["group_flags"] = [t["ai"] for t in trainers]
         st["partner_flags"] = ox[fight["partner_ids"][0]]["ai"] if fight.get("partner_ids") else 0
         return read_fight(st, [st["group_flags"][0]], runs)
     st = prepare(fight["split"], parties, weather,
-                 trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap)
+                 trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
+                 terrain=calc.fight_terrain(tr_ids))
     return read_fight(st, [t["ai"] for t in trainers], runs)
 
 
@@ -5242,7 +6310,7 @@ def trainer(tr_id, runs=RUNS, split=None):
     split = split or required.placements()[tr_id]["split"]
     doubles = t.get("battle_type") == "Doubles" and PLAY_DOUBLES and len(t["party"]) > 1
     st = prepare(split, [t["party"]], calc.fight_weather([tr_id]), trick_room_for([t["constant"]]),
-                 cap=fight_cap(split), doubles=doubles)
+                 cap=fight_cap(split), doubles=doubles, terrain=calc.fight_terrain([tr_id]))
     if doubles:
         st["battle"] = "doubles"
     return read_fight(st, [t["ai"]], runs)
