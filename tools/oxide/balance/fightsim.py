@@ -750,6 +750,9 @@ class Battle:
     # A move Magic Coat is turning back is running (coat_bounces), so it is
     # not turned again.
     reflecting = False
+    # Magic Room's turns left (magicRoomTurns): no held item on the field
+    # works while they run (lock_item); left on the class while 0.
+    magic_room = 0
     # Whether Guard Split or Power Split has averaged a stat in this battle
     # (Mon.split), so the damage reads split_mult only then; kept by its
     # copies.
@@ -4338,6 +4341,30 @@ def embargo(b, att, dfn, mv):
     lock_item(dfn)
 
 
+def magic_room(b):
+    """Magic Room (effect script 411): five turns in which no held item works
+    (lock_item on every Pokemon on the field, and on each that comes in),
+    counted down after Trick Room at each turn's end
+    (SIDE_COND_CHECK_STATE_MAGIC_ROOM); used while one runs, it ends it. The
+    calculator's rows keep a trainer's item's own damage and Speed, as for
+    Embargo. Until 2026-10-15 the move did nothing (Ian approved the fix)."""
+    if b.magic_room:
+        magic_room_ends(b)
+        return
+    b.magic_room = 5
+    for m in b.p.on_field() + b.b.on_field():
+        m.roomed = m.rare = True
+        lock_item(m)
+
+
+def magic_room_ends(b):
+    b.magic_room = 0
+    for m in b.p.on_field() + b.b.on_field():
+        if m.roomed:
+            m.roomed = False
+            unlock_item(m)
+
+
 def knock_off(dfn):
     """Knock Off's hit (BtlCmd_TryKnockOff): the target's item is gone, and
     its party slot is marked (knocked_off)."""
@@ -6301,6 +6328,8 @@ def status_move(b, att, mv, dfn, first):
         share_stats(b, att, dfn, mv, ("atk", "spa"))
     elif e == "PREVENT_ITEM_USE":
         embargo(b, att, dfn, mv)
+    elif e == "MAGIC_ROOM":
+        magic_room(b)
     elif e == "CURSE":
         if "Ghost" in att.types:
             ghost_curse(b, att, dfn, mv)
@@ -6721,8 +6750,9 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
             setattr(new, k, v)
         if suppressed:
             suppress(b, new)         # Gastro Acid's suppression goes with the baton
-    if new.embargo:
-        lock_item(new)               # no held item works for it under a passed Embargo
+    if b.magic_room or new.embargo:
+        new.roomed = bool(b.magic_room)
+        lock_item(new)               # no held item works for it under Magic Room or a passed Embargo
     if gas:
         # The gas reads live: a newcomer under it meets the hazards with its
         # ability off, and a holder's arrival or departure turns the others'
@@ -6928,6 +6958,10 @@ def _end_of_turn(b):
                     return
     if 0 < b.trick_room < 999:
         b.trick_room -= 1
+    if b.magic_room:
+        b.magic_room -= 1           # SIDE_COND_CHECK_STATE_MAGIC_ROOM, after Trick Room
+        if not b.magic_room:
+            magic_room_ends(b)
     if b.guarded:
         b.p.guard = b.b.guard = None     # the side guards are turn flags too
         b.guarded = False

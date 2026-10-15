@@ -1039,6 +1039,8 @@ def status_move(b, att, mv, dfn, first):
         fs.share_stats(b, att, dfn, mv, ("atk", "spa"))     # the two Attacks averaged (fightsim.share_stats)
     elif e == "PREVENT_ITEM_USE":
         fs.embargo(b, att, dfn, mv)      # five turns with its item held back (fightsim.embargo)
+    elif e == "MAGIC_ROOM":
+        fs.magic_room(b)                 # five turns with every item held back (fightsim.magic_room)
     elif e == "CURSE":
         if "Ghost" in att.types:
             fs.ghost_curse(b, att, dfn, mv)      # it fails, at no cost, through a Substitute or on a cursed target
@@ -1264,7 +1266,8 @@ def clone_battle(b):
         c.guarded = True             # a side guard up this turn (fightsim.side_guard)
     if b.split:
         c.split = True               # stats averaged in this battle (fightsim.share_stats)
-
+    if b.magic_room:
+        c.magic_room = b.magic_room  # Magic Room's turns (fightsim.magic_room)
     return c
 
 
@@ -1328,13 +1331,15 @@ def _field_extra(b):
     out = (("gravity", b.gravity),) if b.gravity else ()
     if b.last_move is not None:
         out += (("last move", b.last_move.name),)
+    if b.magic_room:
+        out += (("magic room", b.magic_room),)
     return out
 
 
 def state_key(b):
     key = (side_key(b.p), side_key(b.b), b.weather, b.weather_turns, b.trick_room,
            round(b.luck_spent, 6), getattr(b, "declined", frozenset()))
-    return key + _field_extra(b) if b.gravity or b.last_move is not None else key
+    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room else key
 
 
 def shape_key(b):
@@ -1347,7 +1352,7 @@ def shape_key(b):
             key += (("lucky chant", sd.lucky_chant, "web", sd.web),)
         return key
     key = (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room, getattr(b, "declined", frozenset()))
-    return key + _field_extra(b) if b.gravity or b.last_move is not None else key
+    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room else key
 
 
 def vector(b):

@@ -4826,6 +4826,25 @@ def embargo_checks():
     return [("the readings' Embargo keeps a Berry from working", ok, f"(item, held back, below half) {out}")]
 
 
+def magic_room_checks():
+    """Magic Room in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): while it runs the player's Charmander's Charcoal
+    adds nothing to its Ember, and the trainer's Bibarel's Sitrus Berry
+    stays uneaten below half."""
+    b, bib, cha = b7_battle([("Bibarel", 30, "Unaware", ["Tackle"], "Sitrus Berry")],
+                            [("Charmander", 30, "Blaze", ["Magic Room", "Ember"])])
+    cha.item, bib.item = "Charcoal", "Sitrus Berry"
+    ember = fs.move("Ember")
+    boosted = pl.damage_of(b, cha, bib, ember, False, True)
+    pl.status_move(b, cha, fs.move("Magic Room"), bib, True)
+    plain = pl.damage_of(b, cha, bib, ember, False, True)
+    bib.hp = bib.maxhp // 2 + 1
+    pl.attack(b, cha, ember, bib, True)
+    ok = plain < boosted and bib.item_off == "Sitrus Berry" and bib.hp <= bib.maxhp // 2 and b.magic_room == 5
+    return [("the readings' Magic Room holds every item back", ok,
+             f"Ember's top roll {boosted} with Charcoal, {plain} in the room; Bibarel's Berry held back {bib.item_off}")]
+
+
 def main():
     results = []
 
@@ -5373,6 +5392,7 @@ def main():
     results += guard_split_checks()
     results += power_split_checks()
     results += embargo_checks()
+    results += magic_room_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

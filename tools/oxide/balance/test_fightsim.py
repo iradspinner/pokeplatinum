@@ -5153,6 +5153,37 @@ def check_embargo(results):
     results.append(("Embargo holds the target's item back for five turns", out == want, str(out)))
 
 
+def check_magic_room(results):
+    """Magic Room (approved 2026-10-14; effect script 411): for five turns no
+    held item on the field works, a newcomer's included, an item held back
+    still keeps Acrobatics from doubling, a second use ends the room, and
+    after five turn ends every item works again."""
+    out = {}
+    b, p, foe = battle(["Magic Room", "Acrobatics"], ["Tackle"], {("p", "Acrobatics"): [10] * 16}, hp=500)
+    b.rng = FixedDice(0.5)
+    p.item, foe.item = "Charcoal", "Leftovers"
+    extra = fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Tackle"], "b")
+    extra.item = "Sitrus Berry"
+    b.b.mons.append(extra)
+    fs.status_move(b, p, fs.move("Magic Room"), foe, True)
+    out["held back"] = (p.item, p.item_off, foe.item, foe.item_off, b.magic_room)
+    hp = foe.hp
+    fs.attack(b, p, fs.move("Acrobatics"), foe, True)
+    out["Acrobatics"] = hp - foe.hp
+    fs.switch_in(b, b.b, 1)
+    out["newcomer"] = (extra.item, extra.item_off, foe.item)
+    for _ in range(5):
+        fs.end_of_turn(b)
+    out["after five turn ends"] = (p.item, extra.item, b.magic_room)
+    fs.status_move(b, p, fs.move("Magic Room"), extra, True)
+    fs.status_move(b, p, fs.move("Magic Room"), extra, True)
+    out["used twice"] = (p.item, extra.item, b.magic_room)
+    want = {"held back": (None, "Charcoal", None, "Leftovers", 5), "Acrobatics": 10,
+            "newcomer": (None, "Sitrus Berry", "Leftovers"), "after five turn ends": ("Charcoal", "Sitrus Berry", 0),
+            "used twice": ("Charcoal", "Sitrus Berry", 0)}
+    results.append(("Magic Room holds every held item back for five turns", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5430,7 +5461,7 @@ def main():
                   check_defog, check_strength_sap, check_parting_shot,
                   check_dragon_tail, check_side_guards, check_heat_crash,
                   check_healing_wish, check_guard_split, check_power_split,
-                  check_embargo,
+                  check_embargo, check_magic_room,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
