@@ -4802,6 +4802,28 @@ def check_life_dew(results):
     results.append(("Life Dew heals a quarter, rounded up, not under Heal Block", out == want, str(out)))
 
 
+def check_mud_sport(results):
+    """Mud Sport (approved 2026-10-14; effect script 201): while its user
+    stands, every Electric move's power is halved, the trainer's AI's figure
+    too, and Fire moves keep theirs; a second use fails, Baton Pass hands it
+    on, and leaving ends it."""
+    out = {}
+    b, p, foe = battle(["Mud Sport", "Baton Pass"], ["Thunder Shock", "Ember"],
+                       {("b", "Thunder Shock"): [40] * 16, ("b", "Ember"): [40] * 16})
+    b.st["mud_sport"], b.sporty = True, True
+    shock, ember = fs.move("Thunder Shock"), fs.move("Ember")
+    out["before"] = (b.damage(foe, p, shock, roll=0), fightai.figure(b, foe, p, shock))
+    fs.status_move(b, p, fs.move("Mud Sport"), foe, True)
+    out["after"] = (b.damage(foe, p, shock, roll=0), fightai.figure(b, foe, p, shock), b.damage(foe, p, ember, roll=0))
+    out["AI's second Mud Sport"] = fightai.basic(b, p, foe, fs.move("Mud Sport"), 0)
+    out["handed on"] = fs.baton_state(p)["mud_sport"]
+    p.reset_volatile()
+    out["after leaving"] = (p.mud_sport, b.damage(foe, p, shock, roll=0))
+    want = {"before": (40, 40), "after": (20, 20, 40), "AI's second Mud Sport": -10, "handed on": True,
+            "after leaving": (False, 40)}
+    results.append(("Mud Sport halves Electric moves while its user stands", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5075,6 +5097,7 @@ def main():
                   check_power_trick, check_bide, check_transform,
                   check_sp_def_2_hit, check_tearful_look, check_venom_drench, check_false_swipe,
                   check_clear_smog, check_incinerate, check_life_dew,
+                  check_mud_sport,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -4610,6 +4610,20 @@ def life_dew_checks():
     return [("the readings' Life Dew heals a quarter", ok, f"Bibarel's HP {hp} to {bib.hp} of {bib.maxhp}")]
 
 
+def mud_sport_checks():
+    """Mud Sport in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): after a trainer's Bibarel's Mud Sport the
+    player's Pikachu's Thunder Shock hits it half as hard."""
+    b, bib, pik = b7_battle([("Bibarel", 26, "Unaware", ["Mud Sport", "Tackle"])],
+                            [("Pikachu", 26, "Static", ["Thunder Shock"])])
+    shock = fs.move("Thunder Shock")
+    before = b.damage(pik, bib, shock, roll=15)
+    pl.status_move(b, bib, fs.move("Mud Sport"), pik, True)
+    after = b.damage(pik, bib, shock, roll=15)
+    ok = before > 0 and abs(after - before / 2) <= 1 and bib.mud_sport
+    return [("the readings' Mud Sport halves Electric moves", ok, f"Thunder Shock's top roll {before} before, {after} after")]
+
+
 def main():
     results = []
 
@@ -5144,6 +5158,7 @@ def main():
     results += clear_smog_checks()
     results += incinerate_checks()
     results += life_dew_checks()
+    results += mud_sport_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

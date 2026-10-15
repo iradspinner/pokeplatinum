@@ -438,6 +438,10 @@ class Mon:
     # every Fire move's power is halved (sport_half); cleared when it
     # leaves, and handed on by Baton Pass.
     water_sport = False
+    # Mud Sport (MOVE_EFFECT_MUD_SPORT): while it stands on the field every
+    # Electric move's power is halved (sport_half); cleared when it leaves,
+    # and handed on by Baton Pass.
+    mud_sport = False
     # Lock-On and Mind Reader: on the Pokemon held, the turns left
     # (MOVE_EFFECT_LOCK_ON, 2 when used) and the holder's key
     # (lockOnTarget); cleared when it leaves.
@@ -529,6 +533,7 @@ class Mon:
             # Pass hands on the Lock-On hold alone (baton_state).
             self.throat_chop = self.charged = self.locked_on = 0
             self.minimized = self.foresight = self.smacked = self.miracle_eye = self.water_sport = False
+            self.mud_sport = False
             self.power_trick = False
             self.bide = self.bide_damage = 0
             if self.transformed_from is not None:
@@ -712,9 +717,9 @@ class Battle:
     # A move Magic Coat is turning back is running (coat_bounces), so it is
     # not turned again.
     reflecting = False
-    # Whether a Pokemon in this fight knows Water Sport (st["water_sport"]),
-    # so the damage reads sport_half only then; set as the battle is made
-    # and kept by its copies.
+    # Whether a Pokemon in this fight knows Water Sport or Mud Sport
+    # (st["water_sport"], st["mud_sport"]), so the damage reads sport_half
+    # only then; set as the battle is made and kept by its copies.
     sporty = False
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
@@ -723,7 +728,7 @@ class Battle:
         self.weather = weather
         self.weather_turns = 0 if weather else 0     # 0 with weather set: permanent
         self.trick_room = 999 if trick_room else 0
-        if st.get("water_sport"):
+        if st.get("water_sport") or st.get("mud_sport"):
             self.sporty = True
         self.turn = 0
         self.ai_flags = ai_flags
@@ -4013,19 +4018,36 @@ def water_sport(att):
         att.water_sport = att.rare = True
 
 
+def mud_sport(att):
+    """Mud Sport (effect script 201): its user is marked
+    (MOVE_EFFECT_MUD_SPORT) until it leaves, failing when it is already;
+    while any Pokemon on the field has the mark, every Electric move's power
+    is halved (sport_half). Until 2026-10-15 it did nothing (Ian approved
+    the fix)."""
+    if not att.mud_sport:
+        att.mud_sport = att.rare = True
+
+
 def sport_half(b, att, dfn, mv):
-    """The factor Water Sport puts on a Fire move (BattleSystem_CalcMoveDamage:
-    the power halved, in whole numbers, after Technician, while
-    BattleSystem_AnyBattlersWithMoveEffect finds the mark on any battler:
-    in a single battle the two Pokemon on the field are the hit's own);
-    the trainer's AI's figure meets it too, as the engine's estimate runs
-    the same routine. Looked at only in a fight where a Pokemon knows the
-    move (st["water_sport"])."""
-    if getattr(b, "doubles", False):
-        on = any(m.water_sport and m.alive() for m in b.p.on_field() + b.b.on_field())
+    """The factor Water Sport puts on a Fire move, and Mud Sport on an
+    Electric one (BattleSystem_CalcMoveDamage: the power halved, in whole
+    numbers, after Technician, while BattleSystem_AnyBattlersWithMoveEffect
+    finds the mark on any battler: in a single battle the two Pokemon on the
+    field are the hit's own); the trainer's AI's figure meets it too, as the
+    engine's estimate runs the same routine. Looked at only in a fight where
+    a Pokemon knows one of the moves (Battle.sporty)."""
+    kind = move_type_used(att.ability, mv, att.ivs, att.item, b.weather)
+    if kind == "Fire":
+        mark = "water_sport"
+    elif kind == "Electric":
+        mark = "mud_sport"
     else:
-        on = (att.water_sport and att.alive()) or (dfn.water_sport and dfn.alive())
-    if not on or move_type_used(att.ability, mv, att.ivs, att.item, b.weather) != "Fire":
+        return 1.0
+    if getattr(b, "doubles", False):
+        on = any(getattr(m, mark) and m.alive() for m in b.p.on_field() + b.b.on_field())
+    else:
+        on = (getattr(att, mark) and att.alive()) or (getattr(dfn, mark) and dfn.alive())
+    if not on:
         return 1.0
     p = technician(att, mv.power) if mv.power > 1 else 2
     return (p // 2) / p
@@ -6095,6 +6117,8 @@ def status_move(b, att, mv, dfn, first):
         swap_stages(att, dfn, ("atk", "spa"))     # Power Swap
     elif e == "HALVE_FIRE_DAMAGE":
         water_sport(att)
+    elif e == "HALVE_ELECTRIC_DAMAGE":
+        mud_sport(att)
     elif e == "APPLY_MAGIC_COAT":
         att.magic_coat = not moves_last(b, first)     # it fails when no battler acts after its user
     elif e == "RANDOM_STAT_UP_2":
@@ -6181,7 +6205,7 @@ def baton_state(mon):
     (VOLATILE_CONDITION_BATON_PASSED); and of the move effects Leech Seed,
     Perish Song's count, Ingrain, Aqua Ring, a suppressed ability (Gastro
     Acid), Heal Block's and Magnet Rise's turns, Lock-On's hold, Water
-    Sport and Power Trick (MOVE_EFFECT_BATON_PASSED).
+    Sport, Mud Sport and Power Trick (MOVE_EFFECT_BATON_PASSED).
     Everything else (Taunt, Encore, Disable, Torment, Yawn, a bind, love,
     Salt Cure, Stockpile, Imprison) stays behind."""
     return {"stages": dict(mon.stages), "crit_stage": mon.crit_stage, "trapped_by": mon.trapped_by,
@@ -6189,7 +6213,8 @@ def baton_state(mon):
             "perish": mon.perish, "ingrained": mon.ingrained, "aqua_ring": mon.aqua_ring,
             "heal_block": mon.heal_block, "magnet_rise": mon.magnet_rise,
             "locked_on": mon.locked_on, "lock_on_by": mon.lock_on_by, "water_sport": mon.water_sport,
-            "power_trick": mon.power_trick, "rare": bool(mon.locked_on or mon.water_sport or mon.power_trick),
+            "mud_sport": mon.mud_sport, "power_trick": mon.power_trick,
+            "rare": bool(mon.locked_on or mon.water_sport or mon.mud_sport or mon.power_trick),
             "suppressed": getattr(mon, "suppressed", False)}
 
 
@@ -8061,6 +8086,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "trick_twin": trick_twin,
             "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
             "water_sport": any(move(m).effect == "HALVE_FIRE_DAMAGE" for mv in moves.values() for m in mv),
+            "mud_sport": any(move(m).effect == "HALVE_ELECTRIC_DAMAGE" for mv in moves.values() for m in mv),
             "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo, "terrain": terrain}
 
 

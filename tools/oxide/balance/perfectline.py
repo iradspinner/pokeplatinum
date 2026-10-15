@@ -1117,6 +1117,8 @@ def status_move(b, att, mv, dfn, first):
         fs.swap_stages(att, dfn, ("atk", "spa"))      # Power Swap (fightsim.swap_stages)
     elif e == "HALVE_FIRE_DAMAGE":
         fs.water_sport(att)              # Fire moves at half power while it stands (fightsim.sport_half)
+    elif e == "HALVE_ELECTRIC_DAMAGE":
+        fs.mud_sport(att)                # Electric moves at half power while it stands (fightsim.sport_half)
     elif e == "APPLY_MAGIC_COAT":
         att.magic_coat = not fs.moves_last(b, first)  # this turn's coat, unless no battler acts after it
     elif e == "RANDOM_STAT_UP_2":
@@ -1272,7 +1274,7 @@ def mon_key(m):
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
     if m.rare:
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
-        key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.power_trick, m.bide, m.bide_damage,
+        key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.mud_sport, m.power_trick, m.bide, m.bide_damage,
                 m.transform_key,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
