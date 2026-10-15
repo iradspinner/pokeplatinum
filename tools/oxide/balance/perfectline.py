@@ -769,6 +769,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         return
     if e == "SALT_CURE":
         dfn.salted = True        # as fightsim: salted once the hit lands, chance-free
+    if e == "DECREASE_LAST_MOVE_PP_HIT" and dealt > 0:
+        fs.spite(dfn, 3)         # Eerie Spell drains 3 PP after its hit, chance-free (fightsim._after_attack)
     chance = mv.chance or 0
     if (dfn.ability == "Shield Dust" and not fs.mold(att, dfn)) or stripped:
         chance = 0               # Shield Dust, unless Mold Breaker gets past it

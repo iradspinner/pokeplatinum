@@ -2285,6 +2285,31 @@ def check_water_bubble(results):
     results.append(("Water Bubble keeps burns off its holder", got == want, f"{got}"))
 
 
+def check_eerie_spell(results):
+    """Eerie Spell (Oxide's engine since 2026-10-14, effect script 421): its
+    hit, then 3 PP off the target's last move, or what it has left, by
+    Spite's command; nothing when the target has no last move, when that
+    move was Mimic, or when a Substitute took the hit; Shield Dust does not
+    stop it. Spite itself still takes 4."""
+    def spell(last="Tackle", pp=10, shield_dust=False, sub=0, move="Eerie Spell"):
+        b, p, foe = battle([move], ["Tackle", "Mimic"], {("p", move): [10] * 16})
+        b.st["first_battle"] = True
+        foe.last = fs.move(last) if last else None
+        if last:
+            foe.pp[last] = pp
+        foe.ability = "Shield Dust" if shield_dust else None
+        foe.sub = sub
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return foe.pp.get(last) if last else None
+    got = {"Tackle at 10": spell(), "Tackle at 2": spell(pp=2), "no last move": spell(last=None),
+           "Mimic": spell(last="Mimic"), "Shield Dust": spell(shield_dust=True), "a Substitute": spell(sub=50),
+           "Spite": spell(move="Spite")}
+    want = {"Tackle at 10": 7, "Tackle at 2": 0, "no last move": None, "Mimic": 10, "Shield Dust": 7,
+            "a Substitute": 10, "Spite": 6}
+    results.append(("Eerie Spell drains 3 PP from the target's last move after its hit", got == want,
+                    f"the last move's PP after {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2536,7 +2561,7 @@ def main():
                   check_telepathy, check_steadfast, check_starf_berry,
                   check_sticky_barb, check_payback, check_leech_seed_sap,
                   check_ghost_untrapped, check_soundproof_status, check_item_flinch_blocked,
-                  check_black_sludge, check_water_bubble,
+                  check_black_sludge, check_water_bubble, check_eerie_spell,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

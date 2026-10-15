@@ -2612,6 +2612,27 @@ def water_bubble_checks():
     return [("Water Bubble keeps a Will-O-Wisp's burn off in the readings", ok, f"status after Will-O-Wisp {out}")]
 
 
+def eerie_spell_checks():
+    """Eerie Spell in the readings' battle (Oxide's engine since 2026-10-14):
+    the player's Eerie Spell takes 3 PP from the Thunderbolt a trainer's
+    Jolteon has just used, and none after the Jolteon has switched in."""
+    from .test_fightai import battle
+    out = {}
+    for case in ("after its Thunderbolt", "just in"):
+        b = battle([("Jolteon", 40, "Volt Absorb", ["Thunderbolt"])], [("Slowking", 40, "Oblivious", ["Eerie Spell"])])
+        jolt, king = b.b.cur(), b.p.cur()
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        if case == "after its Thunderbolt":
+            pl.use_move(b, jolt, fs.move("Thunderbolt"), king, True)
+        before = jolt.pp["Thunderbolt"]
+        b.st["first_battle"] = True
+        pl.use_move(b, king, fs.move("Eerie Spell"), jolt, False)
+        b.st["first_battle"] = False
+        out[case] = (before, jolt.pp["Thunderbolt"])
+    ok = out["after its Thunderbolt"][0] - out["after its Thunderbolt"][1] == 3 and out["just in"][0] == out["just in"][1]
+    return [("Eerie Spell drains the last move's PP in the readings", ok, f"Thunderbolt's PP before and after {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3120,6 +3141,7 @@ def main():
     results += item_flinch_blocked_checks()
     results += black_sludge_checks()
     results += water_bubble_checks()
+    results += eerie_spell_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

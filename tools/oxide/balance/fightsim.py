@@ -2018,6 +2018,13 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         # until it leaves the field; a chance-free effect, so Shield Dust
         # and Sheer Force (sSheerForceEffects) leave it alone.
         dfn.salted = True
+    if e == "DECREASE_LAST_MOVE_PP_HIT" and dealt > 0:
+        # Eerie Spell (effect script 421, subscript_reduce_target_pp_hit,
+        # Oxide's engine since 2026-10-14): once its hit has landed on the
+        # target itself, not on a Substitute, the target's last move loses 3
+        # PP by Spite's own command. A chance-free effect, so Shield Dust, a
+        # Covert Cloak and Sheer Force leave it alone.
+        spite(dfn, 3)
     chance = mv.chance or 0
     if (dfn.ability == "Shield Dust" and not mold(att, dfn)) or stripped:
         chance = 0               # Shield Dust, unless Mold Breaker gets past it
@@ -2247,12 +2254,21 @@ def recycle(att):
         att.item, att.recycle = att.recycle, None
 
 
-def spite(dfn):
+# The last moves Spite's command finds no slot for (Battler_SlotForMove
+# returns LEARNED_MOVES_MAX): Mimic and Sketch, which have become other
+# moves, and Struggle, which is no learned move.
+SPITE_NO_SLOT = frozenset({"Mimic", "Sketch", "Struggle"})
+
+
+def spite(dfn, amount=4):
     """Spite (BtlCmd_TrySpite): the target's last move loses 4 PP, or what
-    it has left; it fails before the target has moved or with that move at 0."""
+    it has left; it fails before the target has moved since it came in, when
+    its last turn was lost (could_not_act clears `last`), with that move at
+    0, or for a last move in SPITE_NO_SLOT. Eerie Spell's hit runs the same
+    command for 3 (Oxide's engine since 2026-10-14)."""
     last = dfn.last
-    if last is not None and dfn.pp.get(last.name, 0) > 0:
-        dfn.pp[last.name] -= min(4, dfn.pp[last.name])
+    if last is not None and last.name not in SPITE_NO_SLOT and dfn.pp.get(last.name, 0) > 0:
+        dfn.pp[last.name] -= min(amount, dfn.pp[last.name])
 
 
 def wish(side):
