@@ -4397,6 +4397,20 @@ def check_water_sport(results):
     results.append(("Water Sport halves Fire moves while its user stands", out == want, str(out)))
 
 
+def check_acrobatics(results):
+    """Acrobatics (approved 2026-10-14; effect script 289): twice its row
+    when its user holds no item, the row when it holds one."""
+    out = {}
+    for item in (None, "Sitrus Berry"):
+        b, p, foe = battle(["Acrobatics"], ["Tackle"], {("p", "Acrobatics"): [10] * 16}, hp=500)
+        b.rng = FixedDice(0.5)
+        p.item, foe.ability = item, "Shell Armor"
+        fs.attack(b, p, fs.move("Acrobatics"), foe, True)
+        out[item] = 500 - foe.hp
+    want = {None: 20, "Sitrus Berry": 10}
+    results.append(("Acrobatics doubles without a held item", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4664,7 +4678,7 @@ def main():
                   check_trainer_frustration, check_secret_power, check_snore,
                   check_raise_speed_hit, check_trump_card,
                   check_teeter_dance, check_smelling_salts, check_magic_coat, check_present,
-                  check_water_sport,
+                  check_water_sport, check_acrobatics,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -4264,6 +4264,35 @@ def water_sport_checks():
     return [("the readings' Water Sport halves Fire moves", ok, f"Ember's top roll {before} before, {after} after")]
 
 
+def acrobatics_checks():
+    """Acrobatics in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Emolga with no item hits the
+    player's Bibarel twice as hard as one holding an Oran Berry."""
+    from .test_fightai import battle
+
+    class Top(pl.RunDice):
+        """Run dice that roll the top damage, never miss and never crit."""
+        def roll(self, top):
+            return 15
+
+        def bad(self, kind, p):
+            return False
+
+        def good(self, p, kind=None):
+            return False
+    out = {}
+    for item in (None, "Oran Berry"):
+        b = battle([("Emolga", 28, "Static", ["Acrobatics"])], [("Bibarel", 28, "Unaware", ["Tackle"])])
+        b.dice, b.rng = Top(random.Random(1), True), random.Random(1)
+        emo, bib = b.b.cur(), b.p.cur()
+        emo.item = item
+        bib.hp = bib.maxhp = 100000
+        pl.attack(b, emo, fs.move("Acrobatics"), bib, True)
+        out[item] = bib.maxhp - bib.hp
+    ok = out["Oran Berry"] > 0 and out[None] == 2 * out["Oran Berry"]
+    return [("the readings' Acrobatics doubles without an item", ok, str(out))]
+
+
 def main():
     results = []
 
@@ -4780,6 +4809,7 @@ def main():
     results += magic_coat_checks()
     results += present_checks()
     results += water_sport_checks()
+    results += acrobatics_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

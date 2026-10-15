@@ -4323,6 +4323,11 @@ def doubled(att, dfn, mv):
         return dfn.status in ("psn", "tox")
     if e == "DOUBLE_POWER_IF_TARGET_HIT":
         return bool(dfn.hit_this_turn) or dfn.hurt_this_turn
+    if e == "DOUBLE_DAMAGE_WITHOUT_ITEM":
+        # Acrobatics (effect script 289): POWER_MULTI 20 when its user holds
+        # no item, an eaten, flung or knocked-off one included; the rows never
+        # double it. Until 2026-10-15 it never doubled (Ian approved the fix).
+        return not att.item
     if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":
         # Smelling Salts (effect script 171) on a paralysed target with no
         # Substitute in the way (CheckSubstitute skips the doubling and the
