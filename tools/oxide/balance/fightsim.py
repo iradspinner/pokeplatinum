@@ -3683,6 +3683,14 @@ def _end_of_turn_mon(b, side, m):
         consume(m)
     if m.item == "Leftovers" or (m.item == "Black Sludge" and "Poison" in m.types):
         heal(m, m.maxhp // 16)
+    elif m.item == "Black Sludge" and m.ability != "Magic Guard":
+        # HOLD_EFFECT_HP_RESTORE_PSN_TYPE: a holder that is not a Poison type
+        # loses an eighth of its maximum HP instead, unless it has Magic
+        # Guard. Until 2026-10-14 the Black Sludge did nothing to it (Ian
+        # approved the fix).
+        hurt(b, m, max(1, m.maxhp // 8))
+        if battle_over(b):
+            return False
     # MON_COND_CHECK_STATE_LEECH_SEED skips a Magic Guard holder whole: no
     # HP sapped and none given (added 2026-10-14, Ian approved the fix).
     if m.seeded and m.ability != "Magic Guard":

@@ -2249,6 +2249,21 @@ def check_item_flinch_blocked(results):
     results.append(("Shield Dust and a Covert Cloak stop a King's Rock's flinch", ok, f"flinched of 1000 {got}"))
 
 
+def check_black_sludge(results):
+    """Black Sludge (approved 2026-10-14; HOLD_EFFECT_HP_RESTORE_PSN_TYPE): at
+    the turn's end a Poison type below full HP gets a sixteenth back, any
+    other holder loses an eighth, a Magic Guard holder nothing."""
+    def end(types, ability=None):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {}, b_types=types)
+        foe.item, foe.ability, foe.hp = "Black Sludge", ability, 50
+        fs.end_of_turn(b)
+        return foe.hp
+    got = {"a Poison type": end(("Poison",)), "a Normal type": end(("Normal",)),
+           "a Normal type with Magic Guard": end(("Normal",), "Magic Guard")}
+    want = {"a Poison type": 56, "a Normal type": 38, "a Normal type with Magic Guard": 50}
+    results.append(("Black Sludge heals a Poison type and hurts any other holder", got == want, f"HP from 50 {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2500,6 +2515,7 @@ def main():
                   check_telepathy, check_steadfast, check_starf_berry,
                   check_sticky_barb, check_payback, check_leech_seed_sap,
                   check_ghost_untrapped, check_soundproof_status, check_item_flinch_blocked,
+                  check_black_sludge,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

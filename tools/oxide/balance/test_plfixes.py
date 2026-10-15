@@ -2578,6 +2578,24 @@ def item_flinch_blocked_checks():
     return [("Shield Dust stops a King's Rock's flinch in the readings", ok, f"flinched of 400 {out}")]
 
 
+def black_sludge_checks():
+    """Black Sludge in the readings' battle (approved 2026-10-14): on a
+    trainer's Machamp it takes an eighth at the turn's end; on a Muk it gives
+    a sixteenth back."""
+    from .test_fightai import battle
+    out = {}
+    for sp, ab in (("Machamp", "Guts"), ("Muk", "Stench")):
+        b = battle([(sp, 40, ab, ["Body Slam"], "Black Sludge")], [("Snorlax", 40, "Thick Fat", ["Body Slam"])])
+        m = b.b.cur()
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        m.hp = m.maxhp // 2
+        before = m.hp
+        fs.end_of_turn(b)
+        out[sp] = (m.hp - before, m.maxhp)
+    ok = out["Machamp"][0] == -(out["Machamp"][1] // 8) and out["Muk"][0] == out["Muk"][1] // 16
+    return [("Black Sludge hurts a Machamp and heals a Muk in the readings", ok, f"(HP change, maximum HP) {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3084,6 +3102,7 @@ def main():
     results += ghost_untrapped_checks()
     results += soundproof_status_checks()
     results += item_flinch_blocked_checks()
+    results += black_sludge_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
