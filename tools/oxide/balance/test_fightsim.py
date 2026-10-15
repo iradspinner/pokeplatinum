@@ -2619,7 +2619,7 @@ def check_foresight(results):
                                  f"identified after leaving) {out}"))
 
 
-def prepared_jobs(boss, player, split="Roark"):
+def prepared_jobs(boss, player, split="Roark", terrain=None):
     """What prepare() asks the calculator for one pair of parties, with no
     Node run: the calculator's call is stood in for, so the pairs it is
     given and the Pokemon it is told of come back as they would be sent.
@@ -2643,7 +2643,7 @@ def prepared_jobs(boss, player, split="Roark"):
     saved = calc.run_node
     calc.run_node = stand_in
     try:
-        st = fs.prepare(split, [boss_recs], None, given_side=player_recs)
+        st = fs.prepare(split, [boss_recs], None, given_side=player_recs, terrain=terrain)
     finally:
         calc.run_node = saved
     return st, seen["pairs"], seen["pokemon"]
@@ -4555,6 +4555,31 @@ def check_me_first(results):
                     f"(damage, Me First's PP, the flag after) {out}"))
 
 
+def check_nature_power(results):
+    """Nature Power (approved 2026-10-14; effect script 173,
+    BtlCmd_GetTerrainMove): it uses its battle terrain's move as its own,
+    Earthquake on plain ground, Tri Attack in a building and where the
+    fight names no terrain, spending only its own PP; and prepare() rows its
+    user with that move."""
+    out = {}
+    for terrain, called in (("TERRAIN_PLAIN", "Earthquake"), (None, "Tri Attack")):
+        b, p, foe = battle(["Nature Power"], ["Tackle"], {}, hp=500)
+        b.st["rows"][(None, "p0", "b0.0")]["moves"][called] = {"rolls": [25] * 16}
+        b.st["terrain"] = terrain
+        b.rng = FixedDice(0.5)
+        foe.ability = "Shell Armor"
+        fs.use_move(b, p, fs.move("Nature Power"), foe, True)
+        out[terrain] = (500 - foe.hp, dict(p.pp))
+    for terrain in ("TERRAIN_PLAIN", None):
+        st, pairs, _pokemon = prepared_jobs([("Ludicolo", 30, "Swift Swim", ["Nature Power"], None)],
+                                            [("Machop", 30, "Guts", ["Leer"], None)], terrain=terrain)
+        out[f"rows, {terrain}"] = sorted({m for a, d, mv, _w in pairs if a == "b0.0" and d == "p0" for m in mv})
+    pp = {"Nature Power": fs.move("Nature Power").pp - 1}
+    want = {"TERRAIN_PLAIN": (25, pp), None: (25, pp), "rows, TERRAIN_PLAIN": ["Earthquake"],
+            "rows, None": ["Tri Attack"]}
+    results.append(("Nature Power uses its terrain's move", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4824,7 +4849,7 @@ def main():
                   check_teeter_dance, check_smelling_salts, check_magic_coat, check_present,
                   check_water_sport, check_acrobatics, check_guard_swap,
                   check_power_swap, check_psycho_shift, check_memento,
-                  check_sketch, check_me_first,
+                  check_sketch, check_me_first, check_nature_power,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

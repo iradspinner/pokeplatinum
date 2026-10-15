@@ -2947,6 +2947,9 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         if mv is None:
             return
         mark_hit(b, mv, dfn, True, targets)
+    if mv.effect == "NATURE_POWER":
+        mv = move(nature_power_move(b.st.get("terrain")))     # its terrain's move, as its own
+        mark_hit(b, mv, dfn, True, targets)
     if mv.effect in ("FLY", "BOUNCE") and att.smacked:
         return                   # brought down, it cannot take to the air (effect scripts 155 and 263)
     # Charging moves: the first turn only charges (Fly and Dig vanish).
@@ -5539,6 +5542,26 @@ def secret_power_effect(terrain):
     return SECRET_POWER_EFFECT.get(terrain or "TERRAIN_BUILDING", "par")
 
 
+# The move Nature Power turns into on each battle terrain (effect script
+# 173, BtlCmd_GetTerrainMove, data/terrain/to_move.h); every terrain after
+# the bridge's counts as the special one, Tri Attack.
+NATURE_POWER_MOVE = {"TERRAIN_PLAIN": "Earthquake", "TERRAIN_SAND": "Earthquake", "TERRAIN_GRASS": "Seed Bomb",
+                     "TERRAIN_PUDDLE": "Seed Bomb", "TERRAIN_MOUNTAIN": "Rock Slide", "TERRAIN_CAVE": "Rock Slide",
+                     "TERRAIN_SNOW": "Blizzard", "TERRAIN_WATER": "Hydro Pump", "TERRAIN_ICE": "Ice Beam",
+                     "TERRAIN_BUILDING": "Tri Attack", "TERRAIN_GREAT_MARSH": "Mud Bomb",
+                     "TERRAIN_BRIDGE": "Air Slash"}
+
+
+def nature_power_move(terrain):
+    """The move Nature Power uses on this battle terrain (st["terrain"],
+    calc.fight_terrain), as its user's own, spending no PP of its own (the
+    script's GoToMoveScript); a building's Tri Attack where the fight names
+    none, as Camouflage and Secret Power take a building's there. prepare()
+    rows a Nature Power user with it. Until 2026-10-15 Nature Power did
+    nothing (Ian approved the fix)."""
+    return NATURE_POWER_MOVE.get(terrain or "TERRAIN_BUILDING", "Tri Attack")
+
+
 def camouflage_type(terrain):
     """Camouflage's type on this battle terrain (calc.fight_terrain), a
     building's Normal where the fight names none."""
@@ -7339,11 +7362,18 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     # (mimic), so its rows carry every damaging move its foes know, beside
     # its own; every lookup is by the move's name, so the extra moves
     # change nothing else.
+    # A Nature Power user's rows carry the move its terrain turns it into
+    # (nature_power_move) the same way.
     borrowed = {}
     for k in pkeys + qkeys + bkeys:
+        extra = []
         if any(move(m).effect in BORROWS for m in moves[k]):
             foes = pkeys + qkeys if k in bkeys else bkeys
-            borrowed[k] = list(dict.fromkeys(m for d in foes for m in hits(d)))
+            extra += [m for d in foes for m in hits(d)]
+        if any(move(m).effect == "NATURE_POWER" for m in moves[k]):
+            extra.append(nature_power_move(terrain))
+        if extra:
+            borrowed[k] = list(dict.fromkeys(extra))
 
     def with_borrowed(k, mvs):
         return mvs + [m for m in borrowed.get(k, ()) if m not in mvs] if k in borrowed else mvs

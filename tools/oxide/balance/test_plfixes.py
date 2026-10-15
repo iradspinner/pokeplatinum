@@ -4416,6 +4416,23 @@ def me_first_checks():
              f"Me First's Body Slam {taken}, a plain one {plain}")]
 
 
+def nature_power_checks():
+    """Nature Power in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): where the fight names no terrain, a trainer's
+    Ludicolo's Nature Power turns into Tri Attack and hits the player's
+    Bibarel from its own row, where before it did nothing."""
+    from .test_fightai import battle
+    b = battle([("Ludicolo", 40, "Swift Swim", ["Nature Power"])], [("Bibarel", 40, "Unaware", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    lud, bib = b.b.cur(), b.p.cur()
+    bib.hp = bib.maxhp = 100000
+    rowed = "Tri Attack" in b.st["rows"][(None, lud.key, bib.key)]["moves"]
+    pl.use_move(b, lud, fs.move("Nature Power"), bib, True)
+    ok = rowed and bib.hp < bib.maxhp
+    return [("the readings' Nature Power uses its terrain's move", ok,
+             f"Tri Attack rowed {rowed}; it dealt {bib.maxhp - bib.hp}")]
+
+
 def main():
     results = []
 
@@ -4939,6 +4956,7 @@ def main():
     results += memento_checks()
     results += sketch_checks()
     results += me_first_checks()
+    results += nature_power_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

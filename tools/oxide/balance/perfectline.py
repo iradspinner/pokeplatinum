@@ -419,6 +419,9 @@ def _use_move(b, att, mv, dfn, first):
         if mv is None:
             return
         fs.mark_hit(b, mv, dfn, True)
+    if mv.effect == "NATURE_POWER":
+        mv = fs.move(fs.nature_power_move(b.st.get("terrain")))     # its terrain's move (fightsim.nature_power_move)
+        fs.mark_hit(b, mv, dfn, True)
     if mv.effect in ("FLY", "BOUNCE") and att.smacked:
         return                       # brought down by Smack Down, it cannot fly (fightsim.smack_down)
     if mv.effect in fs.TWO_TURN and att.charging is None and not fs.charge_skipped(b, att, mv):
