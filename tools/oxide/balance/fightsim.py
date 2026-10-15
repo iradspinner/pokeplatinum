@@ -2134,6 +2134,22 @@ def friendship_power(species):
     return max(1, (base or 0) * 10 // 25)
 
 
+def frustration_power(species):
+    """Frustration's power for a trainer's Pokemon (effect script 123: 255
+    less friendship, times 10 over 25), at its species' base friendship as
+    for Return (friendship_power): 74 for most, 102 for Buneary's 0, 46 for
+    Lopunny's 140; a power of 0 falls back to the listed 1. The trainer's
+    AI reckons it the same way (TrainerAI_CalcDamage's MOVE_FRUSTRATION
+    case). Until 2026-10-15 every row gave Frustration the calculator's
+    zero-friendship 102 (Ian approved the fix)."""
+    table = _base_friendship()
+    name = re.sub(r"[^a-z0-9]", "", (species or "").lower())
+    base = table.get(name)
+    if base is None:
+        base = table.get(re.sub(r"[^a-z0-9]", "", (species or "").split("-")[0].lower()), 70)
+    return max(1, (255 - (base or 0)) * 10 // 25)
+
+
 @functools.lru_cache(maxsize=None)
 def _forbidden_moves():
     """The engine's sCannotMetronomeMoves (battle_lib.c), split at its
@@ -6890,12 +6906,16 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     def friendly(mon):
         """A trainer's Pokemon with Return, Pika Papow or Veevee Volley,
         rowed at its own friendship's power (friendship_power) rather than
-        the calculator's full-friendship 102; any other record as it is."""
+        the calculator's full-friendship 102, or with Frustration, rowed at
+        its friendship's power (frustration_power) rather than the
+        calculator's zero-friendship 102; any other record as it is."""
         own = {}
         for name in mon.get("moves") or ():
             mv = move(name)
-            if mv.effect == "POWER_BASED_ON_FRIENDSHIP":
-                own[name] = {"type": mv.type, "category": mv.cat, "basePower": friendship_power(mon.get("species")),
+            power = {"POWER_BASED_ON_FRIENDSHIP": friendship_power,
+                     "POWER_BASED_ON_LOW_FRIENDSHIP": frustration_power}.get(mv.effect)
+            if power is not None:
+                own[name] = {"type": mv.type, "category": mv.cat, "basePower": power(mon.get("species")),
                              "flags": {"contact": 1} if mv.contact else {}}
         if not own:
             return mon

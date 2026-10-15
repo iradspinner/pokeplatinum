@@ -4146,6 +4146,22 @@ def check_acupressure(results):
     results.append(("Acupressure raises a stat below +6 by two", out == want, str(out)))
 
 
+def check_trainer_frustration(results):
+    """A trainer's Frustration (approved 2026-10-14; effect script 123): 255
+    less its species' base friendship, times 10 over 25, so prepare() asks
+    the calculator for a trainer's Raticate's at 74, a Buneary's at 102 (its
+    base is 0) and a Lopunny's at 46 (its base is 140), and leaves the
+    player's to the calculator."""
+    st, pairs, pokemon = prepared_jobs([("Raticate", 30, "Guts", ["Frustration"], None),
+                                        ("Buneary", 30, "Klutz", ["Frustration"], None),
+                                        ("Lopunny", 30, "Klutz", ["Frustration"], None)],
+                                       [("Bibarel", 30, "Simple", ["Frustration"], None)])
+    got = {pokemon[k]["species"]: (pokemon[k].get("move_data") or {}).get("Frustration", {}).get("basePower")
+           for k in ("b0.0", "b0.1", "b0.2", "p0")}
+    want = {"Raticate": 74, "Buneary": 102, "Lopunny": 46, "Bibarel": None}
+    results.append(("a trainer's Frustration is rowed at its base friendship's power", got == want, str(got)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4410,6 +4426,7 @@ def main():
                   check_black_sludge, check_water_bubble, check_eerie_spell,
                   check_burning_bulwark,
                   check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
+                  check_trainer_frustration,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

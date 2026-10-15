@@ -4057,6 +4057,23 @@ def acupressure_checks():
     return [("the readings' Acupressure raises one stat by two", ok, f"each use one stat by two {each}; drawn {sorted(drawn)}")]
 
 
+def trainer_frustration_checks():
+    """A trainer's Frustration on the calculator's real rows (approved
+    2026-10-14): a trainer's Raticate, at its base friendship of 70, hits
+    the player's Bibarel with Frustration at 74 power, under its Body
+    Slam's 85, where the calculator's zero-friendship 102 hit harder; and
+    the trainer's AI's figure reads the same row."""
+    from .test_fightai import battle
+    b = battle([("Raticate", 30, "Guts", ["Frustration", "Body Slam"])], [("Bibarel", 30, "Simple", ["Tackle"])])
+    rat, bib = b.b.cur(), b.p.cur()
+    row = b.st["rows"][(None, rat.key, bib.key)]["moves"]
+    fru, slam = row["Frustration"]["rolls"][-1], row["Body Slam"]["rolls"][-1]
+    ai = fightai.figure(b, rat, bib, fs.move("Frustration"))
+    ok = 0.78 < fru / slam < 0.96 and abs(ai - fru) <= 1
+    return [("a trainer's Frustration hits at its friendship's power", ok,
+             f"Frustration's top {fru} against Body Slam's {slam} ({fru / slam:.2f}); the AI's figure {ai}")]
+
+
 def main():
     results = []
 
@@ -4563,6 +4580,7 @@ def main():
     results += wring_out_checks()
     results += miracle_eye_checks()
     results += acupressure_checks()
+    results += trainer_frustration_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
