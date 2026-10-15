@@ -4686,6 +4686,23 @@ def strength_sap_checks():
              f"Dolliv's HP 1 to {dol.hp} (Geodude's Attack {geo.stats['atk']}), Geodude's Attack stage {geo.stages['atk']}")]
 
 
+def parting_shot_checks():
+    """Parting Shot in a whole turn of the readings' battle on the
+    calculator's real rows (approved 2026-10-14): the player's Bibarel
+    lowers a trainer's Geodude's Attack and Sp. Atk and switches out, and
+    the Geodude's Tackle, moving after, hits the Pokemon sent in."""
+    b, geo, bib = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                            [("Bibarel", 30, "Unaware", ["Parting Shot"]), ("Staravia", 30, "Intimidate", ["Peck"])])
+    bib.hp = bib.maxhp
+    geo_speed, bib_speed = b.speed(geo), b.speed(bib)
+    pl._turn(b, ("move", fs.move("Parting Shot")), ("move", fs.move("Tackle")))
+    new = b.p.cur()
+    got = (new.species, geo.stages["atk"], geo.stages["spa"], bib.hp == bib.maxhp, new.hp < new.maxhp)
+    ok = got[0] == "Staravia" and got[2] == -1 and got[1] <= -1 and got[3] and (got[4] or geo_speed > bib_speed)
+    return [("the readings' Parting Shot drops both stats and switches its user out", ok,
+             f"(on the field, Geodude's Attack and Sp. Atk stages, Bibarel untouched, newcomer hit) {got}")]
+
+
 def main():
     results = []
 
@@ -5225,6 +5242,7 @@ def main():
     results += sticky_web_checks()
     results += defog_checks()
     results += strength_sap_checks()
+    results += parting_shot_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

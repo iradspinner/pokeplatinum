@@ -6078,6 +6078,8 @@ def status_move(b, att, mv, dfn, first):
         # 2026-10-15 the move did nothing (Ian approved the fix).
         if dfn.status in ("psn", "tox") and not sub_blocks(att, dfn, mv):
             lower_stats(b, att, dfn, VENOM_DRENCH_STAGES)
+    elif e == "PARTING_SHOT":
+        parting_shot(b, att, dfn, mv)
     elif e == "CURSE":
         if "Ghost" in att.types:
             ghost_curse(b, att, dfn, mv)
@@ -6243,6 +6245,21 @@ def status_move(b, att, mv, dfn, first):
                 m.perish = 4
     elif e == "HIT_IN_3_TURNS":
         pass
+
+
+def parting_shot(b, att, dfn, mv):
+    """Parting Shot (effect script 389, subscript_parting_shot): it fails on
+    a target behind a Substitute, and does nothing more on one whose Attack
+    and Sp. Atk are both at -6; otherwise the target's Attack and Sp. Atk
+    fall a stage each, as Tickle's do (Mist and the blocking abilities stop
+    each drop, not what follows), and its user then switches out through the
+    party list, passing nothing on, when it has someone to send in: the
+    turn switches it as after U-turn (u_turn). Until 2026-10-15 the move did
+    nothing (Ian approved the fix)."""
+    if sub_blocks(att, dfn, mv) or (dfn.stages["atk"] <= -6 and dfn.stages["spa"] <= -6):
+        return
+    lower_stats(b, att, dfn, {"atk": -1, "spa": -1})
+    att.u_turn = True
 
 
 def defog(b, att, dfn, mv):

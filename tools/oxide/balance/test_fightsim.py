@@ -4929,6 +4929,27 @@ def check_strength_sap(results):
     results.append(("Strength Sap heals by the target's Attack and lowers it", out == want, str(out)))
 
 
+def check_parting_shot(results):
+    """Parting Shot (approved 2026-10-14; effect script 389): the target's
+    Attack and Sp. Atk fall a stage each and the user is marked to switch
+    out as after U-turn, even when Clear Body stops the drops; a Substitute
+    stops it all, and so do both stats at -6."""
+    out = {}
+    for case in ("plain", "Clear Body", "Substitute", "-6"):
+        b, p, foe = battle(["Parting Shot"], ["Tackle"], {})
+        b.rng = FixedDice(0.0)
+        if case == "Clear Body":
+            foe.ability = case
+        elif case == "Substitute":
+            foe.sub = 25
+        elif case == "-6":
+            foe.stages.update({"atk": -6, "spa": -6})
+        fs.status_move(b, p, fs.move("Parting Shot"), foe, True)
+        out[case] = (foe.stages["atk"], foe.stages["spa"], p.u_turn)
+    want = {"plain": (-1, -1, True), "Clear Body": (0, 0, True), "Substitute": (0, 0, False), "-6": (-6, -6, False)}
+    results.append(("Parting Shot lowers both attacking stats and switches its user out", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5203,7 +5224,7 @@ def main():
                   check_sp_def_2_hit, check_tearful_look, check_venom_drench, check_false_swipe,
                   check_clear_smog, check_incinerate, check_life_dew,
                   check_mud_sport, check_punishment, check_sticky_web,
-                  check_defog, check_strength_sap,
+                  check_defog, check_strength_sap, check_parting_shot,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
