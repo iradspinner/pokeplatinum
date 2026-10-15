@@ -175,7 +175,11 @@ read, so they are written here too. Each is a standing instruction.
   the estimate's noise) are then ranked by fewest faints; the clean rate is
   reported, not optimised. A boss is read
   over a spread of rolled boxes, so that its answers do not narrow to one
-  Pokemon. Ties between equal AI picks break at random. Every fight is
+  Pokemon. A box offers each pre-evolution held back as well as evolved on
+  time wherever holding it back reaches a strong move sooner (a delay by the
+  learnset rules), so the team search can weigh a Starly kept for Brave Bird
+  by Maylene's split (Ian, 2026-10-15); this comes in before the readings
+  resume. Ties between equal AI picks break at random. Every fight is
   simulated at the game's real odds, with no luck budget (Ian, 2026-10-02):
   the three numbers are then
   true frequencies with bad luck inside them, and the planner's caution
