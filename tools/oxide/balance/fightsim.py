@@ -1136,11 +1136,13 @@ def miracle_key(b, mon, mv, att):
 
 def grounded(b, mon):
     """Whether mon is held to the ground against Ground moves: Smack Down's
-    mark on it, or Gravity in force. BattleSystem_ApplyTypeChart then skips
-    the Flying type's immunity to Ground moves (BasicTypeMulApplies) and
-    Battler_Ability reads no Levitate, so a Ground move meets its other type
-    alone, read from its twin (prepare's ground_twin)."""
-    return mon.smacked or bool(getattr(b, "gravity", 0))
+    mark on it, its own Ingrain's roots, or Gravity in force.
+    BattleSystem_ApplyTypeChart then skips the Flying type's immunity to
+    Ground moves (BasicTypeMulApplies) and Battler_Ability reads no
+    Levitate, so a Ground move meets its other type alone, read from its
+    twin (prepare's ground_twin). Ingrain's part did nothing until
+    2026-10-15 (Ian approved the fix)."""
+    return mon.smacked or mon.ingrained or bool(getattr(b, "gravity", 0))
 
 
 def gravity_start(b):
@@ -7279,7 +7281,7 @@ def baton_state(mon):
             "locked_on": mon.locked_on, "lock_on_by": mon.lock_on_by, "water_sport": mon.water_sport,
             "mud_sport": mon.mud_sport, "power_trick": mon.power_trick, "embargo": mon.embargo,
             "rare": bool(mon.locked_on or mon.water_sport or mon.mud_sport or mon.power_trick or mon.embargo
-                         or mon.octolocked),
+                         or mon.octolocked or mon.ingrained),     # Ingrain's grounding (grounded)
             "suppressed": getattr(mon, "suppressed", False)}
 
 
@@ -9107,7 +9109,9 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     gravity = any(move(m).effect == "GRAVITY" for d in moves for m in moves[d])
     for k in pkeys + qkeys + bkeys:
         foes = pkeys + qkeys if k.startswith("b") else bkeys
-        if not gravity and not any(move(m).effect == "SMACK_DOWN" for d in foes for m in moves[d]):
+        # Its own Ingrain grounds it too (grounded), since 2026-10-15.
+        if not gravity and not any(move(m).effect == "SMACK_DOWN" for d in foes for m in moves[d]) \
+                and not any(move(m).effect == "GROUND_TRAP_USER_CONTINUOUS_HEAL" for m in moves[k]):
             continue
         poks = blob["poks"].get(pokemon[k]["species"]) or {}
         types = [t for t in (poks.get("types") or []) if t]

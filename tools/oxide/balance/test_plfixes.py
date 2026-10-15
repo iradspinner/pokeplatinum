@@ -4838,6 +4838,22 @@ def charge_ends_checks():
              f"(charged, charge ended, no strike, then hit) {out}")]
 
 
+def ingrain_grounds_checks():
+    """Ingrain's grounding in the readings' battle on the calculator's real
+    rows (approved 2026-10-15): a trainer's Levitate Bronzor is out of the
+    player's Gible's Earthquake's reach, and the trainer's AI reads the
+    move as doing nothing to it, until the Bronzor uses Ingrain; then the
+    Earthquake hits it and the AI reads the hit."""
+    b, bron, gib = b8_battle([("Bronzor", 30, "Levitate", ["Ingrain"])], [("Gible", 30, "Sand Veil", ["Earthquake"])])
+    eq = fs.move("Earthquake")
+    before = (b.damage(gib, bron, eq, ai_view=True), fightai.script_eff(b, gib, bron, eq) == fightai.IMMUNE)
+    pl.status_move(b, bron, fs.move("Ingrain"), gib, True)
+    after = (b.damage(gib, bron, eq, ai_view=True), fightai.script_eff(b, gib, bron, eq) == fightai.IMMUNE)
+    ok = before == (0, True) and after[0] > 0 and not after[1]
+    return [("the readings' Ingrain grounds a Levitate holder", ok,
+             f"(Earthquake's top roll, the AI reads it immune) before {before}, after {after}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -5883,6 +5899,7 @@ def main():
     results += taunt_before_confusion_checks()
     results += forced_out_checks()
     results += charge_ends_checks()
+    results += ingrain_grounds_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

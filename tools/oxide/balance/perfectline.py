@@ -1042,7 +1042,10 @@ def status_move(b, att, mv, dfn, first):
         if dfn.trapped_by is None and not fs.sub_blocks(att, dfn, mv):
             dfn.trapped_by = att.key
     elif e == "GROUND_TRAP_USER_CONTINUOUS_HEAL":
-        att.ingrained = True
+        # Rooted, and so held to the ground: under the rare flag, its rows
+        # meet Ground moves on its twin without Flying or Levitate
+        # (fightsim.grounded, Battle.row).
+        att.ingrained = att.rare = True
     elif e == "STATUS_LEECH_SEED":
         if "Grass" not in dfn.types and not fs.sub_blocks(att, dfn, mv):
             dfn.seeded = True

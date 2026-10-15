@@ -5724,6 +5724,27 @@ def check_charge_ends(results):
     want = {"paralysed": (True, True, 200), "next turn": (True, 200), "put to sleep": (True, None)}
     results.append(("a charge ends on a turn its user cannot act", out == want, str(out)))
 
+
+def check_ingrain_grounds(results):
+    """Ingrain grounds its user (approved 2026-10-15; BasicTypeMulApplies
+    skips the Flying type's immunity for MOVE_EFFECT_INGRAIN, and
+    Battler_Ability reads no Levitate for an ingrained holder): once a
+    Levitate holder has used Ingrain, Earthquake reads its ground twin's
+    row and the trainer's AI no longer reads the move as doing nothing."""
+    from . import perfectline as pl
+    b, p, foe = battle(["Earthquake"], ["Ingrain"], {("p", "Earthquake"): [0] * 16})
+    b.dice = pl.RunDice(random.Random(1), True)
+    foe.ability = "Levitate"
+    b.st["rows"][(None, "p0", "b0.0#gd")] = {"moves": {"Earthquake": {"rolls": [40] * 16}}}
+    b.st["ground_twin"] = {"b0.0": "b0.0#gd"}
+    eq = fs.move("Earthquake")
+    before = (b.damage(p, foe, eq, roll=0), fightai.script_eff(b, p, foe, eq) == fightai.IMMUNE)
+    pl.status_move(b, foe, fs.move("Ingrain"), p, True)
+    after = (b.damage(p, foe, eq, roll=0), fightai.script_eff(b, p, foe, eq) == fightai.IMMUNE)
+    ok = before == (0, True) and after == (40, False) and foe.ingrained
+    results.append(("Ingrain grounds a Levitate holder against Ground moves", ok,
+                    f"(Earthquake, the AI reads it immune) before {before}, after {after}"))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -6011,7 +6032,7 @@ def main():
                   check_aurora_veil, check_teatime, check_assist,
                   check_snatch, check_sky_drop,
                   check_substitute_hit, check_knock_off_first, check_taunt_before_confusion,
-                  check_forced_out, check_charge_ends,
+                  check_forced_out, check_charge_ends, check_ingrain_grounds,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
