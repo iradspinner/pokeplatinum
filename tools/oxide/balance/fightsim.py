@@ -2512,6 +2512,13 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         # until it leaves the field; a chance-free effect, so Shield Dust
         # and Sheer Force (sSheerForceEffects) leave it alone.
         dfn.salted = True
+    if e == "CORE_ENFORCER" and getattr(dfn, "acted_turn", None) == b.turn:
+        # Core Enforcer (effect script 413, subscript_core_enforcer): once
+        # the hit is in, a standing target with no Substitute that has moved
+        # this turn loses its ability until it leaves, as Gastro Acid takes
+        # it (suppress). Until 2026-10-14 it was a plain hit (Ian approved
+        # the fix).
+        suppress(b, dfn)
     if e == "DECREASE_LAST_MOVE_PP_HIT" and dealt > 0:
         # Eerie Spell (effect script 421, subscript_reduce_target_pp_hit,
         # Oxide's engine since 2026-10-14): once its hit has landed on the
@@ -4108,8 +4115,8 @@ def gastro_acid(b, att, mv, dfn, pick):
 
 @form_change
 def _suppressed(ff):
-    """Gastro Acid: any foe of its user whose ability can be suppressed may
-    lose it."""
+    """Gastro Acid and Core Enforcer: any foe of their user whose ability can
+    be suppressed may lose it."""
     for k in ff.keys():
         if not any(m.effect in SUPPRESSES for m in ff.moves(k)):
             continue
@@ -4118,8 +4125,9 @@ def _suppressed(ff):
                 yield f, None, None
 
 
-# The moves that suppress their target's ability: Gastro Acid.
-SUPPRESSES = frozenset({"SUPRESS_ABILITY"})
+# The moves that suppress their target's ability: Gastro Acid and Core
+# Enforcer.
+SUPPRESSES = frozenset({"SUPRESS_ABILITY", "CORE_ENFORCER"})
 
 
 # The type Camouflage gives on each battle terrain (data/terrain/to_type.h,

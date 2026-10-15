@@ -1870,6 +1870,33 @@ def check_gastro_acid(results):
                     f"on a gas holder (its ability, gas on, the user's ability) {gas}"))
 
 
+def check_core_enforcer(results):
+    """Core Enforcer (approved 2026-10-14; subscript_core_enforcer): its hit
+    suppresses the ability of a target that has moved this turn, which then
+    reads its blank twin; nothing for a target that has not moved yet, one
+    behind a Substitute, one it knocks out, or Multitype."""
+    def enforce(moved=True, sub=0, hp=100, ability="Levitate"):
+        rows = {("p", "Core Enforcer"): [10] * 16, ("p", "Earthquake"): [0] * 16, ("b", "Tackle"): [5] * 16}
+        b, p, foe = battle(["Core Enforcer", "Earthquake"], ["Tackle"], rows)
+        b.st["first_battle"] = True
+        foe.ability, foe.sub, foe.hp = ability, sub, hp
+        b.st["form_twin"] = {"b0.0": {"ability": "Levitate", "twins": {(None, None): "b0.0#ng"}}}
+        b.st["rows"][(None, "p0", "b0.0#ng")] = {"moves": {"Earthquake": {"rolls": [30] * 16}}}
+        if moved:
+            fs.use_move(b, foe, fs.move("Tackle"), p, True)
+        fs.use_move(b, p, fs.move("Core Enforcer"), foe, not moved)
+        return b, p, foe
+    b, p, foe = enforce()
+    gone = (foe.ability, foe.suppressed, b.damage(p, foe, fs.move("Earthquake"), roll=0))
+    got = {"not moved yet": enforce(moved=False)[2].ability, "a Substitute": enforce(sub=25)[2].ability,
+           "knocked out": enforce(hp=5)[2].ability, "Multitype": enforce(ability="Multitype")[2].ability}
+    want = {"not moved yet": "Levitate", "a Substitute": "Levitate", "knocked out": "Levitate",
+            "Multitype": "Multitype"}
+    ok = gone == (None, True, 30) and got == want
+    results.append(("Core Enforcer suppresses a target that has moved this turn", ok,
+                    f"(ability, suppressed, Earthquake on it) {gone}; {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3157,7 +3184,8 @@ def main():
                   check_wandering_spirit, check_color_change, check_forecast, check_soak,
                   check_conversion, check_conversion2, check_camouflage, check_burn_up,
                   check_double_shock, check_skill_swap, check_role_play, check_entrainment,
-                  check_worry_seed, check_gastro_acid, check_magic_guard, check_liquid_ooze,
+                  check_worry_seed, check_gastro_acid, check_core_enforcer, check_magic_guard,
+                  check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

@@ -776,6 +776,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         return
     if e == "SALT_CURE":
         dfn.salted = True        # as fightsim: salted once the hit lands, chance-free
+    if e == "CORE_ENFORCER" and getattr(dfn, "acted_turn", None) == b.turn:
+        fs.suppress(b, dfn)      # Core Enforcer on a target that has moved this turn (fightsim._after_attack)
     if e == "DECREASE_LAST_MOVE_PP_HIT" and dealt > 0:
         fs.spite(dfn, 3)         # Eerie Spell drains 3 PP after its hit, chance-free (fightsim._after_attack)
     chance = mv.chance or 0

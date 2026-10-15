@@ -3023,6 +3023,28 @@ def gastro_acid_checks():
              f"twins {twins}; Earthquake before {before}; after Gastro Acid (ability, suppressed, Earthquake) {after}")]
 
 
+def core_enforcer_checks():
+    """Core Enforcer on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Levitate Bronzor on its
+    ability-blank twin, as a Kingdra's Core Enforcer can suppress it; once
+    the Bronzor has moved, the Kingdra's Core Enforcer takes its Levitate,
+    and the Kingdra's Earthquake then reaches it."""
+    from .test_fightai import battle
+    b = battle([("Kingdra", 50, "Sniper", ["Core Enforcer", "Earthquake"])], [("Bronzor", 50, "Levitate", ["Confusion"])])
+    king, bronzor = b.b.cur(), b.p.cur()
+    quake = fs.move("Earthquake")
+    twins = sorted(((b.st.get("form_twin") or {}).get(bronzor.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, king, bronzor, quake, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    bronzor.hp = bronzor.maxhp * 10
+    pl.use_move(b, bronzor, fs.move("Confusion"), king, True)
+    pl.use_move(b, king, fs.move("Core Enforcer"), bronzor, False)
+    after = (bronzor.ability, pl.damage_of(b, king, bronzor, quake, False, True))
+    ok = twins == [(None, None)] and before == 0 and after[0] is None and after[1] > 0
+    return [("Core Enforcer: a Bronzor that has moved loses Levitate on its twin's rows", ok,
+             f"twins {twins}; Earthquake before {before}; after Core Enforcer (its ability, Earthquake) {after}")]
+
+
 def calc_terrain(tr_ids):
     from . import calc
     return getattr(calc, "fight_terrain", lambda _ids: None)(tr_ids)
@@ -3554,6 +3576,7 @@ def main():
     results += entrainment_checks()
     results += worry_seed_checks()
     results += gastro_acid_checks()
+    results += core_enforcer_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
