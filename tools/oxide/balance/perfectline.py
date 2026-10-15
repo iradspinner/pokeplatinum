@@ -1091,6 +1091,8 @@ def status_move(b, att, mv, dfn, first):
             m.stages = dict.fromkeys(fs.STAGE_KEYS, 0)
     elif e == "HEAL_STATUS":
         fs.refresh(att)                  # Refresh cures its user's own poison, burn or paralysis
+    elif e == "SWAP_ATK_DEF":
+        fs.power_trick(att)              # Attack and Defense swapped, its rows from its twin (fightsim.power_trick)
     elif e == "TRANSFER_STATUS":
         fs.psycho_shift(b, att, dfn, mv)     # Psycho Shift hands its user's status on (fightsim.psycho_shift)
     elif e == "SWAP_DEF_SP_DEF_STAT_CHANGES":
@@ -1250,7 +1252,7 @@ def mon_key(m):
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
     if m.rare:
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
-        key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport,
+        key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.power_trick,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key

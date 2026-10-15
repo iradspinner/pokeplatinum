@@ -4433,6 +4433,24 @@ def nature_power_checks():
              f"Tri Attack rowed {rowed}; it dealt {bib.maxhp - bib.hp}")]
 
 
+def power_trick_checks():
+    """Power Trick in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): once the player's Shuckle swaps its feeble
+    Attack for its great Defense, its Rollout hits a trainer's Geodude far
+    harder and the Geodude's Tackle hurts it far more."""
+    from .test_fightai import battle
+    b = battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Shuckle", 30, "Sturdy", ["Power Trick", "Rollout"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    geo, shu = b.b.cur(), b.p.cur()
+    roll, tackle = fs.move("Rollout"), fs.move("Tackle")
+    before = (b.damage(shu, geo, roll, roll=15), b.damage(geo, shu, tackle, roll=15))
+    pl.status_move(b, shu, fs.move("Power Trick"), geo, True)
+    after = (b.damage(shu, geo, roll, roll=15), b.damage(geo, shu, tackle, roll=15))
+    ok = after[0] > 2 * before[0] and after[1] > 2 * before[1]
+    return [("the readings' Power Trick swaps its user's Attack and Defense", ok,
+             f"(Rollout, Tackle into it) before {before}, after {after}")]
+
+
 def main():
     results = []
 
@@ -4957,6 +4975,7 @@ def main():
     results += sketch_checks()
     results += me_first_checks()
     results += nature_power_checks()
+    results += power_trick_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

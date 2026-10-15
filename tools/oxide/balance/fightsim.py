@@ -446,6 +446,11 @@ class Mon:
     # MOVE_FLAG_CAN_MAGIC_COAT aimed at it this turn is turned back on its
     # user (coat_bounces); gone with the turn.
     magic_coat = False
+    # Power Trick (MOVE_EFFECT_POWER_TRICK): its Attack and Defense stats
+    # have changed places, so its rows come from its twin with the two
+    # swapped (trick_key); a second use puts them back. Cleared when it
+    # leaves, and handed on by Baton Pass.
+    power_trick = False
     # Me First: the move it took is running at half again its damage
     # (moveEffectsData.meFirst); cleared as that move ends (use_move).
     me_first = False
@@ -497,6 +502,7 @@ class Mon:
             # Pass hands on the Lock-On hold alone (baton_state).
             self.throat_chop = self.charged = self.locked_on = 0
             self.minimized = self.foresight = self.smacked = self.miracle_eye = self.water_sport = False
+            self.power_trick = False
             self.lock_on_by = self.mirror = None
             if self.mimicked is not None:
                 # The party record still holds Mimic, with the PP its use left
@@ -693,6 +699,10 @@ class Battle:
             ak = protean_key(self, att) or ak     # a Protean user's twin of its new type
         if dfn.protean_type:
             dk = protean_key(self, dfn) or dk
+        if att.rare and att.power_trick:
+            ak = trick_key(self, att) or ak       # a Power Trick user's twin with Attack and Defense swapped
+        if dfn.rare and dfn.power_trick:
+            dk = trick_key(self, dfn) or dk
         if dfn.roosting and mv is not None and "Flying" in dfn.types:
             dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
         if (dfn.rare or self.gravity) and mv is not None:
@@ -1160,6 +1170,50 @@ def reveal(mon):
 
 
 # ---- Neutralizing Gas (the simulator's support approved by Ian, 2026-10-13) --------------------------------
+
+# The natures with their raised and lowered stats (pokemon_nature.c's
+# table), by the stat keys the records use; a neutral one has neither.
+NATURES = {"Hardy": (None, None), "Lonely": ("at", "df"), "Brave": ("at", "sp"), "Adamant": ("at", "sa"),
+           "Naughty": ("at", "sd"), "Bold": ("df", "at"), "Docile": (None, None), "Relaxed": ("df", "sp"),
+           "Impish": ("df", "sa"), "Lax": ("df", "sd"), "Timid": ("sp", "at"), "Hasty": ("sp", "df"),
+           "Serious": (None, None), "Jolly": ("sp", "sa"), "Naive": ("sp", "sd"), "Modest": ("sa", "at"),
+           "Mild": ("sa", "df"), "Quiet": ("sa", "sp"), "Bashful": (None, None), "Rash": ("sa", "sd"),
+           "Calm": ("sd", "at"), "Gentle": ("sd", "df"), "Sassy": ("sd", "sp"), "Careful": ("sd", "sa"),
+           "Quirky": (None, None)}
+
+
+def swapped_nature(nature):
+    """The nature whose effects on Attack and Defense are this one's swapped
+    (Adamant's raised Attack becomes Impish's raised Defense), so a twin
+    built with it has the two final stats exchanged; a neutral one, or one
+    the table lacks, stays."""
+    plus, minus = NATURES.get(nature or "Hardy", (None, None))
+    if plus is None:
+        return nature
+    flip = {"at": "df", "df": "at"}
+    want = (flip.get(plus, plus), flip.get(minus, minus))
+    return next((n for n, pm in NATURES.items() if pm == want), nature)
+
+
+def power_trick(att):
+    """Power Trick and Power Shift (effect script 238,
+    subscript_user_swap_atk_and_def): the user's Attack and Defense stats
+    change places, its stages staying, and the mark turns over
+    (MOVE_EFFECT_POWER_TRICK is XORed), so a second use puts them back; its
+    rows then come from its twin built with the two swapped (prepare's
+    trick_twin, trick_key). The trainer's AI's Basic check reads the mark.
+    Until 2026-10-15 the stats stayed (Ian approved the fix)."""
+    att.power_trick = not att.power_trick
+    if att.power_trick:
+        att.rare = True
+
+
+def trick_key(b, mon):
+    """The key of a Power Trick user's twin with its Attack and Defense
+    swapped (prepare's trick_twin), or None (a Baton Pass's receiver has
+    none, and reads its own rows)."""
+    return (b.st.get("trick_twin") or {}).get(mon.key)
+
 
 def protean_key(b, mon):
     """The key of the rows of a Pokemon its Protean has retyped: its twin
@@ -5812,6 +5866,8 @@ def status_move(b, att, mv, dfn, first):
             m.stages = dict.fromkeys(STAGE_KEYS, 0)
     elif e == "HEAL_STATUS":
         refresh(att)
+    elif e == "SWAP_ATK_DEF":
+        power_trick(att)
     elif e == "TRANSFER_STATUS":
         psycho_shift(b, att, dfn, mv)
     elif e == "SWAP_DEF_SP_DEF_STAT_CHANGES":
@@ -5903,8 +5959,8 @@ def baton_state(mon):
     confusion, a Ghost's Curse and the Substitute with its HP
     (VOLATILE_CONDITION_BATON_PASSED); and of the move effects Leech Seed,
     Perish Song's count, Ingrain, Aqua Ring, a suppressed ability (Gastro
-    Acid), Heal Block's and Magnet Rise's turns, Lock-On's hold and Water
-    Sport (MOVE_EFFECT_BATON_PASSED).
+    Acid), Heal Block's and Magnet Rise's turns, Lock-On's hold, Water
+    Sport and Power Trick (MOVE_EFFECT_BATON_PASSED).
     Everything else (Taunt, Encore, Disable, Torment, Yawn, a bind, love,
     Salt Cure, Stockpile, Imprison) stays behind."""
     return {"stages": dict(mon.stages), "crit_stage": mon.crit_stage, "trapped_by": mon.trapped_by,
@@ -5912,7 +5968,7 @@ def baton_state(mon):
             "perish": mon.perish, "ingrained": mon.ingrained, "aqua_ring": mon.aqua_ring,
             "heal_block": mon.heal_block, "magnet_rise": mon.magnet_rise,
             "locked_on": mon.locked_on, "lock_on_by": mon.lock_on_by, "water_sport": mon.water_sport,
-            "rare": bool(mon.locked_on or mon.water_sport),
+            "power_trick": mon.power_trick, "rare": bool(mon.locked_on or mon.water_sport or mon.power_trick),
             "suppressed": getattr(mon, "suppressed", False)}
 
 
@@ -7607,6 +7663,45 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                        if move(m).type in IDENTIFIED_TYPES or pokemon[d].get("ability") == "Normalize"]
                 if got:
                     pairs.append([d, t, got, w])
+    # Power Trick and Power Shift swap their user's Attack and Defense stats
+    # (power_trick), which the calculator's rows cannot know. So each user
+    # gets a twin built with the two swapped: its base stats, IVs and EVs
+    # for the two exchanged, and the nature whose effect on them is its
+    # own's swapped (swapped_nature), so its final Attack and Defense are
+    # each other's; its types, ability, item and the rest kept. The twin is
+    # rowed both ways against every foe.
+    trick_twin = {}
+    for k in pkeys + qkeys + bkeys:
+        if not any(move(m).effect == "SWAP_ATK_DEF" for m in moves[k]):
+            continue
+        poks = blob["poks"].get(pokemon[k]["species"]) or {}
+        if not poks.get("bs"):
+            continue
+
+        def swap(d):
+            d = dict(d or {})
+            if "at" in d or "df" in d:
+                d["at"], d["df"] = d.get("df"), d.get("at")
+            return d
+        t = f"{k}#trick"
+        own = {"bs": swap(poks["bs"]), "types": [x for x in (poks.get("types") or []) if x]}
+        if poks.get("weightkg") is not None:
+            own["weightkg"] = poks["weightkg"]
+        rec = dict(pokemon[k], species_data=own, nature=swapped_nature(pokemon[k].get("nature")))
+        for part in ("ivs", "evs"):
+            if pokemon[k].get(part):
+                rec[part] = swap(pokemon[k][part])
+        pokemon[t] = rec
+        trick_twin[k] = t
+        foes = pkeys + qkeys if k in bkeys else bkeys
+        mine = party_hits(k) if k in bkeys else hits(k)
+        for w in weathers:
+            for d in foes:
+                if mine:
+                    pairs.append([t, d, mine, w])
+                got = party_hits(d) if d in bkeys else hits(d)
+                if got:
+                    pairs.append([d, t, got, w])
     # Miracle Eye lets Psychic moves meet a marked target's Dark type
     # (eyed), which the calculator's rows cannot know. So each Dark type
     # whose foes can use it gets a twin typed without Dark (a pure Dark's
@@ -7742,6 +7837,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
             "foresight_twin": foresight_twin, "ground_twin": ground_twin, "miracle_twin": miracle_twin,
+            "trick_twin": trick_twin,
             "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
             "water_sport": any(move(m).effect == "HALVE_FIRE_DAMAGE" for mv in moves.values() for m in mv),
             "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo, "terrain": terrain}

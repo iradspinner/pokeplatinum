@@ -4580,6 +4580,49 @@ def check_nature_power(results):
     results.append(("Nature Power uses its terrain's move", out == want, str(out)))
 
 
+def check_power_trick(results):
+    """Power Trick (approved 2026-10-14; effect script 238,
+    subscript_user_swap_atk_and_def): its user's Attack and Defense change
+    places, so its hits and the hits into it read its twin with the two
+    swapped, until a second use puts them back or it leaves; the trainer's
+    AI refuses another use while it holds; Baton Pass hands it on; and
+    prepare() builds the twin from swapped base stats, IVs and nature."""
+    out = {}
+    b, p, foe = battle(["Power Trick", "Tackle", "Baton Pass"], ["Tackle"],
+                       {("p", "Tackle"): [10] * 16, ("b", "Tackle"): [20] * 16})
+    b.st["rows"][(None, "p0#trick", "b0.0")] = {"moves": {"Tackle": {"rolls": [30] * 16}}}
+    b.st["rows"][(None, "b0.0", "p0#trick")] = {"moves": {"Tackle": {"rolls": [5] * 16}}}
+    b.st["trick_twin"] = {"p0": "p0#trick"}
+    tackle, trick = fs.move("Tackle"), fs.move("Power Trick")
+
+    def hits():
+        return b.damage(p, foe, tackle, roll=0), b.damage(foe, p, tackle, roll=0)
+    out["before"] = hits()
+    fs.status_move(b, p, trick, foe, True)
+    out["after"] = hits()
+    out["AI's second Power Trick"] = fightai.basic(b, p, foe, trick, 0)
+    out["handed on"] = fs.baton_state(p)["power_trick"]
+    fs.status_move(b, p, trick, foe, True)
+    out["used again"] = hits()
+    fs.status_move(b, p, trick, foe, True)
+    p.reset_volatile()
+    out["after leaving"] = (p.power_trick,) + hits()
+    out["natures"] = [fs.swapped_nature(n) for n in ("Adamant", "Lonely", "Timid", "Modest", "Hardy", "Jolly")]
+    st, pairs, pokemon = prepared_jobs([("Shuckle", 30, "Sturdy", ["Power Trick", "Rollout"], None)],
+                                       [("Machop", 30, "Guts", ["Karate Chop"], None)])
+    twin, own = pokemon.get("b0.0#trick", {}), pokemon["b0.0"]
+    base = (fs.calc.blob()["poks"]["Shuckle"]["bs"]["at"], fs.calc.blob()["poks"]["Shuckle"]["bs"]["df"])
+    out["the twin's base Attack and Defense"] = ((twin.get("species_data") or {}).get("bs", {}).get("at"),
+                                                (twin.get("species_data") or {}).get("bs", {}).get("df")) == base[::-1]
+    out["the twin's rows"] = sorted((a, d) for a, d, _mv, _w in pairs if "#trick" in a or "#trick" in d)
+    want = {"before": (10, 20), "after": (30, 5), "AI's second Power Trick": -10, "handed on": True,
+            "used again": (10, 20), "after leaving": (False, 10, 20),
+            "natures": ["Impish", "Bold", "Hasty", "Mild", "Hardy", "Jolly"],
+            "the twin's base Attack and Defense": True,
+            "the twin's rows": [("b0.0#trick", "p0"), ("p0", "b0.0#trick")]}
+    results.append(("Power Trick swaps its user's Attack and Defense through its twin", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4850,6 +4893,7 @@ def main():
                   check_water_sport, check_acrobatics, check_guard_swap,
                   check_power_swap, check_psycho_shift, check_memento,
                   check_sketch, check_me_first, check_nature_power,
+                  check_power_trick,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
