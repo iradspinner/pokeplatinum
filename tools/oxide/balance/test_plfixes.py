@@ -4358,6 +4358,32 @@ def memento_checks():
              f"(Jumpluff's HP, Bibarel's Attack and Sp. Atk) {out}")]
 
 
+def sketch_checks():
+    """Sketch in the readings' battle on the calculator's real rows (approved
+    2026-10-14): a trainer's Smeargle sketches the player's Bibarel's Body
+    Slam, hits with it from its own row, keeps it after leaving, and the
+    trainer's AI can figure it."""
+    from .test_fightai import battle
+    b = battle([("Smeargle", 30, "Own Tempo", ["Sketch"])], [("Bibarel", 30, "Unaware", ["Body Slam"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    sme, bib = b.b.cur(), b.p.cur()
+    bib.hp = bib.maxhp = 100000
+    pl.use_move(b, bib, fs.move("Body Slam"), sme, False)
+    sme.hp = sme.maxhp
+    pl.use_move(b, sme, fs.move("Sketch"), bib, False)
+    slam = next((m for m in sme.moves if m.name == "Body Slam"), None)
+    dealt = 0
+    if slam is not None:
+        before = bib.hp
+        pl.use_move(b, sme, slam, bib, True)
+        dealt = before - bib.hp
+    figure = fightai.figure(b, sme, bib, slam) if slam is not None else None
+    sme.reset_volatile()
+    ok = slam is not None and dealt > 0 and bool(figure) and any(m.name == "Body Slam" for m in sme.moves)
+    return [("the readings' Sketch takes the target's last move for good", ok,
+             f"Smeargle's moves {[m.name for m in sme.moves]}; Body Slam dealt {dealt}, the AI's figure {figure}")]
+
+
 def main():
     results = []
 
@@ -4879,6 +4905,7 @@ def main():
     results += power_swap_checks()
     results += psycho_shift_checks()
     results += memento_checks()
+    results += sketch_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

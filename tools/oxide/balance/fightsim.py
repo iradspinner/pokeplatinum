@@ -2263,6 +2263,39 @@ def mimic(att, dfn):
     att.moves = moves
 
 
+# The moves Sketch may not take (BtlCmd_TrySketch), beside none at all.
+SKETCH_REFUSES = frozenset({"MOVE_STRUGGLE", "MOVE_SKETCH", "MOVE_CHATTER"})
+
+
+def sketch(att, dfn, mv):
+    """Sketch (effect script 95, subscript_sketch, BtlCmd_TrySketch): the
+    target's last move since it came in (moveSketched, set when its attack
+    message shows) takes the place of the user's first Sketch for good,
+    with the move's full PP, and stays through switching (the party record
+    is written, BattleController_EmitUpdatePartyMon). It fails through a
+    Substitute an Infiltrator does not pass, on a transformed user, on no
+    last move, Struggle, Sketch or Chatter, and on a move the user knows
+    already. The copy is a new move list, never the old one changed, since
+    the search's copies of a Pokemon share it; prepare() rows a Sketch user
+    with its foes' damaging moves (BORROWS). Until 2026-10-15 Sketch did
+    nothing (Ian approved the fix)."""
+    last = dfn.last
+    if (last is None or last.const in SKETCH_REFUSES or getattr(att, "transformed", False)
+            or sub_blocks(att, dfn, mv)):
+        return
+    if any(m.name == last.name for m in att.moves if m.effect != "LEARN_MOVE_PERMANENT"):
+        return
+    j = next((i for i, m in enumerate(att.moves) if m.effect == "LEARN_MOVE_PERMANENT"), None)
+    if j is None:
+        return
+    old = att.moves[j]
+    moves = list(att.moves)
+    moves[j] = last
+    att.pp = {k: v for k, v in att.pp.items() if k != old.name}
+    att.pp[last.name] = last.pp
+    att.moves = moves
+
+
 def present_roll(b):
     """Present's outcome for this use (effect script 122, BtlCmd_Present): a
     power of 40, 80 or 120, or 0 for the gift, at PRESENT_ODDS, on the
@@ -5751,6 +5784,8 @@ def status_move(b, att, mv, dfn, first):
         gravity_start(b)
     elif e == "COPY_MOVE_FOR_BATTLE":
         mimic(att, dfn)
+    elif e == "LEARN_MOVE_PERMANENT":
+        sketch(att, dfn, mv)
     elif e == "TAUNT":
         if not dfn.taunt and not taunt_blocked(att, dfn):
             dfn.taunt = b.rng.randint(3, 5)
@@ -7122,8 +7157,8 @@ def family(species):
 
 # The status moves that use a foe's move as their user's own, whose users'
 # rows carry the foes' damaging moves (prepare's borrowed): Mimic, Mirror
-# Move and Copycat.
-BORROWS = frozenset({"COPY_MOVE_FOR_BATTLE", "COPY_MOVE", "USE_LAST_USED_MOVE"})
+# Move, Copycat and Sketch.
+BORROWS = frozenset({"COPY_MOVE_FOR_BATTLE", "COPY_MOVE", "USE_LAST_USED_MOVE", "LEARN_MOVE_PERMANENT"})
 
 
 def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False,

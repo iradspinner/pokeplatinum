@@ -4487,6 +4487,48 @@ def check_memento(results):
                     f"(user fainted, target's Attack, Sp. Atk) {out}"))
 
 
+def check_sketch(results):
+    """Sketch (approved 2026-10-14; effect script 95, BtlCmd_TrySketch): the
+    target's last move takes Sketch's slot for good with its full PP, and
+    stays when the user leaves; it fails with no last move, on Struggle or
+    Chatter, on a move the user knows already, through a Substitute and
+    for a transformed user; and prepare() rows a Sketch user with its
+    foes' damaging moves."""
+    def setup(last, known=("Sketch", "Tackle")):
+        b, p, foe = battle(list(known), ["Hyper Beam", "Ember"], {})
+        foe.last = fs.move(last) if last else None
+        return b, p, foe
+    out = {}
+    b, p, foe = setup("Ember")
+    fs._use_move(b, p, fs.move("Sketch"), foe, True)
+    out["sketched"] = ([m.name for m in p.moves], dict(p.pp))
+    p.reset_volatile()
+    out["after leaving"] = [m.name for m in p.moves]
+    for label, kw in (("no last move", {"last": None}), ("known already", {"last": "Tackle"}),
+                      ("Struggle", {"last": "Struggle"}), ("Chatter", {"last": "Chatter"})):
+        b, p, foe = setup(**kw)
+        fs.status_move(b, p, fs.move("Sketch"), foe, True)
+        out[label] = [m.name for m in p.moves]
+    b, p, foe = setup("Ember")
+    foe.sub = 30
+    fs.status_move(b, p, fs.move("Sketch"), foe, True)
+    out["behind a Substitute"] = [m.name for m in p.moves]
+    b, p, foe = setup("Ember")
+    p.transformed = True
+    fs.status_move(b, p, fs.move("Sketch"), foe, True)
+    out["transformed"] = [m.name for m in p.moves]
+    st, pairs, _pokemon = prepared_jobs([("Smeargle", 30, "Own Tempo", ["Sketch"], None)],
+                                        [("Machop", 30, "Guts", ["Karate Chop", "Leer"], None)])
+    out["the Sketch user's rows"] = sorted({m for a, d, mv, _w in pairs if a == "b0.0" and d == "p0" for m in mv})
+    plain = ["Sketch", "Tackle"]
+    want = {"sketched": (["Ember", "Tackle"], {"Tackle": fs.move("Tackle").pp, "Ember": fs.move("Ember").pp}),
+            "after leaving": ["Ember", "Tackle"], "no last move": plain, "known already": plain, "Struggle": plain,
+            "Chatter": plain, "behind a Substitute": plain, "transformed": plain,
+            "the Sketch user's rows": ["Karate Chop"]}
+    results.append(("Sketch takes the target's last move for good, and is rowed with its foes' moves",
+                    out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4756,6 +4798,7 @@ def main():
                   check_teeter_dance, check_smelling_salts, check_magic_coat, check_present,
                   check_water_sport, check_acrobatics, check_guard_swap,
                   check_power_swap, check_psycho_shift, check_memento,
+                  check_sketch,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

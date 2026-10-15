@@ -1114,6 +1114,8 @@ def status_move(b, att, mv, dfn, first):
         fs.gravity_start(b)              # five turns of Gravity (fightsim.gravity_start)
     elif e == "COPY_MOVE_FOR_BATTLE":
         fs.mimic(att, dfn)               # Mimic takes the target's last move (fightsim.mimic)
+    elif e == "LEARN_MOVE_PERMANENT":
+        fs.sketch(att, dfn, mv)          # Sketch takes the target's last move for good (fightsim.sketch)
     elif e == "TAUNT":
         if not dfn.taunt and not fs.taunt_blocked(att, dfn):     # Oblivious, unless Mold Breaker
             dfn.taunt = b.dice.taunt(dfn.side)
