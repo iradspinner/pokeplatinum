@@ -194,6 +194,12 @@ HIT_FOE_STAGES = {
     # chance. Until 2026-10-15 the hit landed and the drop never came (Ian
     # approved the fix).
     "LOWER_SP_ATK_HIT": {"spa": -1},
+    # Acid Spray and Lumina Crash (always) and Seed Flare (four times in
+    # ten): effect script 271 lowers the target's Sp. Def two stages at the
+    # move's chance, which Sheer Force strips (sSheerForceEffects). Until
+    # 2026-10-15 the hit landed and the drop never came (Ian approved the
+    # fix).
+    "LOWER_SP_DEF_2_HIT": {"spd": -2},
 }
 HIT_SELF_STAGES = {  # (stages, certain)
     "DEF_SPD_DOWN_HIT": ({"def": -1, "spd": -1}, True),

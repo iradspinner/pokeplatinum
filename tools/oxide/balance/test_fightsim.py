@@ -4690,6 +4690,23 @@ def check_transform(results):
     results.append(("Transform copies its target's moves, stages, types, ability and Speed", out == want, str(out)))
 
 
+def check_sp_def_2_hit(results):
+    """Acid Spray, Lumina Crash and Seed Flare (approved 2026-10-14; effect
+    script 271): the hit lowers the target's Sp. Def two stages at the
+    move's chance, Seed Flare's four in ten, and Sheer Force strips it."""
+    out = {}
+    for name, value, ability in (("Acid Spray", 0.3, None), ("Seed Flare", 0.3, None), ("Seed Flare", 0.5, None),
+                                 ("Acid Spray", 0.3, "Sheer Force")):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [10] * 16}, hp=500)
+        b.rng = FixedDice(value)
+        p.ability = ability
+        fs.attack(b, p, fs.move(name), foe, True)
+        out[(name, value, ability)] = foe.stages["spd"]
+    want = {("Acid Spray", 0.3, None): -2, ("Seed Flare", 0.3, None): -2, ("Seed Flare", 0.5, None): 0,
+            ("Acid Spray", 0.3, "Sheer Force"): 0}
+    results.append(("Acid Spray and Seed Flare lower Sp. Def two stages at their chance", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4961,6 +4978,7 @@ def main():
                   check_power_swap, check_psycho_shift, check_memento,
                   check_sketch, check_me_first, check_nature_power,
                   check_power_trick, check_bide, check_transform,
+                  check_sp_def_2_hit,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

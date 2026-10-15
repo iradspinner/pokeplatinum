@@ -4501,6 +4501,38 @@ def transform_checks():
     return [("the readings' Transform copies its target", ok, f"{copied}; Bibarel's Attack stage {bib.stages['atk']}")]
 
 
+class Sure7(pl.RunDice):
+    """Run dice for batch 7's checks: the top damage roll, no miss and no
+    critical hit for either side, and only a certain chance lands."""
+    def roll(self, top):
+        return 15
+
+    def bad(self, kind, p):
+        return False
+
+    def good(self, p, kind=None):
+        return p >= 1
+
+
+def b7_battle(boss, player):
+    """A battle on the calculator's real rows with batch 7's sure dice."""
+    from .test_fightai import battle
+    b = battle(boss, player)
+    b.dice, b.rng = Sure7(random.Random(1), True), random.Random(1)
+    return b, b.b.cur(), b.p.cur()
+
+
+def sp_def_2_checks():
+    """Acid Spray in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Croagunk's hit lowers a trainer's
+    Geodude's Sp. Def two stages."""
+    b, geo, cro = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Croagunk", 30, "Dry Skin", ["Acid Spray"])])
+    hp = geo.hp
+    pl.attack(b, cro, fs.move("Acid Spray"), geo, True)
+    ok = geo.hp < hp and geo.stages["spd"] == -2
+    return [("the readings' Acid Spray lowers Sp. Def two stages", ok, f"Geodude's HP {hp} to {geo.hp}, Sp. Def stage {geo.stages['spd']}")]
+
+
 def main():
     results = []
 
@@ -5028,6 +5060,7 @@ def main():
     results += power_trick_checks()
     results += bide_checks()
     results += transform_checks()
+    results += sp_def_2_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
