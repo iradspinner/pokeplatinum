@@ -1077,6 +1077,8 @@ def status_move(b, att, mv, dfn, first):
         fs.octolock(att, dfn, mv)        # held, and a stage of each Defense at each turn's end (fightsim.octolock)
     elif e == "SET_AURORA_VEIL":
         fs.aurora_veil(b, att)           # five turns of both screens' halving, in hail (fightsim.aurora_veil)
+    elif e == "TEATIME":
+        fs.teatime(b, lambda kind, n: b.dice.choice(kind, n))     # every Berry on the field eaten (fightsim.teatime)
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in fs.HEAL_HALF:

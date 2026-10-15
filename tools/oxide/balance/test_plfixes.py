@@ -5113,6 +5113,18 @@ def aurora_veil_checks():
           and all(a == max(1, int(x * 0.5)) or abs(a - x / 2) <= 1 for x, a in zip(out["Hail"][1], out["Hail"][2])))
     return [("the readings' Aurora Veil halves both kinds of hit in hail", ok, f"(veil, before, after) {out}")]
 
+def teatime_checks():
+    """Teatime in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel at full HP eats its Oran
+    Berry for nothing and a trainer's Geodude its Liechi Berry, which
+    raises its Attack, both Berries counting as eaten."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Teatime"])])
+    bib.item, geo.item = "Oran Berry", "Liechi Berry"
+    pl.status_move(b, bib, fs.move("Teatime"), geo, True)
+    got = (bib.item, bib.ate_berry, geo.item, geo.ate_berry, geo.stages["atk"])
+    return [("the readings' Teatime feeds both their Berries", got == (None, True, None, True, 1),
+             f"(Bibarel's item, eaten, Geodude's item, eaten, its Attack) {got}")]
+
 def main():
     results = []
 
@@ -5678,6 +5690,7 @@ def main():
     results += grudge_checks()
     results += octolock_checks()
     results += aurora_veil_checks()
+    results += teatime_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

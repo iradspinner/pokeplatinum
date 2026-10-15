@@ -5486,6 +5486,23 @@ def check_aurora_veil(results):
     want = {"no hail": 0, "hail, Light Clay": 8, "hits": (20, 20, 60), "a turn on": 7, "Brick Break": 0, "Defog": 0}
     results.append(("Aurora Veil halves both kinds of hit in hail", out == want, str(out)))
 
+def check_teatime(results):
+    """Teatime (approved 2026-10-14; effect script 412): every Pokemon on
+    the field that holds a Berry eats it at once, as its own, whether or
+    not it would set itself off; one held back by Embargo too."""
+    out = {}
+    b, p, foe = battle(["Teatime"], ["Tackle"], {}, hp=200)
+    p.item, p.hp = "Sitrus Berry", 150
+    foe.item = "Liechi Berry"
+    fs.status_move(b, p, fs.move("Teatime"), foe, True)
+    out["both"] = (p.hp, p.item, p.ate_berry, p.recycle, foe.stages["atk"], foe.item, foe.ate_berry)
+    b, p, foe = battle(["Teatime"], ["Tackle"], {}, hp=200)
+    foe.item_off, foe.embargo = "Liechi Berry", 3
+    fs.status_move(b, p, fs.move("Teatime"), foe, True)
+    out["Embargo"] = (foe.stages["atk"], foe.item, foe.item_off, foe.ate_berry)
+    want = {"both": (200, None, True, "Sitrus Berry", 1, None, True), "Embargo": (1, None, None, True)}
+    results.append(("Teatime feeds every Pokemon its own Berry", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5770,7 +5787,7 @@ def main():
                   check_axe_kick, check_always_critical,
                   check_clangorous_soul, check_heart_swap, check_heal_pulse,
                   check_lunar_dance, check_grudge, check_octolock,
-                  check_aurora_veil,
+                  check_aurora_veil, check_teatime,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

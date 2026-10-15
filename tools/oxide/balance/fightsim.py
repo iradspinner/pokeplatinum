@@ -4328,6 +4328,29 @@ def swap_stages(att, dfn, stats):
         att.stages[k], dfn.stages[k] = dfn.stages[k], att.stages[k]
 
 
+def teatime(b, pick):
+    """Teatime (effect script 412, subscript_teatime, TryTeatime): it fails
+    when no Pokemon on the field holds a Berry; otherwise each one that
+    does, in speed order, eats its own Berry at once, whether or not it
+    would set itself off, as Pluck eats one (BattleSystem_PluckBerry with
+    the eater standing as the attacker), a Berry with nothing to give being
+    eaten all the same. The Berry is its holder's own for Belch and Recycle
+    (consume), and it is read past Embargo and Magic Room, which the command
+    does not ask (raw_item_op). Until 2026-10-15 Teatime did nothing (Ian
+    approved the fix)."""
+    eaters = [m for m in b.p.on_field() + b.b.on_field()
+              if m.alive() and (m.item or m.item_off or "").endswith("Berry")]
+    for m in sorted(eaters, key=lambda m: -b.speed(m)):
+        def eat(m=m):
+            berry = m.item
+            consume(m)
+            eat_berry(m, berry, pick)
+        if m.item_off is not None:
+            raw_item_op((m,), eat)
+        else:
+            eat()
+
+
 def aurora_veil(b, att):
     """Aurora Veil (effect script 377, subscript_aurora_veil, TryAuroraVeil):
     it fails with the veil up on its user's side already, or unless the
@@ -6592,6 +6615,8 @@ def status_move(b, att, mv, dfn, first):
         octolock(att, dfn, mv)
     elif e == "SET_AURORA_VEIL":
         aurora_veil(b, att)
+    elif e == "TEATIME":
+        teatime(b, lambda kind, n: b.rng.randrange(n))
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in HEAL_HALF:
