@@ -1958,6 +1958,38 @@ MAGNITUDE_POWERS = {10: 5, 30: 10, 50: 20, 70: 30, 90: 20, 110: 10, 150: 5}
 SPIT_UP_POWERS = (100, 200, 300)
 
 
+@functools.lru_cache(maxsize=None)
+def _base_friendship():
+    """{compact species name: base friendship}, from each species' own
+    record under res/pokemon (its folder's name, letters and digits only)."""
+    out = {}
+    root = os.path.join(data.ROOT, "res", "pokemon")
+    for folder in os.listdir(root):
+        path = os.path.join(root, folder, "data.json")
+        if os.path.isfile(path):
+            with open(path, encoding="utf-8") as fh:
+                out[re.sub(r"[^a-z0-9]", "", folder.lower())] = json.load(fh).get("base_friendship")
+    return out
+
+
+def friendship_power(species):
+    """Return's power for a trainer's Pokemon (effect script 121: friendship
+    times 10 over 25). TrainerData_BuildParty never sets friendship, so a
+    trainer's Pokemon has its species' base friendship (Pokemon_InitWith):
+    70 for most, so 28 power; a power of 0 (Buneary's 0) falls back to the
+    move's listed 1 (BattleSystem_CalcMoveDamage takes the listed power for
+    an input of 0). The trainer's AI reckons it the same way
+    (TrainerAI_CalcDamage's MOVE_RETURN case). Until 2026-10-15 every row
+    gave Return the calculator's full-friendship 102 (Ian approved the
+    fix)."""
+    table = _base_friendship()
+    name = re.sub(r"[^a-z0-9]", "", (species or "").lower())
+    base = table.get(name)
+    if base is None:
+        base = table.get(re.sub(r"[^a-z0-9]", "", (species or "").split("-")[0].lower()), 70)
+    return max(1, (base or 0) * 10 // 25)
+
+
 def stockpile(mon):
     """Stockpile (effect script 160, subscript_stockpile): it fails at three;
     each use adds one and raises Defense and Sp. Def a stage each through the
@@ -6474,12 +6506,26 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             pokemon[f"p{i}~1"] = dict(pokemon[f"p{i}"], ability=regular[1])
             moves[f"p{i}~1"] = mv
             variants[f"p{i}"].append(f"p{i}~1")
+    def friendly(mon):
+        """A trainer's Pokemon with Return, Pika Papow or Veevee Volley,
+        rowed at its own friendship's power (friendship_power) rather than
+        the calculator's full-friendship 102; any other record as it is."""
+        own = {}
+        for name in mon.get("moves") or ():
+            mv = move(name)
+            if mv.effect == "POWER_BASED_ON_FRIENDSHIP":
+                own[name] = {"type": mv.type, "category": mv.cat, "basePower": friendship_power(mon.get("species")),
+                             "flags": {"contact": 1} if mv.contact else {}}
+        if not own:
+            return mon
+        return dict(mon, move_data=dict(mon.get("move_data") or {}, **own))
+
     boss_keys = []
     for v, party in enumerate(parties):
         keys = []
         for j, mon in enumerate(party):
             k = f"b{v}.{j}"
-            pokemon[k] = mon
+            pokemon[k] = friendly(mon)
             moves[k] = list(mon["moves"])
             keys.append(k)
         boss_keys.append(keys)

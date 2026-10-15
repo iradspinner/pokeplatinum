@@ -2665,6 +2665,23 @@ def check_trainer_magnitude(results):
                     f"power keys rowed {powers}"))
 
 
+def check_trainer_return(results):
+    """A trainer's Return (approved 2026-10-14; effect script 121): its
+    power is its friendship times 10 over 25, and a trainer's Pokemon has
+    its species' base friendship, so prepare() rows a Pidgeot's (70) at 28,
+    a Lopunny's (140) at 56 and a Buneary's (0) at the listed 1; the
+    player's Return keeps the calculator's 102 of a well-liked Pokemon."""
+    st, pairs, pokemon = prepared_jobs([("Pidgeot", 30, "Keen Eye", ["Return"], None),
+                                        ("Lopunny", 30, "Klutz", ["Return"], None),
+                                        ("Buneary", 30, "Klutz", ["Return"], None)],
+                                       [("Bibarel", 30, "Simple", ["Return"], None)])
+    power = {k: (pokemon[k].get("move_data") or {}).get("Return", {}).get("basePower")
+             for k in ("b0.0", "b0.1", "b0.2", "p0")}
+    want = {"b0.0": 28, "b0.1": 56, "b0.2": 1, "p0": None}
+    results.append(("prepare rows a trainer's Return at its species' base friendship", power == want,
+                    f"Return's power by key {power}"))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -4054,7 +4071,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,

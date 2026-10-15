@@ -3662,6 +3662,22 @@ def trainer_magnitude_checks():
              f"{hits} of 200 uses hit; powers rolled {sorted(p for p in powers if p)}")]
 
 
+def trainer_return_checks():
+    """A trainer's Return on the calculator's real rows (approved
+    2026-10-14): a trainer's Pidgeot, at its base friendship of 70, hits the
+    player's Bibarel with Return at 28 power, about a third of its Body
+    Slam's 85, and the trainer's AI's figure reads the same row."""
+    from .test_fightai import battle
+    b = battle([("Pidgeot", 30, "Keen Eye", ["Return", "Body Slam"])], [("Bibarel", 30, "Simple", ["Tackle"])])
+    pid, bib = b.b.cur(), b.p.cur()
+    row = b.st["rows"][(None, pid.key, bib.key)]["moves"]
+    ret, slam = row["Return"]["rolls"][-1], row["Body Slam"]["rolls"][-1]
+    ai = fightai.figure(b, pid, bib, fs.move("Return"))
+    ok = 0.25 < ret / slam < 0.42 and abs(ai - ret) <= 1
+    return [("a trainer's Return hits at its friendship's power", ok,
+             f"Return's top {ret} against Body Slam's {slam} ({ret / slam:.2f}); the AI's figure {ai}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4315,6 +4331,7 @@ def main():
     results += lock_on_checks()
     results += foresight_checks()
     results += trainer_magnitude_checks()
+    results += trainer_return_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()
