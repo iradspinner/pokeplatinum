@@ -4529,6 +4529,32 @@ def check_sketch(results):
                     out == want, str(out)))
 
 
+def check_me_first(results):
+    """Me First (approved 2026-10-14; effect script 241, BtlCmd_TryMeFirst):
+    moving first, its user uses the target's chosen hit as its own at half
+    again its damage, its own PP spent and the half again gone after; it
+    fails after the target has moved, on a status move and on Counter; and
+    prepare() rows a Me First user with its foes' damaging moves."""
+    out = {}
+    for label, chosen, first in (("Ember, first", "Ember", True), ("Ember, second", "Ember", False),
+                                 ("Growl", "Growl", True), ("Counter", "Counter", True)):
+        b, p, foe = battle(["Me First", "Tackle"], ["Ember", "Growl", "Counter"], {}, hp=500)
+        b.st["rows"][(None, "p0", "b0.0")]["moves"]["Ember"] = {"rolls": [20] * 16}     # its borrowed row
+        b.rng = FixedDice(0.5)
+        foe.ability = "Shell Armor"
+        foe.chosen = fs.move(chosen)
+        fs.use_move(b, p, fs.move("Me First"), foe, first)
+        out[label] = (500 - foe.hp, p.pp["Me First"], p.me_first)
+    st, pairs, _pokemon = prepared_jobs([("Furret", 30, "Keen Eye", ["Me First"], None)],
+                                        [("Machop", 30, "Guts", ["Karate Chop", "Leer"], None)])
+    out["the Me First user's rows"] = sorted({m for a, d, mv, _w in pairs if a == "b0.0" and d == "p0" for m in mv})
+    pp = fs.move("Me First").pp - 1
+    want = {"Ember, first": (30, pp, False), "Ember, second": (0, pp, False), "Growl": (0, pp, False),
+            "Counter": (0, pp, False), "the Me First user's rows": ["Karate Chop"]}
+    results.append(("Me First uses the target's chosen hit at half again", out == want,
+                    f"(damage, Me First's PP, the flag after) {out}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4798,7 +4824,7 @@ def main():
                   check_teeter_dance, check_smelling_salts, check_magic_coat, check_present,
                   check_water_sport, check_acrobatics, check_guard_swap,
                   check_power_swap, check_psycho_shift, check_memento,
-                  check_sketch,
+                  check_sketch, check_me_first,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

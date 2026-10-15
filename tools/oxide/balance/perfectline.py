@@ -347,6 +347,8 @@ def use_move(b, att, mv, dfn, first):
     """One move, then the switch-in check that ends it, where a Neutralizing
     Gas whose holder fell wears off (fightsim.use_move)."""
     _use_move(b, att, mv, dfn, first)
+    if att.me_first:
+        att.me_first = False             # Me First's half again lasts the move it took (fightsim.me_first_move)
     if b.st.get("gas"):
         fs.gas_update(b)
     fs.move_end(b)          # a waiting Trace (fightsim.move_end)
@@ -409,6 +411,11 @@ def _use_move(b, att, mv, dfn, first):
         return                       # Last Resort before every other move was used
     if mv.effect in fs.CALLERS:
         mv = fs.called_move(b, att, mv, prev)     # Mirror Move's and Copycat's copy, run as its own (fightsim.called_move)
+        if mv is None:
+            return
+        fs.mark_hit(b, mv, dfn, True)
+    if mv.effect == "USE_MOVE_FIRST":
+        mv = fs.me_first_move(att, dfn, first)    # the target's chosen hit, at half again (fightsim.me_first_move)
         if mv is None:
             return
         fs.mark_hit(b, mv, dfn, True)

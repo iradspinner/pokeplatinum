@@ -446,6 +446,9 @@ class Mon:
     # MOVE_FLAG_CAN_MAGIC_COAT aimed at it this turn is turned back on its
     # user (coat_bounces); gone with the turn.
     magic_coat = False
+    # Me First: the move it took is running at half again its damage
+    # (moveEffectsData.meFirst); cleared as that move ends (use_move).
+    me_first = False
     # Throat Chop's hold on its target's sound moves (OXIDE_MON_THROAT_CHOP):
     # 2 when the hit lands, one off at each turn's end, so it lasts the rest
     # of this turn and all of the next; cleared when it leaves.
@@ -2263,6 +2266,32 @@ def mimic(att, dfn):
     att.moves = moves
 
 
+# The effects Me First may not take (sCannotMeFirstMoves, compared by
+# effect): Counter's, Mirror Coat's, Thief's and Covet's, Focus Punch's and
+# Chatter's.
+ME_FIRST_REFUSES = frozenset({"COUNTER", "MIRROR_COAT", "STEAL_HELD_ITEM", "HIT_LAST_WHIFF_IF_HIT", "CHATTER"})
+
+
+def me_first_move(att, dfn, first):
+    """Me First (effect script 241, BtlCmd_TryMeFirst): the move its target
+    has chosen this turn (its Encore move while one holds it), used at once
+    as the user's own at half again its damage (the meFirst flag, read
+    after the critical hit in BattleSystem_CalcMoveDamage's caller), or
+    None when it fails: the target has acted already, struggles, chose a
+    move with no power, or one of the effects the engine bars
+    (ME_FIRST_REFUSES). The move spends no PP of its own; prepare() rows a
+    Me First user with its foes' damaging moves (BORROWS). Until
+    2026-10-15 Me First did nothing (Ian approved the fix)."""
+    nxt = dfn.chosen
+    if dfn.encore is not None:
+        nxt = next((m for m in dfn.moves if m.name == dfn.encore), nxt)
+    if (not first or nxt is None or not dfn.alive() or nxt.effect == "STRUGGLE" or nxt.power <= 0
+            or nxt.effect in ME_FIRST_REFUSES):
+        return None
+    att.me_first = True
+    return nxt
+
+
 # The moves Sketch may not take (BtlCmd_TrySketch), beside none at all.
 SKETCH_REFUSES = frozenset({"MOVE_STRUGGLE", "MOVE_SKETCH", "MOVE_CHATTER"})
 
@@ -2806,6 +2835,8 @@ def use_move(b, att, mv, dfn, first, targets=None):
     where a Neutralizing Gas whose holder fell during the move wears off.
     `first`: whether the target has not moved yet this turn."""
     _use_move(b, att, mv, dfn, first, targets)
+    if att.me_first:
+        att.me_first = False     # Me First's half again lasts the move it took
     if b.st.get("gas"):
         gas_update(b)
     move_end(b)
@@ -2911,6 +2942,11 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         if mv is None:
             return               # nothing to call: it fails
         mark_hit(b, mv, dfn, True, targets)     # the called move is the last to hit its target (moveHit)
+    if mv.effect == "USE_MOVE_FIRST":
+        mv = me_first_move(att, dfn, first)     # the target's chosen hit, at half again (me_first_move)
+        if mv is None:
+            return
+        mark_hit(b, mv, dfn, True, targets)
     if mv.effect in ("FLY", "BOUNCE") and att.smacked:
         return                   # brought down, it cannot take to the air (effect scripts 155 and 263)
     # Charging moves: the first turn only charges (Fly and Dig vanish).
@@ -4564,6 +4600,8 @@ def state_mult(b, att, dfn, mv):
         m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
     if b.st.get("water_sport"):
         m *= sport_half(b, att, dfn, mv)     # Water Sport on the field halves a Fire move's power
+    if att.me_first:
+        m *= 1.5                 # a move Me First took, at half again its damage (me_first_move)
     if mv.effect == "HIGHER_POWER_WHEN_LOW_PP":
         # Trump Card: the row has the calculator's full-PP 40 (Oxide's
         # profile); the power rises as the PP runs down (trump_card_power).
@@ -7157,8 +7195,9 @@ def family(species):
 
 # The status moves that use a foe's move as their user's own, whose users'
 # rows carry the foes' damaging moves (prepare's borrowed): Mimic, Mirror
-# Move, Copycat and Sketch.
-BORROWS = frozenset({"COPY_MOVE_FOR_BATTLE", "COPY_MOVE", "USE_LAST_USED_MOVE", "LEARN_MOVE_PERMANENT"})
+# Move, Copycat, Sketch and Me First.
+BORROWS = frozenset({"COPY_MOVE_FOR_BATTLE", "COPY_MOVE", "USE_LAST_USED_MOVE", "LEARN_MOVE_PERMANENT",
+                     "USE_MOVE_FIRST"})
 
 
 def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False,

@@ -4384,6 +4384,38 @@ def sketch_checks():
              f"Smeargle's moves {[m.name for m in sme.moves]}; Body Slam dealt {dealt}, the AI's figure {figure}")]
 
 
+def me_first_checks():
+    """Me First in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Furret moving first takes the
+    player's Bibarel's chosen Body Slam and hits with it at half again
+    what its own Body Slam row gives."""
+    from .test_fightai import battle
+
+    class Top(pl.RunDice):
+        """Run dice that roll the top damage, never miss and never crit."""
+        def roll(self, top):
+            return 15
+
+        def bad(self, kind, p):
+            return False
+
+        def good(self, p, kind=None):
+            return False
+    b = battle([("Furret", 40, "Keen Eye", ["Me First"])], [("Bibarel", 40, "Unaware", ["Body Slam"])])
+    b.dice, b.rng = Top(random.Random(1), True), random.Random(1)
+    fur, bib = b.b.cur(), b.p.cur()
+    bib.hp = bib.maxhp = 100000
+    bib.chosen = fs.move("Body Slam")
+    pl.use_move(b, fur, fs.move("Me First"), bib, True)
+    taken = bib.maxhp - bib.hp
+    bib.hp = bib.maxhp
+    pl.attack(b, fur, fs.move("Body Slam"), bib, True)
+    plain = bib.maxhp - bib.hp
+    ok = plain > 0 and abs(taken - plain * 1.5) <= 1
+    return [("the readings' Me First takes the target's chosen hit at half again", ok,
+             f"Me First's Body Slam {taken}, a plain one {plain}")]
+
+
 def main():
     results = []
 
@@ -4906,6 +4938,7 @@ def main():
     results += psycho_shift_checks()
     results += memento_checks()
     results += sketch_checks()
+    results += me_first_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
