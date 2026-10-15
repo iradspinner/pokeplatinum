@@ -270,8 +270,9 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
     # A screen halves neither a critical hit, nor Brick Break's kind, which
     # breaks it, nor an Infiltrator's hit (battle_lib.c, BattleSystem_CalcMoveDamage),
     # as fightsim's Battle.damage has it.
-    if side.screens[screen] and not crit and mv.effect != "REMOVE_SCREENS" and att.ability != "Infiltrator":
-        mult *= 0.5
+    if (side.screens[screen] or side.aurora_veil) and not crit and mv.effect != "REMOVE_SCREENS" \
+            and att.ability != "Infiltrator":
+        mult *= 0.5              # Aurora Veil halves both kinds, once with a screen (fightsim.aurora_veil)
     if mv.effect == fs.ALWAYS_CRIT:
         mult *= fs.row_crit_mult(att, dfn, crit)    # the row's own critical hit (fightsim.row_crit_mult)
     elif crit:
@@ -842,6 +843,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     if e == "REMOVE_SCREENS":
         side = b.p if player(dfn) else b.b
         side.screens = dict.fromkeys(side.screens, 0)
+        if side.aurora_veil:
+            side.aurora_veil = 0         # Aurora Veil breaks with the screens (fightsim.aurora_veil)
     def secondary(kind, p):
         """A secondary effect at its chance: bad luck against the player,
         good luck for it."""
@@ -1072,6 +1075,8 @@ def status_move(b, att, mv, dfn, first):
         att.grudge = att.rare = True     # Grudge, until its user next acts (fightsim.grudge)
     elif e == "OCTOLOCK":
         fs.octolock(att, dfn, mv)        # held, and a stage of each Defense at each turn's end (fightsim.octolock)
+    elif e == "SET_AURORA_VEIL":
+        fs.aurora_veil(b, att)           # five turns of both screens' halving, in hail (fightsim.aurora_veil)
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in fs.HEAL_HALF:
@@ -1262,6 +1267,8 @@ def clone_side(s):
     c.mist = getattr(s, "mist", 0)
     if s.lucky_chant:
         c.lucky_chant = s.lucky_chant    # left on the class while 0 (fightsim.Side)
+    if s.aurora_veil:
+        c.aurora_veil = s.aurora_veil    # Aurora Veil, left on the class while 0 (fightsim.Side)
     if s.web:
         c.web = s.web                    # Sticky Web, left on the class while 0 (fightsim.Side)
     if s.guard is not None:
@@ -1348,6 +1355,8 @@ def side_key(s):
     # are none, so the keys of a fight without them stay as they were.
     if s.lucky_chant or s.web:
         key += (("lucky chant", s.lucky_chant, "web", s.web),)
+    if s.aurora_veil:
+        key += (("aurora veil", s.aurora_veil),)     # kept out of the key while there is none
     return key
 
 

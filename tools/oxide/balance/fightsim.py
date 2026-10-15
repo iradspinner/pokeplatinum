@@ -721,6 +721,10 @@ class Side:
     # Lucky Chant's turns left (SIDE_CONDITION_LUCKY_CHANT): no critical hit
     # lands on the side while it runs; left on the class while 0.
     lucky_chant = 0
+    # Aurora Veil's turns left (SIDE_CONDITION_AURORA_VEIL, auroraVeilTurns):
+    # physical and special hits on the side are halved as by Reflect and
+    # Light Screen, not stacking with them; left on the class while 0.
+    aurora_veil = 0
     # Sticky Web on the side (SIDE_CONDITION_STICKY_WEB), 1 while laid: each
     # grounded Pokemon that comes in loses a stage of Speed (web_catch);
     # Rapid Spin, Mortal Spin and Defog clear it; left on the class while 0.
@@ -966,7 +970,8 @@ class Battle:
             mult *= 1.2          # the player's rows are item-free; a booster adds its fifth here
         side = self.p if dfn.side == "p" else self.b
         screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
-        if side.screens[screen] and not crit and mv.effect != "REMOVE_SCREENS" and att.ability != "Infiltrator":
+        if (side.screens[screen] or side.aurora_veil) and not crit and mv.effect != "REMOVE_SCREENS" \
+                and att.ability != "Infiltrator":     # Aurora Veil halves both, once with a screen
             mult *= 2 / 3 if getattr(self, "doubles", False) else 0.5
         if getattr(self, "spread", False):
             mult *= 0.75
@@ -3867,6 +3872,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     if e == "REMOVE_SCREENS":
         side = b.p if dfn.side == "p" else b.b
         side.screens = dict.fromkeys(side.screens, 0)
+        if side.aurora_veil:
+            side.aurora_veil = 0         # BtlCmd_TryBreakScreens breaks Aurora Veil too
     stripped = sheer_force_strips(att, mv)
     if e in HIT_SELF_STAGES and not (stripped and not HIT_SELF_STAGES[e][1]):
         ch, certain = HIT_SELF_STAGES[e]
@@ -4319,6 +4326,22 @@ def swap_stages(att, dfn, stats):
     moved (Ian approved the fix)."""
     for k in stats:
         att.stages[k], dfn.stages[k] = dfn.stages[k], att.stages[k]
+
+
+def aurora_veil(b, att):
+    """Aurora Veil (effect script 377, subscript_aurora_veil, TryAuroraVeil):
+    it fails with the veil up on its user's side already, or unless the
+    weather is hail that no Cloud Nine or Air Lock voids; otherwise the side
+    is veiled for five turns, eight with a Light Clay, and while it lasts
+    physical and special hits on the side are halved, once with Reflect or
+    Light Screen (BattleSystem_CalcMoveDamage), a critical hit, Brick
+    Break's kind and an Infiltrator passing it. It runs down after Light
+    Screen, and Brick Break's kind and Defog clear it. Until 2026-10-15 it
+    did nothing (Ian approved the fix)."""
+    side = b.p if att.side == "p" else b.b
+    if side.aurora_veil or b.weather != "Hail" or weather_ignored(b):
+        return
+    side.aurora_veil = 8 if att.item == "Light Clay" else 5
 
 
 def octolock(att, dfn, mv):
@@ -6567,6 +6590,8 @@ def status_move(b, att, mv, dfn, first):
         att.grudge = att.rare = True     # Grudge, until its user next acts (grudge)
     elif e == "OCTOLOCK":
         octolock(att, dfn, mv)
+    elif e == "SET_AURORA_VEIL":
+        aurora_veil(b, att)
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in HEAL_HALF:
@@ -6860,6 +6885,8 @@ def defog(b, att, dfn, mv):
         lower_stats(b, att, dfn, {"eva": -1})
     side = b.p if dfn.side == "p" else b.b
     side.screens = dict.fromkeys(side.screens, 0)
+    if side.aurora_veil:
+        side.aurora_veil = 0             # subscript_defog clears Aurora Veil after the screens
     side.mist = side.safeguard = 0
     for s in (b.p, b.b):
         s.hazards = dict.fromkeys(s.hazards, 0)
@@ -7133,6 +7160,8 @@ def _end_of_turn(b):
     order = end_order(b)
     for side in (b.p, b.b):
         side.screens = {k: max(0, v - 1) for k, v in side.screens.items()}
+        if side.aurora_veil:
+            side.aurora_veil -= 1        # FIELD_COND_CHECK_STATE_AURORA_VEIL, after Light Screen
         side.tailwind = max(0, side.tailwind - 1)
         side.safeguard = max(0, side.safeguard - 1)
         side.mist = max(0, getattr(side, "mist", 0) - 1)

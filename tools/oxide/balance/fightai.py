@@ -2741,7 +2741,7 @@ def x_defog(c):
         s += 2
     foe_haz = any(foe.hazards.values()) or getattr(foe, "web", 0)
     last_roll = False
-    if foe.screens["Light Screen"] or foe.screens["Reflect"] or getattr(foe, "veil", 0):
+    if foe.screens["Light Screen"] or foe.screens["Reflect"] or getattr(foe, "aurora_veil", 0):
         if c.hu <= 30 and not own.bench():
             last_roll = True
         else:

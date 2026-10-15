@@ -5458,6 +5458,34 @@ def check_octolock(results):
             "Substitute": (None, False)}
     results.append(("Octolock holds its target and lowers both Defenses each turn", out == want, str(out)))
 
+def check_aurora_veil(results):
+    """Aurora Veil (approved 2026-10-14; effect script 377): only in hail it
+    veils its user's side for five turns, eight with a Light Clay, halving
+    physical and special hits on the side, once with Reflect; a critical hit
+    passes it, and Brick Break and Defog clear it."""
+    out = {}
+    b, p, foe = battle(["Aurora Veil"], ["Tackle", "Ember", "Brick Break"],
+                       {("b", "Tackle"): [40] * 16, ("b", "Ember"): [40] * 16, ("b", "Brick Break"): [40] * 16})
+    fs.status_move(b, p, fs.move("Aurora Veil"), foe, True)
+    out["no hail"] = b.p.aurora_veil
+    b.weather = "Hail"
+    p.item = "Light Clay"
+    fs.status_move(b, p, fs.move("Aurora Veil"), foe, True)
+    out["hail, Light Clay"] = b.p.aurora_veil
+    b.p.screens["Reflect"] = 5
+    out["hits"] = (b.damage(foe, p, fs.move("Tackle"), roll=0), b.damage(foe, p, fs.move("Ember"), roll=0),
+                   b.damage(foe, p, fs.move("Tackle"), crit=True, roll=0))
+    b.p.screens["Reflect"] = 0
+    fs.end_of_turn(b)
+    out["a turn on"] = b.p.aurora_veil
+    fs.attack(b, foe, fs.move("Brick Break"), p, True)
+    out["Brick Break"] = b.p.aurora_veil
+    b.p.aurora_veil = 3
+    fs.defog(b, foe, p, fs.move("Defog"))
+    out["Defog"] = b.p.aurora_veil
+    want = {"no hail": 0, "hail, Light Clay": 8, "hits": (20, 20, 60), "a turn on": 7, "Brick Break": 0, "Defog": 0}
+    results.append(("Aurora Veil halves both kinds of hit in hail", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5742,6 +5770,7 @@ def main():
                   check_axe_kick, check_always_critical,
                   check_clangorous_soul, check_heart_swap, check_heal_pulse,
                   check_lunar_dance, check_grudge, check_octolock,
+                  check_aurora_veil,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

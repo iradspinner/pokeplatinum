@@ -5096,6 +5096,23 @@ def octolock_checks():
     return [("the readings' Octolock holds its target and lowers its Defenses", got == (True, -1, -1),
              f"(trapped, Defense, Sp. Def) {got}")]
 
+def aurora_veil_checks():
+    """Aurora Veil in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): in hail the player's Glalie veils its side, and
+    a trainer's Geodude's Tackle and Mud-Slap into it are halved; out of
+    hail it fails."""
+    out = {}
+    for weather in (None, "Hail"):
+        b, geo, gla = b8_battle([("Geodude", 30, "Sturdy", ["Tackle", "Mud-Slap"])], [("Glalie", 30, "Inner Focus", ["Aurora Veil"])])
+        b.weather = weather
+        before = [pl.damage_of(b, geo, gla, fs.move(m), False, True) for m in ("Tackle", "Mud-Slap")]
+        pl.status_move(b, gla, fs.move("Aurora Veil"), geo, True)
+        after = [pl.damage_of(b, geo, gla, fs.move(m), False, True) for m in ("Tackle", "Mud-Slap")]
+        out[weather] = (b.p.aurora_veil, before, after)
+    ok = (out[None][0] == 0 and out[None][1] == out[None][2] and out["Hail"][0] == 5
+          and all(a == max(1, int(x * 0.5)) or abs(a - x / 2) <= 1 for x, a in zip(out["Hail"][1], out["Hail"][2])))
+    return [("the readings' Aurora Veil halves both kinds of hit in hail", ok, f"(veil, before, after) {out}")]
+
 def main():
     results = []
 
@@ -5660,6 +5677,7 @@ def main():
     results += lunar_dance_checks()
     results += grudge_checks()
     results += octolock_checks()
+    results += aurora_veil_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
