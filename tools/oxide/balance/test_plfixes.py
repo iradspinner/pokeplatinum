@@ -3703,6 +3703,35 @@ def smack_down_checks():
              f"Mud Shot dealt {before} before and {after} after; the AI's effectiveness {ai_before} then {ai_after}")]
 
 
+def gravity_checks():
+    """Gravity in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Clefairy's Mud-Slap cannot touch the
+    player's Starly until its Gravity is up, and then hits from the
+    Starly's twin's row without Flying; under it the Starly's Fly leaves
+    its options, and the trainer's AI reads the grounding in its type
+    check."""
+    from .test_fightai import battle
+    b = battle([("Clefairy", 25, "Cute Charm", ["Gravity", "Mud-Slap"])], [("Starly", 25, "Keen Eye", ["Fly", "Quick Attack"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    cle, sta = b.b.cur(), b.p.cur()
+    sta.hp = sta.maxhp = 100000
+    slap = fs.move("Mud-Slap")
+    pl.use_move(b, cle, slap, sta, True)
+    before = sta.maxhp - sta.hp
+    offered_before = sorted(a[1].name for a in pl.player_actions(b) if a[0] == "move")
+    pl.use_move(b, cle, fs.move("Gravity"), sta, True)
+    mid = sta.maxhp - sta.hp
+    pl.use_move(b, cle, slap, sta, True)
+    after = sta.maxhp - sta.hp - mid
+    offered = sorted(a[1].name for a in pl.player_actions(b) if a[0] == "move")
+    ai = fightai.script_eff(b, cle, sta, slap)
+    ok = (before == 0 and getattr(b, "gravity", 0) == 5 and after > 0 and "Fly" in offered_before
+          and "Fly" not in offered and ai > 0)
+    return [("the readings' Gravity lets Ground moves hit a flier and bars Fly", ok,
+             f"Mud-Slap dealt {before} before and {after} after; offered {offered_before} then {offered}; "
+             f"the AI's effectiveness {ai}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4358,6 +4387,7 @@ def main():
     results += trainer_magnitude_checks()
     results += trainer_return_checks()
     results += smack_down_checks()
+    results += gravity_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()

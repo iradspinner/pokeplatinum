@@ -2732,6 +2732,43 @@ def check_smack_down(results):
     results.append(("Smack Down brings a flier down until it leaves, so Ground moves hit it", out == want, str(out)))
 
 
+def check_gravity(results):
+    """Gravity (approved 2026-10-14; effect script 215,
+    subscript_gravity_start): five turns in which Ground moves hit a Flying
+    type from its twin's rows, a Pokemon on Fly's hidden turn is brought
+    down and Magnet Rise ends, accuracy rises by ten sixths, Fly and Magnet
+    Rise can be neither chosen nor used, and Grav Apple hits half as hard
+    again; a second Gravity fails while it lasts, and it ends at the fifth
+    turn's end."""
+    b, p, foe = battle(["Gravity", "Earthquake", "Hypnosis", "Grav Apple"], ["Fly", "Magnet Rise", "Tackle"],
+                       {("p", "Earthquake"): [0] * 16, ("p", "Grav Apple"): [20] * 16}, b_types=("Flying",), hp=500)
+    b.st["rows"][(None, "p0", "b0.0#gd")] = {"moves": {"Earthquake": {"rolls": [10] * 16}}}
+    b.st["ground_twin"] = {"b0.0": "b0.0#gd"}
+    foe.ability = "Shell Armor"
+    hypnosis, apple = fs.move("Hypnosis"), fs.move("Grav Apple")
+    b.rng = FixedDice(0.9)
+    out = {"before": (b.accuracy_hits(p, foe, hypnosis), b.damage(p, foe, apple, roll=0))}
+    foe.charging, foe.magnet_rise = fs.move("Fly"), 3
+    fs.status_move(b, p, fs.move("Gravity"), foe, True)
+    out["started"] = (getattr(b, "gravity", 0), foe.charging, foe.magnet_rise)
+    before = foe.hp
+    fs.attack(b, p, fs.move("Earthquake"), foe, True)
+    out["under it"] = (before - foe.hp, b.accuracy_hits(p, foe, hypnosis), b.damage(p, foe, apple, roll=0),
+                       fightai.invalid(b, foe, fs.move("Fly")),
+                       getattr(fs, "move_barred", lambda *a: False)(b, foe, fs.move("Magnet Rise")))
+    fs._use_move(b, foe, fs.move("Fly"), p, False)
+    out["Fly tried"] = foe.charging
+    fs.end_of_turn(b)
+    fs.status_move(b, p, fs.move("Gravity"), foe, True)
+    out["a second Gravity"] = getattr(b, "gravity", 0)
+    for _ in range(4):
+        fs.end_of_turn(b)
+    out["five turn ends on"] = getattr(b, "gravity", 0)
+    want = {"before": (False, 20), "started": (5, None, 0), "under it": (10, True, 30, True, True),
+            "Fly tried": None, "a second Gravity": 4, "five turn ends on": 0}
+    results.append(("Gravity grounds fliers, raises accuracy and bars Fly for five turns", out == want, str(out)))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -4121,7 +4158,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return, check_smack_down,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return, check_smack_down, check_gravity,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,

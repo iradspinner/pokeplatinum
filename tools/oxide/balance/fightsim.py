@@ -611,6 +611,11 @@ class Side:
 class Battle:
     """One battle's state and rules, with the damage rows it reads."""
 
+    # Gravity's turns left (FIELD_CONDITION_GRAVITY): every Pokemon held to
+    # the ground, accuracy up by ten sixths, the airborne moves barred; left
+    # on the class while 0.
+    gravity = 0
+
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
         self.p, self.b = player, boss
@@ -635,7 +640,7 @@ class Battle:
             dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
         if dfn.foresight and mv is not None:
             dk = foresight_key(self, dfn, mv, att) or dk     # an identified Ghost, its twin without Ghost
-        if mv is not None and dfn.smacked:
+        if mv is not None and (dfn.smacked or self.gravity):
             dk = ground_key(self, dfn, mv, att) or dk        # a grounded flier, its twin without Flying or Levitate
         rows = self.st["rows"]
         # A type or ability another move or ability changed (form_key) reads
@@ -769,6 +774,8 @@ class Battle:
             acc *= 1.1
         if att.ability == "Hustle" and mv.cat == "Physical":
             acc *= 0.8
+        if self.gravity:
+            acc = acc * 10 / 6           # Gravity's ten sixths, after everything else
         return self.rng.random() * 100 < acc
 
 
@@ -827,11 +834,35 @@ def foresight_key(b, mon, mv, att):
 
 def grounded(b, mon):
     """Whether mon is held to the ground against Ground moves: Smack Down's
-    mark on it. BattleSystem_ApplyTypeChart then skips the Flying type's
-    immunity to Ground moves (BasicTypeMulApplies) and Battler_Ability reads
-    no Levitate, so a Ground move meets its other type alone, read from its
-    twin (prepare's ground_twin)."""
-    return mon.smacked
+    mark on it, or Gravity in force. BattleSystem_ApplyTypeChart then skips
+    the Flying type's immunity to Ground moves (BasicTypeMulApplies) and
+    Battler_Ability reads no Levitate, so a Ground move meets its other type
+    alone, read from its twin (prepare's ground_twin)."""
+    return mon.smacked or bool(getattr(b, "gravity", 0))
+
+
+def gravity_start(b):
+    """Gravity (effect script 215, subscript_gravity_start): it fails while
+    one is in force; otherwise five turns, ended at the fifth turn's end
+    (FIELD_COND_CHECK_STATE_GRAVITY), and every Pokemon on the field in the
+    air on Fly's or Bounce's hidden turn is brought down, out of the move,
+    and every one under Magnet Rise loses it. While it lasts every Pokemon
+    is grounded (grounded), accuracy rises by ten sixths
+    (BattleControllerPlayer_CheckMoveHitAccuracy), Fly, Bounce, Jump Kick,
+    High Jump Kick, Splash and Magnet Rise can be neither chosen nor used
+    (Move_FailsInHighGravity, move_barred), Spikes and Toxic Spikes reach a
+    Flying or Levitate newcomer, Arena Trap holds every foe, and Grav Apple
+    hits half as hard again. Until 2026-10-15 Gravity did nothing (Ian
+    approved the fix)."""
+    if b.gravity:
+        return
+    b.gravity = 5
+    for m in b.p.on_field() + b.b.on_field():
+        if not m.alive():
+            continue
+        m.magnet_rise = 0
+        if m.charging is not None and m.charging.effect in ("FLY", "BOUNCE"):
+            m.charging = None            # UnlockMoveChoice and ToggleVanish: brought out of the air
 
 
 def ground_key(b, mon, mv, att):
@@ -3189,8 +3220,9 @@ def move_barred(b, mon, mv):
     """Whether a move of this batch's holds can be neither chosen
     (BattleSystem_CheckInvalidMoves, which the player's menu and the
     trainer's AI both read) nor used (the status checks before a move):
-    a sound move under Throat Chop."""
-    return throat_chopped(mon, mv)
+    a sound move under Throat Chop, and an airborne move under Gravity
+    (Move_FailsInHighGravity's list, fightai.GRAVITY_FAILS)."""
+    return throat_chopped(mon, mv) or (bool(getattr(b, "gravity", 0)) and mv.const in fightai.GRAVITY_FAILS)
 
 
 def throat_chop(att, dfn, stripped):
@@ -4002,6 +4034,10 @@ def state_mult(b, att, dfn, mv):
         # 2026-10-14 it hit at full power whatever the target's HP (Ian
         # approved the fix).
         m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
+    if mv.const == "MOVE_GRAV_APPLE" and getattr(b, "gravity", 0):
+        # BattleScript_ComputedMovePower: half as strong again while Gravity
+        # is in force (since 2026-10-15, when Gravity began to run).
+        m *= power_ratio(att, mv.power, mv.power * 15 // 10)
     if att.charged and move_type_used(att.ability, mv, att.ivs, att.item, b.weather) == "Electric":
         # Charge: BattleSystem_CalcMoveDamage doubles an Electric move's power
         # while MOVE_EFFECT_CHARGE stands, after POWER_MULTI and before
@@ -4140,8 +4176,8 @@ def ability_trapped(b, mon):
     if foe.ability == "Shadow Tag":
         return mon.ability != "Shadow Tag"
     if foe.ability == "Arena Trap":
-        if mon.item == "Iron Ball":
-            return True
+        if mon.item == "Iron Ball" or b.gravity:
+            return True          # under Gravity, or an Iron Ball, it holds every foe
         return ((("Flying" not in mon.types and mon.ability != "Levitate") or mon.smacked) and not mon.magnet_rise
                 and mon.item != "Air Balloon")     # a Pokemon Smack Down brought down is held (Oxide)
     return False
@@ -5136,6 +5172,8 @@ def status_move(b, att, mv, dfn, first):
         lock_on(att, dfn)
     elif e == "FORESIGHT":
         foresee_target(dfn)
+    elif e == "GRAVITY":
+        gravity_start(b)
     elif e == "TAUNT":
         if not dfn.taunt and not taunt_blocked(att, dfn):
             dfn.taunt = b.rng.randint(3, 5)
@@ -5291,7 +5329,9 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
     if side.hazards["rocks"] and not guarded:
         eff = b.st["rock_eff"].get(new.key, 1)
         hurt(b, new, int(new.maxhp * eff / 8))
-    grounded = "Flying" not in new.types and new.ability != "Levitate" and not guarded
+    # Gravity holds a Flying or Levitate newcomer down for the Spikes
+    # (subscript_hazards_check).
+    grounded = ("Flying" not in new.types and new.ability != "Levitate" or bool(b.gravity)) and not guarded
     if grounded and side.hazards["spikes"]:
         hurt(b, new, new.maxhp * {1: 1, 2: 1.5, 3: 2}[side.hazards["spikes"]] // 8)
     if grounded and side.hazards["tspikes"]:
@@ -5404,6 +5444,8 @@ def _end_of_turn(b):
             side.wish -= 1
             if side.wish == 0 and m.alive() and not heal_blocked(m):
                 heal(m, m.maxhp // 2)
+    if b.gravity:
+        b.gravity -= 1               # FIELD_COND_CHECK_STATE_GRAVITY
     if b.weather_turns:
         b.weather_turns -= 1
         if b.weather_turns == 0:
@@ -6832,9 +6874,10 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     # an Air Balloon taken off, made as Roost's twins are, and rowed for
     # every foe's Ground moves into it, Magnitude at each power included.
     ground_twin = {}
+    gravity = any(move(m).effect == "GRAVITY" for d in moves for m in moves[d])
     for k in pkeys + qkeys + bkeys:
         foes = pkeys + qkeys if k.startswith("b") else bkeys
-        if not any(move(m).effect == "SMACK_DOWN" for d in foes for m in moves[d]):
+        if not gravity and not any(move(m).effect == "SMACK_DOWN" for d in foes for m in moves[d]):
             continue
         poks = blob["poks"].get(pokemon[k]["species"]) or {}
         types = [t for t in (poks.get("types") or []) if t]

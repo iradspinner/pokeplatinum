@@ -331,6 +331,8 @@ def accuracy_hits(b, att, dfn, mv, first=True):
         acc *= 0.8
     if dfn.ability in ("Snow Cloak",) and b.weather == "Hail" and not fs.mold(att, dfn):
         acc *= 0.8               # Mold Breaker gets past both (Battler_IgnorableAbility)
+    if b.gravity:
+        acc = acc * 10 / 6       # Gravity's ten sixths, last (fightsim.gravity_start)
     if acc >= 100:
         return True
     if player(att):
@@ -1047,6 +1049,8 @@ def status_move(b, att, mv, dfn, first):
         fs.lock_on(att, dfn)             # Lock-On and Mind Reader (fightsim.lock_on, read by fightsim.lands_sure)
     elif e == "FORESIGHT":
         fs.foresee_target(dfn)           # Foresight and Odor Sleuth (fightsim.foresee_target)
+    elif e == "GRAVITY":
+        fs.gravity_start(b)              # five turns of Gravity (fightsim.gravity_start)
     elif e == "TAUNT":
         if not dfn.taunt and not fs.taunt_blocked(att, dfn):     # Oblivious, unless Mold Breaker
             dfn.taunt = b.dice.taunt(dfn.side)
@@ -1130,6 +1134,8 @@ def clone_battle(b):
     c.luck_spent = b.luck_spent
     c.declined = getattr(b, "declined", frozenset())
     c.gas_flag = getattr(b, "gas_flag", False)       # a Neutralizing Gas noted on the field
+    if b.gravity:
+        c.gravity = b.gravity        # left on the class while 0 (fightsim.Battle)
     return c
 
 
@@ -1194,9 +1200,15 @@ def side_key(s):
             getattr(s, "mist", 0)) + _side_extra(s)
 
 
+def _field_extra(b):
+    """The field's states most fights never have, kept out of the keys
+    while they are not there: Gravity's turns."""
+    return (("gravity", b.gravity),) if b.gravity else ()
+
+
 def state_key(b):
     return (side_key(b.p), side_key(b.b), b.weather, b.weather_turns, b.trick_room,
-            round(b.luck_spent, 6), getattr(b, "declined", frozenset()))
+            round(b.luck_spent, 6), getattr(b, "declined", frozenset())) + _field_extra(b)
 
 
 def shape_key(b):
@@ -1206,7 +1218,7 @@ def shape_key(b):
                 sd.tailwind, tuple(sd.hazards.values()), sd.safeguard, getattr(sd, "wish", 0),
                 sd.future, sd.future_sight, getattr(sd, "mist", 0)) + _side_extra(sd)
     return (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room,
-            getattr(b, "declined", frozenset()))
+            getattr(b, "declined", frozenset())) + _field_extra(b)
 
 
 def vector(b):
@@ -1263,10 +1275,11 @@ def ai_key(b):
 def _ai_field(b):
     """The field states this batch adds that the trainer's AI reads, kept
     out of its key while none is there: Lucky Chant on either side
-    (Basic_CheckLuckyChant)."""
-    if not (b.p.lucky_chant or b.b.lucky_chant):
+    (Basic_CheckLuckyChant) and Gravity (Basic_CheckGravity, the barred
+    moves, the type check)."""
+    if not (b.p.lucky_chant or b.b.lucky_chant or b.gravity):
         return ()
-    return (("lucky chant", b.p.lucky_chant > 0, b.b.lucky_chant > 0),)
+    return (("field", b.p.lucky_chant > 0, b.b.lucky_chant > 0, b.gravity > 0),)
 
 
 _AI_CACHE = {}
