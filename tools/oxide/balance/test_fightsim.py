@@ -1691,6 +1691,31 @@ def check_burn_up(results):
                     f"a second {again}; after leaving {back}; {got}"))
 
 
+def check_double_shock(results):
+    """Double Shock (approved 2026-10-14; effect script 394,
+    subscript_remove_user_electric_type): it lands once a stay, an Electric
+    and Fighting user then left Fighting and a pure Electric one with no
+    type, so the second fails; leaving brings Electric back, and with it the
+    move."""
+    def shock(types):
+        b, p, foe = battle(["Double Shock"], ["Tackle"], {("p", "Double Shock"): [20] * 16}, p_types=types)
+        b.st["first_battle"] = True
+        fs.use_move(b, p, fs.move("Double Shock"), foe, True)
+        return b, p, foe
+    b, p, foe = shock(("Electric", "Fighting"))
+    first = (list(p.types), foe.hp)
+    fs.use_move(b, p, fs.move("Double Shock"), foe, True)
+    second = foe.hp
+    p.reset_volatile()
+    fs.use_move(b, p, fs.move("Double Shock"), foe, True)
+    back = foe.hp
+    pure = shock(("Electric",))[1].types
+    ok = first == (["Fighting"], 80) and second == 80 and back == 60 and pure == ["???"]
+    results.append(("Double Shock lands once a stay, taking its user's Electric type away", ok,
+                    f"after one (types, the target's HP) {first}; after a second {second}; after leaving and a "
+                    f"third {back}; a pure Electric user {pure}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2977,7 +3002,7 @@ def main():
                   check_roost, check_protean, check_form_twins, check_trace, check_mummy,
                   check_wandering_spirit, check_color_change, check_forecast, check_soak,
                   check_conversion, check_conversion2, check_camouflage, check_burn_up,
-                  check_magic_guard, check_liquid_ooze,
+                  check_double_shock, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

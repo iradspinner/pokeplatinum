@@ -2891,6 +2891,32 @@ def burn_up_checks():
              f"after (types, Water Gun) {after}")]
 
 
+def double_shock_checks():
+    """Double Shock on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Pawmot on a Fighting twin, its Volt
+    Absorb kept, as its Double Shock can leave it Fighting alone; after one
+    into a Squirtle, the Squirtle's Earthquake lands at half what it did on
+    the Electric type, and a second Double Shock fails."""
+    from .test_fightai import battle
+    b = battle([("Squirtle", 40, "Torrent", ["Earthquake"])], [("Pawmot", 40, "Volt Absorb", ["Double Shock"])])
+    squirtle, paw = b.b.cur(), b.p.cur()
+    quake = fs.move("Earthquake")
+    twins = sorted(((b.st.get("form_twin") or {}).get(paw.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, squirtle, paw, quake, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    squirtle.hp = squirtle.maxhp * 10
+    pl.use_move(b, paw, fs.move("Double Shock"), squirtle, True)
+    first = squirtle.maxhp * 10 - squirtle.hp
+    pl.use_move(b, paw, fs.move("Double Shock"), squirtle, True)
+    second = squirtle.maxhp * 10 - squirtle.hp - first
+    after = (list(paw.types), pl.damage_of(b, squirtle, paw, quake, False, True))
+    ok = (twins == [(("Fighting",), "Volt Absorb")] and first > 0 and second == 0 and after[0] == ["Fighting"]
+          and after[1] is not None and abs(after[1] * 2 - before) <= 3)
+    return [("Double Shock: Pawmot loses its Electric type, so Earthquake halves and a second fails", ok,
+             f"twins {twins}; Earthquake before {before}; the two Double Shocks' damage ({first}, {second}); "
+             f"after (types, Earthquake) {after}")]
+
+
 def calc_terrain(tr_ids):
     from . import calc
     return getattr(calc, "fight_terrain", lambda _ids: None)(tr_ids)
@@ -3416,6 +3442,7 @@ def main():
     results += conversion2_checks()
     results += camouflage_checks()
     results += burn_up_checks()
+    results += double_shock_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

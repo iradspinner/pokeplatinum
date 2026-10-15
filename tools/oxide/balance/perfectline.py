@@ -540,7 +540,7 @@ def attack(b, att, mv, dfn, first):
     if not dfn.alive():
         return
     if fs.loses_type_fails(att, mv):
-        return                           # Burn Up without the Fire type (fightsim.lose_type)
+        return                           # Burn Up or Double Shock without its type (fightsim.lose_type)
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
         return
     if mv.effect == fs.FUTURE_SIGHT:
@@ -769,7 +769,7 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         fs.spin(b, att, dfn, e)
     if e in fs.LOSES_TYPE:
-        fs.lose_type(att, fs.LOSES_TYPE[e])     # Burn Up, a Substitute's hit too (fightsim.lose_type)
+        fs.lose_type(att, fs.LOSES_TYPE[e])     # Burn Up and Double Shock, a Substitute's hit too (fightsim.lose_type)
     if e == "SWITCH_HIT":
         att.u_turn = True        # after a knockout and a Substitute's hit too (fightsim.attack)
     if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
