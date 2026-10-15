@@ -408,6 +408,10 @@ class Mon:
     # off at each turn's end, its Electric moves at twice the power while
     # it runs; cleared when it leaves.
     charged = 0
+    # Mimic: the move list and Mimic's PP as they stood before it copied a
+    # move into its slot (mimickedMoveSlot), brought back as it leaves;
+    # None while it has copied nothing.
+    mimicked = None
     # Throat Chop's hold on its target's sound moves (OXIDE_MON_THROAT_CHOP):
     # 2 when the hit lands, one off at each turn's end, so it lasts the rest
     # of this turn and all of the next; cleared when it leaves.
@@ -459,6 +463,13 @@ class Mon:
             self.foresight = False       # statusVolatile; VOLATILE_CONDITION_BATON_PASSED leaves it out
         if self.smacked:
             self.smacked = False         # moveEffectsMask; MOVE_EFFECT_BATON_PASSED leaves Smack Down's out
+        if self.mimicked is not None:
+            # The party record still holds Mimic, with the PP its use left it
+            # (BattleMon_CopyToParty skips a mimicked slot), so it comes back.
+            moves, pp = self.mimicked
+            self.pp = {k: v for k, v in self.pp.items() if any(m.name == k for m in moves)}
+            self.pp["Mimic"] = pp
+            self.moves, self.mimicked = moves, None
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
         self.rollout = 0
@@ -2067,6 +2078,44 @@ def friendship_power(species):
     if base is None:
         base = table.get(re.sub(r"[^a-z0-9]", "", (species or "").split("-")[0].lower()), 70)
     return max(1, (base or 0) * 10 // 25)
+
+
+@functools.lru_cache(maxsize=None)
+def _forbidden_moves():
+    """The engine's sCannotMetronomeMoves (battle_lib.c), split at its
+    FORBIDDEN_BY_MIMIC_DELIM: (the moves Mimic may not copy, the moves
+    Metronome and Copycat may not call), as MOVE_ constants."""
+    with open(os.path.join(data.ROOT, "src", "battle", "battle_lib.c"), encoding="utf-8") as fh:
+        body = re.search(r"sCannotMetronomeMoves\[\] = \{(.*?)\};", fh.read(), re.S).group(1)
+    head, _sep, tail = body.partition("FORBIDDEN_BY_MIMIC_DELIM")
+    mimic = frozenset(re.findall(r"\b(MOVE_\w+)", head))
+    return mimic, mimic | frozenset(re.findall(r"\b(MOVE_\w+)", tail))
+
+
+def mimic(att, dfn):
+    """Mimic (effect script 82, subscript_mimic, BtlCmd_TryMimic): the
+    target's last move (movePrevByBattler) takes the place of the user's
+    first Mimic until the user leaves, with 5 PP or the move's own if it has
+    fewer. It fails with no last move, on a move Mimic may not copy (the
+    engine's list up to FORBIDDEN_BY_MIMIC_DELIM), on one the user knows
+    already, and through a Substitute unless an Infiltrator passes it. The
+    copy is a new move list, never the old one changed, since the search's
+    copies of a Pokemon share it. Until 2026-10-15 Mimic did nothing (Ian
+    approved the fix)."""
+    last = dfn.last
+    if last is None or last.const in _forbidden_moves()[0] or sub_blocks(att, dfn):
+        return
+    if any(m.name == last.name for m in att.moves):
+        return
+    j = next((i for i, m in enumerate(att.moves) if m.effect == "COPY_MOVE_FOR_BATTLE"), None)
+    if j is None:
+        return
+    att.mimicked = (att.moves, att.pp.get(att.moves[j].name, 0))
+    moves = list(att.moves)
+    moves[j] = last
+    att.pp = {k: v for k, v in att.pp.items() if k != att.moves[j].name}
+    att.pp[last.name] = min(5, last.pp)
+    att.moves = moves
 
 
 def stockpile(mon):
@@ -5174,6 +5223,8 @@ def status_move(b, att, mv, dfn, first):
         foresee_target(dfn)
     elif e == "GRAVITY":
         gravity_start(b)
+    elif e == "COPY_MOVE_FOR_BATTLE":
+        mimic(att, dfn)
     elif e == "TAUNT":
         if not dfn.taunt and not taunt_blocked(att, dfn):
             dfn.taunt = b.rng.randint(3, 5)
@@ -6537,6 +6588,11 @@ def family(species):
     return (pool.pre_evolutions().get(species) or [species])[-1]
 
 
+# The status moves that use a foe's move as their user's own, whose users'
+# rows carry the foes' damaging moves (prepare's borrowed): Mimic.
+BORROWS = frozenset({"COPY_MOVE_FOR_BATTLE"})
+
+
 def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False,
             given_side=None, terrain=None):
     """Everything a fight's battles read: the strong third of the side, the
@@ -6667,11 +6723,24 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
 
     def spread(k):
         return [m for m in moves[k] if move(m).damaging() and move(m).range == "ALL_ADJACENT"]
+
+    # A Pokemon with Mimic can use what it copies from a foe as its own
+    # (mimic), so its rows carry every damaging move its foes know, beside
+    # its own; every lookup is by the move's name, so the extra moves
+    # change nothing else.
+    borrowed = {}
+    for k in pkeys + qkeys + bkeys:
+        if any(move(m).effect in BORROWS for m in moves[k]):
+            foes = pkeys + qkeys if k in bkeys else bkeys
+            borrowed[k] = list(dict.fromkeys(m for d in foes for m in hits(d)))
+
+    def with_borrowed(k, mvs):
+        return mvs + [m for m in borrowed.get(k, ()) if m not in mvs] if k in borrowed else mvs
     for w in weathers:
         for a in pkeys + qkeys:
             for d in bkeys:
-                pairs.append([a, d, hits(a), w])
-                pairs.append([d, a, party_hits(d), w])
+                pairs.append([a, d, with_borrowed(a, hits(a)), w])
+                pairs.append([d, a, with_borrowed(d, party_hits(d)), w])
         if doubles or partners:
             # An ally's spread move on its ally: the player's and a
             # partner's Pokemon on each other, the trainers' on each other.

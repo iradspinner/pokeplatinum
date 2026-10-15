@@ -2769,6 +2769,47 @@ def check_gravity(results):
     results.append(("Gravity grounds fliers, raises accuracy and bars Fly for five turns", out == want, str(out)))
 
 
+def check_mimic(results):
+    """Mimic (approved 2026-10-14; effect script 82, BtlCmd_TryMimic): the
+    target's last move takes Mimic's slot with 5 PP (fewer if the move has
+    fewer) until the user leaves, when Mimic comes back with the PP its use
+    left it; it fails with no last move, through a Substitute, on a move
+    the user knows already and on Struggle, which Mimic may not copy; and
+    prepare() rows a Mimic user with its foes' damaging moves."""
+    def setup(last, known=("Mimic", "Tackle")):
+        b, p, foe = battle(list(known), ["Hyper Beam", "Ember"], {})
+        foe.last = fs.move(last) if last else None
+        return b, p, foe
+    out = {}
+    b, p, foe = setup("Ember")
+    fs._use_move(b, p, fs.move("Mimic"), foe, True)
+    out["copied"] = ([m.name for m in p.moves], dict(p.pp))
+    p.reset_volatile()
+    out["after leaving"] = ([m.name for m in p.moves], dict(p.pp))
+    b, p, foe = setup("Hyper Beam")
+    fs.status_move(b, p, fs.move("Mimic"), foe, True)
+    out["a 5 PP move"] = p.pp.get("Hyper Beam")
+    for label, kw in (("no last move", {"last": None}), ("known already", {"last": "Tackle"}),
+                      ("Struggle", {"last": "Struggle"})):
+        b, p, foe = setup(**kw)
+        fs.status_move(b, p, fs.move("Mimic"), foe, True)
+        out[label] = [m.name for m in p.moves]
+    b, p, foe = setup("Ember")
+    foe.sub = 30
+    fs.status_move(b, p, fs.move("Mimic"), foe, True)
+    out["behind a Substitute"] = [m.name for m in p.moves]
+    st, pairs, _pokemon = prepared_jobs([("Mr. Mime", 30, "Soundproof", ["Mimic", "Psychic"], None)],
+                                        [("Machop", 30, "Guts", ["Karate Chop", "Leer"], None)])
+    out["the Mimic user's rows"] = sorted({m for a, d, mv, _w in pairs if a == "b0.0" and d == "p0" for m in mv})
+    plain = ["Mimic", "Tackle"]
+    want = {"copied": (["Ember", "Tackle"], {"Tackle": fs.move("Tackle").pp, "Ember": 5}),
+            "after leaving": (plain, {"Mimic": fs.move("Mimic").pp - 1, "Tackle": fs.move("Tackle").pp}),
+            "a 5 PP move": min(5, fs.move("Hyper Beam").pp), "no last move": plain, "known already": plain,
+            "Struggle": plain, "behind a Substitute": plain, "the Mimic user's rows": ["Karate Chop", "Psychic"]}
+    results.append(("Mimic takes the target's last move until it leaves, and is rowed with its foes' moves",
+                    out == want, str(out)))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -4158,7 +4199,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return, check_smack_down, check_gravity,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return, check_smack_down, check_gravity, check_mimic,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,

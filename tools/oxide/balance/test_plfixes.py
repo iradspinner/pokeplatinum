@@ -3732,6 +3732,30 @@ def gravity_checks():
              f"the AI's effectiveness {ai}")]
 
 
+def mimic_checks():
+    """Mimic in the readings' battle on the calculator's real rows (approved
+    2026-10-14): after the player's Bibarel uses Body Slam, a trainer's Mr.
+    Mime's Mimic copies it, and its Body Slam then hits from the Mr. Mime's
+    own row, which carries its foes' moves; the trainer's AI may choose it."""
+    from .test_fightai import battle
+    b = battle([("Mr. Mime", 30, "Soundproof", ["Mimic", "Confusion"])], [("Bibarel", 30, "Simple", ["Body Slam"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    mime, bib = b.b.cur(), b.p.cur()
+    bib.hp = bib.maxhp = 100000
+    pl.use_move(b, bib, fs.move("Body Slam"), mime, True)
+    pl.use_move(b, mime, fs.move("Mimic"), bib, False)
+    names = [m.name for m in mime.moves]
+    slam = next((m for m in mime.moves if m.name == "Body Slam"), None)
+    dealt = 0
+    if slam is not None:
+        pl.use_move(b, mime, slam, bib, True)
+        dealt = bib.maxhp - bib.hp
+    open_to_ai = slam is not None and not fightai.invalid(b, mime, slam)
+    ok = names == ["Body Slam", "Confusion"] and dealt > 0 and mime.pp.get("Body Slam") == 4 and open_to_ai
+    return [("the readings' Mimic copies the target's move and uses it", ok,
+             f"moves {names}, Body Slam dealt {dealt}, its PP {mime.pp.get('Body Slam')}, open to the AI {open_to_ai}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4388,6 +4412,7 @@ def main():
     results += trainer_return_checks()
     results += smack_down_checks()
     results += gravity_checks()
+    results += mimic_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()

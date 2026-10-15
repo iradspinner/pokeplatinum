@@ -1051,6 +1051,8 @@ def status_move(b, att, mv, dfn, first):
         fs.foresee_target(dfn)           # Foresight and Odor Sleuth (fightsim.foresee_target)
     elif e == "GRAVITY":
         fs.gravity_start(b)              # five turns of Gravity (fightsim.gravity_start)
+    elif e == "COPY_MOVE_FOR_BATTLE":
+        fs.mimic(att, dfn)               # Mimic takes the target's last move (fightsim.mimic)
     elif e == "TAUNT":
         if not dfn.taunt and not fs.taunt_blocked(att, dfn):     # Oblivious, unless Mold Breaker
             dfn.taunt = b.dice.taunt(dfn.side)
@@ -1184,6 +1186,8 @@ def mon_key(m):
         key += ("foresight",)
     if m.smacked:
         key += ("smacked down",)
+    if m.mimicked is not None:
+        key += ("mimic", tuple(x.name for x in m.moves))
     return key + _form(m) if m.formed else key
 
 
