@@ -148,7 +148,9 @@ reaches Ian. The brief has to carry everything:
 
 ```
 Repo ~/pokeplatinum, branch <oxide, or the worktree to work in>. Invoke the
-<skill> skill first.
+<skill> skill first. Skip CLAUDE.md's start-of-session reading list (the
+design doc and the tracker, about 20,000 words) unless this brief names a
+part of them: everything the task needs is here.
 
 Task: <what to produce and why, in a paragraph>.
 
