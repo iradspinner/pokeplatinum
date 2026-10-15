@@ -1308,7 +1308,7 @@ def trace(b):
             continue
         target = foes[1] if len(foes) > 1 and coin(b, "trace") else foes[0]
         m.traced = True
-        set_ability(b, m, raw_ability(target))
+        set_ability(b, m, raw_ability(target), acted=getattr(m, "acted_turn", None) == b.turn)
         target.revealed = raw_ability(target)
         out.append(m)
     return out
@@ -2134,6 +2134,7 @@ def move_end(b):
 def _use_move(b, att, mv, dfn, first, targets=None):
     if not att.alive():
         return
+    att.acted_turn = b.turn      # its action this turn has begun (a Truant given later this turn: set_ability)
     mv = encored_move(att, mv)
     # Its own record clears with its action, whatever happens
     # (BattleControllerPlayer_ClearFlags), and so does its Destiny Bond.
@@ -2871,12 +2872,48 @@ def _mummified(ff):
             yield k, None, "Mummy"
 
 
+def wandering_spirit(b, att, dfn):
+    """Wandering Spirit (BattleSystem_TriggerAbilityOnHit,
+    subscript_wandering_spirit): a contact move that hurt its holder swaps
+    the holder's ability with the attacker's while the attacker stands,
+    unless the attacker's is Wandering Spirit already or refuses a swap, or
+    either holds an Ability Shield; both are named, and a Truant either gains
+    loafs on its next turn. Each then reads its twin for its new ability
+    (form_key). Whether it acted. Until 2026-10-14 Wandering Spirit did
+    nothing (Ian approved the fix)."""
+    raw, own = raw_ability(att), raw_ability(dfn)
+    if (not att.alive() or att is dfn or raw == "Wandering Spirit" or refuses(raw, "swap")
+            or "Ability Shield" in (att.item, dfn.item)):
+        return False
+    set_ability(b, att, own)
+    set_ability(b, dfn, raw, acted=getattr(dfn, "acted_turn", None) == b.turn)
+    return True
+
+
+@form_change
+def _spirit_swapped(ff):
+    """Wandering Spirit: its holder can take the ability of any foe with a
+    contact move whose ability a swap can take, and that foe takes Wandering
+    Spirit."""
+    for k in ff.keys():
+        if ff.ability(k) != "Wandering Spirit" or ff.pokemon[k].get("item") == "Ability Shield":
+            continue
+        for f in ff.foes(k):
+            ab = ff.ability(f)
+            if (ab != "Wandering Spirit" and not refuses(ab, "swap") and ff.contact(f)
+                    and ff.pokemon[f].get("item") != "Ability Shield"):
+                yield k, None, ab
+                yield f, None, "Wandering Spirit"
+
+
 def _struck_back(b, att, dfn, chance, pick):
     """The defender's on-hit ability; whether it acted."""
     a = dfn.ability
     b.status_src = dfn           # a status the ability gives comes from dfn (Synchronize)
     if a == "Mummy":
         return mummy(b, att, dfn)
+    if a == "Wandering Spirit":
+        return wandering_spirit(b, att, dfn)
     if a == "Aftermath":
         # A contact move that fainted it costs its user a quarter of its
         # HP, unless Magic Guard or a Damp Pokemon on the field stops it.

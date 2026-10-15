@@ -353,6 +353,7 @@ def use_move(b, att, mv, dfn, first):
 def _use_move(b, att, mv, dfn, first):
     if not att.alive():
         return
+    att.acted_turn = b.turn          # its action this turn has begun (fightsim._use_move)
     mv = fs.encored_move(att, mv)        # the Encore move, whatever was chosen (fightsim.encored_move)
     att.last_hit_by = None           # cleared with its own action (fightsim.use_move)
     att.destiny_bond = False         # and its Destiny Bond with it

@@ -2697,6 +2697,29 @@ def mummy_checks():
              f"Azumarill's twins {twins}; Aqua Tail before {before}; after (its ability, named, Aqua Tail) {after}")]
 
 
+def wandering_spirit_checks():
+    """Wandering Spirit on the calculator's real rows and the readings' move
+    (approved 2026-10-14): a Huge Power Azumarill's Aqua Tail into a
+    Runerigus swaps their abilities, so Azumarill's next Aqua Tail hits
+    half as hard and Runerigus's Shadow Claw twice as hard, each on the
+    twin prepare made for the swap."""
+    from .test_fightai import battle
+    b = battle([("Runerigus", 40, "Wandering Spirit", ["Shadow Claw"])], [("Azumarill", 40, "Huge Power", ["Aqua Tail"])])
+    run, azu = b.b.cur(), b.p.cur()
+    tail, claw = fs.move("Aqua Tail"), fs.move("Shadow Claw")
+    before = (pl.damage_of(b, azu, run, tail, False, True), pl.damage_of(b, run, azu, claw, False, True))
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    run.hp = run.maxhp * 10
+    pl.use_move(b, azu, tail, run, True)
+    after = (azu.ability, run.ability, pl.damage_of(b, azu, run, tail, False, True),
+             pl.damage_of(b, run, azu, claw, False, True))
+    ok = (after[:2] == ("Wandering Spirit", "Huge Power") and 1.8 <= before[0] / max(1, after[2]) <= 2.2
+          and 1.8 <= after[3] / max(1, before[1]) <= 2.2)
+    return [("Wandering Spirit: Azumarill and Runerigus swap Huge Power on their twins' rows", ok,
+             f"before (Aqua Tail, Shadow Claw) {before}; after (Azumarill's ability, Runerigus's, Aqua Tail, "
+             f"Shadow Claw) {after}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3209,6 +3232,7 @@ def main():
     results += burning_bulwark_checks()
     results += trace_checks()
     results += mummy_checks()
+    results += wandering_spirit_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

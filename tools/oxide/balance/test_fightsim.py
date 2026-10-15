@@ -1439,6 +1439,44 @@ def check_mummy(results):
                     f"passed on {passed}"))
 
 
+def check_wandering_spirit(results):
+    """Wandering Spirit (approved 2026-10-14; BattleSystem_TriggerAbilityOnHit,
+    subscript_wandering_spirit): a contact hit on its holder swaps the two
+    abilities, both named, and the holder then meets moves on its twin for
+    the attacker's Levitate; no swap for a move without contact, an Ability
+    Shield on either side, or an attacker whose ability refuses a swap
+    (Wonder Guard). A holder given Truant before it has moved this turn
+    still moves, and loafs on the next."""
+    def hit(move="Tackle", ability="Levitate", item=None, foe_item=None):
+        rows = {("p", "Tackle"): [10] * 16, ("p", "Water Gun"): [10] * 16, ("b", "Earthquake"): [30] * 16}
+        b, p, foe = battle(["Tackle", "Water Gun"], ["Earthquake"], rows)
+        b.st["first_battle"] = True
+        p.ability, p.item, foe.ability, foe.item = ability, item, "Wandering Spirit", foe_item
+        b.st["form_twin"] = {"b0.0": {"ability": None, "twins": {(None, "Levitate"): "b0.0#fm@Levitate"}}}
+        b.st["rows"][(None, "p0", "b0.0#fm@Levitate")] = {"moves": {"Tackle": {"rolls": [10] * 16}}}
+        b.st["rows"][(None, "b0.0#fm@Levitate", "p0")] = {"moves": {"Earthquake": {"rolls": [0] * 16}}}
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return b, p, foe
+    b, p, foe = hit()
+    swapped = (p.ability, foe.ability, p.revealed, foe.revealed, b.damage(foe, p, fs.move("Earthquake"), roll=0))
+    water = hit("Water Gun")[2].ability
+    shields = (hit(item="Ability Shield")[2].ability, hit(foe_item="Ability Shield")[2].ability)
+    guard = hit(ability="Wonder Guard")[2].ability
+    b, p, foe = hit(ability="Truant")
+    loafs = []
+    for _ in range(3):
+        fs.use_move(b, foe, fs.move("Earthquake"), p, False)
+        loafs.append(p.hp)
+        fs.end_of_turn(b)
+    ok = (swapped == ("Wandering Spirit", "Levitate", "Wandering Spirit", "Levitate", 0) and water == "Wandering Spirit"
+          and shields == ("Wandering Spirit", "Wandering Spirit") and guard == "Wandering Spirit"
+          and foe.ability == "Truant" and loafs == [70, 70, 40])
+    results.append(("Wandering Spirit swaps abilities with a contact attacker", ok,
+                    f"(attacker's, holder's, both named, Earthquake from the holder) {swapped}; Water Gun {water}; "
+                    f"Ability Shields {shields}; Wonder Guard {guard}; the attacker's HP as the holder, now Truant, "
+                    f"moves three turns {loafs}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2723,7 +2761,7 @@ def main():
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_form_twins, check_trace, check_mummy,
-                  check_magic_guard, check_liquid_ooze,
+                  check_wandering_spirit, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
