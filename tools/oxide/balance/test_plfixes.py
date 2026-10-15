@@ -4293,6 +4293,22 @@ def acrobatics_checks():
     return [("the readings' Acrobatics doubles without an item", ok, str(out))]
 
 
+def guard_swap_checks():
+    """Guard Swap in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Xatu takes the player's Bibarel's
+    two Defense stages from its Defense Curls and gives back its own
+    none."""
+    from .test_fightai import battle
+    b = battle([("Xatu", 40, "Synchronize", ["Guard Swap", "Psychic"])], [("Bibarel", 40, "Unaware", ["Defense Curl"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    xatu, bib = b.b.cur(), b.p.cur()
+    bib.stages["def"] = 2
+    pl.status_move(b, xatu, fs.move("Guard Swap"), bib, True)
+    ok = xatu.stages["def"] == 2 and bib.stages["def"] == 0
+    return [("the readings' Guard Swap swaps the defensive stages", ok,
+             f"Xatu's Defense stage {xatu.stages['def']}, Bibarel's {bib.stages['def']}")]
+
+
 def main():
     results = []
 
@@ -4810,6 +4826,7 @@ def main():
     results += present_checks()
     results += water_sport_checks()
     results += acrobatics_checks()
+    results += guard_swap_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

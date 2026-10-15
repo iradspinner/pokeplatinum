@@ -1079,6 +1079,8 @@ def status_move(b, att, mv, dfn, first):
             m.stages = dict.fromkeys(fs.STAGE_KEYS, 0)
     elif e == "HEAL_STATUS":
         fs.refresh(att)                  # Refresh cures its user's own poison, burn or paralysis
+    elif e == "SWAP_DEF_SP_DEF_STAT_CHANGES":
+        fs.swap_stages(att, dfn, ("def", "spd"))      # Guard Swap (fightsim.swap_stages)
     elif e == "HALVE_FIRE_DAMAGE":
         fs.water_sport(att)              # Fire moves at half power while it stands (fightsim.sport_half)
     elif e == "APPLY_MAGIC_COAT":

@@ -4411,6 +4411,21 @@ def check_acrobatics(results):
     results.append(("Acrobatics doubles without a held item", out == want, str(out)))
 
 
+def check_guard_swap(results):
+    """Guard Swap (approved 2026-10-14; effect script 244): the user's and
+    the target's Defense and Sp. Def stages change places, through a
+    Substitute too, and no other stage moves."""
+    b, p, foe = battle(["Guard Swap"], ["Tackle"], {})
+    b.rng = FixedDice(0.0)
+    p.stages.update({"def": 2, "spd": -1, "atk": 1})
+    foe.stages.update({"def": -1, "spd": 3, "spa": 2})
+    foe.sub = 25
+    fs.status_move(b, p, fs.move("Guard Swap"), foe, True)
+    got = ({k: v for k, v in p.stages.items() if v}, {k: v for k, v in foe.stages.items() if v})
+    want = ({"def": -1, "spd": 3, "atk": 1}, {"def": 2, "spd": -1, "spa": 2})
+    results.append(("Guard Swap swaps the Defense and Sp. Def stages", got == want, f"(user, target) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4678,7 +4693,7 @@ def main():
                   check_trainer_frustration, check_secret_power, check_snore,
                   check_raise_speed_hit, check_trump_card,
                   check_teeter_dance, check_smelling_salts, check_magic_coat, check_present,
-                  check_water_sport, check_acrobatics,
+                  check_water_sport, check_acrobatics, check_guard_swap,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

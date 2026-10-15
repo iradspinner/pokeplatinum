@@ -3743,6 +3743,17 @@ def sport_half(b, att, dfn, mv):
     return (p // 2) / p
 
 
+def swap_stages(att, dfn, stats):
+    """Guard Swap and Power Swap (effect scripts 244 and 243,
+    subscript_exchange_def_and_spdef_stages and
+    subscript_exchange_atk_and_spatk_stages): the user's and the target's
+    stages of the two stats change places, a Substitute in the way or not,
+    as the subscripts have no Substitute check. Until 2026-10-15 no stage
+    moved (Ian approved the fix)."""
+    for k in stats:
+        att.stages[k], dfn.stages[k] = dfn.stages[k], att.stages[k]
+
+
 def refresh(att):
     """Refresh (effect script 193, subscript_recover_psn_prz_brn): its user's
     own poison, bad poison, burn or paralysis is cured
@@ -5665,6 +5676,8 @@ def status_move(b, att, mv, dfn, first):
             m.stages = dict.fromkeys(STAGE_KEYS, 0)
     elif e == "HEAL_STATUS":
         refresh(att)
+    elif e == "SWAP_DEF_SP_DEF_STAT_CHANGES":
+        swap_stages(att, dfn, ("def", "spd"))     # Guard Swap
     elif e == "HALVE_FIRE_DAMAGE":
         water_sport(att)
     elif e == "APPLY_MAGIC_COAT":
