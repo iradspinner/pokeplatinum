@@ -2731,6 +2731,35 @@ def life_dew(att):
         heal(att, (att.maxhp + 3) // 4)
 
 
+def strength_sap(b, att, dfn, mv):
+    """Strength Sap (effect script 378, subscript_strength_sap): it fails on
+    a target whose Attack is at -6; otherwise the heal is the target's
+    Attack stat at its stage, taken before the drop (BtlCmd_CalcStrengthSap,
+    Battler_AttackAfterStage, in whole numbers; a Power Trick holder's
+    Attack is its Defense), then the target's Attack falls a stage, which a
+    Substitute, Mist and the blocking abilities stop without stopping the
+    heal; a Big Root adds 30 per cent, and into Liquid Ooze the heal is
+    damage instead, which Magic Guard turns away. Heal Block does not stop
+    it (subscript_recover_hp has no check, and the move is not on
+    sMovesAffectedByHealBlock). Until 2026-10-15 it did nothing (Ian
+    approved the fix)."""
+    stage = dfn.stages["atk"]
+    if stage <= -6:
+        return
+    attack = dfn.stats.get("def" if dfn.power_trick else "atk", 1)
+    gain = attack * (2 + stage) // 2 if stage >= 0 else attack * 2 // (2 - stage)
+    if not sub_blocks(att, dfn, mv):
+        lower_stats(b, att, dfn, {"atk": -1})
+    if att.item == "Big Root":
+        gain = gain * 130 // 100
+    if dfn.ability == "Liquid Ooze":
+        reveal(dfn)
+        if att.ability != "Magic Guard":
+            hurt(b, att, gain)
+    else:
+        heal(att, gain)
+
+
 def weather_heal(b, att, mv):
     """The HP Moonlight, Morning Sun, Synthesis and Shore Up restore
     (effect script 132, BtlCmd_WeatherHPRecovery): half with no weather, or
@@ -6071,6 +6100,8 @@ def status_move(b, att, mv, dfn, first):
         heal(att, weather_heal(b, att, mv))
     elif e == "LIFE_DEW":
         life_dew(att)
+    elif e == "STRENGTH_SAP":
+        strength_sap(b, att, dfn, mv)
     elif e == "REST":
         # subscript_rest fails on the abilities that keep its user awake
         # (rest_blocked), on a Pokemon already asleep ("is already asleep!"),

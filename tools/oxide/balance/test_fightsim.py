@@ -4907,6 +4907,28 @@ def check_defog(results):
     results.append(("Defog lowers evasion and clears screens, hazards and fog", out == want, str(out)))
 
 
+def check_strength_sap(results):
+    """Strength Sap (approved 2026-10-14; effect script 378): its user heals
+    by the target's Attack stat at its stage, taken before the target's
+    Attack falls a stage; a Substitute stops the drop, not the heal; a Big
+    Root adds 30 per cent; Liquid Ooze turns it to damage; it fails at
+    -6."""
+    out = {}
+    for case, stage, sub, item, ability in (("plain", 0, 0, None, None), ("+2", 2, 0, None, None),
+                                           ("-1", -1, 0, None, None), ("Substitute", 0, 25, None, None),
+                                           ("Big Root", 0, 0, "Big Root", None),
+                                           ("Liquid Ooze", 0, 0, None, "Liquid Ooze"), ("-6", -6, 0, None, None)):
+        b, p, foe = battle(["Strength Sap"], ["Tackle"], {}, hp=400)
+        b.rng = FixedDice(0.0)
+        p.hp, p.item = 200, item
+        foe.stages["atk"], foe.sub, foe.ability = stage, sub, ability
+        fs.status_move(b, p, fs.move("Strength Sap"), foe, True)
+        out[case] = (p.hp, foe.stages["atk"])
+    want = {"plain": (300, -1), "+2": (400, 1), "-1": (266, -2), "Substitute": (300, 0), "Big Root": (330, -1),
+            "Liquid Ooze": (100, -1), "-6": (200, -6)}
+    results.append(("Strength Sap heals by the target's Attack and lowers it", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5181,7 +5203,7 @@ def main():
                   check_sp_def_2_hit, check_tearful_look, check_venom_drench, check_false_swipe,
                   check_clear_smog, check_incinerate, check_life_dew,
                   check_mud_sport, check_punishment, check_sticky_web,
-                  check_defog,
+                  check_defog, check_strength_sap,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -4673,6 +4673,19 @@ def defog_checks():
              f"Geodude's evasion {geo.stages['eva']}, its Reflect {b.b.screens['Reflect']}, the player's rocks {b.p.hazards['rocks']}")]
 
 
+def strength_sap_checks():
+    """Strength Sap in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Dolliv at low HP heals by a
+    trainer's Geodude's Attack stat and lowers it a stage."""
+    b, geo, dol = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Dolliv", 30, "Early Bird", ["Strength Sap"])])
+    dol.hp = 1
+    pl.status_move(b, dol, fs.move("Strength Sap"), geo, True)
+    want = min(dol.maxhp, 1 + geo.stats["atk"])
+    ok = dol.hp == want and geo.stages["atk"] == -1
+    return [("the readings' Strength Sap heals by the target's Attack", ok,
+             f"Dolliv's HP 1 to {dol.hp} (Geodude's Attack {geo.stats['atk']}), Geodude's Attack stage {geo.stages['atk']}")]
+
+
 def main():
     results = []
 
@@ -5211,6 +5224,7 @@ def main():
     results += punishment_checks()
     results += sticky_web_checks()
     results += defog_checks()
+    results += strength_sap_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
