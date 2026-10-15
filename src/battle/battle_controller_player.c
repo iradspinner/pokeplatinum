@@ -4190,6 +4190,12 @@ static void BattleControllerPlayer_AfterMoveEffects(BattleSystem *battleSys, Bat
             && battleCtx->defender != BATTLER_NONE
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
             && (battleCtx->multiHitNumHits == 0 || battleCtx->multiHitCounter <= 1)) {
+            // The drag is still the hit's own effect, as when it ran as its
+            // indirect side effect, and the subscript's Substitute check
+            // reads it so: an Infiltrator user's hit passed the Substitute,
+            // and its drag does too (BattleSystem_InfiltratorPassesEffect).
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
+            battleCtx->sideEffectMon = battleCtx->defender;
             LOAD_SUBSEQ(subscript_force_switch_hit);
             battleCtx->commandNext = battleCtx->command;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;

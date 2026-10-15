@@ -5094,6 +5094,69 @@ static u8 CurrentMoveType(BattleContext *battleCtx)
     return CURRENT_MOVE_DATA.type;
 }
 
+// Oxide: whether this hit of Dragon Tail or Circle Throw will drag its
+// target out once the hit has been answered, by the drag's own rules: the
+// after-move state's conditions, the checks of its subscript
+// (subscript_force_switch_hit) and TryDragonTail's, read without picking
+// the Pokemon that comes in, so BattleScript_PickDraggedOutMon's count
+// without its random draw. Pickpocket asks while the hit is answered; its
+// holder holds no item, so nothing of its own can change these before the
+// drag runs.
+static BOOL HitWillDragTarget(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int defender = battleCtx->defender;
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
+
+    if (CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_FORCE_SWITCH_HIT
+        || defender == BATTLER_NONE
+        || (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS)
+        || (battleCtx->multiHitNumHits && battleCtx->multiHitCounter > 1)
+        || DEFENDING_MON.curHP == 0
+        || ATTACKING_MON.curHP == 0) {
+        return FALSE;
+    }
+
+    // CheckSubstitute, for the drag, which runs as the hit's indirect effect.
+    if (((DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+            || (DEFENDER_SELF_TURN_FLAGS.statusFlags & SELF_TURN_FLAG_SUBSTITUTE_HIT))
+        && BattleSystem_InfiltratorPasses(battleCtx, defender) == FALSE) {
+        return FALSE;
+    }
+
+    if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, defender, ABILITY_SUCTION_CUPS) == TRUE
+        || (DEFENDING_MON.moveEffectsMask & MOVE_EFFECT_INGRAIN)) {
+        return FALSE;
+    }
+
+    if ((battleType & BATTLE_TYPE_TRAINER) == FALSE) {
+        return (battleType & BATTLE_TYPE_DOUBLES) == FALSE && DEFENDING_MON.level <= ATTACKING_MON.level;
+    }
+
+    // A trainer's battler is dragged out only for a Pokemon in the back.
+    Party *party = BattleSystem_GetParty(battleSys, defender);
+    int partyCount = BattleSystem_GetPartyCount(battleSys, defender);
+    int maxActiveMons = 1;
+    int eligibleMons = 0;
+
+    if ((battleType & BATTLE_TYPE_2vs2) == FALSE
+        && ((battleType & BATTLE_TYPE_TAG) == FALSE || BattleSystem_GetBattlerSide(battleSys, defender) == 0)
+        && (battleType & BATTLE_TYPE_DOUBLES)) {
+        maxActiveMons = 2;
+    }
+
+    for (int i = 0; i < partyCount; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL)
+            && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+            && Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
+            eligibleMons++;
+        }
+    }
+
+    return eligibleMons > maxActiveMons;
+}
+
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
 {
     BOOL result = FALSE;
@@ -5435,6 +5498,10 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
     // its holder has none (hg-engine's Activate_Pickpocket); TryPickpocket
     // makes the item checks in its subscript. A move Sheer Force
     // strengthened does not set it off.
+    // Oxide: a target that Dragon Tail or Circle Throw is about to drag out
+    // does not steal, as in the later games (Ian, 2026-10-15); with no drag
+    // to come (a Substitute, Ingrain, nothing to drag in), it steals as
+    // before.
     case ABILITY_PICKPOCKET:
         if (DEFENDING_MON.curHP
             && DEFENDING_MON.heldItem == ITEM_NONE
@@ -5443,7 +5510,8 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
             && Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
+            && HitWillDragTarget(battleSys, battleCtx) == FALSE) {
             *subscript = subscript_pickpocket;
             result = TRUE;
         }
