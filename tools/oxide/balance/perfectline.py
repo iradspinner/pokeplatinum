@@ -1079,6 +1079,8 @@ def status_move(b, att, mv, dfn, first):
             m.stages = dict.fromkeys(fs.STAGE_KEYS, 0)
     elif e == "HEAL_STATUS":
         fs.refresh(att)                  # Refresh cures its user's own poison, burn or paralysis
+    elif e == "TRANSFER_STATUS":
+        fs.psycho_shift(b, att, dfn, mv)     # Psycho Shift hands its user's status on (fightsim.psycho_shift)
     elif e == "SWAP_DEF_SP_DEF_STAT_CHANGES":
         fs.swap_stages(att, dfn, ("def", "spd"))      # Guard Swap (fightsim.swap_stages)
     elif e == "SWAP_ATK_SP_ATK_STAT_CHANGES":

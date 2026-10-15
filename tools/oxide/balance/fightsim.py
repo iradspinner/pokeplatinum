@@ -3754,6 +3754,22 @@ def swap_stages(att, dfn, stats):
         att.stages[k], dfn.stages[k] = dfn.stages[k], att.stages[k]
 
 
+def psycho_shift(b, att, dfn, mv):
+    """Psycho Shift (effect script 234, CheckCanShareStatus and
+    subscript_give_target_own_status): it fails when its user has no
+    status, the target has one, or a Substitute an Infiltrator does not
+    pass is in the way; otherwise it gives the target the user's sleep,
+    poison, burn, paralysis or bad poison through the status's own
+    subscript, which its types, abilities and Safeguard may refuse
+    (give_status_by_move, a fresh sleep count or toxic count), and only
+    once the target has it is the user cured. Until 2026-10-15 the status
+    stayed with the user (Ian approved the fix)."""
+    if not att.status or dfn.status or sub_blocks(att, dfn, mv):
+        return
+    if give_status_by_move(b, att, dfn, mv, att.status):
+        att.status, att.sleep, att.toxic = None, 0, 0
+
+
 def refresh(att):
     """Refresh (effect script 193, subscript_recover_psn_prz_brn): its user's
     own poison, bad poison, burn or paralysis is cured
@@ -5676,6 +5692,8 @@ def status_move(b, att, mv, dfn, first):
             m.stages = dict.fromkeys(STAGE_KEYS, 0)
     elif e == "HEAL_STATUS":
         refresh(att)
+    elif e == "TRANSFER_STATUS":
+        psycho_shift(b, att, dfn, mv)
     elif e == "SWAP_DEF_SP_DEF_STAT_CHANGES":
         swap_stages(att, dfn, ("def", "spd"))     # Guard Swap
     elif e == "SWAP_ATK_SP_ATK_STAT_CHANGES":

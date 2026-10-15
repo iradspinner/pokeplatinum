@@ -4441,6 +4441,28 @@ def check_power_swap(results):
     results.append(("Power Swap swaps the Attack and Sp. Atk stages", got == want, f"(user, target) {got}"))
 
 
+def check_psycho_shift(results):
+    """Psycho Shift (approved 2026-10-14; effect script 234): it gives the
+    target its user's status and cures the user, a sleep with a fresh
+    count; it fails with no status on the user, a status on the target, a
+    Substitute in the way, or a target the status cannot reach (a Fire
+    type for a burn), and the user keeps its status then."""
+    out = {}
+    for user, target, setup in (("par", None, None), ("slp", None, None), ("brn", None, "Fire"),
+                                (None, None, None), ("par", "psn", None), ("par", None, "sub")):
+        b, p, foe = battle(["Psycho Shift"], ["Tackle"], {}, b_types=("Fire",) if setup == "Fire" else ("Normal",))
+        b.rng = FixedDice(0.0)
+        p.status, p.sleep, foe.status = user, 3 if user == "slp" else 0, target
+        foe.sub = 25 if setup == "sub" else 0
+        fs.status_move(b, p, fs.move("Psycho Shift"), foe, True)
+        out[(user, target, setup)] = (p.status, foe.status, foe.sleep > 0)
+    want = {("par", None, None): (None, "par", False), ("slp", None, None): (None, "slp", True),
+            ("brn", None, "Fire"): ("brn", None, False), (None, None, None): (None, None, False),
+            ("par", "psn", None): ("par", "psn", False), ("par", None, "sub"): ("par", None, False)}
+    results.append(("Psycho Shift hands its user's status to the target", out == want,
+                    f"(user's status, target's, the target's sleep count set) {out}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4709,7 +4731,7 @@ def main():
                   check_raise_speed_hit, check_trump_card,
                   check_teeter_dance, check_smelling_salts, check_magic_coat, check_present,
                   check_water_sport, check_acrobatics, check_guard_swap,
-                  check_power_swap,
+                  check_power_swap, check_psycho_shift,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

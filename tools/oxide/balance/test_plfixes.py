@@ -4324,6 +4324,20 @@ def power_swap_checks():
              f"Xatu's Attack stage {xatu.stages['atk']}, Bibarel's {bib.stages['atk']}")]
 
 
+def psycho_shift_checks():
+    """Psycho Shift in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's burned Noctowl's Psycho Shift burns
+    the player's Bibarel and cures the Noctowl."""
+    from .test_fightai import battle
+    b = battle([("Noctowl", 40, "Insomnia", ["Psycho Shift", "Extrasensory"])], [("Bibarel", 40, "Unaware", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    noc, bib = b.b.cur(), b.p.cur()
+    noc.status = "brn"
+    pl.status_move(b, noc, fs.move("Psycho Shift"), bib, True)
+    ok = noc.status is None and bib.status == "brn"
+    return [("the readings' Psycho Shift hands its user's status on", ok, f"Noctowl {noc.status}, Bibarel {bib.status}")]
+
+
 def main():
     results = []
 
@@ -4843,6 +4857,7 @@ def main():
     results += acrobatics_checks()
     results += guard_swap_checks()
     results += power_swap_checks()
+    results += psycho_shift_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
