@@ -1927,6 +1927,29 @@ def ohko_blocked(b, att, dfn, mv):
             or (dfn.ability == "Sturdy" and att.ability != "Mold Breaker"))
 
 
+def engine_divide(value, divisor):
+    """BattleSystem_Divide on a whole number of HP: the quotient rounded
+    down, but never 0 from a value that is not 0."""
+    return 0 if value == 0 else max(1, value // divisor)
+
+
+def weather_heal(b, att, mv):
+    """The HP Moonlight, Morning Sun, Synthesis and Shore Up restore
+    (effect script 132, BtlCmd_WeatherHPRecovery): half with no weather, or
+    with Cloud Nine or Air Lock on the field; two thirds in sun and a quarter
+    in any other weather. Shore Up instead restores two thirds in a
+    sandstorm and half otherwise. Until 2026-10-15 Cloud Nine and Air Lock
+    were ignored and Shore Up took the sun rule (Ian approved the fix)."""
+    weather = None if weather_ignored(b) else b.weather
+    if mv.const == "MOVE_SHORE_UP":
+        return engine_divide(att.maxhp * 20, 30) if weather == "Sand" else att.maxhp // 2
+    if weather is None:
+        return att.maxhp // 2
+    if weather == "Sun":
+        return engine_divide(att.maxhp * 20, 30)
+    return engine_divide(att.maxhp, 4)
+
+
 def hurt(b, mon, amount):
     """HP lost to anything but a move's hit."""
     if amount <= 0 or not mon.alive():
@@ -4387,8 +4410,7 @@ def status_move(b, att, mv, dfn, first):
             att.roosting = True
         heal(att, att.maxhp // 2)
     elif e == "HEAL_HALF_MORE_IN_SUN":
-        frac = 2 / 3 if b.weather == "Sun" else 1 / 4 if b.weather else 1 / 2
-        heal(att, int(att.maxhp * frac))
+        heal(att, weather_heal(b, att, mv))
     elif e == "REST":
         # subscript_rest fails on the abilities that keep its user awake
         # (rest_blocked), on a Pokemon already asleep ("is already asleep!"),

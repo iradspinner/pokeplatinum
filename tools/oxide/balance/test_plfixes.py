@@ -3127,6 +3127,30 @@ def bounce_paralysis_checks():
              f"{par} paralysed of {landed} hits that landed ({share:.0%})")]
 
 
+def weather_heal_checks():
+    """Synthesis and Shore Up in the readings' battle on the calculator's
+    real rows (approved 2026-10-14): the player's Cherrim at 1 HP under sun
+    restores two thirds of its HP against a trainer's Damp Golduck and half
+    against a Cloud Nine one (the player never holds Cloud Nine); its Shore
+    Up in a sandstorm restores two thirds."""
+    from .test_fightai import battle
+    out = {}
+    for label, ability, move, weather in (("Damp, sun", "Damp", "Synthesis", "Sun"),
+                                          ("Cloud Nine, sun", "Cloud Nine", "Synthesis", "Sun"),
+                                          ("Damp, sand", "Damp", "Shore Up", "Sand")):
+        b = battle([("Golduck", 40, ability, ["Tackle"])], [("Cherrim", 40, "Flower Gift", ["Synthesis", "Shore Up"])])
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        b.weather, b.weather_turns = weather, 0
+        duck, che = b.b.cur(), b.p.cur()
+        che.hp = 1
+        pl.use_move(b, che, fs.move(move), duck, True)
+        out[label] = (duck.ability, che.hp - 1, che.maxhp)
+    want = {"Damp, sun": 20 / 30, "Cloud Nine, sun": 1 / 2, "Damp, sand": 20 / 30}
+    ok = all(got == int(m * want[k] + 1e-9) for k, (_a, got, m) in out.items())
+    return [("the readings' Synthesis halves under Cloud Nine; Shore Up restores two thirds in sand", ok,
+             f"(Golduck's ability, HP restored, maximum HP) {out}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3702,6 +3726,7 @@ def main():
     results += vanished_status_checks()
     results += speed_down_hit_checks()
     results += bounce_paralysis_checks()
+    results += weather_heal_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)

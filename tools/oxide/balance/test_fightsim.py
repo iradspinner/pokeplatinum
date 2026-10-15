@@ -1994,6 +1994,32 @@ def check_bounce_paralysis(results):
     results.append(("Bounce's hit paralyses at its chance", got == want, f"(in the air, hit, status) {got}"))
 
 
+def check_weather_heal(results):
+    """Moonlight, Morning Sun, Synthesis and Shore Up (approved 2026-10-14;
+    effect script 132, BtlCmd_WeatherHPRecovery), from 1 HP of 100: half
+    with no weather, two thirds in sun, a quarter in rain or sand, and half
+    again in sun when Cloud Nine or Air Lock stands on the field; Shore Up
+    two thirds in sand only, and half in sun or with no weather."""
+    def heal(name, weather=None, ability=None, foe_ability=None):
+        b, p, foe = battle([name], ["Tackle"], {})
+        b.weather, b.weather_turns = weather, 5 if weather else 0
+        p.ability, foe.ability = ability, foe_ability
+        p.hp = 1
+        fs.status_move(b, p, fs.move(name), foe, True)
+        return p.hp - 1
+    got = {"Moonlight": heal("Moonlight"), "Morning Sun in sun": heal("Morning Sun", "Sun"),
+           "Synthesis in rain": heal("Synthesis", "Rain"), "Synthesis in sand": heal("Synthesis", "Sand"),
+           "Synthesis in sun, the foe's Cloud Nine": heal("Synthesis", "Sun", foe_ability="Cloud Nine"),
+           "Moonlight in sun, its own Air Lock": heal("Moonlight", "Sun", ability="Air Lock"),
+           "Shore Up in sand": heal("Shore Up", "Sand"), "Shore Up in sun": heal("Shore Up", "Sun"),
+           "Shore Up": heal("Shore Up"), "Shore Up in sand, Cloud Nine": heal("Shore Up", "Sand", foe_ability="Cloud Nine")}
+    want = {"Moonlight": 50, "Morning Sun in sun": 66, "Synthesis in rain": 25, "Synthesis in sand": 25,
+            "Synthesis in sun, the foe's Cloud Nine": 50, "Moonlight in sun, its own Air Lock": 50,
+            "Shore Up in sand": 66, "Shore Up in sun": 50, "Shore Up": 50, "Shore Up in sand, Cloud Nine": 50}
+    results.append(("the weather heals restore by the weather, Shore Up by sand, none under Cloud Nine",
+                    got == want, f"(HP restored) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3282,7 +3308,7 @@ def main():
                   check_conversion, check_conversion2, check_camouflage, check_burn_up,
                   check_double_shock, check_skill_swap, check_role_play, check_entrainment,
                   check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
-                  check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis,
+                  check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
