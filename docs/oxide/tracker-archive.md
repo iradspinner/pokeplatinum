@@ -676,6 +676,20 @@ Finished lines from Phase 4's element 5, 6 and 7 entries, verbatim.
 - [x] **7. Items, a curated subset**: done (2026-09-27 and 2026-09-28); the entry and Ian's answers on its follow-up are in the archive. For element 6: the AI's scoring knows none of the new held items (the branches' reports list which change a decision).
   - The natives' 17 hidden abilities are written (2026-09-27, `cloud/element5-hidden-abilities`; the entry is in the archive, the report is the branch's last commit; test kit Abilities page 3).
 
+The simulator gap entry's history as it stood before batch 3, verbatim (its batches since landed at 74899d5eb, 13ab1f30b and bf04a3fea):
+
+- [ ] **Every simulator gap fixed** (Ian, 2026-10-14: "fix everything except the Z and Max moves", so fights are not rescored again and again). The verified list is `simulator-gaps.md` (193 move effects, 97 abilities and 6 held items; 156 met by a trainer). Thirteen are being built on `overseer-sim-fixes-2`, the first six committed; the rest follow in batches, boss fights first, one batch at a time since all of them edit the same files. The thirteen landed at 74899d5eb (Ian, 2026-10-14); batch 1 (seven fixes, `overseer-sim-fixes-3`) waits for its checks and his look, as every batch does. Batch 2 (the abilities trainers carry, `overseer-sim-fixes-4`) is under way, with six more gaps Ian approved on 2026-10-14 (Payback doubled twice, Leech Seed's heal and its seeder, Ghost types against trapping, Soundproof against status sound moves, Shield Dust against King's Rock, Black Sludge on a non-Poison holder), each checked against the engine first. Four gaps found after the list were approved earlier the same day: the readings weaken Sacred Sword, Chip Away and Darkest Lariat by the target's stat stages, Stored Power and Power Trip read at 20, Hard Press at full power, and Electro Ball keeps the opening Speeds. It replaces the parked list (double-battle AI partners and switch rules, Me First, Copycat, Judgment's plate, Gravity, Foresight, Embargo, Sleep Talk's choice, Baton Pass, per-hit contact effects).
+
+Settled and stale lines from the tracker's first page, verbatim (the barometer was settled on 2026-10-13 and is in the standing rulings; both readings were done on 2026-10-13 and 2026-10-14):
+
+- Gardenia's soft barometer for "unsolvably hard" ([gardenia-redesign.md](gardenia-redesign.md), its summary): the first reading's box 3 (27 percent won), since the dials reading's box 3 reads 95.
+
+**Next steps for the Overseer, in order:** Mars 1's reading, then the locked Gardenia team's (about 70 minutes each); step 15's restart at his word.
+
+Element 6's finished line from Phase 4, verbatim:
+
+  - Done on `main-element6` (2026-09-30; the README's "Oxide fixes, 2026-09-30" has the table): Wonder Room under a permanent room, Infiltrator and Safeguard, Magic Bounce, the Pixie Plate and the Roseli Berry, Lunar Blessing's routing, the Ability Shield against Mold Breaker at all 28 sites and in the draw-in command, Sky Drop's trap, Mind Blown into Damp; the charge-turn label renamed and the effect 63/64 note recorded. Element 7's Contrary note folds into the held items below
+
 ## Finished on 2026-10-14
 
 - [x] **Form records and dead moves** (`move-access.md`, Ian, 2026-10-14): eleven form records copy their base lists, Sky Shaymin and the Deoxys forms keeping their own moves, and Sandy and Trash Wormadam get their own lists for his look (`overseer-form-learnsets`); then the stranded moves' homes he picks (`stranded-moves.md`, half written) and Slugma evolving at 30. Done the same day: the form records and the kept moves (8251af285), Land Shaymin's Seed Flare and the Protect flags of Electro Ball and Smack Down (666a06b8c), Slugma at 30 (94ccafc69), Wormadam's cloaks with Plant's Quiver Dance at 36 (59b0dae66), and 117 stranded-move homes (7d27322f4).
