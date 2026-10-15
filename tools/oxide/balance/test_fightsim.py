@@ -5289,6 +5289,19 @@ def check_belch(results):
     want = {False: 500, True: 490}
     results.append(("Belch fails until its user has eaten a Berry", out == want, str(out)))
 
+def check_first_impression(results):
+    """First Impression (approved 2026-10-14; effect script 373): it hits
+    on its user's first turn out and fails after it."""
+    out = {}
+    for turns in (0, 1):
+        b, p, foe = battle(["First Impression"], ["Tackle"], {("p", "First Impression"): [10] * 16}, hp=500)
+        b.rng = FixedDice(0.5)
+        p.turns_in = turns
+        fs.attack(b, p, fs.move("First Impression"), foe, True)
+        out[turns] = foe.hp
+    want = {0: 490, 1: 500}
+    results.append(("First Impression fails after its user's first turn out", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5569,7 +5582,7 @@ def main():
                   check_embargo, check_magic_room,
                   check_relic_song, check_clanging_scales, check_matcha_gotcha,
                   check_fell_stinger, check_prevent_escape_hit,
-                  check_poltergeist, check_belch,
+                  check_poltergeist, check_belch, check_first_impression,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -3328,7 +3328,7 @@ def attack(b, att, mv, dfn, first):
                                                                  and snore_fails(att, mv)):
         return
     if mv.effect in FAILS_BEFORE and fails_before(att, dfn, mv):
-        return                           # Poltergeist on a target with no item, Belch before a Berry (fails_before)
+        return                           # Poltergeist, Belch and First Impression's own failures (fails_before)
     spit = spit_up_key(att) if mv.effect == "SPIT_UP" else None
     if mv.effect == "SPIT_UP" and spit is None:
         return
@@ -3650,7 +3650,7 @@ def dream_eater_fails(att, dfn, mv):
 # The moves whose own effect script can fail them before their accuracy,
 # a Protect or the target's reach is checked, each looked at once by effect
 # (fails_before).
-FAILS_BEFORE = frozenset({"POLTERGEIST", "BELCH"})
+FAILS_BEFORE = frozenset({"POLTERGEIST", "BELCH", "FIRST_TURN_ONLY"})
 
 
 def fails_before(att, dfn, mv):
@@ -3660,13 +3660,19 @@ def fails_before(att, dfn, mv):
     Embargo or Magic Room holds back still counts). Belch (effect script
     396, TryBelch): until its user has eaten a Berry this battle
     (Battler_HasEatenBerry, kept for its party slot, so a switch keeps it:
-    Mon.ate_berry, which consume and pluck set). Until 2026-10-15 both hit
-    every time (Ian approved the fixes)."""
+    Mon.ate_berry, which consume and pluck set). First Impression (effect
+    script 373): after its user's first turn out, as Fake Out's script
+    reads it (fakeOutTurnNumber against the turn count, turns_in here),
+    before a Protect is checked, so a Spiky Shield it would meet costs
+    nothing. Until 2026-10-15 all three hit every time (Ian approved the
+    fixes)."""
     e = mv.effect
     if e == "POLTERGEIST":
         return dfn.item is None and dfn.item_off is None
     if e == "BELCH":
         return not att.ate_berry
+    if e == "FIRST_TURN_ONLY":
+        return att.turns_in > 0
     return False
 
 

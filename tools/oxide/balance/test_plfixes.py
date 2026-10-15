@@ -4964,6 +4964,20 @@ def belch_checks():
     ok = out[False] == ("Oran Berry", 0) and out[True][0] is None and out[True][1] > 0
     return [("the readings' Belch fails before a Berry is eaten", ok, f"(Bibarel's item, HP taken) {out}")]
 
+def first_impression_checks():
+    """First Impression in the readings' battle on the calculator's real
+    rows (approved 2026-10-14): the player's Bibarel's hits a trainer's
+    Geodude on its first turn out and takes nothing on a later one."""
+    out = {}
+    for turns in (0, 1):
+        b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["First Impression"])])
+        bib.turns_in = turns
+        hp = geo.hp
+        pl.attack(b, bib, fs.move("First Impression"), geo, True)
+        out[turns] = hp - geo.hp
+    ok = out[0] > 0 and out[1] == 0
+    return [("the readings' First Impression fails after the first turn", ok, f"HP taken by turns out {out}")]
+
 def main():
     results = []
 
@@ -5519,6 +5533,7 @@ def main():
     results += prevent_escape_hit_checks()
     results += poltergeist_checks()
     results += belch_checks()
+    results += first_impression_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
