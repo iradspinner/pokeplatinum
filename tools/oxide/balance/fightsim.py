@@ -5678,6 +5678,8 @@ def status_move(b, att, mv, dfn, first):
         refresh(att)
     elif e == "SWAP_DEF_SP_DEF_STAT_CHANGES":
         swap_stages(att, dfn, ("def", "spd"))     # Guard Swap
+    elif e == "SWAP_ATK_SP_ATK_STAT_CHANGES":
+        swap_stages(att, dfn, ("atk", "spa"))     # Power Swap
     elif e == "HALVE_FIRE_DAMAGE":
         water_sport(att)
     elif e == "APPLY_MAGIC_COAT":

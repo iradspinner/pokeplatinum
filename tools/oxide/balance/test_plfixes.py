@@ -4309,6 +4309,21 @@ def guard_swap_checks():
              f"Xatu's Defense stage {xatu.stages['def']}, Bibarel's {bib.stages['def']}")]
 
 
+def power_swap_checks():
+    """Power Swap in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Xatu takes the player's Bibarel's
+    +2 Attack and gives it its own -1."""
+    from .test_fightai import battle
+    b = battle([("Xatu", 40, "Synchronize", ["Power Swap", "Psychic"])], [("Bibarel", 40, "Unaware", ["Swords Dance"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    xatu, bib = b.b.cur(), b.p.cur()
+    bib.stages["atk"], xatu.stages["atk"] = 2, -1
+    pl.status_move(b, xatu, fs.move("Power Swap"), bib, True)
+    ok = xatu.stages["atk"] == 2 and bib.stages["atk"] == -1
+    return [("the readings' Power Swap swaps the attacking stages", ok,
+             f"Xatu's Attack stage {xatu.stages['atk']}, Bibarel's {bib.stages['atk']}")]
+
+
 def main():
     results = []
 
@@ -4827,6 +4842,7 @@ def main():
     results += water_sport_checks()
     results += acrobatics_checks()
     results += guard_swap_checks()
+    results += power_swap_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
