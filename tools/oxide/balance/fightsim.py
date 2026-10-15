@@ -3890,6 +3890,27 @@ def out_of_reach(att, dfn, mv):
             and not no_guard(att, dfn, mv))
 
 
+# The status moves whose effect scripts set every SYSCTL_HIT_DURING flag, so
+# that they reach a target on its hidden turn: Memento (effect script 168).
+# Helping Hand's script (176) sets them too, but it aims at an ally, whom the
+# check below never reaches.
+REACHES_VANISHED = frozenset({"FAINT_AND_ATK_SP_ATK_DOWN_2"})
+
+
+def status_out_of_reach(att, dfn, mv):
+    """BattleControllerPlayer_CheckMoveHitOverrides for a status move: one
+    aimed at a foe misses it on the hidden turn of Fly, Bounce, Shadow Force
+    or Phantom Force (MOVE_STATUS_SEMI_INVULNERABLE), unless No Guard is on
+    either side (out_of_reach) or its script reaches there (REACHES_VANISHED).
+    A move whose defender is its own user (OWN_RANGES) never meets the check,
+    and one aimed at the foe's side (Spikes, Stealth Rock) passes it. Dig and
+    Dive are one-turn hits in Oxide's move data (the move reworks), so no
+    Pokemon is ever underground or underwater. Until 2026-10-14 every status
+    move reached a hidden target (Ian approved the fix)."""
+    return (mv.range not in OWN_RANGES and mv.range != "OPPONENT_SIDE" and mv.effect not in REACHES_VANISHED
+            and out_of_reach(att, dfn, mv))
+
+
 # The status moves that change a type or an ability: each effect's function
 # of (battle, user, move, target, pick), pick(kind, n) the battle's dice for
 # a choice among n; both battles' status_move run them.
@@ -4290,6 +4311,8 @@ def status_move(b, att, mv, dfn, first):
     if targets_foe and dfn.alive():
         if protected(b, att, mv, dfn):
             return
+        if status_out_of_reach(att, dfn, mv):
+            return               # a target on its hidden turn of Fly and the like (status_out_of_reach)
         # The engine runs the type chart only for moves with power, and for
         # Thunder Wave (BattleControllerPlayer_CheckTypeChart), so Thunder
         # Wave fails on a Ground type while Hypnosis still sleeps a Dark one.

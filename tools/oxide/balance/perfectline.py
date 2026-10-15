@@ -846,6 +846,8 @@ def status_move(b, att, mv, dfn, first):
     if targets_foe and dfn.alive():
         if fs.protected(b, att, mv, dfn):
             return
+        if fs.status_out_of_reach(att, dfn, mv):
+            return               # a target on its hidden turn of Fly and the like (fightsim.status_out_of_reach)
         # Only Thunder Wave among the status moves meets the type chart
         # (BattleControllerPlayer_CheckTypeChart): it fails on a Ground type,
         # while Hypnosis sleeps a Dark type and Will-O-Wisp burns a Normal one.

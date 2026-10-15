@@ -1918,6 +1918,42 @@ def check_captivate(results):
     results.append(("Captivate lowers Sp. Atk only across the genders", got == want, f"(stage, named) {got}"))
 
 
+def check_status_into_vanished(results):
+    """A status move aimed at a foe misses it on the hidden turn of Fly,
+    Bounce, Shadow Force or Phantom Force (approved 2026-10-14;
+    BattleControllerPlayer_CheckMoveHitOverrides sets
+    MOVE_STATUS_SEMI_INVULNERABLE): Thunder Wave, Toxic, Yawn, Growl and
+    Taunt take nothing there, and each lands on a target that is not hidden.
+    No Guard on either side reaches the target; Memento, whose script sets
+    every SYSCTL_HIT_DURING flag, still lowers its stats; and Spikes, aimed at
+    the foe's side, still lands. Dig and Dive are one-turn hits in Oxide, so a
+    target given either as its charging move is not hidden at all."""
+    def use(name, vanish=None, ability=None, foe_ability=None):
+        b, p, foe = battle([name], ["Tackle"], {})
+        p.ability, foe.ability = ability, foe_ability
+        foe.charging = fs.move(vanish) if vanish else None
+        fs.status_move(b, p, fs.move(name), foe, True)
+        return foe.status, foe.yawn, foe.stages["atk"], bool(foe.taunt), b.b.hazards["spikes"]
+    names = ("Thunder Wave", "Toxic", "Yawn", "Growl", "Taunt")
+    plain = {n: use(n) for n in names}
+    flying = {n: use(n, "Fly") for n in names}
+    hidden = {v: use("Thunder Wave", v) for v in ("Bounce", "Shadow Force", "Phantom Force")}
+    one_turn = {v: use("Thunder Wave", v) for v in ("Dig", "Dive")}
+    guard = {"the user's No Guard": use("Thunder Wave", "Fly", ability="No Guard"),
+             "the target's No Guard": use("Thunder Wave", "Fly", foe_ability="No Guard")}
+    reach = {"Memento": use("Memento", "Fly"), "Spikes": use("Spikes", "Fly")}
+    nothing = (None, 0, 0, False, 0)
+    paralysed = ("par", 0, 0, False, 0)
+    ok = (plain == {"Thunder Wave": paralysed, "Toxic": ("tox", 0, 0, False, 0), "Yawn": (None, 2, 0, False, 0),
+                    "Growl": (None, 0, -1, False, 0), "Taunt": (None, 0, 0, True, 0)}
+          and all(v == nothing for v in flying.values()) and all(v == nothing for v in hidden.values())
+          and all(v == paralysed for v in one_turn.values()) and all(v == paralysed for v in guard.values())
+          and reach == {"Memento": (None, 0, -2, False, 0), "Spikes": (None, 0, 0, False, 1)})
+    results.append(("a status move misses a target on the hidden turn of Fly and the like", ok,
+                    f"(status, Yawn, Attack stage, taunted, Spikes) plain {plain}; into Fly {flying}; {hidden}; "
+                    f"one-turn {one_turn}; {guard}; {reach}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3206,7 +3242,7 @@ def main():
                   check_conversion, check_conversion2, check_camouflage, check_burn_up,
                   check_double_shock, check_skill_swap, check_role_play, check_entrainment,
                   check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
-                  check_magic_guard, check_liquid_ooze,
+                  check_status_into_vanished, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

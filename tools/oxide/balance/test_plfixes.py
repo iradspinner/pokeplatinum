@@ -3070,6 +3070,27 @@ def captivate_checks():
              f"(Persian's gender, Bibarel's, its Sp. Atk stage) {out}")]
 
 
+def vanished_status_checks():
+    """A status move into a target on its hidden turn, in the readings'
+    battle on the calculator's real rows (approved 2026-10-14): a trainer's
+    Staraptor takes Fly's first turn, and a Raichu's Thunder Wave aimed at it
+    then misses; the same Thunder Wave paralyses it once Fly has landed."""
+    from .test_fightai import battle
+    b = battle([("Staraptor", 30, "Reckless", ["Fly"])], [("Raichu", 40, "Lightning Rod", ["Thunder Wave"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    star, rai = b.b.cur(), b.p.cur()
+    pl.use_move(b, star, fs.move("Fly"), rai, True)
+    up = star.charging is not None
+    pl.use_move(b, rai, fs.move("Thunder Wave"), star, False)
+    missed = star.status
+    pl.use_move(b, star, star.charging, rai, True)
+    landed_fly = star.charging is None and rai.hp < rai.maxhp
+    pl.use_move(b, rai, fs.move("Thunder Wave"), star, False)
+    got = (up, missed, landed_fly, star.status)
+    return [("the readings' Thunder Wave misses a Staraptor in the air and paralyses it after", got ==
+             (True, None, True, "par"), f"(in the air, its status after, Fly landed, its status then) {got}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3642,6 +3663,7 @@ def main():
     results += gastro_acid_checks()
     results += core_enforcer_checks()
     results += captivate_checks()
+    results += vanished_status_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)
