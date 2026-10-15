@@ -4954,6 +4954,33 @@ def meloetta_form_checks():
              f"(Close Combat's top roll, Speed, types) Aria {aria}, Pirouette {pir}, back {back}")]
 
 
+def options_rule_checks():
+    """The planner's options in Roark's fight on the calculator's real rows
+    (approved 2026-10-15; plplan.would_fail): with Roark's Pokemon in front
+    holding nothing, the player's Knock Off is offered, as it still hits;
+    with a hurt Pokemon on the bench, Healing Wish is offered; with nobody
+    hurt, it is not. The trainer's AI's Basic check scores both -10 or
+    below, which ruled them out before."""
+    from . import plplan
+    team = [("SPECIES_ABSOL", "Absol", "Hardy", "Pressure", ["Knock Off", "Bite"]),
+            ("SPECIES_TOGEKISS", "Togekiss", "Hardy", "Serene Grace", ["Healing Wish", "Air Slash"]),
+            ("SPECIES_BIBAREL", "Bibarel", "Hardy", "Unaware", ["Tackle"])]
+    out = {}
+    b = battle(team=team)
+    b.b.cur().item = None
+    out["Knock Off"] = sorted(a[1].name for a in plplan.options(b) if a[0] == "move")
+    for hurt in (True, False):
+        b = battle(team=team)
+        fs.switch_in(b, b.p, 1)
+        if hurt:
+            b.p.mons[2].hp //= 2
+        out["Healing Wish, " + ("hurt" if hurt else "well")] = sorted(
+            a[1].name for a in plplan.options(b) if a[0] == "move")
+    want = {"Knock Off": ["Bite", "Knock Off"], "Healing Wish, hurt": ["Air Slash", "Healing Wish"],
+            "Healing Wish, well": ["Air Slash"]}
+    return [("the planner's options drop only moves that would fail", out == want, f"offered {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -6004,6 +6031,7 @@ def main():
     results += rematch_terrain_checks()
     results += borrowed_twin_checks()
     results += meloetta_form_checks()
+    results += options_rule_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

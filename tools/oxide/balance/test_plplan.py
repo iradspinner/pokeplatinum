@@ -253,6 +253,52 @@ def encore_leaves_one_move():
           f"moves {moves}; switches {switches}; the plain pick used as {used}")
 
 
+def offered(b):
+    """The names of the moves plplan.options offers at b."""
+    return sorted(a[1].name for a in plplan.options(b) if a[0] == "move")
+
+
+def options_by_rule():
+    """The options drop only a move that would fail or do nothing by the
+    battle's own rules (approved 2026-10-15; plplan.would_fail), on the
+    calculator's real rows: Knock Off on a target holding nothing, Healing
+    Wish with a hurt Pokemon to send in, Dragon Dance at +6 Attack with
+    Speed to raise, and Copycat on the first turn against a target that
+    knows a faster move are offered, though the trainer's AI's Basic check
+    scores each at -10 or below; Healing Wish with no one to mend, Copycat
+    with nothing it could copy and Thunder Wave on a Ground type are not;
+    Me First is offered while the target may use a hit after it."""
+    from .test_fightai import battle
+    out = {}
+    b = battle([("Machop", 30, "Guts", ["Tackle"])], [("Absol", 30, "Pressure", ["Knock Off", "Thunder Wave"])])
+    b.b.cur().item = None
+    out["Knock Off, no item"] = offered(b)
+    for hurt in (True, False):
+        b = battle([("Machop", 30, "Guts", ["Tackle"])],
+                   [("Togekiss", 30, "Serene Grace", ["Healing Wish", "Air Slash"]),
+                    ("Bibarel", 30, "Unaware", ["Tackle"])])
+        if hurt:
+            b.p.mons[1].hp //= 2
+        out["Healing Wish, " + ("a hurt mate" if hurt else "all well")] = offered(b)
+    b = battle([("Machop", 30, "Guts", ["Tackle"])], [("Gyarados", 30, "Intimidate", ["Dragon Dance", "Waterfall"])])
+    b.p.cur().stages["atk"] = 6
+    out["Dragon Dance at +6 Attack"] = offered(b)
+    for case, foe_moves, last in (("nothing to copy", ["Tackle"], None), ("a faster foe move", ["Extreme Speed"], None),
+                                  ("a last move", ["Tackle"], "Tackle")):
+        b = battle([("Machop", 20, "Guts", foe_moves)], [("Ninjask", 40, "Infiltrator", ["Copycat", "Me First"])])
+        b.last_move = fs.move(last) if last else None
+        out["Copycat, " + case] = offered(b)
+    b = battle([("Diglett", 30, "Sand Veil", ["Tackle"])], [("Pikachu", 30, "Static", ["Thunder Wave", "Quick Attack"])])
+    out["Thunder Wave on a Ground type"] = offered(b)
+    want = {"Knock Off, no item": ["Knock Off", "Thunder Wave"],
+            "Healing Wish, a hurt mate": ["Air Slash", "Healing Wish"], "Healing Wish, all well": ["Air Slash"],
+            "Dragon Dance at +6 Attack": ["Dragon Dance", "Waterfall"],
+            "Copycat, nothing to copy": ["Me First"], "Copycat, a faster foe move": ["Copycat", "Me First"],
+            "Copycat, a last move": ["Copycat", "Me First"], "Thunder Wave on a Ground type": ["Quick Attack"]}
+    check("the options drop only moves the battle's rules would fail", out == want,
+          "; ".join(f"{k} {v}" for k, v in out.items()))
+
+
 def main():
     print("the planner's pieces")
     pick_odds_rules()
@@ -264,6 +310,7 @@ def main():
     future_sight_through_planner()
     disabled_left_out()
     encore_leaves_one_move()
+    options_by_rule()
     print(f"\n{sum(RESULTS)}/{len(RESULTS)} passed")
     return 0 if all(RESULTS) else 1
 
