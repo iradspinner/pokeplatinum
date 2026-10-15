@@ -3796,6 +3796,32 @@ def copycat_checks():
              f"Copycat dealt {dealt}; the Clefable's Body Slam row {row and (row[0], row[-1])}")]
 
 
+def fling_checks():
+    """Fling in the readings' battle on the calculator's real rows (approved
+    2026-10-14): the player's Bibarel throws its Hard Stone (handed to the
+    player by Roark's split) at a trainer's Machop from its twin's row at
+    100 power, where its own item-free row read nothing; the Machop throws
+    a Sitrus Berry, which the Bibarel eats, healing a quarter of its HP."""
+    from .test_fightai import battle
+    b = battle([("Machop", 30, "Guts", ["Fling"], "Sitrus Berry")], [("Bibarel", 30, "Simple", ["Fling"], "Hard Stone")])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    b.dice.one_crit = False
+    mac, bib = b.b.cur(), b.p.cur()
+    mac.hp = mac.maxhp = 100000
+    pl.use_move(b, bib, fs.move("Fling"), mac, True)
+    thrown = (mac.maxhp - mac.hp, bib.item)
+    bib.hp = bib.maxhp // 2
+    before = bib.hp
+    pl.use_move(b, mac, fs.move("Fling"), bib, True)
+    row = b.st["rows"][(None, mac.key, bib.key)]["moves"]["Fling"]["rolls"]
+    net = bib.hp - before
+    healed = fs.engine_divide(bib.maxhp * 25, 100)
+    ok = thrown[0] > 0 and thrown[1] is None and healed - int(1.5 * row[-1]) - 1 <= net <= healed - row[0] + 1
+    return [("the readings' Fling throws the player's item at its power, and a thrown Berry is eaten", ok,
+             f"Hard Stone dealt {thrown[0]}; the Sitrus Berry's hit and heal came to {net} (heal {healed}, row "
+             f"{row[0]} to {row[-1]})")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4455,6 +4481,7 @@ def main():
     results += mimic_checks()
     results += mirror_move_checks()
     results += copycat_checks()
+    results += fling_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()

@@ -624,8 +624,11 @@ def attack(b, att, mv, dfn, first):
     if mv.name in ("Natural Gift", "Fling"):
         if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
             return
+        if mv.name == "Fling" and not fs.item_fling(att.item)[0]:
+            return                       # an item with no fling power cannot be thrown (TryFling)
         gift = att.item
         fs.consume(att, eaten=False)     # spent, not eaten (Belch)
+    b.flung = gift if mv.name == "Fling" else None     # its effect after the hit (fightsim.fling_effect)
     if not accuracy_hits(b, att, dfn, mv, first):
         crash(b, att, dfn, mv)               # Magic Guard spares it (fightsim.crash_loss)
         fs.rollout_after(att, mv, False)
@@ -691,6 +694,8 @@ def attack(b, att, mv, dfn, first):
             att.key = spit                   # Spit Up's row for the power it spends
         elif mv.name == "Natural Gift" and player(att):
             att.key = fs.natural_gift_key(key, gift)     # the player's, rowed with its Berry
+        elif mv.name == "Fling" and player(att):
+            att.key = fs.fling_key(key, gift)            # the player's, rowed at its item's fling power
         try:
             roll = None
             if spit is not None:
@@ -823,6 +828,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
         return
     fs.slap_wakes(dfn, mv)       # Wake-Up Slap's doubled hit wakes its target (fightsim.slap_wakes)
+    if mv.name == "Fling" and getattr(b, "flung", None):
+        fs.fling_effect(b, att, dfn, mv, b.flung, first, lambda kind, n: b.dice.choice(kind, n))
     if e == "THROAT_CHOP":
         fs.throat_chop(att, dfn, stripped)     # its hold on the target's sound moves (fightsim.throat_chop)
     if e == "SMACK_DOWN":

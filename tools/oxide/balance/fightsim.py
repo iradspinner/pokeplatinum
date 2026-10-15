@@ -44,6 +44,7 @@ chance of losing three or more, and the chance of a wipe.
 import collections
 import csv
 import functools
+import glob
 import json
 import math
 import os
@@ -2887,8 +2888,11 @@ def attack(b, att, mv, dfn, first):
     if mv.name in ("Natural Gift", "Fling"):
         if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
             return
+        if mv.name == "Fling" and not item_fling(att.item)[0]:
+            return               # an item with no fling power cannot be thrown (TryFling)
         gift = att.item
         consume(att, eaten=False)
+    b.flung = gift if mv.name == "Fling" else None
     if not b.accuracy_hits(att, dfn, mv, first):
         _crash(b, att, dfn, mv)          # Magic Guard spares it (crash_loss)
         rollout_after(att, mv, False)
@@ -2935,6 +2939,12 @@ def attack(b, att, mv, dfn, first):
                 att.key = key
         elif mv.name == "Natural Gift" and att.side == "p":
             key, att.key = att.key, natural_gift_key(att.key, gift)
+            try:
+                dmg = b.damage(att, dfn, mv, crit=crit)
+            finally:
+                att.key = key
+        elif mv.name == "Fling" and att.side == "p":
+            key, att.key = att.key, fling_key(att.key, gift)
             try:
                 dmg = b.damage(att, dfn, mv, crit=crit)
             finally:
@@ -3197,6 +3207,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
     slap_wakes(dfn, mv)              # Wake-Up Slap's doubled hit wakes its target (slap_wakes)
+    if mv.name == "Fling" and getattr(b, "flung", None):
+        fling_effect(b, att, dfn, mv, b.flung, first, lambda kind, n: b.rng.randrange(n))
     if e == "THROAT_CHOP":
         throat_chop(att, dfn, stripped)
     if e == "SMACK_DOWN":
@@ -3576,6 +3588,60 @@ def pluck(b, att, dfn, pick):
     att.ate_berry = True
     if att.ability != "Klutz":
         eat_berry(att, berry, pick)
+
+
+@functools.lru_cache(maxsize=None)
+def _item_fling():
+    """{compact item name: (fling power, fling effect)} from Oxide's item
+    data (res/items/data, flingPower and flingEffect)."""
+    out = {}
+    for path in glob.glob(os.path.join(data.ROOT, "res", "items", "data", "*.json")):
+        with open(path, encoding="utf-8") as fh:
+            rec = json.load(fh)
+        out[re.sub(r"[^a-z0-9]", "", (rec.get("name") or "").lower())] = (
+            rec.get("flingPower") or 0, (rec.get("flingEffect") or "FLING_EFFECT_NONE")[len("FLING_EFFECT_"):])
+    return out
+
+
+def item_fling(item):
+    """(fling power, fling effect) of a held item; (0, "NONE") for none."""
+    return _item_fling().get(re.sub(r"[^a-z0-9]", "", (item or "").lower()), (0, "NONE"))
+
+
+FLING_STATUS = {"BURN": "brn", "POISON": "psn", "BADLY_POISON": "tox", "PARALYZE": "par"}
+
+
+def fling_effect(b, att, dfn, mv, item, first, pick):
+    """Fling's thrown item on its target (BattleSystem_FlingItem's fling
+    scripts, run by subscript_fling on the hit when the target stands and
+    no Substitute is in the way): a Berry's effect as if the target ate it
+    (eat_berry), the Orbs', the Poison Barb's and the Light Ball's status,
+    King's Rock's and Razor Fang's flinch on a target yet to move, the
+    White Herb's lowered stages put back, the Mental Herb's cure of love;
+    any other item does nothing more. Until 2026-10-15 no fling effect ran
+    (Ian approved the fix)."""
+    effect = item_fling(item)[1]
+    if item.endswith("Berry"):
+        eat_berry(dfn, item, pick)
+    elif effect in FLING_STATUS:
+        give_status_by_move(b, att, dfn, mv, FLING_STATUS[effect])
+    elif effect == "FLINCH":
+        if first:
+            dfn.flinch = True
+    elif effect == "STATDOWN_RESTORE":
+        dfn.stages = {k: max(0, v) for k, v in dfn.stages.items()}
+    elif effect == "HEAL_INFATUATION":
+        dfn.infatuated = None
+
+
+def fling_key(key, item):
+    """The row the player's Fling is read from: its twin holding the thrown
+    item ("<key>#fl<item>", which prepare adds for each item the player is
+    handed), since the player's own rows are made with no item and the
+    calculator powers Fling by the item it holds, as the engine does, a
+    plate's or another booster's own boost included (RemoveItem comes after
+    CalcDamage)."""
+    return f"{key}#fl{re.sub(r'[^a-z0-9]', '', (item or '').lower())}"
 
 
 def eat_berry(mon, berry, pick):
@@ -6853,6 +6919,22 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                 for w in weathers:
                     for d in foes:
                         pairs.append([dk, d, ["Spit Up"], w])
+    # The player's Fling, rowed holding each item the player is handed by
+    # the split (player_items: the type boosters, Leftovers, the Sitrus
+    # Berry), each as its own attacker key ("<key>#fl<item>"), since its own
+    # rows carry no item and the calculator powers Fling by the item held
+    # (fling_key).
+    flingers = [k for k in list(pkeys) + list(qkeys) if "Fling" in moves.get(k, ())]
+    held = player_items(split) if flingers else {"boosters": {}}
+    flung = [i for i in list(held["boosters"].values()) + [i for i in ("Leftovers", "Sitrus Berry") if held.get(i)]
+             if item_fling(i)[0]]
+    for k in flingers:
+        for item in flung:
+            dk = fling_key(k, item)
+            pokemon[dk] = dict(pokemon[k], item=item)
+            for w in weathers:
+                for d in bkeys:
+                    pairs.append([dk, d, ["Fling"], w])
     # The player's Natural Gift, rowed holding the Sitrus Berry its rows lack
     # (natural_gift_key), against every trainer Pokemon.
     for k in list(pkeys):

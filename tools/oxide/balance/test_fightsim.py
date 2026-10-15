@@ -2871,6 +2871,46 @@ def check_copycat(results):
     results.append(("Copycat uses the battle's last move unless it calls one or none is there", out == want, str(out)))
 
 
+def check_fling(results):
+    """Fling (approved 2026-10-14; effect script 233, BattleSystem_FlingItem,
+    subscript_fling): the thrown item's effect lands on the target that
+    took the hit, a Flame Orb's burn, a Sitrus Berry eaten as if the target
+    ate it, King's Rock's flinch on a target yet to move, and none through a
+    Substitute; the item is spent, and an item with no fling power cannot
+    be thrown. The player's Fling reads its twin for the item's power
+    ("<key>#fl<power>"), which prepare() rows for the items the player is
+    handed."""
+    def fling(item, first=True, sub=0):
+        b, p, foe = battle(["Tackle"], ["Fling"], {("b", "Fling"): [10] * 16}, hp=100)
+        b.rng = FixedDice(0.5)
+        p.ability = "Shell Armor"
+        foe.item, p.sub = item, sub
+        p.hp = 60
+        fs.attack(b, foe, fs.move("Fling"), p, first)
+        return p.hp + p.sub, p.status, p.flinch, foe.item
+    out = {"Flame Orb": fling("Flame Orb"), "Sitrus Berry": fling("Sitrus Berry"),
+           "King's Rock": fling("King's Rock"), "King's Rock, moving second": fling("King's Rock", first=False),
+           "Flame Orb into a Substitute": fling("Flame Orb", sub=40)}
+    b, p, foe = battle(["Fling"], ["Tackle"], {}, hp=100)
+    b.st["rows"][(None, "p0#flcharcoal", "b0.0")] = {"moves": {"Fling": {"rolls": [12] * 16}}}
+    b.rng = FixedDice(0.5)
+    foe.ability, p.item = "Shell Armor", "Charcoal"
+    fs.attack(b, p, fs.move("Fling"), foe, True)
+    out["the player's Charcoal"] = (foe.maxhp - foe.hp, p.item)
+    st, pairs, pokemon = prepared_jobs([("Machamp", 40, "Guts", ["Cross Chop"], None)],
+                                       [("Bibarel", 40, "Simple", ["Fling"], None)], split="Fantina")
+    powers = sorted(pokemon[a]["item"] for a, d, mv, _w in pairs if a.startswith("p0#fl") and d == "b0.0")
+    handed = fs.player_items("Fantina")
+    out["the player's Fling rows"] = powers == sorted(i for i in list(handed["boosters"].values())
+                                                      + [i for i in ("Leftovers", "Sitrus Berry") if handed.get(i)])
+    want = {"Flame Orb": (50, "brn", False, None), "Sitrus Berry": (75, None, False, None),
+            "King's Rock": (50, None, True, None), "King's Rock, moving second": (50, None, False, None),
+            "Flame Orb into a Substitute": (90, None, False, None), "the player's Charcoal": (12, None),
+            "the player's Fling rows": True}
+    results.append(("Fling gives its item's effect, and the player's reads its item's power", out == want,
+                    f"(HP and Substitute, status, flinch, item after) {out}; the player's Fling items {powers}"))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -4260,7 +4300,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return, check_smack_down, check_gravity, check_mimic, check_mirror_move, check_copycat,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return, check_smack_down, check_gravity, check_mimic, check_mirror_move, check_copycat, check_fling,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
