@@ -1954,6 +1954,26 @@ def check_status_into_vanished(results):
                     f"one-turn {one_turn}; {guard}; {reach}"))
 
 
+def check_speed_down_hit(results):
+    """Hammer Arm and Ice Hammer (approved 2026-10-14; effect script 218,
+    ON_HIT and TO_ATTACKER): the user's own Speed falls a stage on any hit,
+    through a Substitute, on a knockout and under Sheer Force alike, and the
+    target's Speed never moves."""
+    def use(name, sub=0, foe_hp=None, ability=None):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [30] * 16})
+        p.ability, foe.sub = ability, sub
+        if foe_hp is not None:
+            foe.hp = foe_hp
+        fs.attack(b, p, fs.move(name), foe, True)
+        return p.stages["spe"], foe.stages["spe"]
+    got = {n: use(n) for n in ("Hammer Arm", "Ice Hammer")}
+    got.update({"into a Substitute": use("Hammer Arm", sub=25), "on a knockout": use("Hammer Arm", foe_hp=10),
+                "Sheer Force": use("Ice Hammer", ability="Sheer Force")})
+    ok = all(v == (-1, 0) for v in got.values())
+    results.append(("Hammer Arm and Ice Hammer lower their user's Speed, never the target's", ok,
+                    f"(user's Speed stage, target's) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3242,7 +3262,8 @@ def main():
                   check_conversion, check_conversion2, check_camouflage, check_burn_up,
                   check_double_shock, check_skill_swap, check_role_play, check_entrainment,
                   check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
-                  check_status_into_vanished, check_magic_guard, check_liquid_ooze,
+                  check_status_into_vanished, check_speed_down_hit,
+                  check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

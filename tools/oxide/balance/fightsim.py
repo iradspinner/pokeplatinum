@@ -178,10 +178,16 @@ FOE_STAGES = {
 HIT_FOE_STAGES = {
     "LOWER_SP_DEF_HIT": {"spd": -1}, "LOWER_DEFENSE_HIT": {"def": -1},
     "LOWER_SPEED_HIT": {"spe": -1}, "LOWER_ACCURACY_HIT": {"acc": -1},
-    "LOWER_ATTACK_HIT": {"atk": -1}, "SPEED_DOWN_HIT": {"spe": -1},
+    "LOWER_ATTACK_HIT": {"atk": -1},
 }
 HIT_SELF_STAGES = {  # (stages, certain)
     "DEF_SPD_DOWN_HIT": ({"def": -1, "spd": -1}, True),
+    # Hammer Arm and Ice Hammer (effect script 218): the user's own Speed
+    # falls a stage on any hit (ON_HIT, TO_ATTACKER), a Substitute's or a
+    # knockout's too, and Sheer Force leaves it, as the effect is not on
+    # sSheerForceEffects. Until 2026-10-15 it was a drop on the target at the
+    # move's chance (Ian approved the fix).
+    "SPEED_DOWN_HIT": ({"spe": -1}, True),
     "LOWER_OWN_ATK_AND_DEF": ({"atk": -1, "def": -1}, True),
     "USER_SP_ATK_DOWN_2": ({"spa": -2}, True),
     "RAISE_ATTACK_HIT": ({"atk": 1}, False), "RAISE_SP_ATK_HIT": ({"spa": 1}, False),

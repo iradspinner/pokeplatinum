@@ -3091,6 +3091,20 @@ def vanished_status_checks():
              (True, None, True, "par"), f"(in the air, its status after, Fly landed, its status then) {got}")]
 
 
+def speed_down_hit_checks():
+    """Hammer Arm in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Hariyama hits a Staraptor with it,
+    and the Hariyama's own Speed falls a stage while the Staraptor's stays."""
+    from .test_fightai import battle
+    b = battle([("Hariyama", 40, "Thick Fat", ["Hammer Arm"])], [("Staraptor", 40, "Reckless", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    har, star = b.b.cur(), b.p.cur()
+    pl.use_move(b, har, fs.move("Hammer Arm"), star, True)
+    got = (star.hp < star.maxhp, har.stages["spe"], star.stages["spe"])
+    return [("the readings' Hammer Arm lowers its user's Speed, not its target's", got == (True, -1, 0),
+             f"(hit, Hariyama's Speed stage, Staraptor's) {got}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3664,6 +3678,7 @@ def main():
     results += core_enforcer_checks()
     results += captivate_checks()
     results += vanished_status_checks()
+    results += speed_down_hit_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)
