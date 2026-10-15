@@ -3525,10 +3525,22 @@ def crash_loss(att, dfn, damage):
     return min(engine_divide(damage, 2), engine_divide(dfn.maxhp, 2))
 
 
+# The effects whose miss crashes (SYSCTL_CRASH_DAMAGE, set by effect
+# scripts 45 and 293): Jump Kick's kind, and Axe Kick, whose crash
+# subscript_missed runs as it runs theirs. Until 2026-10-15 Axe Kick never
+# crashed (Ian approved the fix).
+CRASH = frozenset({"CRASH_ON_MISS", "CONFUSE_HIT_CRASH_ON_MISS"})
+# The hits that confuse at their chance (subscript_confuse as a hit's
+# indirect effect): Confusion's kind, Hurricane, Raging Fury, and Axe Kick
+# (effect script 293), whose 30 per cent never ran until 2026-10-15 (Ian
+# approved the fix).
+CONFUSE_HITS = frozenset({"CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT", "CONFUSE_HIT_CRASH_ON_MISS"})
+
+
 def _crash(b, att, dfn, mv):
     """fightsim's own battle: a crash move that failed to hit, its damage
     rolled with a critical hit at its odds (crash_loss)."""
-    if mv.effect != "CRASH_ON_MISS" or att.ability == "Magic Guard":
+    if mv.effect not in CRASH or att.ability == "Magic Guard":
         return
     crit = b.rng.random() < crit_rate(b, att, dfn, mv)
     hurt(b, att, crash_loss(att, dfn, b.damage(att, dfn, mv, crit=crit) or 0))
@@ -3879,7 +3891,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         dfn.flinch = True
     if dfn.ability == "Inner Focus" and not mold(att, dfn):
         dfn.flinch = False       # Inner Focus: it never flinches, unless Mold Breaker gets past it
-    if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and b.rng.random() * 100 < chance \
+    if e in CONFUSE_HITS and b.rng.random() * 100 < chance \
             and not confusion_blocked(b, att, dfn, hit=True):
         dfn.confused = b.rng.randint(2, 5)
         confusion_berry(dfn, b)
@@ -7545,7 +7557,7 @@ def self_risk(b, me, foe, mv):
         r = b.rolls(me, foe, mv)
         top = b.damage(me, foe, mv, roll=len(r) - 1) if r else 0
         return int(min(top or 0, foe.hp) * RECOIL[mv.effect]) >= me.hp
-    if mv.effect == "CRASH_ON_MISS" and mv.acc and mv.acc < 100 and me.ability != "Magic Guard":
+    if mv.effect in CRASH and mv.acc and mv.acc < 100 and me.ability != "Magic Guard":
         return me.maxhp // 2 >= me.hp
     return False
 

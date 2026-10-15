@@ -4978,6 +4978,27 @@ def first_impression_checks():
     ok = out[0] > 0 and out[1] == 0
     return [("the readings' First Impression fails after the first turn", ok, f"HP taken by turns out {out}")]
 
+def axe_kick_checks():
+    """Axe Kick in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel's hit confuses a trainer's
+    Bibarel when its chance lands, and its miss costs the player's half the
+    hit's damage, as the planner's dice would have the hit land."""
+    b, foe, bib = b8_battle([("Bibarel", 30, "Simple", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Axe Kick"])], Lucky8)
+    pl.attack(b, bib, fs.move("Axe Kick"), foe, True)
+    confused = bool(foe.confused)
+
+    class Miss(Lucky8):
+        def bad(self, kind, p):
+            return kind == "miss"
+    b2, foe2, bib2 = b8_battle([("Bibarel", 30, "Simple", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Axe Kick"])], Miss)
+    hit = pl.damage_of(b2, bib2, foe2, fs.move("Axe Kick"), False, True)
+    hp = bib2.hp
+    pl.attack(b2, bib2, fs.move("Axe Kick"), foe2, True)
+    crash = (hp - bib2.hp, foe2.hp == foe2.maxhp)
+    ok = confused and crash == (min(hit // 2, foe2.maxhp // 2), True)
+    return [("the readings' Axe Kick confuses and crashes on a miss", ok,
+             f"confused {confused}; crash (HP lost, target untouched) {crash}, the hit's top roll {hit}")]
+
 def main():
     results = []
 
@@ -5534,6 +5555,7 @@ def main():
     results += poltergeist_checks()
     results += belch_checks()
     results += first_impression_checks()
+    results += axe_kick_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

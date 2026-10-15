@@ -5302,6 +5302,25 @@ def check_first_impression(results):
     want = {0: 490, 1: 500}
     results.append(("First Impression fails after its user's first turn out", out == want, str(out)))
 
+def check_axe_kick(results):
+    """Axe Kick (approved 2026-10-14; effect script 293): its hit confuses
+    at the move's chance, never through Shield Dust, and a miss crashes as
+    Jump Kick's does, half the hit's damage, at most half the target's
+    maximum HP."""
+    out = {}
+    for value, ability in ((0.0, None), (0.5, None), (0.0, "Shield Dust")):
+        b, p, foe = battle(["Axe Kick"], ["Tackle"], {("p", "Axe Kick"): [10] * 16}, hp=500)
+        b.rng = FixedDice(value)
+        foe.ability = ability
+        fs.attack(b, p, fs.move("Axe Kick"), foe, True)
+        out[(value, ability)] = bool(foe.confused)
+    b, p, foe = battle(["Axe Kick"], ["Tackle"], {("p", "Axe Kick"): [80] * 16}, hp=500)
+    b.rng = FixedDice(0.95)          # the 90 per cent misses
+    fs.attack(b, p, fs.move("Axe Kick"), foe, True)
+    out["miss"] = (foe.hp, p.hp)
+    want = {(0.0, None): True, (0.5, None): False, (0.0, "Shield Dust"): False, "miss": (500, 460)}
+    results.append(("Axe Kick confuses at its chance and crashes on a miss", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5583,6 +5602,7 @@ def main():
                   check_relic_song, check_clanging_scales, check_matcha_gotcha,
                   check_fell_stinger, check_prevent_escape_hit,
                   check_poltergeist, check_belch, check_first_impression,
+                  check_axe_kick,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

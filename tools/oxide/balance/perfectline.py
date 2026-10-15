@@ -564,8 +564,8 @@ def crash(b, att, dfn, mv):
     from the battle's dice the other way about from a hit's: a crit or a
     high roll is bad luck for the player when its own Pokemon crashes, and
     good luck when the trainer's does."""
-    if mv.effect != "CRASH_ON_MISS" or att.ability == "Magic Guard":
-        return
+    if mv.effect not in fs.CRASH or att.ability == "Magic Guard":
+        return                   # Jump Kick's kind and Axe Kick (fightsim.CRASH)
     mine = player(att)
     rate = fs.crit_rate(b, att, dfn, mv)
     crit = rate > 0 and (b.dice.bad("crit", rate) if mine else b.dice.good(rate, "crit"))
@@ -923,7 +923,7 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         dfn.flinch = True
     if dfn.ability == "Inner Focus" and not fs.mold(att, dfn):
         dfn.flinch = False       # Inner Focus: it never flinches, unless Mold Breaker gets past it
-    if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and chance \
+    if e in fs.CONFUSE_HITS and chance \
             and not fs.confusion_blocked(b, att, dfn, hit=True) and status_lands("confusehit"):
         dfn.confused = b.dice.confusion(dfn.side)
         fs.confusion_berry(dfn, b)          # a Lum Berry cures it at once
