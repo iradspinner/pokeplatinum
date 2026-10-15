@@ -756,16 +756,10 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         # Ooze turns it into damage (fightsim.drain).
         gain = int(dealt * fs.DRAIN[e])
         fs.drain(b, att, dfn, int(gain * 1.3) if att.item == "Big Root" else gain)
-    if e in ("EAT_BERRY",) and dfn.item and "Berry" in dfn.item:
-        # Bug Bite and Pluck eat the target's berry and take its effect.
-        berry, dfn.item = dfn.item, None
-        att.ate_berry = True             # the attacker has eaten it (Belch)
-        if berry == "Sitrus Berry":
-            fs.heal(att, att.maxhp // 4)
-        elif berry == "Oran Berry":
-            fs.heal(att, 10)
-        elif berry in fs.PINCH_BERRIES:
-            fs.change_stages(att, {fs.PINCH_BERRIES[berry]: 1})
+    if e == "EAT_BERRY" and dealt > 0:
+        # Bug Bite and Pluck eat the target's Berry and take its effect
+        # (fightsim.pluck), a Starf Berry's stat on the battle's dice.
+        fs.pluck(b, att, dfn, lambda kind, n: b.dice.choice(kind, n))
     if e == "RECHARGE_AFTER":
         att.recharge = True
     if e in fs.SELF_KO or e == "FINAL_GAMBIT":

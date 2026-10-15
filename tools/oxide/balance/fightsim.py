@@ -2617,6 +2617,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     # into damage (drain).
     if e in DRAIN:
         drain(b, att, dfn, int(dealt * DRAIN[e]))
+    if e == "EAT_BERRY" and dealt > 0:
+        pluck(b, att, dfn, lambda kind, n: b.rng.randrange(n))
     if e == "RECHARGE_AFTER":
         att.recharge = True
     if e in SELF_KO or e == "FINAL_GAMBIT":
@@ -2934,6 +2936,64 @@ def swap_items(att, dfn, mv):
         reveal(dfn)
         return
     att.item, dfn.item = dfn.item, att.item
+
+
+def pluck(b, att, dfn, pick):
+    """Bug Bite and Pluck (effect script 224, subscript_pluck, BtlCmd_TryPluck
+    and BattleSystem_PluckBerry) once their hit has struck the target itself,
+    a knockout included: the user eats the target's Berry and takes its
+    effect (eat_berry). The target's Sticky Hold keeps it (named; Mold
+    Breaker gets past it); any other item stays where it is. The Berry is
+    gone from the target and kept for its Recycle (RemoveItem), and the user
+    has eaten a Berry (BattleScript_RecordBerryEaten, for Belch); a Klutz
+    user eats it for nothing. Until 2026-10-15 only a Sitrus, an Oran or a
+    pinch Berry did anything, and Sticky Hold was ignored (Ian approved the
+    fix)."""
+    berry = dfn.item
+    if not berry or not berry.endswith("Berry"):
+        return
+    if dfn.ability == "Sticky Hold" and not mold(att, dfn):
+        reveal(dfn)
+        return
+    consume(dfn, eaten=False)
+    att.ate_berry = True
+    if att.ability != "Klutz":
+        eat_berry(att, berry, pick)
+
+
+def eat_berry(mon, berry, pick):
+    """A Berry's effect on the Pokemon that eats another's (PluckBerry's
+    pluck effects, from the item data): an Oran Berry 10 HP and a Sitrus
+    Berry a quarter; a cure Berry its status, a Persim Berry confusion and a
+    Lum Berry both; a pinch Berry its stat a stage and a Starf Berry a
+    stat chosen at random two, whatever the HP; a Lansat Berry Focus
+    Energy's critical rate; a Leppa Berry 10 PP to the move missing most.
+    The resist Berries and the rest have no effect when eaten so."""
+    if berry == "Oran Berry":
+        heal(mon, 10)
+    elif berry == "Sitrus Berry":
+        heal(mon, engine_divide(mon.maxhp * 25, 100))
+    elif berry == "Lum Berry":
+        mon.status, mon.sleep, mon.toxic, mon.confused = None, 0, 0, 0
+    elif berry == "Persim Berry":
+        mon.confused = 0
+    elif berry in CURE_BERRY:
+        if mon.status in CURE_BERRY[berry]:
+            mon.status, mon.sleep, mon.toxic = None, 0, 0
+    elif berry in PINCH_BERRIES:
+        if mon.stages[PINCH_BERRIES[berry]] < 6:
+            change_stages(mon, {PINCH_BERRIES[berry]: 1})
+    elif berry == "Starf Berry":
+        room = [s for s in ("atk", "def", "spa", "spd", "spe") if mon.stages[s] < 6]
+        if room:
+            change_stages(mon, {room[pick("starf", len(room))]: 2})
+    elif berry == "Lansat Berry":
+        mon.crit_stage = max(mon.crit_stage, 2)
+    elif berry == "Leppa Berry":
+        gaps = [(m.pp - mon.pp.get(m.name, m.pp), m.name) for m in mon.moves]
+        gap, name = max(gaps, default=(0, None))
+        if gap > 0:
+            mon.pp[name] += min(10, gap)
 
 
 def recycle(att):

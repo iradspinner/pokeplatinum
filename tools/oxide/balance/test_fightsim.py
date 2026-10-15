@@ -2220,6 +2220,40 @@ def check_swap_items(results):
                     f"(user's item, target's item) {got}"))
 
 
+def check_pluck(results):
+    """Bug Bite and Pluck (approved 2026-10-14; effect script 224,
+    BattleSystem_PluckBerry): the user eats the target's Berry and takes its
+    effect: a Sitrus Berry a quarter of its HP, a Lum Berry its paralysis
+    and confusion, a Chesto Berry its sleep, a Liechi Berry a stage of
+    Attack at full HP; a resist Berry is eaten for nothing; the Berry is
+    then the target's to Recycle. Sticky Hold keeps the Berry (Mold Breaker
+    gets past it), a Klutz user eats it for nothing, a Substitute's hit
+    takes nothing and a Leftovers stays put."""
+    def bite(berry, status=None, ability=None, foe_ability=None, sub=0, confused=0):
+        b, p, foe = battle(["Bug Bite"], ["Tackle"], {("p", "Bug Bite"): [10] * 16})
+        b.rng = FixedDice(0.5)
+        foe.item, foe.ability, foe.sub, p.ability = berry, foe_ability, sub, ability
+        p.status, p.sleep, p.confused = status, 3 if status == "slp" else 0, confused
+        if berry != "Liechi Berry":
+            p.hp = 50
+        fs.attack(b, p, fs.move("Bug Bite"), foe, True)
+        return p.hp, p.status, p.confused, p.stages["atk"], foe.item, foe.recycle
+    got = {"Sitrus": bite("Sitrus Berry"), "Lum": bite("Lum Berry", "par", confused=3),
+           "Chesto": bite("Chesto Berry", "slp"), "Liechi": bite("Liechi Berry"), "Occa": bite("Occa Berry"),
+           "Sticky Hold": bite("Sitrus Berry", foe_ability="Sticky Hold"),
+           "Sticky Hold, Mold Breaker": bite("Sitrus Berry", ability="Mold Breaker", foe_ability="Sticky Hold"),
+           "Klutz": bite("Sitrus Berry", ability="Klutz"), "a Substitute": bite("Sitrus Berry", sub=30),
+           "Leftovers": bite("Leftovers")}
+    want = {"Sitrus": (75, None, 0, 0, None, "Sitrus Berry"), "Lum": (50, None, 0, 0, None, "Lum Berry"),
+            "Chesto": (50, None, 0, 0, None, "Chesto Berry"), "Liechi": (100, None, 0, 1, None, "Liechi Berry"),
+            "Occa": (50, None, 0, 0, None, "Occa Berry"), "Sticky Hold": (50, None, 0, 0, "Sitrus Berry", None),
+            "Sticky Hold, Mold Breaker": (75, None, 0, 0, None, "Sitrus Berry"),
+            "Klutz": (50, None, 0, 0, None, "Sitrus Berry"), "a Substitute": (50, None, 0, 0, "Sitrus Berry", None),
+            "Leftovers": (50, None, 0, 0, "Leftovers", None)}
+    results.append(("Bug Bite eats the target's Berry with that Berry's own effect", got == want,
+                    f"(user's HP, status, confusion, Attack stage; target's item, its Recycle) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3511,6 +3545,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
+                  check_pluck,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,

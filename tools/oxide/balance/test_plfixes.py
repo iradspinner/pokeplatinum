@@ -3322,6 +3322,27 @@ def swap_items_checks():
              f"(items after the Rotom's Trick, after the Alakazam's, HP the Leftovers gave back) {got}")]
 
 
+def pluck_checks():
+    """Pluck in the readings' battle on the calculator's real rows (approved
+    2026-10-14): the player's poisoned Staravia plucks a trainer's
+    Roserade's Lum Berry and is cured; a trainer's Gastrodon's Sticky Hold
+    keeps its Sitrus Berry from the same Pluck."""
+    from .test_fightai import battle
+    out = {}
+    for label, boss in (("Lum Berry", ("Roserade", 30, "Natural Cure", ["Tackle"], "Lum Berry")),
+                        ("Sticky Hold", ("Gastrodon", 30, "Sticky Hold", ["Tackle"], "Sitrus Berry"))):
+        b = battle([boss], [("Staravia", 30, "Intimidate", ["Pluck"])])
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        foe, star = b.b.cur(), b.p.cur()
+        foe.item = boss[4]
+        star.status = "psn"
+        pl.use_move(b, star, fs.move("Pluck"), foe, True)
+        out[label] = (star.status, foe.item, foe.hp < foe.maxhp)
+    ok = out == {"Lum Berry": (None, None, True), "Sticky Hold": ("psn", "Sitrus Berry", True)}
+    return [("the readings' Pluck takes a Lum Berry's cure and meets Sticky Hold", ok,
+             f"(Staravia's status, the target's item, hit) {out}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3905,6 +3926,7 @@ def main():
     results += bind_checks()
     results += steal_item_checks()
     results += swap_items_checks()
+    results += pluck_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)
