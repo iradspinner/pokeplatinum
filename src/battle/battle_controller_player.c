@@ -4072,6 +4072,7 @@ enum AfterMoveEffectState {
     AFTER_MOVE_EFFECT_DEFENDER_ITEM,
     AFTER_MOVE_EFFECT_TRIGGER_ITEMS_ON_HIT,
     AFTER_MOVE_EFFECT_THAW_DEFENDER,
+    AFTER_MOVE_EFFECT_FORCE_SWITCH_HIT, // Oxide: Dragon Tail and Circle Throw
     AFTER_MOVE_EFFECT_SWITCH_ITEMS, // Oxide, element 7
     AFTER_MOVE_EFFECT_MIRROR_HERB, // Oxide, element 7
     AFTER_MOVE_EFFECT_HELD_ITEM_STATUS,
@@ -4165,6 +4166,31 @@ static void BattleControllerPlayer_AfterMoveEffects(BattleSystem *battleSys, Bat
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
             LOAD_SUBSEQ(subscript_thaw_out);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+            return;
+        }
+
+    // Oxide: Dragon Tail and Circle Throw drag their target out here, once
+    // everything the hit sets off in it has answered: its ability (Rough
+    // Skin, Iron Barbs and the rest, in the after-message states), its held
+    // item and its on-hit item (Rocky Helmet, the Jaboca Berry and the rest,
+    // above), as in the later games. Run as a side effect of the hit, the
+    // drag came before the ability, so the Pokemon dragged in answered in
+    // the target's place. It comes before the Red Card and the Eject Button,
+    // so a target dragged out leaves them unused, as in the later games, and
+    // the Pokemon dragged in was not hit, so its own stay unused too
+    // (BtlCmd_SwitchAndUpdateMon). Only the last hit of a multi-hit move
+    // would drag, as the Red Card and the Eject Button wait for it.
+    case AFTER_MOVE_EFFECT_FORCE_SWITCH_HIT:
+        battleCtx->afterMoveEffectState++;
+
+        if (CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_FORCE_SWITCH_HIT
+            && battleCtx->defender != BATTLER_NONE
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->multiHitNumHits == 0 || battleCtx->multiHitCounter <= 1)) {
+            LOAD_SUBSEQ(subscript_force_switch_hit);
             battleCtx->commandNext = battleCtx->command;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 

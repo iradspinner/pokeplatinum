@@ -129,7 +129,11 @@ check() {
     while IFS= read -r line; do
         warn "${line#gate warning: }"
     done < <(printf '%s\n' "$out" | grep '^gate warning: ')
-    if [ $rc -eq 0 ] && { [ -z "${CHECK_EXPECT:-}" ] || printf '%s' "$out" | grep -q -- "$CHECK_EXPECT"; }; then
+    # The expected text is looked for in a here-string, not through a pipe:
+    # under pipefail, grep -q exiting at its first match kills a printf still
+    # writing an output larger than the pipe's 64 KB, and the check failed on
+    # a test that passed (test_fightsim's 65,892 bytes, 2026-10-15).
+    if [ $rc -eq 0 ] && { [ -z "${CHECK_EXPECT:-}" ] || grep -q -- "$CHECK_EXPECT" <<< "$out"; }; then
         ok "$label"
     else
         bad "$label (exit $rc${CHECK_EXPECT:+, expected \"$CHECK_EXPECT\"})"
@@ -418,7 +422,7 @@ if ! needed tools/oxide/import_base_rom.py; then
 elif [ $REFS -eq 1 ]; then
 out="$("$PY" tools/oxide/import_base_rom.py --base "$BASE" --vanilla "$VANILLA" --dry-run 2>&1 | tail -n 1)"
 printf '      %s\n' "$out"
-if printf '%s' "$out" | grep -q "would change" && ! printf '%s' "$out" | grep -Eq "': [1-9]"; then
+if grep -q "would change" <<< "$out" && ! grep -Eq "': [1-9]" <<< "$out"; then
     ok "import_base_rom --dry-run, every count 0"
 else
     bad "import_base_rom --dry-run reports something left to import"

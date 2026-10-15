@@ -486,6 +486,14 @@ _KAIZO_DEBUFF_PP = ("the stat-lowering status moves take Kaizo's low PP "
 for _move in ("screech", "charm", "sweet_scent", "feather_dance", "fake_tears",
               "metal_sound", "tickle", "captivate"):
     MOVES_DIVERGED.setdefault(_move, {})["pp"] = _KAIZO_DEBUFF_PP
+# The rest of them at 5 PP and Defog at 1, Ian's values of 2026-10-15 for his
+# ruling of 2026-10-02 (the tracker's "Stat-lowering status moves into the PP
+# ruling"); the natives only, since the importer reads no move past 470.
+_RULING_DEBUFF_PP = ("the rest of the stat-lowering status moves at 5 PP and Defog at 1 "
+                     "(Ian's values of 2026-10-15 for his ruling of 2026-10-02)")
+for _move in ("growl", "string_shot", "smoke_screen", "kinesis", "flash", "cotton_spore",
+              "scary_face", "defog"):
+    MOVES_DIVERGED.setdefault(_move, {})["pp"] = _RULING_DEBUFF_PP
 _MODERN_PRIORITY = "the modern priority, answer 4 of the Kaizo comparison (Ian, 2026-09-27)"
 for _move in ("protect", "detect", "endure", "extreme_speed", "fake_out", "follow_me"):
     MOVES_DIVERGED.setdefault(_move, {})["priority"] = _MODERN_PRIORITY

@@ -19,7 +19,6 @@
     "range": "RANGE_ALLY",
     "priority": 0,
     "flags": [
-        "MOVE_FLAG_CAN_MAGIC_COAT",
         "MOVE_FLAG_CAN_MIRROR_MOVE"
     ],
     "contest": {

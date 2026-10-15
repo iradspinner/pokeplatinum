@@ -100,7 +100,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Talk to the kit NPC: the top menu responds to the D-pad and A, fits the
   screen, and its entry before Warp reads "Meister’s trade", not "See you
   next week". The Warp menu's last entry reads "Gauntlet: Victory Road". Move
-  sets page 3 ends with "More sets", which opens sets 82 to 86. The Items
+  sets page 3 ends with "More sets", which opens sets 82 to 87. The Items
   menu's Ice Stone, abilities, Mints and Caps, and TMs entries, and the
   Meister's trade, each print their own line.
 - [ ] **Element 4, the move sets.** Sets 1 to 22 passed in rounds 1 to 3
@@ -306,6 +306,20 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   is followed by "The wild RATTATA was burned!" and the burn icon on its
   health box; a later Tackle into it brings only "MEW protected itself!",
   as does a Swift. Before the change it was a plain Protect.
+- [ ] **Dragon Tail drags after the hit is answered** (set 87 on the
+  move-set menu's fourth page, `overseer-engine-dragon-tail`; Ian,
+  2026-10-15). Switch the set's Skarmory in on the first turn. The wild
+  Chansey's Dragon Tail or Circle Throw hits it, then "SKARMORY's Rough Skin
+  hurt the wild CHANSEY!" and "The wild CHANSEY is hurt by SKARMORY's Rocky
+  Helmet!" appear, and only then is Skarmory dragged out, which in a wild
+  battle ends it. Before the change the drag came first and the battle
+  faded out straight after the hit. In normal play (no trainer carries
+  either move, so with your own Jangmo-o line from 21, Turtonator from 24,
+  Goomy line from 28 or Clobbopus line from 30): in a trainer battle, a foe
+  with Rough Skin or Iron Barbs, or holding a Rocky Helmet, hurts your user
+  before it is dragged out. The foe dragged in says nothing of its own, no
+  Rough Skin and no item, and a dragged-out foe's Red Card or Eject Button
+  is never used. Hiker Daniel's Sandshrew on Route 205 South has Rough Skin.
 - [ ] **The move reworks, for normal play** (the kit cannot run them):
   Petal Dance hitting both foes in a double battle; Dig still digging out of
   a cave from the field menu; a trainer's Hyper Beam, Giga Impact or Outrage
