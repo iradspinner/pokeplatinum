@@ -1477,6 +1477,42 @@ def check_wandering_spirit(results):
                     f"moves three turns {loafs}"))
 
 
+def check_color_change(results):
+    """Color Change (approved 2026-10-14; BattleSystem_TriggerAbilityOnHit,
+    subscript_color_change): a damaging hit makes its holder the move's type
+    as the battle records it, named, and its rows are then its twin's of
+    that type; Weather Ball in rain makes it Water, and a Normalize
+    attacker's Water Gun makes it Normal. Nothing for a move of its own
+    type, a status move, Struggle, a hit Sheer Force boosts, or the hit
+    that knocks it out; leaving brings its own type back."""
+    moves = ["Water Gun", "Tackle", "Ember", "Weather Ball", "Struggle", "Thunder Wave"]
+
+    def hit(move, ability=None, weather=None, hp=100, types=("Fire",)):
+        b, p, foe = battle(moves, ["Tackle"], {("p", m): [10] * 16 for m in moves}, b_types=types)
+        b.st["first_battle"] = True
+        p.ability, foe.ability, b.weather, foe.hp = ability, "Color Change", weather, hp
+        b.st["form_twin"] = {"b0.0": {"ability": None, "twins": {(("Water",), None): "b0.0#fmWater@"}}}
+        b.st["rows"][(None, "p0", "b0.0#fmWater@")] = {"moves": {"Water Gun": {"rolls": [5] * 16}}}
+        b.st["rows"][(None, "b0.0#fmWater@", "p0")] = {"moves": {"Tackle": {"rolls": [10] * 16}}}
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return b, p, foe
+    b, p, foe = hit("Water Gun")
+    water = (list(foe.types), foe.revealed, b.damage(p, foe, fs.move("Water Gun"), roll=0))
+    foe.reset_volatile()
+    back = list(foe.types)
+    got = {"Weather Ball in rain": hit("Weather Ball", weather="Rain")[2].types,
+           "Normalize's Water Gun": hit("Water Gun", ability="Normalize")[2].types,
+           "Ember": hit("Ember")[2].types, "Thunder Wave": hit("Thunder Wave")[2].types,
+           "Struggle": hit("Struggle")[2].types, "Sheer Force's Ember": hit("Ember", ability="Sheer Force",
+                                                                            types=("Normal",))[2].types,
+           "the knockout": hit("Water Gun", hp=5)[2].types}
+    want = {"Weather Ball in rain": ["Water"], "Normalize's Water Gun": ["Normal"], "Ember": ["Fire"],
+            "Thunder Wave": ["Fire"], "Struggle": ["Fire"], "Sheer Force's Ember": ["Normal"], "the knockout": ["Fire"]}
+    ok = water == (["Water"], "Color Change", 5) and back == ["Fire"] and got == want
+    results.append(("Color Change takes the type of the move that hit its holder", ok,
+                    f"after Water Gun (types, named, Water Gun again) {water}; after leaving {back}; {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2761,7 +2797,7 @@ def main():
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_form_twins, check_trace, check_mummy,
-                  check_wandering_spirit, check_magic_guard, check_liquid_ooze,
+                  check_wandering_spirit, check_color_change, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

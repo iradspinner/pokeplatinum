@@ -2839,7 +2839,39 @@ def hit_ability(b, att, dfn, mv, chance):
             att.disabled, att.disabled_turns = mv.name, 3
             return True
         return False
+    if a == "Color Change":
+        return color_change(b, att, dfn, mv)
     return False
+
+
+def color_change(b, att, dfn, mv):
+    """Color Change (BattleSystem_TriggerAbilityOnHit, subscript_color_change):
+    a move with power that did damage to its holder, Struggle aside and not
+    one Sheer Force boosts, makes the holder that move's type alone while it
+    stands and is not of that type already, the type as the battle records
+    it (move_type_used: Weather Ball's weather's, Hidden Power's and Natural
+    Gift's own, a Normalize, Pixilate or Liquid Voice user's); the message
+    names the ability. Its rows then come from its twin of that type
+    (form_key) until it leaves. Whether it acted. Until 2026-10-14 Color
+    Change did nothing (Ian approved the fix)."""
+    t = move_type_used(att.ability, mv, att.ivs, att.item or att.recycle, b.weather)
+    if (not dfn.alive() or not mv.power or mv.effect == "STRUGGLE" or sheer_force_active(att, mv)
+            or t in dfn.types):
+        return False
+    set_types(dfn, [t])
+    reveal(dfn)
+    return True
+
+
+@form_change
+def _color_changed(ff):
+    """Color Change: its holder can become the type of any damaging move its
+    foes can hit it with (FormFight.hit_types) but its own."""
+    for k in ff.keys():
+        if ff.ability(k) == "Color Change":
+            own = set(ff.types(k))
+            for t in sorted({t for f in ff.foes(k) for t in ff.hit_types(f)} - own):
+                yield k, [t], ff.ability(k)
 
 
 def mummy(b, att, dfn):

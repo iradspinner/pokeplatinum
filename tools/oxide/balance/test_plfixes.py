@@ -2720,6 +2720,30 @@ def wandering_spirit_checks():
              f"Shadow Claw) {after}")]
 
 
+def color_change_checks():
+    """Color Change on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows Artist William's Kecleon on a twin of
+    each type its foes' moves hit with (Water and Electric here); after a
+    Squirtle's Water Gun it is a Water type, so a Pikachu's Thunderbolt hits
+    it twice as hard as before."""
+    from .test_fightai import battle
+    b = battle([("Kecleon", 32, "Color Change", ["Slash", "Shadow Claw"])],
+               [("Squirtle", 32, "Torrent", ["Water Gun"]), ("Pikachu", 32, "Static", ["Thunderbolt"])])
+    kec = b.b.cur()
+    squirtle, pika = b.p.mons
+    bolt = fs.move("Thunderbolt")
+    twins = sorted(((b.st.get("form_twin") or {}).get(kec.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, pika, kec, bolt, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    kec.hp = kec.maxhp * 10
+    pl.use_move(b, squirtle, fs.move("Water Gun"), kec, True)
+    after = (list(kec.types), pl.damage_of(b, pika, kec, bolt, False, True))
+    ok = (twins == [(("Electric",), None), (("Water",), None)] and after[0] == ["Water"]
+          and abs(after[1] - 2 * before) <= 2)
+    return [("Color Change: Kecleon turns Water after Water Gun, and Thunderbolt doubles on its twin's rows", ok,
+             f"twins {twins}; Thunderbolt before {before}; after Water Gun (types, Thunderbolt) {after}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3233,6 +3257,7 @@ def main():
     results += trace_checks()
     results += mummy_checks()
     results += wandering_spirit_checks()
+    results += color_change_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
