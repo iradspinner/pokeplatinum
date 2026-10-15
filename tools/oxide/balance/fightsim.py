@@ -438,6 +438,10 @@ class Mon:
     # move into its slot (mimickedMoveSlot), brought back as it leaves;
     # None while it has copied nothing.
     mimicked = None
+    # Magic Coat's turn flag (turnFlags.magicCoat): the first move with
+    # MOVE_FLAG_CAN_MAGIC_COAT aimed at it this turn is turned back on its
+    # user (coat_bounces); gone with the turn.
+    magic_coat = False
     # Throat Chop's hold on its target's sound moves (OXIDE_MON_THROAT_CHOP):
     # 2 when the hit lands, one off at each turn's end, so it lasts the rest
     # of this turn and all of the next; cleared when it leaves.
@@ -658,6 +662,9 @@ class Battle:
     last_move = None
     # The item a Fling has just thrown, for its effect after the hit.
     flung = None
+    # A move Magic Coat is turning back is running (coat_bounces), so it is
+    # not turned again.
+    reflecting = False
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -3625,6 +3632,22 @@ def acupressure(att, pick):
         change_stages(att, {room[pick(len(room)) if len(room) > 1 else 0]: 2})
 
 
+def coat_bounces(b, att, mv, dfn):
+    """Magic Coat (effect script 183, TrySetMagicCoat, and
+    BattleControllerPlayer_MoveStolen before the move's own checks): a move
+    with MOVE_FLAG_CAN_MAGIC_COAT aimed at a foe that used Magic Coat this
+    turn is turned back on its user, once, the flag spent; the move turned
+    back is not turned again. A move whose defender is its own user, or
+    that aims at its own side or the field, is not aimed at the coat.
+    Whether this move is turned back. Until 2026-10-15 Magic Coat did
+    nothing (Ian approved the fix)."""
+    if (not mv.reflectable or b.reflecting or dfn is att or dfn.side == att.side or not dfn.alive()
+            or mv.range in OWN_RANGES or mv.range in ("USER_SIDE", "FIELD", "ALLY", "USER_OR_ALLY")):
+        return False
+    dfn.magic_coat = False
+    return True
+
+
 def teeter_dance_others(b, att, mv, dfn, first):
     """Teeter Dance (effect script 199, the confusion subscript on each
     target) in a double battle, where its range (ALL_ADJACENT) reaches every
@@ -5417,6 +5440,13 @@ def weather_move_fails(b, e):
 
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
+    if dfn.magic_coat and coat_bounces(b, att, mv, dfn):
+        b.reflecting = True              # Magic Coat turns it back on its user (coat_bounces)
+        try:
+            status_move(b, dfn, mv, att, first)
+        finally:
+            b.reflecting = False
+        return
     if e == "RESTORE_HP_EVERY_TURN":
         att.aqua_ring = True             # Aqua Ring
         return
@@ -5556,6 +5586,8 @@ def status_move(b, att, mv, dfn, first):
             m.stages = dict.fromkeys(STAGE_KEYS, 0)
     elif e == "HEAL_STATUS":
         refresh(att)
+    elif e == "APPLY_MAGIC_COAT":
+        att.magic_coat = not moves_last(b, first)     # it fails when no battler acts after its user
     elif e == "RANDOM_STAT_UP_2":
         acupressure(att, b.rng.randrange)
     elif e == "CURE_PARTY_STATUS":
@@ -5927,6 +5959,8 @@ def _end_of_turn(b):
         b.trick_room -= 1
     for m in order:
         m.roosting = False          # a turn flag, gone with the turn
+        if m.magic_coat:
+            m.magic_coat = False    # Magic Coat's turn flag too
         if m.alive():
             m.protecting = False
             m.enduring = False

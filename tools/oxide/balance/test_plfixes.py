@@ -4199,6 +4199,25 @@ def smelling_salts_checks():
              f"healthy {plain}, paralysed {salted}, the status after {bib.status}")]
 
 
+def magic_coat_checks():
+    """Magic Coat in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Spoink's Magic Coat turns the
+    player's Thunder Wave back, paralysing the player's Bibarel; a
+    trainer's Spoink that has not used it is paralysed."""
+    from .test_fightai import battle
+    out = {}
+    for coat in (True, False):
+        b = battle([("Spoink", 30, "Thick Fat", ["Magic Coat", "Psybeam"])], [("Bibarel", 30, "Unaware", ["Thunder Wave"])])
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        spo, bib = b.b.cur(), b.p.cur()
+        if coat:
+            pl.status_move(b, spo, fs.move("Magic Coat"), bib, True)
+        pl.status_move(b, bib, fs.move("Thunder Wave"), spo, False)
+        out["coat" if coat else "no coat"] = (bib.status, spo.status)
+    ok = out == {"coat": ("par", None), "no coat": (None, "par")}
+    return [("the readings' Magic Coat turns a status move back", ok, f"(Bibarel, Spoink) {out}")]
+
+
 def main():
     results = []
 
@@ -4712,6 +4731,7 @@ def main():
     results += trump_card_checks()
     results += teeter_dance_checks()
     results += smelling_salts_checks()
+    results += magic_coat_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

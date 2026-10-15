@@ -913,6 +913,13 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
 
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
+    if dfn.magic_coat and fs.coat_bounces(b, att, mv, dfn):
+        b.reflecting = True              # Magic Coat turns it back on its user (fightsim.coat_bounces)
+        try:
+            status_move(b, dfn, mv, att, first)
+        finally:
+            b.reflecting = False
+        return
     if e == "RESTORE_HP_EVERY_TURN":
         att.aqua_ring = True             # Aqua Ring (fightsim heals it at the turn's end)
         return
@@ -1066,6 +1073,8 @@ def status_move(b, att, mv, dfn, first):
             m.stages = dict.fromkeys(fs.STAGE_KEYS, 0)
     elif e == "HEAL_STATUS":
         fs.refresh(att)                  # Refresh cures its user's own poison, burn or paralysis
+    elif e == "APPLY_MAGIC_COAT":
+        att.magic_coat = not fs.moves_last(b, first)  # this turn's coat, unless no battler acts after it
     elif e == "RANDOM_STAT_UP_2":
         fs.acupressure(att, lambda n: b.dice.choice("acupressure", n))     # two stages of a stat drawn evenly
     elif e == "CURE_PARTY_STATUS":

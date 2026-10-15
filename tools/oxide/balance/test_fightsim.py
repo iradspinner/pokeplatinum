@@ -4297,6 +4297,39 @@ def check_smelling_salts(results):
                     f"(damage, the target's status after) {out}"))
 
 
+def check_magic_coat(results):
+    """Magic Coat (approved 2026-10-14; effect script 183, TrySetMagicCoat,
+    BattleControllerPlayer_MoveStolen): used before its foe moves, it turns
+    the foe's Thunder Wave back on the foe, once; a second such move that
+    turn lands; a move without the flag (Taunt) and one aimed at its user's
+    own self are not turned; used last it fails; the turn's end ends it."""
+    out = {}
+    b, p, foe = battle(["Thunder Wave", "Taunt", "Power Shift"], ["Magic Coat"], {})
+    b.rng = FixedDice(0.0)
+    fs.status_move(b, foe, fs.move("Magic Coat"), p, True)
+    out["set"] = foe.magic_coat
+    fs.status_move(b, p, fs.move("Power Shift"), foe, False)
+    fs.status_move(b, p, fs.move("Taunt"), foe, False)
+    out["Power Shift and Taunt (coat kept, foe taunted)"] = (foe.magic_coat, bool(foe.taunt))
+    fs.status_move(b, p, fs.move("Thunder Wave"), foe, False)
+    out["Thunder Wave turned (user, foe)"] = (p.status, foe.status)
+    p.status = None
+    fs.status_move(b, p, fs.move("Thunder Wave"), foe, False)
+    out["a second Thunder Wave (user, foe)"] = (p.status, foe.status)
+    b2, p2, foe2 = battle(["Thunder Wave"], ["Magic Coat"], {})
+    b2.rng = FixedDice(0.0)
+    fs.status_move(b2, foe2, fs.move("Magic Coat"), p2, False)
+    out["used last"] = foe2.magic_coat
+    b3, p3, foe3 = battle(["Thunder Wave"], ["Magic Coat"], {})
+    fs.status_move(b3, foe3, fs.move("Magic Coat"), p3, True)
+    fs.end_of_turn(b3)
+    out["after the turn's end"] = foe3.magic_coat
+    want = {"set": True, "Power Shift and Taunt (coat kept, foe taunted)": (True, True),
+            "Thunder Wave turned (user, foe)": ("par", None), "a second Thunder Wave (user, foe)": (None, "par"),
+            "used last": False, "after the turn's end": False}
+    results.append(("Magic Coat turns a reflectable status move back once", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4563,7 +4596,7 @@ def main():
                   check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
                   check_trainer_frustration, check_secret_power, check_snore,
                   check_raise_speed_hit, check_trump_card,
-                  check_teeter_dance, check_smelling_salts,
+                  check_teeter_dance, check_smelling_salts, check_magic_coat,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
