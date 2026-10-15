@@ -1049,7 +1049,9 @@ def status_move(b, att, mv, dfn, first):
     elif e == "RESET_STAT_CHANGES":
         for m in (att, dfn):
             m.stages = dict.fromkeys(fs.STAGE_KEYS, 0)
-    elif e in ("HEAL_STATUS", "CURE_PARTY_STATUS"):
+    elif e == "HEAL_STATUS":
+        fs.refresh(att)                  # Refresh cures its user's own poison, burn or paralysis
+    elif e == "CURE_PARTY_STATUS":
         for m in own_side.mons:
             m.status = None
     elif e == "PREVENT_STATUS":

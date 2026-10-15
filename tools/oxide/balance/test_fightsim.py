@@ -4052,6 +4052,25 @@ def check_burning_bulwark(results):
                     f"(stopped, the attacker's status) {got}"))
 
 
+def check_refresh(results):
+    """Refresh (approved 2026-10-14; effect script 193,
+    subscript_recover_psn_prz_brn): it cures its user's own poison, burn or
+    paralysis, the toxic count with it, and nothing else, so a sleeping
+    teammate on the bench sleeps on, and a sleeping or frozen user stays so."""
+    out = {}
+    for status in ("par", "tox", "slp", "frz"):
+        b = field({"p0": (("Normal",), ["Refresh"]), "p1": (("Normal",), ["Tackle"]),
+                   "b0.0": (("Normal",), ["Tackle"])}, {})
+        p, mate, foe = b.p.mons[0], b.p.mons[1], b.b.cur()
+        p.status, p.toxic = status, 3 if status == "tox" else 0
+        mate.status = "slp"
+        fs.status_move(b, p, fs.move("Refresh"), foe, True)
+        out[status] = (p.status, p.toxic, mate.status)
+    want = {"par": (None, 0, "slp"), "tox": (None, 0, "slp"), "slp": ("slp", 0, "slp"), "frz": ("frz", 0, "slp")}
+    results.append(("Refresh cures its user's poison, burn or paralysis alone", out == want,
+                    f"(the user's status, toxic count, the benched teammate's) {out}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4315,6 +4334,7 @@ def main():
                   check_ghost_untrapped, check_soundproof_status, check_item_flinch_blocked,
                   check_black_sludge, check_water_bubble, check_eerie_spell,
                   check_burning_bulwark,
+                  check_refresh,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

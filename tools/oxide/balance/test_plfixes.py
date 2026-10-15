@@ -3983,6 +3983,22 @@ def sleep_checks():
     return out
 
 
+def refresh_checks():
+    """Refresh in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's paralysed Altaria's Refresh cures
+    its paralysis, and its sleeping Swablu on the bench sleeps on, where
+    before the Swablu woke too."""
+    from .test_fightai import battle
+    b = battle([("Altaria", 40, "Natural Cure", ["Refresh", "Peck"]), ("Swablu", 40, "Natural Cure", ["Peck"])],
+               [("Bibarel", 40, "Simple", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    alt, swa, bib = b.b.mons[0], b.b.mons[1], b.p.cur()
+    alt.status, swa.status, swa.sleep = "par", "slp", 3
+    pl.status_move(b, alt, fs.move("Refresh"), bib, True)
+    ok = alt.status is None and swa.status == "slp"
+    return [("the readings' Refresh cures only its user", ok, f"Altaria {alt.status}, Swablu {swa.status}")]
+
+
 def main():
     results = []
 
@@ -4485,6 +4501,7 @@ def main():
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()
+    results += refresh_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

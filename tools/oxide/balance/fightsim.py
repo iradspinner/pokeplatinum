@@ -3518,6 +3518,17 @@ def nightmare(att, dfn, mv):
         dfn.nightmare = True
 
 
+def refresh(att):
+    """Refresh (effect script 193, subscript_recover_psn_prz_brn): its user's
+    own poison, bad poison, burn or paralysis is cured
+    (MON_CONDITION_FACADE_BOOST, the whole status word cleared, the toxic
+    count with it), and on sleep, freeze or no status it fails; nobody else
+    is touched. Until 2026-10-15 it shared Heal Bell's branch and cured the
+    user's whole side, sleep and freeze included (Ian approved the fix)."""
+    if att.status in ("psn", "tox", "brn", "par"):
+        att.status, att.toxic = None, 0
+
+
 def consume(mon, eaten=True):
     """A held item used up (BtlCmd_RemoveItem): gone, and kept for Recycle.
     The engine keeps one per battle position, so a Pokemon could recycle
@@ -5354,7 +5365,9 @@ def status_move(b, att, mv, dfn, first):
     elif e == "RESET_STAT_CHANGES":
         for m in (att, dfn):
             m.stages = dict.fromkeys(STAGE_KEYS, 0)
-    elif e in ("HEAL_STATUS", "CURE_PARTY_STATUS"):
+    elif e == "HEAL_STATUS":
+        refresh(att)
+    elif e == "CURE_PARTY_STATUS":
         for m in own_side.mons:
             m.status = None
     elif e == "PREVENT_STATUS":
