@@ -3105,6 +3105,28 @@ def speed_down_hit_checks():
              f"(hit, Hariyama's Speed stage, Staraptor's) {got}")]
 
 
+def bounce_paralysis_checks():
+    """Bounce in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Lopunny takes Bounce's first turn and
+    comes down on a Bibarel, 300 times on the game's odds; about 30% of the
+    hits paralyse it (the window is 20% to 40%)."""
+    from .test_fightai import battle
+    b0 = battle([("Lopunny", 40, "Limber", ["Bounce"])], [("Bibarel", 40, "Unaware", ["Tackle"])])
+    landed = par = 0
+    for seed in range(300):
+        b = pl.clone_battle(b0)
+        b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+        lop, bib = b.b.cur(), b.p.cur()
+        pl.use_move(b, lop, fs.move("Bounce"), bib, True)
+        pl.use_move(b, lop, lop.charging or fs.move("Bounce"), bib, True)
+        if bib.hp < bib.maxhp:
+            landed += 1
+            par += bib.status == "par"
+    share = par / landed if landed else 0
+    return [("the readings' Bounce paralyses at about its 30% chance", 0.2 <= share <= 0.4,
+             f"{par} paralysed of {landed} hits that landed ({share:.0%})")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3679,6 +3701,7 @@ def main():
     results += captivate_checks()
     results += vanished_status_checks()
     results += speed_down_hit_checks()
+    results += bounce_paralysis_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)

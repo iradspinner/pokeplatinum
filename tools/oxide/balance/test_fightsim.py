@@ -1974,6 +1974,26 @@ def check_speed_down_hit(results):
                     f"(user's Speed stage, target's) {got}"))
 
 
+def check_bounce_paralysis(results):
+    """Bounce (approved 2026-10-14; effect script 263): once it comes down,
+    its hit paralyses at the move's 30% chance, as Thunderbolt's does, and a
+    Shield Dust target is spared. With every roll at 0 the chance lands,
+    at 0.5 it does not (the hit itself lands at Oxide's 100% accuracy)."""
+    def bounce(value, foe_ability=None):
+        b, p, foe = battle(["Bounce"], ["Tackle"], {("p", "Bounce"): [30] * 16})
+        foe.ability = foe_ability
+        b.rng = FixedDice(value)
+        fs.use_move(b, p, fs.move("Bounce"), foe, True)       # up into the air
+        up = p.charging is not None
+        fs.use_move(b, p, fs.move("Bounce"), foe, True)       # down onto the target
+        return up, foe.hp < foe.maxhp, foe.status
+    got = {"every roll at 0": bounce(0.0), "every roll at 0.5": bounce(0.5),
+           "Shield Dust": bounce(0.0, "Shield Dust")}
+    want = {"every roll at 0": (True, True, "par"), "every roll at 0.5": (True, True, None),
+            "Shield Dust": (True, True, None)}
+    results.append(("Bounce's hit paralyses at its chance", got == want, f"(in the air, hit, status) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3262,7 +3282,7 @@ def main():
                   check_conversion, check_conversion2, check_camouflage, check_burn_up,
                   check_double_shock, check_skill_swap, check_role_play, check_entrainment,
                   check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
-                  check_status_into_vanished, check_speed_down_hit,
+                  check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,

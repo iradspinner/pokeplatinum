@@ -144,6 +144,10 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               "HIGH_CRITICAL_BURN_HIT": "brn", "RECOIL_BURN_HIT": "brn", "RECOIL_PARALYZE_HIT": "par",
               "FLINCH_BURN_HIT": "brn", "FLINCH_PARALYZE_HIT": "par", "FLINCH_FREEZE_HIT": "frz",
               "BLIZZARD": "frz", "THUNDER": "par",
+              # Bounce's hit (effect script 263) paralyses at the move's
+              # chance, as Thunderbolt's does; until 2026-10-15 it never did
+              # (Ian approved the fix).
+              "BOUNCE": "par",
               # Infernal Parade and Barb Barrage (effect scripts 321, 322).
               "BURN_HIT_DOUBLE_POWER_ON_STATUS": "brn", "POISON_HIT_DOUBLE_POWER_ON_POISONED": "psn"}
 FLINCH_HIT = {"FLINCH_HIT", "FLINCH_BURN_HIT", "FLINCH_PARALYZE_HIT", "FLINCH_FREEZE_HIT",
