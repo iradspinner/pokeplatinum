@@ -2165,6 +2165,7 @@ def give_status(b, target, status):
         target.sleep = b.rng.randint(1, 4)
     if status == "tox":
         target.toxic = 0
+    charge_ends(target, status)      # asleep or frozen, its charge is over
     synchronize(b, target, status)
     cure_berry(target, b)
     return True
@@ -3177,8 +3178,15 @@ def could_not_act(b, att, mv, dfn, targets=None):
     record is cleared."""
     att.last = None
     att.protect_run = 0
-    if att.charging is not None and att.charging.effect == "SKY_DROP":
-        att.charging = None          # a Sky Drop user stopped in the air lets its target go (Battler_UnlockMoveChoice)
+    if att.charging is not None:
+        # The subscript that stopped it unlocked its user
+        # (Battler_UnlockMoveChoice clears MOVE_LOCKED and the hidden turn),
+        # so a charge ends: a Fly or Solar Beam user that flinches or is
+        # fully paralysed on its striking turn must charge again, and a
+        # Sky Drop user stopped in the air lets its target go. Sleep and
+        # freeze end the charge as they come (charge_ends). Until 2026-10-15
+        # only Sky Drop's ended (Ian approved the fix).
+        att.charging = None
     if att.bide:
         bide_ends(att)               # the subscript that stopped it unlocked its user, its Bide with it
     if b.st.get("copycat"):
@@ -3186,6 +3194,16 @@ def could_not_act(b, att, mv, dfn, targets=None):
     if att.rollout or att.lock is not None:
         rollout_break(att)           # the subscript that stopped it unlocked its user (rollout_break)
     mark_hit(b, mv, dfn, False, targets)
+
+
+def charge_ends(mon, status):
+    """Falling asleep or being frozen unlocks a Pokemon at once
+    (subscript_fall_asleep and subscript_freeze run UnlockMoveChoice; a
+    sleeping Pokemon still locked is unlocked again at the turn's start),
+    so a charge it was holding ends there: a Fly user put to sleep comes
+    down and can be hit, and must charge again once it wakes."""
+    if mon.charging is not None and status in ("slp", "frz"):
+        mon.charging = None
 
 
 def flinched(att):

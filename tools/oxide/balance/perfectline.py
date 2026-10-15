@@ -301,6 +301,7 @@ def give_status(b, target, status):
         target.sleep = b.dice.sleep(target.side)
     if status == "tox":
         target.toxic = 0
+    fs.charge_ends(target, status)   # asleep or frozen, its charge is over (fightsim.charge_ends)
     fs.synchronize(b, target, status)
     fs.cure_berry(target, b)
     return True

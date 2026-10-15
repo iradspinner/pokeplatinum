@@ -5694,6 +5694,36 @@ def check_forced_out(results):
     want = {"player faster": (0, 1, True, False), "player slower": (1, 0, False, True)}
     results.append(("a Pokemon forced out before it acts does not act", out == want, str(out)))
 
+
+def check_charge_ends(results):
+    """A charge ends on a turn its user cannot act (approved 2026-10-15;
+    the subscripts that stop a move run UnlockMoveChoice, and falling
+    asleep or being frozen unlocks at once): a Solar Beam user fully
+    paralysed on its striking turn loses the charge and must charge again,
+    and a Fly user put to sleep in the air comes down."""
+    out = {}
+    b, p, foe = battle(["Solar Beam"], ["Tackle"], {("p", "Solar Beam"): [50] * 16}, hp=200)
+    b.rng = FixedDice(0.9)
+    sb = fs.move("Solar Beam")
+    fs.use_move(b, p, sb, foe, True)
+    charged = p.charging is not None
+    p.status = "par"
+    b.rng = FixedDice(0.0)                   # fully paralysed
+    fs.use_move(b, p, sb, foe, True)
+    out["paralysed"] = (charged, p.charging is None, foe.hp)
+    p.status = None
+    b.rng = FixedDice(0.9)
+    fs.use_move(b, p, sb, foe, True)
+    out["next turn"] = (p.charging is not None, foe.hp)
+    b, p, foe = battle(["Fly"], ["Tackle"], {("p", "Fly"): [50] * 16}, hp=200)
+    b.rng = FixedDice(0.9)
+    fs.use_move(b, p, fs.move("Fly"), foe, True)
+    flying = p.charging is not None
+    fs.give_status(b, p, "slp")
+    out["put to sleep"] = (flying, p.charging)
+    want = {"paralysed": (True, True, 200), "next turn": (True, 200), "put to sleep": (True, None)}
+    results.append(("a charge ends on a turn its user cannot act", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5981,7 +6011,7 @@ def main():
                   check_aurora_veil, check_teatime, check_assist,
                   check_snatch, check_sky_drop,
                   check_substitute_hit, check_knock_off_first, check_taunt_before_confusion,
-                  check_forced_out,
+                  check_forced_out, check_charge_ends,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

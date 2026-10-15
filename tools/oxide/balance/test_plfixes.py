@@ -4812,6 +4812,32 @@ def forced_out_checks():
              f"(the player's in, the trainer's in) {got}")]
 
 
+def charge_ends_checks():
+    """A charge that ends on a turn its user cannot act, in the readings'
+    battle on the calculator's real rows (approved 2026-10-15): the
+    player's Pidgeotto takes to the air with Fly, flinches on its striking
+    turn and comes down without striking, so a trainer's Machop's Tackle
+    then hits it; asleep in the air it comes down too."""
+    out = {}
+    for case in ("flinched", "asleep"):
+        b, mach, pid = b8_battle([("Machop", 30, "Guts", ["Tackle"])], [("Pidgeotto", 30, "Keen Eye", ["Fly"])])
+        fly = fs.move("Fly")
+        pl.use_move(b, pid, fly, mach, True)
+        up = pid.charging is not None
+        hp = mach.hp
+        if case == "flinched":
+            pid.flinch = True
+            pl.use_move(b, pid, fly, mach, True)
+        else:
+            pl.give_status(b, pid, "slp")
+        mine = pid.hp
+        pl.attack(b, mach, fs.move("Tackle"), pid, False)
+        out[case] = (up, pid.charging is None, mach.hp == hp, pid.hp < mine)
+    ok = out == {"flinched": (True, True, True, True), "asleep": (True, True, True, True)}
+    return [("the readings' charge ends on a turn its user cannot act", ok,
+             f"(charged, charge ended, no strike, then hit) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -5856,6 +5882,7 @@ def main():
     results += knock_off_first_checks()
     results += taunt_before_confusion_checks()
     results += forced_out_checks()
+    results += charge_ends_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
