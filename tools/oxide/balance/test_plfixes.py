@@ -2596,6 +2596,22 @@ def black_sludge_checks():
     return [("Black Sludge hurts a Machamp and heals a Muk in the readings", ok, f"(HP change, maximum HP) {out}")]
 
 
+def water_bubble_checks():
+    """Water Bubble in the readings' battle (approved 2026-10-14): a
+    trainer's sure Will-O-Wisp never burns the player's Water Bubble
+    Araquanid, and burns a Water Absorb one."""
+    from .test_fightai import battle
+    out = {}
+    for ab in ("Water Bubble", "Water Absorb"):
+        b = battle([("Ninetales", 30, "Flash Fire", ["Will-O-Wisp"])], [("Araquanid", 30, ab, ["Bubble Beam"])])
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        b.b.cur().stages["acc"] = 6
+        pl.use_move(b, b.b.cur(), fs.move("Will-O-Wisp"), b.p.cur(), True)
+        out[ab] = b.p.cur().status
+    ok = out == {"Water Bubble": None, "Water Absorb": "brn"}
+    return [("Water Bubble keeps a Will-O-Wisp's burn off in the readings", ok, f"status after Will-O-Wisp {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3103,6 +3119,7 @@ def main():
     results += soundproof_status_checks()
     results += item_flinch_blocked_checks()
     results += black_sludge_checks()
+    results += water_bubble_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

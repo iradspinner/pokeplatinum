@@ -2264,6 +2264,27 @@ def check_black_sludge(results):
     results.append(("Black Sludge heals a Poison type and hurts any other holder", got == want, f"HP from 50 {got}"))
 
 
+def check_water_bubble(results):
+    """Water Bubble keeps burns off (approved 2026-10-14; subscript_burn):
+    a Will-O-Wisp does nothing to its holder and names the ability, unless
+    the user has Mold Breaker; a Flame Orb never burns it."""
+    def wisp(ability, mold=False):
+        b, p, foe = battle(["Will-O-Wisp"], ["Tackle"], {})
+        p.ability = "Mold Breaker" if mold else None
+        foe.ability = ability
+        b.status_src = p
+        fs.give_status(b, foe, "brn")
+        return foe.status, foe.revealed
+    b, p, foe = battle(["Tackle"], ["Tackle"], {})
+    foe.ability, foe.item = "Water Bubble", "Flame Orb"
+    fs.end_of_turn(b)
+    got = {"Water Bubble": wisp("Water Bubble"), "Water Bubble, Mold Breaker": wisp("Water Bubble", True),
+           "plain": wisp(None), "a Flame Orb": foe.status}
+    want = {"Water Bubble": (None, "Water Bubble"), "Water Bubble, Mold Breaker": ("brn", None),
+            "plain": ("brn", None), "a Flame Orb": None}
+    results.append(("Water Bubble keeps burns off its holder", got == want, f"{got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2515,7 +2536,7 @@ def main():
                   check_telepathy, check_steadfast, check_starf_berry,
                   check_sticky_barb, check_payback, check_leech_seed_sap,
                   check_ghost_untrapped, check_soundproof_status, check_item_flinch_blocked,
-                  check_black_sludge,
+                  check_black_sludge, check_water_bubble,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
