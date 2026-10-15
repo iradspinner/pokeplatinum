@@ -541,6 +541,8 @@ def attack(b, att, mv, dfn, first):
         return
     if fs.loses_type_fails(att, mv):
         return                           # Burn Up or Double Shock without its type (fightsim.lose_type)
+    if fs.dream_eater_fails(att, dfn, mv):
+        return                           # Dream Eater on a target awake or behind a Substitute
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
         return
     if mv.effect == fs.FUTURE_SIGHT:

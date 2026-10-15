@@ -2360,6 +2360,8 @@ def attack(b, att, mv, dfn, first):
         return
     if loses_type_fails(att, mv):
         return                           # Burn Up or Double Shock without its type (lose_type)
+    if dream_eater_fails(att, dfn, mv):
+        return
     # Telepathy: its holder takes no damaging move from its partner
     # (BattleControllerPlayer_PriorityBlock, which Mold Breaker gets past),
     # a spread move's in a double battle; the message names the ability.
@@ -2491,6 +2493,16 @@ def attack(b, att, mv, dfn, first):
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
     _after_attack(b, att, mv, dfn, first, dealt)
+
+
+def dream_eater_fails(att, dfn, mv):
+    """Dream Eater (effect script 8) "wasn't affected" by a target that is
+    not asleep, or one behind a Substitute an Infiltrator does not pass
+    (CheckSubstitute), before its accuracy or the target's Protect is
+    checked; a Comatose target is not asleep to it, as the script reads only
+    the sleep status. Until 2026-10-15 it hit an awake target and drained
+    half (Ian approved the fix)."""
+    return mv.effect == "RECOVER_DAMAGE_SLEEP" and (dfn.status != "slp" or sub_blocks(att, dfn, mv))
 
 
 def crit_proof(att, dfn):

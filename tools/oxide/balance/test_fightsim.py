@@ -2044,6 +2044,28 @@ def check_hail_under_lasting_hail(results):
                     got == want, f"(weather, turns left; 0 lasting) {got}"))
 
 
+def check_dream_eater(results):
+    """Dream Eater (approved 2026-10-14; effect script 8): on a sleeping
+    target it hits and its user takes back half the damage; an awake
+    target, a Comatose one or one behind a Substitute is not affected, and
+    an Infiltrator user passes the Substitute."""
+    def eat(status=None, sub=0, ability=None, foe_ability=None):
+        b, p, foe = battle(["Dream Eater"], ["Tackle"], {("p", "Dream Eater"): [40] * 16})
+        b.rng = FixedDice(0.5)
+        foe.status, foe.sleep, foe.sub, foe.ability = status, 3 if status else 0, sub, foe_ability
+        p.ability, p.hp = ability, 50
+        fs.attack(b, p, fs.move("Dream Eater"), foe, True)
+        return foe.hp, foe.sub, p.hp
+    got = {"asleep": eat("slp"), "awake": eat(), "paralysed": eat("par"), "Comatose": eat(foe_ability="Comatose"),
+           "asleep behind a Substitute": eat("slp", sub=25),
+           "asleep behind a Substitute, Infiltrator": eat("slp", sub=25, ability="Infiltrator")}
+    want = {"asleep": (60, 0, 70), "awake": (100, 0, 50), "paralysed": (100, 0, 50), "Comatose": (100, 0, 50),
+            "asleep behind a Substitute": (100, 25, 50),
+            "asleep behind a Substitute, Infiltrator": (60, 25, 70)}
+    results.append(("Dream Eater hits only a sleeping target with no Substitute in the way", got == want,
+                    f"(target's HP, its Substitute, user's HP from 50) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3333,7 +3355,7 @@ def main():
                   check_double_shock, check_skill_swap, check_role_play, check_entrainment,
                   check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
-                  check_hail_under_lasting_hail,
+                  check_hail_under_lasting_hail, check_dream_eater,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,

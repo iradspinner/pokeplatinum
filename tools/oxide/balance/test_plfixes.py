@@ -3172,6 +3172,28 @@ def hail_checks():
              (("Hail", 0), ("Hail", 5), None), f"(weather on entry, after Hail, after five turn ends) {got}")]
 
 
+def dream_eater_checks():
+    """Dream Eater in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Hypno's Dream Eater leaves an awake
+    Bibarel and itself as they were, and on the Bibarel asleep it hits and
+    takes back half the damage."""
+    from .test_fightai import battle
+    out = {}
+    for label, status in (("awake", None), ("asleep", "slp")):
+        b = battle([("Hypno", 40, "Insomnia", ["Dream Eater"])], [("Bibarel", 40, "Unaware", ["Tackle"])])
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        hyp, bib = b.b.cur(), b.p.cur()
+        bib.status, bib.sleep = status, 3 if status else 0
+        hyp.hp = hyp.maxhp // 2
+        before = hyp.hp
+        pl.use_move(b, hyp, fs.move("Dream Eater"), bib, True)
+        dealt = bib.maxhp - bib.hp
+        out[label] = (dealt, hyp.hp - before)
+    ok = out["awake"] == (0, 0) and out["asleep"][0] > 0 and out["asleep"][1] == out["asleep"][0] // 2
+    return [("the readings' Dream Eater misses an awake target and drains a sleeping one", ok,
+             f"(damage dealt, HP taken back) {out}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3749,6 +3771,7 @@ def main():
     results += bounce_paralysis_checks()
     results += weather_heal_checks()
     results += hail_checks()
+    results += dream_eater_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)
