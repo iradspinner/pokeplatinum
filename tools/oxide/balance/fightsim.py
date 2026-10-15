@@ -2381,8 +2381,10 @@ def attack(b, att, mv, dfn, first):
         return
     if dfn.charging is not None and dfn.charging.effect in INVULNERABLE and not reaches(mv, dfn) \
             and not no_guard(att, dfn, mv):
+        _crash(b, att, dfn, mv)
         return                   # No Guard reaches it there (no_guard)
     if protected(b, att, mv, dfn):
+        _crash(b, att, dfn, mv)
         return
     if mv.effect == "REMOVE_PROTECT" and not dfn.protecting:
         return                   # Feint and Hyperspace Hole fail on a target not protecting (BtlCmd_TryFeint)
@@ -2403,10 +2405,7 @@ def attack(b, att, mv, dfn, first):
             return
         consume(att, eaten=False)
     if not b.accuracy_hits(att, dfn, mv, first):
-        # subscript_crash_on_miss spares a Magic Guard user (added 2026-10-14,
-        # Ian approved the fix).
-        if mv.effect == "CRASH_ON_MISS" and att.ability != "Magic Guard":
-            hurt(b, att, att.maxhp // 2)
+        _crash(b, att, dfn, mv)          # Magic Guard spares it (crash_loss)
         rollout_after(att, mv, False)
         return
     rollout_after(att, mv, True)
@@ -2493,6 +2492,29 @@ def attack(b, att, mv, dfn, first):
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
     _after_attack(b, att, mv, dfn, first, dealt)
+
+
+def crash_loss(att, dfn, damage):
+    """The HP a Jump Kick, High Jump Kick or Supercell Slam that failed to
+    hit costs its user (subscript_crash_on_miss, called from every path of
+    subscript_missed): half the damage its hit would have done to the
+    target, type chart and same-type bonus in, which the effect script
+    worked out before the checks (so nothing against a type that is immune),
+    at most half the target's maximum HP; nothing for a Magic Guard holder.
+    Until 2026-10-15 a miss cost half the user's own maximum HP, and a
+    Protect or a target in the air cost nothing (Ian approved the fix)."""
+    if att.ability == "Magic Guard" or not damage:
+        return 0
+    return min(engine_divide(damage, 2), engine_divide(dfn.maxhp, 2))
+
+
+def _crash(b, att, dfn, mv):
+    """fightsim's own battle: a crash move that failed to hit, its damage
+    rolled with a critical hit at its odds (crash_loss)."""
+    if mv.effect != "CRASH_ON_MISS" or att.ability == "Magic Guard":
+        return
+    crit = b.rng.random() < crit_rate(b, att, dfn, mv)
+    hurt(b, att, crash_loss(att, dfn, b.damage(att, dfn, mv, crit=crit) or 0))
 
 
 def dream_eater_fails(att, dfn, mv):

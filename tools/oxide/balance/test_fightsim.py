@@ -2086,6 +2086,35 @@ def check_focus_punch(results):
                     f"(target's HP, PP spent) {got}"))
 
 
+def check_crash_on_miss(results):
+    """Jump Kick, High Jump Kick and Supercell Slam (approved 2026-10-14;
+    effect script 45, subscript_crash_on_miss from every path of
+    subscript_missed): a move that fails to hit costs its user half the
+    damage the hit would have done (40 here, so 20), at most half the
+    target's maximum HP (a 60 HP target caps a 150 hit's crash at 30); on an
+    accuracy miss, into a Protect and into a target in the air alike; a
+    Magic Guard user loses nothing, and so does one whose hit could do
+    nothing (a Ghost type, whose row reads 0)."""
+    def kick(dice, dmg=40, foe_max=None, protect=False, fly=False, ability=None, ghost=False):
+        b, p, foe = battle(["Jump Kick"], ["Tackle"], {("p", "Jump Kick"): [0 if ghost else dmg] * 16},
+                           b_types=("Ghost",) if ghost else ("Normal",))
+        b.rng = FixedDice(dice)
+        p.ability = ability
+        if foe_max is not None:
+            foe.maxhp = foe.hp = foe_max
+        foe.protecting = protect
+        foe.charging = fs.move("Fly") if fly else None
+        fs.attack(b, p, fs.move("Jump Kick"), foe, True)
+        return p.maxhp - p.hp, foe.maxhp - foe.hp
+    got = {"a miss": kick(0.999), "a miss, capped": kick(0.999, dmg=150, foe_max=60), "into Protect": kick(0.5, protect=True),
+           "into Fly": kick(0.5, fly=True), "Magic Guard, into Protect": kick(0.5, protect=True, ability="Magic Guard"),
+           "into a Ghost": kick(0.5, ghost=True), "a hit": kick(0.5)}
+    want = {"a miss": (20, 0), "a miss, capped": (30, 0), "into Protect": (20, 0), "into Fly": (20, 0),
+            "Magic Guard, into Protect": (0, 0), "into a Ghost": (0, 0), "a hit": (0, 40)}
+    results.append(("a crash move that fails to hit costs half its hit, at most half the target's HP", got == want,
+                    f"(user's HP lost, target's HP lost) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2160,7 +2189,7 @@ def check_magic_guard(results):
              "bound": turn_end(None, "bound"), "seeded": turn_end(None, "seeded")}
     want = {"hazards": (100, None, 1), "hazards, a Poison type": (100, None, 1), "recoil": 100, "crash": 100,
             "bound": (100, 2, 50), "seeded": (100, 0, 50)}
-    want_plain = {"hazards": (76, "psn", 1), "hazards, a Poison type": (76, None, 0), "recoil": 90, "crash": 50,
+    want_plain = {"hazards": (76, "psn", 1), "hazards, a Poison type": (76, None, 0), "recoil": 90, "crash": 80,
                   "bound": (94, 2, 50), "seeded": (88, 0, 62)}
     ok = got == want and plain == want_plain
     results.append(("Magic Guard keeps off the hazards, recoil, a crash, binding and Leech Seed", ok,
@@ -3376,6 +3405,7 @@ def main():
                   check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
+                  check_crash_on_miss,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,

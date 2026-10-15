@@ -534,6 +534,27 @@ def multi_hit(b, att, mv, dfn, first, hits, trainer):
     return dealt
 
 
+def crash(b, att, dfn, mv):
+    """A Jump Kick, High Jump Kick or Supercell Slam that failed to hit, on
+    an accuracy miss, a Protect or a target in the air: its user loses half
+    the damage the hit would have done, at most half the target's maximum
+    HP (fightsim.crash_loss). The hit's critical hit and damage roll come
+    from the battle's dice the other way about from a hit's: a crit or a
+    high roll is bad luck for the player when its own Pokemon crashes, and
+    good luck when the trainer's does."""
+    if mv.effect != "CRASH_ON_MISS" or att.ability == "Magic Guard":
+        return
+    mine = player(att)
+    rate = fs.crit_rate(b, att, dfn, mv)
+    crit = rate > 0 and (b.dice.bad("crit", rate) if mine else b.dice.good(rate, "crit"))
+    roll = None
+    if b.dice.mode == "run":
+        grouped = getattr(b.dice, "roll_grouped", None)
+        roll = grouped(lambda r: fs.crash_loss(att, dfn, damage_of(b, att, dfn, mv, crit, top=mine, roll=r) or 0),
+                       att.hp) if grouped else b.dice.roll(not mine)
+    fs.hurt(b, att, fs.crash_loss(att, dfn, damage_of(b, att, dfn, mv, crit, top=mine, roll=roll) or 0))
+
+
 def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
     b.hits_landed = False                # a move of several hits that land_hits landed
@@ -561,8 +582,10 @@ def attack(b, att, mv, dfn, first):
         return
     if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE and not fs.reaches(mv, dfn) \
             and not fs.no_guard(att, dfn, mv):
+        crash(b, att, dfn, mv)
         return                   # No Guard reaches it there (fightsim.no_guard)
     if fs.protected(b, att, mv, dfn):
+        crash(b, att, dfn, mv)
         return                   # only a move Protect can stop (fightsim.protected)
     if mv.effect == "REMOVE_PROTECT" and not dfn.protecting:
         return                   # Feint and Hyperspace Hole fail on a target not protecting (BtlCmd_TryFeint)
@@ -583,8 +606,7 @@ def attack(b, att, mv, dfn, first):
             return
         fs.consume(att, eaten=False)     # spent, not eaten (Belch)
     if not accuracy_hits(b, att, dfn, mv, first):
-        if mv.effect == "CRASH_ON_MISS" and att.ability != "Magic Guard":
-            fs.hurt(b, att, att.maxhp // 2)       # Magic Guard spares it (fightsim.attack)
+        crash(b, att, dfn, mv)               # Magic Guard spares it (fightsim.crash_loss)
         fs.rollout_after(att, mv, False)
         return
     fs.rollout_after(att, mv, True)

@@ -3214,6 +3214,38 @@ def focus_punch_checks():
              f"(Machamp hit, Staraptor hit) {out}")]
 
 
+def crash_checks():
+    """High Jump Kick in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Hitmonlee kicks into the player's
+    Protect or into a Pokemon in the air, and crashes for half the damage
+    its hit would have done (between half its row's lowest roll and half
+    its highest with a critical hit), at most half the target's maximum HP:
+    a Togekiss resists the hit, so the crash is half of it, while a Bibarel
+    takes enough that half its maximum HP caps the crash."""
+    from .test_fightai import battle
+    out = {}
+    for species, ability, how in (("Togekiss", "Hustle", "into Protect"), ("Togekiss", "Hustle", "into Fly"),
+                                  ("Bibarel", "Unaware", "into Protect")):
+        b = battle([("Hitmonlee", 40, "Limber", ["High Jump Kick"])], [(species, 40, ability, ["Protect", "Fly"])])
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        lee, mon = b.b.cur(), b.p.cur()
+        if how == "into Protect":
+            mon.protecting = True
+        else:
+            mon.charging = fs.move("Fly")
+        hjk = fs.move("High Jump Kick")
+        lo = pl.damage_of(b, lee, mon, hjk, False, top=False)
+        hi = pl.damage_of(b, lee, mon, hjk, True, top=True)
+        pl.use_move(b, lee, hjk, mon, True)
+        lost = lee.maxhp - lee.hp
+        out[f"{species} {how}"] = (lost, min(lo // 2, mon.maxhp // 2), min(hi // 2, mon.maxhp // 2),
+                                   mon.hp == mon.maxhp)
+    ok = all(a <= lost <= c and d and lost > 0 for lost, a, c, d in out.values()) \
+        and out["Togekiss into Protect"][2] < b.p.cur().maxhp // 2
+    return [("the readings' High Jump Kick crashes for half its hit into Protect or Fly", ok,
+             f"(HP lost, lowest allowed, highest allowed, target untouched) {out}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3793,6 +3825,7 @@ def main():
     results += hail_checks()
     results += dream_eater_checks()
     results += focus_punch_checks()
+    results += crash_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)
