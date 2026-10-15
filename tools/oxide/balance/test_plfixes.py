@@ -4583,6 +4583,21 @@ def clear_smog_checks():
     return [("the readings' Clear Smog resets its target's stages", ok, f"HP {hp} to {geo.hp}, stages {geo.stages}")]
 
 
+def incinerate_checks():
+    """Incinerate in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Charmander's hit takes a trainer's
+    Bibarel below half, and its Sitrus Berry burns before it can eat it."""
+    b, bib, cha = b7_battle([("Bibarel", 30, "Unaware", ["Tackle"], "Sitrus Berry")],
+                            [("Charmander", 30, "Blaze", ["Incinerate"])])
+    bib.item = "Sitrus Berry"
+    bib.hp = bib.maxhp // 2 + 2
+    hp = bib.hp
+    pl.attack(b, cha, fs.move("Incinerate"), bib, True)
+    ok = bib.item is None and not bib.ate_berry and bib.hp < hp and bib.hp <= bib.maxhp // 2
+    return [("the readings' Incinerate burns its target's Berry before it is eaten", ok,
+             f"Bibarel's HP {hp} to {bib.hp} of {bib.maxhp}, item {bib.item}, ate a Berry {bib.ate_berry}")]
+
+
 def main():
     results = []
 
@@ -5115,6 +5130,7 @@ def main():
     results += venom_drench_checks()
     results += false_swipe_checks()
     results += clear_smog_checks()
+    results += incinerate_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

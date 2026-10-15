@@ -4770,6 +4770,23 @@ def check_clear_smog(results):
     results.append(("Clear Smog resets its target's stages after the hit", out == want, str(out)))
 
 
+def check_incinerate(results):
+    """Incinerate (approved 2026-10-14; effect script 372): after its hit the
+    target's Berry is burned up, not eaten and not for Recycle; not through
+    a Substitute, and an item that is no Berry, or the Roseli Berry Oxide
+    added past Rowap, stays."""
+    out = {}
+    for item, sub in (("Sitrus Berry", 0), ("Sitrus Berry", 40), ("Leftovers", 0), ("Roseli Berry", 0)):
+        b, p, foe = battle(["Incinerate"], ["Tackle"], {("p", "Incinerate"): [10] * 16}, hp=500)
+        b.rng = FixedDice(0.5)
+        foe.item, foe.sub = item, sub
+        fs.attack(b, p, fs.move("Incinerate"), foe, True)
+        out[(item, sub)] = (foe.item, foe.recycle, foe.ate_berry)
+    want = {("Sitrus Berry", 0): (None, None, False), ("Sitrus Berry", 40): ("Sitrus Berry", None, False),
+            ("Leftovers", 0): ("Leftovers", None, False), ("Roseli Berry", 0): ("Roseli Berry", None, False)}
+    results.append(("Incinerate burns up its target's Berry", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5042,7 +5059,7 @@ def main():
                   check_sketch, check_me_first, check_nature_power,
                   check_power_trick, check_bide, check_transform,
                   check_sp_def_2_hit, check_tearful_look, check_venom_drench, check_false_swipe,
-                  check_clear_smog,
+                  check_clear_smog, check_incinerate,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

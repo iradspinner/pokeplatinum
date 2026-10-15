@@ -3411,6 +3411,31 @@ def clear_smog(dfn):
     dfn.stages = dict.fromkeys(STAGE_KEYS, 0)
 
 
+@functools.lru_cache(maxsize=None)
+def incinerable():
+    """The Berries Incinerate burns (subscript_incinerate's range, Cheri to
+    Rowap in generated/items.txt), by the names the battle gives items; the
+    Roseli Berry, which Oxide added after Rowap, is not among them."""
+    with open(os.path.join(data.ROOT, "generated", "items.txt"), encoding="utf-8") as fh:
+        consts = [x.strip() for x in fh if x.strip()]
+    lo, hi = consts.index("ITEM_CHERI_BERRY"), consts.index("ITEM_ROWAP_BERRY")
+    return frozenset(" ".join(w.title() for w in c[len("ITEM_"):].split("_")) for c in consts[lo:hi + 1])
+
+
+def incinerate(b, dfn, mv):
+    """Incinerate's hit (effect script 372, subscript_incinerate, run on the
+    hit): a target still standing and not behind a Substitute loses a Berry
+    it holds, burned up rather than used, so Recycle cannot bring it back
+    and it counts as no Berry eaten. The added effect comes before the
+    defender's held item is checked (AFTER_MOVE_EFFECT_DEFENDER_ITEM), so a
+    Sitrus Berry the hit brought into range burns before it is eaten; a
+    resist Berry that halved the hit was used up in the damage, so after_hit
+    takes it as used. Until 2026-10-15 it was a plain hit and the target ate
+    its Berry later (Ian approved the fix)."""
+    if dfn.item in incinerable() and resist_berry(b, dfn, mv) != dfn.item:
+        dfn.item = None
+
+
 def slap_doubles(att, dfn, mv):
     """Wake-Up Slap (effect script 217) doubles its power (POWER_MULTI 20)
     on a sleeping target with no Substitute in the way (CheckSubstitute
@@ -3593,6 +3618,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         return
     if e == "CLEAR_SMOG":
         clear_smog(dfn)              # every stage of a target the hit itself reached back to 0
+    if e == "INCINERATE":
+        incinerate(b, dfn, mv)       # a Berry the target holds is burned up (incinerate)
     if e == "DOUBLE_POWER_HEAL_SLEEP":
         slap_wakes(dfn, mv)          # Wake-Up Slap's doubled hit wakes its target (slap_wakes)
     if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":
