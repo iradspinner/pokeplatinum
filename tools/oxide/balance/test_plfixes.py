@@ -2966,9 +2966,10 @@ def role_play_checks():
 
 def entrainment_checks():
     """Entrainment on the calculator's real rows and the readings' move
-    (approved 2026-10-14): prepare rows a trainer's Bronzor on its twin for
-    a Swarm Leavanny's ability; after the Leavanny's Entrainment its
-    Earthquake reaches the Bronzor, which its Levitate had kept off."""
+    (approved 2026-10-14): prepare rows a trainer's Bronzor on its
+    ability-blank twin, as a Swarm Leavanny's Entrainment can give it Swarm,
+    which changes no row; after the Entrainment the Leavanny's Earthquake
+    reaches the Bronzor, which its Levitate had kept off."""
     from .test_fightai import battle
     b = battle([("Bronzor", 30, "Levitate", ["Confusion"])], [("Leavanny", 30, "Swarm", ["Entrainment", "Earthquake"])])
     bronzor, lea = b.b.cur(), b.p.cur()
@@ -2978,7 +2979,7 @@ def entrainment_checks():
     b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
     pl.use_move(b, lea, fs.move("Entrainment"), bronzor, True)
     after = (bronzor.ability, pl.damage_of(b, lea, bronzor, quake, False, True))
-    ok = twins == [(None, "Swarm")] and before == 0 and after[0] == "Swarm" and after[1] > 0
+    ok = twins == [(None, None)] and before == 0 and after[0] == "Swarm" and after[1] > 0
     return [("Entrainment: a Bronzor given Swarm loses Levitate on its twin's rows", ok,
              f"twins {twins}; Earthquake before {before}; after Entrainment (its ability, Earthquake) {after}")]
 
@@ -3067,6 +3068,45 @@ def captivate_checks():
     ok = out == {"male": ("F", "M", -2), "female": ("F", "F", 0)}
     return [("Captivate: a female Persian's lowers a male Bibarel's Sp. Atk and leaves a female's", ok,
              f"(Persian's gender, Bibarel's, its Sp. Atk stage) {out}")]
+
+
+def row_neutral_checks():
+    """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
+    on the calculator's real rows (2026-10-14): a Pokemon with each of them,
+    every one that some species has, reads exactly the rows and Speed of the
+    same Pokemon with the stand-in, both ways, over single-hit moves of
+    every kind (physical and special, contact and not, a sound move, a punch,
+    Fire, Water, Grass, Bug, Ground and Electric) at full HP, no status and
+    no stages. So a change between them, or to or from the stand-in, needs
+    no twin. And a fight with a Mummy holder twins only the holder's foes
+    with a contact move, not its partners."""
+    blob = fs.calc.blob()
+    have = {a for p in blob["poks"].values() for a in (p.get("abilities") or {}).values() if a}
+    neutral = sorted(fs.ROW_NEUTRAL & have)
+    moves = ["Flamethrower", "Surf", "Energy Ball", "X-Scissor", "Earthquake", "Thunder Punch", "Hyper Voice",
+             "Body Slam", "Aqua Jet"]
+
+    def rec(ab, i):
+        return {"constant": "SPECIES_SNORLAX", "species": "Snorlax", "how": "test", "level": 30, "nature": "Hardy",
+                "ivs": IV, "evs": EV, "ability": ab, "moves": moves, "fill": False, "label": f"Snorlax {i}"}
+    side = [rec(fs.WEATHER_STAND_IN, 0)] + [rec(ab, i + 1) for i, ab in enumerate(neutral)]
+    foe = {"species": "Machamp", "level": 30, "ability": "No Guard", "item": None, "nature": "Hardy", "ivs": IV,
+           "evs": EV, "moves": moves}
+    st = fs.prepare("Fantina", [[foe]], None, given_side=side)
+    rows, speed = st["rows"], st["speed"]
+
+    def rolls(a, d):
+        return {m: tuple(r.get("rolls") or ()) for m, r in rows[(None, a, d)]["moves"].items()}
+    differ = [ab for i, ab in enumerate(neutral, 1)
+              if rolls(f"p{i}", "b0.0") != rolls("p0", "b0.0") or rolls("b0.0", f"p{i}") != rolls("b0.0", "p0")
+              or speed[(None, f"p{i}")] != speed[(None, "p0")]]
+    from .test_fightai import battle
+    b = battle([("Cofagrigus", 40, "Mummy", ["Hex"]), ("Hitmonchan", 40, "Iron Fist", ["Mach Punch"])],
+               [("Azumarill", 40, "Huge Power", ["Aqua Tail"])])
+    twinned = sorted(b.st.get("form_twin") or {})
+    ok = len(neutral) >= 25 and differ == [] and twinned == ["p0"]
+    return [("the abilities twins need not carry change no row, and Mummy twins only its holder's contact foes", ok,
+             f"{len(neutral)} abilities checked, differing {differ}; twinned in a Mummy fight {twinned}")]
 
 
 def calc_terrain(tr_ids):
@@ -3602,6 +3642,7 @@ def main():
     results += gastro_acid_checks()
     results += core_enforcer_checks()
     results += captivate_checks()
+    results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

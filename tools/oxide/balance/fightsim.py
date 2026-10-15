@@ -898,10 +898,28 @@ CALC_ROW_FILES = ("mechanics/gen4.js", "mechanics/util.js", "mechanics/romhacks/
                   "mechanics/romhacks/index.js", "mechanics/romhacks/profiles/platinum-oxide.js",
                   "mechanics/romhacks/profiles/platinum-oxide-data.js", "move.js", "pokemon.js", "stats.js",
                   "field.js", "items.js")
-# The calculator reads these only to hand a multi-hit contact attacker the
-# ability between its hits (util.js, checkMultihitBoost), which the battle
-# does itself, hit by hit (contact_ability), so a twin need not carry them.
-ROW_NEUTRAL = frozenset({"Mummy", "Wandering Spirit", "Lingering Aroma"})
+# The abilities the calculator reads that never change one of the
+# simulator's rows, which are made at full HP, with no status, stat stage,
+# screen or Intimidate (CALC_ABILITY_OFF) and with one hit's effects at a
+# time, so a twin need not carry them: those it reads only between a
+# multi-hit move's hits (checkMultihitBoost: Mummy and Wandering Spirit
+# hand the attacker their ability, Gooey, Weak Armor, Water Compaction and
+# Seed Sower answer a hit), which the battle runs hit by hit itself where it
+# runs them at all; Intimidate's blockers and answers (checkIntimidate:
+# Clear Body, White Smoke, Hyper Cutter, Inner Focus, Own Tempo, Oblivious,
+# Mirror Armor, Defiant, Competitive, Guard Dog); those of stat stages
+# (Simple, Contrary, Unaware) and of screens (Infiltrator); those of a
+# status (Guts, Marvel Scale, Quick Feet, Merciless) or of a third of HP
+# (Blaze, Torrent, Overgrow, Swarm), which the battle applies itself as it
+# runs; and Protean and Libero, which only the later generations' STAB
+# reads (getStabMod), where the battle retypes the holder itself. A check in
+# test_plfixes holds the calculator to it.
+ROW_NEUTRAL = frozenset({
+    "Mummy", "Wandering Spirit", "Lingering Aroma", "Gooey", "Weak Armor", "Water Compaction", "Seed Sower",
+    "Clear Body", "White Smoke", "Hyper Cutter", "Full Metal Body", "Strong Body", "Inner Focus", "Own Tempo",
+    "Oblivious", "Mirror Armor", "Defiant", "Competitive", "Guard Dog", "Simple", "Contrary", "Unaware",
+    "Infiltrator", "Guts", "Marvel Scale", "Quick Feet", "Merciless", "Blaze", "Torrent", "Overgrow", "Swarm",
+    "Protean", "Libero"})
 
 
 @functools.lru_cache(maxsize=None)
@@ -1080,7 +1098,10 @@ def form_key(b, mon, mv=None, defending=False):
 # Each kind of change a fight can produce: a function of the fight's
 # Pokemon (FormFight) that yields (key, types, ability) for each change the
 # Pokemon of that key can undergo, types None where they stay its own and
-# ability the one it is left with. The fixes add their own (form_change).
+# ability the one it is left with; a change that changes two Pokemon at once
+# (Skill Swap, Wandering Spirit) yields its partner's as a fourth item, so
+# the two twins are rowed against each other. The fixes add their own
+# (form_change).
 FORM_CHANGES = []
 
 
@@ -1179,17 +1200,26 @@ def form_twins(ff, pairs, hits_of, spread, whole_field, gas_twin):
     stats and weight kept, as Roost's twins have them); twins of one
     Pokemon's two variants are shared, since only the ability differs, and
     an ability-blank one is Neutralizing Gas's twin where that exists. Each
-    twin is rowed both ways in every weather against every foe and every
-    foe's own twins, a player's Magnitude at each power included, and in a
-    double battle against its allies' spread moves. The rows are appended to
-    `pairs`."""
-    want = collections.defaultdict(set)
+    twin is rowed both ways in every weather against every foe, a player's
+    Magnitude at each power included, in a double battle against its
+    allies' spread moves, and against the twin of a change's partner. Two
+    changes made apart from each other on both sides at once read the one
+    change against the other's own rows (Battle.row). The rows are appended
+    to `pairs`."""
+    def sig_of(types, ability):
+        return (tuple(types) if types else None, row_ability(ability))
+    want, links = collections.defaultdict(set), set()
     for fn in FORM_CHANGES:
-        for k, types, ability in fn(ff):
-            sig = (tuple(types) if types else None, row_ability(ability))
+        for item in fn(ff):
+            k, sig = item[0], sig_of(item[1], item[2])
             if sig != (None, row_ability(ff.ability(k))):
                 want[k].add(sig)
-    out, made = {}, {}
+            if len(item) > 3:
+                f, fsig = item[3][0], sig_of(item[3][1], item[3][2])
+                if fsig != (None, row_ability(ff.ability(f))):
+                    want[f].add(fsig)
+                links.add(((k, sig), (f, fsig)))
+    out, made, named = {}, {}, {}
     for k in sorted(want):
         root = k.split("~")[0]
         rec = ff.pokemon[k]
@@ -1215,6 +1245,7 @@ def form_twins(ff, pairs, hits_of, spread, whole_field, gas_twin):
                     made[k].append(name)
                 got.append((name, list(tt) if tt else None))
             entry["twins"][(types, ab)] = got[0][0] if len(got) == 1 else tuple(got)
+            named[(k, (types, ab))] = [n for n, _t in got]
         out[k] = entry
     seen = {(a, d, w) for a, d, _m, w in pairs}
 
@@ -1226,9 +1257,8 @@ def form_twins(ff, pairs, hits_of, spread, whole_field, gas_twin):
         for t in made[k]:
             for w in ff.weathers:
                 for d in ff.foes(k):
-                    for dd in [d] + made.get(d, []):
-                        add(t, dd, hits_of(k), w)
-                        add(dd, t, hits_of(d), w)
+                    add(t, d, hits_of(k), w)
+                    add(d, t, hits_of(d), w)
                     if "Magnitude" in ff.move_names.get(d, ()) and d[0] in "pq":
                         for p in MAGNITUDE_POWERS:
                             add(f"{d}#m{p}", t, ["Magnitude"], w)
@@ -1236,6 +1266,12 @@ def form_twins(ff, pairs, hits_of, spread, whole_field, gas_twin):
                     for a in ff.allies(k):
                         add(a, t, spread(a), w)
                         add(t, a, spread(k), w)
+    for (k, sig), (f, fsig) in sorted(links, key=repr):
+        for t in named.get((k, sig), []):
+            for u in named.get((f, fsig), []):
+                for w in ff.weathers:
+                    add(t, u, hits_of(k), w)
+                    add(u, t, hits_of(f), w)
     return out
 
 
@@ -2933,16 +2969,18 @@ def mummy(b, att, dfn):
 
 @form_change
 def _mummified(ff):
-    """Mummy: in a fight with a holder, any Pokemon with a contact move and
-    an ability Mummy can replace may end with Mummy, a foe from the holder
-    and a holder's partner, in turn, from a foe that has taken it."""
-    if not any(ff.ability(k) == "Mummy" for k in ff.keys()):
-        return
-    for k in ff.keys():
-        ab = ff.ability(k)
-        if (ab != "Mummy" and not refuses(ab, "suppress") and ff.pokemon[k].get("item") != "Ability Shield"
-                and ff.contact(k)):
-            yield k, None, "Mummy"
+    """Mummy: any foe of a holder with a contact move and an ability Mummy
+    can replace may take Mummy. The holder's partner that takes it in turn,
+    from a foe that has, keeps its own rows: a second step, left out to keep
+    the preparation from growing with every contact move in the box."""
+    for h in ff.keys():
+        if ff.ability(h) != "Mummy":
+            continue
+        for k in ff.foes(h):
+            ab = ff.ability(k)
+            if (ab != "Mummy" and not refuses(ab, "suppress") and ff.pokemon[k].get("item") != "Ability Shield"
+                    and ff.contact(k)):
+                yield k, None, "Mummy"
 
 
 def wandering_spirit(b, att, dfn):
@@ -2975,8 +3013,7 @@ def _spirit_swapped(ff):
             ab = ff.ability(f)
             if (ab != "Wandering Spirit" and not refuses(ab, "swap") and ff.contact(f)
                     and ff.pokemon[f].get("item") != "Ability Shield"):
-                yield k, None, ab
-                yield f, None, "Wandering Spirit"
+                yield k, None, ab, (f, None, "Wandering Spirit")
 
 
 def _struck_back(b, att, dfn, chance, pick):
@@ -3992,8 +4029,7 @@ def _skill_swapped(ff):
             d = ff.ability(f)
             if refuses(d, "swap") or ff.pokemon[f].get("item") in keep or (a is None and d is None):
                 continue
-            yield k, None, d
-            yield f, None, a
+            yield k, None, d, (f, None, a)
 
 
 @form_move("COPY_ABILITY")
