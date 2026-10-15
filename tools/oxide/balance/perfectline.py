@@ -641,6 +641,10 @@ def attack(b, att, mv, dfn, first):
         if dealt is not None:
             _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=True)
         return
+    present = fs.present_roll(b) if mv.effect == "RANDOM_POWER_MAYBE_HEAL" else None
+    if present == 0:
+        fs.present_heal(dfn)             # Present's gift instead of a hit (fightsim.present_heal)
+        return
     # Fixed damage (fightsim.fixed_damage). Psywave's roll goes the
     # trainer's way in the search, as a damage roll does, and rolls in a run.
     tenths = 10
@@ -690,6 +694,8 @@ def attack(b, att, mv, dfn, first):
             p = pick(powers, weights) if pick else (rng.choices(powers, weights)[0] if rng is not None else 70)
             att.key = f"{key}#m{p}"
             b.last_magnitude = p
+        if present is not None:
+            att.key = f"{key}#pr{present}"   # Present's row at its rolled power (fightsim.present_roll)
         if spit is not None:
             att.key = spit                   # Spit Up's row for the power it spends
         elif mv.name == "Natural Gift" and player(att):

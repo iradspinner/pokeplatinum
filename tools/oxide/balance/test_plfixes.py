@@ -4218,6 +4218,35 @@ def magic_coat_checks():
     return [("the readings' Magic Coat turns a status move back", ok, f"(Bibarel, Spoink) {out}")]
 
 
+def present_checks():
+    """Present in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): of 300 uses of a trainer's Delibird's Present on
+    the player's Bibarel, about a fifth heal it a quarter and the rest hit
+    at three tiers of damage, where before the move found no row and did
+    nothing."""
+    from .test_fightai import battle
+
+    class Sure(pl.RunDice):
+        """Run dice where the trainer never misses or lands a critical hit."""
+        def good(self, p, kind=None):
+            return False
+    b = battle([("Delibird", 30, "Hustle", ["Present"])], [("Bibarel", 30, "Unaware", ["Tackle"])])
+    b.dice, b.rng = Sure(random.Random(1), True), random.Random(1)
+    deli, bib = b.b.cur(), b.p.cur()
+    bib.maxhp = 100000
+    heals, tiers = 0, set()
+    for _ in range(300):
+        bib.hp = bib.maxhp // 2
+        pl.attack(b, deli, fs.move("Present"), bib, True)
+        if bib.hp > bib.maxhp // 2:
+            heals += 1
+        elif bib.hp < bib.maxhp // 2:
+            tiers.add((bib.maxhp // 2 - bib.hp) // 10)
+    ok = 40 <= heals <= 85 and len(tiers) >= 3
+    return [("the readings' Present hits at its rolled power or heals", ok,
+             f"{heals} heals in 300; damage bands seen {sorted(tiers)}")]
+
+
 def main():
     results = []
 
@@ -4732,6 +4761,7 @@ def main():
     results += teeter_dance_checks()
     results += smelling_salts_checks()
     results += magic_coat_checks()
+    results += present_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

@@ -2114,6 +2114,11 @@ def rollout_lock_ticks(mon):
 # to 10). The decomp names its effect BATTLE_EFFECT_PSYWAVE, as pret's vanilla
 # data does; Psywave itself is RANDOM_DAMAGE_1_TO_150_LEVEL.
 MAGNITUDE_POWERS = {10: 5, 30: 10, 50: 20, 70: 30, 90: 20, 110: 10, 150: 5}
+# Present's outcomes by BtlCmd_Present's roll of 256 (the random number's
+# low byte against 255 times 40, 70 and 80 over 100): 40 power below 102,
+# 80 below 178, 120 below 204, and from 204 on the gift (0 here), a quarter
+# of the target's maximum HP back.
+PRESENT_ODDS = {40: 102, 80: 76, 120: 26, 0: 52}
 # Spit Up's power by the stockpiles it spends (effect script 161: 100 each).
 SPIT_UP_POWERS = (100, 200, 300)
 
@@ -2252,6 +2257,31 @@ def mimic(att, dfn):
     att.pp = {k: v for k, v in att.pp.items() if k != att.moves[j].name}
     att.pp[last.name] = min(5, last.pp)
     att.moves = moves
+
+
+def present_roll(b):
+    """Present's outcome for this use (effect script 122, BtlCmd_Present): a
+    power of 40, 80 or 120, or 0 for the gift, at PRESENT_ODDS, on the
+    battle's dice (a run's draw, the planner's weighted event); where no
+    dice can weigh it, the likeliest, 40, as Magnitude takes its likeliest
+    there. Its power's row is the "<key>#pr<power>" one prepare() adds."""
+    outcomes, weights = list(PRESENT_ODDS), list(PRESENT_ODDS.values())
+    pick = getattr(getattr(b, "dice", None), "pick_weighted", None)
+    if pick is not None:
+        return pick(outcomes, weights)
+    rng = getattr(b, "rng", None)
+    return rng.choices(outcomes, weights)[0] if rng is not None and hasattr(rng, "choices") else 40
+
+
+def present_heal(dfn):
+    """Present's gift (subscript_present_heal, after the accuracy check and
+    past the type chart, SYSCTL_IGNORE_IMMUNITIES): the target gets back a
+    quarter of its maximum HP (BattleSystem_Divide, at least 1), nothing
+    under Heal Block (the subscript's message) or at full HP (subscript_recover_hp's
+    NO_MORE_WORK). Until 2026-10-15 Present found no row and did nothing
+    (Ian approved the fix)."""
+    if dfn.alive() and not dfn.heal_block and dfn.hp < dfn.maxhp:
+        heal(dfn, max(1, dfn.maxhp // 4))
 
 
 def stockpile(mon):
@@ -2989,6 +3019,10 @@ def attack(b, att, mv, dfn, first):
         if dealt is None:
             return
         return _after_attack(b, att, mv, dfn, first, dealt)
+    present = present_roll(b) if mv.effect == "RANDOM_POWER_MAYBE_HEAL" else None
+    if present == 0:
+        present_heal(dfn)                # Present's gift instead of a hit (present_heal)
+        return
     # Fixed-damage moves.
     dmg = fixed_damage(b, att, dfn, mv, b.rng.randint(5, 15) if mv.effect == "RANDOM_DAMAGE_1_TO_150_LEVEL" else 10)
     if mv.effect == "ONE_HIT_KO":
@@ -3022,6 +3056,12 @@ def attack(b, att, mv, dfn, first):
             key, att.key = att.key, fling_key(att.key, gift)
             try:
                 dmg = b.damage(att, dfn, mv, crit=crit)
+            finally:
+                att.key = key
+        elif present is not None:
+            key, att.key = att.key, f"{att.key}#pr{present}"
+            try:
+                dmg = b.damage(att, dfn, mv, crit=crit)     # Present's row at its rolled power
             finally:
                 att.key = key
         else:
@@ -7160,6 +7200,21 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                 for w in weathers:
                     for d in foes:
                         pairs.append([dk, d, ["Magnitude"], w])
+    # Present's power is rolled when it is used (present_roll), so the
+    # calculator is asked once per power, each as its own attacker key
+    # ("<key>#pr<power>") carrying that power, against every foe it can
+    # meet, on either side; the calculator gives Present itself no row.
+    for k in list(pkeys) + list(qkeys) + list(bkeys):
+        if "Present" in moves.get(k, ()):
+            foes = pkeys + qkeys if k in bkeys else bkeys
+            for p in PRESENT_ODDS:
+                if p:
+                    dk = f"{k}#pr{p}"
+                    pokemon[dk] = dict(pokemon[k], move_data={"Present": {
+                        "type": "Normal", "category": "Physical", "basePower": p}})
+                    for w in weathers:
+                        for d in foes:
+                            pairs.append([dk, d, ["Present"], w])
     # Spit Up's power is 100 for each stockpile it spends (spit_up_key), so the
     # calculator is asked once per count, each as its own attacker key
     # ("<key>#su<power>") carrying that power, against every foe it can meet,

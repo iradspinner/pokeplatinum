@@ -4330,6 +4330,52 @@ def check_magic_coat(results):
     results.append(("Magic Coat turns a reflectable status move back once", out == want, str(out)))
 
 
+def check_present(results):
+    """Present (approved 2026-10-14; effect script 122, BtlCmd_Present):
+    prepare() rows it at 40, 80 and 120 power as its own attacker keys, as
+    the calculator gives the move itself no row; a use hits from its rolled
+    power's row, or for the gift heals its target a quarter, a Ghost too,
+    but not one under Heal Block or at full HP."""
+    st, pairs, pokemon = prepared_jobs([("Delibird", 30, "Hustle", ["Present"], None)],
+                                       [("Bibarel", 30, "Simple", ["Tackle"], None)])
+    keyed = {k: pokemon[k]["move_data"]["Present"]["basePower"] for k in pokemon if k.startswith("b0.0#pr")}
+    rowed = sorted(a for a, d, mvs, w in pairs if a.startswith("b0.0#pr") and d == "p0" and mvs == ["Present"])
+    out = {"keys": keyed, "rows": rowed}
+
+    class Pick:
+        """A random source that passes every check and rolls `outcome`."""
+        def __init__(self, outcome):
+            self.outcome = outcome
+
+        def random(self):
+            return 0.0
+
+        def choices(self, items, weights):
+            return [self.outcome]
+
+        def randint(self, a, b):
+            return a
+
+        def randrange(self, n):
+            return 0
+
+        def choice(self, seq):
+            return seq[0]
+    for outcome, setup in ((120, None), (0, None), (0, "Ghost"), (0, "Heal Block"), (0, "full")):
+        b, p, foe = battle(["Tackle"], ["Present"], {}, p_types=("Ghost",) if setup == "Ghost" else ("Normal",))
+        b.st["rows"][(None, "b0.0#pr120", "p0")] = {"moves": {"Present": {"rolls": [30] * 16}}}
+        b.rng = Pick(outcome)
+        p.ability = "Shell Armor"
+        p.hp = 100 if setup == "full" else 40
+        p.heal_block = 5 if setup == "Heal Block" else 0
+        fs.attack(b, foe, fs.move("Present"), p, True)
+        out[(outcome, setup)] = p.hp
+    want = {"keys": {"b0.0#pr40": 40, "b0.0#pr80": 80, "b0.0#pr120": 120},
+            "rows": ["b0.0#pr120", "b0.0#pr40", "b0.0#pr80"],
+            (120, None): 10, (0, None): 65, (0, "Ghost"): 65, (0, "Heal Block"): 40, (0, "full"): 100}
+    results.append(("Present hits at its rolled power or heals a quarter", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4596,7 +4642,7 @@ def main():
                   check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
                   check_trainer_frustration, check_secret_power, check_snore,
                   check_raise_speed_hit, check_trump_card,
-                  check_teeter_dance, check_smelling_salts, check_magic_coat,
+                  check_teeter_dance, check_smelling_salts, check_magic_coat, check_present,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
