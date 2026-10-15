@@ -2809,6 +2809,29 @@ def conversion_checks():
              f"twins {twins}; Karate Chop before {before}; after Conversion (types, Karate Chop) {after}")]
 
 
+def conversion2_checks():
+    """Conversion 2 on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Porygon2 on a twin of each type
+    that resists a Machop's Karate Chop; after a Karate Chop and its
+    Conversion 2 it is one of them, and the next Karate Chop lands at half
+    or less of what it did."""
+    from .test_fightai import battle
+    b = battle([("Porygon2", 30, "Download", ["Conversion 2", "Tri Attack"])], [("Machop", 30, "Guts", ["Karate Chop"])])
+    pory, machop = b.b.cur(), b.p.cur()
+    chop = fs.move("Karate Chop")
+    twins = sorted(t[0][0] for t in ((b.st.get("form_twin") or {}).get(pory.key) or {}).get("twins", {}))
+    before = pl.damage_of(b, machop, pory, chop, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pory.hp = pory.maxhp * 10
+    pl.use_move(b, machop, chop, pory, True)
+    pl.use_move(b, pory, fs.move("Conversion 2"), machop, False)
+    after = (list(pory.types), pl.damage_of(b, machop, pory, chop, False, True))
+    resist = ["Bug", "Fairy", "Flying", "Ghost", "Poison", "Psychic"]
+    ok = twins == resist and after[0][0] in resist and after[1] * 2 <= before
+    return [("Conversion 2: Porygon2 takes a type that resists Karate Chop, on its twin's rows", ok,
+             f"twins {twins}; Karate Chop before {before}; after (types, Karate Chop) {after}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3326,6 +3349,7 @@ def main():
     results += forecast_checks()
     results += soak_checks()
     results += conversion_checks()
+    results += conversion2_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

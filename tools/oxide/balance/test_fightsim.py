@@ -1600,6 +1600,35 @@ def check_conversion(results):
                     f"Multitype {multitype}; a Ghost with Curse and Shadow Ball {ghost}"))
 
 
+def check_conversion2(results):
+    """Conversion 2 (approved 2026-10-14; BtlCmd_TryConversion2): after an
+    Ember, its user takes a type that resists Fire (Water, in this chart)
+    and reads its twin of it; it fails with no move aimed at it since it
+    last acted, once it has acted since that move, and on Multitype."""
+    def convert(hit_first=True, acted_between=False, ability=None):
+        rows = {("b", "Ember"): [10] * 16, ("b", "Tackle"): [10] * 16, ("p", "Tackle"): [10] * 16}
+        b, p, foe = battle(["Conversion 2", "Tackle"], ["Ember", "Tackle"], rows)
+        b.st["first_battle"] = True
+        p.ability = ability
+        b.st["form_twin"] = {"p0": {"ability": None, "twins": {(("Water",), None): "p0#fmWater@"}}}
+        b.st["rows"][(None, "b0.0", "p0#fmWater@")] = {"moves": {"Ember": {"rolls": [5] * 16}}}
+        if hit_first:
+            fs.use_move(b, foe, fs.move("Ember"), p, True)
+        if acted_between:
+            fs.use_move(b, p, fs.move("Tackle"), foe, True)
+        fs.use_move(b, p, fs.move("Conversion 2"), foe, False)
+        return b, p, foe
+    b, p, foe = convert()
+    water = (list(p.types), b.damage(foe, p, fs.move("Ember"), roll=0))
+    got = {"no move aimed at it": convert(hit_first=False)[1].types,
+           "after acting since": convert(acted_between=True)[1].types,
+           "Multitype": convert(ability="Multitype")[1].types}
+    want = {"no move aimed at it": ["Normal"], "after acting since": ["Normal"], "Multitype": ["Normal"]}
+    ok = water == (["Water"], 5) and got == want
+    results.append(("Conversion 2 takes a type that resists the last move aimed at its user", ok,
+                    f"after Ember (types, Ember on the twin) {water}; {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2885,7 +2914,7 @@ def main():
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_form_twins, check_trace, check_mummy,
                   check_wandering_spirit, check_color_change, check_forecast, check_soak,
-                  check_conversion, check_magic_guard, check_liquid_ooze,
+                  check_conversion, check_conversion2, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

@@ -2165,7 +2165,9 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     att.acted_turn = b.turn      # its action this turn has begun (a Truant given later this turn: set_ability)
     mv = encored_move(att, mv)
     # Its own record clears with its action, whatever happens
-    # (BattleControllerPlayer_ClearFlags), and so does its Destiny Bond.
+    # (BattleControllerPlayer_ClearFlags), and so does its Destiny Bond. The
+    # record as it stood is what this action's Conversion 2 reads.
+    att.conversion2_src = (att.last_hit_by, att.last_hit_type) if att.last_hit_by is not None else None
     att.last_hit_by = None
     att.destiny_bond = False
     b.status_src = att           # a status this move gives comes from att (Synchronize)
@@ -3904,6 +3906,46 @@ def _converted(ff):
             own = ff.types(k)
             for t in sorted({conversion_type(m, own) for m in mvs if m.effect != "CONVERSION"} - set(own)):
                 yield k, [t], ff.ability(k)
+
+
+@form_move("CONVERSION2")
+def conversion2(b, att, mv, dfn, pick):
+    """Conversion 2 (subscript_conversion_2, BtlCmd_TryConversion2): its
+    user takes, alone, a type that resists or is immune to the type of the
+    last move aimed at it since it last acted (conversion2Move, which a
+    move at its own side or the field leaves unset), one it is not of
+    already, each as likely as the next (a random entry of the type chart's
+    table). It fails on Multitype, with no such move, or with no such type.
+    Its rows then come from its twin of that type (form_key). Until
+    2026-10-14 Conversion 2 did nothing (Ian approved the fix)."""
+    src = getattr(att, "conversion2_src", None)
+    if att.ability == "Multitype" or src is None or src[0].range == "OPPONENT_SIDE":
+        return False
+    hit_by = src[1] or src[0].type
+    options = sorted(d for d, m in (b.st["chart"].get(hit_by) or {}).items() if m < 1 and d not in att.types)
+    if not options:
+        return False
+    set_types(att, [options[pick("conversion2", len(options)) if len(options) > 1 else 0]])
+    return True
+
+
+@form_change
+def _converted2(ff):
+    """Conversion 2: its user may take any type that resists a move its foes
+    can aim at it, its own types aside."""
+    chart = ff.blob["type_chart"]
+    for k in ff.keys():
+        if ff.ability(k) == "Multitype" or not any(m.effect == "CONVERSION2" for m in ff.moves(k)):
+            continue
+        aimed = set()
+        for f in ff.foes(k):
+            aimed |= ff.hit_types(f)
+            aimed |= {m.type for m in ff.moves(f) if not m.damaging() and m.range not in OWN_RANGES | {"OPPONENT_SIDE"}}
+        own = set(ff.types(k))
+        for t in sorted(aimed):
+            for d, m in sorted((chart.get(t) or {}).items()):
+                if m < 1 and d not in own:
+                    yield k, [d], ff.ability(k)
 
 
 def lifted(dfn, mv):

@@ -355,7 +355,8 @@ def _use_move(b, att, mv, dfn, first):
         return
     att.acted_turn = b.turn          # its action this turn has begun (fightsim._use_move)
     mv = fs.encored_move(att, mv)        # the Encore move, whatever was chosen (fightsim.encored_move)
-    att.last_hit_by = None           # cleared with its own action (fightsim.use_move)
+    att.conversion2_src = (att.last_hit_by, att.last_hit_type) if att.last_hit_by is not None else None
+    att.last_hit_by = None           # cleared with its own action, after Conversion 2 has read it (fightsim.use_move)
     att.destiny_bond = False         # and its Destiny Bond with it
     b.status_src = att               # a status this move gives comes from att (Synchronize)
     if att.recharge:
