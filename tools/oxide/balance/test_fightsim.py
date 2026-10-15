@@ -1629,6 +1629,32 @@ def check_conversion2(results):
                     f"after Ember (types, Ember on the twin) {water}; {got}"))
 
 
+def check_camouflage(results):
+    """Camouflage (approved 2026-10-14; BtlCmd_TryCamouflage): its user takes
+    its terrain's type, Normal indoors and Rock on a mountain, and is marked
+    so for the trainer's AI, which then refuses a second Camouflage; it
+    fails on a user of that type already and on Multitype; leaving brings
+    its own type back."""
+    def camo(types=("Fire",), terrain=None, ability=None):
+        b, p, foe = battle(["Camouflage", "Tackle"], ["Tackle"], {}, p_types=types)
+        if terrain:
+            b.st["camouflage"] = fs.camouflage_type(terrain)
+        p.ability = ability
+        fs.status_move(b, p, fs.move("Camouflage"), foe, True)
+        return b, p, foe
+    b, p, foe = camo()
+    indoors = (list(p.types), p.camouflaged, fightai.basic(b, p, foe, fs.move("Camouflage"), None))
+    p.reset_volatile()
+    back = (list(p.types), p.camouflaged)
+    got = {"a mountain": camo(terrain="TERRAIN_MOUNTAIN")[1].types, "a Normal user indoors": camo(("Normal",))[1].types,
+           "Multitype": camo(ability="Multitype")[1].types, "the Elite Four's room": camo(terrain="TERRAIN_AARON")[1].types}
+    want = {"a mountain": ["Rock"], "a Normal user indoors": ["Normal"], "Multitype": ["Fire"],
+            "the Elite Four's room": ["Normal"]}
+    ok = indoors == (["Normal"], True, -10) and back == (["Fire"], False) and got == want
+    results.append(("Camouflage takes its terrain's type", ok,
+                    f"indoors (types, marked, the AI's score for another) {indoors}; after leaving {back}; {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2914,7 +2940,8 @@ def main():
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_form_twins, check_trace, check_mummy,
                   check_wandering_spirit, check_color_change, check_forecast, check_soak,
-                  check_conversion, check_conversion2, check_magic_guard, check_liquid_ooze,
+                  check_conversion, check_conversion2, check_camouflage, check_magic_guard,
+                  check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

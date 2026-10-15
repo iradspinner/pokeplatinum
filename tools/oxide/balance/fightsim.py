@@ -3948,6 +3948,47 @@ def _converted2(ff):
                     yield k, [d], ff.ability(k)
 
 
+# The type Camouflage gives on each battle terrain (data/terrain/to_type.h,
+# sTerrainCamouflageType); every terrain after the bridge's (the Elite
+# Four's rooms, the Distortion World) counts as the special one, Normal.
+CAMOUFLAGE_TYPE = {"TERRAIN_PLAIN": "Ground", "TERRAIN_SAND": "Ground", "TERRAIN_GRASS": "Grass",
+                   "TERRAIN_PUDDLE": "Grass", "TERRAIN_MOUNTAIN": "Rock", "TERRAIN_CAVE": "Rock",
+                   "TERRAIN_SNOW": "Ice", "TERRAIN_WATER": "Water", "TERRAIN_ICE": "Ice",
+                   "TERRAIN_BUILDING": "Normal", "TERRAIN_GREAT_MARSH": "Ground", "TERRAIN_BRIDGE": "Flying"}
+
+
+def camouflage_type(terrain):
+    """Camouflage's type on this battle terrain (calc.fight_terrain), a
+    building's Normal where the fight names none."""
+    return CAMOUFLAGE_TYPE.get(terrain or "TERRAIN_BUILDING", "Normal")
+
+
+@form_move("CAMOUFLAGE")
+def camouflage(b, att, mv, dfn, pick):
+    """Camouflage (effect script 213, BtlCmd_TryCamouflage): its user takes,
+    alone, the type its battle terrain gives (st["camouflage"], from the map's
+    backdrop), and is marked so (MOVE_EFFECT_CAMOUFLAGE, which the trainer's
+    AI reads); it fails on Multitype or when the user is of that type
+    already. Its rows then come from its twin of that type (form_key). Until
+    2026-10-14 Camouflage did nothing (Ian approved the fix)."""
+    t = b.st.get("camouflage") or "Normal"
+    if att.ability == "Multitype" or t in att.types:
+        return False
+    set_types(att, [t])
+    att.camouflaged = True
+    return True
+
+
+@form_change
+def _camouflaged(ff):
+    """Camouflage: its user may take its terrain's type, unless it has it."""
+    for k in ff.keys():
+        mvs = ff.moves(k)
+        if (ff.ability(k) != "Multitype" and any(m.effect == "CAMOUFLAGE" for m in mvs)
+                and ff.camouflage not in ff.types(k)):
+            yield k, [ff.camouflage], ff.ability(k)
+
+
 def lifted(dfn, mv):
     """Whether Magnet Rise makes this Ground move fail on dfn (the type
     check's MOVE_STATUS_MAGNET_RISE): not on a Pokemon rooted by Ingrain or
@@ -5378,11 +5419,12 @@ def family(species):
 
 
 def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False,
-            given_side=None):
+            given_side=None, terrain=None):
     """Everything a fight's battles read: the strong third of the side, the
     trainer's Pokemon, a partner's teams (keys q0.0 and on), and the
     calculator's rows for every pair in every weather the fight can have;
-    in a double battle also each ally's spread moves on its ally."""
+    in a double battle also each ally's spread moves on its ally. `terrain`
+    is the fight's battle terrain (calc.fight_terrain), for Camouflage."""
     blob = calc.blob()
     cap = cap or pool.caps()[split]
     side, can = side_at(split, cap, blob)
@@ -5669,7 +5711,8 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     # The types and abilities other moves and abilities can change
     # (FORM_CHANGES): a twin for each change the fight can produce, rowed
     # both ways against every foe (form_twins). None in a fight without them.
-    form_twin = form_twins(FormFight(pokemon, moves, blob, pkeys, qkeys, bkeys, weathers, None), pairs,
+    camo = camouflage_type(terrain)
+    form_twin = form_twins(FormFight(pokemon, moves, blob, pkeys, qkeys, bkeys, weathers, camo), pairs,
                            lambda k: party_hits(k) if k in bkeys else hits(k), spread,
                            doubles or bool(partners), gas_twin)
     # The calculator is told to leave off the abilities the battle applies
@@ -5706,7 +5749,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "base_weather": calc.CALC_WEATHER.get(weather, weather) if weather else None,
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
-            "protean_twin": protean_twin, "form_twin": form_twin}
+            "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo}
 
 
 def effectiveness(blob_or_chart, atk_type, def_types):
@@ -5946,13 +5989,14 @@ def story(key, runs=RUNS):
         partners = [ox[p]["party"] for p in fight.get("partner_ids", []) if p in ox]
         st = prepare(fight["split"], parties, weather,
                      trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
-                     partners=partners, doubles=True)
+                     partners=partners, doubles=True, terrain=calc.fight_terrain(tr_ids))
         st["battle"] = "tag"
         st["group_flags"] = [t["ai"] for t in trainers]
         st["partner_flags"] = ox[fight["partner_ids"][0]]["ai"] if fight.get("partner_ids") else 0
         return read_fight(st, [st["group_flags"][0]], runs)
     st = prepare(fight["split"], parties, weather,
-                 trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap)
+                 trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
+                 terrain=calc.fight_terrain(tr_ids))
     return read_fight(st, [t["ai"] for t in trainers], runs)
 
 
@@ -5964,7 +6008,7 @@ def trainer(tr_id, runs=RUNS, split=None):
     split = split or required.placements()[tr_id]["split"]
     doubles = t.get("battle_type") == "Doubles" and PLAY_DOUBLES and len(t["party"]) > 1
     st = prepare(split, [t["party"]], calc.fight_weather([tr_id]), trick_room_for([t["constant"]]),
-                 cap=fight_cap(split), doubles=doubles)
+                 cap=fight_cap(split), doubles=doubles, terrain=calc.fight_terrain([tr_id]))
     if doubles:
         st["battle"] = "doubles"
     return read_fight(st, [t["ai"]], runs)

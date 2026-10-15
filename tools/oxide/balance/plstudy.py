@@ -60,7 +60,8 @@ def prepare(paths, split, cap, recs, stock):
     stems = [os.path.basename(p)[:-len(".json")] for p in paths]
     weather = calc.fight_weather(trainer_ids(stems))
     trick_room = fs.trick_room_for(["TRAINER_" + s.upper() for s in stems])
-    st = fs.prepare(split, [p for p, _f in parties], weather, trick_room, cap=cap, given_side=recs)
+    st = fs.prepare(split, [p for p, _f in parties], weather, trick_room, cap=cap, given_side=recs,
+                    terrain=calc.fight_terrain(trainer_ids(stems)))
     st["item_stock"] = dict(stock)
     keys = [f"p{i}" for i in range(len(recs))]
     return st, keys, [(st["bosses"][i], f) for i, (_p, f) in enumerate(parties)]

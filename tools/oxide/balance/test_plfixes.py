@@ -2832,6 +2832,44 @@ def conversion2_checks():
              f"twins {twins}; Karate Chop before {before}; after (types, Karate Chop) {after}")]
 
 
+def camouflage_checks():
+    """Camouflage on the calculator's real rows and the readings' move
+    (approved 2026-10-14): a fight's terrain comes from its trainer's map's
+    backdrop (Roark's gym a building, Spear Pillar a mountain, Route 202
+    plain ground), and prepare rows a Camouflage user on its twin of that
+    terrain's type; on Route 202's ground, a Staryu's Camouflage makes it a
+    Ground type, so a Pikachu's Thunderbolt then reads 0."""
+    by = {t["constant"]: t["tr_id"] for t in data.oxide_trainers().values()}
+    terrains = tuple(calc_terrain([by[c]]) for c in ("TRAINER_LEADER_ROARK", "TRAINER_COMMANDER_MARS_SPEAR_PILLAR",
+                                                   "TRAINER_YOUNGSTER_TRISTAN"))
+
+    def rec(sp, ab, mv):
+        return {"species": sp, "level": 30, "ability": ab, "item": None, "nature": "Hardy", "ivs": IV, "evs": EV,
+                "moves": mv}
+    side = [dict(rec("Staryu", "Illuminate", ["Camouflage", "Water Gun"]), constant="SPECIES_STARYU", how="test",
+                 fill=False)]
+    st = fs.prepare("Gardenia", [[rec("Pikachu", "Static", ["Thunderbolt"])]], None, given_side=side,
+                    terrain=terrains[2])
+    b = pl.make_battle(st, ["p0"], st["bosses"][0], 7, 0)
+    star, pika = b.p.cur(), b.b.cur()
+    bolt = fs.move("Thunderbolt")
+    twins = sorted(((st.get("form_twin") or {}).get(star.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, pika, star, bolt, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, star, fs.move("Camouflage"), pika, True)
+    after = (list(star.types), pl.damage_of(b, pika, star, bolt, False, True))
+    ok = (terrains == ("TERRAIN_BUILDING", "TERRAIN_MOUNTAIN", "TERRAIN_PLAIN") and twins == [(("Ground",), None)]
+          and before > 0 and after == (["Ground"], 0))
+    return [("Camouflage: Staryu takes Route 202's Ground type, and Thunderbolt then misses it", ok,
+             f"terrains (Roark, Spear Pillar, Route 202) {terrains}; twins {twins}; Thunderbolt before {before}; "
+             f"after Camouflage (types, Thunderbolt) {after}")]
+
+
+def calc_terrain(tr_ids):
+    from . import calc
+    return getattr(calc, "fight_terrain", lambda _ids: None)(tr_ids)
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3350,6 +3388,7 @@ def main():
     results += soak_checks()
     results += conversion_checks()
     results += conversion2_checks()
+    results += camouflage_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
