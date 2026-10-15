@@ -2744,6 +2744,27 @@ def color_change_checks():
              f"twins {twins}; Thunderbolt before {before}; after Water Gun (types, Thunderbolt) {after}")]
 
 
+def forecast_checks():
+    """Forecast in the readings' battle (approved 2026-10-14): Camper
+    Zackary's Castform leading in a sunny fight is a Fire type from the
+    battle's start, as its rows already had it, so a Vulpix's Will-O-Wisp
+    cannot burn it; after a Rain Dance it is a Water type."""
+    from .test_fightai import battle
+    b = battle([("Castform", 24, "Forecast", ["Water Pulse", "Ember"])],
+               [("Vulpix", 24, "Flash Fire", ["Will-O-Wisp", "Rain Dance"])], weather="Sun")
+    cast, vulpix = b.b.cur(), b.p.cur()
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    start = list(cast.types)
+    vulpix.stages["acc"] = 6
+    pl.use_move(b, vulpix, fs.move("Will-O-Wisp"), cast, True)
+    burned = cast.status
+    pl.use_move(b, vulpix, fs.move("Rain Dance"), cast, True)
+    rain = (b.weather, list(cast.types))
+    ok = start == ["Fire"] and burned is None and rain == ("Rain", ["Water"])
+    return [("Forecast: Castform is Fire in sun, unburnt by Will-O-Wisp, and Water after Rain Dance", ok,
+             f"types at the start {start}; status after Will-O-Wisp {burned}; after Rain Dance (weather, types) {rain}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3258,6 +3279,7 @@ def main():
     results += mummy_checks()
     results += wandering_spirit_checks()
     results += color_change_checks()
+    results += forecast_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

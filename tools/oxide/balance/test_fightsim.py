@@ -1513,6 +1513,37 @@ def check_color_change(results):
                     f"after Water Gun (types, named, Water Gun again) {water}; after leaving {back}; {got}"))
 
 
+def check_forecast(results):
+    """Forecast (approved 2026-10-14; BattleSystem_TriggerFormChange): as a
+    move ends, Castform takes the weather's type, Fire in sun (so no burn
+    lands), Water in rain, Ice in hail (so the hail spares it), and Normal
+    again in sand, with no weather, or with Cloud Nine on the field; a
+    Castform without Forecast keeps its type, and leaving brings Normal
+    back."""
+    def turn(weather, ability="Forecast", foe_ability=None):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        b.st["first_battle"] = True
+        foe.species, foe.ability, p.ability, b.weather = "Castform", ability, foe_ability, weather
+        fs.use_move(b, p, fs.move("Tackle"), foe, True)
+        return b, foe
+    got = {w or "none": turn(w)[1].types for w in ("Sun", "Rain", "Hail", "Sand", None)}
+    got["sun, Cloud Nine"] = turn("Sun", foe_ability="Cloud Nine")[1].types
+    got["sun, no Forecast"] = turn("Sun", ability=None)[1].types
+    b, cast = turn("Sun")
+    burns = fs.can_status(b, cast, "brn")
+    b, cast = turn("Hail")
+    cast.hp = 50
+    fs.end_of_turn(b)
+    hail = cast.hp
+    cast.reset_volatile()
+    left = cast.types
+    want = {"Sun": ["Fire"], "Rain": ["Water"], "Hail": ["Ice"], "Sand": ["Normal"], "none": ["Normal"],
+            "sun, Cloud Nine": ["Normal"], "sun, no Forecast": ["Normal"]}
+    ok = got == want and not burns and hail == 50 and left == ["Normal"]
+    results.append(("Forecast gives Castform the weather's type", ok,
+                    f"types {got}; burnable in sun {burns}; HP after hail from 50 {hail}; after leaving {left}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2797,7 +2828,8 @@ def main():
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_form_twins, check_trace, check_mummy,
-                  check_wandering_spirit, check_color_change, check_magic_guard, check_liquid_ooze,
+                  check_wandering_spirit, check_color_change, check_forecast, check_magic_guard,
+                  check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

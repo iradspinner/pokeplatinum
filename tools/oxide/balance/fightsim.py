@@ -425,7 +425,8 @@ class Mon:
         self.protean_used = False
         self.retyped = False             # its types are the battle's, not its own
         # The types its rows must now be read with (form_key), when a move or
-        # an ability other than Protean changed them; None for its own rows.
+        # an ability other than Protean and Forecast changed them; None for
+        # its own rows.
         self.row_types = None
         if getattr(self, "suppressed", False):
             self.ability = self.suppress_stash
@@ -1346,6 +1347,7 @@ def entry_abilities(b, mons, intimidate=True, trace_now=True):
         intimidate_foes(b, mons)
         for new in mons:
             download(b, new)
+    forecast(b)                          # the check's form step comes after these
 
 
 def download(b, mon):
@@ -1471,6 +1473,7 @@ def open_battle(b):
     intimidate_foes(b, ordered)
     for lead in ordered:
         download(b, lead)                # after Intimidate, as the switch-in check runs them
+    forecast(b)
 
 
 def stat_drop_blocked(b, mon, changes, src=None, intimidate=False):
@@ -2124,11 +2127,36 @@ def move_end(b):
     """The rest of the switch-in check that ends every move
     (BattleControllerPlayer_MoveEnd), beyond Neutralizing Gas's step: a Trace
     holder still waiting for a foe it can copy traces now (trace), and its
-    new ability's entry steps follow."""
+    new ability's entry steps follow; then Castform takes the weather's form
+    (forecast)."""
     if any(m.ability == "Trace" and not m.traced for m in b.p.on_field() + b.b.on_field()):
         traced = trace(b)
         if traced:
             entry_abilities(b, traced, trace_now=False)
+    forecast(b)
+
+
+# Castform's type in each weather (BattleSystem_TriggerFormChange).
+FORECAST_TYPE = {"Sun": "Fire", "Rain": "Water", "Hail": "Ice"}
+
+
+def forecast(b):
+    """Castform's form check (BattleSystem_TriggerFormChange, in the
+    switch-in check and after every move): a Castform standing with Forecast
+    takes the weather's type alone, Fire in sun, Water in rain, Ice in hail,
+    and Normal in any other weather or none, or with Cloud Nine or Air Lock
+    on the field, whenever it is not of that type already. The battle's type
+    checks (a burn, a freeze, the hail, the trainer's AI) read it at once;
+    its rows need no twin, since the calculator types it by each row's
+    weather (checkForecast). A Castform that has lost Forecast keeps the form
+    it has, and leaving brings its own type back. Until 2026-10-14 it stayed
+    Normal in every weather (Ian approved the fix)."""
+    for m in b.p.on_field() + b.b.on_field():
+        if m.species != "Castform" or not m.alive() or m.ability != "Forecast":
+            continue
+        want = "Normal" if weather_ignored(b) else FORECAST_TYPE.get(b.weather, "Normal")
+        if want not in m.types:
+            m.types, m.retyped = [want], True
 
 
 def _use_move(b, att, mv, dfn, first, targets=None):
