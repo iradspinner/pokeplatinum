@@ -101,7 +101,7 @@ def pokedex_moves():
 class Move:
     """One move as the simulator reads it."""
     __slots__ = ("name", "type", "cat", "power", "acc", "pri", "effect", "chance", "range",
-                 "contact", "sound", "pp", "const", "reflectable", "protect", "mirror", "snatch")
+                 "contact", "sound", "pp", "const", "reflectable", "protect", "mirror", "snatch", "sure")
 
     def __init__(self, name):
         by, compact = _by_calc_name()
@@ -123,6 +123,7 @@ class Move:
         self.protect = "CAN_PROTECT" in flags        # MOVE_FLAG_CAN_PROTECT: Protect stops it
         self.mirror = "CAN_MIRROR_MOVE" in flags     # MOVE_FLAG_CAN_MIRROR_MOVE: Mirror Move can copy it
         self.snatch = "CAN_SNATCH" in flags          # MOVE_FLAG_CAN_SNATCH: Snatch can take it
+        self.sure = self.effect == "ALWAYS_CRITICAL"  # Frost Breath's kind: its row is a critical hit (row_crit_mult)
         self.pp = rec.get("pp") or 10
 
     def damaging(self):
@@ -951,7 +952,7 @@ class Battle:
         rolls = self.rolls(att, dfn, mv)
         if rolls is None:
             return None
-        sure = mv.effect == ALWAYS_CRIT
+        sure = mv.sure
         if sure:
             # The move's own critical hit unless told (sure_crit); none in
             # the AI's estimate, which passes criticalMul 1 (TrainerAI_CalcDamage).
@@ -3288,11 +3289,15 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     att.conversion2_src = (att.last_hit_by, att.last_hit_type) if att.last_hit_by is not None else None
     att.last_hit_by = None
     att.destiny_bond = False
-    if att.grudge:
-        att.grudge = False           # and its Grudge (CHECK_STATUS_START)
     b.status_src = att           # a status this move gives comes from att (Synchronize)
-    if att.sky_holder is not None and sky_held(b, att):
-        return could_not_act(b, att, mv, dfn, targets)     # held in the air by Sky Drop (sky_held)
+    if att.rare:
+        # Grudge and a Sky Drop's hold come with the rare flag: its Grudge
+        # ends as its action begins (CHECK_STATUS_START), and held in the
+        # air by Sky Drop it does nothing (sky_held).
+        if att.grudge:
+            att.grudge = False
+        if att.sky_holder is not None and sky_held(b, att):
+            return could_not_act(b, att, mv, dfn, targets)
     # The user's own state first.
     if att.recharge:
         att.recharge = False
@@ -3533,7 +3538,7 @@ def attack(b, att, mv, dfn, first):
     if dmg is None:
         stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                   mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
-        crit = ((mv.effect == ALWAYS_CRIT or b.rng.random() < CRIT_RATE[min(stage, 4)])
+        crit = ((mv.sure or b.rng.random() < CRIT_RATE[min(stage, 4)])
                 and not crit_proof(att, dfn, b) and not b.st.get("first_battle"))
         if spit is not None:
             key, att.key = att.key, spit
@@ -3829,9 +3834,8 @@ def crit_proof(att, dfn, b=None):
 
 
 # Flower Trick, Frost Breath, Storm Throw and Wicked Blow (effect script
-# 282): BattleSystem_CalcCriticalMulti makes every hit critical, unless
-# crit_proof or the first battle keeps it off (sure_crit).
-ALWAYS_CRIT = "ALWAYS_CRITICAL"
+# 282, Move.sure): BattleSystem_CalcCriticalMulti makes every hit critical,
+# unless crit_proof or the first battle keeps it off (sure_crit).
 
 
 def sure_crit(b, att, dfn):
@@ -3887,7 +3891,7 @@ def crit_rate(b, att, dfn, mv):
     a side under Lucky Chant and in the first battle (BtlCmd_CalcCrit)."""
     if crit_proof(att, dfn, b) or b.st.get("first_battle"):
         return 0.0
-    if mv.effect == ALWAYS_CRIT:
+    if mv.sure:
         return 1.0                       # forced (sure_crit)
     stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                                                mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
@@ -7392,13 +7396,13 @@ def _end_of_turn(b):
         b.p.guard = b.b.guard = None     # the side guards are turn flags too
         b.guarded = False
     if b.snatching:
-        b.snatching = False              # no Snatch waits past the turn
+        for m in b.p.mons + b.b.mons:
+            m.snatching = False          # no Snatch waits past the turn, one dragged out too (a turn flag)
+        b.snatching = False
     for m in order:
         m.roosting = False          # a turn flag, gone with the turn
         if m.magic_coat:
             m.magic_coat = False    # Magic Coat's turn flag too
-        if m.snatching:
-            m.snatching = False     # and Snatch's
         if m.alive():
             m.protecting = False
             m.enduring = False
