@@ -381,6 +381,8 @@ def _use_move(b, att, mv, dfn, first):
     if fs.disabled_out(att, mv):
         att.choice = None                # subscript_move_is_disabled lets go of a Choice item's lock
         return fs.could_not_act(b, att, mv, dfn)
+    if fs.move_barred(b, att, mv):
+        return fs.could_not_act(b, att, mv, dfn)     # a sound move under Throat Chop (fightsim.move_barred)
     if att.confused:
         att.confused -= 1
         if att.confused and (b.dice.bad("confusion", 0.5) if player(att) else b.dice.good(0.5, "confusion")):
@@ -810,6 +812,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
         return
     fs.slap_wakes(dfn, mv)       # Wake-Up Slap's doubled hit wakes its target (fightsim.slap_wakes)
+    if e == "THROAT_CHOP":
+        fs.throat_chop(att, dfn, stripped)     # its hold on the target's sound moves (fightsim.throat_chop)
     if e == "SALT_CURE":
         dfn.salted = True        # as fightsim: salted once the hit lands, chance-free
     if e == "CORE_ENFORCER" and getattr(dfn, "acted_turn", None) == b.turn:
@@ -1144,6 +1148,8 @@ def mon_key(m):
         key += ("stockpile", m.stockpile, m.stockpile_def, m.stockpile_spd)
     if m.imprisoning or m.imprisoned:
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
+    if m.throat_chop:
+        key += ("throat chop", m.throat_chop)
     return key + _form(m) if m.formed else key
 
 
@@ -1327,7 +1333,7 @@ def player_actions(b):
     try:
         for mv in me.moves:
             if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status") or fs.tormented_out(me, mv) \
-                    or fs.move_heal_blocked(me, mv) or fs.disabled_out(me, mv):
+                    or fs.move_heal_blocked(me, mv) or fs.disabled_out(me, mv) or fs.move_barred(b, me, mv):
                 continue
             if me.choice and mv.name != me.choice:
                 continue

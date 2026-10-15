@@ -2403,6 +2403,49 @@ def check_wake_up_slap(results):
                     f"(damage, status after) for two slaps {out}"))
 
 
+def check_throat_chop(results):
+    """Throat Chop (approved 2026-10-14; effect script 401,
+    subscript_throat_chop): its hit holds the target's sound moves for the
+    rest of the turn and all of the next, two turn ends; a held sound move
+    can be neither chosen (the trainer's AI refuses it) nor used, and is
+    free again after the second turn's end. Shield Dust, a Covert Cloak, a
+    Substitute and Sheer Force each keep the hold off, and leaving clears
+    it."""
+    def chop(**kw):
+        b, p, foe = battle(["Throat Chop"], ["Hyper Voice", "Tackle"],
+                           {("p", "Throat Chop"): [10] * 16, ("b", "Hyper Voice"): [7] * 16}, hp=500)
+        b.rng = FixedDice(0.0)
+        p.ability = "Shell Armor"         # no critical hits on the user, so Hyper Voice reads its row
+        for k, v in kw.items():
+            setattr(p if k == "ability" else foe, k if k != "foe_ability" else "ability", v)
+        fs.attack(b, p, fs.move("Throat Chop"), foe, True)
+        return b, p, foe
+    out = {}
+    b, p, foe = chop()
+    voice = fs.move("Hyper Voice")
+    held = getattr(foe, "throat_chop", 0)
+    refused = fightai.invalid(b, foe, voice)
+    before = p.hp
+    fs._use_move(b, foe, voice, p, False)
+    out["chopped"] = (held, refused, before - p.hp)
+    fs.end_of_turn(b)
+    after_one = (getattr(foe, "throat_chop", 0), fightai.invalid(b, foe, voice))
+    fs.end_of_turn(b)
+    before = p.hp
+    fs._use_move(b, foe, voice, p, True)
+    out["two turn ends on"] = after_one + (getattr(foe, "throat_chop", 0), before - p.hp)
+    for label, kw in (("Shield Dust", {"foe_ability": "Shield Dust"}), ("Covert Cloak", {"item": "Covert Cloak"}),
+                      ("Substitute", {"sub": 100}), ("Sheer Force", {"ability": "Sheer Force"})):
+        out[label] = getattr(chop(**kw)[2], "throat_chop", 0)
+    b, p, foe = chop()
+    foe.reset_volatile()
+    out["left the field"] = getattr(foe, "throat_chop", 0)
+    want = {"chopped": (2, True, 0), "two turn ends on": (1, True, 0, 7), "Shield Dust": 0, "Covert Cloak": 0,
+            "Substitute": 0, "Sheer Force": 0, "left the field": 0}
+    results.append(("Throat Chop holds sound moves through the next turn; Shield Dust, Covert Cloak, Substitute "
+                    "and Sheer Force stop it", out == want, str(out)))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -3792,7 +3835,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,

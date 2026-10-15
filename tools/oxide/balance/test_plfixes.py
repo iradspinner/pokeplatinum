@@ -3463,6 +3463,34 @@ def wake_up_slap_checks():
              f"first slap {first}, woke {woke}, second {second}, row {rolls[0]} to {rolls[-1]}")]
 
 
+def throat_chop_checks():
+    """Throat Chop in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Zangoose chops the player's Loudred,
+    whose Hyper Voice then leaves its options and fails if tried, until the
+    second turn's end has passed."""
+    from .test_fightai import battle
+    b = battle([("Zangoose", 30, "Immunity", ["Throat Chop"])], [("Loudred", 30, "Soundproof", ["Hyper Voice", "Stomp"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    zan, lou = b.b.cur(), b.p.cur()
+    lou.hp = lou.maxhp = 100000
+    pl.use_move(b, zan, fs.move("Throat Chop"), lou, True)
+    held = getattr(lou, "throat_chop", 0)
+
+    def offered():
+        return sorted(a[1].name for a in pl.player_actions(b) if a[0] == "move")
+    first = offered()
+    before = zan.hp
+    pl.use_move(b, lou, fs.move("Hyper Voice"), zan, False)
+    failed = zan.hp == before
+    fs.end_of_turn(b)
+    second = offered()
+    fs.end_of_turn(b)
+    third = offered()
+    ok = held == 2 and first == ["Stomp"] and failed and second == ["Stomp"] and third == ["Hyper Voice", "Stomp"]
+    return [("the readings' Throat Chop holds the target's sound moves through the next turn", ok,
+             f"count {held}; offered {first}, then {second}, then {third}; Hyper Voice failed {failed}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4108,6 +4136,7 @@ def main():
     results += lower_sp_atk_checks()
     results += rollout_checks()
     results += wake_up_slap_checks()
+    results += throat_chop_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()

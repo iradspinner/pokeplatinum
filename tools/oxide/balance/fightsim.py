@@ -388,6 +388,10 @@ class Mon:
     imprisoning = False
     imprisoned = False
     sealed = frozenset()
+    # Throat Chop's hold on its target's sound moves (OXIDE_MON_THROAT_CHOP):
+    # 2 when the hit lands, one off at each turn's end, so it lasts the rest
+    # of this turn and all of the next; cleared when it leaves.
+    throat_chop = 0
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -423,6 +427,8 @@ class Mon:
             self.stockpile = self.stockpile_def = self.stockpile_spd = 0
         if self.imprisoning or self.imprisoned or self.sealed:
             self.imprisoning, self.imprisoned, self.sealed = False, False, frozenset()
+        if self.throat_chop:
+            self.throat_chop = 0         # oxideFlags are cleared as it leaves, and Baton Pass keeps none of these
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
         self.rollout = 0
@@ -2406,6 +2412,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     if disabled_out(att, mv):
         att.choice = None            # subscript_move_is_disabled lets go of a Choice item's lock
         return could_not_act(b, att, mv, dfn, targets)
+    if move_barred(b, att, mv):
+        return could_not_act(b, att, mv, dfn, targets)     # a sound move under Throat Chop (move_barred)
     if att.confused:
         att.confused -= 1
         if att.confused and b.rng.random() < 0.5:
@@ -2826,6 +2834,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
     slap_wakes(dfn, mv)              # Wake-Up Slap's doubled hit wakes its target (slap_wakes)
+    if e == "THROAT_CHOP":
+        throat_chop(att, dfn, stripped)
     if e == "SALT_CURE":
         # subscript_salt_cure: the target is salted once the hit lands,
         # until it leaves the field; a chance-free effect, so Shield Dust
@@ -2953,6 +2963,35 @@ def taunt_blocked(att, dfn):
         reveal(dfn)
         return True
     return False
+
+
+def throat_chopped(mon, mv):
+    """Whether Throat Chop's hold keeps mon from this move: a sound move of
+    the engine's sSoundMoves or sSelfAimedSoundMoves (fightai.SOUND_MOVES)
+    while its count runs (Move_ThroatChopped)."""
+    return bool(mon.throat_chop) and mv.const in fightai.SOUND_MOVES
+
+
+def move_barred(b, mon, mv):
+    """Whether a move of this batch's holds can be neither chosen
+    (BattleSystem_CheckInvalidMoves, which the player's menu and the
+    trainer's AI both read) nor used (the status checks before a move):
+    a sound move under Throat Chop."""
+    return throat_chopped(mon, mv)
+
+
+def throat_chop(att, dfn, stripped):
+    """Throat Chop's hit (effect script 401, subscript_throat_chop, ON_HIT):
+    once it has landed on a target left standing, with no Substitute in the
+    way, no Shield Dust (Mold Breaker gets past it) and no Covert Cloak, the
+    target's count starts at 2, unless one is running; Sheer Force strips
+    it (sSheerForceEffects). Until 2026-10-15 the hit set nothing, so the
+    target kept its sound moves (Ian approved the fix)."""
+    if stripped or dfn.throat_chop or dfn.item == "Covert Cloak":
+        return
+    if dfn.ability == "Shield Dust" and not mold(att, dfn):
+        return
+    dfn.throat_chop = 2
 
 
 def soundproofed(att, dfn, mv):
@@ -5346,6 +5385,8 @@ def _end_of_turn_mon(b, side, m):
             m.encore_turns -= 1
         else:
             m.encore, m.encore_turns = None, 0
+    if m.throat_chop:
+        m.throat_chop -= 1           # MON_COND_CHECK_STATE_LOCK_ON lowers Throat Chop's count, silently
     if m.taunt:
         m.taunt -= 1
     if m.magnet_rise:
@@ -5679,7 +5720,7 @@ def safe_attack(b, me, foe):
     while one that cannot still does damage."""
     usable = [m for m in me.moves if m.damaging() and me.pp.get(m.name, 1) > 0
               and (not me.choice or m.name == me.choice) and not tormented_out(me, m)
-              and not disabled_out(me, m)]
+              and not disabled_out(me, m) and not move_barred(b, me, m)]
     safe = [m for m in usable if not self_risk(b, me, foe, m)]
     pick = safe if any(exp_damage(b, me, foe, m) > 0 for m in safe) else usable
     if not pick:
@@ -5822,7 +5863,7 @@ def player_choice_doubles(b, me):
     best = None
     for mv in me.moves:
         if me.pp.get(mv.name, 1) <= 0 or (me.choice and mv.name != me.choice) or (me.taunt and mv.cat == "Status") \
-                or move_heal_blocked(me, mv) or disabled_out(me, mv):
+                or move_heal_blocked(me, mv) or disabled_out(me, mv) or move_barred(b, me, mv):
             continue
         if not mv.damaging():
             for f in foes:
