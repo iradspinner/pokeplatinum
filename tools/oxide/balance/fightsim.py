@@ -3348,11 +3348,22 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     if att.flinch:
         flinched(att)                # Steadfast answers it
         return could_not_act(b, att, mv, dfn, targets)
-    if disabled_out(att, mv):
+    if att.disabled is not None and mv.name == att.disabled:
         att.choice = None            # subscript_move_is_disabled lets go of a Choice item's lock
         return could_not_act(b, att, mv, dfn, targets)
-    if (att.rare or b.gravity) and move_barred(b, att, mv):
-        return could_not_act(b, att, mv, dfn, targets)     # Throat Chop's or Gravity's (move_barred)
+    # Taunt, Imprison, Gravity, Heal Block and Throat Chop are checked in the
+    # engine's order (CHECK_STATUS_STATE_TAUNT to _THROAT_CHOP), all before
+    # confusion, paralysis and love, so a taunted Pokemon's status move
+    # fails before its confusion can make it hurt itself, and with its
+    # confusion's count kept. Until 2026-10-15 Taunt and Heal Block came
+    # after love (Ian approved the fix).
+    if att.taunt and mv.cat == "Status":
+        return could_not_act(b, att, mv, dfn, targets)
+    if mv.name in att.sealed:
+        att.choice = None            # a foe's Imprison lets go of it too (disabled_out)
+        return could_not_act(b, att, mv, dfn, targets)
+    if ((att.rare or b.gravity) and move_barred(b, att, mv)) or move_heal_blocked(att, mv):
+        return could_not_act(b, att, mv, dfn, targets)     # Gravity's, Heal Block's or Throat Chop's (move_barred)
     if att.confused:
         att.confused -= 1
         if att.confused and b.rng.random() < 0.5:
@@ -3362,7 +3373,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         return could_not_act(b, att, mv, dfn, targets)
     if att.infatuated and b.rng.random() < 0.5:
         return could_not_act(b, att, mv, dfn, targets)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
-    if (att.taunt and mv.cat == "Status") or tormented_out(att, mv) or move_heal_blocked(att, mv):
+    if tormented_out(att, mv):
         return could_not_act(b, att, mv, dfn, targets)
     mark_hit(b, mv, dfn, True, targets)
     prev = note_move(b, mv)      # the move before this one, for Copycat

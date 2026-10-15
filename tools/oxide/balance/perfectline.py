@@ -390,11 +390,18 @@ def _use_move(b, att, mv, dfn, first):
     if att.flinch:
         fs.flinched(att)                 # Steadfast answers it
         return fs.could_not_act(b, att, mv, dfn)
-    if fs.disabled_out(att, mv):
+    if att.disabled is not None and mv.name == att.disabled:
         att.choice = None                # subscript_move_is_disabled lets go of a Choice item's lock
         return fs.could_not_act(b, att, mv, dfn)
-    if (att.rare or b.gravity) and fs.move_barred(b, att, mv):
-        return fs.could_not_act(b, att, mv, dfn)     # Throat Chop's or Gravity's (fightsim.move_barred)
+    # Taunt, Imprison, Gravity, Heal Block and Throat Chop, in the engine's
+    # order, before confusion, paralysis and love (fightsim._use_move).
+    if att.taunt and mv.cat == "Status":
+        return fs.could_not_act(b, att, mv, dfn)
+    if mv.name in att.sealed:
+        att.choice = None                # a foe's Imprison, as Disable (fightsim.disabled_out)
+        return fs.could_not_act(b, att, mv, dfn)
+    if ((att.rare or b.gravity) and fs.move_barred(b, att, mv)) or fs.move_heal_blocked(att, mv):
+        return fs.could_not_act(b, att, mv, dfn)     # Gravity's, Heal Block's or Throat Chop's (fightsim.move_barred)
     if att.confused:
         att.confused -= 1
         if att.confused and (b.dice.bad("confusion", 0.5) if player(att) else b.dice.good(0.5, "confusion")):
@@ -404,7 +411,7 @@ def _use_move(b, att, mv, dfn, first):
         return fs.could_not_act(b, att, mv, dfn)
     if att.infatuated and (b.dice.bad("love", 0.5) if player(att) else b.dice.good(0.5, "love")):
         return fs.could_not_act(b, att, mv, dfn)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
-    if (att.taunt and mv.cat == "Status") or fs.tormented_out(att, mv) or fs.move_heal_blocked(att, mv):
+    if fs.tormented_out(att, mv):
         return fs.could_not_act(b, att, mv, dfn)
     fs.mark_hit(b, mv, dfn, True)
     prev = fs.note_move(b, mv)           # the move before this one, for Copycat (fightsim.note_move)

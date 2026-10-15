@@ -4773,6 +4773,31 @@ def knock_off_first_checks():
              f"(Machop's HP, its item, the user's heal) {out}; Karate Chop with the Belt {belted}, after Knock Off {bare}")]
 
 
+class Confused10(Sure7):
+    """Batch 10's dice for confusion: as Sure7, and the player's confusion
+    check always hurts it."""
+    def bad(self, kind, p):
+        return kind == "confusion"
+
+
+def taunt_before_confusion_checks():
+    """Taunt before confusion in the readings' battle on the calculator's
+    real rows (approved 2026-10-15): the player's taunted, confused
+    Machop's Bulk Up fails at once, with no self-hit and its confusion's
+    count kept; an untaunted one hurts itself."""
+    out = {}
+    for taunted in (True, False):
+        b, geo, mach = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Machop", 30, "Guts", ["Bulk Up"])],
+                                 Confused10)
+        mach.confused = 3
+        if taunted:
+            mach.taunt = 3
+        pl.use_move(b, mach, fs.move("Bulk Up"), geo, True)
+        out["taunted" if taunted else "not taunted"] = (mach.hp < mach.maxhp, mach.confused, mach.stages["atk"])
+    ok = out == {"taunted": (False, 3, 0), "not taunted": (True, 2, 0)}
+    return [("the readings' Taunt stops a status move before confusion", ok, f"(hurt, confusion left, Attack) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -5815,6 +5840,7 @@ def main():
     results += substitute_hit_checks()
     results += dragon_tail_order_checks()
     results += knock_off_first_checks()
+    results += taunt_before_confusion_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

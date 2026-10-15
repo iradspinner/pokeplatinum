@@ -5653,6 +5653,28 @@ def check_knock_off_first(results):
     results.append(("Knock Off and Bug Bite take the target's Berry before it eats it, and its rows lose the item",
                     out == want, str(out)))
 
+
+def check_taunt_before_confusion(results):
+    """Taunt and Heal Block are checked before confusion, paralysis and love
+    (approved 2026-10-15; BattleControllerPlayer_CheckStatusDisruption's
+    order: Disable, Taunt, Imprison, Gravity, Heal Block, Throat Chop, then
+    confusion): a taunted, confused Pokemon's Swords Dance fails at once,
+    with no self-hit and its confusion's count kept, as does a heal-blocked
+    one's Recover; one neither taunted nor blocked hurts itself."""
+    out = {}
+    for case, name in (("taunted", "Swords Dance"), ("heal-blocked", "Recover"), ("neither", "Swords Dance")):
+        b, p, foe = battle([name], ["Tackle"], {}, hp=100)
+        b.rng = FixedDice(0.0)               # every confusion check hurts itself
+        p.confused = 3
+        if case == "taunted":
+            p.taunt = 3
+        elif case == "heal-blocked":
+            p.heal_block = 5
+        fs.use_move(b, p, fs.move(name), foe, True)
+        out[case] = (p.hp < p.maxhp, p.confused)
+    want = {"taunted": (False, 3), "heal-blocked": (False, 3), "neither": (True, 2)}
+    results.append(("Taunt and Heal Block stop a move before confusion is checked", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5939,7 +5961,7 @@ def main():
                   check_lunar_dance, check_grudge, check_octolock,
                   check_aurora_veil, check_teatime, check_assist,
                   check_snatch, check_sky_drop,
-                  check_substitute_hit, check_knock_off_first,
+                  check_substitute_hit, check_knock_off_first, check_taunt_before_confusion,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
