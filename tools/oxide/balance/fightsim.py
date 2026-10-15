@@ -2533,6 +2533,24 @@ def _crash(b, att, dfn, mv):
     hurt(b, att, crash_loss(att, dfn, b.damage(att, dfn, mv, crit=crit) or 0))
 
 
+# Chatter's chance to confuse (effect script 267, BtlCmd_CheckChatterActivation):
+# a roll of 0 to 99 no higher than the user's recorded cry's figure confuses,
+# and that figure is 0 with no recording, as every trainer's Chatot has and as
+# the simulator takes the player's, so 1 in 100 (a loud recording makes it 10
+# or 30, so 11 or 31 in 100).
+CHATTER_ODDS = 0.01
+
+
+def chatter_confuses(att, dfn, stripped):
+    """Whether this Chatter may confuse at CHATTER_ODDS: only a Chatot's, and
+    not under Sheer Force (CHATTER is on sSheerForceEffects) or into Shield
+    Dust (subscript_confuse checks it for a hit's effect; Mold Breaker gets
+    past it). The confusion's own blockers follow (confusion_blocked). Until
+    2026-10-15 Chatter never confused (Ian approved the fix)."""
+    return (att.species == "Chatot" and not stripped
+            and not (dfn.ability == "Shield Dust" and not mold(att, dfn)))
+
+
 def dream_eater_fails(att, dfn, mv):
     """Dream Eater (effect script 8) "wasn't affected" by a target that is
     not asleep, or one behind a Substitute an Infiltrator does not pass
@@ -2686,6 +2704,10 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     if dfn.ability == "Inner Focus" and not mold(att, dfn):
         dfn.flinch = False       # Inner Focus: it never flinches, unless Mold Breaker gets past it
     if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and b.rng.random() * 100 < chance \
+            and not confusion_blocked(b, att, dfn, hit=True):
+        dfn.confused = b.rng.randint(2, 5)
+        confusion_berry(dfn, b)
+    if e == "CHATTER" and chatter_confuses(att, dfn, stripped) and b.rng.random() < CHATTER_ODDS \
             and not confusion_blocked(b, att, dfn, hit=True):
         dfn.confused = b.rng.randint(2, 5)
         confusion_berry(dfn, b)

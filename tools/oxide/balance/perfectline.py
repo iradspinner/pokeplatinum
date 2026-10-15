@@ -839,6 +839,11 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
             and not fs.confusion_blocked(b, att, dfn, hit=True) and status_lands("confusehit"):
         dfn.confused = b.dice.confusion(dfn.side)
         fs.confusion_berry(dfn, b)          # a Lum Berry cures it at once
+    if e == "CHATTER" and fs.chatter_confuses(att, dfn, stripped) and not fs.confusion_blocked(b, att, dfn, hit=True) \
+            and (b.dice.lands_on_player("confusehit", fs.CHATTER_ODDS) if trainer
+                 else b.dice.good(fs.CHATTER_ODDS, "confusehit")):
+        dfn.confused = b.dice.confusion(dfn.side)     # a Chatot's Chatter, 1 in 100 (fightsim.CHATTER_ODDS)
+        fs.confusion_berry(dfn, b)
     if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100):
         fs.lower_stats(b, att, dfn, fs.HIT_FOE_STAGES[e])     # Mirror Armor, the blockers, Defiant
     if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it

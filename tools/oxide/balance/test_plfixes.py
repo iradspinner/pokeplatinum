@@ -3343,6 +3343,25 @@ def pluck_checks():
              f"(Staravia's status, the target's item, hit) {out}")]
 
 
+def chatter_checks():
+    """Chatter in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Chatot's Chatter confuses the
+    player's Bibarel about once in 100 hits; 3000 hits on the game's odds
+    confuse it between 15 and 50 times."""
+    from .test_fightai import battle
+    b0 = battle([("Chatot", 40, "Keen Eye", ["Chatter"])], [("Bibarel", 40, "Unaware", ["Tackle"])])
+    confused = hits = 0
+    for seed in range(3000):
+        b = pl.clone_battle(b0)
+        b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+        chat, bib = b.b.cur(), b.p.cur()
+        pl.use_move(b, chat, fs.move("Chatter"), bib, True)
+        hits += bib.hp < bib.maxhp
+        confused += bool(bib.confused)
+    return [("the readings' Chatter confuses about 1 time in 100", 15 <= confused <= 50 and hits > 2900,
+             f"{confused} confused in {hits} hits")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3927,6 +3946,7 @@ def main():
     results += steal_item_checks()
     results += swap_items_checks()
     results += pluck_checks()
+    results += chatter_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)

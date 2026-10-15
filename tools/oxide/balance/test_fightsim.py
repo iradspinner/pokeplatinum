@@ -2254,6 +2254,27 @@ def check_pluck(results):
                     f"(user's HP, status, confusion, Attack stage; target's item, its Recycle) {got}"))
 
 
+def check_chatter(results):
+    """Chatter (approved 2026-10-14; effect script 267,
+    BtlCmd_CheckChatterActivation): a Chatot's hit confuses on a roll no
+    higher than its cry's figure, 0 with no recording, so 1 in 100; with
+    every roll at 0 it confuses, at 0.02 it does not. Another species'
+    Chatter, a Sheer Force Chatot's, and one into Shield Dust or Own Tempo
+    never confuse."""
+    def chatter(value, species="Chatot", ability=None, foe_ability=None):
+        b, p, foe = battle(["Chatter"], ["Tackle"], {("p", "Chatter"): [20] * 16})
+        b.rng = FixedDice(value)
+        p.species, p.ability, foe.ability = species, ability, foe_ability
+        fs.attack(b, p, fs.move("Chatter"), foe, True)
+        return foe.hp < foe.maxhp, bool(foe.confused)
+    got = {"at 0": chatter(0.0), "at 0.02": chatter(0.02), "a Ditto's": chatter(0.0, "Ditto"),
+           "Sheer Force": chatter(0.0, ability="Sheer Force"), "Shield Dust": chatter(0.0, foe_ability="Shield Dust"),
+           "Own Tempo": chatter(0.0, foe_ability="Own Tempo")}
+    want = {"at 0": (True, True), "at 0.02": (True, False), "a Ditto's": (True, False),
+            "Sheer Force": (True, False), "Shield Dust": (True, False), "Own Tempo": (True, False)}
+    results.append(("a Chatot's Chatter confuses 1 time in 100", got == want, f"(hit, confused) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3545,7 +3566,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck,
+                  check_pluck, check_chatter,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
