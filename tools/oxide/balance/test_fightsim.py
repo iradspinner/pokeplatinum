@@ -5198,6 +5198,20 @@ def check_relic_song(results):
     results.append(("Relic Song's hit puts its target to sleep at its chance", out == want, str(out)))
 
 
+def check_clanging_scales(results):
+    """Clanging Scales (approved 2026-10-14; effect script 342): after any
+    hit its user's Defense falls a stage, through a Substitute and under
+    Sheer Force too."""
+    out = {}
+    for sub, ability in ((0, None), (40, None), (0, "Sheer Force")):
+        b, p, foe = battle(["Clanging Scales"], ["Tackle"], {("p", "Clanging Scales"): [10] * 16}, hp=500)
+        b.rng = FixedDice(0.5)
+        foe.sub, p.ability = sub, ability
+        fs.attack(b, p, fs.move("Clanging Scales"), foe, True)
+        out[(sub, ability)] = p.stages["def"]
+    want = {(0, None): -1, (40, None): -1, (0, "Sheer Force"): -1}
+    results.append(("Clanging Scales lowers its user's Defense after the hit", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5476,7 +5490,7 @@ def main():
                   check_dragon_tail, check_side_guards, check_heat_crash,
                   check_healing_wish, check_guard_split, check_power_split,
                   check_embargo, check_magic_room,
-                  check_relic_song,
+                  check_relic_song, check_clanging_scales,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

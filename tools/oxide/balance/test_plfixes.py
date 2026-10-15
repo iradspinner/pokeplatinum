@@ -4878,6 +4878,17 @@ def relic_song_checks():
     return [("the readings' Relic Song puts its target to sleep", ok, f"(status, hit) {out}")]
 
 
+def clanging_scales_checks():
+    """Clanging Scales in the readings' battle on the calculator's real
+    rows (approved 2026-10-14): the player's Bibarel's hit on a trainer's
+    Geodude lowers the Bibarel's own Defense a stage."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Clanging Scales"])])
+    hp = geo.hp
+    pl.attack(b, bib, fs.move("Clanging Scales"), geo, True)
+    ok = geo.hp < hp and bib.stages["def"] == -1
+    return [("the readings' Clanging Scales lowers its user's Defense", ok,
+             f"Geodude's HP {hp} to {geo.hp}, Bibarel's Defense stage {bib.stages['def']}")]
+
 def main():
     results = []
 
@@ -5427,6 +5438,7 @@ def main():
     results += embargo_checks()
     results += magic_room_checks()
     results += relic_song_checks()
+    results += clanging_scales_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
