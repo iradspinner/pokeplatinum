@@ -5073,6 +5073,32 @@ def check_healing_wish(results):
     results.append(("Healing Wish faints its user and heals its replacement", out == want, str(out)))
 
 
+def check_guard_split(results):
+    """Guard Split (approved 2026-10-14; effect script 278): the user's and
+    the target's Defense and Sp. Def are each averaged, in whole numbers,
+    for both; hits on either then scale by the Defense's ratio, the
+    trainer's AI's figure too; a Substitute stops it, and leaving ends it."""
+    out = {}
+    b, p, foe = battle(["Guard Split", "Tackle"], ["Tackle"], {("p", "Tackle"): [40] * 16, ("b", "Tackle"): [40] * 16})
+    b.rng = FixedDice(0.0)
+    foe.stats = dict(foe.stats, **{"def": 201, "spd": 60})
+    tackle = fs.move("Tackle")
+    fs.status_move(b, p, fs.move("Guard Split"), foe, True)
+    out["stats"] = (fs.raw_stat(p, "def"), fs.raw_stat(foe, "def"), fs.raw_stat(p, "spd"), fs.raw_stat(foe, "spd"),
+                    fs.raw_stat(foe, "atk"))
+    out["hits"] = (b.damage(p, foe, tackle, roll=0), b.damage(foe, p, tackle, roll=0),
+                   fightai.figure(b, foe, p, tackle))
+    p.reset_volatile()
+    out["after leaving"] = (fs.raw_stat(p, "def"), b.damage(foe, p, tackle, roll=0))
+    b, p, foe = battle(["Guard Split"], ["Tackle"], {})
+    foe.sub = 25
+    fs.status_move(b, p, fs.move("Guard Split"), foe, True)
+    out["Substitute"] = (p.split, foe.split)
+    want = {"stats": (150, 150, 80, 80, 100), "hits": (53, 26, 26), "after leaving": (100, 40),
+            "Substitute": (None, None)}
+    results.append(("Guard Split averages the two Defenses for both", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5349,7 +5375,7 @@ def main():
                   check_mud_sport, check_punishment, check_sticky_web,
                   check_defog, check_strength_sap, check_parting_shot,
                   check_dragon_tail, check_side_guards, check_heat_crash,
-                  check_healing_wish,
+                  check_healing_wish, check_guard_split,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

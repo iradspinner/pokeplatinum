@@ -4770,6 +4770,24 @@ def healing_wish_checks():
              f"(Bibarel's HP, on the field, Staravia's status, healed past half, hit after) {got}")]
 
 
+def guard_split_checks():
+    """Guard Split in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Dubwool and a trainer's Onix share
+    their Defense, and the Onix's Tackle into the Dubwool and the Dubwool's
+    into the Onix change by the Defenses' ratios."""
+    b, geo, dub = b7_battle([("Onix", 30, "Sturdy", ["Tackle"])], [("Dubwool", 30, "Fluffy", ["Guard Split", "Tackle"])])
+    tackle = fs.move("Tackle")
+    before = (pl.damage_of(b, dub, geo, tackle, False, True), pl.damage_of(b, geo, dub, tackle, False, True))
+    gd, dd = geo.stats["def"], dub.stats["def"]
+    pl.status_move(b, dub, fs.move("Guard Split"), geo, True)
+    avg = (gd + dd) // 2
+    after = (pl.damage_of(b, dub, geo, tackle, False, True), pl.damage_of(b, geo, dub, tackle, False, True))
+    want = (int(before[0] * gd / avg), int(before[1] * dd / avg))
+    ok = fs.raw_stat(geo, "def") == fs.raw_stat(dub, "def") == avg and all(abs(x - y) <= 1 for x, y in zip(after, want))
+    return [("the readings' Guard Split shares the Defenses", ok,
+             f"Defenses {gd} and {dd} to {avg}; top rolls {before} to {after} (about {want} wanted)")]
+
+
 def main():
     results = []
 
@@ -5314,6 +5332,7 @@ def main():
     results += side_guard_checks()
     results += heat_crash_checks()
     results += healing_wish_checks()
+    results += guard_split_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

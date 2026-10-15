@@ -1033,6 +1033,8 @@ def status_move(b, att, mv, dfn, first):
         fs.parting_shot(b, att, dfn, mv)     # both drops, then out as after U-turn (fightsim.parting_shot)
     elif e == "FAINT_AND_FULL_HEAL_NEXT_MON":
         fs.healing_wish(b, att)          # its user faints; the turn heals the one sent in (fightsim.wish_comes_true)
+    elif e == "GUARD_SPLIT":
+        fs.share_stats(b, att, dfn, mv, ("def", "spd"))     # the two Defenses averaged (fightsim.share_stats)
     elif e == "CURSE":
         if "Ghost" in att.types:
             fs.ghost_curse(b, att, dfn, mv)      # it fails, at no cost, through a Substitute or on a cursed target
@@ -1256,6 +1258,8 @@ def clone_battle(b):
         c.sporty = True              # a Water Sport user in the fight (fightsim.Battle.sporty)
     if b.guarded:
         c.guarded = True             # a side guard up this turn (fightsim.side_guard)
+    if b.split:
+        c.split = True               # stats averaged in this battle (fightsim.share_stats)
     return c
 
 
@@ -1295,7 +1299,7 @@ def mon_key(m):
     if m.rare:
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
         key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.mud_sport, m.power_trick, m.bide, m.bide_damage,
-                m.transform_key,
+                m.transform_key, tuple(sorted(m.split.items())) if m.split else None,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key

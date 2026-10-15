@@ -485,6 +485,10 @@ class Mon:
     # Me First: the move it took is running at half again its damage
     # (moveEffectsData.meFirst); cleared as that move ends (use_move).
     me_first = False
+    # Guard Split and Power Split (subscript_guard_split, _power_split): the
+    # raw stats the battle has averaged, {stat: value}, in place of its own
+    # (raw_stat), until it leaves; None while nothing has been averaged.
+    split = None
     # Healing Wish: its user has fainted to it and the turn now sends in and
     # heals its replacement (wish_comes_true); cleared as that is done.
     wished = False
@@ -538,6 +542,7 @@ class Mon:
             self.minimized = self.foresight = self.smacked = self.miracle_eye = self.water_sport = False
             self.mud_sport = False
             self.power_trick = False
+            self.split = None            # the battle's averaged stats go as it leaves
             self.bide = self.bide_damage = 0
             if self.transformed_from is not None:
                 # The party record keeps its own moves and their PP
@@ -729,6 +734,10 @@ class Battle:
     # A move Magic Coat is turning back is running (coat_bounces), so it is
     # not turned again.
     reflecting = False
+    # Whether Guard Split or Power Split has averaged a stat in this battle
+    # (Mon.split), so the damage reads split_mult only then; kept by its
+    # copies.
+    split = False
     # Whether a side guard is up this turn (Side.guard), so protected looks
     # for one only then; left on the class while none is.
     guarded = False
@@ -2797,7 +2806,7 @@ def strength_sap(b, att, dfn, mv):
     stage = dfn.stages["atk"]
     if stage <= -6:
         return
-    attack = dfn.stats.get("def" if dfn.power_trick else "atk", 1)
+    attack = raw_stat(dfn, "def" if dfn.power_trick else "atk")
     gain = attack * (2 + stage) // 2 if stage >= 0 else attack * 2 // (2 - stage)
     if not sub_blocks(att, dfn, mv):
         lower_stats(b, att, dfn, {"atk": -1})
@@ -5017,6 +5026,8 @@ def state_mult(b, att, dfn, mv):
             m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
     if b.sporty:
         m *= sport_half(b, att, dfn, mv)     # Water Sport on the field halves a Fire move's power
+    if b.split:
+        m *= split_mult(att, dfn, mv)        # stats Guard Split or Power Split averaged (split_mult)
     if b.gravity and c == "MOVE_GRAV_APPLE":
         # BattleScript_ComputedMovePower: half as strong again while Gravity
         # is in force (since 2026-10-15, when Gravity began to run).
@@ -6209,6 +6220,8 @@ def status_move(b, att, mv, dfn, first):
         parting_shot(b, att, dfn, mv)
     elif e == "FAINT_AND_FULL_HEAL_NEXT_MON":
         healing_wish(b, att)
+    elif e == "GUARD_SPLIT":
+        share_stats(b, att, dfn, mv, ("def", "spd"))
     elif e == "CURSE":
         if "Ghost" in att.types:
             ghost_curse(b, att, dfn, mv)
@@ -6376,6 +6389,51 @@ def status_move(b, att, mv, dfn, first):
                 m.perish = 4
     elif e == "HIT_IN_3_TURNS":
         pass
+
+
+def raw_stat(mon, stat):
+    """A Pokemon's raw stat as the battle has it: the calculator's, unless
+    Guard Split or Power Split has averaged it (Mon.split)."""
+    got = mon.split.get(stat) if mon.split else None
+    return got if got is not None else mon.stats.get(stat, 1)
+
+
+def share_stats(b, att, dfn, mv, stats):
+    """Guard Split (effect script 278, subscript_guard_split) and Power
+    Split (279, subscript_power_split): a Substitute stops it; otherwise
+    each of the stats named, Defense and Sp. Def or Attack and Sp. Atk, is
+    the two Pokemon's raw values added and halved, in whole numbers, for
+    both, until each leaves. The calculator's rows keep the stats they were
+    made with, so split_mult scales each hit by the stats' ratio."""
+    if sub_blocks(att, dfn, mv):
+        return
+    for stat in stats:
+        avg = (raw_stat(att, stat) + raw_stat(dfn, stat)) // 2
+        for m in (att, dfn):
+            m.split = dict(m.split or {}, **{stat: avg})
+    att.rare = dfn.rare = True
+    b.split = True
+
+
+def split_mult(att, dfn, mv):
+    """The factor stats Guard Split or Power Split averaged put on a hit:
+    the attacker's Attack or Sp. Atk now over its row's, the target's
+    Defense or Sp. Def in its row over now (Psyshock's kind against
+    Defense). The damage formula's whole-number steps and its added 2 are
+    not followed, so a hit can differ from the engine's by a point or a few
+    per cent; exact rows for the new stats would need twins rowed for each
+    pair that splits."""
+    if not (att.split or dfn.split):
+        return 1.0
+    a, d = ("atk", "def") if mv.cat == "Physical" else ("spa", "spd")
+    if mv.const in AGAINST_DEFENSE:
+        d = "def"
+    mult = 1.0
+    if att.split and a in att.split:
+        mult *= att.split[a] / max(1, att.stats.get(a, 1))
+    if dfn.split and d in dfn.split:
+        mult *= max(1, dfn.stats.get(d, 1)) / max(1, dfn.split[d])
+    return mult
 
 
 def healing_wish(b, att):
