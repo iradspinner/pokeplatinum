@@ -710,8 +710,8 @@ def attack(b, att, mv, dfn, first):
             dmg = int(dmg * fs.doubled_power(att, mv))
         if mv.effect == "DOUBLE_POWER_WHEN_BELOW_HALF" and dfn.hp * 2 <= dfn.maxhp:
             dmg = int(dmg * fs.doubled_power(att, mv))
-        if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and dfn.status == "slp":
-            dmg = int(dmg * fs.doubled_power(att, mv))
+        if fs.slap_doubles(att, dfn, mv):
+            dmg = int(dmg * fs.doubled_power(att, mv))     # Wake-Up Slap, no Substitute in the way
         if fs.doubled(att, dfn, mv):
             dmg = int(dmg * fs.doubled_power(att, mv))
     if dmg <= 0:
@@ -809,6 +809,7 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         fs.steal_item(att, dfn)  # the player's Thief and Covet only (fightsim.steal_item)
     if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
         return
+    fs.slap_wakes(dfn, mv)       # Wake-Up Slap's doubled hit wakes its target (fightsim.slap_wakes)
     if e == "SALT_CURE":
         dfn.salted = True        # as fightsim: salted once the hit lands, chance-free
     if e == "CORE_ENFORCER" and getattr(dfn, "acted_turn", None) == b.turn:

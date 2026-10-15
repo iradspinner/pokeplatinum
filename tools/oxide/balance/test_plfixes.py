@@ -3439,6 +3439,30 @@ def rollout_checks():
              f"(forced, place in the run, locked after) per turn {seen}")]
 
 
+def wake_up_slap_checks():
+    """Wake-Up Slap in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Hariyama slaps the player's sleeping
+    Bibarel at twice the row's power and wakes it, and its next slap hits at
+    the row's own power."""
+    from .test_fightai import battle
+    b = battle([("Hariyama", 30, "Thick Fat", ["Wake-Up Slap"])], [("Bibarel", 30, "Unaware", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    b.dice.one_crit = False
+    har, bib = b.b.cur(), b.p.cur()
+    rolls = b.st["rows"][(None, har.key, bib.key)]["moves"]["Wake-Up Slap"]["rolls"]
+    bib.hp = bib.maxhp = 100000
+    bib.status, bib.sleep = "slp", 3
+    slap = fs.move("Wake-Up Slap")
+    pl.use_move(b, har, slap, bib, True)
+    first, woke = bib.maxhp - bib.hp, bib.status is None
+    before = bib.hp
+    pl.use_move(b, har, slap, bib, True)
+    second = before - bib.hp
+    ok = woke and 2 * rolls[0] <= first <= 3 * rolls[-1] and rolls[0] <= second <= 1.5 * rolls[-1] and first > second
+    return [("the readings' Wake-Up Slap doubles on a sleeper and wakes it", ok,
+             f"first slap {first}, woke {woke}, second {second}, row {rolls[0]} to {rolls[-1]}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4083,6 +4107,7 @@ def main():
     results += natural_gift_checks()
     results += lower_sp_atk_checks()
     results += rollout_checks()
+    results += wake_up_slap_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()

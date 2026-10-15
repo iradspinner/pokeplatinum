@@ -2612,8 +2612,8 @@ def attack(b, att, mv, dfn, first):
             dmg = int(dmg * doubled_power(att, mv))
         if mv.effect == "DOUBLE_POWER_WHEN_BELOW_HALF" and dfn.hp * 2 <= dfn.maxhp:
             dmg = int(dmg * doubled_power(att, mv))
-        if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and dfn.status == "slp":
-            dmg = int(dmg * doubled_power(att, mv))
+        if slap_doubles(att, dfn, mv):
+            dmg = int(dmg * doubled_power(att, mv))     # Wake-Up Slap, no Substitute in the way
         if doubled(att, dfn, mv):
             dmg = int(dmg * doubled_power(att, mv))
     if dmg <= 0:
@@ -2688,6 +2688,25 @@ def chatter_confuses(att, dfn, stripped):
     2026-10-15 Chatter never confused (Ian approved the fix)."""
     return (att.species == "Chatot" and not stripped
             and not (dfn.ability == "Shield Dust" and not mold(att, dfn)))
+
+
+def slap_doubles(att, dfn, mv):
+    """Wake-Up Slap (effect script 217) doubles its power (POWER_MULTI 20)
+    on a sleeping target with no Substitute in the way (CheckSubstitute
+    skips both the doubling and the wake-up, Infiltrator passing it), and
+    only then sets its wake-up subscript. Until 2026-10-15 it doubled into
+    a Substitute too (Ian approved the fix)."""
+    return mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and dfn.status == "slp" and not sub_blocks(att, dfn, mv)
+
+
+def slap_wakes(dfn, mv):
+    """Wake-Up Slap's doubled hit wakes its target once it has landed and
+    left the target standing (subscript_heal_target_sleep, ON_HIT, which
+    skips a target at 0 HP); a chance-free effect, so Shield Dust and Sheer
+    Force leave it alone. Until 2026-10-15 the target slept on, and every
+    later Wake-Up Slap doubled too (Ian approved the fix)."""
+    if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and dfn.alive() and dfn.status == "slp":
+        dfn.status, dfn.sleep = None, 0
 
 
 def dream_eater_fails(att, dfn, mv):
@@ -2806,6 +2825,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         steal_item(att, dfn)             # a knockout too (MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE)
     if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
+    slap_wakes(dfn, mv)              # Wake-Up Slap's doubled hit wakes its target (slap_wakes)
     if e == "SALT_CURE":
         # subscript_salt_cure: the target is salted once the hit lands,
         # until it leaves the field; a chance-free effect, so Shield Dust

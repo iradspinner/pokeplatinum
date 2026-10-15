@@ -2378,6 +2378,31 @@ def check_rollout(results):
                     seen == want, f"(damage, forced) per use {seen}"))
 
 
+def check_wake_up_slap(results):
+    """Wake-Up Slap (approved 2026-10-14; effect script 217): twice its
+    power on a sleeping target, which its hit then wakes, so the next one
+    hits at its listed power; behind a Substitute it neither doubles nor
+    wakes the target."""
+    def slap(asleep, sub=0):
+        b, p, foe = battle(["Wake-Up Slap"], ["Tackle"], {("p", "Wake-Up Slap"): [10] * 16}, hp=1000)
+        foe.ability = "Shell Armor"
+        b.rng = FixedDice(0.0)
+        if asleep:
+            foe.status, foe.sleep = "slp", 3
+        foe.sub = sub
+        before = foe.hp + foe.sub
+        fs.attack(b, p, fs.move("Wake-Up Slap"), foe, True)
+        first = (before - foe.hp - foe.sub, foe.status)
+        before = foe.hp + foe.sub
+        fs.attack(b, p, fs.move("Wake-Up Slap"), foe, True)
+        return first + (before - foe.hp - foe.sub, foe.status)
+    out = {"asleep": slap(True), "awake": slap(False), "asleep behind a Substitute": slap(True, sub=500)}
+    want = {"asleep": (20, None, 10, None), "awake": (10, None, 10, None),
+            "asleep behind a Substitute": (10, "slp", 10, "slp")}
+    results.append(("Wake-Up Slap doubles on a sleeper and wakes it, but not through a Substitute", out == want,
+                    f"(damage, status after) for two slaps {out}"))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -3767,7 +3792,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
