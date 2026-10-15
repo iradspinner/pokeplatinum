@@ -2702,6 +2702,17 @@ static BOOL BtlCmd_SwitchAndUpdateMon(BattleSystem *battleSys, BattleContext *ba
 
     BattleSystem_UpdateAfterSwitch(battleSys, battleCtx, battler);
 
+    // Oxide: a Pokemon dragged in was not hit by the move that dragged the
+    // one before it out, so the record of that hit is cleared for it. Dragon
+    // Tail and Circle Throw drag before the Red Card and the Eject Button,
+    // which read the record, and without this the Pokemon dragged in would
+    // use its own. Roar's target and the attacker a Red Card sends away were
+    // not hit, so for them nothing changes.
+    if (inBattler == BTLSCR_FORCED_OUT) {
+        battleCtx->selfTurnFlags[battler].physicalDamageTaken = 0;
+        battleCtx->selfTurnFlags[battler].specialDamageTaken = 0;
+    }
+
     return FALSE;
 }
 
