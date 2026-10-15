@@ -850,6 +850,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         att.u_turn = True        # after a knockout and a Substitute's hit too (fightsim.attack)
     if e == "STEAL_HELD_ITEM" and dealt > 0:
         fs.steal_item(att, dfn)  # the player's Thief and Covet only (fightsim.steal_item)
+    if e in fs.LATE_HIT:
+        fs.late_hit(b, att, dfn, mv, stripped)     # Fell Stinger's knockout (fightsim.late_hit)
     if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
         return
     if e == "CLEAR_SMOG":

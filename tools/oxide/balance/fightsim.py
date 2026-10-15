@@ -3784,6 +3784,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         att.u_turn = True
     if e == "STEAL_HELD_ITEM" and dealt > 0:
         steal_item(att, dfn)             # a knockout too (MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE)
+    if e in LATE_HIT:
+        late_hit(b, att, dfn, mv, stripped)     # Fell Stinger's knockout (late_hit)
     if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
     if e == "CLEAR_SMOG":
@@ -5670,6 +5672,23 @@ def knockout_boost(att, dfn, before):
     if att.stages[stat] < 6:
         change_stages(att, {stat: 1})
         reveal(att)
+
+
+# The hits whose own effect waits for the hit to be in and reads how it
+# left its target, each looked at once by effect (late_hit).
+LATE_HIT = frozenset({"FELL_STINGER"})
+
+
+def late_hit(b, att, dfn, mv, stripped):
+    """A hit's own effect once it is in, for the effects in LATE_HIT, run
+    before the knockout and Substitute checks that end the others. Fell
+    Stinger (effect script 388, subscript_fell_stinger, ON_HIT): when its
+    hit leaves the target with no HP, its user's Attack rises three stages
+    through the stat subscript; a Substitute's hit leaves the target
+    standing. Until 2026-10-15 it was a plain hit (Ian approved the fix)."""
+    if mv.effect == "FELL_STINGER":
+        if not dfn.alive():
+            change_stages(att, {"atk": 3})
 
 
 def destiny_bond(att, dfn):

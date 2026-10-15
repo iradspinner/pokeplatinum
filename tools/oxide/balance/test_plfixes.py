@@ -4903,6 +4903,21 @@ def matcha_gotcha_checks():
     return [("the readings' Matcha Gotcha drains and burns", ok,
              f"Geodude's HP {hp} to {geo.hp}, its status {geo.status}; Bibarel's HP {mine} to {bib.hp}")]
 
+def fell_stinger_checks():
+    """Fell Stinger in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel's hit knocks out a trainer's
+    Geodude at 1 HP and its Attack rises three stages; at full HP Sturdy
+    holds the Geodude and the Attack stays."""
+    out = {}
+    for low in (True, False):
+        b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Fell Stinger"])])
+        if low:
+            geo.hp = 1
+        pl.attack(b, bib, fs.move("Fell Stinger"), geo, True)
+        out[low] = (geo.alive(), bib.stages["atk"])
+    ok = out == {True: (False, 3), False: (True, 0)}
+    return [("the readings' Fell Stinger raises Attack on a knockout", ok, f"(Geodude standing, Bibarel's Attack) {out}")]
+
 def main():
     results = []
 
@@ -5454,6 +5469,7 @@ def main():
     results += relic_song_checks()
     results += clanging_scales_checks()
     results += matcha_gotcha_checks()
+    results += fell_stinger_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
