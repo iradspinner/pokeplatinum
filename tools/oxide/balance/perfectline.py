@@ -1077,22 +1077,19 @@ def _form(m):
 
 
 def mon_key(m):
-    return _mon_key(m) + _form(m)
-
-
-def _mon_key(m):
-    return (m.hp, m.status, m.sleep, m.toxic, tuple(m.stages.values()), m.confused, m.flinch,
-            m.seeded, m.yawn, m.protect_run, m.sub, _name(m.charging), m.recharge,
-            (m.lock[0].name, m.lock[1]) if m.lock else None, m.choice, m.taunt,
-            None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
-            m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
-            m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
-            m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False),
-            getattr(m, "disabled", None), getattr(m, "disabled_turns", 0), getattr(m, "nightmare", False),
-            getattr(m, "encore", None), getattr(m, "encore_turns", 0),
-            getattr(m, "protean_type", None), getattr(m, "protean_used", False),
-            # Last Resort works, and the AI rates it, by the moves used since it came in.
-            getattr(m, "last_resort_count", 0) if getattr(m, "last_resort", False) else None)
+    key = (m.hp, m.status, m.sleep, m.toxic, tuple(m.stages.values()), m.confused, m.flinch,
+           m.seeded, m.yawn, m.protect_run, m.sub, _name(m.charging), m.recharge,
+           (m.lock[0].name, m.lock[1]) if m.lock else None, m.choice, m.taunt,
+           None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
+           m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
+           m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
+           m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False),
+           getattr(m, "disabled", None), getattr(m, "disabled_turns", 0), getattr(m, "nightmare", False),
+           getattr(m, "encore", None), getattr(m, "encore_turns", 0),
+           getattr(m, "protean_type", None), getattr(m, "protean_used", False),
+           # Last Resort works, and the AI rates it, by the moves used since it came in.
+           getattr(m, "last_resort_count", 0) if getattr(m, "last_resort", False) else None)
+    return key + _form(m) if m.formed else key
 
 
 def side_key(s):

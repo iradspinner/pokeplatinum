@@ -350,6 +350,10 @@ class Mon:
     # While Neutralizing Gas has its ability off, the ability waits here and
     # `ability` reads None (gas_update); None while the gas leaves it alone.
     gas_stash = None
+    # Whether the battle has changed its types or ability (set_types,
+    # set_ability, suppress, forecast), so the reads that follow such a
+    # change (form_key, the search's keys) need look no further otherwise.
+    formed = False
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -440,6 +444,7 @@ class Mon:
         self.ability_was = None
         self.traced = False              # Trace has gone off this stay (traceAnnounced)
         self.camouflaged = False         # Camouflage has retyped it (MOVE_EFFECT_CAMOUFLAGE)
+        self.formed = False
         self.last = None
         self.turns_in = 0
         self.hit_this_turn = None        # (category, damage) of the last hit taken this turn
@@ -550,7 +555,8 @@ class Battle:
         # the changed Pokemon's twin: the pair of twins when both are
         # changed, else the one change against the other's rows, as far as
         # prepare() rowed them.
-        fa, fd = form_key(self, att, mv), form_key(self, dfn, mv, defending=True)
+        fa = form_key(self, att, mv) if att.formed else None
+        fd = form_key(self, dfn, mv, defending=True) if dfn.formed else None
         if fa or fd:
             for a, d in ((fa or ak, fd or dk), (fa or ak, dk), (ak, fd or dk)):
                 w = self.weather if (self.weather, a, d) in rows else None
@@ -596,7 +602,7 @@ class Battle:
         starts counting."""
         speed = self.st["speed"]
         key = mon.key if mon.gas_stash is None else gas_key(self, mon)
-        twin = form_key(self, mon)
+        twin = form_key(self, mon) if mon.formed else None
         if twin and ((self.weather, twin) in speed or (None, twin) in speed):
             key = twin
         return int(speed.get((self.weather, key)) or speed.get((None, key)) or 1)
@@ -1029,6 +1035,7 @@ def set_ability(b, mon, new, acted=True):
         mon.suppress_stash = new
     else:
         mon.ability = new
+    mon.formed = True
     mon.revealed = new
     if new == "Truant":
         mon.loafing = acted
@@ -1042,7 +1049,7 @@ def set_types(mon, types):
     Fire Burn Up or pure Electric Double Shock user is left with, which no
     move's type meets."""
     mon.types = list(types)
-    mon.retyped = True
+    mon.retyped = mon.formed = True
     mon.row_types = tuple(types)
 
 
@@ -1059,6 +1066,7 @@ def suppress(b, mon):
         return False
     mon.suppressed, mon.suppress_stash = True, raw
     mon.ability, mon.gas_stash = None, None
+    mon.formed = True
     return True
 
 
@@ -1336,6 +1344,8 @@ def trace(b):
     2026-10-14 Trace was only announced (Ian approved the fix)."""
     out = []
     field = [m for m in b.p.on_field() + b.b.on_field() if m.alive()]
+    if not any(m.ability == "Trace" and not m.traced for m in field):
+        return out
     for m in sorted(field, key=b.speed, reverse=not b.trick_room):
         if m.ability != "Trace" or m.traced or m.item == "Griseous Orb" or not m.alive():
             continue
@@ -2192,7 +2202,7 @@ def forecast(b):
             continue
         want = "Normal" if weather_ignored(b) else FORECAST_TYPE.get(b.weather, "Normal")
         if want not in m.types:
-            m.types, m.retyped = [want], True
+            m.types, m.retyped, m.formed = [want], True, True
 
 
 def _use_move(b, att, mv, dfn, first, targets=None):
