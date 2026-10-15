@@ -1747,6 +1747,32 @@ def check_skill_swap(results):
                     f"the target's ability {got}"))
 
 
+def check_role_play(results):
+    """Role Play (approved 2026-10-14; effect script 178,
+    subscript_copy_ability): its user takes the target's Levitate, both
+    named, and reads its twin for it, the target's Ability Shield and
+    Substitute notwithstanding; nothing when the target's ability refuses
+    (Wonder Guard) or is none, nor for a user with Multitype or an Ability
+    Shield; leaving brings its own back."""
+    def play(own="Static", theirs="Levitate", item=None, foe_item=None, sub=0):
+        b, p, foe = battle(["Role Play"], ["Earthquake"], {("b", "Earthquake"): [30] * 16})
+        p.ability, p.item, foe.ability, foe.item, foe.sub = own, item, theirs, foe_item, sub
+        b.st["form_twin"] = {"p0": {"ability": None, "twins": {(None, "Levitate"): "p0#fm@Levitate"}}}
+        b.st["rows"][(None, "b0.0", "p0#fm@Levitate")] = {"moves": {"Earthquake": {"rolls": [0] * 16}}}
+        fs.status_move(b, p, fs.move("Role Play"), foe, True)
+        return b, p, foe
+    b, p, foe = play(foe_item="Ability Shield", sub=25)
+    copied = (p.ability, p.revealed, foe.revealed, b.damage(foe, p, fs.move("Earthquake"), roll=0))
+    p.reset_volatile()
+    back = p.ability
+    got = {"Wonder Guard": play(theirs="Wonder Guard")[1].ability, "no ability": play(theirs=None)[1].ability,
+           "Multitype": play(own="Multitype")[1].ability, "its own Ability Shield": play(item="Ability Shield")[1].ability}
+    want = {"Wonder Guard": "Static", "no ability": "Static", "Multitype": "Multitype", "its own Ability Shield": "Static"}
+    ok = copied == ("Levitate", "Levitate", "Levitate", 0) and back == "Static" and got == want
+    results.append(("Role Play copies its target's ability", ok,
+                    f"(its ability, named, the target's named, Earthquake on it) {copied}; after leaving {back}; {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3033,7 +3059,8 @@ def main():
                   check_roost, check_protean, check_form_twins, check_trace, check_mummy,
                   check_wandering_spirit, check_color_change, check_forecast, check_soak,
                   check_conversion, check_conversion2, check_camouflage, check_burn_up,
-                  check_double_shock, check_skill_swap, check_magic_guard, check_liquid_ooze,
+                  check_double_shock, check_skill_swap, check_role_play, check_magic_guard,
+                  check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

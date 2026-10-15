@@ -2941,6 +2941,29 @@ def skill_swap_checks():
              f"Bronzor's, the two Earthquakes) {after}")]
 
 
+def role_play_checks():
+    """Role Play on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a trainer's Soundproof Mr. Mime on a
+    twin for each foe's ability it could copy whose rows differ from its own
+    (a Bronzor's Levitate, and a Diglett's Arena Trap, which would leave it
+    without Soundproof); after its Role Play on Bronzor, the Diglett's
+    Earthquake takes nothing from it, where it hit."""
+    from .test_fightai import battle
+    b = battle([("Mr. Mime", 30, "Soundproof", ["Role Play", "Psychic"])],
+               [("Bronzor", 30, "Levitate", ["Confusion"]), ("Diglett", 30, "Arena Trap", ["Earthquake"])])
+    mime = b.b.cur()
+    bronzor, dig = b.p.mons
+    quake = fs.move("Earthquake")
+    twins = sorted(((b.st.get("form_twin") or {}).get(mime.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, dig, mime, quake, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, mime, fs.move("Role Play"), bronzor, True)
+    after = (mime.ability, pl.damage_of(b, dig, mime, quake, False, True))
+    ok = twins == [(None, "Levitate"), (None, None)] and before > 0 and after == ("Levitate", 0)
+    return [("Role Play: Mr. Mime copies Bronzor's Levitate, and Earthquake misses it on its twin", ok,
+             f"twins {twins}; Earthquake before {before}; after Role Play (its ability, Earthquake) {after}")]
+
+
 def calc_terrain(tr_ids):
     from . import calc
     return getattr(calc, "fight_terrain", lambda _ids: None)(tr_ids)
@@ -3468,6 +3491,7 @@ def main():
     results += burn_up_checks()
     results += double_shock_checks()
     results += skill_swap_checks()
+    results += role_play_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

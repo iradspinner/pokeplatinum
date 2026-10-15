@@ -3989,6 +3989,41 @@ def _skill_swapped(ff):
             yield f, None, a
 
 
+@form_move("COPY_ABILITY")
+def role_play(b, att, mv, dfn, pick):
+    """Role Play (effect script 178, subscript_copy_ability): the user takes
+    its standing target's ability, both named, unless the user's ability is
+    Multitype or cannot be replaced, it holds a Griseous Orb or an Ability
+    Shield, the move cannot reach the target, or the target's ability
+    refuses to be copied or is none (BtlCmd_CheckAbilityChange's copy kind);
+    a Substitute does not stop it, nor the target's own Ability Shield. A
+    Truant it takes makes it loaf on its next turn (set_ability). Its rows
+    then come from its twin for that ability (form_key). Until 2026-10-14
+    Role Play did nothing (Ian approved the fix)."""
+    a, d = raw_ability(att), raw_ability(dfn)
+    if (att.ability == "Multitype" or att.item in ("Griseous Orb", "Ability Shield") or not dfn.alive()
+            or out_of_reach(att, dfn, mv) or refuses(d, "copy") or refuses(a, "suppress") or d is None):
+        return False
+    set_ability(b, att, d)
+    dfn.revealed = d
+    return True
+
+
+@form_change
+def _role_played(ff):
+    """Role Play: its user may take the ability of any foe whose ability can
+    be copied."""
+    for k in ff.keys():
+        a = ff.ability(k)
+        if (not any(m.effect == "COPY_ABILITY" for m in ff.moves(k)) or a == "Multitype" or refuses(a, "suppress")
+                or ff.pokemon[k].get("item") in ("Griseous Orb", "Ability Shield")):
+            continue
+        for f in ff.foes(k):
+            d = ff.ability(f)
+            if d and not refuses(d, "copy"):
+                yield k, None, d
+
+
 # The type Camouflage gives on each battle terrain (data/terrain/to_type.h,
 # sTerrainCamouflageType); every terrain after the bridge's (the Elite
 # Four's rooms, the Distortion World) counts as the special one, Normal.
