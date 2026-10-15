@@ -364,6 +364,10 @@ class Mon:
     # set_ability, suppress, forecast), so the reads that follow such a
     # change (form_key, the search's keys) need look no further otherwise.
     formed = False
+    # Whether Knock Off took its item (knockedOffItemsMask, kept by party
+    # slot through switching): its slot can neither steal an item with
+    # Thief or Covet nor swap one with Trick.
+    knocked_off = False
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -2639,6 +2643,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         # hit, a knockout or a hit on a Substitute too (effect script 228's
         # subscript_attack_then_switch_out runs ON_HIT); the turn does it.
         att.u_turn = True
+    if e == "STEAL_HELD_ITEM" and dealt > 0:
+        steal_item(att, dfn)             # a knockout too (MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE)
     if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
     if e == "SALT_CURE":
@@ -2687,8 +2693,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
         dfn.bound, dfn.bound_by = 6 if att.item == "Grip Claw" else b.rng.randint(3, 6), att.key
-    if e in ("REMOVE_HELD_ITEM", "STEAL_HELD_ITEM"):
-        dfn.item = None
+    if e == "REMOVE_HELD_ITEM":
+        knock_off(dfn)
 
 
 # The moves Sleep Talk never calls (Gen 4's list, by effect).
@@ -2880,6 +2886,33 @@ def consume(mon, eaten=True):
     if eaten and mon.item and mon.item.endswith("Berry"):
         mon.ate_berry = True
     mon.recycle, mon.item = mon.item, None
+
+
+def knock_off(dfn):
+    """Knock Off's hit (BtlCmd_TryKnockOff): the target's item is gone, and
+    its party slot is marked (knocked_off)."""
+    if dfn.item:
+        dfn.item, dfn.knocked_off = None, True
+
+
+def steal_item(att, dfn):
+    """Thief and Covet (effect script 105, BtlCmd_TryStealItem), once their
+    hit has struck the target itself, not its Substitute, a knockout
+    included. An AI trainer's never takes anything outside the Battle
+    Frontier, so its Thief is a plain hit. The player's takes the target's
+    item when it holds none itself, unless its own item was knocked off
+    this battle, either has Multitype, the target holds a Griseous Orb or
+    the target's Sticky Hold keeps it (named; Mold Breaker gets past it).
+    Until 2026-10-15 either side's Thief removed the target's item, as
+    Knock Off does, and the thief never gained it (Ian approved the fix)."""
+    if att.side != "p" or att.item or not dfn.item or att.knocked_off or dfn.knocked_off:
+        return
+    if "Multitype" in (att.ability, dfn.ability) or dfn.item == "Griseous Orb":
+        return
+    if dfn.ability == "Sticky Hold" and not mold(att, dfn):
+        reveal(dfn)
+        return
+    att.item, dfn.item = dfn.item, None
 
 
 def recycle(att):

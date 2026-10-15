@@ -796,6 +796,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         fs.lose_type(att, fs.LOSES_TYPE[e])     # Burn Up and Double Shock, a Substitute's hit too (fightsim.lose_type)
     if e == "SWITCH_HIT":
         att.u_turn = True        # after a knockout and a Substitute's hit too (fightsim.attack)
+    if e == "STEAL_HELD_ITEM" and dealt > 0:
+        fs.steal_item(att, dfn)  # the player's Thief and Covet only (fightsim.steal_item)
     if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
         return
     if e == "SALT_CURE":
@@ -851,8 +853,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         # The count, 3 to 6 on the battle's dice and 6 with a Grip Claw, and
         # the binder, whose leaving ends it (fightsim.Mon.bound).
         dfn.bound, dfn.bound_by = 6 if att.item == "Grip Claw" else b.dice.bind(dfn.side), att.key
-    if e in ("REMOVE_HELD_ITEM", "STEAL_HELD_ITEM"):
-        dfn.item = None
+    if e == "REMOVE_HELD_ITEM":
+        fs.knock_off(dfn)
 
 
 def status_move(b, att, mv, dfn, first):
@@ -1108,7 +1110,8 @@ def mon_key(m):
            m.seeded, m.yawn, m.protect_run, m.sub, _name(m.charging), m.recharge,
            (m.lock[0].name, m.lock[1]) if m.lock else None, m.choice, m.taunt,
            None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
-           m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
+           m.crit_stage, m.bound, m.cursed, m.perish, m.item or ("knocked off" if m.knocked_off else None),
+           tuple(sorted(m.pp.items())),
            m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
            m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False),
            getattr(m, "disabled", None), getattr(m, "disabled_turns", 0), getattr(m, "nightmare", False),

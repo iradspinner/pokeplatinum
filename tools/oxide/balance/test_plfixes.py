@@ -3270,6 +3270,33 @@ def bind_checks():
              f"trapped) {got}")]
 
 
+def steal_item_checks():
+    """Thief in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's empty-handed Frogadier takes a
+    trainer's Breloom's Coba Berry, and a Frogadier holding a Mystic Water
+    takes nothing. A trainer's Honchkrow's Thief leaves the player's
+    Leftovers where they are."""
+    from .test_fightai import battle
+    out = {}
+    for label, item in (("empty-handed", None), ("holding Mystic Water", "Mystic Water")):
+        b = battle([("Breloom", 30, "Technician", ["Mach Punch"], "Coba Berry")],
+                   [("Frogadier", 30, "Torrent", ["Thief", "Aerial Ace"])])
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        bre, frog = b.b.cur(), b.p.cur()
+        bre.item, frog.item = "Coba Berry", item
+        pl.use_move(b, frog, fs.move("Thief"), bre, True)
+        out[label] = (frog.item, bre.item)
+    b = battle([("Honchkrow", 40, "Insomnia", ["Thief"])], [("Bibarel", 40, "Unaware", ["Tackle"], "Leftovers")])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    honch, bib = b.b.cur(), b.p.cur()
+    pl.use_move(b, honch, fs.move("Thief"), bib, True)
+    out["a trainer's Thief"] = (honch.item, bib.item, bib.hp < bib.maxhp)
+    ok = out == {"empty-handed": ("Coba Berry", None), "holding Mystic Water": ("Mystic Water", "Coba Berry"),
+                 "a trainer's Thief": (None, "Leftovers", True)}
+    return [("the readings' Thief steals for the player's empty-handed Pokemon only", ok,
+             f"(thief's item, target's item[, hit]) {out}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3851,6 +3878,7 @@ def main():
     results += focus_punch_checks()
     results += crash_checks()
     results += bind_checks()
+    results += steal_item_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)

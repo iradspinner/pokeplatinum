@@ -2155,6 +2155,39 @@ def check_bind(results):
                     f"(count, [(HP, count, trapped) after each turn end]) {out}"))
 
 
+def check_steal_item(results):
+    """Thief and Covet (approved 2026-10-14; effect script 105,
+    BtlCmd_TryStealItem): the player's Pokemon takes the target's item when
+    it holds none, on a knockout too; it takes nothing while holding an
+    item, through a Substitute, from Sticky Hold (unless Mold Breaker) or
+    when its own item was knocked off. A trainer's Thief takes nothing: the
+    player's Pokemon keeps its item."""
+    def thief(user_item=None, foe_item="Leftovers", foe_ability=None, ability=None, sub=0, foe_hp=None,
+              knocked=False, trainer=False):
+        if trainer:
+            b, p, foe = battle(["Tackle"], ["Thief"], {("b", "Thief"): [20] * 16})
+            p, foe = foe, p                  # the trainer's Pokemon steals from the player's
+        else:
+            b, p, foe = battle(["Thief"], ["Tackle"], {("p", "Thief"): [20] * 16})
+        b.rng = FixedDice(0.5)
+        p.item, foe.item, foe.ability, p.ability, foe.sub = user_item, foe_item, foe_ability, ability, sub
+        p.knocked_off = knocked
+        if foe_hp is not None:
+            foe.hp = foe_hp
+        fs.attack(b, p, fs.move("Thief"), foe, True)
+        return p.item, foe.item
+    got = {"empty-handed": thief(), "on a knockout": thief(foe_hp=10), "holding an item": thief(user_item="Charcoal"),
+           "through a Substitute": thief(sub=30), "Sticky Hold": thief(foe_ability="Sticky Hold"),
+           "Sticky Hold, Mold Breaker": thief(foe_ability="Sticky Hold", ability="Mold Breaker"),
+           "its own item knocked off": thief(knocked=True), "a trainer's Thief": thief(trainer=True)}
+    want = {"empty-handed": ("Leftovers", None), "on a knockout": ("Leftovers", None),
+            "holding an item": ("Charcoal", "Leftovers"), "through a Substitute": (None, "Leftovers"),
+            "Sticky Hold": (None, "Leftovers"), "Sticky Hold, Mold Breaker": ("Leftovers", None),
+            "its own item knocked off": (None, "Leftovers"), "a trainer's Thief": (None, "Leftovers")}
+    results.append(("Thief takes an item for the player's empty-handed Pokemon only", got == want,
+                    f"(thief's item, target's item) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3445,7 +3478,7 @@ def main():
                   check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
-                  check_crash_on_miss, check_bind,
+                  check_crash_on_miss, check_bind, check_steal_item,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
