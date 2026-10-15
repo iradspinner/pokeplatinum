@@ -4557,6 +4557,20 @@ def venom_drench_checks():
     return [("the readings' Venom Drench lowers a poisoned target's stats", ok, str(out))]
 
 
+def false_swipe_checks():
+    """False Swipe in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel's hit leaves a trainer's
+    Geodude at 3 HP on 1 HP, where a Tackle knocks it out."""
+    out = {}
+    for name in ("False Swipe", "Tackle"):
+        b, geo, bib = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", [name])])
+        geo.hp = 3
+        pl.attack(b, bib, fs.move(name), geo, True)
+        out[name] = geo.hp
+    ok = out == {"False Swipe": 1, "Tackle": 0}
+    return [("the readings' False Swipe leaves its target 1 HP", ok, f"HP left {out}")]
+
+
 def main():
     results = []
 
@@ -5087,6 +5101,7 @@ def main():
     results += sp_def_2_checks()
     results += tearful_look_checks()
     results += venom_drench_checks()
+    results += false_swipe_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

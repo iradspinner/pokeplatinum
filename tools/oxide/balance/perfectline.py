@@ -763,6 +763,8 @@ def attack(b, att, mv, dfn, first):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
     else:
+        if mv.effect == "LEAVE_WITH_1_HP" and dmg >= dfn.hp:
+            dmg = dfn.hp - 1     # False Swipe and Hold Back leave 1 HP, before Sturdy and the Sash
         # Focus Sash and Sturdy hold one hit from full HP; a move of several
         # hits lands them one at a time (multi_hit) and never comes here.
         full = dfn.hp == dfn.maxhp and hits < 2

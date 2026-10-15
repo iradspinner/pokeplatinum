@@ -3332,6 +3332,13 @@ def attack(b, att, mv, dfn, first):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
     else:
+        if mv.effect == "LEAVE_WITH_1_HP" and dmg >= dfn.hp:
+            # False Swipe and Hold Back (effect script 101): a hit that would
+            # knock its target out leaves it at 1 HP, and one at 1 HP deals
+            # nothing (battle_controller_player.c, after the Substitute and
+            # before Sturdy and the Focus items, so neither is spent). Until
+            # 2026-10-15 they could knock out (Ian approved the fix).
+            dmg = dfn.hp - 1
         # Focus Sash and Sturdy hold one hit from full HP; a move of several
         # hits lands them one at a time (land_hits) and never comes here.
         full = dfn.hp == dfn.maxhp and hits < 2

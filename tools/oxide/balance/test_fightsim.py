@@ -4737,6 +4737,23 @@ def check_venom_drench(results):
     results.append(("Venom Drench lowers a poisoned target's three stats", out == want, str(out)))
 
 
+def check_false_swipe(results):
+    """False Swipe and Hold Back (approved 2026-10-14; effect script 101): a
+    hit that would knock its target out leaves it at 1 HP, one at 1 HP deals
+    nothing, and a full-HP target keeps its Focus Sash."""
+    out = {}
+    for name, hp, item in (("False Swipe", 30, None), ("Hold Back", 1, None), ("False Swipe", 100, "Focus Sash"),
+                           ("Tackle", 30, None)):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [200] * 16})
+        b.rng = FixedDice(0.5)
+        foe.hp, foe.item = hp, item
+        fs.attack(b, p, fs.move(name), foe, True)
+        out[(name, hp)] = (foe.hp, foe.item)
+    want = {("False Swipe", 30): (1, None), ("Hold Back", 1): (1, None), ("False Swipe", 100): (1, "Focus Sash"),
+            ("Tackle", 30): (0, None)}
+    results.append(("False Swipe and Hold Back leave their target 1 HP", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5008,7 +5025,7 @@ def main():
                   check_power_swap, check_psycho_shift, check_memento,
                   check_sketch, check_me_first, check_nature_power,
                   check_power_trick, check_bide, check_transform,
-                  check_sp_def_2_hit, check_tearful_look, check_venom_drench,
+                  check_sp_def_2_hit, check_tearful_look, check_venom_drench, check_false_swipe,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
