@@ -183,6 +183,12 @@ HIT_FOE_STAGES = {
     "LOWER_SP_DEF_HIT": {"spd": -1}, "LOWER_DEFENSE_HIT": {"def": -1},
     "LOWER_SPEED_HIT": {"spe": -1}, "LOWER_ACCURACY_HIT": {"acc": -1},
     "LOWER_ATTACK_HIT": {"atk": -1},
+    # Snarl, Struggle Bug, Mystical Fire, Skitter Smack and Spirit Break
+    # (always), Mist Ball (half the time) and Moonblast (one time in ten):
+    # effect script 71 lowers the target's Sp. Atk a stage at the move's
+    # chance. Until 2026-10-15 the hit landed and the drop never came (Ian
+    # approved the fix).
+    "LOWER_SP_ATK_HIT": {"spa": -1},
 }
 HIT_SELF_STAGES = {  # (stages, certain)
     "DEF_SPD_DOWN_HIT": ({"def": -1, "spd": -1}, True),

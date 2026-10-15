@@ -2314,6 +2314,29 @@ def check_stockpile(results):
                     f"(HP or damage, count, Defense, Sp. Def ...) {out}"))
 
 
+def check_lower_sp_atk_hit(results):
+    """Snarl, Mist Ball and Moonblast (approved 2026-10-14; effect script
+    71): the hit lowers the target's Sp. Atk a stage at the move's chance,
+    always for Snarl, half the time for Mist Ball, one time in ten for
+    Moonblast; a Substitute's hit lowers nothing."""
+    out = {}
+    for name, dice in (("Snarl", 0.999), ("Mist Ball", 0.4), ("Mist Ball", 0.6), ("Moonblast", 0.05),
+                       ("Moonblast", 0.2)):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [10] * 16})
+        b.rng = FixedDice(dice)
+        fs.attack(b, p, fs.move(name), foe, True)
+        out[f"{name} at {dice}"] = foe.stages["spa"]
+    b, p, foe = battle(["Snarl"], ["Tackle"], {("p", "Snarl"): [10] * 16})
+    foe.sub = 50
+    b.rng = FixedDice(0.0)
+    fs.attack(b, p, fs.move("Snarl"), foe, True)
+    out["Snarl into a Substitute"] = foe.stages["spa"]
+    want = {"Snarl at 0.999": -1, "Mist Ball at 0.4": -1, "Mist Ball at 0.6": 0, "Moonblast at 0.05": -1,
+            "Moonblast at 0.2": 0, "Snarl into a Substitute": 0}
+    results.append(("Snarl, Mist Ball and Moonblast lower Sp. Atk at their chance", out == want,
+                    f"the target's Sp. Atk stage {out}"))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -3703,7 +3726,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,

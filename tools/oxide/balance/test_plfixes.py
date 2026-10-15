@@ -3392,6 +3392,20 @@ def stockpile_checks():
              f"of {swa.maxhp}")]
 
 
+def lower_sp_atk_checks():
+    """Snarl in the readings' battle on the calculator's real rows (approved
+    2026-10-14): a trainer's Poochyena's Snarl hits the player's Bibarel and
+    lowers its Sp. Atk a stage, as effect script 71 does every time."""
+    from .test_fightai import battle
+    b = battle([("Poochyena", 20, "Run Away", ["Snarl"])], [("Bibarel", 20, "Unaware", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    poo, bib = b.b.cur(), b.p.cur()
+    pl.use_move(b, poo, fs.move("Snarl"), bib, True)
+    ok = bib.hp < bib.maxhp and bib.stages["spa"] == -1
+    return [("the readings' Snarl lowers its target's Sp. Atk", ok,
+             f"Bibarel {bib.hp}/{bib.maxhp}, Sp. Atk stage {bib.stages['spa']}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4034,6 +4048,7 @@ def main():
     results += chatter_checks()
     results += stockpile_checks()
     results += natural_gift_checks()
+    results += lower_sp_atk_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()
