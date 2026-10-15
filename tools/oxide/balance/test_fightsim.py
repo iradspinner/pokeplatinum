@@ -4983,6 +4983,47 @@ def check_dragon_tail(results):
     results.append(("Dragon Tail drags its target out after the hit", out == want, str(out)))
 
 
+def check_side_guards(results):
+    """Wide Guard, Quick Guard, Mat Block and Crafty Shield (approved
+    2026-10-14; effect script 371): used before the foe moves, each guards
+    its side for the turn against its kind of move (Wide Guard a spread
+    move, Quick Guard one of raised priority, Mat Block a damaging move on
+    its user's first turn out, Crafty Shield a status move) and lets the
+    rest through; used last it fails; it is gone at the turn's end; Wide
+    Guard keeps Protect's run going and Crafty Shield ends it."""
+    out = {}
+    rows = {("b", m): [10] * 16 for m in ("Earthquake", "Quick Attack", "Tackle")}
+    for guard, foe_move, first, turns in (("Wide Guard", "Earthquake", True, 0), ("Wide Guard", "Tackle", True, 0),
+                                          ("Quick Guard", "Quick Attack", True, 0), ("Quick Guard", "Tackle", True, 0),
+                                          ("Mat Block", "Tackle", True, 0), ("Mat Block", "Tackle", True, 1),
+                                          ("Crafty Shield", "Thunder Wave", True, 0), ("Crafty Shield", "Tackle", True, 0),
+                                          ("Quick Guard", "Quick Attack", False, 0)):
+        b, p, foe = battle([guard], ["Earthquake", "Quick Attack", "Tackle", "Thunder Wave"], rows, hp=100)
+        b.rng = FixedDice(0.5)
+        p.turns_in = turns
+        fs.status_move(b, p, fs.move(guard), foe, first)
+        mv = fs.move(foe_move)
+        (fs.status_move if mv.cat == "Status" else fs.attack)(b, foe, mv, p, False)
+        out[(guard, foe_move, first, turns)] = (p.hp, p.status)
+    want = {("Wide Guard", "Earthquake", True, 0): (100, None), ("Wide Guard", "Tackle", True, 0): (90, None),
+            ("Quick Guard", "Quick Attack", True, 0): (100, None), ("Quick Guard", "Tackle", True, 0): (90, None),
+            ("Mat Block", "Tackle", True, 0): (100, None), ("Mat Block", "Tackle", True, 1): (90, None),
+            ("Crafty Shield", "Thunder Wave", True, 0): (100, None), ("Crafty Shield", "Tackle", True, 0): (90, None),
+            ("Quick Guard", "Quick Attack", False, 0): (90, None)}
+    b, p, foe = battle(["Wide Guard", "Protect", "Crafty Shield"], ["Tackle"], {})
+    b.rng = FixedDice(0.0)
+    fs.use_move(b, p, fs.move("Protect"), foe, True)
+    fs.use_move(b, p, fs.move("Wide Guard"), foe, True)
+    out["run after Protect, Wide Guard"] = p.protect_run
+    fs.end_of_turn(b)
+    out["guard after the turn"] = (b.p.guard, b.guarded)
+    fs.use_move(b, p, fs.move("Crafty Shield"), foe, True)
+    out["run after Crafty Shield"] = p.protect_run
+    want.update({"run after Protect, Wide Guard": 2, "guard after the turn": (None, False),
+                 "run after Crafty Shield": 0})
+    results.append(("the side guards stop their kind of move for the turn", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5258,7 +5299,7 @@ def main():
                   check_clear_smog, check_incinerate, check_life_dew,
                   check_mud_sport, check_punishment, check_sticky_web,
                   check_defog, check_strength_sap, check_parting_shot,
-                  check_dragon_tail,
+                  check_dragon_tail, check_side_guards,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

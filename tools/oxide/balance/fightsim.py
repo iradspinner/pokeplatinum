@@ -672,6 +672,11 @@ class Side:
     # grounded Pokemon that comes in loses a stage of Speed (web_catch);
     # Rapid Spin, Mortal Spin and Defog clear it; left on the class while 0.
     web = 0
+    # The side guard one of the side's Pokemon raised this turn
+    # (TurnFlags.sideGuard): Wide Guard's, Quick Guard's, Mat Block's or
+    # Crafty Shield's move constant, read by protected (guard_stops); gone
+    # with the turn, and left on the class while there is none.
+    guard = None
 
     def __init__(self, mons, name):
         self.mons, self.name = mons, name
@@ -721,6 +726,9 @@ class Battle:
     # A move Magic Coat is turning back is running (coat_bounces), so it is
     # not turned again.
     reflecting = False
+    # Whether a side guard is up this turn (Side.guard), so protected looks
+    # for one only then; left on the class while none is.
+    guarded = False
     # Whether a Pokemon in this fight knows Water Sport or Mud Sport
     # (st["water_sport"], st["mud_sport"]), so the damage reads sport_half
     # only then; set as the battle is made and kept by its copies.
@@ -3133,7 +3141,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     mark_hit(b, mv, dfn, True, targets)
     prev = note_move(b, mv)      # the move before this one, for Copycat
     spend_pp(b, att, mv, dfn, targets)
-    if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
+    if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP") and mv.const not in KEEPS_PROTECT_RUN:
         att.protect_run = 0
     att.last = mv
     if att.item and att.item.startswith("Choice") and not att.choice:
@@ -5506,6 +5514,10 @@ BREAKS_PROTECT = frozenset({"REMOVE_PROTECT", "SHADOW_FORCE", "USER_DEF_DOWN_HIT
 # last row): a fourth Protect in a row, and every one after, works one time
 # in eight.
 PROTECT_RUN_CAP = 3
+# The side guards that keep Protect's run going and add to it, as Protect
+# and Endure do (Move_KeepsProtectRun); Mat Block and Crafty Shield neither
+# keep it nor add to it.
+KEEPS_PROTECT_RUN = frozenset({"MOVE_WIDE_GUARD", "MOVE_QUICK_GUARD"})
 
 
 def protected(b, att, mv, dfn):
@@ -5526,7 +5538,7 @@ def protected(b, att, mv, dfn):
     Until 2026-10-14 Protect stopped every move but Feint (Ian approved the
     fix)."""
     if not dfn.protecting or not mv.protect:
-        return False
+        return b.guarded and mv.protect and guard_stops(b, att, mv, dfn)
     rollout_after(att, mv, False)
     guard = dfn.last.name if dfn.last is not None else None
     if mv.contact and att.alive():
@@ -5539,6 +5551,50 @@ def protected(b, att, mv, dfn):
             b.status_src = dfn               # Synchronize passes it back, as in the engine
             give_status(b, att, "brn")
     return True
+
+
+def side_guard(b, att, mv, first):
+    """Wide Guard, Quick Guard, Mat Block and Crafty Shield (effect script
+    371, BtlCmd_TryProtection's side guard): it fails when no battler acts
+    after its user (moves_last), and Mat Block on any turn but its user's
+    first out, as Fake Out's test has it; otherwise it never rolls against
+    Protect's run and guards its user's side for the rest of the turn
+    (guard_stops). A failure ends the run; Wide Guard and Quick Guard add to
+    it. Until 2026-10-15 the four did nothing (Ian approved the fix)."""
+    if moves_last(b, first) or (mv.const == "MOVE_MAT_BLOCK" and att.turns_in > 0):
+        att.protect_run = 0
+        return
+    side = b.p if att.side == "p" else b.b
+    side.guard = mv.const
+    b.guarded = True
+    if mv.const in KEEPS_PROTECT_RUN:
+        att.protect_run = min(att.protect_run + 1, PROTECT_RUN_CAP)
+
+
+def guard_stops(b, att, mv, dfn):
+    """Whether a side guard on dfn's side stops att's move, which can be
+    protected against (BattleControllerPlayer_SideGuardAgainst): Wide Guard
+    a move that hits more than one target (by its range, so in a single
+    battle too), Quick Guard a move of raised priority (Prankster and Gale
+    Wings counting), Mat Block a damaging move, Crafty Shield a status move
+    aimed at someone other than its user. A stopped move lets go of its
+    user's lock, as Protect's does; the guard's side takes nothing from it.
+    In a double battle the side's guard covers both its Pokemon, as the
+    engine's check reads the defender's and its partner's."""
+    g = (b.p if dfn.side == "p" else b.b).guard
+    if g is None:
+        return False
+    if g == "MOVE_WIDE_GUARD":
+        stop = mv.range in SPREAD
+    elif g == "MOVE_QUICK_GUARD":
+        stop = move_priority(att, mv) > 0
+    elif g == "MOVE_MAT_BLOCK":
+        stop = mv.cat != "Status"
+    else:
+        stop = mv.cat == "Status" and att is not dfn
+    if stop:
+        rollout_after(att, mv, False)
+    return stop
 
 
 def moves_last(b, first):
@@ -6167,6 +6223,8 @@ def status_move(b, att, mv, dfn, first):
         lay_web(b, att)
     elif e == "REMOVE_HAZARDS_SCREENS_EVA_DOWN":
         defog(b, att, dfn, mv)
+    elif e == "PROTECT_USER_SIDE":
+        side_guard(b, att, mv, first)
     elif e == "PROTECT" or e == "SURVIVE_WITH_1_HP":
         # BtlCmd_TryProtection: it fails when no battler acts after its user,
         # and otherwise works at protect_odds; a failure ends the run.
@@ -6653,6 +6711,9 @@ def _end_of_turn(b):
                     return
     if 0 < b.trick_room < 999:
         b.trick_room -= 1
+    if b.guarded:
+        b.p.guard = b.b.guard = None     # the side guards are turn flags too
+        b.guarded = False
     for m in order:
         m.roosting = False          # a turn flag, gone with the turn
         if m.magic_coat:

@@ -4718,6 +4718,20 @@ def dragon_tail_checks():
              f"Geodude's HP {hp} to {geo.hp}; now in {new.species} at {new.hp} of {new.maxhp}")]
 
 
+def side_guard_checks():
+    """Quick Guard in a whole turn of the readings' battle on the
+    calculator's real rows (approved 2026-10-14): the player's Bibarel's
+    Quick Guard, at +3, goes up before a trainer's Starly's Quick Attack and
+    stops it, where a Tackle would have landed."""
+    out = {}
+    for foe_move in ("Quick Attack", "Tackle"):
+        b, sta, bib = b7_battle([("Starly", 30, "Keen Eye", [foe_move])], [("Bibarel", 30, "Unaware", ["Quick Guard"])])
+        pl._turn(b, ("move", fs.move("Quick Guard")), ("move", fs.move(foe_move)))
+        out[foe_move] = bib.hp == bib.maxhp
+    ok = out == {"Quick Attack": True, "Tackle": False}
+    return [("the readings' Quick Guard stops a priority move", ok, f"Bibarel untouched {out}")]
+
+
 def main():
     results = []
 
@@ -5259,6 +5273,7 @@ def main():
     results += strength_sap_checks()
     results += parting_shot_checks()
     results += dragon_tail_checks()
+    results += side_guard_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

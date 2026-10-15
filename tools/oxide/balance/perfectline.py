@@ -401,7 +401,7 @@ def _use_move(b, att, mv, dfn, first):
     fs.mark_hit(b, mv, dfn, True)
     prev = fs.note_move(b, mv)           # the move before this one, for Copycat (fightsim.note_move)
     fs.spend_pp(b, att, mv, dfn)       # once a choice, and Pressure's (fightsim.spend_pp)
-    if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
+    if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP") and mv.const not in fs.KEEPS_PROTECT_RUN:
         att.protect_run = 0
     att.last = mv
     if att.item and att.item.startswith("Choice") and not att.choice:
@@ -1088,6 +1088,8 @@ def status_move(b, att, mv, dfn, first):
         fs.lay_web(b, att)               # a web across the field (fightsim.lay_web, caught in fightsim.switch_in)
     elif e == "REMOVE_HAZARDS_SCREENS_EVA_DOWN":
         fs.defog(b, att, dfn, mv)        # evasion down, screens, hazards and fog cleared (fightsim.defog)
+    elif e == "PROTECT_USER_SIDE":
+        fs.side_guard(b, att, mv, first)     # Wide Guard and its kind guard the side this turn (fightsim.side_guard)
     elif e == "PROTECT" or e == "SURVIVE_WITH_1_HP":
         # BtlCmd_TryProtection: it fails when no battler acts after its user
         # (fightsim.moves_last). Otherwise a first one works, and a repeat at
@@ -1226,6 +1228,8 @@ def clone_side(s):
         c.lucky_chant = s.lucky_chant    # left on the class while 0 (fightsim.Side)
     if s.web:
         c.web = s.web                    # Sticky Web, left on the class while 0 (fightsim.Side)
+    if s.guard is not None:
+        c.guard = s.guard                # this turn's side guard (fightsim.side_guard)
     c.hazards = dict(s.hazards)
     c.future, c.future_sight = s.future, s.future_sight        # a waiting Future Sight (tuples, shared safely)
     return c
@@ -1248,6 +1252,8 @@ def clone_battle(b):
         c.last_move = b.last_move    # Copycat's move (fightsim.note_move)
     if b.sporty:
         c.sporty = True              # a Water Sport user in the fight (fightsim.Battle.sporty)
+    if b.guarded:
+        c.guarded = True             # a side guard up this turn (fightsim.side_guard)
     return c
 
 
