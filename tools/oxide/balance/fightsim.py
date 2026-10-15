@@ -2763,6 +2763,20 @@ def crit_proof(att, dfn, b=None):
     return dfn.ability in ("Battle Armor", "Shell Armor") and not mold(att, dfn)
 
 
+def psych_up(att, dfn):
+    """Psych Up (effect script 143, BtlCmd_CopyStatStages): the user takes
+    every one of the target's stat stages, accuracy and evasion included,
+    and its Focus Energy (VOLATILE_CONDITION_FOCUS_ENERGY is added to the
+    user's own, never taken away); a stage the copy raises counts as one
+    raised this turn (Oxide's Burning Jealousy flag). No Substitute or
+    Protect stops it. Until 2026-10-15 it did nothing (Ian approved the
+    fix)."""
+    if any(dfn.stages[k] > att.stages[k] for k in STAGE_KEYS):
+        att.stat_raised = True
+    att.stages = dict(dfn.stages)
+    att.crit_stage = max(att.crit_stage, dfn.crit_stage)
+
+
 def lucky_chant(side):
     """Lucky Chant (effect script 240): five turns on its user's side, ended
     at the fifth turn's end (FIELD_COND_CHECK_STATE_LUCKY_CHANT); it fails
@@ -4944,6 +4958,8 @@ def status_move(b, att, mv, dfn, first):
         mist(own_side)
     elif e == "PREVENT_CRITS":
         lucky_chant(own_side)
+    elif e == "COPY_STAT_CHANGES":
+        psych_up(att, dfn)
     elif e == "TAUNT":
         if not dfn.taunt and not taunt_blocked(att, dfn):
             dfn.taunt = b.rng.randint(3, 5)

@@ -2516,6 +2516,27 @@ def check_lucky_chant(results):
     results.append(("Lucky Chant keeps critical hits off its side for five turns", out == want, str(out)))
 
 
+def check_psych_up(results):
+    """Psych Up (approved 2026-10-14; BtlCmd_CopyStatStages): the user takes
+    every stage of the target's, accuracy and evasion too, lowered ones
+    included, and the target's Focus Energy, keeping its own; a Substitute
+    does not stop it."""
+    b, p, foe = battle(["Psych Up"], ["Tackle"], {})
+    p.stages.update(atk=2, spe=-1)
+    foe.stages.update(atk=-1, spa=2, eva=1, spe=3)
+    foe.crit_stage, foe.sub = 2, 30
+    fs.status_move(b, p, fs.move("Psych Up"), foe, True)
+    copied = (dict(p.stages), p.crit_stage)
+    b, p, foe = battle(["Psych Up"], ["Tackle"], {})
+    p.crit_stage = 2
+    fs.status_move(b, p, fs.move("Psych Up"), foe, True)
+    want_stages = dict.fromkeys(fs.STAGE_KEYS, 0)
+    want_stages.update(atk=-1, spa=2, eva=1, spe=3)
+    ok = copied == (want_stages, 2) and p.crit_stage == 2 and p.stages == dict.fromkeys(fs.STAGE_KEYS, 0)
+    results.append(("Psych Up copies every stage and Focus Energy, keeping the user's own", ok,
+                    f"copied {copied}; from a plain target it keeps Focus Energy: {p.crit_stage}, {p.stages}"))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -3905,7 +3926,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,

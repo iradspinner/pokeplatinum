@@ -1037,6 +1037,8 @@ def status_move(b, att, mv, dfn, first):
         fs.mist(own_side)                # Mist, five turns (fightsim.mist)
     elif e == "PREVENT_CRITS":
         fs.lucky_chant(own_side)         # Lucky Chant, five turns (fightsim.lucky_chant)
+    elif e == "COPY_STAT_CHANGES":
+        fs.psych_up(att, dfn)            # Psych Up takes the target's stages and Focus Energy
     elif e == "TAUNT":
         if not dfn.taunt and not fs.taunt_blocked(att, dfn):     # Oblivious, unless Mold Breaker
             dfn.taunt = b.dice.taunt(dfn.side)

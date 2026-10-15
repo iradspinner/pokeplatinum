@@ -3571,6 +3571,22 @@ def lucky_chant_checks():
              f"Tackle dealt {before} before the chant and {after} after (row {rolls[0]} to {rolls[-1]})")]
 
 
+def psych_up_checks():
+    """Psych Up in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Spoink copies the player's Bibarel's
+    Swords Dance, and its stages then weigh in its damage."""
+    from .test_fightai import battle
+    b = battle([("Spoink", 25, "Thick Fat", ["Psych Up", "Zen Headbutt"])], [("Bibarel", 25, "Unaware", ["Swords Dance"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    spo, bib = b.b.cur(), b.p.cur()
+    pl.use_move(b, bib, fs.move("Swords Dance"), spo, True)
+    pl.use_move(b, spo, fs.move("Psych Up"), bib, False)
+    plain = pl.damage_of(b, spo, bib, fs.move("Zen Headbutt"), False, True)
+    ok = spo.stages["atk"] == 2 and bib.stages["atk"] == 2
+    return [("the readings' Psych Up copies the target's stages", ok,
+             f"Spoink's Attack stage {spo.stages['atk']}, Bibarel's {bib.stages['atk']}, Zen Headbutt's top {plain}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4220,6 +4236,7 @@ def main():
     results += minimize_checks()
     results += charge_checks()
     results += lucky_chant_checks()
+    results += psych_up_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()
