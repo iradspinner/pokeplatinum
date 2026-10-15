@@ -100,7 +100,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Talk to the kit NPC: the top menu responds to the D-pad and A, fits the
   screen, and its entry before Warp reads "Meister’s trade", not "See you
   next week". The Warp menu's last entry reads "Gauntlet: Victory Road". Move
-  sets page 3 ends with "More sets", which opens sets 82 to 87. The Items
+  sets page 3 ends with "More sets", which opens sets 82 to 88. The Items
   menu's Ice Stone, abilities, Mints and Caps, and TMs entries, and the
   Meister's trade, each print their own line.
 - [ ] **Element 4, the move sets.** Sets 1 to 22 passed in rounds 1 to 3
@@ -320,6 +320,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   before it is dragged out. The foe dragged in says nothing of its own, no
   Rough Skin and no item, and a dragged-out foe's Red Card or Eject Button
   is never used. Hiker Daniel's Sandshrew on Route 205 South has Rough Skin.
+- [ ] **Pickpocket does not steal before a drag** (set 88 on the move-set
+  menu's fourth page, `overseer-engine-9b`; Ian, 2026-10-15). Switch the
+  set's Mew, holding Leftovers, in on the first turn, then use Dragon Tail
+  on the wild Wobbuffet, which has Pickpocket: it is dragged out, which in
+  a wild battle ends it, with no "stole" line, and Mew's summary still shows
+  its Leftovers. Before the change "The wild WOBBUFFET stole MEW's
+  Leftovers!" came first. Take the set again and use Tackle: Wobbuffet
+  steals the Leftovers, since no drag follows.
 - [ ] **The move reworks, for normal play** (the kit cannot run them):
   Petal Dance hitting both foes in a double battle; Dig still digging out of
   a cave from the field menu; a trainer's Hyper Beam, Giga Impact or Outrage
