@@ -4057,6 +4057,39 @@ def _entrained(ff):
                 yield f, None, a
 
 
+@form_move("SET_ABILITY_TO_INSOMNIA")
+def worry_seed(b, att, mv, dfn, pick):
+    """Worry Seed (effect script 247, subscript_give_target_insomnia): once
+    the move lands, its standing target's ability becomes Insomnia, named,
+    unless the move cannot reach it, a Substitute stands in front of it,
+    its ability cannot be replaced or is Truant (BtlCmd_CheckAbilityChange's
+    overwrite kind), or it holds an Ability Shield or a Griseous Orb. A
+    sleeping target wakes as the move ends (RecoverStatusByAbility), and no
+    sleep reaches it after. Its rows then come from its twin for Insomnia,
+    which changes no row (form_key). Until 2026-10-14 Worry Seed did nothing
+    (Ian approved the fix)."""
+    d = raw_ability(dfn)
+    if (not dfn.alive() or out_of_reach(att, dfn, mv) or sub_blocks(att, dfn, mv) or refuses(d, "suppress")
+            or d == "Truant" or dfn.item in ("Ability Shield", "Griseous Orb")):
+        return False
+    set_ability(b, dfn, "Insomnia")
+    return True
+
+
+@form_change
+def _worried(ff):
+    """Worry Seed: any foe of its user whose ability can be replaced may
+    take Insomnia."""
+    for k in ff.keys():
+        if not any(m.effect == "SET_ABILITY_TO_INSOMNIA" for m in ff.moves(k)):
+            continue
+        for f in ff.foes(k):
+            d = ff.ability(f)
+            if (not refuses(d, "suppress") and d != "Truant"
+                    and ff.pokemon[f].get("item") not in ("Ability Shield", "Griseous Orb")):
+                yield f, None, "Insomnia"
+
+
 # The type Camouflage gives on each battle terrain (data/terrain/to_type.h,
 # sTerrainCamouflageType); every terrain after the bridge's (the Elite
 # Four's rooms, the Distortion World) counts as the special one, Normal.

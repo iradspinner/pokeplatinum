@@ -1810,6 +1810,32 @@ def check_entrainment(results):
                     f"the user's HP as a target given Truant moves three turns {hp}"))
 
 
+def check_worry_seed(results):
+    """Worry Seed (approved 2026-10-14; subscript_give_target_insomnia): a
+    sleeping Levitate target takes Insomnia, named, wakes, can be put to
+    sleep no more, and reads its ability-blank twin, so Earthquake reaches
+    it; nothing through a Substitute, into Truant or Multitype, or into an
+    Ability Shield."""
+    def seed(theirs="Levitate", sub=0, item=None):
+        rows = {("p", "Earthquake"): [0] * 16}
+        b, p, foe = battle(["Worry Seed", "Earthquake"], ["Tackle"], rows)
+        foe.ability, foe.sub, foe.item = theirs, sub, item
+        foe.status, foe.sleep = "slp", 3
+        b.st["form_twin"] = {"b0.0": {"ability": "Levitate", "twins": {(None, None): "b0.0#ng"}}}
+        b.st["rows"][(None, "p0", "b0.0#ng")] = {"moves": {"Earthquake": {"rolls": [30] * 16}}}
+        fs.use_move(b, p, fs.move("Worry Seed"), foe, True)
+        return b, p, foe
+    b, p, foe = seed()
+    took = (foe.ability, foe.revealed, foe.status, fs.can_status(b, foe, "slp"),
+            b.damage(p, foe, fs.move("Earthquake"), roll=0))
+    got = {"a Substitute": seed(sub=25)[2].ability, "Truant": seed(theirs="Truant")[2].ability,
+           "Multitype": seed(theirs="Multitype")[2].ability, "an Ability Shield": seed(item="Ability Shield")[2].ability}
+    want = {"a Substitute": "Levitate", "Truant": "Truant", "Multitype": "Multitype", "an Ability Shield": "Levitate"}
+    ok = took == ("Insomnia", "Insomnia", None, False, 30) and got == want
+    results.append(("Worry Seed gives its target Insomnia, which wakes it", ok,
+                    f"(ability, named, status, can sleep, Earthquake on it) {took}; {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3097,7 +3123,7 @@ def main():
                   check_wandering_spirit, check_color_change, check_forecast, check_soak,
                   check_conversion, check_conversion2, check_camouflage, check_burn_up,
                   check_double_shock, check_skill_swap, check_role_play, check_entrainment,
-                  check_magic_guard, check_liquid_ooze,
+                  check_worry_seed, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

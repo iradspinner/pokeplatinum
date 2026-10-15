@@ -2983,6 +2983,27 @@ def entrainment_checks():
              f"twins {twins}; Earthquake before {before}; after Entrainment (its ability, Earthquake) {after}")]
 
 
+def worry_seed_checks():
+    """Worry Seed on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Levitate Bronzor on its
+    ability-blank twin, as Lady Melissa's Cherrim's Worry Seed can give it
+    Insomnia; after it, the Cherrim's Earthquake reaches the Bronzor, and
+    a sleeping Bronzor wakes."""
+    from .test_fightai import battle
+    b = battle([("Cherrim", 30, "Flower Gift", ["Worry Seed", "Earthquake"])], [("Bronzor", 30, "Levitate", ["Confusion"])])
+    cherrim, bronzor = b.b.cur(), b.p.cur()
+    quake = fs.move("Earthquake")
+    twins = sorted(((b.st.get("form_twin") or {}).get(bronzor.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, cherrim, bronzor, quake, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    bronzor.status, bronzor.sleep = "slp", 3
+    pl.use_move(b, cherrim, fs.move("Worry Seed"), bronzor, True)
+    after = (bronzor.ability, bronzor.status, pl.damage_of(b, cherrim, bronzor, quake, False, True))
+    ok = twins == [(None, None)] and before == 0 and after[:2] == ("Insomnia", None) and after[2] > 0
+    return [("Worry Seed: a Bronzor given Insomnia wakes and loses Levitate on its twin's rows", ok,
+             f"twins {twins}; Earthquake before {before}; after Worry Seed (its ability, status, Earthquake) {after}")]
+
+
 def calc_terrain(tr_ids):
     from . import calc
     return getattr(calc, "fight_terrain", lambda _ids: None)(tr_ids)
@@ -3512,6 +3533,7 @@ def main():
     results += skill_swap_checks()
     results += role_play_checks()
     results += entrainment_checks()
+    results += worry_seed_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
