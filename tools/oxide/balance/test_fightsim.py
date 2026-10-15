@@ -4654,6 +4654,42 @@ def check_bide(results):
                     f"(damage given back, Bide's PP, the count left, still locked) {out}"))
 
 
+def check_transform(results):
+    """Transform (approved 2026-10-14, the cheap part; effect script 57,
+    BtlCmd_Transform): its user copies the target's moves at 5 PP, its
+    stages, types, ability and Speed, its hits read the copied Pokemon's
+    rows where they exist, and leaving brings its own back; it fails on a
+    target transformed already or in the air."""
+    def setup():
+        b, p, foe = battle(["Transform"], ["Ember", "Growl"], {}, p_speed=30, b_speed=90, b_types=("Fire",), hp=500)
+        foe.ability, foe.stages["atk"] = "Blaze", 2
+        b.rng = FixedDice(0.5)
+        return b, p, foe
+    out = {}
+    b, p, foe = setup()
+    b.st["rows"][(None, "b0.0", "b0.0")] = {"moves": {"Ember": {"rolls": [33] * 16}}}    # the copy's row on its target
+    fs.use_move(b, p, fs.move("Transform"), foe, True)
+    out["copied"] = ([m.name for m in p.moves], dict(p.pp), p.types, p.ability, p.stages["atk"], b.speed(p))
+    before = foe.hp
+    fs.attack(b, p, fs.move("Ember"), foe, True)
+    out["its Ember"] = before - foe.hp
+    p.reset_volatile()
+    out["after leaving"] = ([m.name for m in p.moves], dict(p.pp), p.types, p.ability, b.speed(p))
+    for label in ("target transformed", "target in the air"):
+        b, p, foe = setup()
+        if label == "target transformed":
+            foe.transformed = True
+        else:
+            foe.charging = fs.move("Fly")
+        fs.status_move(b, p, fs.move("Transform"), foe, True)
+        out[label] = [m.name for m in p.moves]
+    tpp = fs.move("Transform").pp - 1
+    want = {"copied": (["Ember", "Growl"], {"Ember": 5, "Growl": 5}, ["Fire"], "Blaze", 2, 90), "its Ember": 33,
+            "after leaving": (["Transform"], {"Transform": tpp}, ["Normal"], None, 30),
+            "target transformed": ["Transform"], "target in the air": ["Transform"]}
+    results.append(("Transform copies its target's moves, stages, types, ability and Speed", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4924,7 +4960,7 @@ def main():
                   check_water_sport, check_acrobatics, check_guard_swap,
                   check_power_swap, check_psycho_shift, check_memento,
                   check_sketch, check_me_first, check_nature_power,
-                  check_power_trick, check_bide,
+                  check_power_trick, check_bide, check_transform,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

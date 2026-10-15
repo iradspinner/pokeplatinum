@@ -456,6 +456,13 @@ class Mon:
     # (storedDamage); cleared when it leaves.
     bide = 0
     bide_damage = 0
+    # Transform (VOLATILE_CONDITION_TRANSFORM): whether it has turned into a
+    # copy of another Pokemon, that Pokemon's key, whose rows its hits read
+    # where prepare() has them (Battle.row), and its own moves and PP as they
+    # stood, which come back as it leaves; cleared when it leaves.
+    transformed = False
+    transform_key = None
+    transformed_from = None
     # Me First: the move it took is running at half again its damage
     # (moveEffectsData.meFirst); cleared as that move ends (use_move).
     me_first = False
@@ -509,6 +516,12 @@ class Mon:
             self.minimized = self.foresight = self.smacked = self.miracle_eye = self.water_sport = False
             self.power_trick = False
             self.bide = self.bide_damage = 0
+            if self.transformed_from is not None:
+                # The party record keeps its own moves and their PP
+                # (BattleMon_CopyToParty skips a transformed Pokemon's), so
+                # they come back; its types and ability come back below.
+                self.moves, self.pp = self.transformed_from
+            self.transformed, self.transform_key, self.transformed_from = False, None, None
             self.lock_on_by = self.mirror = None
             if self.mimicked is not None:
                 # The party record still holds Mimic, with the PP its use left
@@ -729,6 +742,14 @@ class Battle:
                 got = rows.get((w, a, d))
                 if got is not None:
                     return got
+        if att.rare and att.transformed:
+            # A transformed Pokemon hits as the one it copied where prepare()
+            # has rowed that one against this target (transform).
+            tk = att.transform_key
+            w = self.weather if (self.weather, tk, dk) in rows else None
+            got = rows.get((w, tk, dk))
+            if got is not None:
+                return got
         w = self.weather if (self.weather, ak, dk) in rows else None
         return rows.get((w, ak, dk))
 
@@ -768,6 +789,9 @@ class Battle:
         starts counting."""
         speed = self.st["speed"]
         key = mon.key if mon.gas_stash is None else gas_key(self, mon)
+        if mon.rare and mon.transformed and ((self.weather, mon.transform_key) in speed
+                                             or (None, mon.transform_key) in speed):
+            key = mon.transform_key      # a transformed Pokemon has its copy's Speed (transform)
         twin = form_key(self, mon) if mon.formed else None
         if twin and ((self.weather, twin) in speed or (None, twin) in speed):
             key = twin
@@ -3978,6 +4002,36 @@ def memento_drops(b, att, dfn, mv):
         lower_stats(b, att, dfn, {"atk": -2, "spa": -2})
 
 
+def transform(b, att, dfn):
+    """Transform (effect script 57, subscript_transform_into_target,
+    BtlCmd_Transform): it fails on a target that is hidden on a two-turn
+    move's turn or transformed already; otherwise its user becomes a copy of
+    the target in all but HP, level, status and item: its moves with 5 PP
+    each (fewer for a move that has fewer), its stat stages, types and
+    ability (Oxide's copy runs through the ability), and its Attack,
+    Defense, Speed, Sp. Atk and Sp. Def; its Disable and Last Resort count
+    clear. The battle reads the copy's types and ability (set_types,
+    set_ability) and its Speed, and its hits read the copied Pokemon's rows
+    where prepare() has them against the target (in a double battle a
+    spread move's rows on its own side); every other hit, and every hit
+    into it, keeps the user's own rows, as the copy's rows against its own
+    side are not made (reported to Ian with their cost). Leaving brings its
+    own moves, types and ability back. Until 2026-10-15 Transform did
+    nothing (Ian approved the part of the fix that is cheap)."""
+    if dfn is att or not dfn.alive() or dfn.transformed or (
+            dfn.charging is not None and dfn.charging.effect in INVULNERABLE):
+        return
+    if att.transformed_from is None:
+        att.transformed_from = (att.moves, att.pp)
+    att.transformed, att.transform_key, att.rare = True, dfn.key, True
+    att.moves = list(dfn.moves)
+    att.pp = {m.name: min(5, m.pp) for m in att.moves}
+    att.stages = dict(dfn.stages)
+    att.disabled, att.disabled_turns, att.last_resort_count = None, 0, 0
+    set_types(att, list(dfn.types))
+    set_ability(b, att, dfn.ability)
+
+
 def refresh(att):
     """Refresh (effect script 193, subscript_recover_psn_prz_brn): its user's
     own poison, bad poison, burn or paralysis is cured
@@ -5961,6 +6015,8 @@ def status_move(b, att, mv, dfn, first):
         mimic(att, dfn)
     elif e == "LEARN_MOVE_PERMANENT":
         sketch(att, dfn, mv)
+    elif e == "TRANSFORM":
+        transform(b, att, dfn)
     elif e == "TAUNT":
         if not dfn.taunt and not taunt_blocked(att, dfn):
             dfn.taunt = b.rng.randint(3, 5)

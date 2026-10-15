@@ -1132,6 +1132,8 @@ def status_move(b, att, mv, dfn, first):
         fs.mimic(att, dfn)               # Mimic takes the target's last move (fightsim.mimic)
     elif e == "LEARN_MOVE_PERMANENT":
         fs.sketch(att, dfn, mv)          # Sketch takes the target's last move for good (fightsim.sketch)
+    elif e == "TRANSFORM":
+        fs.transform(b, att, dfn)        # a copy of the target but for its HP (fightsim.transform)
     elif e == "TAUNT":
         if not dfn.taunt and not fs.taunt_blocked(att, dfn):     # Oblivious, unless Mold Breaker
             dfn.taunt = b.dice.taunt(dfn.side)
@@ -1257,6 +1259,7 @@ def mon_key(m):
     if m.rare:
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
         key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.power_trick, m.bide, m.bide_damage,
+                m.transform_key,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key

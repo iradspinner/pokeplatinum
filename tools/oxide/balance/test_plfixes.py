@@ -4482,6 +4482,25 @@ def bide_checks():
     return [("the readings' Bide gives back twice what it stored", ok, f"stored {taken}, gave back {given}")]
 
 
+def transform_checks():
+    """Transform in the readings' battle on the calculator's real rows
+    (approved 2026-10-14, the cheap part): a trainer's Ditto turns into
+    the player's Bibarel, its moves at 5 PP, its types and ability, and its
+    copied Growl lowers the Bibarel's Attack, where before Transform did
+    nothing."""
+    from .test_fightai import battle
+    b = battle([("Ditto", 30, "Limber", ["Transform"])], [("Bibarel", 30, "Unaware", ["Growl", "Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    dit, bib = b.b.cur(), b.p.cur()
+    pl.use_move(b, dit, fs.move("Transform"), bib, True)
+    copied = ([m.name for m in dit.moves], dict(dit.pp), dit.types == bib.types, dit.ability)
+    growl = next((m for m in dit.moves if m.name == "Growl"), None)
+    if growl is not None:
+        pl.use_move(b, dit, growl, bib, True)
+    ok = copied == (["Growl", "Tackle"], {"Growl": 5, "Tackle": 5}, True, "Unaware") and bib.stages["atk"] == -1
+    return [("the readings' Transform copies its target", ok, f"{copied}; Bibarel's Attack stage {bib.stages['atk']}")]
+
+
 def main():
     results = []
 
@@ -5008,6 +5027,7 @@ def main():
     results += nature_power_checks()
     results += power_trick_checks()
     results += bide_checks()
+    results += transform_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
