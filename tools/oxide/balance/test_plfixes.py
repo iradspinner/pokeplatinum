@@ -5055,6 +5055,22 @@ def heal_pulse_checks():
     ok = geo.hp == 1 + (geo.maxhp + 1) // 2
     return [("the readings' Heal Pulse heals its target", ok, f"Geodude's HP 1 to {geo.hp} of {geo.maxhp}")]
 
+def lunar_dance_checks():
+    """Lunar Dance in a whole turn of the readings' battle on the
+    calculator's real rows (approved 2026-10-14): the player's Bibarel
+    faints to it, its burned Staravia at half HP with one PP of Peck left
+    comes in at once and is healed, cured and given its PP back, and the
+    trainer's Geodude's Tackle, moving after, hits the Staravia."""
+    b, geo, bib = b8_battle([("Geodude", 20, "Sturdy", ["Tackle"])],
+                            [("Bibarel", 40, "Unaware", ["Lunar Dance"]), ("Staravia", 40, "Intimidate", ["Peck"])])
+    sta = b.p.mons[1]
+    sta.hp, sta.status, sta.pp = sta.maxhp // 2, "brn", {"Peck": 1}
+    pl._turn(b, ("move", fs.move("Lunar Dance")), ("move", fs.move("Tackle")))
+    got = (bib.hp, b.p.cur().species, sta.status, sta.pp["Peck"], sta.hp > sta.maxhp // 2, sta.hp < sta.maxhp)
+    ok = got == (0, "Staravia", None, fs.move("Peck").pp, True, True)
+    return [("the readings' Lunar Dance restores its replacement", ok,
+             f"(Bibarel's HP, on the field, Staravia's status, Peck's PP, healed past half, hit after) {got}")]
+
 def main():
     results = []
 
@@ -5616,6 +5632,7 @@ def main():
     results += clangorous_soul_checks()
     results += heart_swap_checks()
     results += heal_pulse_checks()
+    results += lunar_dance_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

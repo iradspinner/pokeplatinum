@@ -6486,6 +6486,8 @@ def status_move(b, att, mv, dfn, first):
         parting_shot(b, att, dfn, mv)
     elif e == "FAINT_AND_FULL_HEAL_NEXT_MON":
         healing_wish(b, att)
+    elif e == "FAINT_FULL_RESTORE_NEXT_MON":
+        healing_wish(b, att, lunar=True)
     elif e == "GUARD_SPLIT":
         share_stats(b, att, dfn, mv, ("def", "spd"))
     elif e == "POWER_SPLIT":
@@ -6733,26 +6735,28 @@ def clangorous_soul(b, att):
     change_stages(att, dict.fromkeys(ALL_FIVE, 1))
 
 
-def healing_wish(b, att):
-    """Healing Wish (effect script 220, subscript_healing_wish): it fails
+def healing_wish(b, att, lunar=False):
+    """Healing Wish (effect script 220, subscript_healing_wish) and, with
+    lunar, Lunar Dance (effect script 270, subscript_lunar_dance): it fails
     when no party member can come in (TryReplaceFaintedMon); otherwise its
     user faints, and the turn sends in its replacement at once
     (wish_comes_true). In a double battle the move is left to the double
-    battles' own fixes. Until 2026-10-15 it did nothing (Ian approved the
-    fix)."""
+    battles' own fixes. Until 2026-10-15 both did nothing (Ian approved the
+    fixes)."""
     side = b.p if att.side == "p" else b.b
     if getattr(b, "doubles", False) or not side.bench():
         return
     att.hp = 0
-    att.wished = True
+    att.wished = "lunar" if lunar else True
 
 
 def wish_comes_true(b, mon, choose):
-    """Healing Wish's replacement (subscript_healing_wish, straight after the
-    move): the party member choose(side) picks comes in and meets the
-    hazards, and one left standing gets its HP back in full and its status
-    cured; one the hazards knock out is replaced in turn, the wish waiting
-    for the next."""
+    """Healing Wish's and Lunar Dance's replacement (their subscripts,
+    straight after the move): the party member choose(side) picks comes in
+    and meets the hazards, and one left standing gets its HP back in full
+    and its status cured, and after Lunar Dance every move's PP too; one the
+    hazards knock out is replaced in turn, the wish waiting for the next."""
+    lunar = mon.wished == "lunar"
     mon.wished = False
     side = b.p if mon.side == "p" else b.b
     while side.bench():
@@ -6763,6 +6767,8 @@ def wish_comes_true(b, mon, choose):
         new = side.mons[idx]
         if new.alive():
             new.hp, new.status, new.sleep, new.toxic = new.maxhp, None, 0, 0
+            if lunar:
+                new.pp = {m.name: m.pp for m in new.moves}     # BATTLEMON_MAX_PP_1 to 4 into CUR_PP
             return
 
 

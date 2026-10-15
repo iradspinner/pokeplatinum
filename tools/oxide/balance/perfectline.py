@@ -1042,6 +1042,8 @@ def status_move(b, att, mv, dfn, first):
         fs.parting_shot(b, att, dfn, mv)     # both drops, then out as after U-turn (fightsim.parting_shot)
     elif e == "FAINT_AND_FULL_HEAL_NEXT_MON":
         fs.healing_wish(b, att)          # its user faints; the turn heals the one sent in (fightsim.wish_comes_true)
+    elif e == "FAINT_FULL_RESTORE_NEXT_MON":
+        fs.healing_wish(b, att, lunar=True)     # Lunar Dance: as Healing Wish, the PP restored too
     elif e == "GUARD_SPLIT":
         fs.share_stats(b, att, dfn, mv, ("def", "spd"))     # the two Defenses averaged (fightsim.share_stats)
     elif e == "POWER_SPLIT":

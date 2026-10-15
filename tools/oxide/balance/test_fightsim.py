@@ -5392,6 +5392,27 @@ def check_heal_pulse(results):
     want = {"plain": 201, "Mega Launcher": 278, "Heal Block": 50, "Substitute": 50}
     results.append(("Heal Pulse heals its target by half", out == want, str(out)))
 
+def check_lunar_dance(results):
+    """Lunar Dance (approved 2026-10-14; effect script 270): as Healing
+    Wish, its user faints and its replacement, once in, gets back its HP,
+    its status and every move's PP; with no one to send in it fails."""
+    out = {}
+    b, p, foe = battle(["Lunar Dance"], ["Tackle"], {}, hp=100)
+    b.rng = FixedDice(0.0)
+    fs.status_move(b, p, fs.move("Lunar Dance"), foe, True)
+    out["alone"] = (p.hp, p.wished)
+    b, p, foe = battle(["Lunar Dance"], ["Tackle"], {}, hp=100)
+    b.rng = FixedDice(0.0)
+    mate = fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p")
+    b.p.mons.append(mate)
+    mate.hp, mate.status, mate.pp = 30, "brn", {"Tackle": 2}
+    fs.status_move(b, p, fs.move("Lunar Dance"), foe, True)
+    out["user"] = (p.hp, bool(p.wished))
+    fs.wish_comes_true(b, p, lambda side: 1)
+    out["replacement"] = (b.p.active, mate.hp, mate.status, mate.pp["Tackle"], p.wished)
+    want = {"alone": (100, False), "user": (0, True), "replacement": (1, 100, None, fs.move("Tackle").pp, False)}
+    results.append(("Lunar Dance faints its user and restores its replacement, PP too", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5675,6 +5696,7 @@ def main():
                   check_poltergeist, check_belch, check_first_impression,
                   check_axe_kick, check_always_critical,
                   check_clangorous_soul, check_heart_swap, check_heal_pulse,
+                  check_lunar_dance,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
