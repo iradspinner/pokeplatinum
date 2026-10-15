@@ -208,6 +208,12 @@ HIT_SELF_STAGES = {  # (stages, certain)
     "RAISE_ATTACK_HIT": ({"atk": 1}, False), "RAISE_SP_ATK_HIT": ({"spa": 1}, False),
     "RAISE_DEF_HIT": ({"def": 1}, False),
     "RAISE_ALL_STATS_HIT": ({"atk": 1, "def": 1, "spa": 1, "spd": 1, "spe": 1}, False),
+    # Flame Charge, Trailblaze and Aqua Step (effect script 285): the user's
+    # Speed rises a stage at the move's chance (100), as Metal Claw's Attack
+    # does, so a knockout's or a Substitute's hit raises it too and Sheer
+    # Force strips it (sSheerForceEffects). Until 2026-10-15 the Speed never
+    # rose (Ian approved the fix).
+    "RAISE_SPEED_HIT": ({"spe": 1}, False),
 }
 RECOIL = {"RECOIL_THIRD": 1 / 3, "RECOIL_QUARTER": 1 / 4, "RECOIL_HALF": 1 / 2,
           "RECOIL_BURN_HIT": 1 / 3, "RECOIL_PARALYZE_HIT": 1 / 3,

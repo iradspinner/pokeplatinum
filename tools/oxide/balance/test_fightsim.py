@@ -4201,6 +4201,24 @@ def check_snore(results):
     results.append(("Snore hits and flinches asleep and fails awake", out == want, f"(damage, flinch) {out}"))
 
 
+def check_raise_speed_hit(results):
+    """Flame Charge, Trailblaze and Aqua Step (approved 2026-10-14; effect
+    script 285): each hit raises its user's Speed a stage, into a
+    Substitute too, and Sheer Force strips the rise."""
+    out = {}
+    for name, ability, sub in (("Flame Charge", None, 0), ("Trailblaze", None, 0), ("Aqua Step", None, 0),
+                               ("Flame Charge", None, 30), ("Flame Charge", "Sheer Force", 0)):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [10] * 16}, hp=500)
+        b.rng = FixedDice(0.5)
+        p.ability, foe.sub = ability, sub
+        foe.ability = "Shell Armor"
+        fs.attack(b, p, fs.move(name), foe, True)
+        out[(name, ability, sub)] = p.stages["spe"]
+    want = {("Flame Charge", None, 0): 1, ("Trailblaze", None, 0): 1, ("Aqua Step", None, 0): 1,
+            ("Flame Charge", None, 30): 1, ("Flame Charge", "Sheer Force", 0): 0}
+    results.append(("Flame Charge and its kind raise their user's Speed", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4466,6 +4484,7 @@ def main():
                   check_burning_bulwark,
                   check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
                   check_trainer_frustration, check_secret_power, check_snore,
+                  check_raise_speed_hit,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

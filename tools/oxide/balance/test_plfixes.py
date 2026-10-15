@@ -4121,6 +4121,21 @@ def snore_checks():
              f"100 sleeping Snores dealt {asleep}, flinched {flinches}; awake it dealt {before - bib.hp}")]
 
 
+def raise_speed_hit_checks():
+    """Trailblaze in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Pikachu's Trailblaze on the player's
+    Bibarel raises its Speed a stage each hit, three hits three stages."""
+    from .test_fightai import battle
+    b = battle([("Pikachu", 30, "Static", ["Trailblaze"])], [("Bibarel", 30, "Unaware", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pik, bib = b.b.cur(), b.p.cur()
+    bib.hp = bib.maxhp = 100000
+    for _ in range(3):
+        pl.attack(b, pik, fs.move("Trailblaze"), bib, True)
+    ok = bib.hp < bib.maxhp and pik.stages["spe"] == 3
+    return [("the readings' Trailblaze raises its user's Speed", ok, f"Speed stage {pik.stages['spe']} after three hits")]
+
+
 def main():
     results = []
 
@@ -4630,6 +4645,7 @@ def main():
     results += trainer_frustration_checks()
     results += secret_power_checks()
     results += snore_checks()
+    results += raise_speed_hit_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
