@@ -391,6 +391,10 @@ class Mon:
     # Minimize's mark (MOVE_EFFECT_MINIMIZE), which Stomp and Steamroller
     # double on; cleared when it leaves.
     minimized = False
+    # Foresight and Odor Sleuth (VOLATILE_CONDITION_FORESIGHT): its raised
+    # evasion stops counting, and Normal and Fighting moves meet its Ghost
+    # type; cleared when it leaves.
+    foresight = False
     # Lock-On and Mind Reader: on the Pokemon held, the turns left
     # (MOVE_EFFECT_LOCK_ON, 2 when used) and the holder's key
     # (lockOnTarget); cleared when it leaves.
@@ -447,6 +451,8 @@ class Mon:
             self.charged = 0             # and Charge's
         if self.locked_on:
             self.locked_on, self.lock_on_by = 0, None     # a Baton Pass hands it on (baton_state)
+        if self.foresight:
+            self.foresight = False       # statusVolatile; VOLATILE_CONDITION_BATON_PASSED leaves it out
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
         self.rollout = 0
@@ -621,6 +627,8 @@ class Battle:
             dk = protean_key(self, dfn) or dk
         if dfn.roosting and mv is not None and "Flying" in dfn.types:
             dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
+        if dfn.foresight and mv is not None:
+            dk = foresight_key(self, dfn, mv, att) or dk     # an identified Ghost, its twin without Ghost
         rows = self.st["rows"]
         # A type or ability another move or ability changed (form_key) reads
         # the changed Pokemon's twin: the pair of twins when both are
@@ -769,6 +777,46 @@ def no_guard(att, dfn, mv):
     return (att.ability == "No Guard" or dfn.ability == "No Guard") and mv.effect != "ONE_HIT_KO"
 
 
+IDENTIFIED_TYPES = frozenset({"Normal", "Fighting"})
+
+
+def identified(dfn, mv_type):
+    """Whether Foresight or Odor Sleuth lets a move of this type meet dfn's
+    Ghost type: BattleSystem_ApplyTypeChart stops at the chart's 0xFE mark
+    for an identified target, which leaves out the Ghost type's immunities
+    to Normal and Fighting moves."""
+    return dfn.foresight and mv_type in IDENTIFIED_TYPES and "Ghost" in dfn.types
+
+
+def chart_types(dfn, mv):
+    """dfn's types as the type chart reads them against mv: without Ghost
+    for a Normal or Fighting move into an identified target, so it meets
+    the Pokemon's other type alone (none for a pure Ghost)."""
+    if identified(dfn, mv.type):
+        return [t for t in dfn.types if t != "Ghost"]
+    return dfn.types
+
+
+def foresee_target(dfn):
+    """Foresight and Odor Sleuth (effect script 113, subscript_foresight):
+    the target is identified until it leaves, through a Substitute too, and
+    a second use changes nothing. Its raised evasion stops counting against
+    any attacker (MON_IS_IDENTIFIED in BattleControllerPlayer_CheckMoveHitAccuracy,
+    lowered evasion still counting), and Normal and Fighting moves hit its
+    Ghost type (identified), read from its twin without Ghost (prepare's
+    foresight_twin). Until 2026-10-15 the moves did nothing (Ian approved
+    the fix)."""
+    dfn.foresight = True
+
+
+def foresight_key(b, mon, mv, att):
+    """The key of the rows an identified Ghost meets a Normal or Fighting
+    move on (prepare's foresight_twin), or None."""
+    if not identified(mon, move_type_used(att.ability, mv, att.ivs, att.item, b.weather)):
+        return None
+    return (b.st.get("foresight_twin") or {}).get(mon.key)
+
+
 def locked_onto(att, dfn):
     """Whether att's Lock-On or Mind Reader holds dfn (MON_IS_LOCKED_ONTO:
     the target's MOVE_EFFECT_LOCK_ON count runs and names att)."""
@@ -810,7 +858,10 @@ def accuracy_scale(att, dfn, mv, first=True):
     Feet nor the Zoom Lens did anything (Ian approved the fix)."""
     acc_st = 0 if dfn.ability == "Unaware" and not mold(att, dfn) else att.stages["acc"]
     ignore_eva = mv.const in IGNORE_TARGET_STAGES or att.ability in ("Unaware", "Keen Eye", "Illuminate")
-    s = max(-6, min(6, acc_st - (0 if ignore_eva else dfn.stages["eva"])))
+    eva = dfn.stages["eva"]
+    if dfn.foresight and eva > 0:
+        eva = 0                  # an identified target's raised evasion stops counting (foresee_target)
+    s = max(-6, min(6, acc_st - (0 if ignore_eva else eva)))
     scale = (3 + s) / 3 if s >= 0 else 3 / (3 - s)
     if dfn.ability == "Tangled Feet" and dfn.confused and not mold(att, dfn):
         scale *= 0.5
@@ -1984,8 +2035,8 @@ def fixed_damage(b, att, dfn, mv, tenths=10):
     (`Random 10, 5`, then level times the roll over ten, at least 1)."""
     if mv.effect not in FIXED_DAMAGE:
         return None
-    if effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
-        return 0
+    if effectiveness(b.st["chart"], mv.type, chart_types(dfn, mv)) == 0:
+        return 0                 # Seismic Toss hits an identified Ghost (chart_types)
     e = mv.effect
     if e == "40_DAMAGE_FLAT":
         return 40
@@ -2634,7 +2685,7 @@ def attack(b, att, mv, dfn, first):
     elif mv.effect in ("COUNTER", "MIRROR_COAT", "METAL_BURST"):
         hit = att.hit_this_turn
         want = {"COUNTER": "Physical", "MIRROR_COAT": "Special"}.get(mv.effect)
-        if not hit or (want and hit[0] != want) or effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
+        if not hit or (want and hit[0] != want) or effectiveness(b.st["chart"], mv.type, chart_types(dfn, mv)) == 0:
             return
         dmg = int(hit[1] * (1.5 if mv.effect == "METAL_BURST" else 2))
     if dmg is None:
@@ -3643,7 +3694,7 @@ def resist_berry(b, dfn, mv):
     berry = _row_item(b, dfn)
     if mv.cat == "Status" or mv.effect == FUTURE_SIGHT or RESIST_BERRY.get(berry) != mv.type:
         return None                  # Future Sight never meets the type chart, nor a resist berry
-    if berry != "Chilan Berry" and effectiveness(b.st["chart"], mv.type, dfn.types) <= 1:
+    if berry != "Chilan Berry" and effectiveness(b.st["chart"], mv.type, chart_types(dfn, mv)) <= 1:
         return None
     return berry
 
@@ -4998,6 +5049,8 @@ def status_move(b, att, mv, dfn, first):
         psych_up(att, dfn)
     elif e == "NEXT_ATTACK_ALWAYS_HITS":
         lock_on(att, dfn)
+    elif e == "FORESIGHT":
+        foresee_target(dfn)
     elif e == "TAUNT":
         if not dfn.taunt and not taunt_blocked(att, dfn):
             dfn.taunt = b.rng.randint(3, 5)
@@ -6638,6 +6691,34 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                     if "Magnitude" in moves.get(d, ()) and not d.startswith("b"):
                         for p in MAGNITUDE_POWERS:
                             pairs.append([f"{d}#m{p}", t, ["Magnitude"], w])
+    # Foresight and Odor Sleuth let Normal and Fighting moves meet an
+    # identified target's Ghost type (identified), which the calculator's
+    # rows cannot know. So each Ghost type whose foes can identify it gets a
+    # twin typed without Ghost (species_data with exact types, its own stats
+    # and weight kept, as Roost's twins are; a pure Ghost's twin is Water,
+    # which Normal and Fighting moves both hit neutrally), rowed for every
+    # foe's Normal and Fighting moves into it (all of a Normalize holder's).
+    foresight_twin = {}
+    for k in pkeys + qkeys + bkeys:
+        foes = pkeys + qkeys if k.startswith("b") else bkeys
+        if not any(move(m).effect == "FORESIGHT" for d in foes for m in moves[d]):
+            continue
+        poks = blob["poks"].get(pokemon[k]["species"]) or {}
+        types = [t for t in (poks.get("types") or []) if t]
+        if "Ghost" not in types or not poks.get("bs"):
+            continue
+        t = f"{k}#fs"
+        own = {"bs": dict(poks["bs"]), "types": [x for x in types if x != "Ghost"] or ["Water"], "exact_types": True}
+        if poks.get("weightkg") is not None:
+            own["weightkg"] = poks["weightkg"]
+        pokemon[t] = dict(pokemon[k], species_data=own)
+        foresight_twin[k] = t
+        for w in weathers:
+            for d in foes:
+                got = [m for m in (party_hits(d) if d in bkeys else hits(d))
+                       if move(m).type in IDENTIFIED_TYPES or pokemon[d].get("ability") == "Normalize"]
+                if got:
+                    pairs.append([d, t, got, w])
     # Protean and Libero retype their holder to its first move's type
     # (protean), which the calculator's Generation 4 rows cannot know: they
     # give the holder no STAB for it and meet moves on its own types. So
@@ -6711,6 +6792,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "base_weather": calc.CALC_WEATHER.get(weather, weather) if weather else None,
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
+            "foresight_twin": foresight_twin,
             "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo}
 
 

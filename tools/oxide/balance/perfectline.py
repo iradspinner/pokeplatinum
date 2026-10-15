@@ -643,7 +643,7 @@ def attack(b, att, mv, dfn, first):
     elif mv.effect in ("COUNTER", "MIRROR_COAT", "METAL_BURST"):
         hit = att.hit_this_turn
         want = {"COUNTER": "Physical", "MIRROR_COAT": "Special"}.get(mv.effect)
-        if not hit or (want and hit[0] != want) or fs.effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
+        if not hit or (want and hit[0] != want) or fs.effectiveness(b.st["chart"], mv.type, fs.chart_types(dfn, mv)) == 0:
             return
         dmg = int(hit[1] * (1.5 if mv.effect == "METAL_BURST" else 2))
     elif mv.effect == "STRUGGLE":
@@ -1041,6 +1041,8 @@ def status_move(b, att, mv, dfn, first):
         fs.psych_up(att, dfn)            # Psych Up takes the target's stages and Focus Energy
     elif e == "NEXT_ATTACK_ALWAYS_HITS":
         fs.lock_on(att, dfn)             # Lock-On and Mind Reader (fightsim.lock_on, read by fightsim.lands_sure)
+    elif e == "FORESIGHT":
+        fs.foresee_target(dfn)           # Foresight and Odor Sleuth (fightsim.foresee_target)
     elif e == "TAUNT":
         if not dfn.taunt and not fs.taunt_blocked(att, dfn):     # Oblivious, unless Mold Breaker
             dfn.taunt = b.dice.taunt(dfn.side)
@@ -1168,6 +1170,8 @@ def mon_key(m):
         key += ("charged", m.charged)
     if m.locked_on:
         key += ("locked on", m.locked_on, m.lock_on_by)
+    if m.foresight:
+        key += ("foresight",)
     return key + _form(m) if m.formed else key
 
 

@@ -2581,6 +2581,44 @@ def check_lock_on(results):
                     f"(hold, Zap Cannon at +6 evasion, Tackle into Fly, Zap Cannon two turn ends on) {out}"))
 
 
+def check_foresight(results):
+    """Foresight and Odor Sleuth (approved 2026-10-14; effect script 113,
+    subscript_foresight): Normal and Fighting moves then meet the target's
+    Ghost type, a Seismic Toss included, read from its twin's rows without
+    Ghost, and its raised evasion stops counting, though a lowered one
+    still counts; leaving ends it, and the trainer's AI does not use it on
+    a target already identified."""
+    out = {}
+    for name in ("Foresight", "Odor Sleuth"):
+        b, p, foe = battle([name, "Tackle", "Seismic Toss"], ["Tackle"], {("p", "Tackle"): [0] * 16},
+                           b_types=("Ghost",), hp=500)
+        b.st["rows"][(None, "p0", "b0.0#fs")] = {"moves": {"Tackle": {"rolls": [10] * 16}}}
+        b.st["foresight_twin"] = {"b0.0": "b0.0#fs"}
+        b.rng = FixedDice(0.5)
+        foe.ability = "Shell Armor"
+        tackle, toss = fs.move("Tackle"), fs.move("Seismic Toss")
+
+        def hits():
+            before = foe.hp
+            fs.attack(b, p, tackle, foe, True)
+            mid = foe.hp
+            fs.attack(b, p, toss, foe, True)
+            return before - mid, mid - foe.hp
+        foe.stages["eva"] = 6
+        before = hits()
+        fs.status_move(b, p, fs.move(name), foe, True)
+        after = hits()
+        foe.stages["eva"] = -6
+        lowered = fs.accuracy_scale(p, foe, tackle)
+        ai = fightai.basic(b, p, foe, fs.move(name), 0)
+        foe.reset_volatile()
+        out[name] = (before, after, lowered, ai, getattr(foe, "foresight", None))
+    want = {n: ((0, 0), (10, 50), 3.0, -10, False) for n in ("Foresight", "Odor Sleuth")}
+    results.append(("Foresight and Odor Sleuth let Normal and Fighting moves hit a Ghost and lift its evasion",
+                    out == want, f"((Tackle, Seismic Toss) at +6 evasion before, after; the scale at -6; the AI; "
+                                 f"identified after leaving) {out}"))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -3970,7 +4008,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,

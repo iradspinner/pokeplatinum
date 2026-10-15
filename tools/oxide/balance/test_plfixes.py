@@ -3619,6 +3619,28 @@ def lock_on_checks():
              f"missed before {missed}, hold {held}, hit after {hit}, hold after the switch {ended}")]
 
 
+def foresight_checks():
+    """Foresight in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Machoke's Karate Chop cannot touch
+    the player's Misdreavus until its Foresight lands, and then hits from
+    the Misdreavus's twin's row without Ghost."""
+    from .test_fightai import battle
+    b = battle([("Machoke", 30, "Guts", ["Foresight", "Karate Chop"])], [("Misdreavus", 30, "Levitate", ["Astonish"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    mac, mis = b.b.cur(), b.p.cur()
+    mis.hp = mis.maxhp = 100000
+    chop = fs.move("Karate Chop")
+    pl.use_move(b, mac, chop, mis, True)
+    before = mis.maxhp - mis.hp
+    pl.use_move(b, mac, fs.move("Foresight"), mis, True)
+    pl.use_move(b, mac, chop, mis, True)
+    after = mis.maxhp - mis.hp - before
+    twin = (b.st.get("foresight_twin") or {}).get(mis.key)
+    ok = before == 0 and after > 0 and twin is not None
+    return [("the readings' Foresight lets a Fighting move hit a Ghost", ok,
+             f"Karate Chop dealt {before} before and {after} after; the twin {twin}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4270,6 +4292,7 @@ def main():
     results += lucky_chant_checks()
     results += psych_up_checks()
     results += lock_on_checks()
+    results += foresight_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()
