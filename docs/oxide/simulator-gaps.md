@@ -86,7 +86,7 @@ The three tag boss fights (Somnu and Moira, Mars and Jupiter, Flint and Volkner)
 | Scope Lens, Razor Claw | one critical stage | no stage | 3.5% critical hits with a Scope Lens (perfectline 13.3%) |
 | King's Rock, Razor Fang | 10% flinch | never | 0 flinches in 3000 hits (perfectline 9.8%) |
 | Mold Breaker against Sturdy | Sturdy does not hold | Sturdy holds | a full 100 HP Sturdy target kept 1 HP (perfectline: 0) |
-| Focus Band, Big Root, Bug Bite and Pluck's berry, Pursuit's double power, Struggle's recoil, Magnitude's rolled power | as in singles | absent (each is a perfectline-only branch); Magnitude reads its base row | perfectline.attack and _turn hold these branches, fightsim.attack does not |
+| Focus Band, Big Root, Pursuit's double power, Struggle's recoil, Magnitude's rolled power | as in singles | absent (each is a perfectline-only branch; Bug Bite and Pluck's Berry, once among them, runs in fightsim's own battle since batch 4); Magnitude reads its base row | perfectline.attack and _turn hold these branches, fightsim.attack does not |
 
 Fixing these means giving run_doubles perfectline's attack and status_move, or copying the missing branches into fightsim's.
 
