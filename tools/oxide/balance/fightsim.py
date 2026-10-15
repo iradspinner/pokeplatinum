@@ -6479,6 +6479,8 @@ def status_move(b, att, mv, dfn, first):
         if att.hp > att.maxhp // 2:
             hurt(b, att, att.maxhp // 2)
             att.stages["atk"] = 6
+    elif e == "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP":
+        clangorous_soul(b, att)
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in HEAL_HALF:
@@ -6682,6 +6684,25 @@ def split_mult(att, dfn, mv):
     if dfn.split and d in dfn.split:
         mult *= max(1, dfn.stats.get(d, 1)) / max(1, dfn.split[d])
     return mult
+
+
+# The five stats Clangorous Soul raises (subscript_boost_all_stats).
+ALL_FIVE = ("atk", "def", "spa", "spd", "spe")
+
+
+def clangorous_soul(b, att):
+    """Clangorous Soul (effect script 346,
+    subscript_raise_all_stats_lose_third_max_hp): it fails with all five
+    stats at +6, or with its user at a third of its maximum HP or less;
+    otherwise the user loses that third, as Belly Drum's half is lost, and
+    its Attack, Defense, Speed, Sp. Atk and Sp. Def rise a stage each
+    (subscript_boost_all_stats). Until 2026-10-15 it did nothing (Ian
+    approved the fix)."""
+    third = att.maxhp // 3
+    if all(att.stages[k] >= 6 for k in ALL_FIVE) or att.hp <= third:
+        return
+    hurt(b, att, third)
+    change_stages(att, dict.fromkeys(ALL_FIVE, 1))
 
 
 def healing_wish(b, att):

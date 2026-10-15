@@ -1059,6 +1059,8 @@ def status_move(b, att, mv, dfn, first):
         if att.hp > att.maxhp // 2:
             fs.hurt(b, att, att.maxhp // 2)
             att.stages["atk"] = 6
+    elif e == "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP":
+        fs.clangorous_soul(b, att)       # a third of its HP for all five stats (fightsim.clangorous_soul)
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in fs.HEAL_HALF:

@@ -5344,6 +5344,22 @@ def check_always_critical(results):
     want = {"plain": 15, "light screen": 15, "+2 Sp. Def": 15, "lucky chant": 10, "AI's estimate": 10}
     results.append(("Frost Breath's row is its critical hit, read as one", out == want, str(out)))
 
+def check_clangorous_soul(results):
+    """Clangorous Soul (approved 2026-10-14; effect script 346): a third of
+    the user's maximum HP for a stage of all five stats; it fails at a
+    third of its HP or less, and with all five at +6."""
+    out = {}
+    for case in ("full", "a third", "all at +6"):
+        b, p, foe = battle(["Clangorous Soul"], ["Tackle"], {}, hp=300)
+        if case == "a third":
+            p.hp = 100
+        if case == "all at +6":
+            p.stages.update(dict.fromkeys(("atk", "def", "spa", "spd", "spe"), 6))
+        fs.status_move(b, p, fs.move("Clangorous Soul"), foe, True)
+        out[case] = (p.hp, p.stages["atk"], p.stages["spe"], p.stages["spd"])
+    want = {"full": (200, 1, 1, 1), "a third": (100, 0, 0, 0), "all at +6": (300, 6, 6, 6)}
+    results.append(("Clangorous Soul trades a third of its HP for all five stats", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5626,6 +5642,7 @@ def main():
                   check_fell_stinger, check_prevent_escape_hit,
                   check_poltergeist, check_belch, check_first_impression,
                   check_axe_kick, check_always_critical,
+                  check_clangorous_soul,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

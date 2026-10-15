@@ -5023,6 +5023,16 @@ def always_critical_checks():
           and out["lucky chant"][0] == int(out["lucky chant"][1] / 1.5) and est[0] == int(est[1] / 1.5))
     return [("the readings' Frost Breath is its row's critical hit", ok, f"(HP taken, row's top roll) {out}; AI's estimate {est}")]
 
+def clangorous_soul_checks():
+    """Clangorous Soul in the readings' battle on the calculator's real
+    rows (approved 2026-10-14): the player's Bibarel gives a third of its
+    maximum HP for a stage of all five stats."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Clangorous Soul"])])
+    pl.status_move(b, bib, fs.move("Clangorous Soul"), geo, True)
+    got = (bib.maxhp - bib.hp, tuple(bib.stages[k] for k in ("atk", "def", "spa", "spd", "spe")))
+    ok = got == (bib.maxhp // 3, (1, 1, 1, 1, 1))
+    return [("the readings' Clangorous Soul raises all five stats", ok, f"(HP lost, stages) {got} of {bib.maxhp}")]
+
 def main():
     results = []
 
@@ -5581,6 +5591,7 @@ def main():
     results += first_impression_checks()
     results += axe_kick_checks()
     results += always_critical_checks()
+    results += clangorous_soul_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
