@@ -3785,7 +3785,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     if e == "STEAL_HELD_ITEM" and dealt > 0:
         steal_item(att, dfn)             # a knockout too (MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE)
     if e in LATE_HIT:
-        late_hit(b, att, dfn, mv, stripped)     # Fell Stinger's knockout (late_hit)
+        late_hit(b, att, dfn, mv, stripped, dealt)     # Fell Stinger's knockout, Anchor Shot's trap (late_hit)
     if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
     if e == "CLEAR_SMOG":
@@ -5676,19 +5676,37 @@ def knockout_boost(att, dfn, before):
 
 # The hits whose own effect waits for the hit to be in and reads how it
 # left its target, each looked at once by effect (late_hit).
-LATE_HIT = frozenset({"FELL_STINGER"})
+LATE_HIT = frozenset({"FELL_STINGER", "PREVENT_ESCAPE_HIT"})
 
 
-def late_hit(b, att, dfn, mv, stripped):
+def late_hit(b, att, dfn, mv, stripped, dealt):
     """A hit's own effect once it is in, for the effects in LATE_HIT, run
-    before the knockout and Substitute checks that end the others. Fell
-    Stinger (effect script 388, subscript_fell_stinger, ON_HIT): when its
-    hit leaves the target with no HP, its user's Attack rises three stages
-    through the stat subscript; a Substitute's hit leaves the target
-    standing. Until 2026-10-15 it was a plain hit (Ian approved the fix)."""
-    if mv.effect == "FELL_STINGER":
+    before the knockout and Substitute checks that end the others; dealt is
+    the HP the hit took from dfn itself, 0 when its Substitute took it.
+
+    Fell Stinger (effect script 388, subscript_fell_stinger, ON_HIT): when
+    its hit leaves the target with no HP, its user's Attack rises three
+    stages through the stat subscript; a Substitute's hit leaves the target
+    standing.
+
+    Anchor Shot, Spirit Shackle and Thousand Waves (effect script 351,
+    subscript_prevent_escape_hit, ON_HIT): a target left standing that
+    nothing holds yet is held as Mean Look holds it, until the user leaves
+    (trapped_by). CheckSubstitute stops it for a hit that met a Substitute,
+    one it broke too (SELF_TURN_FLAG_SUBSTITUTE_HIT), so only a hit on the
+    target itself traps. Shield Dust does not stop it; Sheer Force strips
+    Thousand Waves' and leaves the other two theirs (sSheerForceEffects,
+    sSheerForceKeepEffectMoves). A Ghost type held so can still switch
+    (untrappable).
+
+    Until 2026-10-15 both were plain hits (Ian approved the fixes)."""
+    e = mv.effect
+    if e == "FELL_STINGER":
         if not dfn.alive():
             change_stages(att, {"atk": 3})
+    elif e == "PREVENT_ESCAPE_HIT":
+        if not stripped and dealt > 0 and dfn.alive() and dfn.trapped_by is None:
+            dfn.trapped_by = att.key
 
 
 def destiny_bond(att, dfn):

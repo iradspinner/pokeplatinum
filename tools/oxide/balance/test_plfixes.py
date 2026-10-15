@@ -4918,6 +4918,19 @@ def fell_stinger_checks():
     ok = out == {True: (False, 3), False: (True, 0)}
     return [("the readings' Fell Stinger raises Attack on a knockout", ok, f"(Geodude standing, Bibarel's Attack) {out}")]
 
+def prevent_escape_hit_checks():
+    """Anchor Shot in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel's hit leaves a trainer's
+    Geodude held, so it cannot switch, and a Tackle does not."""
+    out = {}
+    for name in ("Anchor Shot", "Tackle"):
+        b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"]), ("Onix", 30, "Sturdy", ["Tackle"])],
+                                [("Bibarel", 30, "Unaware", [name])])
+        pl.attack(b, bib, fs.move(name), geo, True)
+        out[name] = (geo.hp < geo.maxhp, geo.trapped_by == bib.key, fs.trapped(b, geo))
+    ok = out == {"Anchor Shot": (True, True, True), "Tackle": (True, False, False)}
+    return [("the readings' Anchor Shot traps its target", ok, f"(hit, held by Bibarel, trapped) {out}")]
+
 def main():
     results = []
 
@@ -5470,6 +5483,7 @@ def main():
     results += clanging_scales_checks()
     results += matcha_gotcha_checks()
     results += fell_stinger_checks()
+    results += prevent_escape_hit_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

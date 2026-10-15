@@ -5240,6 +5240,25 @@ def check_fell_stinger(results):
     want = {(5, 0): (False, 3), (500, 0): (True, 0), (5, 40): (True, 0)}
     results.append(("Fell Stinger's knockout raises its user's Attack three stages", out == want, str(out)))
 
+def check_prevent_escape_hit(results):
+    """Anchor Shot, Spirit Shackle and Thousand Waves (approved 2026-10-14;
+    effect script 351): a hit on the target itself holds it as Mean Look
+    does, not one on a Substitute nor one already held by another, and
+    Sheer Force strips Thousand Waves' trap alone."""
+    out = {}
+    for name, sub, ability, held in (("Anchor Shot", 0, None, None), ("Anchor Shot", 40, None, None),
+                                     ("Anchor Shot", 0, None, "x9"), ("Thousand Waves", 0, "Sheer Force", None),
+                                     ("Spirit Shackle", 0, "Sheer Force", None)):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [10] * 16}, hp=500)
+        b.rng = FixedDice(0.5)
+        foe.sub, p.ability, foe.trapped_by = sub, ability, held
+        fs.attack(b, p, fs.move(name), foe, True)
+        out[(name, sub, ability, held)] = foe.trapped_by
+    want = {("Anchor Shot", 0, None, None): "p0", ("Anchor Shot", 40, None, None): None,
+            ("Anchor Shot", 0, None, "x9"): "x9", ("Thousand Waves", 0, "Sheer Force", None): None,
+            ("Spirit Shackle", 0, "Sheer Force", None): "p0"}
+    results.append(("Anchor Shot and its kin trap the target their hit lands on", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5519,7 +5538,7 @@ def main():
                   check_healing_wish, check_guard_split, check_power_split,
                   check_embargo, check_magic_room,
                   check_relic_song, check_clanging_scales, check_matcha_gotcha,
-                  check_fell_stinger,
+                  check_fell_stinger, check_prevent_escape_hit,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
