@@ -3867,6 +3867,45 @@ def _soaked(ff):
                     yield f, ["Water"], ff.ability(f)
 
 
+def conversion_type(mv, types):
+    """The type Conversion reads for one of its user's moves (BtlCmd_TryConversion):
+    its own, but Curse's Mystery type counts as Ghost for a Ghost type and
+    Normal for any other."""
+    if mv.type == "Mystery":
+        return "Ghost" if "Ghost" in types else "Normal"
+    return mv.type
+
+
+@form_move("CONVERSION")
+def conversion(b, att, mv, dfn, pick):
+    """Conversion (subscript_conversion, BtlCmd_TryConversion): its user
+    takes the type of one of its moves, Conversion aside, that it is not of
+    already, each such move as likely as the next; it fails on Multitype or
+    with no such move. Its rows then come from its twin of that type
+    (form_key). Until 2026-10-14 Conversion did nothing (Ian approved the
+    fix)."""
+    if att.ability == "Multitype":
+        return False
+    options = [t for t in (conversion_type(m, att.types) for m in att.moves if m.effect != "CONVERSION")
+               if t not in att.types]
+    if not options:
+        return False
+    set_types(att, [options[pick("conversion", len(options)) if len(options) > 1 else 0]])
+    return True
+
+
+@form_change
+def _converted(ff):
+    """Conversion: its user may take the type of any of its other moves but
+    its own types."""
+    for k in ff.keys():
+        mvs = ff.moves(k)
+        if ff.ability(k) != "Multitype" and any(m.effect == "CONVERSION" for m in mvs):
+            own = ff.types(k)
+            for t in sorted({conversion_type(m, own) for m in mvs if m.effect != "CONVERSION"} - set(own)):
+                yield k, [t], ff.ability(k)
+
+
 def lifted(dfn, mv):
     """Whether Magnet Rise makes this Ground move fail on dfn (the type
     check's MOVE_STATUS_MAGNET_RISE): not on a Pokemon rooted by Ingrain or

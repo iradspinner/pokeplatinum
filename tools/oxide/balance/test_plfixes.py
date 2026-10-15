@@ -2787,6 +2787,28 @@ def soak_checks():
              f"twins {twins}; before (Thunderbolt, Water Gun) {before}; after Soak (types, Thunderbolt, Water Gun) {after}")]
 
 
+def conversion_checks():
+    """Conversion on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows Scientist Travon's Porygon on a
+    Psychic and a Bug twin, the types of its Psybeam and Signal Beam; after
+    its Conversion, whichever it took, a Machop's Karate Chop lands at a
+    quarter of what it did on Porygon's Normal type."""
+    from .test_fightai import battle
+    b = battle([("Porygon", 24, "Analytic", ["Psybeam", "Signal Beam", "Conversion", "Recover"])],
+               [("Machop", 24, "Guts", ["Karate Chop"])])
+    pory, machop = b.b.cur(), b.p.cur()
+    chop = fs.move("Karate Chop")
+    twins = sorted(((b.st.get("form_twin") or {}).get(pory.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, machop, pory, chop, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, pory, fs.move("Conversion"), machop, True)
+    after = (list(pory.types), pl.damage_of(b, machop, pory, chop, False, True))
+    ok = (twins == [(("Bug",), None), (("Psychic",), None)] and after[0] in (["Bug"], ["Psychic"])
+          and abs(after[1] * 4 - before) <= 6)
+    return [("Conversion: Porygon takes one of its moves' types, and Karate Chop quarters on its twin", ok,
+             f"twins {twins}; Karate Chop before {before}; after Conversion (types, Karate Chop) {after}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3303,6 +3325,7 @@ def main():
     results += color_change_checks()
     results += forecast_checks()
     results += soak_checks()
+    results += conversion_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

@@ -1573,6 +1573,33 @@ def check_soak(results):
                     f"soaked (types, Tackle on its twin) {soaked}; after leaving {back}; {got}"))
 
 
+def check_conversion(results):
+    """Conversion (approved 2026-10-14; BtlCmd_TryConversion): its user takes
+    the type of one of its other moves that it is not of already, at random
+    among them (Ember and Water Gun here, Tackle and Curse being Normal for
+    a Normal type), and reads its twin of that type; it fails on Multitype
+    and for a Ghost type whose other moves are Ghost ones, Curse counting as
+    Ghost there."""
+    def convert(types=("Normal",), moves=("Conversion", "Tackle", "Ember", "Water Gun", "Curse"), ability=None, seed=1):
+        b, p, foe = battle(list(moves), ["Tackle"], {("p", "Tackle"): [10] * 16}, p_types=types, seed=seed)
+        p.ability = ability
+        b.st["form_twin"] = {"p0": {"ability": None, "twins": {(("Fire",), None): "p0#fmFire@",
+                                                               (("Water",), None): "p0#fmWater@"}}}
+        b.st["rows"][(None, "p0#fmFire@", "b0.0")] = {"moves": {"Tackle": {"rolls": [6] * 16}}}
+        fs.status_move(b, p, fs.move("Conversion"), foe, True)
+        return b, p, foe
+    picked = collections.Counter(tuple(convert(seed=s)[1].types) for s in range(200))
+    b, p, foe = convert(moves=("Conversion", "Tackle", "Ember"))
+    fire = (list(p.types), b.damage(p, foe, fs.move("Tackle"), roll=0))
+    multitype = convert(ability="Multitype")[1].types
+    ghost = convert(types=("Ghost",), moves=("Conversion", "Curse", "Shadow Ball"))[1].types
+    ok = (set(picked) == {("Fire",), ("Water",)} and min(picked.values()) > 60 and fire == (["Fire"], 6)
+          and multitype == ["Normal"] and ghost == ["Ghost"])
+    results.append(("Conversion takes the type of another of its user's moves", ok,
+                    f"types over 200 uses {dict(picked)}; Ember alone (types, Tackle on the twin) {fire}; "
+                    f"Multitype {multitype}; a Ghost with Curse and Shadow Ball {ghost}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2858,7 +2885,7 @@ def main():
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_form_twins, check_trace, check_mummy,
                   check_wandering_spirit, check_color_change, check_forecast, check_soak,
-                  check_magic_guard, check_liquid_ooze,
+                  check_conversion, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
