@@ -1018,6 +1018,9 @@ def status_move(b, att, mv, dfn, first):
     elif e in fs.FOE_STAGES:
         if not fs.sub_blocks(att, dfn, mv):
             fs.lower_stats(b, att, dfn, fs.FOE_STAGES[e])     # stat by stat (fightsim.lower_stats)
+    elif e == "VENOM_DRENCH":
+        if dfn.status in ("psn", "tox") and not fs.sub_blocks(att, dfn, mv):
+            fs.lower_stats(b, att, dfn, fs.VENOM_DRENCH_STAGES)     # a poisoned target's three stats
     elif e == "CURSE":
         if "Ghost" in att.types:
             fs.ghost_curse(b, att, dfn, mv)      # it fails, at no cost, through a Substitute or on a cursed target

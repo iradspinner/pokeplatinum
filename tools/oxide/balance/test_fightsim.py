@@ -4722,6 +4722,21 @@ def check_tearful_look(results):
     results.append(("Noble Roar and Tearful Look lower Attack and Sp. Atk", out == want, str(out)))
 
 
+def check_venom_drench(results):
+    """Venom Drench (approved 2026-10-14; effect script 361): a poisoned or
+    badly poisoned target's Attack, Sp. Atk and Speed fall a stage each;
+    any other target's do not, and a Substitute stops it."""
+    out = {}
+    for status, sub in ((None, 0), ("psn", 0), ("tox", 0), ("psn", 25)):
+        b, p, foe = battle(["Venom Drench"], ["Tackle"], {})
+        b.rng = FixedDice(0.0)
+        foe.status, foe.sub = status, sub
+        fs.status_move(b, p, fs.move("Venom Drench"), foe, True)
+        out[(status, sub)] = (foe.stages["atk"], foe.stages["spa"], foe.stages["spe"])
+    want = {(None, 0): (0, 0, 0), ("psn", 0): (-1, -1, -1), ("tox", 0): (-1, -1, -1), ("psn", 25): (0, 0, 0)}
+    results.append(("Venom Drench lowers a poisoned target's three stats", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4993,7 +5008,7 @@ def main():
                   check_power_swap, check_psycho_shift, check_memento,
                   check_sketch, check_me_first, check_nature_power,
                   check_power_trick, check_bide, check_transform,
-                  check_sp_def_2_hit, check_tearful_look,
+                  check_sp_def_2_hit, check_tearful_look, check_venom_drench,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

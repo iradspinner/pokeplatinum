@@ -189,6 +189,10 @@ FOE_STAGES = {
     # they did nothing (Ian approved the fix).
     "TEARFUL_LOOK": {"atk": -1, "spa": -1},
 }
+# Venom Drench (effect script 361, subscript_atk_sp_atk_speed_down): Attack,
+# Sp. Atk and Speed a stage each, only on a poisoned or badly poisoned
+# target; the script fails on any other.
+VENOM_DRENCH_STAGES = {"atk": -1, "spa": -1, "spe": -1}
 HIT_FOE_STAGES = {
     "LOWER_SP_DEF_HIT": {"spd": -1}, "LOWER_DEFENSE_HIT": {"def": -1},
     "LOWER_SPEED_HIT": {"spe": -1}, "LOWER_ACCURACY_HIT": {"acc": -1},
@@ -5949,6 +5953,11 @@ def status_move(b, att, mv, dfn, first):
     elif e in FOE_STAGES:
         if not sub_blocks(att, dfn, mv):
             lower_stats(b, att, dfn, FOE_STAGES[e])
+    elif e == "VENOM_DRENCH":
+        # Only a poisoned target's stats fall (effect script 361); until
+        # 2026-10-15 the move did nothing (Ian approved the fix).
+        if dfn.status in ("psn", "tox") and not sub_blocks(att, dfn, mv):
+            lower_stats(b, att, dfn, VENOM_DRENCH_STAGES)
     elif e == "CURSE":
         if "Ghost" in att.types:
             ghost_curse(b, att, dfn, mv)

@@ -4543,6 +4543,20 @@ def tearful_look_checks():
     return [("the readings' Noble Roar lowers Attack and Sp. Atk", ok, f"Geodude's stages {geo.stages['atk']}, {geo.stages['spa']}")]
 
 
+def venom_drench_checks():
+    """Venom Drench in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel lowers a poisoned trainer's
+    Geodude's Attack, Sp. Atk and Speed, and leaves a healthy one alone."""
+    out = {}
+    for status in (None, "psn"):
+        b, geo, bib = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Venom Drench"])])
+        geo.status = status
+        pl.status_move(b, bib, fs.move("Venom Drench"), geo, True)
+        out[status] = (geo.stages["atk"], geo.stages["spa"], geo.stages["spe"])
+    ok = out == {None: (0, 0, 0), "psn": (-1, -1, -1)}
+    return [("the readings' Venom Drench lowers a poisoned target's stats", ok, str(out))]
+
+
 def main():
     results = []
 
@@ -5072,6 +5086,7 @@ def main():
     results += transform_checks()
     results += sp_def_2_checks()
     results += tearful_look_checks()
+    results += venom_drench_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
