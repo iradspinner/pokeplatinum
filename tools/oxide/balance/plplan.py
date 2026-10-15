@@ -340,13 +340,30 @@ def turn_outcomes(c0, a, aa, key):
 
 
 def merge_key(c):
+    """What tells two positions a turn reaches apart, so that only like
+    ones merge: each side's Pokemon by an HP band and every other state its
+    key holds (perfectline.mon_key), the side's conditions, and the field.
+    The side conditions and field states most fights never have are kept
+    out of the key while they are not there, as perfectline's state_key
+    keeps them: Aurora Veil, and since 2026-10-15 Lucky Chant's turns and
+    Sticky Web on a side, and Gravity's and Magic Room's turns, Copycat's
+    last move and deep fog on the field, which the batches added to the
+    battle and this key had left out, so positions that differed only by
+    them merged (Ian approved the fix)."""
     def side(s):
-        return (s.active, tuple(((m.hp * HP_BUCKETS + m.maxhp - 1) // m.maxhp,) + pl.mon_key(m)[1:]
-                                for m in s.mons),
-                tuple(s.screens.values()), s.tailwind, tuple(s.hazards.values()), s.safeguard,
-                getattr(s, "wish", 0), s.future, s.future_sight, getattr(s, "mist", 0)) + \
-            ((s.aurora_veil,) if s.aurora_veil else ())      # Aurora Veil, out of the key while down
-    return side(c.p), side(c.b), c.weather, c.weather_turns, c.trick_room
+        key = (s.active, tuple(((m.hp * HP_BUCKETS + m.maxhp - 1) // m.maxhp,) + pl.mon_key(m)[1:]
+                               for m in s.mons),
+               tuple(s.screens.values()), s.tailwind, tuple(s.hazards.values()), s.safeguard,
+               getattr(s, "wish", 0), s.future, s.future_sight, getattr(s, "mist", 0))
+        if s.aurora_veil:
+            key += (s.aurora_veil,)          # Aurora Veil, out of the key while down
+        if s.lucky_chant or s.web:
+            key += (("lucky chant", s.lucky_chant, "web", s.web),)
+        return key
+    key = (side(c.p), side(c.b), c.weather, c.weather_turns, c.trick_room)
+    if c.gravity or c.last_move is not None or c.magic_room or c.fog:
+        key += pl._field_extra(c)            # Gravity, Copycat's last move, Magic Room, deep fog
+    return key
 
 
 def quick_outcomes(b):
@@ -564,10 +581,173 @@ def ai_distribution(b):
 
 # ---- the player's options, and the play-out's plain policy ---------------------------------------
 
+def would_fail(b, me, foe, mv):
+    """Whether the player's move would fail or do nothing in this position
+    by the battle's own rules, which rules it out of the options. The
+    trainer's AI's Basic check (fightai.basic) reads most such cases from
+    the battle as it stands, the player's Pokemon and the trainer's as they
+    are (a status on a target that has one, a screen up already, a target
+    immune to the move), and is asked first, as it is cheap; a move it
+    scores -8 or below is ruled out only when that score is the battle's
+    rule and not the AI's own preference (still_works). Until 2026-10-15
+    every move Basic scored -8 or below was ruled out, those it merely
+    discourages too, so the player was never offered Healing Wish, nor
+    Knock Off on a target with no item (Ian approved the fix)."""
+    if fightai.basic(b, me, foe, mv, fightai.figure(b, me, foe, mv)) > -8:
+        return False
+    if fightai._basic_entry(b, me, foe, mv) is not None:
+        return True          # an immune target, an absorbing ability, Soundproof, Bulletproof, Prankster on a Dark type
+    return not still_works(b, me, foe, mv)
+
+
+def _changes(u, t, stats):
+    """Whether swapping or copying these stages between u and t changes any."""
+    return any(u.stages[k] != t.stages[k] for k in stats)
+
+
+def still_works(b, u, t, mv):
+    """For a move Basic scores -8 or below past its entry checks: whether it
+    would still do something by the battle's own rules, the score being
+    one of the AI's preferences. Those let through: Explosion with the
+    user's last Pokemon; Knock Off, which hits whether or not there is an
+    item to take; Upper Hand while the target knows a priority move it has
+    not shown; a raise of several stats while one of them can still rise,
+    and a Speed raise or drop under Trick Room or against Speed Boost; Take
+    Heart with a status or a stat that can rise; Haze, Psych Up, Heart
+    Swap, Power Swap and Guard Swap where they change a stage; poison and
+    a burn on a Magic Guard or Poison Heal holder, or a Hydration holder
+    in rain, which still land; Swagger and Flatter on an Own Tempo or
+    safeguarded target, which still raise its stat; a non-Ghost Curse while
+    a stat can still change; Perish Song while its user has no count yet;
+    Memento and Tickle while one of their stats can still fall, Memento
+    with the user's last Pokemon too; Future Sight while only the user's
+    own side has one waiting; Trick with an item to hand over; Imprison
+    while a foe shares a move; Healing Wish and Lunar Dance while a bench
+    Pokemon has something to mend; Tailwind and Trick Room whatever their
+    effect on speed; Acupressure while a stage can rise; a second Power
+    Trick, which swaps the stats back; Gastro Acid on an ability that can
+    be suppressed; Worry Seed on a sleeping target; and Copycat whenever
+    a move it can copy has been or may be used before it. Everything else
+    Basic rules out, it rules out by the battle's rules: a status already
+    there, a screen up, a stat at its limit, a hazard laid in full or with
+    no one left to meet it, a move that fails outright."""
+    e, c = mv.effect, mv.const
+    own, foe = (b.p, b.b) if u.side == "p" else (b.b, b.p)
+    mold = fightai.mold(u, t)
+    ab = t.ability
+    if mv.cat != "Status":
+        if e == "HALVE_DEFENSE":         # with the user's last Pokemon: the AI's rule, not the battle's
+            return mold or not any(m.alive() and m.ability == "Damp" for m in b.p.on_field() + b.b.on_field())
+        if e == "REMOVE_HELD_ITEM":      # Knock Off hits whatever the target holds
+            return True
+        if e == "UPPER_HAND":            # it lands if the target uses a priority move, shown or not
+            return any(fs.move_priority(t, m) > 0 for m in t.moves)
+        return False
+    # Basic_CheckPowderImmunity and Basic_CheckSapSipper, the battle's own rules.
+    if c in fightai.BASIC_POWDERS and ("Grass" in t.types or (not mold and ab == "Overcoat")):
+        return False
+    if (c in fightai.BASIC_POWDERS or c in fightai.GRASS_STATUS) and not mold and ab == "Sap Sipper" \
+            and mv.type == "Grass":
+        return False
+    if e in fightai.RAISES:
+        first, rest, _room = fightai.RAISES[e]
+        stats = (first,) + tuple(rest)
+        if e == "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP" and u.hp <= u.maxhp // 3:
+            return False                 # fightsim.clangorous_soul
+        if e == "ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP" and u.hp <= u.maxhp // 2:
+            return False
+        return any(u.stages[k] < 6 for k in stats)
+    if e == "TAKE_HEART":
+        return bool(u.status) or u.stages["spa"] < 6 or u.stages["spd"] < 6
+    if e in fightai.LOWERS:
+        k = fightai.LOWERS[e]
+        # Under Trick Room and against Speed Boost a Speed drop is the AI's
+        # preference; every other -10 there is a block or a stage at -6.
+        return k == "spe" and t.stages["spe"] > -6 and fightai._clear_body(b, u, t) == 0
+    if e == "RESET_STAT_CHANGES":
+        return any(v for m in (u, t) for v in m.stages.values())
+    if e in ("COPY_STAT_CHANGES", "SWAP_STAT_CHANGES"):
+        return _changes(u, t, fs.STAGE_KEYS) and not (e == "SWAP_STAT_CHANGES" and fs.sub_blocks(u, t, mv))
+    if e == "SWAP_ATK_SP_ATK_STAT_CHANGES":
+        return _changes(u, t, ("atk", "spa"))
+    if e == "SWAP_DEF_SP_DEF_STAT_CHANGES":
+        return _changes(u, t, ("def", "spd"))
+    if e in ("STATUS_POISON", "STATUS_BADLY_POISON", "STATUS_BURN"):
+        # Basic refuses a Magic Guard, Poison Heal or rain-time Hydration
+        # holder; the status lands on each all the same (fightsim.can_status).
+        saved, b.status_src = getattr(b, "status_src", None), u
+        try:
+            return fs.can_status(b, t, "brn" if e == "STATUS_BURN" else "psn") and not fs.leaf_guarded(b, t)
+        finally:
+            b.status_src = saved
+    if e in ("ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
+        # Own Tempo or Safeguard stops the confusion, not the stat's rise.
+        return t.stages["atk" if e == "ATK_UP_2_STATUS_CONFUSION" else "spa"] < 6 and not fs.sub_blocks(u, t, mv)
+    if e == "CURSE":
+        return "Ghost" not in u.types and (u.stages["atk"] < 6 or u.stages["def"] < 6 or u.stages["spe"] > -6)
+    if e == "ALL_FAINT_3_TURNS":
+        return not u.perish
+    if e == "FAINT_AND_ATK_SP_ATK_DOWN_2":
+        if not mold and ab in ("Clear Body", "White Smoke"):
+            return False
+        return (t.stages["atk"] > -6 or t.stages["spa"] > -6) and not fs.sub_blocks(u, t, mv)
+    if e == "ATK_DEF_DOWN":
+        if not mold and ab in ("Clear Body", "White Smoke"):
+            return False
+        return t.stages["atk"] > -6 or t.stages["def"] > -6
+    if e == "HIT_IN_3_TURNS":
+        return not getattr(foe, "future_sight", False)
+    if e == "SWITCH_HELD_ITEMS":
+        if (ab == "Sticky Hold" and not mold) or fs.sub_blocks(u, t, mv) or u.knocked_off or t.knocked_off:
+            return False
+        return u.side == "p" and bool(u.item or t.item) and "Multitype" not in (u.ability, ab) \
+            and "Griseous Orb" not in (u.item, t.item)
+    if e == "MAKE_SHARED_MOVES_UNUSEABLE":
+        mine = {m.name for m in u.moves}
+        return not u.imprisoning and any(m.name in mine for f in foe.on_field() for m in f.moves)
+    if e in ("FAINT_AND_FULL_HEAL_NEXT_MON", "FAINT_FULL_RESTORE_NEXT_MON"):
+        lunar = e == "FAINT_FULL_RESTORE_NEXT_MON"
+        return any(m.hp < m.maxhp or m.status or (lunar and any(m.pp.get(x.name, x.pp) < x.pp for x in m.moves))
+                   for m in own.bench())
+    if e == "DOUBLE_SPEED_3_TURNS":
+        return not own.tailwind
+    if e == "RANDOM_STAT_UP_2":
+        return any(v < 6 for v in u.stages.values())
+    if e == "SWAP_ATK_DEF":
+        return True
+    if e == "SUPRESS_ABILITY":
+        return not getattr(t, "suppressed", False) and not fs.refuses(fs.raw_ability(t), "suppress") \
+            and t.item != "Ability Shield"
+    if e == "SET_ABILITY_TO_INSOMNIA":
+        return ab not in ("Truant", "Insomnia", "Vital Spirit", "Multitype")
+    if e == "TRICK_ROOM":
+        return b.trick_room < 999
+    if e in fs.WEATHER_OF:
+        return b.weather != fs.WEATHER_OF[e] and not fs.weather_move_fails(b, e)
+    if e == "USE_LAST_USED_MOVE":
+        return copycat_works(b, u, t, mv)
+    return False
+
+
+def copycat_works(b, u, t, mv):
+    """Whether Copycat can copy anything this turn: the battle's last move
+    (b.last_move) as it stands, if it is one Copycat copies, or a move the
+    target may use before it, one of higher priority or of Copycat's own
+    from a target no slower (fightsim.called_move's rules)."""
+    def copyable(m):
+        return m is not None and m.const not in fs.INVOKERS and fs.metronome_callable(b, u, m)
+    if copyable(b.last_move):
+        return True
+    p = fs.move_priority(u, mv)
+    return any(copyable(m) and (fs.move_priority(t, m) > p or (fs.move_priority(t, m) == p
+                                                               and not fs.moves_first(b, u, t)))
+               for m in t.moves)
+
+
 def options(b):
-    """The player's options: each move with PP that would do something (the
-    AI's own Basic reading of a move that does nothing, at -8 or below,
-    rules one out), and each switch to a living bench member."""
+    """The player's options: each move with PP that would do something
+    (would_fail rules out one that would fail or do nothing by the battle's
+    own rules), and each switch to a living bench member."""
     me, foe = b.p.cur(), b.b.cur()
     forced = fightai.forced_choice(me)
     if forced is not None:
@@ -585,7 +765,7 @@ def options(b):
                 continue
             if me.encore is not None and mv.name != me.encore:
                 continue                 # Encore leaves the one move to choose
-            if fightai.basic(b, me, foe, mv, fightai.figure(b, me, foe, mv)) <= -8:
+            if would_fail(b, me, foe, mv):
                 continue
             out.append(("move", mv))
     finally:

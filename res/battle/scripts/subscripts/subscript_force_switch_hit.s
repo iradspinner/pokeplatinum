@@ -2,10 +2,13 @@
 
 
 // Oxide: Dragon Tail and Circle Throw drag the target out after they hit. This
-// is Roar's switch, from its subscript, run as a hit's side effect. Nothing
-// happens if the target fainted, is behind a substitute, anchored by Suction
-// Cups or Ingrain, or cannot be dragged out by TryDragonTail's rules; the hit
-// has already done its damage, so none of these fails the move.
+// is Roar's switch, from its subscript, which the controller's after-move
+// effects run (AFTER_MOVE_EFFECT_FORCE_SWITCH_HIT) once the target's ability
+// and held items have answered the hit, and before its Red Card or Eject
+// Button. Nothing happens if the target or the user fainted, the target is
+// behind a substitute, anchored by Suction Cups or Ingrain, or cannot be
+// dragged out by TryDragonTail's rules; the hit has already done its damage,
+// so none of these fails the move.
 _000:
     CompareMonDataToValue OPCODE_EQU, BTLSCR_DEFENDER, BATTLEMON_CUR_HP, 0, _end
     CompareMonDataToValue OPCODE_EQU, BTLSCR_ATTACKER, BATTLEMON_CUR_HP, 0, _end

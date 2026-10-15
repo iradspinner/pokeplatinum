@@ -4706,16 +4706,310 @@ def parting_shot_checks():
 def dragon_tail_checks():
     """Dragon Tail in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Gible's hit drags a trainer's
-    Geodude out for its Bibarel, which meets the Stealth Rock on its side."""
+    Geodude out for its Bibarel, which meets the Stealth Rock on its side.
+    The whole move runs (use_move), as the drag comes after the hit's
+    aftermath since 2026-10-15 (dragon_tail_order_checks)."""
     b, geo, gib = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"]), ("Bibarel", 30, "Unaware", ["Tackle"])],
                             [("Gible", 30, "Sand Veil", ["Dragon Tail"])])
     b.b.hazards["rocks"] = 1
     hp = geo.hp
-    pl.attack(b, gib, fs.move("Dragon Tail"), geo, True)
+    pl.use_move(b, gib, fs.move("Dragon Tail"), geo, True)
     new = b.b.cur()
     ok = geo.hp < hp and new.species == "Bibarel" and new.hp < new.maxhp
     return [("the readings' Dragon Tail drags its target out", ok,
              f"Geodude's HP {hp} to {geo.hp}; now in {new.species} at {new.hp} of {new.maxhp}")]
+
+
+def dragon_tail_order_checks():
+    """Dragon Tail's drag after the hit's aftermath in the readings' battle
+    on the calculator's real rows (approved 2026-10-15, following the
+    engine's fix 6809a5c4e): the player's Gible hits a trainer's Rough Skin
+    Sharpedo, loses an eighth of its HP to the Sharpedo's Rough Skin, and
+    then drags it out for the Bibarel; a Gible with less than that eighth
+    left falls to the Rough Skin and drags nothing."""
+    out = {}
+    for low in (False, True):
+        b, sha, gib = b7_battle([("Sharpedo", 30, "Rough Skin", ["Tackle"]), ("Bibarel", 30, "Unaware", ["Tackle"])],
+                                [("Gible", 30, "Sand Veil", ["Dragon Tail"])])
+        if low:
+            gib.hp = 3
+        pl.use_move(b, gib, fs.move("Dragon Tail"), sha, True)
+        out["low" if low else "full"] = (b.b.cur().species, gib.maxhp - gib.hp if not low else gib.hp)
+    want = {"full": ("Bibarel", gib.maxhp // 8), "low": ("Sharpedo", 0)}
+    return [("the readings' Dragon Tail drags after the target's Rough Skin answers", out == want,
+             f"(now in, HP the Gible lost or has left) {out}, want {want}")]
+
+
+def knock_off_first_checks():
+    """Knock Off and Bug Bite before the target's Berry, and a trainer's
+    item gone from its rows, in the readings' battle on the calculator's
+    real rows (approved 2026-10-15): a trainer's Machop holding a Sitrus
+    Berry, hit to 2 HP by the player's Knock Off, keeps 2 HP and loses the
+    Berry; hit so by the player's Bug Bite from a Vespiquen at half HP, the
+    Vespiquen eats it and heals. A trainer's Machop holding a Black Belt
+    hits the player's Pokemon less with its Karate Chop once Knock Off has
+    taken the Belt, by its item twin's row."""
+    out = {}
+    for name, user in (("Knock Off", "Absol"), ("Bug Bite", "Vespiquen")):
+        b, mach, att = b8_battle([("Machop", 30, "Guts", ["Tackle"], "Sitrus Berry")],
+                                 [(user, 30, "Pressure", [name])])
+        mach.item = "Sitrus Berry"
+        dmg = pl.damage_of(b, att, mach, fs.move(name), False, True, roll=15)
+        mach.hp = dmg + 2
+        att.hp = att.maxhp // 2
+        mine = att.hp
+        pl.attack(b, att, fs.move(name), mach, True)
+        out[name] = (mach.hp, mach.item, att.hp - mine)
+        if name == "Bug Bite":
+            gain = att.maxhp // 4
+    b, mach, absol = b8_battle([("Machop", 30, "Guts", ["Karate Chop"], "Black Belt")],
+                               [("Absol", 30, "Pressure", ["Knock Off"])])
+    belted = b.damage(mach, absol, fs.move("Karate Chop"), roll=15)
+    pl.attack(b, absol, fs.move("Knock Off"), mach, True)
+    bare = b.damage(mach, absol, fs.move("Karate Chop"), roll=15)
+    ok = (out["Knock Off"] == (2, None, 0) and out["Bug Bite"] == (2, None, gain) and mach.item is None
+          and bare < belted)
+    return [("the readings' Knock Off and Bug Bite act before the Berry, and the trainer's rows lose the item", ok,
+             f"(Machop's HP, its item, the user's heal) {out}; Karate Chop with the Belt {belted}, after Knock Off {bare}")]
+
+
+class Confused10(Sure7):
+    """Batch 10's dice for confusion: as Sure7, and the player's confusion
+    check always hurts it."""
+    def bad(self, kind, p):
+        return kind == "confusion"
+
+
+def taunt_before_confusion_checks():
+    """Taunt before confusion in the readings' battle on the calculator's
+    real rows (approved 2026-10-15): the player's taunted, confused
+    Machop's Bulk Up fails at once, with no self-hit and its confusion's
+    count kept; an untaunted one hurts itself."""
+    out = {}
+    for taunted in (True, False):
+        b, geo, mach = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Machop", 30, "Guts", ["Bulk Up"])],
+                                 Confused10)
+        mach.confused = 3
+        if taunted:
+            mach.taunt = 3
+        pl.use_move(b, mach, fs.move("Bulk Up"), geo, True)
+        out["taunted" if taunted else "not taunted"] = (mach.hp < mach.maxhp, mach.confused, mach.stages["atk"])
+    ok = out == {"taunted": (False, 3, 0), "not taunted": (True, 2, 0)}
+    return [("the readings' Taunt stops a status move before confusion", ok, f"(hurt, confusion left, Attack) {out}")]
+
+
+def forced_out_checks():
+    """A Pokemon forced out before it acts, in a whole turn of the readings'
+    battle on the calculator's real rows (approved 2026-10-15): the
+    player's faster Pidgeotto's Whirlwind drags a trainer's Machop out, and
+    the Machop's own Whirlwind, of the same priority, never comes, so the
+    Pidgeotto stays in."""
+    b, mach, pid = b8_battle([("Machop", 30, "Guts", ["Whirlwind"]), ("Geodude", 30, "Sturdy", ["Tackle"])],
+                             [("Pidgeotto", 30, "Keen Eye", ["Whirlwind"]), ("Bibarel", 30, "Unaware", ["Tackle"])])
+    pl._turn(b, ("move", fs.move("Whirlwind")), ("move", fs.move("Whirlwind")))
+    got = (b.p.cur().species, b.b.cur().species)
+    return [("the readings' Pokemon dragged out before its turn does not act", got == ("Pidgeotto", "Geodude"),
+             f"(the player's in, the trainer's in) {got}")]
+
+
+def charge_ends_checks():
+    """A charge that ends on a turn its user cannot act, in the readings'
+    battle on the calculator's real rows (approved 2026-10-15): the
+    player's Pidgeotto takes to the air with Fly, flinches on its striking
+    turn and comes down without striking, so a trainer's Machop's Tackle
+    then hits it; asleep in the air it comes down too."""
+    out = {}
+    for case in ("flinched", "asleep"):
+        b, mach, pid = b8_battle([("Machop", 30, "Guts", ["Tackle"])], [("Pidgeotto", 30, "Keen Eye", ["Fly"])])
+        fly = fs.move("Fly")
+        pl.use_move(b, pid, fly, mach, True)
+        up = pid.charging is not None
+        hp = mach.hp
+        if case == "flinched":
+            pid.flinch = True
+            pl.use_move(b, pid, fly, mach, True)
+        else:
+            pl.give_status(b, pid, "slp")
+        mine = pid.hp
+        pl.attack(b, mach, fs.move("Tackle"), pid, False)
+        out[case] = (up, pid.charging is None, mach.hp == hp, pid.hp < mine)
+    ok = out == {"flinched": (True, True, True, True), "asleep": (True, True, True, True)}
+    return [("the readings' charge ends on a turn its user cannot act", ok,
+             f"(charged, charge ended, no strike, then hit) {out}")]
+
+
+def ingrain_grounds_checks():
+    """Ingrain's grounding in the readings' battle on the calculator's real
+    rows (approved 2026-10-15): a trainer's Levitate Bronzor is out of the
+    player's Gible's Earthquake's reach, and the trainer's AI reads the
+    move as doing nothing to it, until the Bronzor uses Ingrain; then the
+    Earthquake hits it and the AI reads the hit."""
+    b, bron, gib = b8_battle([("Bronzor", 30, "Levitate", ["Ingrain"])], [("Gible", 30, "Sand Veil", ["Earthquake"])])
+    eq = fs.move("Earthquake")
+    before = (b.damage(gib, bron, eq, ai_view=True), fightai.script_eff(b, gib, bron, eq) == fightai.IMMUNE)
+    pl.status_move(b, bron, fs.move("Ingrain"), gib, True)
+    after = (b.damage(gib, bron, eq, ai_view=True), fightai.script_eff(b, gib, bron, eq) == fightai.IMMUNE)
+    ok = before == (0, True) and after[0] > 0 and not after[1]
+    return [("the readings' Ingrain grounds a Levitate holder", ok,
+             f"(Earthquake's top roll, the AI reads it immune) before {before}, after {after}")]
+
+
+class Probe10(Sure7):
+    """Batch 10's dice for accuracy: as Sure7, and each miss chance the
+    player's moves meet is recorded."""
+    def __init__(self, rng, one_crit=True, luck=None):
+        super().__init__(rng, one_crit, luck)
+        self.misses = []
+
+    def bad(self, kind, p):
+        if kind == "miss":
+            self.misses.append(round(p, 6))
+        return False
+
+
+def fog_checks():
+    """Deep fog in the readings' battle on the calculator's real rows
+    (approved 2026-10-15): a battle made from a fight prepared in fog
+    starts in it; there the player's Machop's Karate Chop, of 100
+    accuracy, misses four times in ten, where it never misses in clear
+    air, and a trainer's Golduck's Cloud Nine lifts the cut."""
+    out = {}
+    for case in ("clear", "fog", "Cloud Nine"):
+        boss = [("Golduck" if case == "Cloud Nine" else "Geodude", 30, "Cloud Nine" if case == "Cloud Nine" else "Sturdy",
+                 ["Tackle"])]
+        b, foe, mach = b8_battle(boss, [("Machop", 30, "Guts", ["Karate Chop"])], Probe10)
+        if case != "clear":
+            fogged = pl.make_battle(dict(b.st, fog=True), ["p0"], b.st["bosses"][0], 7, 0)
+            b.fog = fogged.fog
+        landed = pl.accuracy_hits(b, mach, foe, fs.move("Karate Chop"))
+        out[case] = (landed, b.dice.misses)
+    ok = out == {"clear": (True, []), "fog": (True, [0.4]), "Cloud Nine": (True, [])}
+    return [("the readings' deep fog cuts accuracy to six tenths", ok, f"(landed, miss chances met) {out}")]
+
+
+def rematch_terrain_checks():
+    """A rematch's terrain in a fight prepared on the calculator's real rows
+    (approved 2026-10-15): Guitarist Tony's rematch is fought on his road's
+    plain, as he was, so its Ludicolo's Nature Power is Earthquake, rowed
+    against the player's Machop, where a building's Tri Attack was. The
+    rematch is prepared as fightsim.trainer prepares a trainer, in the
+    first fight's split, as the scorer places no rematch."""
+    from . import calc, data, splits
+    ids = {t["constant"]: tid for tid, t in data.oxide_trainers().items()}
+    tid = ids["TRAINER_GUITARIST_TONY_REMATCH"]
+    t = data.oxide_trainers()[tid]
+    split = splits.trainer_split(ids["TRAINER_GUITARIST_TONY"])
+    recs = [{"constant": "SPECIES_MACHOP", "species": "Machop", "how": "test", "level": 40, "nature": "Hardy",
+             "ivs": IV, "evs": EV, "ability": "Guts", "moves": ["Karate Chop"], "fill": False}]
+    st = fs.prepare(split, [plscore.with_genders(t)], calc.fight_weather([tid]), cap=fs.fight_cap(split),
+                    given_side=recs, terrain=calc.fight_terrain([tid]))
+    lud = next(k for k in st["bosses"][0] if st["pokemon"][k]["species"] == "Ludicolo")
+    row = st["rows"].get((None, lud, "p0")) or {}
+    got = (st.get("terrain"), fs.nature_power_move(st.get("terrain")), "Earthquake" in (row.get("moves") or {}))
+    return [("the readings' rematch is fought on its first fight's terrain", got == ("TERRAIN_PLAIN", "Earthquake", True),
+             f"(terrain, Nature Power's move, Earthquake rowed for the Ludicolo) {got}")]
+
+
+def borrowed_twin_checks():
+    """A borrowed move into a changed foe in the readings' battle on the
+    calculator's real rows (approved 2026-10-15): once the player's Machop
+    has Soaked a trainer's Pidgeotto, its Copycat of the Pidgeotto's Razor
+    Leaf and its Me First of the Razor Leaf the Pidgeotto has chosen both
+    hit the Water type it now is, super effectively, read from its twin's
+    row, where before they read its Normal and Flying row, which resists
+    Grass, at a quarter of that."""
+    out = {}
+    for name in ("Copycat", "Me First"):
+        b, pid, mach = b8_battle([("Pidgeotto", 30, "Keen Eye", ["Razor Leaf"])],
+                                 [("Machop", 30, "Guts", ["Copycat", "Me First", "Soak"])])
+        leaf = fs.move("Razor Leaf")
+        old = b.st["rows"][(None, "p0", pid.key)]["moves"]["Razor Leaf"]["rolls"][-1]
+        pl.status_move(b, mach, fs.move("Soak"), pid, True)
+        b.last_move, pid.chosen = leaf, leaf
+        hp = pid.hp
+        pl.use_move(b, mach, fs.move(name), pid, True)
+        out[name] = (pid.types, hp - pid.hp, old)
+    ok = all(t == ["Water"] and dealt >= 3 * old for t, dealt, old in out.values())
+    return [("the readings' Copycat and Me First hit a Soaked foe on its twin's row", ok,
+             f"(the Pidgeotto's types, HP taken, the old row's top roll) {out}")]
+
+
+def meloetta_form_checks():
+    """Meloetta's forms in the readings' battle on the calculator's real
+    rows (approved 2026-10-15): the player's Meloetta's Relic Song on a
+    trainer's Snorlax turns it into Pirouette, Normal and Fighting, faster
+    and with its Close Combat harder than as Aria; a second Relic Song
+    turns it back."""
+    b, snor, mel = b8_battle([("Snorlax", 40, "Thick Fat", ["Tackle"])],
+                             [("Meloetta", 40, "Serene Grace", ["Relic Song", "Close Combat"])])
+    cc, song = fs.move("Close Combat"), fs.move("Relic Song")
+    snor.hp = snor.maxhp = 10 ** 6       # it stands through the hits
+    aria = (b.damage(mel, snor, cc, ai_view=True), b.speed(mel), list(mel.types))
+    pl.use_move(b, mel, song, snor, True)
+    pir = (b.damage(mel, snor, cc, ai_view=True), b.speed(mel), list(mel.types))
+    pl.use_move(b, mel, song, snor, True)
+    back = (b.damage(mel, snor, cc, ai_view=True), b.speed(mel), list(mel.types))
+    ok = (pir[2] == ["Normal", "Fighting"] and pir[0] > aria[0] and pir[1] > aria[1] and back == aria)
+    return [("the readings' Relic Song turns Meloetta between its forms", ok,
+             f"(Close Combat's top roll, Speed, types) Aria {aria}, Pirouette {pir}, back {back}")]
+
+
+def options_rule_checks():
+    """The planner's options in Roark's fight on the calculator's real rows
+    (approved 2026-10-15; plplan.would_fail): with Roark's Pokemon in front
+    holding nothing, the player's Knock Off is offered, as it still hits;
+    with a hurt Pokemon on the bench, Healing Wish is offered; with nobody
+    hurt, it is not. The trainer's AI's Basic check scores both -10 or
+    below, which ruled them out before."""
+    from . import plplan
+    team = [("SPECIES_ABSOL", "Absol", "Hardy", "Pressure", ["Knock Off", "Bite"]),
+            ("SPECIES_TOGEKISS", "Togekiss", "Hardy", "Serene Grace", ["Healing Wish", "Air Slash"]),
+            ("SPECIES_BIBAREL", "Bibarel", "Hardy", "Unaware", ["Tackle"])]
+    out = {}
+    b = battle(team=team)
+    b.b.cur().item = None
+    out["Knock Off"] = sorted(a[1].name for a in plplan.options(b) if a[0] == "move")
+    for hurt in (True, False):
+        b = battle(team=team)
+        fs.switch_in(b, b.p, 1)
+        if hurt:
+            b.p.mons[2].hp //= 2
+        out["Healing Wish, " + ("hurt" if hurt else "well")] = sorted(
+            a[1].name for a in plplan.options(b) if a[0] == "move")
+    want = {"Knock Off": ["Bite", "Knock Off"], "Healing Wish, hurt": ["Air Slash", "Healing Wish"],
+            "Healing Wish, well": ["Air Slash"]}
+    return [("the planner's options drop only moves that would fail", out == want, f"offered {out}")]
+
+
+def idle_list_checks():
+    """Magic Room off the team search's idle list on Roark's real rows
+    (approved 2026-10-15; plteam.IDLE): a box Pikachu with four Electric
+    moves and Magic Room takes Magic Room as its status move against
+    Roark's team, where it took it only when nothing else was left."""
+    from . import plteam
+    recs = [{"constant": "SPECIES_PIKACHU", "species": "Pikachu", "how": "test", "level": 16, "nature": "Hardy",
+             "ivs": IV, "evs": EV, "ability": "Static",
+             "moves": ["Thunder Shock", "Spark", "Nuzzle", "Thunderbolt", "Magic Room"], "fill": False}]
+    prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
+    st, boss = prep["st"], list(prep["variants"][0][0])
+    mine, _theirs, _speed = plteam.matchups(st, ["p0"], boss)
+    got = plteam.pick_moves(st, "p0", boss, mine)
+    return [("the team search picks Magic Room, no longer idle", "Magic Room" in got, f"picked {got}")]
+
+
+def merge_key_checks():
+    """The planner's merge key on Roark's real rows (approved 2026-10-15):
+    a turn that lays Sticky Web on Roark's side, or one that starts Lucky
+    Chant on the player's, leads to a position the key tells apart from the
+    same position without it, so the two are not merged."""
+    from . import plplan
+    b = battle()
+    out = {}
+    for name, side, attr in (("Sticky Web", "b", "web"), ("Lucky Chant", "p", "lucky_chant")):
+        c = plplan.clone(b)
+        setattr(getattr(c, side), attr, 1 if attr == "web" else 5)
+        out[name] = plplan.merge_key(c) != plplan.merge_key(b)
+    return [("the planner's merge key tells Sticky Web and Lucky Chant apart", all(out.values()), str(out))]
 
 
 def side_guard_checks():
@@ -5167,6 +5461,26 @@ def sky_drop_checks():
     ok = first == (True, True, True) and second == (True, True, False)
     return [("the readings' Sky Drop lifts and then drops its target", ok,
              f"turn 1 (Geodude untouched, Bibarel untouched, Geodude held) {first}; turn 2 (both hit, held) {second}")]
+
+
+# ---- batch 10: the follow-ups Ian approved on 2026-10-15 ----
+
+def substitute_hit_checks():
+    """A hit that breaks a Substitute in the readings' battle on the
+    calculator's real rows (approved 2026-10-15): the player's Pikachu's
+    Nuzzle paralyses a trainer's Machop with no Substitute, and through a
+    1 HP Substitute it breaks leaves the Machop untouched and unparalysed
+    (SELF_TURN_FLAG_SUBSTITUTE_HIT lasts the move)."""
+    out = {}
+    for sub in (0, 1):
+        b, mach, pika = b8_battle([("Machop", 30, "Guts", ["Tackle"])], [("Pikachu", 30, "Static", ["Nuzzle"])],
+                                  Lucky8)
+        mach.sub = sub
+        pl.attack(b, pika, fs.move("Nuzzle"), mach, True)
+        out[sub] = (mach.status, mach.sub, mach.hp == mach.maxhp)
+    ok = out == {0: ("par", 0, False), 1: (None, 0, True)}
+    return [("the readings' hit that breaks a Substitute gives no added effect", ok,
+             f"(status, Substitute left, full HP) by Substitute {out}")]
 
 def main():
     results = []
@@ -5737,6 +6051,20 @@ def main():
     results += assist_checks()
     results += snatch_checks()
     results += sky_drop_checks()
+    results += substitute_hit_checks()
+    results += dragon_tail_order_checks()
+    results += knock_off_first_checks()
+    results += taunt_before_confusion_checks()
+    results += forced_out_checks()
+    results += charge_ends_checks()
+    results += ingrain_grounds_checks()
+    results += fog_checks()
+    results += rematch_terrain_checks()
+    results += borrowed_twin_checks()
+    results += meloetta_form_checks()
+    results += options_rule_checks()
+    results += idle_list_checks()
+    results += merge_key_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

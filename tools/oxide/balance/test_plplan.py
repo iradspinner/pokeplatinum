@@ -253,6 +253,105 @@ def encore_leaves_one_move():
           f"moves {moves}; switches {switches}; the plain pick used as {used}")
 
 
+def offered(b):
+    """The names of the moves plplan.options offers at b."""
+    return sorted(a[1].name for a in plplan.options(b) if a[0] == "move")
+
+
+def options_by_rule():
+    """The options drop only a move that would fail or do nothing by the
+    battle's own rules (approved 2026-10-15; plplan.would_fail), on the
+    calculator's real rows: Knock Off on a target holding nothing, Healing
+    Wish with a hurt Pokemon to send in, Dragon Dance at +6 Attack with
+    Speed to raise, and Copycat on the first turn against a target that
+    knows a faster move are offered, though the trainer's AI's Basic check
+    scores each at -10 or below; Healing Wish with no one to mend, Copycat
+    with nothing it could copy and Thunder Wave on a Ground type are not;
+    Me First is offered while the target may use a hit after it."""
+    from .test_fightai import battle
+    out = {}
+    b = battle([("Machop", 30, "Guts", ["Tackle"])], [("Absol", 30, "Pressure", ["Knock Off", "Thunder Wave"])])
+    b.b.cur().item = None
+    out["Knock Off, no item"] = offered(b)
+    for hurt in (True, False):
+        b = battle([("Machop", 30, "Guts", ["Tackle"])],
+                   [("Togekiss", 30, "Serene Grace", ["Healing Wish", "Air Slash"]),
+                    ("Bibarel", 30, "Unaware", ["Tackle"])])
+        if hurt:
+            b.p.mons[1].hp //= 2
+        out["Healing Wish, " + ("a hurt mate" if hurt else "all well")] = offered(b)
+    b = battle([("Machop", 30, "Guts", ["Tackle"])], [("Gyarados", 30, "Intimidate", ["Dragon Dance", "Waterfall"])])
+    b.p.cur().stages["atk"] = 6
+    out["Dragon Dance at +6 Attack"] = offered(b)
+    for case, foe_moves, last in (("nothing to copy", ["Tackle"], None), ("a faster foe move", ["Extreme Speed"], None),
+                                  ("a last move", ["Tackle"], "Tackle")):
+        b = battle([("Machop", 20, "Guts", foe_moves)], [("Ninjask", 40, "Infiltrator", ["Copycat", "Me First"])])
+        b.last_move = fs.move(last) if last else None
+        out["Copycat, " + case] = offered(b)
+    b = battle([("Diglett", 30, "Sand Veil", ["Tackle"])], [("Pikachu", 30, "Static", ["Thunder Wave", "Quick Attack"])])
+    out["Thunder Wave on a Ground type"] = offered(b)
+    want = {"Knock Off, no item": ["Knock Off", "Thunder Wave"],
+            "Healing Wish, a hurt mate": ["Air Slash", "Healing Wish"], "Healing Wish, all well": ["Air Slash"],
+            "Dragon Dance at +6 Attack": ["Dragon Dance", "Waterfall"],
+            "Copycat, nothing to copy": ["Me First"], "Copycat, a faster foe move": ["Copycat", "Me First"],
+            "Copycat, a last move": ["Copycat", "Me First"], "Thunder Wave on a Ground type": ["Quick Attack"]}
+    check("the options drop only moves the battle's rules would fail", out == want,
+          "; ".join(f"{k} {v}" for k, v in out.items()))
+
+
+def idle_moves_picked():
+    """Mud Sport and Magic Room are off the team search's idle list
+    (approved 2026-10-15; plteam.IDLE), as their effects run: on real rows
+    a Pikachu with four Electric moves and Mud Sport takes Mud Sport as its
+    status move against a trainer's Bibarel, in place of its fourth
+    Electric move, where it took it only when nothing else was left;
+    Splash stays idle."""
+    from . import plteam
+    from .test_fightai import _prepared
+    boss = (("Bibarel", 20, "Unaware", ("Tackle",), None),)
+    out = {}
+    for extra in ("Mud Sport", "Splash"):
+        player = (("Pikachu", 20, "Static", ("Thunder Shock", "Spark", "Nuzzle", "Thunderbolt", extra), None),)
+        st = _prepared(boss, player, "Roark", None)
+        mine, _theirs, _speed = plteam.matchups(st, ["p0"], st["bosses"][0])
+        out[extra] = extra in plteam.pick_moves(st, "p0", st["bosses"][0], mine)
+    check("Mud Sport is no longer an idle move for the team search", out == {"Mud Sport": True, "Splash": False},
+          f"picked {out}")
+
+
+def keys_hold_new_states():
+    """The planner's merge key holds every battle state the batches added
+    (approved 2026-10-15): two positions of Roark's fight that differ only
+    by Lucky Chant or Sticky Web on a side, Gravity's or Magic Room's turns,
+    Copycat's last move or deep fog no longer merge; the search's shape key
+    tells Aurora Veil apart, the trainer's AI's key Aurora Veil too, and a
+    Belch user's keys whether it has eaten a Berry."""
+    st, team, bk, flags, _names = fight_state("roark")
+    base = pl.make_battle(st, team, bk, flags, 0)
+    changes = {"Lucky Chant": lambda c: setattr(c.p, "lucky_chant", 3),
+               "Sticky Web": lambda c: setattr(c.b, "web", 1),
+               "Gravity": lambda c: setattr(c, "gravity", 3),
+               "Magic Room": lambda c: setattr(c, "magic_room", 3),
+               "Copycat's last move": lambda c: setattr(c, "last_move", fs.move("Tackle")),
+               "deep fog": lambda c: setattr(c, "fog", True)}
+    out = {}
+    for name, change in changes.items():
+        c = plplan.clone(base)
+        change(c)
+        out[name] = plplan.merge_key(c) != plplan.merge_key(base)
+    c = plplan.clone(base)
+    c.p.aurora_veil = 3
+    out["Aurora Veil, shape"] = pl.shape_key(c) != pl.shape_key(base)
+    out["Aurora Veil, AI"] = pl.ai_key(c) != pl.ai_key(base)
+    c = plplan.clone(base)
+    m = c.p.cur()
+    m.belch = True
+    plain = pl.mon_key(m)
+    m.ate_berry = True
+    out["a Belch user's Berry"] = pl.mon_key(m) != plain
+    check("the planner's keys hold the states the batches added", all(out.values()), str(out))
+
+
 def main():
     print("the planner's pieces")
     pick_odds_rules()
@@ -264,6 +363,9 @@ def main():
     future_sight_through_planner()
     disabled_left_out()
     encore_leaves_one_move()
+    options_by_rule()
+    idle_moves_picked()
+    keys_hold_new_states()
     print(f"\n{sum(RESULTS)}/{len(RESULTS)} passed")
     return 0 if all(RESULTS) else 1
 

@@ -889,12 +889,16 @@ TestKit_MoveSets4:
     AddListMenuEntry TestKit_Text_MenuSet84, 2
     AddListMenuEntry TestKit_Text_MenuSet85, 3
     AddListMenuEntry TestKit_Text_MenuSet86, 4
+    AddListMenuEntry TestKit_Text_MenuSet87, 5
+    AddListMenuEntry TestKit_Text_MenuSet88, 6
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet82
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet83
     GoToIfEq VAR_0x8004, 2, TestKit_MoveSet84
     GoToIfEq VAR_0x8004, 3, TestKit_MoveSet85
     GoToIfEq VAR_0x8004, 4, TestKit_MoveSet86
+    GoToIfEq VAR_0x8004, 5, TestKit_MoveSet87
+    GoToIfEq VAR_0x8004, 6, TestKit_MoveSet88
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -2035,6 +2039,52 @@ TestKit_MoveSet86:
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
+
+/* Set 87: Dragon Tail and Circle Throw drag their target out only after its
+   ability and held item have answered the hit (Ian, 2026-10-15). A Skarmory
+   with Rough Skin, holding a Rocky Helmet, against a wild Chansey that knows
+   Dragon Tail and Circle Throw. Switch Skarmory in on the first turn: the
+   Chansey's move hits it, then "SKARMORY's Rough Skin hurt the wild
+   CHANSEY!" and "The wild CHANSEY is hurt by SKARMORY's Rocky Helmet!", and
+   only then is Skarmory dragged out, which in a wild battle ends it. Before
+   the change the drag came first, so the battle faded out straight after
+   the hit. Skarmory knows the two moves too, for a trainer battle. */
+TestKit_MoveSet87:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_DRAGON_TAIL
+    SetVar VAR_0x8003, MOVE_CIRCLE_THROW
+    SetVar VAR_0x800A, SPECIES_SKARMORY
+    SetVar VAR_0x800B, ABILITY_ROUGH_SKIN
+    SetVar VAR_0x8004, ITEM_ROCKY_HELMET
+    SetVar VAR_0x8006, MOVE_DRAGON_TAIL
+    SetVar VAR_0x8007, MOVE_CIRCLE_THROW
+    SetVar VAR_0x8008, MOVE_ROOST
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithItem
+
+/* Set 88: a target that Dragon Tail or Circle Throw drags out does not
+   steal with Pickpocket first (Ian, 2026-10-15). Mew holds Leftovers,
+   against a wild Wobbuffet with Pickpocket that knows only Splash and
+   holds nothing (its species never does). Switch Mew in on the first turn,
+   then use Dragon Tail: the hit lands and Wobbuffet is dragged out, which
+   in a wild battle ends it, with no "stole" line, and Mew still holds its
+   Leftovers afterwards. Before the change "The wild WOBBUFFET stole MEW's
+   Leftovers!" came first. Take the set again and use Tackle instead: with
+   no drag to come, Pickpocket steals as before. */
+TestKit_MoveSet88:
+    SetVar VAR_0x8000, SPECIES_WOBBUFFET
+    SetVar VAR_0x8001, ABILITY_PICKPOCKET
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_LEFTOVERS
+    SetVar VAR_0x8006, MOVE_DRAGON_TAIL
+    SetVar VAR_0x8007, MOVE_CIRCLE_THROW
+    SetVar VAR_0x8008, MOVE_TACKLE
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GivePokemonWithItem
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
    a menu has been answered), for an entry that needs a held item. */

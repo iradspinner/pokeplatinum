@@ -144,7 +144,8 @@ def prepare(f, given_side=None):
         cap = fs.fight_cap(split, key)
         st = fs.prepare(split, parties, weather,
                         fs.trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
-                        given_side=given_side, terrain=calc.fight_terrain([t["tr_id"] for t in trainers]))
+                        given_side=given_side, terrain=calc.fight_terrain([t["tr_id"] for t in trainers]),
+                        fog=calc.fight_fog([t["tr_id"] for t in trainers]))
         variants = []
         for v, t in enumerate(trainers):
             starter = slot_starter(t) if len(trainers) > 1 else None
@@ -160,7 +161,8 @@ def prepare(f, given_side=None):
         return {"st": st, "variants": [(st["bosses"][0], t["ai"], None)], "split": split,
                 "label": t["name"], "key": f"tr{key}", "doubles": "doubles"}
     st = fs.prepare(split, [with_genders(t)], calc.fight_weather([key]), fs.trick_room_for([t["constant"]]),
-                    cap=fs.fight_cap(split), given_side=given_side, terrain=calc.fight_terrain([key]))
+                    cap=fs.fight_cap(split), given_side=given_side, terrain=calc.fight_terrain([key]),
+                    fog=calc.fight_fog([key]))
     return {"st": st, "variants": [(st["bosses"][0], t["ai"], None)], "split": split,
             "label": t["name"], "key": f"tr{key}"}
 
