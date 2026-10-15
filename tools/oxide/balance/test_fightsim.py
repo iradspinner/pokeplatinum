@@ -4953,12 +4953,16 @@ def check_parting_shot(results):
 def check_dragon_tail(results):
     """Dragon Tail and Circle Throw (approved 2026-10-14; effect script 395):
     after the hit the target is dragged out for a bench member, unless it
-    fainted, a Substitute took the hit, Suction Cups or Ingrain holds it, or
-    no one is left to come in; the Pokemon dragged in is the one whose
-    Rough Skin answers the hit, as the engine reads the slot after the
-    drag."""
+    fainted, a Substitute took the hit (one it broke too), Suction Cups or
+    Ingrain holds it, or no one is left to come in. Since the engine's fix
+    of 2026-10-15 (6809a5c4e) the drag runs from the after-move effects,
+    once the target's own ability and held items have answered (approved
+    2026-10-15): the target's Rough Skin answers the hit, the Pokemon
+    dragged in has not been hit and does not, and a user that falls to
+    the Rough Skin drags nothing."""
     out = {}
-    for case in ("plain", "Substitute", "Suction Cups", "Ingrain", "no bench", "fainted", "Rough Skin"):
+    for case in ("plain", "Substitute", "Substitute broken", "Suction Cups", "Ingrain", "no bench", "fainted",
+                 "Rough Skin", "Rough Skin dragged in", "user falls"):
         b, p, foe = battle(["Dragon Tail"], ["Tackle"], {("p", "Dragon Tail"): [10] * 16}, hp=100)
         b.rng = FixedDice(0.5)
         if case != "no bench":
@@ -4966,21 +4970,28 @@ def check_dragon_tail(results):
             b.b.mons.append(extra)
         if case == "Substitute":
             foe.sub = 50
+        elif case == "Substitute broken":
+            foe.sub = 5
         elif case in ("Suction Cups",):
             foe.ability = case
         elif case == "Ingrain":
             foe.ingrained = True
         elif case == "fainted":
             foe.hp = 5
-        elif case == "Rough Skin":
+        elif case in ("Rough Skin", "user falls"):
+            foe.ability = "Rough Skin"
+            if case == "user falls":
+                p.hp = 10
+        elif case == "Rough Skin dragged in":
             extra.ability = "Rough Skin"
         mv = fs.move("Dragon Tail")
         fs.attack(b, p, mv, foe, True)
         fs.hit_aftermath(b, p, foe, mv, lambda kind, chance, victim: True, lambda kind, n: 0)
         out[case] = (b.b.active, p.hp)
-    want = {"plain": (1, 100), "Substitute": (0, 100), "Suction Cups": (0, 100), "Ingrain": (0, 100),
-            "no bench": (0, 100), "fainted": (0, 100), "Rough Skin": (1, 88)}
-    results.append(("Dragon Tail drags its target out after the hit", out == want, str(out)))
+    want = {"plain": (1, 100), "Substitute": (0, 100), "Substitute broken": (0, 100), "Suction Cups": (0, 100),
+            "Ingrain": (0, 100), "no bench": (0, 100), "fainted": (0, 100), "Rough Skin": (1, 88),
+            "Rough Skin dragged in": (1, 100), "user falls": (0, 0)}
+    results.append(("Dragon Tail drags its target out after its ability answers the hit", out == want, str(out)))
 
 
 def check_side_guards(results):

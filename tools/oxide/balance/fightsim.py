@@ -3696,18 +3696,19 @@ def clear_smog(dfn):
     dfn.stages = dict.fromkeys(STAGE_KEYS, 0)
 
 
-@functools.lru_cache(maxsize=None)
 def drag_out(b, att, dfn, pick):
-    """Dragon Tail and Circle Throw (effect script 395,
-    subscript_force_switch_hit, run on the hit): unless the target fainted,
-    the user fell, the hit met a Substitute, the target has Suction Cups
-    (which a Mold Breaker passes) or Ingrain roots it, a trainer's target is
-    dragged out for a party member drawn at random (BtlCmd_TryDragonTail),
-    which meets the hazards as it comes in; with no one left to send in,
-    nothing happens. The hit has done its damage, so none of these fails the
-    move. In a double battle the drag is left to the double battles' own
-    fixes. Until 2026-10-15 the target stayed in (Ian approved the fix)."""
-    if getattr(b, "doubles", False) or not att.alive() or getattr(dfn, "ingrained", False) \
+    """Dragon Tail and Circle Throw (effect script 395's hit, then
+    subscript_force_switch_hit from the after-move effects, once the
+    target's ability and held items have answered; hit_aftermath): unless
+    the target fainted, the user fell (to Rough Skin, say), the hit met a
+    Substitute, the target has Suction Cups (which a Mold Breaker passes) or
+    Ingrain roots it, the target is dragged out for a party member drawn at
+    random (BtlCmd_TryDragonTail), which meets the hazards as it comes in;
+    with no one left to send in, nothing happens. The hit has done its
+    damage, so none of these fails the move. In a double battle the drag is
+    left to the double battles' own fixes. Until 2026-10-15 the target
+    stayed in (Ian approved the fix)."""
+    if getattr(b, "doubles", False) or not att.alive() or not dfn.alive() or getattr(dfn, "ingrained", False) \
             or (dfn.ability == "Suction Cups" and not mold(att, dfn)):
         return
     side = b.p if dfn.side == "p" else b.b
@@ -3998,8 +3999,6 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         clear_smog(dfn)              # every stage of a target the hit itself reached back to 0
     if e == "INCINERATE":
         incinerate(b, dfn, mv)       # a Berry the target holds is burned up (incinerate)
-    if e == "FORCE_SWITCH_HIT":
-        drag_out(b, att, dfn, lambda kind, n: b.rng.randrange(n))     # Dragon Tail's drag (drag_out)
     if e == "DOUBLE_POWER_HEAL_SLEEP":
         slap_wakes(dfn, mv)          # Wake-Up Slap's doubled hit wakes its target (slap_wakes)
     if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":
@@ -5558,20 +5557,22 @@ def shell_bell(att, dealt):
 
 def hit_aftermath(b, att, dfn, mv, chance, pick):
     """What follows a damaging move's hit on dfn: after_hit and the target's
-    on-hit ability for a move of one hit; for one of several, whose hits
-    land_hits took one at a time with their own aftermath, only the Shell
-    Bell on their total."""
+    on-hit ability for a move of one hit, then Dragon Tail's drag
+    (drag_out); for one of several, whose hits land_hits took one at a time
+    with their own aftermath, only the Shell Bell on their total."""
     if getattr(b, "hits_landed", False):
         shell_bell(att, b.last_dealt)
         return
     after_hit(b, att, dfn, mv, b.last_dealt)
-    if mv.effect == "FORCE_SWITCH_HIT" and not getattr(b, "doubles", False):
-        # Dragon Tail's drag (drag_out) runs as the hit's added effect, before
-        # BattleSystem_TriggerAbilityOnHit, which reads the Pokemon now in the
-        # target's slot with the slot's damage flags still set, so a
-        # dragged-in Pokemon's Rough Skin or Static answers the hit.
-        dfn = (b.p if dfn.side == "p" else b.b).cur()
     contact_ability(b, att, dfn, mv, b.last_dealt, chance, pick)
+    if mv.effect == "FORCE_SWITCH_HIT" and b.last_dealt > 0 and not b.sub_hit:
+        # Dragon Tail and Circle Throw drag their target out once its own
+        # ability and held items have answered the hit (the engine's
+        # AFTER_MOVE_EFFECT_FORCE_SWITCH_HIT since 6809a5c4e, run after
+        # TRIGGER_ITEMS_ON_HIT and before the Red Card and the Eject Button,
+        # which the simulator does not hold). Until 2026-10-15 the drag came
+        # first and the Pokemon dragged in answered (Ian approved the fix).
+        drag_out(b, att, dfn, pick)
 
 
 def confusion_blocked(b, att, dfn, hit=False):

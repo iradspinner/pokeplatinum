@@ -4706,16 +4706,38 @@ def parting_shot_checks():
 def dragon_tail_checks():
     """Dragon Tail in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Gible's hit drags a trainer's
-    Geodude out for its Bibarel, which meets the Stealth Rock on its side."""
+    Geodude out for its Bibarel, which meets the Stealth Rock on its side.
+    The whole move runs (use_move), as the drag comes after the hit's
+    aftermath since 2026-10-15 (dragon_tail_order_checks)."""
     b, geo, gib = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"]), ("Bibarel", 30, "Unaware", ["Tackle"])],
                             [("Gible", 30, "Sand Veil", ["Dragon Tail"])])
     b.b.hazards["rocks"] = 1
     hp = geo.hp
-    pl.attack(b, gib, fs.move("Dragon Tail"), geo, True)
+    pl.use_move(b, gib, fs.move("Dragon Tail"), geo, True)
     new = b.b.cur()
     ok = geo.hp < hp and new.species == "Bibarel" and new.hp < new.maxhp
     return [("the readings' Dragon Tail drags its target out", ok,
              f"Geodude's HP {hp} to {geo.hp}; now in {new.species} at {new.hp} of {new.maxhp}")]
+
+
+def dragon_tail_order_checks():
+    """Dragon Tail's drag after the hit's aftermath in the readings' battle
+    on the calculator's real rows (approved 2026-10-15, following the
+    engine's fix 6809a5c4e): the player's Gible hits a trainer's Rough Skin
+    Sharpedo, loses an eighth of its HP to the Sharpedo's Rough Skin, and
+    then drags it out for the Bibarel; a Gible with less than that eighth
+    left falls to the Rough Skin and drags nothing."""
+    out = {}
+    for low in (False, True):
+        b, sha, gib = b7_battle([("Sharpedo", 30, "Rough Skin", ["Tackle"]), ("Bibarel", 30, "Unaware", ["Tackle"])],
+                                [("Gible", 30, "Sand Veil", ["Dragon Tail"])])
+        if low:
+            gib.hp = 3
+        pl.use_move(b, gib, fs.move("Dragon Tail"), sha, True)
+        out["low" if low else "full"] = (b.b.cur().species, gib.maxhp - gib.hp if not low else gib.hp)
+    want = {"full": ("Bibarel", gib.maxhp // 8), "low": ("Sharpedo", 0)}
+    return [("the readings' Dragon Tail drags after the target's Rough Skin answers", out == want,
+             f"(now in, HP the Gible lost or has left) {out}, want {want}")]
 
 
 def side_guard_checks():
@@ -5758,6 +5780,7 @@ def main():
     results += snatch_checks()
     results += sky_drop_checks()
     results += substitute_hit_checks()
+    results += dragon_tail_order_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
