@@ -4981,6 +4981,22 @@ def options_rule_checks():
     return [("the planner's options drop only moves that would fail", out == want, f"offered {out}")]
 
 
+def idle_list_checks():
+    """Magic Room off the team search's idle list on Roark's real rows
+    (approved 2026-10-15; plteam.IDLE): a box Pikachu with four Electric
+    moves and Magic Room takes Magic Room as its status move against
+    Roark's team, where it took it only when nothing else was left."""
+    from . import plteam
+    recs = [{"constant": "SPECIES_PIKACHU", "species": "Pikachu", "how": "test", "level": 16, "nature": "Hardy",
+             "ivs": IV, "evs": EV, "ability": "Static",
+             "moves": ["Thunder Shock", "Spark", "Nuzzle", "Thunderbolt", "Magic Room"], "fill": False}]
+    prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
+    st, boss = prep["st"], list(prep["variants"][0][0])
+    mine, _theirs, _speed = plteam.matchups(st, ["p0"], boss)
+    got = plteam.pick_moves(st, "p0", boss, mine)
+    return [("the team search picks Magic Room, no longer idle", "Magic Room" in got, f"picked {got}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -6032,6 +6048,7 @@ def main():
     results += borrowed_twin_checks()
     results += meloetta_form_checks()
     results += options_rule_checks()
+    results += idle_list_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

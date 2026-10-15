@@ -299,6 +299,26 @@ def options_by_rule():
           "; ".join(f"{k} {v}" for k, v in out.items()))
 
 
+def idle_moves_picked():
+    """Mud Sport and Magic Room are off the team search's idle list
+    (approved 2026-10-15; plteam.IDLE), as their effects run: on real rows
+    a Pikachu with four Electric moves and Mud Sport takes Mud Sport as its
+    status move against a trainer's Bibarel, in place of its fourth
+    Electric move, where it took it only when nothing else was left;
+    Splash stays idle."""
+    from . import plteam
+    from .test_fightai import _prepared
+    boss = (("Bibarel", 20, "Unaware", ("Tackle",), None),)
+    out = {}
+    for extra in ("Mud Sport", "Splash"):
+        player = (("Pikachu", 20, "Static", ("Thunder Shock", "Spark", "Nuzzle", "Thunderbolt", extra), None),)
+        st = _prepared(boss, player, "Roark", None)
+        mine, _theirs, _speed = plteam.matchups(st, ["p0"], st["bosses"][0])
+        out[extra] = extra in plteam.pick_moves(st, "p0", st["bosses"][0], mine)
+    check("Mud Sport is no longer an idle move for the team search", out == {"Mud Sport": True, "Splash": False},
+          f"picked {out}")
+
+
 def main():
     print("the planner's pieces")
     pick_odds_rules()
@@ -311,6 +331,7 @@ def main():
     disabled_left_out()
     encore_leaves_one_move()
     options_by_rule()
+    idle_moves_picked()
     print(f"\n{sum(RESULTS)}/{len(RESULTS)} passed")
     return 0 if all(RESULTS) else 1
 
