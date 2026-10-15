@@ -391,6 +391,11 @@ class Mon:
     # Minimize's mark (MOVE_EFFECT_MINIMIZE), which Stomp and Steamroller
     # double on; cleared when it leaves.
     minimized = False
+    # Lock-On and Mind Reader: on the Pokemon held, the turns left
+    # (MOVE_EFFECT_LOCK_ON, 2 when used) and the holder's key
+    # (lockOnTarget); cleared when it leaves.
+    locked_on = 0
+    lock_on_by = None
     # Charge's turns (MOVE_EFFECT_CHARGE with chargedTurns): 2 when used, one
     # off at each turn's end, its Electric moves at twice the power while
     # it runs; cleared when it leaves.
@@ -440,6 +445,8 @@ class Mon:
             self.minimized = False       # moveEffectsMask too; MOVE_EFFECT_BATON_PASSED leaves Minimize's out
         if self.charged:
             self.charged = 0             # and Charge's
+        if self.locked_on:
+            self.locked_on, self.lock_on_by = 0, None     # a Baton Pass hands it on (baton_state)
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
         self.rollout = 0
@@ -732,7 +739,7 @@ class Battle:
         """Whether the move lands (BattleControllerPlayer_CheckMoveHitAccuracy
         and the hit overrides). `first`: whether the target has yet to move
         this turn, for the Zoom Lens."""
-        if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or no_guard(att, dfn, mv):
+        if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or lands_sure(att, dfn, mv):
             return True
         acc = mv.acc
         if mv.effect in ("THUNDER", "HURRICANE"):           # Oxide: Hurricane as Thunder in weather
@@ -760,6 +767,35 @@ def no_guard(att, dfn, mv):
     a move without SYSCTL_NONSTANDARD_ACC_CHECK). Until 2026-10-14 accuracy
     was rolled as usual both ways (Ian approved the fix)."""
     return (att.ability == "No Guard" or dfn.ability == "No Guard") and mv.effect != "ONE_HIT_KO"
+
+
+def locked_onto(att, dfn):
+    """Whether att's Lock-On or Mind Reader holds dfn (MON_IS_LOCKED_ONTO:
+    the target's MOVE_EFFECT_LOCK_ON count runs and names att)."""
+    return bool(dfn.locked_on) and dfn.lock_on_by == att.key
+
+
+def lands_sure(att, dfn, mv):
+    """BattleControllerPlayer_CheckMoveHitOverrides' first override: with
+    No Guard on either side, or the user's Lock-On on the target, the move
+    hits whatever its accuracy and the stages, and reaches a target on the
+    hidden turn of Fly and the like, a one-hit KO move apart, whose check is
+    its own. Lock-On's part did nothing until 2026-10-15 (Ian approved the
+    fix)."""
+    return no_guard(att, dfn, mv) or (locked_onto(att, dfn) and mv.effect != "ONE_HIT_KO")
+
+
+def lock_on(att, dfn):
+    """Lock-On and Mind Reader (effect script 94, subscript_lock_on): on a
+    target with no Substitute (an Infiltrator passes it) the user's moves
+    land for the rest of this turn and all of the next (the target's count
+    set to 2, one off at each turn's end, MON_COND_CHECK_STATE_LOCK_ON).
+    The hold ends when either leaves, but a Baton Pass carries it on: the
+    target's to its replacement (MOVE_EFFECT_BATON_PASSED), the user's to
+    its own, its count started again (battle_lib.c 2196). Protect stops the
+    move, and a target on its hidden turn makes it fail."""
+    if not sub_blocks(att, dfn):
+        dfn.locked_on, dfn.lock_on_by = 2, att.key
 
 
 def accuracy_scale(att, dfn, mv, first=True):
@@ -2540,7 +2576,7 @@ def attack(b, att, mv, dfn, first):
             foresee(b, att, mv, dfn, dmg)
         return
     if dfn.charging is not None and dfn.charging.effect in INVULNERABLE and not reaches(mv, dfn) \
-            and not no_guard(att, dfn, mv):
+            and not lands_sure(att, dfn, mv):
         _crash(b, att, dfn, mv)
         rollout_break(att, mv)
         return                   # No Guard reaches it there (no_guard)
@@ -4393,7 +4429,7 @@ def out_of_reach(att, dfn, mv):
     """Whether dfn is in the air, underground or underwater where mv cannot
     reach it (MOVE_STATUS_SEMI_INVULNERABLE), as a hit's check has it."""
     return (dfn.charging is not None and dfn.charging.effect in INVULNERABLE and not reaches(mv, dfn)
-            and not no_guard(att, dfn, mv))
+            and not lands_sure(att, dfn, mv))
 
 
 # The status moves whose effect scripts set every SYSCTL_HIT_DURING flag, so
@@ -4960,6 +4996,8 @@ def status_move(b, att, mv, dfn, first):
         lucky_chant(own_side)
     elif e == "COPY_STAT_CHANGES":
         psych_up(att, dfn)
+    elif e == "NEXT_ATTACK_ALWAYS_HITS":
+        lock_on(att, dfn)
     elif e == "TAUNT":
         if not dfn.taunt and not taunt_blocked(att, dfn):
             dfn.taunt = b.rng.randint(3, 5)
@@ -5024,6 +5062,7 @@ def baton_state(mon):
             "confused": mon.confused, "cursed": mon.cursed, "sub": mon.sub, "seeded": mon.seeded,
             "perish": mon.perish, "ingrained": mon.ingrained, "aqua_ring": mon.aqua_ring,
             "heal_block": mon.heal_block, "magnet_rise": mon.magnet_rise,
+            "locked_on": mon.locked_on, "lock_on_by": mon.lock_on_by,
             "suppressed": getattr(mon, "suppressed", False)}
 
 
@@ -5072,6 +5111,10 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
                 foe.bound, foe.bound_by = 0, None
             if foe.infatuated == leaving.key:
                 foe.infatuated = None    # love ends when its object leaves (battle_lib's switch-out)
+            if foe.locked_on and foe.lock_on_by == leaving.key:
+                # The user's Lock-On ends as it leaves, or passes with a Baton
+                # Pass to its replacement, its count started again.
+                foe.locked_on, foe.lock_on_by = (0, None) if passed is None else (2, side.mons[index].key)
         if leaving.gas_stash is not None and leaving is not side.mons[index]:
             leaving.ability, leaving.gas_stash = leaving.gas_stash, None   # its party record keeps its ability
     if slot == 0:
@@ -5449,6 +5492,10 @@ def _end_of_turn_mon(b, side, m):
             m.encore_turns -= 1
         else:
             m.encore, m.encore_turns = None, 0
+    if m.locked_on:
+        m.locked_on -= 1             # MON_COND_CHECK_STATE_LOCK_ON
+        if not m.locked_on:
+            m.lock_on_by = None
     if m.throat_chop:
         m.throat_chop -= 1           # MON_COND_CHECK_STATE_LOCK_ON lowers Throat Chop's count, silently
     if m.charged:

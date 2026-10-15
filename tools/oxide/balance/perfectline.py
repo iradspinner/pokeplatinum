@@ -309,7 +309,7 @@ fs.give_status = give_status   # Yawn and Toxic Spikes inside fightsim reach thi
 def accuracy_hits(b, att, dfn, mv, first=True):
     """Whether the move lands, a miss bad luck for its user's side.
     `first`: whether the target has yet to move this turn (the Zoom Lens)."""
-    if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or fs.no_guard(att, dfn, mv):
+    if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or fs.lands_sure(att, dfn, mv):
         return True
     acc = mv.acc
     if mv.effect in ("THUNDER", "HURRICANE"):               # Oxide: Hurricane as Thunder in weather
@@ -587,7 +587,7 @@ def attack(b, att, mv, dfn, first):
             fs.foresee(b, att, mv, dfn, dmg)
         return
     if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE and not fs.reaches(mv, dfn) \
-            and not fs.no_guard(att, dfn, mv):
+            and not fs.lands_sure(att, dfn, mv):
         crash(b, att, dfn, mv)
         fs.rollout_break(att, mv)
         return                   # No Guard reaches it there (fightsim.no_guard)
@@ -1039,6 +1039,8 @@ def status_move(b, att, mv, dfn, first):
         fs.lucky_chant(own_side)         # Lucky Chant, five turns (fightsim.lucky_chant)
     elif e == "COPY_STAT_CHANGES":
         fs.psych_up(att, dfn)            # Psych Up takes the target's stages and Focus Energy
+    elif e == "NEXT_ATTACK_ALWAYS_HITS":
+        fs.lock_on(att, dfn)             # Lock-On and Mind Reader (fightsim.lock_on, read by fightsim.lands_sure)
     elif e == "TAUNT":
         if not dfn.taunt and not fs.taunt_blocked(att, dfn):     # Oblivious, unless Mold Breaker
             dfn.taunt = b.dice.taunt(dfn.side)
@@ -1164,6 +1166,8 @@ def mon_key(m):
         key += ("minimized",)
     if m.charged:
         key += ("charged", m.charged)
+    if m.locked_on:
+        key += ("locked on", m.locked_on, m.lock_on_by)
     return key + _form(m) if m.formed else key
 
 

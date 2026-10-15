@@ -2537,6 +2537,50 @@ def check_psych_up(results):
                     f"copied {copied}; from a plain target it keeps Focus Energy: {p.crit_stage}, {p.stages}"))
 
 
+def check_lock_on(results):
+    """Lock-On and Mind Reader (approved 2026-10-14; effect script 94,
+    subscript_lock_on): the user's moves hit the target for the rest of the
+    turn and all of the next, whatever their accuracy, and reach it on the
+    hidden turn of Fly; after the second turn's end they roll again. A
+    Substitute makes it fail, the trainer's AI does not use it on a target
+    already held, and the hold ends when the target leaves."""
+    out = {}
+    for name in ("Lock-On", "Mind Reader"):
+        b, p, foe = battle([name, "Zap Cannon", "Tackle"], ["Tackle"],
+                           {("p", "Zap Cannon"): [10] * 16, ("p", "Tackle"): [5] * 16}, hp=1000)
+        b.rng = FixedDice(0.999)          # every chance roll fails: a 50% move misses
+        fs.status_move(b, p, fs.move(name), foe, True)
+        held = (getattr(foe, "locked_on", 0), getattr(foe, "lock_on_by", None))
+        foe.stages["eva"] = 6
+        before = foe.hp
+        fs.attack(b, p, fs.move("Zap Cannon"), foe, True)
+        landed = before - foe.hp
+        fs.end_of_turn(b)
+        foe.charging = fs.move("Fly")      # in the air on the next turn
+        before = foe.hp
+        fs.attack(b, p, fs.move("Tackle"), foe, True)
+        in_air = before - foe.hp
+        foe.charging = None
+        fs.end_of_turn(b)
+        before = foe.hp
+        fs.attack(b, p, fs.move("Zap Cannon"), foe, True)
+        out[name] = (held, landed, in_air, before - foe.hp)
+    b, p, foe = battle(["Lock-On"], ["Tackle"], {})
+    foe.sub = 30
+    fs.status_move(b, p, fs.move("Lock-On"), foe, True)
+    out["into a Substitute"] = getattr(foe, "locked_on", 0)
+    b, p, foe = battle(["Tackle"], ["Lock-On"], {})
+    b.rng = FixedDice(0.999)
+    fs.status_move(b, foe, fs.move("Lock-On"), p, True)
+    out["the AI on a held target"] = fightai.basic(b, foe, p, fs.move("Lock-On"), 0)
+    p.reset_volatile()
+    out["the target left"] = getattr(p, "locked_on", 0)
+    want = {"Lock-On": ((2, "p0"), 10, 5, 0), "Mind Reader": ((2, "p0"), 10, 5, 0), "into a Substitute": 0,
+            "the AI on a held target": -10, "the target left": 0}
+    results.append(("Lock-On and Mind Reader land the user's moves through the next turn, Fly too", out == want,
+                    f"(hold, Zap Cannon at +6 evasion, Tackle into Fly, Zap Cannon two turn ends on) {out}"))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -3926,7 +3970,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,

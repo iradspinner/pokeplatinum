@@ -3587,6 +3587,38 @@ def psych_up_checks():
              f"Spoink's Attack stage {spo.stages['atk']}, Bibarel's {bib.stages['atk']}, Zen Headbutt's top {plain}")]
 
 
+def lock_on_checks():
+    """Lock-On in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Magnemite locks on to the player's
+    Bibarel at +6 evasion, and its Zap Cannon then hits on dice where it
+    would miss; when the Magnemite is switched out the hold ends."""
+    from .test_fightai import battle
+
+    class Unlucky(pl.RunDice):
+        """Run dice that give the player every piece of luck: the trainer
+        misses whenever accuracy is rolled."""
+        def good(self, p, kind=None):
+            return True
+    b = battle([("Magnemite", 25, "Sturdy", ["Lock-On", "Zap Cannon"]), ("Geodude", 25, "Sturdy", ["Tackle"])],
+               [("Bibarel", 25, "Unaware", ["Tackle"])])
+    b.dice, b.rng = Unlucky(random.Random(1), True), random.Random(1)
+    mag, bib = b.b.cur(), b.p.cur()
+    bib.hp = bib.maxhp = 100000
+    bib.stages["eva"] = 6
+    zap = fs.move("Zap Cannon")
+    pl.use_move(b, mag, zap, bib, True)
+    missed = bib.hp == bib.maxhp
+    pl.use_move(b, mag, fs.move("Lock-On"), bib, True)
+    held = (getattr(bib, "locked_on", 0), getattr(bib, "lock_on_by", None) == mag.key)
+    pl.use_move(b, mag, zap, bib, True)
+    hit = bib.hp < bib.maxhp
+    fs.switch_in(b, b.b, 1)
+    ended = getattr(bib, "locked_on", 0)
+    ok = missed and held == (2, True) and hit and ended == 0
+    return [("the readings' Lock-On lands the next Zap Cannon, and ends with its user", ok,
+             f"missed before {missed}, hold {held}, hit after {hit}, hold after the switch {ended}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4237,6 +4269,7 @@ def main():
     results += charge_checks()
     results += lucky_chant_checks()
     results += psych_up_checks()
+    results += lock_on_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()
