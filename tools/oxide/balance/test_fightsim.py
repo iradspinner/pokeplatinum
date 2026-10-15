@@ -4707,6 +4707,21 @@ def check_sp_def_2_hit(results):
     results.append(("Acid Spray and Seed Flare lower Sp. Def two stages at their chance", out == want, str(out)))
 
 
+def check_tearful_look(results):
+    """Noble Roar and Tearful Look (approved 2026-10-14; effect script 362):
+    the target's Attack and Sp. Atk fall a stage each, and a Substitute
+    stops both."""
+    out = {}
+    for name, sub in (("Tearful Look", 0), ("Noble Roar", 0), ("Noble Roar", 25)):
+        b, p, foe = battle([name], ["Tackle"], {})
+        b.rng = FixedDice(0.0)
+        foe.sub = sub
+        fs.status_move(b, p, fs.move(name), foe, True)
+        out[(name, sub)] = (foe.stages["atk"], foe.stages["spa"])
+    want = {("Tearful Look", 0): (-1, -1), ("Noble Roar", 0): (-1, -1), ("Noble Roar", 25): (0, 0)}
+    results.append(("Noble Roar and Tearful Look lower Attack and Sp. Atk", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4978,7 +4993,7 @@ def main():
                   check_power_swap, check_psycho_shift, check_memento,
                   check_sketch, check_me_first, check_nature_power,
                   check_power_trick, check_bide, check_transform,
-                  check_sp_def_2_hit,
+                  check_sp_def_2_hit, check_tearful_look,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

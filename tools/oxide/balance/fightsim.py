@@ -183,6 +183,11 @@ FOE_STAGES = {
     "DEF_DOWN_2": {"def": -2}, "SPEED_DOWN": {"spe": -1}, "SPEED_DOWN_2": {"spe": -2},
     "SP_DEF_DOWN_2": {"spd": -2}, "ACC_DOWN": {"acc": -1}, "EVA_DOWN": {"eva": -1},
     "ATK_DEF_DOWN": {"atk": -1, "def": -1}, "SP_ATK_DOWN_2_OPPOSITE_GENDER": {"spa": -2},
+    # Noble Roar and Tearful Look (effect script 362,
+    # subscript_atk_sp_atk_down): Attack and Sp. Atk a stage each, one stat
+    # at a time, as Tickle's are; a Substitute stops both. Until 2026-10-15
+    # they did nothing (Ian approved the fix).
+    "TEARFUL_LOOK": {"atk": -1, "spa": -1},
 }
 HIT_FOE_STAGES = {
     "LOWER_SP_DEF_HIT": {"spd": -1}, "LOWER_DEFENSE_HIT": {"def": -1},

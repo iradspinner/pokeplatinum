@@ -4533,6 +4533,16 @@ def sp_def_2_checks():
     return [("the readings' Acid Spray lowers Sp. Def two stages", ok, f"Geodude's HP {hp} to {geo.hp}, Sp. Def stage {geo.stages['spd']}")]
 
 
+def tearful_look_checks():
+    """Noble Roar in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel lowers a trainer's
+    Geodude's Attack and Sp. Atk a stage each."""
+    b, geo, bib = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Noble Roar"])])
+    pl.status_move(b, bib, fs.move("Noble Roar"), geo, True)
+    ok = (geo.stages["atk"], geo.stages["spa"]) == (-1, -1)
+    return [("the readings' Noble Roar lowers Attack and Sp. Atk", ok, f"Geodude's stages {geo.stages['atk']}, {geo.stages['spa']}")]
+
+
 def main():
     results = []
 
@@ -5061,6 +5071,7 @@ def main():
     results += bide_checks()
     results += transform_checks()
     results += sp_def_2_checks()
+    results += tearful_look_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
