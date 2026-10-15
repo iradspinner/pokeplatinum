@@ -1035,6 +1035,8 @@ def status_move(b, att, mv, dfn, first):
         fs.healing_wish(b, att)          # its user faints; the turn heals the one sent in (fightsim.wish_comes_true)
     elif e == "GUARD_SPLIT":
         fs.share_stats(b, att, dfn, mv, ("def", "spd"))     # the two Defenses averaged (fightsim.share_stats)
+    elif e == "POWER_SPLIT":
+        fs.share_stats(b, att, dfn, mv, ("atk", "spa"))     # the two Attacks averaged (fightsim.share_stats)
     elif e == "CURSE":
         if "Ghost" in att.types:
             fs.ghost_curse(b, att, dfn, mv)      # it fails, at no cost, through a Substitute or on a cursed target

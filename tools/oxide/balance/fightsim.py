@@ -6222,6 +6222,8 @@ def status_move(b, att, mv, dfn, first):
         healing_wish(b, att)
     elif e == "GUARD_SPLIT":
         share_stats(b, att, dfn, mv, ("def", "spd"))
+    elif e == "POWER_SPLIT":
+        share_stats(b, att, dfn, mv, ("atk", "spa"))
     elif e == "CURSE":
         if "Ghost" in att.types:
             ghost_curse(b, att, dfn, mv)

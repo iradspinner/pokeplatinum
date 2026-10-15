@@ -4788,6 +4788,25 @@ def guard_split_checks():
              f"Defenses {gd} and {dd} to {avg}; top rolls {before} to {after} (about {want} wanted)")]
 
 
+def power_split_checks():
+    """Power Split in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel and a trainer's Machoke
+    share their Attack, and each one's Tackle into the other changes by the
+    Attacks' ratios."""
+    b, mac, bib = b7_battle([("Machoke", 30, "Guts", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Power Split", "Tackle"])])
+    tackle = fs.move("Tackle")
+    before = (pl.damage_of(b, bib, mac, tackle, False, True), pl.damage_of(b, mac, bib, tackle, False, True))
+    ma, ba = mac.stats["atk"], bib.stats["atk"]
+    pl.status_move(b, bib, fs.move("Power Split"), mac, True)
+    avg = (ma + ba) // 2
+    after = (pl.damage_of(b, bib, mac, tackle, False, True), pl.damage_of(b, mac, bib, tackle, False, True))
+    want = (int(before[0] * avg / ba), int(before[1] * avg / ma))
+    ok = fs.raw_stat(mac, "atk") == fs.raw_stat(bib, "atk") == avg and ma != ba \
+        and all(abs(x - y) <= 1 for x, y in zip(after, want))
+    return [("the readings' Power Split shares the Attacks", ok,
+             f"Attacks {ma} and {ba} to {avg}; top rolls {before} to {after} (about {want} wanted)")]
+
+
 def main():
     results = []
 
@@ -5333,6 +5352,7 @@ def main():
     results += heat_crash_checks()
     results += healing_wish_checks()
     results += guard_split_checks()
+    results += power_split_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

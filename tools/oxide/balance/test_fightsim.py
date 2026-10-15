@@ -5099,6 +5099,28 @@ def check_guard_split(results):
     results.append(("Guard Split averages the two Defenses for both", out == want, str(out)))
 
 
+def check_power_split(results):
+    """Power Split (approved 2026-10-14; effect script 279): the user's and
+    the target's Attack and Sp. Atk are each averaged, in whole numbers, for
+    both; hits from either then scale by the attacking stat's ratio; a
+    Substitute stops it."""
+    out = {}
+    b, p, foe = battle(["Power Split", "Tackle"], ["Tackle"], {("p", "Tackle"): [40] * 16, ("b", "Tackle"): [40] * 16})
+    b.rng = FixedDice(0.0)
+    foe.stats = dict(foe.stats, **{"atk": 200, "spa": 50})
+    tackle = fs.move("Tackle")
+    fs.status_move(b, p, fs.move("Power Split"), foe, True)
+    out["stats"] = (fs.raw_stat(p, "atk"), fs.raw_stat(foe, "atk"), fs.raw_stat(p, "spa"), fs.raw_stat(foe, "spa"),
+                    fs.raw_stat(foe, "def"))
+    out["hits"] = (b.damage(p, foe, tackle, roll=0), b.damage(foe, p, tackle, roll=0))
+    b, p, foe = battle(["Power Split"], ["Tackle"], {})
+    foe.sub = 25
+    fs.status_move(b, p, fs.move("Power Split"), foe, True)
+    out["Substitute"] = (p.split, foe.split)
+    want = {"stats": (150, 150, 75, 75, 100), "hits": (60, 30), "Substitute": (None, None)}
+    results.append(("Power Split averages the two Attacks for both", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5375,7 +5397,7 @@ def main():
                   check_mud_sport, check_punishment, check_sticky_web,
                   check_defog, check_strength_sap, check_parting_shot,
                   check_dragon_tail, check_side_guards, check_heat_crash,
-                  check_healing_wish, check_guard_split,
+                  check_healing_wish, check_guard_split, check_power_split,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
