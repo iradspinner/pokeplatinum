@@ -3999,6 +3999,22 @@ def refresh_checks():
     return [("the readings' Refresh cures only its user", ok, f"Altaria {alt.status}, Swablu {swa.status}")]
 
 
+def wring_out_checks():
+    """Wring Out in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Tentacruel's Wring Out on the
+    player's Bibarel at half HP hits about half as hard as at full HP (61
+    power against 121), where before it hit alike at both."""
+    from .test_fightai import battle
+    b = battle([("Tentacruel", 40, "Clear Body", ["Wring Out"])], [("Bibarel", 40, "Simple", ["Tackle"])])
+    ten, bib = b.b.cur(), b.p.cur()
+    mv = fs.move("Wring Out")
+    full = b.damage(ten, bib, mv, roll=15)
+    bib.hp = bib.maxhp // 2
+    half = b.damage(ten, bib, mv, roll=15)
+    ok = full > 0 and 0.45 < half / full < 0.55
+    return [("the readings' Wring Out hits by its target's HP left", ok, f"full HP {full}, half HP {half}")]
+
+
 def main():
     results = []
 
@@ -4502,6 +4518,7 @@ def main():
     results += baton_pass_checks()
     results += row_neutral_checks()
     results += refresh_checks()
+    results += wring_out_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

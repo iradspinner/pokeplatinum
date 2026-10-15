@@ -4242,6 +4242,13 @@ def state_mult(b, att, dfn, mv):
         # 2026-10-14 it hit at full power whatever the target's HP (Ian
         # approved the fix).
         m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
+    if mv.effect == "INCREASE_POWER_WITH_MORE_HP":
+        # Crush Grip and Wring Out (effect script 237, BtlCmd_CalcWringOutPower):
+        # 1 plus 120 times the target's HP over its maximum, in whole numbers;
+        # the row is made at full HP's 121. The trainer's AI gives them no
+        # figure (their listed power is 1). Until 2026-10-15 they hit at 121
+        # whatever the target's HP (Ian approved the fix).
+        m *= power_ratio(att, 121, 1 + 120 * dfn.hp // dfn.maxhp)
     if b.gravity and mv.const == "MOVE_GRAV_APPLE":
         # BattleScript_ComputedMovePower: half as strong again while Gravity
         # is in force (since 2026-10-15, when Gravity began to run).

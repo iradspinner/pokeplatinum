@@ -4071,6 +4071,21 @@ def check_refresh(results):
                     f"(the user's status, toxic count, the benched teammate's) {out}"))
 
 
+def check_wring_out(results):
+    """Crush Grip and Wring Out (approved 2026-10-14; effect script 237,
+    BtlCmd_CalcWringOutPower): 1 plus 120 times the target's HP over its
+    maximum, so a row made at full HP's 121 scales to 61 at half HP and 2
+    at 1 HP of 100."""
+    out = {}
+    for name in ("Crush Grip", "Wring Out"):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [121] * 16})
+        for hp in (100, 50, 1):
+            foe.hp = hp
+            out[(name, hp)] = b.damage(p, foe, fs.move(name), roll=0)
+    want = {(n, hp): d for n in ("Crush Grip", "Wring Out") for hp, d in ((100, 121), (50, 61), (1, 2))}
+    results.append(("Crush Grip and Wring Out hit by the target's HP left", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4334,7 +4349,7 @@ def main():
                   check_ghost_untrapped, check_soundproof_status, check_item_flinch_blocked,
                   check_black_sludge, check_water_bubble, check_eerie_spell,
                   check_burning_bulwark,
-                  check_refresh,
+                  check_refresh, check_wring_out,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
