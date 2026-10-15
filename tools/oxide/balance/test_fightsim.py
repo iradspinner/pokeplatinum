@@ -4247,6 +4247,39 @@ def check_trump_card(results):
                     f"(PP left after the use: damage) {out}"))
 
 
+def check_teeter_dance(results):
+    """Teeter Dance (approved 2026-10-14; effect script 199): in a single
+    battle it confuses the foe, Own Tempo aside; in a double battle every
+    other Pokemon on the field, the user's ally too, each but one that
+    protects itself."""
+    out = {}
+    for ability in (None, "Own Tempo"):
+        b, p, foe = battle(["Teeter Dance"], ["Tackle"], {})
+        b.rng = FixedDice(0.0)
+        foe.ability = ability
+        fs.status_move(b, p, fs.move("Teeter Dance"), foe, True)
+        out[f"singles, {ability}"] = bool(foe.confused)
+    b = field({"p0": (("Normal",), ["Teeter Dance"]), "p1": (("Normal",), ["Tackle"]),
+               "b0.0": (("Normal",), ["Tackle"]), "b0.1": (("Normal",), ["Protect"])}, {})
+    b.doubles, b.moved = True, set()
+    b.p.active, b.p.active2, b.b.active, b.b.active2 = 0, 1, 0, 1
+    b.rng = FixedDice(0.0)
+    p0, p1, f0, f1 = b.p.mons[0], b.p.mons[1], b.b.mons[0], b.b.mons[1]
+    f1.protecting = True
+    fs.status_move(b, p0, fs.move("Teeter Dance"), f0, True)
+    out["doubles (target, other foe protecting, ally, user)"] = (bool(f0.confused), bool(f1.confused),
+                                                                  bool(p1.confused), bool(p0.confused))
+    f0.confused = p1.confused = 0
+    f0.protecting, f1.protecting = True, False
+    fs.status_move(b, p0, fs.move("Teeter Dance"), f0, True)
+    out["doubles, its target protecting (target, other foe, ally)"] = (bool(f0.confused), bool(f1.confused),
+                                                                        bool(p1.confused))
+    want = {"singles, None": True, "singles, Own Tempo": False,
+            "doubles (target, other foe protecting, ally, user)": (True, False, True, False),
+            "doubles, its target protecting (target, other foe, ally)": (False, True, True)}
+    results.append(("Teeter Dance confuses every other Pokemon on the field", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4513,6 +4546,7 @@ def main():
                   check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
                   check_trainer_frustration, check_secret_power, check_snore,
                   check_raise_speed_hit, check_trump_card,
+                  check_teeter_dance,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

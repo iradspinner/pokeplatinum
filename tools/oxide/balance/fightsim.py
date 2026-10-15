@@ -3613,6 +3613,29 @@ def acupressure(att, pick):
         change_stages(att, {room[pick(len(room)) if len(room) > 1 else 0]: 2})
 
 
+def teeter_dance_others(b, att, mv, dfn, first):
+    """Teeter Dance (effect script 199, the confusion subscript on each
+    target) in a double battle, where its range (ALL_ADJACENT) reaches every
+    other Pokemon on the field, the user's ally too: status_move confuses
+    the target it was given, and this the rest, each through its own
+    Protect, hidden turn and accuracy check, a Substitute, Own Tempo,
+    Safeguard and a confusion already there, as the engine's spread loop
+    runs the move on each in turn. In a single battle its one target is the
+    foe. Until 2026-10-15 Teeter Dance confused nobody (Ian approved the
+    fix)."""
+    if not getattr(b, "doubles", False):
+        return
+    ally = ally_of(b, att)
+    for m in foes_of(b, att) + ([ally] if ally else []):
+        if m is dfn or not m.alive():
+            continue
+        if protected(b, att, mv, m) or status_out_of_reach(att, m, mv) or not b.accuracy_hits(att, m, mv, first):
+            continue
+        if not sub_blocks(att, m, mv) and not confusion_blocked(b, att, m):
+            m.confused = b.rng.randint(2, 5)
+            confusion_berry(m, b)
+
+
 def refresh(att):
     """Refresh (effect script 193, subscript_recover_psn_prz_brn): its user's
     own poison, bad poison, burn or paralysis is cured
@@ -5388,6 +5411,8 @@ def status_move(b, att, mv, dfn, first):
     foe_side = b.p if dfn.side == "p" else b.b
     own_side = b.p if att.side == "p" else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
+    if e == "CONFUSE_ALL":
+        teeter_dance_others(b, att, mv, dfn, first)     # Teeter Dance's other targets in a double battle
     if targets_foe and dfn.alive():
         if protected(b, att, mv, dfn):
             return
@@ -5410,7 +5435,7 @@ def status_move(b, att, mv, dfn, first):
         if sub_blocks(att, dfn, mv):
             return
         give_status_by_move(b, att, dfn, mv, STATUS_OF[e])
-    elif e == "STATUS_CONFUSE":
+    elif e in ("STATUS_CONFUSE", "CONFUSE_ALL"):
         if not sub_blocks(att, dfn, mv) and not confusion_blocked(b, att, dfn):
             dfn.confused = b.rng.randint(2, 5)
             confusion_berry(dfn, b)

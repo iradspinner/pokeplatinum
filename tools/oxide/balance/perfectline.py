@@ -946,7 +946,8 @@ def status_move(b, att, mv, dfn, first):
         if fs.sub_blocks(att, dfn, mv):
             return
         fs.give_status_by_move(b, att, dfn, mv, fs.STATUS_OF[e])
-    elif e == "STATUS_CONFUSE":
+    elif e in ("STATUS_CONFUSE", "CONFUSE_ALL"):
+        # Teeter Dance's one target in a single battle is the foe (fightsim.teeter_dance_others).
         if not fs.sub_blocks(att, dfn, mv) and not fs.confusion_blocked(b, att, dfn):
             dfn.confused = b.dice.confusion(dfn.side)
             fs.confusion_berry(dfn, b)

@@ -4155,6 +4155,18 @@ def trump_card_checks():
     return [("the readings' Trump Card rises as its PP runs down", ok, f"damage by use {dealt}")]
 
 
+def teeter_dance_checks():
+    """Teeter Dance in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Spinda's Teeter Dance confuses the
+    player's Bibarel, where before it did nothing."""
+    from .test_fightai import battle
+    b = battle([("Spinda", 30, "Tangled Feet", ["Teeter Dance"])], [("Bibarel", 30, "Unaware", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    spi, bib = b.b.cur(), b.p.cur()
+    pl.status_move(b, spi, fs.move("Teeter Dance"), bib, True)
+    return [("the readings' Teeter Dance confuses its target", bool(bib.confused), f"Bibarel confused {bib.confused}")]
+
+
 def main():
     results = []
 
@@ -4666,6 +4678,7 @@ def main():
     results += snore_checks()
     results += raise_speed_hit_checks()
     results += trump_card_checks()
+    results += teeter_dance_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
