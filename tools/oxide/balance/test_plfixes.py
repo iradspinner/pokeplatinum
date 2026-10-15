@@ -4571,6 +4571,18 @@ def false_swipe_checks():
     return [("the readings' False Swipe leaves its target 1 HP", ok, f"HP left {out}")]
 
 
+def clear_smog_checks():
+    """Clear Smog in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Budew's hit puts a trainer's
+    Geodude's +2 Defense and +1 Attack back to 0."""
+    b, geo, bud = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Budew", 30, "Natural Cure", ["Clear Smog"])])
+    geo.stages.update({"def": 2, "atk": 1})
+    hp = geo.hp
+    pl.attack(b, bud, fs.move("Clear Smog"), geo, True)
+    ok = geo.hp < hp and geo.stages["def"] == 0 and geo.stages["atk"] == 0
+    return [("the readings' Clear Smog resets its target's stages", ok, f"HP {hp} to {geo.hp}, stages {geo.stages}")]
+
+
 def main():
     results = []
 
@@ -5102,6 +5114,7 @@ def main():
     results += tearful_look_checks()
     results += venom_drench_checks()
     results += false_swipe_checks()
+    results += clear_smog_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

@@ -4754,6 +4754,22 @@ def check_false_swipe(results):
     results.append(("False Swipe and Hold Back leave their target 1 HP", out == want, str(out)))
 
 
+def check_clear_smog(results):
+    """Clear Smog (approved 2026-10-14; effect script 390): after its hit
+    every stage of the target goes back to 0, not through a Substitute, and
+    Shield Dust does not stop it."""
+    out = {}
+    for sub, ability in ((0, None), (40, None), (0, "Shield Dust")):
+        b, p, foe = battle(["Clear Smog"], ["Tackle"], {("p", "Clear Smog"): [10] * 16}, hp=500)
+        b.rng = FixedDice(0.5)
+        foe.stages.update({"atk": 2, "def": -1, "eva": 1})
+        foe.sub, foe.ability = sub, ability
+        fs.attack(b, p, fs.move("Clear Smog"), foe, True)
+        out[(sub, ability)] = (foe.stages["atk"], foe.stages["def"], foe.stages["eva"])
+    want = {(0, None): (0, 0, 0), (40, None): (2, -1, 1), (0, "Shield Dust"): (0, 0, 0)}
+    results.append(("Clear Smog resets its target's stages after the hit", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5026,6 +5042,7 @@ def main():
                   check_sketch, check_me_first, check_nature_power,
                   check_power_trick, check_bide, check_transform,
                   check_sp_def_2_hit, check_tearful_look, check_venom_drench, check_false_swipe,
+                  check_clear_smog,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

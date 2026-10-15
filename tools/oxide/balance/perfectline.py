@@ -850,6 +850,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         fs.steal_item(att, dfn)  # the player's Thief and Covet only (fightsim.steal_item)
     if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
         return
+    if e == "CLEAR_SMOG":
+        fs.clear_smog(dfn)       # every stage of the target back to 0 (fightsim.clear_smog)
     if e == "DOUBLE_POWER_HEAL_SLEEP":
         fs.slap_wakes(dfn, mv)   # Wake-Up Slap's doubled hit wakes its target (fightsim.slap_wakes)
     if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":

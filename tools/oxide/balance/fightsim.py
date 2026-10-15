@@ -3402,6 +3402,15 @@ def chatter_confuses(att, dfn, stripped):
             and not (dfn.ability == "Shield Dust" and not mold(att, dfn)))
 
 
+def clear_smog(dfn):
+    """Clear Smog's hit (effect script 390, subscript_clear_smog, run on the
+    hit): a target still standing and not behind a Substitute has every
+    stat stage put back to 0; a chance-free effect, so Shield Dust and Sheer
+    Force (not on sSheerForceEffects) leave it alone. Until 2026-10-15 it
+    was a plain hit (Ian approved the fix)."""
+    dfn.stages = dict.fromkeys(STAGE_KEYS, 0)
+
+
 def slap_doubles(att, dfn, mv):
     """Wake-Up Slap (effect script 217) doubles its power (POWER_MULTI 20)
     on a sleeping target with no Substitute in the way (CheckSubstitute
@@ -3582,6 +3591,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         steal_item(att, dfn)             # a knockout too (MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE)
     if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
+    if e == "CLEAR_SMOG":
+        clear_smog(dfn)              # every stage of a target the hit itself reached back to 0
     if e == "DOUBLE_POWER_HEAL_SLEEP":
         slap_wakes(dfn, mv)          # Wake-Up Slap's doubled hit wakes its target (slap_wakes)
     if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":
