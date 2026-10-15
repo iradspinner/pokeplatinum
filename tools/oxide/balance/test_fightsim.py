@@ -4086,6 +4086,43 @@ def check_wring_out(results):
     results.append(("Crush Grip and Wring Out hit by the target's HP left", out == want, str(out)))
 
 
+def check_miracle_eye(results):
+    """Miracle Eye (approved 2026-10-14; effect script 216,
+    subscript_miracle_eye): Psychic moves then meet the target's Dark type,
+    read from its twin's rows without Dark, through a Substitute too, and
+    its raised evasion stops counting, though a lowered one still counts;
+    the trainer's AI's type check sees the Psychic move land and its Basic
+    check refuses a second Miracle Eye; leaving ends it."""
+    b, p, foe = battle(["Miracle Eye", "Confusion"], ["Tackle"], {("p", "Confusion"): [0] * 16},
+                       b_types=("Dark",), hp=500)
+    b.st["rows"][(None, "p0", "b0.0#me")] = {"moves": {"Confusion": {"rolls": [10] * 16}}}
+    b.st["miracle_twin"] = {"b0.0": "b0.0#me"}
+    b.st["chart"]["Psychic"] = {"Dark": 0.0}       # the test chart's types, with the immunity
+    b.rng = FixedDice(0.5)
+    foe.ability = "Shell Armor"
+    conf, eye = fs.move("Confusion"), fs.move("Miracle Eye")
+
+    def hit():
+        before = foe.hp
+        fs.attack(b, p, conf, foe, True)
+        return before - foe.hp
+    foe.stages["eva"] = 6
+    out = {"before": (hit(), fightai.script_eff(b, p, foe, conf))}
+    foe.sub = 50
+    fs.status_move(b, p, eye, foe, True)
+    foe.sub = 0
+    out["after"] = (hit(), fightai.script_eff(b, p, foe, conf) > 0)
+    out["evasion scale at +6, -6"] = (fs.accuracy_scale(p, foe, conf), None)
+    foe.stages["eva"] = -6
+    out["evasion scale at +6, -6"] = (out["evasion scale at +6, -6"][0], fs.accuracy_scale(p, foe, conf))
+    out["AI's second Miracle Eye"] = fightai.basic(b, p, foe, eye, 0)
+    foe.reset_volatile()
+    out["after leaving"] = getattr(foe, "miracle_eye", None)
+    want = {"before": (0, 0), "after": (10, True), "evasion scale at +6, -6": (1.0, 3.0),
+            "AI's second Miracle Eye": -10, "after leaving": False}
+    results.append(("Miracle Eye lets Psychic moves hit a Dark type and lifts its evasion", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4349,7 +4386,7 @@ def main():
                   check_ghost_untrapped, check_soundproof_status, check_item_flinch_blocked,
                   check_black_sludge, check_water_bubble, check_eerie_spell,
                   check_burning_bulwark,
-                  check_refresh, check_wring_out,
+                  check_refresh, check_wring_out, check_miracle_eye,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

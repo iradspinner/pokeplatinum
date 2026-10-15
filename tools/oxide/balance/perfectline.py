@@ -1066,6 +1066,8 @@ def status_move(b, att, mv, dfn, first):
         fs.lock_on(att, dfn)             # Lock-On and Mind Reader (fightsim.lock_on, read by fightsim.lands_sure)
     elif e == "FORESIGHT":
         fs.foresee_target(dfn)           # Foresight and Odor Sleuth (fightsim.foresee_target)
+    elif e == "IGNORE_EVATION_REMOVE_DARK_IMMUNE":
+        fs.miracle_eye(dfn)              # Miracle Eye (fightsim.miracle_eye)
     elif e == "GRAVITY":
         fs.gravity_start(b)              # five turns of Gravity (fightsim.gravity_start)
     elif e == "COPY_MOVE_FOR_BATTLE":
@@ -1195,7 +1197,7 @@ def mon_key(m):
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
     if m.rare:
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
-        key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked,
+        key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key

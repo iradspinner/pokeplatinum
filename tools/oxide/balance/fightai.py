@@ -1029,7 +1029,7 @@ def script_eff(b, u, t, mv):
     Tinted Lens), with plain STAB's 1.5 divided back out at the four exact
     values, and any immunity flag (the chart, Levitate, Magnet Rise, an Air
     Balloon, Wonder Guard) reading 0. Scrappy and Foresight get Normal and
-    Fighting past a Ghost; an Iron Ball, Thousand Arrows, Smack Down or Gravity grounds
+    Fighting past a Ghost, Miracle Eye Psychic past a Dark type; an Iron Ball, Thousand Arrows, Smack Down or Gravity grounds
     a Flying type; Freeze-Dry hits Water. A neutral STAB hit (60), or one
     Filter or Tinted Lens scaled, matches none of the five, as in the game."""
     ty = "Normal" if u.ability == "Normalize" else move_type(b, u, mv)
@@ -1054,6 +1054,8 @@ def script_eff(b, u, t, mv):
         if m == 0 and typ == "Ghost" and ty in ("Normal", "Fighting") and (
                 u.ability == "Scrappy" or getattr(t, "foresight", False)):
             continue
+        if m == 0 and typ == "Dark" and ty == "Psychic" and getattr(t, "miracle_eye", False):
+            continue             # BasicTypeMulApplies skips the immunity for a Miracle Eye target
         if m == 0 and typ == "Flying" and ty == "Ground" and (grounded or getattr(b, "gravity", 0)):
             continue
         if m == 0:

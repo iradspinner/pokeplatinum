@@ -407,6 +407,9 @@ class Mon:
     # evasion stops counting, and Normal and Fighting moves meet its Ghost
     # type; cleared when it leaves.
     foresight = False
+    # Miracle Eye (MOVE_EFFECT_MIRACLE_EYE): its raised evasion stops
+    # counting, and Psychic moves meet its Dark type; cleared when it leaves.
+    miracle_eye = False
     # Lock-On and Mind Reader: on the Pokemon held, the turns left
     # (MOVE_EFFECT_LOCK_ON, 2 when used) and the holder's key
     # (lockOnTarget); cleared when it leaves.
@@ -473,7 +476,7 @@ class Mon:
             # statusVolatile (Foresight) and moveCopied (Mirror Move); a Baton
             # Pass hands on the Lock-On hold alone (baton_state).
             self.throat_chop = self.charged = self.locked_on = 0
-            self.minimized = self.foresight = self.smacked = False
+            self.minimized = self.foresight = self.smacked = self.miracle_eye = False
             self.lock_on_by = self.mirror = None
             if self.mimicked is not None:
                 # The party record still holds Mimic, with the PP its use left
@@ -671,8 +674,9 @@ class Battle:
             dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
         if (dfn.rare or self.gravity) and mv is not None:
             # An identified Ghost's twin without Ghost; a grounded flier's
-            # without Flying or Levitate.
-            dk = foresight_key(self, dfn, mv, att) or ground_key(self, dfn, mv, att) or dk
+            # without Flying or Levitate; a Miracle Eye target's without Dark.
+            dk = (foresight_key(self, dfn, mv, att) or ground_key(self, dfn, mv, att)
+                  or miracle_key(self, dfn, mv, att) or dk)
         rows = self.st["rows"]
         # A type or ability another move or ability changed (form_key) reads
         # the changed Pokemon's twin: the pair of twins when both are
@@ -840,6 +844,8 @@ def chart_types(dfn, mv):
     the Pokemon's other type alone (none for a pure Ghost)."""
     if identified(dfn, mv.type):
         return [t for t in dfn.types if t != "Ghost"]
+    if eyed(dfn, mv.type):
+        return [t for t in dfn.types if t != "Dark"]
     return dfn.types
 
 
@@ -861,6 +867,34 @@ def foresight_key(b, mon, mv, att):
     if not identified(mon, move_type_used(att.ability, mv, att.ivs, att.item, b.weather)):
         return None
     return (b.st.get("foresight_twin") or {}).get(mon.key)
+
+
+def eyed(dfn, mv_type):
+    """Whether Miracle Eye lets a move of this type meet dfn's Dark type:
+    BasicTypeMulApplies skips the chart's Psychic-into-Dark immunity for a
+    target with MOVE_EFFECT_MIRACLE_EYE, and only that entry."""
+    return dfn.miracle_eye and mv_type == "Psychic" and "Dark" in dfn.types
+
+
+def miracle_eye(dfn):
+    """Miracle Eye (effect script 216, subscript_miracle_eye): the target is
+    marked until it leaves (MOVE_EFFECT_MIRACLE_EYE, not handed on by Baton
+    Pass), through a Substitute too, as the subscript has no Substitute
+    check; a second use changes nothing. Its raised evasion stops counting
+    against any attacker (MON_IS_IDENTIFIED in
+    BattleControllerPlayer_CheckMoveHitAccuracy, lowered evasion still
+    counting), and Psychic moves hit its Dark type (eyed), read from its
+    twin without Dark (prepare's miracle_twin). Until 2026-10-15 the move
+    did nothing (Ian approved the fix)."""
+    dfn.miracle_eye = dfn.rare = True
+
+
+def miracle_key(b, mon, mv, att):
+    """The key of the rows a Miracle Eye target of the Dark type meets a
+    Psychic move on (prepare's miracle_twin), or None."""
+    if not mon.miracle_eye or not eyed(mon, move_type_used(att.ability, mv, att.ivs, att.item, b.weather)):
+        return None
+    return (b.st.get("miracle_twin") or {}).get(mon.key)
 
 
 def grounded(b, mon):
@@ -969,8 +1003,8 @@ def accuracy_scale(att, dfn, mv, first=True):
     acc_st = 0 if dfn.ability == "Unaware" and not mold(att, dfn) else att.stages["acc"]
     ignore_eva = mv.const in IGNORE_TARGET_STAGES or att.ability in ("Unaware", "Keen Eye", "Illuminate")
     eva = dfn.stages["eva"]
-    if eva > 0 and dfn.foresight:
-        eva = 0                  # an identified target's raised evasion stops counting (foresee_target)
+    if eva > 0 and (dfn.foresight or dfn.miracle_eye):
+        eva = 0                  # an identified target's raised evasion stops counting (foresee_target, miracle_eye)
     s = max(-6, min(6, acc_st - (0 if ignore_eva else eva)))
     scale = (3 + s) / 3 if s >= 0 else 3 / (3 - s)
     if dfn.ability == "Tangled Feet" and dfn.confused and not mold(att, dfn):
@@ -5389,6 +5423,8 @@ def status_move(b, att, mv, dfn, first):
         lock_on(att, dfn)
     elif e == "FORESIGHT":
         foresee_target(dfn)
+    elif e == "IGNORE_EVATION_REMOVE_DARK_IMMUNE":
+        miracle_eye(dfn)
     elif e == "GRAVITY":
         gravity_start(b)
     elif e == "COPY_MOVE_FOR_BATTLE":
@@ -7123,6 +7159,33 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                        if move(m).type in IDENTIFIED_TYPES or pokemon[d].get("ability") == "Normalize"]
                 if got:
                     pairs.append([d, t, got, w])
+    # Miracle Eye lets Psychic moves meet a marked target's Dark type
+    # (eyed), which the calculator's rows cannot know. So each Dark type
+    # whose foes can use it gets a twin typed without Dark (a pure Dark's
+    # twin is Water, which Psychic moves hit neutrally), made as Foresight's
+    # twins are, and rowed for every foe's Psychic moves into it, and the
+    # moves whose type the battle sets (KEEP_TYPE: Hidden Power and kin).
+    miracle_twin = {}
+    for k in pkeys + qkeys + bkeys:
+        foes = pkeys + qkeys if k.startswith("b") else bkeys
+        if not any(move(m).effect == "IGNORE_EVATION_REMOVE_DARK_IMMUNE" for d in foes for m in moves[d]):
+            continue
+        poks = blob["poks"].get(pokemon[k]["species"]) or {}
+        types = [t for t in (poks.get("types") or []) if t]
+        if "Dark" not in types or not poks.get("bs"):
+            continue
+        t = f"{k}#me"
+        own = {"bs": dict(poks["bs"]), "types": [x for x in types if x != "Dark"] or ["Water"], "exact_types": True}
+        if poks.get("weightkg") is not None:
+            own["weightkg"] = poks["weightkg"]
+        pokemon[t] = dict(pokemon[k], species_data=own)
+        miracle_twin[k] = t
+        for w in weathers:
+            for d in foes:
+                got = [m for m in (party_hits(d) if d in bkeys else hits(d))
+                       if move(m).type == "Psychic" or move(m).const in KEEP_TYPE]
+                if got:
+                    pairs.append([d, t, got, w])
     # Smack Down holds a Flying type or a Levitate holder to the ground
     # (grounded), which the calculator's rows cannot know: they read its
     # Ground immunity. So each such Pokemon whose foes can bring it down
@@ -7230,7 +7293,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "base_weather": calc.CALC_WEATHER.get(weather, weather) if weather else None,
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
-            "foresight_twin": foresight_twin, "ground_twin": ground_twin,
+            "foresight_twin": foresight_twin, "ground_twin": ground_twin, "miracle_twin": miracle_twin,
             "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
             "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo}
 

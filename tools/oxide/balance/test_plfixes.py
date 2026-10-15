@@ -4015,6 +4015,28 @@ def wring_out_checks():
     return [("the readings' Wring Out hits by its target's HP left", ok, f"full HP {full}, half HP {half}")]
 
 
+def miracle_eye_checks():
+    """Miracle Eye in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Kadabra's Psybeam cannot touch the
+    player's Poochyena until its Miracle Eye lands, and then hits from the
+    Poochyena's twin's row without Dark."""
+    from .test_fightai import battle
+    b = battle([("Kadabra", 30, "Synchronize", ["Miracle Eye", "Psybeam"])], [("Poochyena", 30, "Run Away", ["Bite"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    kad, poo = b.b.cur(), b.p.cur()
+    poo.hp = poo.maxhp = 100000
+    beam = fs.move("Psybeam")
+    pl.use_move(b, kad, beam, poo, True)
+    before = poo.maxhp - poo.hp
+    pl.use_move(b, kad, fs.move("Miracle Eye"), poo, True)
+    pl.use_move(b, kad, beam, poo, True)
+    after = poo.maxhp - poo.hp - before
+    twin = (b.st.get("miracle_twin") or {}).get(poo.key)
+    ok = before == 0 and after > 0 and twin is not None
+    return [("the readings' Miracle Eye lets a Psychic move hit a Dark type", ok,
+             f"Psybeam dealt {before} before and {after} after; the twin {twin}")]
+
+
 def main():
     results = []
 
@@ -4519,6 +4541,7 @@ def main():
     results += row_neutral_checks()
     results += refresh_checks()
     results += wring_out_checks()
+    results += miracle_eye_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
