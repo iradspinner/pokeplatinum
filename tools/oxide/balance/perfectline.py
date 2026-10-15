@@ -580,6 +580,8 @@ def crash(b, att, dfn, mv):
 def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
     b.hits_landed = False                # a move of several hits that land_hits landed
+    if mv.effect == "BIDE" and not fs.bide_releases(att, mv):
+        return                           # Bide starts, stores, or has nothing to give back (fightsim.bide_releases)
     if not dfn.alive():
         fs.rollout_break(att, mv)        # no target: a Rollout run ends (fightsim.rollout_break)
         return
@@ -781,6 +783,8 @@ def attack(b, att, mv, dfn, first):
         b.last_dealt = dealt
         fs.berry_check(dfn, b)
         dfn.hit_this_turn = (mv.cat, dealt)
+        if dfn.bide:
+            fs.bide_store(dfn, dealt)        # a Bide user stores what it took (fightsim.bide_store)
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
     _after_attack(b, att, mv, dfn, first, dealt, trainer)
@@ -1252,7 +1256,7 @@ def mon_key(m):
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
     if m.rare:
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
-        key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.power_trick,
+        key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.power_trick, m.bide, m.bide_damage,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key

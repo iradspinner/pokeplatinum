@@ -4451,6 +4451,37 @@ def power_trick_checks():
              f"(Rollout, Tackle into it) before {before}, after {after}")]
 
 
+def bide_checks():
+    """Bide in the readings' battle on the calculator's real rows (approved
+    2026-10-14): a trainer's Miltank's Bide stores the two Tackles the
+    player's Bibarel lands and gives back twice their HP, where before it
+    did nothing."""
+    from .test_fightai import battle
+
+    class Sure(pl.RunDice):
+        """Run dice where nobody misses or lands a critical hit."""
+        def bad(self, kind, p):
+            return False
+
+        def good(self, p, kind=None):
+            return False
+    b = battle([("Miltank", 30, "Thick Fat", ["Bide"])], [("Bibarel", 30, "Unaware", ["Tackle"])])
+    b.dice, b.rng = Sure(random.Random(1), True), random.Random(1)
+    mil, bib = b.b.cur(), b.p.cur()
+    mil.hp = mil.maxhp = bib.hp = bib.maxhp = 100000
+    bide, tackle = fs.move("Bide"), fs.move("Tackle")
+    taken = 0
+    for turn in range(3):
+        pl.use_move(b, mil, mil.lock[0] if mil.lock else bide, bib, True)
+        if turn < 2:
+            before = mil.hp
+            pl.use_move(b, bib, tackle, mil, False)
+            taken += before - mil.hp
+    given = bib.maxhp - bib.hp
+    ok = taken > 0 and given == 2 * taken
+    return [("the readings' Bide gives back twice what it stored", ok, f"stored {taken}, gave back {given}")]
+
+
 def main():
     results = []
 
@@ -4976,6 +5007,7 @@ def main():
     results += me_first_checks()
     results += nature_power_checks()
     results += power_trick_checks()
+    results += bide_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

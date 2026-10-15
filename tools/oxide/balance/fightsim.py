@@ -451,6 +451,11 @@ class Mon:
     # swapped (trick_key); a second use puts them back. Cleared when it
     # leaves, and handed on by Baton Pass.
     power_trick = False
+    # Bide (VOLATILE_CONDITION_BIDE): the uses of storing it has left (2 as
+    # it starts), and the HP the moves aimed at it have taken meanwhile
+    # (storedDamage); cleared when it leaves.
+    bide = 0
+    bide_damage = 0
     # Me First: the move it took is running at half again its damage
     # (moveEffectsData.meFirst); cleared as that move ends (use_move).
     me_first = False
@@ -503,6 +508,7 @@ class Mon:
             self.throat_chop = self.charged = self.locked_on = 0
             self.minimized = self.foresight = self.smacked = self.miracle_eye = self.water_sport = False
             self.power_trick = False
+            self.bide = self.bide_damage = 0
             self.lock_on_by = self.mirror = None
             if self.mimicked is not None:
                 # The party record still holds Mimic, with the PP its use left
@@ -2091,6 +2097,8 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
         dfn.hp -= dealt
         total += dealt
         dfn.hit_this_turn = (mv.cat, dealt)
+        if dfn.bide:
+            bide_store(dfn, dealt)       # a Bide user stores what it took
         if dealt <= 0:
             continue
         berry = resist_berry(b, dfn, mv)
@@ -2475,10 +2483,54 @@ FIXED_DAMAGE = {"40_DAMAGE_FLAT", "20_DAMAGE_FLAT", "LEVEL_DAMAGE_FLAT", "RANDOM
                 "HALVE_HP", "QUARTER_HP", "SET_HP_EQUAL_TO_USER", "FINAL_GAMBIT"}
 
 
+def bide_ends(att):
+    """A Bide ends (Battler_UnlockMoveChoice clears VOLATILE_CONDITION_BIDE
+    with the lock), its stored HP gone."""
+    att.bide = att.bide_damage = 0
+    if att.lock is not None and att.lock[0].effect == "BIDE":
+        att.lock = None
+
+
+def bide_releases(att, mv):
+    """Bide (effect script 26, subscript_bide_start, the status check's
+    CHECK_STATUS_STATE_BIDE and subscript_bide_end): its first use locks its
+    user in for two more turns (a lock its turn's end counts down, so no
+    PP is paid then) and starts storing from 0; the second stores on; the
+    third, once the storing has run out, gives back twice the HP the moves
+    aimed at it took meanwhile (bide_store), as fixed damage past the type
+    chart (its range is its user's, so BattleControllerPlayer_CheckTypeChart
+    leaves it alone), at its foe; with nothing stored it fails. A turn its
+    user cannot act ends it (could_not_act), as the subscripts that stop a
+    move unlock it; a sleeping user's Bide, which the engine holds until it
+    wakes, ends too. Whether this use hits, the damage in att.bide_release.
+    Until 2026-10-15 Bide did nothing (Ian approved the fix)."""
+    if not att.bide:
+        att.bide, att.bide_damage, att.rare = 2, 0, True
+        att.lock = (mv, 3)
+        return False
+    att.bide -= 1
+    if att.bide:
+        return False                 # storing energy
+    stored = att.bide_damage
+    bide_ends(att)
+    att.bide_release = 2 * stored
+    return stored > 0
+
+
+def bide_store(dfn, dealt):
+    """A move's hit on a Bide user adds the HP it took to the store
+    (storedDamage, in BattleControllerPlayer_UpdateHP); a Substitute's hit
+    adds nothing."""
+    if dfn.bide:
+        dfn.bide_damage += dealt
+
+
 def fixed_damage(b, att, dfn, mv, tenths=10):
     """A fixed-damage move's damage, 0 when it fails or the target's type is
     immune, or None for any other move. tenths is Psywave's roll, 5 to 15
     (`Random 10, 5`, then level times the roll over ten, at least 1)."""
+    if mv.effect == "BIDE":
+        return att.bide_release      # twice what it stored, past the type chart (bide_releases)
     if mv.effect not in FIXED_DAMAGE:
         return None
     if effectiveness(b.st["chart"], mv.type, chart_types(dfn, mv)) == 0:
@@ -2795,6 +2847,8 @@ def could_not_act(b, att, mv, dfn, targets=None):
     record is cleared."""
     att.last = None
     att.protect_run = 0
+    if att.bide:
+        bide_ends(att)               # the subscript that stopped it unlocked its user, its Bide with it
     if b.st.get("copycat"):
         b.last_move = None           # no attack message: movePrev is MOVE_NONE
     if att.rollout or att.lock is not None:
@@ -3068,6 +3122,8 @@ def explode_first(b, att):
 def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
     b.hits_landed = False                # a move of several hits that land_hits landed
+    if mv.effect == "BIDE" and not bide_releases(att, mv):
+        return                   # Bide starts, stores, or has nothing to give back (bide_releases)
     if not dfn.alive():
         rollout_break(att, mv)           # no target (subscript_no_target)
         return
@@ -3243,6 +3299,8 @@ def attack(b, att, mv, dfn, first):
         dfn.hp -= dealt
         b.last_dealt = dealt
         dfn.hit_this_turn = (mv.cat, dealt)
+        if dfn.bide:
+            bide_store(dfn, dealt)       # a Bide user stores what it took
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
     _after_attack(b, att, mv, dfn, first, dealt)

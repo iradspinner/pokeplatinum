@@ -4623,6 +4623,37 @@ def check_power_trick(results):
     results.append(("Power Trick swaps its user's Attack and Defense through its twin", out == want, str(out)))
 
 
+def check_bide(results):
+    """Bide (approved 2026-10-14; effect script 26, CHECK_STATUS_STATE_BIDE,
+    subscript_bide_end): its first use locks its user in and starts
+    storing; the hits it takes over that turn and the next are stored; the
+    third use gives back twice the store, past the type chart, spending
+    PP only on the first; with nothing stored it fails; a turn its user
+    cannot act ends it; and a Protect stops the strike."""
+    def run(foe_types=("Normal",), hits=(True, True), stop=None, protect=False, turns=3):
+        b, p, foe = battle(["Bide"], ["Tackle"], {("b", "Tackle"): [15] * 16}, b_types=foe_types, hp=500)
+        b.rng = FixedDice(0.5)
+        p.ability = foe.ability = "Shell Armor"
+        bide, tackle = fs.move("Bide"), fs.move("Tackle")
+        for turn in range(turns):
+            if turn == 2 and protect:
+                foe.protecting = True
+            if turn == stop:
+                p.flinch = True
+            fs.use_move(b, p, p.lock[0] if p.lock else bide, foe, True)
+            if turn < 2 and hits[turn]:
+                fs.use_move(b, foe, tackle, p, False)
+        return 500 - foe.hp, p.pp["Bide"], p.bide, p.lock is not None
+    pp = fs.move("Bide").pp - 1
+    out = {"stored two hits": run(), "into a Ghost": run(("Ghost",)), "nothing stored": run(hits=(False, False)),
+           "a flinch on its second turn": run(stop=1, turns=2)[1:], "into a Protect": run(protect=True)}
+    want = {"stored two hits": (60, pp, 0, False), "into a Ghost": (60, pp, 0, False),
+            "nothing stored": (0, pp, 0, False), "a flinch on its second turn": (pp, 0, False),
+            "into a Protect": (0, pp, 0, False)}
+    results.append(("Bide stores two turns' hits and gives back twice", out == want,
+                    f"(damage given back, Bide's PP, the count left, still locked) {out}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4893,7 +4924,7 @@ def main():
                   check_water_sport, check_acrobatics, check_guard_swap,
                   check_power_swap, check_psycho_shift, check_memento,
                   check_sketch, check_me_first, check_nature_power,
-                  check_power_trick,
+                  check_power_trick, check_bide,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
