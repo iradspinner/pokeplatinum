@@ -151,7 +151,13 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               # (Ian approved the fix).
               "BOUNCE": "par",
               # Infernal Parade and Barb Barrage (effect scripts 321, 322).
-              "BURN_HIT_DOUBLE_POWER_ON_STATUS": "brn", "POISON_HIT_DOUBLE_POWER_ON_POISONED": "psn"}
+              "BURN_HIT_DOUBLE_POWER_ON_STATUS": "brn", "POISON_HIT_DOUBLE_POWER_ON_POISONED": "psn",
+              # Relic Song and Wicked Torque (effect script 301): sleep at the
+              # move's chance (10) through the sleep subscript, as a hit's
+              # status; Sheer Force leaves it (not on sSheerForceEffects).
+              # Until 2026-10-15 neither ever slept (Ian approved the fix).
+              # Relic Song's turn of Meloetta between its forms is not run.
+              "SLEEP_HIT": "slp"}
 FLINCH_HIT = {"FLINCH_HIT", "FLINCH_BURN_HIT", "FLINCH_PARALYZE_HIT", "FLINCH_FREEZE_HIT",
               "FLINCH_MINIMIZE_DOUBLE_HIT", "FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE",
               "UPPER_HAND",                       # at its 100%, as Fake Out's target flinches

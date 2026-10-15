@@ -5184,6 +5184,20 @@ def check_magic_room(results):
     results.append(("Magic Room holds every held item back for five turns", out == want, str(out)))
 
 
+def check_relic_song(results):
+    """Relic Song (approved 2026-10-14; effect script 301): its hit puts the
+    target to sleep at the move's chance, never through Shield Dust."""
+    out = {}
+    for value, ability in ((0.0, None), (0.5, None), (0.0, "Shield Dust")):
+        b, p, foe = battle(["Relic Song"], ["Tackle"], {("p", "Relic Song"): [10] * 16}, hp=500)
+        b.rng = FixedDice(value)
+        foe.ability = ability
+        fs.attack(b, p, fs.move("Relic Song"), foe, True)
+        out[(value, ability)] = foe.status
+    want = {(0.0, None): "slp", (0.5, None): None, (0.0, "Shield Dust"): None}
+    results.append(("Relic Song's hit puts its target to sleep at its chance", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5462,6 +5476,7 @@ def main():
                   check_dragon_tail, check_side_guards, check_heat_crash,
                   check_healing_wish, check_guard_split, check_power_split,
                   check_embargo, check_magic_room,
+                  check_relic_song,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

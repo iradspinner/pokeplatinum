@@ -4845,6 +4845,39 @@ def magic_room_checks():
              f"Ember's top roll {boosted} with Charcoal, {plain} in the room; Bibarel's Berry held back {bib.item_off}")]
 
 
+class Lucky8(Sure7):
+    """Batch 8's dice: as Sure7 (the top roll, no miss, no critical hit),
+    and every added effect at a chance lands, the player's own moves'
+    (good) and the trainer's on the player (lands_on_player)."""
+    def good(self, p, kind=None):
+        return p >= 1 or (p > 0 and kind not in (None, "crit"))
+
+    def lands_on_player(self, kind, p):
+        return p > 0
+
+
+def b8_battle(boss, player, dice=Sure7):
+    """A battle on the calculator's real rows with batch 8's dice."""
+    from .test_fightai import battle
+    b = battle(boss, player)
+    b.dice, b.rng = dice(random.Random(1), True), random.Random(1)
+    return b, b.b.cur(), b.p.cur()
+
+
+def relic_song_checks():
+    """Relic Song in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Meloetta's hit puts a trainer's
+    Geodude to sleep when its chance lands, and a Tackle does not."""
+    out = {}
+    for name in ("Relic Song", "Tackle"):
+        b, geo, mel = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Meloetta", 30, "Serene Grace", [name])],
+                                Lucky8)
+        pl.attack(b, mel, fs.move(name), geo, True)
+        out[name] = (geo.status, geo.hp < geo.maxhp)
+    ok = out == {"Relic Song": ("slp", True), "Tackle": (None, True)}
+    return [("the readings' Relic Song puts its target to sleep", ok, f"(status, hit) {out}")]
+
+
 def main():
     results = []
 
@@ -5393,6 +5426,7 @@ def main():
     results += power_split_checks()
     results += embargo_checks()
     results += magic_room_checks()
+    results += relic_song_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
