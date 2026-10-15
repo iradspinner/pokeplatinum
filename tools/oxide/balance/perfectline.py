@@ -1070,6 +1070,8 @@ def status_move(b, att, mv, dfn, first):
         fs.clangorous_soul(b, att)       # a third of its HP for all five stats (fightsim.clangorous_soul)
     elif e == "REMOVE_ALL_PP_ON_DEFEAT":
         att.grudge = att.rare = True     # Grudge, until its user next acts (fightsim.grudge)
+    elif e == "OCTOLOCK":
+        fs.octolock(att, dfn, mv)        # held, and a stage of each Defense at each turn's end (fightsim.octolock)
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in fs.HEAL_HALF:
@@ -1332,7 +1334,7 @@ def mon_key(m):
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
         key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.mud_sport, m.power_trick, m.bide, m.bide_damage,
                 m.transform_key, tuple(sorted(m.split.items())) if m.split else None, m.embargo, m.roomed, m.item_off,
-                m.grudge,
+                m.grudge, m.octolocked,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key

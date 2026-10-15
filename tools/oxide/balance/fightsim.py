@@ -532,6 +532,10 @@ class Mon:
     # Grudge (MOVE_EFFECT_GRUDGE): set by the move until its user next tries
     # to act or leaves, under the rare flag (grudge).
     grudge = False
+    # Octolock (OXIDE_MON_FLAG_OCTOLOCKED): held as Mean Look holds it, and
+    # a stage of Defense and Sp. Def lost at each turn's end, under the rare
+    # flag (octolock).
+    octolocked = False
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -599,6 +603,7 @@ class Mon:
                 self.pp["Mimic"] = pp
                 self.moves, self.mimicked = moves, None
             self.grudge = False          # Grudge goes with moveEffectsMask
+            self.octolocked = False      # and Octolock with oxideFlags
             self.rare = False
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
@@ -4316,6 +4321,33 @@ def swap_stages(att, dfn, stats):
         att.stages[k], dfn.stages[k] = dfn.stages[k], att.stages[k]
 
 
+def octolock(att, dfn, mv):
+    """Octolock (effect script 410, subscript_octolock), once Protect and
+    the accuracy check have let it through: it fails on a target already
+    octolocked or behind a Substitute an Infiltrator does not pass;
+    otherwise the target is held as Mean Look holds it, by its user until
+    the user leaves (trapped_by, so a Ghost type may still switch), and
+    marked, so it loses a stage of Defense and one of Sp. Def at each
+    turn's end (octolock_turn). A Baton Pass hands both on, from either
+    side (baton_state, switch_in). Until 2026-10-15 it did nothing (Ian
+    approved the fix)."""
+    if dfn.octolocked or sub_blocks(att, dfn, mv):
+        return
+    dfn.trapped_by = att.key
+    dfn.octolocked = dfn.rare = True
+
+
+def octolock_turn(b, side, m):
+    """An octolocked Pokemon's turn's end (MON_COND_CHECK_STATE_OCTOLOCK,
+    after binding, subscript_octolock_turn): a stage of Defense and then
+    one of Sp. Def lost, its Octolock user standing as the attacker, so the
+    blockers, Mist, Simple, Defiant and Mirror Armor act as on a move's
+    drops (lower_stats)."""
+    foes = b.b if side is b.p else b.p
+    src = next((f for f in foes.on_field() if f.key == m.trapped_by), None)
+    lower_stats(b, src, m, {"def": -1, "spd": -1})
+
+
 def heal_pulse(att, dfn, mv):
     """Heal Pulse (effect script 379, subscript_heal_pulse): it fails on a
     target under Heal Block or behind a Substitute an Infiltrator does not
@@ -6533,6 +6565,8 @@ def status_move(b, att, mv, dfn, first):
         clangorous_soul(b, att)
     elif e == "REMOVE_ALL_PP_ON_DEFEAT":
         att.grudge = att.rare = True     # Grudge, until its user next acts (grudge)
+    elif e == "OCTOLOCK":
+        octolock(att, dfn, mv)
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in HEAL_HALF:
@@ -6887,12 +6921,14 @@ def baton_state(mon):
     Everything else (Taunt, Encore, Disable, Torment, Yawn, a bind, love,
     Salt Cure, Stockpile, Imprison) stays behind."""
     return {"stages": dict(mon.stages), "crit_stage": mon.crit_stage, "trapped_by": mon.trapped_by,
+            "octolocked": mon.octolocked,
             "confused": mon.confused, "cursed": mon.cursed, "sub": mon.sub, "seeded": mon.seeded,
             "perish": mon.perish, "ingrained": mon.ingrained, "aqua_ring": mon.aqua_ring,
             "heal_block": mon.heal_block, "magnet_rise": mon.magnet_rise,
             "locked_on": mon.locked_on, "lock_on_by": mon.lock_on_by, "water_sport": mon.water_sport,
             "mud_sport": mon.mud_sport, "power_trick": mon.power_trick, "embargo": mon.embargo,
-            "rare": bool(mon.locked_on or mon.water_sport or mon.mud_sport or mon.power_trick or mon.embargo),
+            "rare": bool(mon.locked_on or mon.water_sport or mon.mud_sport or mon.power_trick or mon.embargo
+                         or mon.octolocked),
             "suppressed": getattr(mon, "suppressed", False)}
 
 
@@ -6929,8 +6965,11 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
         for foe in (b.b if side is b.p else b.p).mons:
             if foe.trapped_by == leaving.key:
                 # A Baton Pass keeps a foe held by its user (the Mean Look
-                # clearing is skipped under SYSCTL_BATON_PASS).
+                # clearing is skipped under SYSCTL_BATON_PASS), an
+                # Octolock's with it; otherwise its Octolock ends too.
                 foe.trapped_by = None if passed is None else side.mons[index].key
+                if passed is None and foe.octolocked:
+                    foe.octolocked = False
             if leaving.imprisoning and foe.sealed:
                 foe.sealed = frozenset()     # the Imprison ends with its user (moveEffectsMask cleared)
             if foe.bound and getattr(foe, "bound_by", None) == leaving.key:
@@ -7307,6 +7346,8 @@ def _end_of_turn_mon(b, side, m):
             hurt(b, m, engine_divide(m.maxhp, 6 if binding_band(b, m) else 8))
         if battle_over(b):
             return False
+    if m.octolocked and m.alive():
+        octolock_turn(b, side, m)
     # Salt Cure (MON_COND_CHECK_STATE_SALT_CURE, after binding): an eighth
     # of maximum HP, a quarter for a Water or Steel type; Magic Guard is spared.
     if m.alive() and getattr(m, "salted", False) and m.ability != "Magic Guard":

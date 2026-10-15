@@ -5084,6 +5084,18 @@ def grudge_checks():
     return [("the readings' Grudge empties the knockout move's PP", ok,
              f"Bibarel standing {bib.alive()}, the Geodude's Tackle PP {geo.pp['Tackle']}")]
 
+def octolock_checks():
+    """Octolock in a whole turn of the readings' battle on the calculator's
+    real rows (approved 2026-10-14): the player's Bibarel's Octolock holds
+    a trainer's Geodude, which cannot switch, and at the turn's end it
+    loses a stage of Defense and of Sp. Def."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"]), ("Onix", 30, "Sturdy", ["Tackle"])],
+                            [("Bibarel", 30, "Unaware", ["Octolock"])])
+    pl._turn(b, ("move", fs.move("Octolock")), ("move", fs.move("Tackle")))
+    got = (fs.trapped(b, geo), geo.stages["def"], geo.stages["spd"])
+    return [("the readings' Octolock holds its target and lowers its Defenses", got == (True, -1, -1),
+             f"(trapped, Defense, Sp. Def) {got}")]
+
 def main():
     results = []
 
@@ -5647,6 +5659,7 @@ def main():
     results += heal_pulse_checks()
     results += lunar_dance_checks()
     results += grudge_checks()
+    results += octolock_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

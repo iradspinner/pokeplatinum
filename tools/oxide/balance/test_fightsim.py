@@ -5432,6 +5432,32 @@ def check_grudge(results):
     want = {"knocked out": (False, 0), "standing": (True, full - 1), "moved since": (False, full - 1)}
     results.append(("Grudge empties the PP of the move that knocks its user out", out == want, str(out)))
 
+def check_octolock(results):
+    """Octolock (approved 2026-10-14; effect script 410): it holds its
+    target as Mean Look does and costs it a stage of Defense and of Sp. Def
+    at each turn's end; a second one and one into a Substitute fail; its
+    user leaving ends both."""
+    out = {}
+    b, p, foe = battle(["Octolock"], ["Tackle"], {})
+    b.rng = FixedDice(0.5)
+    mate = fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p")
+    b.p.mons.append(mate)
+    fs.status_move(b, p, fs.move("Octolock"), foe, True)
+    out["held"] = (foe.trapped_by, foe.octolocked, fs.trapped(b, foe))
+    fs.end_of_turn(b)
+    fs.status_move(b, p, fs.move("Octolock"), foe, True)
+    fs.end_of_turn(b)
+    out["two turn ends"] = (foe.stages["def"], foe.stages["spd"])
+    fs.switch_in(b, b.p, 1)
+    out["user gone"] = (foe.trapped_by, foe.octolocked)
+    b, p, foe = battle(["Octolock"], ["Tackle"], {})
+    foe.sub = 30
+    fs.status_move(b, p, fs.move("Octolock"), foe, True)
+    out["Substitute"] = (foe.trapped_by, foe.octolocked)
+    want = {"held": ("p0", True, True), "two turn ends": (-2, -2), "user gone": (None, False),
+            "Substitute": (None, False)}
+    results.append(("Octolock holds its target and lowers both Defenses each turn", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5715,7 +5741,7 @@ def main():
                   check_poltergeist, check_belch, check_first_impression,
                   check_axe_kick, check_always_critical,
                   check_clangorous_soul, check_heart_swap, check_heal_pulse,
-                  check_lunar_dance, check_grudge,
+                  check_lunar_dance, check_grudge, check_octolock,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
