@@ -4024,6 +4024,39 @@ def _role_played(ff):
                 yield k, None, d
 
 
+@form_move("ENTRAINMENT")
+def entrainment(b, att, mv, dfn, pick):
+    """Entrainment (effect script 384, subscript_entrainment): once the move
+    lands, its standing target takes the user's ability, named, unless the
+    move cannot reach it, a Substitute stands in front of it, the user's
+    ability refuses to be passed on, the target's cannot be replaced, is
+    Truant or is the user's already (BtlCmd_CheckAbilityChange's entrainment
+    kind), or the target holds an Ability Shield. A target given Truant
+    loafs on its next turn (set_ability). Its rows then come from its twin
+    for that ability (form_key). Until 2026-10-14 Entrainment did nothing
+    (Ian approved the fix)."""
+    a, d = raw_ability(att), raw_ability(dfn)
+    if (not dfn.alive() or out_of_reach(att, dfn, mv) or sub_blocks(att, dfn, mv) or refuses(a, "entrain")
+            or refuses(d, "suppress") or d in ("Truant", a) or dfn.item == "Ability Shield"):
+        return False
+    set_ability(b, dfn, a, acted=getattr(dfn, "acted_turn", None) == b.turn)
+    return True
+
+
+@form_change
+def _entrained(ff):
+    """Entrainment: any foe of its user whose ability can be replaced may
+    take the user's."""
+    for k in ff.keys():
+        a = ff.ability(k)
+        if not any(m.effect == "ENTRAINMENT" for m in ff.moves(k)) or refuses(a, "entrain"):
+            continue
+        for f in ff.foes(k):
+            d = ff.ability(f)
+            if not refuses(d, "suppress") and d not in ("Truant", a) and ff.pokemon[f].get("item") != "Ability Shield":
+                yield f, None, a
+
+
 # The type Camouflage gives on each battle terrain (data/terrain/to_type.h,
 # sTerrainCamouflageType); every terrain after the bridge's (the Elite
 # Four's rooms, the Distortion World) counts as the special one, Normal.

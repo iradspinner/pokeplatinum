@@ -1773,6 +1773,43 @@ def check_role_play(results):
                     f"(its ability, named, the target's named, Earthquake on it) {copied}; after leaving {back}; {got}"))
 
 
+def check_entrainment(results):
+    """Entrainment (approved 2026-10-14; subscript_entrainment): its target
+    takes the user's Static, named, and its Levitate is gone from its rows
+    (its blank twin's), so Earthquake reaches it; nothing through a
+    Substitute, into a Truant target, into one that has the ability
+    already, from a Wonder Guard user, or into an Ability Shield. A Truant
+    given to a target that has not moved yet this turn lets it move now
+    and makes it loaf on the next."""
+    def entrain(own="Static", theirs="Levitate", sub=0, foe_item=None):
+        rows = {("p", "Earthquake"): [0] * 16, ("b", "Tackle"): [10] * 16}
+        b, p, foe = battle(["Entrainment", "Earthquake"], ["Tackle"], rows)
+        p.ability, foe.ability, foe.sub, foe.item = own, theirs, sub, foe_item
+        b.st["form_twin"] = {"b0.0": {"ability": "Levitate", "twins": {(None, None): "b0.0#ng"}}}
+        b.st["rows"][(None, "p0", "b0.0#ng")] = {"moves": {"Earthquake": {"rolls": [30] * 16}}}
+        fs.use_move(b, p, fs.move("Entrainment"), foe, True)
+        return b, p, foe
+    b, p, foe = entrain()
+    given = (foe.ability, foe.revealed, b.damage(p, foe, fs.move("Earthquake"), roll=0))
+    foe.reset_volatile()
+    back = foe.ability
+    got = {"a Substitute": entrain(sub=25)[2].ability, "a Truant target": entrain(theirs="Truant")[2].ability,
+           "the same ability": entrain(theirs="Static")[2].ability, "Wonder Guard": entrain(own="Wonder Guard")[2].ability,
+           "an Ability Shield": entrain(foe_item="Ability Shield")[2].ability}
+    want = {"a Substitute": "Levitate", "a Truant target": "Truant", "the same ability": "Static",
+            "Wonder Guard": "Levitate", "an Ability Shield": "Levitate"}
+    b, p, foe = entrain(own="Truant")
+    hp = []
+    for _ in range(3):
+        fs.use_move(b, foe, fs.move("Tackle"), p, False)
+        hp.append(p.hp)
+        fs.end_of_turn(b)
+    ok = given == ("Static", "Static", 30) and back == "Levitate" and got == want and hp == [90, 90, 80]
+    results.append(("Entrainment gives its target the user's ability", ok,
+                    f"(target's ability, named, Earthquake on it) {given}; after leaving {back}; {got}; "
+                    f"the user's HP as a target given Truant moves three turns {hp}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3059,8 +3096,8 @@ def main():
                   check_roost, check_protean, check_form_twins, check_trace, check_mummy,
                   check_wandering_spirit, check_color_change, check_forecast, check_soak,
                   check_conversion, check_conversion2, check_camouflage, check_burn_up,
-                  check_double_shock, check_skill_swap, check_role_play, check_magic_guard,
-                  check_liquid_ooze,
+                  check_double_shock, check_skill_swap, check_role_play, check_entrainment,
+                  check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

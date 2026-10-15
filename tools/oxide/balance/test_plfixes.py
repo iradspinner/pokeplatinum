@@ -2964,6 +2964,25 @@ def role_play_checks():
              f"twins {twins}; Earthquake before {before}; after Role Play (its ability, Earthquake) {after}")]
 
 
+def entrainment_checks():
+    """Entrainment on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a trainer's Bronzor on its twin for
+    a Swarm Leavanny's ability; after the Leavanny's Entrainment its
+    Earthquake reaches the Bronzor, which its Levitate had kept off."""
+    from .test_fightai import battle
+    b = battle([("Bronzor", 30, "Levitate", ["Confusion"])], [("Leavanny", 30, "Swarm", ["Entrainment", "Earthquake"])])
+    bronzor, lea = b.b.cur(), b.p.cur()
+    quake = fs.move("Earthquake")
+    twins = sorted(((b.st.get("form_twin") or {}).get(bronzor.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, lea, bronzor, quake, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pl.use_move(b, lea, fs.move("Entrainment"), bronzor, True)
+    after = (bronzor.ability, pl.damage_of(b, lea, bronzor, quake, False, True))
+    ok = twins == [(None, "Swarm")] and before == 0 and after[0] == "Swarm" and after[1] > 0
+    return [("Entrainment: a Bronzor given Swarm loses Levitate on its twin's rows", ok,
+             f"twins {twins}; Earthquake before {before}; after Entrainment (its ability, Earthquake) {after}")]
+
+
 def calc_terrain(tr_ids):
     from . import calc
     return getattr(calc, "fight_terrain", lambda _ids: None)(tr_ids)
@@ -3492,6 +3511,7 @@ def main():
     results += double_shock_checks()
     results += skill_swap_checks()
     results += role_play_checks()
+    results += entrainment_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
