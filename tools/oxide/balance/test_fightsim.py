@@ -1836,6 +1836,40 @@ def check_worry_seed(results):
                     f"(ability, named, status, can sleep, Earthquake on it) {took}; {got}"))
 
 
+def check_gastro_acid(results):
+    """Gastro Acid (approved 2026-10-14; subscript_suppress_target_ability):
+    a Levitate target's ability reads as none, unnamed, so the trainer's AI
+    reads none either, and its blank twin's rows let Earthquake reach it;
+    nothing through a Substitute, into Multitype or an Ability Shield;
+    leaving brings Levitate back. On a Neutralizing Gas holder it ends the
+    gas, and the user's own ability comes back as the move ends."""
+    def acid(theirs="Levitate", sub=0, item=None, own=None):
+        rows = {("p", "Earthquake"): [0] * 16}
+        b, p, foe = battle(["Gastro Acid", "Earthquake"], ["Tackle"], rows)
+        b.st["gas"] = theirs == "Neutralizing Gas"
+        p.ability, foe.ability, foe.sub, foe.item = own, theirs, sub, item
+        if b.st["gas"]:
+            fs.gas_update(b)
+        b.st["form_twin"] = {"b0.0": {"ability": "Levitate", "twins": {(None, None): "b0.0#ng"}}}
+        b.st["rows"][(None, "p0", "b0.0#ng")] = {"moves": {"Earthquake": {"rolls": [30] * 16}}}
+        fs.use_move(b, p, fs.move("Gastro Acid"), foe, True)
+        return b, p, foe
+    b, p, foe = acid()
+    gone = (foe.ability, foe.suppressed, foe.revealed, fightai.ability_of(b, p, foe),
+            b.damage(p, foe, fs.move("Earthquake"), roll=0))
+    foe.reset_volatile()
+    back = (foe.ability, foe.suppressed)
+    got = {"a Substitute": acid(sub=25)[2].ability, "Multitype": acid(theirs="Multitype")[2].ability,
+           "an Ability Shield": acid(item="Ability Shield")[2].ability}
+    want = {"a Substitute": "Levitate", "Multitype": "Multitype", "an Ability Shield": "Levitate"}
+    b, p, foe = acid(theirs="Neutralizing Gas", own="Static")
+    gas = (foe.ability, fs.gas_on(b), p.ability)
+    ok = gone == (None, True, None, None, 30) and back == ("Levitate", False) and got == want and gas == (None, False, "Static")
+    results.append(("Gastro Acid suppresses its target's ability until it leaves", ok,
+                    f"(ability, suppressed, named, the AI's read, Earthquake on it) {gone}; after leaving {back}; {got}; "
+                    f"on a gas holder (its ability, gas on, the user's ability) {gas}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3123,7 +3157,7 @@ def main():
                   check_wandering_spirit, check_color_change, check_forecast, check_soak,
                   check_conversion, check_conversion2, check_camouflage, check_burn_up,
                   check_double_shock, check_skill_swap, check_role_play, check_entrainment,
-                  check_worry_seed, check_magic_guard, check_liquid_ooze,
+                  check_worry_seed, check_gastro_acid, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

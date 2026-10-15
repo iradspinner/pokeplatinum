@@ -4090,6 +4090,38 @@ def _worried(ff):
                 yield f, None, "Insomnia"
 
 
+@form_move("SUPRESS_ABILITY")
+def gastro_acid(b, att, mv, dfn, pick):
+    """Gastro Acid (effect script 239, subscript_suppress_target_ability):
+    once the move lands on its standing target, with no Substitute in front
+    of it and not in the air or underground, the target's ability reads as
+    none until it leaves (suppress), unless it is suppressed already, its
+    ability cannot be suppressed, or it holds an Ability Shield. Nothing
+    names the ability. A Neutralizing Gas holder's gas stops with it, as the
+    move's end then finds (gas_update). Its rows then come from its
+    ability-blank twin (form_key). Until 2026-10-14 Gastro Acid did nothing
+    (Ian approved the fix)."""
+    if not dfn.alive() or out_of_reach(att, dfn, mv) or sub_blocks(att, dfn, mv):
+        return False
+    return suppress(b, dfn)
+
+
+@form_change
+def _suppressed(ff):
+    """Gastro Acid: any foe of its user whose ability can be suppressed may
+    lose it."""
+    for k in ff.keys():
+        if not any(m.effect in SUPPRESSES for m in ff.moves(k)):
+            continue
+        for f in ff.foes(k):
+            if not refuses(ff.ability(f), "suppress") and ff.pokemon[f].get("item") != "Ability Shield":
+                yield f, None, None
+
+
+# The moves that suppress their target's ability: Gastro Acid.
+SUPPRESSES = frozenset({"SUPRESS_ABILITY"})
+
+
 # The type Camouflage gives on each battle terrain (data/terrain/to_type.h,
 # sTerrainCamouflageType); every terrain after the bridge's (the Elite
 # Four's rooms, the Distortion World) counts as the special one, Normal.
