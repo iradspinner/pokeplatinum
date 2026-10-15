@@ -5024,6 +5024,31 @@ def check_side_guards(results):
     results.append(("the side guards stop their kind of move for the turn", out == want, str(out)))
 
 
+def check_heat_crash(results):
+    """Heat Crash (approved 2026-10-14; effect script 292): its power by the
+    target's weight over the user's, as Heavy Slam's (Heavy Metal doubling a
+    weight, Light Metal halving it, a Mold Breaker passing the target's),
+    and its hit read from the row prepare() makes at that power, where the
+    calculator gives Heat Crash itself no row."""
+    blob = {"poks": {"Big": {"weightkg": 100.0}, "Small": {"weightkg": 19.0}, "Mid": {"weightkg": 30.0},
+                     "Heavy": {"weightkg": 60.0}}}
+    out = {}
+    for user, target, ua, ta in (("Big", "Small", None, None), ("Big", "Mid", None, None), ("Big", "Heavy", None, None),
+                                 ("Big", "Small", None, "Heavy Metal"), ("Big", "Small", "Mold Breaker", "Heavy Metal"),
+                                 ("Big", "Mid", "Heavy Metal", None), ("Small", "Big", None, None)):
+        out[(user, target, ua, ta)] = fs.weight_power(blob, {"species": user, "ability": ua},
+                                                      {"species": target, "ability": ta})
+    b, p, foe = battle(["Heat Crash"], ["Tackle"], {})
+    b.st["rows"][(None, "p0", "b0.0")]["moves"]["Heat Crash"] = {"error": "damage is not a number"}
+    b.st["rows"][(None, "p0#hc80", "b0.0")] = {"moves": {"Heat Crash": {"rolls": [30] * 16}}}
+    b.st["heat_crash"] = {("p0", "b0.0"): 80}
+    out["its hit"] = (b.damage(p, foe, fs.move("Heat Crash"), roll=0), p.key)
+    want = {("Big", "Small", None, None): 120, ("Big", "Mid", None, None): 80, ("Big", "Heavy", None, None): 40,
+            ("Big", "Small", None, "Heavy Metal"): 60, ("Big", "Small", "Mold Breaker", "Heavy Metal"): 120,
+            ("Big", "Mid", "Heavy Metal", None): 120, ("Small", "Big", None, None): 40, "its hit": (30, "p0")}
+    results.append(("Heat Crash hits at its weight power", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5299,7 +5324,7 @@ def main():
                   check_clear_smog, check_incinerate, check_life_dew,
                   check_mud_sport, check_punishment, check_sticky_web,
                   check_defog, check_strength_sap, check_parting_shot,
-                  check_dragon_tail, check_side_guards,
+                  check_dragon_tail, check_side_guards, check_heat_crash,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

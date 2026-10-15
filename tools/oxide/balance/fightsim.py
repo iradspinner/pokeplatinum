@@ -799,8 +799,27 @@ class Battle:
             return None
         got = r["moves"].get(mv.name)
         if not got or "error" in got:
-            return None
+            # Heat Crash has no row of its own (the calculator gives it no
+            # power), only its power rows (heat_crash_rolls); looked for
+            # only on this path, which other moves never reach.
+            return self.heat_crash_rolls(att, dfn, mv) if mv.name == "Heat Crash" else None
         return got["rolls"]
+
+    def heat_crash_rolls(self, att, dfn, mv):
+        """Heat Crash's rolls from the row prepare() made at the power the two
+        Pokemon's weights give it ("<key>#hc<power>", weight_power), or None
+        where it made none (a twin's rows, a fight without the move)."""
+        power = (self.st.get("heat_crash") or {}).get((att.key, dfn.key))
+        if power is None:
+            return None
+        key = att.key
+        att.key = f"{key}#hc{power}"
+        try:
+            r = self.row(att, dfn, mv)
+        finally:
+            att.key = key
+        got = r["moves"].get(mv.name) if r else None
+        return got["rolls"] if got and "error" not in got else None
 
     def speed(self, mon):
         """Speed as BattleSystem_CompareBattlerSpeed works it, in whole
@@ -2268,6 +2287,27 @@ def _base_friendship():
             with open(path, encoding="utf-8") as fh:
                 out[re.sub(r"[^a-z0-9]", "", folder.lower())] = json.load(fh).get("base_friendship")
     return out
+
+
+def weight_power(blob, att, dfn):
+    """Heavy Slam's and Heat Crash's power from the two Pokemon's records
+    (BtlCmd_CalcHeavySlamPower): the target's weight over the user's, each
+    in tenths of a kilogram through Battler_Weight (Heavy Metal doubles a
+    weight, Light Metal halves it, the target's read past by a Mold Breaker,
+    and never below 0.1 kg), 120 power at a fifth or less, 100 at a
+    quarter, 80 at a third, 60 at a half, else 40."""
+    def weight(rec, own):
+        poks = blob["poks"].get(rec.get("species")) or {}
+        w = int(round((poks.get("weightkg") or 0) * 10))
+        ab = rec.get("ability")
+        if own or att.get("ability") != "Mold Breaker":
+            if ab == "Heavy Metal":
+                w *= 2
+            elif ab == "Light Metal":
+                w //= 2
+        return max(1, w)
+    ratio = weight(dfn, False) * 10000 // weight(att, True)
+    return 120 if ratio <= 2000 else 100 if ratio <= 2500 else 80 if ratio <= 3334 else 60 if ratio <= 5000 else 40
 
 
 def friendship_power(species):
@@ -7940,6 +7980,24 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                     for w in weathers:
                         for d in foes:
                             pairs.append([dk, d, ["Present"], w])
+    # Heat Crash's power is set by the two Pokemon's weights (weight_power), as
+    # Heavy Slam's is, which the calculator works out for Heavy Slam alone:
+    # it gives Heat Crash no power, so no row ("damage is not a number").
+    # So each Heat Crash user is asked once per power its foes' weights give
+    # it, each as its own attacker key ("<key>#hc<power>") against the foes
+    # that give that power, on either side (Battle.heat_crash_rolls). Until
+    # 2026-10-15 Heat Crash never dealt damage (Ian approved the fix).
+    heat_crash = {}
+    for k in list(pkeys) + list(qkeys) + list(bkeys):
+        if "Heat Crash" in moves.get(k, ()):
+            for d in (pkeys + qkeys if k in bkeys else bkeys):
+                power = weight_power(blob, pokemon[k], pokemon[d])
+                heat_crash[(k, d)] = power
+                dk = f"{k}#hc{power}"
+                pokemon.setdefault(dk, dict(pokemon[k], move_data={"Heat Crash": {
+                    "type": "Fire", "category": "Physical", "basePower": power}}))
+                for w in weathers:
+                    pairs.append([dk, d, ["Heat Crash"], w])
     # Spit Up's power is 100 for each stockpile it spends (spit_up_key), so the
     # calculator is asked once per count, each as its own attacker key
     # ("<key>#su<power>") carrying that power, against every foe it can meet,
@@ -8305,6 +8363,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
             "water_sport": any(move(m).effect == "HALVE_FIRE_DAMAGE" for mv in moves.values() for m in mv),
             "mud_sport": any(move(m).effect == "HALVE_ELECTRIC_DAMAGE" for mv in moves.values() for m in mv),
+            "heat_crash": heat_crash,
             "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo, "terrain": terrain}
 
 

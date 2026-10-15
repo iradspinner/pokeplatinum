@@ -4732,6 +4732,27 @@ def side_guard_checks():
     return [("the readings' Quick Guard stops a priority move", ok, f"Bibarel untouched {out}")]
 
 
+def heat_crash_checks():
+    """Heat Crash in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Torkoal's Heat Crash hits a
+    trainer's light Starly at 120 power and its heavy Onix at 40, and the
+    team search's rating of it reads the same rows."""
+    from . import plteam
+    b, sta, tor = b7_battle([("Starly", 30, "Keen Eye", ["Tackle"]), ("Onix", 30, "Sturdy", ["Tackle"])],
+                            [("Torkoal", 30, "White Smoke", ["Heat Crash"])])
+    onix = b.b.mons[1]
+    hc = fs.move("Heat Crash")
+    powers = (b.st["heat_crash"].get((tor.key, sta.key)), b.st["heat_crash"].get((tor.key, onix.key)))
+    hits = (pl.damage_of(b, tor, sta, hc, False, True), pl.damage_of(b, tor, onix, hc, False, True))
+    mine, _theirs, _speed = plteam.matchups(b.st, [tor.key], [sta.key, onix.key])
+    rated = mine.get((tor.key, "Heat Crash"))
+    hp = sta.hp
+    pl.attack(b, tor, hc, sta, True)
+    ok = powers == (120, 40) and all(h and h > 0 for h in hits) and sta.hp < hp and rated and rated[0] > 0
+    return [("the readings' Heat Crash hits at its weight power", ok,
+             f"powers {powers}, top rolls {hits}, Starly's HP {hp} to {sta.hp}, team search's shares {rated}")]
+
+
 def main():
     results = []
 
@@ -5274,6 +5295,7 @@ def main():
     results += parting_shot_checks()
     results += dragon_tail_checks()
     results += side_guard_checks()
+    results += heat_crash_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
