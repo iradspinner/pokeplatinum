@@ -5587,6 +5587,26 @@ def check_sky_drop(results):
             "Flying": 200, "Substitute": (None, None), "Snorlax": (None, None), "holder paralysed": (200, False)}
     results.append(("Sky Drop lifts its target for a turn and drops it", out == want, str(out)))
 
+
+# ---- batch 10: the follow-ups Ian approved on 2026-10-15 ----
+
+def check_substitute_hit(results):
+    """A hit on a Substitute gives the Pokemon behind it nothing, the hit
+    that breaks it included (approved 2026-10-15): the added effects ask
+    CheckSubstitute or Battler_SubstituteWasHit, which read
+    SELF_TURN_FLAG_SUBSTITUTE_HIT for the rest of the move. Nuzzle's sure
+    paralysis lands with no Substitute, and neither through one it leaves
+    standing nor through one it breaks."""
+    out = {}
+    for case, sub in (("none", 0), ("left standing", 50), ("broken", 5)):
+        b, p, foe = battle(["Nuzzle"], ["Tackle"], {("p", "Nuzzle"): [20] * 16})
+        b.rng = FixedDice(0.0)
+        foe.sub = sub
+        fs.attack(b, p, fs.move("Nuzzle"), foe, True)
+        out[case] = (foe.status, foe.sub, foe.hp)
+    want = {"none": ("par", 0, 70), "left standing": (None, 20, 100), "broken": (None, 0, 100)}
+    results.append(("a hit that breaks a Substitute gives no added effect", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5873,6 +5893,7 @@ def main():
                   check_lunar_dance, check_grudge, check_octolock,
                   check_aurora_veil, check_teatime, check_assist,
                   check_snatch, check_sky_drop,
+                  check_substitute_hit,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

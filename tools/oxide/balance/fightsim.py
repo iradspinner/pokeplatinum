@@ -810,6 +810,11 @@ class Battle:
     # (st["water_sport"], st["mud_sport"]), so the damage reads sport_half
     # only then; set as the battle is made and kept by its copies.
     sporty = False
+    # Whether the move being worked out has hit a Substitute, one it broke
+    # included (SELF_TURN_FLAG_SUBSTITUTE_HIT, which lasts the move): its
+    # added effects then reach nothing behind it (attack, _after_attack).
+    # Set again at each attack, so a copy made between moves needs none.
+    sub_hit = False
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -2243,7 +2248,7 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
         dmg = hit_damage(i, crits[i])
         if sub_blocks(att, dfn, mv):
             dfn.sub = max(0, dfn.sub - dmg)
-            sub_hit = True
+            sub_hit = b.sub_hit = True   # and the move's own effects after the hits (_after_attack)
             continue
         enduring = getattr(dfn, "enduring", False)
         on_sturdy = False
@@ -3433,6 +3438,7 @@ def explode_first(b, att):
 def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
     b.hits_landed = False                # a move of several hits that land_hits landed
+    b.sub_hit = False                    # a Substitute it has hit (Battle.sub_hit)
     if mv.effect == "BIDE" and not bide_releases(att, mv):
         return                   # Bide starts, stores, or has nothing to give back (bide_releases)
     if not dfn.alive():
@@ -3597,6 +3603,7 @@ def attack(b, att, mv, dfn, first):
     if sub_blocks(att, dfn, mv):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
+        b.sub_hit = True         # broken or not, nothing of the hit reaches the Pokemon behind it
     else:
         if mv.effect == "LEAVE_WITH_1_HP" and dmg >= dfn.hp:
             # False Swipe and Hold Back (effect script 101): a hit that would
@@ -3979,7 +3986,13 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         steal_item(att, dfn)             # a knockout too (MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE)
     if e in LATE_HIT:
         late_hit(b, att, dfn, mv, stripped, dealt)     # Fell Stinger's knockout, Anchor Shot's trap (late_hit)
-    if not dfn.alive() or sub_blocks(att, dfn, mv):
+    # A hit on a Substitute, even the one that broke it, sets off nothing in
+    # the Pokemon behind it: the added effects ask CheckSubstitute or
+    # Battler_SubstituteWasHit, which read SELF_TURN_FLAG_SUBSTITUTE_HIT for
+    # the rest of the move (b.sub_hit). Until 2026-10-15 the hit that broke
+    # one gave its added effect to the Pokemon behind it (Ian approved the
+    # fix).
+    if not dfn.alive() or b.sub_hit or sub_blocks(att, dfn, mv):
         return
     if e == "CLEAR_SMOG":
         clear_smog(dfn)              # every stage of a target the hit itself reached back to 0

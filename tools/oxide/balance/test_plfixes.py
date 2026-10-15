@@ -5168,6 +5168,26 @@ def sky_drop_checks():
     return [("the readings' Sky Drop lifts and then drops its target", ok,
              f"turn 1 (Geodude untouched, Bibarel untouched, Geodude held) {first}; turn 2 (both hit, held) {second}")]
 
+
+# ---- batch 10: the follow-ups Ian approved on 2026-10-15 ----
+
+def substitute_hit_checks():
+    """A hit that breaks a Substitute in the readings' battle on the
+    calculator's real rows (approved 2026-10-15): the player's Pikachu's
+    Nuzzle paralyses a trainer's Machop with no Substitute, and through a
+    1 HP Substitute it breaks leaves the Machop untouched and unparalysed
+    (SELF_TURN_FLAG_SUBSTITUTE_HIT lasts the move)."""
+    out = {}
+    for sub in (0, 1):
+        b, mach, pika = b8_battle([("Machop", 30, "Guts", ["Tackle"])], [("Pikachu", 30, "Static", ["Nuzzle"])],
+                                  Lucky8)
+        mach.sub = sub
+        pl.attack(b, pika, fs.move("Nuzzle"), mach, True)
+        out[sub] = (mach.status, mach.sub, mach.hp == mach.maxhp)
+    ok = out == {0: ("par", 0, False), 1: (None, 0, True)}
+    return [("the readings' hit that breaks a Substitute gives no added effect", ok,
+             f"(status, Substitute left, full HP) by Substitute {out}")]
+
 def main():
     results = []
 
@@ -5737,6 +5757,7 @@ def main():
     results += assist_checks()
     results += snatch_checks()
     results += sky_drop_checks()
+    results += substitute_hit_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

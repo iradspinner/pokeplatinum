@@ -599,6 +599,7 @@ def crash(b, att, dfn, mv):
 def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
     b.hits_landed = False                # a move of several hits that land_hits landed
+    b.sub_hit = False                    # a Substitute it has hit (fightsim.Battle.sub_hit)
     if mv.effect == "BIDE" and not fs.bide_releases(att, mv):
         return                           # Bide starts, stores, or has nothing to give back (fightsim.bide_releases)
     if not dfn.alive():
@@ -786,6 +787,7 @@ def attack(b, att, mv, dfn, first):
     if fs.sub_blocks(att, dfn, mv):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
+        b.sub_hit = True         # broken or not, nothing of the hit reaches the Pokemon behind it
     else:
         if mv.effect == "LEAVE_WITH_1_HP" and dmg >= dfn.hp:
             dmg = dfn.hp - 1     # False Swipe and Hold Back leave 1 HP, before Sturdy and the Sash
@@ -878,7 +880,9 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         fs.steal_item(att, dfn)  # the player's Thief and Covet only (fightsim.steal_item)
     if e in fs.LATE_HIT:
         fs.late_hit(b, att, dfn, mv, stripped, dealt)     # Fell Stinger's knockout, Anchor Shot's trap (fightsim.late_hit)
-    if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
+    # A hit on a Substitute, the one that broke it included, gives the
+    # Pokemon behind it nothing (fightsim._after_attack, b.sub_hit).
+    if not dfn.alive() or b.sub_hit or fs.sub_blocks(att, dfn, mv):
         return
     if e == "CLEAR_SMOG":
         fs.clear_smog(dfn)       # every stage of the target back to 0 (fightsim.clear_smog)
