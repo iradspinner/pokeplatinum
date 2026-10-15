@@ -4910,6 +4910,30 @@ def rematch_terrain_checks():
              f"(terrain, Nature Power's move, Earthquake rowed for the Ludicolo) {got}")]
 
 
+def borrowed_twin_checks():
+    """A borrowed move into a changed foe in the readings' battle on the
+    calculator's real rows (approved 2026-10-15): once the player's Machop
+    has Soaked a trainer's Pidgeotto, its Copycat of the Pidgeotto's Razor
+    Leaf and its Me First of the Razor Leaf the Pidgeotto has chosen both
+    hit the Water type it now is, super effectively, read from its twin's
+    row, where before they read its Normal and Flying row, which resists
+    Grass, at a quarter of that."""
+    out = {}
+    for name in ("Copycat", "Me First"):
+        b, pid, mach = b8_battle([("Pidgeotto", 30, "Keen Eye", ["Razor Leaf"])],
+                                 [("Machop", 30, "Guts", ["Copycat", "Me First", "Soak"])])
+        leaf = fs.move("Razor Leaf")
+        old = b.st["rows"][(None, "p0", pid.key)]["moves"]["Razor Leaf"]["rolls"][-1]
+        pl.status_move(b, mach, fs.move("Soak"), pid, True)
+        b.last_move, pid.chosen = leaf, leaf
+        hp = pid.hp
+        pl.use_move(b, mach, fs.move(name), pid, True)
+        out[name] = (pid.types, hp - pid.hp, old)
+    ok = all(t == ["Water"] and dealt >= 3 * old for t, dealt, old in out.values())
+    return [("the readings' Copycat and Me First hit a Soaked foe on its twin's row", ok,
+             f"(the Pidgeotto's types, HP taken, the old row's top roll) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -5958,6 +5982,7 @@ def main():
     results += ingrain_grounds_checks()
     results += fog_checks()
     results += rematch_terrain_checks()
+    results += borrowed_twin_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

@@ -5789,6 +5789,24 @@ def check_rematch_terrain(results):
     want = ("TERRAIN_PLAIN", "TERRAIN_PLAIN", {"acc": -1}, "Earthquake")
     results.append(("a rematch is fought on its first fight's terrain", out == want, str(out)))
 
+
+def check_borrowed_twins(results):
+    """The moves Copycat, Me First, Mimic, Mirror Move and Sketch borrow are
+    rowed against a foe's twins too (approved 2026-10-15): prepare() rows
+    the player's Copycat user's attacks into a trainer's Roost twin with
+    the trainer's Gust beside its own Karate Chop, and with its mate's Water
+    Gun, which Copycat can copy once the mate has used it; into the
+    trainer's own key it carried both already, or the foe's at least."""
+    st, pairs, _pokemon = prepared_jobs([("Pidgeotto", 30, "Keen Eye", ["Gust", "Roost"], None)],
+                                        [("Machop", 30, "Guts", ["Copycat", "Karate Chop"], None),
+                                         ("Bibarel", 30, "Unaware", ["Water Gun"], None)])
+    def rowed(d):
+        return sorted({m for a, dd, mv, _w in pairs if a == "p0" and dd == d for m in mv})
+    twin = st["roost_twin"]["b0.0"][0][0]
+    out = {"own key": rowed("b0.0"), "Roost twin": rowed(twin)}
+    want = {"own key": ["Gust", "Karate Chop", "Water Gun"], "Roost twin": ["Gust", "Karate Chop", "Water Gun"]}
+    results.append(("borrowed moves are rowed against a foe's twins", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -6077,7 +6095,7 @@ def main():
                   check_snatch, check_sky_drop,
                   check_substitute_hit, check_knock_off_first, check_taunt_before_confusion,
                   check_forced_out, check_charge_ends, check_ingrain_grounds, check_fog,
-                  check_rematch_terrain,
+                  check_rematch_terrain, check_borrowed_twins,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

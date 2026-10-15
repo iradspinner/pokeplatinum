@@ -8805,11 +8805,29 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             # trainer's rows carry its party's already (party_hits).
             mates = pkeys if k in pkeys else qkeys
             extra += [m for d in mates if d != k for m in hits(d)]
+        if k not in bkeys and any(move(m).effect == "USE_LAST_USED_MOVE" for m in moves[k]):
+            # Copycat copies the last move any Pokemon used (note_move), the
+            # move a Pokemon of its own side used before it came in among
+            # them, so the player's or a partner's user carries its own
+            # side's damaging moves too, as a trainer's rows carry its
+            # party's (party_hits). Until 2026-10-15 such a copy found no
+            # row and dealt nothing (Ian approved the fix).
+            extra += [m for d in pkeys + qkeys if d.split("~")[0] != k.split("~")[0] for m in hits(d)]
         if extra:
             borrowed[k] = list(dict.fromkeys(extra))
 
     def with_borrowed(k, mvs):
         return mvs + [m for m in borrowed.get(k, ()) if m not in mvs] if k in borrowed else mvs
+
+    # Every damaging move a Pokemon's rows carry: its own, a trainer's
+    # party's (party_hits), and the moves it can borrow (with_borrowed), so
+    # a move Copycat, Me First, Mimic, Mirror Move or Sketch takes is rowed
+    # against a foe's twins (and from the user's own twins) as against its
+    # own keys. Until 2026-10-15 the twins were rowed with a Pokemon's own
+    # moves alone, so a borrowed move into a Soaked, Roosting or gassed foe
+    # found no row and dealt nothing (Ian approved the fix).
+    def all_hits(k):
+        return with_borrowed(k, party_hits(k) if k in bkeys else hits(k))
     for w in weathers:
         for a in pkeys + qkeys:
             for d in bkeys:
@@ -8953,7 +8971,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             return t
 
         def hits_of(k):
-            return party_hits(k) if k in bkeys else hits(k)
+            return all_hits(k)
         seen = set()
 
         def row_twice(a, d, w):
@@ -9024,7 +9042,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             roost_twin.setdefault(k, []).append((t, tt))
             for w in weathers:
                 for d in foes:
-                    got = party_hits(d) if d in bkeys else hits(d)
+                    got = all_hits(d)
                     if got:
                         pairs.append([d, t, got, w])
                     if "Magnitude" in moves.get(d, ()):     # a trainer's power keys too, since 2026-10-15
@@ -9054,7 +9072,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         foresight_twin[k] = t
         for w in weathers:
             for d in foes:
-                got = [m for m in (party_hits(d) if d in bkeys else hits(d))
+                got = [m for m in (all_hits(d))
                        if move(m).type in IDENTIFIED_TYPES or pokemon[d].get("ability") == "Normalize"]
                 if got:
                     pairs.append([d, t, got, w])
@@ -9089,12 +9107,12 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         pokemon[t] = rec
         trick_twin[k] = t
         foes = pkeys + qkeys if k in bkeys else bkeys
-        mine = party_hits(k) if k in bkeys else hits(k)
+        mine = all_hits(k)
         for w in weathers:
             for d in foes:
                 if mine:
                     pairs.append([t, d, mine, w])
-                got = party_hits(d) if d in bkeys else hits(d)
+                got = all_hits(d)
                 if got:
                     pairs.append([d, t, got, w])
     # Miracle Eye lets Psychic moves meet a marked target's Dark type
@@ -9120,7 +9138,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         miracle_twin[k] = t
         for w in weathers:
             for d in foes:
-                got = [m for m in (party_hits(d) if d in bkeys else hits(d))
+                got = [m for m in (all_hits(d))
                        if move(m).type == "Psychic" or move(m).const in KEEP_TYPE]
                 if got:
                     pairs.append([d, t, got, w])
@@ -9154,7 +9172,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         ground_twin[k] = t
         for w in weathers:
             for d in foes:
-                got = [m for m in (party_hits(d) if d in bkeys else hits(d)) if move(m).type == "Ground"]
+                got = [m for m in (all_hits(d)) if move(m).type == "Ground"]
                 if got:
                     pairs.append([d, t, got, w])
                 if "Magnitude" in moves.get(d, ()):
@@ -9175,7 +9193,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         if not poks.get("bs"):
             continue
         foes = pkeys + qkeys if k.startswith("b") else bkeys
-        mine = party_hits(k) if k in bkeys else hits(k)
+        mine = all_hits(k)
         for kind in sorted({move(m).type for m in moves[k] if move(m).effect != "STRUGGLE"}):
             if own_types == {kind}:
                 continue
@@ -9189,7 +9207,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                 for d in foes:
                     if mine:
                         pairs.append([t, d, mine, w])
-                    got = party_hits(d) if d in bkeys else hits(d)
+                    got = all_hits(d)
                     if got:
                         pairs.append([d, t, got, w])
     # A trainer's held item that the fight can take away (the player's or a
@@ -9220,7 +9238,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     # both ways against every foe (form_twins). None in a fight without them.
     camo = camouflage_type(terrain)
     form_twin = form_twins(FormFight(pokemon, moves, blob, pkeys, qkeys, bkeys, weathers, camo), pairs,
-                           lambda k: party_hits(k) if k in bkeys else hits(k), spread,
+                           all_hits, spread,
                            doubles or bool(partners), gas_twin)
     # The calculator is told to leave off the abilities the battle applies
     # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once,
