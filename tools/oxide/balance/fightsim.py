@@ -1286,12 +1286,55 @@ def gas_update(b, check=True):
     return False
 
 
-def entry_abilities(b, mons, intimidate=True):
+def trace(b):
+    """The switch-in check's Trace step (SWITCH_IN_CHECK_STATE_TRACE), over
+    every Pokemon on the field, fastest first: a Trace holder that has not
+    traced since it came in (traceAnnounced), standing and holding no
+    Griseous Orb, copies the ability of a foe on the field that stands and
+    whose ability does not refuse Trace (ChooseTraceTarget, which in a
+    double battle picks between two such foes at random); the message names
+    both abilities (subscript_trace). With no such foe it waits, and the
+    check, which runs again as every move ends and each Pokemon comes in,
+    tries again then. The holders that traced, in that order. Until
+    2026-10-14 Trace was only announced (Ian approved the fix)."""
+    out = []
+    field = [m for m in b.p.on_field() + b.b.on_field() if m.alive()]
+    for m in sorted(field, key=b.speed, reverse=not b.trick_room):
+        if m.ability != "Trace" or m.traced or m.item == "Griseous Orb" or not m.alive():
+            continue
+        foes = [f for f in (b.b if m.side == "p" else b.p).on_field()
+                if f.alive() and not refuses(raw_ability(f), "trace")]
+        if not foes:
+            continue
+        target = foes[1] if len(foes) > 1 and coin(b, "trace") else foes[0]
+        m.traced = True
+        set_ability(b, m, raw_ability(target))
+        target.revealed = raw_ability(target)
+        out.append(m)
+    return out
+
+
+@form_change
+def _traced(ff):
+    """Trace: its holder can copy the ability of any foe it faces that does
+    not refuse Trace."""
+    for k in ff.keys():
+        if ff.ability(k) == "Trace":
+            for f in ff.foes(k):
+                if not refuses(ff.ability(f), "trace"):
+                    yield k, None, ff.ability(f)
+
+
+def entry_abilities(b, mons, intimidate=True, trace_now=True):
     """The switch-in check's ability steps for these Pokemon, each step over
-    all of them in the order given (monSpeedOrder): the weather abilities, the
-    announcement the trainer's AI reads (BattleAI_SetAbility), Intimidate,
-    then Download. The battle's leads leave Intimidate and Download to
-    open_battle (intimidate False), as both read the foes on the field."""
+    all of them in the order given (monSpeedOrder): Trace over the whole
+    field first (trace), whose holders then join the steps after it with the
+    ability they copied; the weather abilities, the announcement the
+    trainer's AI reads (BattleAI_SetAbility), Intimidate, then Download. The
+    battle's leads leave Trace, Intimidate and Download to open_battle
+    (trace_now and intimidate False), as those read the foes on the field."""
+    if trace_now:
+        mons = list(mons) + [m for m in trace(b) if m not in mons]
     for new in mons:
         weather = ABILITY_WEATHER.get(new.ability)
         if weather:
@@ -1422,6 +1465,9 @@ def open_battle(b):
             switch_in(b, side, side.active2, slot=1, lead=True)
             leads.append(side.mons[side.active2])
     ordered = sorted(leads, key=b.speed, reverse=not b.trick_room)
+    # Trace first, once every lead is in; a traced weather ability then sets
+    # its weather before the leads' Intimidate and Download go off.
+    entry_abilities(b, trace(b), intimidate=False, trace_now=False)
     intimidate_foes(b, ordered)
     for lead in ordered:
         download(b, lead)                # after Intimidate, as the switch-in check runs them
@@ -2071,6 +2117,18 @@ def use_move(b, att, mv, dfn, first, targets=None):
     _use_move(b, att, mv, dfn, first, targets)
     if b.st.get("gas"):
         gas_update(b)
+    move_end(b)
+
+
+def move_end(b):
+    """The rest of the switch-in check that ends every move
+    (BattleControllerPlayer_MoveEnd), beyond Neutralizing Gas's step: a Trace
+    holder still waiting for a foe it can copy traces now (trace), and its
+    new ability's entry steps follow."""
+    if any(m.ability == "Trace" and not m.traced for m in b.p.on_field() + b.b.on_field()):
+        traced = trace(b)
+        if traced:
+            entry_abilities(b, traced, trace_now=False)
 
 
 def _use_move(b, att, mv, dfn, first, targets=None):
@@ -3885,7 +3943,7 @@ def switch_in(b, side, index, slot=0, lead=False):
             give_status(b, new, "psn" if side.hazards["tspikes"] == 1 else "tox")
     if gas and gas_update(b):
         return                   # the gas wore off: the whole field's entry abilities went off, the newcomer's with them
-    entry_abilities(b, [new], intimidate=not lead)
+    entry_abilities(b, [new], intimidate=not lead, trace_now=not lead)
 
 
 def end_of_turn(b):

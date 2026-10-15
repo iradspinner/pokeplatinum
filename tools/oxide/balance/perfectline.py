@@ -347,6 +347,7 @@ def use_move(b, att, mv, dfn, first):
     _use_move(b, att, mv, dfn, first)
     if b.st.get("gas"):
         fs.gas_update(b)
+    fs.move_end(b)          # a waiting Trace (fightsim.move_end)
 
 
 def _use_move(b, att, mv, dfn, first):

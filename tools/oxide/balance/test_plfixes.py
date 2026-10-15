@@ -2652,6 +2652,30 @@ def burning_bulwark_checks():
              f"(Scovillain untouched, the Machop's status) {out}")]
 
 
+def trace_checks():
+    """Trace on the calculator's real rows and the readings' battle
+    (approved 2026-10-14): prepare rows Moira 1's Kirlia on a twin for the
+    one foe's ability that changes its rows (Bronzor's Levitate; Diglett's
+    Arena Trap changes none), and nothing more; leading against Bronzor it
+    traces Levitate, so Diglett's Earthquake misses it where it hit before.
+    A Synchronize Kirlia gets no twin and still takes the Earthquake."""
+    from .test_fightai import battle
+    foes = [("Bronzor", 26, "Levitate", ["Confusion"]), ("Diglett", 26, "Arena Trap", ["Earthquake"])]
+    quake = fs.move("Earthquake")
+    out = {}
+    for ability in ("Trace", "Synchronize"):
+        b = battle([("Kirlia", 26, ability, ["Psychic", "Magical Leaf"])], foes)
+        kirlia = b.b.cur()
+        twins = sorted(((b.st.get("form_twin") or {}).get(kirlia.key) or {}).get("twins", {}), key=repr)
+        out[ability] = (kirlia.ability, b.p.mons[0].revealed, twins,
+                        pl.damage_of(b, b.p.mons[1], kirlia, quake, False, True))
+    t, s = out["Trace"], out["Synchronize"]
+    ok = (t[0] == "Levitate" and t[1] == "Levitate" and t[2] == [(None, "Levitate")] and t[3] == 0
+          and s[0] == "Synchronize" and s[2] == [] and s[3] > 0)
+    return [("Trace: Moira 1's Kirlia copies Levitate on its twin's rows, and Earthquake misses it", ok,
+             f"(its ability, Bronzor's named, its twins, Diglett's Earthquake) with Trace {t}; with Synchronize {s}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3162,6 +3186,7 @@ def main():
     results += water_bubble_checks()
     results += eerie_spell_checks()
     results += burning_bulwark_checks()
+    results += trace_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

@@ -1353,6 +1353,50 @@ def check_form_twins(results):
                     f"{typeless}; suppressed {blanked}"))
 
 
+def check_trace(results):
+    """Trace (approved 2026-10-14; SWITCH_IN_CHECK_STATE_TRACE,
+    ChooseTraceTarget, subscript_trace): once every lead is in, a Trace
+    lead copies the foe's Intimidate, which then goes off on the foe as the
+    foe's own goes off on it, and both abilities are named. A Trace lead
+    facing another Trace, which refuses, waits, and traces the Pokemon that
+    replaces it; leaving brings Trace back. A holder still waiting traces as
+    a move ends once its foe's ability can be copied. Under Neutralizing Gas
+    it waits, and traces once the gas has gone."""
+    mons = {"p0": (("Normal",), ["Tackle"]), "p1": (("Normal",), ["Tackle"]),
+            "b0.0": (("Normal",), ["Tackle"]), "b0.1": (("Normal",), ["Tackle"])}
+
+    def leads(p_ab, b_ab, p1_ab="Levitate", gas=False):
+        b = field(mons, {("b0.0", "p0"): {"Tackle": 10}, ("b0.0", "p1"): {"Tackle": 10}})
+        b.st["first_battle"] = True
+        b.st["gas"] = gas
+        b.p.mons[0].ability, b.p.mons[1].ability, b.b.mons[0].ability = p_ab, p1_ab, b_ab
+        fs.open_battle(b)
+        return b, b.p.mons[0], b.p.mons[1], b.b.mons[0]
+    b, dog, _p1, kir = leads("Intimidate", "Trace")
+    intimidated = (kir.ability, kir.revealed, dog.revealed, dog.stages["atk"], kir.stages["atk"])
+    b, ralts, p1, kir = leads("Trace", "Trace")
+    waiting = (kir.ability, ralts.ability)
+    fs.switch_in(b, b.p, 1)
+    replaced = kir.ability
+    fs.switch_in(b, b.b, 1)
+    left = (kir.ability, kir.traced)
+    b, ralts, _p1, kir = leads("Trace", "Trace")
+    fs.set_ability(b, ralts, "Static")       # its foe's ability can now be copied
+    fs.use_move(b, ralts, fs.move("Tackle"), kir, True)
+    after_move = kir.ability
+    b, weezing, p1, kir = leads("Neutralizing Gas", "Trace", p1_ab="Static", gas=True)
+    gassed = (kir.ability, kir.gas_stash)
+    fs.switch_in(b, b.p, 1)
+    cleared = kir.ability
+    ok = (intimidated == ("Intimidate", "Intimidate", "Intimidate", -1, -1) and waiting == ("Trace", "Trace")
+          and replaced == "Levitate" and left == ("Trace", False) and after_move == "Static"
+          and gassed == (None, "Trace") and cleared == "Static")
+    results.append(("Trace copies a foe's ability as the switch-in check runs", ok,
+                    f"against Intimidate (its ability, named, the foe's named, the foe's and its Attack) {intimidated}; "
+                    f"against Trace {waiting}, then the replacement's {replaced}, after leaving {left}; after a move "
+                    f"{after_move}; under the gas {gassed}, once it has gone {cleared}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2636,7 +2680,8 @@ def main():
                   check_curse_and_rest, check_mist_and_intimidate, check_ai_fields, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
-                  check_roost, check_protean, check_form_twins, check_magic_guard, check_liquid_ooze,
+                  check_roost, check_protean, check_form_twins, check_trace, check_magic_guard,
+                  check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
