@@ -5373,6 +5373,25 @@ def check_heart_swap(results):
            foe.stages["spa"], p.crit_stage, foe.crit_stage)
     results.append(("Heart Swap exchanges every stage and Focus Energy", got == (3, 1, -1, 0, -2, 1, 0, 2, 0), str(got)))
 
+def check_heal_pulse(results):
+    """Heal Pulse (approved 2026-10-14; effect script 379): its target, the
+    foe in a single battle, gets back half its maximum HP rounded up, three
+    quarters with Mega Launcher; Heal Block and a Substitute stop it."""
+    out = {}
+    for case in ("plain", "Mega Launcher", "Heal Block", "Substitute"):
+        b, p, foe = battle(["Heal Pulse"], ["Tackle"], {}, hp=301)
+        foe.hp = 50
+        if case == "Mega Launcher":
+            p.ability = "Mega Launcher"
+        if case == "Heal Block":
+            foe.heal_block = 5
+        if case == "Substitute":
+            foe.sub = 40
+        fs.status_move(b, p, fs.move("Heal Pulse"), foe, True)
+        out[case] = foe.hp
+    want = {"plain": 201, "Mega Launcher": 278, "Heal Block": 50, "Substitute": 50}
+    results.append(("Heal Pulse heals its target by half", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5655,7 +5674,7 @@ def main():
                   check_fell_stinger, check_prevent_escape_hit,
                   check_poltergeist, check_belch, check_first_impression,
                   check_axe_kick, check_always_critical,
-                  check_clangorous_soul, check_heart_swap,
+                  check_clangorous_soul, check_heart_swap, check_heal_pulse,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

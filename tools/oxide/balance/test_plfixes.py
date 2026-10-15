@@ -5045,6 +5045,16 @@ def heart_swap_checks():
     ok = got == ((2, 1, 0), (0, 0, -1))
     return [("the readings' Heart Swap exchanges the stages", ok, f"(Bibarel's, Geodude's) Defense, Speed, Attack {got}")]
 
+def heal_pulse_checks():
+    """Heal Pulse in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): in a single battle the player's Bibarel's Heal
+    Pulse gives a trainer's Geodude at 1 HP half its HP back."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Heal Pulse"])])
+    geo.hp = 1
+    pl.status_move(b, bib, fs.move("Heal Pulse"), geo, True)
+    ok = geo.hp == 1 + (geo.maxhp + 1) // 2
+    return [("the readings' Heal Pulse heals its target", ok, f"Geodude's HP 1 to {geo.hp} of {geo.maxhp}")]
+
 def main():
     results = []
 
@@ -5605,6 +5615,7 @@ def main():
     results += always_critical_checks()
     results += clangorous_soul_checks()
     results += heart_swap_checks()
+    results += heal_pulse_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

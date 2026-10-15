@@ -1150,6 +1150,8 @@ def status_move(b, att, mv, dfn, first):
         fs.swap_stages(att, dfn, ("atk", "spa"))      # Power Swap (fightsim.swap_stages)
     elif e == "SWAP_STAT_CHANGES":
         fs.heart_swap(att, dfn)          # every stage and Focus Energy exchanged (fightsim.heart_swap)
+    elif e == "HEAL_TARGET":
+        fs.heal_pulse(att, dfn, mv)      # half the target's HP back, the foe's in a single battle (fightsim.heal_pulse)
     elif e == "HALVE_FIRE_DAMAGE":
         fs.water_sport(att)              # Fire moves at half power while it stands (fightsim.sport_half)
     elif e == "HALVE_ELECTRIC_DAMAGE":

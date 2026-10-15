@@ -4305,6 +4305,19 @@ def swap_stages(att, dfn, stats):
         att.stages[k], dfn.stages[k] = dfn.stages[k], att.stages[k]
 
 
+def heal_pulse(att, dfn, mv):
+    """Heal Pulse (effect script 379, subscript_heal_pulse): it fails on a
+    target under Heal Block or behind a Substitute an Infiltrator does not
+    pass; otherwise the target gets back half its maximum HP, rounded up,
+    or three quarters with its user's Mega Launcher, nothing at full HP
+    (subscript_recover_hp). In a single battle its target is the foe; the
+    heal of a double battle's ally is left to the double battles' own
+    fixes. Until 2026-10-15 it did nothing (Ian approved the fix)."""
+    if dfn.heal_block or sub_blocks(att, dfn, mv):
+        return
+    heal(dfn, 3 * ((dfn.maxhp + 3) // 4) if att.ability == "Mega Launcher" else (dfn.maxhp + 1) // 2)
+
+
 def heart_swap(att, dfn):
     """Heart Swap (effect script 250, subscript_exchange_all_stat_stages):
     the user and its target exchange all seven stat stages, accuracy and
@@ -6572,6 +6585,8 @@ def status_move(b, att, mv, dfn, first):
         swap_stages(att, dfn, ("atk", "spa"))     # Power Swap
     elif e == "SWAP_STAT_CHANGES":
         heart_swap(att, dfn)
+    elif e == "HEAL_TARGET":
+        heal_pulse(att, dfn, mv)
     elif e == "HALVE_FIRE_DAMAGE":
         water_sport(att)
     elif e == "HALVE_ELECTRIC_DAMAGE":
