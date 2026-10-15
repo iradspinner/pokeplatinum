@@ -1080,6 +1080,8 @@ def status_move(b, att, mv, dfn, first):
         foe_side.hazards["tspikes"] = min(2, foe_side.hazards["tspikes"] + 1)
     elif e == "STICKY_WEB":
         fs.lay_web(b, att)               # a web across the field (fightsim.lay_web, caught in fightsim.switch_in)
+    elif e == "REMOVE_HAZARDS_SCREENS_EVA_DOWN":
+        fs.defog(b, att, dfn, mv)        # evasion down, screens, hazards and fog cleared (fightsim.defog)
     elif e == "PROTECT" or e == "SURVIVE_WITH_1_HP":
         # BtlCmd_TryProtection: it fails when no battler acts after its user
         # (fightsim.moves_last). Otherwise a first one works, and a repeat at

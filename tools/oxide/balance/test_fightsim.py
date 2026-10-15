@@ -4881,6 +4881,32 @@ def check_sticky_web(results):
     results.append(("Sticky Web lowers a grounded newcomer's Speed", out == want, str(out)))
 
 
+def check_defog(results):
+    """Defog (approved 2026-10-14; effect script 258): the target's evasion
+    falls a stage, not through a Substitute and not while its side's Mist
+    stands, which the drop meets first; its side loses its screens, Mist
+    and Safeguard whatever became of the drop; both sides lose every
+    hazard; and deep fog clears."""
+    out = {}
+    for case, sub, mist in (("plain", 0, 0), ("Substitute", 25, 0), ("Mist", 0, 2)):
+        b, p, foe = battle(["Defog"], ["Tackle"], {})
+        b.rng = FixedDice(0.0)
+        b.weather = "Fog"
+        foe.sub = sub
+        b.b.screens.update({"Reflect": 4, "Light Screen": 3})
+        b.b.mist, b.b.safeguard, b.b.web = mist, 3, 1
+        b.b.hazards.update({"spikes": 2, "rocks": 1})
+        b.p.hazards.update({"tspikes": 1, "rocks": 1})
+        b.p.web, b.p.screens["Reflect"] = 1, 2
+        fs.status_move(b, p, fs.move("Defog"), foe, True)
+        out[case] = (foe.stages["eva"], tuple(b.b.screens.values()), b.b.mist, b.b.safeguard,
+                     tuple(b.b.hazards.values()), b.b.web, tuple(b.p.hazards.values()), b.p.web,
+                     b.p.screens["Reflect"], b.weather)
+    clear = ((0, 0), 0, 0, (0, 0, 0), 0, (0, 0, 0), 0, 2, None)
+    want = {"plain": (-1,) + clear, "Substitute": (0,) + clear, "Mist": (0,) + clear}
+    results.append(("Defog lowers evasion and clears screens, hazards and fog", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5155,6 +5181,7 @@ def main():
                   check_sp_def_2_hit, check_tearful_look, check_venom_drench, check_false_swipe,
                   check_clear_smog, check_incinerate, check_life_dew,
                   check_mud_sport, check_punishment, check_sticky_web,
+                  check_defog,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

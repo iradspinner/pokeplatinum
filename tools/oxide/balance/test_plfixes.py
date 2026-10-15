@@ -4660,6 +4660,19 @@ def sticky_web_checks():
              f"web {b.b.web}; Bibarel's Speed stage {bib}, Starly's {sta}; offered {offered}")]
 
 
+def defog_checks():
+    """Defog in the readings' battle on the calculator's real rows (approved
+    2026-10-14): the player's Corviknight lowers a trainer's Geodude's
+    evasion, takes down its side's Reflect and blows the Stealth Rock off
+    the player's own side."""
+    b, geo, cor = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Corviknight", 30, "Pressure", ["Defog"])])
+    b.b.screens["Reflect"], b.p.hazards["rocks"] = 5, 1
+    pl.status_move(b, cor, fs.move("Defog"), geo, True)
+    ok = geo.stages["eva"] == -1 and b.b.screens["Reflect"] == 0 and b.p.hazards["rocks"] == 0
+    return [("the readings' Defog clears screens and hazards", ok,
+             f"Geodude's evasion {geo.stages['eva']}, its Reflect {b.b.screens['Reflect']}, the player's rocks {b.p.hazards['rocks']}")]
+
+
 def main():
     results = []
 
@@ -5197,6 +5210,7 @@ def main():
     results += mud_sport_checks()
     results += punishment_checks()
     results += sticky_web_checks()
+    results += defog_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

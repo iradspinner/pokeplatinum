@@ -6104,6 +6104,8 @@ def status_move(b, att, mv, dfn, first):
         foe_side.hazards["tspikes"] = min(2, foe_side.hazards["tspikes"] + 1)
     elif e == "STICKY_WEB":
         lay_web(b, att)
+    elif e == "REMOVE_HAZARDS_SCREENS_EVA_DOWN":
+        defog(b, att, dfn, mv)
     elif e == "PROTECT" or e == "SURVIVE_WITH_1_HP":
         # BtlCmd_TryProtection: it fails when no battler acts after its user,
         # and otherwise works at protect_odds; a failure ends the run.
@@ -6210,6 +6212,28 @@ def status_move(b, att, mv, dfn, first):
                 m.perish = 4
     elif e == "HIT_IN_3_TURNS":
         pass
+
+
+def defog(b, att, dfn, mv):
+    """Defog (effect script 258, subscript_defog, Oxide's Generation 6
+    version): the target's evasion falls a stage, which a Substitute, Mist
+    and the blocking abilities stop as for any drop (lower_stats); then,
+    whatever became of the drop, the target's side loses Reflect, Light
+    Screen, Mist and Safeguard, both sides lose Spikes, Toxic Spikes,
+    Stealth Rock and Sticky Web, and a battle in deep fog (Ian, 2026-09-26:
+    Defog still clears fog) is clear of it. Until 2026-10-15 it did nothing
+    (Ian approved the fix)."""
+    if not sub_blocks(att, dfn, mv):
+        lower_stats(b, att, dfn, {"eva": -1})
+    side = b.p if dfn.side == "p" else b.b
+    side.screens = dict.fromkeys(side.screens, 0)
+    side.mist = side.safeguard = 0
+    for s in (b.p, b.b):
+        s.hazards = dict.fromkeys(s.hazards, 0)
+        if s.web:
+            s.web = 0
+    if b.weather == "Fog":
+        b.weather, b.weather_turns = None, 0      # FIELD_CONDITION_DEEP_FOG cleared
 
 
 def lay_web(b, att):
