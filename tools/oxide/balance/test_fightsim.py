@@ -2491,6 +2491,31 @@ def check_charge(results):
     results.append(("Charge doubles its user's Electric moves through the next turn", out == want, str(out)))
 
 
+def check_lucky_chant(results):
+    """Lucky Chant (approved 2026-10-14; effect script 240): no critical hit
+    lands on its user's side for five turns, ended at the fifth turn's end;
+    a second one fails while it runs."""
+    b, p, foe = battle(["Lucky Chant"], ["Tackle"], {("b", "Tackle"): [10] * 16}, hp=1000)
+    b.rng = FixedDice(0.0)                # every critical roll passes
+    tackle = fs.move("Tackle")
+
+    def hit():
+        before = p.hp
+        fs.attack(b, foe, tackle, p, False)
+        return before - p.hp
+    out = {"before": hit()}
+    fs.status_move(b, p, fs.move("Lucky Chant"), foe, True)
+    out["chanted"] = (getattr(b.p, "lucky_chant", 0), fs.crit_rate(b, foe, p, tackle), hit())
+    fs.end_of_turn(b)
+    fs.status_move(b, p, fs.move("Lucky Chant"), foe, True)
+    out["a second chant"] = getattr(b.p, "lucky_chant", 0)
+    for _ in range(4):
+        fs.end_of_turn(b)
+    out["five turn ends on"] = (getattr(b.p, "lucky_chant", 0), hit())
+    want = {"before": 15, "chanted": (5, 0.0, 10), "a second chant": 4, "five turn ends on": (0, 15)}
+    results.append(("Lucky Chant keeps critical hits off its side for five turns", out == want, str(out)))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -3880,7 +3905,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,

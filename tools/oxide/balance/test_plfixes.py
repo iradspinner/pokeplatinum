@@ -3548,6 +3548,29 @@ def charge_checks():
              f"AI figure {before_ai} then {after_ai}")]
 
 
+def lucky_chant_checks():
+    """Lucky Chant in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel, set to land a critical hit
+    every time, lands one on a trainer's Clefairy until the Clefairy's
+    Lucky Chant goes up, and none after."""
+    from .test_fightai import battle
+    b = battle([("Clefairy", 25, "Cute Charm", ["Lucky Chant"])], [("Bibarel", 25, "Unaware", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    cle, bib = b.b.cur(), b.p.cur()
+    rolls = b.st["rows"][(None, bib.key, cle.key)]["moves"]["Tackle"]["rolls"]
+    cle.hp = cle.maxhp = 100000
+    bib.crit_stage = 3                    # a critical hit on every roll (Oxide's rate at +3)
+    tackle = fs.move("Tackle")
+    pl.use_move(b, bib, tackle, cle, True)
+    before = cle.maxhp - cle.hp
+    pl.use_move(b, cle, fs.move("Lucky Chant"), bib, False)
+    pl.use_move(b, bib, tackle, cle, True)
+    after = cle.maxhp - cle.hp - before
+    ok = before >= int(1.5 * rolls[0]) and after <= rolls[-1] and getattr(b.b, "lucky_chant", 0) == 5
+    return [("the readings' Lucky Chant keeps critical hits off its side", ok,
+             f"Tackle dealt {before} before the chant and {after} after (row {rolls[0]} to {rolls[-1]})")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4196,6 +4219,7 @@ def main():
     results += throat_chop_checks()
     results += minimize_checks()
     results += charge_checks()
+    results += lucky_chant_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()

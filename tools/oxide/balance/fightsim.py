@@ -553,6 +553,10 @@ class Side:
     a partner's, or one of two opposing trainers'), so a fainted slot is
     refilled from its own trainer's party."""
 
+    # Lucky Chant's turns left (SIDE_CONDITION_LUCKY_CHANT): no critical hit
+    # lands on the side while it runs; left on the class while 0.
+    lucky_chant = 0
+
     def __init__(self, mons, name):
         self.mons, self.name = mons, name
         self.active = 0
@@ -2600,7 +2604,7 @@ def attack(b, att, mv, dfn, first):
     if dmg is None:
         stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                   mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
-        crit = (b.rng.random() < CRIT_RATE[min(stage, 4)] and not crit_proof(att, dfn)
+        crit = (b.rng.random() < CRIT_RATE[min(stage, 4)] and not crit_proof(att, dfn, b)
                 and not b.st.get("first_battle"))
         if spit is not None:
             key, att.key = att.key, spit
@@ -2747,18 +2751,31 @@ def lost_focus(att, mv):
     return mv.effect == "HIT_LAST_WHIFF_IF_HIT" and bool(att.hit_this_turn)
 
 
-def crit_proof(att, dfn):
+def crit_proof(att, dfn, b=None):
     """Battle Armor and Shell Armor keep critical hits off their holder
     unless att's Mold Breaker gets past them (BtlCmd_CalcCrit asks
-    Battler_IgnorableAbility)."""
+    Battler_IgnorableAbility), and so does a Lucky Chant on its side, given
+    the battle b (BattleSystem_CalcCriticalMulti reads the defender's
+    SIDE_CONDITION_LUCKY_CHANT; until 2026-10-15 nothing did, Ian approved
+    the fix)."""
+    if b is not None and (b.p if dfn.side == "p" else b.b).lucky_chant:
+        return True
     return dfn.ability in ("Battle Armor", "Shell Armor") and not mold(att, dfn)
+
+
+def lucky_chant(side):
+    """Lucky Chant (effect script 240): five turns on its user's side, ended
+    at the fifth turn's end (FIELD_COND_CHECK_STATE_LUCKY_CHANT); it fails
+    while one runs."""
+    if not side.lucky_chant:
+        side.lucky_chant = 5
 
 
 def crit_rate(b, att, dfn, mv):
     """The chance a hit of mv lands critical: Oxide's rate at the attacker's
-    stage, 0 against Battle Armor or Shell Armor (unless Mold Breaker) and
-    in the first battle (BtlCmd_CalcCrit)."""
-    if crit_proof(att, dfn) or b.st.get("first_battle"):
+    stage, 0 against Battle Armor or Shell Armor (unless Mold Breaker), on
+    a side under Lucky Chant and in the first battle (BtlCmd_CalcCrit)."""
+    if crit_proof(att, dfn, b) or b.st.get("first_battle"):
         return 0.0
     stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                                                mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
@@ -4925,6 +4942,8 @@ def status_move(b, att, mv, dfn, first):
         own_side.safeguard = 5
     elif e == "PREVENT_STAT_REDUCTION":
         mist(own_side)
+    elif e == "PREVENT_CRITS":
+        lucky_chant(own_side)
     elif e == "TAUNT":
         if not dfn.taunt and not taunt_blocked(att, dfn):
             dfn.taunt = b.rng.randint(3, 5)
@@ -5180,6 +5199,8 @@ def _end_of_turn(b):
         side.tailwind = max(0, side.tailwind - 1)
         side.safeguard = max(0, side.safeguard - 1)
         side.mist = max(0, getattr(side, "mist", 0) - 1)
+        if side.lucky_chant:
+            side.lucky_chant -= 1        # FIELD_COND_CHECK_STATE_LUCKY_CHANT
     for m in order:
         side = b.p if m.side == "p" else b.b
         if side.wish and m is side.cur():

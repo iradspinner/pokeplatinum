@@ -657,7 +657,7 @@ def attack(b, att, mv, dfn, first):
         # The first battle (Barry on Route 201) has no critical hits on either
         # side: BtlCmd_CalcCrit sets the multiplier to 1 under
         # BATTLE_STATUS_FIRST_BATTLE (src/battle/battle_script.c).
-        if not fs.crit_proof(att, dfn) and not b.st.get("first_battle"):     # the armour, unless Mold Breaker
+        if not fs.crit_proof(att, dfn, b) and not b.st.get("first_battle"):     # the armour, unless Mold Breaker; Lucky Chant
             stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                       mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
             if att.item in ("Scope Lens", "Razor Claw"):
@@ -1035,6 +1035,8 @@ def status_move(b, att, mv, dfn, first):
         own_side.safeguard = 5
     elif e == "PREVENT_STAT_REDUCTION":
         fs.mist(own_side)                # Mist, five turns (fightsim.mist)
+    elif e == "PREVENT_CRITS":
+        fs.lucky_chant(own_side)         # Lucky Chant, five turns (fightsim.lucky_chant)
     elif e == "TAUNT":
         if not dfn.taunt and not fs.taunt_blocked(att, dfn):     # Oblivious, unless Mold Breaker
             dfn.taunt = b.dice.taunt(dfn.side)
@@ -1100,6 +1102,8 @@ def clone_side(s):
     c.screens = dict(s.screens)
     c.tailwind, c.safeguard, c.wish = s.tailwind, s.safeguard, getattr(s, "wish", 0)
     c.mist = getattr(s, "mist", 0)
+    if s.lucky_chant:
+        c.lucky_chant = s.lucky_chant    # left on the class while 0 (fightsim.Side)
     c.hazards = dict(s.hazards)
     c.future, c.future_sight = s.future, s.future_sight        # a waiting Future Sight (tuples, shared safely)
     return c
@@ -1161,10 +1165,17 @@ def mon_key(m):
     return key + _form(m) if m.formed else key
 
 
+def _side_extra(s):
+    """A side's states that most fights never have, kept out of its key
+    while they are not there, so those fights' keys stay as they were:
+    Lucky Chant's turns."""
+    return (("lucky chant", s.lucky_chant),) if s.lucky_chant else ()
+
+
 def side_key(s):
     return (s.active, tuple(mon_key(m) for m in s.mons), tuple(s.screens.values()), s.tailwind,
             tuple(s.hazards.values()), s.safeguard, getattr(s, "wish", 0), s.future, s.future_sight,
-            getattr(s, "mist", 0))
+            getattr(s, "mist", 0)) + _side_extra(s)
 
 
 def state_key(b):
@@ -1177,7 +1188,7 @@ def shape_key(b):
     def side(sd):
         return (sd.active, tuple(mon_key(m)[1:] for m in sd.mons), tuple(sd.screens.values()),
                 sd.tailwind, tuple(sd.hazards.values()), sd.safeguard, getattr(sd, "wish", 0),
-                sd.future, sd.future_sight, getattr(sd, "mist", 0))
+                sd.future, sd.future_sight, getattr(sd, "mist", 0)) + _side_extra(sd)
     return (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room,
             getattr(b, "declined", frozenset()))
 
@@ -1229,7 +1240,17 @@ def ai_key(b):
             b.p.active, b.b.active, tuple(b.p.screens.values()), tuple(b.b.screens.values()),
             b.p.tailwind, b.b.tailwind, tuple(b.p.hazards.values()), tuple(b.b.hazards.values()),
             b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick,
-            b.p.future_sight, b.b.future_sight, getattr(b.p, "mist", 0) > 0, getattr(b.b, "mist", 0) > 0)
+            b.p.future_sight, b.b.future_sight, getattr(b.p, "mist", 0) > 0, getattr(b.b, "mist", 0) > 0) \
+        + _ai_field(b)
+
+
+def _ai_field(b):
+    """The field states this batch adds that the trainer's AI reads, kept
+    out of its key while none is there: Lucky Chant on either side
+    (Basic_CheckLuckyChant)."""
+    if not (b.p.lucky_chant or b.b.lucky_chant):
+        return ()
+    return (("lucky chant", b.p.lucky_chant > 0, b.b.lucky_chant > 0),)
 
 
 _AI_CACHE = {}
