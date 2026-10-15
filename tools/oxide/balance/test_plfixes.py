@@ -3151,6 +3151,27 @@ def weather_heal_checks():
              f"(Golduck's ability, HP restored, maximum HP) {out}")]
 
 
+def hail_checks():
+    """Hail in the readings' battle on the calculator's real rows (approved
+    2026-10-14): a trainer's Abomasnow with Snow Warning brings a lasting
+    hail in; its Glaceon partner's Hail then makes it a five-turn hail,
+    and after five turn ends the hail is gone."""
+    from .test_fightai import battle
+    b = battle([("Abomasnow", 50, "Snow Warning", ["Ice Shard"]), ("Glaceon", 50, "Snow Cloak", ["Hail"])],
+               [("Bibarel", 50, "Unaware", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    lasting = (b.weather, b.weather_turns)
+    fs.switch_in(b, b.b, 1)
+    gla, bib = b.b.cur(), b.p.cur()
+    pl.use_move(b, gla, fs.move("Hail"), bib, True)
+    after = (b.weather, b.weather_turns)
+    for _ in range(5):
+        fs.end_of_turn(b)
+    got = (lasting, after, b.weather)
+    return [("the readings' Hail turns Snow Warning's lasting hail into five turns", got ==
+             (("Hail", 0), ("Hail", 5), None), f"(weather on entry, after Hail, after five turn ends) {got}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3727,6 +3748,7 @@ def main():
     results += speed_down_hit_checks()
     results += bounce_paralysis_checks()
     results += weather_heal_checks()
+    results += hail_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)

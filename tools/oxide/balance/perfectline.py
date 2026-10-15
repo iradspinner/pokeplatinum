@@ -932,7 +932,7 @@ def status_move(b, att, mv, dfn, first):
         if not own_side.screens["Reflect"]:
             own_side.screens["Reflect"] = 8 if att.item == "Light Clay" else 5
     elif e in fs.WEATHER_OF:
-        if b.weather != fs.WEATHER_OF[e]:
+        if not fs.weather_move_fails(b, e):          # Hail under a lasting hail (fightsim.weather_move_fails)
             rock = {"Sun": "Heat Rock", "Rain": "Damp Rock", "Sand": "Smooth Rock", "Hail": "Icy Rock"}
             b.weather = fs.WEATHER_OF[e]
             b.weather_turns = 8 if att.item == rock.get(b.weather) else 5

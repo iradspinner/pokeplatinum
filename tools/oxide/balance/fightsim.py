@@ -4327,6 +4327,18 @@ def lifted(dfn, mv):
             and mv.name != "Thousand Arrows")
 
 
+def weather_move_fails(b, e):
+    """Whether a weather move fails: Rain Dance, Sunny Day and Sandstorm
+    under any weather of their own kind, an ability's or a fight's lasting
+    one included (effect scripts 136, 137 and 115 test FIELD_CONDITION_RAINING
+    and the rest, which take both kinds), and Hail only under a move's hail
+    (effect script 164 tests FIELD_CONDITION_HAILING_TEMP alone, as vanilla
+    Platinum's does), so under a Snow Warning's lasting hail it starts five
+    turns of its own, after which the hail ends. Until 2026-10-15 Hail failed
+    under any hail (Ian approved the fix)."""
+    return b.weather == WEATHER_OF[e] and (e != "WEATHER_HAIL" or b.weather_turns > 0)
+
+
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
     if e == "RESTORE_HP_EVERY_TURN":
@@ -4427,7 +4439,7 @@ def status_move(b, att, mv, dfn, first):
         if not own_side.screens["Reflect"]:
             own_side.screens["Reflect"] = 8 if att.item == "Light Clay" else 5
     elif e in WEATHER_OF:
-        if b.weather != WEATHER_OF[e]:
+        if not weather_move_fails(b, e):
             b.weather = WEATHER_OF[e]
             b.weather_turns = 8 if att.item == WEATHER_ROCK.get(b.weather) else 5
     elif e == "TRICK_ROOM":

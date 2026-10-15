@@ -2020,6 +2020,30 @@ def check_weather_heal(results):
                     got == want, f"(HP restored) {got}"))
 
 
+def check_hail_under_lasting_hail(results):
+    """Hail (approved 2026-10-14; effect script 164 tests only
+    FIELD_CONDITION_HAILING_TEMP): under a Snow Warning's lasting hail it
+    starts five turns of its own (eight with an Icy Rock); under a move's
+    hail it fails. Rain Dance, Sunny Day and Sandstorm still fail under any
+    weather of their own kind, an ability's lasting one too."""
+    def use(name, weather, turns, item=None):
+        b, p, foe = battle([name], ["Tackle"], {})
+        b.weather, b.weather_turns = weather, turns
+        p.item = item
+        fs.status_move(b, p, fs.move(name), foe, True)
+        return b.weather, b.weather_turns
+    got = {"Hail, lasting hail": use("Hail", "Hail", 0), "Hail, lasting hail, Icy Rock": use("Hail", "Hail", 0, "Icy Rock"),
+           "Hail, a move's hail": use("Hail", "Hail", 3), "Hail, lasting rain": use("Hail", "Rain", 0),
+           "Rain Dance, lasting rain": use("Rain Dance", "Rain", 0), "Sunny Day, lasting sun": use("Sunny Day", "Sun", 0),
+           "Sandstorm, lasting sand": use("Sandstorm", "Sand", 0)}
+    want = {"Hail, lasting hail": ("Hail", 5), "Hail, lasting hail, Icy Rock": ("Hail", 8),
+            "Hail, a move's hail": ("Hail", 3), "Hail, lasting rain": ("Hail", 5),
+            "Rain Dance, lasting rain": ("Rain", 0), "Sunny Day, lasting sun": ("Sun", 0),
+            "Sandstorm, lasting sand": ("Sand", 0)}
+    results.append(("Hail turns a lasting hail into five turns; the other weather moves fail on their own",
+                    got == want, f"(weather, turns left; 0 lasting) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3309,6 +3333,7 @@ def main():
                   check_double_shock, check_skill_swap, check_role_play, check_entrainment,
                   check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
+                  check_hail_under_lasting_hail,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
