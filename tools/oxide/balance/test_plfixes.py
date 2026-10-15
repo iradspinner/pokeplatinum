@@ -3392,6 +3392,22 @@ def stockpile_checks():
              f"of {swa.maxhp}")]
 
 
+def natural_gift_checks():
+    """Natural Gift in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
+    a trainer's Roserade with a Psychic Natural Gift from its twin's row and
+    spends the Berry."""
+    from .test_fightai import battle
+    b = battle([("Roserade", 30, "Natural Cure", ["Tackle"])], [("Donphan", 30, "Sturdy", ["Natural Gift"], "Sitrus Berry")])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    ros, don = b.b.cur(), b.p.cur()
+    row = b.st["rows"].get((None, f"{don.key}#ng", ros.key), {}).get("moves", {}).get("Natural Gift", {})
+    pl.use_move(b, don, fs.move("Natural Gift"), ros, True)
+    got = (bool(row.get("rolls")), ros.hp < ros.maxhp, don.item)
+    return [("the readings' Natural Gift hits for the player's Sitrus Berry holder", got == (True, True, None),
+             f"(twin row, hit, Donphan's item after) {got}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3978,6 +3994,7 @@ def main():
     results += pluck_checks()
     results += chatter_checks()
     results += stockpile_checks()
+    results += natural_gift_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)

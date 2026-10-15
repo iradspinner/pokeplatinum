@@ -604,9 +604,11 @@ def attack(b, att, mv, dfn, first):
         return
     # Natural Gift and Fling spend the held item, and fail without one;
     # fightsim keeps the item and fires them every turn.
+    gift = None
     if mv.name in ("Natural Gift", "Fling"):
         if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
             return
+        gift = att.item
         fs.consume(att, eaten=False)     # spent, not eaten (Belch)
     if not accuracy_hits(b, att, dfn, mv, first):
         crash(b, att, dfn, mv)               # Magic Guard spares it (fightsim.crash_loss)
@@ -671,6 +673,8 @@ def attack(b, att, mv, dfn, first):
             b.last_magnitude = p
         if spit is not None:
             att.key = spit                   # Spit Up's row for the power it spends
+        elif mv.name == "Natural Gift" and player(att):
+            att.key = fs.natural_gift_key(key, gift)     # the player's, rowed with its Berry
         try:
             roll = None
             if spit is not None:

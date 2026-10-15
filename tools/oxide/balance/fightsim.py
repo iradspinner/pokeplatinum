@@ -1847,6 +1847,17 @@ def swallow(att):
         heal(att, engine_divide(att.maxhp, 1 << (3 - spend_stockpile(att))))
 
 
+def natural_gift_key(key, berry):
+    """The row the player's Natural Gift is read from: its twin holding the
+    Berry it spends ("<key>#ng", which prepare adds for the Sitrus Berry, the
+    one Berry the player is handed), since the player's own rows are made
+    with no item and the calculator types and powers Natural Gift by the
+    Berry (CalcNaturalGiftParams: a Sitrus Berry's is Psychic at 60). Any
+    other Berry has no twin, and its Natural Gift no row. Until 2026-10-15
+    the player's Natural Gift never dealt damage (Ian approved the fix)."""
+    return f"{key}#ng" if berry == "Sitrus Berry" else key
+
+
 def spit_up_key(att):
     """Spit Up with no stockpile fails before anything else ("failed to spit
     up a thing"); otherwise it spends them (spend_stockpile) and hits at 100
@@ -2481,9 +2492,11 @@ def attack(b, att, mv, dfn, first):
         return
     # Natural Gift and Fling spend the held item, and fail without one (a
     # Natural Gift needs a berry).
+    gift = None
     if mv.name in ("Natural Gift", "Fling"):
         if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
             return
+        gift = att.item
         consume(att, eaten=False)
     if not b.accuracy_hits(att, dfn, mv, first):
         _crash(b, att, dfn, mv)          # Magic Guard spares it (crash_loss)
@@ -2527,6 +2540,12 @@ def attack(b, att, mv, dfn, first):
             key, att.key = att.key, spit
             try:
                 dmg = b.damage(att, dfn, mv, crit=crit, roll=15)     # Spit Up's row, its top roll
+            finally:
+                att.key = key
+        elif mv.name == "Natural Gift" and att.side == "p":
+            key, att.key = att.key, natural_gift_key(att.key, gift)
+            try:
+                dmg = b.damage(att, dfn, mv, crit=crit)
             finally:
                 att.key = key
         else:
@@ -6197,6 +6216,15 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                 for w in weathers:
                     for d in foes:
                         pairs.append([dk, d, ["Spit Up"], w])
+    # The player's Natural Gift, rowed holding the Sitrus Berry its rows lack
+    # (natural_gift_key), against every trainer Pokemon.
+    for k in list(pkeys):
+        if "Natural Gift" in moves.get(k, ()):
+            dk = f"{k}#ng"
+            pokemon[dk] = dict(pokemon[k], item="Sitrus Berry")
+            for w in weathers:
+                for d in bkeys:
+                    pairs.append([dk, d, ["Natural Gift"], w])
     # The trainer's AI costs a move with BattleSystem_CalcMoveDamage, which
     # knows nothing of the abilities that take a move whole; the calculator's
     # row for such a Pokemon reads 0. So each player Pokemon with one gets a

@@ -2314,6 +2314,30 @@ def check_stockpile(results):
                     f"(HP or damage, count, Defense, Sp. Def ...) {out}"))
 
 
+def check_natural_gift(results):
+    """Natural Gift (approved 2026-10-14; effect script 222): the player's
+    is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
+    its own rows carry no item, and spends the Berry; with a Leftovers it
+    fails and keeps the item. A trainer's reads its own row, made with its
+    Berry, as before."""
+    def gift(item, trainer=False):
+        if trainer:
+            b, p, foe = battle(["Tackle"], ["Natural Gift"], {("b", "Natural Gift"): [25] * 16})
+            p, foe = foe, p
+        else:
+            b, p, foe = battle(["Natural Gift"], ["Tackle"], {})
+            b.st["rows"][(None, "p0#ng", "b0.0")] = {"moves": {"Natural Gift": {"rolls": [30] * 16}}}
+        b.rng = FixedDice(0.5)
+        p.item = item
+        fs.attack(b, p, fs.move("Natural Gift"), foe, True)
+        return foe.maxhp - foe.hp, p.item
+    got = {"Sitrus Berry": gift("Sitrus Berry"), "Leftovers": gift("Leftovers"),
+           "a trainer's Shuca Berry": gift("Shuca Berry", trainer=True)}
+    want = {"Sitrus Berry": (30, None), "Leftovers": (0, "Leftovers"), "a trainer's Shuca Berry": (25, None)}
+    results.append(("the player's Natural Gift hits from its Sitrus Berry twin's row", got == want,
+                    f"(damage, item after) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3606,6 +3630,7 @@ def main():
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
                   check_pluck, check_chatter, check_stockpile,
+                  check_natural_gift,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
