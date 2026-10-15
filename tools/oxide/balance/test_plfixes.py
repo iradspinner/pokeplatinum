@@ -4037,6 +4037,26 @@ def miracle_eye_checks():
              f"Psybeam dealt {before} before and {after} after; the twin {twin}")]
 
 
+def acupressure_checks():
+    """Acupressure in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): each use of a trainer's Dodrio's Acupressure
+    raises one of its seven stats by two stages, drawn by the battle's
+    dice, and over forty uses from a fresh start every stat is drawn."""
+    from .test_fightai import battle
+    b = battle([("Dodrio", 30, "Early Bird", ["Acupressure", "Peck"])], [("Bibarel", 30, "Simple", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    dod, bib = b.b.cur(), b.p.cur()
+    drawn, each = set(), True
+    for _ in range(40):
+        dod.stages = dict.fromkeys(fs.STAGE_KEYS, 0)
+        pl.status_move(b, dod, fs.move("Acupressure"), bib, True)
+        up = {k: v for k, v in dod.stages.items() if v}
+        each = each and len(up) == 1 and set(up.values()) == {2}
+        drawn |= set(up)
+    ok = each and drawn == set(fs.STAGE_KEYS)
+    return [("the readings' Acupressure raises one stat by two", ok, f"each use one stat by two {each}; drawn {sorted(drawn)}")]
+
+
 def main():
     results = []
 
@@ -4542,6 +4562,7 @@ def main():
     results += refresh_checks()
     results += wring_out_checks()
     results += miracle_eye_checks()
+    results += acupressure_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

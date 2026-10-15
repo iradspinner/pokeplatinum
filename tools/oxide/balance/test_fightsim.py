@@ -4123,6 +4123,29 @@ def check_miracle_eye(results):
     results.append(("Miracle Eye lets Psychic moves hit a Dark type and lifts its evasion", out == want, str(out)))
 
 
+def check_acupressure(results):
+    """Acupressure (approved 2026-10-14; effect script 226,
+    BtlCmd_BoostRandomStatBy2): two stages on one of its user's stats not
+    at +6, drawn evenly in the engine's order (here the first), Simple
+    doubling them; nothing behind its own Substitute or with every stat at
+    +6."""
+    def use(**kw):
+        b, p, foe = battle(["Acupressure"], ["Tackle"], {})
+        b.rng = FixedDice(0.0)
+        for k, v in kw.items():
+            if k == "stages":
+                p.stages.update(v)
+            else:
+                setattr(p, k, v)
+        fs.status_move(b, p, fs.move("Acupressure"), foe, True)
+        return {k: v for k, v in p.stages.items() if v}
+    out = {"fresh": use(), "Attack at +6": use(stages={"atk": 6}), "Simple": use(ability="Simple"),
+           "behind its Substitute": use(sub=25), "all at +6": use(stages=dict.fromkeys(fs.STAGE_KEYS, 6))}
+    want = {"fresh": {"atk": 2}, "Attack at +6": {"atk": 6, "def": 2}, "Simple": {"atk": 4},
+            "behind its Substitute": {}, "all at +6": dict.fromkeys(fs.STAGE_KEYS, 6)}
+    results.append(("Acupressure raises a stat below +6 by two", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4386,7 +4409,7 @@ def main():
                   check_ghost_untrapped, check_soundproof_status, check_item_flinch_blocked,
                   check_black_sludge, check_water_bubble, check_eerie_spell,
                   check_burning_bulwark,
-                  check_refresh, check_wring_out, check_miracle_eye,
+                  check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

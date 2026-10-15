@@ -3552,6 +3552,26 @@ def nightmare(att, dfn, mv):
         dfn.nightmare = True
 
 
+# The stats Acupressure may raise, in BtlCmd_BoostRandomStatBy2's order
+# (BATTLE_STAT_ATTACK to BATTLE_STAT_EVASION).
+ACUPRESSURE_STATS = ("atk", "def", "spe", "spa", "spd", "acc", "eva")
+
+
+def acupressure(att, pick):
+    """Acupressure (effect script 226, BtlCmd_BoostRandomStatBy2) on its user,
+    the one target its range allows in a single battle: it fails behind
+    the user's own Substitute (the script's CheckSubstitute on its
+    target), and otherwise raises by two stages one of the stats not at
+    +6 yet, drawn evenly (pick(n) on the battle's dice), failing when all
+    seven are there; Simple doubles the two, as for any raise. Until
+    2026-10-15 nothing rose (Ian approved the fix)."""
+    if att.sub:
+        return
+    room = [k for k in ACUPRESSURE_STATS if att.stages[k] < 6]
+    if room:
+        change_stages(att, {room[pick(len(room)) if len(room) > 1 else 0]: 2})
+
+
 def refresh(att):
     """Refresh (effect script 193, subscript_recover_psn_prz_brn): its user's
     own poison, bad poison, burn or paralysis is cured
@@ -5408,6 +5428,8 @@ def status_move(b, att, mv, dfn, first):
             m.stages = dict.fromkeys(STAGE_KEYS, 0)
     elif e == "HEAL_STATUS":
         refresh(att)
+    elif e == "RANDOM_STAT_UP_2":
+        acupressure(att, b.rng.randrange)
     elif e == "CURE_PARTY_STATUS":
         for m in own_side.mons:
             m.status = None

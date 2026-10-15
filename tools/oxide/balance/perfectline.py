@@ -1051,6 +1051,8 @@ def status_move(b, att, mv, dfn, first):
             m.stages = dict.fromkeys(fs.STAGE_KEYS, 0)
     elif e == "HEAL_STATUS":
         fs.refresh(att)                  # Refresh cures its user's own poison, burn or paralysis
+    elif e == "RANDOM_STAT_UP_2":
+        fs.acupressure(att, lambda n: b.dice.choice("acupressure", n))     # two stages of a stat drawn evenly
     elif e == "CURE_PARTY_STATUS":
         for m in own_side.mons:
             m.status = None
