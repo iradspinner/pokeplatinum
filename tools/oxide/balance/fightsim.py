@@ -529,6 +529,9 @@ class Mon:
     # 2 when the hit lands, one off at each turn's end, so it lasts the rest
     # of this turn and all of the next; cleared when it leaves.
     throat_chop = 0
+    # Grudge (MOVE_EFFECT_GRUDGE): set by the move until its user next tries
+    # to act or leaves, under the rare flag (grudge).
+    grudge = False
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -595,6 +598,7 @@ class Mon:
                 self.pp = {k: v for k, v in self.pp.items() if any(m.name == k for m in moves)}
                 self.pp["Mimic"] = pp
                 self.moves, self.mimicked = moves, None
+            self.grudge = False          # Grudge goes with moveEffectsMask
             self.rare = False
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
@@ -3199,6 +3203,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     att.conversion2_src = (att.last_hit_by, att.last_hit_type) if att.last_hit_by is not None else None
     att.last_hit_by = None
     att.destiny_bond = False
+    if att.grudge:
+        att.grudge = False           # and its Grudge (CHECK_STATUS_START)
     b.status_src = att           # a status this move gives comes from att (Synchronize)
     # The user's own state first.
     if att.recharge:
@@ -3239,6 +3245,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     mark_hit(b, mv, dfn, True, targets)
     prev = note_move(b, mv)      # the move before this one, for Copycat
     spend_pp(b, att, mv, dfn, targets)
+    paid = mv                    # the move in the slot that paid, whatever it calls (Grudge's ATTACKER_MOVE_SLOT)
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP") and mv.const not in KEEPS_PROTECT_RUN:
         att.protect_run = 0
     att.last = mv
@@ -3283,6 +3290,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         attack(b, att, mv, dfn, first)
         hit_aftermath(b, att, dfn, mv, chance, pick)
         destiny_bond(att, dfn)
+        if dfn.grudge:
+            grudge(att, dfn, paid, mv)
         knockout_boost(att, dfn, before)
         return
     # A double battle: a spread move hits each target at three quarters.
@@ -3294,6 +3303,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     b.spread = False
     for t in targets:
         destiny_bond(att, t)
+        if t.grudge:
+            grudge(att, t, paid, mv)
         knockout_boost(att, t, before[id(t)])
 
 
@@ -5816,6 +5827,19 @@ def late_hit(b, att, dfn, mv, stripped, dealt):
             dfn.trapped_by = att.key
 
 
+def grudge(att, dfn, paid, mv):
+    """After a move, for a target under Grudge (effect script 194 sets
+    MOVE_EFFECT_GRUDGE; BtlCmd_TryGrudge, run from
+    subscript_faint_check_destiny_bond and U-turn's subscript): if the move
+    knocked it out and its user still stands on the other side, the move in
+    the user's slot that paid for this one (paid, the slot's move whatever
+    it called) loses all its PP, unless the move was Struggle. The mark is
+    set until its user next tries to act or leaves. Until 2026-10-15
+    Grudge did nothing (Ian approved the fix)."""
+    if not dfn.alive() and att.alive() and att.side != dfn.side and mv.effect != "STRUGGLE":
+        att.pp[paid.name] = 0
+
+
 def destiny_bond(att, dfn):
     """After a move: if it fainted a Pokemon under Destiny Bond and its user
     still stands on the other side, the user faints too
@@ -6507,6 +6531,8 @@ def status_move(b, att, mv, dfn, first):
             att.stages["atk"] = 6
     elif e == "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP":
         clangorous_soul(b, att)
+    elif e == "REMOVE_ALL_PP_ON_DEFEAT":
+        att.grudge = att.rare = True     # Grudge, until its user next acts (grudge)
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in HEAL_HALF:

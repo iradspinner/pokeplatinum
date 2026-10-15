@@ -5413,6 +5413,25 @@ def check_lunar_dance(results):
     want = {"alone": (100, False), "user": (0, True), "replacement": (1, 100, None, fs.move("Tackle").pp, False)}
     results.append(("Lunar Dance faints its user and restores its replacement, PP too", out == want, str(out)))
 
+def check_grudge(results):
+    """Grudge (approved 2026-10-14; effect script 194): until its user next
+    tries to act, a foe's move that knocks it out loses all its PP; one
+    that does not knock it out keeps them, and the user's next move ends
+    the mark."""
+    out = {}
+    for case in ("knocked out", "standing", "moved since"):
+        b, p, foe = battle(["Grudge", "Tackle"], ["Tackle"], {("b", "Tackle"): [60] * 16, ("p", "Tackle"): [1] * 16}, hp=100)
+        b.rng = FixedDice(0.5)
+        fs.status_move(b, p, fs.move("Grudge"), foe, True)
+        if case == "moved since":
+            fs.use_move(b, p, fs.move("Tackle"), foe, True)
+        p.hp = 50 if case != "standing" else 100
+        fs.use_move(b, foe, fs.move("Tackle"), p, True)
+        out[case] = (p.alive(), foe.pp["Tackle"])
+    full = fs.move("Tackle").pp
+    want = {"knocked out": (False, 0), "standing": (True, full - 1), "moved since": (False, full - 1)}
+    results.append(("Grudge empties the PP of the move that knocks its user out", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5696,7 +5715,7 @@ def main():
                   check_poltergeist, check_belch, check_first_impression,
                   check_axe_kick, check_always_critical,
                   check_clangorous_soul, check_heart_swap, check_heal_pulse,
-                  check_lunar_dance,
+                  check_lunar_dance, check_grudge,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

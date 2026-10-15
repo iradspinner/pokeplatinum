@@ -364,6 +364,8 @@ def _use_move(b, att, mv, dfn, first):
     att.conversion2_src = (att.last_hit_by, att.last_hit_type) if att.last_hit_by is not None else None
     att.last_hit_by = None           # cleared with its own action, after Conversion 2 has read it (fightsim.use_move)
     att.destiny_bond = False         # and its Destiny Bond with it
+    if att.grudge:
+        att.grudge = False           # and its Grudge (fightsim.grudge)
     b.status_src = att               # a status this move gives comes from att (Synchronize)
     if att.recharge:
         att.recharge = False
@@ -403,6 +405,7 @@ def _use_move(b, att, mv, dfn, first):
     fs.mark_hit(b, mv, dfn, True)
     prev = fs.note_move(b, mv)           # the move before this one, for Copycat (fightsim.note_move)
     fs.spend_pp(b, att, mv, dfn)       # once a choice, and Pressure's (fightsim.spend_pp)
+    paid = mv                        # the slot that paid, whatever it calls (fightsim.grudge)
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP") and mv.const not in fs.KEEPS_PROTECT_RUN:
         att.protect_run = 0
     att.last = mv
@@ -447,6 +450,8 @@ def _use_move(b, att, mv, dfn, first):
                      lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
                      lambda kind, n: b.dice.choice(kind, n))
     fs.destiny_bond(att, dfn)
+    if dfn.grudge:
+        fs.grudge(att, dfn, paid, mv)        # the knockout's move loses its PP (fightsim.grudge)
     fs.knockout_boost(att, dfn, before)      # Moxie and Beast Boost
 
 
@@ -1063,6 +1068,8 @@ def status_move(b, att, mv, dfn, first):
             att.stages["atk"] = 6
     elif e == "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP":
         fs.clangorous_soul(b, att)       # a third of its HP for all five stats (fightsim.clangorous_soul)
+    elif e == "REMOVE_ALL_PP_ON_DEFEAT":
+        att.grudge = att.rare = True     # Grudge, until its user next acts (fightsim.grudge)
     elif e == "CRIT_UP_2":
         att.crit_stage = 2
     elif e in fs.HEAL_HALF:
@@ -1325,6 +1332,7 @@ def mon_key(m):
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
         key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.mud_sport, m.power_trick, m.bide, m.bide_damage,
                 m.transform_key, tuple(sorted(m.split.items())) if m.split else None, m.embargo, m.roomed, m.item_off,
+                m.grudge,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key

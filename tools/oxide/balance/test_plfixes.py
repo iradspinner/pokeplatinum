@@ -5071,6 +5071,19 @@ def lunar_dance_checks():
     return [("the readings' Lunar Dance restores its replacement", ok,
              f"(Bibarel's HP, on the field, Staravia's status, Peck's PP, healed past half, hit after) {got}")]
 
+def grudge_checks():
+    """Grudge in a whole turn of the readings' battle on the calculator's
+    real rows (approved 2026-10-14): the player's Bibarel at 1 HP uses
+    Grudge before a trainer's Geodude's Tackle knocks it out, and the
+    Tackle loses all its PP."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                            [("Bibarel", 30, "Unaware", ["Grudge"]), ("Staravia", 30, "Intimidate", ["Peck"])])
+    bib.hp = 1
+    pl._turn(b, ("move", fs.move("Grudge")), ("move", fs.move("Tackle")))
+    ok = not bib.alive() and geo.pp["Tackle"] == 0
+    return [("the readings' Grudge empties the knockout move's PP", ok,
+             f"Bibarel standing {bib.alive()}, the Geodude's Tackle PP {geo.pp['Tackle']}")]
+
 def main():
     results = []
 
@@ -5633,6 +5646,7 @@ def main():
     results += heart_swap_checks()
     results += heal_pulse_checks()
     results += lunar_dance_checks()
+    results += grudge_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
