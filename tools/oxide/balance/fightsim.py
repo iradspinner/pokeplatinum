@@ -3193,11 +3193,16 @@ def protected(b, att, mv, dfn):
     Sight, Curse, the hazards and the rest pass it. A stopped move lets go
     of its user's lock (Battler_UnlockMoveChoice ends a Rollout's run); a
     contact move stopped by Spiky Shield costs its user an eighth of its
-    maximum HP unless it has Magic Guard, and one stopped by Baneful Bunker
-    poisons a user with no status (subscript_missed). Oxide's other
-    protecting moves (King's Shield, Obstruct, Silk Trap, Burning Bulwark)
-    only protect. Until 2026-10-14 Protect stopped every move but Feint
-    (Ian approved the fix)."""
+    maximum HP unless it has Magic Guard, one stopped by Baneful Bunker
+    poisons a user with no status, and one stopped by Burning Bulwark burns
+    it (subscript_missed, since 2026-10-14 for Burning Bulwark: the burn
+    subscript stops it at a Fire type, a user behind its own Substitute or
+    under Safeguard, and Water Veil, Water Bubble, Purifying Salt and Leaf
+    Guard in sun, which give_status reads; the burned user is the attacker
+    there, so a Mold Breaker never gets past those). Oxide's other
+    protecting moves (King's Shield, Obstruct, Silk Trap) only protect.
+    Until 2026-10-14 Protect stopped every move but Feint (Ian approved the
+    fix)."""
     if not dfn.protecting or not mv.protect:
         return False
     rollout_after(att, mv, False)
@@ -3208,6 +3213,9 @@ def protected(b, att, mv, dfn):
         elif guard == "Baneful Bunker" and not att.status:
             b.status_src = dfn
             give_status(b, att, "psn")
+        elif guard == "Burning Bulwark" and not att.status:
+            b.status_src = dfn               # Synchronize passes it back, as in the engine
+            give_status(b, att, "brn")
     return True
 
 

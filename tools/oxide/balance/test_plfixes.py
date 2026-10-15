@@ -2633,6 +2633,25 @@ def eerie_spell_checks():
     return [("Eerie Spell drains the last move's PP in the readings", ok, f"Thunderbolt's PP before and after {out}")]
 
 
+def burning_bulwark_checks():
+    """Burning Bulwark in the readings' battle (Oxide's engine since
+    2026-10-14): a trainer's Burning Bulwark, used first in the turn, stops
+    the player's Karate Chop and burns the Machop; a Water Veil attacker is
+    stopped and not burned."""
+    from .test_fightai import battle
+    out = {}
+    for ab in ("Guts", "Water Veil"):
+        b = battle([("Scovillain", 40, "Chlorophyll", ["Burning Bulwark"])], [("Machop", 40, ab, ["Karate Chop"])])
+        sco, chop = b.b.cur(), b.p.cur()
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        pl.use_move(b, sco, fs.move("Burning Bulwark"), chop, True)
+        pl.use_move(b, chop, fs.move("Karate Chop"), sco, False)
+        out[ab] = (sco.hp == sco.maxhp, chop.status)
+    ok = out == {"Guts": (True, "brn"), "Water Veil": (True, None)}
+    return [("Burning Bulwark burns a contact attacker in the readings", ok,
+             f"(Scovillain untouched, the Machop's status) {out}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3142,6 +3161,7 @@ def main():
     results += black_sludge_checks()
     results += water_bubble_checks()
     results += eerie_spell_checks()
+    results += burning_bulwark_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

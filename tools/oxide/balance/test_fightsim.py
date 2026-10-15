@@ -2310,6 +2310,34 @@ def check_eerie_spell(results):
                     f"the last move's PP after {got}"))
 
 
+def check_burning_bulwark(results):
+    """Burning Bulwark (Oxide's engine since 2026-10-14, subscript_missed):
+    a contact move it stops burns its user, unless the user is a Fire type,
+    is behind its own Substitute or under Safeguard, already has a status,
+    or has Water Veil, Water Bubble, Purifying Salt, or Leaf Guard in sun; a
+    move without contact is only stopped, and a status move is stopped
+    too."""
+    def into(move="Tackle", types=("Normal",), ability=None, status=None, sub=0, safeguard=False, weather=None):
+        b, p, foe = battle([move], ["Burning Bulwark"], {("p", move): [10] * 16}, p_types=types)
+        b.weather = weather
+        foe.protecting, foe.last = True, fs.move("Burning Bulwark")
+        p.ability, p.status, p.sub = ability, status, sub
+        b.p.safeguard = 5 if safeguard else 0
+        stopped = fs.protected(b, p, fs.move(move), foe)
+        return stopped, p.status
+    got = {"Tackle": into(), "Water Gun": into("Water Gun"), "Growl": into("Growl"),
+           "a Fire type": into(types=("Fire",)), "Water Veil": into(ability="Water Veil"),
+           "Water Bubble": into(ability="Water Bubble"), "Purifying Salt": into(ability="Purifying Salt"),
+           "Leaf Guard in sun": into(ability="Leaf Guard", weather="Sun"), "Leaf Guard": into(ability="Leaf Guard"),
+           "its own Substitute": into(sub=25), "Safeguard": into(safeguard=True), "paralysed": into(status="par")}
+    want = {"Tackle": (True, "brn"), "Water Gun": (True, None), "Growl": (True, None), "a Fire type": (True, None),
+            "Water Veil": (True, None), "Water Bubble": (True, None), "Purifying Salt": (True, None),
+            "Leaf Guard in sun": (True, None), "Leaf Guard": (True, "brn"), "its own Substitute": (True, None),
+            "Safeguard": (True, None), "paralysed": (True, "par")}
+    results.append(("Burning Bulwark burns a contact attacker, with the burn's own exceptions", got == want,
+                    f"(stopped, the attacker's status) {got}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -2562,6 +2590,7 @@ def main():
                   check_sticky_barb, check_payback, check_leech_seed_sap,
                   check_ghost_untrapped, check_soundproof_status, check_item_flinch_blocked,
                   check_black_sludge, check_water_bubble, check_eerie_spell,
+                  check_burning_bulwark,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
