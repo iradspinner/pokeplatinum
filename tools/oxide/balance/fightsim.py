@@ -697,6 +697,10 @@ class Battle:
     # A move Magic Coat is turning back is running (coat_bounces), so it is
     # not turned again.
     reflecting = False
+    # Whether a Pokemon in this fight knows Water Sport (st["water_sport"]),
+    # so the damage reads sport_half only then; set as the battle is made
+    # and kept by its copies.
+    sporty = False
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -704,6 +708,8 @@ class Battle:
         self.weather = weather
         self.weather_turns = 0 if weather else 0     # 0 with weather set: permanent
         self.trick_room = 999 if trick_room else 0
+        if st.get("water_sport"):
+            self.sporty = True
         self.turn = 0
         self.ai_flags = ai_flags
         self.log = []
@@ -718,18 +724,28 @@ class Battle:
             ak = protean_key(self, att) or ak     # a Protean user's twin of its new type
         if dfn.protean_type:
             dk = protean_key(self, dfn) or dk
-        if att.rare and att.power_trick:
-            ak = trick_key(self, att) or ak       # a Power Trick user's twin with Attack and Defense swapped
-        if dfn.rare and dfn.power_trick:
-            dk = trick_key(self, dfn) or dk
         if dfn.roosting and mv is not None and "Flying" in dfn.types:
             dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
-        if (dfn.rare or self.gravity) and mv is not None:
-            # An identified Ghost's twin without Ghost; a grounded flier's
-            # without Flying or Levitate; a Miracle Eye target's without Dark.
-            dk = (foresight_key(self, dfn, mv, att) or ground_key(self, dfn, mv, att)
-                  or miracle_key(self, dfn, mv, att) or dk)
+        if dfn.rare:
+            if dfn.power_trick:
+                dk = trick_key(self, dfn) or dk
+            if mv is not None:
+                # An identified Ghost's twin without Ghost; a grounded flier's
+                # without Flying or Levitate; a Miracle Eye target's without Dark.
+                dk = (foresight_key(self, dfn, mv, att) or ground_key(self, dfn, mv, att)
+                      or miracle_key(self, dfn, mv, att) or dk)
+        elif self.gravity and mv is not None:
+            dk = ground_key(self, dfn, mv, att) or dk     # Gravity grounds a flier that nothing else marks
         rows = self.st["rows"]
+        if att.rare:
+            if att.power_trick:
+                ak = trick_key(self, att) or ak   # a Power Trick user's twin with Attack and Defense swapped
+            if att.transformed:
+                # A transformed Pokemon hits as the one it copied where prepare()
+                # has rowed that one against this target (transform).
+                tk = att.transform_key
+                if (self.weather, tk, dk) in rows or (None, tk, dk) in rows:
+                    ak = tk
         # A type or ability another move or ability changed (form_key) reads
         # the changed Pokemon's twin: the pair of twins when both are
         # changed, else the one change against the other's rows, as far as
@@ -742,14 +758,6 @@ class Battle:
                 got = rows.get((w, a, d))
                 if got is not None:
                     return got
-        if att.rare and att.transformed:
-            # A transformed Pokemon hits as the one it copied where prepare()
-            # has rowed that one against this target (transform).
-            tk = att.transform_key
-            w = self.weather if (self.weather, tk, dk) in rows else None
-            got = rows.get((w, tk, dk))
-            if got is not None:
-                return got
         w = self.weather if (self.weather, ak, dk) in rows else None
         return rows.get((w, ak, dk))
 
@@ -2374,7 +2382,7 @@ def me_first_move(att, dfn, first):
     if (not first or nxt is None or not dfn.alive() or nxt.effect == "STRUGGLE" or nxt.power <= 0
             or nxt.effect in ME_FIRST_REFUSES):
         return None
-    att.me_first = True
+    att.me_first = att.rare = True
     return nxt
 
 
@@ -3153,7 +3161,8 @@ def attack(b, att, mv, dfn, first):
         return
     if loses_type_fails(att, mv):
         return                           # Burn Up or Double Shock without its type (lose_type)
-    if dream_eater_fails(att, dfn, mv) or lost_focus(att, mv) or snore_fails(att, mv):
+    if dream_eater_fails(att, dfn, mv) or lost_focus(att, mv) or (mv.effect == "DAMAGE_WHILE_ASLEEP"
+                                                                 and snore_fails(att, mv)):
         return
     spit = spit_up_key(att) if mv.effect == "SPIT_UP" else None
     if mv.effect == "SPIT_UP" and spit is None:
@@ -4705,6 +4714,15 @@ def marvel_scale(att, dfn, mv):
     return 1.0
 
 
+# The effects and the moves whose power state_mult sets from the battle's
+# state, each looked for once.
+STATE_POWER_EFFECTS = frozenset({"INCREASE_POWER_WITH_LESS_HP", "DECREASE_POWER_WITH_LESS_USER_HP",
+                                 "POWER_BASED_ON_LOW_SPEED", "HIGHER_POWER_WHEN_LOW_PP",
+                                 "INCREASE_POWER_WITH_MORE_HP"})
+STATE_POWER_MOVES = frozenset({"MOVE_PAYBACK", "MOVE_STORED_POWER", "MOVE_POWER_TRIP", "MOVE_ELECTRO_BALL",
+                               "MOVE_HARD_PRESS"})
+
+
 def state_mult(b, att, dfn, mv):
     """What a hit's row lacks as the fight runs: a pinch ability's 1.5 at a
     third of its HP or less; a resist berry gone (the row still halves the
@@ -4720,15 +4738,34 @@ def state_mult(b, att, dfn, mv):
     berry = resist_berry(b, dfn, mv)
     if berry and not berry_works(b, dfn, berry):
         m *= 2               # the row's halving gone with the Berry, or held off by Unnerve
-    if mv.effect == "INCREASE_POWER_WITH_LESS_HP":
-        m *= power_ratio(att, 20, flail_power(att))
-    if mv.effect == "DECREASE_POWER_WITH_LESS_USER_HP":
-        m *= power_ratio(att, 150, max(1, 150 * att.hp // att.maxhp))
-    if mv.effect == "POWER_BASED_ON_LOW_SPEED":
-        # Gyro Ball: the row has its power at both Pokemon's starting Speeds;
-        # the game takes the turn's, stages and paralysis in them, and so
-        # does the trainer's AI (TrainerAI_CalcDamage's MOVE_GYRO_BALL case).
-        m *= power_ratio(att, gyro_power(b.row_speed(dfn), b.row_speed(att)), gyro_power(b.speed(dfn), b.speed(att)))
+    # The powers the battle's state sets, by effect and by move, each
+    # behind one look (STATE_POWER_EFFECTS, STATE_POWER_MOVES), as a move
+    # has one effect and is one move.
+    e = mv.effect
+    if e in STATE_POWER_EFFECTS:
+        if e == "INCREASE_POWER_WITH_LESS_HP":
+            m *= power_ratio(att, 20, flail_power(att))
+        elif e == "DECREASE_POWER_WITH_LESS_USER_HP":
+            m *= power_ratio(att, 150, max(1, 150 * att.hp // att.maxhp))
+        elif e == "POWER_BASED_ON_LOW_SPEED":
+            # Gyro Ball: the row has its power at both Pokemon's starting Speeds;
+            # the game takes the turn's, stages and paralysis in them, and so
+            # does the trainer's AI (TrainerAI_CalcDamage's MOVE_GYRO_BALL case).
+            m *= power_ratio(att, gyro_power(b.row_speed(dfn), b.row_speed(att)),
+                             gyro_power(b.speed(dfn), b.speed(att)))
+        elif e == "HIGHER_POWER_WHEN_LOW_PP":
+            # Trump Card: the row has the calculator's full-PP 40 (Oxide's
+            # profile); the power rises as the PP runs down (trump_card_power).
+            # The trainer's AI gives it no figure (its listed power is 1). Until
+            # 2026-10-15 every use hit at 40 (Ian approved the fix).
+            m *= power_ratio(att, 40, trump_card_power(b, att, mv))
+        elif e == "INCREASE_POWER_WITH_MORE_HP":
+            # Crush Grip and Wring Out (effect script 237, BtlCmd_CalcWringOutPower):
+            # 1 plus 120 times the target's HP over its maximum, in whole numbers;
+            # the row is made at full HP's 121. The trainer's AI gives them no
+            # figure (their listed power is 1). Until 2026-10-15 they hit at 121
+            # whatever the target's HP (Ian approved the fix).
+            m *= power_ratio(att, 121, 1 + 120 * dfn.hp // dfn.maxhp)
     if (att.ability == "Sand Force" and b.weather == "Sand" and not weather_ignored(b)
             and mv.type in ("Ground", "Rock", "Steel")):
         # BattleSystem_CalcMoveDamage: Ground, Rock and Steel moves at 13/10
@@ -4736,64 +4773,56 @@ def state_mult(b, att, dfn, mv):
         # calculator's Generation 4 path has no Sand Force. Until 2026-10-14
         # it did nothing (Ian approved the fix).
         m *= 1.3
-    if mv.const == "MOVE_PAYBACK" and b.row_speed(att) <= b.row_speed(dfn):
-        # The calculator rows Payback at twice its power for a user no
-        # faster than its target (gen4.js: turnOrder 'last'), and the battle
-        # then doubles it again when the target has acted first. The engine
-        # doubles it once, on the turn's own order (BtlCmd_CalcPaybackPower),
-        # and the trainer's AI reckons it at its table power. So the row goes
-        # back to that power here, Technician judged at each, and attack()
-        # doubles it as the turn runs. Until 2026-10-14 a slower Payback user
-        # hit at four times the power (Ian approved the fix).
-        m *= power_ratio(att, 2 * mv.power, mv.power)
-    if mv.const in ("MOVE_STORED_POWER", "MOVE_POWER_TRIP"):
-        # BattleScript_ComputedMovePower: 20, and 20 more for each stage its
-        # user has raised a stat, accuracy and evasion included; the row is
-        # made with none raised. The trainer's AI reckons it the same way
-        # (TrainerAI_ComputedMovePower). Until 2026-10-14 it hit at 20 power
-        # whatever the stages (Ian approved the fix).
-        m *= power_ratio(att, 20, 20 + 20 * sum(s for s in att.stages.values() if s > 0))
-    if mv.const == "MOVE_ELECTRO_BALL":
-        # The engine reads the Speeds the turn order was worked out from, its
-        # stages, paralysis, Tailwind and items in them, as Gyro Ball does;
-        # the row has its power at the two Pokemon's starting Speeds. Until
-        # 2026-10-14 it kept the opening Speeds' power the whole fight (Ian
-        # approved the fix).
-        m *= power_ratio(att, electro_power(b.row_speed(att), b.row_speed(dfn)),
-                         electro_power(b.speed(att), b.speed(dfn)))
-    if mv.const == "MOVE_HARD_PRESS":
-        # BattleScript_ComputedMovePower: up to 100 by the share of its HP
-        # the target has left, at least 1; the row is made at full HP. Until
-        # 2026-10-14 it hit at full power whatever the target's HP (Ian
-        # approved the fix).
-        m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
-    if b.st.get("water_sport"):
+    c = mv.const
+    if c in STATE_POWER_MOVES:
+        if c == "MOVE_PAYBACK":
+            if b.row_speed(att) <= b.row_speed(dfn):
+                # The calculator rows Payback at twice its power for a user no
+                # faster than its target (gen4.js: turnOrder 'last'), and the battle
+                # then doubles it again when the target has acted first. The engine
+                # doubles it once, on the turn's own order (BtlCmd_CalcPaybackPower),
+                # and the trainer's AI reckons it at its table power. So the row goes
+                # back to that power here, Technician judged at each, and attack()
+                # doubles it as the turn runs. Until 2026-10-14 a slower Payback user
+                # hit at four times the power (Ian approved the fix).
+                m *= power_ratio(att, 2 * mv.power, mv.power)
+        elif c in ("MOVE_STORED_POWER", "MOVE_POWER_TRIP"):
+            # BattleScript_ComputedMovePower: 20, and 20 more for each stage its
+            # user has raised a stat, accuracy and evasion included; the row is
+            # made with none raised. The trainer's AI reckons it the same way
+            # (TrainerAI_ComputedMovePower). Until 2026-10-14 it hit at 20 power
+            # whatever the stages (Ian approved the fix).
+            m *= power_ratio(att, 20, 20 + 20 * sum(s for s in att.stages.values() if s > 0))
+        elif c == "MOVE_ELECTRO_BALL":
+            # The engine reads the Speeds the turn order was worked out from, its
+            # stages, paralysis, Tailwind and items in them, as Gyro Ball does;
+            # the row has its power at the two Pokemon's starting Speeds. Until
+            # 2026-10-14 it kept the opening Speeds' power the whole fight (Ian
+            # approved the fix).
+            m *= power_ratio(att, electro_power(b.row_speed(att), b.row_speed(dfn)),
+                             electro_power(b.speed(att), b.speed(dfn)))
+        elif c == "MOVE_HARD_PRESS":
+            # BattleScript_ComputedMovePower: up to 100 by the share of its HP
+            # the target has left, at least 1; the row is made at full HP. Until
+            # 2026-10-14 it hit at full power whatever the target's HP (Ian
+            # approved the fix).
+            m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
+    if b.sporty:
         m *= sport_half(b, att, dfn, mv)     # Water Sport on the field halves a Fire move's power
-    if att.me_first:
-        m *= 1.5                 # a move Me First took, at half again its damage (me_first_move)
-    if mv.effect == "HIGHER_POWER_WHEN_LOW_PP":
-        # Trump Card: the row has the calculator's full-PP 40 (Oxide's
-        # profile); the power rises as the PP runs down (trump_card_power).
-        # The trainer's AI gives it no figure (its listed power is 1). Until
-        # 2026-10-15 every use hit at 40 (Ian approved the fix).
-        m *= power_ratio(att, 40, trump_card_power(b, att, mv))
-    if mv.effect == "INCREASE_POWER_WITH_MORE_HP":
-        # Crush Grip and Wring Out (effect script 237, BtlCmd_CalcWringOutPower):
-        # 1 plus 120 times the target's HP over its maximum, in whole numbers;
-        # the row is made at full HP's 121. The trainer's AI gives them no
-        # figure (their listed power is 1). Until 2026-10-15 they hit at 121
-        # whatever the target's HP (Ian approved the fix).
-        m *= power_ratio(att, 121, 1 + 120 * dfn.hp // dfn.maxhp)
-    if b.gravity and mv.const == "MOVE_GRAV_APPLE":
+    if b.gravity and c == "MOVE_GRAV_APPLE":
         # BattleScript_ComputedMovePower: half as strong again while Gravity
         # is in force (since 2026-10-15, when Gravity began to run).
         m *= power_ratio(att, mv.power, mv.power * 15 // 10)
-    if att.rare and att.charged and move_type_used(att.ability, mv, att.ivs, att.item, b.weather) == "Electric":
-        # Charge: BattleSystem_CalcMoveDamage doubles an Electric move's power
-        # while MOVE_EFFECT_CHARGE stands, after POWER_MULTI and before
-        # Technician; the trainer's AI reckons it the same way. Until
-        # 2026-10-15 Charge only raised Sp. Def (Ian approved the fix).
-        m *= power_ratio(att, mv.power, 2 * mv.power) if mv.power > 1 else 2
+    if att.rare:
+        if att.charged and move_type_used(att.ability, mv, att.ivs, att.item, b.weather) == "Electric":
+            # Charge: BattleSystem_CalcMoveDamage doubles an Electric move's
+            # power while MOVE_EFFECT_CHARGE stands, after POWER_MULTI and
+            # before Technician; the trainer's AI reckons it the same way.
+            # Until 2026-10-15 Charge only raised Sp. Def (Ian approved the
+            # fix).
+            m *= power_ratio(att, mv.power, 2 * mv.power) if mv.power > 1 else 2
+        if att.me_first:
+            m *= 1.5             # a move Me First took, at half again its damage (me_first_move)
     reach = reach_mult(mv, dfn)
     if reach > 1:
         # The effect scripts double the power (POWER_MULTI 20) before

@@ -4382,7 +4382,7 @@ def check_water_sport(results):
     too; a second use fails, Baton Pass hands it on, and leaving ends it."""
     out = {}
     b, p, foe = battle(["Water Sport", "Baton Pass"], ["Ember"], {("b", "Ember"): [40] * 16})
-    b.st["water_sport"] = True
+    b.st["water_sport"] = b.sporty = True        # as prepare() and the battle's making set them
     ember = fs.move("Ember")
     out["before"] = (b.damage(foe, p, ember, roll=0), fightai.figure(b, foe, p, ember))
     fs.status_move(b, p, fs.move("Water Sport"), foe, True)
