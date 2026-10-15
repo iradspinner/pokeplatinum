@@ -942,6 +942,8 @@ def status_move(b, att, mv, dfn, first):
         fs.change_stages(att, fs.SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
+        if e == "EVA_UP_2_MINIMIZE":
+            att.minimized = True         # Minimize's mark, which Stomp doubles on (fightsim.doubled)
     elif e == "SP_ATK_DOWN_2_OPPOSITE_GENDER":
         if fs.captivates(att, dfn) and not fs.sub_blocks(att, dfn, mv):
             fs.lower_stats(b, att, dfn, fs.FOE_STAGES[e])     # Captivate, only across the genders (fightsim.captivates)
@@ -1150,6 +1152,8 @@ def mon_key(m):
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
     if m.throat_chop:
         key += ("throat chop", m.throat_chop)
+    if m.minimized:
+        key += ("minimized",)
     return key + _form(m) if m.formed else key
 
 

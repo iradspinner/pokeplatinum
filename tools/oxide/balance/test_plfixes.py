@@ -3491,6 +3491,33 @@ def throat_chop_checks():
              f"count {held}; offered {first}, then {second}, then {third}; Hyper Voice failed {failed}")]
 
 
+def minimize_checks():
+    """Minimize and Stomp in the readings' battle on the calculator's real
+    rows (approved 2026-10-14): a trainer's Grimer minimizes, and the
+    player's Ponyta's Stomp then hits it at twice its row."""
+    from .test_fightai import battle
+
+    class Steady(pl.RunDice):
+        """Run dice with no luck either way: no miss, critical hit or proc."""
+        def bad(self, kind, p):
+            return False
+
+        def good(self, p, kind=None):
+            return False
+    b = battle([("Grimer", 25, "Stench", ["Minimize"])], [("Ponyta", 25, "Run Away", ["Stomp"])])
+    b.dice, b.rng = Steady(random.Random(1), True), random.Random(1)
+    gri, pon = b.b.cur(), b.p.cur()
+    rolls = b.st["rows"][(None, pon.key, gri.key)]["moves"]["Stomp"]["rolls"]
+    gri.hp = gri.maxhp = 100000
+    pl.use_move(b, gri, fs.move("Minimize"), pon, True)
+    pl.use_move(b, pon, fs.move("Stomp"), gri, False)
+    dealt = gri.maxhp - gri.hp
+    ok = getattr(gri, "minimized", False) and gri.stages["eva"] == 2 and 2 * rolls[0] - 1 <= dealt <= 2 * rolls[-1]
+    return [("the readings' Stomp doubles on a Minimize user", ok,
+             f"evasion {gri.stages['eva']}, marked {getattr(gri, 'minimized', None)}, Stomp dealt {dealt}, "
+             f"row {rolls[0]} to {rolls[-1]}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4137,6 +4164,7 @@ def main():
     results += rollout_checks()
     results += wake_up_slap_checks()
     results += throat_chop_checks()
+    results += minimize_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()

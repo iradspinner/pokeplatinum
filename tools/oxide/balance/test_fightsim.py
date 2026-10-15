@@ -2446,6 +2446,32 @@ def check_throat_chop(results):
                     "and Sheer Force stop it", out == want, str(out)))
 
 
+def check_minimize_stomp(results):
+    """Minimize, Stomp and Steamroller (approved 2026-10-14; effect scripts
+    108 and 150): Minimize raises its user's evasion two stages and marks
+    it, even at +6, and Stomp and Steamroller then hit it at twice their
+    power, until it leaves the field."""
+    out = {}
+    for name in ("Stomp", "Steamroller"):
+        b, p, foe = battle([name], ["Minimize"], {("p", name): [10] * 16}, hp=1000)
+        foe.ability = "Shell Armor"
+        b.rng = FixedDice(0.0)
+        fs.attack(b, p, fs.move(name), foe, True)
+        plain = foe.maxhp - foe.hp
+        foe.stages["eva"] = 6
+        fs.status_move(b, foe, fs.move("Minimize"), p, False)
+        before = foe.hp
+        fs.attack(b, p, fs.move(name), foe, True)
+        doubled = before - foe.hp
+        foe.reset_volatile()
+        before = foe.hp
+        fs.attack(b, p, fs.move(name), foe, True)
+        out[name] = (plain, getattr(foe, "minimized", None), doubled, before - foe.hp)
+    want = {"Stomp": (10, False, 20, 10), "Steamroller": (10, False, 20, 10)}
+    results.append(("Stomp and Steamroller double on a Minimize user until it leaves", out == want,
+                    f"(plain, marked after leaving, on the Minimize user, after it left) {out}"))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -3835,7 +3861,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
