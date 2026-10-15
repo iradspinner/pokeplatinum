@@ -4753,6 +4753,23 @@ def heat_crash_checks():
              f"powers {powers}, top rolls {hits}, Starly's HP {hp} to {sta.hp}, team search's shares {rated}")]
 
 
+def healing_wish_checks():
+    """Healing Wish in a whole turn of the readings' battle on the
+    calculator's real rows (approved 2026-10-14): the player's Bibarel
+    faints to it, its poisoned Staravia at half HP comes in at once and is
+    healed and cured, and the trainer's Geodude's Tackle, moving after,
+    hits the Staravia."""
+    b, geo, bib = b7_battle([("Geodude", 20, "Sturdy", ["Tackle"])],
+                            [("Bibarel", 40, "Unaware", ["Healing Wish"]), ("Staravia", 40, "Intimidate", ["Peck"])])
+    sta = b.p.mons[1]
+    sta.hp, sta.status = sta.maxhp // 2, "psn"
+    pl._turn(b, ("move", fs.move("Healing Wish")), ("move", fs.move("Tackle")))
+    got = (bib.hp, b.p.cur().species, sta.status, sta.hp > sta.maxhp // 2, sta.hp < sta.maxhp)
+    ok = got == (0, "Staravia", None, True, True)
+    return [("the readings' Healing Wish heals its replacement", ok,
+             f"(Bibarel's HP, on the field, Staravia's status, healed past half, hit after) {got}")]
+
+
 def main():
     results = []
 
@@ -5296,6 +5313,7 @@ def main():
     results += dragon_tail_checks()
     results += side_guard_checks()
     results += heat_crash_checks()
+    results += healing_wish_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

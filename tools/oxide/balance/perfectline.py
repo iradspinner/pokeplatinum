@@ -1031,6 +1031,8 @@ def status_move(b, att, mv, dfn, first):
             fs.lower_stats(b, att, dfn, fs.VENOM_DRENCH_STAGES)     # a poisoned target's three stats
     elif e == "PARTING_SHOT":
         fs.parting_shot(b, att, dfn, mv)     # both drops, then out as after U-turn (fightsim.parting_shot)
+    elif e == "FAINT_AND_FULL_HEAL_NEXT_MON":
+        fs.healing_wish(b, att)          # its user faints; the turn heals the one sent in (fightsim.wish_comes_true)
     elif e == "CURSE":
         if "Ghost" in att.types:
             fs.ghost_curse(b, att, dfn, mv)      # it fails, at no cost, through a Substitute or on a cursed target
@@ -1658,6 +1660,10 @@ def _turn(c, pa, aa):
         target = fs.foe_of(c, mon)
         first = i == 0 and len(order) == 2
         use_move(c, mon, mv, target, first)
+        if mon.wished:
+            # Healing Wish: its replacement now, picked as a knockout's is.
+            fs.wish_comes_true(c, mon, lambda side: fs.player_replacement(c) if side is c.p
+                               else fightai.replacement(c, side, fs.foe_of(c, mon)))
         if getattr(mon, "u_turn", False) or getattr(mon, "baton", False):
             # subscript_attack_then_switch_out: no switch once the target's
             # side has nothing left (CheckBlackOut), with no one to send in

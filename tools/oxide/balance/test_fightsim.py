@@ -5049,6 +5049,30 @@ def check_heat_crash(results):
     results.append(("Heat Crash hits at its weight power", out == want, str(out)))
 
 
+def check_healing_wish(results):
+    """Healing Wish (approved 2026-10-14; effect script 220): with someone
+    to send in, its user faints, its replacement comes in at once, meets the
+    hazards, and is then restored to full HP and cured; with no one to send
+    in it fails."""
+    out = {}
+    b, p, foe = battle(["Healing Wish"], ["Tackle"], {}, hp=100)
+    b.rng = FixedDice(0.0)
+    fs.status_move(b, p, fs.move("Healing Wish"), foe, True)
+    out["alone"] = (p.hp, p.wished)
+    b, p, foe = battle(["Healing Wish"], ["Tackle"], {}, hp=100)
+    b.rng = FixedDice(0.0)
+    mate = fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p")
+    b.p.mons.append(mate)
+    mate.hp, mate.status = 30, "psn"
+    b.p.hazards["spikes"] = 1
+    fs.status_move(b, p, fs.move("Healing Wish"), foe, True)
+    out["user"] = (p.hp, p.wished)
+    fs.wish_comes_true(b, p, lambda side: 1)
+    out["replacement"] = (b.p.active, mate.hp, mate.status, p.wished)
+    want = {"alone": (100, False), "user": (0, True), "replacement": (1, 100, None, False)}
+    results.append(("Healing Wish faints its user and heals its replacement", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5325,6 +5349,7 @@ def main():
                   check_mud_sport, check_punishment, check_sticky_web,
                   check_defog, check_strength_sap, check_parting_shot,
                   check_dragon_tail, check_side_guards, check_heat_crash,
+                  check_healing_wish,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

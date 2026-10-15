@@ -485,6 +485,9 @@ class Mon:
     # Me First: the move it took is running at half again its damage
     # (moveEffectsData.meFirst); cleared as that move ends (use_move).
     me_first = False
+    # Healing Wish: its user has fainted to it and the turn now sends in and
+    # heals its replacement (wish_comes_true); cleared as that is done.
+    wished = False
     # Throat Chop's hold on its target's sound moves (OXIDE_MON_THROAT_CHOP):
     # 2 when the hit lands, one off at each turn's end, so it lasts the rest
     # of this turn and all of the next; cleared when it leaves.
@@ -6204,6 +6207,8 @@ def status_move(b, att, mv, dfn, first):
             lower_stats(b, att, dfn, VENOM_DRENCH_STAGES)
     elif e == "PARTING_SHOT":
         parting_shot(b, att, dfn, mv)
+    elif e == "FAINT_AND_FULL_HEAL_NEXT_MON":
+        healing_wish(b, att)
     elif e == "CURSE":
         if "Ghost" in att.types:
             ghost_curse(b, att, dfn, mv)
@@ -6371,6 +6376,39 @@ def status_move(b, att, mv, dfn, first):
                 m.perish = 4
     elif e == "HIT_IN_3_TURNS":
         pass
+
+
+def healing_wish(b, att):
+    """Healing Wish (effect script 220, subscript_healing_wish): it fails
+    when no party member can come in (TryReplaceFaintedMon); otherwise its
+    user faints, and the turn sends in its replacement at once
+    (wish_comes_true). In a double battle the move is left to the double
+    battles' own fixes. Until 2026-10-15 it did nothing (Ian approved the
+    fix)."""
+    side = b.p if att.side == "p" else b.b
+    if getattr(b, "doubles", False) or not side.bench():
+        return
+    att.hp = 0
+    att.wished = True
+
+
+def wish_comes_true(b, mon, choose):
+    """Healing Wish's replacement (subscript_healing_wish, straight after the
+    move): the party member choose(side) picks comes in and meets the
+    hazards, and one left standing gets its HP back in full and its status
+    cured; one the hazards knock out is replaced in turn, the wish waiting
+    for the next."""
+    mon.wished = False
+    side = b.p if mon.side == "p" else b.b
+    while side.bench():
+        idx = choose(side)
+        if idx is None or not side.mons[idx].alive():
+            return
+        switch_in(b, side, idx)
+        new = side.mons[idx]
+        if new.alive():
+            new.hp, new.status, new.sleep, new.toxic = new.maxhp, None, 0, 0
+            return
 
 
 def parting_shot(b, att, dfn, mv):
@@ -7318,6 +7356,9 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
             target = foe_of(b, mon)
             first = i == 0 and len(order) == 2
             use_move(b, mon, mv, target, first)
+            if mon.wished:
+                wish_comes_true(b, mon, lambda side: player_replacement(b) if side is b.p
+                                else fightai.replacement(b, side, foe_of(b, mon)))
             if getattr(mon, "u_turn", False) or getattr(mon, "baton", False):
                 passing = mon.baton
                 mon.u_turn = mon.baton = False   # as perfectline._turn: no switch for a fallen user or a beaten side
