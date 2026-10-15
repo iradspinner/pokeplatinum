@@ -2066,6 +2066,26 @@ def check_dream_eater(results):
                     f"(target's HP, its Substitute, user's HP from 50) {got}"))
 
 
+def check_focus_punch(results):
+    """Focus Punch (approved 2026-10-14; effect script 170): a user that a
+    faster foe's hit has damaged this turn loses its focus and deals
+    nothing, spending its PP; one whose Substitute took the hit, or that
+    was not hit, lands it."""
+    def turn(foe_move, sub=0):
+        b, p, foe = battle(["Focus Punch"], [foe_move], {("p", "Focus Punch"): [50] * 16, ("b", foe_move): [20] * 16},
+                           p_speed=50, b_speed=100)
+        b.rng = FixedDice(0.5)
+        p.sub = sub
+        fs.use_move(b, foe, fs.move(foe_move), p, True)
+        pp = p.pp["Focus Punch"]
+        fs.use_move(b, p, fs.move("Focus Punch"), foe, False)
+        return foe.hp, pp - p.pp["Focus Punch"]
+    got = {"hit first": turn("Tackle"), "behind a Substitute": turn("Tackle", sub=30), "not hit": turn("Tail Whip")}
+    want = {"hit first": (100, 1), "behind a Substitute": (50, 1), "not hit": (50, 1)}
+    results.append(("Focus Punch loses its focus once a hit has damaged its user this turn", got == want,
+                    f"(target's HP, PP spent) {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3355,7 +3375,7 @@ def main():
                   check_double_shock, check_skill_swap, check_role_play, check_entrainment,
                   check_worry_seed, check_gastro_acid, check_core_enforcer, check_captivate,
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
-                  check_hail_under_lasting_hail, check_dream_eater,
+                  check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,

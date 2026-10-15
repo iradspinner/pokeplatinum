@@ -2360,7 +2360,7 @@ def attack(b, att, mv, dfn, first):
         return
     if loses_type_fails(att, mv):
         return                           # Burn Up or Double Shock without its type (lose_type)
-    if dream_eater_fails(att, dfn, mv):
+    if dream_eater_fails(att, dfn, mv) or lost_focus(att, mv):
         return
     # Telepathy: its holder takes no damaging move from its partner
     # (BattleControllerPlayer_PriorityBlock, which Mold Breaker gets past),
@@ -2503,6 +2503,15 @@ def dream_eater_fails(att, dfn, mv):
     the sleep status. Until 2026-10-15 it hit an awake target and drained
     half (Ian approved the fix)."""
     return mv.effect == "RECOVER_DAMAGE_SLEEP" and (dfn.status != "slp" or sub_blocks(att, dfn, mv))
+
+
+def lost_focus(att, mv):
+    """Focus Punch (effect script 170) "lost its focus and couldn't move"
+    when a physical or special hit has taken HP from its user earlier this
+    turn (the turn's damage masks, which a hit on its Substitute leaves
+    alone), before its accuracy is checked; its PP is spent. Until
+    2026-10-15 it always landed (Ian approved the fix)."""
+    return mv.effect == "HIT_LAST_WHIFF_IF_HIT" and bool(att.hit_this_turn)
 
 
 def crit_proof(att, dfn):

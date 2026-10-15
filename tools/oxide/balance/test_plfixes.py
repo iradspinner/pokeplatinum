@@ -3194,6 +3194,26 @@ def dream_eater_checks():
              f"(damage dealt, HP taken back) {out}")]
 
 
+def focus_punch_checks():
+    """Focus Punch in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a whole turn in which a trainer's faster
+    Staraptor hits the player's Machamp with Quick Attack, and the Machamp's
+    Focus Punch then fails; in a turn when the Staraptor uses Growl it
+    lands."""
+    from .test_fightai import battle
+    out = {}
+    for label, foe_move in (("hit first", "Quick Attack"), ("not hit", "Growl")):
+        b = battle([("Staraptor", 40, "Reckless", ["Quick Attack", "Growl"])],
+                   [("Machamp", 40, "Guts", ["Focus Punch"])])
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        star, champ = b.b.cur(), b.p.cur()
+        pl._turn(b, ("move", fs.move("Focus Punch")), ("move", fs.move(foe_move)))
+        out[label] = (champ.hp < champ.maxhp, star.hp < star.maxhp)
+    ok = out == {"hit first": (True, False), "not hit": (False, True)}
+    return [("the readings' Focus Punch fails after a hit and lands without one", ok,
+             f"(Machamp hit, Staraptor hit) {out}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3772,6 +3792,7 @@ def main():
     results += weather_heal_checks()
     results += hail_checks()
     results += dream_eater_checks()
+    results += focus_punch_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)
