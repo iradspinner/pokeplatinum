@@ -368,6 +368,8 @@ def _use_move(b, att, mv, dfn, first):
     if att.grudge:
         att.grudge = False           # and its Grudge (fightsim.grudge)
     b.status_src = att               # a status this move gives comes from att (Synchronize)
+    if att.sky_holder is not None and fs.sky_held(b, att):
+        return fs.could_not_act(b, att, mv, dfn)     # held in the air by Sky Drop (fightsim.sky_held)
     if att.recharge:
         att.recharge = False
         return fs.could_not_act(b, att, mv, dfn)
@@ -432,6 +434,8 @@ def _use_move(b, att, mv, dfn, first):
         fs.mark_hit(b, mv, dfn, True)
     if mv.effect in ("FLY", "BOUNCE") and att.smacked:
         return                       # brought down by Smack Down, it cannot fly (fightsim.smack_down)
+    if mv.effect == "SKY_DROP" and not fs.sky_drop(b, att, mv, dfn):
+        return                       # Sky Drop's lift, or a drop that fails (fightsim.sky_drop)
     if mv.effect in fs.TWO_TURN and att.charging is None and not fs.charge_skipped(b, att, mv):
         att.charging = mv
         fs.change_stages(att, fs.CHARGE_STAGES.get(mv.effect, {}))   # Skull Bash, Meteor Beam, Electro Shot
@@ -1353,7 +1357,7 @@ def mon_key(m):
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
         key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.mud_sport, m.power_trick, m.bide, m.bide_damage,
                 m.transform_key, tuple(sorted(m.split.items())) if m.split else None, m.embargo, m.roomed, m.item_off,
-                m.grudge, m.octolocked,
+                m.grudge, m.octolocked, m.sky_holder,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key

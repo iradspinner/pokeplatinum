@@ -5544,6 +5544,49 @@ def check_snatch(results):
             "a turn on": (False, False)}
     results.append(("Snatch takes the foe's next snatchable move", out == want, str(out)))
 
+def check_sky_drop(results):
+    """Sky Drop (approved 2026-10-14; effect script 414): the first turn
+    lifts the target, which then does nothing and cannot switch; the
+    second drops it for the hit, nothing to a Flying type; the lift fails
+    through a Substitute and on a target of 200 kg or more, and a user that
+    cannot act on its second turn lets its target go."""
+    out = {}
+    sky, tackle = fs.move("Sky Drop"), fs.move("Tackle")
+
+    def fresh(types=("Normal",)):
+        b, p, foe = battle(["Sky Drop"], ["Tackle"], {("p", "Sky Drop"): [20] * 16, ("b", "Tackle"): [10] * 16},
+                           b_types=types, hp=200)
+        b.rng = FixedDice(0.5)
+        return b, p, foe
+    b, p, foe = fresh()
+    fs.use_move(b, p, sky, foe, True)
+    out["lifted"] = (foe.hp, foe.sky_holder, fs.trapped(b, foe), p.charging is not None)
+    fs.use_move(b, foe, tackle, p, False)
+    out["held foe's Tackle"] = p.hp
+    fs.use_move(b, p, sky, foe, True)
+    out["dropped"] = (foe.hp, foe.sky_holder, p.charging)
+    b, p, foe = fresh(("Flying",))
+    fs.use_move(b, p, sky, foe, True)
+    fs.use_move(b, p, sky, foe, True)
+    out["Flying"] = foe.hp
+    for case in ("Substitute", "Snorlax"):
+        b, p, foe = fresh()
+        if case == "Substitute":
+            foe.sub = 30
+        else:
+            foe.species = "Snorlax"
+        fs.use_move(b, p, sky, foe, True)
+        out[case] = (foe.sky_holder, p.charging)
+    b, p, foe = fresh()
+    fs.use_move(b, p, sky, foe, True)
+    p.status = "par"
+    b.rng = FixedDice(0.0)            # fully paralysed on the drop's turn
+    fs.use_move(b, p, sky, foe, True)
+    out["holder paralysed"] = (foe.hp, fs.sky_held(b, foe))
+    want = {"lifted": (200, "p0", True, True), "held foe's Tackle": 200, "dropped": (180, None, None),
+            "Flying": 200, "Substitute": (None, None), "Snorlax": (None, None), "holder paralysed": (200, False)}
+    results.append(("Sky Drop lifts its target for a turn and drops it", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5829,7 +5872,7 @@ def main():
                   check_clangorous_soul, check_heart_swap, check_heal_pulse,
                   check_lunar_dance, check_grudge, check_octolock,
                   check_aurora_veil, check_teatime, check_assist,
-                  check_snatch,
+                  check_snatch, check_sky_drop,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

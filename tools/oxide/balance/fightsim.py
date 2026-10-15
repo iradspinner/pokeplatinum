@@ -536,6 +536,10 @@ class Mon:
     # Snatch (TurnFlags.snatching): it waits this turn to take the next move
     # Snatch may take (snatched); a turn flag, cleared with the turn.
     snatching = False
+    # Sky Drop (OXIDE_MON_FLAG_SKY_DROP_HELD): the key of the Sky Drop user
+    # holding it in the air, or None; it does nothing and cannot switch
+    # while held (sky_held). Under the rare flag.
+    sky_holder = None
     # Octolock (OXIDE_MON_FLAG_OCTOLOCKED): held as Mean Look holds it, and
     # a stage of Defense and Sp. Def lost at each turn's end, under the rare
     # flag (octolock).
@@ -608,6 +612,7 @@ class Mon:
                 self.moves, self.mimicked = moves, None
             self.grudge = False          # Grudge goes with moveEffectsMask
             self.octolocked = False      # and Octolock with oxideFlags
+            self.sky_holder = None       # and a Sky Drop's hold
             self.rare = False
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
@@ -3016,12 +3021,58 @@ def can_switch(mon):
 
 def trapped(b, mon):
     """Whether mon cannot switch out (Battler_IsTrapped, the party menu's
-    test): a bind, Block, Mean Look or its own Ingrain (can_switch), or a
-    foe's trapping ability (ability_trapped); never a Shed Shell holder or a
-    Ghost type (untrappable)."""
+    test): held in the air by Sky Drop, whatever its type or item
+    (sky_held); a bind, Block, Mean Look or its own Ingrain (can_switch), or
+    a foe's trapping ability (ability_trapped); never a Shed Shell holder or
+    a Ghost type (untrappable)."""
+    if mon.sky_holder is not None and sky_held(b, mon):
+        return True
     if untrappable(mon):
         return False
     return bool(mon.bound) or not can_switch(mon) or ability_trapped(b, mon)
+
+
+def sky_held(b, mon):
+    """Whether a Sky Drop holds mon in the air (Battler_SkyDropHeld): while
+    it and its holder both stand and the holder is still on the field,
+    charging its Sky Drop; once any of that has stopped the hold ends here."""
+    if mon.alive():
+        foes = b.b if mon.side == "p" else b.p
+        for f in foes.on_field():
+            if f.key == mon.sky_holder and f.alive() and f.charging is not None and f.charging.effect == "SKY_DROP":
+                return True
+    mon.sky_holder = None
+    return False
+
+
+def sky_drop(b, att, mv, dfn):
+    """Sky Drop (effect script 414, TrySkyDrop, Generation 6's rule in
+    Oxide's engine), in a single battle; True when its hit is to land now.
+    The first turn lifts the target with its user, failing on a target
+    fainted, out of reach, protecting, behind a Substitute, already held or
+    of 200 kg or more, under Gravity, or for a user Smack Down has brought
+    down; the PP is paid then, as a charging move's is. While held the
+    target does nothing and cannot switch (sky_held), and if the user stops
+    before its drop, by fainting or a turn it cannot act, the target lands.
+    The second turn drops the target: the move fails on one no longer held,
+    does nothing to a Flying type, and otherwise hits. Until 2026-10-15 it
+    hit on the turn it was used, nobody was held, and Flying types took it
+    (Ian approved the fix). Its double-battle part is left to the double
+    battles' own fixes."""
+    if att.charging is None:
+        weight = (calc.blob()["poks"].get(dfn.species) or {}).get("weightkg") or 0
+        if (not dfn.alive() or dfn is att or (dfn.charging is not None and dfn.charging.effect in INVULNERABLE)
+                or dfn.protecting or dfn.sub or dfn.sky_holder is not None or weight >= 200
+                or getattr(b, "gravity", 0) or att.smacked):
+            return False
+        att.charging = mv
+        dfn.sky_holder, dfn.rare = att.key, True
+        return False
+    att.charging = None
+    if dfn.sky_holder != att.key:
+        return False
+    dfn.sky_holder = None
+    return "Flying" not in dfn.types
 
 
 def heal(mon, amount):
@@ -3085,6 +3136,8 @@ def could_not_act(b, att, mv, dfn, targets=None):
     record is cleared."""
     att.last = None
     att.protect_run = 0
+    if att.charging is not None and att.charging.effect == "SKY_DROP":
+        att.charging = None          # a Sky Drop user stopped in the air lets its target go (Battler_UnlockMoveChoice)
     if att.bide:
         bide_ends(att)               # the subscript that stopped it unlocked its user, its Bide with it
     if b.st.get("copycat"):
@@ -3238,6 +3291,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     if att.grudge:
         att.grudge = False           # and its Grudge (CHECK_STATUS_START)
     b.status_src = att           # a status this move gives comes from att (Synchronize)
+    if att.sky_holder is not None and sky_held(b, att):
+        return could_not_act(b, att, mv, dfn, targets)     # held in the air by Sky Drop (sky_held)
     # The user's own state first.
     if att.recharge:
         att.recharge = False
@@ -3301,6 +3356,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         mark_hit(b, mv, dfn, True, targets)
     if mv.effect in ("FLY", "BOUNCE") and att.smacked:
         return                   # brought down, it cannot take to the air (effect scripts 155 and 263)
+    if mv.effect == "SKY_DROP" and not getattr(b, "doubles", False) and not sky_drop(b, att, mv, dfn):
+        return                   # Sky Drop's lift, or a drop that fails (sky_drop)
     # Charging moves: the first turn only charges (Fly and Dig vanish).
     if mv.effect in TWO_TURN and att.charging is None and not charge_skipped(b, att, mv):
         att.charging = mv

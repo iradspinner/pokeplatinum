@@ -5152,6 +5152,22 @@ def snatch_checks():
     return [("the readings' Snatch takes the trainer's Swords Dance", got == (2, 0, True),
              f"(Liepard's Attack, Geodude's Attack, the Geodude paid) {got}")]
 
+def sky_drop_checks():
+    """Sky Drop in two whole turns of the readings' battle on the
+    calculator's real rows (approved 2026-10-14): the player's Bibarel lifts
+    a trainer's Geodude, whose Tackle that turn does nothing and which
+    cannot switch; the next turn it drops the Geodude for the hit, and the
+    Geodude, let go, then hits back."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"]), ("Onix", 30, "Sturdy", ["Tackle"])],
+                            [("Bibarel", 30, "Unaware", ["Sky Drop"])])
+    pl._turn(b, ("move", fs.move("Sky Drop")), ("move", fs.move("Tackle")))
+    first = (geo.hp == geo.maxhp, bib.hp == bib.maxhp, fs.trapped(b, geo))
+    pl._turn(b, ("move", fs.move("Sky Drop")), ("move", fs.move("Tackle")))
+    second = (geo.hp < geo.maxhp, bib.hp < bib.maxhp, fs.trapped(b, geo))
+    ok = first == (True, True, True) and second == (True, True, False)
+    return [("the readings' Sky Drop lifts and then drops its target", ok,
+             f"turn 1 (Geodude untouched, Bibarel untouched, Geodude held) {first}; turn 2 (both hit, held) {second}")]
+
 def main():
     results = []
 
@@ -5720,6 +5736,7 @@ def main():
     results += teatime_checks()
     results += assist_checks()
     results += snatch_checks()
+    results += sky_drop_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

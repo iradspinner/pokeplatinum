@@ -3652,7 +3652,11 @@ def ai_trapped(b, u, t):
     """The trap test at the top of TrainerAI_ShouldSwitch: a Ghost is never
     held; otherwise a bind, Mean Look or Block, its own Ingrain, a foe's
     Shadow Tag or Arena Trap (the AI exempts no Flying or Levitate user),
-    or another battler's Magnet Pull on a Steel user."""
+    or another battler's Magnet Pull on a Steel user. First of all, a
+    Pokemon held in the air by Sky Drop never switches, whatever its type
+    (Battler_SkyDropHeld, as Oxide's TrainerAI_ShouldSwitch asks first)."""
+    if u.sky_holder is not None and fs.sky_held(b, u):
+        return True
     if "Ghost" in u.types:
         return False
     if u.trapped_by is not None or u.bound or u.ingrained:
