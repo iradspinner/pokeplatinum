@@ -63,6 +63,7 @@ Items the old status homes and plans held that this tracker lacked or held only 
 **Encounters**
 - [ ] Maylene's tables were designed at 38; the engine caps at 39 and the cap redesign comes after the alpha, so `cli evolve` could run at 39 now.
 - [ ] Drafts for Ian: the eight honey tree tables (a shake at one badge and at five is in the checklist), the Box sim's line ratings in `values.json`, and the Amity Square and Snowpoint City casts.
+- [ ] **The Dex tab's layout, low priority** (Ian, 2026-10-15): the damage-taken section takes a lot of room for little information; the abilities panel shows the abilities in smaller text than gender and weight; and the page as a whole should put first what a player uses when building a team or a fight.
 - [ ] The Alpha tab's check 7: Ian looks at the page on today's data (its layout notes landed at 212e3675ea).
 
 **The scorer**

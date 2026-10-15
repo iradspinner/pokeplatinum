@@ -1519,7 +1519,9 @@ const DEX_MOVE_TABS = [
   ["level", "Level-up", d => d.learnset, m => lvText(m.level), "Lv"],
   ["machine", "Machines", d => d.machine_moves, m => esc(m.machine || ""), "TM"],
   ["tutor", "Tutor", d => d.tutor_moves, () => "", ""],
-  ["egg", "Egg", d => d.egg_moves, () => "", ""],
+  // An evolved species shows its earlier stages' egg moves too, each credited
+  // to the stage it comes from (Ian, 2026-10-15); the column shows only then.
+  ["egg", "Egg", d => d.egg_moves, m => esc(m.stage || ""), list => list.some(m => m.stage) ? "From" : ""],
 ];
 
 function drawDexMoves(d) {
@@ -1534,7 +1536,7 @@ function drawDexMoves(d) {
         n ? ` <span class="n">${n}</span>` : ""}</button>`;
     }).join("")}</div>
     ${list.length ? `<table class="learn movetab">
-      <thead><tr><th>${tab[4]}</th><th>Move</th><th>Type</th>
+      <thead><tr><th>${typeof tab[4] === "function" ? tab[4](list) : tab[4]}</th><th>Move</th><th>Type</th>
         <th class="num">Pow</th><th class="num">Acc</th></tr></thead>
       <tbody>${list.map(m => `<tr>
         <td class="num">${tab[3](m)}</td><td><a href="#" data-mv="${m.move}">${esc(m.label)}</a></td>

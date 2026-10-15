@@ -220,6 +220,20 @@ def check_endpoints(results):
     results.append(("a species with no earlier stage lists none",
                     server.dex_detail("SPECIES_BUDEW")["prevo_moves"] == []
                     and server.dex_detail("SPECIES_TORKOAL")["prevo_moves"] == [], ""))
+    # Ian, 2026-10-15: an evolved species' egg tab holds its earlier stages'
+    # egg moves, since a trainer's team may carry them, each credited to its stage.
+    raptor = server.dex_detail("SPECIES_STARAPTOR")["egg_moves"]
+    starly = server.dex_detail("SPECIES_STARLY")["egg_moves"]
+    results.append(("an evolved species lists its first stage's egg moves, credited to that stage",
+                    bool(raptor) and [m["move"] for m in raptor] == [m["move"] for m in starly]
+                    and all(m.get("stage") == "Starly" for m in raptor)
+                    and not any(m.get("stage") for m in starly), f"{len(raptor)} moves"))
+    snorlax = server.dex_detail("SPECIES_SNORLAX")["egg_moves"]
+    results.append(("a stage with its own egg list keeps it first and adds only the earlier "
+                    "stage's moves it lacks",
+                    snorlax and not snorlax[0].get("stage")
+                    and len({m["move"] for m in snorlax}) == len(snorlax)
+                    and all(m.get("stage") in (None, "Munchlax") for m in snorlax), f"{len(snorlax)} moves"))
 
 
 def check_canon(results):
