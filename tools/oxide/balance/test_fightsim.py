@@ -4219,6 +4219,34 @@ def check_raise_speed_hit(results):
     results.append(("Flame Charge and its kind raise their user's Speed", out == want, str(out)))
 
 
+def check_trump_card(results):
+    """Trump Card (approved 2026-10-14; effect script 235,
+    BtlCmd_CalcTrumpCardPower): its power by the PP its slot has left once
+    the use is paid, 40 from four on, then 50, 60, 80 and 200 at the last,
+    Technician judged at each; a figure before the use counts the PP it
+    will take."""
+    out = {}
+    b, p, foe = battle(["Trump Card"], ["Tackle"], {("p", "Trump Card"): [40] * 16}, hp=5000)
+    b.rng = FixedDice(0.5)
+    foe.ability = "Shell Armor"
+    tc = fs.move("Trump Card")
+    for _ in range(5):
+        before = foe.hp
+        fs.use_move(b, p, tc, foe, True)
+        out[p.pp["Trump Card"]] = before - foe.hp
+    b.turn += 1                          # the next turn, before its user acts
+    p.pp["Trump Card"] = 1
+    out["figure with 1 PP"] = b.damage(p, foe, tc, roll=0)
+    p.ability = "Technician"             # the row's 40 then carries Technician's half again
+    out["Technician, figure with 1 PP"] = b.damage(p, foe, tc, roll=0)
+    p.pp["Trump Card"] = 5
+    out["Technician, figure with 5 PP"] = b.damage(p, foe, tc, roll=0)
+    want = {4: 40, 3: 50, 2: 60, 1: 80, 0: 200, "figure with 1 PP": 200, "Technician, figure with 1 PP": 133,
+            "Technician, figure with 5 PP": 40}
+    results.append(("Trump Card's power rises as its PP runs down", out == want,
+                    f"(PP left after the use: damage) {out}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4484,7 +4512,7 @@ def main():
                   check_burning_bulwark,
                   check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
                   check_trainer_frustration, check_secret_power, check_snore,
-                  check_raise_speed_hit,
+                  check_raise_speed_hit, check_trump_card,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

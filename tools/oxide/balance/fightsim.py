@@ -4337,6 +4337,12 @@ def state_mult(b, att, dfn, mv):
         # 2026-10-14 it hit at full power whatever the target's HP (Ian
         # approved the fix).
         m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
+    if mv.effect == "HIGHER_POWER_WHEN_LOW_PP":
+        # Trump Card: the row has the calculator's full-PP 40 (Oxide's
+        # profile); the power rises as the PP runs down (trump_card_power).
+        # The trainer's AI gives it no figure (its listed power is 1). Until
+        # 2026-10-15 every use hit at 40 (Ian approved the fix).
+        m *= power_ratio(att, 40, trump_card_power(b, att, mv))
     if mv.effect == "INCREASE_POWER_WITH_MORE_HP":
         # Crush Grip and Wring Out (effect script 237, BtlCmd_CalcWringOutPower):
         # 1 plus 120 times the target's HP over its maximum, in whole numbers;
@@ -4360,6 +4366,24 @@ def state_mult(b, att, dfn, mv):
         # Technician is judged; Magnitude, whose power is rolled, doubles.
         m *= power_ratio(att, mv.power, reach * mv.power) if mv.power > 1 else reach
     return m
+
+
+# Trump Card's power by the PP its slot has left once the use is paid
+# (sCurrentPPScaledPower): 200 at none left, then 80, 60, 50, and 40 from
+# four on.
+TRUMP_CARD_POWER = (200, 80, 60, 50, 40)
+
+
+def trump_card_power(b, att, mv):
+    """Trump Card's power for this use (effect script 235,
+    BtlCmd_CalcTrumpCardPower, which reads its slot's PP after the use has
+    paid). Inside its user's action this turn the PP is paid already; a
+    figure made before it, as a planner's, counts the one PP the use will
+    take."""
+    left = att.pp.get(mv.name, mv.pp)
+    if getattr(att, "acted_turn", None) != b.turn:
+        left -= 1
+    return TRUMP_CARD_POWER[max(0, min(left, 4))]
 
 
 # Electro Ball's power by how many whole times over the target's Speed is

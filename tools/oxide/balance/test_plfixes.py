@@ -4136,6 +4136,25 @@ def raise_speed_hit_checks():
     return [("the readings' Trailblaze raises its user's Speed", ok, f"Speed stage {pik.stages['spe']} after three hits")]
 
 
+def trump_card_checks():
+    """Trump Card in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Minun's five Trump Cards on the
+    player's Bibarel hit harder as its PP runs down, the last at five times
+    the first (200 power against 40)."""
+    from .test_fightai import battle
+    b = battle([("Minun", 40, "Minus", ["Trump Card"])], [("Bibarel", 40, "Unaware", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    minun, bib = b.b.cur(), b.p.cur()
+    bib.hp = bib.maxhp = 100000
+    dealt = []
+    for _ in range(5):
+        before = bib.hp
+        pl.use_move(b, minun, fs.move("Trump Card"), bib, True)
+        dealt.append(before - bib.hp)
+    ok = all(x < y for x, y in zip(dealt, dealt[1:])) and 4 <= dealt[-1] / dealt[0] <= 6
+    return [("the readings' Trump Card rises as its PP runs down", ok, f"damage by use {dealt}")]
+
+
 def main():
     results = []
 
@@ -4646,6 +4665,7 @@ def main():
     results += secret_power_checks()
     results += snore_checks()
     results += raise_speed_hit_checks()
+    results += trump_card_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
