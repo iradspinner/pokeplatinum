@@ -335,6 +335,8 @@ def accuracy_hits(b, att, dfn, mv, first=True):
         acc *= 0.8
     if dfn.ability in ("Snow Cloak",) and b.weather == "Hail" and not fs.mold(att, dfn):
         acc *= 0.8               # Mold Breaker gets past both (Battler_IgnorableAbility)
+    if b.fog:
+        acc *= fs.fog_cut(b)     # deep fog's six tenths (fightsim.fog_cut)
     if b.gravity:
         acc = acc * 10 / 6       # Gravity's ten sixths, last (fightsim.gravity_start)
     if acc >= 100:
@@ -1137,6 +1139,8 @@ def status_move(b, att, mv, dfn, first):
             rock = {"Sun": "Heat Rock", "Rain": "Damp Rock", "Sand": "Smooth Rock", "Hail": "Icy Rock"}
             b.weather = fs.WEATHER_OF[e]
             b.weather_turns = 8 if att.item == rock.get(b.weather) else 5
+            if b.fog:
+                b.fog = False                        # every weather flag cleared first, deep fog's too
     elif e == "TRICK_ROOM":
         if b.trick_room < 999:               # a permanent room (Saturn 2) cannot be ended
             b.trick_room = 0 if b.trick_room else 5
@@ -1334,6 +1338,8 @@ def clone_battle(b):
         c.snatching = True           # a Snatch waits this turn (fightsim.snatch)
     if b.unheld:
         c.unheld = True              # a Pokemon reads its item twin (fightsim.mark_unheld)
+    if b.fog:
+        c.fog = True                 # deep fog on the field (fightsim.fog_cut)
     return c
 
 
@@ -1395,20 +1401,23 @@ def side_key(s):
 
 def _field_extra(b):
     """The field's states most fights never have, kept out of the keys
-    while they are not there: Gravity's turns, and in a fight with Copycat
-    the battle's last move (both checked by the keys before calling)."""
+    while they are not there: Gravity's turns, in a fight with Copycat
+    the battle's last move, Magic Room's turns and deep fog (each checked
+    by the keys before calling)."""
     out = (("gravity", b.gravity),) if b.gravity else ()
     if b.last_move is not None:
         out += (("last move", b.last_move.name),)
     if b.magic_room:
         out += (("magic room", b.magic_room),)
+    if b.fog:
+        out += (("fog",),)
     return out
 
 
 def state_key(b):
     key = (side_key(b.p), side_key(b.b), b.weather, b.weather_turns, b.trick_room,
            round(b.luck_spent, 6), getattr(b, "declined", frozenset()))
-    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room else key
+    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room or b.fog else key
 
 
 def shape_key(b):
@@ -1421,7 +1430,7 @@ def shape_key(b):
             key += (("lucky chant", sd.lucky_chant, "web", sd.web),)
         return key
     key = (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room, getattr(b, "declined", frozenset()))
-    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room else key
+    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room or b.fog else key
 
 
 def vector(b):
@@ -1472,18 +1481,20 @@ def ai_key(b):
             b.p.tailwind, b.b.tailwind, tuple(b.p.hazards.values()), tuple(b.b.hazards.values()),
             b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick,
             b.p.future_sight, b.b.future_sight, getattr(b.p, "mist", 0) > 0, getattr(b.b, "mist", 0) > 0) \
-        + (_ai_field(b) if b.gravity or b.p.lucky_chant or b.b.lucky_chant or b.p.web or b.b.web else ())
+        + (_ai_field(b) if b.gravity or b.p.lucky_chant or b.b.lucky_chant or b.p.web or b.b.web or b.fog else ())
 
 
 def _ai_field(b):
     """The field states the later batches add that the trainer's AI reads,
     kept out of its key while none is there: Lucky Chant on either side
     (Basic_CheckLuckyChant), Gravity (Basic_CheckGravity, the barred
-    moves, the type check) and Sticky Web on either side (Basic_CheckStickyWeb,
-    Basic_CheckDefog, Expert_Defog, Expert_RapidSpin)."""
-    if not (b.p.lucky_chant or b.b.lucky_chant or b.gravity or b.p.web or b.b.web):
+    moves, the type check), Sticky Web on either side (Basic_CheckStickyWeb,
+    Basic_CheckDefog, Expert_Defog, Expert_RapidSpin) and deep fog
+    (Basic_CheckDefog)."""
+    if not (b.p.lucky_chant or b.b.lucky_chant or b.gravity or b.p.web or b.b.web or b.fog):
         return ()
-    return (("field", b.p.lucky_chant > 0, b.b.lucky_chant > 0, b.gravity > 0, b.p.web, b.b.web),)
+    return (("field", b.p.lucky_chant > 0, b.b.lucky_chant > 0, b.gravity > 0, b.p.web, b.b.web)
+            + (("fog",) if b.fog else ()),)
 
 
 _AI_CACHE = {}

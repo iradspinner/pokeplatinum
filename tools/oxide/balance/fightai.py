@@ -967,7 +967,7 @@ def _basic_defog(b, u, t, own, foe):
     nothing to clear on either side."""
     if t.stages["eva"] > -6 or foe.screens["Light Screen"] or foe.screens["Reflect"] \
             or getattr(foe, "aurora_veil", 0) or any(own.hazards.values()) \
-            or getattr(own, "web", 0) or b.weather == "Fog":
+            or getattr(own, "web", 0) or getattr(b, "fog", False):
         return 0
     if not foe.bench():
         return -10

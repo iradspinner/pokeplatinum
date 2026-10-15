@@ -4891,7 +4891,7 @@ def check_defog(results):
     for case, sub, mist in (("plain", 0, 0), ("Substitute", 25, 0), ("Mist", 0, 2)):
         b, p, foe = battle(["Defog"], ["Tackle"], {})
         b.rng = FixedDice(0.0)
-        b.weather = "Fog"
+        b.fog = True                     # deep fog, its own flag since 2026-10-15 (fightsim.fog_cut)
         foe.sub = sub
         b.b.screens.update({"Reflect": 4, "Light Screen": 3})
         b.b.mist, b.b.safeguard, b.b.web = mist, 3, 1
@@ -4901,8 +4901,8 @@ def check_defog(results):
         fs.status_move(b, p, fs.move("Defog"), foe, True)
         out[case] = (foe.stages["eva"], tuple(b.b.screens.values()), b.b.mist, b.b.safeguard,
                      tuple(b.b.hazards.values()), b.b.web, tuple(b.p.hazards.values()), b.p.web,
-                     b.p.screens["Reflect"], b.weather)
-    clear = ((0, 0), 0, 0, (0, 0, 0), 0, (0, 0, 0), 0, 2, None)
+                     b.p.screens["Reflect"], b.fog)
+    clear = ((0, 0), 0, 0, (0, 0, 0), 0, (0, 0, 0), 0, 2, False)
     want = {"plain": (-1,) + clear, "Substitute": (0,) + clear, "Mist": (0,) + clear}
     results.append(("Defog lowers evasion and clears screens, hazards and fog", out == want, str(out)))
 
@@ -5745,6 +5745,34 @@ def check_ingrain_grounds(results):
     results.append(("Ingrain grounds a Levitate holder against Ground moves", ok,
                     f"(Earthquake, the AI reads it immune) before {before}, after {after}"))
 
+
+def check_fog(results):
+    """Deep fog's accuracy cut (approved 2026-10-15;
+    BattleControllerPlayer_CheckMoveHitAccuracy under FIELD_CONDITION_DEEP_FOG):
+    a fight prepared in fog starts in it, and a 100-accuracy Tackle then
+    lands at six tenths, so a roll of 65 misses it; Cloud Nine on the field
+    lifts the cut, and Defog and a weather move each clear the fog."""
+    out = {}
+    b, p, foe = battle(["Tackle", "Defog", "Rain Dance"], ["Tackle"], {("p", "Tackle"): [10] * 16})
+    b2 = fs.Battle(dict(b.st, fog=True), b.p, b.b, FixedDice(0.65))
+    out["prepared in fog"] = b2.fog
+    tackle = fs.move("Tackle")
+    b.rng = FixedDice(0.65)
+    out["clear"] = b.accuracy_hits(p, foe, tackle)
+    b.fog = True
+    out["fog"] = b.accuracy_hits(p, foe, tackle)
+    foe.ability = "Cloud Nine"
+    out["Cloud Nine"] = b.accuracy_hits(p, foe, tackle)
+    foe.ability = None
+    fs.status_move(b, p, fs.move("Defog"), foe, True)
+    out["after Defog"] = b.fog
+    b.fog = True
+    fs.status_move(b, p, fs.move("Rain Dance"), foe, True)
+    out["after Rain Dance"] = (b.fog, b.weather)
+    want = {"prepared in fog": True, "clear": True, "fog": False, "Cloud Nine": True, "after Defog": False,
+            "after Rain Dance": (False, "Rain")}
+    results.append(("deep fog cuts accuracy to six tenths until it clears", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -6032,7 +6060,7 @@ def main():
                   check_aurora_veil, check_teatime, check_assist,
                   check_snatch, check_sky_drop,
                   check_substitute_hit, check_knock_off_first, check_taunt_before_confusion,
-                  check_forced_out, check_charge_ends, check_ingrain_grounds,
+                  check_forced_out, check_charge_ends, check_ingrain_grounds, check_fog,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

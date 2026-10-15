@@ -4854,6 +4854,39 @@ def ingrain_grounds_checks():
              f"(Earthquake's top roll, the AI reads it immune) before {before}, after {after}")]
 
 
+class Probe10(Sure7):
+    """Batch 10's dice for accuracy: as Sure7, and each miss chance the
+    player's moves meet is recorded."""
+    def __init__(self, rng, one_crit=True, luck=None):
+        super().__init__(rng, one_crit, luck)
+        self.misses = []
+
+    def bad(self, kind, p):
+        if kind == "miss":
+            self.misses.append(round(p, 6))
+        return False
+
+
+def fog_checks():
+    """Deep fog in the readings' battle on the calculator's real rows
+    (approved 2026-10-15): a battle made from a fight prepared in fog
+    starts in it; there the player's Machop's Karate Chop, of 100
+    accuracy, misses four times in ten, where it never misses in clear
+    air, and a trainer's Golduck's Cloud Nine lifts the cut."""
+    out = {}
+    for case in ("clear", "fog", "Cloud Nine"):
+        boss = [("Golduck" if case == "Cloud Nine" else "Geodude", 30, "Cloud Nine" if case == "Cloud Nine" else "Sturdy",
+                 ["Tackle"])]
+        b, foe, mach = b8_battle(boss, [("Machop", 30, "Guts", ["Karate Chop"])], Probe10)
+        if case != "clear":
+            fogged = pl.make_battle(dict(b.st, fog=True), ["p0"], b.st["bosses"][0], 7, 0)
+            b.fog = fogged.fog
+        landed = pl.accuracy_hits(b, mach, foe, fs.move("Karate Chop"))
+        out[case] = (landed, b.dice.misses)
+    ok = out == {"clear": (True, []), "fog": (True, [0.4]), "Cloud Nine": (True, [])}
+    return [("the readings' deep fog cuts accuracy to six tenths", ok, f"(landed, miss chances met) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -5900,6 +5933,7 @@ def main():
     results += forced_out_checks()
     results += charge_ends_checks()
     results += ingrain_grounds_checks()
+    results += fog_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

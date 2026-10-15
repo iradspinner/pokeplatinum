@@ -54,6 +54,15 @@ def fight_weather(tr_ids):
     return None
 
 
+def fight_fog(tr_ids):
+    """Whether a fight starts in deep fog: a map that battles one of its
+    trainers has the overworld fog (splits.BATTLE_WEATHER's "Fog", which
+    subscript_overworld_fog turns into FIELD_CONDITION_DEEP_FOG). The
+    calculator has no fog, as fog changes no damage, so the battle keeps it
+    apart from the rows' weather (fightsim.fog_cut)."""
+    return any("Fog" in splits.trainer_weather(tr) for tr in tr_ids)
+
+
 # The battle terrain each map backdrop gives (field_battle_data_transfer.c,
 # sTerrainForBackground). The engine first reads the tile the player stands
 # on (CalcTerrain: ice, tall grass, sand, snow, mud, a cave floor, water),

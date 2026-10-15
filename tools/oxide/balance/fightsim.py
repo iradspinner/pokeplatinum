@@ -823,6 +823,12 @@ class Battle:
     # Whether a Pokemon in this battle reads its item twin (Mon.unheld), so
     # the rows look for one only then; kept by the battle's copies.
     unheld = False
+    # Deep fog on the field (FIELD_CONDITION_DEEP_FOG), from a battle on a
+    # foggy map (st["fog"]): every move's accuracy at six tenths unless
+    # Cloud Nine or Air Lock is out (fog_cut); a weather that starts, by a
+    # move or an ability, clears it, and so does Defog. Left on the class
+    # while there is none.
+    fog = False
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -832,6 +838,8 @@ class Battle:
         self.trick_room = 999 if trick_room else 0
         if st.get("water_sport") or st.get("mud_sport"):
             self.sporty = True
+        if st.get("fog"):
+            self.fog = True
         self.turn = 0
         self.ai_flags = ai_flags
         self.log = []
@@ -1044,6 +1052,8 @@ class Battle:
             acc *= 1.3
         if att.item == "Wide Lens":
             acc *= 1.1
+        if self.fog:
+            acc *= fog_cut(self)         # deep fog's six tenths (fog_cut)
         if att.ability == "Hustle" and mv.cat == "Physical":
             acc *= 0.8
         if self.gravity:
@@ -1964,6 +1974,8 @@ def entry_abilities(b, mons, intimidate=True, trace_now=True):
         weather = ABILITY_WEATHER.get(new.ability)
         if weather:
             b.weather, b.weather_turns = weather, 0
+            if b.fog:
+                b.fog = False        # the ability's subscript clears every weather, deep fog too
     for new in mons:
         if new.ability in ENTRY_ANNOUNCED:
             reveal(new)
@@ -5891,6 +5903,17 @@ def weather_ignored(b):
     return any(m.alive() and m.ability in ("Cloud Nine", "Air Lock") for m in b.p.on_field() + b.b.on_field())
 
 
+def fog_cut(b):
+    """Deep fog's cut to a move's accuracy (BattleControllerPlayer_CheckMoveHitAccuracy,
+    under FIELD_CONDITION_DEEP_FOG and NO_CLOUD_NINE): six tenths, after the
+    stages, Compound Eyes, Sand Veil and Snow Cloak and before Hustle,
+    Tangled Feet and the items; nothing while Cloud Nine or Air Lock is out.
+    A fight on a foggy map starts in it (subscript_overworld_fog). Until
+    2026-10-15 the fog cut nothing, and no fight carried it (Ian approved
+    the fix)."""
+    return 1.0 if weather_ignored(b) else 0.6
+
+
 def charge_skipped(b, att, mv):
     """Whether a two-turn move strikes at once: SolarBeam in sun; Electro
     Shot in rain unless Cloud Nine or Air Lock is out, raising Sp. Atk
@@ -6951,6 +6974,8 @@ def status_move(b, att, mv, dfn, first):
         if not weather_move_fails(b, e):
             b.weather = WEATHER_OF[e]
             b.weather_turns = 8 if att.item == WEATHER_ROCK.get(b.weather) else 5
+            if b.fog:
+                b.fog = False        # the move clears every weather flag first, deep fog's too
     elif e == "TRICK_ROOM":
         if b.trick_room < 999:               # a permanent room makes the move fail
             b.trick_room = 0 if b.trick_room else 5
@@ -7218,8 +7243,8 @@ def defog(b, att, dfn, mv):
         s.hazards = dict.fromkeys(s.hazards, 0)
         if s.web:
             s.web = 0
-    if b.weather == "Fog":
-        b.weather, b.weather_turns = None, 0      # FIELD_CONDITION_DEEP_FOG cleared
+    if b.fog:
+        b.fog = False                # FIELD_CONDITION_DEEP_FOG cleared
 
 
 def lay_web(b, att):
@@ -8625,12 +8650,13 @@ BORROWS = frozenset({"COPY_MOVE_FOR_BATTLE", "COPY_MOVE", "USE_LAST_USED_MOVE", 
 
 
 def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False,
-            given_side=None, terrain=None):
+            given_side=None, terrain=None, fog=False):
     """Everything a fight's battles read: the strong third of the side, the
     trainer's Pokemon, a partner's teams (keys q0.0 and on), and the
     calculator's rows for every pair in every weather the fight can have;
     in a double battle also each ally's spread moves on its ally. `terrain`
-    is the fight's battle terrain (calc.fight_terrain), for Camouflage."""
+    is the fight's battle terrain (calc.fight_terrain), for Camouflage;
+    `fog` whether it is fought in deep fog (calc.fight_fog)."""
     blob = calc.blob()
     cap = cap or pool.caps()[split]
     side, can = side_at(split, cap, blob)
@@ -9236,7 +9262,8 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "water_sport": any(move(m).effect == "HALVE_FIRE_DAMAGE" for mv in moves.values() for m in mv),
             "mud_sport": any(move(m).effect == "HALVE_ELECTRIC_DAMAGE" for mv in moves.values() for m in mv),
             "heat_crash": heat_crash,
-            "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo, "terrain": terrain}
+            "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo, "terrain": terrain,
+            "fog": bool(fog)}
 
 
 def effectiveness(blob_or_chart, atk_type, def_types):
@@ -9476,14 +9503,14 @@ def story(key, runs=RUNS):
         partners = [ox[p]["party"] for p in fight.get("partner_ids", []) if p in ox]
         st = prepare(fight["split"], parties, weather,
                      trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
-                     partners=partners, doubles=True, terrain=calc.fight_terrain(tr_ids))
+                     partners=partners, doubles=True, terrain=calc.fight_terrain(tr_ids), fog=calc.fight_fog(tr_ids))
         st["battle"] = "tag"
         st["group_flags"] = [t["ai"] for t in trainers]
         st["partner_flags"] = ox[fight["partner_ids"][0]]["ai"] if fight.get("partner_ids") else 0
         return read_fight(st, [st["group_flags"][0]], runs)
     st = prepare(fight["split"], parties, weather,
                  trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
-                 terrain=calc.fight_terrain(tr_ids))
+                 terrain=calc.fight_terrain(tr_ids), fog=calc.fight_fog(tr_ids))
     return read_fight(st, [t["ai"] for t in trainers], runs)
 
 
@@ -9495,7 +9522,8 @@ def trainer(tr_id, runs=RUNS, split=None):
     split = split or required.placements()[tr_id]["split"]
     doubles = t.get("battle_type") == "Doubles" and PLAY_DOUBLES and len(t["party"]) > 1
     st = prepare(split, [t["party"]], calc.fight_weather([tr_id]), trick_room_for([t["constant"]]),
-                 cap=fight_cap(split), doubles=doubles, terrain=calc.fight_terrain([tr_id]))
+                 cap=fight_cap(split), doubles=doubles, terrain=calc.fight_terrain([tr_id]),
+                 fog=calc.fight_fog([tr_id]))
     if doubles:
         st["battle"] = "doubles"
     return read_fight(st, [t["ai"]], runs)
