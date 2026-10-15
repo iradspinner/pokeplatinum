@@ -1802,7 +1802,9 @@ def rollout_mult(att, mv):
 
 def rollout_after(att, mv, hit):
     """The lock after a use: the next hit in a row, or the run broken by a
-    miss or its fifth hit."""
+    miss or its fifth hit. BtlCmd_CalcRolloutPower locks the user in for
+    five uses, counting each use down itself, so the lock (move, uses left)
+    is never counted down at a turn's end (rollout_lock_ticks)."""
     if mv.effect != ROLLOUT:
         return
     att.rollout_hit = getattr(att, "rollout", 0) if hit else 0
@@ -1812,6 +1814,32 @@ def rollout_after(att, mv, hit):
         att.lock = None
     else:
         att.lock = (mv, 5 - att.rollout)
+
+
+def rollout_break(att, mv=None):
+    """A run of Rollout or Ice Ball broken before it hit (mv the move tried,
+    or None for a turn its user could not act on): every subscript that
+    stops a move unlocks its user (Battler_UnlockMoveChoice, which sets
+    rolloutCount to 0), whether the move missed, met Protect, an immunity or
+    a target out of reach or gone (subscript_missed, subscript_no_target),
+    or the user was asleep, frozen, flinched, paralysed, hurt by its
+    confusion, in love, loafing, recharging or held by Disable or Imprison.
+    So the next Rollout starts again at its listed power. Until 2026-10-15
+    such a turn left the run going (Ian approved the fix)."""
+    if mv is not None and mv.effect != ROLLOUT:
+        return
+    if getattr(att, "rollout", 0) or (att.lock is not None and att.lock[0].effect == ROLLOUT):
+        att.rollout = 0
+        att.lock = None
+
+
+def rollout_lock_ticks(mon):
+    """Whether a turn's end counts this Pokemon's move lock down: never a
+    Rollout's, whose uses count themselves (rollout_after). Until 2026-10-15
+    the turn's end took one off it too, so the lock ran out after the
+    fourth hit and left the count standing, and a later Rollout opened at
+    sixteen times its power (Ian approved the fix)."""
+    return mon.lock is not None and mon.lock[0].effect != ROLLOUT
 
 
 # Magnitude's powers and their chances in percent (Generation 4, Magnitude 4
@@ -2211,6 +2239,7 @@ def could_not_act(b, att, mv, dfn, targets=None):
     record is cleared."""
     att.last = None
     att.protect_run = 0
+    rollout_break(att)               # the subscript that stopped it unlocked its user (rollout_break)
     mark_hit(b, mv, dfn, False, targets)
 
 
@@ -2461,6 +2490,7 @@ def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
     b.hits_landed = False                # a move of several hits that land_hits landed
     if not dfn.alive():
+        rollout_break(att, mv)           # no target (subscript_no_target)
         return
     if loses_type_fails(att, mv):
         return                           # Burn Up or Double Shock without its type (lose_type)
@@ -2489,9 +2519,11 @@ def attack(b, att, mv, dfn, first):
     if dfn.charging is not None and dfn.charging.effect in INVULNERABLE and not reaches(mv, dfn) \
             and not no_guard(att, dfn, mv):
         _crash(b, att, dfn, mv)
+        rollout_break(att, mv)
         return                   # No Guard reaches it there (no_guard)
     if protected(b, att, mv, dfn):
         _crash(b, att, dfn, mv)
+        rollout_break(att, mv)
         return
     if mv.effect == "REMOVE_PROTECT" and not dfn.protecting:
         return                   # Feint and Hyperspace Hole fail on a target not protecting (BtlCmd_TryFeint)
@@ -2585,6 +2617,7 @@ def attack(b, att, mv, dfn, first):
         if doubled(att, dfn, mv):
             dmg = int(dmg * doubled_power(att, mv))
     if dmg <= 0:
+        rollout_break(att, mv)       # an immunity stops the run (subscript_missed)
         if dfn.ability in ZEROING and effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
             reveal(dfn)              # an absorbing ability, Levitate or Wonder Guard took it
             if dfn.ability == "Flash Fire" and mv.type == "Fire":
@@ -5702,7 +5735,7 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
                         (baton_pass if passing else switch_in)(b, side, idx)
         end_of_turn(b)
         for mon in (b.p.cur(), b.b.cur()):
-            if mon.lock:
+            if rollout_lock_ticks(mon):
                 mv, left = mon.lock
                 mon.lock = (mv, left - 1) if left > 1 else None
                 if left <= 1 and not mon.confused and mv.effect == "CONTINUE_AND_CONFUSE_SELF":
@@ -5891,7 +5924,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
         b.moving_last = None
         end_of_turn(b)
         for mon in b.p.on_field() + b.b.on_field():
-            if mon.lock:
+            if rollout_lock_ticks(mon):
                 mv, left = mon.lock
                 mon.lock = (mv, left - 1) if left > 1 else None
                 if left <= 1 and not mon.confused and mv.effect == "CONTINUE_AND_CONFUSE_SELF":

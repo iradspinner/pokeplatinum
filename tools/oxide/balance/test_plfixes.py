@@ -3406,6 +3406,39 @@ def lower_sp_atk_checks():
              f"Bibarel {bib.hp}/{bib.maxhp}, Sp. Atk stage {bib.stages['spa']}")]
 
 
+def rollout_checks():
+    """Rollout in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Geodude rolls five times in a row,
+    held in through every turn's end, each hit a place further along (1 to
+    16 times), and is then free, its next Rollout starting again at once;
+    a turn it is fully paralysed ends the run, and the next starts again."""
+    from .test_fightai import battle
+
+    class Sure(pl.RunDice):
+        """Run dice where the trainer never misses and is fully paralysed
+        only while `stop` is set."""
+        stop = False
+
+        def good(self, p, kind=None):
+            return kind == "paralysis" and self.stop
+    b = battle([("Geodude", 20, "Rock Head", ["Rollout"])], [("Bibarel", 20, "Unaware", ["Leer"])])
+    b.dice, b.rng = Sure(random.Random(1), True), random.Random(1)
+    geo, bib = b.b.cur(), b.p.cur()
+    bib.hp = bib.maxhp = 100000
+    roll, leer = fs.move("Rollout"), fs.move("Leer")
+    seen = []
+    for turn in range(9):
+        b.dice.stop = turn == 7
+        geo.status = "par" if turn == 7 else None
+        forced = geo.lock is not None
+        pl._turn(b, ("move", leer), ("move", geo.lock[0] if forced else roll))
+        seen.append((forced, "par" if turn == 7 else geo.rollout_hit, geo.lock is not None))
+    want = [(False, 0, True), (True, 1, True), (True, 2, True), (True, 3, True), (True, 4, False),
+            (False, 0, True), (True, 1, True), (True, "par", False), (False, 0, True)]
+    return [("the readings' Rollout runs five uses, then starts again; a paralysis ends the run", seen == want,
+             f"(forced, place in the run, locked after) per turn {seen}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4049,6 +4082,7 @@ def main():
     results += stockpile_checks()
     results += natural_gift_checks()
     results += lower_sp_atk_checks()
+    results += rollout_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()

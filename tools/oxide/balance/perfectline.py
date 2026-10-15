@@ -559,6 +559,7 @@ def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
     b.hits_landed = False                # a move of several hits that land_hits landed
     if not dfn.alive():
+        fs.rollout_break(att, mv)        # no target: a Rollout run ends (fightsim.rollout_break)
         return
     if fs.loses_type_fails(att, mv):
         return                           # Burn Up or Double Shock without its type (fightsim.lose_type)
@@ -586,9 +587,11 @@ def attack(b, att, mv, dfn, first):
     if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE and not fs.reaches(mv, dfn) \
             and not fs.no_guard(att, dfn, mv):
         crash(b, att, dfn, mv)
+        fs.rollout_break(att, mv)
         return                   # No Guard reaches it there (fightsim.no_guard)
     if fs.protected(b, att, mv, dfn):
         crash(b, att, dfn, mv)
+        fs.rollout_break(att, mv)
         return                   # only a move Protect can stop (fightsim.protected)
     if mv.effect == "REMOVE_PROTECT" and not dfn.protecting:
         return                   # Feint and Hyperspace Hole fail on a target not protecting (BtlCmd_TryFeint)
@@ -712,6 +715,7 @@ def attack(b, att, mv, dfn, first):
         if fs.doubled(att, dfn, mv):
             dmg = int(dmg * fs.doubled_power(att, mv))
     if dmg <= 0:
+        fs.rollout_break(att, mv)    # an immunity ends a Rollout run (fightsim.rollout_break)
         if dfn.ability in fs.ZEROING and fs.effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
             fs.reveal(dfn)           # an absorbing ability, Levitate or Wonder Guard took it
             if dfn.ability == "Flash Fire" and mv.type == "Fire":
@@ -1490,7 +1494,7 @@ def _turn(c, pa, aa):
                     (fs.baton_pass if passing else fs.switch_in)(c, side, idx)
     fs.end_of_turn(c)
     for mon in (c.p.cur(), c.b.cur()):
-        if mon.lock:
+        if fs.rollout_lock_ticks(mon):       # a Rollout counts its own uses (fightsim.rollout_lock_ticks)
             mv, left = mon.lock
             mon.lock = (mv, left - 1) if left > 1 else None
             if left <= 1 and not mon.confused and mv.effect == "CONTINUE_AND_CONFUSE_SELF":

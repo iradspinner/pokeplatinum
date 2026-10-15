@@ -2337,6 +2337,47 @@ def check_lower_sp_atk_hit(results):
                     f"the target's Sp. Atk stage {out}"))
 
 
+def check_rollout(results):
+    """Rollout and Ice Ball (approved 2026-10-14; BtlCmd_CalcRolloutPower):
+    five uses in a row at 1, 2, 4, 8 and 16 times its power, held in by the
+    lock however many turn ends pass, and then free, the next use starting
+    again at once its power; a turn its user cannot act on (here a full
+    paralysis), and a Protect it meets, end the run, so the next starts
+    again too. The battles' turn end counts down only locks other than a
+    Rollout's (fightsim.rollout_lock_ticks; before it, every lock)."""
+    ticks = getattr(fs, "rollout_lock_ticks", lambda m: m.lock is not None)
+
+    def turn_end(mon):
+        if ticks(mon):
+            mv, left = mon.lock
+            mon.lock = (mv, left - 1) if left > 1 else None
+
+    b, p, foe = battle(["Rollout"], ["Tackle"], {("p", "Rollout"): [10] * 16}, hp=10000)
+    foe.ability = "Shell Armor"           # no critical hits, so each hit reads its row times the run's power
+    b.rng = FixedDice(0.0)
+    roll = fs.move("Rollout")
+    seen = []
+
+    def use(protect=False):
+        forced = p.lock is not None
+        foe.protecting = protect
+        before = foe.hp
+        fs.attack(b, p, p.lock[0] if forced else roll, foe, True)
+        turn_end(p)
+        seen.append((before - foe.hp, forced))
+    for _ in range(7):
+        use()
+    fs.could_not_act(b, p, roll, foe)      # fully paralysed mid-run
+    turn_end(p)
+    use()
+    use(protect=True)
+    use()
+    want = [(10, False), (20, True), (40, True), (80, True), (160, True), (10, False), (20, True),
+            (10, False), (0, True), (10, False)]
+    results.append(("Rollout runs five uses at 1 to 16 times, then a paralysis or a Protect starts it again",
+                    seen == want, f"(damage, forced) per use {seen}"))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -3726,7 +3767,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
