@@ -180,13 +180,18 @@ read, so they are written here too. Each is a standing instruction.
   learnset rules), so the team search can weigh a Starly kept for Brave Bird
   by Maylene's split (Ian, 2026-10-15); this comes in before the readings
   resume. So that a hold's cost counts, each box seed is one run through
-  the game, every fight's box that run's catches by its split, and a
+  the game, every fight's box that run's catches by its split, each area
+  rolled once at the run's first visit among the options open then, so
+  boxes keep today's sizes and nobody waits for Surf or a rod; and a
   held-back version is offered at a fight only if no earlier fight of the
   seed used the catch in a form the hold rules out; once a reading uses
   one, the seed's later fights see the line as the hold left it, so each
   seed's fights read in play order. A hold that would weaken an earlier
   fight on purpose is listed in the reading, not modelled, since testing
-  it means reading that fight again (Ian, 2026-10-15). Ties between equal AI picks break at random. Every fight is
+  it means reading that fight again (Ian, 2026-10-15). To measure what
+  holds change, a box where the matchup screen puts a held-back version
+  in a top six is read a second time without holds, and the reading
+  reports both (Ian, 2026-10-15). Ties between equal AI picks break at random. Every fight is
   simulated at the game's real odds, with no luck budget (Ian, 2026-10-02):
   the three numbers are then
   true frequencies with bad luck inside them, and the planner's caution
