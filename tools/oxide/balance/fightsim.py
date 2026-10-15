@@ -1418,7 +1418,7 @@ def form_twins(ff, pairs, hits_of, spread, whole_field, gas_twin):
                 for d in ff.foes(k):
                     add(t, d, hits_of(k), w)
                     add(d, t, hits_of(d), w)
-                    if "Magnitude" in ff.move_names.get(d, ()) and d[0] in "pq":
+                    if "Magnitude" in ff.move_names.get(d, ()):     # a trainer's power keys too, since 2026-10-15
                         for p in MAGNITUDE_POWERS:
                             add(f"{d}#m{p}", t, ["Magnitude"], w)
                 if whole_field:
@@ -6540,15 +6540,19 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                         pairs += [[a, d, spread(a), w] for d in group if d != a]
     # Magnitude's power is rolled when it is used (MAGNITUDE_POWERS), so the
     # calculator is asked once per power level, each as its own attacker key
-    # ("<key>#m<power>") carrying that power, against every foe it can meet.
-    for k in list(pkeys) + list(qkeys):
+    # ("<key>#m<power>") carrying that power, against every foe it can meet,
+    # on either side. Until 2026-10-15 only the player's and a partner's
+    # Pokemon had these keys, so a trainer's Magnitude found no row and
+    # never dealt damage (Ian approved the fix).
+    for k in list(pkeys) + list(qkeys) + list(bkeys):
         if "Magnitude" in moves.get(k, ()):
+            foes = pkeys + qkeys if k in bkeys else bkeys
             for p in MAGNITUDE_POWERS:
                 dk = f"{k}#m{p}"
                 pokemon[dk] = dict(pokemon[k], move_data={"Magnitude": {
                     "type": "Ground", "category": "Physical", "basePower": p}})
                 for w in weathers:
-                    for d in bkeys:
+                    for d in foes:
                         pairs.append([dk, d, ["Magnitude"], w])
     # Spit Up's power is 100 for each stockpile it spends (spit_up_key), so the
     # calculator is asked once per count, each as its own attacker key
@@ -6643,16 +6647,18 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                                 if d != a and (ta, td) != (a, d) and (ta, td, w) not in seen:
                                     seen.add((ta, td, w))
                                     pairs.append([ta, td, spread(a), w])
-        # Magnitude's power keys, for a twin that can meet the gas.
-        for k in ours:
+        # Magnitude's power keys, for a twin that can meet the gas, on either
+        # side (a trainer's since 2026-10-15).
+        for k in ours + bkeys:
             if "Magnitude" in moves.get(k, ()) and twin(k) != k:
+                held = bkeys if k not in bkeys else ours
                 for p in MAGNITUDE_POWERS:
                     dk, tdk = f"{k}#m{p}", f"{twin(k)}#m{p}"
                     pokemon.setdefault(tdk, dict(pokemon[dk], ability=WEATHER_STAND_IN))
                     gas_twin[dk] = tdk
                     for w in weathers:
-                        for d in bkeys:
-                            if (whole_field or d in holders) and (tdk, twin(d), w) not in seen:
+                        for d in held:
+                            if (whole_field or d in holders or k in holders) and (tdk, twin(d), w) not in seen:
                                 seen.add((tdk, twin(d), w))
                                 pairs.append([tdk, twin(d), ["Magnitude"], w])
     # Roost: while its user roosts, its Flying type meets no move until the
@@ -6688,7 +6694,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                     got = party_hits(d) if d in bkeys else hits(d)
                     if got:
                         pairs.append([d, t, got, w])
-                    if "Magnitude" in moves.get(d, ()) and not d.startswith("b"):
+                    if "Magnitude" in moves.get(d, ()):     # a trainer's power keys too, since 2026-10-15
                         for p in MAGNITUDE_POWERS:
                             pairs.append([f"{d}#m{p}", t, ["Magnitude"], w])
     # Foresight and Odor Sleuth let Normal and Fighting moves meet an

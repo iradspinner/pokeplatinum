@@ -2619,6 +2619,52 @@ def check_foresight(results):
                                  f"identified after leaving) {out}"))
 
 
+def prepared_jobs(boss, player, split="Roark"):
+    """What prepare() asks the calculator for one pair of parties, with no
+    Node run: the calculator's call is stood in for, so the pairs it is
+    given and the Pokemon it is told of come back as they would be sent.
+    Each party is a list of (species, level, ability, moves, item)."""
+    from . import calc
+    iv = {k: 31 for k in ("hp", "at", "df", "sa", "sd", "sp")}
+    ev = dict.fromkeys(iv, 0)
+    boss_recs = [{"species": sp, "level": lv, "ability": ab, "item": it, "nature": "Hardy", "ivs": iv, "evs": ev,
+                  "moves": list(mv)} for sp, lv, ab, mv, it in boss]
+    player_recs = [{"constant": "SPECIES_" + sp.upper().replace(" ", "_").replace("-", "_"), "species": sp,
+                    "how": "test", "level": lv, "nature": "Hardy", "ivs": iv, "evs": ev, "ability": ab,
+                    "moves": list(mv), "fill": False} for sp, lv, ab, mv, _it in player]
+    seen = {}
+
+    def stand_in(blob_path, jobs):
+        seen.update(jobs)
+        info = {k: {"hp": 100, "stats": {"atk": 100, "def": 100, "spa": 100, "spd": 100, "spe": 100},
+                    "speed": 100, "types": [], "ability": p.get("ability"), "item": p.get("item")}
+                for k, p in jobs["pokemon"].items()}
+        return {"results": [], "pokemon": info}
+    saved = calc.run_node
+    calc.run_node = stand_in
+    try:
+        st = fs.prepare(split, [boss_recs], None, given_side=player_recs)
+    finally:
+        calc.run_node = saved
+    return st, seen["pairs"], seen["pokemon"]
+
+
+def check_trainer_magnitude(results):
+    """A trainer's Magnitude (approved 2026-10-14; effect script 126,
+    CalcMagnitudePower): prepare() rows it at each of its seven powers
+    against every player Pokemon, as it rows the player's, so the readings'
+    power keys ("<key>#m<power>") find a row; before, only the player's and
+    a partner's had them, and a trainer's Magnitude never dealt damage."""
+    st, pairs, pokemon = prepared_jobs([("Graveler", 30, "Sturdy", ["Magnitude"], None)],
+                                       [("Machop", 30, "Guts", ["Karate Chop"], None)])
+    want = {f"b0.0#m{p}" for p in fs.MAGNITUDE_POWERS}
+    rowed = {a for a, d, mv, _w in pairs if a.startswith("b0.0#m") and d == "p0" and mv == ["Magnitude"]}
+    powers = {k: pokemon[k].get("move_data", {}).get("Magnitude", {}).get("basePower") for k in sorted(rowed)}
+    ok = rowed == want and all(powers[f"b0.0#m{p}"] == p for p in fs.MAGNITUDE_POWERS)
+    results.append(("prepare rows a trainer's Magnitude at each power against the player's Pokemon", ok,
+                    f"power keys rowed {powers}"))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -4008,7 +4054,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,

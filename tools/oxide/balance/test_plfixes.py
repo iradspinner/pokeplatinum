@@ -3641,6 +3641,27 @@ def foresight_checks():
              f"Karate Chop dealt {before} before and {after} after; the twin {twin}")]
 
 
+def trainer_magnitude_checks():
+    """A trainer's Magnitude in the readings' battle on the calculator's
+    real rows (approved 2026-10-14): a Graveler's Magnitude on the player's
+    Machop hits on every use, at the power the battle's dice roll, where
+    before it found no row and dealt nothing."""
+    from .test_fightai import battle
+    b = battle([("Graveler", 30, "Sturdy", ["Magnitude"])], [("Machop", 30, "Guts", ["Karate Chop"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    gra, mac = b.b.cur(), b.p.cur()
+    mac.hp = mac.maxhp = 10 ** 7
+    hits, powers = 0, set()
+    for _ in range(200):
+        before = mac.hp
+        pl.use_move(b, gra, fs.move("Magnitude"), mac, True)
+        hits += mac.hp < before
+        powers.add(getattr(b, "last_magnitude", None))
+    ok = hits >= 180 and powers == set(fs.MAGNITUDE_POWERS)
+    return [("the readings' trainer Magnitude hits at its rolled power", ok,
+             f"{hits} of 200 uses hit; powers rolled {sorted(p for p in powers if p)}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4293,6 +4314,7 @@ def main():
     results += psych_up_checks()
     results += lock_on_checks()
     results += foresight_checks()
+    results += trainer_magnitude_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()
