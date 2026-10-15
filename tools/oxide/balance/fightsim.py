@@ -158,7 +158,7 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               # move's chance (10) through the sleep subscript, as a hit's
               # status; Sheer Force leaves it (not on sSheerForceEffects).
               # Until 2026-10-15 neither ever slept (Ian approved the fix).
-              # Relic Song's turn of Meloetta between its forms is not run.
+              # Relic Song's turn of Meloetta between its forms is relic_song's.
               "SLEEP_HIT": "slp",
               # Matcha Gotcha (effect script 348, subscript_burn_and_drain_health):
               # a burn at the move's chance (20) on a target left standing,
@@ -545,6 +545,17 @@ class Mon:
     # a stage of Defense and Sp. Def lost at each turn's end, under the rare
     # flag (octolock).
     octolocked = False
+    # Whether it holds anything but the item its rows were made with since
+    # a move took, swapped or spent its item, so its rows come from its item
+    # twin (mark_unheld, Battle.row); kept through switching, as the item's
+    # loss is. Only a trainer's Pokemon has a twin.
+    unheld = False
+    # Meloetta's Pirouette form, which a Relic Song that hit turns it into
+    # and out of (relic_song): its rows and Speed are its Pirouette twin's,
+    # its types and stats that form's, and its Aria types and stats wait in
+    # `aria`; under the rare flag, and back to Aria as it leaves.
+    pirouette = False
+    aria = None
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -614,6 +625,11 @@ class Mon:
             self.grudge = False          # Grudge goes with moveEffectsMask
             self.octolocked = False      # and Octolock with oxideFlags
             self.sky_holder = None       # and a Sky Drop's hold
+            if self.pirouette:
+                # Meloetta leaves the field as Aria (TryRestoreStatusOnSwitch
+                # writes the form back to its party record).
+                self.types, self.stats = self.aria
+                self.pirouette, self.aria = False, None
             self.rare = False
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
@@ -810,6 +826,20 @@ class Battle:
     # (st["water_sport"], st["mud_sport"]), so the damage reads sport_half
     # only then; set as the battle is made and kept by its copies.
     sporty = False
+    # Whether the move being worked out has hit a Substitute, one it broke
+    # included (SELF_TURN_FLAG_SUBSTITUTE_HIT, which lasts the move): its
+    # added effects then reach nothing behind it (attack, _after_attack).
+    # Set again at each attack, so a copy made between moves needs none.
+    sub_hit = False
+    # Whether a Pokemon in this battle reads its item twin (Mon.unheld), so
+    # the rows look for one only then; kept by the battle's copies.
+    unheld = False
+    # Deep fog on the field (FIELD_CONDITION_DEEP_FOG), from a battle on a
+    # foggy map (st["fog"]): every move's accuracy at six tenths unless
+    # Cloud Nine or Air Lock is out (fog_cut); a weather that starts, by a
+    # move or an ability, clears it, and so does Defog. Left on the class
+    # while there is none.
+    fog = False
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -819,6 +849,8 @@ class Battle:
         self.trick_room = 999 if trick_room else 0
         if st.get("water_sport") or st.get("mud_sport"):
             self.sporty = True
+        if st.get("fog"):
+            self.fog = True
         self.turn = 0
         self.ai_flags = ai_flags
         self.log = []
@@ -836,6 +868,8 @@ class Battle:
         if dfn.roosting and mv is not None and "Flying" in dfn.types:
             dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
         if dfn.rare:
+            if dfn.pirouette:
+                dk = pirouette_key(self, dfn) or dk     # Meloetta as Pirouette (relic_song)
             if dfn.power_trick:
                 dk = trick_key(self, dfn) or dk
             if mv is not None:
@@ -847,6 +881,8 @@ class Battle:
             dk = ground_key(self, dfn, mv, att) or dk     # Gravity grounds a flier that nothing else marks
         rows = self.st["rows"]
         if att.rare:
+            if att.pirouette:
+                ak = pirouette_key(self, att) or ak     # Meloetta as Pirouette (relic_song)
             if att.power_trick:
                 ak = trick_key(self, att) or ak   # a Power Trick user's twin with Attack and Defense swapped
             if att.transformed:
@@ -863,6 +899,18 @@ class Battle:
         fd = form_key(self, dfn, mv, defending=True) if dfn.formed else None
         if fa or fd:
             for a, d in ((fa or ak, fd or dk), (fa or ak, dk), (ak, fd or dk)):
+                w = self.weather if (self.weather, a, d) in rows else None
+                got = rows.get((w, a, d))
+                if got is not None:
+                    return got
+        if self.unheld and (att.unheld or dfn.unheld):
+            # A trainer's Pokemon whose item the battle took reads its item
+            # twin (mark_unheld), where nothing else has changed its key; a
+            # pair prepare() did not row with the twin keeps its own rows.
+            ua = item_key(self, att) if att.unheld and ak == att.key else None
+            ud = item_key(self, dfn) if dfn.unheld and dk == dfn.key else None
+            if ua or ud:
+                a, d = ua or ak, ud or dk
                 w = self.weather if (self.weather, a, d) in rows else None
                 got = rows.get((w, a, d))
                 if got is not None:
@@ -928,9 +976,18 @@ class Battle:
         if mon.rare and mon.transformed and ((self.weather, mon.transform_key) in speed
                                              or (None, mon.transform_key) in speed):
             key = mon.transform_key      # a transformed Pokemon has its copy's Speed (transform)
+        if mon.rare and mon.pirouette:
+            twin = pirouette_key(self, mon)
+            if twin and ((self.weather, twin) in speed or (None, twin) in speed):
+                key = twin               # Meloetta as Pirouette has its twin's Speed (relic_song)
         twin = form_key(self, mon) if mon.formed else None
         if twin and ((self.weather, twin) in speed or (None, twin) in speed):
             key = twin
+        if self.unheld and mon.unheld and key == mon.key:
+            # its item twin's Speed, a Choice Scarf gone (mark_unheld)
+            twin = item_key(self, mon)
+            if twin and ((self.weather, twin) in speed or (None, twin) in speed):
+                key = twin
         return int(speed.get((self.weather, key)) or speed.get((None, key)) or 1)
 
     def faster(self, a, b):
@@ -1014,6 +1071,8 @@ class Battle:
             acc *= 1.3
         if att.item == "Wide Lens":
             acc *= 1.1
+        if self.fog:
+            acc *= fog_cut(self)         # deep fog's six tenths (fog_cut)
         if att.ability == "Hustle" and mv.cat == "Physical":
             acc *= 0.8
         if self.gravity:
@@ -1106,11 +1165,13 @@ def miracle_key(b, mon, mv, att):
 
 def grounded(b, mon):
     """Whether mon is held to the ground against Ground moves: Smack Down's
-    mark on it, or Gravity in force. BattleSystem_ApplyTypeChart then skips
-    the Flying type's immunity to Ground moves (BasicTypeMulApplies) and
-    Battler_Ability reads no Levitate, so a Ground move meets its other type
-    alone, read from its twin (prepare's ground_twin)."""
-    return mon.smacked or bool(getattr(b, "gravity", 0))
+    mark on it, its own Ingrain's roots, or Gravity in force.
+    BattleSystem_ApplyTypeChart then skips the Flying type's immunity to
+    Ground moves (BasicTypeMulApplies) and Battler_Ability reads no
+    Levitate, so a Ground move meets its other type alone, read from its
+    twin (prepare's ground_twin). Ingrain's part did nothing until
+    2026-10-15 (Ian approved the fix)."""
+    return mon.smacked or mon.ingrained or bool(getattr(b, "gravity", 0))
 
 
 def gravity_start(b):
@@ -1932,6 +1993,8 @@ def entry_abilities(b, mons, intimidate=True, trace_now=True):
         weather = ABILITY_WEATHER.get(new.ability)
         if weather:
             b.weather, b.weather_turns = weather, 0
+            if b.fog:
+                b.fog = False        # the ability's subscript clears every weather, deep fog too
     for new in mons:
         if new.ability in ENTRY_ANNOUNCED:
             reveal(new)
@@ -2135,6 +2198,7 @@ def give_status(b, target, status):
         target.sleep = b.rng.randint(1, 4)
     if status == "tox":
         target.toxic = 0
+    charge_ends(target, status)      # asleep or frozen, its charge is over
     synchronize(b, target, status)
     cure_berry(target, b)
     return True
@@ -2243,7 +2307,7 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
         dmg = hit_damage(i, crits[i])
         if sub_blocks(att, dfn, mv):
             dfn.sub = max(0, dfn.sub - dmg)
-            sub_hit = True
+            sub_hit = b.sub_hit = True   # and the move's own effects after the hits (_after_attack)
             continue
         enduring = getattr(dfn, "enduring", False)
         on_sturdy = False
@@ -3101,6 +3165,16 @@ def drain(b, att, dfn, gain):
         heal(att, gain)
 
 
+def forced_out(b, mon):
+    """Whether mon, in a single battle's order of moves, has left the field
+    before its turn came: forced out by a faster Roar or Whirlwind of the
+    same priority, or a Dragon Tail or Circle Throw, it does not act (its
+    party slot's action goes with it), and the Pokemon dragged in has no
+    action of its own this turn. Until 2026-10-15 it used its move from
+    the bench (Ian approved the fix)."""
+    return mon is not (b.p if mon.side == "p" else b.b).cur()
+
+
 def foe_of(b, mon):
     """The foe it faces: in a double battle the first standing one."""
     side = b.b if mon.side == "p" else b.p
@@ -3137,8 +3211,15 @@ def could_not_act(b, att, mv, dfn, targets=None):
     record is cleared."""
     att.last = None
     att.protect_run = 0
-    if att.charging is not None and att.charging.effect == "SKY_DROP":
-        att.charging = None          # a Sky Drop user stopped in the air lets its target go (Battler_UnlockMoveChoice)
+    if att.charging is not None:
+        # The subscript that stopped it unlocked its user
+        # (Battler_UnlockMoveChoice clears MOVE_LOCKED and the hidden turn),
+        # so a charge ends: a Fly or Solar Beam user that flinches or is
+        # fully paralysed on its striking turn must charge again, and a
+        # Sky Drop user stopped in the air lets its target go. Sleep and
+        # freeze end the charge as they come (charge_ends). Until 2026-10-15
+        # only Sky Drop's ended (Ian approved the fix).
+        att.charging = None
     if att.bide:
         bide_ends(att)               # the subscript that stopped it unlocked its user, its Bide with it
     if b.st.get("copycat"):
@@ -3146,6 +3227,16 @@ def could_not_act(b, att, mv, dfn, targets=None):
     if att.rollout or att.lock is not None:
         rollout_break(att)           # the subscript that stopped it unlocked its user (rollout_break)
     mark_hit(b, mv, dfn, False, targets)
+
+
+def charge_ends(mon, status):
+    """Falling asleep or being frozen unlocks a Pokemon at once
+    (subscript_fall_asleep and subscript_freeze run UnlockMoveChoice; a
+    sleeping Pokemon still locked is unlocked again at the turn's start),
+    so a charge it was holding ends there: a Fly user put to sleep comes
+    down and can be hit, and must charge again once it wakes."""
+    if mon.charging is not None and status in ("slp", "frz"):
+        mon.charging = None
 
 
 def flinched(att):
@@ -3318,11 +3409,22 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     if att.flinch:
         flinched(att)                # Steadfast answers it
         return could_not_act(b, att, mv, dfn, targets)
-    if disabled_out(att, mv):
+    if att.disabled is not None and mv.name == att.disabled:
         att.choice = None            # subscript_move_is_disabled lets go of a Choice item's lock
         return could_not_act(b, att, mv, dfn, targets)
-    if (att.rare or b.gravity) and move_barred(b, att, mv):
-        return could_not_act(b, att, mv, dfn, targets)     # Throat Chop's or Gravity's (move_barred)
+    # Taunt, Imprison, Gravity, Heal Block and Throat Chop are checked in the
+    # engine's order (CHECK_STATUS_STATE_TAUNT to _THROAT_CHOP), all before
+    # confusion, paralysis and love, so a taunted Pokemon's status move
+    # fails before its confusion can make it hurt itself, and with its
+    # confusion's count kept. Until 2026-10-15 Taunt and Heal Block came
+    # after love (Ian approved the fix).
+    if att.taunt and mv.cat == "Status":
+        return could_not_act(b, att, mv, dfn, targets)
+    if mv.name in att.sealed:
+        att.choice = None            # a foe's Imprison lets go of it too (disabled_out)
+        return could_not_act(b, att, mv, dfn, targets)
+    if ((att.rare or b.gravity) and move_barred(b, att, mv)) or move_heal_blocked(att, mv):
+        return could_not_act(b, att, mv, dfn, targets)     # Gravity's, Heal Block's or Throat Chop's (move_barred)
     if att.confused:
         att.confused -= 1
         if att.confused and b.rng.random() < 0.5:
@@ -3332,7 +3434,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         return could_not_act(b, att, mv, dfn, targets)
     if att.infatuated and b.rng.random() < 0.5:
         return could_not_act(b, att, mv, dfn, targets)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
-    if (att.taunt and mv.cat == "Status") or tormented_out(att, mv) or move_heal_blocked(att, mv):
+    if tormented_out(att, mv):
         return could_not_act(b, att, mv, dfn, targets)
     mark_hit(b, mv, dfn, True, targets)
     prev = note_move(b, mv)      # the move before this one, for Copycat
@@ -3391,6 +3493,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         if dfn.grudge:
             grudge(att, dfn, paid, mv)
         knockout_boost(att, dfn, before)
+        if mv.const == "MOVE_RELIC_SONG":
+            relic_song(b, att, mv, b.last_dealt > 0)     # Meloetta's form (relic_song)
         return
     # A double battle: a spread move hits each target at three quarters.
     b.spread = len(targets) > 1
@@ -3404,6 +3508,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         if t.grudge:
             grudge(att, t, paid, mv)
         knockout_boost(att, t, before[id(t)])
+    if mv.const == "MOVE_RELIC_SONG":
+        relic_song(b, att, mv, any(t.hp < before[id(t)] for t in targets))    # once a use, whatever it hit
 
 
 def confusion_damage(mon, rng):
@@ -3433,6 +3539,7 @@ def explode_first(b, att):
 def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
     b.hits_landed = False                # a move of several hits that land_hits landed
+    b.sub_hit = False                    # a Substitute it has hit (Battle.sub_hit)
     if mv.effect == "BIDE" and not bide_releases(att, mv):
         return                   # Bide starts, stores, or has nothing to give back (bide_releases)
     if not dfn.alive():
@@ -3496,6 +3603,7 @@ def attack(b, att, mv, dfn, first):
             return               # an item with no fling power cannot be thrown (TryFling)
         gift = att.item
         consume(att, eaten=False)
+        mark_unheld(b, att)          # a trainer's flung item gone from its rows too (item twin)
     if gift is not None and mv.name == "Fling":
         b.flung = gift               # its effect after the hit (fling_effect)
     if not b.accuracy_hits(att, dfn, mv, first):
@@ -3597,6 +3705,7 @@ def attack(b, att, mv, dfn, first):
     if sub_blocks(att, dfn, mv):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
+        b.sub_hit = True         # broken or not, nothing of the hit reaches the Pokemon behind it
     else:
         if mv.effect == "LEAVE_WITH_1_HP" and dmg >= dfn.hp:
             # False Swipe and Hold Back (effect script 101): a hit that would
@@ -3619,6 +3728,8 @@ def attack(b, att, mv, dfn, first):
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
         b.last_dealt = dealt
+        if mv.effect in TAKES_FIRST and dealt > 0:
+            take_first(b, att, dfn, mv, lambda kind, n: b.rng.randrange(n))     # Knock Off's and Bug Bite's (take_first)
         dfn.hit_this_turn = (mv.cat, dealt)
         if dfn.bide:
             bide_store(dfn, dealt)       # a Bide user stores what it took
@@ -3689,18 +3800,19 @@ def clear_smog(dfn):
     dfn.stages = dict.fromkeys(STAGE_KEYS, 0)
 
 
-@functools.lru_cache(maxsize=None)
 def drag_out(b, att, dfn, pick):
-    """Dragon Tail and Circle Throw (effect script 395,
-    subscript_force_switch_hit, run on the hit): unless the target fainted,
-    the user fell, the hit met a Substitute, the target has Suction Cups
-    (which a Mold Breaker passes) or Ingrain roots it, a trainer's target is
-    dragged out for a party member drawn at random (BtlCmd_TryDragonTail),
-    which meets the hazards as it comes in; with no one left to send in,
-    nothing happens. The hit has done its damage, so none of these fails the
-    move. In a double battle the drag is left to the double battles' own
-    fixes. Until 2026-10-15 the target stayed in (Ian approved the fix)."""
-    if getattr(b, "doubles", False) or not att.alive() or getattr(dfn, "ingrained", False) \
+    """Dragon Tail and Circle Throw (effect script 395's hit, then
+    subscript_force_switch_hit from the after-move effects, once the
+    target's ability and held items have answered; hit_aftermath): unless
+    the target fainted, the user fell (to Rough Skin, say), the hit met a
+    Substitute, the target has Suction Cups (which a Mold Breaker passes) or
+    Ingrain roots it, the target is dragged out for a party member drawn at
+    random (BtlCmd_TryDragonTail), which meets the hazards as it comes in;
+    with no one left to send in, nothing happens. The hit has done its
+    damage, so none of these fails the move. In a double battle the drag is
+    left to the double battles' own fixes. Until 2026-10-15 the target
+    stayed in (Ian approved the fix)."""
+    if getattr(b, "doubles", False) or not att.alive() or not dfn.alive() or getattr(dfn, "ingrained", False) \
             or (dfn.ability == "Suction Cups" and not mold(att, dfn)):
         return
     side = b.p if dfn.side == "p" else b.b
@@ -3945,8 +4057,6 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     # into damage (drain).
     if e in DRAIN:
         drain(b, att, dfn, int(dealt * DRAIN[e]))
-    if e == "EAT_BERRY" and dealt > 0:
-        pluck(b, att, dfn, lambda kind, n: b.rng.randrange(n))
     if e == "RECHARGE_AFTER":
         att.recharge = True
     if e in SELF_KO or e == "FINAL_GAMBIT":
@@ -3977,16 +4087,21 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         att.u_turn = True
     if e == "STEAL_HELD_ITEM" and dealt > 0:
         steal_item(att, dfn)             # a knockout too (MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE)
+        mark_unheld(b, dfn)              # a trainer's stolen item gone from its rows (item twin)
     if e in LATE_HIT:
         late_hit(b, att, dfn, mv, stripped, dealt)     # Fell Stinger's knockout, Anchor Shot's trap (late_hit)
-    if not dfn.alive() or sub_blocks(att, dfn, mv):
+    # A hit on a Substitute, even the one that broke it, sets off nothing in
+    # the Pokemon behind it: the added effects ask CheckSubstitute or
+    # Battler_SubstituteWasHit, which read SELF_TURN_FLAG_SUBSTITUTE_HIT for
+    # the rest of the move (b.sub_hit). Until 2026-10-15 the hit that broke
+    # one gave its added effect to the Pokemon behind it (Ian approved the
+    # fix).
+    if not dfn.alive() or b.sub_hit or sub_blocks(att, dfn, mv):
         return
     if e == "CLEAR_SMOG":
         clear_smog(dfn)              # every stage of a target the hit itself reached back to 0
     if e == "INCINERATE":
         incinerate(b, dfn, mv)       # a Berry the target holds is burned up (incinerate)
-    if e == "FORCE_SWITCH_HIT":
-        drag_out(b, att, dfn, lambda kind, n: b.rng.randrange(n))     # Dragon Tail's drag (drag_out)
     if e == "DOUBLE_POWER_HEAL_SLEEP":
         slap_wakes(dfn, mv)          # Wake-Up Slap's doubled hit wakes its target (slap_wakes)
     if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":
@@ -4055,8 +4170,6 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
         dfn.bound, dfn.bound_by = 6 if att.item == "Grip Claw" else b.rng.randint(3, 6), att.key
-    if e == "REMOVE_HELD_ITEM":
-        knock_off(dfn)
 
 
 # The moves Sleep Talk never calls (Gen 4's list, by effect).
@@ -5177,6 +5290,157 @@ def _row_item(b, mon):
     return (b.st["pokemon"].get(mon.key.split("#")[0]) or {}).get("item")
 
 
+# ---- a trainer's held item gone from its rows (batch 10, approved 2026-10-15) ----
+#
+# A trainer's rows are made with its held item, so a Charcoal, a Life Orb,
+# a Choice item, an Expert Belt or an Eviolite stays in them. Once the
+# battle takes the item away (the player's Knock Off, Thief, Covet, Trick or
+# Switcheroo, or the trainer's own Fling), the engine reads no item
+# (Battler_HeldItemEffect), so prepare() rows such a Pokemon a second time
+# with no item (its item twin, "<key>#ni"), both ways against every foe,
+# and the battle reads the twin while the Pokemon lacks the item its rows
+# were made with (Mon.unheld, set by mark_unheld). A fight where nothing can
+# take a trainer's item gets no twin.
+
+# The items the calculator's files name that never change a row the
+# simulator makes: White Herb and Clear Amulet answer only Intimidate and
+# stat drops, and the rows carry neither (CALC_ABILITY_OFF, no stages).
+ROW_NEUTRAL_ITEMS = frozenset({"White Herb", "Clear Amulet"})
+# The moves of a foe that take a trainer's item away, and the trainer's own
+# move that spends it.
+TAKES_ITEM = frozenset({"REMOVE_HELD_ITEM", "STEAL_HELD_ITEM", "SWITCH_HELD_ITEMS"})
+
+
+def _compact(name):
+    return re.sub(r"[^a-z0-9]", "", name.lower())
+
+
+@functools.lru_cache(maxsize=None)
+def row_items():
+    """The held items a calculator row can read, compacted (Generation 4's
+    "DeepSeaTooth" and Oxide's "Deep Sea Tooth" alike): every item a file
+    the Generation 4 row runs through asks for by name (hasItem, or an item
+    compared by name), and the type boosters of getItemBoostType; a
+    superset that costs at most a twin too many."""
+    base = os.path.join(data.ROOT, "tools", "oxide", "encounters", "calc", "calc")
+    found = set()
+    for rel in CALC_ROW_FILES:
+        with open(os.path.join(base, rel), encoding="utf-8") as fh:
+            text = fh.read()
+        for args in re.findall(r"hasItem\(([^)]*)\)", text):
+            found.update(re.findall(r"""['"]([^'"]+)['"]""", args))
+        found.update(re.findall(r"""item(?:\.name)? === ['"]([^'"]+)['"]""", text))
+        if "function getItemBoostType" in text:
+            body = text[text.index("function getItemBoostType"):text.index("exports.getItemBoostType")]
+            found.update(re.findall(r"case '([^']+)'", body))
+    return frozenset(_compact(n) for n in found)
+
+
+def row_item(item):
+    """Whether a trainer's rows read this held item, so its loss needs the
+    item twin: one row_items names, a Berry apart (a resist Berry's halving
+    the battle undoes itself, berry_works; no other Berry changes a row) and
+    the ROW_NEUTRAL_ITEMS."""
+    return bool(item) and not item.endswith("Berry") and item not in ROW_NEUTRAL_ITEMS \
+        and _compact(item) in row_items()
+
+
+def item_key(b, mon):
+    """The key of mon's item twin (prepare's item_twin), or None."""
+    return (b.st.get("item_twin") or {}).get(mon.key)
+
+
+def mark_unheld(b, *mons):
+    """After a move took, swapped or spent a held item: each of mons that
+    has an item twin reads it while it holds anything but the item its rows
+    were made with (Mon.unheld), and the battle notes that one may
+    (Battle.unheld), so Battle.row looks no further otherwise."""
+    twins = b.st.get("item_twin")
+    if not twins:
+        return
+    for m in mons:
+        if m.key in twins:
+            m.unheld = m.item != b.st["pokemon"][m.key].get("item")
+            if m.unheld:
+                b.unheld = True
+
+
+# ---- Meloetta's two forms (batch 10, approved 2026-10-15) ----
+
+@functools.lru_cache(maxsize=None)
+def pirouette_data():
+    """Meloetta's Pirouette form as prepare()'s species_data, from its
+    record (res/pokemon/meloetta/forms/pirouette): its base stats and its
+    types, exactly. The calculator's species table knows only Aria."""
+    path = os.path.join(data.ROOT, "res", "pokemon", "meloetta", "forms", "pirouette", "data.json")
+    with open(path, encoding="utf-8") as fh:
+        raw = json.load(fh)
+    bs = raw["base_stats"]
+    return {"bs": {"hp": bs["hp"], "at": bs["attack"], "df": bs["defense"], "sa": bs["special_attack"],
+                   "sd": bs["special_defense"], "sp": bs["speed"]},
+            "types": [t[len("TYPE_"):].title() for t in raw["types"]], "exact_types": True}
+
+
+def pirouette_key(b, mon):
+    """The key of a Meloetta's Pirouette twin (prepare's meloetta_twin), or None."""
+    return (b.st.get("meloetta_twin") or {}).get(mon.key)
+
+
+def relic_song(b, att, mv, hit):
+    """Relic Song's turn of Meloetta between Aria and Pirouette, once a use
+    of it has hit (BattleControllerPlayer_TriggerAfterMoveHitEffects'
+    AFTER_MOVE_HIT_STATE_RELIC_SONG, under SYSCTL_MOVE_HIT, which a hit on
+    a target itself sets and a Substitute's does not; `hit`): a Meloetta
+    still standing and not transformed takes the other form, its types and
+    stats from the form's record (subscript_relic_song_form recalculates
+    them), its rows and Speed from its Pirouette twin (pirouette_key);
+    both forms' ability is Serene Grace. It goes back to Aria as it leaves
+    (Mon.reset_volatile). Until 2026-10-15 it kept its starting form (Ian
+    approved the fix)."""
+    if not hit or att.species != "Meloetta" or not att.alive() or att.transformed:
+        return
+    twin = pirouette_key(b, att)
+    if twin is None:
+        return
+    if att.pirouette:
+        att.types, att.stats = att.aria
+        att.pirouette, att.aria = False, None
+        return
+    info = b.st["info"][twin]
+    att.aria = (att.types, att.stats)
+    att.types, att.stats = [t.title() for t in info.get("types") or []], info["stats"]
+    att.pirouette = att.rare = True
+
+
+# Knock Off and Bug Bite (effect scripts 188 and 224): their own effect is
+# an on-hit side effect (ONE_HIT_TRIGGER_SECONDARY), which runs before the
+# target's held item is checked (AFTER_MOVE_EFFECT_DEFENDER_ITEM), so a
+# Sitrus Berry or a pinch Berry is knocked off or eaten by the user before
+# its holder can eat it.
+TAKES_FIRST = frozenset({"REMOVE_HELD_ITEM", "EAT_BERRY"})
+
+
+def take_first(b, att, dfn, mv, pick):
+    """Knock Off's and Bug Bite's effect once their hit has struck the target
+    itself, before the target's own Berry can act (berry_check comes
+    after): a resist Berry that halved the hit has been eaten already (the
+    hit's update of HP runs subscript_type_resist_berry), so neither move
+    finds it; then Bug Bite and Pluck eat the target's Berry (pluck), a
+    knockout included, and Knock Off takes the item of a target left
+    standing (knock_off), whose item twin it reads from then on
+    (mark_unheld). Until 2026-10-15 the target ate its Berry first, and a
+    trainer's knocked-off item went on boosting its rows (Ian approved the
+    fixes)."""
+    berry = resist_berry(b, dfn, mv)
+    if berry_works(b, dfn, berry):
+        consume(dfn)
+    if mv.effect == "EAT_BERRY":
+        pluck(b, att, dfn, pick)
+    elif dfn.alive():
+        knock_off(dfn)
+        mark_unheld(b, dfn)
+
+
 def resist_berry(b, dfn, mv):
     """The resist berry dfn's rows halve this move by, if any: one of the
     move's type, against a super-effective hit (any Normal move for the
@@ -5545,20 +5809,22 @@ def shell_bell(att, dealt):
 
 def hit_aftermath(b, att, dfn, mv, chance, pick):
     """What follows a damaging move's hit on dfn: after_hit and the target's
-    on-hit ability for a move of one hit; for one of several, whose hits
-    land_hits took one at a time with their own aftermath, only the Shell
-    Bell on their total."""
+    on-hit ability for a move of one hit, then Dragon Tail's drag
+    (drag_out); for one of several, whose hits land_hits took one at a time
+    with their own aftermath, only the Shell Bell on their total."""
     if getattr(b, "hits_landed", False):
         shell_bell(att, b.last_dealt)
         return
     after_hit(b, att, dfn, mv, b.last_dealt)
-    if mv.effect == "FORCE_SWITCH_HIT" and not getattr(b, "doubles", False):
-        # Dragon Tail's drag (drag_out) runs as the hit's added effect, before
-        # BattleSystem_TriggerAbilityOnHit, which reads the Pokemon now in the
-        # target's slot with the slot's damage flags still set, so a
-        # dragged-in Pokemon's Rough Skin or Static answers the hit.
-        dfn = (b.p if dfn.side == "p" else b.b).cur()
     contact_ability(b, att, dfn, mv, b.last_dealt, chance, pick)
+    if mv.effect == "FORCE_SWITCH_HIT" and b.last_dealt > 0 and not b.sub_hit:
+        # Dragon Tail and Circle Throw drag their target out once its own
+        # ability and held items have answered the hit (the engine's
+        # AFTER_MOVE_EFFECT_FORCE_SWITCH_HIT since 6809a5c4e, run after
+        # TRIGGER_ITEMS_ON_HIT and before the Red Card and the Eject Button,
+        # which the simulator does not hold). Until 2026-10-15 the drag came
+        # first and the Pokemon dragged in answered (Ian approved the fix).
+        drag_out(b, att, dfn, pick)
 
 
 def confusion_blocked(b, att, dfn, hit=False):
@@ -5705,6 +5971,17 @@ CHARGE_STAGES = {"CHARGE_TURN_DEF_UP": {"def": 1}, "CHARGE_TURN_SP_ATK_UP": {"sp
 def weather_ignored(b):
     """Cloud Nine or Air Lock on the field (CheckIgnoreWeather)."""
     return any(m.alive() and m.ability in ("Cloud Nine", "Air Lock") for m in b.p.on_field() + b.b.on_field())
+
+
+def fog_cut(b):
+    """Deep fog's cut to a move's accuracy (BattleControllerPlayer_CheckMoveHitAccuracy,
+    under FIELD_CONDITION_DEEP_FOG and NO_CLOUD_NINE): six tenths, after the
+    stages, Compound Eyes, Sand Veil and Snow Cloak and before Hustle,
+    Tangled Feet and the items; nothing while Cloud Nine or Air Lock is out.
+    A fight on a foggy map starts in it (subscript_overworld_fog). Until
+    2026-10-15 the fog cut nothing, and no fight carried it (Ian approved
+    the fix)."""
+    return 1.0 if weather_ignored(b) else 0.6
 
 
 def charge_skipped(b, att, mv):
@@ -6767,6 +7044,8 @@ def status_move(b, att, mv, dfn, first):
         if not weather_move_fails(b, e):
             b.weather = WEATHER_OF[e]
             b.weather_turns = 8 if att.item == WEATHER_ROCK.get(b.weather) else 5
+            if b.fog:
+                b.fog = False        # the move clears every weather flag first, deep fog's too
     elif e == "TRICK_ROOM":
         if b.trick_room < 999:               # a permanent room makes the move fail
             b.trick_room = 0 if b.trick_room else 5
@@ -6882,6 +7161,7 @@ def status_move(b, att, mv, dfn, first):
         att.baton = True
     elif e == "SWITCH_HELD_ITEMS":
         swap_items(att, dfn, mv)
+        mark_unheld(b, att, dfn)         # a trainer's item swapped away from its rows (item twin)
     elif e == "MAKE_SHARED_MOVES_UNUSEABLE":
         imprison(b, att)
     elif e in FORM_MOVES:
@@ -7033,8 +7313,8 @@ def defog(b, att, dfn, mv):
         s.hazards = dict.fromkeys(s.hazards, 0)
         if s.web:
             s.web = 0
-    if b.weather == "Fog":
-        b.weather, b.weather_turns = None, 0      # FIELD_CONDITION_DEEP_FOG cleared
+    if b.fog:
+        b.fog = False                # FIELD_CONDITION_DEEP_FOG cleared
 
 
 def lay_web(b, att):
@@ -7096,7 +7376,7 @@ def baton_state(mon):
             "locked_on": mon.locked_on, "lock_on_by": mon.lock_on_by, "water_sport": mon.water_sport,
             "mud_sport": mon.mud_sport, "power_trick": mon.power_trick, "embargo": mon.embargo,
             "rare": bool(mon.locked_on or mon.water_sport or mon.mud_sport or mon.power_trick or mon.embargo
-                         or mon.octolocked),
+                         or mon.octolocked or mon.ingrained),     # Ingrain's grounding (grounded)
             "suppressed": getattr(mon, "suppressed", False)}
 
 
@@ -7966,6 +8246,8 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
             elif not b.faster(a, c):
                 order.reverse()
         for i, (mon, mv, _t) in enumerate(order):
+            if i and forced_out(b, mon):
+                continue                 # dragged out before its turn (forced_out)
             target = foe_of(b, mon)
             first = i == 0 and len(order) == 2
             use_move(b, mon, mv, target, first)
@@ -8438,12 +8720,13 @@ BORROWS = frozenset({"COPY_MOVE_FOR_BATTLE", "COPY_MOVE", "USE_LAST_USED_MOVE", 
 
 
 def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False,
-            given_side=None, terrain=None):
+            given_side=None, terrain=None, fog=False):
     """Everything a fight's battles read: the strong third of the side, the
     trainer's Pokemon, a partner's teams (keys q0.0 and on), and the
     calculator's rows for every pair in every weather the fight can have;
     in a double battle also each ally's spread moves on its ally. `terrain`
-    is the fight's battle terrain (calc.fight_terrain), for Camouflage."""
+    is the fight's battle terrain (calc.fight_terrain), for Camouflage;
+    `fog` whether it is fought in deep fog (calc.fight_fog)."""
     blob = calc.blob()
     cap = cap or pool.caps()[split]
     side, can = side_at(split, cap, blob)
@@ -8592,11 +8875,29 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             # trainer's rows carry its party's already (party_hits).
             mates = pkeys if k in pkeys else qkeys
             extra += [m for d in mates if d != k for m in hits(d)]
+        if k not in bkeys and any(move(m).effect == "USE_LAST_USED_MOVE" for m in moves[k]):
+            # Copycat copies the last move any Pokemon used (note_move), the
+            # move a Pokemon of its own side used before it came in among
+            # them, so the player's or a partner's user carries its own
+            # side's damaging moves too, as a trainer's rows carry its
+            # party's (party_hits). Until 2026-10-15 such a copy found no
+            # row and dealt nothing (Ian approved the fix).
+            extra += [m for d in pkeys + qkeys if d.split("~")[0] != k.split("~")[0] for m in hits(d)]
         if extra:
             borrowed[k] = list(dict.fromkeys(extra))
 
     def with_borrowed(k, mvs):
         return mvs + [m for m in borrowed.get(k, ()) if m not in mvs] if k in borrowed else mvs
+
+    # Every damaging move a Pokemon's rows carry: its own, a trainer's
+    # party's (party_hits), and the moves it can borrow (with_borrowed), so
+    # a move Copycat, Me First, Mimic, Mirror Move or Sketch takes is rowed
+    # against a foe's twins (and from the user's own twins) as against its
+    # own keys. Until 2026-10-15 the twins were rowed with a Pokemon's own
+    # moves alone, so a borrowed move into a Soaked, Roosting or gassed foe
+    # found no row and dealt nothing (Ian approved the fix).
+    def all_hits(k):
+        return with_borrowed(k, party_hits(k) if k in bkeys else hits(k))
     for w in weathers:
         for a in pkeys + qkeys:
             for d in bkeys:
@@ -8740,7 +9041,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             return t
 
         def hits_of(k):
-            return party_hits(k) if k in bkeys else hits(k)
+            return all_hits(k)
         seen = set()
 
         def row_twice(a, d, w):
@@ -8811,7 +9112,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             roost_twin.setdefault(k, []).append((t, tt))
             for w in weathers:
                 for d in foes:
-                    got = party_hits(d) if d in bkeys else hits(d)
+                    got = all_hits(d)
                     if got:
                         pairs.append([d, t, got, w])
                     if "Magnitude" in moves.get(d, ()):     # a trainer's power keys too, since 2026-10-15
@@ -8841,7 +9142,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         foresight_twin[k] = t
         for w in weathers:
             for d in foes:
-                got = [m for m in (party_hits(d) if d in bkeys else hits(d))
+                got = [m for m in (all_hits(d))
                        if move(m).type in IDENTIFIED_TYPES or pokemon[d].get("ability") == "Normalize"]
                 if got:
                     pairs.append([d, t, got, w])
@@ -8876,12 +9177,12 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         pokemon[t] = rec
         trick_twin[k] = t
         foes = pkeys + qkeys if k in bkeys else bkeys
-        mine = party_hits(k) if k in bkeys else hits(k)
+        mine = all_hits(k)
         for w in weathers:
             for d in foes:
                 if mine:
                     pairs.append([t, d, mine, w])
-                got = party_hits(d) if d in bkeys else hits(d)
+                got = all_hits(d)
                 if got:
                     pairs.append([d, t, got, w])
     # Miracle Eye lets Psychic moves meet a marked target's Dark type
@@ -8907,7 +9208,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         miracle_twin[k] = t
         for w in weathers:
             for d in foes:
-                got = [m for m in (party_hits(d) if d in bkeys else hits(d))
+                got = [m for m in (all_hits(d))
                        if move(m).type == "Psychic" or move(m).const in KEEP_TYPE]
                 if got:
                     pairs.append([d, t, got, w])
@@ -8922,7 +9223,9 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     gravity = any(move(m).effect == "GRAVITY" for d in moves for m in moves[d])
     for k in pkeys + qkeys + bkeys:
         foes = pkeys + qkeys if k.startswith("b") else bkeys
-        if not gravity and not any(move(m).effect == "SMACK_DOWN" for d in foes for m in moves[d]):
+        # Its own Ingrain grounds it too (grounded), since 2026-10-15.
+        if not gravity and not any(move(m).effect == "SMACK_DOWN" for d in foes for m in moves[d]) \
+                and not any(move(m).effect == "GROUND_TRAP_USER_CONTINUOUS_HEAL" for m in moves[k]):
             continue
         poks = blob["poks"].get(pokemon[k]["species"]) or {}
         types = [t for t in (poks.get("types") or []) if t]
@@ -8939,7 +9242,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         ground_twin[k] = t
         for w in weathers:
             for d in foes:
-                got = [m for m in (party_hits(d) if d in bkeys else hits(d)) if move(m).type == "Ground"]
+                got = [m for m in (all_hits(d)) if move(m).type == "Ground"]
                 if got:
                     pairs.append([d, t, got, w])
                 if "Magnitude" in moves.get(d, ()):
@@ -8960,7 +9263,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         if not poks.get("bs"):
             continue
         foes = pkeys + qkeys if k.startswith("b") else bkeys
-        mine = party_hits(k) if k in bkeys else hits(k)
+        mine = all_hits(k)
         for kind in sorted({move(m).type for m in moves[k] if move(m).effect != "STRUGGLE"}):
             if own_types == {kind}:
                 continue
@@ -8974,15 +9277,59 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                 for d in foes:
                     if mine:
                         pairs.append([t, d, mine, w])
-                    got = party_hits(d) if d in bkeys else hits(d)
+                    got = all_hits(d)
                     if got:
                         pairs.append([d, t, got, w])
+    # A trainer's held item that the fight can take away (the player's or a
+    # partner's Knock Off, Thief, Covet, Trick or Switcheroo, or the
+    # Pokemon's own Fling) and that its rows read (row_item): a twin with no
+    # item ("<key>#ni"), rowed both ways in every weather against every foe,
+    # which the battle reads once the item is gone (mark_unheld).
+    item_twin = {}
+    takers = any(move(m).effect in TAKES_ITEM for k in pkeys + qkeys for m in moves[k])
+    for k in bkeys:
+        if not row_item(pokemon[k].get("item")):
+            continue
+        if not takers and not any(move(m).effect == "FLING" for m in moves[k]):
+            continue
+        t = f"{k}#ni"
+        pokemon[t] = dict(pokemon[k], item=None)
+        item_twin[k] = t
+        for w in weathers:
+            for d in pkeys + qkeys:
+                got = with_borrowed(k, party_hits(k))
+                if got:
+                    pairs.append([t, d, got, w])
+                got = with_borrowed(d, hits(d))
+                if got:
+                    pairs.append([d, t, got, w])
+    # Meloetta's Pirouette form, which Relic Song turns it into and out of
+    # (relic_song): each Meloetta that knows the move gets a twin of that
+    # form ("<key>#pir": its base stats and types from the form's record,
+    # pirouette_data, its weight kept), rowed both ways in every weather
+    # against every foe.
+    meloetta_twin = {}
+    for k in pkeys + qkeys + bkeys:
+        if pokemon[k].get("species") != "Meloetta" or "Relic Song" not in moves[k]:
+            continue
+        own = dict(pirouette_data())
+        weight = (blob["poks"].get("Meloetta") or {}).get("weightkg")
+        if weight is not None:
+            own["weightkg"] = weight
+        t = f"{k}#pir"
+        pokemon[t] = dict(pokemon[k], species_data=own)
+        meloetta_twin[k] = t
+        for w in weathers:
+            for d in (pkeys + qkeys if k in bkeys else bkeys):
+                for a, dd, mvs in ((t, d, all_hits(k)), (d, t, all_hits(d))):
+                    if mvs:
+                        pairs.append([a, dd, mvs, w])
     # The types and abilities other moves and abilities can change
     # (FORM_CHANGES): a twin for each change the fight can produce, rowed
     # both ways against every foe (form_twins). None in a fight without them.
     camo = camouflage_type(terrain)
     form_twin = form_twins(FormFight(pokemon, moves, blob, pkeys, qkeys, bkeys, weathers, camo), pairs,
-                           lambda k: party_hits(k) if k in bkeys else hits(k), spread,
+                           all_hits, spread,
                            doubles or bool(partners), gas_twin)
     # The calculator is told to leave off the abilities the battle applies
     # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once,
@@ -9019,12 +9366,13 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
             "foresight_twin": foresight_twin, "ground_twin": ground_twin, "miracle_twin": miracle_twin,
-            "trick_twin": trick_twin,
+            "trick_twin": trick_twin, "item_twin": item_twin, "meloetta_twin": meloetta_twin,
             "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
             "water_sport": any(move(m).effect == "HALVE_FIRE_DAMAGE" for mv in moves.values() for m in mv),
             "mud_sport": any(move(m).effect == "HALVE_ELECTRIC_DAMAGE" for mv in moves.values() for m in mv),
             "heat_crash": heat_crash,
-            "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo, "terrain": terrain}
+            "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo, "terrain": terrain,
+            "fog": bool(fog)}
 
 
 def effectiveness(blob_or_chart, atk_type, def_types):
@@ -9264,14 +9612,14 @@ def story(key, runs=RUNS):
         partners = [ox[p]["party"] for p in fight.get("partner_ids", []) if p in ox]
         st = prepare(fight["split"], parties, weather,
                      trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
-                     partners=partners, doubles=True, terrain=calc.fight_terrain(tr_ids))
+                     partners=partners, doubles=True, terrain=calc.fight_terrain(tr_ids), fog=calc.fight_fog(tr_ids))
         st["battle"] = "tag"
         st["group_flags"] = [t["ai"] for t in trainers]
         st["partner_flags"] = ox[fight["partner_ids"][0]]["ai"] if fight.get("partner_ids") else 0
         return read_fight(st, [st["group_flags"][0]], runs)
     st = prepare(fight["split"], parties, weather,
                  trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
-                 terrain=calc.fight_terrain(tr_ids))
+                 terrain=calc.fight_terrain(tr_ids), fog=calc.fight_fog(tr_ids))
     return read_fight(st, [t["ai"] for t in trainers], runs)
 
 
@@ -9283,7 +9631,8 @@ def trainer(tr_id, runs=RUNS, split=None):
     split = split or required.placements()[tr_id]["split"]
     doubles = t.get("battle_type") == "Doubles" and PLAY_DOUBLES and len(t["party"]) > 1
     st = prepare(split, [t["party"]], calc.fight_weather([tr_id]), trick_room_for([t["constant"]]),
-                 cap=fight_cap(split), doubles=doubles, terrain=calc.fight_terrain([tr_id]))
+                 cap=fight_cap(split), doubles=doubles, terrain=calc.fight_terrain([tr_id]),
+                 fog=calc.fight_fog([tr_id]))
     if doubles:
         st["battle"] = "doubles"
     return read_fight(st, [t["ai"]], runs)

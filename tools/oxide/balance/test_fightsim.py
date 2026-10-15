@@ -4891,7 +4891,7 @@ def check_defog(results):
     for case, sub, mist in (("plain", 0, 0), ("Substitute", 25, 0), ("Mist", 0, 2)):
         b, p, foe = battle(["Defog"], ["Tackle"], {})
         b.rng = FixedDice(0.0)
-        b.weather = "Fog"
+        b.fog = True                     # deep fog, its own flag since 2026-10-15 (fightsim.fog_cut)
         foe.sub = sub
         b.b.screens.update({"Reflect": 4, "Light Screen": 3})
         b.b.mist, b.b.safeguard, b.b.web = mist, 3, 1
@@ -4901,8 +4901,8 @@ def check_defog(results):
         fs.status_move(b, p, fs.move("Defog"), foe, True)
         out[case] = (foe.stages["eva"], tuple(b.b.screens.values()), b.b.mist, b.b.safeguard,
                      tuple(b.b.hazards.values()), b.b.web, tuple(b.p.hazards.values()), b.p.web,
-                     b.p.screens["Reflect"], b.weather)
-    clear = ((0, 0), 0, 0, (0, 0, 0), 0, (0, 0, 0), 0, 2, None)
+                     b.p.screens["Reflect"], b.fog)
+    clear = ((0, 0), 0, 0, (0, 0, 0), 0, (0, 0, 0), 0, 2, False)
     want = {"plain": (-1,) + clear, "Substitute": (0,) + clear, "Mist": (0,) + clear}
     results.append(("Defog lowers evasion and clears screens, hazards and fog", out == want, str(out)))
 
@@ -4953,12 +4953,16 @@ def check_parting_shot(results):
 def check_dragon_tail(results):
     """Dragon Tail and Circle Throw (approved 2026-10-14; effect script 395):
     after the hit the target is dragged out for a bench member, unless it
-    fainted, a Substitute took the hit, Suction Cups or Ingrain holds it, or
-    no one is left to come in; the Pokemon dragged in is the one whose
-    Rough Skin answers the hit, as the engine reads the slot after the
-    drag."""
+    fainted, a Substitute took the hit (one it broke too), Suction Cups or
+    Ingrain holds it, or no one is left to come in. Since the engine's fix
+    of 2026-10-15 (6809a5c4e) the drag runs from the after-move effects,
+    once the target's own ability and held items have answered (approved
+    2026-10-15): the target's Rough Skin answers the hit, the Pokemon
+    dragged in has not been hit and does not, and a user that falls to
+    the Rough Skin drags nothing."""
     out = {}
-    for case in ("plain", "Substitute", "Suction Cups", "Ingrain", "no bench", "fainted", "Rough Skin"):
+    for case in ("plain", "Substitute", "Substitute broken", "Suction Cups", "Ingrain", "no bench", "fainted",
+                 "Rough Skin", "Rough Skin dragged in", "user falls"):
         b, p, foe = battle(["Dragon Tail"], ["Tackle"], {("p", "Dragon Tail"): [10] * 16}, hp=100)
         b.rng = FixedDice(0.5)
         if case != "no bench":
@@ -4966,21 +4970,28 @@ def check_dragon_tail(results):
             b.b.mons.append(extra)
         if case == "Substitute":
             foe.sub = 50
+        elif case == "Substitute broken":
+            foe.sub = 5
         elif case in ("Suction Cups",):
             foe.ability = case
         elif case == "Ingrain":
             foe.ingrained = True
         elif case == "fainted":
             foe.hp = 5
-        elif case == "Rough Skin":
+        elif case in ("Rough Skin", "user falls"):
+            foe.ability = "Rough Skin"
+            if case == "user falls":
+                p.hp = 10
+        elif case == "Rough Skin dragged in":
             extra.ability = "Rough Skin"
         mv = fs.move("Dragon Tail")
         fs.attack(b, p, mv, foe, True)
         fs.hit_aftermath(b, p, foe, mv, lambda kind, chance, victim: True, lambda kind, n: 0)
         out[case] = (b.b.active, p.hp)
-    want = {"plain": (1, 100), "Substitute": (0, 100), "Suction Cups": (0, 100), "Ingrain": (0, 100),
-            "no bench": (0, 100), "fainted": (0, 100), "Rough Skin": (1, 88)}
-    results.append(("Dragon Tail drags its target out after the hit", out == want, str(out)))
+    want = {"plain": (1, 100), "Substitute": (0, 100), "Substitute broken": (0, 100), "Suction Cups": (0, 100),
+            "Ingrain": (0, 100), "no bench": (0, 100), "fainted": (0, 100), "Rough Skin": (1, 88),
+            "Rough Skin dragged in": (1, 100), "user falls": (0, 0)}
+    results.append(("Dragon Tail drags its target out after its ability answers the hit", out == want, str(out)))
 
 
 def check_side_guards(results):
@@ -5587,6 +5598,259 @@ def check_sky_drop(results):
             "Flying": 200, "Substitute": (None, None), "Snorlax": (None, None), "holder paralysed": (200, False)}
     results.append(("Sky Drop lifts its target for a turn and drops it", out == want, str(out)))
 
+
+# ---- batch 10: the follow-ups Ian approved on 2026-10-15 ----
+
+def check_substitute_hit(results):
+    """A hit on a Substitute gives the Pokemon behind it nothing, the hit
+    that breaks it included (approved 2026-10-15): the added effects ask
+    CheckSubstitute or Battler_SubstituteWasHit, which read
+    SELF_TURN_FLAG_SUBSTITUTE_HIT for the rest of the move. Nuzzle's sure
+    paralysis lands with no Substitute, and neither through one it leaves
+    standing nor through one it breaks."""
+    out = {}
+    for case, sub in (("none", 0), ("left standing", 50), ("broken", 5)):
+        b, p, foe = battle(["Nuzzle"], ["Tackle"], {("p", "Nuzzle"): [20] * 16})
+        b.rng = FixedDice(0.0)
+        foe.sub = sub
+        fs.attack(b, p, fs.move("Nuzzle"), foe, True)
+        out[case] = (foe.status, foe.sub, foe.hp)
+    want = {"none": ("par", 0, 70), "left standing": (None, 20, 100), "broken": (None, 0, 100)}
+    results.append(("a hit that breaks a Substitute gives no added effect", out == want, str(out)))
+
+
+def check_knock_off_first(results):
+    """Knock Off and Bug Bite (approved 2026-10-15; effect scripts 188 and
+    224): their own effect is an on-hit side effect, which runs before the
+    target's held item is checked (AFTER_MOVE_EFFECT_DEFENDER_ITEM), so in
+    the readings' battle the Sitrus Berry of a target the hit takes below
+    half is knocked off, or eaten by the Bug Bite user, before its holder
+    can eat it; and once a trainer's item is gone its rows are its item
+    twin's ("b0.0#ni"), so a knocked-off Charcoal stops boosting its Ember,
+    and a Choice Scarf stops raising its Speed."""
+    from . import perfectline as pl
+    out = {}
+    for name in ("Knock Off", "Bug Bite"):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [60] * 16}, hp=100)
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        foe.item = "Sitrus Berry"
+        p.hp = 40
+        pl.attack(b, p, fs.move(name), foe, True)
+        out[name] = (foe.hp, foe.item, foe.knocked_off, p.hp)
+    b, p, foe = battle(["Knock Off"], ["Ember"], {("p", "Knock Off"): [10] * 16, ("b", "Ember"): [30] * 16})
+    b.st["pokemon"]["b0.0"]["item"] = foe.item = "Choice Scarf"
+    b.st["pokemon"]["b0.0#ni"] = dict(b.st["pokemon"]["b0.0"], item=None)
+    b.st["rows"][(None, "b0.0#ni", "p0")] = {"moves": {"Ember": {"rolls": [25] * 16}}}
+    b.st["rows"][(None, "p0", "b0.0#ni")] = {"moves": {"Knock Off": {"rolls": [10] * 16}}}
+    b.st["speed"][(None, "b0.0#ni")] = 30
+    b.st["item_twin"] = {"b0.0": "b0.0#ni"}
+    before = (b.damage(foe, p, fs.move("Ember"), roll=0), b.speed(foe))
+    b.rng = FixedDice(0.5)
+    fs.attack(b, p, fs.move("Knock Off"), foe, True)
+    out["item twin"] = (before, (b.damage(foe, p, fs.move("Ember"), roll=0), b.speed(foe)), foe.item)
+    want = {"Knock Off": (40, None, True, 40), "Bug Bite": (40, None, False, 65),
+            "item twin": ((30, 50), (25, 30), None)}
+    results.append(("Knock Off and Bug Bite take the target's Berry before it eats it, and its rows lose the item",
+                    out == want, str(out)))
+
+
+def check_taunt_before_confusion(results):
+    """Taunt and Heal Block are checked before confusion, paralysis and love
+    (approved 2026-10-15; BattleControllerPlayer_CheckStatusDisruption's
+    order: Disable, Taunt, Imprison, Gravity, Heal Block, Throat Chop, then
+    confusion): a taunted, confused Pokemon's Swords Dance fails at once,
+    with no self-hit and its confusion's count kept, as does a heal-blocked
+    one's Recover; one neither taunted nor blocked hurts itself."""
+    out = {}
+    for case, name in (("taunted", "Swords Dance"), ("heal-blocked", "Recover"), ("neither", "Swords Dance")):
+        b, p, foe = battle([name], ["Tackle"], {}, hp=100)
+        b.rng = FixedDice(0.0)               # every confusion check hurts itself
+        p.confused = 3
+        if case == "taunted":
+            p.taunt = 3
+        elif case == "heal-blocked":
+            p.heal_block = 5
+        fs.use_move(b, p, fs.move(name), foe, True)
+        out[case] = (p.hp < p.maxhp, p.confused)
+    want = {"taunted": (False, 3), "heal-blocked": (False, 3), "neither": (True, 2)}
+    results.append(("Taunt and Heal Block stop a move before confusion is checked", out == want, str(out)))
+
+
+def check_forced_out(results):
+    """A Pokemon forced out by Roar or Whirlwind before it acts does not act
+    (approved 2026-10-15): in a turn where both sides use Whirlwind, the
+    faster one's drags the other out and the Pokemon dragged out does
+    nothing from the bench, so the faster side keeps its Pokemon in."""
+    from . import perfectline as pl
+    out = {}
+    for case, speed in (("player faster", 100), ("player slower", 30)):
+        b, p, foe = battle(["Whirlwind"], ["Whirlwind"], {}, p_speed=speed, b_speed=50)
+        b.p.mons.append(fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Whirlwind"], "p"))
+        b.b.mons.append(fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Whirlwind"], "b"))
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        pl._turn(b, ("move", fs.move("Whirlwind")), ("move", fs.move("Whirlwind")))
+        out[case] = (b.p.active, b.b.active) + ((fs.forced_out(b, foe), fs.forced_out(b, p))
+                                               if hasattr(fs, "forced_out") else ())
+    want = {"player faster": (0, 1, True, False), "player slower": (1, 0, False, True)}
+    results.append(("a Pokemon forced out before it acts does not act", out == want, str(out)))
+
+
+def check_charge_ends(results):
+    """A charge ends on a turn its user cannot act (approved 2026-10-15;
+    the subscripts that stop a move run UnlockMoveChoice, and falling
+    asleep or being frozen unlocks at once): a Solar Beam user fully
+    paralysed on its striking turn loses the charge and must charge again,
+    and a Fly user put to sleep in the air comes down."""
+    out = {}
+    b, p, foe = battle(["Solar Beam"], ["Tackle"], {("p", "Solar Beam"): [50] * 16}, hp=200)
+    b.rng = FixedDice(0.9)
+    sb = fs.move("Solar Beam")
+    fs.use_move(b, p, sb, foe, True)
+    charged = p.charging is not None
+    p.status = "par"
+    b.rng = FixedDice(0.0)                   # fully paralysed
+    fs.use_move(b, p, sb, foe, True)
+    out["paralysed"] = (charged, p.charging is None, foe.hp)
+    p.status = None
+    b.rng = FixedDice(0.9)
+    fs.use_move(b, p, sb, foe, True)
+    out["next turn"] = (p.charging is not None, foe.hp)
+    b, p, foe = battle(["Fly"], ["Tackle"], {("p", "Fly"): [50] * 16}, hp=200)
+    b.rng = FixedDice(0.9)
+    fs.use_move(b, p, fs.move("Fly"), foe, True)
+    flying = p.charging is not None
+    fs.give_status(b, p, "slp")
+    out["put to sleep"] = (flying, p.charging)
+    want = {"paralysed": (True, True, 200), "next turn": (True, 200), "put to sleep": (True, None)}
+    results.append(("a charge ends on a turn its user cannot act", out == want, str(out)))
+
+
+def check_ingrain_grounds(results):
+    """Ingrain grounds its user (approved 2026-10-15; BasicTypeMulApplies
+    skips the Flying type's immunity for MOVE_EFFECT_INGRAIN, and
+    Battler_Ability reads no Levitate for an ingrained holder): once a
+    Levitate holder has used Ingrain, Earthquake reads its ground twin's
+    row and the trainer's AI no longer reads the move as doing nothing."""
+    from . import perfectline as pl
+    b, p, foe = battle(["Earthquake"], ["Ingrain"], {("p", "Earthquake"): [0] * 16})
+    b.dice = pl.RunDice(random.Random(1), True)
+    foe.ability = "Levitate"
+    b.st["rows"][(None, "p0", "b0.0#gd")] = {"moves": {"Earthquake": {"rolls": [40] * 16}}}
+    b.st["ground_twin"] = {"b0.0": "b0.0#gd"}
+    eq = fs.move("Earthquake")
+    before = (b.damage(p, foe, eq, roll=0), fightai.script_eff(b, p, foe, eq) == fightai.IMMUNE)
+    pl.status_move(b, foe, fs.move("Ingrain"), p, True)
+    after = (b.damage(p, foe, eq, roll=0), fightai.script_eff(b, p, foe, eq) == fightai.IMMUNE)
+    ok = before == (0, True) and after == (40, False) and foe.ingrained
+    results.append(("Ingrain grounds a Levitate holder against Ground moves", ok,
+                    f"(Earthquake, the AI reads it immune) before {before}, after {after}"))
+
+
+def check_fog(results):
+    """Deep fog's accuracy cut (approved 2026-10-15;
+    BattleControllerPlayer_CheckMoveHitAccuracy under FIELD_CONDITION_DEEP_FOG):
+    a fight prepared in fog starts in it, and a 100-accuracy Tackle then
+    lands at six tenths, so a roll of 65 misses it; Cloud Nine on the field
+    lifts the cut, and Defog and a weather move each clear the fog."""
+    out = {}
+    b, p, foe = battle(["Tackle", "Defog", "Rain Dance"], ["Tackle"], {("p", "Tackle"): [10] * 16})
+    b2 = fs.Battle(dict(b.st, fog=True), b.p, b.b, FixedDice(0.65))
+    out["prepared in fog"] = b2.fog
+    tackle = fs.move("Tackle")
+    b.rng = FixedDice(0.65)
+    out["clear"] = b.accuracy_hits(p, foe, tackle)
+    b.fog = True
+    out["fog"] = b.accuracy_hits(p, foe, tackle)
+    foe.ability = "Cloud Nine"
+    out["Cloud Nine"] = b.accuracy_hits(p, foe, tackle)
+    foe.ability = None
+    fs.status_move(b, p, fs.move("Defog"), foe, True)
+    out["after Defog"] = b.fog
+    b.fog = True
+    fs.status_move(b, p, fs.move("Rain Dance"), foe, True)
+    out["after Rain Dance"] = (b.fog, b.weather)
+    want = {"prepared in fog": True, "clear": True, "fog": False, "Cloud Nine": True, "after Defog": False,
+            "after Rain Dance": (False, "Rain")}
+    results.append(("deep fog cuts accuracy to six tenths until it clears", out == want, str(out)))
+
+
+def check_rematch_terrain(results):
+    """A rematch's battle terrain (approved 2026-10-15): the Vs. Seeker
+    brings a trainer back on the map where it was first fought
+    (gVsSeekerRematchData), so Cyclist John's third rematch is fought on
+    his road's plain, as he was, where its Staraptor's Secret Power lowers
+    accuracy and Nature Power is Earthquake, not a building's paralysis
+    and Tri Attack."""
+    from . import calc, data
+    ids = {t["constant"]: tid for tid, t in data.oxide_trainers().items()}
+    first, again = ids["TRAINER_CYCLIST_JOHN"], ids["TRAINER_CYCLIST_JOHN_REMATCH_3"]
+    terrain = calc.fight_terrain([again])
+    out = (calc.fight_terrain([first]), terrain, fs.secret_power_effect(terrain), fs.nature_power_move(terrain))
+    want = ("TERRAIN_PLAIN", "TERRAIN_PLAIN", {"acc": -1}, "Earthquake")
+    results.append(("a rematch is fought on its first fight's terrain", out == want, str(out)))
+
+
+def check_borrowed_twins(results):
+    """The moves Copycat, Me First, Mimic, Mirror Move and Sketch borrow are
+    rowed against a foe's twins too (approved 2026-10-15): prepare() rows
+    the player's Copycat user's attacks into a trainer's Roost twin with
+    the trainer's Gust beside its own Karate Chop, and with its mate's Water
+    Gun, which Copycat can copy once the mate has used it; into the
+    trainer's own key it carried both already, or the foe's at least."""
+    st, pairs, _pokemon = prepared_jobs([("Pidgeotto", 30, "Keen Eye", ["Gust", "Roost"], None)],
+                                        [("Machop", 30, "Guts", ["Copycat", "Karate Chop"], None),
+                                         ("Bibarel", 30, "Unaware", ["Water Gun"], None)])
+    def rowed(d):
+        return sorted({m for a, dd, mv, _w in pairs if a == "p0" and dd == d for m in mv})
+    twin = st["roost_twin"]["b0.0"][0][0]
+    out = {"own key": rowed("b0.0"), "Roost twin": rowed(twin)}
+    want = {"own key": ["Gust", "Karate Chop", "Water Gun"], "Roost twin": ["Gust", "Karate Chop", "Water Gun"]}
+    results.append(("borrowed moves are rowed against a foe's twins", out == want, str(out)))
+
+
+def check_meloetta_form(results):
+    """Relic Song turns Meloetta between Aria and Pirouette (approved
+    2026-10-15; AFTER_MOVE_HIT_STATE_RELIC_SONG, subscript_relic_song_form):
+    prepare() rows a Meloetta that knows the move as Pirouette too; after a
+    Relic Song that hits, its Close Combat and its Speed are its Pirouette
+    twin's and its types Normal and Fighting; a second hit turns it back,
+    a Relic Song a Substitute takes turns nothing, and it leaves the field
+    as Aria."""
+    st, pairs, pokemon = prepared_jobs([("Geodude", 30, "Sturdy", ["Tackle"], None)],
+                                       [("Meloetta", 30, "Serene Grace", ["Relic Song", "Close Combat"], None)])
+    twin = st["meloetta_twin"].get("p0")
+    rowed = (twin, pokemon.get(twin, {}).get("species_data", {}).get("types"),
+             any(a == twin and d == "b0.0" for a, d, _m, _w in pairs),
+             any(a == "b0.0" and d == twin for a, d, _m, _w in pairs))
+    b, p, foe = battle(["Relic Song", "Close Combat"], ["Tackle"],
+                       {("p", "Relic Song"): [10] * 16, ("p", "Close Combat"): [20] * 16}, hp=300)
+    b.st["pokemon"]["p0"]["species"] = p.species = "Meloetta"
+    b.st["meloetta_twin"] = {"p0": "p0#pir"}
+    b.st["info"]["p0#pir"] = dict(b.st["info"]["p0"], types=["Normal", "Fighting"],
+                                  stats=dict(b.st["info"]["p0"]["stats"], atk=150))
+    b.st["rows"][(None, "p0#pir", "b0.0")] = {"moves": {"Relic Song": {"rolls": [8] * 16},
+                                                         "Close Combat": {"rolls": [35] * 16}}}
+    b.st["speed"][(None, "p0#pir")] = 140
+    cc, song = fs.move("Close Combat"), fs.move("Relic Song")
+    b.rng = FixedDice(0.9)
+    out = {"Aria": (b.damage(p, foe, cc, roll=0), b.speed(p), p.types)}
+    fs.use_move(b, p, song, foe, True)
+    out["after a hit"] = (b.damage(p, foe, cc, roll=0), b.speed(p), p.types, p.stats["atk"])
+    fs.use_move(b, p, song, foe, True)
+    out["after a second"] = (b.damage(p, foe, cc, roll=0), p.types)
+    fs.use_move(b, p, song, foe, True)
+    b.p.mons.append(fs.Mon("p1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Tackle"], "p"))
+    fs.switch_in(b, b.p, 1)
+    out["after leaving"] = (p.pirouette, p.types)
+    foe.sub = 50
+    fs.switch_in(b, b.p, 0)
+    fs.use_move(b, p, song, foe, True)
+    out["into a Substitute"] = p.pirouette
+    want = {"Aria": (20, 100, ["Normal"]), "after a hit": (35, 140, ["Normal", "Fighting"], 150),
+            "after a second": (20, ["Normal"]), "after leaving": (False, ["Normal"]), "into a Substitute": False}
+    ok = rowed == ("p0#pir", ["Normal", "Fighting"], True, True) and out == want
+    results.append(("Relic Song turns Meloetta between its forms", ok, f"twin {rowed}; {out}"))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5873,6 +6137,9 @@ def main():
                   check_lunar_dance, check_grudge, check_octolock,
                   check_aurora_veil, check_teatime, check_assist,
                   check_snatch, check_sky_drop,
+                  check_substitute_hit, check_knock_off_first, check_taunt_before_confusion,
+                  check_forced_out, check_charge_ends, check_ingrain_grounds, check_fog,
+                  check_rematch_terrain, check_borrowed_twins, check_meloetta_form,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

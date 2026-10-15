@@ -301,6 +301,7 @@ def give_status(b, target, status):
         target.sleep = b.dice.sleep(target.side)
     if status == "tox":
         target.toxic = 0
+    fs.charge_ends(target, status)   # asleep or frozen, its charge is over (fightsim.charge_ends)
     fs.synchronize(b, target, status)
     fs.cure_berry(target, b)
     return True
@@ -334,6 +335,8 @@ def accuracy_hits(b, att, dfn, mv, first=True):
         acc *= 0.8
     if dfn.ability in ("Snow Cloak",) and b.weather == "Hail" and not fs.mold(att, dfn):
         acc *= 0.8               # Mold Breaker gets past both (Battler_IgnorableAbility)
+    if b.fog:
+        acc *= fs.fog_cut(b)     # deep fog's six tenths (fightsim.fog_cut)
     if b.gravity:
         acc = acc * 10 / 6       # Gravity's ten sixths, last (fightsim.gravity_start)
     if acc >= 100:
@@ -390,11 +393,18 @@ def _use_move(b, att, mv, dfn, first):
     if att.flinch:
         fs.flinched(att)                 # Steadfast answers it
         return fs.could_not_act(b, att, mv, dfn)
-    if fs.disabled_out(att, mv):
+    if att.disabled is not None and mv.name == att.disabled:
         att.choice = None                # subscript_move_is_disabled lets go of a Choice item's lock
         return fs.could_not_act(b, att, mv, dfn)
-    if (att.rare or b.gravity) and fs.move_barred(b, att, mv):
-        return fs.could_not_act(b, att, mv, dfn)     # Throat Chop's or Gravity's (fightsim.move_barred)
+    # Taunt, Imprison, Gravity, Heal Block and Throat Chop, in the engine's
+    # order, before confusion, paralysis and love (fightsim._use_move).
+    if att.taunt and mv.cat == "Status":
+        return fs.could_not_act(b, att, mv, dfn)
+    if mv.name in att.sealed:
+        att.choice = None                # a foe's Imprison, as Disable (fightsim.disabled_out)
+        return fs.could_not_act(b, att, mv, dfn)
+    if ((att.rare or b.gravity) and fs.move_barred(b, att, mv)) or fs.move_heal_blocked(att, mv):
+        return fs.could_not_act(b, att, mv, dfn)     # Gravity's, Heal Block's or Throat Chop's (fightsim.move_barred)
     if att.confused:
         att.confused -= 1
         if att.confused and (b.dice.bad("confusion", 0.5) if player(att) else b.dice.good(0.5, "confusion")):
@@ -404,7 +414,7 @@ def _use_move(b, att, mv, dfn, first):
         return fs.could_not_act(b, att, mv, dfn)
     if att.infatuated and (b.dice.bad("love", 0.5) if player(att) else b.dice.good(0.5, "love")):
         return fs.could_not_act(b, att, mv, dfn)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
-    if (att.taunt and mv.cat == "Status") or fs.tormented_out(att, mv) or fs.move_heal_blocked(att, mv):
+    if fs.tormented_out(att, mv):
         return fs.could_not_act(b, att, mv, dfn)
     fs.mark_hit(b, mv, dfn, True)
     prev = fs.note_move(b, mv)           # the move before this one, for Copycat (fightsim.note_move)
@@ -465,6 +475,8 @@ def _use_move(b, att, mv, dfn, first):
     if dfn.grudge:
         fs.grudge(att, dfn, paid, mv)        # the knockout's move loses its PP (fightsim.grudge)
     fs.knockout_boost(att, dfn, before)      # Moxie and Beast Boost
+    if mv.const == "MOVE_RELIC_SONG":
+        fs.relic_song(b, att, mv, b.last_dealt > 0)     # Meloetta's form (fightsim.relic_song)
 
 
 def struggle_damage(att, dfn, roll):
@@ -599,6 +611,7 @@ def crash(b, att, dfn, mv):
 def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
     b.hits_landed = False                # a move of several hits that land_hits landed
+    b.sub_hit = False                    # a Substitute it has hit (fightsim.Battle.sub_hit)
     if mv.effect == "BIDE" and not fs.bide_releases(att, mv):
         return                           # Bide starts, stores, or has nothing to give back (fightsim.bide_releases)
     if not dfn.alive():
@@ -661,6 +674,7 @@ def attack(b, att, mv, dfn, first):
             return                       # an item with no fling power cannot be thrown (TryFling)
         gift = att.item
         fs.consume(att, eaten=False)     # spent, not eaten (Belch)
+        fs.mark_unheld(b, att)           # a trainer's flung item gone from its rows (fightsim.mark_unheld)
     if gift is not None and mv.name == "Fling":
         b.flung = gift                   # its effect after the hit (fightsim.fling_effect)
     if not accuracy_hits(b, att, dfn, mv, first):
@@ -786,6 +800,7 @@ def attack(b, att, mv, dfn, first):
     if fs.sub_blocks(att, dfn, mv):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
+        b.sub_hit = True         # broken or not, nothing of the hit reaches the Pokemon behind it
     else:
         if mv.effect == "LEAVE_WITH_1_HP" and dmg >= dfn.hp:
             dmg = dfn.hp - 1     # False Swipe and Hold Back leave 1 HP, before Sturdy and the Sash
@@ -810,6 +825,10 @@ def attack(b, att, mv, dfn, first):
         b.last_dealt = dealt
         if mv.effect == "INCINERATE" and dfn.alive():
             fs.incinerate(b, dfn, mv)    # its Berry burned before the target can eat it (fightsim.incinerate)
+        elif mv.effect in fs.TAKES_FIRST and dealt > 0:
+            # Knock Off's and Bug Bite's effect before the target's own Berry
+            # can act (fightsim.take_first).
+            fs.take_first(b, att, dfn, mv, lambda kind, n: b.dice.choice(kind, n))
         fs.berry_check(dfn, b)
         dfn.hit_this_turn = (mv.cat, dealt)
         if dfn.bide:
@@ -838,10 +857,6 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         # Ooze turns it into damage (fightsim.drain).
         gain = int(dealt * fs.DRAIN[e])
         fs.drain(b, att, dfn, int(gain * 1.3) if att.item == "Big Root" else gain)
-    if e == "EAT_BERRY" and dealt > 0:
-        # Bug Bite and Pluck eat the target's Berry and take its effect
-        # (fightsim.pluck), a Starf Berry's stat on the battle's dice.
-        fs.pluck(b, att, dfn, lambda kind, n: b.dice.choice(kind, n))
     if e == "RECHARGE_AFTER":
         att.recharge = True
     if e in fs.SELF_KO or e == "FINAL_GAMBIT":
@@ -876,14 +891,15 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         att.u_turn = True        # after a knockout and a Substitute's hit too (fightsim.attack)
     if e == "STEAL_HELD_ITEM" and dealt > 0:
         fs.steal_item(att, dfn)  # the player's Thief and Covet only (fightsim.steal_item)
+        fs.mark_unheld(b, dfn)   # a trainer's stolen item gone from its rows (fightsim.mark_unheld)
     if e in fs.LATE_HIT:
         fs.late_hit(b, att, dfn, mv, stripped, dealt)     # Fell Stinger's knockout, Anchor Shot's trap (fightsim.late_hit)
-    if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
+    # A hit on a Substitute, the one that broke it included, gives the
+    # Pokemon behind it nothing (fightsim._after_attack, b.sub_hit).
+    if not dfn.alive() or b.sub_hit or fs.sub_blocks(att, dfn, mv):
         return
     if e == "CLEAR_SMOG":
         fs.clear_smog(dfn)       # every stage of the target back to 0 (fightsim.clear_smog)
-    if e == "FORCE_SWITCH_HIT":
-        fs.drag_out(b, att, dfn, lambda kind, n: b.dice.choice(kind, n))     # Dragon Tail's drag (fightsim.drag_out)
     if e == "DOUBLE_POWER_HEAL_SLEEP":
         fs.slap_wakes(dfn, mv)   # Wake-Up Slap's doubled hit wakes its target (fightsim.slap_wakes)
     if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":
@@ -964,8 +980,6 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         # The count, 3 to 6 on the battle's dice and 6 with a Grip Claw, and
         # the binder, whose leaving ends it (fightsim.Mon.bound).
         dfn.bound, dfn.bound_by = 6 if att.item == "Grip Claw" else b.dice.bind(dfn.side), att.key
-    if e == "REMOVE_HELD_ITEM":
-        fs.knock_off(dfn)
 
 
 def status_move(b, att, mv, dfn, first):
@@ -1032,7 +1046,10 @@ def status_move(b, att, mv, dfn, first):
         if dfn.trapped_by is None and not fs.sub_blocks(att, dfn, mv):
             dfn.trapped_by = att.key
     elif e == "GROUND_TRAP_USER_CONTINUOUS_HEAL":
-        att.ingrained = True
+        # Rooted, and so held to the ground: under the rare flag, its rows
+        # meet Ground moves on its twin without Flying or Levitate
+        # (fightsim.grounded, Battle.row).
+        att.ingrained = att.rare = True
     elif e == "STATUS_LEECH_SEED":
         if "Grass" not in dfn.types and not fs.sub_blocks(att, dfn, mv):
             dfn.seeded = True
@@ -1124,6 +1141,8 @@ def status_move(b, att, mv, dfn, first):
             rock = {"Sun": "Heat Rock", "Rain": "Damp Rock", "Sand": "Smooth Rock", "Hail": "Icy Rock"}
             b.weather = fs.WEATHER_OF[e]
             b.weather_turns = 8 if att.item == rock.get(b.weather) else 5
+            if b.fog:
+                b.fog = False                        # every weather flag cleared first, deep fog's too
     elif e == "TRICK_ROOM":
         if b.trick_room < 999:               # a permanent room (Saturn 2) cannot be ended
             b.trick_room = 0 if b.trick_room else 5
@@ -1251,6 +1270,7 @@ def status_move(b, att, mv, dfn, first):
         att.baton = True
     elif e == "SWITCH_HELD_ITEMS":
         fs.swap_items(att, dfn, mv)      # the player's Trick and Switcheroo only (fightsim.swap_items)
+        fs.mark_unheld(b, att, dfn)      # a trainer's item swapped away from its rows (fightsim.mark_unheld)
     elif e == "MAKE_SHARED_MOVES_UNUSEABLE":
         fs.imprison(b, att)              # the foes' shared moves sealed while it stays (fightsim.imprison)
     elif e in fs.FORM_MOVES:
@@ -1318,6 +1338,10 @@ def clone_battle(b):
         c.magic_room = b.magic_room  # Magic Room's turns (fightsim.magic_room)
     if b.snatching:
         c.snatching = True           # a Snatch waits this turn (fightsim.snatch)
+    if b.unheld:
+        c.unheld = True              # a Pokemon reads its item twin (fightsim.mark_unheld)
+    if b.fog:
+        c.fog = True                 # deep fog on the field (fightsim.fog_cut)
     return c
 
 
@@ -1352,13 +1376,15 @@ def mon_key(m):
            getattr(m, "last_resort_count", 0) if getattr(m, "last_resort", False) else None)
     if m.stockpile:
         key += ("stockpile", m.stockpile, m.stockpile_def, m.stockpile_spd)
+    if m.belch:
+        key += ("ate", m.ate_berry)      # Belch fails until its user has eaten a Berry (fightsim.fails_before)
     if m.imprisoning or m.imprisoned:
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
     if m.rare:
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
         key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.mud_sport, m.power_trick, m.bide, m.bide_damage,
                 m.transform_key, tuple(sorted(m.split.items())) if m.split else None, m.embargo, m.roomed, m.item_off,
-                m.grudge, m.octolocked, m.sky_holder,
+                m.grudge, m.octolocked, m.sky_holder, m.pirouette,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key
@@ -1379,20 +1405,23 @@ def side_key(s):
 
 def _field_extra(b):
     """The field's states most fights never have, kept out of the keys
-    while they are not there: Gravity's turns, and in a fight with Copycat
-    the battle's last move (both checked by the keys before calling)."""
+    while they are not there: Gravity's turns, in a fight with Copycat
+    the battle's last move, Magic Room's turns and deep fog (each checked
+    by the keys before calling)."""
     out = (("gravity", b.gravity),) if b.gravity else ()
     if b.last_move is not None:
         out += (("last move", b.last_move.name),)
     if b.magic_room:
         out += (("magic room", b.magic_room),)
+    if b.fog:
+        out += (("fog",),)
     return out
 
 
 def state_key(b):
     key = (side_key(b.p), side_key(b.b), b.weather, b.weather_turns, b.trick_room,
            round(b.luck_spent, 6), getattr(b, "declined", frozenset()))
-    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room else key
+    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room or b.fog else key
 
 
 def shape_key(b):
@@ -1403,9 +1432,11 @@ def shape_key(b):
                sd.future, sd.future_sight, getattr(sd, "mist", 0))
         if sd.lucky_chant or sd.web:
             key += (("lucky chant", sd.lucky_chant, "web", sd.web),)
+        if sd.aurora_veil:
+            key += (("aurora veil", sd.aurora_veil),)     # as side_key keeps it, since 2026-10-15
         return key
     key = (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room, getattr(b, "declined", frozenset()))
-    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room else key
+    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room or b.fog else key
 
 
 def vector(b):
@@ -1456,18 +1487,26 @@ def ai_key(b):
             b.p.tailwind, b.b.tailwind, tuple(b.p.hazards.values()), tuple(b.b.hazards.values()),
             b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick,
             b.p.future_sight, b.b.future_sight, getattr(b.p, "mist", 0) > 0, getattr(b.b, "mist", 0) > 0) \
-        + (_ai_field(b) if b.gravity or b.p.lucky_chant or b.b.lucky_chant or b.p.web or b.b.web else ())
+        + (_ai_field(b) if b.gravity or b.p.lucky_chant or b.b.lucky_chant or b.p.web or b.b.web or b.fog
+           or b.p.aurora_veil or b.b.aurora_veil else ())
 
 
 def _ai_field(b):
     """The field states the later batches add that the trainer's AI reads,
     kept out of its key while none is there: Lucky Chant on either side
     (Basic_CheckLuckyChant), Gravity (Basic_CheckGravity, the barred
-    moves, the type check) and Sticky Web on either side (Basic_CheckStickyWeb,
-    Basic_CheckDefog, Expert_Defog, Expert_RapidSpin)."""
-    if not (b.p.lucky_chant or b.b.lucky_chant or b.gravity or b.p.web or b.b.web):
+    moves, the type check), Sticky Web on either side (Basic_CheckStickyWeb,
+    Basic_CheckDefog, Expert_Defog, Expert_RapidSpin), deep fog
+    (Basic_CheckDefog) and, since 2026-10-15, Aurora Veil on either side
+    (Basic_CheckAuroraVeil, Expert_AuroraVeil, Expert_Defog), which batch 8
+    gave the battle and this key had left out."""
+    if not (b.p.lucky_chant or b.b.lucky_chant or b.gravity or b.p.web or b.b.web or b.fog
+            or b.p.aurora_veil or b.b.aurora_veil):
         return ()
-    return (("field", b.p.lucky_chant > 0, b.b.lucky_chant > 0, b.gravity > 0, b.p.web, b.b.web),)
+    return (("field", b.p.lucky_chant > 0, b.b.lucky_chant > 0, b.gravity > 0, b.p.web, b.b.web)
+            + (("fog",) if b.fog else ())
+            + (("aurora veil", b.p.aurora_veil > 0, b.b.aurora_veil > 0) if b.p.aurora_veil or b.b.aurora_veil
+               else ()),)
 
 
 _AI_CACHE = {}
@@ -1724,6 +1763,8 @@ def _turn(c, pa, aa):
             elif foe.item == "Quick Claw" and c.dice.bad("quickclaw", 0.2):
                 order.reverse()
     for i, (mon, mv) in enumerate(order):
+        if i and fs.forced_out(c, mon):
+            continue                     # dragged out before its turn, it does not act (fightsim.forced_out)
         target = fs.foe_of(c, mon)
         first = i == 0 and len(order) == 2
         use_move(c, mon, mv, target, first)
