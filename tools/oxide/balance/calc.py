@@ -14,6 +14,7 @@ that system was retired on 2026-10-13; they moved here unchanged.
 import functools
 import json
 import os
+import re
 import subprocess
 import tempfile
 
@@ -78,13 +79,40 @@ TERRAIN_OF_BACKGROUND = {
 }
 
 
+@functools.lru_cache(maxsize=None)
+def rematch_originals():
+    """{a rematch's trainer id: the trainer it rematches}, from the Vs.
+    Seeker's table (gVsSeekerRematchData in src/overlay005/vs_seeker.c),
+    whose each row names a trainer and then its rematches, all fought by
+    the same trainer on the map where the first was."""
+    path = os.path.join(data.ROOT, "src", "overlay005", "vs_seeker.c")
+    with open(path, encoding="utf-8") as fh:
+        text = fh.read()
+    body = text[text.index("gVsSeekerRematchData[]"):]
+    body = body[:body.index("};")]
+    out = {}
+    for line in body.split("\n"):
+        names = re.findall(r"\b(TRAINER_[A-Z0-9_]+)\b", line)
+        ids = [splits._trainer_id(n) for n in names]
+        if len(ids) > 1 and ids[0] is not None:
+            for tr in ids[1:]:
+                if tr is not None and tr != ids[0]:
+                    out[tr] = ids[0]
+    return out
+
+
 def fight_terrain(tr_ids):
     """The battle terrain of a fight (BattleSystem_GetTerrain, which
-    Camouflage reads): the backdrop's of the first map, by name, that
-    battles one of its trainers, or None."""
+    Camouflage, Secret Power and Nature Power read): the backdrop's of the
+    first map, by name, that battles one of its trainers, a rematch's on
+    the maps of the trainer it rematches (rematch_originals), or None,
+    which the battle reads as a building's. Until 2026-10-15 a rematch
+    named no map and read as a building (Ian approved the fix)."""
     heads = splits.headers()
+    maps = splits.trainer_maps()
     for tr in tr_ids:
-        for h in sorted(splits.trainer_maps().get(tr, ())):
+        found = maps.get(tr) or maps.get(rematch_originals().get(tr), ())
+        for h in sorted(found):
             bg = heads.get(h, {}).get("battleBG")
             if bg in TERRAIN_OF_BACKGROUND:
                 return TERRAIN_OF_BACKGROUND[bg]

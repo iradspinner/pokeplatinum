@@ -4887,6 +4887,29 @@ def fog_checks():
     return [("the readings' deep fog cuts accuracy to six tenths", ok, f"(landed, miss chances met) {out}")]
 
 
+def rematch_terrain_checks():
+    """A rematch's terrain in a fight prepared on the calculator's real rows
+    (approved 2026-10-15): Guitarist Tony's rematch is fought on his road's
+    plain, as he was, so its Ludicolo's Nature Power is Earthquake, rowed
+    against the player's Machop, where a building's Tri Attack was. The
+    rematch is prepared as fightsim.trainer prepares a trainer, in the
+    first fight's split, as the scorer places no rematch."""
+    from . import calc, data, splits
+    ids = {t["constant"]: tid for tid, t in data.oxide_trainers().items()}
+    tid = ids["TRAINER_GUITARIST_TONY_REMATCH"]
+    t = data.oxide_trainers()[tid]
+    split = splits.trainer_split(ids["TRAINER_GUITARIST_TONY"])
+    recs = [{"constant": "SPECIES_MACHOP", "species": "Machop", "how": "test", "level": 40, "nature": "Hardy",
+             "ivs": IV, "evs": EV, "ability": "Guts", "moves": ["Karate Chop"], "fill": False}]
+    st = fs.prepare(split, [plscore.with_genders(t)], calc.fight_weather([tid]), cap=fs.fight_cap(split),
+                    given_side=recs, terrain=calc.fight_terrain([tid]))
+    lud = next(k for k in st["bosses"][0] if st["pokemon"][k]["species"] == "Ludicolo")
+    row = st["rows"].get((None, lud, "p0")) or {}
+    got = (st.get("terrain"), fs.nature_power_move(st.get("terrain")), "Earthquake" in (row.get("moves") or {}))
+    return [("the readings' rematch is fought on its first fight's terrain", got == ("TERRAIN_PLAIN", "Earthquake", True),
+             f"(terrain, Nature Power's move, Earthquake rowed for the Ludicolo) {got}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -5934,6 +5957,7 @@ def main():
     results += charge_ends_checks()
     results += ingrain_grounds_checks()
     results += fog_checks()
+    results += rematch_terrain_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

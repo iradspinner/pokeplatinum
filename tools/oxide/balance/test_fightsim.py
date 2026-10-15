@@ -5773,6 +5773,22 @@ def check_fog(results):
             "after Rain Dance": (False, "Rain")}
     results.append(("deep fog cuts accuracy to six tenths until it clears", out == want, str(out)))
 
+
+def check_rematch_terrain(results):
+    """A rematch's battle terrain (approved 2026-10-15): the Vs. Seeker
+    brings a trainer back on the map where it was first fought
+    (gVsSeekerRematchData), so Cyclist John's third rematch is fought on
+    his road's plain, as he was, where its Staraptor's Secret Power lowers
+    accuracy and Nature Power is Earthquake, not a building's paralysis
+    and Tri Attack."""
+    from . import calc, data
+    ids = {t["constant"]: tid for tid, t in data.oxide_trainers().items()}
+    first, again = ids["TRAINER_CYCLIST_JOHN"], ids["TRAINER_CYCLIST_JOHN_REMATCH_3"]
+    terrain = calc.fight_terrain([again])
+    out = (calc.fight_terrain([first]), terrain, fs.secret_power_effect(terrain), fs.nature_power_move(terrain))
+    want = ("TERRAIN_PLAIN", "TERRAIN_PLAIN", {"acc": -1}, "Earthquake")
+    results.append(("a rematch is fought on its first fight's terrain", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -6061,6 +6077,7 @@ def main():
                   check_snatch, check_sky_drop,
                   check_substitute_hit, check_knock_off_first, check_taunt_before_confusion,
                   check_forced_out, check_charge_ends, check_ingrain_grounds, check_fog,
+                  check_rematch_terrain,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
