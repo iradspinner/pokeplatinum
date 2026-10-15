@@ -5807,6 +5807,50 @@ def check_borrowed_twins(results):
     want = {"own key": ["Gust", "Karate Chop", "Water Gun"], "Roost twin": ["Gust", "Karate Chop", "Water Gun"]}
     results.append(("borrowed moves are rowed against a foe's twins", out == want, str(out)))
 
+
+def check_meloetta_form(results):
+    """Relic Song turns Meloetta between Aria and Pirouette (approved
+    2026-10-15; AFTER_MOVE_HIT_STATE_RELIC_SONG, subscript_relic_song_form):
+    prepare() rows a Meloetta that knows the move as Pirouette too; after a
+    Relic Song that hits, its Close Combat and its Speed are its Pirouette
+    twin's and its types Normal and Fighting; a second hit turns it back,
+    a Relic Song a Substitute takes turns nothing, and it leaves the field
+    as Aria."""
+    st, pairs, pokemon = prepared_jobs([("Geodude", 30, "Sturdy", ["Tackle"], None)],
+                                       [("Meloetta", 30, "Serene Grace", ["Relic Song", "Close Combat"], None)])
+    twin = st["meloetta_twin"].get("p0")
+    rowed = (twin, pokemon.get(twin, {}).get("species_data", {}).get("types"),
+             any(a == twin and d == "b0.0" for a, d, _m, _w in pairs),
+             any(a == "b0.0" and d == twin for a, d, _m, _w in pairs))
+    b, p, foe = battle(["Relic Song", "Close Combat"], ["Tackle"],
+                       {("p", "Relic Song"): [10] * 16, ("p", "Close Combat"): [20] * 16}, hp=300)
+    b.st["pokemon"]["p0"]["species"] = p.species = "Meloetta"
+    b.st["meloetta_twin"] = {"p0": "p0#pir"}
+    b.st["info"]["p0#pir"] = dict(b.st["info"]["p0"], types=["Normal", "Fighting"],
+                                  stats=dict(b.st["info"]["p0"]["stats"], atk=150))
+    b.st["rows"][(None, "p0#pir", "b0.0")] = {"moves": {"Relic Song": {"rolls": [8] * 16},
+                                                         "Close Combat": {"rolls": [35] * 16}}}
+    b.st["speed"][(None, "p0#pir")] = 140
+    cc, song = fs.move("Close Combat"), fs.move("Relic Song")
+    b.rng = FixedDice(0.9)
+    out = {"Aria": (b.damage(p, foe, cc, roll=0), b.speed(p), p.types)}
+    fs.use_move(b, p, song, foe, True)
+    out["after a hit"] = (b.damage(p, foe, cc, roll=0), b.speed(p), p.types, p.stats["atk"])
+    fs.use_move(b, p, song, foe, True)
+    out["after a second"] = (b.damage(p, foe, cc, roll=0), p.types)
+    fs.use_move(b, p, song, foe, True)
+    b.p.mons.append(fs.Mon("p1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Tackle"], "p"))
+    fs.switch_in(b, b.p, 1)
+    out["after leaving"] = (p.pirouette, p.types)
+    foe.sub = 50
+    fs.switch_in(b, b.p, 0)
+    fs.use_move(b, p, song, foe, True)
+    out["into a Substitute"] = p.pirouette
+    want = {"Aria": (20, 100, ["Normal"]), "after a hit": (35, 140, ["Normal", "Fighting"], 150),
+            "after a second": (20, ["Normal"]), "after leaving": (False, ["Normal"]), "into a Substitute": False}
+    ok = rowed == ("p0#pir", ["Normal", "Fighting"], True, True) and out == want
+    results.append(("Relic Song turns Meloetta between its forms", ok, f"twin {rowed}; {out}"))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -6095,7 +6139,7 @@ def main():
                   check_snatch, check_sky_drop,
                   check_substitute_hit, check_knock_off_first, check_taunt_before_confusion,
                   check_forced_out, check_charge_ends, check_ingrain_grounds, check_fog,
-                  check_rematch_terrain, check_borrowed_twins,
+                  check_rematch_terrain, check_borrowed_twins, check_meloetta_form,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

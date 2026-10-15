@@ -4934,6 +4934,26 @@ def borrowed_twin_checks():
              f"(the Pidgeotto's types, HP taken, the old row's top roll) {out}")]
 
 
+def meloetta_form_checks():
+    """Meloetta's forms in the readings' battle on the calculator's real
+    rows (approved 2026-10-15): the player's Meloetta's Relic Song on a
+    trainer's Snorlax turns it into Pirouette, Normal and Fighting, faster
+    and with its Close Combat harder than as Aria; a second Relic Song
+    turns it back."""
+    b, snor, mel = b8_battle([("Snorlax", 40, "Thick Fat", ["Tackle"])],
+                             [("Meloetta", 40, "Serene Grace", ["Relic Song", "Close Combat"])])
+    cc, song = fs.move("Close Combat"), fs.move("Relic Song")
+    snor.hp = snor.maxhp = 10 ** 6       # it stands through the hits
+    aria = (b.damage(mel, snor, cc, ai_view=True), b.speed(mel), list(mel.types))
+    pl.use_move(b, mel, song, snor, True)
+    pir = (b.damage(mel, snor, cc, ai_view=True), b.speed(mel), list(mel.types))
+    pl.use_move(b, mel, song, snor, True)
+    back = (b.damage(mel, snor, cc, ai_view=True), b.speed(mel), list(mel.types))
+    ok = (pir[2] == ["Normal", "Fighting"] and pir[0] > aria[0] and pir[1] > aria[1] and back == aria)
+    return [("the readings' Relic Song turns Meloetta between its forms", ok,
+             f"(Close Combat's top roll, Speed, types) Aria {aria}, Pirouette {pir}, back {back}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -5983,6 +6003,7 @@ def main():
     results += fog_checks()
     results += rematch_terrain_checks()
     results += borrowed_twin_checks()
+    results += meloetta_form_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

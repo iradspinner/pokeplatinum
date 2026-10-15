@@ -158,7 +158,7 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               # move's chance (10) through the sleep subscript, as a hit's
               # status; Sheer Force leaves it (not on sSheerForceEffects).
               # Until 2026-10-15 neither ever slept (Ian approved the fix).
-              # Relic Song's turn of Meloetta between its forms is not run.
+              # Relic Song's turn of Meloetta between its forms is relic_song's.
               "SLEEP_HIT": "slp",
               # Matcha Gotcha (effect script 348, subscript_burn_and_drain_health):
               # a burn at the move's chance (20) on a target left standing,
@@ -550,6 +550,12 @@ class Mon:
     # twin (mark_unheld, Battle.row); kept through switching, as the item's
     # loss is. Only a trainer's Pokemon has a twin.
     unheld = False
+    # Meloetta's Pirouette form, which a Relic Song that hit turns it into
+    # and out of (relic_song): its rows and Speed are its Pirouette twin's,
+    # its types and stats that form's, and its Aria types and stats wait in
+    # `aria`; under the rare flag, and back to Aria as it leaves.
+    pirouette = False
+    aria = None
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -619,6 +625,11 @@ class Mon:
             self.grudge = False          # Grudge goes with moveEffectsMask
             self.octolocked = False      # and Octolock with oxideFlags
             self.sky_holder = None       # and a Sky Drop's hold
+            if self.pirouette:
+                # Meloetta leaves the field as Aria (TryRestoreStatusOnSwitch
+                # writes the form back to its party record).
+                self.types, self.stats = self.aria
+                self.pirouette, self.aria = False, None
             self.rare = False
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
@@ -857,6 +868,8 @@ class Battle:
         if dfn.roosting and mv is not None and "Flying" in dfn.types:
             dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
         if dfn.rare:
+            if dfn.pirouette:
+                dk = pirouette_key(self, dfn) or dk     # Meloetta as Pirouette (relic_song)
             if dfn.power_trick:
                 dk = trick_key(self, dfn) or dk
             if mv is not None:
@@ -868,6 +881,8 @@ class Battle:
             dk = ground_key(self, dfn, mv, att) or dk     # Gravity grounds a flier that nothing else marks
         rows = self.st["rows"]
         if att.rare:
+            if att.pirouette:
+                ak = pirouette_key(self, att) or ak     # Meloetta as Pirouette (relic_song)
             if att.power_trick:
                 ak = trick_key(self, att) or ak   # a Power Trick user's twin with Attack and Defense swapped
             if att.transformed:
@@ -961,6 +976,10 @@ class Battle:
         if mon.rare and mon.transformed and ((self.weather, mon.transform_key) in speed
                                              or (None, mon.transform_key) in speed):
             key = mon.transform_key      # a transformed Pokemon has its copy's Speed (transform)
+        if mon.rare and mon.pirouette:
+            twin = pirouette_key(self, mon)
+            if twin and ((self.weather, twin) in speed or (None, twin) in speed):
+                key = twin               # Meloetta as Pirouette has its twin's Speed (relic_song)
         twin = form_key(self, mon) if mon.formed else None
         if twin and ((self.weather, twin) in speed or (None, twin) in speed):
             key = twin
@@ -3474,6 +3493,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         if dfn.grudge:
             grudge(att, dfn, paid, mv)
         knockout_boost(att, dfn, before)
+        if mv.const == "MOVE_RELIC_SONG":
+            relic_song(b, att, mv, b.last_dealt > 0)     # Meloetta's form (relic_song)
         return
     # A double battle: a spread move hits each target at three quarters.
     b.spread = len(targets) > 1
@@ -3487,6 +3508,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         if t.grudge:
             grudge(att, t, paid, mv)
         knockout_boost(att, t, before[id(t)])
+    if mv.const == "MOVE_RELIC_SONG":
+        relic_song(b, att, mv, any(t.hp < before[id(t)] for t in targets))    # once a use, whatever it hit
 
 
 def confusion_damage(mon, rng):
@@ -5340,6 +5363,53 @@ def mark_unheld(b, *mons):
             m.unheld = m.item != b.st["pokemon"][m.key].get("item")
             if m.unheld:
                 b.unheld = True
+
+
+# ---- Meloetta's two forms (batch 10, approved 2026-10-15) ----
+
+@functools.lru_cache(maxsize=None)
+def pirouette_data():
+    """Meloetta's Pirouette form as prepare()'s species_data, from its
+    record (res/pokemon/meloetta/forms/pirouette): its base stats and its
+    types, exactly. The calculator's species table knows only Aria."""
+    path = os.path.join(data.ROOT, "res", "pokemon", "meloetta", "forms", "pirouette", "data.json")
+    with open(path, encoding="utf-8") as fh:
+        raw = json.load(fh)
+    bs = raw["base_stats"]
+    return {"bs": {"hp": bs["hp"], "at": bs["attack"], "df": bs["defense"], "sa": bs["special_attack"],
+                   "sd": bs["special_defense"], "sp": bs["speed"]},
+            "types": [t[len("TYPE_"):].title() for t in raw["types"]], "exact_types": True}
+
+
+def pirouette_key(b, mon):
+    """The key of a Meloetta's Pirouette twin (prepare's meloetta_twin), or None."""
+    return (b.st.get("meloetta_twin") or {}).get(mon.key)
+
+
+def relic_song(b, att, mv, hit):
+    """Relic Song's turn of Meloetta between Aria and Pirouette, once a use
+    of it has hit (BattleControllerPlayer_TriggerAfterMoveHitEffects'
+    AFTER_MOVE_HIT_STATE_RELIC_SONG, under SYSCTL_MOVE_HIT, which a hit on
+    a target itself sets and a Substitute's does not; `hit`): a Meloetta
+    still standing and not transformed takes the other form, its types and
+    stats from the form's record (subscript_relic_song_form recalculates
+    them), its rows and Speed from its Pirouette twin (pirouette_key);
+    both forms' ability is Serene Grace. It goes back to Aria as it leaves
+    (Mon.reset_volatile). Until 2026-10-15 it kept its starting form (Ian
+    approved the fix)."""
+    if not hit or att.species != "Meloetta" or not att.alive() or att.transformed:
+        return
+    twin = pirouette_key(b, att)
+    if twin is None:
+        return
+    if att.pirouette:
+        att.types, att.stats = att.aria
+        att.pirouette, att.aria = False, None
+        return
+    info = b.st["info"][twin]
+    att.aria = (att.types, att.stats)
+    att.types, att.stats = [t.title() for t in info.get("types") or []], info["stats"]
+    att.pirouette = att.rare = True
 
 
 # Knock Off and Bug Bite (effect scripts 188 and 224): their own effect is
@@ -9233,6 +9303,27 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                 got = with_borrowed(d, hits(d))
                 if got:
                     pairs.append([d, t, got, w])
+    # Meloetta's Pirouette form, which Relic Song turns it into and out of
+    # (relic_song): each Meloetta that knows the move gets a twin of that
+    # form ("<key>#pir": its base stats and types from the form's record,
+    # pirouette_data, its weight kept), rowed both ways in every weather
+    # against every foe.
+    meloetta_twin = {}
+    for k in pkeys + qkeys + bkeys:
+        if pokemon[k].get("species") != "Meloetta" or "Relic Song" not in moves[k]:
+            continue
+        own = dict(pirouette_data())
+        weight = (blob["poks"].get("Meloetta") or {}).get("weightkg")
+        if weight is not None:
+            own["weightkg"] = weight
+        t = f"{k}#pir"
+        pokemon[t] = dict(pokemon[k], species_data=own)
+        meloetta_twin[k] = t
+        for w in weathers:
+            for d in (pkeys + qkeys if k in bkeys else bkeys):
+                for a, dd, mvs in ((t, d, all_hits(k)), (d, t, all_hits(d))):
+                    if mvs:
+                        pairs.append([a, dd, mvs, w])
     # The types and abilities other moves and abilities can change
     # (FORM_CHANGES): a twin for each change the fight can produce, rowed
     # both ways against every foe (form_twins). None in a fight without them.
@@ -9275,7 +9366,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
             "foresight_twin": foresight_twin, "ground_twin": ground_twin, "miracle_twin": miracle_twin,
-            "trick_twin": trick_twin, "item_twin": item_twin,
+            "trick_twin": trick_twin, "item_twin": item_twin, "meloetta_twin": meloetta_twin,
             "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
             "water_sport": any(move(m).effect == "HALVE_FIRE_DAMAGE" for mv in moves.values() for m in mv),
             "mud_sport": any(move(m).effect == "HALVE_ELECTRIC_DAMAGE" for mv in moves.values() for m in mv),

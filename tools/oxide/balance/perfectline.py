@@ -475,6 +475,8 @@ def _use_move(b, att, mv, dfn, first):
     if dfn.grudge:
         fs.grudge(att, dfn, paid, mv)        # the knockout's move loses its PP (fightsim.grudge)
     fs.knockout_boost(att, dfn, before)      # Moxie and Beast Boost
+    if mv.const == "MOVE_RELIC_SONG":
+        fs.relic_song(b, att, mv, b.last_dealt > 0)     # Meloetta's form (fightsim.relic_song)
 
 
 def struggle_damage(att, dfn, roll):
@@ -1380,7 +1382,7 @@ def mon_key(m):
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
         key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.mud_sport, m.power_trick, m.bide, m.bide_damage,
                 m.transform_key, tuple(sorted(m.split.items())) if m.split else None, m.embargo, m.roomed, m.item_off,
-                m.grudge, m.octolocked, m.sky_holder,
+                m.grudge, m.octolocked, m.sky_holder, m.pirouette,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key
