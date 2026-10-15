@@ -3131,6 +3131,16 @@ def drain(b, att, dfn, gain):
         heal(att, gain)
 
 
+def forced_out(b, mon):
+    """Whether mon, in a single battle's order of moves, has left the field
+    before its turn came: forced out by a faster Roar or Whirlwind of the
+    same priority, or a Dragon Tail or Circle Throw, it does not act (its
+    party slot's action goes with it), and the Pokemon dragged in has no
+    action of its own this turn. Until 2026-10-15 it used its move from
+    the bench (Ian approved the fix)."""
+    return mon is not (b.p if mon.side == "p" else b.b).cur()
+
+
 def foe_of(b, mon):
     """The foe it faces: in a double battle the first standing one."""
     side = b.b if mon.side == "p" else b.p
@@ -8121,6 +8131,8 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
             elif not b.faster(a, c):
                 order.reverse()
         for i, (mon, mv, _t) in enumerate(order):
+            if i and forced_out(b, mon):
+                continue                 # dragged out before its turn (forced_out)
             target = foe_of(b, mon)
             first = i == 0 and len(order) == 2
             use_move(b, mon, mv, target, first)

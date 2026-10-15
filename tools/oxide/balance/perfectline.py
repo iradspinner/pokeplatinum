@@ -1736,6 +1736,8 @@ def _turn(c, pa, aa):
             elif foe.item == "Quick Claw" and c.dice.bad("quickclaw", 0.2):
                 order.reverse()
     for i, (mon, mv) in enumerate(order):
+        if i and fs.forced_out(c, mon):
+            continue                     # dragged out before its turn, it does not act (fightsim.forced_out)
         target = fs.foe_of(c, mon)
         first = i == 0 and len(order) == 2
         use_move(c, mon, mv, target, first)

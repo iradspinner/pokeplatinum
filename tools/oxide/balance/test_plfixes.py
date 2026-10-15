@@ -4798,6 +4798,20 @@ def taunt_before_confusion_checks():
     return [("the readings' Taunt stops a status move before confusion", ok, f"(hurt, confusion left, Attack) {out}")]
 
 
+def forced_out_checks():
+    """A Pokemon forced out before it acts, in a whole turn of the readings'
+    battle on the calculator's real rows (approved 2026-10-15): the
+    player's faster Pidgeotto's Whirlwind drags a trainer's Machop out, and
+    the Machop's own Whirlwind, of the same priority, never comes, so the
+    Pidgeotto stays in."""
+    b, mach, pid = b8_battle([("Machop", 30, "Guts", ["Whirlwind"]), ("Geodude", 30, "Sturdy", ["Tackle"])],
+                             [("Pidgeotto", 30, "Keen Eye", ["Whirlwind"]), ("Bibarel", 30, "Unaware", ["Tackle"])])
+    pl._turn(b, ("move", fs.move("Whirlwind")), ("move", fs.move("Whirlwind")))
+    got = (b.p.cur().species, b.b.cur().species)
+    return [("the readings' Pokemon dragged out before its turn does not act", got == ("Pidgeotto", "Geodude"),
+             f"(the player's in, the trainer's in) {got}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -5841,6 +5855,7 @@ def main():
     results += dragon_tail_order_checks()
     results += knock_off_first_checks()
     results += taunt_before_confusion_checks()
+    results += forced_out_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

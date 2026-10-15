@@ -5675,6 +5675,25 @@ def check_taunt_before_confusion(results):
     want = {"taunted": (False, 3), "heal-blocked": (False, 3), "neither": (True, 2)}
     results.append(("Taunt and Heal Block stop a move before confusion is checked", out == want, str(out)))
 
+
+def check_forced_out(results):
+    """A Pokemon forced out by Roar or Whirlwind before it acts does not act
+    (approved 2026-10-15): in a turn where both sides use Whirlwind, the
+    faster one's drags the other out and the Pokemon dragged out does
+    nothing from the bench, so the faster side keeps its Pokemon in."""
+    from . import perfectline as pl
+    out = {}
+    for case, speed in (("player faster", 100), ("player slower", 30)):
+        b, p, foe = battle(["Whirlwind"], ["Whirlwind"], {}, p_speed=speed, b_speed=50)
+        b.p.mons.append(fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Whirlwind"], "p"))
+        b.b.mons.append(fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Whirlwind"], "b"))
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        pl._turn(b, ("move", fs.move("Whirlwind")), ("move", fs.move("Whirlwind")))
+        out[case] = (b.p.active, b.b.active) + ((fs.forced_out(b, foe), fs.forced_out(b, p))
+                                               if hasattr(fs, "forced_out") else ())
+    want = {"player faster": (0, 1, True, False), "player slower": (1, 0, False, True)}
+    results.append(("a Pokemon forced out before it acts does not act", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5962,6 +5981,7 @@ def main():
                   check_aurora_veil, check_teatime, check_assist,
                   check_snatch, check_sky_drop,
                   check_substitute_hit, check_knock_off_first, check_taunt_before_confusion,
+                  check_forced_out,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
