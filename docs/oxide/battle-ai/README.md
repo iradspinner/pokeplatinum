@@ -295,6 +295,12 @@ The three new effects that carry a secondary effect (417, 418, 420) are on the e
 
 Ian's ruling (alpha readiness, step 18): the nine flags beyond Basic and Expert route each learnable new move as its nearest Platinum effect is routed there, judged by its effect script, as Expert's pass did. Routing only, with no new test or score, marked in the code "Oxide, change (Ian, 2026-10-07, the other flags' routing)". Of 165 learnable new moves, 21 are newly routed: in Evaluate Attack, Setup First Turn, Risky, Baton Pass, Check HP and Harassment, one commit per flag on `cloud/main-ai-flags`. Prioritize Extremes, Tag Strategy and Weather needed nothing, since the first reads only the shared damage tables, the second already had the new spread moves, and no learnable new move sets weather. Three of Ian's eleven Expert judgment calls (Final Gambit, Guard Split, Power Split) are routed in flags that do not read what made Expert misjudge them, and eight moves are left out of a list their match is on; each is Ian's to reverse. What would need new behaviour (the partner moves in Tag Strategy, Rage Powder, the Guard moves, Snowscape, two Prioritize Extremes mismatches in `trainer_ai.c`) is listed for him. [other-flags-new-moves.md](other-flags-new-moves.md) has every flag's table and the mapping for all 165 moves.
 
+## Eerie Spell's drain and Burning Bulwark's burn, 2026-10-14
+
+Eerie Spell moved from the plain hit to its own effect (421), which takes 3 PP from the target's last used move after the hit (`overseer-eerie-spell`, Ian's ruling of 2026-10-14). No routine reads the new effect, so the AI scores the move as an ordinary attack, as it did on the plain hit, and does not foresee the drain. Basic's Soundproof list names the move itself, so it still holds. No AI change.
+
+Burning Bulwark now burns an attacker that makes contact with it, as Baneful Bunker poisons one (`overseer-eerie-spell`, Ian's addition of 2026-10-14). It keeps Protect's effect, so the AI scores it as Protect and does not foresee the burn, as it foresees neither Spiky Shield's damage nor Baneful Bunker's poison. No AI change.
+
 ## The parts
 
 | File | Covers |

@@ -5386,6 +5386,9 @@ static BOOL BtlCmd_CalcFlailPower(BattleSystem *battleSys, BattleContext *battle
  * - The target has no remaining PP for the move that it last used
  * - The target has yet to use a move
  *
+ * Oxide: Eerie Spell's hit runs it too (subscript_reduce_target_pp_hit), and
+ * then deducts up to 3 PP, as in the later games.
+ *
  * Inputs:
  * 1. The distance to jump if the effect fails to execute.
  *
@@ -5404,6 +5407,12 @@ static BOOL BtlCmd_TrySpite(BattleSystem *battleSys, BattleContext *battleCtx)
             BattleScript_Iter(battleCtx, jumpOnFail);
         } else {
             int dec = 4;
+
+            // Oxide: Eerie Spell takes 3 PP after its hit, where Spite takes 4.
+            if (battleCtx->moveCur == MOVE_EERIE_SPELL) {
+                dec = 3;
+            }
+
             if (DEFENDING_MON.ppCur[moveSlot] < dec) {
                 dec = DEFENDING_MON.ppCur[moveSlot];
             }

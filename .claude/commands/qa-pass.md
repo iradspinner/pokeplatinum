@@ -28,7 +28,7 @@ Commit messages carry numbers: counts, "0 disagree", "byte-identical", "N of N p
 
 ## 4. Run the gate
 
-Run `bash tools/oxide/integrate.sh --verify-only`, which builds the ROM. It runs the full check-list without merging anything and checks the ROM's hash against GitHub's build of HEAD; a warning that GitHub has no run for HEAD means the range is not pushed yet, or, in a cloud session, that the VM has no `gh`.
+Run `bash tools/oxide/integrate.sh --verify-only`, which builds the ROM. Without `--since` it runs every check, without merging anything. Off `oxide` the docs mirror fails by design.
 
 ## 5. Write it up
 

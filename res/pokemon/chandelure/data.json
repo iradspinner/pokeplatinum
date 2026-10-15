@@ -93,6 +93,10 @@
                 "MOVE_MYSTICAL_FIRE"
             ],
             [
+                48,
+                "MOVE_FIERY_DANCE"
+            ],
+            [
                 54,
                 "MOVE_DARK_PULSE"
             ],

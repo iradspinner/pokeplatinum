@@ -194,6 +194,24 @@ def check_mechanical(results):
                     f"missed {missed}" if missed else f"{len(want)} cases"))
 
 
+def check_r37_exceptions(results):
+    """Ian's exceptions to R37 (learncheck.R37_EXCEPTIONS) are real ones and
+    still stand: each is an attack under the bar on an obtainable line's
+    list above level 1 in the tree, which check 19 would list but passes
+    over. Pelipper's Hurricane at 58 is the first (Ian, 2026-10-14). An
+    exception whose move has left its list fails here, so the record goes
+    with it."""
+    c19 = {(sp, m) for sp, _lv, m, _a in lc.check19("rewrite")}
+    found = [(sp, mv, [lv for lv, m in lc.learnset("rewrite", sp) if m == mv and lv >= 2],
+              lc.moves()[mv]["accuracy"]) for sp, mv in sorted(lc.R37_EXCEPTIONS)]
+    ok = (("SPECIES_PELIPPER", "MOVE_HURRICANE") in lc.R37_EXCEPTIONS
+          and all(levels and acc < lc.R37_ACCURACY and sp in pool.obtainable() and (sp, mv) not in c19
+                  for sp, mv, levels, acc in found))
+    results.append(("Ian's exceptions to R37 stand on their lists, passed over by check 19", ok,
+                    "; ".join(f"{lc.species_name(sp)}'s {lc.move_name(mv)} at {levels}, {acc}%"
+                              for sp, mv, levels, acc in found)))
+
+
 def check_evolutions_and_late(results):
     """Check 20: Sylveon is unreachable (Eevee has Charm only on its egg list),
     Tangrowth reachable. Check 21: Charizard's Flare Blitz is a late move.
@@ -301,7 +319,7 @@ def main():
     for check in (check_catches, check_at_capture, check_dragon_rage, check_setup_pp,
                   check_v3_reading, check_held_out, check_named_moves, check_r1, check_r2,
                   check_r4_r5, check_r6, check_r7, check_r8, check_r11, check_mechanical,
-                  check_evolutions_and_late, check_fit_rows):
+                  check_r37_exceptions, check_evolutions_and_late, check_fit_rows):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

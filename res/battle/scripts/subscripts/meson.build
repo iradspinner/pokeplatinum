@@ -401,4 +401,5 @@ subscript_files = files(
     'subscript_move_is_throat_chopped.s',
     'subscript_lunar_blessing.s',
     'subscript_recoil_1_3_chance_to_confuse.s',
+    'subscript_reduce_target_pp_hit.s',
 )

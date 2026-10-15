@@ -1363,7 +1363,7 @@ Gone from vanilla: ITEM_TM67 x1.
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_LEADER_GARDENIA (Gardenia, level 26, 5 Pokemon), by number. Vanilla. `scripts_eterna_city_gym.s:60`
+- StartTrainerBattle: against TRAINER_LEADER_GARDENIA (Gardenia, level 26, 6 Pokemon), by number. Vanilla. `scripts_eterna_city_gym.s:60`
 - StartTrainerBattle: against TRAINER_LASS_CAROLINE (Caroline, level 25, 3 Pokemon), by number. Vanilla. `scripts_eterna_city_gym.s:89`
 - StartTrainerBattle: against TRAINER_AROMA_LADY_JENNA (Jenna, level 25, 4 Pokemon), by number. Vanilla. `scripts_eterna_city_gym.s:111`
 - StartTrainerBattle: against TRAINER_AROMA_LADY_ANGELA (Angela, level 25, 4 Pokemon), by number. Vanilla. `scripts_eterna_city_gym.s:133`

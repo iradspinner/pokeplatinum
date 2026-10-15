@@ -46,6 +46,7 @@
             [ 31, "MOVE_BATON_PASS" ],
             [ 36, "MOVE_CRUNCH" ],
             [ 41, "MOVE_IRON_DEFENSE" ],
+            [ 44, "MOVE_JAW_LOCK" ],
             [ 46, "MOVE_SUCKER_PUNCH" ],
             [ 48, "MOVE_PLAY_ROUGH" ],
             [ 50, "MOVE_SWALLOW" ],

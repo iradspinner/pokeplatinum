@@ -48,6 +48,7 @@
             [ 42, "MOVE_FOLLOW_ME" ],
             [ 48, "MOVE_SHADOW_BALL" ],
             [ 50, "MOVE_MOONBLAST" ],
+            [ 53, "MOVE_NATURES_MADNESS" ],
             [ 56, "MOVE_PSYCHIC" ],
             [ 58, "MOVE_AIR_SLASH" ],
             [ 64, "MOVE_CHARM" ],

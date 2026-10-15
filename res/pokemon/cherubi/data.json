@@ -75,7 +75,10 @@
             "MOVE_TICKLE",
             "MOVE_NATURE_POWER",
             "MOVE_GRASS_WHISTLE",
-            "MOVE_AROMATHERAPY"
+            "MOVE_AROMATHERAPY",
+            "MOVE_PETAL_BLIZZARD",
+            "MOVE_WEATHER_BALL",
+            "MOVE_ROCK_TOMB"
         ]
     },
     "evolutions": [

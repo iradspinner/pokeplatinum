@@ -48,6 +48,7 @@
             [ 45, "MOVE_SKITTER_SMACK" ],
             [ 54, "MOVE_POWER_GEM" ],
             [ 56, "MOVE_FLASH_CANNON" ],
+            [ 61, "MOVE_LUSTER_PURGE" ],
             [ 62, "MOVE_SWAGGER" ]
         ],
         "by_tm": [

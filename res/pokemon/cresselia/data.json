@@ -41,6 +41,7 @@
             [ 29, "MOVE_AURORA_BEAM" ],
             [ 38, "MOVE_FUTURE_SIGHT" ],
             [ 47, "MOVE_SLASH" ],
+            [ 54, "MOVE_TAKE_HEART" ],
             [ 57, "MOVE_MOONLIGHT" ],
             [ 66, "MOVE_PSYCHO_CUT" ],
             [ 68, "MOVE_CONFUSE_RAY" ],

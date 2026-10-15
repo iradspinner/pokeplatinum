@@ -93,9 +93,11 @@ in game from a cloud session, and the report says so.
    bits and padding used, the divergence registrations, anything touched
    outside the job.
 2. Run `tools/oxide/merge-branch.sh cloud/<track>-<topic>`. It merges,
-   builds the merged tree here, runs the full gate on that ROM, and
-   pushes only on a pass. On a conflict it stops; resolve by hand, commit,
-   and rerun with `--merged`.
+   builds the merged tree here, runs the gate on that ROM, and pushes only
+   on a pass. The gate runs every check the branch can reach, which is all
+   of them for engine or data work; add `--full` when the report predicts
+   base-ROM counts and the branch changed only tools. On a conflict it stops;
+   resolve by hand, commit, and rerun with `--merged`.
    - The tracker conflicts most. Keep both sides' current entries, take the
      job's ticks, and trim back under 9,000 words.
    - A design doc conflict takes the higher version line and keeps both

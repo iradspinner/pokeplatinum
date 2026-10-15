@@ -792,7 +792,7 @@ DIVERGED_MEMBERS = {
     "poketool/personal/evo.narc": {
         "members": {57, 123, 130, 133, 194, 370, 428,
                     42, 113, 172, 173, 174, 175, 298, 406, 427, 433, 446, 447,
-                    77, 109, 37, 228}
+                    77, 109, 37, 228, 218}
                    | TRADE_EVOLUTIONS_STRIPPED,
         "why": "seven natives gain an evolution into a new species "
                "(Primeape, Scyther, Gyarados, Eevee, Wooper, Luvdisc, Lopunny; "
@@ -806,7 +806,8 @@ DIVERGED_MEMBERS = {
                "gain a Moon Stone branch to their Galarian forms beside their "
                "level evolutions, and Vulpix the Ice Stone's Alolan Ninetales "
                "(Ian, 2026-09-28); Houndour evolves at 27, after Gardenia's split "
-               "(Ian, 2026-09-29)",
+               "(Ian, 2026-09-29); Slugma evolves at 30, by Fantina's split "
+               "(Ian, 2026-10-14)",
     },
 }
 REF_NATIVE_COUNT = 494  # 0 plus the 493 species the reference ROM has

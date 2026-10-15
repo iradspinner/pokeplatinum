@@ -93,6 +93,10 @@
                 "MOVE_U_TURN"
             ],
             [
+                52,
+                "MOVE_VICTORY_DANCE"
+            ],
+            [
                 55,
                 "MOVE_ACROBATICS"
             ],

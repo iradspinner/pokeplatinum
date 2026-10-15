@@ -38,6 +38,13 @@ read, so they are written here too. Each is a standing instruction.
   scorer (`fightsim.py`, `fightai.py`, `perfectline.py`, the `pl*.py` modules)
   still change only with Ian's approval of each fix. If Ian starts several
   track sessions in parallel again, ask him whether ownership comes back.
+  Ian approved, on 2026-10-14, every fix the verified gaps list
+  (`docs/oxide/simulator-gaps.md`) names, so that fights are not rescored
+  again and again: "fix everything except the Z and Max moves." Each fix
+  still matches Oxide's engine, gets a test that fails before it, and lands
+  through the Overseer; a new behaviour outside the list still needs his
+  approval. The Z-moves and Max moves are not fixed and no player or
+  trainer gets them; they were added by accident and are to be removed.
 - The cloud code review (`/code-review ultra`) is never built into a procedure;
   run it only when Ian asks for it.
 - Ian's user settings (`~/.claude/settings.json`) are his to edit. Hand him the
@@ -168,7 +175,11 @@ read, so they are written here too. Each is a standing instruction.
   the estimate's noise) are then ranked by fewest faints; the clean rate is
   reported, not optimised. A boss is read
   over a spread of rolled boxes, so that its answers do not narrow to one
-  Pokemon. Ties between equal AI picks break at random. Every fight is
+  Pokemon. A box offers each pre-evolution held back as well as evolved on
+  time wherever holding it back reaches a strong move sooner (a delay by the
+  learnset rules), so the team search can weigh a Starly kept for Brave Bird
+  by Maylene's split (Ian, 2026-10-15); this comes in before the readings
+  resume. Ties between equal AI picks break at random. Every fight is
   simulated at the game's real odds, with no luck budget (Ian, 2026-10-02):
   the three numbers are then
   true frequencies with bad luck inside them, and the planner's caution
@@ -209,6 +220,20 @@ read, so they are written here too. Each is a standing instruction.
   biggest boss fight of the game (save Cynthia) surely has that claim").
   From about Cyrus 3 on, a boss may carry two or three legendaries where its
   team needs them, against one before (Ian, 2026-10-06).
+  Two soft guides, for judging a reading and never as bars or gate checks
+  (Ian, 2026-10-13). The barometer for "unsolvably hard" is box 3 of the
+  first reading of Ian's six-member Gardenia (27 percent won, difficulty
+  34.7): Ian found a line close to winning it by hand, so a fight reading
+  clearly below it is likely beyond a planning player, and one near it is
+  hard but fair. And only a few fights may read as hard as that whole first
+  reading did (52 percent won over the three boxes): the Cyrus fights, the
+  Elite Four and Cynthia as a gauntlet, and perhaps a Galactic fight such
+  as the Mars and Jupiter double. Small changes swing a fight hard,
+  speed above all (Ian, 2026-10-13): Gardenia went from 52 to 96 percent
+  won on three small dials, two of which moved her members under Golbat's
+  Speed. Speed control is very strong for a trainer and for the player, so
+  any change to a fight is read against the speed tiers of the player's
+  likely answers before it is judged.
   Boss levels spike by importance (Ian, 2026-10-06): gym leaders, rivals,
   Cyrus and the League keep their aces at the cap, while officers and the
   other mini-bosses sit a few levels under it and earn their difficulty
@@ -346,6 +371,21 @@ read, so they are written here too. Each is a standing instruction.
   are judged against Oxide's box, not Kaizo's. Ian plans a boss by baiting
   matchups in the order he wants, so the main tax on him is moveset overlap
   and coverage, then switching or staying in by fight.
+  From Gardenia's redesign (Ian, 2026-10-13): a conditional move such as
+  Solar Beam may always be considered for a boss, with his okay when it
+  comes early (he kept it off his own sun team because its Drought sun
+  never ends, which makes it unconditional); a member may sit under its
+  evolution level, though not egregiously early; a trainer may know a
+  level-up move its species learns just after the split without any list
+  changing (Exeggutor's Egg Bomb at 27 in Gardenia's split); and a team may
+  be weaker than optimal on purpose (a Timid Solrock, a physical Exeggutor
+  on a lesser nature). A trainer's six IVs are one value, its iv_scale, so
+  a trainer's Hidden Power can only be Fighting or Dark.
+  The named Galactic fights are mostly anything goes, so long as each is
+  fun, interesting and thematic (Ian, 2026-10-13): their designs may break
+  the limits above (forced trades, Choice items and the rest) on purpose,
+  as Hesperid's and the Tyche and Hermes double's do. Each keeps its theme
+  across its fights, rising in power.
 - Reports to Ian are one page (Ian, 2026-10-06). Any report, reading,
   study result or plan that comes to him starts with a one-page summary: the
   outcome, the action items (what he decides or does), the next steps, and

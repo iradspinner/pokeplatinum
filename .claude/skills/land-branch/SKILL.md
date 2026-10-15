@@ -6,9 +6,14 @@ description: The Oxide Overseer's routine for landing a finished branch on `oxid
 # Landing a branch
 
 Tracks never push `oxide`; the Overseer lands every branch. Each landing
-merges, builds the merged tree here (under a minute), runs the full gate on
-that ROM (about two minutes), copies the ROM to `~/oxide-playtest` for Ian,
-and pushes only on a pass.
+merges, builds the merged tree here (under a minute), runs the gate on that
+ROM, copies the ROM to `~/oxide-playtest` for Ian, and pushes only on a pass.
+The gate runs only the checks the landing can reach (Ian, 2026-10-13):
+about 20 seconds for docs alone, two to three minutes for one tool's suites,
+and every check, about five minutes, for a change to the game's data, the
+engine or the gate. `merge-branch.sh --full` runs every check whatever
+changed; use it before step 15's reading, for the alpha ROM, and when Ian
+asks.
 
 ## Before
 
@@ -34,6 +39,10 @@ From the main checkout, on `oxide`, with nothing uncommitted:
 nohup bash tools/oxide/merge-branch.sh <branch> > <scratch>/landing.log 2>&1 &
 echo "pid $!"
 ```
+
+The log's `scope:` line says what the gate ran and why. To see what a branch
+would run before landing it, `python3 tools/oxide/gate_scope.py origin/oxide
+--to origin/<branch> --explain` names what each changed file reaches.
 
 Wait on that pid. Never find it with `pgrep -f` and the branch name: the
 pattern matches the watching shell's own command line, and the watcher ends

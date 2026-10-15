@@ -56,6 +56,7 @@
             [ 50, "MOVE_DOUBLE_EDGE" ],
             [ 56, "MOVE_FIRE_FANG" ],
             [ 58, "MOVE_THUNDER_FANG" ],
+            [ 61, "MOVE_THOUSAND_ARROWS" ],
             [ 64, "MOVE_SLACK_OFF" ]
         ],
         "by_tm": [

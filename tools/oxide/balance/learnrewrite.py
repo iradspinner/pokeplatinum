@@ -1,7 +1,8 @@
 """The learnset rewrite's generator: step 4 of docs/oxide/learnset-checks.md.
 
     PYTHONPATH=. python3 -m tools.oxide.balance.learnrewrite plan               # build every list, print what changed
-    PYTHONPATH=. python3 -m tools.oxide.balance.learnrewrite write              # ... and write them into res/pokemon/
+    PYTHONPATH=. python3 -m tools.oxide.balance.learnrewrite write GIBLE        # ... and write the species named into res/pokemon/
+    PYTHONPATH=. python3 -m tools.oxide.balance.learnrewrite write              # ... or name the files a write would change
     PYTHONPATH=. python3 -m tools.oxide.balance.learnrewrite show GIBLE SHINX   # lines before and after, with reasons
 
 It rewrites every level-up list by the locked rules of
@@ -2119,28 +2120,48 @@ def by_hand():
     return out
 
 
-def write(d):
-    """Write every changed list into its species file, in the file's own
-    style (inline entries or one value a line), touching nothing else."""
+def updated(d, sp):
+    """(path, the file's text now, its text with the draft's lists written in
+    its own style), touching nothing but the level-up and egg lists."""
+    path = os.path.join(data.ROOT, "res", "pokemon", pokedex.folder_of(sp), "data.json")
+    with open(path, encoding="utf-8") as f:
+        text = f.read()
+    # Compared with the file as it is now, not with Oxide's list: a list a
+    # former run changed must be rewritten even when it comes back to Oxide's.
+    new = text
+    lst = d.lists[sp]
+    if [tuple(e) for e in lst] != [tuple(e) for e in jsonstyle.get_value(text, ["learnset", "by_level"])]:
+        new = render(new, lst)
+    eggs = file_eggs(text)
+    if eggs is None and d.eggs[sp]:
+        # A file with no egg list gets one after its last learnset list.
+        raw = json.loads(text)["learnset"]
+        last = next(k for k in ("by_tutor", "by_tm", "by_level") if k in raw)
+        new = jsonstyle.insert_key(new, ["learnset"], last, "egg_moves", [])
+        eggs = []
+    if eggs is not None and d.eggs[sp] != eggs:
+        new = render_eggs(new, d.eggs[sp])
+    return path, text, new
+
+
+def would_change(d):
+    """[species] whose file a write would change, in its level-up or egg list."""
+    return [sp for sp in sorted(d.lists) if (lambda u: u[1] != u[2])(updated(d, sp))]
+
+
+def write(d, names):
+    """Write the lists of the species named into their files, in each file's
+    own style (inline entries or one value a line), touching nothing else.
+
+    Only the species named are written (Ian, 2026-10-13). The species files
+    are the authority now, hand edits included, and test_learnrewrite only
+    reports a file that differs from the generator's output, so a write over
+    every species would reset any hand edit not held in learnsets_by_hand.txt
+    without a word, as one reset Nacli's egg list on 2026-10-12. Naming each
+    species makes every write deliberate."""
     changed = 0
-    for sp, lst in sorted(d.lists.items()):
-        path = os.path.join(data.ROOT, "res", "pokemon", pokedex.folder_of(sp), "data.json")
-        with open(path, encoding="utf-8") as f:
-            text = f.read()
-        # Compared with the file as it is now, not with Oxide's list: a list a
-        # former run changed must be rewritten even when it comes back to Oxide's.
-        new = text
-        if [tuple(e) for e in lst] != [tuple(e) for e in jsonstyle.get_value(text, ["learnset", "by_level"])]:
-            new = render(new, lst)
-        eggs = file_eggs(text)
-        if eggs is None and d.eggs[sp]:
-            # A file with no egg list gets one after its last learnset list.
-            raw = json.loads(text)["learnset"]
-            last = next(k for k in ("by_tutor", "by_tm", "by_level") if k in raw)
-            new = jsonstyle.insert_key(new, ["learnset"], last, "egg_moves", [])
-            eggs = []
-        if eggs is not None and d.eggs[sp] != eggs:
-            new = render_eggs(new, d.eggs[sp])
+    for sp in names:
+        path, text, new = updated(d, sp)
         if new == text:
             continue
         with open(path, "w", encoding="utf-8", newline="\n") as f:
@@ -2228,7 +2249,19 @@ def main(argv=None):
                   if [tuple(e) for e in lst] != [tuple(e) for e in lc.learnset(BASE, sp)])
     print(f"{changed} lists change")
     if args.what == "write":
-        print(f"wrote {write(d)} species files and {os.path.relpath(LOG, data.ROOT)}")
+        # A write changes only the species named, with or without SPECIES_;
+        # named none, it says which files a write would change and stops.
+        names = [nm if nm.startswith("SPECIES_") else "SPECIES_" + nm.upper() for nm in args.species]
+        if not names:
+            pending = would_change(d)
+            print(f"write changes only the species it is given, and none was given; {len(pending)} species "
+                  f"files would change: {' '.join(pending) or '(none)'}")
+            return 1
+        unknown = [sp for sp in names if sp not in d.lists]
+        if unknown:
+            print(f"no such species: {' '.join(unknown)}")
+            return 2
+        print(f"wrote {write(d, names)} species files and {os.path.relpath(LOG, data.ROOT)}")
     return 0
 
 

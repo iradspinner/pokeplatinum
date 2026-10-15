@@ -53,6 +53,7 @@
             [ 49, "MOVE_SCARY_FACE" ],
             [ 51, "MOVE_ICE_FANG" ],
             [ 56, "MOVE_DISCHARGE" ],
+            [ 58, "MOVE_PSYCHIC_FANGS" ],
             [ 60, "MOVE_DOUBLE_EDGE" ],
             [ 64, "MOVE_VOLT_TACKLE" ],
             [ 66, "MOVE_THROAT_CHOP" ],

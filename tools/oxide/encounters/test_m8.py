@@ -201,7 +201,10 @@ def check_endpoints(results):
     # included, and a species lists the moves only an earlier stage learns.
     drought = sorted(r["name"] for r in out["rows"] if "DROUGHT" in r["abilities"])
     results.append(("each list row carries its abilities, the hidden one included",
-                    drought == ["Groudon", "Magcargo", "Ninetales", "Slugma", "Torkoal", "Vulpix"],
+                    # Groudon's Drought is a regular slot; Torkoal's, Vulpix's and
+                    # Ninetales's are hidden. Not the whole list, which grows
+                    # with each team that takes Drought (Solrock, 2026-10-13).
+                    {"Groudon", "Torkoal", "Vulpix", "Ninetales"} <= set(drought),
                     f"Drought: {drought}"))
     rose = server.dex_detail("SPECIES_ROSERADE")
     own = ({m["move"] for m in rose["learnset"]} | {m["move"] for m in rose["machine_moves"]}
@@ -217,6 +220,20 @@ def check_endpoints(results):
     results.append(("a species with no earlier stage lists none",
                     server.dex_detail("SPECIES_BUDEW")["prevo_moves"] == []
                     and server.dex_detail("SPECIES_TORKOAL")["prevo_moves"] == [], ""))
+    # Ian, 2026-10-15: an evolved species' egg tab holds its earlier stages'
+    # egg moves, since a trainer's team may carry them, each credited to its stage.
+    raptor = server.dex_detail("SPECIES_STARAPTOR")["egg_moves"]
+    starly = server.dex_detail("SPECIES_STARLY")["egg_moves"]
+    results.append(("an evolved species lists its first stage's egg moves, credited to that stage",
+                    bool(raptor) and [m["move"] for m in raptor] == [m["move"] for m in starly]
+                    and all(m.get("stage") == "Starly" for m in raptor)
+                    and not any(m.get("stage") for m in starly), f"{len(raptor)} moves"))
+    snorlax = server.dex_detail("SPECIES_SNORLAX")["egg_moves"]
+    results.append(("a stage with its own egg list keeps it first and adds only the earlier "
+                    "stage's moves it lacks",
+                    snorlax and not snorlax[0].get("stage")
+                    and len({m["move"] for m in snorlax}) == len(snorlax)
+                    and all(m.get("stage") in (None, "Munchlax") for m in snorlax), f"{len(snorlax)} moves"))
 
 
 def check_canon(results):
@@ -400,14 +417,14 @@ def check_page(results):
     hides = [line for line in style.splitlines()
              if "[hidden]" in line and "display" in line and "none" in line]
     # One toggle per view, so every view the header offers can be hidden.
+    # The count of views is not pinned: it failed the gate each time a tab
+    # was added, though a new tab with its toggle is exactly right (Ian,
+    # 2026-10-13).
     views = len(re.findall(r'<button data-view="', page))
     toggled = page.count(".hidden = view !==")
     results.append(("a hidden view is actually hidden, which `hidden` alone does "
                     "not manage against a styled display",
-                    # Five since the box simulator's tab (2026-09-26), six
-                    # since the Trainers tab (2026-09-27), seven since the
-                    # Alpha tab (2026-10-06).
-                    bool(hides) and views == 7 and toggled == views,
+                    bool(hides) and views >= 1 and toggled == views,
                     f"{hides}, {toggled} toggles for {views} views"))
 
     # Ian's notes after D4: a species in a table opens its dex page, and Back

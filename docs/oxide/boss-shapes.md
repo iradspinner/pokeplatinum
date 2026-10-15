@@ -33,7 +33,7 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 
 ## Gardenia (Eterna Gym, cap 26)
 
-**Status:** evidence and diagnosis done (2026-10-13, [gardenia-redesign.md](gardenia-redesign.md)); the team shape waits on Ian. The scorer reads today's team at 100, 99 and 89 percent won on goal 3's boxes 1 to 3 (96 mean, difficulty 3.5), above the 95 percent ceiling, and a version with fixed move pools and sun at 95 percent, the same within noise.
+**Status:** in the game since 2026-10-13: Ian's six-member sun team, locked in with his levels (Solrock 23, Cherrim 24, Lumineon 25, Exeggutor 24, Breloom 24, Roserade 26), Leech Seed in place of Cherrim's Weather Ball, and Roserade on Calm ([gardenia-redesign.md](gardenia-redesign.md)). His six read 52 percent won before the dials and 96 with them (Roserade then Sassy); the locked team's own reading is next.
 
 **Identity.** The base ROM's team was a sun team (Cherrim with Sunny Day and a Heat Rock, Solar Beam, Weather Ball); the Kaizo study's draft, in the game today, dropped the sun because the player's Fire types gained more from it. Today's five are Roselia, Ludicolo, Exeggutor, Breloom and Roserade. Sun pays only from a setter that spends no turn (Drought) and for more than one member: in the fixed version, Exeggutor's turn-one Sunny Day cost it the fight.
 
@@ -49,4 +49,25 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 - Corvisquire's and Vullaby's availability and Flying moves.
 - Sun mechanics (Drought, Sunny Day, Chlorophyll, Weather Ball, Heat Rock), if her team uses the sun.
 - Rock, Electric, Fire or Ice moves on her members, the answers to the counterpieces.
-- The moves, abilities and items of her five.
+- The moves, abilities and items of her members.
+
+**Ian's six** (2026-10-13; faints made over the three boxes): Exeggutor's Zen Headbutt, Egg Bomb and a Fire Natural Gift that Harvest regrows (216), Cherrim's Weather Ball and Rock Tomb (210), Roserade's Weather Ball and Sludge Bomb (199), Breloom's Rock Tomb and Mach Punch (162), Lumineon (120), Solrock (92). The two Weather Balls, Fire in a sun that never ends, landed a quarter of all the player's faints. Five of the six carry a super-effective move on each counterpiece, and the trainer AI's replacement rule sends them at it in turn.
+
+## The named Galactic fights: Ian's themes (2026-10-13)
+
+The balance pass of step 12 erased most of these themes, and Ian restated them on 2026-10-13. The named Galactic fights are mostly anything goes, so long as each is fun, interesting and thematic: their designs may break the trainer-design limits on purpose. Each keeps its theme across its fights, rising in power. Each team is a full redesign, worked in play order (Ian, 2026-10-13), and no comb landing overwrites one (the tracker's comb entry lists the files).
+
+| Trainer | Fights | Theme |
+|---|---|---|
+| Cyrus | Celestic ruins, Galactic HQ, Distortion World | Power: 18 different Pokemon over the three fights, no repeats, with his canon picks (Weavile, Honchkrow, Houndoom, Gyarados, Crobat) spread among them |
+| Mars | Valley Windworks, Lake Verity, Spear Pillar, Stark Mountain | The crazy cat lady: mostly cats, with her canon bat |
+| Jupiter | Eterna building, Spear Pillar, Stark Mountain | Nuisance and storm together, around Tangela (Tangrowth later) and Skuntank. Ian's idea for her last fight: a Drizzle Zapdos. He hesitates over Drapion and Spiritomb, Aaron's and Cynthia's keys |
+| Saturn | Valor Cavern, Galactic HQ | Slow giants; the HQ fight in permanent Trick Room |
+| Officer Somnu | Valley Windworks, Lake Verity, Mt. Coronet 5F | Sleep |
+| Officer Moira | Eterna 3F, Lake Verity, Mt. Coronet 5F | Future Sight on every member that can learn it, with Ice and hail |
+| Somnu and Moira | Lake Verity, one battle against both | Three each: sleep beside Future Sight and hail |
+| Officer Hesperid | Lake Valor, Mt. Coronet 6F | Platinum Kaizo teambuilding with no holds barred (BrightPowder, Petaya Berry, Explosion with Pursuit and Baton Pass, Choice items), on rarely used Pokemon in weird combinations with atypical movesets: the weirder and harder, the better |
+| Officer Argo | Celestic Town, Mt. Coronet 6F | The loosest; free to change entirely |
+| Tyche and Hermes | Spear Pillar, one battle against both | Protect beside Explosion |
+
+The 24 fights in play order: Somnu 1 and Mars 1 (Valley Windworks); Moira 1 and Jupiter 1 (the Eterna building); Argo 1 and Cyrus 1 (Celestic Town); Hesperid 1 and Saturn 1 (Lake Valor), the Somnu and Moira double and Mars 2 (Lake Verity); Saturn 2 and Cyrus 2 (Galactic HQ); Moira 3 and Somnu 3 (Mt. Coronet 5F), Hesperid 2 and Argo 2 (6F), the Tyche and Hermes double and the Mars and Jupiter double (Spear Pillar), Cyrus 3 (Distortion World); Mars 4 and Jupiter 3 (Stark Mountain).

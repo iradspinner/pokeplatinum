@@ -665,3 +665,169 @@ Ian made the tracker the one home of open work on 2026-10-13. These blocks left 
 - [x] The single-use TMs check still says "An HM taught from the case stays"; HMs are single-use TMs since the TM pass.
 - [x] The kit's older move sets 23 to 70: cut the list to moves a trainer or the player can carry before Ian samples them.
   All three done on 2026-10-13 (`ingame-checklist.md`): the move sets cut to the 34 a trainer or the player carries; Ace Trainer Shannon's Victreebel takes the weather check, Jackson's Wormadam stays, and Volkner's rematch takes the Rotom-Mow check; the HM line fixed.
+- [x] `tools/oxide/balance/b6.py` is a one-line shim while `~/oxide-trials/scorer-stage2/goal3_fights.py`, which plgoal3 loads, calls `b6.placements()` five times; renaming those calls to `required.placements()` lets the shim go. A scorer driver, so with Ian's say-so. Done on 2026-10-13 at Ian's word: the driver's two calls (and three comments) now name `required.placements`, and `b6.py` is deleted; goal 3's fight list reads the same 80 lines.
+
+## Moved out of the tracker on 2026-10-14
+
+Finished lines from Phase 4's element 5, 6 and 7 entries, verbatim.
+
+  - The catch-up, the eight changes of play and their three follow-ups (`cloud/element6-followups`, 2026-09-27) are done and in the archive; the README's change sections have every rule
+  - The Expert routines for moves added since Platinum are merged (170b5473a), and Ian's eleven judgment calls get none; the entry is in the archive.
+- [x] **7. Items, a curated subset**: done (2026-09-27 and 2026-09-28); the entry and Ian's answers on its follow-up are in the archive. For element 6: the AI's scoring knows none of the new held items (the branches' reports list which change a decision).
+  - The natives' 17 hidden abilities are written (2026-09-27, `cloud/element5-hidden-abilities`; the entry is in the archive, the report is the branch's last commit; test kit Abilities page 3).
+
+The simulator gap entry's history as it stood before batch 3, verbatim (its batches since landed at 74899d5eb, 13ab1f30b and bf04a3fea):
+
+- [ ] **Every simulator gap fixed** (Ian, 2026-10-14: "fix everything except the Z and Max moves", so fights are not rescored again and again). The verified list is `simulator-gaps.md` (193 move effects, 97 abilities and 6 held items; 156 met by a trainer). Thirteen are being built on `overseer-sim-fixes-2`, the first six committed; the rest follow in batches, boss fights first, one batch at a time since all of them edit the same files. The thirteen landed at 74899d5eb (Ian, 2026-10-14); batch 1 (seven fixes, `overseer-sim-fixes-3`) waits for its checks and his look, as every batch does. Batch 2 (the abilities trainers carry, `overseer-sim-fixes-4`) is under way, with six more gaps Ian approved on 2026-10-14 (Payback doubled twice, Leech Seed's heal and its seeder, Ghost types against trapping, Soundproof against status sound moves, Shield Dust against King's Rock, Black Sludge on a non-Poison holder), each checked against the engine first. Four gaps found after the list were approved earlier the same day: the readings weaken Sacred Sword, Chip Away and Darkest Lariat by the target's stat stages, Stored Power and Power Trip read at 20, Hard Press at full power, and Electro Ball keeps the opening Speeds. It replaces the parked list (double-battle AI partners and switch rules, Me First, Copycat, Judgment's plate, Gravity, Foresight, Embargo, Sleep Talk's choice, Baton Pass, per-hit contact effects).
+
+Settled and stale lines from the tracker's first page, verbatim (the barometer was settled on 2026-10-13 and is in the standing rulings; both readings were done on 2026-10-13 and 2026-10-14):
+
+- Gardenia's soft barometer for "unsolvably hard" ([gardenia-redesign.md](gardenia-redesign.md), its summary): the first reading's box 3 (27 percent won), since the dials reading's box 3 reads 95.
+
+**Next steps for the Overseer, in order:** Mars 1's reading, then the locked Gardenia team's (about 70 minutes each); step 15's restart at his word.
+
+Element 6's finished line from Phase 4, verbatim:
+
+  - Done on `main-element6` (2026-09-30; the README's "Oxide fixes, 2026-09-30" has the table): Wonder Room under a permanent room, Infiltrator and Safeguard, Magic Bounce, the Pixie Plate and the Roseli Berry, Lunar Blessing's routing, the Ability Shield against Mold Breaker at all 28 sites and in the draw-in command, Sky Drop's trap, Mind Blown into Damp; the charge-turn label renamed and the effect 63/64 note recorded. Element 7's Contrary note folds into the held items below
+
+Moved out of the tracker on 2026-10-15, verbatim: the simulator gap entry and the PP item as they stood before Ian's answers of that day.
+
+- [ ] **Every simulator gap fixed** (Ian, 2026-10-14: "fix everything except the Z and Max moves", so fights are not rescored again and again). The verified list is `simulator-gaps.md`; each fix matches Oxide's engine, has a test that failed before it, and lands through the Overseer, one batch at a time since all of them edit the same files. Landed: the thirteen (74899d5eb), batch 1's seven (13ab1f30b), and batch 2's 37 with the gaps found after the list (bf04a3fea), leaving 163 move effects and 40 abilities open. Batch 3, the one mechanism for mid-battle type and ability changes, is under way on `overseer-sim-fixes-5`; then the remaining move effects, the remaining abilities, the double battles' own path, and the player-only and dormant gaps. It replaces the parked list (double-battle AI partners and switch rules, Me First, Copycat, Judgment's plate, Gravity, Foresight, Embargo, Sleep Talk's choice, Baton Pass, per-hit contact effects).
+
+- [ ] **Stat-lowering status moves into the PP ruling** (balance track; found 2026-10-02, Ian's answers the same day): Growl, String Shot and Cotton Spore (40), Flash and SmokeScreen (20), Kinesis (15), and Play Nice, Baby-Doll Eyes, Scary Face and Confide (10) come down to 3 to 6; Defog goes to 1; Memento keeps its 10. The fight scorer rereads any fight whose line leans on repeated uses of them.
+
+## Finished on 2026-10-14
+
+- [x] **Form records and dead moves** (`move-access.md`, Ian, 2026-10-14): eleven form records copy their base lists, Sky Shaymin and the Deoxys forms keeping their own moves, and Sandy and Trash Wormadam get their own lists for his look (`overseer-form-learnsets`); then the stranded moves' homes he picks (`stranded-moves.md`, half written) and Slugma evolving at 30. Done the same day: the form records and the kept moves (8251af285), Land Shaymin's Seed Flare and the Protect flags of Electro Ball and Smack Down (666a06b8c), Slugma at 30 (94ccafc69), Wormadam's cloaks with Plant's Quiver Dance at 36 (59b0dae66), and 117 stranded-move homes (7d27322f4).
+
+## Moved out of the tracker on 2026-10-15 (the cleanup)
+
+Ian, 2026-10-15, approved a cleanup so the tracker holds open work rather than history: each block below left the tracker verbatim, and the tracker keeps a compact line for whatever in it is still open.
+
+### The first page: Waiting on Ian, in detail
+
+**Waiting on Ian, in detail** (the full wording of every entry shortened here is in the archive):
+
+- **Every in-game check** is in `docs/oxide/ingame-checklist.md`, in the order a playtest day meets them, for the day the new CPU is in (Ian, 2026-09-26); its section 0, the new-CPU cleanup, was done on 2026-09-29. Add new in-game checks there, not here.
+
+- **Element 7's items** (`cloud/element7-items` and `cloud/element7-followup-2`, their reports have the detail): item prices are placeholders until shops stock them; ten item descriptions are rewritten drafts to fit the Bag. The form names, the Red Card, Clear Amulet and Ability Shield were settled on 2026-09-28 (archive).
+
+- **Drafts from `main-scripts`** (2026-09-27). New wording, all drafts: the Snowpoint sailor's refusal and Cynthia's first-voyage scene, reworded for after Galactic HQ and before Spear Pillar (Ian, 2026-09-27: Cyrus has the Red Chain, and she sends the player to the Battle Zone to get stronger); at the Fight Area the rival's team-up line (Spear Pillar dropped), Volkner's battle line ("won you my Beacon Badge"), Volkner turning the challenge down, the rival's two waiting lines and Buck's arrival introduction; Dawn's and Lucas's two lines each at Victory Road; the Acuity and Verity lines that now name the drawn species; the location name "Rowan's Briefcase"; the Underground Man's and the Eterna woman's lines that the tunnels are sealed; and the Route 207 woman's two lines without the stones. Known cosmetic gap: the Poketch Marking Map shows a drawn roamer with Mesprit's icon.
+
+- **Draft from `main-production`** (2026-09-30): the Mining Museum researcher's refusal before Cycling Road, in his own word order: "On the verge of a breakthrough, I am, to achieve extraction from Fossils. Parts for my machine, Eterna sends by way of Cycling Road. Come back after riding that road, and ready my machine will be!"
+
+- **Meloetta's two in-game checks** (2026-10-06). Ian approved the Pokedex entry and the Meister's two lines as drafted. The traded Meloetta knows Relic Song through the Meister's own script, which has set it in the first slot since Meloetta landed; the Overseer missed that line, added a C table that did the same (ecc463fed), and reverted it. The test kit's new "Meister's trade" entry gives a level-50 Finneon and warps to his door. Left, both in `docs/oxide/ingame-checklist.md`, for Ian's QA once the trainer pass is done (the Scheduled list): the trade, read back field by field through the emulator's box export, and Relic Song's form change with the kit's Meloetta.
+
+- **Element 6's changes of play** (2026-09-30): four ways the AI could play Oxide's new rules better, listed in Phase 4's element 6 entry under "For Ian"; each is his yes or no.
+
+- **The regional dex order** for the 51 lines appended to the pick-list on 2026-09-26: the OxiDex Agent's proposal is `docs/oxide/encounters/regional-dex-proposal.md` (2026-09-30).
+
+- **Also his**: the Frontier Brain teams (he builds them), the zone-by-zone land pass with the encounter track, and reading the water biome draft.
+
+
+### Phases 0 to 3
+
+## Phase 0: Setup
+
+Done apart from one tabled item; the checklist is in the archive.
+
+- [ ] **Tabled (Ian, 2026-09-20): the 21 native species where `New Pokedex.xlsx` and the base ROM disagree on base stats.** It folds into the balance track's pass over the whole dex; `res/` keeps the base ROM's values until then. The conflict table is in `docs/oxide/species-pick-list.md`
+
+## Phases 1 and 2: Survey and approach
+
+Both done 2026-09-15: `docs/oxide/phase1-hg-engine-survey.md` and `docs/oxide/phase2-approach-breakdown.md`, checklists in the archive.
+
+## Phase 3: Tooling and setup (approach C)
+
+Done apart from the two items below; the archive has every finished item, and why each remaining mismatch against the base ROM is intended.
+
+- The six overworld sprites the carry-over missed are done (2026-09-26, branch `carry-over`); the item is in the archive and its in-game check in `ingame-checklist.md`.
+- [ ] **The base ROM's visual overhaul**, found 2026-09-26 re-examining the "tool side effect" archives and ruled in whole by Ian on 2026-09-27, **is carried over and merged (2026-09-27)**, waiting only for its in-game check (`ingame-checklist.md`, section 1): the Pokemon sprite set with its shiny palettes, heights and form palettes, the battle scenery, the superbosses' battle sprites, the title logo, box wallpapers, UI palettes, the Pocket PC's icon and one unexplained Shadow Force byte. Every archive is in `verify_narcs.py`'s default list, by bytes where the base ROM's own files came over and by content (`CONTENT_ARCHIVES`, `tools/oxide/editcheck.py`'s rules) where DSPRE's re-save makes bytes impossible; the inventory's corrections say which is which.
+- The base ROM's last arm9 changes are all carried over or ruled out, and merged (the Pocket PC, the Abra, the hue shift); the entry is in the archive.
+
+
+### Phase 4
+
+## Phase 4: Port, one element at a time
+
+Each element gets a checklist here when it starts, with the emulator test that proves it. The prerequisites, elements 1 and 2, the faster HP bar, the base ROM's two gameplay rules and every finished step below are in the archive; their traps live in the `port-element` skill and the findings log.
+
+- [ ] **Fairy, the two pieces left, both fixed art.** Neither affects battle. The Pokedex info page draws type plates from its own packed atlas (`res/graphics/pokedex/type_icons.png` and its data), which still holds eighteen, so a Fairy Pokemon shows the NORMAL plate there. The Pokedex search grid and the Battle Hall grid are fixed cell layouts with no Fairy cell; `FT_FAIRY` and the Battle Hall's type-indexed row are ready for the art
+- [ ] **3. Species-slot expansion.** All 159 species are in and element 3's emulator check passed (2026-09-21). What is left:
+  - [ ] **What is deliberately left short**, none of it blocking a new species from being caught, seen in the dex or battling: tutor lists are empty and most egg lists too (TM lists came with the TM pass; whether a tutor pass is wanted is in the open work above); the dex size-comparison scales are defaults, to be judged by eye; five gender ratios (Minccino and Gothita lines) are snapped from the donor's 190 to 191
+  - [ ] **Emulator check for the form fix** (a Rotom in a form, or Giratina with the Griseous Orb, shows its form's stats): in `docs/oxide/ingame-checklist.md`
+  - The species importer applies the sprite-height rule since `main-production` (2026-09-30); the entry is in the archive.
+  - [ ] **Re-run element 3's check after each further Phase 4 element**, on a new game: a new species' sprite and palette, menu icon, cry, summary types and ability, and a Pokedex info page that does not garble. Charm on an Eevee should now offer Sylveon on level-up
+- [ ] **4. Move expansion.** Left short on purpose: eight move names clip by a few pixels on the summary screen; contest data for the 452 new moves is a derived default; the 56 Z-moves are inert data. Level-0 moves are taught on evolving since `main-evo-moves` (2026-09-28); of the new species' 47 evolution moves, 15 are learned on evolving (Naclstack, Garganacl and 13 more, 2026-10-12 and 13), 19 sit at levels the learnset rewrite chose, 4 come from the pre-evolution and 9 are out by Ian's rulings
+  - [ ] **The new battle effect scripts.** `tools/oxide/convert_battle_scripts.py` converts hg-engine's (cloned at `~/hg-engine`); `--audit` lists what is left. An effect the audit calls unreachable, because no Oxide species learns a move using it, is not ported (Ian, 2026-09-22) and comes back if the TM or tutor pass makes one of its moves learnable
+    - The focused pass (2026-09-25, merged in 7b6ece777) is in the archive.
+    - **Text without the donor ROM**: hg-engine's repository holds its battle text bank as `data/text/197.txt`, line n + 1 being string n, which is the bank its scripts number; a cloud session, which has no donor ROM, took the new strings from it. Not yet compared with the donor's own bank 197
+    - **A gap in the gate, found and not fixed** (2026-09-22): `verify_narcs --text` skips a grown bank whose message 0 is a placeholder, as the battle strings' is (checked by hand: all 1,269 match). Widening the rule exposes `SPECIES_NAME_WITH_ARTICLES`, whose Egg entries moved on purpose, so the fix needs the per-species index mapping
+  - Done and archived: Rage Fist and the stat and type choosers (2026-09-26), Wonder Room, and Shore Up, Meteor Beam and Electro Shot (2026-09-27), and the partly working moves of the move pool survey (2026-09-27, `cloud/element4-partial-moves`; its report is the branch's last commit), and the computed powers, closed on 2026-09-29 with no port needed.
+  - Archived 2026-10-12: the TV segment's placeholder move (2026-09-22 QA) and the Substitute fix for Mimic and Psycho Shift, both done.
+  - Done on `main-production` (2026-09-30), in the archive: Wonder Guard's charging moves, and Lunar Blessing and Throat Chop (with Jungle Healing, dead the same way). The later-moves report can now place Lunar Blessing and Throat Chop
+  - [ ] **Emulator test for the widened learnset**: in `docs/oxide/ingame-checklist.md`
+- [ ] **5. Ability effects.** Reimplement the new abilities' behaviour in the decomp's battle code from hg-engine's `ability.c` and `individual/*.c`
+  - The pass itself (2026-09-26, 52 of the 59 abilities and Entrainment) and Neutralizing Gas (0eb1b2e9a) are merged and in the archive; its report is the last commit on `cloud/element5-abilities`.
+  - Its gaps (Infiltrator, Pastel Veil, Unnerve and Sturdy's text) merged on 2026-09-29 (71ba1c44e) and are in the archive; the Surge abilities and Seed Sower stay dead with terrain.
+  - [ ] **Known limits, kept on purpose or small**: Soul Heart raises only the fastest holder; Mirror Armor reflects without a message; Cursed Body uses Disable's message; the ability stat changes of batch 5 skip Contrary and Mirror Armor; Protean takes the move's type before its script runs (Hidden Power and Weather Ball count as Normal); Pixilate and Liquid Voice change only moves with power; Magician does not run on a hit that set off the target's own on-hit ability
+- [ ] **6. Battle AI.** Platinum's own AI is the baseline; Hardlove's is not ported. `docs/oxide/battle-ai/` (README first) is the write-up and the table of fixes; the fixes so far are archived.
+  - Owner: the main track, by this entry's own rule (the encounter-track session took it on 2026-09-22 on `worktree-element6`, idle since 2026-09-23, to hand back once elements 4 and 5 were done, and they are); every AI change since has come from cloud jobs or the main track. Every bug found is labelled vanilla or Oxide, and **any fix to a vanilla bug is called out explicitly**
+  - Done on `main-element6` (2026-09-30), in the archive with the README's "Oxide fixes, 2026-09-30" table.
+  - [ ] **For Ian, changes of play the fixes left** (each would make the AI play differently, so each is his call): (1) avoid Dark, Bug and Ghost attacks into a known Justified or Rattled holder, which gains a stage; (2) the double-battle Sandstorm check counts Sand Veil and Rock types, as vanilla does, and could count Sand Force and Sand Rush; (3) the new held items change decisions the AI does not see (Rocky Helmet on contact moves, Weakness Policy, Absorb Bulb and Cell Battery when hitting into them, and Contrary with those, Red Card and Eject Button, Safety Goggles against powder, Covert Cloak and Clear Amulet against added effects and drops, Loaded Dice, Binding Band, Mirror Herb, the Air Balloon in `trainer_ai.c`'s own grounding checks); (4) when to use Wonder Room at all
+  - [ ] Needing a new AI command first: Octolock into an already octolocked target (the state is in `BattleMon.oxideFlags`), Teatime with no Berry held on the field
+  - [ ] Keep fixes and changes separate: a fix restores what the code plainly intended, a change makes the AI play differently and is Ian's call
+  - [ ] **When element 6 is finished**, Ian wants a human-readable, step-by-step account of how Oxide's AI decides, in the manner of pokemow.com's Gen 4 Trainer AI pages and lhearachel's gist, with every change from vanilla marked (Ian, 2026-09-27). The README's change sections are its raw material
+  - [ ] When the trainer pass gives out new moves or the abilities no trainer has yet (Prankster, Telepathy), re-read the catch-up list: the move fixes act only then
+- [ ] **8. The remaining engine changes**: the main changes are done or dropped (60 fps outside battle dropped; always national dex, hidden abilities as a mechanism, the trade strip, always-Set, restored items and the script-driven level caps landed; wild double battles dropped, Ian 2026-09-29); the entry's full wording is in the archive. Left:
+  - [ ] **The natives' hidden slots**: imported and merged (`carry-over-hidden`, 2026-09-27, `import_donor.py hidden-abilities`), 451 natives from the donor's `a/0/2/8` member 7, 42 of which the donor gives none. The ability pass (the weather ruling) still decides what stays. Seven set or cancel weather (Vulpix and Ninetales Drought, Politoed Drizzle, Lickitung, Lickilicky, Swablu and Altaria Cloud Nine), allowed only through the one Ability Patch, so **no scripted encounter that rolls a hidden ability may use those seven lines**.
+  - [ ] **Known limits of the hidden abilities** (Ian kept Pickpocket stealing for foes, 2026-09-27): Poison Touch, like Magician, does not roll on a hit that set off the target's own on-hit ability; a wild Pickpocket holder that steals the player's item and is then caught keeps it while the player's Pokemon gets its own back after the battle (element 8's restored items), doubling the item; Contrary does not reverse Moody's changes (no Moody holder can have it)
+  - [ ] **Known limit of restored items**: a Pickup holder that eats its Berry and then picks something up keeps the pickup, not the Berry
+
+
+### Phase 5: the Kaizo study
+
+- [ ] **A study of Platinum Kaizo's trainer teams** (Ian, 2026-09-29): a blind study in `~/oxide-trials/kaizo-teams/` of why Kaizo builds its teams as it does, at about 6/10 of its difficulty. Part 1 (`out/rules.md`) is a standing ruling; parts 2 to 4 (the dial, six examples, the principles, and the comb of every battled trainer before the post-game) began on 2026-10-03. Ian approved the redone Roark comb as built on 2026-10-06 and agreed with its decisions 3 to 7 (`ians-answers-2026-10-06.md` in the study's folder); The rest runs straight through with no stop for his check (Ian, 2026-10-06): Gardenia's and Fantina's splits whole, then each later split's boss fights (goal 3's list), then their ordinary trainers; the scorer reads each split's bosses as it is written, and Ian looks only at the fights the readings flag. Estimates: about 9 to 12 hours of the study's time for Gardenia and Fantina, 6 to 10 for the later bosses, 30 to 45 for the later ordinary trainers; the scorer's boss readings about 22 hours or more of CPU. The combed splits reach the game as the open work above says. The entry's wordings of 2026-10-04 and 2026-10-06 are in the archive.
+
+### Phase 5: the blind encounter review
+
+- [ ] **The blind encounter review's findings** (2026-09-29; `~/oxide-trials/encounter-review/out/`: zones, water and principles). Ian's answers: the water principles are adopted as principles only (a water biome per zone, a line in one of a zone's four tables, sea species at sea, non-Water on the Surf where the habitat is documented, deferred Super Rods offering different adults, the 1% slot not a running gag), for the encounter track to fold into its authoring and lint later, with nothing applied yet; the land swaps come to Ian zone by zone; of the unplaced lines it flagged, only Grimer and Muk on Fuego Ironworks' water and Bibarel on Routes 205 south and 218 are to be considered. More of Ian's answers (2026-09-29): starter lines stay wild, one home and at most one neighbour each, with Froakie's 1% cut to a few water areas that fit; the late game's lack of new lines, Fairy's absence in Wake's and Byron's splits and Starly's line never evolving in the wild are handled in the zone-by-zone pass; the water lint landed as warnings (854 today), and the water is re-authored after the zone-by-zone land pass, once Ian has read the biome draft (`docs/oxide/encounters/water-lint-draft.md`)
+
+### Phase 5: fossils
+
+- [ ] **Fossils wait for Cycling Road** (Ian, 2026-09-30, approving the main track's calls of 2026-09-26: Stark Mountain's Root Fossil removed and Oreburgh's kept, and the Mining Museum reviving without the Explorer Kit): the Mining Museum refuses to revive a fossil until the player is through Cycling Road, so no fossil Pokemon reaches Roark's or Gardenia's split. The main track's part is built on `main-production` (2026-09-30): entering Cycling Road's south gate, which needs the Bicycle from either side, sets `FLAG_PASSED_CYCLING_ROAD` (vanilla's unused flag 0x0991, so no save break), and until then the researcher says a reworded line, a draft under Waiting on Ian; in-game check in the checklist, section 3. Left: the balance census and the OxiDex's availability count fossils from Fantina's split
+
+### Phase 5: the retypes
+
+- [ ] **Ian's retypes from the pick-list, restored** (Ian, 2026-09-29): the proposals in the G: drive's `Claude outputs\bst_port_types.csv` had reached the game only for Galarian Rapidash, Gothitelle and Tsareena. Ian keeps all the rest: Charizard Fire/Dragon, Ninetales Fire/Fairy, Electivire Electric/Fighting, Larvitar and Pupitar Dark/Ground, Sceptile Grass/Dragon, Masquerain Bug/Water, Trapinch Bug/Ground, Vibrava Bug/Flying, Flygon Bug/Dragon, Milotic Water/Dragon, Glalie Ice/Rock, Luxray Electric/Dark, and Uxie, Mesprit and Azelf Psychic/Fairy; and Tyranitar's order swap to Dark/Rock. The other order swaps (Houndour, Houndoom, the Lotad line) are skipped. The main track's part landed on 2026-09-29 (ae486ec12a, with Metapod's, Kakuna's and Shedinja's stat slips) and the balance track rescored on it. Left: the learnset rewrite on the new types (learnset v3), (the encounter track's rerun is done: nothing moved but five lint warnings, 9d96a9e5a)
+
+### Phase 5: the Battle Zone's finished sub-items
+
+  - The main track's five sub-items (the ferry after Galactic HQ, Stark Mountain room 3, the Fight Area and sailor lines, the Victory Road fight, the Beacon Badge gate) are done on `main-scripts` and in the archive.
+  - Three finished sub-items, the balance tool's Galactic split, the Battle Zone's 18-level cut and the level caps taking the new split, are in the archive.
+
+### Phase 5: Saturn 2's finished sub-item
+
+  - The engine side (7657103c9) and the balance tool's speed-order flag (ed2fa4c64) are done; their sub-items are in the archive.
+
+### Phase 5: the staples survey's finished sub-items
+
+  - The native move pass (84 fields over 68 moves, with Ian's follow-ups) merged on 2026-09-26 (62bc4f3fb); its sub-item is in the archive. The balance track rescores
+  - The engine sub-item (2026-09-26, `cloud/element5-staples`) is in the archive; its report is the last commit on that branch.
+
+### Phase 5: the legendary pool
+
+- The legendary pool's draws are scripted on `main-scripts` (Acuity Cavern and the roamer; Valor Cavern and Stark Mountain empty); the entry is in the archive. While the balance passes run, Valor, Stark and the roamer pool stay off (Ian, 2026-09-27); the roamer is held back since e4642008a, and Acuity Cavern still draws.
+
+### Phase 5: the Kaizo comparison
+
+- [ ] **The Kaizo comparison, ruled** (Ian, 2026-09-27; `docs/oxide/kaizo-comparison.md`, "Ian's answers", has all eight). Its move rules (modern numbers and priority, setup at 1 to 3 PP, stat-lowering status moves at 3 to 6) are in the standing rulings; Kaizo's learnsets are studied for their patterns, not copied. Earlier wording is in the archive.
+  - [ ] The Kaizo pattern study and its generator (learnset v3, on `balance-learngen-v2`) gave way on 2026-10-06 to learnsets by check and verify (`docs/oxide/learnset-checks.md`); v3 stays as reference. Their entries are in the archive.
+
+### Phase 5: the battle recorder
+
+  10. In alpha 1 (Ian, 2026-10-06). **The battle recorder** (`~/oxide-playtest/battle-recordings/record.py`, the Overseer's, 2026-09-30) logs melonDS-oxide's `/battle_state` a few times a second, one file per battle: each active battler's species, level and HP. For the moves Ian chooses, the bridge needs extending: per battler the moves with PP, status, stat stages and the action chosen each turn. Nothing blocks it since 2026-10-06: MSYS2 is installed in `C:\msys64`, the fork is cloned at `C:\Users\Ian\src\melonDS-oxide`, and `C:\Users\Ian\src\build-melonds.sh` builds it locally by the fork's own workflow steps. Its first build, of ecfc1ac (the commit Ian plays), has the same files as his playing folder: 122 identical, and seven differing, the exe by its build stamp and six library DLLs from newer MSYS2 packages. A swap copies the whole `dist` folder while melonDS is closed, keeping `melonDS.toml`, `rtc.bin`, `wfcsettings.bin` and `melonDS-previous.exe`. Fetching `/box/packed` as a battle opens is the likely cause of a hang on 2026-09-30, so the recorder no longer does.
+
+### Backlog: the boss-wide value network
+
+- **A boss-wide value network, possibly** (Ian, 2026-10-03, a note for later, not scheduled): one network trained on about 300 varied boss-like fights (the game's bosses across many sixes, Kaizo's trainer teams, boss-like teams from the trainer palette), so that a boss it never saw needs no labels of its own; costed at about 6 hours of labelling on 29 workers plus a streaming loader, then a held-out test on Gardenia and Mars 1 at 19. Parked because the team search's labels proved cheap (about 1 to 1.5 core-hours a boss) beside its play-out check. If it is ever built, re-read Gardenia's line with it, as Ian asked on 2026-10-02 when he passed the network's line as good enough for now.

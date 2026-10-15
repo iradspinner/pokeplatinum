@@ -650,6 +650,17 @@ def dex_detail(species):
                             if t in by_machine]
     out["tutor_moves"] = [brief(mv) for mv in rec["by_tutor"]]
     out["egg_moves"] = [brief(mv) for mv in rec["egg_moves"]]
+    # An evolved species hatches as its first stage, so a trainer's team may
+    # carry any earlier stage's egg moves (the egg lists are the trainers'
+    # palette); the Dex lists them too (Ian, 2026-10-15). The species' own come
+    # first, then each earlier stage's, nearest first, credited to that stage.
+    seen_egg = set(rec["egg_moves"])
+    for pre in pokedex.earlier_stages(root, species):
+        prec = pokedex.load(root, pre) or {}
+        for mv in prec.get("egg_moves") or []:
+            if mv not in seen_egg:
+                seen_egg.add(mv)
+                out["egg_moves"].append(dict(brief(mv), stage=prec.get("name")))
     # The moves only an earlier stage learns by level-up (Ian, 2026-10-13):
     # kept through evolving if learnt before it, and not on this species' own
     # level-up, machine or tutor lists. Nearest stage first, each move once.

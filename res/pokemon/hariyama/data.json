@@ -57,6 +57,7 @@
             [ 37, "MOVE_SEISMIC_TOSS" ],
             [ 42, "MOVE_WAKE_UP_SLAP" ],
             [ 44, "MOVE_ROCK_TOMB" ],
+            [ 46, "MOVE_STORM_THROW" ],
             [ 47, "MOVE_ENDURE" ],
             [ 52, "MOVE_CLOSE_COMBAT" ],
             [ 57, "MOVE_REVERSAL" ],

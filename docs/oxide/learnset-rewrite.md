@@ -355,10 +355,13 @@ beside Oxide's lists for reading by split.
 
 ## How the generator works
 
-`tools/oxide/balance/learnrewrite.py` (`plan`, `write`, `show SPECIES`) starts
-from each list as it was and changes only what a rule asks for, in four
+`tools/oxide/balance/learnrewrite.py` (`plan`, `write SPECIES`, `show SPECIES`)
+starts from each list as it was and changes only what a rule asks for, in four
 passes. Its log, `tools/oxide/balance/learnrewrite_log.tsv`, has every change
-with its rule.
+with its rule. Since 2026-10-13 `write` changes only the species it is named
+(Ian): the files are the authority now, hand edits included, and a write over
+every species would reset any hand edit not held in `learnsets_by_hand.txt`.
+With no species named it lists the files a write would change.
 
 1. **Clean.** The moves leaving player lists or the game go (R24, Fury
    Attack, Feint, the first cut, the dead weight, Ian's useless and

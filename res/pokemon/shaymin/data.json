@@ -43,7 +43,8 @@
             [ 46, "MOVE_NATURAL_GIFT" ],
             [ 55, "MOVE_WORRY_SEED" ],
             [ 64, "MOVE_AROMATHERAPY" ],
-            [ 73, "MOVE_ENERGY_BALL" ]
+            [ 73, "MOVE_ENERGY_BALL" ],
+            [ 78, "MOVE_SEED_FLARE" ]
         ],
         "by_tm": [
             "TM05",

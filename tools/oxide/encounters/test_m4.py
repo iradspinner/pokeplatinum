@@ -19,8 +19,10 @@ from . import dex
 from . import model
 from . import server as srv
 
-PORT = 8799
-BASE = f"http://127.0.0.1:{PORT}"
+# The server listens on a port the system picks, set in main(), so two
+# gates running at once never collide on a fixed one (Ian, 2026-10-13; the
+# other server tests already did this).
+BASE = None
 AREA = "encounters_route_214"
 
 
@@ -677,7 +679,9 @@ def check_faces_and_switch(results):
 
 
 def main():
-    httpd = srv.Server(("127.0.0.1", PORT), srv.Handler)
+    global BASE
+    httpd = srv.Server(("127.0.0.1", 0), srv.Handler)
+    BASE = f"http://127.0.0.1:{httpd.server_address[1]}"
     t = threading.Thread(target=httpd.serve_forever, daemon=True)
     t.start()
     results = []

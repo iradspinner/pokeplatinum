@@ -54,6 +54,7 @@
             [ 43, "MOVE_GIGA_DRAIN" ],
             [ 45, "MOVE_BULLET_SEED" ],
             [ 46, "MOVE_CHARM" ],
+            [ 47, "MOVE_HORN_LEECH" ],
             [ 53, "MOVE_LEECH_SEED" ],
             [ 57, "MOVE_GRASS_WHISTLE" ],
             [ 61, "MOVE_X_SCISSOR" ],

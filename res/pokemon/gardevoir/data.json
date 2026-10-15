@@ -53,6 +53,7 @@
             [ 56, "MOVE_AURA_SPHERE" ],
             [ 58, "MOVE_THUNDERBOLT" ],
             [ 60, "MOVE_HYPNOSIS" ],
+            [ 62, "MOVE_MIST_BALL" ],
             [ 65, "MOVE_DREAM_EATER" ],
             [ 67, "MOVE_DAZZLING_GLEAM" ],
             [ 69, "MOVE_CHARM" ]

@@ -183,6 +183,8 @@ jumps to `TestKit_GiveMew`, or sets a species in `VAR_0x800A` and jumps to
 | 82 | Shell Trap, Recover, Splash, Protect | Shell Trap made to work (Ian, 2026-10-06), a new effect (419); starts a battle with a wild Rattata that knows Tackle and Swift and picks one at random. On a turn it used Tackle, Shell Trap strikes after it; on a turn it used Swift, which is special, Shell Trap says "But it failed!". There is no "set a shell trap!" line at the start of the turn, as the later games have. Before the change it was a plain hit that always worked |
 | 83 | Burning Jealousy, Recover, Splash, Tackle | Burning Jealousy made to work (Ian, 2026-10-06), a new effect (420); starts a battle with a wild Ninjask, always faster than Mew, that knows Swords Dance and Splash and picks one at random. On a turn it used Swords Dance, Burning Jealousy burns it ("The wild NINJASK was burned!"); on a turn it used Splash, it does not. Before the change it burned every target it hit |
 | 84 | Bone Rush, Recover, Splash, Tackle | Bone Rush at 100% accuracy (Ian, relayed 2026-10-07), where it had 90; the summary's move page shows 100, and against a wild Chansey that knows only Splash it never misses, each use hitting two to five times at 25 |
+| 85 | Eerie Spell, Recover, Splash, Tackle | Eerie Spell's drain (Ian, 2026-10-14), a new effect (421); starts a battle with a wild Chansey that knows only Softboiled (10 PP), which it uses every turn. Switch Mew in on the first turn, then use Eerie Spell every turn. The first two hits each end with "It reduced the PP of the wild CHANSEY's SOFTBOILED by 3!" and the third with the same line ending "by 1!", since only 1 PP was left. Chansey then uses Struggle, and the fourth hit brings no PP line, since Struggle is not one of its moves. A hit that knocks the target out, or that a Substitute takes, drains nothing (the kit cannot show those). Before the change no hit drained PP |
+| 86 | Burning Bulwark, Recover, Splash, Tackle | Burning Bulwark's burn (Ian, 2026-10-14); starts a battle with a wild Rattata that knows Tackle and Swift and picks one at random. When a Tackle meets the bulwark, "MEW protected itself!" and then "The wild RATTATA was burned!"; once it is burned, later Tackles bring only the first message, as does a Swift, which makes no contact. Used two turns running it can fail, as Protect can, so use Splash between. A Fire type, or an attacker under Safeguard or behind its own Substitute, is not burned and nothing is said; Water Veil, Water Bubble, Purifying Salt and Leaf Guard in the sun say they prevent burns (this set shows none of those). Before the change it was a plain Protect |
 
 **When a batch of effect scripts lands, add its sets in the same commit**: a
 `TestKit_MoveSetN` block, an `AddListMenuEntry` line in `TestKit_MoveSets2`, and
@@ -192,7 +194,7 @@ second: a field menu holds 28 entries (`FIELD_MENU_ENTRIES_MAX`), and a
 29th is written past the end of the menu's arrays. Sets 28 to 31 were
 added that way on 2026-09-25 and moved to the second page on 2026-09-26.
 The second page ends the same way at set 54, the third (`TestKit_MoveSets3`,
-set 55 on, 2026-09-27) at set 81, and sets 82 to 84 are on the fourth,
+set 55 on, 2026-09-27) at set 81, and sets 82 to 86 are on the fourth,
 `TestKit_MoveSets4` (2026-10-07: the third had grown to 30 entries, and
 opening it corrupted memory). The kit build now refuses any list menu of
 more than 28 entries (`tools/oxide/testkit_merge.py`).

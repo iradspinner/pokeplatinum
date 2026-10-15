@@ -49,6 +49,7 @@
             [ 36, "MOVE_EARTHQUAKE" ],
             [ 38, "MOVE_POISON_JAB" ],
             [ 43, "MOVE_ROCK_SLIDE" ],
+            [ 45, "MOVE_THOUSAND_WAVES" ],
             [ 48, "MOVE_MIST" ],
             [ 51, "MOVE_ICE_PUNCH" ],
             [ 53, "MOVE_MUDDY_WATER" ],

@@ -56,6 +56,7 @@
             [ 42, "MOVE_SLASH" ],
             [ 49, "MOVE_BRAVE_BIRD" ],
             [ 51, "MOVE_NIGHT_SLASH" ],
+            [ 53, "MOVE_THUNDEROUS_KICK" ],
             [ 56, "MOVE_THUNDER_PUNCH" ],
             [ 59, "MOVE_SKY_UPPERCUT" ],
             [ 64, "MOVE_MIRROR_MOVE" ],

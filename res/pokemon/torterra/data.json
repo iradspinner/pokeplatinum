@@ -52,6 +52,7 @@
             [ 39, "MOVE_SYNTHESIS" ],
             [ 42, "MOVE_HEADLONG_RUSH" ],
             [ 45, "MOVE_CRUNCH" ],
+            [ 47, "MOVE_HORN_LEECH" ],
             [ 51, "MOVE_GIGA_DRAIN" ],
             [ 57, "MOVE_LEAF_STORM" ],
             [ 59, "MOVE_SEED_BOMB" ],

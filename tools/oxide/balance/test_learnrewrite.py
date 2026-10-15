@@ -2,8 +2,9 @@
 
     PYTHONPATH=. python3 -m tools.oxide.balance.test_learnrewrite
 
-Builds every list in memory (about half a minute) and compares it with the
-species files. Nothing is written.
+Builds every list in memory (about half a minute) and checks the generator's
+rules on them, and reports which species files differ from its output.
+Nothing is written.
 """
 import os
 import re
@@ -20,13 +21,22 @@ def check_writer(results):
                     f"{len(lc.species_set())} files" if not bad else f"differ: {bad[:5]}"))
 
 
-def check_tree(results, d):
-    """The tree holds what the generator builds: no list was edited by hand
-    after the run."""
+def report_tree(d):
+    """Which species files hold a level-up list the generator would not build.
+    The files are the authority now, hand edits included, so this reports and
+    never fails (Ian, 2026-10-13): it failed two landings in two days, and
+    both times the answer was to keep the lists as they were. The guard it
+    gave moved to the writer, which changes only the species named on its
+    command line: before, a write over every species reset any hand edit not
+    held in learnsets_by_hand.txt, as one reset Nacli's egg list on
+    2026-10-12."""
     differ = sorted(sp for sp in lc.species_set()
                     if [tuple(e) for e in d.lists[sp]] != [tuple(e) for e in lc.learnset("rewrite", sp)])
-    results.append(("the species files are the generator's output", not differ,
-                    "every list matches" if not differ else f"differ: {differ[:5]}"))
+    if not differ:
+        return "every species file matches the generator's output"
+    more = f" and {len(differ) - 5} more" if len(differ) > 5 else ""
+    return (f"{len(differ)} species files differ from the generator's output ({', '.join(differ[:5])}{more}); "
+            "a write changes only the species it is given")
 
 
 def check_hand_eggs(results, d):
@@ -76,7 +86,6 @@ def main():
     results = []
     d = lg.build()
     check_writer(results)
-    check_tree(results, d)
     check_hand_eggs(results, d)
     check_log(results, d)
     check_limits(results, d)
@@ -86,6 +95,7 @@ def main():
     for label, ok, note in results:
         failed += not ok
         print(f"  {'ok  ' if ok else 'FAIL'}  {label:{width}}  {note}")
+    print(f"  note  {report_tree(d)}")
     print(f"\n{len(results) - failed}/{len(results)} passed")
     return 1 if failed else 0
 

@@ -44,6 +44,7 @@
             [ 17, "MOVE_STOMP" ],
             [ 19, "MOVE_SWAGGER" ],
             [ 21, "MOVE_TWISTER" ],
+            [ 26, "MOVE_LEAF_TORNADO" ],
             [ 27, "MOVE_WHIRLWIND" ],
             [ 29, "MOVE_BULLDOZE" ],
             [ 31, "MOVE_MAGICAL_LEAF" ],

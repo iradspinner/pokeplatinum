@@ -149,13 +149,26 @@ def _regular_abilities(mon):
     return got
 
 
+def gas_hidden(b, mon):
+    """Whether the AI reads no ability for mon because of Neutralizing Gas
+    (AICmd_LoadBattlerAbility and AICmd_CheckBattlerAbility ask
+    BattleSystem_NeutralizingGasSuppresses before anything else). That check
+    does not see an Ability Shield, so the AI reads none for a shield's
+    holder too, though the battle leaves its ability on."""
+    if getattr(mon, "gas_stash", None) is not None:
+        return True
+    return (mon.item == "Ability Shield" and bool(mon.ability) and mon.ability not in fs.GAS_PROOF
+            and bool(b.st.get("gas")) and fs.gas_on(b))
+
+
 def ability_of(b, u, mon):
     """AICmd_LoadBattlerAbility as the AI's Pokemon u reads mon (trainer_ai.c
-    1217 to 1260): no ability under Gastro Acid; its own side's real ability;
-    for a foe, the ability a battle message has named (mon.revealed), else the
-    real one if it traps, else a fresh coin between its species' two regular
-    slots. Each call is its own flip, as each command is."""
-    if getattr(mon, "suppressed", False):
+    1217 to 1260): no ability under Gastro Acid or Neutralizing Gas; its own
+    side's real ability; for a foe, the ability a battle message has named
+    (mon.revealed), else the real one if it traps, else a fresh coin between
+    its species' two regular slots. Each call is its own flip, as each
+    command is."""
+    if getattr(mon, "suppressed", False) or gas_hidden(b, mon):
         return None
     # Its own side reads the real ability; so does the player, whose plan
     # knows the trainer's Pokemon (the guess is the trainer AI's alone).
@@ -175,7 +188,7 @@ def check_ability(b, u, mon, name):
     """AICmd_CheckBattlerAbility (1262 to 1317): "have", "not" or "unknown".
     An unannounced foe whose species has two slots is unknown when either is
     the ability asked about, and read as its first slot otherwise. No flip."""
-    if getattr(mon, "suppressed", False):
+    if getattr(mon, "suppressed", False) or gas_hidden(b, mon):
         ab = None
     elif mon.side == u.side or u.side == "p":
         ab = mon.ability
@@ -397,7 +410,7 @@ def invalid(b, u, mv):
         return True
     if u.taunt and mv.power == 0:
         return True
-    if mv.name in getattr(u, "sealed", ()):                   # the foe's Imprison
+    if mv.name in getattr(u, "sealed", ()):                   # the foe's Imprison (fightsim.imprison)
         return True
     if getattr(b, "gravity", 0) and mv.const in GRAVITY_FAILS:
         return True
@@ -766,10 +779,14 @@ def _basic_effect(b, u, t, mv):
         return -10 if ability_of(b, u, t) == "Sticky Hold" or not t.item else 0
     if e == "GROUND_TRAP_USER_CONTINUOUS_HEAL":                     # Basic_CheckAlreadyIngrained
         return -10 if u.ingrained else 0
-    if e == "RECYCLE":
-        return -10 if not getattr(u, "recycle_item", None) else 0
+    if e == "RECYCLE":                                              # Basic_CheckCanRecycle
+        # LoadRecycleItem reads the item the user last used up, which the
+        # battle keeps as mon.recycle (fightsim.consume).
+        return -10 if not getattr(u, "recycle", None) else 0
     if e == "MAKE_SHARED_MOVES_UNUSEABLE":                          # Basic_CheckCanImprison
-        return -10 if getattr(u, "imprisoning", False) or getattr(t, "sealed", ()) else 0
+        # MOVE_EFFECT_IMPRISON on the user, or MOVE_EFFECT_IMPRISONED on the
+        # target, which any Imprison tried on it sets (fightsim.imprison).
+        return -10 if getattr(u, "imprisoning", False) or getattr(t, "imprisoned", False) else 0
     if e == "HEAL_STATUS":                                          # Basic_CheckCanRefreshStatus
         return 0 if u.status in ("brn", "psn", "tox", "par") else -10
     if e == "HALVE_ELECTRIC_DAMAGE":                                # Mud Sport
@@ -870,7 +887,7 @@ def _basic_effect(b, u, t, mv):
     if e == "POLTERGEIST":
         return -10 if not t.item else 0
     if e == "STICKY_WEB":
-        return -10 if getattr(foe, "sticky_web", False) or not foe.bench() else 0
+        return -10 if getattr(foe, "web", 0) or not foe.bench() else 0
     if e == "SET_AURORA_VEIL":
         if getattr(own, "aurora_veil", 0):
             return -8
@@ -950,11 +967,11 @@ def _basic_defog(b, u, t, own, foe):
     nothing to clear on either side."""
     if t.stages["eva"] > -6 or foe.screens["Light Screen"] or foe.screens["Reflect"] \
             or getattr(foe, "aurora_veil", 0) or any(own.hazards.values()) \
-            or getattr(own, "sticky_web", False) or b.weather == "Fog":
+            or getattr(own, "web", 0) or b.weather == "Fog":
         return 0
     if not foe.bench():
         return -10
-    return 0 if any(foe.hazards.values()) or getattr(foe, "sticky_web", False) else -10
+    return 0 if any(foe.hazards.values()) or getattr(foe, "web", 0) else -10
 
 
 # ---- Evaluate Attack
@@ -1012,11 +1029,16 @@ def script_eff(b, u, t, mv):
     Tinted Lens), with plain STAB's 1.5 divided back out at the four exact
     values, and any immunity flag (the chart, Levitate, Magnet Rise, an Air
     Balloon, Wonder Guard) reading 0. Scrappy and Foresight get Normal and
-    Fighting past a Ghost; an Iron Ball, Thousand Arrows or Gravity grounds
+    Fighting past a Ghost, Miracle Eye Psychic past a Dark type; an Iron Ball, Thousand Arrows, Smack Down or Gravity grounds
     a Flying type; Freeze-Dry hits Water. A neutral STAB hit (60), or one
     Filter or Tinted Lens scaled, matches none of the five, as in the game."""
     ty = "Normal" if u.ability == "Normalize" else move_type(b, u, mv)
-    grounded = t.item == "Iron Ball" or mv.const == "MOVE_THOUSAND_ARROWS"
+    # Brought down: an Iron Ball, Thousand Arrows, Smack Down's mark or
+    # Gravity, by which Battler_Ability reads no Levitate and
+    # BasicTypeMulApplies skips the Flying type's immunity (the mark and
+    # Gravity's Levitate since 2026-10-15, as the simulator now keeps both).
+    grounded = ty == "Ground" and (t.item == "Iron Ball" or mv.const == "MOVE_THOUSAND_ARROWS" or t.smacked
+                                   or bool(b.gravity))
     if ty == "Ground" and not grounded and (
             (t.ability == "Levitate" and not mold(u, t)) or getattr(t, "magnet_rise", 0)
             or t.item == "Air Balloon"):
@@ -1032,6 +1054,8 @@ def script_eff(b, u, t, mv):
         if m == 0 and typ == "Ghost" and ty in ("Normal", "Fighting") and (
                 u.ability == "Scrappy" or getattr(t, "foresight", False)):
             continue
+        if m == 0 and typ == "Dark" and ty == "Psychic" and getattr(t, "miracle_eye", False):
+            continue             # BasicTypeMulApplies skips the immunity for a Miracle Eye target
         if m == 0 and typ == "Flying" and ty == "Ground" and (grounded or getattr(b, "gravity", 0)):
             continue
         if m == 0:
@@ -2717,7 +2741,7 @@ def x_defog(c):
         s += 2
     foe_haz = any(foe.hazards.values()) or getattr(foe, "web", 0)
     last_roll = False
-    if foe.screens["Light Screen"] or foe.screens["Reflect"] or getattr(foe, "veil", 0):
+    if foe.screens["Light Screen"] or foe.screens["Reflect"] or getattr(foe, "aurora_veil", 0):
         if c.hu <= 30 and not own.bench():
             last_roll = True
         else:
@@ -3628,7 +3652,11 @@ def ai_trapped(b, u, t):
     """The trap test at the top of TrainerAI_ShouldSwitch: a Ghost is never
     held; otherwise a bind, Mean Look or Block, its own Ingrain, a foe's
     Shadow Tag or Arena Trap (the AI exempts no Flying or Levitate user),
-    or another battler's Magnet Pull on a Steel user."""
+    or another battler's Magnet Pull on a Steel user. First of all, a
+    Pokemon held in the air by Sky Drop never switches, whatever its type
+    (Battler_SkyDropHeld, as Oxide's TrainerAI_ShouldSwitch asks first)."""
+    if u.sky_holder is not None and fs.sky_held(b, u):
+        return True
     if "Ghost" in u.types:
         return False
     if u.trapped_by is not None or u.bound or u.ingrained:

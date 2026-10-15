@@ -149,6 +149,11 @@ function speciesOverrides(blob, name) {
   return out;
 }
 
+function aliasName(species, types) {
+  // The alias a Pokemon with exact types is built on (run): a name no species has.
+  return 'zz alias ' + species + ' ' + types.join(' ');
+}
+
 function stats(o) {
   // The balance tool's stat keys to the calculator's.
   if (!o) return undefined;
@@ -213,12 +218,47 @@ function run(blob, jobs) {
         else table[id] = { kind: 'Species', id: id, name: name, nfe: __canEvolve[name] };
       }
     })();`, ctx);
+  // A Pokemon may carry exact types (species_data.exact_types): the fight
+  // simulator's twins for Roost and Protean, which drop or change a type.
+  // The engine merges a Pokemon's overrides into its species deeply, on
+  // every copy it makes, so one type laid over two keeps the second; such a
+  // Pokemon is built on an alias of its species entered in the Generation 8
+  // and Generation 4 tables with exactly those types (after the Eviolite's
+  // entries, which the alias copies).
+  ctx.__aliases = {};
+  for (const p of Object.values(jobs.pokemon)) {
+    if (p.species_data && p.species_data.exact_types) {
+      const types = p.species_data.types.filter(Boolean).slice(0, 2);
+      ctx.__aliases[aliasName(p.species, types)] = { base: p.species, types };
+    }
+  }
+  vm.runInContext(`
+    (function () {
+      function clean(s) { return String(s).replace(/[^a-zA-Z0-9]/g, '').toLowerCase(); }
+      for (var name in __aliases) {
+        var a = __aliases[name];
+        [${GEN}, ${DAMAGE_GEN}].forEach(function (g) {
+          var base = SPECIES_BY_ID[g][clean(a.base)];
+          if (base) {
+            SPECIES_BY_ID[g][clean(name)] = Object.assign({}, base, { id: clean(name), name: name, types: a.types.slice() });
+          }
+        });
+      }
+    })();`, ctx);
   const built = {};
   function mon(key) {
     if (built[key]) return built[key];
     const p = jobs.pokemon[key];
-    built[key] = new calc.Pokemon(GEN, p.species, {
-      level: p.level, ability: p.ability || undefined, abilityOn: true,
+    const name = p.species_data && p.species_data.exact_types
+      ? aliasName(p.species, p.species_data.types.filter(Boolean).slice(0, 2)) : p.species;
+    // The page turns every ability on. A Pokemon may carry ability_on false
+    // when the fight simulator applies its ability itself as the battle runs
+    // (fightsim.CALC_ABILITY_OFF), so the rows do not count it a second time.
+    built[key] = new calc.Pokemon(GEN, name, {
+      level: p.level, ability: p.ability || undefined, abilityOn: p.ability_on === undefined ? true : !!p.ability_on,
+      // The battle's gender ("M", "F" or "N"), for Rivalry; without one the
+      // page's own default (the species' fixed gender, else male) stands.
+      gender: p.calc_gender || undefined,
       item: p.item || '', nature: p.nature || 'Hardy',
       ivs: stats(p.ivs), evs: stats(p.evs),
       // B5: a setup branch's stat stages ({"atk": 1, "spe": -1}).

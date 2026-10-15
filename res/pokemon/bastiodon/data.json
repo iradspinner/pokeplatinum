@@ -51,6 +51,7 @@
             [ 34, "MOVE_ZEN_HEADBUTT" ],
             [ 36, "MOVE_ENDURE" ],
             [ 43, "MOVE_METAL_BURST" ],
+            [ 44, "MOVE_HARD_PRESS" ],
             [ 45, "MOVE_BODY_SLAM" ],
             [ 50, "MOVE_ROCK_BLAST" ],
             [ 52, "MOVE_IRON_HEAD" ],

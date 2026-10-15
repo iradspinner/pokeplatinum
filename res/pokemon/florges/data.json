@@ -105,6 +105,10 @@
                 "MOVE_HELPING_HAND"
             ],
             [
+                45,
+                "MOVE_NATURES_MADNESS"
+            ],
+            [
                 48,
                 "MOVE_SYNTHESIS"
             ],

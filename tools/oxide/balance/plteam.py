@@ -214,6 +214,11 @@ def matchups(st, keys, boss_keys):
             # twin keys (fightsim.prepare); the expectation weighs them by odds.
             return sum(pct / 100 * plfeat._expected((row(f"{k}#m{p}", e) or {}).get("moves", {}).get(name), mv)
                        for p, pct in fs.MAGNITUDE_POWERS.items())
+        if name == "Heat Crash":
+            # Its power is set by the two weights, so its row is the one made
+            # at that power under a twin key (fightsim.prepare's heat_crash).
+            power = (st.get("heat_crash") or {}).get((k, e))
+            return plfeat._expected((row(f"{k}#hc{power}", e) or {}).get("moves", {}).get(name), mv) if power else 0.0
         return plfeat._expected((row(k, e) or {}).get("moves", {}).get(name), mv)
 
     mine = {}       # (member, move): [share of each enemy's HP]

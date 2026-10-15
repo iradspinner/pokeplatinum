@@ -53,6 +53,7 @@
             [ 33, "MOVE_ROCK_SLIDE" ],
             [ 38, "MOVE_SLAM" ],
             [ 41, "MOVE_SUCKER_PUNCH" ],
+            [ 44, "MOVE_MIGHTY_CLEAVE" ],
             [ 46, "MOVE_DOUBLE_EDGE" ],
             [ 49, "MOVE_HAMMER_ARM" ],
             [ 51, "MOVE_WOOD_HAMMER" ],

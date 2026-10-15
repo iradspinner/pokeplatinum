@@ -48,6 +48,7 @@
             [ 28, "MOVE_WAKE_UP_SLAP" ],
             [ 31, "MOVE_CAPTIVATE" ],
             [ 37, "MOVE_ICE_SHARD" ],
+            [ 40, "MOVE_FROST_BREATH" ],
             [ 44, "MOVE_SIGNAL_BEAM" ],
             [ 51, "MOVE_ICE_BEAM" ],
             [ 54, "MOVE_SHADOW_BALL" ],

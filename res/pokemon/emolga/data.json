@@ -105,6 +105,10 @@
                 "MOVE_SNARL"
             ],
             [
+                30,
+                "MOVE_ELECTRO_BALL"
+            ],
+            [
                 36,
                 "MOVE_ENCORE"
             ],

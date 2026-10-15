@@ -2,7 +2,7 @@
 
 How to confirm the tree's state after a restart, and what a clean result looks like now that Phase 4 has changed the base ROM's tables. Moved out of the tracker on 2026-10-02 verbatim, since it is reference, not open work; keep it current when an element changes a table the gate compares.
 
-**To confirm the state after a restart**, from the repo root, `bash tools/oxide/integrate.sh --verify-only` runs all of this plus the encounter suites, and checks the ROM's hash against GitHub's build of `HEAD`. One by one:
+**To confirm the state after a restart**, from the repo root, `bash tools/oxide/integrate.sh --verify-only` runs all of this plus every tool suite. Without `--since` it runs every check, and a clean run on `oxide` passes all 53 with no warnings (54 until 2026-10-13, when the encounter lint on vanilla was cut; it no longer compares the ROM with GitHub's build either). Off `oxide` the docs mirror fails by design, since it refuses to mirror from any other branch. A landing through `merge-branch.sh` passes `--since origin/oxide` and runs only the checks the landing can reach, so its count is lower and its summary ends with "not needed: N checks this landing does not touch"; the always-run four are the build, the doc viewer's test, the scheduled items and the mirror. One by one:
 
 ```
 make rom
