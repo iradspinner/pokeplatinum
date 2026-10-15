@@ -1058,6 +1058,8 @@ def status_move(b, att, mv, dfn, first):
         att.baton = True
     elif e == "SWITCH_HELD_ITEMS":
         fs.swap_items(att, dfn, mv)      # the player's Trick and Switcheroo only (fightsim.swap_items)
+    elif e == "MAKE_SHARED_MOVES_UNUSEABLE":
+        fs.imprison(b, att)              # the foes' shared moves sealed while it stays (fightsim.imprison)
     elif e in fs.FORM_MOVES:
         # The status moves that change a type or an ability (fightsim.FORM_MOVES),
         # a choice among several on the battle's dice.
@@ -1135,6 +1137,8 @@ def mon_key(m):
            getattr(m, "last_resort_count", 0) if getattr(m, "last_resort", False) else None)
     if m.stockpile:
         key += ("stockpile", m.stockpile, m.stockpile_def, m.stockpile_spd)
+    if m.imprisoning or m.imprisoned:
+        key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
     return key + _form(m) if m.formed else key
 
 

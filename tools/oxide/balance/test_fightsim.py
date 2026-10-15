@@ -2338,6 +2338,44 @@ def check_natural_gift(results):
                     f"(damage, item after) {got}"))
 
 
+def check_imprison(results):
+    """Imprison (approved 2026-10-14; effect script 192, BtlCmd_TryImprison,
+    Move_Imprisoned): once its user imprisons, the foe cannot choose a move
+    the user knows (the trainer's AI rules it out, leaving Struggle when
+    every move is sealed), a sealed move chosen earlier fails, and a foe
+    switched in is sealed too; it ends when the user leaves. It fails, while
+    still marking the foe as tried (which the AI's Basic reads), when the
+    user shares no move with the foe."""
+    def setup(p_moves, b_moves):
+        b = field({"p0": (("Normal",), p_moves), "b0.0": (("Normal",), b_moves),
+                   "b0.1": (("Normal",), b_moves), "p1": (("Normal",), ["Tackle"])},
+                  {("b0.0", "p0"): {"Tackle": 10}, ("b0.1", "p0"): {"Tackle": 10}})
+        b.rng = FixedDice(0.5)
+        return b, b.p.cur(), b.b.cur()
+    out = {}
+    b, p, foe = setup(["Imprison", "Tackle"], ["Tackle", "Growl"])
+    fs.status_move(b, p, fs.move("Imprison"), foe, True)
+    out["after Imprison"] = (p.imprisoning, foe.imprisoned, sorted(foe.sealed),
+                             fightai.invalid(b, foe, fs.move("Tackle")), fightai.invalid(b, foe, fs.move("Growl")))
+    fs.use_move(b, foe, fs.move("Tackle"), p, False)
+    out["a sealed Tackle used"] = p.hp
+    fs.switch_in(b, b.b, 1)
+    out["a foe switched in"] = sorted(b.b.cur().sealed)
+    fs.switch_in(b, b.p, 1)
+    out["the user leaves"] = sorted(b.b.cur().sealed)
+    b, p, foe = setup(["Imprison", "Tackle", "Growl"], ["Tackle", "Growl"])
+    fs.status_move(b, p, fs.move("Imprison"), foe, True)
+    out["every move sealed"] = fightai.choose(b, foe, p)[1].name
+    b, p, foe = setup(["Imprison", "Ember"], ["Tackle", "Growl"])
+    fs.status_move(b, p, fs.move("Imprison"), foe, True)
+    out["nothing shared"] = (p.imprisoning, foe.imprisoned, sorted(foe.sealed),
+                             fightai.basic(b, p, foe, fs.move("Imprison"), 0))
+    want = {"after Imprison": (True, True, ["Imprison", "Tackle"], True, False), "a sealed Tackle used": 100,
+            "a foe switched in": ["Imprison", "Tackle"], "the user leaves": [], "every move sealed": "Struggle",
+            "nothing shared": (False, True, [], -10)}
+    results.append(("Imprison seals the moves its user knows while it stays", out == want, f"{out}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3630,7 +3668,7 @@ def main():
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
                   check_pluck, check_chatter, check_stockpile,
-                  check_natural_gift,
+                  check_natural_gift, check_imprison,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,

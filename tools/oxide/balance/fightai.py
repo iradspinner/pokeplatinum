@@ -410,7 +410,7 @@ def invalid(b, u, mv):
         return True
     if u.taunt and mv.power == 0:
         return True
-    if mv.name in getattr(u, "sealed", ()):                   # the foe's Imprison
+    if mv.name in getattr(u, "sealed", ()):                   # the foe's Imprison (fightsim.imprison)
         return True
     if getattr(b, "gravity", 0) and mv.const in GRAVITY_FAILS:
         return True
@@ -784,7 +784,9 @@ def _basic_effect(b, u, t, mv):
         # battle keeps as mon.recycle (fightsim.consume).
         return -10 if not getattr(u, "recycle", None) else 0
     if e == "MAKE_SHARED_MOVES_UNUSEABLE":                          # Basic_CheckCanImprison
-        return -10 if getattr(u, "imprisoning", False) or getattr(t, "sealed", ()) else 0
+        # MOVE_EFFECT_IMPRISON on the user, or MOVE_EFFECT_IMPRISONED on the
+        # target, which any Imprison tried on it sets (fightsim.imprison).
+        return -10 if getattr(u, "imprisoning", False) or getattr(t, "imprisoned", False) else 0
     if e == "HEAL_STATUS":                                          # Basic_CheckCanRefreshStatus
         return 0 if u.status in ("brn", "psn", "tox", "par") else -10
     if e == "HALVE_ELECTRIC_DAMAGE":                                # Mud Sport

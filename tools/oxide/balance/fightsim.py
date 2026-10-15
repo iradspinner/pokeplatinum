@@ -375,6 +375,13 @@ class Mon:
     stockpile = 0
     stockpile_def = 0
     stockpile_spd = 0
+    # Imprison: whether this Pokemon imprisons (MOVE_EFFECT_IMPRISON), whether
+    # a foe's Imprison has been tried on it (MOVE_EFFECT_IMPRISONED, which
+    # the trainer's AI reads), and the moves a standing imprisoner's
+    # Imprison seals for it (Move_Imprisoned); all cleared when it leaves.
+    imprisoning = False
+    imprisoned = False
+    sealed = frozenset()
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -408,6 +415,8 @@ class Mon:
         self.stages = dict.fromkeys(STAGE_KEYS, 0)
         if self.stockpile:
             self.stockpile = self.stockpile_def = self.stockpile_spd = 0
+        if self.imprisoning or self.imprisoned or self.sealed:
+            self.imprisoning, self.imprisoned, self.sealed = False, False, frozenset()
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
         self.rollout = 0
@@ -2931,11 +2940,41 @@ def tormented_out(mon, mv):
 
 
 def disabled_out(mon, mv):
-    """Whether Disable rules this move out: it cannot be chosen
-    (BattleSystem_CheckInvalidMoves' CHECK_INVALID_DISABLED), Sleep Talk
-    cannot call it (BtlCmd_TrySleepTalk asks the same check), and it fails
-    if it was chosen before the Disable came (CHECK_STATUS_STATE_DISABLE)."""
-    return mon.disabled is not None and mv.name == mon.disabled
+    """Whether Disable or a foe's Imprison rules this move out: it cannot be
+    chosen (BattleSystem_CheckInvalidMoves' CHECK_INVALID_DISABLED and
+    CHECK_INVALID_IMPRISONED), Sleep Talk cannot call it (BtlCmd_TrySleepTalk
+    asks every check but PP), and it fails if it was chosen before the
+    Disable or the Imprison came (CHECK_STATUS_STATE_DISABLE and
+    CHECK_STATUS_STATE_IMPRISON, both before confusion, both letting go of a
+    Choice item's lock)."""
+    return (mon.disabled is not None and mv.name == mon.disabled) or mv.name in mon.sealed
+
+
+def imprison(b, att):
+    """Imprison (effect script 192, BtlCmd_TryImprison): the foes on the
+    field are marked as tried (imprisoned) whatever happens; the move then
+    fails if its user imprisons already or shares no move with a foe on the
+    field. Otherwise, until the user leaves, every foe on the field, and
+    each that comes in while it stays, cannot choose or use a move the user
+    knows (sealed, read by disabled_out). Until 2026-10-15 it did nothing
+    (Ian approved the fix)."""
+    foes = (b.b if att.side == "p" else b.p).on_field()
+    for f in foes:
+        f.imprisoned = True
+    mine = frozenset(m.name for m in att.moves)
+    if att.imprisoning or not any(m.name in mine for f in foes for m in f.moves):
+        return
+    att.imprisoning = True
+    for f in foes:
+        f.sealed = f.sealed | mine
+
+
+def seal_newcomer(b, side, new):
+    """A Pokemon coming in while a foe imprisons is sealed out of that foe's
+    moves (Move_Imprisoned reads the imprisoner's moves, whoever faces it)."""
+    for f in (b.b if side is b.p else b.p).on_field():
+        if f.imprisoning:
+            new.sealed = new.sealed | frozenset(m.name for m in f.moves)
 
 
 def disable(dfn, turns):
@@ -4796,6 +4835,8 @@ def status_move(b, att, mv, dfn, first):
         att.baton = True
     elif e == "SWITCH_HELD_ITEMS":
         swap_items(att, dfn, mv)
+    elif e == "MAKE_SHARED_MOVES_UNUSEABLE":
+        imprison(b, att)
     elif e in FORM_MOVES:
         # The status moves that change a type or an ability (FORM_MOVES).
         FORM_MOVES[e](b, att, mv, dfn, lambda kind, n: b.rng.randrange(n))
@@ -4830,6 +4871,8 @@ def switch_in(b, side, index, slot=0, lead=False):
         for foe in (b.b if side is b.p else b.p).mons:
             if foe.trapped_by == leaving.key:
                 foe.trapped_by = None
+            if leaving.imprisoning and foe.sealed:
+                foe.sealed = frozenset()     # the Imprison ends with its user (moveEffectsMask cleared)
             if foe.bound and getattr(foe, "bound_by", None) == leaving.key:
                 # The bind ends when its binder leaves, by a switch or a
                 # knockout's replacement (BattleSystem_InitBattleMon clears
@@ -4855,6 +4898,7 @@ def switch_in(b, side, index, slot=0, lead=False):
     # faint replacement sent in after the end of the turn.
     new.turns_in = -1 if getattr(b, "mid_turn", False) else 0
     new.toxic = 0                # Toxic's count starts again on a switch
+    seal_newcomer(b, side, new)
     if gas:
         # The gas reads live: a newcomer under it meets the hazards with its
         # ability off, and a holder's arrival or departure turns the others'

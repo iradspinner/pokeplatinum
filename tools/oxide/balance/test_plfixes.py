@@ -3408,6 +3408,25 @@ def natural_gift_checks():
              f"(twin row, hit, Donphan's item after) {got}")]
 
 
+def imprison_checks():
+    """Imprison in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): Mars's Bronzor imprisons against the player's
+    Kadabra, which shares Confusion with it; Confusion then drops out of the
+    player's options and the trainer's Basic scores a second Imprison -10."""
+    from .test_fightai import battle
+    b = battle([("Bronzor", 30, "Levitate", ["Imprison", "Confusion", "Hypnosis", "Confuse Ray"])],
+               [("Kadabra", 30, "Synchronize", ["Confusion", "Shadow Ball"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    bron, kad = b.b.cur(), b.p.cur()
+    before = sorted(a[1].name for a in pl.player_actions(b) if a[0] == "move")
+    pl.use_move(b, bron, fs.move("Imprison"), kad, True)
+    after = sorted(a[1].name for a in pl.player_actions(b) if a[0] == "move")
+    again = fightai.basic(b, bron, kad, fs.move("Imprison"), 0)
+    got = (before, after, again)
+    return [("the readings' Imprison takes the shared Confusion from the player's options", got ==
+             (["Confusion", "Shadow Ball"], ["Shadow Ball"], -10), f"(options before, after, a second Imprison) {got}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3995,6 +4014,7 @@ def main():
     results += chatter_checks()
     results += stockpile_checks()
     results += natural_gift_checks()
+    results += imprison_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)
