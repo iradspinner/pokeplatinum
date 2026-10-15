@@ -4807,6 +4807,25 @@ def power_split_checks():
              f"Attacks {ma} and {ba} to {avg}; top rolls {before} to {after} (about {want} wanted)")]
 
 
+def embargo_checks():
+    """Embargo in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Geodude under the player's Embargo
+    keeps its Sitrus Berry when a hit takes it below half, where without
+    Embargo it eats it."""
+    out = {}
+    for embargoed in (False, True):
+        b, geo, bib = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"], "Sitrus Berry")],
+                                [("Bibarel", 30, "Unaware", ["Embargo", "Tackle"])])
+        geo.item = "Sitrus Berry"
+        if embargoed:
+            pl.status_move(b, bib, fs.move("Embargo"), geo, True)
+        geo.hp = geo.maxhp // 2 + 1
+        pl.attack(b, bib, fs.move("Tackle"), geo, True)
+        out[embargoed] = (geo.item, geo.item_off, geo.hp <= geo.maxhp // 2)
+    ok = out == {False: (None, None, False), True: (None, "Sitrus Berry", True)}
+    return [("the readings' Embargo keeps a Berry from working", ok, f"(item, held back, below half) {out}")]
+
+
 def main():
     results = []
 
@@ -5353,6 +5372,7 @@ def main():
     results += healing_wish_checks()
     results += guard_split_checks()
     results += power_split_checks()
+    results += embargo_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

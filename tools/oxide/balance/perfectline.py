@@ -1037,6 +1037,8 @@ def status_move(b, att, mv, dfn, first):
         fs.share_stats(b, att, dfn, mv, ("def", "spd"))     # the two Defenses averaged (fightsim.share_stats)
     elif e == "POWER_SPLIT":
         fs.share_stats(b, att, dfn, mv, ("atk", "spa"))     # the two Attacks averaged (fightsim.share_stats)
+    elif e == "PREVENT_ITEM_USE":
+        fs.embargo(b, att, dfn, mv)      # five turns with its item held back (fightsim.embargo)
     elif e == "CURSE":
         if "Ghost" in att.types:
             fs.ghost_curse(b, att, dfn, mv)      # it fails, at no cost, through a Substitute or on a cursed target
@@ -1262,6 +1264,7 @@ def clone_battle(b):
         c.guarded = True             # a side guard up this turn (fightsim.side_guard)
     if b.split:
         c.split = True               # stats averaged in this battle (fightsim.share_stats)
+
     return c
 
 
@@ -1301,7 +1304,7 @@ def mon_key(m):
     if m.rare:
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
         key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.mud_sport, m.power_trick, m.bide, m.bide_damage,
-                m.transform_key, tuple(sorted(m.split.items())) if m.split else None,
+                m.transform_key, tuple(sorted(m.split.items())) if m.split else None, m.embargo, m.roomed, m.item_off,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key

@@ -5121,6 +5121,38 @@ def check_power_split(results):
     results.append(("Power Split averages the two Attacks for both", out == want, str(out)))
 
 
+def check_embargo(results):
+    """Embargo (approved 2026-10-14; effect script 232): for five turns the
+    target's held item does not work (no Leftovers at the turn's end), a
+    second Embargo fails and the trainer's AI refuses one, Knock Off still
+    takes the item, Baton Pass hands the turns on, a Substitute stops it,
+    and after five turn ends the item works again."""
+    out = {}
+    b, p, foe = battle(["Embargo", "Knock Off"], ["Tackle", "Baton Pass"], {("p", "Knock Off"): [5] * 16}, hp=160)
+    b.rng = FixedDice(0.5)
+    foe.item, foe.hp = "Leftovers", 100
+    fs.status_move(b, p, fs.move("Embargo"), foe, True)
+    out["held back"] = (foe.item, foe.item_off, foe.embargo)
+    fs.end_of_turn(b)
+    out["no Leftovers"] = foe.hp
+    out["AI's second"] = fightai.basic(b, p, foe, fs.move("Embargo"), 0)
+    out["baton"] = fs.baton_state(foe)["embargo"]
+    for _ in range(4):
+        fs.end_of_turn(b)
+    out["after five turn ends"] = (foe.item, foe.item_off, foe.embargo)
+    fs.status_move(b, p, fs.move("Embargo"), foe, True)
+    fs.attack(b, p, fs.move("Knock Off"), foe, True)
+    out["Knock Off"] = (foe.item, foe.item_off, foe.knocked_off)
+    b, p, foe = battle(["Embargo"], ["Tackle"], {})
+    foe.item, foe.sub = "Leftovers", 25
+    fs.status_move(b, p, fs.move("Embargo"), foe, True)
+    out["Substitute"] = (foe.item, foe.embargo)
+    want = {"held back": (None, "Leftovers", 5), "no Leftovers": 100, "AI's second": -10, "baton": 4,
+            "after five turn ends": ("Leftovers", None, 0), "Knock Off": (None, None, True),
+            "Substitute": ("Leftovers", 0)}
+    results.append(("Embargo holds the target's item back for five turns", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5398,6 +5430,7 @@ def main():
                   check_defog, check_strength_sap, check_parting_shot,
                   check_dragon_tail, check_side_guards, check_heat_crash,
                   check_healing_wish, check_guard_split, check_power_split,
+                  check_embargo,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

@@ -485,6 +485,19 @@ class Mon:
     # Me First: the move it took is running at half again its damage
     # (moveEffectsData.meFirst); cleared as that move ends (use_move).
     me_first = False
+    # Embargo's turns left on it (moveEffectsData.embargoTurns, which the
+    # trainer's AI reads); while they run its held item does not work
+    # (Battler_HeldItem), and waits in item_off (lock_item); cleared when it
+    # leaves, and handed on by Baton Pass.
+    embargo = 0
+    # A held item that does not work for now, under Embargo or Magic Room
+    # (lock_item): the item waits here, and `item` reads None, so every item
+    # effect stops; the moves that take, swap or burn the item itself reach
+    # it here (raw_item_op). None while its item works.
+    item_off = None
+    # Whether Magic Room has caught it on the field (roomed until the room
+    # ends or it leaves).
+    roomed = False
     # Guard Split and Power Split (subscript_guard_split, _power_split): the
     # raw stats the battle has averaged, {stat: value}, in place of its own
     # (raw_stat), until it leaves; None while nothing has been averaged.
@@ -543,6 +556,9 @@ class Mon:
             self.mud_sport = False
             self.power_trick = False
             self.split = None            # the battle's averaged stats go as it leaves
+            if self.item_off is not None:
+                self.item, self.item_off = self.item_off, None     # its party record holds the item
+            self.embargo, self.roomed = 0, False
             self.bide = self.bide_damage = 0
             if self.transformed_from is not None:
                 # The party record keeps its own moves and their PP
@@ -845,7 +861,7 @@ class Battle:
             s = s * 15 // 10
         elif mon.status == "par":
             s //= 4
-        if mon.ability == "Unburden" and mon.had_item and not mon.item:
+        if mon.ability == "Unburden" and mon.had_item and not (mon.item or mon.item_off):
             s *= 2               # canUnburden, set as it came in holding an item
         side = self.p if mon.side == "p" else self.b
         if side.tailwind:
@@ -3561,6 +3577,8 @@ def incinerate(b, dfn, mv):
     resist Berry that halved the hit was used up in the damage, so after_hit
     takes it as used. Until 2026-10-15 it was a plain hit and the target ate
     its Berry later (Ian approved the fix)."""
+    if dfn.item_off is not None:
+        return raw_item_op((dfn,), lambda: incinerate(b, dfn, mv))
     if dfn.item in incinerable() and resist_berry(b, dfn, mv) != dfn.item:
         dfn.item = None
 
@@ -4271,9 +4289,60 @@ def consume(mon, eaten=True):
     mon.recycle, mon.item = mon.item, None
 
 
+def lock_item(mon):
+    """Its held item stops working for now, under Embargo or Magic Room
+    (Battler_HeldItem reads none): it waits in item_off and `item` reads
+    None, so every item effect stops with it."""
+    if mon.item:
+        mon.item_off, mon.item = mon.item, None
+        mon.rare = True
+
+
+def unlock_item(mon):
+    """Its held item works again, once neither Embargo nor Magic Room holds it."""
+    if mon.item_off is not None and not mon.embargo and not mon.roomed:
+        mon.item, mon.item_off = mon.item_off, None
+
+
+def raw_item_op(mons, fn):
+    """Run fn, a move that takes, swaps or burns a held item itself, with the
+    items Embargo or Magic Room hold back in hand, as those moves read the
+    held item past them (BATTLEMON_HELD_ITEM); afterwards an item that
+    still does not work waits again."""
+    for m in mons:
+        if m.item_off is not None:
+            m.item, m.item_off = m.item_off, None
+    try:
+        return fn()
+    finally:
+        for m in mons:
+            if m.embargo or m.roomed:
+                lock_item(m)
+
+
+def embargo(b, att, dfn, mv):
+    """Embargo (effect script 232, subscript_embargo_start): it fails on a
+    target behind a Substitute, already under Embargo, with Multitype or
+    holding a Griseous Orb; otherwise for five turns the target's held item
+    does not work (lock_item), counted down at each turn's end
+    (MON_COND_CHECK_STATE_EMBARGO). The script also fails when the target's
+    Quick Claw or Custap Berry went off this turn, which is not followed.
+    The calculator's rows keep a trainer's item's own damage and Speed (a
+    Life Orb's, a booster's, a Choice item's, an Assault Vest's), which would
+    need item-free twin rows. Until 2026-10-15 the move did nothing (Ian
+    approved the fix)."""
+    if dfn.embargo or sub_blocks(att, dfn, mv) or dfn.ability == "Multitype" \
+            or (dfn.item or dfn.item_off) == "Griseous Orb":
+        return
+    dfn.embargo, dfn.rare = 5, True
+    lock_item(dfn)
+
+
 def knock_off(dfn):
     """Knock Off's hit (BtlCmd_TryKnockOff): the target's item is gone, and
     its party slot is marked (knocked_off)."""
+    if dfn.item_off is not None:
+        return raw_item_op((dfn,), lambda: knock_off(dfn))
     if dfn.item:
         dfn.item, dfn.knocked_off = None, True
 
@@ -4288,6 +4357,8 @@ def steal_item(att, dfn):
     the target's Sticky Hold keeps it (named; Mold Breaker gets past it).
     Until 2026-10-15 either side's Thief removed the target's item, as
     Knock Off does, and the thief never gained it (Ian approved the fix)."""
+    if att.item_off is not None or dfn.item_off is not None:
+        return raw_item_op((att, dfn), lambda: steal_item(att, dfn))
     if att.side != "p" or att.item or not dfn.item or att.knocked_off or dfn.knocked_off:
         return
     if "Multitype" in (att.ability, dfn.ability) or dfn.item == "Griseous Orb":
@@ -4307,6 +4378,8 @@ def swap_items(att, dfn, mv):
     was knocked off this battle, neither holds anything, or the target's
     Sticky Hold keeps its item (named; Mold Breaker gets past it). Until
     2026-10-15 nobody's Trick did anything (Ian approved the fix)."""
+    if att.item_off is not None or dfn.item_off is not None:
+        return raw_item_op((att, dfn), lambda: swap_items(att, dfn, mv))
     if att.side != "p" or sub_blocks(att, dfn, mv):
         return
     if "Multitype" in (att.ability, dfn.ability) or "Griseous Orb" in (att.item, dfn.item):
@@ -4330,6 +4403,8 @@ def pluck(b, att, dfn, pick):
     user eats it for nothing. Until 2026-10-15 only a Sitrus, an Oran or a
     pinch Berry did anything, and Sticky Hold was ignored (Ian approved the
     fix)."""
+    if dfn.item_off is not None:
+        return raw_item_op((dfn,), lambda: pluck(b, att, dfn, pick))
     berry = dfn.item
     if not berry or not berry.endswith("Berry"):
         return
@@ -4833,7 +4908,7 @@ def doubled(att, dfn, mv):
         # Acrobatics (effect script 289): POWER_MULTI 20 when its user holds
         # no item, an eaten, flung or knocked-off one included; the rows never
         # double it. Until 2026-10-15 it never doubled (Ian approved the fix).
-        return not att.item
+        return not (att.item or att.item_off)     # an item held under Embargo or Magic Room still counts
     if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":
         # Smelling Salts (effect script 171) on a paralysed target with no
         # Substitute in the way (CheckSubstitute skips the doubling and the
@@ -6224,6 +6299,8 @@ def status_move(b, att, mv, dfn, first):
         share_stats(b, att, dfn, mv, ("def", "spd"))
     elif e == "POWER_SPLIT":
         share_stats(b, att, dfn, mv, ("atk", "spa"))
+    elif e == "PREVENT_ITEM_USE":
+        embargo(b, att, dfn, mv)
     elif e == "CURSE":
         if "Ghost" in att.types:
             ghost_curse(b, att, dfn, mv)
@@ -6555,8 +6632,8 @@ def baton_state(mon):
     confusion, a Ghost's Curse and the Substitute with its HP
     (VOLATILE_CONDITION_BATON_PASSED); and of the move effects Leech Seed,
     Perish Song's count, Ingrain, Aqua Ring, a suppressed ability (Gastro
-    Acid), Heal Block's and Magnet Rise's turns, Lock-On's hold, Water
-    Sport, Mud Sport and Power Trick (MOVE_EFFECT_BATON_PASSED).
+    Acid), Heal Block's, Magnet Rise's and Embargo's turns, Lock-On's hold,
+    Water Sport, Mud Sport and Power Trick (MOVE_EFFECT_BATON_PASSED).
     Everything else (Taunt, Encore, Disable, Torment, Yawn, a bind, love,
     Salt Cure, Stockpile, Imprison) stays behind."""
     return {"stages": dict(mon.stages), "crit_stage": mon.crit_stage, "trapped_by": mon.trapped_by,
@@ -6564,8 +6641,8 @@ def baton_state(mon):
             "perish": mon.perish, "ingrained": mon.ingrained, "aqua_ring": mon.aqua_ring,
             "heal_block": mon.heal_block, "magnet_rise": mon.magnet_rise,
             "locked_on": mon.locked_on, "lock_on_by": mon.lock_on_by, "water_sport": mon.water_sport,
-            "mud_sport": mon.mud_sport, "power_trick": mon.power_trick,
-            "rare": bool(mon.locked_on or mon.water_sport or mon.mud_sport or mon.power_trick),
+            "mud_sport": mon.mud_sport, "power_trick": mon.power_trick, "embargo": mon.embargo,
+            "rare": bool(mon.locked_on or mon.water_sport or mon.mud_sport or mon.power_trick or mon.embargo),
             "suppressed": getattr(mon, "suppressed", False)}
 
 
@@ -6644,6 +6721,8 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
             setattr(new, k, v)
         if suppressed:
             suppress(b, new)         # Gastro Acid's suppression goes with the baton
+    if new.embargo:
+        lock_item(new)               # no held item works for it under a passed Embargo
     if gas:
         # The gas reads live: a newcomer under it meets the hazards with its
         # ability off, and a holder's arrival or departure turns the others'
@@ -7023,6 +7102,10 @@ def _end_of_turn_mon(b, side, m):
         m.magnet_rise -= 1           # MON_COND_CHECK_STATE_MAGNET_RISE counts it down
     if getattr(m, "heal_block", 0):
         m.heal_block -= 1           # Heal Block counts down at the turn's end
+    if m.rare and m.embargo:
+        m.embargo -= 1              # MON_COND_CHECK_STATE_EMBARGO: its item works again at 0
+        if not m.embargo:
+            unlock_item(m)
     if m.alive() and m.yawn:
         m.yawn -= 1
         if m.yawn == 0:
