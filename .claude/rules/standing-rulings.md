@@ -179,7 +179,14 @@ read, so they are written here too. Each is a standing instruction.
   time wherever holding it back reaches a strong move sooner (a delay by the
   learnset rules), so the team search can weigh a Starly kept for Brave Bird
   by Maylene's split (Ian, 2026-10-15); this comes in before the readings
-  resume. Ties between equal AI picks break at random. Every fight is
+  resume. So that a hold's cost counts, each box seed is one run through
+  the game, every fight's box that run's catches by its split, and a
+  held-back version is offered at a fight only if no earlier fight of the
+  seed used the catch in a form the hold rules out; once a reading uses
+  one, the seed's later fights see the line as the hold left it, so each
+  seed's fights read in play order. A hold that would weaken an earlier
+  fight on purpose is listed in the reading, not modelled, since testing
+  it means reading that fight again (Ian, 2026-10-15). Ties between equal AI picks break at random. Every fight is
   simulated at the game's real odds, with no luck budget (Ian, 2026-10-02):
   the three numbers are then
   true frequencies with bad luck inside them, and the planner's caution
