@@ -3756,6 +3756,26 @@ def mimic_checks():
              f"moves {names}, Body Slam dealt {dealt}, its PP {mime.pp.get('Body Slam')}, open to the AI {open_to_ai}")]
 
 
+def mirror_move_checks():
+    """Mirror Move in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Pidgeot's Mirror Move turns the
+    player's Bibarel's Body Slam back on it, from the Pidgeot's own row,
+    which carries its foes' moves."""
+    from .test_fightai import battle
+    b = battle([("Pidgeot", 30, "Keen Eye", ["Mirror Move", "Wing Attack"])], [("Bibarel", 30, "Simple", ["Body Slam"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    pid, bib = b.b.cur(), b.p.cur()
+    bib.hp = bib.maxhp = 100000
+    pid.hp = pid.maxhp = 100000
+    pl.use_move(b, bib, fs.move("Body Slam"), pid, True)
+    pl.use_move(b, pid, fs.move("Mirror Move"), bib, False)
+    dealt = bib.maxhp - bib.hp
+    row = b.st["rows"][(None, pid.key, bib.key)]["moves"].get("Body Slam", {}).get("rolls")
+    ok = row is not None and dealt > 0 and row[0] <= dealt <= int(1.5 * row[-1]) + 1
+    return [("the readings' Mirror Move turns the foe's move back on it", ok,
+             f"Mirror Move dealt {dealt}; the Pidgeot's Body Slam row {row and (row[0], row[-1])}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4413,6 +4433,7 @@ def main():
     results += smack_down_checks()
     results += gravity_checks()
     results += mimic_checks()
+    results += mirror_move_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()

@@ -406,6 +406,11 @@ def _use_move(b, att, mv, dfn, first):
     fs.protean(b, att, mv)               # Protean retypes its user before the move runs
     if fs.commit_move(att, mv):
         return                       # Last Resort before every other move was used
+    if mv.effect in fs.CALLERS:
+        mv = fs.called_move(b, att, mv)     # Mirror Move's copy, run as its own (fightsim.called_move)
+        if mv is None:
+            return
+        fs.mark_hit(b, mv, dfn, True)
     if mv.effect in ("FLY", "BOUNCE") and att.smacked:
         return                       # brought down by Smack Down, it cannot fly (fightsim.smack_down)
     if mv.effect in fs.TWO_TURN and att.charging is None and not fs.charge_skipped(b, att, mv):
@@ -1188,6 +1193,8 @@ def mon_key(m):
         key += ("smacked down",)
     if m.mimicked is not None:
         key += ("mimic", tuple(x.name for x in m.moves))
+    if m.mirror is not None:
+        key += ("mirror", m.mirror.name)
     return key + _form(m) if m.formed else key
 
 

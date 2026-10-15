@@ -100,7 +100,7 @@ def pokedex_moves():
 class Move:
     """One move as the simulator reads it."""
     __slots__ = ("name", "type", "cat", "power", "acc", "pri", "effect", "chance", "range",
-                 "contact", "sound", "pp", "const", "reflectable", "protect")
+                 "contact", "sound", "pp", "const", "reflectable", "protect", "mirror")
 
     def __init__(self, name):
         by, compact = _by_calc_name()
@@ -120,6 +120,7 @@ class Move:
         self.sound = "SOUND" in " ".join(flags)
         self.reflectable = any("MAGIC_COAT" in f for f in flags)
         self.protect = "CAN_PROTECT" in flags        # MOVE_FLAG_CAN_PROTECT: Protect stops it
+        self.mirror = "CAN_MIRROR_MOVE" in flags     # MOVE_FLAG_CAN_MIRROR_MOVE: Mirror Move can copy it
         self.pp = rec.get("pp") or 10
 
     def damaging(self):
@@ -408,6 +409,12 @@ class Mon:
     # off at each turn's end, its Electric moves at twice the power while
     # it runs; cleared when it leaves.
     charged = 0
+    # Mirror Move: the last move with MOVE_FLAG_CAN_MIRROR_MOVE whose attack
+    # message showed with this Pokemon its target (moveCopied), kept only
+    # for a Pokemon that knows Mirror Move (mirror_user); cleared when it or
+    # a foe comes in.
+    mirror = None
+    mirror_user = False
     # Mimic: the move list and Mimic's PP as they stood before it copied a
     # move into its slot (mimickedMoveSlot), brought back as it leaves;
     # None while it has copied nothing.
@@ -436,6 +443,8 @@ class Mon:
         # whether it has eaten a Berry this battle.
         self.last_resort = any(m.effect == "FAIL_IF_NOT_USED_ALL_OTHER_MOVES" for m in self.moves)
         self.belch = any(m.const == "MOVE_BELCH" for m in self.moves)
+        if any(m.effect == "COPY_MOVE" for m in self.moves):
+            self.mirror_user = True      # its record of the moves aimed at it counts (mirror)
         # A Berry it ate this battle (berryEatenMask, kept by party slot, so
         # through switching), which Belch needs and the trainer's AI reads.
         self.ate_berry = False
@@ -463,6 +472,8 @@ class Mon:
             self.foresight = False       # statusVolatile; VOLATILE_CONDITION_BATON_PASSED leaves it out
         if self.smacked:
             self.smacked = False         # moveEffectsMask; MOVE_EFFECT_BATON_PASSED leaves Smack Down's out
+        if self.mirror is not None:
+            self.mirror = None           # BattleSystem_InitBattleMon clears moveCopied
         if self.mimicked is not None:
             # The party record still holds Mimic, with the PP its use left it
             # (BattleMon_CopyToParty skips a mimicked slot), so it comes back.
@@ -2092,6 +2103,26 @@ def _forbidden_moves():
     return mimic, mimic | frozenset(re.findall(r"\b(MOVE_\w+)", tail))
 
 
+# The status moves that use another move as their own, run in place of
+# the move chosen (called_move): Mirror Move.
+CALLERS = frozenset({"COPY_MOVE"})
+
+
+def called_move(b, att, mv):
+    """The move a calling move uses in its place, or None when it fails.
+    Mirror Move (effect script 9, BtlCmd_SetMirrorMove): the last move with
+    MOVE_FLAG_CAN_MIRROR_MOVE aimed at its user since it, or a foe, came in
+    (moveCopied), unless that move's effect is one Encore may not hold
+    (Move_CanBeEncored, NO_ENCORE). The called move runs as the user's own,
+    spending no PP of its own, on the foe in front (BattleSystem_Defender);
+    the user's last move stays Mirror Move (movePrevByBattler is moveTemp).
+    Until 2026-10-15 Mirror Move did nothing (Ian approved the fix)."""
+    if mv.effect == "COPY_MOVE":
+        got = att.mirror
+        return got if got is not None and got.effect not in NO_ENCORE else None
+    return None
+
+
 def mimic(att, dfn):
     """Mimic (effect script 82, subscript_mimic, BtlCmd_TryMimic): the
     target's last move (movePrevByBattler) takes the place of the user's
@@ -2492,6 +2523,8 @@ def mark_hit(b, mv, dfn, shown, targets=None):
     if mv.range in OWN_RANGES or dfn is None:
         return
     for d in targets or [dfn]:
+        if shown and mv.mirror and d.mirror_user:
+            d.mirror = mv            # BattleControllerPlayer_UpdateFlagsWhenHit's moveCopied
         d.last_hit_by = mv if shown else None
         d.last_hit_type = ({"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
                            if shown and mv.name == "Weather Ball" else mv.type if shown else None)
@@ -2697,6 +2730,11 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     protean(b, att, mv)
     if commit_move(att, mv):
         return                   # Last Resort before every other move was used
+    if mv.effect in CALLERS:
+        mv = called_move(b, att, mv)
+        if mv is None:
+            return               # nothing to call: it fails
+        mark_hit(b, mv, dfn, True, targets)     # the called move is the last to hit its target (moveHit)
     if mv.effect in ("FLY", "BOUNCE") and att.smacked:
         return                   # brought down, it cannot take to the air (effect scripts 155 and 263)
     # Charging moves: the first turn only charges (Fly and Dig vanish).
@@ -5338,6 +5376,8 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
                 foe.bound, foe.bound_by = 0, None
             if foe.infatuated == leaving.key:
                 foe.infatuated = None    # love ends when its object leaves (battle_lib's switch-out)
+            if foe.mirror is not None:
+                foe.mirror = None        # a battler coming in clears its foes' moveCopied
             if foe.locked_on and foe.lock_on_by == leaving.key:
                 # The user's Lock-On ends as it leaves, or passes with a Baton
                 # Pass to its replacement, its count started again.
@@ -6589,8 +6629,9 @@ def family(species):
 
 
 # The status moves that use a foe's move as their user's own, whose users'
-# rows carry the foes' damaging moves (prepare's borrowed): Mimic.
-BORROWS = frozenset({"COPY_MOVE_FOR_BATTLE"})
+# rows carry the foes' damaging moves (prepare's borrowed): Mimic and
+# Mirror Move.
+BORROWS = frozenset({"COPY_MOVE_FOR_BATTLE", "COPY_MOVE"})
 
 
 def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False,

@@ -2810,6 +2810,36 @@ def check_mimic(results):
                     out == want, str(out)))
 
 
+def check_mirror_move(results):
+    """Mirror Move (approved 2026-10-14; effect script 9,
+    BtlCmd_SetMirrorMove): it uses the last move with Mirror Move's flag
+    aimed at its user, as the user's own, spending only its own PP; with
+    none it fails, a move without the flag (Swords Dance) leaves the record
+    as it was, and the user's leaving clears it."""
+    b, p, foe = battle(["Mirror Move"], ["Ember", "Swords Dance"], {}, hp=500)
+    b.st["rows"][(None, "p0", "b0.0")]["moves"]["Ember"] = {"rolls": [10] * 16}     # prepare's borrowed row
+    b.rng = FixedDice(0.5)
+    foe.ability = "Shell Armor"
+    mirror = fs.move("Mirror Move")
+    before = foe.hp
+    fs._use_move(b, p, mirror, foe, True)
+    out = {"with nothing to copy": (before - foe.hp, p.pp["Mirror Move"])}
+    fs._use_move(b, foe, fs.move("Ember"), p, True)
+    fs._use_move(b, foe, fs.move("Swords Dance"), p, True)
+    recorded = getattr(p, "mirror", None)
+    before = foe.hp
+    fs._use_move(b, p, mirror, foe, False)
+    out["after Ember and Swords Dance"] = (None if recorded is None else recorded.name, before - foe.hp,
+                                           p.pp["Mirror Move"], p.last.name if p.last else None, foe.pp.get("Ember"))
+    p.reset_volatile()
+    out["after leaving"] = getattr(p, "mirror", None)
+    pp = fs.move("Mirror Move").pp
+    want = {"with nothing to copy": (0, pp - 1), "after Ember and Swords Dance": ("Ember", 10, pp - 2, "Mirror Move",
+                                                                                 fs.move("Ember").pp - 1),
+            "after leaving": None}
+    results.append(("Mirror Move uses the last mirrorable move aimed at its user", out == want, str(out)))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -4199,7 +4229,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return, check_smack_down, check_gravity, check_mimic,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return, check_smack_down, check_gravity, check_mimic, check_mirror_move,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
