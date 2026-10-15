@@ -4824,6 +4824,22 @@ def check_mud_sport(results):
     results.append(("Mud Sport halves Electric moves while its user stands", out == want, str(out)))
 
 
+def check_punishment(results):
+    """Punishment (approved 2026-10-14; effect script 245): 60 power and 20
+    more for each stage the target has raised, up to 200, on a row made at
+    60; Technician's half again counts only while the power is 60."""
+    out = {}
+    for stages, ability in (({}, None), ({"atk": 2, "spe": 1}, None), ({"atk": 6, "spa": 6}, None),
+                            ({"eva": 1}, "Technician"), ({"def": -2}, None)):
+        b, p, foe = battle(["Punishment"], ["Tackle"], {("p", "Punishment"): [30] * 16})
+        p.ability = ability
+        foe.stages.update(stages)
+        out[(tuple(sorted(stages.items())), ability)] = b.damage(p, foe, fs.move("Punishment"), roll=0)
+    want = {((), None): 30, ((("atk", 2), ("spe", 1)), None): 60, ((("atk", 6), ("spa", 6)), None): 100,
+            ((("eva", 1),), "Technician"): 26, ((("def", -2),), None): 60}
+    results.append(("Punishment's power rises with the target's raised stages", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5097,7 +5113,7 @@ def main():
                   check_power_trick, check_bide, check_transform,
                   check_sp_def_2_hit, check_tearful_look, check_venom_drench, check_false_swipe,
                   check_clear_smog, check_incinerate, check_life_dew,
-                  check_mud_sport,
+                  check_mud_sport, check_punishment,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

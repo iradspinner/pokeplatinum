@@ -4811,7 +4811,7 @@ def marvel_scale(att, dfn, mv):
 # state, each looked for once.
 STATE_POWER_EFFECTS = frozenset({"INCREASE_POWER_WITH_LESS_HP", "DECREASE_POWER_WITH_LESS_USER_HP",
                                  "POWER_BASED_ON_LOW_SPEED", "HIGHER_POWER_WHEN_LOW_PP",
-                                 "INCREASE_POWER_WITH_MORE_HP"})
+                                 "INCREASE_POWER_WITH_MORE_HP", "INCREASE_POWER_WITH_MORE_STAT_UP"})
 STATE_POWER_MOVES = frozenset({"MOVE_PAYBACK", "MOVE_STORED_POWER", "MOVE_POWER_TRIP", "MOVE_ELECTRO_BALL",
                                "MOVE_HARD_PRESS"})
 
@@ -4859,6 +4859,13 @@ def state_mult(b, att, dfn, mv):
             # figure (their listed power is 1). Until 2026-10-15 they hit at 121
             # whatever the target's HP (Ian approved the fix).
             m *= power_ratio(att, 121, 1 + 120 * dfn.hp // dfn.maxhp)
+        elif e == "INCREASE_POWER_WITH_MORE_STAT_UP":
+            # Punishment (effect script 245, BtlCmd_CalcPunishmentPower): 60
+            # and 20 more for each stage the target has raised, accuracy and
+            # evasion included, up to 200; the row is made at 60, with none
+            # raised. Until 2026-10-15 it hit at 60 whatever the target's
+            # stages (Ian approved the fix).
+            m *= power_ratio(att, 60, min(200, 60 + 20 * sum(s for s in dfn.stages.values() if s > 0)))
     if (att.ability == "Sand Force" and b.weather == "Sand" and not weather_ignored(b)
             and mv.type in ("Ground", "Rock", "Steel")):
         # BattleSystem_CalcMoveDamage: Ground, Rock and Steel moves at 13/10

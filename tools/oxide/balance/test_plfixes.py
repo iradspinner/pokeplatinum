@@ -4624,6 +4624,22 @@ def mud_sport_checks():
     return [("the readings' Mud Sport halves Electric moves", ok, f"Thunder Shock's top roll {before} before, {after} after")]
 
 
+def punishment_checks():
+    """Punishment in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Sneasel hits a trainer's Geodude
+    at +2 Defense at 100 power, five thirds of its plain 60, against a
+    Defense twice as high, so at five sixths of its plain hit."""
+    b, geo, sne = b7_battle([("Geodude", 30, "Sturdy", ["Defense Curl"])], [("Sneasel", 30, "Inner Focus", ["Punishment"])])
+    pun = fs.move("Punishment")
+    plain = pl.damage_of(b, sne, geo, pun, False, True)
+    geo.stages["def"] = 2
+    raised = pl.damage_of(b, sne, geo, pun, False, True)
+    want = int(plain * (100 / 60) / 2)
+    ok = plain > 0 and abs(raised - want) <= 1
+    return [("the readings' Punishment grows with the target's raised stages", ok,
+             f"top roll {plain} plain, {raised} at +2 Defense (about {want} wanted)")]
+
+
 def main():
     results = []
 
@@ -5159,6 +5175,7 @@ def main():
     results += incinerate_checks()
     results += life_dew_checks()
     results += mud_sport_checks()
+    results += punishment_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
