@@ -4247,6 +4247,23 @@ def present_checks():
              f"{heals} heals in 300; damage bands seen {sorted(tiers)}")]
 
 
+def water_sport_checks():
+    """Water Sport in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): after a trainer's Budew's Water Sport the
+    player's Charmander's Ember hits it half as hard, and so does the
+    trainer's AI's figure of a Fire move."""
+    from .test_fightai import battle
+    b = battle([("Budew", 26, "Natural Cure", ["Water Sport", "Absorb"])], [("Charmander", 26, "Blaze", ["Ember"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    bud, cha = b.b.cur(), b.p.cur()
+    ember = fs.move("Ember")
+    before = b.damage(cha, bud, ember, roll=15)
+    pl.status_move(b, bud, fs.move("Water Sport"), cha, True)
+    after = b.damage(cha, bud, ember, roll=15)
+    ok = before > 0 and abs(after - before / 2) <= 1 and bud.water_sport
+    return [("the readings' Water Sport halves Fire moves", ok, f"Ember's top roll {before} before, {after} after")]
+
+
 def main():
     results = []
 
@@ -4762,6 +4779,7 @@ def main():
     results += smelling_salts_checks()
     results += magic_coat_checks()
     results += present_checks()
+    results += water_sport_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

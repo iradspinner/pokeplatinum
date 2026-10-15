@@ -1079,6 +1079,8 @@ def status_move(b, att, mv, dfn, first):
             m.stages = dict.fromkeys(fs.STAGE_KEYS, 0)
     elif e == "HEAL_STATUS":
         fs.refresh(att)                  # Refresh cures its user's own poison, burn or paralysis
+    elif e == "HALVE_FIRE_DAMAGE":
+        fs.water_sport(att)              # Fire moves at half power while it stands (fightsim.sport_half)
     elif e == "APPLY_MAGIC_COAT":
         att.magic_coat = not fs.moves_last(b, first)  # this turn's coat, unless no battler acts after it
     elif e == "RANDOM_STAT_UP_2":
@@ -1229,7 +1231,7 @@ def mon_key(m):
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
     if m.rare:
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
-        key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye,
+        key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key

@@ -4376,6 +4376,27 @@ def check_present(results):
     results.append(("Present hits at its rolled power or heals a quarter", out == want, str(out)))
 
 
+def check_water_sport(results):
+    """Water Sport (approved 2026-10-14; effect script 210): while its user
+    stands, every Fire move's power is halved, the trainer's AI's figure
+    too; a second use fails, Baton Pass hands it on, and leaving ends it."""
+    out = {}
+    b, p, foe = battle(["Water Sport", "Baton Pass"], ["Ember"], {("b", "Ember"): [40] * 16})
+    b.st["water_sport"] = True
+    ember = fs.move("Ember")
+    out["before"] = (b.damage(foe, p, ember, roll=0), fightai.figure(b, foe, p, ember))
+    fs.status_move(b, p, fs.move("Water Sport"), foe, True)
+    out["after"] = (b.damage(foe, p, ember, roll=0), fightai.figure(b, foe, p, ember))
+    out["AI's second Water Sport"] = fightai.basic(b, p, foe, fs.move("Water Sport"), 0)
+    passed = fs.baton_state(p)
+    out["handed on"] = passed["water_sport"]
+    p.reset_volatile()
+    out["after leaving"] = (p.water_sport, b.damage(foe, p, ember, roll=0))
+    want = {"before": (40, 40), "after": (20, 20), "AI's second Water Sport": -10, "handed on": True,
+            "after leaving": (False, 40)}
+    results.append(("Water Sport halves Fire moves while its user stands", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -4643,6 +4664,7 @@ def main():
                   check_trainer_frustration, check_secret_power, check_snore,
                   check_raise_speed_hit, check_trump_card,
                   check_teeter_dance, check_smelling_salts, check_magic_coat, check_present,
+                  check_water_sport,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

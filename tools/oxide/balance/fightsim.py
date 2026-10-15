@@ -419,6 +419,10 @@ class Mon:
     # Miracle Eye (MOVE_EFFECT_MIRACLE_EYE): its raised evasion stops
     # counting, and Psychic moves meet its Dark type; cleared when it leaves.
     miracle_eye = False
+    # Water Sport (MOVE_EFFECT_WATER_SPORT): while it stands on the field
+    # every Fire move's power is halved (sport_half); cleared when it
+    # leaves, and handed on by Baton Pass.
+    water_sport = False
     # Lock-On and Mind Reader: on the Pokemon held, the turns left
     # (MOVE_EFFECT_LOCK_ON, 2 when used) and the holder's key
     # (lockOnTarget); cleared when it leaves.
@@ -489,7 +493,7 @@ class Mon:
             # statusVolatile (Foresight) and moveCopied (Mirror Move); a Baton
             # Pass hands on the Lock-On hold alone (baton_state).
             self.throat_chop = self.charged = self.locked_on = 0
-            self.minimized = self.foresight = self.smacked = self.miracle_eye = False
+            self.minimized = self.foresight = self.smacked = self.miracle_eye = self.water_sport = False
             self.lock_on_by = self.mirror = None
             if self.mimicked is not None:
                 # The party record still holds Mimic, with the PP its use left
@@ -3711,6 +3715,34 @@ def teeter_dance_others(b, att, mv, dfn, first):
             confusion_berry(m, b)
 
 
+def water_sport(att):
+    """Water Sport (effect script 210): its user is marked
+    (MOVE_EFFECT_WATER_SPORT) until it leaves, failing when it is already;
+    while any Pokemon on the field has the mark, every Fire move's power
+    is halved (sport_half). Until 2026-10-15 it did nothing (Ian approved
+    the fix)."""
+    if not att.water_sport:
+        att.water_sport = att.rare = True
+
+
+def sport_half(b, att, dfn, mv):
+    """The factor Water Sport puts on a Fire move (BattleSystem_CalcMoveDamage:
+    the power halved, in whole numbers, after Technician, while
+    BattleSystem_AnyBattlersWithMoveEffect finds the mark on any battler:
+    in a single battle the two Pokemon on the field are the hit's own);
+    the trainer's AI's figure meets it too, as the engine's estimate runs
+    the same routine. Looked at only in a fight where a Pokemon knows the
+    move (st["water_sport"])."""
+    if getattr(b, "doubles", False):
+        on = any(m.water_sport and m.alive() for m in b.p.on_field() + b.b.on_field())
+    else:
+        on = (att.water_sport and att.alive()) or (dfn.water_sport and dfn.alive())
+    if not on or move_type_used(att.ability, mv, att.ivs, att.item, b.weather) != "Fire":
+        return 1.0
+    p = technician(att, mv.power) if mv.power > 1 else 2
+    return (p // 2) / p
+
+
 def refresh(att):
     """Refresh (effect script 193, subscript_recover_psn_prz_brn): its user's
     own poison, bad poison, burn or paralysis is cured
@@ -4441,6 +4473,8 @@ def state_mult(b, att, dfn, mv):
         # 2026-10-14 it hit at full power whatever the target's HP (Ian
         # approved the fix).
         m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
+    if b.st.get("water_sport"):
+        m *= sport_half(b, att, dfn, mv)     # Water Sport on the field halves a Fire move's power
     if mv.effect == "HIGHER_POWER_WHEN_LOW_PP":
         # Trump Card: the row has the calculator's full-PP 40 (Oxide's
         # profile); the power rises as the PP runs down (trump_card_power).
@@ -5626,6 +5660,8 @@ def status_move(b, att, mv, dfn, first):
             m.stages = dict.fromkeys(STAGE_KEYS, 0)
     elif e == "HEAL_STATUS":
         refresh(att)
+    elif e == "HALVE_FIRE_DAMAGE":
+        water_sport(att)
     elif e == "APPLY_MAGIC_COAT":
         att.magic_coat = not moves_last(b, first)     # it fails when no battler acts after its user
     elif e == "RANDOM_STAT_UP_2":
@@ -5708,14 +5744,16 @@ def baton_state(mon):
     confusion, a Ghost's Curse and the Substitute with its HP
     (VOLATILE_CONDITION_BATON_PASSED); and of the move effects Leech Seed,
     Perish Song's count, Ingrain, Aqua Ring, a suppressed ability (Gastro
-    Acid), Heal Block's and Magnet Rise's turns (MOVE_EFFECT_BATON_PASSED).
+    Acid), Heal Block's and Magnet Rise's turns, Lock-On's hold and Water
+    Sport (MOVE_EFFECT_BATON_PASSED).
     Everything else (Taunt, Encore, Disable, Torment, Yawn, a bind, love,
     Salt Cure, Stockpile, Imprison) stays behind."""
     return {"stages": dict(mon.stages), "crit_stage": mon.crit_stage, "trapped_by": mon.trapped_by,
             "confused": mon.confused, "cursed": mon.cursed, "sub": mon.sub, "seeded": mon.seeded,
             "perish": mon.perish, "ingrained": mon.ingrained, "aqua_ring": mon.aqua_ring,
             "heal_block": mon.heal_block, "magnet_rise": mon.magnet_rise,
-            "locked_on": mon.locked_on, "lock_on_by": mon.lock_on_by, "rare": bool(mon.locked_on),
+            "locked_on": mon.locked_on, "lock_on_by": mon.lock_on_by, "water_sport": mon.water_sport,
+            "rare": bool(mon.locked_on or mon.water_sport),
             "suppressed": getattr(mon, "suppressed", False)}
 
 
@@ -7538,6 +7576,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
             "foresight_twin": foresight_twin, "ground_twin": ground_twin, "miracle_twin": miracle_twin,
             "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
+            "water_sport": any(move(m).effect == "HALVE_FIRE_DAMAGE" for mv in moves.values() for m in mv),
             "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo, "terrain": terrain}
 
 
