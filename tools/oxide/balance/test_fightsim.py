@@ -1295,6 +1295,64 @@ def check_protean(results):
                     f"Tackle) {changed}; after another Tackle {kept}; after leaving (types, spent, Ember) {back}"))
 
 
+def check_form_twins(results):
+    """The rows of a changed type or ability (batch 3's mechanism, approved
+    2026-10-14; prepare's form_twin, read by form_key): a Pokemon whose types
+    or ability the battle has changed meets moves, and attacks, on its twin
+    of that change, both ways, and takes its twin's Speed; both changed at
+    once with no twin for the pair, it reads the twin of its new types; left
+    with no type, it meets each move on the twin the move's type hits
+    neutrally and attacks on the one of another type than the move's;
+    leaving the field brings back its own types, ability and rows. A
+    suppressed Levitate holder reads its ability-blank twin."""
+    rows = {("p", "Tackle"): [20] * 16, ("p", "Ember"): [20] * 16, ("p", "Shadow Ball"): [0] * 16,
+            ("b", "Tackle"): [10] * 16, ("b", "Vine Whip"): [10] * 16}
+    b, p, foe = battle(["Tackle", "Ember", "Shadow Ball"], ["Tackle", "Vine Whip"], rows)
+    b.st["first_battle"] = True
+    foe.ability = "Levitate"
+    water, power, blank = "b0.0#fmWater@Levitate", "b0.0#fm@Huge Power", "b0.0#fm@"
+    normal, grass = "b0.0#fmNormal@Levitate", "b0.0#fmGrass@Levitate"
+    b.st["form_twin"] = {"b0.0": {"ability": "Levitate", "twins": {
+        (("Water",), "Levitate"): water, (None, "Huge Power"): power, (None, None): blank,
+        (("???",), "Levitate"): ((normal, ["Normal"]), (grass, ["Grass"]))}}}
+    for twin, mine, theirs, speed in ((water, 15, 12, 50), (power, 20, 30, 70), (blank, 25, 10, 50),
+                                      (normal, 22, 11, 50), (grass, 9, 14, 50)):
+        b.st["rows"][(None, "p0", twin)] = {"moves": {"Tackle": {"rolls": [mine] * 16},
+                                                     "Ember": {"rolls": [mine] * 16},
+                                                     "Shadow Ball": {"rolls": [0 if twin == normal else mine] * 16}}}
+        b.st["rows"][(None, twin, "p0")] = {"moves": {"Tackle": {"rolls": [theirs] * 16},
+                                                     "Vine Whip": {"rolls": [theirs] * 16}}}
+        b.st["speed"][(None, twin)] = speed
+    tackle, ember, ball, whip = (fs.move(n) for n in ("Tackle", "Ember", "Shadow Ball", "Vine Whip"))
+
+    def read():
+        return (b.damage(p, foe, tackle, roll=0), b.damage(foe, p, tackle, roll=0), b.row_speed(foe))
+    own = read()
+    fs.set_types(foe, ["Water"])
+    soaked = (list(foe.types), read())
+    fs.set_ability(b, foe, "Huge Power")
+    both = (foe.ability, foe.revealed, read())
+    foe.reset_volatile()
+    back = (list(foe.types), foe.ability, read())
+    fs.set_ability(b, foe, "Huge Power")
+    changed = read()
+    foe.reset_volatile()
+    fs.set_types(foe, ["???"])
+    typeless = (b.damage(p, foe, ember, roll=0), b.damage(p, foe, ball, roll=0),
+                b.damage(foe, p, tackle, roll=0), b.damage(foe, p, whip, roll=0))
+    foe.reset_volatile()
+    fs.suppress(b, foe)
+    blanked = (foe.ability, read())
+    foe.reset_volatile()
+    ok = (own == (20, 10, 50) and soaked == (["Water"], (15, 12, 50)) and both == ("Huge Power", "Huge Power", (15, 12, 50))
+          and back == (["Normal"], "Levitate", (20, 10, 50)) and changed == (20, 30, 70)
+          and typeless == (22, 9, 14, 11) and blanked == (None, (25, 10, 50)) and foe.ability == "Levitate")
+    results.append(("a changed type or ability reads its twin's rows and Speed until it leaves", ok,
+                    f"own (hit, hit back, Speed) {own}; Water {soaked}; Water and Huge Power {both}; after leaving "
+                    f"{back}; Huge Power alone {changed}; no type (Ember, Shadow Ball, its Tackle, its Vine Whip) "
+                    f"{typeless}; suppressed {blanked}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2578,7 +2636,7 @@ def main():
                   check_curse_and_rest, check_mist_and_intimidate, check_ai_fields, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
-                  check_roost, check_protean, check_magic_guard, check_liquid_ooze,
+                  check_roost, check_protean, check_form_twins, check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

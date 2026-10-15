@@ -1049,7 +1049,22 @@ def _name(x):
     return None if x is None else x.name
 
 
+def _form(m):
+    """A type or ability the battle changed (fightsim.set_types, set_ability,
+    suppress, Forecast): its types, whether its ability is suppressed, and
+    the ability its record holds. Empty while nothing has changed, so the
+    keys of a fight without these changes stay as they were."""
+    if not (getattr(m, "retyped", False) or getattr(m, "ability_was", None) is not None
+            or getattr(m, "suppressed", False)):
+        return ()
+    return ("form", tuple(m.types), m.suppressed, fs.raw_ability(m))
+
+
 def mon_key(m):
+    return _mon_key(m) + _form(m)
+
+
+def _mon_key(m):
     return (m.hp, m.status, m.sleep, m.toxic, tuple(m.stages.values()), m.confused, m.flinch,
             m.seeded, m.yawn, m.protect_run, m.sub, _name(m.charging), m.recharge,
             (m.lock[0].name, m.lock[1]) if m.lock else None, m.choice, m.taunt,
