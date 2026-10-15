@@ -545,6 +545,11 @@ class Mon:
     # a stage of Defense and Sp. Def lost at each turn's end, under the rare
     # flag (octolock).
     octolocked = False
+    # Whether it holds anything but the item its rows were made with since
+    # a move took, swapped or spent its item, so its rows come from its item
+    # twin (mark_unheld, Battle.row); kept through switching, as the item's
+    # loss is. Only a trainer's Pokemon has a twin.
+    unheld = False
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -815,6 +820,9 @@ class Battle:
     # added effects then reach nothing behind it (attack, _after_attack).
     # Set again at each attack, so a copy made between moves needs none.
     sub_hit = False
+    # Whether a Pokemon in this battle reads its item twin (Mon.unheld), so
+    # the rows look for one only then; kept by the battle's copies.
+    unheld = False
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -868,6 +876,18 @@ class Battle:
         fd = form_key(self, dfn, mv, defending=True) if dfn.formed else None
         if fa or fd:
             for a, d in ((fa or ak, fd or dk), (fa or ak, dk), (ak, fd or dk)):
+                w = self.weather if (self.weather, a, d) in rows else None
+                got = rows.get((w, a, d))
+                if got is not None:
+                    return got
+        if self.unheld and (att.unheld or dfn.unheld):
+            # A trainer's Pokemon whose item the battle took reads its item
+            # twin (mark_unheld), where nothing else has changed its key; a
+            # pair prepare() did not row with the twin keeps its own rows.
+            ua = item_key(self, att) if att.unheld and ak == att.key else None
+            ud = item_key(self, dfn) if dfn.unheld and dk == dfn.key else None
+            if ua or ud:
+                a, d = ua or ak, ud or dk
                 w = self.weather if (self.weather, a, d) in rows else None
                 got = rows.get((w, a, d))
                 if got is not None:
@@ -936,6 +956,11 @@ class Battle:
         twin = form_key(self, mon) if mon.formed else None
         if twin and ((self.weather, twin) in speed or (None, twin) in speed):
             key = twin
+        if self.unheld and mon.unheld and key == mon.key:
+            # its item twin's Speed, a Choice Scarf gone (mark_unheld)
+            twin = item_key(self, mon)
+            if twin and ((self.weather, twin) in speed or (None, twin) in speed):
+                key = twin
         return int(speed.get((self.weather, key)) or speed.get((None, key)) or 1)
 
     def faster(self, a, b):
@@ -3502,6 +3527,7 @@ def attack(b, att, mv, dfn, first):
             return               # an item with no fling power cannot be thrown (TryFling)
         gift = att.item
         consume(att, eaten=False)
+        mark_unheld(b, att)          # a trainer's flung item gone from its rows too (item twin)
     if gift is not None and mv.name == "Fling":
         b.flung = gift               # its effect after the hit (fling_effect)
     if not b.accuracy_hits(att, dfn, mv, first):
@@ -3626,6 +3652,8 @@ def attack(b, att, mv, dfn, first):
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
         b.last_dealt = dealt
+        if mv.effect in TAKES_FIRST and dealt > 0:
+            take_first(b, att, dfn, mv, lambda kind, n: b.rng.randrange(n))     # Knock Off's and Bug Bite's (take_first)
         dfn.hit_this_turn = (mv.cat, dealt)
         if dfn.bide:
             bide_store(dfn, dealt)       # a Bide user stores what it took
@@ -3953,8 +3981,6 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     # into damage (drain).
     if e in DRAIN:
         drain(b, att, dfn, int(dealt * DRAIN[e]))
-    if e == "EAT_BERRY" and dealt > 0:
-        pluck(b, att, dfn, lambda kind, n: b.rng.randrange(n))
     if e == "RECHARGE_AFTER":
         att.recharge = True
     if e in SELF_KO or e == "FINAL_GAMBIT":
@@ -3985,6 +4011,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         att.u_turn = True
     if e == "STEAL_HELD_ITEM" and dealt > 0:
         steal_item(att, dfn)             # a knockout too (MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE)
+        mark_unheld(b, dfn)              # a trainer's stolen item gone from its rows (item twin)
     if e in LATE_HIT:
         late_hit(b, att, dfn, mv, stripped, dealt)     # Fell Stinger's knockout, Anchor Shot's trap (late_hit)
     # A hit on a Substitute, even the one that broke it, sets off nothing in
@@ -4067,8 +4094,6 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
         dfn.bound, dfn.bound_by = 6 if att.item == "Grip Claw" else b.rng.randint(3, 6), att.key
-    if e == "REMOVE_HELD_ITEM":
-        knock_off(dfn)
 
 
 # The moves Sleep Talk never calls (Gen 4's list, by effect).
@@ -5187,6 +5212,110 @@ def _row_item(b, mon):
     """The item mon's calculator rows were made with (the player's rows are
     item-free)."""
     return (b.st["pokemon"].get(mon.key.split("#")[0]) or {}).get("item")
+
+
+# ---- a trainer's held item gone from its rows (batch 10, approved 2026-10-15) ----
+#
+# A trainer's rows are made with its held item, so a Charcoal, a Life Orb,
+# a Choice item, an Expert Belt or an Eviolite stays in them. Once the
+# battle takes the item away (the player's Knock Off, Thief, Covet, Trick or
+# Switcheroo, or the trainer's own Fling), the engine reads no item
+# (Battler_HeldItemEffect), so prepare() rows such a Pokemon a second time
+# with no item (its item twin, "<key>#ni"), both ways against every foe,
+# and the battle reads the twin while the Pokemon lacks the item its rows
+# were made with (Mon.unheld, set by mark_unheld). A fight where nothing can
+# take a trainer's item gets no twin.
+
+# The items the calculator's files name that never change a row the
+# simulator makes: White Herb and Clear Amulet answer only Intimidate and
+# stat drops, and the rows carry neither (CALC_ABILITY_OFF, no stages).
+ROW_NEUTRAL_ITEMS = frozenset({"White Herb", "Clear Amulet"})
+# The moves of a foe that take a trainer's item away, and the trainer's own
+# move that spends it.
+TAKES_ITEM = frozenset({"REMOVE_HELD_ITEM", "STEAL_HELD_ITEM", "SWITCH_HELD_ITEMS"})
+
+
+def _compact(name):
+    return re.sub(r"[^a-z0-9]", "", name.lower())
+
+
+@functools.lru_cache(maxsize=None)
+def row_items():
+    """The held items a calculator row can read, compacted (Generation 4's
+    "DeepSeaTooth" and Oxide's "Deep Sea Tooth" alike): every item a file
+    the Generation 4 row runs through asks for by name (hasItem, or an item
+    compared by name), and the type boosters of getItemBoostType; a
+    superset that costs at most a twin too many."""
+    base = os.path.join(data.ROOT, "tools", "oxide", "encounters", "calc", "calc")
+    found = set()
+    for rel in CALC_ROW_FILES:
+        with open(os.path.join(base, rel), encoding="utf-8") as fh:
+            text = fh.read()
+        for args in re.findall(r"hasItem\(([^)]*)\)", text):
+            found.update(re.findall(r"""['"]([^'"]+)['"]""", args))
+        found.update(re.findall(r"""item(?:\.name)? === ['"]([^'"]+)['"]""", text))
+        if "function getItemBoostType" in text:
+            body = text[text.index("function getItemBoostType"):text.index("exports.getItemBoostType")]
+            found.update(re.findall(r"case '([^']+)'", body))
+    return frozenset(_compact(n) for n in found)
+
+
+def row_item(item):
+    """Whether a trainer's rows read this held item, so its loss needs the
+    item twin: one row_items names, a Berry apart (a resist Berry's halving
+    the battle undoes itself, berry_works; no other Berry changes a row) and
+    the ROW_NEUTRAL_ITEMS."""
+    return bool(item) and not item.endswith("Berry") and item not in ROW_NEUTRAL_ITEMS \
+        and _compact(item) in row_items()
+
+
+def item_key(b, mon):
+    """The key of mon's item twin (prepare's item_twin), or None."""
+    return (b.st.get("item_twin") or {}).get(mon.key)
+
+
+def mark_unheld(b, *mons):
+    """After a move took, swapped or spent a held item: each of mons that
+    has an item twin reads it while it holds anything but the item its rows
+    were made with (Mon.unheld), and the battle notes that one may
+    (Battle.unheld), so Battle.row looks no further otherwise."""
+    twins = b.st.get("item_twin")
+    if not twins:
+        return
+    for m in mons:
+        if m.key in twins:
+            m.unheld = m.item != b.st["pokemon"][m.key].get("item")
+            if m.unheld:
+                b.unheld = True
+
+
+# Knock Off and Bug Bite (effect scripts 188 and 224): their own effect is
+# an on-hit side effect (ONE_HIT_TRIGGER_SECONDARY), which runs before the
+# target's held item is checked (AFTER_MOVE_EFFECT_DEFENDER_ITEM), so a
+# Sitrus Berry or a pinch Berry is knocked off or eaten by the user before
+# its holder can eat it.
+TAKES_FIRST = frozenset({"REMOVE_HELD_ITEM", "EAT_BERRY"})
+
+
+def take_first(b, att, dfn, mv, pick):
+    """Knock Off's and Bug Bite's effect once their hit has struck the target
+    itself, before the target's own Berry can act (berry_check comes
+    after): a resist Berry that halved the hit has been eaten already (the
+    hit's update of HP runs subscript_type_resist_berry), so neither move
+    finds it; then Bug Bite and Pluck eat the target's Berry (pluck), a
+    knockout included, and Knock Off takes the item of a target left
+    standing (knock_off), whose item twin it reads from then on
+    (mark_unheld). Until 2026-10-15 the target ate its Berry first, and a
+    trainer's knocked-off item went on boosting its rows (Ian approved the
+    fixes)."""
+    berry = resist_berry(b, dfn, mv)
+    if berry_works(b, dfn, berry):
+        consume(dfn)
+    if mv.effect == "EAT_BERRY":
+        pluck(b, att, dfn, pick)
+    elif dfn.alive():
+        knock_off(dfn)
+        mark_unheld(b, dfn)
 
 
 def resist_berry(b, dfn, mv):
@@ -6896,6 +7025,7 @@ def status_move(b, att, mv, dfn, first):
         att.baton = True
     elif e == "SWITCH_HELD_ITEMS":
         swap_items(att, dfn, mv)
+        mark_unheld(b, att, dfn)         # a trainer's item swapped away from its rows (item twin)
     elif e == "MAKE_SHARED_MOVES_UNUSEABLE":
         imprison(b, att)
     elif e in FORM_MOVES:
@@ -8991,6 +9121,29 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                     got = party_hits(d) if d in bkeys else hits(d)
                     if got:
                         pairs.append([d, t, got, w])
+    # A trainer's held item that the fight can take away (the player's or a
+    # partner's Knock Off, Thief, Covet, Trick or Switcheroo, or the
+    # Pokemon's own Fling) and that its rows read (row_item): a twin with no
+    # item ("<key>#ni"), rowed both ways in every weather against every foe,
+    # which the battle reads once the item is gone (mark_unheld).
+    item_twin = {}
+    takers = any(move(m).effect in TAKES_ITEM for k in pkeys + qkeys for m in moves[k])
+    for k in bkeys:
+        if not row_item(pokemon[k].get("item")):
+            continue
+        if not takers and not any(move(m).effect == "FLING" for m in moves[k]):
+            continue
+        t = f"{k}#ni"
+        pokemon[t] = dict(pokemon[k], item=None)
+        item_twin[k] = t
+        for w in weathers:
+            for d in pkeys + qkeys:
+                got = with_borrowed(k, party_hits(k))
+                if got:
+                    pairs.append([t, d, got, w])
+                got = with_borrowed(d, hits(d))
+                if got:
+                    pairs.append([d, t, got, w])
     # The types and abilities other moves and abilities can change
     # (FORM_CHANGES): a twin for each change the fight can produce, rowed
     # both ways against every foe (form_twins). None in a fight without them.
@@ -9033,7 +9186,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
             "foresight_twin": foresight_twin, "ground_twin": ground_twin, "miracle_twin": miracle_twin,
-            "trick_twin": trick_twin,
+            "trick_twin": trick_twin, "item_twin": item_twin,
             "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
             "water_sport": any(move(m).effect == "HALVE_FIRE_DAMAGE" for mv in moves.values() for m in mv),
             "mud_sport": any(move(m).effect == "HALVE_ELECTRIC_DAMAGE" for mv in moves.values() for m in mv),

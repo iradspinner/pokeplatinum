@@ -5618,6 +5618,41 @@ def check_substitute_hit(results):
     want = {"none": ("par", 0, 70), "left standing": (None, 20, 100), "broken": (None, 0, 100)}
     results.append(("a hit that breaks a Substitute gives no added effect", out == want, str(out)))
 
+
+def check_knock_off_first(results):
+    """Knock Off and Bug Bite (approved 2026-10-15; effect scripts 188 and
+    224): their own effect is an on-hit side effect, which runs before the
+    target's held item is checked (AFTER_MOVE_EFFECT_DEFENDER_ITEM), so in
+    the readings' battle the Sitrus Berry of a target the hit takes below
+    half is knocked off, or eaten by the Bug Bite user, before its holder
+    can eat it; and once a trainer's item is gone its rows are its item
+    twin's ("b0.0#ni"), so a knocked-off Charcoal stops boosting its Ember,
+    and a Choice Scarf stops raising its Speed."""
+    from . import perfectline as pl
+    out = {}
+    for name in ("Knock Off", "Bug Bite"):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [60] * 16}, hp=100)
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        foe.item = "Sitrus Berry"
+        p.hp = 40
+        pl.attack(b, p, fs.move(name), foe, True)
+        out[name] = (foe.hp, foe.item, foe.knocked_off, p.hp)
+    b, p, foe = battle(["Knock Off"], ["Ember"], {("p", "Knock Off"): [10] * 16, ("b", "Ember"): [30] * 16})
+    b.st["pokemon"]["b0.0"]["item"] = foe.item = "Choice Scarf"
+    b.st["pokemon"]["b0.0#ni"] = dict(b.st["pokemon"]["b0.0"], item=None)
+    b.st["rows"][(None, "b0.0#ni", "p0")] = {"moves": {"Ember": {"rolls": [25] * 16}}}
+    b.st["rows"][(None, "p0", "b0.0#ni")] = {"moves": {"Knock Off": {"rolls": [10] * 16}}}
+    b.st["speed"][(None, "b0.0#ni")] = 30
+    b.st["item_twin"] = {"b0.0": "b0.0#ni"}
+    before = (b.damage(foe, p, fs.move("Ember"), roll=0), b.speed(foe))
+    b.rng = FixedDice(0.5)
+    fs.attack(b, p, fs.move("Knock Off"), foe, True)
+    out["item twin"] = (before, (b.damage(foe, p, fs.move("Ember"), roll=0), b.speed(foe)), foe.item)
+    want = {"Knock Off": (40, None, True, 40), "Bug Bite": (40, None, False, 65),
+            "item twin": ((30, 50), (25, 30), None)}
+    results.append(("Knock Off and Bug Bite take the target's Berry before it eats it, and its rows lose the item",
+                    out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5904,7 +5939,7 @@ def main():
                   check_lunar_dance, check_grudge, check_octolock,
                   check_aurora_veil, check_teatime, check_assist,
                   check_snatch, check_sky_drop,
-                  check_substitute_hit,
+                  check_substitute_hit, check_knock_off_first,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

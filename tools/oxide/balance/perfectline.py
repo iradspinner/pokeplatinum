@@ -662,6 +662,7 @@ def attack(b, att, mv, dfn, first):
             return                       # an item with no fling power cannot be thrown (TryFling)
         gift = att.item
         fs.consume(att, eaten=False)     # spent, not eaten (Belch)
+        fs.mark_unheld(b, att)           # a trainer's flung item gone from its rows (fightsim.mark_unheld)
     if gift is not None and mv.name == "Fling":
         b.flung = gift                   # its effect after the hit (fightsim.fling_effect)
     if not accuracy_hits(b, att, dfn, mv, first):
@@ -812,6 +813,10 @@ def attack(b, att, mv, dfn, first):
         b.last_dealt = dealt
         if mv.effect == "INCINERATE" and dfn.alive():
             fs.incinerate(b, dfn, mv)    # its Berry burned before the target can eat it (fightsim.incinerate)
+        elif mv.effect in fs.TAKES_FIRST and dealt > 0:
+            # Knock Off's and Bug Bite's effect before the target's own Berry
+            # can act (fightsim.take_first).
+            fs.take_first(b, att, dfn, mv, lambda kind, n: b.dice.choice(kind, n))
         fs.berry_check(dfn, b)
         dfn.hit_this_turn = (mv.cat, dealt)
         if dfn.bide:
@@ -840,10 +845,6 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         # Ooze turns it into damage (fightsim.drain).
         gain = int(dealt * fs.DRAIN[e])
         fs.drain(b, att, dfn, int(gain * 1.3) if att.item == "Big Root" else gain)
-    if e == "EAT_BERRY" and dealt > 0:
-        # Bug Bite and Pluck eat the target's Berry and take its effect
-        # (fightsim.pluck), a Starf Berry's stat on the battle's dice.
-        fs.pluck(b, att, dfn, lambda kind, n: b.dice.choice(kind, n))
     if e == "RECHARGE_AFTER":
         att.recharge = True
     if e in fs.SELF_KO or e == "FINAL_GAMBIT":
@@ -878,6 +879,7 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         att.u_turn = True        # after a knockout and a Substitute's hit too (fightsim.attack)
     if e == "STEAL_HELD_ITEM" and dealt > 0:
         fs.steal_item(att, dfn)  # the player's Thief and Covet only (fightsim.steal_item)
+        fs.mark_unheld(b, dfn)   # a trainer's stolen item gone from its rows (fightsim.mark_unheld)
     if e in fs.LATE_HIT:
         fs.late_hit(b, att, dfn, mv, stripped, dealt)     # Fell Stinger's knockout, Anchor Shot's trap (fightsim.late_hit)
     # A hit on a Substitute, the one that broke it included, gives the
@@ -966,8 +968,6 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         # The count, 3 to 6 on the battle's dice and 6 with a Grip Claw, and
         # the binder, whose leaving ends it (fightsim.Mon.bound).
         dfn.bound, dfn.bound_by = 6 if att.item == "Grip Claw" else b.dice.bind(dfn.side), att.key
-    if e == "REMOVE_HELD_ITEM":
-        fs.knock_off(dfn)
 
 
 def status_move(b, att, mv, dfn, first):
@@ -1253,6 +1253,7 @@ def status_move(b, att, mv, dfn, first):
         att.baton = True
     elif e == "SWITCH_HELD_ITEMS":
         fs.swap_items(att, dfn, mv)      # the player's Trick and Switcheroo only (fightsim.swap_items)
+        fs.mark_unheld(b, att, dfn)      # a trainer's item swapped away from its rows (fightsim.mark_unheld)
     elif e == "MAKE_SHARED_MOVES_UNUSEABLE":
         fs.imprison(b, att)              # the foes' shared moves sealed while it stays (fightsim.imprison)
     elif e in fs.FORM_MOVES:
@@ -1320,6 +1321,8 @@ def clone_battle(b):
         c.magic_room = b.magic_room  # Magic Room's turns (fightsim.magic_room)
     if b.snatching:
         c.snatching = True           # a Snatch waits this turn (fightsim.snatch)
+    if b.unheld:
+        c.unheld = True              # a Pokemon reads its item twin (fightsim.mark_unheld)
     return c
 
 

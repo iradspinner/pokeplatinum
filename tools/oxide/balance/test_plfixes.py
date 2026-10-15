@@ -4740,6 +4740,39 @@ def dragon_tail_order_checks():
              f"(now in, HP the Gible lost or has left) {out}, want {want}")]
 
 
+def knock_off_first_checks():
+    """Knock Off and Bug Bite before the target's Berry, and a trainer's
+    item gone from its rows, in the readings' battle on the calculator's
+    real rows (approved 2026-10-15): a trainer's Machop holding a Sitrus
+    Berry, hit to 2 HP by the player's Knock Off, keeps 2 HP and loses the
+    Berry; hit so by the player's Bug Bite from a Vespiquen at half HP, the
+    Vespiquen eats it and heals. A trainer's Machop holding a Black Belt
+    hits the player's Pokemon less with its Karate Chop once Knock Off has
+    taken the Belt, by its item twin's row."""
+    out = {}
+    for name, user in (("Knock Off", "Absol"), ("Bug Bite", "Vespiquen")):
+        b, mach, att = b8_battle([("Machop", 30, "Guts", ["Tackle"], "Sitrus Berry")],
+                                 [(user, 30, "Pressure", [name])])
+        mach.item = "Sitrus Berry"
+        dmg = pl.damage_of(b, att, mach, fs.move(name), False, True, roll=15)
+        mach.hp = dmg + 2
+        att.hp = att.maxhp // 2
+        mine = att.hp
+        pl.attack(b, att, fs.move(name), mach, True)
+        out[name] = (mach.hp, mach.item, att.hp - mine)
+        if name == "Bug Bite":
+            gain = att.maxhp // 4
+    b, mach, absol = b8_battle([("Machop", 30, "Guts", ["Karate Chop"], "Black Belt")],
+                               [("Absol", 30, "Pressure", ["Knock Off"])])
+    belted = b.damage(mach, absol, fs.move("Karate Chop"), roll=15)
+    pl.attack(b, absol, fs.move("Knock Off"), mach, True)
+    bare = b.damage(mach, absol, fs.move("Karate Chop"), roll=15)
+    ok = (out["Knock Off"] == (2, None, 0) and out["Bug Bite"] == (2, None, gain) and mach.item is None
+          and bare < belted)
+    return [("the readings' Knock Off and Bug Bite act before the Berry, and the trainer's rows lose the item", ok,
+             f"(Machop's HP, its item, the user's heal) {out}; Karate Chop with the Belt {belted}, after Knock Off {bare}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -5781,6 +5814,7 @@ def main():
     results += sky_drop_checks()
     results += substitute_hit_checks()
     results += dragon_tail_order_checks()
+    results += knock_off_first_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
