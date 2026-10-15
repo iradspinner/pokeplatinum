@@ -471,6 +471,13 @@ KAIZO_SETUP_PP_NATIVES = {104, 106, 116, 254, 322, 339, 367, 455}
 # Screech, Charm, Sweet Scent, Feather Dance, Fake Tears, Metal Sound, Tickle
 # and Captivate.
 KAIZO_DEBUFF_PP_NATIVES = {103, 204, 230, 297, 313, 319, 321, 445}
+# The rest of the stat-lowering status moves at 5 PP and Defog at 1 (Ian's
+# values of 2026-10-15 for his ruling of 2026-10-02): Growl, String Shot,
+# SmokeScreen, Kinesis, Flash, Cotton Spore and Scary Face, and Defog.
+# Venom Drench, Play Nice, Confide, Baby-Doll Eyes, Noble Roar and Tearful
+# Look went to 5 with them; as Oxide's own moves (471 and up) they are
+# counted, not compared.
+RULING_DEBUFF_PP_NATIVES = {45, 81, 108, 134, 148, 178, 184, 432}
 # The native moves whose priority changed after Generation 4, at the modern
 # value (Ian, 2026-09-27, answer 4), read from the vendored calculator's
 # Generation 9 data: Protect, Detect and Endure +4, Extreme Speed +2, Fake
@@ -637,6 +644,12 @@ DIVERGED = {
             "offsets": (6,),  # pp
             "members": KAIZO_DEBUFF_PP_NATIVES,
             "why": "the stat-lowering status moves cut to 2 to 6 PP (Ian, 2026-09-27)",
+        },
+        {
+            "offsets": (6,),  # pp
+            "members": RULING_DEBUFF_PP_NATIVES,
+            "why": "the rest of the stat-lowering status moves at 5 PP and Defog at 1 "
+                   "(Ian's values of 2026-10-15 for his ruling of 2026-10-02)",
         },
         {
             "offsets": (10,),  # priority
