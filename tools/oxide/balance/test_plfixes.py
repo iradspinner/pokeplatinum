@@ -4703,6 +4703,21 @@ def parting_shot_checks():
              f"(on the field, Geodude's Attack and Sp. Atk stages, Bibarel untouched, newcomer hit) {got}")]
 
 
+def dragon_tail_checks():
+    """Dragon Tail in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Gible's hit drags a trainer's
+    Geodude out for its Bibarel, which meets the Stealth Rock on its side."""
+    b, geo, gib = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"]), ("Bibarel", 30, "Unaware", ["Tackle"])],
+                            [("Gible", 30, "Sand Veil", ["Dragon Tail"])])
+    b.b.hazards["rocks"] = 1
+    hp = geo.hp
+    pl.attack(b, gib, fs.move("Dragon Tail"), geo, True)
+    new = b.b.cur()
+    ok = geo.hp < hp and new.species == "Bibarel" and new.hp < new.maxhp
+    return [("the readings' Dragon Tail drags its target out", ok,
+             f"Geodude's HP {hp} to {geo.hp}; now in {new.species} at {new.hp} of {new.maxhp}")]
+
+
 def main():
     results = []
 
@@ -5243,6 +5258,7 @@ def main():
     results += defog_checks()
     results += strength_sap_checks()
     results += parting_shot_checks()
+    results += dragon_tail_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

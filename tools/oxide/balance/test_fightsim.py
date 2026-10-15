@@ -4950,6 +4950,39 @@ def check_parting_shot(results):
     results.append(("Parting Shot lowers both attacking stats and switches its user out", out == want, str(out)))
 
 
+def check_dragon_tail(results):
+    """Dragon Tail and Circle Throw (approved 2026-10-14; effect script 395):
+    after the hit the target is dragged out for a bench member, unless it
+    fainted, a Substitute took the hit, Suction Cups or Ingrain holds it, or
+    no one is left to come in; the Pokemon dragged in is the one whose
+    Rough Skin answers the hit, as the engine reads the slot after the
+    drag."""
+    out = {}
+    for case in ("plain", "Substitute", "Suction Cups", "Ingrain", "no bench", "fainted", "Rough Skin"):
+        b, p, foe = battle(["Dragon Tail"], ["Tackle"], {("p", "Dragon Tail"): [10] * 16}, hp=100)
+        b.rng = FixedDice(0.5)
+        if case != "no bench":
+            extra = fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Tackle"], "b")
+            b.b.mons.append(extra)
+        if case == "Substitute":
+            foe.sub = 50
+        elif case in ("Suction Cups",):
+            foe.ability = case
+        elif case == "Ingrain":
+            foe.ingrained = True
+        elif case == "fainted":
+            foe.hp = 5
+        elif case == "Rough Skin":
+            extra.ability = "Rough Skin"
+        mv = fs.move("Dragon Tail")
+        fs.attack(b, p, mv, foe, True)
+        fs.hit_aftermath(b, p, foe, mv, lambda kind, chance, victim: True, lambda kind, n: 0)
+        out[case] = (b.b.active, p.hp)
+    want = {"plain": (1, 100), "Substitute": (0, 100), "Suction Cups": (0, 100), "Ingrain": (0, 100),
+            "no bench": (0, 100), "fainted": (0, 100), "Rough Skin": (1, 88)}
+    results.append(("Dragon Tail drags its target out after the hit", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5225,6 +5258,7 @@ def main():
                   check_clear_smog, check_incinerate, check_life_dew,
                   check_mud_sport, check_punishment, check_sticky_web,
                   check_defog, check_strength_sap, check_parting_shot,
+                  check_dragon_tail,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

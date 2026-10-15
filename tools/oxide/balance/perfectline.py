@@ -854,6 +854,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         return
     if e == "CLEAR_SMOG":
         fs.clear_smog(dfn)       # every stage of the target back to 0 (fightsim.clear_smog)
+    if e == "FORCE_SWITCH_HIT":
+        fs.drag_out(b, att, dfn, lambda kind, n: b.dice.choice(kind, n))     # Dragon Tail's drag (fightsim.drag_out)
     if e == "DOUBLE_POWER_HEAL_SLEEP":
         fs.slap_wakes(dfn, mv)   # Wake-Up Slap's doubled hit wakes its target (fightsim.slap_wakes)
     if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":

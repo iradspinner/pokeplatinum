@@ -3461,6 +3461,26 @@ def clear_smog(dfn):
 
 
 @functools.lru_cache(maxsize=None)
+def drag_out(b, att, dfn, pick):
+    """Dragon Tail and Circle Throw (effect script 395,
+    subscript_force_switch_hit, run on the hit): unless the target fainted,
+    the user fell, the hit met a Substitute, the target has Suction Cups
+    (which a Mold Breaker passes) or Ingrain roots it, a trainer's target is
+    dragged out for a party member drawn at random (BtlCmd_TryDragonTail),
+    which meets the hazards as it comes in; with no one left to send in,
+    nothing happens. The hit has done its damage, so none of these fails the
+    move. In a double battle the drag is left to the double battles' own
+    fixes. Until 2026-10-15 the target stayed in (Ian approved the fix)."""
+    if getattr(b, "doubles", False) or not att.alive() or getattr(dfn, "ingrained", False) \
+            or (dfn.ability == "Suction Cups" and not mold(att, dfn)):
+        return
+    side = b.p if dfn.side == "p" else b.b
+    bench = side.bench()
+    if bench:
+        switch_in(b, side, side.mons.index(bench[pick("roar", len(bench))]))
+
+
+@functools.lru_cache(maxsize=None)
 def incinerable():
     """The Berries Incinerate burns (subscript_incinerate's range, Cheri to
     Rowap in generated/items.txt), by the names the battle gives items; the
@@ -3669,6 +3689,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         clear_smog(dfn)              # every stage of a target the hit itself reached back to 0
     if e == "INCINERATE":
         incinerate(b, dfn, mv)       # a Berry the target holds is burned up (incinerate)
+    if e == "FORCE_SWITCH_HIT":
+        drag_out(b, att, dfn, lambda kind, n: b.rng.randrange(n))     # Dragon Tail's drag (drag_out)
     if e == "DOUBLE_POWER_HEAL_SLEEP":
         slap_wakes(dfn, mv)          # Wake-Up Slap's doubled hit wakes its target (slap_wakes)
     if e == "DOUBLE_POWER_AND_CURE_PARALYSIS":
@@ -5034,6 +5056,12 @@ def hit_aftermath(b, att, dfn, mv, chance, pick):
         shell_bell(att, b.last_dealt)
         return
     after_hit(b, att, dfn, mv, b.last_dealt)
+    if mv.effect == "FORCE_SWITCH_HIT" and not getattr(b, "doubles", False):
+        # Dragon Tail's drag (drag_out) runs as the hit's added effect, before
+        # BattleSystem_TriggerAbilityOnHit, which reads the Pokemon now in the
+        # target's slot with the slot's damage flags still set, so a
+        # dragged-in Pokemon's Rough Skin or Static answers the hit.
+        dfn = (b.p if dfn.side == "p" else b.b).cur()
     contact_ability(b, att, dfn, mv, b.last_dealt, chance, pick)
 
 
