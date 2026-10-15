@@ -368,6 +368,13 @@ class Mon:
     # slot through switching): its slot can neither steal an item with
     # Thief or Covet nor swap one with Trick.
     knocked_off = False
+    # Stockpile's count, up to three (moveEffectsData.stockpileCount), and
+    # the Defense and Sp. Def stages it raised (stockpileDefBoosts and
+    # stockpileSpDefBoosts), which Spit Up and Swallow give back; left on the
+    # class while 0, and cleared when it leaves.
+    stockpile = 0
+    stockpile_def = 0
+    stockpile_spd = 0
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -399,6 +406,8 @@ class Mon:
 
     def reset_volatile(self):
         self.stages = dict.fromkeys(STAGE_KEYS, 0)
+        if self.stockpile:
+            self.stockpile = self.stockpile_def = self.stockpile_spd = 0
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
         self.rollout = 0
@@ -1794,6 +1803,59 @@ def rollout_after(att, mv, hit):
 # to 10). The decomp names its effect BATTLE_EFFECT_PSYWAVE, as pret's vanilla
 # data does; Psywave itself is RANDOM_DAMAGE_1_TO_150_LEVEL.
 MAGNITUDE_POWERS = {10: 5, 30: 10, 50: 20, 70: 30, 90: 20, 110: 10, 150: 5}
+# Spit Up's power by the stockpiles it spends (effect script 161: 100 each).
+SPIT_UP_POWERS = (100, 200, 300)
+
+
+def stockpile(mon):
+    """Stockpile (effect script 160, subscript_stockpile): it fails at three;
+    each use adds one and raises Defense and Sp. Def a stage each through the
+    stat-stage subscript (so Simple doubles them), counting a stage only when
+    it rose (one at +6 does not). Until 2026-10-15 there was no count: it
+    raised both every time and never failed (Ian approved the fix)."""
+    if mon.stockpile >= 3:
+        return
+    mon.stockpile += 1
+    if mon.stages["def"] < 6:
+        change_stages(mon, {"def": 1})
+        mon.stockpile_def += 1
+    if mon.stages["spd"] < 6:
+        change_stages(mon, {"spd": 1})
+        mon.stockpile_spd += 1
+
+
+def spend_stockpile(mon):
+    """Spit Up and Swallow (effect scripts 161 and 162) spend every
+    stockpile at once, before their hit or heal is tried, and take back one
+    stage of Defense and of Sp. Def for each that Stockpile raised, no lower
+    than -6 (OPCODE_SUB_TO_ZERO on the stored stage). The count spent."""
+    n = mon.stockpile
+    mon.stages["def"] = max(-6, mon.stages["def"] - mon.stockpile_def)
+    mon.stages["spd"] = max(-6, mon.stages["spd"] - mon.stockpile_spd)
+    mon.stockpile = mon.stockpile_def = mon.stockpile_spd = 0
+    return n
+
+
+def swallow(att):
+    """Swallow (effect script 162): with no stockpile it fails; otherwise
+    it spends them all (spend_stockpile) and restores a quarter of its
+    user's maximum HP for one, half for two and all of it for three
+    (BattleSystem_Divide by 1 << (3 - count)). Until 2026-10-15 it restored
+    a quarter whatever was stored, and spent nothing (Ian approved the
+    fix)."""
+    if att.stockpile:
+        heal(att, engine_divide(att.maxhp, 1 << (3 - spend_stockpile(att))))
+
+
+def spit_up_key(att):
+    """Spit Up with no stockpile fails before anything else ("failed to spit
+    up a thing"); otherwise it spends them (spend_stockpile) and hits at 100
+    power for each, from the calculator's row for that power ("<key>#su<power>",
+    which prepare adds), at its top roll (CalcMaxDamage has no variance).
+    None when it fails. Until 2026-10-15 it hit at its listed power of 1."""
+    if not att.stockpile:
+        return None
+    return f"{att.key}#su{100 * spend_stockpile(att)}"
 
 # The moves whose effect script sets the damage itself (res/battle/scripts/
 # effects): stat stages, screens, burn, items and critical hits never touch
@@ -2378,6 +2440,9 @@ def attack(b, att, mv, dfn, first):
         return                           # Burn Up or Double Shock without its type (lose_type)
     if dream_eater_fails(att, dfn, mv) or lost_focus(att, mv):
         return
+    spit = spit_up_key(att) if mv.effect == "SPIT_UP" else None
+    if mv.effect == "SPIT_UP" and spit is None:
+        return
     # Telepathy: its holder takes no damaging move from its partner
     # (BattleControllerPlayer_PriorityBlock, which Mold Breaker gets past),
     # a spread move's in a double battle; the message names the ability.
@@ -2458,7 +2523,14 @@ def attack(b, att, mv, dfn, first):
                                   mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
         crit = (b.rng.random() < CRIT_RATE[min(stage, 4)] and not crit_proof(att, dfn)
                 and not b.st.get("first_battle"))
-        dmg = b.damage(att, dfn, mv, crit=crit)
+        if spit is not None:
+            key, att.key = att.key, spit
+            try:
+                dmg = b.damage(att, dfn, mv, crit=crit, roll=15)     # Spit Up's row, its top roll
+            finally:
+                att.key = key
+        else:
+            dmg = b.damage(att, dfn, mv, crit=crit)
         if dmg is None:
             return
         dmg = use_damage(att, mv, dmg, hits)
@@ -4584,6 +4656,8 @@ def status_move(b, att, mv, dfn, first):
             dfn.seeded = True
     elif e == "PREVENT_HEALING":                             # Heal Block
         start_heal_block(att, dfn, mv)
+    elif e == "STOCKPILE":
+        stockpile(att)
     elif e in SELF_STAGES:
         change_stages(att, SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
@@ -4622,7 +4696,7 @@ def status_move(b, att, mv, dfn, first):
             att.hp, att.status, att.sleep, att.toxic = att.maxhp, "slp", 2, 0
             cure_berry(att, b)          # a Chesto or Lum Berry wakes it at once
     elif e == "SWALLOW":
-        heal(att, att.maxhp // 4)
+        swallow(att)
     elif e == "SET_LIGHT_SCREEN":
         if not own_side.screens["Light Screen"]:
             own_side.screens["Light Screen"] = 8 if att.item == "Light Clay" else 5
@@ -6109,6 +6183,20 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                 for w in weathers:
                     for d in bkeys:
                         pairs.append([dk, d, ["Magnitude"], w])
+    # Spit Up's power is 100 for each stockpile it spends (spit_up_key), so the
+    # calculator is asked once per count, each as its own attacker key
+    # ("<key>#su<power>") carrying that power, against every foe it can meet,
+    # on either side (the trainer's Spit Up users are most of them).
+    for k in list(pkeys) + list(qkeys) + list(bkeys):
+        if "Spit Up" in moves.get(k, ()):
+            foes = pkeys + qkeys if k in bkeys else bkeys
+            for power in SPIT_UP_POWERS:
+                dk = f"{k}#su{power}"
+                pokemon[dk] = dict(pokemon[k], move_data={"Spit Up": {
+                    "type": "Normal", "category": "Special", "basePower": power}})
+                for w in weathers:
+                    for d in foes:
+                        pairs.append([dk, d, ["Spit Up"], w])
     # The trainer's AI costs a move with BattleSystem_CalcMoveDamage, which
     # knows nothing of the abilities that take a move whole; the calculator's
     # row for such a Pokemon reads 0. So each player Pokemon with one gets a

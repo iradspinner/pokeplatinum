@@ -564,6 +564,9 @@ def attack(b, att, mv, dfn, first):
         return                           # Burn Up or Double Shock without its type (fightsim.lose_type)
     if fs.dream_eater_fails(att, dfn, mv) or fs.lost_focus(att, mv):
         return                           # Dream Eater awake or behind a Substitute; Focus Punch once hit
+    spit = fs.spit_up_key(att) if mv.effect == "SPIT_UP" else None
+    if mv.effect == "SPIT_UP" and spit is None:
+        return                           # Spit Up with nothing stored (fightsim.spit_up_key)
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
         return
     if mv.effect == fs.FUTURE_SIGHT:
@@ -666,9 +669,13 @@ def attack(b, att, mv, dfn, first):
             p = pick(powers, weights) if pick else (rng.choices(powers, weights)[0] if rng is not None else 70)
             att.key = f"{key}#m{p}"
             b.last_magnitude = p
+        if spit is not None:
+            att.key = spit                   # Spit Up's row for the power it spends
         try:
             roll = None
-            if b.dice.mode == "run":
+            if spit is not None:
+                roll = 15                    # CalcMaxDamage: Spit Up's top roll, no variance
+            elif b.dice.mode == "run":
                 # Dice that enumerate a turn's outcomes (plplan) take the
                 # damage of every roll, so rolls that land alike count as one.
                 grouped = getattr(b.dice, "roll_grouped", None)
@@ -916,6 +923,8 @@ def status_move(b, att, mv, dfn, first):
             dfn.seeded = True
     elif e == "PREVENT_HEALING":                             # Heal Block
         fs.start_heal_block(att, dfn, mv)
+    elif e == "STOCKPILE":
+        fs.stockpile(att)                # its count, up to three (fightsim.stockpile)
     elif e in fs.SELF_STAGES:
         fs.change_stages(att, fs.SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
@@ -951,7 +960,7 @@ def status_move(b, att, mv, dfn, first):
             att.hp, att.status, att.sleep, att.toxic = att.maxhp, "slp", 2, 0
             fs.cure_berry(att, b)       # a Chesto or Lum Berry wakes it at once
     elif e == "SWALLOW":
-        fs.heal(att, att.maxhp // 4)
+        fs.swallow(att)                  # by the stockpiles spent (fightsim.swallow)
     elif e == "SET_LIGHT_SCREEN":
         if not own_side.screens["Light Screen"]:
             own_side.screens["Light Screen"] = 8 if att.item == "Light Clay" else 5
@@ -1120,6 +1129,8 @@ def mon_key(m):
            getattr(m, "protean_type", None), getattr(m, "protean_used", False),
            # Last Resort works, and the AI rates it, by the moves used since it came in.
            getattr(m, "last_resort_count", 0) if getattr(m, "last_resort", False) else None)
+    if m.stockpile:
+        key += ("stockpile", m.stockpile, m.stockpile_def, m.stockpile_spd)
     return key + _form(m) if m.formed else key
 
 

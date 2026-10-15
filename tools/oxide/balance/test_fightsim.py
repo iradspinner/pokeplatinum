@@ -2275,6 +2275,45 @@ def check_chatter(results):
     results.append(("a Chatot's Chatter confuses 1 time in 100", got == want, f"(hit, confused) {got}"))
 
 
+def check_stockpile(results):
+    """Stockpile, Spit Up and Swallow (approved 2026-10-14; effect scripts
+    160 to 162): Stockpile counts to three, raising Defense and Sp. Def a
+    stage each time, and a fourth fails; from +5 Defense only the first
+    Defense stage counts. Swallow restores a quarter for one stockpile,
+    half for two and all for three, and Spit Up hits at 100 power for each
+    (its row for that power, at the top roll); both give the counted stages
+    back and empty the count, and with nothing stored both fail."""
+    def stock(times, def_stage=0):
+        b, p, foe = battle(["Stockpile", "Swallow", "Spit Up"], ["Tackle"], {})
+        p.stages["def"] = def_stage
+        for _ in range(times):
+            fs.status_move(b, p, fs.move("Stockpile"), foe, True)
+        return b, p, foe
+    out = {}
+    b, p, foe = stock(4)
+    out["four Stockpiles"] = (p.stockpile, p.stages["def"], p.stages["spd"])
+    for n in (0, 1, 2, 3):
+        b, p, foe = stock(n)
+        p.hp = 1
+        fs.status_move(b, p, fs.move("Swallow"), foe, True)
+        out[f"Swallow after {n}"] = (p.hp - 1, p.stockpile, p.stages["def"], p.stages["spd"])
+    b, p, foe = stock(2, def_stage=5)
+    counted = (p.stockpile, p.stockpile_def, p.stockpile_spd, p.stages["def"], p.stages["spd"])
+    fs.status_move(b, p, fs.move("Swallow"), foe, True)
+    out["from +5 Defense"] = counted + (p.stages["def"], p.stages["spd"])
+    for n in (0, 2):
+        b, p, foe = stock(n)
+        b.rng = FixedDice(0.5)
+        b.st["rows"][(None, "p0#su200", "b0.0")] = {"moves": {"Spit Up": {"rolls": list(range(30, 46))}}}
+        fs.attack(b, p, fs.move("Spit Up"), foe, True)
+        out[f"Spit Up after {n}"] = (foe.maxhp - foe.hp, p.stockpile, p.stages["def"])
+    want = {"four Stockpiles": (3, 3, 3), "Swallow after 0": (0, 0, 0, 0), "Swallow after 1": (25, 0, 0, 0),
+            "Swallow after 2": (50, 0, 0, 0), "Swallow after 3": (99, 0, 0, 0),
+            "from +5 Defense": (2, 1, 2, 6, 2, 5, 0), "Spit Up after 0": (0, 0, 0), "Spit Up after 2": (45, 0, 0)}
+    results.append(("Stockpile counts to three; Swallow and Spit Up spend it by the count", out == want,
+                    f"(HP or damage, count, Defense, Sp. Def ...) {out}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -3566,7 +3605,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter,
+                  check_pluck, check_chatter, check_stockpile,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,

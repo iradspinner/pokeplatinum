@@ -3362,6 +3362,36 @@ def chatter_checks():
              f"{confused} confused in {hits} hits")]
 
 
+def stockpile_checks():
+    """Stockpile and Spit Up in the readings' battle on the calculator's
+    real rows (approved 2026-10-14): a trainer's Swalot stockpiles twice and
+    its Spit Up then deals the top roll of its 200-power row, above the top
+    of its 100-power one, and gives its two Defense and Sp. Def stages back;
+    its Swallow after one Stockpile restores a quarter of its HP."""
+    from .test_fightai import battle
+    b = battle([("Swalot", 40, "Gluttony", ["Stockpile", "Spit Up", "Swallow"])], [("Bibarel", 40, "Unaware", ["Tackle"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    swa, bib = b.b.cur(), b.p.cur()
+    top = {p: b.st["rows"][(None, f"{swa.key}#su{p}", bib.key)]["moves"]["Spit Up"]["rolls"][-1] for p in (100, 200)}
+    for _ in range(2):
+        pl.use_move(b, swa, fs.move("Stockpile"), bib, True)
+    stored = (swa.stockpile, swa.stages["def"], swa.stages["spd"])
+    b.dice.one_crit = False
+    b.dice.rng = random.Random(3)            # no critical hit on this seed
+    pl.use_move(b, swa, fs.move("Spit Up"), bib, True)
+    dealt = bib.maxhp - bib.hp
+    after = (swa.stockpile, swa.stages["def"], swa.stages["spd"])
+    pl.use_move(b, swa, fs.move("Stockpile"), bib, True)
+    swa.hp = 1
+    pl.use_move(b, swa, fs.move("Swallow"), bib, True)
+    healed = swa.hp - 1
+    ok = (stored == (2, 2, 2) and dealt in (top[200], int(top[200] * 1.5)) and top[200] > top[100]
+          and after == (0, 0, 0) and healed == swa.maxhp // 4)
+    return [("the readings' Spit Up hits at its stockpiles' power; Swallow restores by them", ok,
+             f"stored {stored}, Spit Up dealt {dealt} (tops {top}), after {after}, Swallow restored {healed} "
+             f"of {swa.maxhp}")]
+
+
 def row_neutral_checks():
     """The abilities a changed-ability twin need not carry (fightsim.ROW_NEUTRAL)
     on the calculator's real rows (2026-10-14): a Pokemon with each of them,
@@ -3947,6 +3977,7 @@ def main():
     results += swap_items_checks()
     results += pluck_checks()
     results += chatter_checks()
+    results += stockpile_checks()
     results += row_neutral_checks()
 
     width = max(len(r[0]) for r in results)
