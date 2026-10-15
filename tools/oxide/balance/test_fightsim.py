@@ -5321,6 +5321,29 @@ def check_axe_kick(results):
     want = {(0.0, None): True, (0.5, None): False, (0.0, "Shield Dust"): False, "miss": (500, 460)}
     results.append(("Axe Kick confuses at its chance and crashes on a miss", out == want, str(out)))
 
+def check_always_critical(results):
+    """Frost Breath's kind (approved 2026-10-14; effect script 282): the
+    calculator's row is a critical hit already, so the hit takes no second
+    one, passes a screen and the target's raised stages as a critical hit
+    does, loses the row's 1.5 under Lucky Chant, and the trainer's AI
+    reckons it without one, as TrainerAI_CalcDamage does."""
+    out = {}
+    for case, value in (("plain", 0.0), ("light screen", 0.5), ("+2 Sp. Def", 0.5), ("lucky chant", 0.0)):
+        b, p, foe = battle(["Frost Breath"], ["Tackle"], {("p", "Frost Breath"): [15] * 16}, hp=500)
+        b.rng = FixedDice(value)
+        if case == "light screen":
+            b.b.screens["Light Screen"] = 5
+        if case == "+2 Sp. Def":
+            foe.stages["spd"] = 2
+        if case == "lucky chant":
+            b.b.lucky_chant = 5
+        fs.attack(b, p, fs.move("Frost Breath"), foe, True)
+        out[case] = 500 - foe.hp
+    b, p, foe = battle(["Frost Breath"], ["Tackle"], {("p", "Frost Breath"): [15] * 16}, hp=500)
+    out["AI's estimate"] = b.damage(p, foe, fs.move("Frost Breath"), ai_view=True)
+    want = {"plain": 15, "light screen": 15, "+2 Sp. Def": 15, "lucky chant": 10, "AI's estimate": 10}
+    results.append(("Frost Breath's row is its critical hit, read as one", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5602,7 +5625,7 @@ def main():
                   check_relic_song, check_clanging_scales, check_matcha_gotcha,
                   check_fell_stinger, check_prevent_escape_hit,
                   check_poltergeist, check_belch, check_first_impression,
-                  check_axe_kick,
+                  check_axe_kick, check_always_critical,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

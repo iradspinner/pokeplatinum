@@ -4999,6 +4999,30 @@ def axe_kick_checks():
     return [("the readings' Axe Kick confuses and crashes on a miss", ok,
              f"confused {confused}; crash (HP lost, target untouched) {crash}, the hit's top roll {hit}")]
 
+def always_critical_checks():
+    """Frost Breath in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Glalie's hit on a trainer's
+    Bibarel is its row's critical hit, behind a Light Screen and into +1
+    Sp. Def alike, two thirds of it under the trainer's Lucky Chant, and
+    the trainer's AI reckons the move without the critical hit."""
+    out = {}
+    for case in ("plain", "light screen", "+1 Sp. Def", "lucky chant"):
+        b, bib, gla = b8_battle([("Bibarel", 30, "Simple", ["Frost Breath"])], [("Glalie", 30, "Inner Focus", ["Frost Breath"])])
+        if case == "light screen":
+            b.b.screens["Light Screen"] = 5
+        if case == "+1 Sp. Def":
+            bib.stages["spd"] = 1
+        if case == "lucky chant":
+            b.b.lucky_chant = 5
+        top = b.rolls(gla, bib, fs.move("Frost Breath"))[-1]
+        hp = bib.hp
+        pl.attack(b, gla, fs.move("Frost Breath"), bib, True)
+        out[case] = (hp - bib.hp, top)
+    est = (b.damage(bib, gla, fs.move("Frost Breath"), ai_view=True), b.rolls(bib, gla, fs.move("Frost Breath"))[-1])
+    ok = (all(d == t for d, t in (out["plain"], out["light screen"], out["+1 Sp. Def"]))
+          and out["lucky chant"][0] == int(out["lucky chant"][1] / 1.5) and est[0] == int(est[1] / 1.5))
+    return [("the readings' Frost Breath is its row's critical hit", ok, f"(HP taken, row's top roll) {out}; AI's estimate {est}")]
+
 def main():
     results = []
 
@@ -5556,6 +5580,7 @@ def main():
     results += belch_checks()
     results += first_impression_checks()
     results += axe_kick_checks()
+    results += always_critical_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

@@ -272,7 +272,9 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
     # as fightsim's Battle.damage has it.
     if side.screens[screen] and not crit and mv.effect != "REMOVE_SCREENS" and att.ability != "Infiltrator":
         mult *= 0.5
-    if crit:
+    if mv.effect == fs.ALWAYS_CRIT:
+        mult *= fs.row_crit_mult(att, dfn, crit)    # the row's own critical hit (fightsim.row_crit_mult)
+    elif crit:
         mult *= CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
     mult *= fs.rollout_mult(att, mv)
     return max(1, int(base * mult))
@@ -696,7 +698,10 @@ def attack(b, att, mv, dfn, first):
             if att.item in ("Scope Lens", "Razor Claw"):
                 stage += 1
             rate = CRIT_RATE[min(stage, 4)]
-            crit = b.dice.bad("crit", rate) if trainer else b.dice.good(rate, "crit")
+            if mv.effect == fs.ALWAYS_CRIT:
+                crit = True          # Frost Breath's kind, forced (fightsim.sure_crit)
+            else:
+                crit = b.dice.bad("crit", rate) if trainer else b.dice.good(rate, "crit")
         key = att.key
         if mv.name == "Magnitude":
             # The power is rolled first, at the game's odds for either side

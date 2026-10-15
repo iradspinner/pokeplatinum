@@ -926,6 +926,11 @@ class Battle:
         rolls = self.rolls(att, dfn, mv)
         if rolls is None:
             return None
+        sure = mv.effect == ALWAYS_CRIT
+        if sure:
+            # The move's own critical hit unless told (sure_crit); none in
+            # the AI's estimate, which passes criticalMul 1 (TrainerAI_CalcDamage).
+            crit = False if ai_view else (sure_crit(self, att, dfn) if crit is None else crit)
         base = rolls[-1] if ai_view else (rolls[roll] if roll is not None else self.rng.choice(rolls))
         if base <= 0:
             return 0
@@ -956,7 +961,9 @@ class Battle:
             mult *= 2 / 3 if getattr(self, "doubles", False) else 0.5
         if getattr(self, "spread", False):
             mult *= 0.75
-        if crit:
+        if sure:
+            mult *= row_crit_mult(att, dfn, crit)     # the row's own critical hit (row_crit_mult)
+        elif crit:
             mult *= CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
         if not ai_view:
             # TrainerAI_CalcDamage has no Rollout case: the AI costs it at
@@ -3422,8 +3429,8 @@ def attack(b, att, mv, dfn, first):
     if dmg is None:
         stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                   mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
-        crit = (b.rng.random() < CRIT_RATE[min(stage, 4)] and not crit_proof(att, dfn, b)
-                and not b.st.get("first_battle"))
+        crit = ((mv.effect == ALWAYS_CRIT or b.rng.random() < CRIT_RATE[min(stage, 4)])
+                and not crit_proof(att, dfn, b) and not b.st.get("first_battle"))
         if spit is not None:
             key, att.key = att.key, spit
             try:
@@ -3717,6 +3724,37 @@ def crit_proof(att, dfn, b=None):
     return dfn.ability in ("Battle Armor", "Shell Armor") and not mold(att, dfn)
 
 
+# Flower Trick, Frost Breath, Storm Throw and Wicked Blow (effect script
+# 282): BattleSystem_CalcCriticalMulti makes every hit critical, unless
+# crit_proof or the first battle keeps it off (sure_crit).
+ALWAYS_CRIT = "ALWAYS_CRITICAL"
+
+
+def sure_crit(b, att, dfn):
+    """Whether an always-critical move's hit lands critical: always, unless
+    Battle Armor or Shell Armor (past Mold Breaker) or a Lucky Chant keeps
+    it off (crit_proof), or it is the first battle (BtlCmd_CalcCrit)."""
+    return not crit_proof(att, dfn, b) and not b.st.get("first_battle")
+
+
+def row_crit_mult(att, dfn, crit):
+    """What an always-critical move's damage takes on its row, which the
+    calculator makes critical (its profile's alwaysCrit list, at Oxide's
+    1.5, 2.25 for a Sniper) unless the target's Battle Armor or Shell Armor
+    holds, which Mold Breaker clears there: nothing more when the hit is
+    critical and its row is, the multiplier when the row is not, and the
+    multiplier taken out of a row that is when the hit is not (a Lucky
+    Chant, the first battle, the trainer's AI's estimate). Until 2026-10-15
+    the row's critical hit stood with every stage and screen read as for a
+    plain hit, and a further one in 24 critical hit came on top (Ian
+    approved the fix)."""
+    f = CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
+    row = not (dfn.ability in ("Battle Armor", "Shell Armor") and att.ability != "Mold Breaker")
+    if crit:
+        return 1.0 if row else f
+    return 1 / f if row else 1.0
+
+
 def psych_up(att, dfn):
     """Psych Up (effect script 143, BtlCmd_CopyStatStages): the user takes
     every one of the target's stat stages, accuracy and evasion included,
@@ -3745,6 +3783,8 @@ def crit_rate(b, att, dfn, mv):
     a side under Lucky Chant and in the first battle (BtlCmd_CalcCrit)."""
     if crit_proof(att, dfn, b) or b.st.get("first_battle"):
         return 0.0
+    if mv.effect == ALWAYS_CRIT:
+        return 1.0                       # forced (sure_crit)
     stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                                                mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
     if att.item in ("Scope Lens", "Razor Claw"):
