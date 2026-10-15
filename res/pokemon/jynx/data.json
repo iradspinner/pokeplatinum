@@ -54,6 +54,7 @@
             [ 39, "MOVE_BODY_SLAM" ],
             [ 41, "MOVE_PSYBEAM" ],
             [ 43, "MOVE_WATER_PULSE" ],
+            [ 47, "MOVE_FREEZING_GLARE" ],
             [ 49, "MOVE_PERISH_SONG" ],
             [ 55, "MOVE_ICE_BEAM" ],
             [ 57, "MOVE_ENERGY_BALL" ],

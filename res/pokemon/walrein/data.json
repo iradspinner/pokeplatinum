@@ -48,6 +48,7 @@
             [ 19, "MOVE_BODY_SLAM" ],
             [ 25, "MOVE_AURORA_BEAM" ],
             [ 32, "MOVE_SWAGGER" ],
+            [ 36, "MOVE_GLACIATE" ],
             [ 39, "MOVE_REST" ],
             [ 44, "MOVE_ICE_FANG" ],
             [ 46, "MOVE_BOUNCE" ],

@@ -50,6 +50,7 @@
             [ 18, "MOVE_ICY_WIND" ],
             [ 20, "MOVE_SPARK" ],
             [ 23, "MOVE_TAKE_DOWN" ],
+            [ 25, "MOVE_PARABOLIC_CHARGE" ],
             [ 28, "MOVE_BUBBLE_BEAM" ],
             [ 31, "MOVE_SIGNAL_BEAM" ],
             [ 34, "MOVE_DISCHARGE" ],

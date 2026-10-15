@@ -48,6 +48,7 @@
             [ 21, "MOVE_FAKE_TEARS" ],
             [ 27, "MOVE_ELECTROWEB" ],
             [ 29, "MOVE_SWIFT" ],
+            [ 31, "MOVE_PARABOLIC_CHARGE" ],
             [ 35, "MOVE_CHARGE" ],
             [ 38, "MOVE_THUNDERBOLT" ],
             [ 42, "MOVE_BATON_PASS" ],

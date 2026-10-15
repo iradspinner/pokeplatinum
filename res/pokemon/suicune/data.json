@@ -50,7 +50,8 @@
             [ 64, "MOVE_EXTRASENSORY" ],
             [ 66, "MOVE_SCALD" ],
             [ 71, "MOVE_SURF" ],
-            [ 73, "MOVE_ICE_BEAM" ]
+            [ 73, "MOVE_ICE_BEAM" ],
+            [ 75, "MOVE_ORIGIN_PULSE" ]
         ],
         "by_tm": [
             "TM01",

@@ -48,6 +48,7 @@
             [ 44, "MOVE_CRUNCH" ],
             [ 49, "MOVE_GIGA_IMPACT" ],
             [ 51, "MOVE_BODY_PRESS" ],
+            [ 58, "MOVE_HEAT_CRASH" ],
             [ 64, "MOVE_CHARM" ]
         ],
         "by_tm": [

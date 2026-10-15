@@ -97,6 +97,10 @@
                 "MOVE_NASTY_PLOT"
             ],
             [
+                38,
+                "MOVE_POWER_TRIP"
+            ],
+            [
                 41,
                 "MOVE_AIR_SLASH"
             ],

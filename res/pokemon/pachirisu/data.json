@@ -46,6 +46,7 @@
             [ 13, "MOVE_SPARK" ],
             [ 17, "MOVE_ENDURE" ],
             [ 21, "MOVE_SWIFT" ],
+            [ 23, "MOVE_ELECTRO_BALL" ],
             [ 25, "MOVE_SWEET_KISS" ],
             [ 29, "MOVE_DISCHARGE" ],
             [ 33, "MOVE_SUPER_FANG" ],

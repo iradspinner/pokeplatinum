@@ -1080,6 +1080,13 @@ R7_LOW_OFFENSE, R7_LOW_GOOD = 85, 2
 R32_POWER = 80
 # R37: an attack below this accuracy is very hard to justify on a list.
 R37_ACCURACY = 90
+# Ian's exceptions to R37: an attack under the bar that he chose for one
+# line by name, which check 19 passes over. Pelipper takes Hurricane at 58
+# rather than the accurate Aeroblast at 55 (Ian, 2026-10-14, on
+# stranded-moves.md). Head Smash on Cranidos, Rampardos and Relicanth has no
+# such ruling written down: the generator keeps it because no accurate move
+# of its type comes near its damage, and check 19 still lists it.
+R37_EXCEPTIONS = {("SPECIES_PELIPPER", "MOVE_HURRICANE"): "Ian, 2026-10-14, on stranded-moves.md"}
 # The late move (2026-09-28): each final stage learns a real move from here.
 LATE_FROM = 61
 # A move's stat fits the Pokemon when it is this share of its better attacking stat (R15).
@@ -1821,13 +1828,13 @@ def check18(version):
 def check19(version):
     """[(species, level, MOVE_X, accuracy)]: R37, an attack under
     R37_ACCURACY accuracy on an obtainable species' list above level 1 (the
-    one-hit KO moves are check 16's)."""
+    one-hit KO moves are check 16's), apart from Ian's R37_EXCEPTIONS."""
     out = []
     for sp in sorted(pool.obtainable()):
         for lv, m in learnset(version, sp):
             mm = moves().get(m)
             if lv >= 2 and mm and mm["class"] != "STATUS" and mm["accuracy"] \
-                    and mm["accuracy"] < R37_ACCURACY and not ohko(m):
+                    and mm["accuracy"] < R37_ACCURACY and not ohko(m) and (sp, m) not in R37_EXCEPTIONS:
                 out.append((sp, lv, m, mm["accuracy"]))
     return out
 

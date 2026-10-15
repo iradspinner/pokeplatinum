@@ -1,10 +1,12 @@
 # Stranded moves
 
-This answers Ian's request of 2026-10-14. He asked for the working moves among those `move-access.md` found no player can learn, with the lines or trainers each would fit on the learnset rules' ladder, for him to pick from before any list changes. Nothing in `res/` changes here. It was read from origin/oxide at 59b0dae66d, after the form-learnset and Wormadam changes and the first two batches of simulator fixes landed.
+This answers Ian's request of 2026-10-14. He asked for the working moves among those `move-access.md` found no player can learn, with the lines or trainers each would fit on the learnset rules' ladder, for him to pick from before any list changes. The page itself changed nothing in `res/`. It was read from origin/oxide at 59b0dae66d, after the form-learnset and Wormadam changes and the first two batches of simulator fixes landed.
 
 ## Summary
 
-**Outcome.** The request covers 88 moves: the audit's 53 ordinary moves that no species learns, and the 35 that only unobtainable species learn. The day's changes gave none of them a learner, so all 88 are still stranded. 82 run in Oxide's engine as written. This page proposes player homes for 48 of them, about a hundred homes in all. It keeps 6 for trainers only and recommends leaving the other 28 unused. Each home gives a line, a level, where the move stands on its type's ladder, and what it changes for that line.
+**Status (2026-10-14): applied.** Ian approved the placements: he "broadly agree[s] with all of your placements; I approve the changes." Commit f5672c2460 writes every player home in the tables below into the level-up lists, each at its proposed level: 117 entries for 46 moves, on 105 species and Rotom's five form records. The exceptions are these. Pelipper takes Hurricane at 58 in place of Aeroblast at 55, Ian's exception to R37. Of the either-or homes (the Overseer, 2026-10-14), Articuno takes Glaciate at 54 and not Freezing Glare, Alakazam takes Luster Purge at 58 and Psycho Boost stays trainer only, and the Onix line keeps Curse without Coil. Upper Hand's and Burning Jealousy's homes wait on in-game checks 81 and 83, and every trainer home waits on its boss's redesign. Each row that was not applied says so in its last column.
+
+**Outcome.** The request covers 88 moves: the audit's 53 ordinary moves that no species learns, and the 35 that only unobtainable species learn. The day's changes gave none of them a learner, so all 88 are still stranded. 82 ran in Oxide's engine as written when this was read, and 84 do since Eerie Spell and Burning Bulwark were fixed the same day. This page proposes player homes for 48 of them, about a hundred homes in all. It keeps 6 for trainers only and recommends leaving the other 28 unused. Each home gives a line, a level, where the move stands on its type's ladder, and what it changes for that line.
 
 **The ten homes that matter most.** Each fills a gap the line has in the main run, with a move that fits it. Five of them (Gallade, Floatzel, Jynx, Kleavor, Leafeon) sit a rung or more over the generator's ladder or ceiling; their tables say by how much, and why the gap is worth it.
 
@@ -15,7 +17,7 @@ This answers Ian's request of 2026-10-14. He asked for the working moves among t
 | Jynx | Freezing Glare, 47 | A wild Jynx (met at 35 or later) never learns Psychic. Its own list stops at Psybeam |
 | Kleavor | Mighty Cleave, 48 | Its Rock moves stop at Rock Blast, and its Stone Edge TM is 80% accurate. An accurate 95 is also a slicing move for its Sharpness |
 | Magnemite line | Rising Voltage, 28 | Met at 29 in Byron's split, the catch knows no special Electric move and learns none until Discharge at 38 |
-| Pelipper | Aeroblast, 55 | A special Pokemon whose Flying moves are all physical. This is the accurate alternative to Hurricane, which R37 bars |
+| Pelipper | Hurricane, 58 (Ian's pick over Aeroblast at 55) | A special Pokemon whose Flying moves are all physical. Ian took Hurricane as an exception to R37's 90% bar |
 | Minun | Electro Ball, 28 | It has no special Electric move before Thunderbolt at 38; Spark at 15 is physical |
 | Palkia | Origin Pulse, 50 in place of Heal Block | Met at 70, it has no Water move beyond Water Pulse. The catch would know this one |
 | Leafeon | Horn Leech, 47 | Its strongest physical Grass move is Grassy Glide (28) until Leaf Blade at 71 |
@@ -23,17 +25,16 @@ This answers Ian's request of 2026-10-14. He asked for the working moves among t
 
 **Best left unused (28).** Nine are settled already: the multi-hit cut, Psywave's cut, the named dead weight, terrain, and Struggle, which needs no learner. Bone Club is barred by R37 and is weak anyway. Eight are copies or worse versions of moves the lines already have: Supercell Slam beside Oxide's ThunderPunch, Dragon Hammer beside Oxide's Dragon Rush, Ice Hammer, False Surrender, Land's Wrath, Branch Poke, Autotomize and Tera Blast. Seven are status moves Ian's tiers rate niche or bad: Work Up, Laser Focus, Sharpen, Power Shift, Wonder Room, Spotlight and Conversion 2. The last three are weak or ruled out: Beat Up, Pay Day and Cut. The last table gives each one's reason.
 
-**What Ian picks.**
-1. Strike or keep homes in the tables below. Every player pick is a level-up entry and needs no new mechanic.
-2. Hurricane: grant Pelipper an exception to R37 at 58, as the rewrite kept Head Smash, or take Aeroblast instead.
+**What Ian picked (2026-10-14).**
+1. Every home in the tables below stays. Each player pick is a level-up entry and needs no new mechanic.
+2. Hurricane: Pelipper takes it at 58 as an exception to R37, as the rewrite kept Head Smash. The exception is recorded in `learncheck.R37_EXCEPTIONS`, which check 19 passes over.
 3. Upper Hand and Burning Jealousy: their homes wait for in-game checks 81 and 83.
 4. Trainer homes: each one changes a boss's team, so each is a question about that fight, asked once Ian wants it.
 
 **Difficulty.** The earliest homes sit in Gardenia's split. They go to lines that are not counterpieces to Roark or Gardenia in `boss-shapes.md`, so none is material for those two fights. A trainer home is material for its boss.
 
 **Next steps and time.**
-- Ian's read of the summary and the tables he cares about: about half an hour.
-- Placing his picks: one session, about an hour of data work, then a rebuild and the gate.
+- Upper Hand's and Burning Jealousy's homes: written once checks 81 and 83 pass, a few minutes each, then a rebuild.
 - Each trainer home Ian takes: that boss's team change, then its reading, at 1 to 2 hours of machine time a boss.
 
 ## How the homes were chosen
@@ -48,16 +49,16 @@ Oxide's numbers are used throughout. Several of these moves came from Hardlove's
 
 ## Engine and simulator notes
 
-82 of the 88 run in the engine as written. Six do not:
+84 of the 88 run in the engine as written. Four do not:
 
 | Move | Why it is out |
 |---|---|
 | Snap Trap | a plain 35-power hit; the binding is missing |
 | Steel Beam | a plain 140-power hit; the user's loss of half its HP is missing |
 | Synchronoise | a plain hit; the rule that it hits only a foe sharing a type is missing |
-| Eerie Spell | a plain 80-power sound move; its record promises a 3 PP drain that nothing in the engine does (the audit's column says it runs) |
-| Burning Bulwark | a plain Protect: the engine punishes contact only for Spiky Shield and Baneful Bunker (subscript_missed), so its burn never happens (the audit's column says it runs) |
 | Teleport | flees a wild battle and fails against a trainer |
+
+Eerie Spell and Burning Bulwark were on this list when it was read. Since 2026-10-14 Eerie Spell drains 3 PP from the target's last move after its hit (5af14b9ad6), and Burning Bulwark burns an attacker that makes contact with it (f7e79aac46). Their in-game checks (test-kit sets 85 and 86) wait on Ian, and neither move has a home on this page yet.
 
 Upper Hand and Burning Jealousy were broken when the balance rules were written. The move reworks made both work on 2026-10-07, but their in-game checks (81 and 83 in `ingame-checklist.md`) still wait on Ian, and the generator holds both off player lists until then. Their homes below are for after those checks.
 
@@ -98,7 +99,7 @@ Special, 70, 100%, 5 PP; burns every target whose stats rose that turn. Works in
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
 | Jupiter's Spiritomb (Spear Pillar, Stark Mountain), or Flint's Houndoom | | | It punishes the player's setup turn, which the player plans around. Material for that fight | trainer |
-| Mismagius | 50, Byron | by hand | Fire coverage for a Ghost type, whose Ghost moves Steel resists on Oxide's chart. Its first Fire move is Mystical Fire at 63. The burn lands only on a turn the foe set up | player |
+| Mismagius | 50, Byron | by hand | Fire coverage for a Ghost type, whose Ghost moves Steel resists on Oxide's chart. Its first Fire move is Mystical Fire at 63. The burn lands only on a turn the foe set up | player; not applied, waits on check 83 |
 
 #### Heat Crash
 Physical; power from the user's weight against the target's, 120 at five times down to 40. A TM for heavy lines in the later games. Gap: the calculator gives it no row, so the readings never let it hurt anything (open).
@@ -155,7 +156,7 @@ Special, 65, 100% in Oxide, 10 PP, hits both foes; always lowers Speed. Kyurem's
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
 | Spheal, Sealeo, Walrein | 36 | climbs from Aurora Beam | The line has no Icy Wind. A sure Speed drop for a slow tank, between Aurora Beam (25) and Ice Beam (43 to 52). Speed control is strong (Ian, 2026-10-13), so it comes after Fantina's split | player |
-| Articuno | 54, Candice | climbs from Ice Beam | Met at 50 from Acuity Cavern's draw, Articuno learns no move newer than Generation 4; this would be its first. Take this or Freezing Glare, not both | player |
+| Articuno | 54, Candice | climbs from Ice Beam | Met at 50 from Acuity Cavern's draw, Articuno learns no move newer than Generation 4; this would be its first. Take this or Freezing Glare, not both | player; taken over Freezing Glare (the Overseer, 2026-10-14) |
 | Candice's Froslass or Articuno | | | Speed control against the player's answers to her. Material for Candice | trainer |
 
 Regice would take it at 45, between Icy Wind at 9 and Ice Beam at 73, but only for the post-game.
@@ -176,8 +177,8 @@ Physical, 65, 100%, 15 PP, priority +3; works only when the target chose a prior
 
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
-| Mienfoo, Mienshao | 41, 42, Wake | by hand | An answer to trainers' priority (Fake Out, Sucker Punch, Aqua Jet, Bullet Punch, ExtremeSpeed), which Ian counts as part of planning. It adds no raw power | player |
-| Hawlucha | 30, Fantina | by hand | The same answer on a fast wrestler | player |
+| Mienfoo, Mienshao | 41, 42, Wake | by hand | An answer to trainers' priority (Fake Out, Sucker Punch, Aqua Jet, Bullet Punch, ExtremeSpeed), which Ian counts as part of planning. It adds no raw power | player; not applied, waits on check 81 |
+| Hawlucha | 30, Fantina | by hand | The same answer on a fast wrestler | player; not applied, waits on check 81 |
 
 #### Circle Throw
 Physical, 60, 95% in Oxide, 10 PP, priority -6; drags the target out for a random member of its party. Poliwrath and the Clobbopus line learn it in Legends Z-A. Gap: the readings never drag the target out (open).
@@ -276,7 +277,7 @@ Special, 90, 100%, 10 PP; freezes 10% of the time. Galarian Articuno's. No simul
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
 | Jynx | 47, Byron | climbs from Smoochum's Psychic; a wild Jynx jumps from Psybeam | Jynx's own list has only Psybeam (41) for its Psychic type. Smoochum's Psychic at 35 is lost when it evolves at 30, and a wild Jynx is met at 35 or later | player |
-| Articuno | 60, HQ | climbs | Psychic coverage that nods to its Galarian form. Take this or Glaciate, not both | player |
+| Articuno | 60, HQ | climbs | Psychic coverage that nods to its Galarian form. Take this or Glaciate, not both | player; not applied, Articuno takes Glaciate |
 
 #### Luster Purge
 Special, 95, 100%, 5 PP; lowers the target's Sp. Def half the time. Latios's; a strict upgrade on Psychic. No simulator gap.
@@ -300,7 +301,7 @@ Special, 140, 90%, 5 PP; lowers the user's Sp. Atk two stages. Deoxys's. No simu
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
 | Lucian's Alakazam or Espeon | | | A late nuke that fits the Psychic Elite. Material for Lucian | trainer |
-| Alakazam | 66, Volkner | climbs | A late nuke for a frail, fast line. Take this or Luster Purge | player |
+| Alakazam | 66, Volkner | climbs | A late nuke for a frail, fast line. Take this or Luster Purge | player; not applied, Alakazam takes Luster Purge and Psycho Boost stays trainer only (the Overseer, 2026-10-14) |
 
 ### Dark
 
@@ -487,7 +488,7 @@ Special, 100, 95%, 5 PP; a high critical-hit ratio. Lugia's. It is the accurate 
 
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
-| Pelipper | 55, Candice | climbs | A Pelipper evolved at 25 never learns Air Slash, and its Flying moves (Wing Attack, Fly, Acrobatics) are physical on a special Pokemon. This answer passes R37; Hurricane, its later-game move, does not | player |
+| Pelipper | 55, Candice | climbs | A Pelipper evolved at 25 never learns Air Slash, and its Flying moves (Wing Attack, Fly, Acrobatics) are physical on a special Pokemon. This answer passes R37; Hurricane, its later-game move, does not | player; not applied, Ian chose Hurricane at 58 |
 | Noctowl | 63, Galactic | climbs from Air Slash | A late upgrade for a weak line on Air Slash (32) | player |
 | Cynthia's Togekiss | | | Material for Cynthia | trainer |
 
@@ -508,7 +509,7 @@ Status, 3 PP in Oxide; raises Attack, Defense and accuracy a stage. Furret learn
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
 | Furret | 25, Gardenia | utility, allowed | A weak line's niche: Adaptability doubles its type bonus, and Coil makes Slam (28) and Body Slam (34) hit harder | player |
-| Onix, Steelix | 36, Maylene | utility, allowed | The rock snake: a Curse (Steelix, 38) without the Speed loss, with accuracy for the Iron Tail TM (75%). Take this or keep Curse | player |
+| Onix, Steelix | 36, Maylene | utility, allowed | The rock snake: a Curse (Steelix, 38) without the Speed loss, with accuracy for the Iron Tail TM (75%). Take this or keep Curse | player; not applied, the line keeps Curse (the Overseer, 2026-10-14) |
 
 ### Fairy
 
@@ -526,7 +527,7 @@ Shaymin would fit too, but only in the post-game.
 
 | Move | Why not the player | Trainer homes |
 |---|---|---|
-| Hurricane | 80% (R37): the generator never adds an attack under 90%. Ian may except Pelipper at 58, where it climbs | Jupiter's planned Drizzle Zapdos, or an ordinary rain team's Pelipper: in rain it never misses |
+| Hurricane | 80% (R37): the generator never adds an attack under 90%. Ian excepted Pelipper at 58, where it climbs, and that home is applied (2026-10-14) | Jupiter's planned Drizzle Zapdos, or an ordinary rain team's Pelipper: in rain it never misses |
 | Zap Cannon | 50% (R37); Ian named it welcome on trainers (2026-10-06) | A trainer's Magnezone with Lock-On (Byron's, Volkner's or Cyrus's at Galactic HQ). The readings do not yet model Lock-On's sure hit |
 | Inferno | 50% (R37) | A late Fire trainer's Magmortar (Ace Trainers Keenan and Henry) or Flint's Ninetales: a coin-flip sure burn |
 | Misty Explosion | it knocks its user out (R26). Its Oxide power is 200, from Hardlove's data; Sword and Shield's is 100 | The Tyche and Hermes double, whose theme is Protect beside Explosion, or Saturn's Mr. Mime as his one forced trade |

@@ -44,6 +44,7 @@
             [ 18, "MOVE_MIND_READER" ],
             [ 20, "MOVE_KARATE_CHOP" ],
             [ 22, "MOVE_SWAGGER" ],
+            [ 27, "MOVE_HEART_STAMP" ],
             [ 29, "MOVE_FORCE_PALM" ],
             [ 32, "MOVE_HI_JUMP_KICK" ],
             [ 34, "MOVE_AXE_KICK" ],

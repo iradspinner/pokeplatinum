@@ -73,6 +73,10 @@
                 "MOVE_BULK_UP"
             ],
             [
+                30,
+                "MOVE_CIRCLE_THROW"
+            ],
+            [
                 35,
                 "MOVE_TAUNT"
             ],

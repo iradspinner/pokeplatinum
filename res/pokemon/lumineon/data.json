@@ -50,6 +50,7 @@
             [ 35, "MOVE_AQUA_RING" ],
             [ 37, "MOVE_SIGNAL_BEAM" ],
             [ 42, "MOVE_WHIRLPOOL" ],
+            [ 45, "MOVE_FILLET_AWAY" ],
             [ 48, "MOVE_U_TURN" ],
             [ 50, "MOVE_CRUNCH" ],
             [ 53, "MOVE_BOUNCE" ],

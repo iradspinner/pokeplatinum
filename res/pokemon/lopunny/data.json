@@ -56,6 +56,7 @@
             [ 48, "MOVE_STRENGTH" ],
             [ 51, "MOVE_HEADBUTT" ],
             [ 54, "MOVE_SECRET_POWER" ],
+            [ 56, "MOVE_THUNDEROUS_KICK" ],
             [ 59, "MOVE_LOW_SWEEP" ],
             [ 61, "MOVE_DRAIN_PUNCH" ]
         ],

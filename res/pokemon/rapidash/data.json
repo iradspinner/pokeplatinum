@@ -53,6 +53,7 @@
             [ 37, "MOVE_HEAT_WAVE" ],
             [ 40, "MOVE_BLAZE_KICK" ],
             [ 42, "MOVE_BOUNCE" ],
+            [ 44, "MOVE_FIRE_LASH" ],
             [ 45, "MOVE_POISON_JAB" ],
             [ 47, "MOVE_DRILL_RUN" ],
             [ 53, "MOVE_OVERHEAT" ],

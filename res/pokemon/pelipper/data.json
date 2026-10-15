@@ -57,6 +57,7 @@
             [ 50, "MOVE_TAILWIND" ],
             [ 52, "MOVE_FLY" ],
             [ 57, "MOVE_MUDDY_WATER" ],
+            [ 58, "MOVE_HURRICANE" ],
             [ 59, "MOVE_U_TURN" ],
             [ 61, "MOVE_ACROBATICS" ],
             [ 67, "MOVE_BITE" ],

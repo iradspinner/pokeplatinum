@@ -52,6 +52,7 @@
             [ 25, "MOVE_PSYBEAM" ],
             [ 29, "MOVE_SUBSTITUTE" ],
             [ 32, "MOVE_RECYCLE" ],
+            [ 33, "MOVE_MYSTICAL_POWER" ],
             [ 36, "MOVE_TRICK" ],
             [ 39, "MOVE_PSYCHIC" ],
             [ 41, "MOVE_MAGICAL_LEAF" ],

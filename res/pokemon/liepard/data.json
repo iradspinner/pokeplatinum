@@ -93,6 +93,10 @@
                 "MOVE_HONE_CLAWS"
             ],
             [
+                29,
+                "MOVE_POWER_TRIP"
+            ],
+            [
                 34,
                 "MOVE_SLASH"
             ],

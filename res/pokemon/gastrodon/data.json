@@ -55,6 +55,7 @@
             [ 43, "MOVE_EARTH_POWER" ],
             [ 45, "MOVE_BULLDOZE" ],
             [ 50, "MOVE_ICE_BEAM" ],
+            [ 52, "MOVE_THOUSAND_WAVES" ],
             [ 54, "MOVE_RECOVER" ],
             [ 58, "MOVE_SKITTER_SMACK" ],
             [ 60, "MOVE_ROCK_TOMB" ],

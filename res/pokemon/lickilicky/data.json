@@ -47,6 +47,7 @@
             [ 25, "MOVE_DISABLE" ],
             [ 29, "MOVE_SLAM" ],
             [ 33, "MOVE_ROLLOUT" ],
+            [ 37, "MOVE_CHIP_AWAY" ],
             [ 41, "MOVE_REFRESH" ],
             [ 45, "MOVE_SCREECH" ],
             [ 49, "MOVE_POWER_WHIP" ],

@@ -675,3 +675,7 @@ Finished lines from Phase 4's element 5, 6 and 7 entries, verbatim.
   - The Expert routines for moves added since Platinum are merged (170b5473a), and Ian's eleven judgment calls get none; the entry is in the archive.
 - [x] **7. Items, a curated subset**: done (2026-09-27 and 2026-09-28); the entry and Ian's answers on its follow-up are in the archive. For element 6: the AI's scoring knows none of the new held items (the branches' reports list which change a decision).
   - The natives' 17 hidden abilities are written (2026-09-27, `cloud/element5-hidden-abilities`; the entry is in the archive, the report is the branch's last commit; test kit Abilities page 3).
+
+## Finished on 2026-10-14
+
+- [x] **Form records and dead moves** (`move-access.md`, Ian, 2026-10-14): eleven form records copy their base lists, Sky Shaymin and the Deoxys forms keeping their own moves, and Sandy and Trash Wormadam get their own lists for his look (`overseer-form-learnsets`); then the stranded moves' homes he picks (`stranded-moves.md`, half written) and Slugma evolving at 30. Done the same day: the form records and the kept moves (8251af285), Land Shaymin's Seed Flare and the Protect flags of Electro Ball and Smack Down (666a06b8c), Slugma at 30 (94ccafc69), Wormadam's cloaks with Plant's Quiver Dance at 36 (59b0dae66), and 117 stranded-move homes (7d27322f4).

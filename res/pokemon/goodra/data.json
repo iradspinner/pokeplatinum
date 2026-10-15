@@ -113,6 +113,10 @@
                 "MOVE_SLUDGE_BOMB"
             ],
             [
+                64,
+                "MOVE_CORE_ENFORCER"
+            ],
+            [
                 66,
                 "MOVE_OUTRAGE"
             ],
