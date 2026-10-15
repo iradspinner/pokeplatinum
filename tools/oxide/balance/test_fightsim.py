@@ -5503,6 +5503,26 @@ def check_teatime(results):
     want = {"both": (200, None, True, "Sitrus Berry", 1, None, True), "Embargo": (1, None, None, True)}
     results.append(("Teatime feeds every Pokemon its own Berry", out == want, str(out)))
 
+def check_assist(results):
+    """Assist (approved 2026-10-14; effect script 180): it uses one of its
+    party members' moves, picked at random, fainted members' too, never a
+    move that calls another; with none to call it fails."""
+    out = {}
+    b, p, foe = battle(["Assist"], ["Tackle"], {("p", "Tackle"): [10] * 16}, hp=500)
+    b.rng = FixedDice(0.5)
+    fs.use_move(b, p, fs.move("Assist"), foe, True)
+    out["alone"] = foe.hp
+    b, p, foe = battle(["Assist"], ["Tackle"], {("p", "Tackle"): [10] * 16}, hp=500)
+    b.rng = FixedDice(0.5)
+    mate = fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Metronome", "Tackle"], "p")
+    mate.hp = 0
+    b.p.mons.append(mate)
+    b.st["rows"][(None, "p0", "b0.0")]["moves"]["Tackle"] = {"rolls": [10] * 16}     # prepare's borrowed row
+    fs.use_move(b, p, fs.move("Assist"), foe, True)
+    out["a fainted mate's Tackle"] = (foe.hp, p.pp["Assist"])
+    want = {"alone": 500, "a fainted mate's Tackle": (490, fs.move("Assist").pp - 1)}
+    results.append(("Assist uses a party member's move", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5787,7 +5807,7 @@ def main():
                   check_axe_kick, check_always_critical,
                   check_clangorous_soul, check_heart_swap, check_heal_pulse,
                   check_lunar_dance, check_grudge, check_octolock,
-                  check_aurora_veil, check_teatime,
+                  check_aurora_veil, check_teatime, check_assist,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

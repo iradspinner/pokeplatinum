@@ -416,7 +416,9 @@ def _use_move(b, att, mv, dfn, first):
     if fs.commit_move(att, mv):
         return                       # Last Resort before every other move was used
     if mv.effect in fs.CALLERS:
-        mv = fs.called_move(b, att, mv, prev)     # Mirror Move's and Copycat's copy, run as its own (fightsim.called_move)
+        # Mirror Move's and Copycat's copy, or Assist's pick on the battle's
+        # dice, run as its own (fightsim.called_move).
+        mv = fs.called_move(b, att, mv, prev, lambda kind, n: b.dice.choice(kind, n))
         if mv is None:
             return
         fs.mark_hit(b, mv, dfn, True)

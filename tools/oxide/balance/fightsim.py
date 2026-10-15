@@ -2429,8 +2429,8 @@ def _forbidden_moves():
 
 
 # The status moves that use another move as their own, run in place of
-# the move chosen (called_move): Mirror Move and Copycat.
-CALLERS = frozenset({"COPY_MOVE", "USE_LAST_USED_MOVE"})
+# the move chosen (called_move): Mirror Move, Copycat and Assist.
+CALLERS = frozenset({"COPY_MOVE", "USE_LAST_USED_MOVE", "USE_RANDOM_ALLY_MOVE"})
 # Move_IsInvoker: the moves that call another, which Copycat will not copy.
 INVOKERS = frozenset({"MOVE_SLEEP_TALK", "MOVE_COPYCAT", "MOVE_ASSIST", "MOVE_ME_FIRST", "MOVE_MIRROR_MOVE",
                       "MOVE_METRONOME"})
@@ -2455,7 +2455,7 @@ def metronome_callable(b, att, mv):
             and not move_heal_blocked(att, mv) and mv.const not in _forbidden_moves()[1])
 
 
-def called_move(b, att, mv, prev=None):
+def called_move(b, att, mv, prev=None, pick=None):
     """The move a calling move uses in its place, or None when it fails.
     Mirror Move (effect script 9, BtlCmd_SetMirrorMove): the last move with
     MOVE_FLAG_CAN_MIRROR_MOVE aimed at its user since it, or a foe, came in
@@ -2467,7 +2467,22 @@ def called_move(b, att, mv, prev=None):
     The called move runs as the user's own, spending no PP of its own, on
     the foe in front (BattleSystem_Defender); the user's last move stays the
     calling move (movePrevByBattler is moveTemp). Until 2026-10-15 both did
+    nothing (Ian approved the fix).
+
+    Assist (effect script 180, BtlCmd_TryAssist): one of the moves its
+    user's party members know, every member but the user, a fainted one
+    too, picked at random among all of them, a move two members know
+    counting twice (pick(kind, n), the battle's dice), never one that calls
+    another (Move_IsInvoker) or one Metronome could not call
+    (metronome_callable); with none it fails. Until 2026-10-15 it did
     nothing (Ian approved the fix)."""
+    if mv.effect == "USE_RANDOM_ALLY_MOVE":
+        side = b.p if att.side == "p" else b.b
+        pool = [m for mate in side.mons if mate is not att for m in mate.moves
+                if m.const not in INVOKERS and metronome_callable(b, att, m)]
+        if not pool:
+            return None
+        return pool[pick("assist", len(pool))] if pick is not None and len(pool) > 1 else pool[0]
     if mv.effect == "COPY_MOVE":
         got = att.mirror
         return got if got is not None and got.effect not in NO_ENCORE else None
@@ -3265,7 +3280,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     if commit_move(att, mv):
         return                   # Last Resort before every other move was used
     if mv.effect in CALLERS:
-        mv = called_move(b, att, mv, prev)
+        mv = called_move(b, att, mv, prev, lambda kind, n: b.rng.randrange(n))
         if mv is None:
             return               # nothing to call: it fails
         mark_hit(b, mv, dfn, True, targets)     # the called move is the last to hit its target (moveHit)
@@ -8466,6 +8481,12 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             extra += [m for d in foes for m in hits(d)]
         if any(move(m).effect == "NATURE_POWER" for m in moves[k]):
             extra.append(nature_power_move(terrain))
+        if k not in bkeys and any(move(m).effect == "USE_RANDOM_ALLY_MOVE" for m in moves[k]):
+            # Assist uses its party's moves (called_move): the player's or a
+            # partner's user carries its party mates' damaging moves, as a
+            # trainer's rows carry its party's already (party_hits).
+            mates = pkeys if k in pkeys else qkeys
+            extra += [m for d in mates if d != k for m in hits(d)]
         if extra:
             borrowed[k] = list(dict.fromkeys(extra))
 

@@ -5125,6 +5125,22 @@ def teatime_checks():
     return [("the readings' Teatime feeds both their Berries", got == (None, True, None, True, 1),
              f"(Bibarel's item, eaten, Geodude's item, eaten, its Attack) {got}")]
 
+def assist_checks():
+    """Assist in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel's Assist uses its Staravia's
+    move, Quick Attack or Peck as the battle's dice pick, into a trainer's
+    Geodude, as the Bibarel's own."""
+    out = []
+    for pick in (0, 1):
+        b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                                [("Bibarel", 30, "Unaware", ["Assist"]), ("Staravia", 30, "Intimidate", ["Quick Attack", "Peck"])])
+        b.dice.choice = lambda kind, n, pick=pick: pick if kind == "assist" else 0
+        hp = geo.hp
+        pl.use_move(b, bib, fs.move("Assist"), geo, True)
+        out.append((hp - geo.hp, bib.last.name if bib.last else None))
+    ok = out[0][0] > 0 and out[1][0] > 0 and out[0][0] != out[1][0]
+    return [("the readings' Assist uses a party member's move", ok, f"(HP taken, last move) for each pick {out}")]
+
 def main():
     results = []
 
@@ -5691,6 +5707,7 @@ def main():
     results += octolock_checks()
     results += aurora_veil_checks()
     results += teatime_checks()
+    results += assist_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
