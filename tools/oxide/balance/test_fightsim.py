@@ -2472,6 +2472,25 @@ def check_minimize_stomp(results):
                     f"(plain, marked after leaving, on the Minimize user, after it left) {out}"))
 
 
+def check_charge(results):
+    """Charge (approved 2026-10-14; subscript_charge, chargedTurns 2): a
+    stage of Sp. Def, and the user's Electric moves at twice their power
+    for the rest of the turn and all of the next, the trainer's AI's figure
+    included; after the second turn's end they are back to their power."""
+    b, p, foe = battle(["Charge", "Thunder Shock", "Tackle"], ["Tackle"],
+                       {("p", "Thunder Shock"): [10] * 16, ("p", "Tackle"): [10] * 16})
+    shock, tackle = fs.move("Thunder Shock"), fs.move("Tackle")
+    fs.status_move(b, p, fs.move("Charge"), foe, True)
+    out = {"Sp. Def": p.stages["spd"], "this turn": (b.damage(p, foe, shock, roll=0), b.damage(p, foe, tackle, roll=0),
+                                                    b.damage(p, foe, shock, ai_view=True))}
+    fs.end_of_turn(b)
+    out["the next turn"] = b.damage(p, foe, shock, roll=0)
+    fs.end_of_turn(b)
+    out["the turn after"] = b.damage(p, foe, shock, roll=0)
+    want = {"Sp. Def": 1, "this turn": (20, 10, 20), "the next turn": 20, "the turn after": 10}
+    results.append(("Charge doubles its user's Electric moves through the next turn", out == want, str(out)))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -3861,7 +3880,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,

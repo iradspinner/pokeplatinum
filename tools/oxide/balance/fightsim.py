@@ -391,6 +391,10 @@ class Mon:
     # Minimize's mark (MOVE_EFFECT_MINIMIZE), which Stomp and Steamroller
     # double on; cleared when it leaves.
     minimized = False
+    # Charge's turns (MOVE_EFFECT_CHARGE with chargedTurns): 2 when used, one
+    # off at each turn's end, its Electric moves at twice the power while
+    # it runs; cleared when it leaves.
+    charged = 0
     # Throat Chop's hold on its target's sound moves (OXIDE_MON_THROAT_CHOP):
     # 2 when the hit lands, one off at each turn's end, so it lasts the rest
     # of this turn and all of the next; cleared when it leaves.
@@ -434,6 +438,8 @@ class Mon:
             self.throat_chop = 0         # oxideFlags are cleared as it leaves, and Baton Pass keeps none of these
         if self.minimized:
             self.minimized = False       # moveEffectsMask too; MOVE_EFFECT_BATON_PASSED leaves Minimize's out
+        if self.charged:
+            self.charged = 0             # and Charge's
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
         self.rollout = 0
@@ -3793,6 +3799,12 @@ def state_mult(b, att, dfn, mv):
         # 2026-10-14 it hit at full power whatever the target's HP (Ian
         # approved the fix).
         m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
+    if att.charged and move_type_used(att.ability, mv, att.ivs, att.item, b.weather) == "Electric":
+        # Charge: BattleSystem_CalcMoveDamage doubles an Electric move's power
+        # while MOVE_EFFECT_CHARGE stands, after POWER_MULTI and before
+        # Technician; the trainer's AI reckons it the same way. Until
+        # 2026-10-15 Charge only raised Sp. Def (Ian approved the fix).
+        m *= power_ratio(att, mv.power, 2 * mv.power) if mv.power > 1 else 2
     reach = reach_mult(mv, dfn)
     if reach > 1:
         # The effect scripts double the power (POWER_MULTI 20) before
@@ -4831,6 +4843,8 @@ def status_move(b, att, mv, dfn, first):
             att.curled = True
         if e == "EVA_UP_2_MINIMIZE":
             att.minimized = True         # subscript_minimize marks its user before the stages, even at +6
+        if e == "SP_DEF_UP_DOUBLE_ELECTRIC_POWER":
+            att.charged = 2              # subscript_charge: chargedTurns 2, set before its Sp. Def stage
     elif e == "SP_ATK_DOWN_2_OPPOSITE_GENDER":
         if captivates(att, dfn) and not sub_blocks(att, dfn, mv):
             lower_stats(b, att, dfn, FOE_STAGES[e])     # Captivate, only across the genders
@@ -5400,6 +5414,8 @@ def _end_of_turn_mon(b, side, m):
             m.encore, m.encore_turns = None, 0
     if m.throat_chop:
         m.throat_chop -= 1           # MON_COND_CHECK_STATE_LOCK_ON lowers Throat Chop's count, silently
+    if m.charged:
+        m.charged -= 1               # MON_COND_CHECK_STATE_CHARGE: at 0 the mark is gone
     if m.taunt:
         m.taunt -= 1
     if m.magnet_rise:

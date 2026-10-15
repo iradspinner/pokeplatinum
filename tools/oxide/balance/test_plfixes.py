@@ -3518,6 +3518,36 @@ def minimize_checks():
              f"row {rolls[0]} to {rolls[-1]}")]
 
 
+def charge_checks():
+    """Charge in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Pikachu charges, and its Thunder
+    Shock then hits the player's Bibarel at twice its row, as the trainer's
+    AI also reckons it."""
+    from .test_fightai import battle
+
+    class Steady(pl.RunDice):
+        def bad(self, kind, p):
+            return False
+
+        def good(self, p, kind=None):
+            return False
+    b = battle([("Pikachu", 25, "Static", ["Charge", "Thunder Shock"])], [("Bibarel", 25, "Unaware", ["Tackle"])])
+    b.dice, b.rng = Steady(random.Random(1), True), random.Random(1)
+    pik, bib = b.b.cur(), b.p.cur()
+    rolls = b.st["rows"][(None, pik.key, bib.key)]["moves"]["Thunder Shock"]["rolls"]
+    bib.hp = bib.maxhp = 100000
+    shock = fs.move("Thunder Shock")
+    before_ai = fightai.figure(b, pik, bib, shock)
+    pl.use_move(b, pik, fs.move("Charge"), bib, True)
+    after_ai = fightai.figure(b, pik, bib, shock)
+    pl.use_move(b, pik, shock, bib, True)
+    dealt = bib.maxhp - bib.hp
+    ok = pik.stages["spd"] == 1 and 2 * rolls[0] - 1 <= dealt <= 2 * rolls[-1] and after_ai >= 2 * before_ai - 1
+    return [("the readings' Charge doubles the next Electric hit, in the AI's figure too", ok,
+             f"Sp. Def {pik.stages['spd']}, Thunder Shock dealt {dealt} (row {rolls[0]} to {rolls[-1]}), "
+             f"AI figure {before_ai} then {after_ai}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4165,6 +4195,7 @@ def main():
     results += wake_up_slap_checks()
     results += throat_chop_checks()
     results += minimize_checks()
+    results += charge_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()
