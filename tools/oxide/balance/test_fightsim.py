@@ -1397,6 +1397,48 @@ def check_trace(results):
                     f"{after_move}; under the gas {gassed}, once it has gone {cleared}"))
 
 
+def check_mummy(results):
+    """Mummy (approved 2026-10-14; BattleSystem_TriggerAbilityOnHit,
+    subscript_mummy): a contact hit on its holder gives the attacker Mummy,
+    named, even when the hit knocks the holder out; a move without contact
+    does not, nor does a contact hit into an attacker with an Ability Shield
+    or one whose ability refuses (Multitype). The attacker then passes
+    Mummy on by the same rule. A Levitate attacker that takes Mummy reads
+    its ability-blank twin, so Earthquake reaches it; leaving brings
+    Levitate back."""
+    def hit(move="Tackle", ability="Levitate", item=None, hp=100):
+        rows = {("p", "Tackle"): [10] * 16, ("p", "Water Gun"): [10] * 16, ("b", "Earthquake"): [0] * 16}
+        b, p, foe = battle(["Tackle", "Water Gun"], ["Earthquake", "Tackle"], rows)
+        b.st["first_battle"] = True
+        p.ability, p.item, foe.ability = ability, item, "Mummy"
+        b.st["form_twin"] = {"p0": {"ability": "Levitate", "twins": {(None, None): "p0#ng"}}}
+        b.st["rows"][(None, "b0.0", "p0#ng")] = {"moves": {"Earthquake": {"rolls": [30] * 16},
+                                                         "Tackle": {"rolls": [10] * 16}}}
+        foe.hp = hp
+        fs.use_move(b, p, fs.move(move), foe, True)
+        return b, p, foe
+    b, p, foe = hit()
+    took = (p.ability, p.revealed, b.damage(foe, p, fs.move("Earthquake"), roll=0))
+    fs.use_move(b, foe, fs.move("Tackle"), p, True)          # the holder's Tackle meets Mummy on p: nothing new
+    p.reset_volatile()
+    back = (p.ability, b.damage(foe, p, fs.move("Earthquake"), roll=0))
+    fainted = hit(hp=5)[1].ability
+    water = hit("Water Gun")[1].ability
+    shield = hit(item="Ability Shield")[1].ability
+    multitype = hit(ability="Multitype")[1].ability
+    # The attacker that took Mummy passes it on to the next contact attacker.
+    b, p, foe = hit()
+    foe.ability = "Static"
+    fs.use_move(b, foe, fs.move("Tackle"), p, True)
+    passed = foe.ability
+    ok = (took == ("Mummy", "Mummy", 30) and back == ("Levitate", 0) and fainted == "Mummy"
+          and water == "Levitate" and shield == "Levitate" and multitype == "Multitype" and passed == "Mummy")
+    results.append(("Mummy passes itself to a contact attacker", ok,
+                    f"after Tackle (ability, named, Earthquake on it) {took}; after leaving {back}; the hit that "
+                    f"faints the holder {fainted}; Water Gun {water}; an Ability Shield {shield}; Multitype {multitype}; "
+                    f"passed on {passed}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2680,8 +2722,8 @@ def main():
                   check_curse_and_rest, check_mist_and_intimidate, check_ai_fields, check_future_sight,
                   check_sleep_talk_rest, check_disable, check_nightmare,
                   check_encore, check_ice_body, check_absorbing_abilities,
-                  check_roost, check_protean, check_form_twins, check_trace, check_magic_guard,
-                  check_liquid_ooze,
+                  check_roost, check_protean, check_form_twins, check_trace, check_mummy,
+                  check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,

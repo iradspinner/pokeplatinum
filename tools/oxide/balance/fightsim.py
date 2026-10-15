@@ -2841,10 +2841,42 @@ def hit_ability(b, att, dfn, mv, chance):
     return False
 
 
+def mummy(b, att, dfn):
+    """Mummy (BattleSystem_TriggerAbilityOnHit, subscript_mummy): a contact
+    move that hurt its holder, standing or not, passes Mummy to the attacker
+    while it stands, unless its ability is Mummy already, refuses to be
+    replaced, or is kept by an Ability Shield; the message names the
+    attacker's new ability. Its rows are then its ability-blank twin's
+    (form_key), so Levitate, Huge Power and the like are gone with the old
+    ability. Whether it acted. Until 2026-10-14 Mummy did nothing (Ian
+    approved the fix)."""
+    raw = raw_ability(att)
+    if not att.alive() or att is dfn or raw == "Mummy" or refuses(raw, "suppress") or att.item == "Ability Shield":
+        return False
+    set_ability(b, att, "Mummy")
+    return True
+
+
+@form_change
+def _mummified(ff):
+    """Mummy: in a fight with a holder, any Pokemon with a contact move and
+    an ability Mummy can replace may end with Mummy, a foe from the holder
+    and a holder's partner, in turn, from a foe that has taken it."""
+    if not any(ff.ability(k) == "Mummy" for k in ff.keys()):
+        return
+    for k in ff.keys():
+        ab = ff.ability(k)
+        if (ab != "Mummy" and not refuses(ab, "suppress") and ff.pokemon[k].get("item") != "Ability Shield"
+                and ff.contact(k)):
+            yield k, None, "Mummy"
+
+
 def _struck_back(b, att, dfn, chance, pick):
     """The defender's on-hit ability; whether it acted."""
     a = dfn.ability
     b.status_src = dfn           # a status the ability gives comes from dfn (Synchronize)
+    if a == "Mummy":
+        return mummy(b, att, dfn)
     if a == "Aftermath":
         # A contact move that fainted it costs its user a quarter of its
         # HP, unless Magic Guard or a Damp Pokemon on the field stops it.

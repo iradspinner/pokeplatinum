@@ -2676,6 +2676,27 @@ def trace_checks():
              f"(its ability, Bronzor's named, its twins, Diglett's Earthquake) with Trace {t}; with Synchronize {s}")]
 
 
+def mummy_checks():
+    """Mummy on the calculator's real rows and the readings' move (approved
+    2026-10-14): prepare rows a Huge Power Azumarill on its ability-blank
+    twin, as it can take Mummy from Argo 1's drafted Cofagrigus; its first
+    Aqua Tail into Cofagrigus gives it Mummy, and its next hits half as
+    hard."""
+    from .test_fightai import battle
+    b = battle([("Cofagrigus", 40, "Mummy", ["Will-O-Wisp", "Hex"])], [("Azumarill", 40, "Huge Power", ["Aqua Tail"])])
+    cof, azu = b.b.cur(), b.p.cur()
+    tail = fs.move("Aqua Tail")
+    twins = sorted(((b.st.get("form_twin") or {}).get(azu.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, azu, cof, tail, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    cof.hp = cof.maxhp * 10
+    pl.use_move(b, azu, tail, cof, True)
+    after = (azu.ability, azu.revealed, pl.damage_of(b, azu, cof, tail, False, True))
+    ok = twins == [(None, None)] and after[:2] == ("Mummy", "Mummy") and 1.8 <= before / max(1, after[2]) <= 2.2
+    return [("Mummy: Azumarill's Aqua Tail into Cofagrigus takes its Huge Power away", ok,
+             f"Azumarill's twins {twins}; Aqua Tail before {before}; after (its ability, named, Aqua Tail) {after}")]
+
+
 def sleep_talk_and_aqua_ring_checks():
     """Sleep Talk used asleep calls one of its user's other moves (the AI now
     scores it +10 asleep, as the game does), and one that calls Rest does
@@ -3187,6 +3208,7 @@ def main():
     results += eerie_spell_checks()
     results += burning_bulwark_checks()
     results += trace_checks()
+    results += mummy_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
