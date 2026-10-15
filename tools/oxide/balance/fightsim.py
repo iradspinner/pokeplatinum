@@ -2711,6 +2711,17 @@ def engine_divide(value, divisor):
     return 0 if value == 0 else max(1, value // divisor)
 
 
+def life_dew(att):
+    """Life Dew (effect script 383, subscript_life_dew): it fails under Heal
+    Block, which the script checks itself (the move is not on
+    sMovesAffectedByHealBlock, so it can be chosen); otherwise its user gets
+    back a quarter of its maximum HP, rounded up, unless its HP is full. Its
+    heal of an ally in a double battle is left to the double battles' own
+    fixes. Until 2026-10-15 it did nothing (Ian approved the fix)."""
+    if not heal_blocked(att):
+        heal(att, (att.maxhp + 3) // 4)
+
+
 def weather_heal(b, att, mv):
     """The HP Moonlight, Morning Sun, Synthesis and Shore Up restore
     (effect script 132, BtlCmd_WeatherHPRecovery): half with no weather, or
@@ -6023,6 +6034,8 @@ def status_move(b, att, mv, dfn, first):
         heal(att, att.maxhp // 2)
     elif e == "HEAL_HALF_MORE_IN_SUN":
         heal(att, weather_heal(b, att, mv))
+    elif e == "LIFE_DEW":
+        life_dew(att)
     elif e == "REST":
         # subscript_rest fails on the abilities that keep its user awake
         # (rest_blocked), on a Pokemon already asleep ("is already asleep!"),

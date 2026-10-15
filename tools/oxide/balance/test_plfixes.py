@@ -4598,6 +4598,18 @@ def incinerate_checks():
              f"Bibarel's HP {hp} to {bib.hp} of {bib.maxhp}, item {bib.item}, ate a Berry {bib.ate_berry}")]
 
 
+def life_dew_checks():
+    """Life Dew in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel at half HP gets back a
+    quarter of its maximum, rounded up."""
+    b, geo, bib = b7_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Life Dew"])])
+    bib.hp = bib.maxhp // 2
+    hp = bib.hp
+    pl.status_move(b, bib, fs.move("Life Dew"), geo, True)
+    ok = bib.hp == hp + (bib.maxhp + 3) // 4
+    return [("the readings' Life Dew heals a quarter", ok, f"Bibarel's HP {hp} to {bib.hp} of {bib.maxhp}")]
+
+
 def main():
     results = []
 
@@ -5131,6 +5143,7 @@ def main():
     results += false_swipe_checks()
     results += clear_smog_checks()
     results += incinerate_checks()
+    results += life_dew_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

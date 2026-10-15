@@ -4787,6 +4787,21 @@ def check_incinerate(results):
     results.append(("Incinerate burns up its target's Berry", out == want, str(out)))
 
 
+def check_life_dew(results):
+    """Life Dew (approved 2026-10-14; effect script 383): its user gets back
+    a quarter of its maximum HP, rounded up, never past full, and nothing
+    under Heal Block."""
+    out = {}
+    for hp, block in ((50, 0), (90, 0), (50, 3)):
+        b, p, foe = battle(["Life Dew"], ["Tackle"], {}, hp=101)
+        b.rng = FixedDice(0.0)
+        p.hp, p.heal_block = hp, block
+        fs.status_move(b, p, fs.move("Life Dew"), foe, True)
+        out[(hp, block)] = p.hp
+    want = {(50, 0): 76, (90, 0): 101, (50, 3): 50}
+    results.append(("Life Dew heals a quarter, rounded up, not under Heal Block", out == want, str(out)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5059,7 +5074,7 @@ def main():
                   check_sketch, check_me_first, check_nature_power,
                   check_power_trick, check_bide, check_transform,
                   check_sp_def_2_hit, check_tearful_look, check_venom_drench, check_false_swipe,
-                  check_clear_smog, check_incinerate,
+                  check_clear_smog, check_incinerate, check_life_dew,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
