@@ -390,6 +390,12 @@ class Mon:
     imprisoning = False
     imprisoned = False
     sealed = frozenset()
+    # Whether this stay has set one of the rarer states below (Minimize's
+    # mark, Charge, Lock-On's hold, Foresight, Smack Down, Mirror Move's
+    # record, Mimic's copy, Throat Chop's hold), so the search's keys, the
+    # rows' twins and the turn's end need look at them only then; cleared
+    # with them when it leaves.
+    rare = False
     # Minimize's mark (MOVE_EFFECT_MINIMIZE), which Stomp and Steamroller
     # double on; cleared when it leaves.
     minimized = False
@@ -461,27 +467,23 @@ class Mon:
             self.stockpile = self.stockpile_def = self.stockpile_spd = 0
         if self.imprisoning or self.imprisoned or self.sealed:
             self.imprisoning, self.imprisoned, self.sealed = False, False, frozenset()
-        if self.throat_chop:
-            self.throat_chop = 0         # oxideFlags are cleared as it leaves, and Baton Pass keeps none of these
-        if self.minimized:
-            self.minimized = False       # moveEffectsMask too; MOVE_EFFECT_BATON_PASSED leaves Minimize's out
-        if self.charged:
-            self.charged = 0             # and Charge's
-        if self.locked_on:
-            self.locked_on, self.lock_on_by = 0, None     # a Baton Pass hands it on (baton_state)
-        if self.foresight:
-            self.foresight = False       # statusVolatile; VOLATILE_CONDITION_BATON_PASSED leaves it out
-        if self.smacked:
-            self.smacked = False         # moveEffectsMask; MOVE_EFFECT_BATON_PASSED leaves Smack Down's out
-        if self.mirror is not None:
-            self.mirror = None           # BattleSystem_InitBattleMon clears moveCopied
-        if self.mimicked is not None:
-            # The party record still holds Mimic, with the PP its use left it
-            # (BattleMon_CopyToParty skips a mimicked slot), so it comes back.
-            moves, pp = self.mimicked
-            self.pp = {k: v for k, v in self.pp.items() if any(m.name == k for m in moves)}
-            self.pp["Mimic"] = pp
-            self.moves, self.mimicked = moves, None
+        if self.rare:
+            # oxideFlags (Throat Chop) are cleared as it leaves, and so are
+            # moveEffectsMask (Minimize, Charge, Lock-On, Smack Down),
+            # statusVolatile (Foresight) and moveCopied (Mirror Move); a Baton
+            # Pass hands on the Lock-On hold alone (baton_state).
+            self.throat_chop = self.charged = self.locked_on = 0
+            self.minimized = self.foresight = self.smacked = False
+            self.lock_on_by = self.mirror = None
+            if self.mimicked is not None:
+                # The party record still holds Mimic, with the PP its use left
+                # it (BattleMon_CopyToParty skips a mimicked slot), so it comes
+                # back.
+                moves, pp = self.mimicked
+                self.pp = {k: v for k, v in self.pp.items() if any(m.name == k for m in moves)}
+                self.pp["Mimic"] = pp
+                self.moves, self.mimicked = moves, None
+            self.rare = False
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.heal_block = 0              # Heal Block's turns left
         self.rollout = 0
@@ -642,6 +644,8 @@ class Battle:
     # which Copycat uses; kept only in a fight with a Copycat user
     # (st["copycat"]), and None after a turn some Pokemon could not act.
     last_move = None
+    # The item a Fling has just thrown, for its effect after the hit.
+    flung = None
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -665,10 +669,10 @@ class Battle:
             dk = protean_key(self, dfn) or dk
         if dfn.roosting and mv is not None and "Flying" in dfn.types:
             dk = roost_key(self, dfn, mv) or dk     # a roosting target meets the move on its twin without Flying
-        if dfn.foresight and mv is not None:
-            dk = foresight_key(self, dfn, mv, att) or dk     # an identified Ghost, its twin without Ghost
-        if mv is not None and (dfn.smacked or self.gravity):
-            dk = ground_key(self, dfn, mv, att) or dk        # a grounded flier, its twin without Flying or Levitate
+        if (dfn.rare or self.gravity) and mv is not None:
+            # An identified Ghost's twin without Ghost; a grounded flier's
+            # without Flying or Levitate.
+            dk = foresight_key(self, dfn, mv, att) or ground_key(self, dfn, mv, att) or dk
         rows = self.st["rows"]
         # A type or ability another move or ability changed (form_key) reads
         # the changed Pokemon's twin: the pair of twins when both are
@@ -787,7 +791,7 @@ class Battle:
         """Whether the move lands (BattleControllerPlayer_CheckMoveHitAccuracy
         and the hit overrides). `first`: whether the target has yet to move
         this turn, for the Zoom Lens."""
-        if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or lands_sure(att, dfn, mv):
+        if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or no_guard(att, dfn, mv) or (dfn.rare and lands_sure(att, dfn, mv)):
             return True
         acc = mv.acc
         if mv.effect in ("THUNDER", "HURRICANE"):           # Oxide: Hurricane as Thunder in weather
@@ -848,7 +852,7 @@ def foresee_target(dfn):
     Ghost type (identified), read from its twin without Ghost (prepare's
     foresight_twin). Until 2026-10-15 the moves did nothing (Ian approved
     the fix)."""
-    dfn.foresight = True
+    dfn.foresight = dfn.rare = True
 
 
 def foresight_key(b, mon, mv, att):
@@ -920,7 +924,7 @@ def smack_down(b, att, dfn):
         dfn.magnet_rise = 0
     elif "Flying" not in dfn.types and dfn.ability != "Levitate":
         return
-    dfn.smacked = True
+    dfn.smacked = dfn.rare = True
 
 
 def locked_onto(att, dfn):
@@ -936,7 +940,7 @@ def lands_sure(att, dfn, mv):
     hidden turn of Fly and the like, a one-hit KO move apart, whose check is
     its own. Lock-On's part did nothing until 2026-10-15 (Ian approved the
     fix)."""
-    return no_guard(att, dfn, mv) or (locked_onto(att, dfn) and mv.effect != "ONE_HIT_KO")
+    return no_guard(att, dfn, mv) or (dfn.rare and locked_onto(att, dfn) and mv.effect != "ONE_HIT_KO")
 
 
 def lock_on(att, dfn):
@@ -949,7 +953,7 @@ def lock_on(att, dfn):
     its own, its count started again (battle_lib.c 2196). Protect stops the
     move, and a target on its hidden turn makes it fail."""
     if not sub_blocks(att, dfn):
-        dfn.locked_on, dfn.lock_on_by = 2, att.key
+        dfn.locked_on, dfn.lock_on_by, dfn.rare = 2, att.key, True
 
 
 def accuracy_scale(att, dfn, mv, first=True):
@@ -965,7 +969,7 @@ def accuracy_scale(att, dfn, mv, first=True):
     acc_st = 0 if dfn.ability == "Unaware" and not mold(att, dfn) else att.stages["acc"]
     ignore_eva = mv.const in IGNORE_TARGET_STAGES or att.ability in ("Unaware", "Keen Eye", "Illuminate")
     eva = dfn.stages["eva"]
-    if dfn.foresight and eva > 0:
+    if eva > 0 and dfn.foresight:
         eva = 0                  # an identified target's raised evasion stops counting (foresee_target)
     s = max(-6, min(6, acc_st - (0 if ignore_eva else eva)))
     scale = (3 + s) / 3 if s >= 0 else 3 / (3 - s)
@@ -2118,9 +2122,13 @@ INVOKERS = frozenset({"MOVE_SLEEP_TALK", "MOVE_COPYCAT", "MOVE_ASSIST", "MOVE_ME
 
 def note_move(b, mv):
     """The battle's last move used (movePrev, set when the attack message
-    shows and cleared when it does not), for Copycat."""
-    if b.st.get("copycat"):
-        b.last_move = mv
+    shows and cleared when it does not), for Copycat: it is set to mv, and
+    the move it held before is given back for this move's Copycat (None in
+    a fight with no Copycat user, which keeps no record)."""
+    if not b.st.get("copycat"):
+        return None
+    prev, b.last_move = b.last_move, mv
+    return prev
 
 
 def metronome_callable(b, att, mv):
@@ -2172,7 +2180,7 @@ def mimic(att, dfn):
     j = next((i for i, m in enumerate(att.moves) if m.effect == "COPY_MOVE_FOR_BATTLE"), None)
     if j is None:
         return
-    att.mimicked = (att.moves, att.pp.get(att.moves[j].name, 0))
+    att.mimicked, att.rare = (att.moves, att.pp.get(att.moves[j].name, 0)), True
     moves = list(att.moves)
     moves[j] = last
     att.pp = {k: v for k, v in att.pp.items() if k != att.moves[j].name}
@@ -2554,8 +2562,8 @@ def mark_hit(b, mv, dfn, shown, targets=None):
     if mv.range in OWN_RANGES or dfn is None:
         return
     for d in targets or [dfn]:
-        if shown and mv.mirror and d.mirror_user:
-            d.mirror = mv            # BattleControllerPlayer_UpdateFlagsWhenHit's moveCopied
+        if d.mirror_user and shown and mv.mirror:
+            d.mirror, d.rare = mv, True     # BattleControllerPlayer_UpdateFlagsWhenHit's moveCopied
         d.last_hit_by = mv if shown else None
         d.last_hit_type = ({"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
                            if shown and mv.name == "Weather Ball" else mv.type if shown else None)
@@ -2573,7 +2581,8 @@ def could_not_act(b, att, mv, dfn, targets=None):
     att.protect_run = 0
     if b.st.get("copycat"):
         b.last_move = None           # no attack message: movePrev is MOVE_NONE
-    rollout_break(att)               # the subscript that stopped it unlocked its user (rollout_break)
+    if att.rollout or att.lock is not None:
+        rollout_break(att)           # the subscript that stopped it unlocked its user (rollout_break)
     mark_hit(b, mv, dfn, False, targets)
 
 
@@ -2708,7 +2717,6 @@ def forecast(b):
 def _use_move(b, att, mv, dfn, first, targets=None):
     if not att.alive():
         return
-    prev = b.last_move           # the move before this one, for Copycat (note_move)
     att.acted_turn = b.turn      # its action this turn has begun (a Truant given later this turn: set_ability)
     mv = encored_move(att, mv)
     # Its own record clears with its action, whatever happens
@@ -2741,8 +2749,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     if disabled_out(att, mv):
         att.choice = None            # subscript_move_is_disabled lets go of a Choice item's lock
         return could_not_act(b, att, mv, dfn, targets)
-    if move_barred(b, att, mv):
-        return could_not_act(b, att, mv, dfn, targets)     # a sound move under Throat Chop (move_barred)
+    if (att.rare or b.gravity) and move_barred(b, att, mv):
+        return could_not_act(b, att, mv, dfn, targets)     # Throat Chop's or Gravity's (move_barred)
     if att.confused:
         att.confused -= 1
         if att.confused and b.rng.random() < 0.5:
@@ -2755,7 +2763,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     if (att.taunt and mv.cat == "Status") or tormented_out(att, mv) or move_heal_blocked(att, mv):
         return could_not_act(b, att, mv, dfn, targets)
     mark_hit(b, mv, dfn, True, targets)
-    note_move(b, mv)
+    prev = note_move(b, mv)      # the move before this one, for Copycat
     spend_pp(b, att, mv, dfn, targets)
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
         att.protect_run = 0
@@ -2892,7 +2900,8 @@ def attack(b, att, mv, dfn, first):
             return               # an item with no fling power cannot be thrown (TryFling)
         gift = att.item
         consume(att, eaten=False)
-    b.flung = gift if mv.name == "Fling" else None
+    if gift is not None and mv.name == "Fling":
+        b.flung = gift               # its effect after the hit (fling_effect)
     if not b.accuracy_hits(att, dfn, mv, first):
         _crash(b, att, dfn, mv)          # Magic Guard spares it (crash_loss)
         rollout_after(att, mv, False)
@@ -2966,7 +2975,7 @@ def attack(b, att, mv, dfn, first):
             dmg = int(dmg * doubled_power(att, mv))
         if mv.effect == "DOUBLE_POWER_WHEN_BELOW_HALF" and dfn.hp * 2 <= dfn.maxhp:
             dmg = int(dmg * doubled_power(att, mv))
-        if slap_doubles(att, dfn, mv):
+        if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and slap_doubles(att, dfn, mv):
             dmg = int(dmg * doubled_power(att, mv))     # Wake-Up Slap, no Substitute in the way
         if doubled(att, dfn, mv):
             dmg = int(dmg * doubled_power(att, mv))
@@ -3206,8 +3215,9 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         steal_item(att, dfn)             # a knockout too (MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE)
     if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
-    slap_wakes(dfn, mv)              # Wake-Up Slap's doubled hit wakes its target (slap_wakes)
-    if mv.name == "Fling" and getattr(b, "flung", None):
+    if e == "DOUBLE_POWER_HEAL_SLEEP":
+        slap_wakes(dfn, mv)          # Wake-Up Slap's doubled hit wakes its target (slap_wakes)
+    if e == "FLING" and b.flung:
         fling_effect(b, att, dfn, mv, b.flung, first, lambda kind, n: b.rng.randrange(n))
     if e == "THROAT_CHOP":
         throat_chop(att, dfn, stripped)
@@ -3369,7 +3379,7 @@ def throat_chop(att, dfn, stripped):
         return
     if dfn.ability == "Shield Dust" and not mold(att, dfn):
         return
-    dfn.throat_chop = 2
+    dfn.throat_chop, dfn.rare = 2, True
 
 
 def soundproofed(att, dfn, mv):
@@ -4221,11 +4231,11 @@ def state_mult(b, att, dfn, mv):
         # 2026-10-14 it hit at full power whatever the target's HP (Ian
         # approved the fix).
         m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
-    if mv.const == "MOVE_GRAV_APPLE" and getattr(b, "gravity", 0):
+    if b.gravity and mv.const == "MOVE_GRAV_APPLE":
         # BattleScript_ComputedMovePower: half as strong again while Gravity
         # is in force (since 2026-10-15, when Gravity began to run).
         m *= power_ratio(att, mv.power, mv.power * 15 // 10)
-    if att.charged and move_type_used(att.ability, mv, att.ivs, att.item, b.weather) == "Electric":
+    if att.rare and att.charged and move_type_used(att.ability, mv, att.ivs, att.item, b.weather) == "Electric":
         # Charge: BattleSystem_CalcMoveDamage doubles an Electric move's power
         # while MOVE_EFFECT_CHARGE stands, after POWER_MULTI and before
         # Technician; the trainer's AI reckons it the same way. Until
@@ -5268,9 +5278,9 @@ def status_move(b, att, mv, dfn, first):
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
         if e == "EVA_UP_2_MINIMIZE":
-            att.minimized = True         # subscript_minimize marks its user before the stages, even at +6
+            att.minimized = att.rare = True     # subscript_minimize marks its user before the stages, even at +6
         if e == "SP_DEF_UP_DOUBLE_ELECTRIC_POWER":
-            att.charged = 2              # subscript_charge: chargedTurns 2, set before its Sp. Def stage
+            att.charged, att.rare = 2, True     # subscript_charge: chargedTurns 2, set before its Sp. Def stage
     elif e == "SP_ATK_DOWN_2_OPPOSITE_GENDER":
         if captivates(att, dfn) and not sub_blocks(att, dfn, mv):
             lower_stats(b, att, dfn, FOE_STAGES[e])     # Captivate, only across the genders
@@ -5427,7 +5437,7 @@ def baton_state(mon):
             "confused": mon.confused, "cursed": mon.cursed, "sub": mon.sub, "seeded": mon.seeded,
             "perish": mon.perish, "ingrained": mon.ingrained, "aqua_ring": mon.aqua_ring,
             "heal_block": mon.heal_block, "magnet_rise": mon.magnet_rise,
-            "locked_on": mon.locked_on, "lock_on_by": mon.lock_on_by,
+            "locked_on": mon.locked_on, "lock_on_by": mon.lock_on_by, "rare": bool(mon.locked_on),
             "suppressed": getattr(mon, "suppressed", False)}
 
 
@@ -5863,14 +5873,15 @@ def _end_of_turn_mon(b, side, m):
             m.encore_turns -= 1
         else:
             m.encore, m.encore_turns = None, 0
-    if m.locked_on:
-        m.locked_on -= 1             # MON_COND_CHECK_STATE_LOCK_ON
-        if not m.locked_on:
-            m.lock_on_by = None
-    if m.throat_chop:
-        m.throat_chop -= 1           # MON_COND_CHECK_STATE_LOCK_ON lowers Throat Chop's count, silently
-    if m.charged:
-        m.charged -= 1               # MON_COND_CHECK_STATE_CHARGE: at 0 the mark is gone
+    if m.rare:
+        if m.locked_on:
+            m.locked_on -= 1         # MON_COND_CHECK_STATE_LOCK_ON
+            if not m.locked_on:
+                m.lock_on_by = None
+        if m.throat_chop:
+            m.throat_chop -= 1       # MON_COND_CHECK_STATE_LOCK_ON lowers Throat Chop's count, silently
+        if m.charged:
+            m.charged -= 1           # MON_COND_CHECK_STATE_CHARGE: at 0 the mark is gone
     if m.taunt:
         m.taunt -= 1
     if m.magnet_rise:
@@ -6204,7 +6215,7 @@ def safe_attack(b, me, foe):
     while one that cannot still does damage."""
     usable = [m for m in me.moves if m.damaging() and me.pp.get(m.name, 1) > 0
               and (not me.choice or m.name == me.choice) and not tormented_out(me, m)
-              and not disabled_out(me, m) and not move_barred(b, me, m)]
+              and not disabled_out(me, m) and not ((me.rare or b.gravity) and move_barred(b, me, m))]
     safe = [m for m in usable if not self_risk(b, me, foe, m)]
     pick = safe if any(exp_damage(b, me, foe, m) > 0 for m in safe) else usable
     if not pick:
@@ -6347,7 +6358,7 @@ def player_choice_doubles(b, me):
     best = None
     for mv in me.moves:
         if me.pp.get(mv.name, 1) <= 0 or (me.choice and mv.name != me.choice) or (me.taunt and mv.cat == "Status") \
-                or move_heal_blocked(me, mv) or disabled_out(me, mv) or move_barred(b, me, mv):
+                or move_heal_blocked(me, mv) or disabled_out(me, mv) or ((me.rare or b.gravity) and move_barred(b, me, mv)):
             continue
         if not mv.damaging():
             for f in foes:

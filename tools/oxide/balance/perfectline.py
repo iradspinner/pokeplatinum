@@ -309,7 +309,7 @@ fs.give_status = give_status   # Yawn and Toxic Spikes inside fightsim reach thi
 def accuracy_hits(b, att, dfn, mv, first=True):
     """Whether the move lands, a miss bad luck for its user's side.
     `first`: whether the target has yet to move this turn (the Zoom Lens)."""
-    if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or fs.lands_sure(att, dfn, mv):
+    if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or fs.no_guard(att, dfn, mv) or (dfn.rare and fs.lands_sure(att, dfn, mv)):
         return True
     acc = mv.acc
     if mv.effect in ("THUNDER", "HURRICANE"):               # Oxide: Hurricane as Thunder in weather
@@ -355,7 +355,6 @@ def use_move(b, att, mv, dfn, first):
 def _use_move(b, att, mv, dfn, first):
     if not att.alive():
         return
-    prev = b.last_move               # the move before this one, for Copycat (fightsim.note_move)
     att.acted_turn = b.turn          # its action this turn has begun (fightsim._use_move)
     mv = fs.encored_move(att, mv)        # the Encore move, whatever was chosen (fightsim.encored_move)
     att.conversion2_src = (att.last_hit_by, att.last_hit_type) if att.last_hit_by is not None else None
@@ -384,8 +383,8 @@ def _use_move(b, att, mv, dfn, first):
     if fs.disabled_out(att, mv):
         att.choice = None                # subscript_move_is_disabled lets go of a Choice item's lock
         return fs.could_not_act(b, att, mv, dfn)
-    if fs.move_barred(b, att, mv):
-        return fs.could_not_act(b, att, mv, dfn)     # a sound move under Throat Chop (fightsim.move_barred)
+    if (att.rare or b.gravity) and fs.move_barred(b, att, mv):
+        return fs.could_not_act(b, att, mv, dfn)     # Throat Chop's or Gravity's (fightsim.move_barred)
     if att.confused:
         att.confused -= 1
         if att.confused and (b.dice.bad("confusion", 0.5) if player(att) else b.dice.good(0.5, "confusion")):
@@ -398,7 +397,7 @@ def _use_move(b, att, mv, dfn, first):
     if (att.taunt and mv.cat == "Status") or fs.tormented_out(att, mv) or fs.move_heal_blocked(att, mv):
         return fs.could_not_act(b, att, mv, dfn)
     fs.mark_hit(b, mv, dfn, True)
-    fs.note_move(b, mv)
+    prev = fs.note_move(b, mv)           # the move before this one, for Copycat (fightsim.note_move)
     fs.spend_pp(b, att, mv, dfn)       # once a choice, and Pressure's (fightsim.spend_pp)
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
         att.protect_run = 0
@@ -628,7 +627,8 @@ def attack(b, att, mv, dfn, first):
             return                       # an item with no fling power cannot be thrown (TryFling)
         gift = att.item
         fs.consume(att, eaten=False)     # spent, not eaten (Belch)
-    b.flung = gift if mv.name == "Fling" else None     # its effect after the hit (fightsim.fling_effect)
+    if gift is not None and mv.name == "Fling":
+        b.flung = gift                   # its effect after the hit (fightsim.fling_effect)
     if not accuracy_hits(b, att, dfn, mv, first):
         crash(b, att, dfn, mv)               # Magic Guard spares it (fightsim.crash_loss)
         fs.rollout_after(att, mv, False)
@@ -728,7 +728,7 @@ def attack(b, att, mv, dfn, first):
             dmg = int(dmg * fs.doubled_power(att, mv))
         if mv.effect == "DOUBLE_POWER_WHEN_BELOW_HALF" and dfn.hp * 2 <= dfn.maxhp:
             dmg = int(dmg * fs.doubled_power(att, mv))
-        if fs.slap_doubles(att, dfn, mv):
+        if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and fs.slap_doubles(att, dfn, mv):
             dmg = int(dmg * fs.doubled_power(att, mv))     # Wake-Up Slap, no Substitute in the way
         if fs.doubled(att, dfn, mv):
             dmg = int(dmg * fs.doubled_power(att, mv))
@@ -827,8 +827,9 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         fs.steal_item(att, dfn)  # the player's Thief and Covet only (fightsim.steal_item)
     if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
         return
-    fs.slap_wakes(dfn, mv)       # Wake-Up Slap's doubled hit wakes its target (fightsim.slap_wakes)
-    if mv.name == "Fling" and getattr(b, "flung", None):
+    if e == "DOUBLE_POWER_HEAL_SLEEP":
+        fs.slap_wakes(dfn, mv)   # Wake-Up Slap's doubled hit wakes its target (fightsim.slap_wakes)
+    if e == "FLING" and b.flung:
         fs.fling_effect(b, att, dfn, mv, b.flung, first, lambda kind, n: b.dice.choice(kind, n))
     if e == "THROAT_CHOP":
         fs.throat_chop(att, dfn, stripped)     # its hold on the target's sound moves (fightsim.throat_chop)
@@ -963,9 +964,9 @@ def status_move(b, att, mv, dfn, first):
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
         if e == "EVA_UP_2_MINIMIZE":
-            att.minimized = True         # Minimize's mark, which Stomp doubles on (fightsim.doubled)
+            att.minimized = att.rare = True     # Minimize's mark, which Stomp doubles on (fightsim.doubled)
         if e == "SP_DEF_UP_DOUBLE_ELECTRIC_POWER":
-            att.charged = 2              # Charge, two turn ends (fightsim.state_mult doubles its Electric moves)
+            att.charged, att.rare = 2, True     # Charge, two turn ends (fightsim.state_mult doubles its Electric moves)
     elif e == "SP_ATK_DOWN_2_OPPOSITE_GENDER":
         if fs.captivates(att, dfn) and not fs.sub_blocks(att, dfn, mv):
             fs.lower_stats(b, att, dfn, fs.FOE_STAGES[e])     # Captivate, only across the genders (fightsim.captivates)
@@ -1190,42 +1191,27 @@ def mon_key(m):
         key += ("stockpile", m.stockpile, m.stockpile_def, m.stockpile_spd)
     if m.imprisoning or m.imprisoned:
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
-    if m.throat_chop:
-        key += ("throat chop", m.throat_chop)
-    if m.minimized:
-        key += ("minimized",)
-    if m.charged:
-        key += ("charged", m.charged)
-    if m.locked_on:
-        key += ("locked on", m.locked_on, m.lock_on_by)
-    if m.foresight:
-        key += ("foresight",)
-    if m.smacked:
-        key += ("smacked down",)
-    if m.mimicked is not None:
-        key += ("mimic", tuple(x.name for x in m.moves))
-    if m.mirror is not None:
-        key += ("mirror", m.mirror.name)
+    if m.rare:
+        # The rarer states one of this stay's moves set (fightsim.Mon.rare).
+        key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked,
+                tuple(x.name for x in m.moves) if m.mimicked is not None else None,
+                None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key
 
 
-def _side_extra(s):
-    """A side's states that most fights never have, kept out of its key
-    while they are not there, so those fights' keys stay as they were:
-    Lucky Chant's turns."""
-    return (("lucky chant", s.lucky_chant),) if s.lucky_chant else ()
-
-
 def side_key(s):
-    return (s.active, tuple(mon_key(m) for m in s.mons), tuple(s.screens.values()), s.tailwind,
-            tuple(s.hazards.values()), s.safeguard, getattr(s, "wish", 0), s.future, s.future_sight,
-            getattr(s, "mist", 0)) + _side_extra(s)
+    key = (s.active, tuple(mon_key(m) for m in s.mons), tuple(s.screens.values()), s.tailwind,
+           tuple(s.hazards.values()), s.safeguard, getattr(s, "wish", 0), s.future, s.future_sight,
+           getattr(s, "mist", 0))
+    # Lucky Chant's turns, kept out of the key while there are none, so the
+    # keys of a fight without it stay as they were.
+    return key + (("lucky chant", s.lucky_chant),) if s.lucky_chant else key
 
 
 def _field_extra(b):
     """The field's states most fights never have, kept out of the keys
     while they are not there: Gravity's turns, and in a fight with Copycat
-    the battle's last move."""
+    the battle's last move (both checked by the keys before calling)."""
     out = (("gravity", b.gravity),) if b.gravity else ()
     if b.last_move is not None:
         out += (("last move", b.last_move.name),)
@@ -1233,18 +1219,20 @@ def _field_extra(b):
 
 
 def state_key(b):
-    return (side_key(b.p), side_key(b.b), b.weather, b.weather_turns, b.trick_room,
-            round(b.luck_spent, 6), getattr(b, "declined", frozenset())) + _field_extra(b)
+    key = (side_key(b.p), side_key(b.b), b.weather, b.weather_turns, b.trick_room,
+           round(b.luck_spent, 6), getattr(b, "declined", frozenset()))
+    return key + _field_extra(b) if b.gravity or b.last_move is not None else key
 
 
 def shape_key(b):
     """The state without its HP totals and luck: what `vector` leaves out."""
     def side(sd):
-        return (sd.active, tuple(mon_key(m)[1:] for m in sd.mons), tuple(sd.screens.values()),
-                sd.tailwind, tuple(sd.hazards.values()), sd.safeguard, getattr(sd, "wish", 0),
-                sd.future, sd.future_sight, getattr(sd, "mist", 0)) + _side_extra(sd)
-    return (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room,
-            getattr(b, "declined", frozenset())) + _field_extra(b)
+        key = (sd.active, tuple(mon_key(m)[1:] for m in sd.mons), tuple(sd.screens.values()),
+               sd.tailwind, tuple(sd.hazards.values()), sd.safeguard, getattr(sd, "wish", 0),
+               sd.future, sd.future_sight, getattr(sd, "mist", 0))
+        return key + (("lucky chant", sd.lucky_chant),) if sd.lucky_chant else key
+    key = (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room, getattr(b, "declined", frozenset()))
+    return key + _field_extra(b) if b.gravity or b.last_move is not None else key
 
 
 def vector(b):
@@ -1295,7 +1283,7 @@ def ai_key(b):
             b.p.tailwind, b.b.tailwind, tuple(b.p.hazards.values()), tuple(b.b.hazards.values()),
             b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick,
             b.p.future_sight, b.b.future_sight, getattr(b.p, "mist", 0) > 0, getattr(b.b, "mist", 0) > 0) \
-        + _ai_field(b)
+        + (_ai_field(b) if b.gravity or b.p.lucky_chant or b.b.lucky_chant else ())
 
 
 def _ai_field(b):
@@ -1417,7 +1405,8 @@ def player_actions(b):
     try:
         for mv in me.moves:
             if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status") or fs.tormented_out(me, mv) \
-                    or fs.move_heal_blocked(me, mv) or fs.disabled_out(me, mv) or fs.move_barred(b, me, mv):
+                    or fs.move_heal_blocked(me, mv) or fs.disabled_out(me, mv) \
+                    or ((me.rare or b.gravity) and fs.move_barred(b, me, mv)):
                 continue
             if me.choice and mv.name != me.choice:
                 continue

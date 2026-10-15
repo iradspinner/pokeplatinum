@@ -577,7 +577,8 @@ def options(b):
     try:
         for mv in me.moves:
             if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status") or fs.tormented_out(me, mv) \
-                    or fs.move_heal_blocked(me, mv) or fs.disabled_out(me, mv) or fs.move_barred(b, me, mv):
+                    or fs.move_heal_blocked(me, mv) or fs.disabled_out(me, mv) \
+                    or ((me.rare or b.gravity) and fs.move_barred(b, me, mv)):
                 continue
             if me.choice and mv.name != me.choice:
                 continue

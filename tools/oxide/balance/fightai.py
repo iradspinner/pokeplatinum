@@ -1037,7 +1037,8 @@ def script_eff(b, u, t, mv):
     # Gravity, by which Battler_Ability reads no Levitate and
     # BasicTypeMulApplies skips the Flying type's immunity (the mark and
     # Gravity's Levitate since 2026-10-15, as the simulator now keeps both).
-    grounded = t.item == "Iron Ball" or mv.const == "MOVE_THOUSAND_ARROWS" or t.smacked or bool(getattr(b, "gravity", 0))
+    grounded = ty == "Ground" and (t.item == "Iron Ball" or mv.const == "MOVE_THOUSAND_ARROWS" or t.smacked
+                                   or bool(b.gravity))
     if ty == "Ground" and not grounded and (
             (t.ability == "Levitate" and not mold(u, t)) or getattr(t, "magnet_rise", 0)
             or t.item == "Air Balloon"):
