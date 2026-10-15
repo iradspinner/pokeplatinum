@@ -157,7 +157,12 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               # status; Sheer Force leaves it (not on sSheerForceEffects).
               # Until 2026-10-15 neither ever slept (Ian approved the fix).
               # Relic Song's turn of Meloetta between its forms is not run.
-              "SLEEP_HIT": "slp"}
+              "SLEEP_HIT": "slp",
+              # Matcha Gotcha (effect script 348, subscript_burn_and_drain_health):
+              # a burn at the move's chance (20) on a target left standing,
+              # and the drain of DRAIN below either way. Until 2026-10-15 it
+              # was a plain hit (Ian approved the fix).
+              "RECOVER_HALF_DAMAGE_DEALT_BURN_HIT": "brn"}
 FLINCH_HIT = {"FLINCH_HIT", "FLINCH_BURN_HIT", "FLINCH_PARALYZE_HIT", "FLINCH_FREEZE_HIT",
               "FLINCH_MINIMIZE_DOUBLE_HIT", "FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE",
               "UPPER_HAND",                       # at its 100%, as Fake Out's target flinches
@@ -278,7 +283,10 @@ HEAL_HALF = {"RESTORE_HALF_HP", "HEAL_HALF_REMOVE_FLYING_TYPE"}
 # The share of its damage a draining move restores: half (Giga Drain, Dream
 # Eater, Horn Leech), three quarters (Draining Kiss, Oblivion Wing).
 DRAIN = {"RECOVER_HALF_DAMAGE_DEALT": 1 / 2, "RECOVER_DAMAGE_SLEEP": 1 / 2,
-         "RECOVER_THREE_QUARTERS_DAMAGE_DEALT": 3 / 4}
+         "RECOVER_THREE_QUARTERS_DAMAGE_DEALT": 3 / 4,
+         # Matcha Gotcha: subscript_burn_and_drain_health ends in the half
+         # drain, a knockout's too (its burn is in HIT_STATUS).
+         "RECOVER_HALF_DAMAGE_DEALT_BURN_HIT": 1 / 2}
 TWO_TURN = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE", "CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH",
             "CHARGE_TURN_DEF_UP", "SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN",
             "CHARGE_TURN_SP_ATK_UP", "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS"}  # Meteor Beam, Electro Shot

@@ -5212,6 +5212,20 @@ def check_clanging_scales(results):
     want = {(0, None): -1, (40, None): -1, (0, "Sheer Force"): -1}
     results.append(("Clanging Scales lowers its user's Defense after the hit", out == want, str(out)))
 
+def check_matcha_gotcha(results):
+    """Matcha Gotcha (approved 2026-10-14; effect script 348): its user
+    drains half the damage, and the target is burned at the move's chance,
+    never through Shield Dust."""
+    out = {}
+    for value, ability in ((0.0, None), (0.5, None), (0.0, "Shield Dust")):
+        b, p, foe = battle(["Matcha Gotcha"], ["Tackle"], {("p", "Matcha Gotcha"): [10] * 16}, hp=500)
+        b.rng = FixedDice(value)
+        foe.ability, p.hp = ability, 100
+        fs.attack(b, p, fs.move("Matcha Gotcha"), foe, True)
+        out[(value, ability)] = (foe.status, p.hp)
+    want = {(0.0, None): ("brn", 107), (0.5, None): (None, 105), (0.0, "Shield Dust"): (None, 107)}
+    results.append(("Matcha Gotcha drains half its damage and burns at its chance", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -5490,7 +5504,7 @@ def main():
                   check_dragon_tail, check_side_guards, check_heat_crash,
                   check_healing_wish, check_guard_split, check_power_split,
                   check_embargo, check_magic_room,
-                  check_relic_song, check_clanging_scales,
+                  check_relic_song, check_clanging_scales, check_matcha_gotcha,
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,

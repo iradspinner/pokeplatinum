@@ -4889,6 +4889,20 @@ def clanging_scales_checks():
     return [("the readings' Clanging Scales lowers its user's Defense", ok,
              f"Geodude's HP {hp} to {geo.hp}, Bibarel's Defense stage {bib.stages['def']}")]
 
+def matcha_gotcha_checks():
+    """Matcha Gotcha in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel at half HP hits a trainer's
+    Geodude, which Sturdy holds at 1 HP, drains half of what it took, and
+    burns it when the chance lands."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Matcha Gotcha"])],
+                            Lucky8)
+    bib.hp = bib.maxhp // 2
+    hp, mine = geo.hp, bib.hp
+    pl.attack(b, bib, fs.move("Matcha Gotcha"), geo, True)
+    ok = geo.hp == 1 and bib.hp == mine + (hp - 1) // 2 and geo.status == "brn"
+    return [("the readings' Matcha Gotcha drains and burns", ok,
+             f"Geodude's HP {hp} to {geo.hp}, its status {geo.status}; Bibarel's HP {mine} to {bib.hp}")]
+
 def main():
     results = []
 
@@ -5439,6 +5453,7 @@ def main():
     results += magic_room_checks()
     results += relic_song_checks()
     results += clanging_scales_checks()
+    results += matcha_gotcha_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
