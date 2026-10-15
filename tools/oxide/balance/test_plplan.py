@@ -319,6 +319,39 @@ def idle_moves_picked():
           f"picked {out}")
 
 
+def keys_hold_new_states():
+    """The planner's merge key holds every battle state the batches added
+    (approved 2026-10-15): two positions of Roark's fight that differ only
+    by Lucky Chant or Sticky Web on a side, Gravity's or Magic Room's turns,
+    Copycat's last move or deep fog no longer merge; the search's shape key
+    tells Aurora Veil apart, the trainer's AI's key Aurora Veil too, and a
+    Belch user's keys whether it has eaten a Berry."""
+    st, team, bk, flags, _names = fight_state("roark")
+    base = pl.make_battle(st, team, bk, flags, 0)
+    changes = {"Lucky Chant": lambda c: setattr(c.p, "lucky_chant", 3),
+               "Sticky Web": lambda c: setattr(c.b, "web", 1),
+               "Gravity": lambda c: setattr(c, "gravity", 3),
+               "Magic Room": lambda c: setattr(c, "magic_room", 3),
+               "Copycat's last move": lambda c: setattr(c, "last_move", fs.move("Tackle")),
+               "deep fog": lambda c: setattr(c, "fog", True)}
+    out = {}
+    for name, change in changes.items():
+        c = plplan.clone(base)
+        change(c)
+        out[name] = plplan.merge_key(c) != plplan.merge_key(base)
+    c = plplan.clone(base)
+    c.p.aurora_veil = 3
+    out["Aurora Veil, shape"] = pl.shape_key(c) != pl.shape_key(base)
+    out["Aurora Veil, AI"] = pl.ai_key(c) != pl.ai_key(base)
+    c = plplan.clone(base)
+    m = c.p.cur()
+    m.belch = True
+    plain = pl.mon_key(m)
+    m.ate_berry = True
+    out["a Belch user's Berry"] = pl.mon_key(m) != plain
+    check("the planner's keys hold the states the batches added", all(out.values()), str(out))
+
+
 def main():
     print("the planner's pieces")
     pick_odds_rules()
@@ -332,6 +365,7 @@ def main():
     encore_leaves_one_move()
     options_by_rule()
     idle_moves_picked()
+    keys_hold_new_states()
     print(f"\n{sum(RESULTS)}/{len(RESULTS)} passed")
     return 0 if all(RESULTS) else 1
 

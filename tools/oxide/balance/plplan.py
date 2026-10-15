@@ -340,13 +340,30 @@ def turn_outcomes(c0, a, aa, key):
 
 
 def merge_key(c):
+    """What tells two positions a turn reaches apart, so that only like
+    ones merge: each side's Pokemon by an HP band and every other state its
+    key holds (perfectline.mon_key), the side's conditions, and the field.
+    The side conditions and field states most fights never have are kept
+    out of the key while they are not there, as perfectline's state_key
+    keeps them: Aurora Veil, and since 2026-10-15 Lucky Chant's turns and
+    Sticky Web on a side, and Gravity's and Magic Room's turns, Copycat's
+    last move and deep fog on the field, which the batches added to the
+    battle and this key had left out, so positions that differed only by
+    them merged (Ian approved the fix)."""
     def side(s):
-        return (s.active, tuple(((m.hp * HP_BUCKETS + m.maxhp - 1) // m.maxhp,) + pl.mon_key(m)[1:]
-                                for m in s.mons),
-                tuple(s.screens.values()), s.tailwind, tuple(s.hazards.values()), s.safeguard,
-                getattr(s, "wish", 0), s.future, s.future_sight, getattr(s, "mist", 0)) + \
-            ((s.aurora_veil,) if s.aurora_veil else ())      # Aurora Veil, out of the key while down
-    return side(c.p), side(c.b), c.weather, c.weather_turns, c.trick_room
+        key = (s.active, tuple(((m.hp * HP_BUCKETS + m.maxhp - 1) // m.maxhp,) + pl.mon_key(m)[1:]
+                               for m in s.mons),
+               tuple(s.screens.values()), s.tailwind, tuple(s.hazards.values()), s.safeguard,
+               getattr(s, "wish", 0), s.future, s.future_sight, getattr(s, "mist", 0))
+        if s.aurora_veil:
+            key += (s.aurora_veil,)          # Aurora Veil, out of the key while down
+        if s.lucky_chant or s.web:
+            key += (("lucky chant", s.lucky_chant, "web", s.web),)
+        return key
+    key = (side(c.p), side(c.b), c.weather, c.weather_turns, c.trick_room)
+    if c.gravity or c.last_move is not None or c.magic_room or c.fog:
+        key += pl._field_extra(c)            # Gravity, Copycat's last move, Magic Room, deep fog
+    return key
 
 
 def quick_outcomes(b):

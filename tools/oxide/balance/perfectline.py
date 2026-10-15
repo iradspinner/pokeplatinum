@@ -1376,6 +1376,8 @@ def mon_key(m):
            getattr(m, "last_resort_count", 0) if getattr(m, "last_resort", False) else None)
     if m.stockpile:
         key += ("stockpile", m.stockpile, m.stockpile_def, m.stockpile_spd)
+    if m.belch:
+        key += ("ate", m.ate_berry)      # Belch fails until its user has eaten a Berry (fightsim.fails_before)
     if m.imprisoning or m.imprisoned:
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
     if m.rare:
@@ -1430,6 +1432,8 @@ def shape_key(b):
                sd.future, sd.future_sight, getattr(sd, "mist", 0))
         if sd.lucky_chant or sd.web:
             key += (("lucky chant", sd.lucky_chant, "web", sd.web),)
+        if sd.aurora_veil:
+            key += (("aurora veil", sd.aurora_veil),)     # as side_key keeps it, since 2026-10-15
         return key
     key = (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room, getattr(b, "declined", frozenset()))
     return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room or b.fog else key
@@ -1483,7 +1487,8 @@ def ai_key(b):
             b.p.tailwind, b.b.tailwind, tuple(b.p.hazards.values()), tuple(b.b.hazards.values()),
             b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick,
             b.p.future_sight, b.b.future_sight, getattr(b.p, "mist", 0) > 0, getattr(b.b, "mist", 0) > 0) \
-        + (_ai_field(b) if b.gravity or b.p.lucky_chant or b.b.lucky_chant or b.p.web or b.b.web or b.fog else ())
+        + (_ai_field(b) if b.gravity or b.p.lucky_chant or b.b.lucky_chant or b.p.web or b.b.web or b.fog
+           or b.p.aurora_veil or b.b.aurora_veil else ())
 
 
 def _ai_field(b):
@@ -1491,12 +1496,17 @@ def _ai_field(b):
     kept out of its key while none is there: Lucky Chant on either side
     (Basic_CheckLuckyChant), Gravity (Basic_CheckGravity, the barred
     moves, the type check), Sticky Web on either side (Basic_CheckStickyWeb,
-    Basic_CheckDefog, Expert_Defog, Expert_RapidSpin) and deep fog
-    (Basic_CheckDefog)."""
-    if not (b.p.lucky_chant or b.b.lucky_chant or b.gravity or b.p.web or b.b.web or b.fog):
+    Basic_CheckDefog, Expert_Defog, Expert_RapidSpin), deep fog
+    (Basic_CheckDefog) and, since 2026-10-15, Aurora Veil on either side
+    (Basic_CheckAuroraVeil, Expert_AuroraVeil, Expert_Defog), which batch 8
+    gave the battle and this key had left out."""
+    if not (b.p.lucky_chant or b.b.lucky_chant or b.gravity or b.p.web or b.b.web or b.fog
+            or b.p.aurora_veil or b.b.aurora_veil):
         return ()
     return (("field", b.p.lucky_chant > 0, b.b.lucky_chant > 0, b.gravity > 0, b.p.web, b.b.web)
-            + (("fog",) if b.fog else ()),)
+            + (("fog",) if b.fog else ())
+            + (("aurora veil", b.p.aurora_veil > 0, b.b.aurora_veil > 0) if b.p.aurora_veil or b.b.aurora_veil
+               else ()),)
 
 
 _AI_CACHE = {}

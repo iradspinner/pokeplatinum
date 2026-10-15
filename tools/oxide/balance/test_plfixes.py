@@ -4997,6 +4997,21 @@ def idle_list_checks():
     return [("the team search picks Magic Room, no longer idle", "Magic Room" in got, f"picked {got}")]
 
 
+def merge_key_checks():
+    """The planner's merge key on Roark's real rows (approved 2026-10-15):
+    a turn that lays Sticky Web on Roark's side, or one that starts Lucky
+    Chant on the player's, leads to a position the key tells apart from the
+    same position without it, so the two are not merged."""
+    from . import plplan
+    b = battle()
+    out = {}
+    for name, side, attr in (("Sticky Web", "b", "web"), ("Lucky Chant", "p", "lucky_chant")):
+        c = plplan.clone(b)
+        setattr(getattr(c, side), attr, 1 if attr == "web" else 5)
+        out[name] = plplan.merge_key(c) != plplan.merge_key(b)
+    return [("the planner's merge key tells Sticky Web and Lucky Chant apart", all(out.values()), str(out))]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -6049,6 +6064,7 @@ def main():
     results += meloetta_form_checks()
     results += options_rule_checks()
     results += idle_list_checks()
+    results += merge_key_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
