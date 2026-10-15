@@ -2865,6 +2865,32 @@ def camouflage_checks():
              f"after Camouflage (types, Thunderbolt) {after}")]
 
 
+def burn_up_checks():
+    """Burn Up on the calculator's real rows and the readings' move
+    (approved 2026-10-14): prepare rows a Ponyta on its typeless twins, as
+    its Burn Up can leave it with no type; after one Burn Up into a
+    Squirtle, the Squirtle's Water Gun lands at half what it did on the Fire
+    type, and a second Burn Up fails."""
+    from .test_fightai import battle
+    b = battle([("Squirtle", 30, "Torrent", ["Water Gun"])], [("Ponyta", 30, "Run Away", ["Burn Up"])])
+    squirtle, pony = b.b.cur(), b.p.cur()
+    gun = fs.move("Water Gun")
+    twins = sorted(((b.st.get("form_twin") or {}).get(pony.key) or {}).get("twins", {}), key=repr)
+    before = pl.damage_of(b, squirtle, pony, gun, False, True)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    squirtle.hp = squirtle.maxhp * 10
+    pl.use_move(b, pony, fs.move("Burn Up"), squirtle, True)
+    first = squirtle.maxhp * 10 - squirtle.hp
+    pl.use_move(b, pony, fs.move("Burn Up"), squirtle, True)
+    second = squirtle.maxhp * 10 - squirtle.hp - first
+    after = (list(pony.types), pl.damage_of(b, squirtle, pony, gun, False, True))
+    ok = (twins == [(("???",), None)] and first > 0 and second == 0 and after[0] == ["???"]
+          and after[1] is not None and abs(after[1] * 2 - before) <= 3)
+    return [("Burn Up: Ponyta loses its Fire type, then Water Gun halves and a second Burn Up fails", ok,
+             f"twins {twins}; Water Gun before {before}; the two Burn Ups' damage ({first}, {second}); "
+             f"after (types, Water Gun) {after}")]
+
+
 def calc_terrain(tr_ids):
     from . import calc
     return getattr(calc, "fight_terrain", lambda _ids: None)(tr_ids)
@@ -3389,6 +3415,7 @@ def main():
     results += conversion_checks()
     results += conversion2_checks()
     results += camouflage_checks()
+    results += burn_up_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

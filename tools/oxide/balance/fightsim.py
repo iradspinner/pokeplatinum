@@ -2279,6 +2279,8 @@ def attack(b, att, mv, dfn, first):
     b.hits_landed = False                # a move of several hits that land_hits landed
     if not dfn.alive():
         return
+    if loses_type_fails(att, mv):
+        return                           # Burn Up without the Fire type (lose_type)
     # Telepathy: its holder takes no damaging move from its partner
     # (BattleControllerPlayer_PriorityBlock, which Mold Breaker gets past),
     # a spread move's in a double battle; the message names the ability.
@@ -2496,6 +2498,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
             change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         spin(b, att, dfn, e)
+    if e in LOSES_TYPE:
+        lose_type(att, LOSES_TYPE[e])    # Burn Up: after its hit, a Substitute's too
     if e == "SWITCH_HIT":
         # U-turn, Volt Switch and Flip Turn switch their user out after any
         # hit, a knockout or a hit on a Substitute too (effect script 228's
@@ -3987,6 +3991,38 @@ def _camouflaged(ff):
         if (ff.ability(k) != "Multitype" and any(m.effect == "CAMOUFLAGE" for m in mvs)
                 and ff.camouflage not in ff.types(k)):
             yield k, [ff.camouflage], ff.ability(k)
+
+
+# The hits that take their user's own type away once they land, and fail
+# without it: Burn Up's Fire (effect script 393).
+LOSES_TYPE = {"REMOVE_USER_FIRE_TYPE_HIT": "Fire"}
+
+
+def loses_type_fails(att, mv):
+    """Whether Burn Up fails at once, its user not of the type it spends
+    (the effect script's first check, before anything else is worked out)."""
+    return mv.effect in LOSES_TYPE and LOSES_TYPE[mv.effect] not in att.types
+
+
+def lose_type(mon, t):
+    """subscript_remove_user_fire_type: once the move has hit, a Substitute
+    included, its user loses the type t until it leaves; a dual type keeps
+    its other type alone, and a user that had no other is left with none
+    ("???", which no move's type meets). Its rows then come from its twin
+    without t (form_key). Until 2026-10-14 Burn Up never failed and its user
+    kept its Fire type (Ian approved the fix)."""
+    rest = [x for x in mon.types if x != t]
+    set_types(mon, rest or ["???"])
+
+
+@form_change
+def _types_spent(ff):
+    """Burn Up: its user, if it has the type, may lose it."""
+    for k in ff.keys():
+        own = ff.types(k)
+        for t in {LOSES_TYPE[m.effect] for m in ff.moves(k) if m.effect in LOSES_TYPE}:
+            if t in own:
+                yield k, [x for x in own if x != t] or ["???"], ff.ability(k)
 
 
 def lifted(dfn, mv):

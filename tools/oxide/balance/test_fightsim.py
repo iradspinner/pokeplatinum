@@ -1655,6 +1655,42 @@ def check_camouflage(results):
                     f"indoors (types, marked, the AI's score for another) {indoors}; after leaving {back}; {got}"))
 
 
+def check_burn_up(results):
+    """Burn Up (approved 2026-10-14; effect script 393,
+    subscript_remove_user_fire_type): once it hits, a Substitute too, a pure
+    Fire user is left with no type and reads its typeless twin, and a Fire
+    and Flying one is left Flying; a second Burn Up then fails; one that
+    misses its target in the air, or meets Protect, spends nothing; leaving
+    brings Fire back."""
+    def burn(types=("Fire",), sub=0, guard=None):
+        rows = {("p", "Burn Up"): [20] * 16, ("b", "Tackle"): [10] * 16}
+        b, p, foe = battle(["Burn Up"], ["Tackle"], rows, p_types=types)
+        b.st["first_battle"] = True
+        foe.sub = sub
+        if guard == "Protect":
+            foe.protecting = True
+        elif guard == "Fly":
+            foe.charging = fs.move("Fly")
+        b.st["form_twin"] = {"p0": {"ability": None, "twins": {
+            (("???",), None): (("p0#fmNormal@", ["Normal"]), ("p0#fmGrass@", ["Grass"]))}}}
+        b.st["rows"][(None, "b0.0", "p0#fmNormal@")] = {"moves": {"Tackle": {"rolls": [7] * 16}}}
+        fs.use_move(b, p, fs.move("Burn Up"), foe, True)
+        return b, p, foe
+    b, p, foe = burn()
+    spent = (list(p.types), foe.hp, b.damage(foe, p, fs.move("Tackle"), roll=0))
+    fs.use_move(b, p, fs.move("Burn Up"), foe, True)
+    again = foe.hp
+    p.reset_volatile()
+    back = list(p.types)
+    got = {"Fire and Flying": burn(("Fire", "Flying"))[1].types, "a Substitute": burn(sub=25)[1].types,
+           "Protect": burn(guard="Protect")[1].types, "Fly": burn(guard="Fly")[1].types}
+    want = {"Fire and Flying": ["Flying"], "a Substitute": ["???"], "Protect": ["Fire"], "Fly": ["Fire"]}
+    ok = spent == (["???"], 80, 7) and again == 80 and back == ["Fire"] and got == want
+    results.append(("Burn Up takes its user's Fire type away, and fails without it", ok,
+                    f"after one (types, the target's HP, Tackle on the typeless twin) {spent}; the target's HP after "
+                    f"a second {again}; after leaving {back}; {got}"))
+
+
 class FixedDice:
     """A stand-in for a battle's random source: every chance roll reads
     `value` (0.0 passes every check, 0.999 fails every one), every range its
@@ -2940,8 +2976,8 @@ def main():
                   check_encore, check_ice_body, check_absorbing_abilities,
                   check_roost, check_protean, check_form_twins, check_trace, check_mummy,
                   check_wandering_spirit, check_color_change, check_forecast, check_soak,
-                  check_conversion, check_conversion2, check_camouflage, check_magic_guard,
-                  check_liquid_ooze,
+                  check_conversion, check_conversion2, check_camouflage, check_burn_up,
+                  check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
                   check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
