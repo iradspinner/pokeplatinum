@@ -3776,6 +3776,26 @@ def mirror_move_checks():
              f"Mirror Move dealt {dealt}; the Pidgeot's Body Slam row {row and (row[0], row[-1])}")]
 
 
+def copycat_checks():
+    """Copycat in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): after the player's Bibarel uses Body Slam, a
+    trainer's Clefable's Copycat uses it on the Bibarel from the Clefable's
+    own row, which carries its foes' moves."""
+    from .test_fightai import battle
+    b = battle([("Clefable", 30, "Magic Guard", ["Copycat", "Moonblast"])], [("Bibarel", 30, "Simple", ["Body Slam"])])
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    cle, bib = b.b.cur(), b.p.cur()
+    bib.hp = bib.maxhp = 100000
+    cle.hp = cle.maxhp = 100000
+    pl.use_move(b, bib, fs.move("Body Slam"), cle, True)
+    pl.use_move(b, cle, fs.move("Copycat"), bib, False)
+    dealt = bib.maxhp - bib.hp
+    row = b.st["rows"][(None, cle.key, bib.key)]["moves"].get("Body Slam", {}).get("rolls")
+    ok = b.st.get("copycat") and row is not None and dealt > 0 and row[0] <= dealt <= int(1.5 * row[-1]) + 1
+    return [("the readings' Copycat uses the battle's last move", ok,
+             f"Copycat dealt {dealt}; the Clefable's Body Slam row {row and (row[0], row[-1])}")]
+
+
 def natural_gift_checks():
     """Natural Gift in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Donphan holding a Sitrus Berry hits
@@ -4434,6 +4454,7 @@ def main():
     results += gravity_checks()
     results += mimic_checks()
     results += mirror_move_checks()
+    results += copycat_checks()
     results += imprison_checks()
     results += baton_pass_checks()
     results += row_neutral_checks()

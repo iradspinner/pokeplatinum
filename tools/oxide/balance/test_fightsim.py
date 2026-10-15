@@ -2840,6 +2840,37 @@ def check_mirror_move(results):
     results.append(("Mirror Move uses the last mirrorable move aimed at its user", out == want, str(out)))
 
 
+def check_copycat(results):
+    """Copycat (approved 2026-10-14; effect script 242, BtlCmd_TryCopycat):
+    it uses the last move any Pokemon used before it, as its user's own; it
+    fails with none, after a turn a Pokemon could not act on, after a
+    calling move (a Copycat's own included), and on a move Gravity bars."""
+    b, p, foe = battle(["Copycat"], ["Ember", "Fly"], {}, hp=500)
+    b.st["copycat"] = True                 # prepare's flag for a fight with a Copycat user
+    b.st["rows"][(None, "p0", "b0.0")]["moves"]["Ember"] = {"rolls": [10] * 16}     # prepare's borrowed row
+    b.rng = FixedDice(0.5)
+    foe.ability = "Shell Armor"
+    cat = fs.move("Copycat")
+
+    def copy(first=False):
+        before = foe.hp
+        fs._use_move(b, p, cat, foe, first)
+        return before - foe.hp
+    out = {"first of the battle": copy(True)}
+    fs._use_move(b, foe, fs.move("Ember"), p, True)
+    out["after Ember"] = (copy(), p.last.name if p.last else None)
+    out["after a Copycat"] = copy()
+    fs._use_move(b, foe, fs.move("Ember"), p, True)
+    fs.could_not_act(b, foe, fs.move("Ember"), p)
+    out["after a turn that could not act"] = copy()
+    fs._use_move(b, foe, fs.move("Fly"), p, True)
+    b.gravity = 3
+    out["Fly under Gravity"] = copy()
+    want = {"first of the battle": 0, "after Ember": (10, "Copycat"), "after a Copycat": 0,
+            "after a turn that could not act": 0, "Fly under Gravity": 0}
+    results.append(("Copycat uses the battle's last move unless it calls one or none is there", out == want, str(out)))
+
+
 def check_natural_gift(results):
     """Natural Gift (approved 2026-10-14; effect script 222): the player's
     is read from its twin's row holding the Sitrus Berry ("p0#ng"), since
@@ -4229,7 +4260,7 @@ def main():
                   check_status_into_vanished, check_speed_down_hit, check_bounce_paralysis, check_weather_heal,
                   check_hail_under_lasting_hail, check_dream_eater, check_focus_punch,
                   check_crash_on_miss, check_bind, check_steal_item, check_swap_items,
-                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return, check_smack_down, check_gravity, check_mimic, check_mirror_move,
+                  check_pluck, check_chatter, check_stockpile, check_lower_sp_atk_hit, check_rollout, check_wake_up_slap, check_throat_chop, check_minimize_stomp, check_charge, check_lucky_chant, check_psych_up, check_lock_on, check_foresight, check_trainer_magnitude, check_trainer_return, check_smack_down, check_gravity, check_mimic, check_mirror_move, check_copycat,
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,

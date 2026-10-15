@@ -355,6 +355,7 @@ def use_move(b, att, mv, dfn, first):
 def _use_move(b, att, mv, dfn, first):
     if not att.alive():
         return
+    prev = b.last_move               # the move before this one, for Copycat (fightsim.note_move)
     att.acted_turn = b.turn          # its action this turn has begun (fightsim._use_move)
     mv = fs.encored_move(att, mv)        # the Encore move, whatever was chosen (fightsim.encored_move)
     att.conversion2_src = (att.last_hit_by, att.last_hit_type) if att.last_hit_by is not None else None
@@ -397,6 +398,7 @@ def _use_move(b, att, mv, dfn, first):
     if (att.taunt and mv.cat == "Status") or fs.tormented_out(att, mv) or fs.move_heal_blocked(att, mv):
         return fs.could_not_act(b, att, mv, dfn)
     fs.mark_hit(b, mv, dfn, True)
+    fs.note_move(b, mv)
     fs.spend_pp(b, att, mv, dfn)       # once a choice, and Pressure's (fightsim.spend_pp)
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
         att.protect_run = 0
@@ -407,7 +409,7 @@ def _use_move(b, att, mv, dfn, first):
     if fs.commit_move(att, mv):
         return                       # Last Resort before every other move was used
     if mv.effect in fs.CALLERS:
-        mv = fs.called_move(b, att, mv)     # Mirror Move's copy, run as its own (fightsim.called_move)
+        mv = fs.called_move(b, att, mv, prev)     # Mirror Move's and Copycat's copy, run as its own (fightsim.called_move)
         if mv is None:
             return
         fs.mark_hit(b, mv, dfn, True)
@@ -1143,6 +1145,8 @@ def clone_battle(b):
     c.gas_flag = getattr(b, "gas_flag", False)       # a Neutralizing Gas noted on the field
     if b.gravity:
         c.gravity = b.gravity        # left on the class while 0 (fightsim.Battle)
+    if b.last_move is not None:
+        c.last_move = b.last_move    # Copycat's move (fightsim.note_move)
     return c
 
 
@@ -1213,8 +1217,12 @@ def side_key(s):
 
 def _field_extra(b):
     """The field's states most fights never have, kept out of the keys
-    while they are not there: Gravity's turns."""
-    return (("gravity", b.gravity),) if b.gravity else ()
+    while they are not there: Gravity's turns, and in a fight with Copycat
+    the battle's last move."""
+    out = (("gravity", b.gravity),) if b.gravity else ()
+    if b.last_move is not None:
+        out += (("last move", b.last_move.name),)
+    return out
 
 
 def state_key(b):

@@ -637,6 +637,10 @@ class Battle:
     # the ground, accuracy up by ten sixths, the airborne moves barred; left
     # on the class while 0.
     gravity = 0
+    # The last move any Pokemon used whose attack message showed (movePrev),
+    # which Copycat uses; kept only in a fight with a Copycat user
+    # (st["copycat"]), and None after a turn some Pokemon could not act.
+    last_move = None
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -2104,22 +2108,48 @@ def _forbidden_moves():
 
 
 # The status moves that use another move as their own, run in place of
-# the move chosen (called_move): Mirror Move.
-CALLERS = frozenset({"COPY_MOVE"})
+# the move chosen (called_move): Mirror Move and Copycat.
+CALLERS = frozenset({"COPY_MOVE", "USE_LAST_USED_MOVE"})
+# Move_IsInvoker: the moves that call another, which Copycat will not copy.
+INVOKERS = frozenset({"MOVE_SLEEP_TALK", "MOVE_COPYCAT", "MOVE_ASSIST", "MOVE_ME_FIRST", "MOVE_MIRROR_MOVE",
+                      "MOVE_METRONOME"})
 
 
-def called_move(b, att, mv):
+def note_move(b, mv):
+    """The battle's last move used (movePrev, set when the attack message
+    shows and cleared when it does not), for Copycat."""
+    if b.st.get("copycat"):
+        b.last_move = mv
+
+
+def metronome_callable(b, att, mv):
+    """Move_CanBeMetronomed, which Copycat and Metronome both ask: not a
+    move Gravity bars for the user, not one Heal Block bars, and not one of
+    the engine's sCannotMetronomeMoves."""
+    return (not (getattr(b, "gravity", 0) and mv.const in fightai.GRAVITY_FAILS)
+            and not move_heal_blocked(att, mv) and mv.const not in _forbidden_moves()[1])
+
+
+def called_move(b, att, mv, prev=None):
     """The move a calling move uses in its place, or None when it fails.
     Mirror Move (effect script 9, BtlCmd_SetMirrorMove): the last move with
     MOVE_FLAG_CAN_MIRROR_MOVE aimed at its user since it, or a foe, came in
     (moveCopied), unless that move's effect is one Encore may not hold
-    (Move_CanBeEncored, NO_ENCORE). The called move runs as the user's own,
-    spending no PP of its own, on the foe in front (BattleSystem_Defender);
-    the user's last move stays Mirror Move (movePrevByBattler is moveTemp).
-    Until 2026-10-15 Mirror Move did nothing (Ian approved the fix)."""
+    (Move_CanBeEncored, NO_ENCORE). Copycat (effect script 242,
+    BtlCmd_TryCopycat): the last move any Pokemon used before it (prev, the
+    battle's movePrev), unless there is none, it calls another move
+    (Move_IsInvoker) or Metronome could not call it (metronome_callable).
+    The called move runs as the user's own, spending no PP of its own, on
+    the foe in front (BattleSystem_Defender); the user's last move stays the
+    calling move (movePrevByBattler is moveTemp). Until 2026-10-15 both did
+    nothing (Ian approved the fix)."""
     if mv.effect == "COPY_MOVE":
         got = att.mirror
         return got if got is not None and got.effect not in NO_ENCORE else None
+    if mv.effect == "USE_LAST_USED_MOVE":
+        if prev is None or prev.const in INVOKERS or not metronome_callable(b, att, prev):
+            return None
+        return prev
     return None
 
 
@@ -2540,6 +2570,8 @@ def could_not_act(b, att, mv, dfn, targets=None):
     record is cleared."""
     att.last = None
     att.protect_run = 0
+    if b.st.get("copycat"):
+        b.last_move = None           # no attack message: movePrev is MOVE_NONE
     rollout_break(att)               # the subscript that stopped it unlocked its user (rollout_break)
     mark_hit(b, mv, dfn, False, targets)
 
@@ -2675,6 +2707,7 @@ def forecast(b):
 def _use_move(b, att, mv, dfn, first, targets=None):
     if not att.alive():
         return
+    prev = b.last_move           # the move before this one, for Copycat (note_move)
     att.acted_turn = b.turn      # its action this turn has begun (a Truant given later this turn: set_ability)
     mv = encored_move(att, mv)
     # Its own record clears with its action, whatever happens
@@ -2721,6 +2754,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     if (att.taunt and mv.cat == "Status") or tormented_out(att, mv) or move_heal_blocked(att, mv):
         return could_not_act(b, att, mv, dfn, targets)
     mark_hit(b, mv, dfn, True, targets)
+    note_move(b, mv)
     spend_pp(b, att, mv, dfn, targets)
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
         att.protect_run = 0
@@ -2731,7 +2765,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     if commit_move(att, mv):
         return                   # Last Resort before every other move was used
     if mv.effect in CALLERS:
-        mv = called_move(b, att, mv)
+        mv = called_move(b, att, mv, prev)
         if mv is None:
             return               # nothing to call: it fails
         mark_hit(b, mv, dfn, True, targets)     # the called move is the last to hit its target (moveHit)
@@ -6629,9 +6663,9 @@ def family(species):
 
 
 # The status moves that use a foe's move as their user's own, whose users'
-# rows carry the foes' damaging moves (prepare's borrowed): Mimic and
-# Mirror Move.
-BORROWS = frozenset({"COPY_MOVE_FOR_BATTLE", "COPY_MOVE"})
+# rows carry the foes' damaging moves (prepare's borrowed): Mimic, Mirror
+# Move and Copycat.
+BORROWS = frozenset({"COPY_MOVE_FOR_BATTLE", "COPY_MOVE", "USE_LAST_USED_MOVE"})
 
 
 def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False,
@@ -7084,6 +7118,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
             "foresight_twin": foresight_twin, "ground_twin": ground_twin,
+            "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
             "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo}
 
 
