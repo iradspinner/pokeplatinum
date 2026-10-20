@@ -2227,8 +2227,9 @@ def check_pluck(results):
     and confusion, a Chesto Berry its sleep, a Liechi Berry a stage of
     Attack at full HP; a resist Berry is eaten for nothing; the Berry is
     then the target's to Recycle. Sticky Hold keeps the Berry (Mold Breaker
-    gets past it), a Klutz user eats it for nothing, a Substitute's hit
-    takes nothing and a Leftovers stays put."""
+    gets past it), a Klutz user eats it for nothing, a Leftovers stays put,
+    and since Ian's answer of 2026-10-20 a hit its Substitute takes eats the
+    Berry all the same, as the engine does."""
     def bite(berry, status=None, ability=None, foe_ability=None, sub=0, confused=0):
         b, p, foe = battle(["Bug Bite"], ["Tackle"], {("p", "Bug Bite"): [10] * 16})
         b.rng = FixedDice(0.5)
@@ -2248,7 +2249,7 @@ def check_pluck(results):
             "Chesto": (50, None, 0, 0, None, "Chesto Berry"), "Liechi": (100, None, 0, 1, None, "Liechi Berry"),
             "Occa": (50, None, 0, 0, None, "Occa Berry"), "Sticky Hold": (50, None, 0, 0, "Sitrus Berry", None),
             "Sticky Hold, Mold Breaker": (75, None, 0, 0, None, "Sitrus Berry"),
-            "Klutz": (50, None, 0, 0, None, "Sitrus Berry"), "a Substitute": (50, None, 0, 0, "Sitrus Berry", None),
+            "Klutz": (50, None, 0, 0, None, "Sitrus Berry"), "a Substitute": (75, None, 0, 0, None, "Sitrus Berry"),
             "Leftovers": (50, None, 0, 0, "Leftovers", None)}
     results.append(("Bug Bite eats the target's Berry with that Berry's own effect", got == want,
                     f"(user's HP, status, confusion, Attack stage; target's item, its Recycle) {got}"))
@@ -6412,6 +6413,26 @@ def check_flower_veil(results):
     out["its own Close Combat"] = (foe.stages["def"], foe.stages["spd"])
     want = {"Grass": 0, "Mold Breaker": -1, "Normal": -1, "Intimidate": 0, "its own Close Combat": (-1, -1)}
     results.append(("Flower Veil keeps the other side's drops off a Grass-type holder", out == want, str(out)))
+
+
+@b11
+def check_pluck_through_substitute(results):
+    """Bug Bite and Pluck through a Substitute (Ian's answer of 2026-10-20;
+    effect script 224's indirect effect, subscript_pluck): the user eats the
+    Berry of the Pokemon behind the Substitute, which takes the hit, in both
+    battles; a Tackle into the Substitute leaves the Berry."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, fn in (("Bug Bite", "Bug Bite", pl.attack), ("Pluck", "Pluck", pl.attack),
+                           ("fightsim's Bug Bite", "Bug Bite", fs.attack), ("Tackle", "Tackle", pl.attack)):
+        b, p, foe = b11_battle([name], ["Splash"], {("p", name): [10] * 16})
+        foe.item, foe.sub, p.hp = "Sitrus Berry", 30, 40
+        p.stages["acc"] = 6
+        fn(b, p, fs.move(name), foe, True)
+        out[case] = (foe.item, foe.sub, foe.hp == foe.maxhp, p.hp)
+    want = {"Bug Bite": (None, 20, True, 65), "Pluck": (None, 20, True, 65), "fightsim's Bug Bite": (None, 20, True, 65),
+            "Tackle": ("Sitrus Berry", 20, True, 40)}
+    results.append(("Bug Bite and Pluck eat the Berry through a Substitute", out == want, str(out)))
 
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type

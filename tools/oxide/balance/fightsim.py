@@ -3874,6 +3874,13 @@ def attack(b, att, mv, dfn, first):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
         b.sub_hit = True         # broken or not, nothing of the hit reaches the Pokemon behind it
+        if mv.effect == "EAT_BERRY":
+            # Bug Bite and Pluck eat the Berry of the Pokemon behind it all
+            # the same: their effect script's indirect effect
+            # (MOVE_SUBSCRIPT_PTR_PLUCK, subscript_pluck and TryPluck) asks
+            # nothing of a Substitute. Until 2026-10-20 the Substitute kept
+            # the Berry (Ian approved the fix on 2026-10-20).
+            pluck(b, att, dfn, lambda kind, n: b.rng.randrange(n))
     else:
         if mv.effect == "LEAVE_WITH_1_HP" and dmg >= dfn.hp:
             # False Swipe and Hold Back (effect script 101): a hit that would
@@ -5098,8 +5105,9 @@ def swap_items(att, dfn, mv):
 
 def pluck(b, att, dfn, pick):
     """Bug Bite and Pluck (effect script 224, subscript_pluck, BtlCmd_TryPluck
-    and BattleSystem_PluckBerry) once their hit has struck the target itself,
-    a knockout included: the user eats the target's Berry and takes its
+    and BattleSystem_PluckBerry) once their hit has landed, on the target or
+    on its Substitute, a knockout included: the user eats the target's Berry
+    and takes its
     effect (eat_berry). The target's Sticky Hold keeps it (named; Mold
     Breaker gets past it); any other item stays where it is. The Berry is
     gone from the target and kept for its Recycle (RemoveItem), and the user

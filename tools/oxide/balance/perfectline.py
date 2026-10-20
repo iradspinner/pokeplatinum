@@ -815,6 +815,10 @@ def attack(b, att, mv, dfn, first):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
         b.sub_hit = True         # broken or not, nothing of the hit reaches the Pokemon behind it
+        if mv.effect == "EAT_BERRY":
+            # but Bug Bite and Pluck eat its Berry through the Substitute
+            # (as fightsim.attack has it)
+            fs.pluck(b, att, dfn, lambda kind, n: b.dice.choice(kind, n))
     else:
         if mv.effect == "LEAVE_WITH_1_HP" and dmg >= dfn.hp:
             dmg = dfn.hp - 1     # False Swipe and Hold Back leave 1 HP, before Sturdy and the Sash

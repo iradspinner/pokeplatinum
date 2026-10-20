@@ -5456,6 +5456,23 @@ def flower_veil_checks():
     return [("the readings' Flower Veil shields a Grass-type holder's stats", ok, f"Defense after Leer {out}")]
 
 
+@b11
+def pluck_through_substitute_checks():
+    """Bug Bite through a Substitute on the calculator's real rows (Ian's
+    answer of 2026-10-20): the player's Vespiquen at half HP eats the Sitrus
+    Berry of a trainer's Machop behind a Substitute that takes the hit, and
+    heals a quarter."""
+    b, mach, ves = b8_battle([("Machop", 30, "Guts", ["Tackle"], "Sitrus Berry")],
+                             [("Vespiquen", 30, "Pressure", ["Bug Bite"])])
+    mach.item, mach.sub = "Sitrus Berry", 10 ** 6
+    ves.hp = ves.maxhp // 2
+    hp = ves.hp
+    pl.attack(b, ves, fs.move("Bug Bite"), mach, True)
+    ok = mach.item is None and mach.hp == mach.maxhp and ves.hp - hp == ves.maxhp // 4
+    return [("the readings' Bug Bite eats the Berry through a Substitute", ok,
+             f"Machop's item {mach.item}, HP {mach.hp}/{mach.maxhp}; Vespiquen healed {ves.hp - hp}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
