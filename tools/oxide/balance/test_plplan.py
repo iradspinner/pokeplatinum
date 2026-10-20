@@ -352,6 +352,25 @@ def keys_hold_new_states():
     check("the planner's keys hold the states the batches added", all(out.values()), str(out))
 
 
+def copycat_water_sport_picked():
+    """Copycat and Water Sport are off the team search's idle list (Ian's
+    answer of 2026-10-20; plteam.IDLE), as both run: on real rows a
+    Pikachu with four Electric moves and one of them takes it as its
+    status move against a trainer's Bibarel, where it took it only when
+    nothing else was left; Splash stays idle."""
+    from . import plteam
+    from .test_fightai import _prepared
+    boss = (("Bibarel", 20, "Unaware", ("Tackle",), None),)
+    out = {}
+    for extra in ("Copycat", "Water Sport", "Splash"):
+        player = (("Pikachu", 20, "Static", ("Thunder Shock", "Spark", "Nuzzle", "Thunderbolt", extra), None),)
+        st = _prepared(boss, player, "Roark", None)
+        mine, _theirs, _speed = plteam.matchups(st, ["p0"], st["bosses"][0])
+        out[extra] = extra in plteam.pick_moves(st, "p0", st["bosses"][0], mine)
+    check("Copycat and Water Sport are no longer idle moves for the team search",
+          out == {"Copycat": True, "Water Sport": True, "Splash": False}, f"picked {out}")
+
+
 def keys_hold_held_states():
     """The planner's keys hold the Pokemon states batch 10 found them
     without (Ian approved on 2026-10-20): two positions of Roark's fight
@@ -390,6 +409,7 @@ def main():
     idle_moves_picked()
     keys_hold_new_states()
     keys_hold_held_states()
+    copycat_water_sport_picked()
     print(f"\n{sum(RESULTS)}/{len(RESULTS)} passed")
     return 0 if all(RESULTS) else 1
 

@@ -5510,6 +5510,25 @@ def held_state_key_checks():
     return [("the readings' merge key tells Truant's turn and Defense Curl apart", ok, f"(the state set, told apart) {out}")]
 
 
+@b11
+def copycat_idle_checks():
+    """Copycat and Water Sport off the team search's idle list on Roark's
+    real rows (Ian's answer of 2026-10-20; plteam.IDLE): a box Pikachu with
+    four Electric moves and Copycat, or Water Sport, takes it as its status
+    move against Roark's team."""
+    from . import plteam
+    out = {}
+    for extra in ("Copycat", "Water Sport"):
+        recs = [{"constant": "SPECIES_PIKACHU", "species": "Pikachu", "how": "test", "level": 16, "nature": "Hardy",
+                 "ivs": IV, "evs": EV, "ability": "Static",
+                 "moves": ["Thunder Shock", "Spark", "Nuzzle", "Thunderbolt", extra], "fill": False}]
+        prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
+        st, boss = prep["st"], list(prep["variants"][0][0])
+        mine, _theirs, _speed = plteam.matchups(st, ["p0"], boss)
+        out[extra] = extra in plteam.pick_moves(st, "p0", boss, mine)
+    return [("the team search picks Copycat and Water Sport, no longer idle", all(out.values()), f"picked {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
