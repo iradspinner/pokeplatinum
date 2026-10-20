@@ -3965,6 +3965,8 @@ def attack(b, att, mv, dfn, first):
             dmg = int(dmg * doubled_power(att, mv))
         if mv.effect == "DOUBLE_POWER_IF_FASTER" and beak_doubles(b, dfn, first):
             dmg = int(dmg * doubled_power(att, mv))     # Bolt Beak and Fishious Rend (beak_doubles)
+        if mv.effect == "FICKLE_BEAM" and fickle_doubles(b):
+            dmg = int(dmg * doubled_power(att, mv))     # three times in ten (fickle_doubles)
         # A doubled power meets Technician after it is doubled (doubled_power).
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
             dmg = int(dmg * doubled_power(att, mv))
@@ -6128,6 +6130,23 @@ def sparkly_swirl(b, att):
             m.status = None
     for m in field:
         m.nightmare = False
+
+
+# Fickle Beam's roll (effect script 349): Random 9, 0 gives 0 to 9, and
+# above 6 the power doubles, so three times in ten.
+FICKLE_ODDS = {True: 3, False: 7}
+
+
+def fickle_doubles(b):
+    """Whether this Fickle Beam goes all out at twice its power (effect
+    script 349's POWER_MULTI 20), on the battle's dice: a run's draw or the
+    planner's weighted event; where no dice can weigh it, the likelier,
+    not. Until 2026-10-20 it never doubled (Ian approved the fix)."""
+    pick = getattr(getattr(b, "dice", None), "pick_weighted", None)
+    if pick is not None:
+        return pick(list(FICKLE_ODDS), list(FICKLE_ODDS.values()))
+    rng = getattr(b, "rng", None)
+    return rng.random() < 0.3 if rng is not None else False
 
 
 def beak_doubles(b, dfn, first):

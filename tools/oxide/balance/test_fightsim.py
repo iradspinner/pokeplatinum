@@ -7056,6 +7056,23 @@ def check_bolt_beak(results):
     results.append(("Bolt Beak doubles before the target acts or after it switches in", out == want, str(out)))
 
 
+@b12
+def check_fickle_beam(results):
+    """Fickle Beam (approved 2026-10-14; effect script 349): three times in
+    ten (Random 9, 0 above 6) it goes all out at twice its power; else it
+    hits at its listed power."""
+    out = {}
+    for case, value in (("all out", 0.0), ("plain", 0.999)):
+        b, p, foe = battle(["Fickle Beam"], ["Tackle"], {("p", "Fickle Beam"): [20] * 16})
+        b.rng = FixedDice(value)
+        fs.attack(b, p, fs.move("Fickle Beam"), foe, True)
+        out[case] = foe.maxhp - foe.hp
+    out["odds"] = fs.FICKLE_ODDS
+    # FixedDice(0.0) lands the critical hit too: 20 at half again, doubled.
+    want = {"all out": 60, "plain": 20, "odds": {True: 3, False: 7}}
+    results.append(("Fickle Beam doubles its power three times in ten", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

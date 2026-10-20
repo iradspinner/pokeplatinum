@@ -6308,6 +6308,30 @@ def bolt_beak_checks():
     return [("the readings' Bolt Beak doubles before its target acts", ok, f"HP taken {out}")]
 
 
+@b12
+def fickle_beam_checks():
+    """Fickle Beam in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel's Fickle Beam into a
+    trainer's Snorlax does twice as much when it goes all out, the
+    battle's weighted pick, as when it does not."""
+    class AllOut(Sure7):
+        def pick_weighted(self, items, weights):
+            return items[0]
+
+    class Plain(Sure7):
+        def pick_weighted(self, items, weights):
+            return items[-1]
+    out = {}
+    for name, dice in (("all out", AllOut), ("plain", Plain)):
+        b, sno, bib = b8_battle([("Snorlax", 30, "Thick Fat", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Fickle Beam"])],
+                                dice)
+        sno.hp = sno.maxhp = 999
+        pl.attack(b, bib, fs.move("Fickle Beam"), sno, True)
+        out[name] = 999 - sno.hp
+    ok = abs(out["all out"] - 2 * out["plain"]) <= 1
+    return [("the readings' Fickle Beam doubles when it goes all out", ok, f"HP taken {out}")]
+
+
 def main():
     results = []
 

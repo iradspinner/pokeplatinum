@@ -823,6 +823,8 @@ def attack(b, att, mv, dfn, first):
             dmg = int(dmg * fs.doubled_power(att, mv))     # BtlCmd_TryPursuit's POWER_MULTI 20
         if mv.effect == "DOUBLE_POWER_IF_FASTER" and fs.beak_doubles(b, dfn, first):
             dmg = int(dmg * fs.doubled_power(att, mv))     # Bolt Beak and Fishious Rend (fightsim.beak_doubles)
+        if mv.effect == "FICKLE_BEAM" and fs.fickle_doubles(b):
+            dmg = int(dmg * fs.doubled_power(att, mv))     # three times in ten (fightsim.fickle_doubles)
         # A doubled power meets Technician after it is doubled (fs.doubled_power).
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
             dmg = int(dmg * fs.doubled_power(att, mv))
