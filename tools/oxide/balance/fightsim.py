@@ -2387,13 +2387,18 @@ ROLLOUT = "DOUBLE_POWER_EACH_TURN_LOCK_INTO"   # Rollout and Ice Ball
 # and 296): Double Kick, Dual Wingbeat and the other HIT_TWICE moves,
 # Twineedle and Double Iron Bash.
 TWO_HITS = frozenset({"HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE_AND_FLINCH"})
+# The moves of three hits at their listed power, one accuracy check for
+# the three (SetMultiHit 3, SYSCTL_MULTI_HIT_MOVE): Triple Dive (effect
+# script 299), whose calculator row adds up the three. Until 2026-10-20 it
+# landed as one hit holding the row's three (Ian approved the fix).
+THREE_HITS = frozenset({"HIT_THREE_TIMES_FIXED_POWER"})
 # Every effect whose hits the engine lands one at a time and the calculator's
-# row adds up (SetMultiHit in effect scripts 29, 44, 77, 296, 298 and 416):
-# the two to five hit moves, the two-hit moves and the three rising ones.
-# Triple Dive, Surging Strikes, Population Bomb and Beat Up are left out, as
-# neither side can have them today.
+# row adds up (SetMultiHit in effect scripts 29, 44, 77, 296, 298, 299 and
+# 416): the two to five hit moves, the two-hit and three-hit moves and the
+# three rising ones. Surging Strikes and Population Bomb are left out, as
+# neither side can have them today; Beat Up lands its own (beat_up_hits).
 HIT_BY_HIT = frozenset({"MULTI_HIT", "HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE_AND_FLINCH",
-                        "HIT_THREE_TIMES_RISING_10", "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20"})
+                        "HIT_THREE_TIMES_RISING_10", "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20"}) | THREE_HITS
 # The secondary effect each of the two-hit kin rolls once a hit (effect
 # scripts 77 and 296 set it for every hit): Twineedle's poison and Double
 # Iron Bash's flinch, at the move's chance.
@@ -2425,7 +2430,7 @@ def hit_weights(att, mv, hits):
     if mv.effect in RISING:
         powers = rising_powers(mv)
         return powers[:hits], sum(powers)
-    total = row_hits(att, mv) if mv.effect == "MULTI_HIT" else 2
+    total = row_hits(att, mv) if mv.effect == "MULTI_HIT" or mv.effect in THREE_HITS else 2
     return [1] * hits, total
 
 
@@ -3903,6 +3908,8 @@ def attack(b, att, mv, dfn, first):
             hits += 1
     elif mv.effect in TWO_HITS:
         hits = 2
+    elif mv.effect in THREE_HITS:
+        hits = 3
     if mv.effect == "BEAT_UP":
         # Each eligible party member's own hit, on this battle's dice (beat_up_hits).
         dealt = beat_up_hits(b, att, mv, dfn, first, lambda n, rate: [b.rng.random() < rate for _ in range(n)],
@@ -6794,9 +6801,14 @@ def multi_hit_odds(att, mv):
 def row_hits(att, mv):
     """The hits a calculator row adds up for this move (calc_headless.js
     rolls(), move.js): a two to five hit move at its lowest plus one, or its
-    most with Skill Link or a Grip Claw; Double Kick's kind at two; else one."""
+    most with Skill Link or a Grip Claw; Double Kick's kind at two; Triple
+    Dive's at three (THREE_HITS), so the trainer's AI, which divides its
+    row by this, rates it on one hit, as TrainerAI_ExpectedHitsDamage
+    leaves it; else one."""
     if mv.effect == "MULTI_HIT":
         return 5 if att.ability == "Skill Link" or att.item == "Grip Claw" else 3
+    if mv.effect in THREE_HITS:
+        return 3             # Triple Dive's kind (calc's multihit 3)
     return 2 if mv.effect == "HIT_TWICE" else 1
 
 

@@ -6344,6 +6344,17 @@ def esper_wing_checks():
     return [("the readings' Esper Wing raises its user's Speed", got == (True, 1, True), f"(hit, Speed stage, Speed up half) {got}")]
 
 
+@b12
+def triple_dive_checks():
+    """Triple Dive in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Floatzel's three hits land one at
+    a time, so a trainer's Sturdy Geodude, held at 1 HP by the first,
+    falls to the second, where the move landed as one hit Sturdy held."""
+    b, geo, flo = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Floatzel", 30, "Swift Swim", ["Triple Dive"])])
+    pl.attack(b, flo, fs.move("Triple Dive"), geo, True)
+    return [("the readings' Triple Dive lands three hits", not geo.alive(), f"Geodude's HP {geo.hp} of {geo.maxhp}")]
+
+
 def main():
     results = []
 

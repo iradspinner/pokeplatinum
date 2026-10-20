@@ -5864,6 +5864,24 @@ def b11(fn):
     return fn
 
 
+def sure12():
+    """Dice for batch 12's checks in the readings' battle: perfectline's run
+    dice where no chance lands but a certain one (no miss, no critical hit,
+    no added effect), at the top damage roll."""
+    from . import perfectline as pl
+
+    class Sure(pl.RunDice):
+        def bad(self, kind, p):
+            return False
+
+        def good(self, p, kind=None):
+            return p >= 1
+
+        def roll(self, top):
+            return 15
+    return Sure(random.Random(1), True)
+
+
 def b11_battle(p_moves, b_moves, rolls, **kw):
     """A hand-built battle on the readings' dice (perfectline.RunDice)."""
     from . import perfectline as pl
@@ -7092,6 +7110,28 @@ def check_esper_wing(results):
     out["critical rate"] = fs.crit_rate(b, p, foe, fs.move("Esper Wing"))
     want = {"hit": 1, "Substitute": 1, "knockout": 1, "critical rate": fs.CRIT_RATE[1]}
     results.append(("Esper Wing raises its user's Speed a stage", out == want, str(out)))
+
+
+@b12
+def check_triple_dive(results):
+    """Triple Dive (approved 2026-10-14; effect script 299, SetMultiHit 3):
+    three hits at its listed power, the row's three shared out, landed one
+    at a time: Sturdy holds only the first at full HP, so three hits of 10
+    knock out a 25 HP Sturdy target; Rough Skin answers each contact hit."""
+    from . import perfectline as pl
+    out = {}
+    for case, ability in (("Sturdy", "Sturdy"), ("Rough Skin", "Rough Skin")):
+        b, p, foe = b11_battle(["Triple Dive"], ["Tackle"], {("p", "Triple Dive"): [30] * 16}, hp=80)
+        b.dice = sure12()
+        foe.ability = ability
+        if ability == "Sturdy":
+            foe.hp = foe.maxhp = 25
+        pl.attack(b, p, fs.move("Triple Dive"), foe, True)
+        fs.hit_aftermath(b, p, foe, fs.move("Triple Dive"), lambda kind, prob, victim: False, lambda kind, n: 0)
+        out[case] = (foe.hp, p.maxhp - p.hp)
+    out["row hits"] = fs.row_hits(p, fs.move("Triple Dive"))
+    want = {"Sturdy": (0, 0), "Rough Skin": (50, 30), "row hits": 3}
+    results.append(("Triple Dive lands three hits one at a time", out == want, str(out)))
 
 
 def main():

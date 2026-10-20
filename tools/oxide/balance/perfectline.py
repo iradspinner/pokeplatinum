@@ -514,7 +514,8 @@ def rolled_hits(b, att, dfn, mv, trainer, first=True):
     (fs.multi_hit_odds), rolled by a run's dice and enumerated at its odds by
     the planner's; a rising move's hits (Fury Cutter, Triple Kick, Triple
     Axel) until its first miss, each later hit checking accuracy again unless
-    a Loaded Dice skips the check; two for the two-hit moves. In the strict
+    a Loaded Dice skips the check; two for the two-hit moves and three for
+    the three-hit ones (fightsim.THREE_HITS). In the strict
     search the trainer gets its most hits and the player its fewest."""
     odds = fs.multi_hit_odds(att, mv)
     if odds:
@@ -530,7 +531,7 @@ def rolled_hits(b, att, dfn, mv, trainer, first=True):
         while hits < fs.RISING_COUNT and (att.item == "Loaded Dice" or accuracy_hits(b, att, dfn, mv, first)):
             hits += 1
         return hits
-    return 2 if mv.effect in fs.TWO_HITS else 1
+    return 2 if mv.effect in fs.TWO_HITS else 3 if mv.effect in fs.THREE_HITS else 1
 
 
 def crit_hits(b, att, dfn, mv, hits, trainer):
