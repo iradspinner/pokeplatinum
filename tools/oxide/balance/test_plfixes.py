@@ -5441,6 +5441,21 @@ def pastel_veil_checks():
     return [("the readings' Pastel Veil keeps poison off its holder", ok, f"the Ponyta's status {out}")]
 
 
+@b11
+def flower_veil_checks():
+    """Flower Veil on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop's Leer leaves the Defense of the player's Grass-type
+    Turtwig given Flower Veil as it was, and lowers an Overgrow one's; a
+    Floette, no Grass type, has no shield."""
+    out = {}
+    for sp, ab in (("Turtwig", "Flower Veil"), ("Turtwig", "Overgrow"), ("Floette", "Flower Veil")):
+        b, mach, mon = b8_battle([("Machop", 30, "Guts", ["Leer"])], [(sp, 30, ab, ["Tackle"])])
+        pl.status_move(b, mach, fs.move("Leer"), mon, True)
+        out[(sp, ab)] = mon.stages["def"]
+    ok = out == {("Turtwig", "Flower Veil"): 0, ("Turtwig", "Overgrow"): -1, ("Floette", "Flower Veil"): -1}
+    return [("the readings' Flower Veil shields a Grass-type holder's stats", ok, f"Defense after Leer {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

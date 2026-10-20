@@ -6389,6 +6389,30 @@ def check_pastel_veil(results):
     want = {"Toxic": None, "Poison Gas": None, "Mold Breaker": "tox", "Toxic Spikes": (None, 2)}
     results.append(("Pastel Veil keeps poison off its holder", out == want, str(out)))
 
+
+@b11
+def check_flower_veil(results):
+    """Flower Veil (approved 2026-10-14; BtlCmd_ChangeStatStage): the other
+    side cannot lower a Grass-type holder's stats, by Growl or Intimidate;
+    a Mold Breaker's Growl can, a holder of another type has no shield, and
+    its own Close Combat still lowers its defences."""
+    from . import perfectline as pl
+    out = {}
+    for case, types, ab in (("Grass", ("Grass",), None), ("Mold Breaker", ("Grass",), "Mold Breaker"),
+                            ("Normal", ("Normal",), None)):
+        b, p, foe = b11_battle(["Growl"], ["Close Combat"], {("b", "Close Combat"): [10] * 16}, b_types=types)
+        foe.ability, p.ability = "Flower Veil", ab
+        pl.status_move(b, p, fs.move("Growl"), foe, True)
+        out[case] = foe.stages["atk"]
+    p.ability, foe.stages["atk"] = "Intimidate", 0
+    foe.types = ["Grass"]
+    fs.intimidate_foes(b, [p])
+    out["Intimidate"] = foe.stages["atk"]
+    pl.attack(b, foe, fs.move("Close Combat"), p, True)
+    out["its own Close Combat"] = (foe.stages["def"], foe.stages["spd"])
+    want = {"Grass": 0, "Mold Breaker": -1, "Normal": -1, "Intimidate": 0, "its own Close Combat": (-1, -1)}
+    results.append(("Flower Veil keeps the other side's drops off a Grass-type holder", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

@@ -2235,6 +2235,13 @@ def stat_drop_blocked(b, mon, changes, src=None, intimidate=False):
     side = b.p if mon.side == "p" else b.b
     if getattr(side, "mist", 0) and (src is None or src.ability != "Infiltrator"):
         return True
+    if mon.ability == "Flower Veil" and "Grass" in mon.types and not mold(src, mon):
+        # Oxide's Flower Veil keeps the other side from lowering a Grass-type
+        # holder's stats, after Mist; its message names no ability. Its
+        # shield over a Grass-type partner in a double battle is left to the
+        # double battles' own batch. Until 2026-10-20 it did nothing (Ian
+        # approved the fix).
+        return True
     if mon.item == "Clear Amulet":
         return True
     # A Mold Breaker src gets past the abilities (AbilityBlocksSpecificStatReduction
