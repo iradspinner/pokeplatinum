@@ -7230,6 +7230,30 @@ def check_sappy_seed(results):
     results.append(("Sappy Seed seeds the target its hit leaves standing", out == want, str(out)))
 
 
+@b12
+def check_lunar_blessing(results):
+    """Lunar Blessing and Jungle Healing (approved 2026-10-14; effect script
+    415, subscript_lunar_blessing): a quarter of its user's maximum HP back,
+    rounded up, and its status and Nightmare cured; at full HP it cures the
+    status alone, and with full HP and no status it fails; Heal Block keeps
+    it from running."""
+    from . import perfectline as pl
+    out = {}
+    for name in ("Lunar Blessing", "Jungle Healing"):
+        for case, hp, status in (("hurt", 50, "psn"), ("full", 101, "brn"), ("nothing", 101, None)):
+            b, p, foe = b11_battle([name], ["Tackle"], {}, hp=101)
+            p.hp, p.status, p.nightmare = hp, status, bool(status)
+            pl.status_move(b, p, fs.move(name), foe, True)
+            out[(name, case)] = (p.hp, p.status, p.nightmare)
+    b, p, foe = b11_battle(["Lunar Blessing"], ["Tackle"], {}, hp=101)
+    p.hp, p.heal_block = 50, 5
+    out["Heal Block"] = fs.move_heal_blocked(p, fs.move("Lunar Blessing"))
+    want = {(n, c): v for n in ("Lunar Blessing", "Jungle Healing")
+            for c, v in (("hurt", (76, None, False)), ("full", (101, None, False)), ("nothing", (101, None, False)))}
+    want["Heal Block"] = True
+    results.append(("Lunar Blessing heals a quarter and cures its user's status", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

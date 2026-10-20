@@ -4354,6 +4354,27 @@ def lucky_chant(side):
         side.lucky_chant = 5
 
 
+def lunar_blessing(b, att):
+    """Lunar Blessing and Jungle Healing (effect script 415,
+    subscript_lunar_blessing): the move fails when its user, and in a
+    double battle its partner on the field, have full HP and no status;
+    otherwise each of them below full HP regains a quarter of its maximum
+    HP, rounded up, and each with a status is cured of it and of
+    Nightmare. Heal Block stops it before it runs (move_heal_blocked).
+    Until 2026-10-20 it did nothing (Ian approved the fix)."""
+    mons = [att]
+    ally = ally_of(b, att) if getattr(b, "doubles", False) else None
+    if ally is not None:
+        mons.append(ally)
+    if all(m.hp == m.maxhp and not m.status for m in mons):
+        return
+    for m in mons:
+        if m.hp < m.maxhp:
+            heal(m, (m.maxhp + 3) // 4)
+        if m.status:
+            m.status, m.nightmare = None, False
+
+
 def laser_focus(att):
     """Laser Focus (effect script 399, subscript_laser_focus): its user's
     count is set to 2 (MOVE_EFFECT_LASER_FOCUS_1), one off at each turn's
@@ -7738,6 +7759,8 @@ def status_move(b, att, mv, dfn, first):
         autotomize(att)
     elif e == "LASER_FOCUS":
         laser_focus(att)
+    elif e == "LUNAR_BLESSING":
+        lunar_blessing(b, att)
     elif e == "REMOVE_ALL_PP_ON_DEFEAT":
         att.grudge = att.rare = True     # Grudge, until its user next acts (grudge)
     elif e == "OCTOLOCK":

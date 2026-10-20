@@ -6423,6 +6423,19 @@ def sappy_seed_checks():
     return [("the readings' Sappy Seed seeds its target", ok, f"(seeded, Snorlax's loss, Bibarel's gain) {got}")]
 
 
+@b12
+def lunar_blessing_checks():
+    """Lunar Blessing in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's poisoned Bibarel at half HP regains
+    a quarter of its maximum HP, rounded up, and is cured."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Rock Head", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Lunar Blessing"])])
+    bib.hp, bib.status = bib.maxhp // 2, "psn"
+    pl.status_move(b, bib, fs.move("Lunar Blessing"), geo, True)
+    got = (bib.hp - bib.maxhp // 2, bib.status)
+    return [("the readings' Lunar Blessing heals a quarter and cures", got == ((bib.maxhp + 3) // 4, None),
+             f"(HP back, status) {got} of {bib.maxhp}")]
+
+
 def main():
     results = []
 

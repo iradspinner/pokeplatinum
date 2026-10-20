@@ -1171,6 +1171,8 @@ def status_move(b, att, mv, dfn, first):
         fs.autotomize(att)               # two stages of Speed and 100 kg lighter (fightsim.autotomize)
     elif e == "LASER_FOCUS":
         fs.laser_focus(att)              # its next turn's hits critical (fightsim.laser_focus)
+    elif e == "LUNAR_BLESSING":
+        fs.lunar_blessing(b, att)        # a quarter back and its status cured (fightsim.lunar_blessing)
     elif e == "REMOVE_ALL_PP_ON_DEFEAT":
         att.grudge = att.rare = True     # Grudge, until its user next acts (fightsim.grudge)
     elif e == "OCTOLOCK":
