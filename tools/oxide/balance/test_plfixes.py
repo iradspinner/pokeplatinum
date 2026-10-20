@@ -5512,10 +5512,11 @@ def held_state_key_checks():
 
 @b11
 def copycat_idle_checks():
-    """Copycat and Water Sport off the team search's idle list on Roark's
-    real rows (Ian's answer of 2026-10-20; plteam.IDLE): a box Pikachu with
-    four Electric moves and Copycat, or Water Sport, takes it as its status
-    move against Roark's team."""
+    """Copycat off the team search's idle list on Roark's real rows (Ian's
+    answer of 2026-10-20; plteam.IDLE): a box Pikachu with four Electric
+    moves and Copycat takes it as its status move against Roark's team.
+    Water Sport, also off the list that day, is idle against Roark, whose
+    team has no Fire hit (Ian's answer of the same day; sports_idle_checks)."""
     from . import plteam
     out = {}
     for extra in ("Copycat", "Water Sport"):
@@ -5526,7 +5527,8 @@ def copycat_idle_checks():
         st, boss = prep["st"], list(prep["variants"][0][0])
         mine, _theirs, _speed = plteam.matchups(st, ["p0"], boss)
         out[extra] = extra in plteam.pick_moves(st, "p0", boss, mine)
-    return [("the team search picks Copycat and Water Sport, no longer idle", all(out.values()), f"picked {out}")]
+    return [("the team search picks Copycat, and Water Sport not against Roark", out == {"Copycat": True,
+             "Water Sport": False}, f"picked {out}")]
 
 
 @b11
@@ -6025,6 +6027,39 @@ def substitute_hit_checks():
     ok = out == {0: ("par", 0, False), 1: (None, 0, True)}
     return [("the readings' hit that breaks a Substitute gives no added effect", ok,
              f"(status, Substitute left, full HP) by Substitute {out}")]
+
+
+# ---- batch 12: the abilities and moves out of everyone's reach, and Ian's answers of 2026-10-20 ----
+
+# The batch's checks, run after batch 11's in main.
+B12 = []
+
+
+def b12(fn):
+    B12.append(fn)
+    return fn
+
+
+@b12
+def sports_idle_checks():
+    """Water Sport idle against a team with no damaging Fire move (Ian's
+    answer of 2026-10-20; plteam.idle_sports), on Roark's real rows: batch
+    11 found the team search giving Water Sport to the Barboach and the
+    Goldeen of all three of Roark's goal 3 boxes in place of Mud-Slap and
+    Aqua Jet; with the pools of box 1's two, each now takes the attack."""
+    from . import plteam
+    pools = {"Barboach": ("SPECIES_BARBOACH", "Swift Swim", ["Mud-Slap", "Icy Wind", "Water Sport", "Water Gun", "Mud Bomb"]),
+             "Goldeen": ("SPECIES_GOLDEEN", "Swift Swim", ["Peck", "Water Sport", "Aqua Jet", "Scald", "Horn Attack"])}
+    recs = [{"constant": c, "species": sp, "how": "test", "level": 16, "nature": "Hardy", "ivs": IV, "evs": EV,
+             "ability": ab, "moves": mv, "fill": False} for sp, (c, ab, mv) in pools.items()]
+    prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
+    st, boss = prep["st"], list(prep["variants"][0][0])
+    mine, _theirs, _speed = plteam.matchups(st, ["p0", "p1"], boss)
+    out = {sp: plteam.pick_moves(st, k, boss, mine) for sp, k in zip(pools, ("p0", "p1"))}
+    ok = ("Water Sport" not in out["Barboach"] + out["Goldeen"] and "Mud-Slap" in out["Barboach"]
+          and "Aqua Jet" in out["Goldeen"])
+    return [("the team search leaves Water Sport idle against Roark, who has no Fire hit", ok, f"fours {out}")]
+
 
 def main():
     results = []
@@ -6610,6 +6645,8 @@ def main():
     results += idle_list_checks()
     results += merge_key_checks()
     for fn in B11:
+        results += fn()
+    for fn in B12:
         results += fn()
 
     width = max(len(r[0]) for r in results)

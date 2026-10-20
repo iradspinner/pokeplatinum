@@ -269,7 +269,8 @@ def pick_moves(st, k, boss_keys, mine):
     # so a spare slot takes a status move before a weaker attack of a type
     # already chosen (a move that does nothing in a position is never
     # offered by the planner, so a useless one costs nothing).
-    status = sorted([n for n in st["moves"][k] if fs.move(n).cat == "Status" and n not in IDLE],
+    idle = IDLE | idle_sports(st, boss_keys)
+    status = sorted([n for n in st["moves"][k] if fs.move(n).cat == "Status" and n not in idle],
                     key=lambda n: -tiers.get(n, 0))
     out = chosen + [n for n in status[:1] if tiers.get(n, 0) >= fs.TIERS["A"]]
     rest = sorted((n for n, _s in attacks if n not in out), key=lambda n: -sum(mine[(k, n)]))
@@ -291,9 +292,40 @@ def pick_moves(st, k, boss_keys, mine):
 # filled only when nothing else is left. Mud Sport and Magic Room left the
 # list on 2026-10-15, as the simulator now runs both (Ian approved), and
 # Copycat and Water Sport on 2026-10-20, which it runs since batches 10
-# and 6 (Ian approved: he plans to use Copycat often).
+# and 6 (Ian approved: he plans to use Copycat often); the two Sports are
+# idle still against a team with nothing for them to halve (idle_sports).
 IDLE = {"Splash", "Teleport", "Celebrate", "Hold Hands", "Follow Me",
         "Helping Hand", "Ally Switch", "Wonder Room"}
+# Water Sport halves only Fire moves and Mud Sport only Electric ones
+# (fightsim.sport_half), so each is idle in a fight whose trainer's team
+# has no damaging move of its type (Ian, 2026-10-20: "have it be lacking a
+# damaging move of that type"; a Fire or Electric status move does not
+# count). Batch 11 found the search giving Barboach and Goldeen Water Sport
+# against Roark, who has no Fire move, in place of Aqua Jet and Mud-Slap.
+SPORT_TYPE = {"Water Sport": "Fire", "Mud Sport": "Electric"}
+
+
+def idle_sports(st, boss_keys):
+    """The Sports idle against this team (SPORT_TYPE): those whose type no
+    damaging move of the team's has, typed as sport_half types it
+    (fightsim.move_type_used: Weather Ball in each weather the fight can
+    have, its own and what the team's abilities and moves set, as prepare
+    finds them; Hidden Power by its IVs, Natural Gift by its Berry, an
+    ability that retypes moves). A few dozen moves at most, so it is
+    worked out at each call."""
+    recs = [st["pokemon"].get(e) or {} for e in boss_keys]
+    weathers = {None, st.get("base_weather")} | {fs.ABILITY_WEATHER[r["ability"]] for r in recs
+                                                  if r.get("ability") in fs.ABILITY_WEATHER}
+    weathers |= {fs.WEATHER_OF[fs.move(n).effect] for e in boss_keys for n in st["moves"].get(e, ())
+                 if fs.move(n).effect in fs.WEATHER_OF}
+    types = set()
+    for e, rec in zip(boss_keys, recs):
+        for name in st["moves"].get(e, ()):
+            mv = fs.move(name)
+            if mv.damaging():
+                types |= {fs.move_type_used(rec.get("ability"), mv, rec.get("ivs") or {}, rec.get("item"), w)
+                          for w in weathers}
+    return frozenset(s for s, t in SPORT_TYPE.items() if t not in types)
 
 
 def margins(st, keys, boss_keys, moves, mine, theirs, speed):
