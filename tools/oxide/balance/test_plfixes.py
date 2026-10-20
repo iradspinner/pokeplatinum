@@ -6078,6 +6078,26 @@ def metal_mold_breaker_checks():
              f"top roll by (attacker, target) {out}")]
 
 
+@b12
+def berserk_checks():
+    """Berserk on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop's Pound takes the player's Bibarel, given Berserk,
+    from above half its HP to half or less, which raises its Sp. Atk a
+    stage, so its Water Pulse hits harder; a hit that leaves it above half
+    does not."""
+    out = {}
+    for case in ("past half", "above half"):
+        b, mach, bib = b8_battle([("Machop", 30, "Guts", ["Pound"])],
+                                 [("Bibarel", 30, "Berserk", ["Water Pulse"])])
+        before = pl.damage_of(b, bib, mach, fs.move("Water Pulse"), False, True)
+        hit = pl.damage_of(b, mach, bib, fs.move("Pound"), False, True)
+        bib.hp = bib.maxhp // 2 + hit if case == "past half" else bib.maxhp
+        pl.use_move(b, mach, fs.move("Pound"), bib, True)
+        out[case] = (bib.stages["spa"], pl.damage_of(b, bib, mach, fs.move("Water Pulse"), False, True) > before)
+    ok = out == {"past half": (1, True), "above half": (0, False)}
+    return [("the readings' Berserk raises Sp. Atk as a hit takes it to half", ok, f"(Sp. Atk stage, harder) {out}")]
+
+
 def main():
     results = []
 

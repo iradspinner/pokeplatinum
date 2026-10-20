@@ -6725,6 +6725,31 @@ def check_metal_mold_breaker(results):
     results.append(("a Mold Breaker's Low Kick reads a Heavy Metal target's own weight", out == want, str(out)))
 
 
+@b12
+def check_berserk(results):
+    """Berserk (approved 2026-10-14; BattleSystem_TriggerAbilityOnHit,
+    subscript_berserk): a hit that takes its standing holder from above
+    half its HP to half or less raises its Sp. Atk a stage, read before a
+    Sitrus Berry heals it back above half; a hit that leaves it above half,
+    one that starts at half or less, a knockout and a hit Sheer Force
+    boosts do nothing."""
+    from . import perfectline as pl
+    out = {}
+    cases = (("to 40", "Tackle", 100, 60, None), ("to 70", "Tackle", 100, 30, None), ("from 50", "Tackle", 50, 10, None),
+             ("knockout", "Tackle", 100, 100, None), ("Sitrus", "Tackle", 100, 60, "Sitrus Berry"),
+             ("Sheer Force", "Bite", 100, 60, None))
+    for case, name, start, hit, item in cases:
+        b, p, foe = b11_battle(["Tackle"], [name], {("b", name): [hit] * 16})
+        p.ability, p.hp, p.item = "Berserk", start, item
+        if case == "Sheer Force":
+            foe.ability = "Sheer Force"
+        pl.use_move(b, foe, fs.move(name), p, True)
+        out[case] = (p.hp, p.stages["spa"])
+    want = {"to 40": (40, 1), "to 70": (70, 0), "from 50": (40, 0), "knockout": (0, 0), "Sitrus": (65, 1),
+            "Sheer Force": (40, 0)}
+    results.append(("Berserk raises Sp. Atk as a hit takes its holder to half its HP", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

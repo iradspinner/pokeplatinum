@@ -840,7 +840,7 @@ def attack(b, att, mv, dfn, first):
             dmg = dfn.hp - 1
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
-        b.last_dealt = dealt
+        b.last_dealt, b.hit_left = dealt, dfn.hp     # the HP before any Berry answers (fightsim.Battle.hit_left)
         if mv.effect == "INCINERATE" and dfn.alive():
             fs.incinerate(b, dfn, mv)    # its Berry burned before the target can eat it (fightsim.incinerate)
         elif mv.effect in fs.TAKES_FIRST and dealt > 0:

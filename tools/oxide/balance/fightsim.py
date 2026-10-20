@@ -850,6 +850,10 @@ class Battle:
     # its power is 13/10 (ability_power). Set by _use_move around the
     # attack, None otherwise.
     analytic = None
+    # The HP the last hit to land left its target with, set as the hit takes
+    # it and before any Berry answers it, so the target's on-hit ability
+    # reads the HP the engine's does (Berserk, hit_ability).
+    hit_left = None
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -2438,6 +2442,7 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
                 held = True
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
+        b.hit_left = dfn.hp
         total += dealt
         if crits[i]:
             anger_point(dfn)             # the hit's first answer (MULTI_HIT_CRITICAL)
@@ -3931,7 +3936,7 @@ def attack(b, att, mv, dfn, first):
             dmg = dfn.hp - 1
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
-        b.last_dealt = dealt
+        b.last_dealt, b.hit_left = dealt, dfn.hp
         if mv.effect in TAKES_FIRST and dealt > 0:
             take_first(b, att, dfn, mv, lambda kind, n: b.rng.randrange(n))     # Knock Off's and Bug Bite's (take_first)
         dfn.hit_this_turn = (mv.cat, dealt)
@@ -5326,7 +5331,7 @@ def contact_ability(b, att, dfn, mv, dealt, chance, pick):
     if dealt <= 0:
         return
     contact = makes_contact(att, mv)
-    acted = bool(dfn.ability and hit_ability(b, att, dfn, mv, chance))
+    acted = bool(dfn.ability and hit_ability(b, att, dfn, mv, chance, dealt))
     if not acted and contact:
         acted = bool(att.alive() and dfn.ability and _struck_back(b, att, dfn, chance, pick, mv))
         if not acted and att.ability == "Poison Touch" and dfn.alive() and not dfn.status \
@@ -5391,7 +5396,7 @@ def hit_type(b, mv):
     return mv.type
 
 
-def hit_ability(b, att, dfn, mv, chance):
+def hit_ability(b, att, dfn, mv, chance, dealt=0):
     """The defender's on-hit abilities that any damaging hit sets off,
     contact or not (BattleSystem_TriggerAbilityOnHit's switch); whether one
     acted. Cursed Body: three times in ten the attacker's move, if it has
@@ -5437,6 +5442,20 @@ def hit_ability(b, att, dfn, mv, chance):
             return False
         side.hazards["tspikes"] += 1
         reveal(dfn)
+        return True
+    if a == "Berserk":
+        # BattleSystem_TriggerAbilityOnHit, subscript_berserk: a hit that
+        # did damage and took its standing holder from above half its
+        # maximum HP to half or less, by HP read before any Berry answers
+        # the hit (Battle.hit_left), and not one Sheer Force boosted, raises
+        # its Sp. Atk a stage by AbilityStatChange (ability_stages); the
+        # ability has answered even at +6. Until 2026-10-20 it did nothing
+        # (Ian approved the fix).
+        left = b.hit_left if b.hit_left is not None else dfn.hp
+        half = dfn.maxhp // 2
+        if not dealt or not left or left > half or left + dealt <= half or sheer_force_active(att, mv):
+            return False
+        ability_stages(dfn, dfn, "spa", 1)
         return True
     if a == "Cursed Body":
         if (att.alive() and att is not dfn and att.disabled is None and mv.power
