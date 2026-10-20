@@ -222,6 +222,12 @@ HIT_FOE_STAGES = {
     # 2026-10-15 the hit landed and the drop never came (Ian approved the
     # fix).
     "LOWER_SP_DEF_2_HIT": {"spd": -2},
+    # Bleakwind Storm (effect script 356): each target's Speed falls a stage
+    # at the move's chance (30), an indirect effect Sheer Force strips; it
+    # never misses in the rain (BattleControllerPlayer_CheckMoveHitOverrides,
+    # unless Cloud Nine or Air Lock is out: accuracy_hits). Until 2026-10-20
+    # the hit landed with neither (Ian approved the fix).
+    "BLEAKWIND_STORM": {"spe": -1},
 }
 HIT_SELF_STAGES = {  # (stages, certain)
     "DEF_SPD_DOWN_HIT": ({"def": -1, "spd": -1}, True),
@@ -1104,6 +1110,8 @@ class Battle:
             acc = 100 if weather == "Rain" else 50 if weather == "Sun" else acc
         if mv.effect == "BLIZZARD" and weather == "Hail":
             return True
+        if mv.effect == "BLEAKWIND_STORM" and weather == "Rain":
+            return True      # it never misses in the rain (HIT_FOE_STAGES)
         acc *= accuracy_scale(att, dfn, mv, first)
         if att.ability == "Compound Eyes":
             acc *= 1.3

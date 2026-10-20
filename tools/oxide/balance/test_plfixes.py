@@ -6213,6 +6213,30 @@ def beat_up_checks():
              f"HP taken {hp - mach.hp}, by the formula {want}")]
 
 
+@b12
+def bleakwind_storm_checks():
+    """Bleakwind Storm in the readings' battle on the calculator's real
+    rows (approved 2026-10-14): the player's Pidgeot's hit lowers a
+    trainer's Geodude's Speed a stage when its chance lands, and in the
+    rain it hits through a miss that would land elsewhere."""
+    from .test_fightai import battle
+    out = {}
+    b, geo, pid = b8_battle([("Geodude", 30, "Rock Head", ["Tackle"])],
+                             [("Pidgeot", 30, "Keen Eye", ["Bleakwind Storm"])], Lucky8)
+    pl.attack(b, pid, fs.move("Bleakwind Storm"), geo, True)
+    out["Speed"] = geo.stages["spe"]
+    for weather in (None, "Rain"):
+        b = battle([("Geodude", 30, "Rock Head", ["Tackle"])], [("Pidgeot", 30, "Keen Eye", ["Bleakwind Storm"])],
+                   weather=weather)
+        b.dice, b.rng = Misses11(random.Random(1), True), random.Random(1)
+        geo, pid = b.b.cur(), b.p.cur()
+        pl.attack(b, pid, fs.move("Bleakwind Storm"), geo, True)
+        out[weather or "no weather"] = geo.hp < geo.maxhp
+    ok = out == {"Speed": -1, "no weather": False, "Rain": True}
+    return [("the readings' Bleakwind Storm lowers Speed and never misses in the rain", ok,
+             f"(Speed stage, hit through a miss) {out}")]
+
+
 def main():
     results = []
 

@@ -6924,6 +6924,30 @@ def check_beat_up(results):
     results.append(("Beat Up hits once for each party member able to fight", out == want, str(out)))
 
 
+@b12
+def check_bleakwind_storm(results):
+    """Bleakwind Storm (approved 2026-10-14; effect script 356): its hit
+    lowers each target's Speed a stage at the move's chance, which Sheer
+    Force strips, and it never misses in the rain
+    (BattleControllerPlayer_CheckMoveHitOverrides) unless Cloud Nine or
+    Air Lock is out."""
+    out = {}
+    for case, value, weather, ability, foe_ability in (("drop", 0.0, None, None, None),
+                                                       ("Sheer Force", 0.0, None, "Sheer Force", None),
+                                                       ("misses", 0.999, None, None, None),
+                                                       ("rain", 0.999, "Rain", None, None),
+                                                       ("rain, Cloud Nine", 0.999, "Rain", None, "Cloud Nine")):
+        b, p, foe = battle(["Bleakwind Storm"], ["Tackle"], {("p", "Bleakwind Storm"): [20] * 16})
+        b.rng, b.weather, p.ability, foe.ability = FixedDice(value), weather, ability, foe_ability
+        if foe_ability:
+            b.cloudy = True
+        fs.attack(b, p, fs.move("Bleakwind Storm"), foe, True)
+        out[case] = (foe.hp < foe.maxhp, foe.stages["spe"])
+    want = {"drop": (True, -1), "Sheer Force": (True, 0), "misses": (False, 0), "rain": (True, 0),
+            "rain, Cloud Nine": (False, 0)}
+    results.append(("Bleakwind Storm lowers Speed and never misses in the rain", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

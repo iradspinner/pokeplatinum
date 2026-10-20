@@ -323,6 +323,8 @@ def accuracy_hits(b, att, dfn, mv, first=True):
         acc = 100 if weather == "Rain" else 50 if weather == "Sun" else acc
     if mv.effect == "BLIZZARD" and weather == "Hail":
         return True
+    if mv.effect == "BLEAKWIND_STORM" and weather == "Rain":
+        return True          # it never misses in the rain (fightsim.HIT_FOE_STAGES)
     # The stages, with Unaware, Keen Eye and Sacred Sword's kind, Tangled
     # Feet and the Zoom Lens (fightsim.accuracy_scale).
     acc *= fs.accuracy_scale(att, dfn, mv, first)
