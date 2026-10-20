@@ -556,6 +556,10 @@ class Mon:
     # `aria`; under the rare flag, and back to Aria as it leaves.
     pirouette = False
     aria = None
+    # Autotomize (ReduceWeight): how many times this stay has taken 100 kg
+    # off its weight, which comes back from its species as it next comes
+    # in; under the rare flag (autotomize, weight_now).
+    lightened = 0
     # Soul Heart (soul_heart): how many other Pokemon of the battle were
     # down when it was last looked at, set as it comes in, so each later
     # faint counts once; kept only in a fight with a Soul Heart holder
@@ -630,6 +634,7 @@ class Mon:
             self.grudge = False          # Grudge goes with moveEffectsMask
             self.octolocked = False      # and Octolock with oxideFlags
             self.sky_holder = None       # and a Sky Drop's hold
+            self.lightened = 0           # and its weight comes back from its species (autotomize)
             if self.pirouette:
                 # Meloetta leaves the field as Aria (TryRestoreStatusOnSwitch
                 # writes the form back to its party record).
@@ -6067,6 +6072,9 @@ def marvel_scale(att, dfn, mv):
     return 1.0
 
 
+# The moves whose power reads weights (weight_move_power), which an
+# Autotomize changes as the fight runs.
+WEIGHT_EFFECTS = frozenset({"INCREASE_POWER_WITH_WEIGHT", "HEAVY_SLAM"})
 # The effects and the moves whose power state_mult sets from the battle's
 # state, each looked for once.
 STATE_POWER_EFFECTS = frozenset({"INCREASE_POWER_WITH_LESS_HP", "DECREASE_POWER_WITH_LESS_USER_HP",
@@ -6174,6 +6182,10 @@ def state_mult(b, att, dfn, mv):
             # 2026-10-14 it hit at full power whatever the target's HP (Ian
             # approved the fix).
             m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
+    if (att.rare or dfn.rare) and (att.lightened or dfn.lightened) and mv.effect in WEIGHT_EFFECTS:
+        # An Autotomize on either side: the power at the weights now, over
+        # the rows' at the species' own (weight_move_power).
+        m *= power_ratio(att, weight_move_power(b, att, dfn, mv, False), weight_move_power(b, att, dfn, mv, True))
     if att.ability in POWER_ABILITIES:
         m *= ability_power(b, att, mv)       # Analytic's 13/10, Flare Boost's half again (ability_power)
     if b.sporty:
@@ -7494,6 +7506,8 @@ def status_move(b, att, mv, dfn, first):
         clangorous_soul(b, att)
     elif e == "ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP":
         fillet_away(b, att)
+    elif e == "AUTOTOMIZE":
+        autotomize(att)
     elif e == "REMOVE_ALL_PP_ON_DEFEAT":
         att.grudge = att.rare = True     # Grudge, until its user next acts (grudge)
     elif e == "OCTOLOCK":
@@ -7749,6 +7763,57 @@ def fillet_away(b, att):
         return
     hurt(b, att, half)
     change_stages(att, {"atk": 2, "spa": 2, "spe": 2})
+
+
+def autotomize(att):
+    """Autotomize (effect script 281, subscript_autotomize): it fails with
+    its user's Speed at +6; otherwise the Speed rises two stages through
+    the stat-stage subscript (change_stages) and ReduceWeight takes 100 kg
+    off the user's weight, to 0.1 kg at least, until it leaves
+    (Mon.lightened, which Low Kick, Grass Knot, Heavy Slam and Heat Crash
+    read through weight_now). Until 2026-10-20 it did nothing (Ian
+    approved the fix)."""
+    if att.stages["spe"] >= 6:
+        return
+    change_stages(att, {"spe": 2})
+    att.lightened += 1
+    att.rare = True
+
+
+# The weight moves' powers by the target's weight in tenths of a kilogram
+# (sWeightToPower): the first bound the weight does not pass, else 120.
+WEIGHT_TO_POWER = ((100, 20), (250, 40), (500, 60), (1000, 80), (2000, 100))
+
+
+def weight_now(b, att, mon, lightened):
+    """mon's weight in tenths of a kilogram as Battler_Weight(att, mon)
+    reads it: its species' weight, less 100 kg for each Autotomize when
+    `lightened` (ReduceWeight, to 1 at least), then doubled by Heavy Metal
+    or halved by Light Metal unless att's Mold Breaker gets past mon's,
+    and never below 1."""
+    rec = b.st["pokemon"].get(mon.key) or {}
+    poks = calc.blob()["poks"].get(rec.get("species") or mon.species) or {}
+    w = int(round((poks.get("weightkg") or 0) * 10))
+    for _ in range(mon.lightened if lightened else 0):
+        w = w - 1000 if w > 1000 else 1
+    if mon is att or not mold(att, mon):
+        if mon.ability == "Heavy Metal":
+            w *= 2
+        elif mon.ability == "Light Metal":
+            w //= 2
+    return max(1, w)
+
+
+def weight_move_power(b, att, dfn, mv, lightened):
+    """A weight move's power: Low Kick's and Grass Knot's by the target's
+    weight (BtlCmd_CalcWeightBasedPower), Heavy Slam's and Heat Crash's by
+    the target's share of the user's (BtlCmd_CalcHeavySlamPower), with
+    the weights now (`lightened`) or as the rows have them."""
+    if mv.effect == "HEAVY_SLAM":
+        ratio = weight_now(b, att, dfn, lightened) * 10000 // weight_now(b, att, att, lightened)
+        return 120 if ratio <= 2000 else 100 if ratio <= 2500 else 80 if ratio <= 3334 else 60 if ratio <= 5000 else 40
+    w = weight_now(b, att, dfn, lightened)
+    return next((p for bound, p in WEIGHT_TO_POWER if bound >= w), 120)
 
 
 def healing_wish(b, att, lunar=False):

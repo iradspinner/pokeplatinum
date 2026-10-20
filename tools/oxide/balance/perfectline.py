@@ -1129,6 +1129,8 @@ def status_move(b, att, mv, dfn, first):
         fs.clangorous_soul(b, att)       # a third of its HP for all five stats (fightsim.clangorous_soul)
     elif e == "ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP":
         fs.fillet_away(b, att)           # half its HP for Attack, Sp. Atk and Speed (fightsim.fillet_away)
+    elif e == "AUTOTOMIZE":
+        fs.autotomize(att)               # two stages of Speed and 100 kg lighter (fightsim.autotomize)
     elif e == "REMOVE_ALL_PP_ON_DEFEAT":
         att.grudge = att.rare = True     # Grudge, until its user next acts (fightsim.grudge)
     elif e == "OCTOLOCK":
@@ -1427,7 +1429,7 @@ def mon_key(m):
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
         key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.mud_sport, m.power_trick, m.bide, m.bide_damage,
                 m.transform_key, tuple(sorted(m.split.items())) if m.split else None, m.embargo, m.roomed, m.item_off,
-                m.grudge, m.octolocked, m.sky_holder, m.pirouette,
+                m.grudge, m.octolocked, m.sky_holder, m.pirouette, m.lightened,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key

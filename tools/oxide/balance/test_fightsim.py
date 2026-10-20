@@ -6872,6 +6872,31 @@ def check_fillet_away(results):
     results.append(("Fillet Away trades half its HP for Attack, Sp. Atk and Speed", out == want, str(out)))
 
 
+@b12
+def check_autotomize(results):
+    """Autotomize (approved 2026-10-14; effect script 281,
+    subscript_autotomize): two stages of Speed and 100 kg off its user's
+    weight until it leaves, so a Low Kick into a 187 kg Bronzong falls
+    from 100 power to 80, and its own Heavy Slam into a 19.5 kg Machop,
+    now more than a fifth of its weight, from 120 to 100; at +6 Speed it
+    fails and the weight stays."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("plain", "at +6"):
+        b, p, foe = b11_battle(["Low Kick"], ["Autotomize", "Heavy Slam"],
+                               {("p", "Low Kick"): [40] * 16, ("b", "Heavy Slam"): [30] * 16})
+        b.st["pokemon"]["b0.0"]["species"], b.st["pokemon"]["p0"]["species"] = "Bronzong", "Machop"
+        if case == "at +6":
+            foe.stages["spe"] = 6
+        pl.status_move(b, foe, fs.move("Autotomize"), p, True)
+        out[case] = (foe.stages["spe"], b.damage(p, foe, fs.move("Low Kick"), roll=0),
+                     b.damage(foe, p, fs.move("Heavy Slam"), roll=0))
+    foe.reset_volatile()
+    out["back in"] = b.damage(p, foe, fs.move("Low Kick"), roll=0)
+    want = {"plain": (2, 32, 25), "at +6": (6, 40, 30), "back in": 40}
+    results.append(("Autotomize raises Speed two stages and takes 100 kg off its user", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

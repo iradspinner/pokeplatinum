@@ -6177,6 +6177,21 @@ def fillet_away_checks():
     return [("the readings' Fillet Away raises three stats for half its HP", ok, f"(HP lost, stages, Speed doubled) {got}")]
 
 
+@b12
+def autotomize_checks():
+    """Autotomize in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Bronzong, 187 kg, raises its Speed
+    two stages and sheds 100 kg, so the player's Machop's Low Kick falls
+    from 100 power to 80."""
+    b, bron, mach = b8_battle([("Bronzong", 30, "Levitate", ["Autotomize"])], [("Machop", 30, "Guts", ["Low Kick"])])
+    before = pl.damage_of(b, mach, bron, fs.move("Low Kick"), False, True)
+    pl.status_move(b, bron, fs.move("Autotomize"), mach, True)
+    after = pl.damage_of(b, mach, bron, fs.move("Low Kick"), False, True)
+    ok = bron.stages["spe"] == 2 and abs(after - before * 0.8) <= 1
+    return [("the readings' Autotomize raises Speed and lightens its user", ok,
+             f"Speed stage {bron.stages['spe']}, Low Kick's top roll {before} then {after}")]
+
+
 def main():
     results = []
 
