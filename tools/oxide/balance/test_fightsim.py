@@ -6305,6 +6305,24 @@ def check_prankster_dark(results):
     want = {"Dark": (None, 1), "Normal": ("par", 1), "no Prankster": ("par", 1)}
     results.append(("Prankster's raised status moves fail on a Dark type", out == want, str(out)))
 
+
+@b11
+def check_queenly_majesty(results):
+    """Queenly Majesty (approved 2026-10-14; BattleControllerPlayer_PriorityBlock):
+    a move of raised priority aimed at its holder fails, Quick Attack and
+    a Prankster user's Thunder Wave alike; a plain Tackle lands, and a Mold
+    Breaker's Quick Attack lands."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, ab in (("Quick Attack", "Quick Attack", None), ("Tackle", "Tackle", None),
+                           ("Prankster", "Thunder Wave", "Prankster"), ("Mold Breaker", "Quick Attack", "Mold Breaker")):
+        b, p, foe = b11_battle([name], ["Splash"], {("p", name): [10] * 16})
+        foe.ability, p.ability = "Queenly Majesty", ab
+        pl.use_move(b, p, fs.move(name), foe, True)
+        out[case] = (foe.maxhp - foe.hp, foe.status)
+    want = {"Quick Attack": (0, None), "Tackle": (10, None), "Prankster": (0, None), "Mold Breaker": (10, None)}
+    results.append(("Queenly Majesty stops moves of raised priority", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

@@ -3759,6 +3759,8 @@ def attack(b, att, mv, dfn, first):
         _crash(b, att, dfn, mv)          # Magic Guard spares it (crash_loss)
         rollout_after(att, mv, False)
         return
+    if dfn.ability == "Queenly Majesty" and majesty_blocked(att, dfn, mv):
+        return                           # a raised move into Queenly Majesty (majesty_blocked)
     rollout_after(att, mv, True)
     # The hits this use makes: a two to five hit move's roll, or Fury
     # Cutter's run until a miss (a Loaded Dice skips the later checks).
@@ -4448,6 +4450,20 @@ def throat_chop(att, dfn, stripped):
     if dfn.ability == "Shield Dust" and not mold(att, dfn):
         return
     dfn.throat_chop, dfn.rare = 2, True
+
+
+def majesty_blocked(att, dfn, mv):
+    """A move of raised priority (move_priority: Prankster's and Gale Wings'
+    raises count) aimed at a foe with Queenly Majesty fails, unless a Mold
+    Breaker gets past it (BattleControllerPlayer_PriorityBlock, after the
+    immunity abilities; in a double battle the holder's partner is shielded
+    too, which is left to the double battles' own batch). The message
+    names the ability. Until 2026-10-20 the move landed (Ian approved the
+    fix)."""
+    if dfn is att or dfn.side == att.side or mold(att, dfn) or move_priority(att, mv) <= 0:
+        return False
+    reveal(dfn)
+    return True
 
 
 def prankster_blocked(att, dfn, mv):
@@ -7250,6 +7266,8 @@ def status_move(b, att, mv, dfn, first):
             return               # Thunder Wave into Volt Absorb, Spore into Sap Sipper: taken whole
         if soundproofed(att, dfn, mv):
             return               # Sing, Growl or Roar into Soundproof
+        if dfn.ability == "Queenly Majesty" and majesty_blocked(att, dfn, mv):
+            return               # a raised move into Queenly Majesty (majesty_blocked)
         if att.ability == "Prankster" and prankster_blocked(att, dfn, mv):
             return               # a raised status move into a Dark type (prankster_blocked)
     if e in STATUS_OF:

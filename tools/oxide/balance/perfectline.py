@@ -693,6 +693,8 @@ def attack(b, att, mv, dfn, first):
         crash(b, att, dfn, mv)               # Magic Guard spares it (fightsim.crash_loss)
         fs.rollout_after(att, mv, False)
         return
+    if dfn.ability == "Queenly Majesty" and fs.majesty_blocked(att, dfn, mv):
+        return                               # a raised move into Queenly Majesty (fightsim.majesty_blocked)
     fs.rollout_after(att, mv, True)
     trainer = not player(att)
     hits = rolled_hits(b, att, dfn, mv, trainer, first)
@@ -1038,6 +1040,8 @@ def status_move(b, att, mv, dfn, first):
             return               # a status move of the ability's type is taken whole (fightsim.absorb)
         if fs.soundproofed(att, dfn, mv):
             return               # Sing, Growl or Roar into Soundproof (fightsim.soundproofed)
+        if dfn.ability == "Queenly Majesty" and fs.majesty_blocked(att, dfn, mv):
+            return               # a raised move into Queenly Majesty (fightsim.majesty_blocked)
         if att.ability == "Prankster" and fs.prankster_blocked(att, dfn, mv):
             return               # a raised status move into a Dark type (fightsim.prankster_blocked)
     if e in fs.STATUS_OF:

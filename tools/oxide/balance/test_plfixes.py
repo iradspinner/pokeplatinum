@@ -5378,6 +5378,24 @@ def prankster_dark_checks():
     return [("the readings' Prankster status moves fail on a Dark type", ok, f"the foe's status {out}")]
 
 
+@b11
+def queenly_majesty_checks():
+    """Queenly Majesty on the calculator's real rows (approved 2026-10-14):
+    the player's Buizel's Aqua Jet does nothing to a trainer's Tsareena
+    with Queenly Majesty, where it hits a Leaf Guard one, and its Water
+    Gun hits both."""
+    out = {}
+    for ab in ("Queenly Majesty", "Leaf Guard"):
+        b, ts, bui = b8_battle([("Tsareena", 30, ab, ["Tackle"])], [("Buizel", 30, "Swift Swim", ["Aqua Jet", "Water Gun"])])
+        ts.hp = ts.maxhp = 10 ** 6
+        pl.use_move(b, bui, fs.move("Aqua Jet"), ts, True)
+        jet = ts.maxhp - ts.hp
+        pl.use_move(b, bui, fs.move("Water Gun"), ts, True)
+        out[ab] = (jet, ts.maxhp - ts.hp - jet)
+    ok = out["Queenly Majesty"][0] == 0 and out["Leaf Guard"][0] > 0 and out["Queenly Majesty"][1] > 0
+    return [("the readings' Queenly Majesty stops Aqua Jet", ok, f"(Aqua Jet's damage, Water Gun's) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
