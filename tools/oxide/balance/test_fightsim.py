@@ -7254,6 +7254,50 @@ def check_lunar_blessing(results):
     results.append(("Lunar Blessing heals a quarter and cures its user's status", out == want, str(out)))
 
 
+@b12
+def check_mind_blown(results):
+    """Mind Blown (approved 2026-10-14; effect script 408,
+    BattleControllerPlayer_FaintAfterSelfdestruct): its user pays half its
+    maximum HP, rounded up, once the move is over, hit, miss or Protect;
+    Magic Guard spares it; a Damp Pokemon on the field stops the move and
+    nothing is paid, unless the user has Mold Breaker; with no target there
+    is no cost."""
+    from . import perfectline as pl
+
+    class Misses(pl.RunDice):
+        def bad(self, kind, p):
+            return kind == "miss" and p > 0
+
+        def good(self, p, kind=None):
+            return p >= 1
+    out = {}
+    for case in ("hit", "miss", "Protect", "Magic Guard", "Damp", "Mold Breaker", "no target", "fightsim"):
+        b, p, foe = b11_battle(["Mind Blown"], ["Tackle"], {("p", "Mind Blown"): [30] * 16}, hp=101)
+        b.dice = sure12()
+        if case == "miss":
+            b.dice = Misses(random.Random(1), True)
+            p.stages["acc"] = -1         # below its sure 100, so the miss can land
+        if case == "Protect":
+            foe.protecting = True
+        if case == "Magic Guard":
+            p.ability = "Magic Guard"
+        if case in ("Damp", "Mold Breaker"):
+            foe.ability = "Damp"
+        if case == "Mold Breaker":
+            p.ability = "Mold Breaker"
+        if case == "no target":
+            foe.hp = 0
+        if case == "fightsim":
+            b.rng = FixedDice(0.999)
+            fs.use_move(b, p, fs.move("Mind Blown"), foe, True)
+        else:
+            pl.use_move(b, p, fs.move("Mind Blown"), foe, True)
+        out[case] = (p.hp, foe.maxhp - foe.hp if case != "no target" else None)
+    want = {"hit": (50, 30), "miss": (50, 0), "Protect": (50, 0), "Magic Guard": (101, 30), "Damp": (101, 0),
+            "Mold Breaker": (50, 30), "no target": (101, None), "fightsim": (50, 30)}
+    results.append(("Mind Blown costs half its user's HP once the move is over", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

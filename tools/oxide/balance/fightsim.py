@@ -928,6 +928,10 @@ class Battle:
     # its power is 13/10 (ability_power). Set by _use_move around the
     # attack, None otherwise.
     analytic = None
+    # The Mind Blown user whose effect script ran in the move being worked
+    # out (SELF_TURN_FLAG_MIND_BLOWN), which pays its half as the move ends
+    # (mind_blown_cost); None otherwise.
+    blown = None
     # The HP the last hit to land left its target with, set as the hit takes
     # it and before any Berry answers it, so the target's on-hit ability
     # reads the HP the engine's does (Berserk, hit_ability).
@@ -3809,6 +3813,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         else:
             attack(b, att, mv, dfn, first)
         hit_aftermath(b, att, dfn, mv, chance, pick)
+        if b.blown is att:
+            mind_blown_cost(b, att)
         destiny_bond(att, dfn)
         if dfn.grudge:
             grudge(att, dfn, paid, mv)
@@ -3823,6 +3829,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         attack(b, att, mv, t, t not in b.moved)
         hit_aftermath(b, att, t, mv, chance, pick)
     b.spread = False
+    if b.blown is att:
+        mind_blown_cost(b, att)          # once, after every target (mind_blown_cost)
     for t in targets:
         destiny_bond(att, t)
         if t.grudge:
@@ -3838,6 +3846,33 @@ def confusion_damage(mon, rng):
     d = mon.stats.get("def", 50) * stage_mult(mon.stages["def"])
     base = ((2 * mon.level // 5 + 2) * 40 * a / d) // 50 + 2
     return int(base * rng.randint(85, 100) / 100)
+
+
+def mind_blown(b, att):
+    """Mind Blown's effect script (408): a Damp Pokemon anywhere on the
+    field, its user included, stops the move before it starts, unless the
+    user has Mold Breaker, and nothing is paid (False); else the script
+    marks its user (SELF_TURN_FLAG_MIND_BLOWN, Battle.blown), which then
+    pays as the move ends, whether it hit, missed or met Protect or an
+    immunity (mind_blown_cost). A move with no target never runs its
+    script, so attack() comes here only with one."""
+    if att.ability != "Mold Breaker" and any(
+            m.ability == "Damp" and m.alive() for m in b.p.on_field() + b.b.on_field()):
+        return False
+    b.blown = att
+    return True
+
+
+def mind_blown_cost(b, att):
+    """Mind Blown's cost (BattleControllerPlayer_FaintAfterSelfdestruct,
+    subscript_recoil_half_max_hp): once the move is over, once whatever its
+    targets, a user still standing loses half its maximum HP, rounded up;
+    Magic Guard spares it and Rock Head does not, as it is a cost rather
+    than recoil. Until 2026-10-20 the move cost nothing (Ian approved the
+    fix)."""
+    b.blown = None
+    if att.alive() and att.ability != "Magic Guard":
+        hurt(b, att, (att.maxhp + 1) // 2)
 
 
 def explode_first(b, att):
@@ -3882,6 +3917,8 @@ def attack(b, att, mv, dfn, first):
     if att is not dfn and att.side == dfn.side and dfn.ability == "Telepathy" and mv.power and not mold(att, dfn):
         reveal(dfn)
         return
+    if mv.effect == "MIND_BLOWN" and not mind_blown(b, att):
+        return                   # a Damp Pokemon stops it, and nothing is paid (mind_blown)
     if mv.effect in SELF_KO and not explode_first(b, att):
         return
     if mv.effect == FUTURE_SIGHT:

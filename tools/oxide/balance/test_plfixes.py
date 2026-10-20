@@ -6436,6 +6436,21 @@ def lunar_blessing_checks():
              f"(HP back, status) {got} of {bib.maxhp}")]
 
 
+@b12
+def mind_blown_checks():
+    """Mind Blown in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel's hit on a trainer's
+    Snorlax costs it half its maximum HP, rounded up, and against a Damp
+    Quagsire the move fails at no cost."""
+    out = {}
+    for foe in (("Snorlax", 30, "Thick Fat", ["Tackle"]), ("Quagsire", 30, "Damp", ["Tackle"])):
+        b, f, bib = b8_battle([foe], [("Bibarel", 30, "Unaware", ["Mind Blown"])])
+        pl.use_move(b, bib, fs.move("Mind Blown"), f, True)
+        out[foe[0]] = (bib.maxhp - bib.hp, f.hp < f.maxhp)
+    ok = out == {"Snorlax": ((bib.maxhp + 1) // 2, True), "Quagsire": (0, False)}
+    return [("the readings' Mind Blown costs half its user's HP", ok, f"(HP paid, hit) {out} of {bib.maxhp}")]
+
+
 def main():
     results = []
 

@@ -485,6 +485,8 @@ def _use_move(b, att, mv, dfn, first):
     fs.hit_aftermath(b, att, dfn, mv,
                      lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
                      lambda kind, n: b.dice.choice(kind, n))
+    if b.blown is att:
+        fs.mind_blown_cost(b, att)       # half its HP as the move ends, hit or miss (fightsim.mind_blown_cost)
     fs.destiny_bond(att, dfn)
     if dfn.grudge:
         fs.grudge(att, dfn, paid, mv)        # the knockout's move loses its PP (fightsim.grudge)
@@ -665,6 +667,8 @@ def attack(b, att, mv, dfn, first):
     spit = fs.spit_up_key(att) if mv.effect == "SPIT_UP" else None
     if mv.effect == "SPIT_UP" and spit is None:
         return                           # Spit Up with nothing stored (fightsim.spit_up_key)
+    if mv.effect == "MIND_BLOWN" and not fs.mind_blown(b, att):
+        return                           # a Damp Pokemon stops it, and nothing is paid (fightsim.mind_blown)
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
         return
     if mv.effect == fs.FUTURE_SIGHT:
