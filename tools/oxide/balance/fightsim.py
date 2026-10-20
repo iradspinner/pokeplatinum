@@ -7374,7 +7374,11 @@ def status_move(b, att, mv, dfn, first):
         else:
             change_stages(att, {"atk": 1, "def": 1, "spe": -1})
     elif e == "MAX_ATK_LOSE_HALF_MAX_HP":
-        if att.hp > att.maxhp // 2:
+        # subscript_belly_drum fails, at no cost, with Attack at +6 already or
+        # half its HP or less; else half its HP goes and Attack is set at +6
+        # directly. Until 2026-10-20 a Belly Drum at +6 still cost half its
+        # HP (Ian approved the fix on 2026-10-20).
+        if att.stages["atk"] < 6 and att.hp > att.maxhp // 2:
             hurt(b, att, att.maxhp // 2)
             att.stages["atk"] = 6
     elif e == "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP":

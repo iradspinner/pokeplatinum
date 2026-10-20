@@ -5473,6 +5473,22 @@ def pluck_through_substitute_checks():
              f"Machop's item {mach.item}, HP {mach.hp}/{mach.maxhp}; Vespiquen healed {ves.hp - hp}")]
 
 
+@b11
+def belly_drum_at_six_checks():
+    """Belly Drum at +6 on the calculator's real rows (Ian's answer of
+    2026-10-20): the player's Snorlax with its Attack at +6 already keeps
+    its HP when it uses Belly Drum against a trainer's Machop; from 0 it
+    pays half."""
+    out = {}
+    for start in (6, 0):
+        b, mach, snor = b8_battle([("Machop", 30, "Guts", ["Tackle"])], [("Snorlax", 30, "Thick Fat", ["Belly Drum"])])
+        snor.stages["atk"] = start
+        pl.use_move(b, snor, fs.move("Belly Drum"), mach, True)
+        out[start] = (snor.maxhp - snor.hp, snor.stages["atk"])
+    ok = out[6] == (0, 6) and out[0][0] == snor.maxhp // 2 and out[0][1] == 6
+    return [("the readings' Belly Drum at +6 costs nothing", ok, f"(HP paid, Attack stage) from +6 and from 0 {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

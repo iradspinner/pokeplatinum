@@ -6434,6 +6434,23 @@ def check_pluck_through_substitute(results):
             "Tackle": ("Sitrus Berry", 20, True, 40)}
     results.append(("Bug Bite and Pluck eat the Berry through a Substitute", out == want, str(out)))
 
+
+@b11
+def check_belly_drum_at_six(results):
+    """Belly Drum at +6 (Ian's answer of 2026-10-20; subscript_belly_drum):
+    with its Attack at +6 already it fails and costs nothing, in both
+    battles; from +2 it costs half the user's HP and sets +6."""
+    from . import perfectline as pl
+    out = {}
+    for case, start, fn in (("at +6", 6, pl.status_move), ("fightsim's, at +6", 6, fs.status_move),
+                            ("at +2", 2, pl.status_move)):
+        b, p, foe = b11_battle(["Belly Drum"], ["Splash"], {}, hp=100)
+        p.stages["atk"] = start
+        fn(b, p, fs.move("Belly Drum"), foe, True)
+        out[case] = (p.hp, p.stages["atk"])
+    want = {"at +6": (100, 6), "fightsim's, at +6": (100, 6), "at +2": (50, 6)}
+    results.append(("Belly Drum at +6 fails and costs nothing", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
