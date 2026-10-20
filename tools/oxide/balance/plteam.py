@@ -219,6 +219,11 @@ def matchups(st, keys, boss_keys):
             # at that power under a twin key (fightsim.prepare's heat_crash).
             power = (st.get("heat_crash") or {}).get((k, e))
             return plfeat._expected((row(f"{k}#hc{power}", e) or {}).get("moves", {}).get(name), mv) if power else 0.0
+        raw = (st.get("metal_raw") or {}).get(e) if name in fs.WEIGHT_MOVES else None
+        if raw and row(k, raw):
+            # a Mold Breaker's weight move reads a Heavy Metal or Light Metal
+            # foe at its own weight (fightsim.metal_raw_key)
+            return plfeat._expected(row(k, raw).get("moves", {}).get(name), mv)
         return plfeat._expected((row(k, e) or {}).get("moves", {}).get(name), mv)
 
     mine = {}       # (member, move): [share of each enemy's HP]

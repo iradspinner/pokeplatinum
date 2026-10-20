@@ -903,6 +903,8 @@ class Battle:
                 tk = att.transform_key
                 if (self.weather, tk, dk) in rows or (None, tk, dk) in rows:
                     ak = tk
+        if att.ability == "Mold Breaker" and dfn.ability in METALS:
+            dk = metal_raw_key(self, att, dfn, mv, ak) or dk     # the target's own weight (metal_raw_key)
         # A type or ability another move or ability changed (form_key) reads
         # the changed Pokemon's twin: the pair of twins when both are
         # changed, else the one change against the other's rows, as far as
@@ -2583,6 +2585,10 @@ def weight_power(blob, att, dfn):
 
 
 METALS = ("Heavy Metal", "Light Metal")
+# The moves whose rows read the target's weight from its job: Low Kick and
+# Grass Knot (BtlCmd_CalcWeightBasedPower) and Heavy Slam (the calculator
+# works its power out; Heat Crash has power rows of its own, weight_power).
+WEIGHT_MOVES = frozenset({"Low Kick", "Grass Knot", "Heavy Slam"})
 
 
 def metal_weight(blob, rec):
@@ -2607,6 +2613,19 @@ def metal_weight(blob, rec):
     w = w * 2 if rec.get("ability") == "Heavy Metal" else w // 2
     own["weightkg"] = max(1, w) / 10
     return dict(rec, species_data=own)
+
+
+def metal_raw_key(b, att, dfn, mv, ak):
+    """The twin of a Heavy Metal or Light Metal target at its own weight
+    ("<key>#mw", prepare's metal_raw) for a Mold Breaker attacker's Low
+    Kick, Grass Knot or Heavy Slam, which reads past the target's ability
+    (Battler_Weight); None where there is no such row. Battle.row asks only
+    for a Mold Breaker attacker and a target with one of the two."""
+    t = (b.st.get("metal_raw") or {}).get(dfn.key) if mv is not None and mv.name in WEIGHT_MOVES else None
+    if t is None:
+        return None
+    rows = b.st["rows"]
+    return t if (b.weather, ak, t) in rows or (None, ak, t) in rows else None
 
 
 def power_row_keys(name, knows, takes):
@@ -9769,6 +9788,26 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     form_twin = form_twins(FormFight(pokemon, moves, blob, pkeys, qkeys, bkeys, weathers, camo), pairs,
                            all_hits, spread,
                            doubles or bool(partners), gas_twin)
+    # A Mold Breaker attacker reads a Heavy Metal or Light Metal target's
+    # own weight (Battler_Weight asks Battler_IgnorableAbility), where the
+    # target's rows carry the weight its ability gives it (metal_weight). So
+    # each such target of a Mold Breaker foe that knows Low Kick, Grass Knot
+    # or Heavy Slam gets a twin at its own weight ("<key>#mw"), rowed for
+    # those moves alone, which Battle.row reads for them (metal_raw_key).
+    # Heat Crash's power rows have the target's own weight already
+    # (weight_power). Until 2026-10-20 a Mold Breaker's weight move read the
+    # changed weight (Ian approved the fix).
+    metal_raw = {}
+    for d in pkeys + qkeys + bkeys:
+        if pokemon[d].get("ability") not in METALS:
+            continue
+        for a in (pkeys + qkeys if d in bkeys else bkeys):
+            mvs = [m for m in all_hits(a) if m in WEIGHT_MOVES] if pokemon[a].get("ability") == "Mold Breaker" else []
+            if mvs:
+                t = metal_raw.setdefault(d, f"{d}#mw")
+                pokemon.setdefault(t, dict(pokemon[d]))
+                for w in weathers:
+                    pairs.append([a, t, mvs, w])
     # The calculator is told to leave off the abilities the battle applies
     # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once,
     # and each Pokemon's gender as the battle has it (calc_gender: "M", "F",
@@ -9782,8 +9821,10 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     for k, p in pokemon.items():
         job = dict(p, ability_on=False) if p.get("ability") in CALC_ABILITY_OFF else dict(p)
         job["calc_gender"] = _gender_of(p) or "N"
-        if p.get("ability") in METALS:
-            job = metal_weight(blob, job)    # the weight Heavy Metal or Light Metal gives it
+        if p.get("ability") in METALS and not k.endswith("#mw"):
+            # the weight Heavy Metal or Light Metal gives it; a Mold
+            # Breaker's twin of it keeps its own (metal_raw)
+            job = metal_weight(blob, job)
         jobs[k] = job
     out = calc.run_node(calc.blob_path(), {"pokemon": jobs, "pairs": pairs})
     rows, speed = {}, {}
@@ -9811,7 +9852,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
             "water_sport": any(move(m).effect == "HALVE_FIRE_DAMAGE" for mv in moves.values() for m in mv),
             "mud_sport": any(move(m).effect == "HALVE_ELECTRIC_DAMAGE" for mv in moves.values() for m in mv),
-            "heat_crash": heat_crash,
+            "heat_crash": heat_crash, "metal_raw": metal_raw,
             "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo, "terrain": terrain,
             "fog": bool(fog)}
 

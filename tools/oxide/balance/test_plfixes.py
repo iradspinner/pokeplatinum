@@ -6061,6 +6061,23 @@ def sports_idle_checks():
     return [("the team search leaves Water Sport idle against Roark, who has no Fire hit", ok, f"fours {out}")]
 
 
+@b12
+def metal_mold_breaker_checks():
+    """A Mold Breaker's Low Kick into a Heavy Metal target on the
+    calculator's real rows (Ian's answer of 2026-10-20; Battler_Weight): a
+    trainer's Cranidos with Mold Breaker hits the player's Bronzor, 60.5 kg
+    and 121 with Heavy Metal, at 80 power, as into a Bronzor with Levitate,
+    where one with Rock Head hits it at Heavy Metal's 100."""
+    out = {}
+    for ab, own in (("Mold Breaker", "Heavy Metal"), ("Mold Breaker", "Levitate"), ("Rock Head", "Heavy Metal")):
+        b, cran, bronzor = b8_battle([("Cranidos", 30, ab, ["Low Kick"])], [("Bronzor", 30, own, ["Tackle"])])
+        out[(ab, own)] = b.rolls(cran, bronzor, fs.move("Low Kick"))[-1]
+    ok = (out[("Mold Breaker", "Heavy Metal")] == out[("Mold Breaker", "Levitate")]
+          < out[("Rock Head", "Heavy Metal")])
+    return [("the readings' Mold Breaker Low Kick reads a Heavy Metal target's own weight", ok,
+             f"top roll by (attacker, target) {out}")]
+
+
 def main():
     results = []
 

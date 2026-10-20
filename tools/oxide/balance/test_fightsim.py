@@ -6692,6 +6692,39 @@ def check_reward_items(results):
                     "; ".join(rows) or "no booster among the rewards"))
 
 
+# ---- batch 12: the abilities and moves out of everyone's reach, and Ian's answers of 2026-10-20 ----
+
+# The batch's checks, run after batch 11's in main.
+B12 = []
+
+
+def b12(fn):
+    B12.append(fn)
+    return fn
+
+
+@b12
+def check_metal_mold_breaker(results):
+    """A Mold Breaker attacker reads a Heavy Metal or Light Metal target's
+    own weight (Ian's answer of 2026-10-20; Battler_Weight): its Low Kick,
+    Grass Knot and Heavy Slam read the target's twin at its own weight
+    (prepare's metal_raw), its other moves and any other attacker's the
+    target's own rows."""
+    b, p, foe = battle(["Low Kick", "Tackle"], ["Tackle"], {("p", "Low Kick"): [60] * 16, ("p", "Tackle"): [30] * 16})
+    b.st["rows"][(None, "p0", "b0.0#mw")] = {"moves": {"Low Kick": {"rolls": [40] * 16}}}
+    b.st["metal_raw"] = {"b0.0": "b0.0#mw"}
+    foe.ability = "Heavy Metal"
+    out = {}
+    for ab in ("Mold Breaker", "Rock Head"):
+        p.ability = ab
+        out[ab] = (b.rolls(p, foe, fs.move("Low Kick"))[0], b.rolls(p, foe, fs.move("Tackle"))[0])
+    foe.ability = "Levitate"
+    p.ability = "Mold Breaker"
+    out["no metal"] = b.rolls(p, foe, fs.move("Low Kick"))[0]
+    want = {"Mold Breaker": (40, 30), "Rock Head": (60, 30), "no metal": 60}
+    results.append(("a Mold Breaker's Low Kick reads a Heavy Metal target's own weight", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
@@ -6757,7 +6790,7 @@ def main():
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
-                  check_self_risk, check_sure, check_reward_items) + tuple(B11):
+                  check_self_risk, check_sure, check_reward_items) + tuple(B11) + tuple(B12):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
