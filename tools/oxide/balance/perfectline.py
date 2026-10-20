@@ -316,9 +316,10 @@ def accuracy_hits(b, att, dfn, mv, first=True):
     if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or fs.no_guard(att, dfn, mv) or (dfn.rare and fs.lands_sure(att, dfn, mv)):
         return True
     acc = mv.acc
+    weather = fs.weather_now(b)          # none while Cloud Nine or Air Lock is out (NO_CLOUD_NINE)
     if mv.effect in ("THUNDER", "HURRICANE"):               # Oxide: Hurricane as Thunder in weather
-        acc = 100 if b.weather == "Rain" else 50 if b.weather == "Sun" else acc
-    if mv.effect == "BLIZZARD" and b.weather == "Hail":
+        acc = 100 if weather == "Rain" else 50 if weather == "Sun" else acc
+    if mv.effect == "BLIZZARD" and weather == "Hail":
         return True
     # The stages, with Unaware, Keen Eye and Sacred Sword's kind, Tangled
     # Feet and the Zoom Lens (fightsim.accuracy_scale).
@@ -331,9 +332,9 @@ def accuracy_hits(b, att, dfn, mv, first=True):
         acc *= 0.8
     if dfn.item in ("Bright Powder", "BrightPowder", "Lax Incense"):
         acc *= 0.9
-    if dfn.ability in ("Sand Veil",) and b.weather == "Sand" and not fs.mold(att, dfn):
+    if dfn.ability in ("Sand Veil",) and weather == "Sand" and not fs.mold(att, dfn):
         acc *= 0.8
-    if dfn.ability in ("Snow Cloak",) and b.weather == "Hail" and not fs.mold(att, dfn):
+    if dfn.ability in ("Snow Cloak",) and weather == "Hail" and not fs.mold(att, dfn):
         acc *= 0.8               # Mold Breaker gets past both (Battler_IgnorableAbility)
     if b.fog:
         acc *= fs.fog_cut(b)     # deep fog's six tenths (fightsim.fog_cut)
@@ -1353,6 +1354,8 @@ def clone_battle(b):
         c.unheld = True              # a Pokemon reads its item twin (fightsim.mark_unheld)
     if b.fog:
         c.fog = True                 # deep fog on the field (fightsim.fog_cut)
+    if b.cloudy:
+        c.cloudy = True              # a Cloud Nine or Air Lock holder in the fight (fightsim.weather_now)
     return c
 
 

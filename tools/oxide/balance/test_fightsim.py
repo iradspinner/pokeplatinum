@@ -6228,6 +6228,43 @@ def check_overcoat_weather(results):
     want = {("Sand", "Overcoat"): 0, ("Sand", "other"): 10, ("Hail", "Overcoat"): 0, ("Hail", "other"): 10}
     results.append(("Overcoat keeps sand and hail off at the turn's end", out == want, str(out)))
 
+
+@b11
+def check_cloud_nine(results):
+    """Cloud Nine (approved 2026-10-14; NO_CLOUD_NINE and CheckIgnoreWeather):
+    while its holder stands, the weather has no effect: the sandstorm bites
+    no one at the turn's end, Blizzard can miss in hail, a Swift Swim foe is
+    not doubled in rain, Leaf Guard does not keep a status off in sun, and
+    Solar Beam charges in sun. Without it each of these holds."""
+    from . import perfectline as pl
+
+    class Misses(pl.RunDice):
+        """Every chance of a miss lands."""
+        def bad(self, kind, p):
+            return p > 0 if kind == "miss" else super().bad(kind, p)
+    out = {}
+    for ab in ("Cloud Nine", None):
+        row = []
+        b, p, foe = b11_battle(["Blizzard", "Solar Beam", "Thunder Wave"], ["Tackle"], {}, hp=160)
+        b.cloudy, p.ability = True, ab
+        b.weather = "Sand"
+        fs.end_of_turn(b)
+        row.append(foe.maxhp - foe.hp)
+        b.weather, b.dice = "Hail", Misses(random.Random(1), True)
+        row.append(pl.accuracy_hits(b, p, foe, fs.move("Blizzard")))
+        b.weather = "Rain"
+        b.st["speed"][("Rain", "b0.0")] = 100
+        foe.ability = "Swift Swim"
+        row.append(b.speed(foe))
+        b.weather, foe.ability = "Sun", "Leaf Guard"
+        b.dice = pl.RunDice(random.Random(1), True)
+        pl.status_move(b, p, fs.move("Thunder Wave"), foe, True)
+        row.append(foe.status)
+        row.append(fs.charge_skipped(b, p, fs.move("Solar Beam")))
+        out[ab or "other"] = tuple(row)
+    want = {"Cloud Nine": (0, False, 50, "par", False), "other": (10, True, 100, None, True)}
+    results.append(("Cloud Nine stills every effect of the weather", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

@@ -5321,6 +5321,26 @@ def overcoat_weather_checks():
     return [("the readings' Overcoat keeps the sandstorm off", ok, f"(HP lost, a sixteenth) {out}")]
 
 
+@b11
+def cloud_nine_checks():
+    """Cloud Nine on the calculator's real rows (approved 2026-10-14): with a
+    trainer's Golduck given Cloud Nine on the field, the player's Swift
+    Swim Lotad is not doubled in its Rain Dance's rain, and a sandstorm
+    bites neither; with a Damp Golduck the Lotad is doubled and both are
+    bitten."""
+    out = {}
+    for ab in ("Cloud Nine", "Damp"):
+        b, duck, lotad = b8_battle([("Golduck", 30, ab, ["Rain Dance"])], [("Lotad", 30, "Swift Swim", ["Tackle"])])
+        dry = b.speed(lotad)
+        b.weather = "Rain"
+        wet = b.speed(lotad)
+        b.weather = "Sand"
+        fs.end_of_turn(b)
+        out[ab] = (wet / dry, duck.maxhp - duck.hp, lotad.maxhp - lotad.hp)
+    ok = out["Cloud Nine"] == (1.0, 0, 0) and out["Damp"][0] == 2.0 and out["Damp"][1] > 0 and out["Damp"][2] > 0
+    return [("the readings' Cloud Nine stills the weather", ok, f"(rain Speed over dry, HP lost to sand by each) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

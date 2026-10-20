@@ -840,6 +840,11 @@ class Battle:
     # move or an ability, clears it, and so does Defog. Left on the class
     # while there is none.
     fog = False
+    # Whether a Pokemon in this fight has Cloud Nine or Air Lock, a twin's
+    # included (st["cloud_nine"]), so the reads of the weather that look for
+    # one (weather_now, row_speed) look only then; kept by the battle's
+    # copies.
+    cloudy = False
     # The Analytic holder whose move is running while every other Pokemon
     # on the field has acted this turn (Battler_MovedThisTurn for each):
     # its power is 13/10 (ability_power). Set by _use_move around the
@@ -856,6 +861,8 @@ class Battle:
             self.sporty = True
         if st.get("fog"):
             self.fog = True
+        if st.get("cloud_nine"):
+            self.cloudy = True
         self.turn = 0
         self.ai_flags = ai_flags
         self.log = []
@@ -993,7 +1000,14 @@ class Battle:
             twin = item_key(self, mon)
             if twin and ((self.weather, twin) in speed or (None, twin) in speed):
                 key = twin
-        return int(speed.get((self.weather, key)) or speed.get((None, key)) or 1)
+        weather = self.weather
+        if self.cloudy and weather is not None and weather_ignored(self):
+            # Swift Swim, Chlorophyll and Sand Rush do not count while Cloud
+            # Nine or Air Lock is out (BattleSystem_CompareBattlerSpeed's
+            # NO_CLOUD_NINE): the Speed with no weather, the calculator's
+            # own figure where no row has it.
+            return int(speed.get((None, key)) or (self.st["info"].get(key) or {}).get("speed") or 1)
+        return int(speed.get((weather, key)) or speed.get((None, key)) or 1)
 
     def faster(self, a, b):
         """Whether a moves before b at equal priority; ties at random."""
@@ -1067,9 +1081,10 @@ class Battle:
         if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or no_guard(att, dfn, mv) or (dfn.rare and lands_sure(att, dfn, mv)):
             return True
         acc = mv.acc
+        weather = weather_now(self)          # none under Cloud Nine or Air Lock
         if mv.effect in ("THUNDER", "HURRICANE"):           # Oxide: Hurricane as Thunder in weather
-            acc = 100 if self.weather == "Rain" else 50 if self.weather == "Sun" else acc
-        if mv.effect == "BLIZZARD" and self.weather == "Hail":
+            acc = 100 if weather == "Rain" else 50 if weather == "Sun" else acc
+        if mv.effect == "BLIZZARD" and weather == "Hail":
             return True
         acc *= accuracy_scale(att, dfn, mv, first)
         if att.ability == "Compound Eyes":
@@ -1135,7 +1150,7 @@ def foresee_target(dfn):
 def foresight_key(b, mon, mv, att):
     """The key of the rows an identified Ghost meets a Normal or Fighting
     move on (prepare's foresight_twin), or None."""
-    if not identified(mon, move_type_used(att.ability, mv, att.ivs, att.item, b.weather)):
+    if not identified(mon, move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b))):
         return None
     return (b.st.get("foresight_twin") or {}).get(mon.key)
 
@@ -1163,7 +1178,7 @@ def miracle_eye(dfn):
 def miracle_key(b, mon, mv, att):
     """The key of the rows a Miracle Eye target of the Dark type meets a
     Psychic move on (prepare's miracle_twin), or None."""
-    if not mon.miracle_eye or not eyed(mon, move_type_used(att.ability, mv, att.ivs, att.item, b.weather)):
+    if not mon.miracle_eye or not eyed(mon, move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b))):
         return None
     return (b.st.get("miracle_twin") or {}).get(mon.key)
 
@@ -1206,7 +1221,7 @@ def gravity_start(b):
 def ground_key(b, mon, mv, att):
     """The key of the rows a grounded Flying or Levitate Pokemon meets a
     Ground move on (prepare's ground_twin), or None."""
-    if not grounded(b, mon) or move_type_used(att.ability, mv, att.ivs, att.item, b.weather) != "Ground":
+    if not grounded(b, mon) or move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b)) != "Ground":
         return None
     return (b.st.get("ground_twin") or {}).get(mon.key)
 
@@ -2239,7 +2254,8 @@ def leaf_guarded(b, target):
     """Leaf Guard keeps every major status off its holder in sun, unless a
     Mold Breaker's move gives it. The engine knows it; the AI does not, so
     this is not part of can_status."""
-    return target.ability == "Leaf Guard" and b.weather == "Sun" and not status_ability_ignored(b, target)
+    return (target.ability == "Leaf Guard" and b.weather == "Sun" and not status_ability_ignored(b, target)
+            and not weather_ignored(b))
 
 
 def give_status(b, target, status):
@@ -4646,7 +4662,7 @@ def sport_half(b, att, dfn, mv):
     field are the hit's own); the trainer's AI's figure meets it too, as the
     engine's estimate runs the same routine. Looked at only in a fight where
     a Pokemon knows one of the moves (Battle.sporty)."""
-    kind = move_type_used(att.ability, mv, att.ivs, att.item, b.weather)
+    kind = move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b))
     if kind == "Fire":
         mark = "water_sport"
     elif kind == "Electric":
@@ -5264,7 +5280,7 @@ def hit_type(b, mv):
     """The type a move hits with as the battle records it: Weather Ball's
     from the weather, every other move's its own."""
     if mv.name == "Weather Ball":
-        return {"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
+        return {"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(weather_now(b), mv.type)
     return mv.type
 
 
@@ -5300,7 +5316,7 @@ def hit_ability(b, att, dfn, mv, chance):
         # Defense two stages while it stands. Until 2026-10-20 it did
         # nothing (Ian approved the fix).
         if not dfn.alive() or move_type_used(att.ability, mv, att.ivs, att.item or att.recycle,
-                                             b.weather) != "Water":
+                                             weather_now(b)) != "Water":
             return False
         ability_stages(dfn, dfn, "def", 2)
         return True
@@ -5337,7 +5353,7 @@ def color_change(b, att, dfn, mv):
     names the ability. Its rows then come from its twin of that type
     (form_key) until it leaves. Whether it acted. Until 2026-10-14 Color
     Change did nothing (Ian approved the fix)."""
-    t = move_type_used(att.ability, mv, att.ivs, att.item or att.recycle, b.weather)
+    t = move_type_used(att.ability, mv, att.ivs, att.item or att.recycle, weather_now(b))
     if (not dfn.alive() or not mv.power or mv.effect == "STRUGGLE" or sheer_force_active(att, mv)
             or t in dfn.types):
         return False
@@ -5986,7 +6002,7 @@ def state_mult(b, att, dfn, mv):
         # is in force (since 2026-10-15, when Gravity began to run).
         m *= power_ratio(att, mv.power, mv.power * 15 // 10)
     if att.rare:
-        if att.charged and move_type_used(att.ability, mv, att.ivs, att.item, b.weather) == "Electric":
+        if att.charged and move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b)) == "Electric":
             # Charge: BattleSystem_CalcMoveDamage doubles an Electric move's
             # power while MOVE_EFFECT_CHARGE stands, after POWER_MULTI and
             # before Technician; the trainer's AI reckons it the same way.
@@ -6248,6 +6264,12 @@ def weather_ignored(b):
     return any(m.alive() and m.ability in ("Cloud Nine", "Air Lock") for m in b.p.on_field() + b.b.on_field())
 
 
+def weather_now(b):
+    """The weather as its effects read it: none while Cloud Nine or Air Lock
+    is out (NO_CLOUD_NINE), in a fight with either (Battle.cloudy)."""
+    return None if b.cloudy and b.weather is not None and weather_ignored(b) else b.weather
+
+
 def fog_cut(b):
     """Deep fog's cut to a move's accuracy (BattleControllerPlayer_CheckMoveHitAccuracy,
     under FIELD_CONDITION_DEEP_FOG and NO_CLOUD_NINE): six tenths, after the
@@ -6264,7 +6286,7 @@ def charge_skipped(b, att, mv):
     Shot in rain unless Cloud Nine or Air Lock is out, raising Sp. Atk
     (subscript_sp_atk_up_rain_skip); else a Power Herb, spent, raising the
     move's charge stage (subscript_power_herb_skull_bash and _meteor_beam)."""
-    if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun":
+    if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun" and not weather_ignored(b):
         return True
     if mv.effect == "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS" and b.weather == "Rain" and not weather_ignored(b):
         change_stages(att, CHARGE_STAGES[mv.effect])
@@ -7912,7 +7934,11 @@ def _end_of_turn(b):
             # flag), and only the move's own flag clears now, so the
             # field is left clear rather than returning to the map's.
             b.weather = None
-    if b.weather in ("Sand", "Hail"):
+    if b.weather in ("Sand", "Hail") and not weather_ignored(b):
+        # BtlCmd_EndOfTurnWeatherEffect acts only under NO_CLOUD_NINE: with
+        # Cloud Nine or Air Lock out no Pokemon is bitten, nor healed by Ice
+        # Body (until 2026-10-20 the bite came all the same, Ian approved
+        # the fix).
         safe = {"Sand": {"Rock", "Ground", "Steel"}, "Hail": {"Ice"}}[b.weather]
         # The abilities the weather's bite passes over (BtlCmd_EndOfTurnWeatherEffect):
         # Sand Veil, and Oxide's Sand Rush and Sand Force, in sand; Snow
@@ -9682,6 +9708,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
             "foresight_twin": foresight_twin, "ground_twin": ground_twin, "miracle_twin": miracle_twin,
             "trick_twin": trick_twin, "item_twin": item_twin, "meloetta_twin": meloetta_twin,
+            "cloud_nine": any(p.get("ability") in ("Cloud Nine", "Air Lock") for p in pokemon.values()),
             "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
             "water_sport": any(move(m).effect == "HALVE_FIRE_DAMAGE" for mv in moves.values() for m in mv),
             "mud_sport": any(move(m).effect == "HALVE_ELECTRIC_DAMAGE" for mv in moves.values() for m in mv),
