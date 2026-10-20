@@ -6037,6 +6037,13 @@ def state_mult(b, att, dfn, mv):
     if PINCH_ABILITY.get(att.ability) == mv.type and att.hp * 3 <= att.maxhp:
         m *= 1.5
     m *= marvel_scale(att, dfn, mv)
+    if dfn.ability == "Multiscale" and dfn.hp == dfn.maxhp and not mold(att, dfn):
+        # BattleSystem_CalcMoveDamage halves the damage a Multiscale holder
+        # takes at full HP, unless a Mold Breaker gets past it; the
+        # calculator's Generation 4 path has no Multiscale. Each hit of a
+        # move of several reads the HP it meets. Until 2026-10-20 it did
+        # nothing (Ian approved the fix).
+        m *= 0.5
     m *= plus_minus(b, att, mv)
     berry = resist_berry(b, dfn, mv)
     if berry and not berry_works(b, dfn, berry):

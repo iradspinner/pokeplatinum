@@ -6098,6 +6098,26 @@ def berserk_checks():
     return [("the readings' Berserk raises Sp. Atk as a hit takes it to half", ok, f"(Sp. Atk stage, harder) {out}")]
 
 
+@b12
+def multiscale_checks():
+    """Multiscale on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop's Karate Chop does half as much to the player's
+    Dragonite at full HP as one HP below it, and a Mold Breaker Pancham's
+    Karate Chop does the full damage at full HP."""
+    b, mach, dra = b8_battle([("Machop", 30, "Guts", ["Karate Chop"])], [("Dragonite", 30, "Multiscale", ["Tackle"])])
+    full = pl.damage_of(b, mach, dra, fs.move("Karate Chop"), False, True)
+    dra.hp -= 1
+    hurt = pl.damage_of(b, mach, dra, fs.move("Karate Chop"), False, True)
+    b, pan, dra = b8_battle([("Pancham", 30, "Mold Breaker", ["Karate Chop"])],
+                            [("Dragonite", 30, "Multiscale", ["Tackle"])])
+    mold_full = pl.damage_of(b, pan, dra, fs.move("Karate Chop"), False, True)
+    dra.hp -= 1
+    mold_hurt = pl.damage_of(b, pan, dra, fs.move("Karate Chop"), False, True)
+    ok = abs(full - hurt / 2) <= 1 and mold_full == mold_hurt
+    return [("the readings' Multiscale halves a hit at full HP", ok,
+             f"Machop's top roll {full} at full HP, {hurt} below; Pancham's {mold_full} and {mold_hurt}")]
+
+
 def main():
     results = []
 

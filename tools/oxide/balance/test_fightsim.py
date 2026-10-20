@@ -6750,6 +6750,30 @@ def check_berserk(results):
     results.append(("Berserk raises Sp. Atk as a hit takes its holder to half its HP", out == want, str(out)))
 
 
+@b12
+def check_multiscale(results):
+    """Multiscale (approved 2026-10-14; BattleSystem_CalcMoveDamage): a hit
+    on its holder at full HP does half the damage, unless a Mold Breaker
+    gets past it; below full HP, nothing; each hit of a move of several
+    reads the HP it meets."""
+    b, p, foe = battle(["Tackle"], ["Tackle"], {("b", "Tackle"): [40] * 16})
+    t = fs.move("Tackle")
+    p.ability = "Multiscale"
+    out = {"full": b.damage(foe, p, t, roll=0)}
+    foe.ability = "Mold Breaker"
+    out["Mold Breaker"] = b.damage(foe, p, t, roll=0)
+    foe.ability = None
+    p.hp = 99
+    out["99 HP"] = b.damage(foe, p, t, roll=0)
+    from . import perfectline as pl
+    b, p, foe = b11_battle(["Tackle"], ["Double Kick"], {("b", "Double Kick"): [40] * 16})
+    p.ability = "Multiscale"
+    pl.use_move(b, foe, fs.move("Double Kick"), p, True)
+    out["Double Kick"] = 100 - p.hp
+    want = {"full": 20, "Mold Breaker": 40, "99 HP": 40, "Double Kick": 30}
+    results.append(("Multiscale halves a hit taken at full HP", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
