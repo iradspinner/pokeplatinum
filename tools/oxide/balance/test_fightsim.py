@@ -6076,6 +6076,28 @@ def check_merciless(results):
     want = {"poisoned": 15, "badly poisoned": 15, "healthy": 10, "Shell Armor": 10, "several hits": (0.0, 1.0)}
     results.append(("Merciless makes every hit on a poisoned target critical", out == want, str(out)))
 
+
+@b11
+def check_analytic(results):
+    """Analytic (approved 2026-10-14; BattleSystem_CalcMoveDamage): its
+    holder's move at 13/10 power when every other Pokemon has acted this
+    turn: when it moves after its foe, or its foe switched in; not when it
+    moves first."""
+    from . import perfectline as pl
+    out = {}
+    for case, speed, foe_act in (("first", 100, "move"), ("last", 30, "move"), ("foe switched", 100, "switch")):
+        b, p, foe = b11_battle(["Tackle"], ["Splash"], {("p", "Tackle"): [10] * 16}, p_speed=speed, hp=500)
+        b.dice = _no_crit_dice()
+        b.b.mons.append(fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Splash"], "b"))
+        b.st["rows"][(None, "p0", "b0.1")] = b.st["rows"][(None, "p0", "b0.0")]
+        b.st["speed"][(None, "b0.1")] = 50
+        p.ability = "Analytic"
+        aa = ("move", fs.move("Splash")) if foe_act == "move" else ("switch", 1)
+        pl._turn(b, ("move", fs.move("Tackle")), aa)
+        out[case] = b.b.cur().maxhp - b.b.cur().hp
+    want = {"first": 10, "last": 13, "foe switched": 13}
+    results.append(("Analytic's move at 13/10 power when its holder moves last", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

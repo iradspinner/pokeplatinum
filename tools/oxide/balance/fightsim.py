@@ -840,6 +840,11 @@ class Battle:
     # move or an ability, clears it, and so does Defog. Left on the class
     # while there is none.
     fog = False
+    # The Analytic holder whose move is running while every other Pokemon
+    # on the field has acted this turn (Battler_MovedThisTurn for each):
+    # its power is 13/10 (ability_power). Set by _use_move around the
+    # attack, None otherwise.
+    analytic = None
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -3529,7 +3534,15 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     pick = lambda kind, n: b.rng.randrange(n)               # noqa: E731
     if targets is None:
         before = dfn.hp
-        attack(b, att, mv, dfn, first)
+        if att.ability == "Analytic" and moves_last(b, first):
+            # Its foe has acted this turn, or switched in.
+            b.analytic = att
+            try:
+                attack(b, att, mv, dfn, first)
+            finally:
+                b.analytic = None
+        else:
+            attack(b, att, mv, dfn, first)
         hit_aftermath(b, att, dfn, mv, chance, pick)
         destiny_bond(att, dfn)
         if dfn.grudge:
@@ -5895,6 +5908,8 @@ def state_mult(b, att, dfn, mv):
             # 2026-10-14 it hit at full power whatever the target's HP (Ian
             # approved the fix).
             m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
+    if att.ability in POWER_ABILITIES:
+        m *= ability_power(b, att, mv)       # Analytic's 13/10 (ability_power)
     if b.sporty:
         m *= sport_half(b, att, dfn, mv)     # Water Sport on the field halves a Fire move's power
     if b.split:
@@ -5919,6 +5934,23 @@ def state_mult(b, att, dfn, mv):
         # Technician is judged; Magnitude, whose power is rolled, doubles.
         m *= power_ratio(att, mv.power, reach * mv.power) if mv.power > 1 else reach
     return m
+
+
+# The abilities whose power the battle's state sets (ability_power).
+POWER_ABILITIES = frozenset({"Analytic"})
+
+
+def ability_power(b, att, mv):
+    """A power multiplier BattleSystem_CalcMoveDamage gives by an ability and
+    the battle's state, after Technician, which the rows lack. Analytic:
+    13/10 when every other Pokemon on the field has acted this turn, as
+    the battle notes while such a holder's move runs (Battle.analytic,
+    set by _use_move), Future Sight and Doom Desire apart, whose damage is
+    worked out as they are used. Until 2026-10-20 Analytic did nothing
+    (Ian approved the fix)."""
+    if att.ability == "Analytic":
+        return 1.3 if b.analytic is att and mv.effect != FUTURE_SIGHT else 1.0
+    return 1.0
 
 
 # Trump Card's power by the PP its slot has left once the use is paid

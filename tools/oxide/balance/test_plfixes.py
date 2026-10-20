@@ -5192,6 +5192,24 @@ def merciless_checks():
     return [("the readings' Merciless lands critical on a poisoned target", ok, f"(HP taken by status) {out}, plain {plain}")]
 
 
+@b11
+def analytic_checks():
+    """Analytic on the calculator's real rows (approved 2026-10-14): the
+    player's Magnezone's Flash Cannon in a turn against a faster trainer's
+    Jolteon lands at 13/10 of its plain damage; against a slower Snorlax,
+    with Magnezone moving first, it lands plain."""
+    out = {}
+    for foe in ("Jolteon", "Snorlax"):
+        b, f, mag = b8_battle([(foe, 30, "Volt Absorb" if foe == "Jolteon" else "Thick Fat", ["Growl"])],
+                              [("Magnezone", 30, "Analytic", ["Flash Cannon"])])
+        f.hp = f.maxhp = mag.hp = mag.maxhp = 10 ** 6
+        plain = pl.damage_of(b, mag, f, fs.move("Flash Cannon"), False, True)
+        pl._turn(b, ("move", fs.move("Flash Cannon")), ("move", fs.move("Growl")))
+        out[foe] = (f.maxhp - f.hp, plain)
+    ok = out["Snorlax"][0] == out["Snorlax"][1] and out["Jolteon"][0] > out["Jolteon"][1] * 1.2
+    return [("the readings' Analytic strengthens a move made last", ok, f"(HP taken, plain damage) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

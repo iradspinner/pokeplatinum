@@ -464,7 +464,16 @@ def _use_move(b, att, mv, dfn, first):
         status_move(b, att, mv, dfn, first)
         return
     before = dfn.hp
-    attack(b, att, mv, dfn, first)
+    if att.ability == "Analytic" and fs.moves_last(b, first):
+        # Its foe has acted this turn or switched in, every other Pokemon's
+        # action done (Battler_MovedThisTurn): 13/10 power (fightsim.ability_power).
+        b.analytic = att
+        try:
+            attack(b, att, mv, dfn, first)
+        finally:
+            b.analytic = None
+    else:
+        attack(b, att, mv, dfn, first)
     # A contact ability's chance hurts the player when the player's Pokemon
     # takes it, and helps it when the trainer's does (fightsim.hit_aftermath:
     # a move of several hits has had it hit by hit).
