@@ -6167,6 +6167,34 @@ def check_contrary(results):
             "Intimidate": 1, "Belly Drum": 6}
     results.append(("Contrary turns every stat change round", out == want, str(out)))
 
+
+@b11
+def check_moody(results):
+    """Moody (approved 2026-10-14; BattleSystem_TriggerTurnEndAbility,
+    subscript_moody): at each turn's end one stat other than accuracy and
+    evasion rises two stages and another falls one, drawn by the battle's
+    dice, every stat in reach of both; with every stat but Sp. Def at +6,
+    Sp. Def is the one to rise and one of the rest falls to +5."""
+    from . import perfectline as pl
+    ups, downs, plain = set(), set(), True
+    for seed in range(40):
+        b, p, foe = b11_battle(["Tackle"], ["Tackle"], {})
+        b.dice = pl.RunDice(random.Random(seed), True)
+        p.ability = "Moody"
+        fs.end_of_turn(b)
+        moved = {k: v for k, v in p.stages.items() if v}
+        plain &= sorted(moved.values()) == [-1, 2]
+        ups |= {k for k, v in moved.items() if v == 2}
+        downs |= {k for k, v in moved.items() if v == -1}
+    b, p, foe = b11_battle(["Tackle"], ["Tackle"], {})
+    p.ability = "Moody"
+    p.stages.update({"atk": 6, "def": 6, "spe": 6, "spa": 6})
+    fs.end_of_turn(b)
+    full = (p.stages["spd"], sorted(p.stages[k] for k in ("atk", "def", "spe", "spa")))
+    out = (plain, sorted(ups), sorted(downs), full)
+    want = (True, ["atk", "def", "spa", "spd", "spe"], ["atk", "def", "spa", "spd", "spe"], (2, [5, 6, 6, 6]))
+    results.append(("Moody raises one stat two stages and lowers another at each turn's end", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

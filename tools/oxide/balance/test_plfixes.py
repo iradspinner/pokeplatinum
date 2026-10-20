@@ -5262,6 +5262,29 @@ def contrary_checks():
              f"Sp. Atk {serp.stages['spa']}, Defense {serp.stages['def']}; Leaf Storm {first} then {second}")]
 
 
+@b11
+def moody_checks():
+    """Moody on the calculator's real rows (approved 2026-10-14): over a
+    turn in which a trainer's Machop and the player's Bibarel trade
+    Tackles, the Bibarel ends with one stat two stages up and another one
+    down, and the planner's enumerating dice split the turn's end into its
+    twenty draws (five to rise, four to fall)."""
+    from . import plplan
+    b, mach, bib = b8_battle([("Machop", 30, "Guts", ["Tackle"])], [("Bibarel", 30, "Moody", ["Tackle"])])
+    mach.hp = mach.maxhp = bib.hp = bib.maxhp = 10 ** 6
+    pl._turn(b, ("move", fs.move("Tackle")), ("move", fs.move("Tackle")))
+    moved = sorted(v for v in bib.stages.values() if v)
+    b2, mach2, bib2 = b8_battle([("Machop", 30, "Guts", ["Tackle"])], [("Bibarel", 30, "Moody", ["Tackle"])])
+    mach2.hp = mach2.maxhp = bib2.hp = bib2.maxhp = 10 ** 6
+    d = plplan.EnumDice((), random.Random(1))
+    b2.dice, b2.rng = d, d.rng
+    fs.end_of_turn(b2)
+    sizes = [len(e) for e in d.events]
+    ok = moved == [-1, 2] and sizes[-2:] == [5, 4]
+    return [("the readings' Moody raises one stat and lowers another at the turn's end", ok,
+             f"the Bibarel's moved stages {moved}; the planner's last two draws {sizes[-2:]}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

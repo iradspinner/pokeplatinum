@@ -7783,6 +7783,39 @@ def coin(b, kind="tie"):
     return dice.choice(kind, 2) == 1 if dice is not None else b.rng.random() < 0.5
 
 
+def pick_one(b, kind, n):
+    """One of n outcomes, at even odds, through the battle's dice (so the
+    planner enumerates it), or its own rng for a battle fightsim plays
+    alone."""
+    if n <= 1:
+        return 0
+    dice = getattr(b, "dice", None)
+    return dice.choice(kind, n) if dice is not None else b.rng.randrange(n)
+
+
+# The five stats Moody draws from, in the engine's order (BATTLE_STAT_ATTACK
+# to BATTLE_STAT_SP_DEFENSE).
+MOODY_STATS = ("atk", "def", "spe", "spa", "spd")
+
+
+def moody(b, m):
+    """Moody (BattleSystem_TriggerTurnEndAbility, subscript_moody): at each
+    turn's end one of the five stats other than accuracy and evasion that
+    is below +6, drawn at random, rises two stages, and then one of the
+    other four above -6, drawn at random, falls one, each made by
+    ability_stages, so Simple and Contrary play no part; with no stat to
+    draw, that change is left out. Until 2026-10-20 it did nothing (Ian
+    approved the fix)."""
+    room = [s for s in MOODY_STATS if m.stages[s] < 6]
+    up = room[pick_one(b, "moody", len(room))] if room else None
+    room = [s for s in MOODY_STATS if s != up and m.stages[s] > -6]
+    down = room[pick_one(b, "moody", len(room))] if room else None
+    if up is not None:
+        ability_stages(m, m, up, 2)
+    if down is not None:
+        ability_stages(m, m, down, -1)
+
+
 def end_order(b):
     """The Pokemon on the field in the order the engine runs the turn's end:
     BattleSystem_SortMonSpeedOrder, re-run once the moves are done
@@ -7970,6 +8003,8 @@ def _end_of_turn_mon(b, side, m):
     # turn's end but the one it came in on.
     if m.ability == "Speed Boost" and m.turns_in > 0:
         change_stages(m, {"spe": 1})
+    elif m.ability == "Moody":
+        moody(b, m)
     # Shed Skin (the same step): a status is cured one time in three
     # (Oxide's Generation 5 odds), the message naming the ability. Until
     # 2026-10-14 it did nothing (Ian approved the fix).
