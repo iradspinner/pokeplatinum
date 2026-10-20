@@ -6164,6 +6164,19 @@ def sticky_hold_knock_off_checks():
     return [("the readings' Knock Off leaves a Sticky Hold holder its item", ok, f"item after {out}")]
 
 
+@b12
+def fillet_away_checks():
+    """Fillet Away in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel gives half its maximum HP
+    for two stages of Attack, Sp. Atk and Speed, so its Speed doubles."""
+    b, mach, bib = b8_battle([("Machop", 30, "Guts", ["Karate Chop"])], [("Bibarel", 30, "Unaware", ["Fillet Away"])])
+    speed = b.speed(bib)
+    pl.status_move(b, bib, fs.move("Fillet Away"), mach, True)
+    got = (bib.maxhp - bib.hp, tuple(bib.stages[k] for k in ("atk", "spa", "spe")), b.speed(bib) == 2 * speed)
+    ok = got == (bib.maxhp // 2, (2, 2, 2), True)
+    return [("the readings' Fillet Away raises three stats for half its HP", ok, f"(HP lost, stages, Speed doubled) {got}")]
+
+
 def main():
     results = []
 

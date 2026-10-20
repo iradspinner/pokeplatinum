@@ -6853,6 +6853,25 @@ def check_sticky_hold_knock_off(results):
     results.append(("Knock Off leaves Sticky Hold's, Multitype's and the Griseous Orb's items", out == want, str(out)))
 
 
+@b12
+def check_fillet_away(results):
+    """Fillet Away (approved 2026-10-14; effect script 303): half its
+    user's maximum HP for two stages of Attack, Sp. Atk and Speed; it
+    fails at half its HP or less, and with all three at +6."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("full", "at half", "all at +6", "fightsim"):
+        b, p, foe = battle(["Fillet Away"], ["Tackle"], {}, hp=300)
+        if case == "at half":
+            p.hp = 150
+        if case == "all at +6":
+            p.stages.update(atk=6, spa=6, spe=6)
+        (fs if case == "fightsim" else pl).status_move(b, p, fs.move("Fillet Away"), foe, True)
+        out[case] = (p.hp, p.stages["atk"], p.stages["spa"], p.stages["spe"])
+    want = {"full": (150, 2, 2, 2), "at half": (150, 0, 0, 0), "all at +6": (300, 6, 6, 6), "fightsim": (150, 2, 2, 2)}
+    results.append(("Fillet Away trades half its HP for Attack, Sp. Atk and Speed", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

@@ -1127,6 +1127,8 @@ def status_move(b, att, mv, dfn, first):
             att.stages["atk"] = 6
     elif e == "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP":
         fs.clangorous_soul(b, att)       # a third of its HP for all five stats (fightsim.clangorous_soul)
+    elif e == "ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP":
+        fs.fillet_away(b, att)           # half its HP for Attack, Sp. Atk and Speed (fightsim.fillet_away)
     elif e == "REMOVE_ALL_PP_ON_DEFEAT":
         att.grudge = att.rare = True     # Grudge, until its user next acts (fightsim.grudge)
     elif e == "OCTOLOCK":

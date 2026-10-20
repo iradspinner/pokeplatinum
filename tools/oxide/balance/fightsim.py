@@ -7492,6 +7492,8 @@ def status_move(b, att, mv, dfn, first):
             att.stages["atk"] = 6
     elif e == "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP":
         clangorous_soul(b, att)
+    elif e == "ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP":
+        fillet_away(b, att)
     elif e == "REMOVE_ALL_PP_ON_DEFEAT":
         att.grudge = att.rare = True     # Grudge, until its user next acts (grudge)
     elif e == "OCTOLOCK":
@@ -7731,6 +7733,22 @@ def clangorous_soul(b, att):
         return
     hurt(b, att, third)
     change_stages(att, dict.fromkeys(ALL_FIVE, 1))
+
+
+def fillet_away(b, att):
+    """Fillet Away (effect script 303,
+    subscript_atk_sp_atk_speed_up_2_lose_half_max_hp): it fails with
+    Attack, Sp. Atk and Speed all at +6, or with its user at half its
+    maximum HP or less (BattleSystem_Divide's half); otherwise the user
+    loses that half, as Belly Drum's is lost (hurt, which checks a pinch
+    Berry), and the three rise two stages each through the stat-stage
+    subscript (change_stages). Until 2026-10-20 it did nothing (Ian
+    approved the fix)."""
+    half = engine_divide(att.maxhp, 2)
+    if all(att.stages[k] >= 6 for k in ("atk", "spa", "spe")) or att.hp <= half:
+        return
+    hurt(b, att, half)
+    change_stages(att, {"atk": 2, "spa": 2, "spe": 2})
 
 
 def healing_wish(b, att, lunar=False):
