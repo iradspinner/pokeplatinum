@@ -6973,6 +6973,27 @@ def check_geomancy(results):
     results.append(("Geomancy charges a turn, then raises Sp. Atk, Sp. Def and Speed", out == want, str(out)))
 
 
+@b12
+def check_ice_burn_freeze_shock(results):
+    """Ice Burn and Freeze Shock (approved 2026-10-14; effect scripts 364
+    and 363): a turn charging with no hit, then the hit, which burns or
+    paralyses at its chance; a Power Herb, spent, skips the charge."""
+    from . import perfectline as pl
+    out = {}
+    for name, item in (("Ice Burn", None), ("Freeze Shock", None), ("Ice Burn", "Power Herb")):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [30] * 16})
+        b.rng, p.item = FixedDice(0.0), item
+        fs.use_move(b, p, fs.move(name), foe, True)
+        first = (foe.hp, foe.status)
+        if item is None:
+            fs.use_move(b, p, fs.move(name), foe, True)
+        out[(name, item)] = first + (foe.hp, foe.status)
+    # FixedDice(0.0) lands every chance, a critical hit's too: 30 at half again.
+    want = {("Ice Burn", None): (100, None, 55, "brn"), ("Freeze Shock", None): (100, None, 55, "par"),
+            ("Ice Burn", "Power Herb"): (55, "brn", 55, "brn")}
+    results.append(("Ice Burn and Freeze Shock charge a turn, then hit and burn or paralyse", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

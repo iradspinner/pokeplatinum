@@ -6256,6 +6256,26 @@ def geomancy_checks():
              f"(charging, Sp. Atk on the charge turn, Sp. Atk, Sp. Def, Speed) {got}; Water Pulse {before} then {after}")]
 
 
+@b12
+def ice_burn_freeze_shock_checks():
+    """Ice Burn and Freeze Shock in the readings' battle on the
+    calculator's real rows (approved 2026-10-14): the player's Bibarel
+    charges a turn, the trainer's Geodude untouched, then hits it and
+    burns or paralyses it when the chance lands."""
+    out = {}
+    for name in ("Ice Burn", "Freeze Shock"):
+        b, geo, bib = b8_battle([("Geodude", 30, "Rock Head", ["Tackle"])], [("Bibarel", 30, "Unaware", [name])],
+                                Lucky8)
+        geo.hp = geo.maxhp = 999
+        pl.use_move(b, bib, fs.move(name), geo, True)
+        first = geo.hp
+        pl.use_move(b, bib, fs.move(name), geo, True)
+        out[name] = (first == 999, geo.hp < 999, geo.status)
+    ok = out == {"Ice Burn": (True, True, "brn"), "Freeze Shock": (True, True, "par")}
+    return [("the readings' Ice Burn and Freeze Shock charge, then hit with their status", ok,
+             f"(untouched on the charge turn, hit, status) {out}")]
+
+
 def main():
     results = []
 

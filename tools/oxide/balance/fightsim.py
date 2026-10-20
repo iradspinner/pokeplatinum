@@ -160,6 +160,10 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               # Until 2026-10-15 neither ever slept (Ian approved the fix).
               # Relic Song's turn of Meloetta between its forms is relic_song's.
               "SLEEP_HIT": "slp",
+              # Ice Burn and Freeze Shock's hit, once charged (TWO_TURN): a burn
+              # or a paralysis at the move's chance (30), as an indirect effect
+              # (MOVE_SUBSCRIPT_PTR_BURN, _PARALYZE), which Sheer Force leaves.
+              "CHARGE_TURN_BURN_HIT": "brn", "CHARGE_TURN_PARALYZE_HIT": "par",
               # Matcha Gotcha (effect script 348, subscript_burn_and_drain_health):
               # a burn at the move's chance (20) on a target left standing,
               # and the drain of DRAIN below either way. Until 2026-10-15 it
@@ -306,7 +310,12 @@ TWO_TURN = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE", "CHARGE_TURN_HIGH_CR
             # with a Power Herb, and then two stages each of Sp. Atk, Sp. Def
             # and Speed (SELF_STAGES). Until 2026-10-20 it did nothing (Ian
             # approved the fix).
-            "CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2"}
+            "CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2",
+            # Ice Burn and Freeze Shock (effect scripts 364 and 363): a turn
+            # charging, or none with a Power Herb, then the hit and its burn
+            # or paralysis (HIT_STATUS). Until 2026-10-20 each hit every turn
+            # with no status (Ian approved the fix).
+            "CHARGE_TURN_BURN_HIT", "CHARGE_TURN_PARALYZE_HIT"}
 INVULNERABLE = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE"}
 SELF_KO = {"HALVE_DEFENSE", "EXPLOSION", "FAINT_AND_ATK_SP_ATK_DOWN_2"}
 FUTURE_SIGHT = "HIT_IN_3_TURNS"                 # Future Sight and Doom Desire
