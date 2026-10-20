@@ -5043,6 +5043,25 @@ def weak_armor_checks():
              f"(Defense, Speed stage, faster, Bite harder) {out}")]
 
 
+@b11
+def water_compaction_checks():
+    """Water Compaction on the calculator's real rows (approved 2026-10-14):
+    a trainer's Buizel's Aqua Jet raises the player's Sandygast's Defense
+    two stages, so the next Aqua Jet does less; its Quick Attack does
+    nothing to it (a Ghost type)."""
+    out = {}
+    for name in ("Aqua Jet", "Quick Attack"):
+        b, bui, sandy = b8_battle([("Buizel", 30, "Swift Swim", ["Aqua Jet", "Quick Attack"])],
+                                  [("Sandygast", 30, "Water Compaction", ["Shadow Ball"])])
+        sandy.hp = sandy.maxhp = 10 ** 6
+        jet = b.damage(bui, sandy, fs.move("Aqua Jet"), roll=15)
+        pl.use_move(b, bui, fs.move(name), sandy, True)
+        out[name] = (sandy.stages["def"], b.damage(bui, sandy, fs.move("Aqua Jet"), roll=15) < jet)
+    ok = out == {"Aqua Jet": (2, True), "Quick Attack": (0, False)}
+    return [("the readings' Water Compaction raises Defense after a Water hit", ok,
+             f"(Defense stage, Aqua Jet softer) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

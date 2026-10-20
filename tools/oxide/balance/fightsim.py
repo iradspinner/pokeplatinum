@@ -5137,6 +5137,17 @@ def hit_ability(b, att, dfn, mv, chance):
         ability_stages(dfn, dfn, "def", -1)
         ability_stages(dfn, dfn, "spe", 2)
         return True
+    if a == "Water Compaction":
+        # subscript_water_compaction: a Water hit that did damage, by the
+        # type the battle records it with (Normalize's Normal, Weather
+        # Ball's, Liquid Voice's Water: move_type_used), raises its holder's
+        # Defense two stages while it stands. Until 2026-10-20 it did
+        # nothing (Ian approved the fix).
+        if not dfn.alive() or move_type_used(att.ability, mv, att.ivs, att.item or att.recycle,
+                                             b.weather) != "Water":
+            return False
+        ability_stages(dfn, dfn, "def", 2)
+        return True
     if a == "Cursed Body":
         if (att.alive() and att is not dfn and att.disabled is None and mv.power
                 and any(m.name == mv.name for m in att.moves) and att.pp.get(mv.name, 0) > 0

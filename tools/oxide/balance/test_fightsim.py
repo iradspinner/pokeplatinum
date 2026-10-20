@@ -5889,6 +5889,23 @@ def check_weak_armor(results):
     want = {"physical": (-1, 2), "special": (0, 0), "at -6": (-6, 2)}
     results.append(("Weak Armor trades Defense for Speed after a physical hit", out == want, str(out)))
 
+
+@b11
+def check_water_compaction(results):
+    """Water Compaction (approved 2026-10-14; subscript_water_compaction):
+    a Water hit that does damage raises its holder's Defense two stages, a
+    special one too; a Normal hit does nothing, and neither does a Water
+    hit its Substitute takes."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, sub in (("Water Gun", "Water Gun", 0), ("Tackle", "Tackle", 0), ("Substitute", "Water Gun", 50)):
+        b, p, foe = b11_battle(["Tackle"], [name], {("b", name): [10] * 16})
+        p.ability, p.sub = "Water Compaction", sub
+        pl.use_move(b, foe, fs.move(name), p, True)
+        out[case] = p.stages["def"]
+    want = {"Water Gun": 2, "Tackle": 0, "Substitute": 0}
+    results.append(("Water Compaction raises Defense two stages after a Water hit", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
