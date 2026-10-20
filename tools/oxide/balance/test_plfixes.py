@@ -6332,6 +6332,18 @@ def fickle_beam_checks():
     return [("the readings' Fickle Beam doubles when it goes all out", ok, f"HP taken {out}")]
 
 
+@b12
+def esper_wing_checks():
+    """Esper Wing in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel's hit on a trainer's
+    Geodude raises its own Speed a stage."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Rock Head", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Esper Wing"])])
+    speed = b.speed(bib)
+    pl.attack(b, bib, fs.move("Esper Wing"), geo, True)
+    got = (geo.hp < geo.maxhp, bib.stages["spe"], b.speed(bib) == speed * 3 // 2)
+    return [("the readings' Esper Wing raises its user's Speed", got == (True, 1, True), f"(hit, Speed stage, Speed up half) {got}")]
+
+
 def main():
     results = []
 

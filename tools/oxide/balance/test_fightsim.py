@@ -7073,6 +7073,27 @@ def check_fickle_beam(results):
     results.append(("Fickle Beam doubles its power three times in ten", out == want, str(out)))
 
 
+@b12
+def check_esper_wing(results):
+    """Esper Wing (approved 2026-10-14; effect script 368): its user's
+    Speed rises a stage at the move's chance (100), after a hit on a
+    Substitute and a knockout too, and its critical stage is one higher."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("hit", "Substitute", "knockout"):
+        b, p, foe = b11_battle(["Esper Wing"], ["Tackle"], {("p", "Esper Wing"): [20] * 16})
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        pl.attack(b, p, fs.move("Esper Wing"), foe, True)
+        out[case] = p.stages["spe"]
+    b, p, foe = b11_battle(["Esper Wing"], ["Tackle"], {})
+    out["critical rate"] = fs.crit_rate(b, p, foe, fs.move("Esper Wing"))
+    want = {"hit": 1, "Substitute": 1, "knockout": 1, "critical rate": fs.CRIT_RATE[1]}
+    results.append(("Esper Wing raises its user's Speed a stage", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

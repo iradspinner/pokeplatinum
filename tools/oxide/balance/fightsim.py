@@ -262,6 +262,13 @@ HIT_SELF_STAGES = {  # (stages, certain)
     # effect is not on sSheerForceEffects. Until 2026-10-15 the Defense never
     # fell (Ian approved the fix).
     "USER_DEF_DOWN_HIT": ({"def": -1}, True),
+    # Esper Wing (effect script 368): the user's Speed rises a stage at the
+    # move's chance (100), an indirect effect on the user, so a knockout's
+    # or a Substitute's hit raises it too; Sheer Force leaves it, as the
+    # effect is not on sSheerForceEffects. Its critical stage comes from the
+    # effect's name (HIGH_CRITICAL). Until 2026-10-20 the Speed never rose
+    # (Ian approved the fix).
+    "HIGH_CRITICAL_RAISE_SPEED_HIT": ({"spe": 1}, False),
 }
 RECOIL = {"RECOIL_THIRD": 1 / 3, "RECOIL_QUARTER": 1 / 4, "RECOIL_HALF": 1 / 2,
           "RECOIL_BURN_HIT": 1 / 3, "RECOIL_PARALYZE_HIT": 1 / 3,
