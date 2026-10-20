@@ -5012,6 +5012,37 @@ def merge_key_checks():
     return [("the planner's merge key tells Sticky Web and Lucky Chant apart", all(out.values()), str(out))]
 
 
+# ---- batch 11: the abilities open to the player, and Ian's answers of 2026-10-20 ----
+
+# The batch's checks, run after batch 10's in main.
+B11 = []
+
+
+def b11(fn):
+    B11.append(fn)
+    return fn
+
+
+@b11
+def weak_armor_checks():
+    """Weak Armor on the calculator's real rows (approved 2026-10-14): a
+    trainer's Houndour's Bite takes the player's Polteageist's Defense down
+    a stage and its Speed up two, so it outruns where it did not, and the
+    Houndour's Bite then hits harder; its Ember changes nothing."""
+    out = {}
+    for name in ("Bite", "Ember"):
+        b, hound, pol = b8_battle([("Houndour", 30, "Flash Fire", ["Bite", "Ember"])],
+                                  [("Polteageist", 30, "Weak Armor", ["Shadow Ball"])])
+        pol.hp = pol.maxhp = 10 ** 6          # it stands through the hits
+        speed, bite = b.speed(pol), b.damage(hound, pol, fs.move("Bite"), roll=15)
+        pl.use_move(b, hound, fs.move(name), pol, True)
+        out[name] = (pol.stages["def"], pol.stages["spe"], b.speed(pol) > speed,
+                     b.damage(hound, pol, fs.move("Bite"), roll=15) > bite)
+    ok = out == {"Bite": (-1, 2, True, True), "Ember": (0, 0, False, False)}
+    return [("the readings' Weak Armor trades Defense for Speed after a physical hit", ok,
+             f"(Defense, Speed stage, faster, Bite harder) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -6065,6 +6096,8 @@ def main():
     results += options_rule_checks()
     results += idle_list_checks()
     results += merge_key_checks()
+    for fn in B11:
+        results += fn()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

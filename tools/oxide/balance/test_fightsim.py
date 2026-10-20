@@ -5851,6 +5851,44 @@ def check_meloetta_form(results):
     ok = rowed == ("p0#pir", ["Normal", "Fighting"], True, True) and out == want
     results.append(("Relic Song turns Meloetta between its forms", ok, f"twin {rowed}; {out}"))
 
+
+# ---- batch 11: the abilities open to the player, and Ian's answers of 2026-10-20 ----
+
+# The batch's checks, run after batch 10's in main.
+B11 = []
+
+
+def b11(fn):
+    B11.append(fn)
+    return fn
+
+
+def b11_battle(p_moves, b_moves, rolls, **kw):
+    """A hand-built battle on the readings' dice (perfectline.RunDice)."""
+    from . import perfectline as pl
+    b, p, foe = battle(p_moves, b_moves, rolls, **kw)
+    b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+    return b, p, foe
+
+
+@b11
+def check_weak_armor(results):
+    """Weak Armor (approved 2026-10-14; BattleSystem_TriggerAbilityOnHit,
+    subscript_weak_armor): a physical hit that does damage takes its
+    holder's Defense down a stage and its Speed up two, made directly
+    (AbilityStatChange); at -6 Defense the Speed still rises, and a
+    special hit does nothing."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, start in (("physical", "Tackle", 0), ("special", "Ember", 0), ("at -6", "Tackle", -6)):
+        b, p, foe = b11_battle(["Tackle"], [name], {("b", name): [10] * 16})
+        p.ability = "Weak Armor"
+        p.stages["def"] = start
+        pl.use_move(b, foe, fs.move(name), p, True)
+        out[case] = (p.stages["def"], p.stages["spe"])
+    want = {"physical": (-1, 2), "special": (0, 0), "at -6": (-6, 2)}
+    results.append(("Weak Armor trades Defense for Speed after a physical hit", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -6143,7 +6181,7 @@ def main():
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
-                  check_self_risk, check_sure, check_reward_items):
+                  check_self_risk, check_sure, check_reward_items) + tuple(B11):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

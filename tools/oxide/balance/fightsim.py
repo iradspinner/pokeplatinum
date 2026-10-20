@@ -2072,6 +2072,30 @@ def raise_own(mon, stat, stages):
     return True
 
 
+def ability_stages(holder, mon, stat, stages):
+    """A stat an ability changes (AbilityStatChange, which Weak Armor, Water
+    Compaction, Gooey, Moody and the other abilities' subscripts call): mon's
+    stage moves by `stages`, held within -6 and +6, made directly, so Simple
+    does not double it, Contrary does not turn it, and Mist and Mirror Armor
+    do not stop it. Nothing happens to a Pokemon with no HP or a stage
+    already at the limit, and a drop that another Pokemon's ability makes is
+    kept off by Clear Body, White Smoke or a Clear Amulet, in silence. The
+    message names the holder's ability. Whether the stage moved."""
+    if not mon.alive():
+        return False
+    now = max(-6, min(6, mon.stages[stat] + stages))
+    if now == mon.stages[stat]:
+        return False
+    if stages < 0 and mon is not holder and (mon.ability in ("Clear Body", "White Smoke")
+                                             or mon.item == "Clear Amulet"):
+        return False
+    mon.stages[stat] = now
+    if stages > 0:
+        mon.stat_raised = True
+    reveal(holder)
+    return True
+
+
 def lower_stats(b, src, mon, changes, intimidate=False):
     """src's move or ability lowering mon's stats from the other side, one
     stat at a time in the order given, as each of the subscripts' calls to
@@ -5103,6 +5127,16 @@ def hit_ability(b, att, dfn, mv, chance):
     if a in HIT_RAISE:
         types, stat = HIT_RAISE[a]
         return dfn.alive() and hit_type(b, mv) in types and raise_own(dfn, stat, 1)
+    if a == "Weak Armor":
+        # subscript_weak_armor: a physical hit that did damage to its holder,
+        # still standing, takes its Defense down a stage and then its Speed
+        # up two (ability_stages), the Speed rising though the Defense is at
+        # -6 already. Until 2026-10-20 it did nothing (Ian approved the fix).
+        if not dfn.alive() or mv.cat != "Physical":
+            return False
+        ability_stages(dfn, dfn, "def", -1)
+        ability_stages(dfn, dfn, "spe", 2)
+        return True
     if a == "Cursed Body":
         if (att.alive() and att is not dfn and att.disabled is None and mv.power
                 and any(m.name == mv.name for m in att.moves) and att.pp.get(mv.name, 0) > 0
