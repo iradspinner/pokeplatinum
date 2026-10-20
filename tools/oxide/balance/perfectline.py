@@ -821,6 +821,8 @@ def attack(b, att, mv, dfn, first):
             dmg = int(dmg * fs.doubled_power(att, mv))
         if mv.effect == "HIT_BEFORE_SWITCH" and getattr(att, "pursuing", False):
             dmg = int(dmg * fs.doubled_power(att, mv))     # BtlCmd_TryPursuit's POWER_MULTI 20
+        if mv.effect == "DOUBLE_POWER_IF_FASTER" and fs.beak_doubles(b, dfn, first):
+            dmg = int(dmg * fs.doubled_power(att, mv))     # Bolt Beak and Fishious Rend (fightsim.beak_doubles)
         # A doubled power meets Technician after it is doubled (fs.doubled_power).
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
             dmg = int(dmg * fs.doubled_power(att, mv))
@@ -1799,8 +1801,10 @@ def _turn(c, pa, aa):
         pa = ("none", None)
     if pa[0] == "switch":
         fs.switch_in(c, c.p, pa[1])
+        c.p.cur().switched_turn = c.turn     # it came in by its side's choice (fightsim.beak_doubles)
     if aa[0] == "switch":
         fs.switch_in(c, c.b, aa[1])
+        c.b.cur().switched_turn = c.turn
     me, foe = c.p.cur(), c.b.cur()
     order = []
     if pa[0] == "move":

@@ -7035,6 +7035,27 @@ def check_sparkly_swirl(results):
     results.append(("Sparkly Swirl cures its party's status after its hit", out == want, str(out)))
 
 
+@b12
+def check_bolt_beak(results):
+    """Bolt Beak and Fishious Rend (approved 2026-10-14;
+    BtlCmd_CalcBoltBeakPower): twice the power while the target has yet to
+    act this turn, or when its side chose to switch it in this turn; the
+    listed power once it has acted."""
+    out = {}
+    for name in ("Bolt Beak", "Fishious Rend"):
+        for case, first, switched in (("first", True, False), ("second", False, False),
+                                      ("switched in", False, True)):
+            b, p, foe = battle([name], ["Tackle"], {("p", name): [20] * 16})
+            b.rng = FixedDice(0.999)
+            if switched:
+                foe.switched_turn = b.turn
+            fs.attack(b, p, fs.move(name), foe, first)
+            out[(name, case)] = foe.maxhp - foe.hp
+    want = {(n, c): v for n in ("Bolt Beak", "Fishious Rend") for c, v in (("first", 40), ("second", 20),
+                                                                          ("switched in", 40))}
+    results.append(("Bolt Beak doubles before the target acts or after it switches in", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

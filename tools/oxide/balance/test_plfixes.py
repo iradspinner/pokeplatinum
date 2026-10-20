@@ -6290,6 +6290,24 @@ def sparkly_swirl_checks():
              f"(hit, Bibarel's status, Machop's) {got}")]
 
 
+@b12
+def bolt_beak_checks():
+    """Bolt Beak in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Mew's Bolt Beak into a trainer's
+    Snorlax does twice as much before the Snorlax has acted as after, and
+    twice as much on a Snorlax the trainer has just switched in."""
+    out = {}
+    for case in ("first", "second", "switched in"):
+        b, sno, mew = b8_battle([("Snorlax", 30, "Thick Fat", ["Tackle"])], [("Mew", 30, "Synchronize", ["Bolt Beak"])])
+        sno.hp = sno.maxhp = 999
+        if case == "switched in":
+            sno.switched_turn = b.turn
+        pl.attack(b, mew, fs.move("Bolt Beak"), sno, case == "first")
+        out[case] = 999 - sno.hp
+    ok = out["first"] == out["switched in"] and abs(out["first"] - 2 * out["second"]) <= 1
+    return [("the readings' Bolt Beak doubles before its target acts", ok, f"HP taken {out}")]
+
+
 def main():
     results = []
 

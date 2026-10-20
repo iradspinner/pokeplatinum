@@ -584,6 +584,10 @@ class Mon:
     # off its weight, which comes back from its species as it next comes
     # in; under the rare flag (autotomize, weight_now).
     lightened = 0
+    # The turn this Pokemon came in by its side's own choice to switch, for
+    # Bolt Beak and Fishious Rend (beak_doubles); set by the turn as it
+    # switches, None before.
+    switched_turn = None
     # Soul Heart (soul_heart): how many other Pokemon of the battle were
     # down when it was last looked at, set as it comes in, so each later
     # faint counts once; kept only in a fight with a Soul Heart holder
@@ -3959,6 +3963,8 @@ def attack(b, att, mv, dfn, first):
             # BtlCmd_CalcPaybackPower: twice the power once the target has
             # acted this turn (moved, switched or used an item).
             dmg = int(dmg * doubled_power(att, mv))
+        if mv.effect == "DOUBLE_POWER_IF_FASTER" and beak_doubles(b, dfn, first):
+            dmg = int(dmg * doubled_power(att, mv))     # Bolt Beak and Fishious Rend (beak_doubles)
         # A doubled power meets Technician after it is doubled (doubled_power).
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
             dmg = int(dmg * doubled_power(att, mv))
@@ -6122,6 +6128,17 @@ def sparkly_swirl(b, att):
             m.status = None
     for m in field:
         m.nightmare = False
+
+
+def beak_doubles(b, dfn, first):
+    """Whether Bolt Beak and Fishious Rend double their power
+    (BtlCmd_CalcBoltBeakPower, effect script 382): while the target's
+    action this turn is still to come (`first`), or when its side chose
+    this turn to switch it in, which the engine counts as not having acted
+    (Generation 8's rule; Mon.switched_turn). The rows are made at the
+    listed power, which the trainer's AI reckons with too. Until 2026-10-20
+    they never doubled (Ian approved the fix)."""
+    return first or dfn.switched_turn == b.turn
 
 
 def technician(att, power):
@@ -8958,8 +8975,10 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
         # Switches first.
         if pa[0] == "switch":
             switch_in(b, b.p, pa[1])
+            b.p.cur().switched_turn = b.turn     # it came in by its side's choice (beak_doubles)
         if ba[0] == "switch":
             switch_in(b, b.b, ba[1])
+            b.b.cur().switched_turn = b.turn
         me, foe = b.p.cur(), b.b.cur()
         order = []
         if pa[0] == "move":
