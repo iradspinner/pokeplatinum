@@ -6345,6 +6345,25 @@ def check_magic_bounce(results):
     want = {"plain": ("par", -2, None, 0), "Mold Breaker": (None, 0, "par", -2), "in the air": (None, 0, None, 0)}
     results.append(("Magic Bounce turns reflectable moves back on their user", out == want, str(out)))
 
+
+@b11
+def check_sweet_veil(results):
+    """Sweet Veil (approved 2026-10-14; subscript_fall_asleep and
+    subscript_yawn): its holder cannot fall asleep, to Spore or to a Yawn's
+    drowsiness at the turn's end; a Mold Breaker's Spore puts it to
+    sleep."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, ab in (("Spore", "Spore", None), ("Yawn", "Yawn", None), ("Mold Breaker", "Spore", "Mold Breaker")):
+        b, p, foe = b11_battle([name], ["Splash"], {})
+        foe.ability, p.ability = "Sweet Veil", ab
+        pl.use_move(b, p, fs.move(name), foe, True)
+        for _ in range(2):
+            fs.end_of_turn(b)
+        out[case] = foe.status
+    want = {"Spore": None, "Yawn": None, "Mold Breaker": "slp"}
+    results.append(("Sweet Veil keeps its holder awake", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

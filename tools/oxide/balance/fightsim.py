@@ -1372,8 +1372,13 @@ def can_status(b, target, status):
 
 # Oxide's Water Bubble keeps burns off as Water Veil does (subscript_burn,
 # Ability_ForbidsStatus); until 2026-10-14 the simulator let them through
-# (Ian approved the fix).
-STATUS_ABILITIES = {"slp": {"Insomnia", "Vital Spirit"}, "par": {"Limber"}, "brn": {"Water Veil", "Water Bubble"},
+# (Ian approved the fix). Oxide's Sweet Veil keeps sleep off its holder as
+# Insomnia does (subscript_fall_asleep and subscript_yawn, past a Mold
+# Breaker's move; in a double battle its partner too, left to the double
+# battles' own batch); until 2026-10-20 it did nothing in the battle (Ian
+# approved the fix).
+STATUS_ABILITIES = {"slp": {"Insomnia", "Vital Spirit", "Sweet Veil"}, "par": {"Limber"},
+                    "brn": {"Water Veil", "Water Bubble"},
                     "psn": {"Immunity"}, "tox": {"Immunity"}, "frz": {"Magma Armor"}}
 # The abilities announced as their holder comes in (each message tags the
 # ability, so BattleAI_SetAbility records it).

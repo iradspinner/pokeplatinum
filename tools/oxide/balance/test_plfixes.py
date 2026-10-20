@@ -5411,6 +5411,21 @@ def magic_bounce_checks():
     return [("the readings' Magic Bounce turns Leer back", ok, f"(the Machop's Defense, the Espeon's) {out}")]
 
 
+@b11
+def sweet_veil_checks():
+    """Sweet Veil on the calculator's real rows (approved 2026-10-14): a
+    trainer's Smoochum's Sing does not put the player's Sweet Veil Tsareena
+    to sleep, and puts an Oblivious one to sleep."""
+    out = {}
+    for ab in ("Sweet Veil", "Oblivious"):
+        b, smo, ts = b8_battle([("Smoochum", 30, "Forewarn", ["Sing"])], [("Tsareena", 30, ab, ["Tackle"])])
+        b.dice = Lucky8(random.Random(1), True)
+        pl.status_move(b, smo, fs.move("Sing"), ts, True)
+        out[ab] = ts.status
+    ok = out == {"Sweet Veil": None, "Oblivious": "slp"}
+    return [("the readings' Sweet Veil keeps its holder awake", ok, f"the Tsareena's status {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
