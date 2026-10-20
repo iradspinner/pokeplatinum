@@ -5225,6 +5225,25 @@ def flare_boost_checks():
              f"Shadow Ball's top roll {plain} unburned, {burned} burned")]
 
 
+@b11
+def metal_weight_checks():
+    """Heavy Metal and Light Metal on the calculator's real rows (approved
+    2026-10-14): a trainer's Machop's Low Kick into the player's Heavy
+    Metal Bronzong (187 kg, doubled past 200) hits at 120 power where a
+    Levitate one takes 100, and into a Light Metal Scizor (118.5 kg,
+    halved under 60) at 80 where a Technician one takes 100."""
+    out = {}
+    for sp, abs_ in (("Bronzong", ("Heavy Metal", "Levitate")), ("Scizor", ("Light Metal", "Technician"))):
+        tops = []
+        for ab in abs_:
+            b, mach, mon = b8_battle([("Machop", 30, "Guts", ["Low Kick"])], [(sp, 30, ab, ["Tackle"])])
+            tops.append(b.rolls(mach, mon, fs.move("Low Kick"))[-1])
+        out[sp] = (tops[0], tops[1], round(tops[0] / tops[1], 2))
+    ok = 1.15 <= out["Bronzong"][2] <= 1.25 and 0.75 <= out["Scizor"][2] <= 0.85
+    return [("the readings' Heavy Metal and Light Metal change Low Kick's power", ok,
+             f"(the holder's top roll, the other's, ratio) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

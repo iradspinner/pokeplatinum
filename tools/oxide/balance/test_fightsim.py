@@ -6113,6 +6113,25 @@ def check_flare_boost(results):
     want = {"Ember, burned": 30, "Ember": 20, "Tackle, burned": 10}
     results.append(("Flare Boost raises special moves while burned", out == want, str(out)))
 
+
+@b11
+def check_metal_weight(results):
+    """Heavy Metal and Light Metal (approved 2026-10-14; Battler_Weight): the
+    calculator's job for a holder carries twice or half its weight in whole
+    tenths of a kilogram, a twin's own types kept; any other Pokemon's job
+    is left alone."""
+    bs = {"hp": 1, "at": 1, "df": 1, "sa": 1, "sd": 1, "sp": 1}
+    blob = {"poks": {"Bronzong": {"bs": bs, "types": ["Steel", "Psychic"], "weightkg": 187.0},
+                     "Scizor": {"bs": bs, "types": ["Bug", "Steel"], "weightkg": 118.5}}}
+    heavy = fs.metal_weight(blob, {"species": "Bronzong", "ability": "Heavy Metal"})["species_data"]
+    light = fs.metal_weight(blob, {"species": "Scizor", "ability": "Light Metal"})["species_data"]
+    twin = fs.metal_weight(blob, {"species": "Scizor", "ability": "Light Metal", "species_data": {
+        "bs": bs, "types": ["Water"], "exact_types": True, "weightkg": 118.5}})["species_data"]
+    out = {"Heavy Metal": (heavy["weightkg"], heavy["types"]), "Light Metal": light["weightkg"],
+           "twin": (twin["weightkg"], twin["types"], twin.get("exact_types"))}
+    want = {"Heavy Metal": (374.0, ["Steel", "Psychic"]), "Light Metal": 59.2, "twin": (59.2, ["Water"], True)}
+    results.append(("Heavy Metal and Light Metal change the weight the rows are made with", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

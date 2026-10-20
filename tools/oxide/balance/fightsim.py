@@ -2506,6 +2506,33 @@ def weight_power(blob, att, dfn):
     return 120 if ratio <= 2000 else 100 if ratio <= 2500 else 80 if ratio <= 3334 else 60 if ratio <= 5000 else 40
 
 
+METALS = ("Heavy Metal", "Light Metal")
+
+
+def metal_weight(blob, rec):
+    """The calculator's job for a Heavy Metal or Light Metal holder, its own
+    or a twin's (Battler_Weight): its species record, its own where it has
+    one (a twin's types and stats), at twice its weight or half of it, in
+    whole tenths of a kilogram and never below 0.1 kg, so the rows' Low
+    Kick, Grass Knot and Heavy Slam read the weight the engine does, on
+    either side of the move. A Mold Breaker attacker gets past a target's
+    in the engine, which the rows do not follow. Until 2026-10-20 both
+    abilities did nothing in the rows (Ian approved the fix)."""
+    poks = blob["poks"].get(rec.get("species")) or {}
+    own = dict(rec.get("species_data") or {})
+    if not own:
+        if not poks.get("bs"):
+            return rec
+        own = {"bs": dict(poks["bs"]), "types": [t for t in poks.get("types") or [] if t]}
+    kg = own.get("weightkg", poks.get("weightkg"))
+    if kg is None:
+        return rec
+    w = int(round(kg * 10))
+    w = w * 2 if rec.get("ability") == "Heavy Metal" else w // 2
+    own["weightkg"] = max(1, w) / 10
+    return dict(rec, species_data=own)
+
+
 def friendship_power(species):
     """Return's power for a trainer's Pokemon (effect script 121: friendship
     times 10 over 25). TrainerData_BuildParty never sets friendship, so a
@@ -9553,6 +9580,8 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     for k, p in pokemon.items():
         job = dict(p, ability_on=False) if p.get("ability") in CALC_ABILITY_OFF else dict(p)
         job["calc_gender"] = _gender_of(p) or "N"
+        if p.get("ability") in METALS:
+            job = metal_weight(blob, job)    # the weight Heavy Metal or Light Metal gives it
         jobs[k] = job
     out = calc.run_node(calc.blob_path(), {"pokemon": jobs, "pairs": pairs})
     rows, speed = {}, {}
