@@ -6136,6 +6136,20 @@ def soul_heart_checks():
              f"Sp. Atk stage {mag.stages['spa']}, Flash Cannon's top roll on Geodude {before} then {after}")]
 
 
+@b12
+def toxic_boost_checks():
+    """Toxic Boost on the calculator's real rows (approved 2026-10-14): the
+    player's poisoned Zangoose's Slash into a trainer's Machop does half
+    again what a healthy one's does."""
+    b, mach, zan = b8_battle([("Machop", 30, "Guts", ["Karate Chop"])], [("Zangoose", 30, "Toxic Boost", ["Slash"])])
+    plain = pl.damage_of(b, zan, mach, fs.move("Slash"), False, True)
+    zan.status = "psn"
+    poisoned = pl.damage_of(b, zan, mach, fs.move("Slash"), False, True)
+    ok = abs(poisoned - plain * 1.5) <= 1
+    return [("the readings' Toxic Boost raises physical moves while poisoned", ok,
+             f"Slash's top roll {plain} healthy, {poisoned} poisoned")]
+
+
 def main():
     results = []
 

@@ -6815,6 +6815,21 @@ def check_soul_heart(results):
     results.append(("Soul Heart raises Sp. Atk as each other Pokemon faints", out == want, str(out)))
 
 
+@b12
+def check_toxic_boost(results):
+    """Toxic Boost (approved 2026-10-14; BattleSystem_CalcMoveDamage): half
+    again to its holder's physical moves while it is poisoned or badly
+    poisoned; a special move, and a burn, do nothing."""
+    b, p, foe = battle(["Tackle", "Ember"], ["Tackle"], {("p", "Tackle"): [40] * 16, ("p", "Ember"): [40] * 16})
+    p.ability = "Toxic Boost"
+    out = {}
+    for status in (None, "psn", "tox", "brn"):
+        p.status = status
+        out[status] = (b.damage(p, foe, fs.move("Tackle"), roll=0), b.damage(p, foe, fs.move("Ember"), roll=0))
+    want = {None: (40, 40), "psn": (60, 40), "tox": (60, 40), "brn": (20, 40)}
+    results.append(("Toxic Boost raises a poisoned holder's physical moves by half", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

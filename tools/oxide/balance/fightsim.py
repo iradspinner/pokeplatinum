@@ -6191,7 +6191,7 @@ def state_mult(b, att, dfn, mv):
 
 
 # The abilities whose power the battle's state sets (ability_power).
-POWER_ABILITIES = frozenset({"Analytic", "Flare Boost"})
+POWER_ABILITIES = frozenset({"Analytic", "Flare Boost", "Toxic Boost"})
 
 
 def ability_power(b, att, mv):
@@ -6202,11 +6202,15 @@ def ability_power(b, att, mv):
     set by _use_move), Future Sight and Doom Desire apart, whose damage is
     worked out as they are used. Flare Boost: half again for a special
     move while its holder is burned. Until 2026-10-20 neither did anything
-    (Ian approved the fix)."""
+    (Ian approved the fix). Toxic Boost: half again for a physical move
+    while its holder is poisoned or badly poisoned; until 2026-10-20 it did
+    nothing either (Ian approved the fix)."""
     if att.ability == "Analytic":
         return 1.3 if b.analytic is att and mv.effect != FUTURE_SIGHT else 1.0
     if att.ability == "Flare Boost":
         return 1.5 if att.status == "brn" and mv.cat == "Special" else 1.0
+    if att.ability == "Toxic Boost":
+        return 1.5 if att.status in ("psn", "tox") and mv.cat == "Physical" else 1.0
     return 1.0
 
 
