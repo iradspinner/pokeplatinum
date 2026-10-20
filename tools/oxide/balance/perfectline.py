@@ -599,6 +599,29 @@ def multi_hit(b, att, mv, dfn, first, hits, trainer):
     return dealt
 
 
+def beat_up(b, att, mv, dfn, first, trainer):
+    """Beat Up's hits (fightsim.beat_up_hits) on the battle's dice: each
+    hit's critical hit as crit_hits rolls them, and its damage roll, each
+    hit's own in a run but one shared by every hit when the dice enumerate
+    a turn (the planner's), grouped by the whole move's damage; the
+    trainer's top roll and the player's lowest in the strict search."""
+    shared = None
+    if b.dice.mode == "run":
+        grouped = getattr(b.dice, "roll_grouped", None)
+        if grouped:
+            members = fs.beat_up_party(b, att)
+            shared = grouped(lambda r: sum(fs.beat_up_damage(b, att, m, dfn, mv, False, r) for m in members), dfn.hp)
+
+    def roll_of(i, crit):
+        if b.dice.mode != "run":
+            return 15 if trainer else 0
+        return shared if shared is not None else b.dice.roll(trainer)
+
+    return fs.beat_up_hits(b, att, mv, dfn, first, lambda n, rate: crit_hits(b, att, dfn, mv, n, trainer), roll_of,
+                           lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
+                           lambda kind, n: b.dice.choice(kind, n))
+
+
 def crash(b, att, dfn, mv):
     """A Jump Kick, High Jump Kick or Supercell Slam that failed to hit, on
     an accuracy miss, a Protect or a target in the air: its user loses half
@@ -697,6 +720,10 @@ def attack(b, att, mv, dfn, first):
         return                               # a raised move into Queenly Majesty (fightsim.majesty_blocked)
     fs.rollout_after(att, mv, True)
     trainer = not player(att)
+    if mv.effect == "BEAT_UP":
+        dealt = beat_up(b, att, mv, dfn, first, trainer)
+        _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=True)
+        return
     hits = rolled_hits(b, att, dfn, mv, trainer, first)
     if mv.effect in fs.HIT_BY_HIT:
         dealt = multi_hit(b, att, mv, dfn, first, hits, trainer)

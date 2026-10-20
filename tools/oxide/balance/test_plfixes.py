@@ -6192,6 +6192,27 @@ def autotomize_checks():
              f"Speed stage {bron.stages['spe']}, Low Kick's top roll {before} then {after}")]
 
 
+@b12
+def beat_up_checks():
+    """Beat Up in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Sneasel's Beat Up hits a trainer's
+    Machop once for itself and once for its healthy Machop, not for its
+    paralysed Bibarel, each hit by the member's species' base Attack and
+    level over the Machop's base Defense, at the top roll."""
+    b, mach, sne = b8_battle([("Machop", 30, "Guts", ["Karate Chop"])],
+                             [("Sneasel", 30, "Inner Focus", ["Beat Up"]), ("Machop", 30, "Guts", ["Karate Chop"]),
+                              ("Bibarel", 30, "Simple", ["Tackle"])])
+    b.p.mons[2].status = "par"
+    bs = fs.calc.blob()["poks"]
+    want = sum(bs[sp]["bs"]["at"] * 10 * (30 * 2 // 5 + 2) // bs["Machop"]["bs"]["df"] // 50 + 2
+               for sp in ("Sneasel", "Machop"))
+    hp = mach.hp
+    pl.attack(b, sne, fs.move("Beat Up"), mach, True)
+    ok = hp - mach.hp == want
+    return [("the readings' Beat Up hits once for each member able to fight", ok,
+             f"HP taken {hp - mach.hp}, by the formula {want}")]
+
+
 def main():
     results = []
 

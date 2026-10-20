@@ -6897,6 +6897,33 @@ def check_autotomize(results):
     results.append(("Autotomize raises Speed two stages and takes 100 kg off its user", out == want, str(out)))
 
 
+@b12
+def check_beat_up(results):
+    """Beat Up (approved 2026-10-14; effect script 154, BtlCmd_BeatUp): one
+    typeless hit for its user, whatever its state, and for each other
+    party member with HP and no status, each by the member's species' base
+    Attack and level over the target's base Defense (110 and 80 at level
+    50 into a Geodude's 100: 6 and 5), a critical hit's half again, and
+    the same into a Ghost type (Gastly's 30: 18 and 13)."""
+    out = {}
+    for case, target in (("Geodude", "Geodude"), ("Gastly", "Gastly"), ("crit", "Geodude")):
+        b, p, foe = battle(["Beat Up"], ["Tackle"], {}, hp=200)
+        b.st["pokemon"]["p0"]["species"], b.st["pokemon"]["b0.0"]["species"] = "Snorlax", target
+        p.status = "brn"
+        for key, species, status, hp in (("p1", "Machop", None, 100), ("p2", "Bibarel", "psn", 100),
+                                         ("p3", "Pikachu", None, 0)):
+            b.st["pokemon"][key] = {"species": species, "level": 50}
+            m = fs.Mon(key, b.st["pokemon"][key], b.st["info"]["p0"], ["Tackle"], "p")
+            m.status, m.hp = status, hp
+            b.p.mons.append(m)
+        crit = case == "crit"
+        fs.beat_up_hits(b, p, fs.move("Beat Up"), foe, True, lambda n, rate: [crit] * n, lambda i, c: 15,
+                        lambda kind, prob, victim: False, lambda kind, n: 0)
+        out[case] = 200 - foe.hp
+    want = {"Geodude": 11, "Gastly": 31, "crit": 16}
+    results.append(("Beat Up hits once for each party member able to fight", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

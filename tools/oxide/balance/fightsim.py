@@ -3866,6 +3866,12 @@ def attack(b, att, mv, dfn, first):
             hits += 1
     elif mv.effect in TWO_HITS:
         hits = 2
+    if mv.effect == "BEAT_UP":
+        # Each eligible party member's own hit, on this battle's dice (beat_up_hits).
+        dealt = beat_up_hits(b, att, mv, dfn, first, lambda n, rate: [b.rng.random() < rate for _ in range(n)],
+                             lambda i, crit: b.rng.randrange(16),
+                             lambda kind, p, victim: b.rng.random() < p, lambda kind, n: b.rng.randrange(n))
+        return _after_attack(b, att, mv, dfn, first, dealt)
     if mv.effect in HIT_BY_HIT:
         dealt = _attack_hits(b, att, mv, dfn, first, hits)
         if dealt is None:
@@ -4313,6 +4319,62 @@ def _attack_hits(b, att, mv, dfn, first, hits):
     b.hits_landed = True
     dealt = land_hits(b, att, dfn, mv, first, hits, hit_damage, crits,
                       lambda kind, p, victim: b.rng.random() < p, lambda kind, n: b.rng.randrange(n))
+    b.last_dealt = dealt
+    return dealt
+
+
+def beat_up_party(b, att):
+    """The members whose hits Beat Up lands, in party order (BtlCmd_BeatUp,
+    BeatUpEligibleMon): its user, whatever its state, and every other
+    member of its party with HP and no status."""
+    side = b.p if att.side == "p" else b.b
+    return [m for m in side.mons if m is att or (m.alive() and not m.status)]
+
+
+def base_stat(b, mon, stat):
+    """A Pokemon's species' base stat ("at", "df" and so on), as
+    SpeciesData_GetFormValue gives it: its record's own species data
+    where it has one (a twin's form), else its species'."""
+    rec = b.st["pokemon"].get(mon.key) or {}
+    bs = (rec.get("species_data") or {}).get("bs") or (calc.blob()["poks"].get(rec.get("species") or mon.species)
+                                                       or {}).get("bs") or {}
+    return bs.get(stat) or 1
+
+
+def beat_up_damage(b, att, member, dfn, mv, crit, roll):
+    """One member's Beat Up hit (BtlCmd_BeatUp): its species' base Attack
+    times the move's power times its level's factor (level times 2 over
+    5, plus 2), over the target's species' base Defense, over 50, plus 2,
+    in whole numbers; a critical hit's multiplier (ApplyCriticalMul: 3/2,
+    a Sniper user's 9/4); then the damage roll, roll 0 to 15 for 85 to 100
+    percent (BattleSystem_CalcDamageVariance), at least 1. It skips the
+    damage routine and the type chart (SYSCTL_IGNORE_IMMUNITIES), so no
+    same-type bonus, type, stage, item or ability reaches it."""
+    dmg = (base_stat(b, member, "at") * mv.power * (member.level * 2 // 5 + 2)
+           // base_stat(b, dfn, "df") // 50 + 2)
+    if crit:
+        dmg = dmg * 9 // 4 if att.ability == "Sniper" else dmg * 3 // 2
+    return max(1, dmg * (85 + roll) // 100)
+
+
+def beat_up_hits(b, att, mv, dfn, first, crits_of, roll_of, chance, pick):
+    """Beat Up (effect script 154, BtlCmd_BeatUp): one hit for each member
+    beat_up_party gives, in party order, each with its own critical hit
+    (CalcCrit runs again each hit: crits_of(hits, rate)) and damage roll
+    (roll_of(i, crit)), landed hit by hit as a move of several hits is
+    (land_hits): a Substitute takes them, Sturdy and a Focus Sash hold
+    the first at full HP, and the loop stops once a Pokemon faints. It
+    meets no type chart, so a Ghost type is hit, Wonder Guard does
+    nothing and no resist Berry halves it. The HP taken from dfn. Until
+    2026-10-20 it was one hit from its user's row (Ian approved the fix)."""
+    members = beat_up_party(b, att)
+    crits = crits_of(len(members), crit_rate(b, att, dfn, mv))
+
+    def hit_damage(i, crit):
+        return beat_up_damage(b, att, members[i], dfn, mv, crit, roll_of(i, crit))
+
+    b.hits_landed = True
+    dealt = land_hits(b, att, dfn, mv, first, len(members), hit_damage, crits, chance, pick)
     b.last_dealt = dealt
     return dealt
 
@@ -5896,8 +5958,8 @@ def resist_berry(b, dfn, mv):
     move's type, against a super-effective hit (any Normal move for the
     Chilan Berry)."""
     berry = _row_item(b, dfn)
-    if mv.cat == "Status" or mv.effect == FUTURE_SIGHT or RESIST_BERRY.get(berry) != mv.type:
-        return None                  # Future Sight never meets the type chart, nor a resist berry
+    if mv.cat == "Status" or mv.effect in (FUTURE_SIGHT, "BEAT_UP") or RESIST_BERRY.get(berry) != mv.type:
+        return None                  # Future Sight and Beat Up never meet the type chart, nor a resist berry
     if berry != "Chilan Berry" and effectiveness(b.st["chart"], mv.type, chart_types(dfn, mv)) <= 1:
         return None
     return berry
