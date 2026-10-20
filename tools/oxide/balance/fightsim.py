@@ -139,6 +139,27 @@ def move(name):
     return Move(name)
 
 
+# The Plates whose type Judgment takes (effect script 268 sets the move's
+# type by the holder's HOLD_EFFECT_ARCEUS_*): the sixteen of Platinum. The
+# Pixie Plate, which element 7 added, is not in the script, so its
+# Judgment stays Normal in the battle.
+JUDGMENT_TYPE = {item: t for t, items in pool.TYPE_ITEMS.items() for item in items if item.endswith(" Plate")}
+
+
+@functools.lru_cache(maxsize=None)
+def judgment_move(mv, item):
+    """Judgment as its holder of `item`, a Plate, uses it: the same move at
+    the Plate's type (JUDGMENT_TYPE), as the battle types it, for the
+    simulator's own type reads (an immunity's reveal, Flash Fire, a thaw,
+    the resist Berries, Color Change) and the trainer's AI's, which types
+    it by the Plate too (TrainerAI_MoveType); the calculator's row has the
+    Plate's type already. Until 2026-10-20 those reads took it as Normal
+    (Ian approved the fix)."""
+    c = Move(mv.name)
+    c.type = JUDGMENT_TYPE[item]
+    return c
+
+
 # What each effect does beyond its damage. A status move whose effect is not
 # here does nothing; a damaging one is a plain hit. fightsim_report counts
 # the effects met that are not here.
@@ -614,6 +635,11 @@ class Mon:
         self.ability = info.get("ability") or rec.get("ability")
         self.item = info.get("item") or rec.get("item")
         self.moves = [move(m) for m in moves][:4]
+        if self.item in JUDGMENT_TYPE:
+            # Judgment hits with its Plate's type (effect script 268), which
+            # every type read of the battle and of the trainer's AI then
+            # sees (judgment_move).
+            self.moves = [judgment_move(m, self.item) if m.effect == "JUDGEMENT" else m for m in self.moves]
         self.pp = {m.name: m.pp for m in self.moves}
         # Whether it knows a move whose rule reads its own history, for the
         # keys that must tell such histories apart (perfectline.mon_key and

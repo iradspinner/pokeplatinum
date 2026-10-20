@@ -6376,6 +6376,20 @@ def surging_strikes_checks():
     return [("the readings' Surging Strikes lands three critical hits", ok, str(out))]
 
 
+@b12
+def judgment_checks():
+    """Judgment in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): a trainer's Arceus holding a Flame Plate has a
+    Fire Judgment, which the player's Flash Fire Ponyta takes whole and is
+    lit by, as by any Fire move."""
+    b, arc, pon = b8_battle([("Arceus", 30, "Multitype", ["Judgment"], "Flame Plate")],
+                            [("Ponyta", 30, "Flash Fire", ["Tackle"])])
+    pl.attack(b, arc, arc.moves[0], pon, True)
+    got = (arc.moves[0].type, pon.hp == pon.maxhp, pon.flash_fire)
+    return [("the readings' Judgment takes its Plate's type", got == ("Fire", True, True),
+             f"(Judgment's type, Ponyta untouched, lit) {got}")]
+
+
 def main():
     results = []
 

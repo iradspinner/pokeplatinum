@@ -7156,6 +7156,25 @@ def check_surging_strikes(results):
     results.append(("Surging Strikes lands three critical hits one at a time", out == want, str(out)))
 
 
+@b12
+def check_judgment(results):
+    """Judgment (approved 2026-10-14; effect script 268): its holder's Plate
+    sets its type, which the battle's own reads meet: a Flame Plate's Fire
+    Judgment that a Flash Fire target takes lights it, a plain one does
+    not; the Pixie Plate, which the script does not list, leaves it
+    Normal."""
+    out = {}
+    for item in ("Flame Plate", None, "Pixie Plate"):
+        b, p, foe = battle(["Judgment"], ["Tackle"], {("p", "Judgment"): [0] * 16})
+        user = fs.Mon("p0", b.st["pokemon"]["p0"], dict(b.st["info"]["p0"], item=item), ["Judgment"], "p")
+        b.p.mons[0] = user
+        b.rng, foe.ability, foe.types = FixedDice(0.999), "Flash Fire", ["Fire"]
+        fs.attack(b, user, user.moves[0], foe, True)
+        out[item] = (user.moves[0].type, foe.flash_fire)
+    want = {"Flame Plate": ("Fire", True), None: ("Normal", False), "Pixie Plate": ("Normal", False)}
+    results.append(("Judgment takes its Plate's type", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
