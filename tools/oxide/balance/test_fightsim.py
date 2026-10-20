@@ -6265,6 +6265,27 @@ def check_cloud_nine(results):
     want = {"Cloud Nine": (0, False, 50, "par", False), "other": (10, True, 100, None, True)}
     results.append(("Cloud Nine stills every effect of the weather", out == want, str(out)))
 
+
+@b11
+def check_wonder_skin(results):
+    """Wonder Skin (approved 2026-10-14; BattleControllerPlayer_CheckMoveHitAccuracy):
+    a status move aimed at its holder lands half the time at most, before
+    the stages: Thunder Wave's 100 becomes 50, so with +6 accuracy it is
+    sure again; a Mold Breaker's is not cut, nor a hit's accuracy."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, ab, acc in (("Thunder Wave", "Thunder Wave", None, 0), ("Mold Breaker", "Thunder Wave", "Mold Breaker", 0),
+                                ("+6 accuracy", "Thunder Wave", None, 6), ("Tackle", "Tackle", None, 0)):
+        hits = 0
+        for seed in range(200):
+            b, p, foe = b11_battle([name], ["Splash"], {})
+            b.dice = pl.RunDice(random.Random(seed), True)
+            foe.ability, p.ability, p.stages["acc"] = "Wonder Skin", ab, acc
+            hits += pl.accuracy_hits(b, p, foe, fs.move(name))
+        out[case] = hits
+    ok = 70 <= out["Thunder Wave"] <= 130 and out["Mold Breaker"] == out["+6 accuracy"] == out["Tackle"] == 200
+    results.append(("Wonder Skin halves a status move's accuracy", ok, f"hits of 200 {out}"))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

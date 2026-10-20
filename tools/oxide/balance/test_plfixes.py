@@ -5341,6 +5341,28 @@ def cloud_nine_checks():
     return [("the readings' Cloud Nine stills the weather", ok, f"(rain Speed over dry, HP lost to sand by each) {out}")]
 
 
+class Misses11(Sure7):
+    """Batch 11's dice for accuracy: as Sure7, and every chance of the
+    player's move missing lands."""
+    def bad(self, kind, p):
+        return kind == "miss" and p > 0
+
+
+@b11
+def wonder_skin_checks():
+    """Wonder Skin on the calculator's real rows (approved 2026-10-14): the
+    player's Pikachu's Thunder Wave can miss a trainer's Skitty with Wonder
+    Skin, where it cannot miss a Cute Charm one."""
+    out = {}
+    for ab in ("Wonder Skin", "Cute Charm"):
+        b, sk, pika = b8_battle([("Skitty", 30, ab, ["Tackle"])], [("Pikachu", 30, "Static", ["Thunder Wave"])],
+                                Misses11)
+        pl.status_move(b, pika, fs.move("Thunder Wave"), sk, True)
+        out[ab] = sk.status
+    ok = out == {"Wonder Skin": None, "Cute Charm": "par"}
+    return [("the readings' Wonder Skin lets Thunder Wave miss", ok, f"the Skitty's status {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

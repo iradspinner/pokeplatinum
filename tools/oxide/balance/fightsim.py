@@ -1081,6 +1081,8 @@ class Battle:
         if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or no_guard(att, dfn, mv) or (dfn.rare and lands_sure(att, dfn, mv)):
             return True
         acc = mv.acc
+        if dfn.ability == "Wonder Skin" and mv.cat == "Status":
+            acc = wonder_skin(att, dfn, acc)
         weather = weather_now(self)          # none under Cloud Nine or Air Lock
         if mv.effect in ("THUNDER", "HURRICANE"):           # Oxide: Hurricane as Thunder in weather
             acc = 100 if weather == "Rain" else 50 if weather == "Sun" else acc
@@ -1098,6 +1100,15 @@ class Battle:
         if self.gravity:
             acc = acc * 10 / 6           # Gravity's ten sixths, after everything else
         return self.rng.random() * 100 < acc
+
+
+def wonder_skin(att, dfn, acc):
+    """A status move's accuracy against a Wonder Skin holder
+    (BattleControllerPlayer_CheckMoveHitAccuracy, before the stages): 50 at
+    most, unless att's Mold Breaker gets past it; a move that cannot miss
+    never comes here. Until 2026-10-20 it did nothing (Ian approved the
+    fix)."""
+    return min(acc, 50) if not mold(att, dfn) else acc
 
 
 def stage_mult(s):

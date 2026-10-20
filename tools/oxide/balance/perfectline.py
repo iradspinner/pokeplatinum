@@ -316,6 +316,8 @@ def accuracy_hits(b, att, dfn, mv, first=True):
     if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or fs.no_guard(att, dfn, mv) or (dfn.rare and fs.lands_sure(att, dfn, mv)):
         return True
     acc = mv.acc
+    if dfn.ability == "Wonder Skin" and mv.cat == "Status":
+        acc = fs.wonder_skin(att, dfn, acc)      # half at most, before the stages (fightsim.wonder_skin)
     weather = fs.weather_now(b)          # none while Cloud Nine or Air Lock is out (NO_CLOUD_NINE)
     if mv.effect in ("THUNDER", "HURRICANE"):               # Oxide: Hurricane as Thunder in weather
         acc = 100 if weather == "Rain" else 50 if weather == "Sun" else acc
