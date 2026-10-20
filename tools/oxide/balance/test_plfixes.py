@@ -5062,6 +5062,25 @@ def water_compaction_checks():
              f"(Defense stage, Aqua Jet softer) {out}")]
 
 
+@b11
+def toxic_debris_checks():
+    """Toxic Debris on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop's Karate Chop on the player's Glimmora lays Toxic
+    Spikes on the trainer's side, so its Geodude coming in is poisoned;
+    after a Water Gun from its Lotad nothing is laid."""
+    out = {}
+    for name, user in (("Karate Chop", "Machop"), ("Water Gun", "Lotad")):
+        b, foe, glim = b8_battle([(user, 30, "Swift Swim", [name]), ("Geodude", 30, "Sturdy", ["Tackle"])],
+                                 [("Glimmora", 30, "Toxic Debris", ["Power Gem"])])
+        glim.hp = glim.maxhp = 10 ** 6
+        pl.use_move(b, foe, fs.move(name), glim, True)
+        fs.switch_in(b, b.b, 1)
+        out[name] = (b.b.hazards["tspikes"], b.b.cur().status)
+    ok = out == {"Karate Chop": (1, "psn"), "Water Gun": (0, None)}
+    return [("the readings' Toxic Debris lays Toxic Spikes after a physical hit", ok,
+             f"(layers on the trainer's side, the Geodude's status) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

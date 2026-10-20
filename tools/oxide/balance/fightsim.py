@@ -5148,6 +5148,17 @@ def hit_ability(b, att, dfn, mv, chance):
             return False
         ability_stages(dfn, dfn, "def", 2)
         return True
+    if a == "Toxic Debris":
+        # A physical hit that did damage lays a layer of Toxic Spikes on its
+        # holder's other side, two at most, whether or not the holder still
+        # stands (BattleSystem_TriggerAbilityOnHit, subscript_toxic_debris).
+        # Until 2026-10-20 it did nothing (Ian approved the fix).
+        side = b.b if dfn.side == "p" else b.p
+        if mv.cat != "Physical" or side.hazards["tspikes"] >= 2:
+            return False
+        side.hazards["tspikes"] += 1
+        reveal(dfn)
+        return True
     if a == "Cursed Body":
         if (att.alive() and att is not dfn and att.disabled is None and mv.power
                 and any(m.name == mv.name for m in att.moves) and att.pp.get(mv.name, 0) > 0

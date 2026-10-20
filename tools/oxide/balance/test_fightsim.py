@@ -5906,6 +5906,26 @@ def check_water_compaction(results):
     want = {"Water Gun": 2, "Tackle": 0, "Substitute": 0}
     results.append(("Water Compaction raises Defense two stages after a Water hit", out == want, str(out)))
 
+
+@b11
+def check_toxic_debris(results):
+    """Toxic Debris (approved 2026-10-14; BattleSystem_TriggerAbilityOnHit,
+    subscript_toxic_debris): a physical hit that does damage lays a layer of
+    Toxic Spikes on the attacker's side, two at most, the hit that faints
+    the holder too; a special hit lays none."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, hp, hits in (("one", "Tackle", 100, 1), ("three", "Tackle", 100, 3), ("special", "Ember", 100, 1),
+                                 ("fainting", "Tackle", 5, 1)):
+        b, p, foe = b11_battle(["Tackle"], [name], {("b", name): [10] * 16})
+        p.ability, p.hp = "Toxic Debris", hp
+        for _ in range(hits):
+            pl.use_move(b, foe, fs.move(name), p, True)
+        out[case] = b.b.hazards["tspikes"]
+    want = {"one": 1, "three": 2, "special": 0, "fainting": 1}
+    results.append(("Toxic Debris lays Toxic Spikes on the attacker's side after a physical hit", out == want,
+                    str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
