@@ -6237,6 +6237,25 @@ def bleakwind_storm_checks():
              f"(Speed stage, hit through a miss) {out}")]
 
 
+@b12
+def geomancy_checks():
+    """Geomancy in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel spends a turn charging,
+    then gains two stages each of Sp. Atk, Sp. Def and Speed, and its
+    Water Pulse into a trainer's Machop does twice what it did."""
+    b, mach, bib = b8_battle([("Machop", 30, "Guts", ["Karate Chop"])],
+                             [("Bibarel", 30, "Unaware", ["Geomancy", "Water Pulse"])])
+    before = pl.damage_of(b, bib, mach, fs.move("Water Pulse"), False, True)
+    pl.use_move(b, bib, fs.move("Geomancy"), mach, True)
+    charged = (bib.charging is not None, bib.stages["spa"])
+    pl.use_move(b, bib, fs.move("Geomancy"), mach, True)
+    after = pl.damage_of(b, bib, mach, fs.move("Water Pulse"), False, True)
+    got = charged + tuple(bib.stages[k] for k in ("spa", "spd", "spe"))
+    ok = got == (True, 0, 2, 2, 2) and abs(after - 2 * before) <= 1
+    return [("the readings' Geomancy charges, then raises three stats", ok,
+             f"(charging, Sp. Atk on the charge turn, Sp. Atk, Sp. Def, Speed) {got}; Water Pulse {before} then {after}")]
+
+
 def main():
     results = []
 

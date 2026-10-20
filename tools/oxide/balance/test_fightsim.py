@@ -6948,6 +6948,31 @@ def check_bleakwind_storm(results):
     results.append(("Bleakwind Storm lowers Speed and never misses in the rain", out == want, str(out)))
 
 
+@b12
+def check_geomancy(results):
+    """Geomancy (approved 2026-10-14; effect script 318): a turn absorbing
+    power, then two stages each of Sp. Atk, Sp. Def and Speed; a Power
+    Herb, spent, skips the charge; Sleep Talk does not call it
+    (Move_IsMultiTurn)."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("charge", "Power Herb"):
+        b, p, foe = b11_battle(["Geomancy"], ["Tackle"], {})
+        if case == "Power Herb":
+            p.item = "Power Herb"
+        mv = fs.move("Geomancy")
+        pl.use_move(b, p, mv, foe, True)
+        first = (p.charging is not None, p.stages["spa"])
+        if case == "charge":
+            pl.use_move(b, p, mv, foe, True)
+        out[case] = first + (p.stages["spa"], p.stages["spd"], p.stages["spe"], p.item)
+    b, p, foe = b11_battle(["Sleep Talk", "Geomancy"], ["Tackle"], {})
+    p.status, p.sleep = "slp", 3
+    out["Sleep Talk"] = fs.sleep_talk_pick(b, p)
+    want = {"charge": (True, 0, 2, 2, 2, None), "Power Herb": (False, 2, 2, 2, 2, None), "Sleep Talk": None}
+    results.append(("Geomancy charges a turn, then raises Sp. Atk, Sp. Def and Speed", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

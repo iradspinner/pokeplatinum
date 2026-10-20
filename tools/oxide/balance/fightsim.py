@@ -190,6 +190,10 @@ SELF_STAGES = {
     "QUIVER_DANCE": {"spa": 1, "spd": 1, "spe": 1}, "COIL": {"atk": 1, "def": 1, "acc": 1},
     "SHIFT_GEAR": {"atk": 1, "spe": 2}, "HONE_CLAWS": {"atk": 1, "acc": 1},
     "WORK_UP": {"atk": 1, "spa": 1}, "GROWTH": {"atk": 1, "spa": 1},
+    # Geomancy's second turn (effect script 318, despite the effect's name):
+    # Sp. Atk, Sp. Def and Speed two stages each, through the stat-stage
+    # subscript, its charge turn in TWO_TURN.
+    "CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2": {"spa": 2, "spd": 2, "spe": 2},
 }
 FOE_STAGES = {
     "ATK_DOWN": {"atk": -1}, "ATK_DOWN_2": {"atk": -2}, "DEF_DOWN": {"def": -1},
@@ -297,7 +301,12 @@ DRAIN = {"RECOVER_HALF_DAMAGE_DEALT": 1 / 2, "RECOVER_DAMAGE_SLEEP": 1 / 2,
          "RECOVER_HALF_DAMAGE_DEALT_BURN_HIT": 1 / 2}
 TWO_TURN = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE", "CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH",
             "CHARGE_TURN_DEF_UP", "SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN",
-            "CHARGE_TURN_SP_ATK_UP", "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS"}  # Meteor Beam, Electro Shot
+            "CHARGE_TURN_SP_ATK_UP", "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS",  # Meteor Beam, Electro Shot
+            # Geomancy (effect script 318): a turn absorbing power, or none
+            # with a Power Herb, and then two stages each of Sp. Atk, Sp. Def
+            # and Speed (SELF_STAGES). Until 2026-10-20 it did nothing (Ian
+            # approved the fix).
+            "CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2"}
 INVULNERABLE = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE"}
 SELF_KO = {"HALVE_DEFENSE", "EXPLOSION", "FAINT_AND_ATK_SP_ATK_DOWN_2"}
 FUTURE_SIGHT = "HIT_IN_3_TURNS"                 # Future Sight and Doom Desire
