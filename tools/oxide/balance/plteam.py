@@ -289,8 +289,10 @@ def pick_moves(st, k, boss_keys, mine):
 
 # Status moves that do nothing in these fights (field effects and the like),
 # filled only when nothing else is left. Mud Sport and Magic Room left the
-# list on 2026-10-15, as the simulator now runs both (Ian approved).
-IDLE = {"Water Sport", "Splash", "Teleport", "Celebrate", "Hold Hands", "Copycat", "Follow Me",
+# list on 2026-10-15, as the simulator now runs both (Ian approved), and
+# Copycat and Water Sport on 2026-10-20, which it runs since batches 10
+# and 6 (Ian approved: he plans to use Copycat often).
+IDLE = {"Splash", "Teleport", "Celebrate", "Hold Hands", "Follow Me",
         "Helping Hand", "Ally Switch", "Wonder Room"}
 
 

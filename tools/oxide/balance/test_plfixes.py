@@ -5012,6 +5012,550 @@ def merge_key_checks():
     return [("the planner's merge key tells Sticky Web and Lucky Chant apart", all(out.values()), str(out))]
 
 
+# ---- batch 11: the abilities open to the player, and Ian's answers of 2026-10-20 ----
+
+# The batch's checks, run after batch 10's in main.
+B11 = []
+
+
+def b11(fn):
+    B11.append(fn)
+    return fn
+
+
+@b11
+def weak_armor_checks():
+    """Weak Armor on the calculator's real rows (approved 2026-10-14): a
+    trainer's Houndour's Bite takes the player's Polteageist's Defense down
+    a stage and its Speed up two, so it outruns where it did not, and the
+    Houndour's Bite then hits harder; its Ember changes nothing."""
+    out = {}
+    for name in ("Bite", "Ember"):
+        b, hound, pol = b8_battle([("Houndour", 30, "Flash Fire", ["Bite", "Ember"])],
+                                  [("Polteageist", 30, "Weak Armor", ["Shadow Ball"])])
+        pol.hp = pol.maxhp = 10 ** 6          # it stands through the hits
+        speed, bite = b.speed(pol), b.damage(hound, pol, fs.move("Bite"), roll=15)
+        pl.use_move(b, hound, fs.move(name), pol, True)
+        out[name] = (pol.stages["def"], pol.stages["spe"], b.speed(pol) > speed,
+                     b.damage(hound, pol, fs.move("Bite"), roll=15) > bite)
+    ok = out == {"Bite": (-1, 2, True, True), "Ember": (0, 0, False, False)}
+    return [("the readings' Weak Armor trades Defense for Speed after a physical hit", ok,
+             f"(Defense, Speed stage, faster, Bite harder) {out}")]
+
+
+@b11
+def water_compaction_checks():
+    """Water Compaction on the calculator's real rows (approved 2026-10-14):
+    a trainer's Buizel's Aqua Jet raises the player's Sandygast's Defense
+    two stages, so the next Aqua Jet does less; its Quick Attack does
+    nothing to it (a Ghost type)."""
+    out = {}
+    for name in ("Aqua Jet", "Quick Attack"):
+        b, bui, sandy = b8_battle([("Buizel", 30, "Swift Swim", ["Aqua Jet", "Quick Attack"])],
+                                  [("Sandygast", 30, "Water Compaction", ["Shadow Ball"])])
+        sandy.hp = sandy.maxhp = 10 ** 6
+        jet = b.damage(bui, sandy, fs.move("Aqua Jet"), roll=15)
+        pl.use_move(b, bui, fs.move(name), sandy, True)
+        out[name] = (sandy.stages["def"], b.damage(bui, sandy, fs.move("Aqua Jet"), roll=15) < jet)
+    ok = out == {"Aqua Jet": (2, True), "Quick Attack": (0, False)}
+    return [("the readings' Water Compaction raises Defense after a Water hit", ok,
+             f"(Defense stage, Aqua Jet softer) {out}")]
+
+
+@b11
+def toxic_debris_checks():
+    """Toxic Debris on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop's Karate Chop on the player's Glimmora lays Toxic
+    Spikes on the trainer's side, so its Geodude coming in is poisoned;
+    after a Water Gun from its Lotad nothing is laid."""
+    out = {}
+    for name, user in (("Karate Chop", "Machop"), ("Water Gun", "Lotad")):
+        b, foe, glim = b8_battle([(user, 30, "Swift Swim", [name]), ("Geodude", 30, "Sturdy", ["Tackle"])],
+                                 [("Glimmora", 30, "Toxic Debris", ["Power Gem"])])
+        glim.hp = glim.maxhp = 10 ** 6
+        pl.use_move(b, foe, fs.move(name), glim, True)
+        fs.switch_in(b, b.b, 1)
+        out[name] = (b.b.hazards["tspikes"], b.b.cur().status)
+    ok = out == {"Karate Chop": (1, "psn"), "Water Gun": (0, None)}
+    return [("the readings' Toxic Debris lays Toxic Spikes after a physical hit", ok,
+             f"(layers on the trainer's side, the Geodude's status) {out}")]
+
+
+@b11
+def gooey_checks():
+    """Gooey on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop's Karate Chop on the player's Goomy costs the Machop a
+    stage of Speed, so a Machop that outran it no longer does; its Swift
+    costs nothing."""
+    out = {}
+    for name in ("Karate Chop", "Swift"):
+        b, mach, goomy = b8_battle([("Machop", 30, "Guts", ["Karate Chop", "Swift"])],
+                                   [("Goomy", 30, "Gooey", ["Water Gun"])])
+        goomy.hp = goomy.maxhp = 10 ** 6
+        mach.stages["spe"] = 1               # a Machop that outruns the Goomy
+        before = b.faster(mach, goomy)
+        pl.use_move(b, mach, fs.move(name), goomy, True)
+        out[name] = (mach.stages["spe"], before, b.speed(mach) > b.speed(goomy))
+    ok = out["Karate Chop"][0] == 0 and out["Swift"][0] == 1 and out["Swift"][2]
+    return [("the readings' Gooey slows a contact attacker", ok, f"(Speed stage, faster before, faster after) {out}")]
+
+
+@b11
+def pickpocket_checks():
+    """Pickpocket on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop holding a Black Belt Karate Chops the player's
+    Weavile, which takes the Belt, and the Machop's next Karate Chop does
+    less, by its item twin's row."""
+    b, mach, wea = b8_battle([("Machop", 30, "Guts", ["Karate Chop"], "Black Belt")],
+                             [("Weavile", 30, "Pickpocket", ["Ice Shard"])])
+    wea.hp = wea.maxhp = 10 ** 6
+    belted = b.damage(mach, wea, fs.move("Karate Chop"), roll=15)
+    pl.use_move(b, mach, fs.move("Karate Chop"), wea, True)
+    bare = b.damage(mach, wea, fs.move("Karate Chop"), roll=15)
+    ok = wea.item == "Black Belt" and mach.item is None and bare < belted
+    return [("the readings' Pickpocket takes a contact attacker's item", ok,
+             f"Weavile holds {wea.item}, Machop {mach.item}; Karate Chop with the Belt {belted}, after {bare}")]
+
+
+@b11
+def long_reach_checks():
+    """Long Reach on the calculator's real rows (approved 2026-10-14): the
+    player's Decidueye's Leaf Blade into a trainer's Gible with Rough Skin
+    costs it nothing; an Overgrow Decidueye loses an eighth."""
+    out = {}
+    for ab in ("Long Reach", "Overgrow"):
+        b, gible, dec = b8_battle([("Gible", 30, "Rough Skin", ["Tackle"])], [("Decidueye", 30, ab, ["Leaf Blade"])])
+        gible.hp = gible.maxhp = 10 ** 6
+        pl.use_move(b, dec, fs.move("Leaf Blade"), gible, True)
+        out[ab] = (dec.maxhp - dec.hp, dec.maxhp // 8)
+    ok = out["Long Reach"][0] == 0 and out["Overgrow"][0] == out["Overgrow"][1]
+    return [("the readings' Long Reach makes no contact", ok, f"(HP lost, an eighth) {out}")]
+
+
+@b11
+def magician_checks():
+    """Magician on the calculator's real rows (approved 2026-10-14): the
+    player's Delphox's Ember takes a trainer's Machop's Black Belt, and the
+    Machop's Karate Chop then does less, by its item twin's row."""
+    b, mach, delph = b8_battle([("Machop", 30, "Guts", ["Karate Chop"], "Black Belt")],
+                               [("Delphox", 30, "Magician", ["Ember"])])
+    mach.hp = mach.maxhp = 10 ** 6
+    belted = b.damage(mach, delph, fs.move("Karate Chop"), roll=15)
+    pl.use_move(b, delph, fs.move("Ember"), mach, True)
+    bare = b.damage(mach, delph, fs.move("Karate Chop"), roll=15)
+    ok = delph.item == "Black Belt" and mach.item is None and bare < belted
+    return [("the readings' Magician takes the target's item", ok,
+             f"Delphox holds {delph.item}, Machop {mach.item}; Karate Chop with the Belt {belted}, after {bare}")]
+
+
+class Crit11(Sure7):
+    """Batch 11's dice for critical hits: as Sure7, and the trainer's
+    critical hit always lands (bad luck for the player)."""
+    def bad(self, kind, p):
+        return kind == "crit" and p > 0
+
+
+@b11
+def anger_point_checks():
+    """Anger Point on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop's critical Karate Chop sets the player's Mankey's
+    Attack at +6, and its own Karate Chop then hits far harder; a plain
+    hit (Sure7's dice) changes nothing."""
+    out = {}
+    for dice in (Crit11, Sure7):
+        b, mach, mank = b8_battle([("Machop", 30, "Guts", ["Karate Chop"])],
+                                  [("Mankey", 30, "Anger Point", ["Karate Chop"])], dice)
+        mach.hp = mach.maxhp = mank.hp = mank.maxhp = 10 ** 6
+        before = b.damage(mank, mach, fs.move("Karate Chop"), roll=15)
+        pl.use_move(b, mach, fs.move("Karate Chop"), mank, True)
+        out[dice.__name__] = (mank.stages["atk"], b.damage(mank, mach, fs.move("Karate Chop"), roll=15) / before)
+    ok = out["Crit11"][0] == 6 and out["Crit11"][1] > 3.5 and out["Sure7"] == (0, 1.0)
+    return [("the readings' Anger Point maxes Attack after a critical hit", ok, f"(Attack stage, damage ratio) {out}")]
+
+
+@b11
+def merciless_checks():
+    """Merciless on the calculator's real rows (approved 2026-10-14): the
+    player's Toxapex's Liquidation lands critical, half again, on a
+    poisoned trainer's Machop, and plain on a healthy one (Sure7's dice
+    roll no critical hit)."""
+    out = {}
+    for status in ("psn", None):
+        b, mach, pex = b8_battle([("Machop", 30, "Guts", ["Karate Chop"])],
+                                 [("Toxapex", 30, "Merciless", ["Liquidation"])])
+        mach.hp = mach.maxhp = 10 ** 6
+        mach.status = status
+        pl.attack(b, pex, fs.move("Liquidation"), mach, True)
+        out[status] = mach.maxhp - mach.hp
+    plain = pl.damage_of(b, pex, mach, fs.move("Liquidation"), False, True)
+    ok = out[None] == plain and out["psn"] == pl.damage_of(b, pex, mach, fs.move("Liquidation"), True, True) > plain
+    return [("the readings' Merciless lands critical on a poisoned target", ok, f"(HP taken by status) {out}, plain {plain}")]
+
+
+@b11
+def analytic_checks():
+    """Analytic on the calculator's real rows (approved 2026-10-14): the
+    player's Magnezone's Flash Cannon in a turn against a faster trainer's
+    Jolteon lands at 13/10 of its plain damage; against a slower Snorlax,
+    with Magnezone moving first, it lands plain."""
+    out = {}
+    for foe in ("Jolteon", "Snorlax"):
+        b, f, mag = b8_battle([(foe, 30, "Volt Absorb" if foe == "Jolteon" else "Thick Fat", ["Growl"])],
+                              [("Magnezone", 30, "Analytic", ["Flash Cannon"])])
+        f.hp = f.maxhp = mag.hp = mag.maxhp = 10 ** 6
+        plain = pl.damage_of(b, mag, f, fs.move("Flash Cannon"), False, True)
+        pl._turn(b, ("move", fs.move("Flash Cannon")), ("move", fs.move("Growl")))
+        out[foe] = (f.maxhp - f.hp, plain)
+    ok = out["Snorlax"][0] == out["Snorlax"][1] and out["Jolteon"][0] > out["Jolteon"][1] * 1.2
+    return [("the readings' Analytic strengthens a move made last", ok, f"(HP taken, plain damage) {out}")]
+
+
+@b11
+def flare_boost_checks():
+    """Flare Boost on the calculator's real rows (approved 2026-10-14): the
+    player's burned Drifblim's Shadow Ball into a trainer's Machop does
+    half again what an unburned one's does."""
+    b, mach, drif = b8_battle([("Machop", 30, "Guts", ["Karate Chop"])],
+                              [("Drifblim", 30, "Flare Boost", ["Shadow Ball"])])
+    plain = pl.damage_of(b, drif, mach, fs.move("Shadow Ball"), False, True)
+    drif.status = "brn"
+    burned = pl.damage_of(b, drif, mach, fs.move("Shadow Ball"), False, True)
+    ok = abs(burned - plain * 1.5) <= 1
+    return [("the readings' Flare Boost raises special moves while burned", ok,
+             f"Shadow Ball's top roll {plain} unburned, {burned} burned")]
+
+
+@b11
+def metal_weight_checks():
+    """Heavy Metal and Light Metal on the calculator's real rows (approved
+    2026-10-14): a trainer's Machop's Low Kick into the player's Heavy
+    Metal Bronzong (187 kg, doubled past 200) hits at 120 power where a
+    Levitate one takes 100, and into a Light Metal Scizor (118.5 kg,
+    halved under 60) at 80 where a Technician one takes 100."""
+    out = {}
+    for sp, abs_ in (("Bronzong", ("Heavy Metal", "Levitate")), ("Scizor", ("Light Metal", "Technician"))):
+        tops = []
+        for ab in abs_:
+            b, mach, mon = b8_battle([("Machop", 30, "Guts", ["Low Kick"])], [(sp, 30, ab, ["Tackle"])])
+            tops.append(b.rolls(mach, mon, fs.move("Low Kick"))[-1])
+        out[sp] = (tops[0], tops[1], round(tops[0] / tops[1], 2))
+    ok = 1.15 <= out["Bronzong"][2] <= 1.25 and 0.75 <= out["Scizor"][2] <= 0.85
+    return [("the readings' Heavy Metal and Light Metal change Low Kick's power", ok,
+             f"(the holder's top roll, the other's, ratio) {out}")]
+
+
+@b11
+def contrary_checks():
+    """Contrary on the calculator's real rows (approved 2026-10-14): the
+    player's Serperior's Leaf Storm raises its Sp. Atk two stages, so a
+    second Leaf Storm into a trainer's Machop hits harder than the first,
+    and the Machop's Leer raises its Defense."""
+    b, mach, serp = b8_battle([("Machop", 30, "Guts", ["Leer"])], [("Serperior", 30, "Contrary", ["Leaf Storm"])])
+    mach.hp = mach.maxhp = 10 ** 6
+    storm = fs.move("Leaf Storm")
+    first = pl.damage_of(b, serp, mach, storm, False, True)
+    pl.attack(b, serp, storm, mach, True)
+    second = pl.damage_of(b, serp, mach, storm, False, True)
+    pl.status_move(b, mach, fs.move("Leer"), serp, True)
+    ok = serp.stages["spa"] == 2 and second > first * 1.8 and serp.stages["def"] == 1
+    return [("the readings' Contrary turns Leaf Storm's drop and Leer's into rises", ok,
+             f"Sp. Atk {serp.stages['spa']}, Defense {serp.stages['def']}; Leaf Storm {first} then {second}")]
+
+
+@b11
+def moody_checks():
+    """Moody on the calculator's real rows (approved 2026-10-14): over a
+    turn in which a trainer's Machop and the player's Bibarel trade
+    Tackles, the Bibarel ends with one stat two stages up and another one
+    down, and the planner's enumerating dice split the turn's end into its
+    twenty draws (five to rise, four to fall)."""
+    from . import plplan
+    b, mach, bib = b8_battle([("Machop", 30, "Guts", ["Tackle"])], [("Bibarel", 30, "Moody", ["Tackle"])])
+    mach.hp = mach.maxhp = bib.hp = bib.maxhp = 10 ** 6
+    pl._turn(b, ("move", fs.move("Tackle")), ("move", fs.move("Tackle")))
+    moved = sorted(v for v in bib.stages.values() if v)
+    b2, mach2, bib2 = b8_battle([("Machop", 30, "Guts", ["Tackle"])], [("Bibarel", 30, "Moody", ["Tackle"])])
+    mach2.hp = mach2.maxhp = bib2.hp = bib2.maxhp = 10 ** 6
+    d = plplan.EnumDice((), random.Random(1))
+    b2.dice, b2.rng = d, d.rng
+    fs.end_of_turn(b2)
+    sizes = [len(e) for e in d.events]
+    ok = moved == [-1, 2] and sizes[-2:] == [5, 4]
+    return [("the readings' Moody raises one stat and lowers another at the turn's end", ok,
+             f"the Bibarel's moved stages {moved}; the planner's last two draws {sizes[-2:]}")]
+
+
+@b11
+def screen_cleaner_checks():
+    """Screen Cleaner on the calculator's real rows (approved 2026-10-14):
+    the player's Jynx given Screen Cleaner coming in ends a trainer's
+    Reflect, so its Ice Punch into the trainer's Machop does what it does
+    with no screen up."""
+    b, mach, first = b8_battle([("Machop", 30, "Guts", ["Reflect"])],
+                               [("Bibarel", 30, "Simple", ["Tackle"]), ("Jynx", 30, "Screen Cleaner", ["Ice Punch"])])
+    mach.hp = mach.maxhp = 10 ** 6
+    rime = b.p.mons[1]
+    clear = pl.damage_of(b, rime, mach, fs.move("Ice Punch"), False, True)
+    pl.status_move(b, mach, fs.move("Reflect"), first, True)
+    screened = pl.damage_of(b, rime, mach, fs.move("Ice Punch"), False, True)
+    fs.switch_in(b, b.p, 1)
+    after = pl.damage_of(b, rime, mach, fs.move("Ice Punch"), False, True)
+    ok = screened < clear and after == clear and b.b.screens["Reflect"] == 0
+    return [("the readings' Screen Cleaner ends a trainer's Reflect", ok,
+             f"Ice Punch's top roll {clear} clear, {screened} under Reflect, {after} after Jynx came in")]
+
+
+@b11
+def overcoat_weather_checks():
+    """Overcoat on the calculator's real rows (approved 2026-10-14): in a
+    trainer's sandstorm (its Hippowdon's Sand Stream) the player's
+    Shellder with Overcoat keeps its HP at the turn's end, where a Shell
+    Armor one loses a sixteenth."""
+    out = {}
+    for ab in ("Overcoat", "Shell Armor"):
+        b, hippo, shell = b8_battle([("Hippowdon", 30, "Sand Stream", ["Tackle"])], [("Shellder", 30, ab, ["Tackle"])])
+        b.weather = "Sand"
+        fs.end_of_turn(b)
+        out[ab] = (shell.maxhp - shell.hp, shell.maxhp // 16)
+    ok = out["Overcoat"][0] == 0 and out["Shell Armor"][0] == out["Shell Armor"][1] > 0
+    return [("the readings' Overcoat keeps the sandstorm off", ok, f"(HP lost, a sixteenth) {out}")]
+
+
+@b11
+def cloud_nine_checks():
+    """Cloud Nine on the calculator's real rows (approved 2026-10-14): with a
+    trainer's Golduck given Cloud Nine on the field, the player's Swift
+    Swim Lotad is not doubled in its Rain Dance's rain, and a sandstorm
+    bites neither; with a Damp Golduck the Lotad is doubled and both are
+    bitten."""
+    out = {}
+    for ab in ("Cloud Nine", "Damp"):
+        b, duck, lotad = b8_battle([("Golduck", 30, ab, ["Rain Dance"])], [("Lotad", 30, "Swift Swim", ["Tackle"])])
+        dry = b.speed(lotad)
+        b.weather = "Rain"
+        wet = b.speed(lotad)
+        b.weather = "Sand"
+        fs.end_of_turn(b)
+        out[ab] = (wet / dry, duck.maxhp - duck.hp, lotad.maxhp - lotad.hp)
+    ok = out["Cloud Nine"] == (1.0, 0, 0) and out["Damp"][0] == 2.0 and out["Damp"][1] > 0 and out["Damp"][2] > 0
+    return [("the readings' Cloud Nine stills the weather", ok, f"(rain Speed over dry, HP lost to sand by each) {out}")]
+
+
+class Misses11(Sure7):
+    """Batch 11's dice for accuracy: as Sure7, and every chance of the
+    player's move missing lands."""
+    def bad(self, kind, p):
+        return kind == "miss" and p > 0
+
+
+@b11
+def wonder_skin_checks():
+    """Wonder Skin on the calculator's real rows (approved 2026-10-14): the
+    player's Pikachu's Thunder Wave can miss a trainer's Skitty with Wonder
+    Skin, where it cannot miss a Cute Charm one."""
+    out = {}
+    for ab in ("Wonder Skin", "Cute Charm"):
+        b, sk, pika = b8_battle([("Skitty", 30, ab, ["Tackle"])], [("Pikachu", 30, "Static", ["Thunder Wave"])],
+                                Misses11)
+        pl.status_move(b, pika, fs.move("Thunder Wave"), sk, True)
+        out[ab] = sk.status
+    ok = out == {"Wonder Skin": None, "Cute Charm": "par"}
+    return [("the readings' Wonder Skin lets Thunder Wave miss", ok, f"the Skitty's status {out}")]
+
+
+@b11
+def prankster_dark_checks():
+    """Prankster on the calculator's real rows (approved 2026-10-14): the
+    player's Klefki's Thunder Wave fails on a trainer's Poochyena, a Dark
+    type, and paralyses a Machop."""
+    out = {}
+    for foe in ("Poochyena", "Machop"):
+        b, f, kle = b8_battle([(foe, 30, "Run Away" if foe == "Poochyena" else "Guts", ["Tackle"])],
+                              [("Klefki", 30, "Prankster", ["Thunder Wave"])])
+        pl.status_move(b, kle, fs.move("Thunder Wave"), f, True)
+        out[foe] = f.status
+    ok = out == {"Poochyena": None, "Machop": "par"}
+    return [("the readings' Prankster status moves fail on a Dark type", ok, f"the foe's status {out}")]
+
+
+@b11
+def queenly_majesty_checks():
+    """Queenly Majesty on the calculator's real rows (approved 2026-10-14):
+    the player's Buizel's Aqua Jet does nothing to a trainer's Tsareena
+    with Queenly Majesty, where it hits a Leaf Guard one, and its Water
+    Gun hits both."""
+    out = {}
+    for ab in ("Queenly Majesty", "Leaf Guard"):
+        b, ts, bui = b8_battle([("Tsareena", 30, ab, ["Tackle"])], [("Buizel", 30, "Swift Swim", ["Aqua Jet", "Water Gun"])])
+        ts.hp = ts.maxhp = 10 ** 6
+        pl.use_move(b, bui, fs.move("Aqua Jet"), ts, True)
+        jet = ts.maxhp - ts.hp
+        pl.use_move(b, bui, fs.move("Water Gun"), ts, True)
+        out[ab] = (jet, ts.maxhp - ts.hp - jet)
+    ok = out["Queenly Majesty"][0] == 0 and out["Leaf Guard"][0] > 0 and out["Queenly Majesty"][1] > 0
+    return [("the readings' Queenly Majesty stops Aqua Jet", ok, f"(Aqua Jet's damage, Water Gun's) {out}")]
+
+
+@b11
+def magic_bounce_checks():
+    """Magic Bounce on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop's Leer on the player's Espeon with Magic Bounce lowers
+    the Machop's own Defense; on a Synchronize Espeon it lowers the
+    Espeon's."""
+    out = {}
+    for ab in ("Magic Bounce", "Synchronize"):
+        b, mach, esp = b8_battle([("Machop", 30, "Guts", ["Leer"])], [("Espeon", 30, ab, ["Confusion"])])
+        pl.status_move(b, mach, fs.move("Leer"), esp, True)
+        out[ab] = (mach.stages["def"], esp.stages["def"])
+    ok = out == {"Magic Bounce": (-1, 0), "Synchronize": (0, -1)}
+    return [("the readings' Magic Bounce turns Leer back", ok, f"(the Machop's Defense, the Espeon's) {out}")]
+
+
+@b11
+def sweet_veil_checks():
+    """Sweet Veil on the calculator's real rows (approved 2026-10-14): a
+    trainer's Smoochum's Sing does not put the player's Sweet Veil Tsareena
+    to sleep, and puts an Oblivious one to sleep."""
+    out = {}
+    for ab in ("Sweet Veil", "Oblivious"):
+        b, smo, ts = b8_battle([("Smoochum", 30, "Forewarn", ["Sing"])], [("Tsareena", 30, ab, ["Tackle"])])
+        b.dice = Lucky8(random.Random(1), True)
+        pl.status_move(b, smo, fs.move("Sing"), ts, True)
+        out[ab] = ts.status
+    ok = out == {"Sweet Veil": None, "Oblivious": "slp"}
+    return [("the readings' Sweet Veil keeps its holder awake", ok, f"the Tsareena's status {out}")]
+
+
+@b11
+def pastel_veil_checks():
+    """Pastel Veil on the calculator's real rows (approved 2026-10-14): a
+    trainer's Grimer's Toxic does not poison the player's Pastel Veil
+    Ponyta, and badly poisons a Run Away one."""
+    out = {}
+    for ab in ("Pastel Veil", "Run Away"):
+        b, gri, pony = b8_battle([("Grimer", 30, "Stench", ["Toxic"])], [("Ponyta", 30, ab, ["Tackle"])])
+        b.dice = Lucky8(random.Random(1), True)
+        pl.status_move(b, gri, fs.move("Toxic"), pony, True)
+        out[ab] = pony.status
+    ok = out == {"Pastel Veil": None, "Run Away": "tox"}
+    return [("the readings' Pastel Veil keeps poison off its holder", ok, f"the Ponyta's status {out}")]
+
+
+@b11
+def flower_veil_checks():
+    """Flower Veil on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop's Leer leaves the Defense of the player's Grass-type
+    Turtwig given Flower Veil as it was, and lowers an Overgrow one's; a
+    Floette, no Grass type, has no shield."""
+    out = {}
+    for sp, ab in (("Turtwig", "Flower Veil"), ("Turtwig", "Overgrow"), ("Floette", "Flower Veil")):
+        b, mach, mon = b8_battle([("Machop", 30, "Guts", ["Leer"])], [(sp, 30, ab, ["Tackle"])])
+        pl.status_move(b, mach, fs.move("Leer"), mon, True)
+        out[(sp, ab)] = mon.stages["def"]
+    ok = out == {("Turtwig", "Flower Veil"): 0, ("Turtwig", "Overgrow"): -1, ("Floette", "Flower Veil"): -1}
+    return [("the readings' Flower Veil shields a Grass-type holder's stats", ok, f"Defense after Leer {out}")]
+
+
+@b11
+def pluck_through_substitute_checks():
+    """Bug Bite through a Substitute on the calculator's real rows (Ian's
+    answer of 2026-10-20): the player's Vespiquen at half HP eats the Sitrus
+    Berry of a trainer's Machop behind a Substitute that takes the hit, and
+    heals a quarter."""
+    b, mach, ves = b8_battle([("Machop", 30, "Guts", ["Tackle"], "Sitrus Berry")],
+                             [("Vespiquen", 30, "Pressure", ["Bug Bite"])])
+    mach.item, mach.sub = "Sitrus Berry", 10 ** 6
+    ves.hp = ves.maxhp // 2
+    hp = ves.hp
+    pl.attack(b, ves, fs.move("Bug Bite"), mach, True)
+    ok = mach.item is None and mach.hp == mach.maxhp and ves.hp - hp == ves.maxhp // 4
+    return [("the readings' Bug Bite eats the Berry through a Substitute", ok,
+             f"Machop's item {mach.item}, HP {mach.hp}/{mach.maxhp}; Vespiquen healed {ves.hp - hp}")]
+
+
+@b11
+def belly_drum_at_six_checks():
+    """Belly Drum at +6 on the calculator's real rows (Ian's answer of
+    2026-10-20): the player's Snorlax with its Attack at +6 already keeps
+    its HP when it uses Belly Drum against a trainer's Machop; from 0 it
+    pays half."""
+    out = {}
+    for start in (6, 0):
+        b, mach, snor = b8_battle([("Machop", 30, "Guts", ["Tackle"])], [("Snorlax", 30, "Thick Fat", ["Belly Drum"])])
+        snor.stages["atk"] = start
+        pl.use_move(b, snor, fs.move("Belly Drum"), mach, True)
+        out[start] = (snor.maxhp - snor.hp, snor.stages["atk"])
+    ok = out[6] == (0, 6) and out[0][0] == snor.maxhp // 2 and out[0][1] == 6
+    return [("the readings' Belly Drum at +6 costs nothing", ok, f"(HP paid, Attack stage) from +6 and from 0 {out}")]
+
+
+@b11
+def held_state_key_checks():
+    """The planner's merge key on the calculator's real rows (approved 2026-10-20):
+    after a turn in which the player's Slaking (Truant) and a trainer's
+    Geodude both act, the position is told apart from the same position
+    with the Slaking's loafing turn spent, and a Geodude that has used
+    Defense Curl from one that has not."""
+    from . import plplan
+    b, geo, slak = b8_battle([("Geodude", 30, "Sturdy", ["Defense Curl", "Tackle"])], [("Slaking", 30, "Truant", ["Tackle"])])
+    geo.hp = geo.maxhp = slak.hp = slak.maxhp = 10 ** 6
+    pl._turn(b, ("move", fs.move("Tackle")), ("move", fs.move("Defense Curl")))
+    out = {}
+    for name, mon, attr in (("Truant", slak, "loafing"), ("Defense Curl", geo, "curled")):
+        c = plplan.clone(b)
+        m = c.p.cur() if mon is slak else c.b.cur()
+        setattr(m, attr, not getattr(m, attr))
+        out[name] = (getattr(mon, attr), plplan.merge_key(c) != plplan.merge_key(b))
+    ok = out == {"Truant": (True, True), "Defense Curl": (True, True)}
+    return [("the readings' merge key tells Truant's turn and Defense Curl apart", ok, f"(the state set, told apart) {out}")]
+
+
+@b11
+def copycat_idle_checks():
+    """Copycat and Water Sport off the team search's idle list on Roark's
+    real rows (Ian's answer of 2026-10-20; plteam.IDLE): a box Pikachu with
+    four Electric moves and Copycat, or Water Sport, takes it as its status
+    move against Roark's team."""
+    from . import plteam
+    out = {}
+    for extra in ("Copycat", "Water Sport"):
+        recs = [{"constant": "SPECIES_PIKACHU", "species": "Pikachu", "how": "test", "level": 16, "nature": "Hardy",
+                 "ivs": IV, "evs": EV, "ability": "Static",
+                 "moves": ["Thunder Shock", "Spark", "Nuzzle", "Thunderbolt", extra], "fill": False}]
+        prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
+        st, boss = prep["st"], list(prep["variants"][0][0])
+        mine, _theirs, _speed = plteam.matchups(st, ["p0"], boss)
+        out[extra] = extra in plteam.pick_moves(st, "p0", boss, mine)
+    return [("the team search picks Copycat and Water Sport, no longer idle", all(out.values()), f"picked {out}")]
+
+
+@b11
+def borrowed_power_row_checks():
+    """A borrowed Magnitude, Present or Heat Crash on the calculator's real
+    rows (Ian's answer of 2026-10-20): the player's Togekiss's Copycat of a
+    trainer's Magnitude, Present or Heat Crash hits a Machop, from the power
+    rows prepare() now gives a Pokemon that can borrow the move, where it
+    found no row and dealt nothing."""
+    out = {}
+    for foe, name in (("Diglett", "Magnitude"), ("Delibird", "Present"), ("Torkoal", "Heat Crash")):
+        b, f, tog = b8_battle([(foe, 30, "Sturdy", [name]), ("Machop", 30, "Guts", ["Tackle"])],
+                              [("Togekiss", 30, "Hustle", ["Copycat"])])
+        fs.switch_in(b, b.b, 1)
+        mach = b.b.cur()
+        mach.hp = mach.maxhp = 10 ** 6
+        b.last_move = fs.move(name)
+        dealt = 0
+        for seed in range(8):            # Present's gift heals at times; any hit counts
+            b.dice = Sure7(random.Random(seed), True)
+            before = mach.hp
+            pl.use_move(b, tog, fs.move("Copycat"), mach, True)
+            dealt = max(dealt, before - mach.hp)
+            b.last_move = fs.move(name)
+        out[name] = dealt
+    ok = all(v > 0 for v in out.values())
+    return [("the readings' borrowed Magnitude, Present and Heat Crash deal damage", ok, f"the most a Copycat dealt {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
@@ -6065,6 +6609,8 @@ def main():
     results += options_rule_checks()
     results += idle_list_checks()
     results += merge_key_checks()
+    for fn in B11:
+        results += fn()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

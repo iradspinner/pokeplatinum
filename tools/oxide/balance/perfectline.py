@@ -316,9 +316,12 @@ def accuracy_hits(b, att, dfn, mv, first=True):
     if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or fs.no_guard(att, dfn, mv) or (dfn.rare and fs.lands_sure(att, dfn, mv)):
         return True
     acc = mv.acc
+    if dfn.ability == "Wonder Skin" and mv.cat == "Status":
+        acc = fs.wonder_skin(att, dfn, acc)      # half at most, before the stages (fightsim.wonder_skin)
+    weather = fs.weather_now(b)          # none while Cloud Nine or Air Lock is out (NO_CLOUD_NINE)
     if mv.effect in ("THUNDER", "HURRICANE"):               # Oxide: Hurricane as Thunder in weather
-        acc = 100 if b.weather == "Rain" else 50 if b.weather == "Sun" else acc
-    if mv.effect == "BLIZZARD" and b.weather == "Hail":
+        acc = 100 if weather == "Rain" else 50 if weather == "Sun" else acc
+    if mv.effect == "BLIZZARD" and weather == "Hail":
         return True
     # The stages, with Unaware, Keen Eye and Sacred Sword's kind, Tangled
     # Feet and the Zoom Lens (fightsim.accuracy_scale).
@@ -331,9 +334,9 @@ def accuracy_hits(b, att, dfn, mv, first=True):
         acc *= 0.8
     if dfn.item in ("Bright Powder", "BrightPowder", "Lax Incense"):
         acc *= 0.9
-    if dfn.ability in ("Sand Veil",) and b.weather == "Sand" and not fs.mold(att, dfn):
+    if dfn.ability in ("Sand Veil",) and weather == "Sand" and not fs.mold(att, dfn):
         acc *= 0.8
-    if dfn.ability in ("Snow Cloak",) and b.weather == "Hail" and not fs.mold(att, dfn):
+    if dfn.ability in ("Snow Cloak",) and weather == "Hail" and not fs.mold(att, dfn):
         acc *= 0.8               # Mold Breaker gets past both (Battler_IgnorableAbility)
     if b.fog:
         acc *= fs.fog_cut(b)     # deep fog's six tenths (fightsim.fog_cut)
@@ -464,7 +467,16 @@ def _use_move(b, att, mv, dfn, first):
         status_move(b, att, mv, dfn, first)
         return
     before = dfn.hp
-    attack(b, att, mv, dfn, first)
+    if att.ability == "Analytic" and fs.moves_last(b, first):
+        # Its foe has acted this turn or switched in, every other Pokemon's
+        # action done (Battler_MovedThisTurn): 13/10 power (fightsim.ability_power).
+        b.analytic = att
+        try:
+            attack(b, att, mv, dfn, first)
+        finally:
+            b.analytic = None
+    else:
+        attack(b, att, mv, dfn, first)
     # A contact ability's chance hurts the player when the player's Pokemon
     # takes it, and helps it when the trainer's does (fightsim.hit_aftermath:
     # a move of several hits has had it hit by hit).
@@ -681,6 +693,8 @@ def attack(b, att, mv, dfn, first):
         crash(b, att, dfn, mv)               # Magic Guard spares it (fightsim.crash_loss)
         fs.rollout_after(att, mv, False)
         return
+    if dfn.ability == "Queenly Majesty" and fs.majesty_blocked(att, dfn, mv):
+        return                               # a raised move into Queenly Majesty (fightsim.majesty_blocked)
     fs.rollout_after(att, mv, True)
     trainer = not player(att)
     hits = rolled_hits(b, att, dfn, mv, trainer, first)
@@ -718,8 +732,8 @@ def attack(b, att, mv, dfn, first):
         # and stages, at the roll.
         roll = 85 + (b.dice.roll(trainer) if b.dice.mode == "run" else (15 if trainer else 0))
         dmg = struggle_damage(att, dfn, roll)
+    crit = False
     if dmg is None:
-        crit = False
         # The first battle (Barry on Route 201) has no critical hits on either
         # side: BtlCmd_CalcCrit sets the multiplier to 1 under
         # BATTLE_STATUS_FIRST_BATTLE (src/battle/battle_script.c).
@@ -729,8 +743,8 @@ def attack(b, att, mv, dfn, first):
             if att.item in ("Scope Lens", "Razor Claw"):
                 stage += 1
             rate = CRIT_RATE[min(stage, 4)]
-            if mv.sure:
-                crit = True          # Frost Breath's kind, forced (fightsim.sure_crit)
+            if mv.sure or fs.merciless(att, dfn):
+                crit = True          # Frost Breath's kind, and Merciless on poison, forced (fightsim.sure_crit)
             else:
                 crit = b.dice.bad("crit", rate) if trainer else b.dice.good(rate, "crit")
         key = att.key
@@ -801,6 +815,10 @@ def attack(b, att, mv, dfn, first):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
         b.sub_hit = True         # broken or not, nothing of the hit reaches the Pokemon behind it
+        if mv.effect == "EAT_BERRY":
+            # but Bug Bite and Pluck eat its Berry through the Substitute
+            # (as fightsim.attack has it)
+            fs.pluck(b, att, dfn, lambda kind, n: b.dice.choice(kind, n))
     else:
         if mv.effect == "LEAVE_WITH_1_HP" and dmg >= dfn.hp:
             dmg = dfn.hp - 1     # False Swipe and Hold Back leave 1 HP, before Sturdy and the Sash
@@ -835,6 +853,8 @@ def attack(b, att, mv, dfn, first):
             fs.bide_store(dfn, dealt)        # a Bide user stores what it took (fightsim.bide_store)
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
+    if crit:
+        fs.anger_point(dfn)              # the hit's first answer, a Substitute's too (fightsim.anger_point)
     _after_attack(b, att, mv, dfn, first, dealt, trainer)
 
 
@@ -984,8 +1004,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
 
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
-    if dfn.magic_coat and fs.coat_bounces(b, att, mv, dfn):
-        b.reflecting = True              # Magic Coat turns it back on its user (fightsim.coat_bounces)
+    if (dfn.magic_coat or dfn.ability == "Magic Bounce") and fs.bounces(b, att, mv, dfn):
+        b.reflecting = True              # Magic Coat or Magic Bounce turns it back on its user (fightsim.bounces)
         try:
             status_move(b, dfn, mv, att, first)
         finally:
@@ -1024,6 +1044,10 @@ def status_move(b, att, mv, dfn, first):
             return               # a status move of the ability's type is taken whole (fightsim.absorb)
         if fs.soundproofed(att, dfn, mv):
             return               # Sing, Growl or Roar into Soundproof (fightsim.soundproofed)
+        if dfn.ability == "Queenly Majesty" and fs.majesty_blocked(att, dfn, mv):
+            return               # a raised move into Queenly Majesty (fightsim.majesty_blocked)
+        if att.ability == "Prankster" and fs.prankster_blocked(att, dfn, mv):
+            return               # a raised status move into a Dark type (fightsim.prankster_blocked)
     if e in fs.STATUS_OF:
         if fs.sub_blocks(att, dfn, mv):
             return
@@ -1094,7 +1118,11 @@ def status_move(b, att, mv, dfn, first):
         else:
             fs.change_stages(att, {"atk": 1, "def": 1, "spe": -1})
     elif e == "MAX_ATK_LOSE_HALF_MAX_HP":
-        if att.hp > att.maxhp // 2:
+        # subscript_belly_drum fails, at no cost, with Attack at +6 already or
+        # half its HP or less; else half its HP goes and Attack is set at +6
+        # directly. Until 2026-10-20 a Belly Drum at +6 still cost half its
+        # HP (Ian approved the fix on 2026-10-20).
+        if att.stages["atk"] < 6 and att.hp > att.maxhp // 2:
             fs.hurt(b, att, att.maxhp // 2)
             att.stages["atk"] = 6
     elif e == "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP":
@@ -1342,6 +1370,8 @@ def clone_battle(b):
         c.unheld = True              # a Pokemon reads its item twin (fightsim.mark_unheld)
     if b.fog:
         c.fog = True                 # deep fog on the field (fightsim.fog_cut)
+    if b.cloudy:
+        c.cloudy = True              # a Cloud Nine or Air Lock holder in the fight (fightsim.weather_now)
     return c
 
 
@@ -1378,6 +1408,17 @@ def mon_key(m):
         key += ("stockpile", m.stockpile, m.stockpile_def, m.stockpile_spd)
     if m.belch:
         key += ("ate", m.ate_berry)      # Belch fails until its user has eaten a Berry (fightsim.fails_before)
+    if (m.ingrained or m.aqua_ring or m.trapped_by is not None or m.flash_fire or m.rollout or m.curled
+            or m.raging or m.loafing):
+        # The states batch 10 found the keys without (Ian approved adding
+        # them on 2026-10-20): Ingrain's and Aqua Ring's heals, the Pokemon a
+        # Block or Mean Look holds it for, a lit Flash Fire, Rollout's count,
+        # Defense Curl's doubling, Rage's rise and a Truant's turn to loaf.
+        # Kept out of the key while none is set, so a fight without them
+        # keys as before; every key reads them here (side_key and
+        # state_key, shape_key, ai_key and the planner's merge_key).
+        key += ("held", m.ingrained, m.aqua_ring, m.trapped_by, m.flash_fire, m.rollout, m.curled, m.raging,
+                m.loafing)
     if m.imprisoning or m.imprisoned:
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
     if m.rare:
