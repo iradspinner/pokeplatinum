@@ -7916,9 +7916,11 @@ def _end_of_turn(b):
         safe = {"Sand": {"Rock", "Ground", "Steel"}, "Hail": {"Ice"}}[b.weather]
         # The abilities the weather's bite passes over (BtlCmd_EndOfTurnWeatherEffect):
         # Sand Veil, and Oxide's Sand Rush and Sand Force, in sand; Snow
-        # Cloak in hail. Sand Rush and Sand Force were bitten until
-        # 2026-10-14 (Ian approved the fix).
-        shield = {"Sand": ("Sand Veil", "Sand Rush", "Sand Force"), "Hail": ("Snow Cloak",)}[b.weather]
+        # Cloak in hail; Oxide's Overcoat in both. Sand Rush and Sand Force
+        # were bitten until 2026-10-14, Overcoat until 2026-10-20 (Ian
+        # approved the fixes).
+        shield = {"Sand": ("Sand Veil", "Sand Rush", "Sand Force", "Overcoat"),
+                  "Hail": ("Snow Cloak", "Overcoat")}[b.weather]
         for m in order:
             if b.weather == "Hail" and m.ability == "Ice Body":
                 # BtlCmd_EndOfTurnWeatherEffect: Ice Body heals a sixteenth in

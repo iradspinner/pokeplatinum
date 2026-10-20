@@ -5305,6 +5305,22 @@ def screen_cleaner_checks():
              f"Ice Punch's top roll {clear} clear, {screened} under Reflect, {after} after Jynx came in")]
 
 
+@b11
+def overcoat_weather_checks():
+    """Overcoat on the calculator's real rows (approved 2026-10-14): in a
+    trainer's sandstorm (its Hippowdon's Sand Stream) the player's
+    Shellder with Overcoat keeps its HP at the turn's end, where a Shell
+    Armor one loses a sixteenth."""
+    out = {}
+    for ab in ("Overcoat", "Shell Armor"):
+        b, hippo, shell = b8_battle([("Hippowdon", 30, "Sand Stream", ["Tackle"])], [("Shellder", 30, ab, ["Tackle"])])
+        b.weather = "Sand"
+        fs.end_of_turn(b)
+        out[ab] = (shell.maxhp - shell.hp, shell.maxhp // 16)
+    ok = out["Overcoat"][0] == 0 and out["Shell Armor"][0] == out["Shell Armor"][1] > 0
+    return [("the readings' Overcoat keeps the sandstorm off", ok, f"(HP lost, a sixteenth) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

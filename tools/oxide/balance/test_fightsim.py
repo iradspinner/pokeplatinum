@@ -6212,6 +6212,22 @@ def check_screen_cleaner(results):
     want = {"Screen Cleaner": (0, 0, 0), "other": (5, 3, 4)}
     results.append(("Screen Cleaner ends every screen as its holder comes in", out == want, str(out)))
 
+
+@b11
+def check_overcoat_weather(results):
+    """Overcoat (approved 2026-10-14; BtlCmd_EndOfTurnWeatherEffect): its
+    holder takes no sandstorm or hail damage at the turn's end, where
+    another Pokemon loses a sixteenth."""
+    out = {}
+    for weather in ("Sand", "Hail"):
+        for ab in ("Overcoat", None):
+            b, p, foe = b11_battle(["Tackle"], ["Tackle"], {}, hp=160)
+            b.weather, p.ability = weather, ab
+            fs.end_of_turn(b)
+            out[(weather, ab or "other")] = p.maxhp - p.hp
+    want = {("Sand", "Overcoat"): 0, ("Sand", "other"): 10, ("Hail", "Overcoat"): 0, ("Hail", "other"): 10}
+    results.append(("Overcoat keeps sand and hail off at the turn's end", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
