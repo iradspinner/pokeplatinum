@@ -6355,6 +6355,27 @@ def triple_dive_checks():
     return [("the readings' Triple Dive lands three hits", not geo.alive(), f"Geodude's HP {geo.hp} of {geo.maxhp}")]
 
 
+@b12
+def surging_strikes_checks():
+    """Surging Strikes in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Floatzel's three critical hits land
+    one at a time, so a trainer's Sturdy Geodude, held at 1 HP by the
+    first, falls to the second, where the move landed as one hit Sturdy
+    held; into a Snorlax the three add up to the row, critical hits and
+    all."""
+    out = {}
+    b, geo, flo = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Floatzel", 30, "Swift Swim", ["Surging Strikes"])])
+    pl.attack(b, flo, fs.move("Surging Strikes"), geo, True)
+    out["Geodude down"] = not geo.alive()
+    b, sno, flo = b8_battle([("Snorlax", 30, "Thick Fat", ["Tackle"])], [("Floatzel", 30, "Swift Swim", ["Surging Strikes"])])
+    sno.hp = sno.maxhp = 999
+    row = b.rolls(flo, sno, fs.move("Surging Strikes"))[-1]
+    pl.attack(b, flo, fs.move("Surging Strikes"), sno, True)
+    out["Snorlax (HP taken, row)"] = (999 - sno.hp, row)
+    ok = out["Geodude down"] and abs(out["Snorlax (HP taken, row)"][0] - row) <= 2
+    return [("the readings' Surging Strikes lands three critical hits", ok, str(out))]
+
+
 def main():
     results = []
 

@@ -7134,6 +7134,28 @@ def check_triple_dive(results):
     results.append(("Triple Dive lands three hits one at a time", out == want, str(out)))
 
 
+@b12
+def check_surging_strikes(results):
+    """Surging Strikes (approved 2026-10-14; effect script 366): three hits,
+    landed one at a time, each critical, the row's critical hit kept; under
+    a Lucky Chant three plain hits, the row's critical hit taken out;
+    Sturdy holds only the first."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("plain", "Lucky Chant", "Sturdy"):
+        b, p, foe = b11_battle(["Surging Strikes"], ["Tackle"], {("p", "Surging Strikes"): [45] * 16}, hp=200)
+        b.dice = sure12()
+        if case == "Lucky Chant":
+            b.b.lucky_chant = 3
+        if case == "Sturdy":
+            foe.ability, foe.hp, foe.maxhp = "Sturdy", 40, 40
+        pl.attack(b, p, fs.move("Surging Strikes"), foe, True)
+        out[case] = foe.maxhp - foe.hp
+    out["critical rate"] = fs.crit_rate(b, p, foe, fs.move("Surging Strikes"))
+    want = {"plain": 45, "Lucky Chant": 30, "Sturdy": 40, "critical rate": 1.0}
+    results.append(("Surging Strikes lands three critical hits one at a time", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

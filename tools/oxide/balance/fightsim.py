@@ -123,7 +123,8 @@ class Move:
         self.protect = "CAN_PROTECT" in flags        # MOVE_FLAG_CAN_PROTECT: Protect stops it
         self.mirror = "CAN_MIRROR_MOVE" in flags     # MOVE_FLAG_CAN_MIRROR_MOVE: Mirror Move can copy it
         self.snatch = "CAN_SNATCH" in flags          # MOVE_FLAG_CAN_SNATCH: Snatch can take it
-        self.sure = self.effect == "ALWAYS_CRITICAL"  # Frost Breath's kind: its row is a critical hit (row_crit_mult)
+        # Frost Breath's kind and Surging Strikes: its row is a critical hit (row_crit_mult)
+        self.sure = self.effect in ("ALWAYS_CRITICAL", "HIT_THREE_TIMES_ALWAYS_CRITICAL")
         self.pp = rec.get("pp") or 10
 
     def damaging(self):
@@ -2389,14 +2390,17 @@ ROLLOUT = "DOUBLE_POWER_EACH_TURN_LOCK_INTO"   # Rollout and Ice Ball
 TWO_HITS = frozenset({"HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE_AND_FLINCH"})
 # The moves of three hits at their listed power, one accuracy check for
 # the three (SetMultiHit 3, SYSCTL_MULTI_HIT_MOVE): Triple Dive (effect
-# script 299), whose calculator row adds up the three. Until 2026-10-20 it
-# landed as one hit holding the row's three (Ian approved the fix).
-THREE_HITS = frozenset({"HIT_THREE_TIMES_FIXED_POWER"})
+# script 299) and Surging Strikes (366), whose calculator rows add up the
+# three, Surging Strikes' each critical (Move.sure: BattleSystem_CalcCrit
+# makes every one of its hits critical, unless Battle Armor, Shell Armor or
+# Lucky Chant keeps it off). Until 2026-10-20 each landed as one hit holding
+# the row's three (Ian approved the fixes).
+THREE_HITS = frozenset({"HIT_THREE_TIMES_FIXED_POWER", "HIT_THREE_TIMES_ALWAYS_CRITICAL"})
 # Every effect whose hits the engine lands one at a time and the calculator's
 # row adds up (SetMultiHit in effect scripts 29, 44, 77, 296, 298, 299 and
 # 416): the two to five hit moves, the two-hit and three-hit moves and the
-# three rising ones. Surging Strikes and Population Bomb are left out, as
-# neither side can have them today; Beat Up lands its own (beat_up_hits).
+# three rising ones. Population Bomb is left out, as neither side can have
+# it today; Beat Up lands its own (beat_up_hits).
 HIT_BY_HIT = frozenset({"MULTI_HIT", "HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE_AND_FLINCH",
                         "HIT_THREE_TIMES_RISING_10", "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20"}) | THREE_HITS
 # The secondary effect each of the two-hit kin rolls once a hit (effect
