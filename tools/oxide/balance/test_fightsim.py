@@ -5926,6 +5926,25 @@ def check_toxic_debris(results):
     results.append(("Toxic Debris lays Toxic Spikes on the attacker's side after a physical hit", out == want,
                     str(out)))
 
+
+@b11
+def check_gooey(results):
+    """Gooey (approved 2026-10-14; subscript_gooey): a contact hit lowers
+    the attacker's Speed a stage, which Defiant answers with two stages of
+    Attack and Clear Body keeps off; Mist does not stop it, and a hit
+    without contact does nothing."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, ab, mist in (("contact", "Tackle", None, 0), ("no contact", "Swift", None, 0),
+                                 ("Defiant", "Tackle", "Defiant", 0), ("Clear Body", "Tackle", "Clear Body", 0),
+                                 ("Mist", "Tackle", None, 5)):
+        b, p, foe = b11_battle(["Tackle"], [name], {("b", name): [10] * 16})
+        p.ability, foe.ability, b.b.mist = "Gooey", ab, mist
+        pl.use_move(b, foe, fs.move(name), p, True)
+        out[case] = (foe.stages["spe"], foe.stages["atk"])
+    want = {"contact": (-1, 0), "no contact": (0, 0), "Defiant": (-1, 2), "Clear Body": (0, 0), "Mist": (-1, 0)}
+    results.append(("Gooey lowers a contact attacker's Speed", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

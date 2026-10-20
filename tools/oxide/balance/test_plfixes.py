@@ -5081,6 +5081,25 @@ def toxic_debris_checks():
              f"(layers on the trainer's side, the Geodude's status) {out}")]
 
 
+@b11
+def gooey_checks():
+    """Gooey on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop's Karate Chop on the player's Goomy costs the Machop a
+    stage of Speed, so a Machop that outran it no longer does; its Swift
+    costs nothing."""
+    out = {}
+    for name in ("Karate Chop", "Swift"):
+        b, mach, goomy = b8_battle([("Machop", 30, "Guts", ["Karate Chop", "Swift"])],
+                                   [("Goomy", 30, "Gooey", ["Water Gun"])])
+        goomy.hp = goomy.maxhp = 10 ** 6
+        mach.stages["spe"] = 1               # a Machop that outruns the Goomy
+        before = b.faster(mach, goomy)
+        pl.use_move(b, mach, fs.move(name), goomy, True)
+        out[name] = (mach.stages["spe"], before, b.speed(mach) > b.speed(goomy))
+    ok = out["Karate Chop"][0] == 0 and out["Swift"][0] == 1 and out["Swift"][2]
+    return [("the readings' Gooey slows a contact attacker", ok, f"(Speed stage, faster before, faster after) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

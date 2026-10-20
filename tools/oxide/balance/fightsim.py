@@ -5295,6 +5295,17 @@ def _struck_back(b, att, dfn, chance, pick):
                 reveal(dfn)
             return True
         return False
+    if a == "Gooey":
+        # subscript_gooey: a contact move that did damage lowers its user's
+        # Speed a stage while it is above -6, by ability_stages (Clear Body,
+        # White Smoke and a Clear Amulet keep it; Mist and Mirror Armor do
+        # not), and TryDefiant answers the drop. Until 2026-10-20 it did
+        # nothing (Ian approved the fix).
+        if att.stages["spe"] <= -6:
+            return False
+        if ability_stages(dfn, att, "spe", -1) and att.ability in DEFIANT_STAT:
+            raise_own(att, DEFIANT_STAT[att.ability], 2)
+        return True
     if att.status:
         return False
     if a == "Effect Spore":
