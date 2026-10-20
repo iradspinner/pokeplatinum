@@ -4441,6 +4441,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
             change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         spin(b, att, dfn, e)
+    if e == "CURE_PARTY_STATUS_HIT":
+        sparkly_swirl(b, att)            # after any hit, a Substitute's or a knockout's too (sparkly_swirl)
     if e in LOSES_TYPE:
         lose_type(att, LOSES_TYPE[e])    # Burn Up and Double Shock: after the hit, a Substitute's too
     if e == "SWITCH_HIT":
@@ -6103,6 +6105,23 @@ def spin(b, att, dfn, e):
         side.web = 0                 # Oxide's Rapid Spin and Mortal Spin clear Sticky Web too (BtlCmd_RapidSpin)
     if e == "REMOVE_HAZARDS_AND_BINDING" and att.alive():
         change_stages(att, {"spe": 1})
+
+
+def sparkly_swirl(b, att):
+    """Sparkly Swirl (effect script 314): once its hit lands, a Substitute's
+    or a knockout's too (an indirect effect run ON_HIT, which Sheer Force
+    does not strip), subscript_heal_bell's TryPartyStatusRefresh runs as for
+    any move but Heal Bell: its user's status and Nightmare are gone, and so
+    are those of its partner on the field, and every Pokemon in its party is
+    cured (BtlIOCmd_RefreshPartyStatus), Soundproof or not. Until 2026-10-20
+    it was a plain hit (Ian approved the fix)."""
+    side = b.p if att.side == "p" else b.b
+    field = side.on_field()
+    for m in side.mons:
+        if m in field or getattr(m, "owner", None) == getattr(att, "owner", None):
+            m.status = None
+    for m in field:
+        m.nightmare = False
 
 
 def technician(att, power):

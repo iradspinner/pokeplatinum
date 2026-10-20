@@ -934,6 +934,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
             fs.change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         fs.spin(b, att, dfn, e)
+    if e == "CURE_PARTY_STATUS_HIT":
+        fs.sparkly_swirl(b, att)         # its party's status cured after any hit (fightsim.sparkly_swirl)
     if e in fs.LOSES_TYPE:
         fs.lose_type(att, fs.LOSES_TYPE[e])     # Burn Up and Double Shock, a Substitute's hit too (fightsim.lose_type)
     if e == "SWITCH_HIT":

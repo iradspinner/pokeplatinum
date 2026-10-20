@@ -6994,6 +6994,47 @@ def check_ice_burn_freeze_shock(results):
     results.append(("Ice Burn and Freeze Shock charge a turn, then hit and burn or paralyse", out == want, str(out)))
 
 
+@b12
+def check_sparkly_swirl(results):
+    """Sparkly Swirl (approved 2026-10-14; effect script 314,
+    subscript_heal_bell): once its hit lands, a Substitute's or a
+    knockout's too, its user's status and Nightmare and every party
+    member's status are cured; a miss cures nothing."""
+    from . import perfectline as pl
+
+    class Sure(pl.RunDice):
+        """No chance lands but a certain one: the move never misses."""
+        def bad(self, kind, p):
+            return False
+
+        def good(self, p, kind=None):
+            return p >= 1
+
+    class Misses(Sure):
+        """Every chance of the move's missing lands."""
+        def bad(self, kind, p):
+            return kind == "miss" and p > 0
+    out = {}
+    for case in ("hit", "Substitute", "knockout", "miss"):
+        b, p, foe = b11_battle(["Sparkly Swirl"], ["Tackle"], {("p", "Sparkly Swirl"): [30] * 16})
+        b.dice = Sure(random.Random(1), True)
+        p.status, p.nightmare = "slp", True
+        mate = fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p")
+        mate.status = "par"
+        b.p.mons.append(mate)
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "miss":
+            b.dice = Misses(random.Random(1), True)
+        pl.attack(b, p, fs.move("Sparkly Swirl"), foe, True)
+        out[case] = (p.status, p.nightmare, mate.status)
+    want = {"hit": (None, False, None), "Substitute": (None, False, None), "knockout": (None, False, None),
+            "miss": ("slp", True, "par")}
+    results.append(("Sparkly Swirl cures its party's status after its hit", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

@@ -6276,6 +6276,20 @@ def ice_burn_freeze_shock_checks():
              f"(untouched on the charge turn, hit, status) {out}")]
 
 
+@b12
+def sparkly_swirl_checks():
+    """Sparkly Swirl in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's burned Bibarel's hit on a
+    trainer's Geodude cures its own burn and its paralysed Machop's."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Rock Head", ["Tackle"])],
+                            [("Bibarel", 30, "Unaware", ["Sparkly Swirl"]), ("Machop", 30, "Guts", ["Karate Chop"])])
+    bib.status, b.p.mons[1].status = "brn", "par"
+    pl.attack(b, bib, fs.move("Sparkly Swirl"), geo, True)
+    got = (geo.hp < geo.maxhp, bib.status, b.p.mons[1].status)
+    return [("the readings' Sparkly Swirl cures its party's status", got == (True, None, None),
+             f"(hit, Bibarel's status, Machop's) {got}")]
+
+
 def main():
     results = []
 
