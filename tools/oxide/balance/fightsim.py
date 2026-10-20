@@ -2609,6 +2609,16 @@ def metal_weight(blob, rec):
     return dict(rec, species_data=own)
 
 
+def power_row_keys(name, knows, takes):
+    """The keys whose rows need a move's power rows (Magnitude's, Present's
+    or Heat Crash's, made per power since each power is set as the move
+    runs): those that know the move (knows, each key's moves) and those
+    that can borrow it (takes, each borrower's moves it may take: prepare's
+    all_hits for a Pokemon with Copycat, Me First, Mimic, Mirror Move or
+    Sketch), in knows' order."""
+    return [k for k in knows if name in knows[k] or name in takes.get(k, ())]
+
+
 def friendship_power(species):
     """Return's power for a trainer's Pokemon (effect script 121: friendship
     times 10 over 25). TrainerData_BuildParty never sets friendship, so a
@@ -9339,32 +9349,36 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     # ("<key>#m<power>") carrying that power, against every foe it can meet,
     # on either side. Until 2026-10-15 only the player's and a partner's
     # Pokemon had these keys, so a trainer's Magnitude found no row and
-    # never dealt damage (Ian approved the fix).
-    for k in list(pkeys) + list(qkeys) + list(bkeys):
-        if "Magnitude" in moves.get(k, ()):
-            foes = pkeys + qkeys if k in bkeys else bkeys
-            for p in MAGNITUDE_POWERS:
-                dk = f"{k}#m{p}"
-                pokemon[dk] = dict(pokemon[k], move_data={"Magnitude": {
-                    "type": "Ground", "category": "Physical", "basePower": p}})
-                for w in weathers:
-                    for d in foes:
-                        pairs.append([dk, d, ["Magnitude"], w])
+    # never dealt damage (Ian approved the fix). A Pokemon that can borrow
+    # the move (Copycat, Me First, Mimic, Mirror Move, Sketch) gets them too,
+    # as it does Present's and Heat Crash's (power_row_keys); until
+    # 2026-10-20 a borrowed one dealt nothing (Ian approved the fix).
+    takes = {k: all_hits(k) for k in list(pkeys) + list(qkeys) + list(bkeys)
+             if any(move(m).effect in BORROWS for m in moves[k])}
+    knows = {k: moves.get(k, ()) for k in list(pkeys) + list(qkeys) + list(bkeys)}
+    for k in power_row_keys("Magnitude", knows, takes):
+        foes = pkeys + qkeys if k in bkeys else bkeys
+        for p in MAGNITUDE_POWERS:
+            dk = f"{k}#m{p}"
+            pokemon[dk] = dict(pokemon[k], move_data={"Magnitude": {
+                "type": "Ground", "category": "Physical", "basePower": p}})
+            for w in weathers:
+                for d in foes:
+                    pairs.append([dk, d, ["Magnitude"], w])
     # Present's power is rolled when it is used (present_roll), so the
     # calculator is asked once per power, each as its own attacker key
     # ("<key>#pr<power>") carrying that power, against every foe it can
     # meet, on either side; the calculator gives Present itself no row.
-    for k in list(pkeys) + list(qkeys) + list(bkeys):
-        if "Present" in moves.get(k, ()):
-            foes = pkeys + qkeys if k in bkeys else bkeys
-            for p in PRESENT_ODDS:
-                if p:
-                    dk = f"{k}#pr{p}"
-                    pokemon[dk] = dict(pokemon[k], move_data={"Present": {
-                        "type": "Normal", "category": "Physical", "basePower": p}})
-                    for w in weathers:
-                        for d in foes:
-                            pairs.append([dk, d, ["Present"], w])
+    for k in power_row_keys("Present", knows, takes):
+        foes = pkeys + qkeys if k in bkeys else bkeys
+        for p in PRESENT_ODDS:
+            if p:
+                dk = f"{k}#pr{p}"
+                pokemon[dk] = dict(pokemon[k], move_data={"Present": {
+                    "type": "Normal", "category": "Physical", "basePower": p}})
+                for w in weathers:
+                    for d in foes:
+                        pairs.append([dk, d, ["Present"], w])
     # Heat Crash's power is set by the two Pokemon's weights (weight_power), as
     # Heavy Slam's is, which the calculator works out for Heavy Slam alone:
     # it gives Heat Crash no power, so no row ("damage is not a number").
@@ -9373,16 +9387,15 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     # that give that power, on either side (Battle.heat_crash_rolls). Until
     # 2026-10-15 Heat Crash never dealt damage (Ian approved the fix).
     heat_crash = {}
-    for k in list(pkeys) + list(qkeys) + list(bkeys):
-        if "Heat Crash" in moves.get(k, ()):
-            for d in (pkeys + qkeys if k in bkeys else bkeys):
-                power = weight_power(blob, pokemon[k], pokemon[d])
-                heat_crash[(k, d)] = power
-                dk = f"{k}#hc{power}"
-                pokemon.setdefault(dk, dict(pokemon[k], move_data={"Heat Crash": {
-                    "type": "Fire", "category": "Physical", "basePower": power}}))
-                for w in weathers:
-                    pairs.append([dk, d, ["Heat Crash"], w])
+    for k in power_row_keys("Heat Crash", knows, takes):
+        for d in (pkeys + qkeys if k in bkeys else bkeys):
+            power = weight_power(blob, pokemon[k], pokemon[d])
+            heat_crash[(k, d)] = power
+            dk = f"{k}#hc{power}"
+            pokemon.setdefault(dk, dict(pokemon[k], move_data={"Heat Crash": {
+                "type": "Fire", "category": "Physical", "basePower": power}}))
+            for w in weathers:
+                pairs.append([dk, d, ["Heat Crash"], w])
     # Spit Up's power is 100 for each stockpile it spends (spit_up_key), so the
     # calculator is asked once per count, each as its own attacker key
     # ("<key>#su<power>") carrying that power, against every foe it can meet,

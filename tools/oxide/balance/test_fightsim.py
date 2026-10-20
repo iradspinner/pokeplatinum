@@ -6451,6 +6451,20 @@ def check_belly_drum_at_six(results):
     want = {"at +6": (100, 6), "fightsim's, at +6": (100, 6), "at +2": (50, 6)}
     results.append(("Belly Drum at +6 fails and costs nothing", out == want, str(out)))
 
+
+@b11
+def check_borrowed_power_rows(results):
+    """A borrowed Magnitude, Present or Heat Crash finds its power rows (Ian's
+    answer of 2026-10-20): prepare() gives their power rows to the Pokemon
+    that can borrow the move (fightsim.power_row_keys), a Copycat or Mimic
+    user whose borrowed moves hold it, beside those that know it; a
+    Pokemon that neither knows nor can borrow it gets none."""
+    knows = {"p0": ["Copycat"], "p1": ["Tackle"], "b0.0": ["Magnitude", "Present"], "b0.1": ["Mimic"]}
+    takes = {"p0": ["Magnitude", "Present", "Tackle"], "b0.1": ["Heat Crash", "Tackle"]}
+    out = {name: fs.power_row_keys(name, knows, takes) for name in ("Magnitude", "Present", "Heat Crash")}
+    want = {"Magnitude": ["p0", "b0.0"], "Present": ["p0", "b0.0"], "Heat Crash": ["b0.1"]}
+    results.append(("a borrowed Magnitude, Present or Heat Crash gets its power rows", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

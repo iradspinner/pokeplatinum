@@ -5529,6 +5529,33 @@ def copycat_idle_checks():
     return [("the team search picks Copycat and Water Sport, no longer idle", all(out.values()), f"picked {out}")]
 
 
+@b11
+def borrowed_power_row_checks():
+    """A borrowed Magnitude, Present or Heat Crash on the calculator's real
+    rows (Ian's answer of 2026-10-20): the player's Togekiss's Copycat of a
+    trainer's Magnitude, Present or Heat Crash hits a Machop, from the power
+    rows prepare() now gives a Pokemon that can borrow the move, where it
+    found no row and dealt nothing."""
+    out = {}
+    for foe, name in (("Diglett", "Magnitude"), ("Delibird", "Present"), ("Torkoal", "Heat Crash")):
+        b, f, tog = b8_battle([(foe, 30, "Sturdy", [name]), ("Machop", 30, "Guts", ["Tackle"])],
+                              [("Togekiss", 30, "Hustle", ["Copycat"])])
+        fs.switch_in(b, b.b, 1)
+        mach = b.b.cur()
+        mach.hp = mach.maxhp = 10 ** 6
+        b.last_move = fs.move(name)
+        dealt = 0
+        for seed in range(8):            # Present's gift heals at times; any hit counts
+            b.dice = Sure7(random.Random(seed), True)
+            before = mach.hp
+            pl.use_move(b, tog, fs.move("Copycat"), mach, True)
+            dealt = max(dealt, before - mach.hp)
+            b.last_move = fs.move(name)
+        out[name] = dealt
+    ok = all(v > 0 for v in out.values())
+    return [("the readings' borrowed Magnitude, Present and Heat Crash deal damage", ok, f"the most a Copycat dealt {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
