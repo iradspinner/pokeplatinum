@@ -5909,7 +5909,7 @@ def state_mult(b, att, dfn, mv):
             # approved the fix).
             m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
     if att.ability in POWER_ABILITIES:
-        m *= ability_power(b, att, mv)       # Analytic's 13/10 (ability_power)
+        m *= ability_power(b, att, mv)       # Analytic's 13/10, Flare Boost's half again (ability_power)
     if b.sporty:
         m *= sport_half(b, att, dfn, mv)     # Water Sport on the field halves a Fire move's power
     if b.split:
@@ -5937,7 +5937,7 @@ def state_mult(b, att, dfn, mv):
 
 
 # The abilities whose power the battle's state sets (ability_power).
-POWER_ABILITIES = frozenset({"Analytic"})
+POWER_ABILITIES = frozenset({"Analytic", "Flare Boost"})
 
 
 def ability_power(b, att, mv):
@@ -5946,10 +5946,13 @@ def ability_power(b, att, mv):
     13/10 when every other Pokemon on the field has acted this turn, as
     the battle notes while such a holder's move runs (Battle.analytic,
     set by _use_move), Future Sight and Doom Desire apart, whose damage is
-    worked out as they are used. Until 2026-10-20 Analytic did nothing
+    worked out as they are used. Flare Boost: half again for a special
+    move while its holder is burned. Until 2026-10-20 neither did anything
     (Ian approved the fix)."""
     if att.ability == "Analytic":
         return 1.3 if b.analytic is att and mv.effect != FUTURE_SIGHT else 1.0
+    if att.ability == "Flare Boost":
+        return 1.5 if att.status == "brn" and mv.cat == "Special" else 1.0
     return 1.0
 
 

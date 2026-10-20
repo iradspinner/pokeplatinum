@@ -6098,6 +6098,21 @@ def check_analytic(results):
     want = {"first": 10, "last": 13, "foe switched": 13}
     results.append(("Analytic's move at 13/10 power when its holder moves last", out == want, str(out)))
 
+
+@b11
+def check_flare_boost(results):
+    """Flare Boost (approved 2026-10-14; BattleSystem_CalcMoveDamage): a
+    special move at half again while its holder is burned; a physical one
+    takes the burn's halving alone, and unburned nothing changes."""
+    out = {}
+    for case, name, status in (("Ember, burned", "Ember", "brn"), ("Ember", "Ember", None),
+                               ("Tackle, burned", "Tackle", "brn")):
+        b, p, foe = b11_battle([name], ["Splash"], {("p", name): [20] * 16})
+        p.ability, p.status = "Flare Boost", status
+        out[case] = b.damage(p, foe, fs.move(name), roll=0)
+    want = {"Ember, burned": 30, "Ember": 20, "Tackle, burned": 10}
+    results.append(("Flare Boost raises special moves while burned", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

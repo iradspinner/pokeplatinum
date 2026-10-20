@@ -5210,6 +5210,21 @@ def analytic_checks():
     return [("the readings' Analytic strengthens a move made last", ok, f"(HP taken, plain damage) {out}")]
 
 
+@b11
+def flare_boost_checks():
+    """Flare Boost on the calculator's real rows (approved 2026-10-14): the
+    player's burned Drifblim's Shadow Ball into a trainer's Machop does
+    half again what an unburned one's does."""
+    b, mach, drif = b8_battle([("Machop", 30, "Guts", ["Karate Chop"])],
+                              [("Drifblim", 30, "Flare Boost", ["Shadow Ball"])])
+    plain = pl.damage_of(b, drif, mach, fs.move("Shadow Ball"), False, True)
+    drif.status = "brn"
+    burned = pl.damage_of(b, drif, mach, fs.move("Shadow Ball"), False, True)
+    ok = abs(burned - plain * 1.5) <= 1
+    return [("the readings' Flare Boost raises special moves while burned", ok,
+             f"Shadow Ball's top roll {plain} unburned, {burned} burned")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
