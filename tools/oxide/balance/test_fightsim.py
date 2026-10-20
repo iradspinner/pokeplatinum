@@ -6830,6 +6830,29 @@ def check_toxic_boost(results):
     results.append(("Toxic Boost raises a poisoned holder's physical moves by half", out == want, str(out)))
 
 
+@b12
+def check_sticky_hold_knock_off(results):
+    """Knock Off against Sticky Hold, Multitype and the Griseous Orb
+    (approved 2026-10-14; subscript_knock_off, BtlCmd_TryKnockOff): a
+    Sticky Hold holder keeps its item unless the attacker has Mold Breaker,
+    a Multitype holder and a Griseous Orb stay put, and any other item is
+    knocked off."""
+    from . import perfectline as pl
+    out = {}
+    for case, ability, item, att_ability in (("plain", None, "Leftovers", None),
+                                             ("Sticky Hold", "Sticky Hold", "Leftovers", None),
+                                             ("Mold Breaker", "Sticky Hold", "Leftovers", "Mold Breaker"),
+                                             ("Multitype", "Multitype", "Leftovers", None),
+                                             ("Griseous Orb", None, "Griseous Orb", None)):
+        b, p, foe = b11_battle(["Knock Off"], ["Tackle"], {("p", "Knock Off"): [10] * 16})
+        foe.ability, foe.item, p.ability = ability, item, att_ability
+        pl.use_move(b, p, fs.move("Knock Off"), foe, True)
+        out[case] = foe.item
+    want = {"plain": None, "Sticky Hold": "Leftovers", "Mold Breaker": None, "Multitype": "Leftovers",
+            "Griseous Orb": "Griseous Orb"}
+    results.append(("Knock Off leaves Sticky Hold's, Multitype's and the Griseous Orb's items", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

@@ -5121,13 +5121,25 @@ def magic_room_ends(b):
             unlock_item(m)
 
 
-def knock_off(dfn):
-    """Knock Off's hit (BtlCmd_TryKnockOff): the target's item is gone, and
-    its party slot is marked (knocked_off)."""
+def knock_off(att, dfn):
+    """Knock Off's hit (subscript_knock_off, BtlCmd_TryKnockOff): the
+    target's item is gone, and its party slot is marked (knocked_off),
+    unless the target has Multitype (its record's, BATTLEMON_ABILITY, so
+    gas or Gastro Acid does not hide it) or holds a Griseous Orb, or its
+    Sticky Hold keeps the item, which a Mold Breaker attacker gets past,
+    the message naming the ability. A Quick Claw or Custap Berry that
+    went off this turn also keeps it in the engine (BATTLEMON_QUICK_CLAW,
+    BATTLEMON_CUSTAP_BERRY), which is not followed. Until 2026-10-20
+    Sticky Hold, Multitype and the Orb kept nothing (Ian approved the
+    fix)."""
     if dfn.item_off is not None:
-        return raw_item_op((dfn,), lambda: knock_off(dfn))
-    if dfn.item:
-        dfn.item, dfn.knocked_off = None, True
+        return raw_item_op((dfn,), lambda: knock_off(att, dfn))
+    if not dfn.item or raw_ability(dfn) == "Multitype" or dfn.item == "Griseous Orb":
+        return
+    if dfn.ability == "Sticky Hold" and not mold(att, dfn):
+        reveal(dfn)
+        return
+    dfn.item, dfn.knocked_off = None, True
 
 
 def steal_item(att, dfn):
@@ -5870,7 +5882,7 @@ def take_first(b, att, dfn, mv, pick):
     if mv.effect == "EAT_BERRY":
         pluck(b, att, dfn, pick)
     elif dfn.alive():
-        knock_off(dfn)
+        knock_off(att, dfn)
         mark_unheld(b, dfn)
 
 

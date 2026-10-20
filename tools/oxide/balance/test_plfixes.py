@@ -6150,6 +6150,20 @@ def toxic_boost_checks():
              f"Slash's top roll {plain} healthy, {poisoned} poisoned")]
 
 
+@b12
+def sticky_hold_knock_off_checks():
+    """Knock Off into Sticky Hold on the calculator's real rows (approved
+    2026-10-14): the player's Machop's Knock Off leaves a trainer's Sticky
+    Hold Grimer its Black Sludge, and takes a Stench Grimer's."""
+    out = {}
+    for ab in ("Sticky Hold", "Stench"):
+        b, gri, mach = b8_battle([("Grimer", 30, ab, ["Pound"], "Black Sludge")], [("Machop", 30, "Guts", ["Knock Off"])])
+        pl.use_move(b, mach, fs.move("Knock Off"), gri, True)
+        out[ab] = gri.item
+    ok = out == {"Sticky Hold": "Black Sludge", "Stench": None}
+    return [("the readings' Knock Off leaves a Sticky Hold holder its item", ok, f"item after {out}")]
+
+
 def main():
     results = []
 
