@@ -6407,6 +6407,22 @@ def laser_focus_checks():
              f"Tackle {999 - sno.hp} after Laser Focus, {plain} plain")]
 
 
+@b12
+def sappy_seed_checks():
+    """Sappy Seed in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Bibarel's hit seeds a trainer's
+    Snorlax, which then loses an eighth of its HP at the turn's end and the
+    Bibarel gains it."""
+    b, sno, bib = b8_battle([("Snorlax", 30, "Thick Fat", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Sappy Seed"])])
+    pl.attack(b, bib, fs.move("Sappy Seed"), sno, True)
+    bib.hp = bib.maxhp // 2
+    hp = sno.hp
+    fs.end_of_turn(b)
+    got = (sno.seeded, hp - sno.hp, bib.hp - bib.maxhp // 2)
+    ok = got[0] and got[1] == sno.maxhp // 8 and got[2] == got[1]
+    return [("the readings' Sappy Seed seeds its target", ok, f"(seeded, Snorlax's loss, Bibarel's gain) {got}")]
+
+
 def main():
     results = []
 

@@ -954,6 +954,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     # Pokemon behind it nothing (fightsim._after_attack, b.sub_hit).
     if not dfn.alive() or b.sub_hit or fs.sub_blocks(att, dfn, mv):
         return
+    if e == "LEECH_SEED_HIT":
+        fs.sappy_seed(dfn)       # Sappy Seed seeds a target left standing (fightsim.sappy_seed)
     if e == "CLEAR_SMOG":
         fs.clear_smog(dfn)       # every stage of the target back to 0 (fightsim.clear_smog)
     if e == "DOUBLE_POWER_HEAL_SLEEP":

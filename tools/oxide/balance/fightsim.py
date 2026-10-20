@@ -4537,6 +4537,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     # fix).
     if not dfn.alive() or b.sub_hit or sub_blocks(att, dfn, mv):
         return
+    if e == "LEECH_SEED_HIT":
+        sappy_seed(dfn)              # a target left standing, no Substitute in the way (sappy_seed)
     if e == "CLEAR_SMOG":
         clear_smog(dfn)              # every stage of a target the hit itself reached back to 0
     if e == "INCINERATE":
@@ -6224,6 +6226,18 @@ def beak_doubles(b, dfn, first):
     listed power, which the trainer's AI reckons with too. Until 2026-10-20
     they never doubled (Ian approved the fix)."""
     return first or dfn.switched_turn == b.turn
+
+
+def sappy_seed(dfn):
+    """Sappy Seed (effect script 310): its hit's indirect effect
+    (MOVE_SIDE_EFFECT_CHECK_HP) runs subscript_leech_seed_start on a target
+    left standing: nothing behind a Substitute, one hit this move included
+    (CheckSubstitute, past an Infiltrator), on a Grass type or on one
+    seeded already; else the target is seeded, as by Leech Seed. Neither
+    Sheer Force nor Shield Dust stops it. Until 2026-10-20 it was a plain
+    hit (Ian approved the fix)."""
+    if "Grass" not in dfn.types:
+        dfn.seeded = True
 
 
 def technician(att, power):

@@ -7204,6 +7204,32 @@ def check_laser_focus(results):
     results.append(("Laser Focus makes its user's next turn's hits critical", out == want, str(out)))
 
 
+@b12
+def check_sappy_seed(results):
+    """Sappy Seed (approved 2026-10-14; effect script 310,
+    subscript_leech_seed_start): its hit seeds a target left standing, as
+    Leech Seed does, Shield Dust or not; not a Grass type, not one behind a
+    Substitute, the one the hit broke included, and not a knockout."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("plain", "Shield Dust", "Grass", "Substitute", "broken", "knockout"):
+        b, p, foe = b11_battle(["Sappy Seed"], ["Tackle"], {("p", "Sappy Seed"): [20] * 16})
+        b.dice = sure12()
+        if case == "Shield Dust":
+            foe.ability = "Shield Dust"
+        if case == "Grass":
+            foe.types = ["Grass"]
+        if case in ("Substitute", "broken"):
+            foe.sub = 50 if case == "Substitute" else 10
+        if case == "knockout":
+            foe.hp = 10
+        pl.attack(b, p, fs.move("Sappy Seed"), foe, True)
+        out[case] = foe.seeded
+    want = {"plain": True, "Shield Dust": True, "Grass": False, "Substitute": False, "broken": False,
+            "knockout": False}
+    results.append(("Sappy Seed seeds the target its hit leaves standing", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
