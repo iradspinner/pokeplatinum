@@ -1408,6 +1408,17 @@ def mon_key(m):
         key += ("stockpile", m.stockpile, m.stockpile_def, m.stockpile_spd)
     if m.belch:
         key += ("ate", m.ate_berry)      # Belch fails until its user has eaten a Berry (fightsim.fails_before)
+    if (m.ingrained or m.aqua_ring or m.trapped_by is not None or m.flash_fire or m.rollout or m.curled
+            or m.raging or m.loafing):
+        # The states batch 10 found the keys without (Ian approved adding
+        # them on 2026-10-20): Ingrain's and Aqua Ring's heals, the Pokemon a
+        # Block or Mean Look holds it for, a lit Flash Fire, Rollout's count,
+        # Defense Curl's doubling, Rage's rise and a Truant's turn to loaf.
+        # Kept out of the key while none is set, so a fight without them
+        # keys as before; every key reads them here (side_key and
+        # state_key, shape_key, ai_key and the planner's merge_key).
+        key += ("held", m.ingrained, m.aqua_ring, m.trapped_by, m.flash_fire, m.rollout, m.curled, m.raging,
+                m.loafing)
     if m.imprisoning or m.imprisoned:
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
     if m.rare:

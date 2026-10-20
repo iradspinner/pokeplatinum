@@ -5489,6 +5489,27 @@ def belly_drum_at_six_checks():
     return [("the readings' Belly Drum at +6 costs nothing", ok, f"(HP paid, Attack stage) from +6 and from 0 {out}")]
 
 
+@b11
+def held_state_key_checks():
+    """The planner's merge key on the calculator's real rows (approved 2026-10-20):
+    after a turn in which the player's Slaking (Truant) and a trainer's
+    Geodude both act, the position is told apart from the same position
+    with the Slaking's loafing turn spent, and a Geodude that has used
+    Defense Curl from one that has not."""
+    from . import plplan
+    b, geo, slak = b8_battle([("Geodude", 30, "Sturdy", ["Defense Curl", "Tackle"])], [("Slaking", 30, "Truant", ["Tackle"])])
+    geo.hp = geo.maxhp = slak.hp = slak.maxhp = 10 ** 6
+    pl._turn(b, ("move", fs.move("Tackle")), ("move", fs.move("Defense Curl")))
+    out = {}
+    for name, mon, attr in (("Truant", slak, "loafing"), ("Defense Curl", geo, "curled")):
+        c = plplan.clone(b)
+        m = c.p.cur() if mon is slak else c.b.cur()
+        setattr(m, attr, not getattr(m, attr))
+        out[name] = (getattr(mon, attr), plplan.merge_key(c) != plplan.merge_key(b))
+    ok = out == {"Truant": (True, True), "Defense Curl": (True, True)}
+    return [("the readings' merge key tells Truant's turn and Defense Curl apart", ok, f"(the state set, told apart) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

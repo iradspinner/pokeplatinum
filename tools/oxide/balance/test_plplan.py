@@ -352,6 +352,29 @@ def keys_hold_new_states():
     check("the planner's keys hold the states the batches added", all(out.values()), str(out))
 
 
+def keys_hold_held_states():
+    """The planner's keys hold the Pokemon states batch 10 found them
+    without (Ian approved on 2026-10-20): two positions of Roark's fight
+    that differ only by Ingrain, Aqua Ring, the Pokemon a Block holds it
+    for, a lit Flash Fire, Rollout's count, Defense Curl, Rage or a
+    Truant's turn to loaf no longer merge, and the search's state and
+    shape keys and the trainer's AI's key tell them apart too."""
+    st, team, bk, flags, _names = fight_state("roark")
+    base = pl.make_battle(st, team, bk, flags, 0)
+    changes = {"Ingrain": ("ingrained", True), "Aqua Ring": ("aqua_ring", True),
+               "a trap's holder": ("trapped_by", "b0.0"), "Flash Fire lit": ("flash_fire", True),
+               "Rollout's count": ("rollout", 2), "Defense Curl": ("curled", True), "Rage": ("raging", True),
+               "Truant": ("loafing", True)}
+    out = {}
+    for name, (attr, value) in changes.items():
+        c = plplan.clone(base)
+        setattr(c.p.cur(), attr, value)
+        out[name] = (plplan.merge_key(c) != plplan.merge_key(base), pl.state_key(c) != pl.state_key(base),
+                     pl.shape_key(c) != pl.shape_key(base), pl.ai_key(c) != pl.ai_key(base))
+    check("the planner's keys hold Ingrain, a trap, Flash Fire, Rollout, Rage and Truant",
+          all(all(v) for v in out.values()), str(out))
+
+
 def main():
     print("the planner's pieces")
     pick_odds_rules()
@@ -366,6 +389,7 @@ def main():
     options_by_rule()
     idle_moves_picked()
     keys_hold_new_states()
+    keys_hold_held_states()
     print(f"\n{sum(RESULTS)}/{len(RESULTS)} passed")
     return 0 if all(RESULTS) else 1
 
