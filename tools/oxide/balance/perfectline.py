@@ -1038,6 +1038,8 @@ def status_move(b, att, mv, dfn, first):
             return               # a status move of the ability's type is taken whole (fightsim.absorb)
         if fs.soundproofed(att, dfn, mv):
             return               # Sing, Growl or Roar into Soundproof (fightsim.soundproofed)
+        if att.ability == "Prankster" and fs.prankster_blocked(att, dfn, mv):
+            return               # a raised status move into a Dark type (fightsim.prankster_blocked)
     if e in fs.STATUS_OF:
         if fs.sub_blocks(att, dfn, mv):
             return

@@ -6286,6 +6286,25 @@ def check_wonder_skin(results):
     ok = 70 <= out["Thunder Wave"] <= 130 and out["Mold Breaker"] == out["+6 accuracy"] == out["Tackle"] == 200
     results.append(("Wonder Skin halves a status move's accuracy", ok, f"hits of 200 {out}"))
 
+
+@b11
+def check_prankster_dark(results):
+    """Prankster (approved 2026-10-14; BattleControllerPlayer_PriorityBlock):
+    a status move it raises fails on a Dark-type foe; Spikes, aimed at the
+    foe's side, still lands, and so does the move from a user without
+    Prankster or into a foe of another type."""
+    from . import perfectline as pl
+    out = {}
+    for case, ab, types in (("Dark", "Prankster", ("Dark",)), ("Normal", "Prankster", ("Normal",)),
+                            ("no Prankster", None, ("Dark",))):
+        b, p, foe = b11_battle(["Thunder Wave", "Spikes"], ["Splash"], {}, b_types=types)
+        p.ability = ab
+        pl.status_move(b, p, fs.move("Thunder Wave"), foe, True)
+        pl.status_move(b, p, fs.move("Spikes"), foe, True)
+        out[case] = (foe.status, b.b.hazards["spikes"])
+    want = {"Dark": (None, 1), "Normal": ("par", 1), "no Prankster": ("par", 1)}
+    results.append(("Prankster's raised status moves fail on a Dark type", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

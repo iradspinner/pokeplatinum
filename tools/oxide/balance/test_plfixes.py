@@ -5363,6 +5363,21 @@ def wonder_skin_checks():
     return [("the readings' Wonder Skin lets Thunder Wave miss", ok, f"the Skitty's status {out}")]
 
 
+@b11
+def prankster_dark_checks():
+    """Prankster on the calculator's real rows (approved 2026-10-14): the
+    player's Klefki's Thunder Wave fails on a trainer's Poochyena, a Dark
+    type, and paralyses a Machop."""
+    out = {}
+    for foe in ("Poochyena", "Machop"):
+        b, f, kle = b8_battle([(foe, 30, "Run Away" if foe == "Poochyena" else "Guts", ["Tackle"])],
+                              [("Klefki", 30, "Prankster", ["Thunder Wave"])])
+        pl.status_move(b, kle, fs.move("Thunder Wave"), f, True)
+        out[foe] = f.status
+    ok = out == {"Poochyena": None, "Machop": "par"}
+    return [("the readings' Prankster status moves fail on a Dark type", ok, f"the foe's status {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

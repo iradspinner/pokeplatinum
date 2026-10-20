@@ -4450,6 +4450,16 @@ def throat_chop(att, dfn, stripped):
     dfn.throat_chop, dfn.rare = 2, True
 
 
+def prankster_blocked(att, dfn, mv):
+    """A status move Prankster raised, aimed at a Dark-type foe, fails
+    (BattleControllerPlayer_PriorityBlock, after the immunity abilities),
+    unless it aims at the foe's side (Spikes and the like); the AI's
+    Basic_CheckPrankster already kept such moves from being chosen. Until
+    2026-10-20 the move landed (Ian approved the fix)."""
+    return (dfn is not att and dfn.side != att.side and mv.cat == "Status" and mv.range != "OPPONENT_SIDE"
+            and move_priority(att, mv) > mv.pri and "Dark" in dfn.types)
+
+
 def soundproofed(att, dfn, mv):
     """Whether Soundproof stops att's sound move at dfn
     (BattleSystem_TriggerImmunityAbility over sSoundMoves, which
@@ -7240,6 +7250,8 @@ def status_move(b, att, mv, dfn, first):
             return               # Thunder Wave into Volt Absorb, Spore into Sap Sipper: taken whole
         if soundproofed(att, dfn, mv):
             return               # Sing, Growl or Roar into Soundproof
+        if att.ability == "Prankster" and prankster_blocked(att, dfn, mv):
+            return               # a raised status move into a Dark type (prankster_blocked)
     if e in STATUS_OF:
         if sub_blocks(att, dfn, mv):
             return
