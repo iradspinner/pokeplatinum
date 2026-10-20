@@ -5089,20 +5089,44 @@ def contact_ability(b, att, dfn, mv, dealt, chance, pick):
     stands, Static, Poison Point, Flame Body, Effect Spore and Cute Charm at
     3 in 10, a status only on an attacker with none, and Rough Skin and
     Oxide's Iron Barbs an eighth of the attacker's HP. When none of those
-    acted, Oxide's Poison Touch poisons the target 3 times in 10 (battle_lib,
-    after the switch). `chance(kind, p, victim)` and `pick(kind, n)` are the
-    battle's dice."""
+    acted, Oxide's Poison Touch poisons the target 3 times in 10, after a
+    contact move, and Magician takes its item (battle_lib, after the
+    switch). Contact is Battler_MoveMakesContact's (makes_contact).
+    `chance(kind, p, victim)` and `pick(kind, n)` are the battle's dice."""
     if dealt <= 0:
         return
     contact = makes_contact(att, mv)
-    if not (dfn.ability and hit_ability(b, att, dfn, mv, chance)) and contact:
-        if not (att.alive() and dfn.ability and _struck_back(b, att, dfn, chance, pick, mv)):
-            if att.ability == "Poison Touch" and dfn.alive() and not dfn.status and chance("status", 0.3, dfn):
-                b.status_src = att
-                if give_status(b, dfn, "psn"):
-                    reveal(att)
+    acted = bool(dfn.ability and hit_ability(b, att, dfn, mv, chance))
+    if not acted and contact:
+        acted = bool(att.alive() and dfn.ability and _struck_back(b, att, dfn, chance, pick, mv))
+        if not acted and att.ability == "Poison Touch" and dfn.alive() and not dfn.status \
+                and chance("status", 0.3, dfn):
+            acted = True
+            b.status_src = att
+            if give_status(b, dfn, "psn"):
+                reveal(att)
+    if not acted and att.ability == "Magician":
+        magician(b, att, dfn)
     if contact:
         sticky_barb(att, dfn)
+
+
+def magician(b, att, dfn):
+    """Magician (BattleSystem_TriggerAbilityOnHit after its switch,
+    subscript_magician): when the target's own on-hit ability did nothing,
+    a damaging move that did damage, by a standing user holding nothing, to
+    a target holding an item, takes the item by Thief's checks
+    (TryStealItem, steal_item): never for a trainer's Pokemon outside the
+    Battle Frontier, and Sticky Hold keeps it in silence. A trainer's
+    Pokemon robbed of its item reads its item twin (mark_unheld). Until
+    2026-10-20 it did nothing (Ian approved the fix)."""
+    if not att.alive() or att is dfn or att.item or att.item_off is not None \
+            or not (dfn.item or dfn.item_off is not None):
+        return
+    if dfn.ability == "Sticky Hold" and not mold(att, dfn):
+        return
+    steal_item(att, dfn)
+    mark_unheld(b, dfn)
 
 
 def makes_contact(att, mv):
@@ -5428,8 +5452,9 @@ ROW_NEUTRAL_ITEMS = frozenset({"White Herb", "Clear Amulet"})
 # The moves of a foe that take a trainer's item away, and the trainer's own
 # move that spends it.
 TAKES_ITEM = frozenset({"REMOVE_HELD_ITEM", "STEAL_HELD_ITEM", "SWITCH_HELD_ITEMS"})
-# The abilities that take a foe's item (pickpocket), for the same twins.
-TAKING_ABILITIES = frozenset({"Pickpocket"})
+# The abilities that take a foe's item (pickpocket, magician), for the same
+# twins.
+TAKING_ABILITIES = frozenset({"Pickpocket", "Magician"})
 
 
 def _compact(name):
@@ -9402,8 +9427,8 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                     if got:
                         pairs.append([d, t, got, w])
     # A trainer's held item that the fight can take away (the player's or a
-    # partner's Knock Off, Thief, Covet, Trick or Switcheroo, Pickpocket, or
-    # the Pokemon's own Fling) and that its rows read (row_item): a twin with
+    # partner's Knock Off, Thief, Covet, Trick or Switcheroo, Pickpocket or
+    # Magician, or the Pokemon's own Fling) and that its rows read (row_item): a twin with
     # no item ("<key>#ni"), rowed both ways in every weather against every
     # foe, which the battle reads once the item is gone (mark_unheld).
     item_twin = {}

@@ -5992,6 +5992,32 @@ def check_long_reach(results):
     want = {"Long Reach": (0, 0), "other": (10, 10)}
     results.append(("Long Reach's moves make no contact", out == want, str(out)))
 
+
+@b11
+def check_magician(results):
+    """Magician (approved 2026-10-14; BattleSystem_TriggerAbilityOnHit after
+    its switch, subscript_magician): the player's empty-handed holder's hit,
+    contact or not, takes the target's item; not with an item in hand, not
+    through Sticky Hold, not when the target's own on-hit ability answered
+    (Rough Skin), and never for a trainer's holder (TryStealItem)."""
+    from . import perfectline as pl
+    out = {}
+    rolls = {(s, m): [10] * 16 for s in "pb" for m in ("Swift", "Tackle")}
+    for case, name, side, held, ab in (("Swift", "Swift", "p", None, None), ("Tackle", "Tackle", "p", None, None),
+                                       ("holding", "Swift", "p", "Oran Berry", None),
+                                       ("Sticky Hold", "Swift", "p", None, "Sticky Hold"),
+                                       ("Rough Skin", "Tackle", "p", None, "Rough Skin"),
+                                       ("trainer's", "Swift", "b", None, None)):
+        b, p, foe = b11_battle(["Swift", "Tackle"], ["Swift", "Tackle"], rolls)
+        att, dfn = (p, foe) if side == "p" else (foe, p)
+        att.ability, att.item, dfn.ability, dfn.item = "Magician", held, ab, "Sitrus Berry"
+        pl.use_move(b, att, fs.move(name), dfn, True)
+        out[case] = (att.item, dfn.item)
+    want = {"Swift": ("Sitrus Berry", None), "Tackle": ("Sitrus Berry", None),
+            "holding": ("Oran Berry", "Sitrus Berry"), "Sticky Hold": (None, "Sitrus Berry"),
+            "Rough Skin": (None, "Sitrus Berry"), "trainer's": (None, "Sitrus Berry")}
+    results.append(("Magician takes the target's item after a hit", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

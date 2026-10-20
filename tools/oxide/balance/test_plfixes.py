@@ -5132,6 +5132,22 @@ def long_reach_checks():
     return [("the readings' Long Reach makes no contact", ok, f"(HP lost, an eighth) {out}")]
 
 
+@b11
+def magician_checks():
+    """Magician on the calculator's real rows (approved 2026-10-14): the
+    player's Delphox's Ember takes a trainer's Machop's Black Belt, and the
+    Machop's Karate Chop then does less, by its item twin's row."""
+    b, mach, delph = b8_battle([("Machop", 30, "Guts", ["Karate Chop"], "Black Belt")],
+                               [("Delphox", 30, "Magician", ["Ember"])])
+    mach.hp = mach.maxhp = 10 ** 6
+    belted = b.damage(mach, delph, fs.move("Karate Chop"), roll=15)
+    pl.use_move(b, delph, fs.move("Ember"), mach, True)
+    bare = b.damage(mach, delph, fs.move("Karate Chop"), roll=15)
+    ok = delph.item == "Black Belt" and mach.item is None and bare < belted
+    return [("the readings' Magician takes the target's item", ok,
+             f"Delphox holds {delph.item}, Machop {mach.item}; Karate Chop with the Belt {belted}, after {bare}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
