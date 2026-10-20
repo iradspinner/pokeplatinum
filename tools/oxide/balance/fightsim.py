@@ -2334,6 +2334,8 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
         if sub_blocks(att, dfn, mv):
             dfn.sub = max(0, dfn.sub - dmg)
             sub_hit = b.sub_hit = True   # and the move's own effects after the hits (_after_attack)
+            if crits[i]:
+                anger_point(dfn)         # the hit's critical message comes all the same
             continue
         enduring = getattr(dfn, "enduring", False)
         on_sturdy = False
@@ -2354,6 +2356,8 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
         total += dealt
+        if crits[i]:
+            anger_point(dfn)             # the hit's first answer (MULTI_HIT_CRITICAL)
         dfn.hit_this_turn = (mv.cat, dealt)
         if dfn.bide:
             bide_store(dfn, dealt)       # a Bide user stores what it took
@@ -2381,6 +2385,18 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
     if held and dfn.item == "Focus Sash":
         consume(dfn)
     return total
+
+
+def anger_point(mon):
+    """Anger Point (subscript_critical_hit, run as the critical hit's message
+    is, the hit's first answer): a critical hit on a standing holder, one
+    its Substitute took included, sets its Attack at +6 directly, so
+    Contrary and Simple play no part, unless it is there already. Until
+    2026-10-20 it did nothing (Ian approved the fix)."""
+    if mon.ability == "Anger Point" and mon.alive() and mon.stages["atk"] < 6:
+        mon.stages["atk"] = 6
+        mon.stat_raised = True
+        reveal(mon)
 
 
 def rollout_mult(att, mv):
@@ -3669,6 +3685,7 @@ def attack(b, att, mv, dfn, first):
         if not hit or (want and hit[0] != want) or effectiveness(b.st["chart"], mv.type, chart_types(dfn, mv)) == 0:
             return
         dmg = int(hit[1] * (1.5 if mv.effect == "METAL_BURST" else 2))
+    crit = False
     if dmg is None:
         stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                   mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
@@ -3761,6 +3778,8 @@ def attack(b, att, mv, dfn, first):
             bide_store(dfn, dealt)       # a Bide user stores what it took
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
+    if crit:
+        anger_point(dfn)
     _after_attack(b, att, mv, dfn, first, dealt)
 
 

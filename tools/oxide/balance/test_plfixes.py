@@ -5148,6 +5148,31 @@ def magician_checks():
              f"Delphox holds {delph.item}, Machop {mach.item}; Karate Chop with the Belt {belted}, after {bare}")]
 
 
+class Crit11(Sure7):
+    """Batch 11's dice for critical hits: as Sure7, and the trainer's
+    critical hit always lands (bad luck for the player)."""
+    def bad(self, kind, p):
+        return kind == "crit" and p > 0
+
+
+@b11
+def anger_point_checks():
+    """Anger Point on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop's critical Karate Chop sets the player's Mankey's
+    Attack at +6, and its own Karate Chop then hits far harder; a plain
+    hit (Sure7's dice) changes nothing."""
+    out = {}
+    for dice in (Crit11, Sure7):
+        b, mach, mank = b8_battle([("Machop", 30, "Guts", ["Karate Chop"])],
+                                  [("Mankey", 30, "Anger Point", ["Karate Chop"])], dice)
+        mach.hp = mach.maxhp = mank.hp = mank.maxhp = 10 ** 6
+        before = b.damage(mank, mach, fs.move("Karate Chop"), roll=15)
+        pl.use_move(b, mach, fs.move("Karate Chop"), mank, True)
+        out[dice.__name__] = (mank.stages["atk"], b.damage(mank, mach, fs.move("Karate Chop"), roll=15) / before)
+    ok = out["Crit11"][0] == 6 and out["Crit11"][1] > 3.5 and out["Sure7"] == (0, 1.0)
+    return [("the readings' Anger Point maxes Attack after a critical hit", ok, f"(Attack stage, damage ratio) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

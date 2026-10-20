@@ -718,8 +718,8 @@ def attack(b, att, mv, dfn, first):
         # and stages, at the roll.
         roll = 85 + (b.dice.roll(trainer) if b.dice.mode == "run" else (15 if trainer else 0))
         dmg = struggle_damage(att, dfn, roll)
+    crit = False
     if dmg is None:
-        crit = False
         # The first battle (Barry on Route 201) has no critical hits on either
         # side: BtlCmd_CalcCrit sets the multiplier to 1 under
         # BATTLE_STATUS_FIRST_BATTLE (src/battle/battle_script.c).
@@ -835,6 +835,8 @@ def attack(b, att, mv, dfn, first):
             fs.bide_store(dfn, dealt)        # a Bide user stores what it took (fightsim.bide_store)
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
+    if crit:
+        fs.anger_point(dfn)              # the hit's first answer, a Substitute's too (fightsim.anger_point)
     _after_attack(b, att, mv, dfn, first, dealt, trainer)
 
 

@@ -6018,6 +6018,28 @@ def check_magician(results):
             "Rough Skin": (None, "Sitrus Berry"), "trainer's": (None, "Sitrus Berry")}
     results.append(("Magician takes the target's item after a hit", out == want, str(out)))
 
+
+@b11
+def check_anger_point(results):
+    """Anger Point (approved 2026-10-14; subscript_critical_hit): a critical
+    hit on its holder sets its Attack at +6, one its Substitute takes too,
+    and a hit of several hits does at its critical one; a plain hit does
+    nothing, nor a critical hit that faints it."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, stage, hp, sub in (("critical", "Tackle", 3, 100, 0), ("plain", "Tackle", 0, 100, 0),
+                                       ("Substitute", "Tackle", 3, 100, 50), ("fainting", "Tackle", 3, 5, 0),
+                                       ("two hits", "Double Kick", 3, 100, 0)):
+        b, p, foe = b11_battle(["Tackle"], [name], {("b", name): [10] * 16})
+        p.ability, p.hp, p.sub, foe.crit_stage = "Anger Point", hp, sub, stage
+        foe.stages["acc"] = 6
+        if not stage:
+            b.st["first_battle"] = True      # no critical hit at all
+        pl.use_move(b, foe, fs.move(name), p, True)
+        out[case] = p.stages["atk"]
+    want = {"critical": 6, "plain": 0, "Substitute": 6, "fainting": 0, "two hits": 6}
+    results.append(("Anger Point maxes Attack after a critical hit", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
