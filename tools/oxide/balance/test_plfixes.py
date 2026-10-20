@@ -5396,6 +5396,21 @@ def queenly_majesty_checks():
     return [("the readings' Queenly Majesty stops Aqua Jet", ok, f"(Aqua Jet's damage, Water Gun's) {out}")]
 
 
+@b11
+def magic_bounce_checks():
+    """Magic Bounce on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop's Leer on the player's Espeon with Magic Bounce lowers
+    the Machop's own Defense; on a Synchronize Espeon it lowers the
+    Espeon's."""
+    out = {}
+    for ab in ("Magic Bounce", "Synchronize"):
+        b, mach, esp = b8_battle([("Machop", 30, "Guts", ["Leer"])], [("Espeon", 30, ab, ["Confusion"])])
+        pl.status_move(b, mach, fs.move("Leer"), esp, True)
+        out[ab] = (mach.stages["def"], esp.stages["def"])
+    ok = out == {"Magic Bounce": (-1, 0), "Synchronize": (0, -1)}
+    return [("the readings' Magic Bounce turns Leer back", ok, f"(the Machop's Defense, the Espeon's) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

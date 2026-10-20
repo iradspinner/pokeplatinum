@@ -1000,8 +1000,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
 
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
-    if dfn.magic_coat and fs.coat_bounces(b, att, mv, dfn):
-        b.reflecting = True              # Magic Coat turns it back on its user (fightsim.coat_bounces)
+    if (dfn.magic_coat or dfn.ability == "Magic Bounce") and fs.bounces(b, att, mv, dfn):
+        b.reflecting = True              # Magic Coat or Magic Bounce turns it back on its user (fightsim.bounces)
         try:
             status_move(b, dfn, mv, att, first)
         finally:

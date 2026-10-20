@@ -6323,6 +6323,28 @@ def check_queenly_majesty(results):
     want = {"Quick Attack": (0, None), "Tackle": (10, None), "Prankster": (0, None), "Mold Breaker": (10, None)}
     results.append(("Queenly Majesty stops moves of raised priority", out == want, str(out)))
 
+
+@b11
+def check_magic_bounce(results):
+    """Magic Bounce (approved 2026-10-14; BattleControllerPlayer_MoveStolen):
+    a move Magic Coat would turn back, aimed at its holder, is turned back
+    on its user every turn with no move used: Thunder Wave paralyses its
+    user, Growl lowers its user's Attack, twice in two turns; a Mold
+    Breaker's lands, and so does a move into a holder in the air."""
+    from . import perfectline as pl
+    out = {}
+    for case, ab, flying in (("plain", None, False), ("Mold Breaker", "Mold Breaker", False), ("in the air", None, True)):
+        b, p, foe = b11_battle(["Thunder Wave", "Growl"], ["Splash"], {})
+        foe.ability, p.ability = "Magic Bounce", ab
+        if flying:
+            foe.charging = fs.move("Fly")
+        pl.status_move(b, p, fs.move("Thunder Wave"), foe, True)
+        for _ in range(2):
+            pl.status_move(b, p, fs.move("Growl"), foe, True)
+        out[case] = (p.status, p.stages["atk"], foe.status, foe.stages["atk"])
+    want = {"plain": ("par", -2, None, 0), "Mold Breaker": (None, 0, "par", -2), "in the air": (None, 0, None, 0)}
+    results.append(("Magic Bounce turns reflectable moves back on their user", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

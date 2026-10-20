@@ -4648,6 +4648,23 @@ def coat_bounces(b, att, mv, dfn):
     return True
 
 
+def bounces(b, att, mv, dfn):
+    """Whether a move is turned back on its user (BattleControllerPlayer_MoveStolen):
+    by Magic Coat used this turn (coat_bounces), or else by Magic Bounce,
+    every turn and with no move, unless a Mold Breaker gets past it or its
+    holder is out of reach in the air or underground; the message names
+    the ability. Pressure on the bounce is not followed. Until 2026-10-20
+    Magic Bounce did nothing (Ian approved the fix)."""
+    coat = dfn.magic_coat
+    if not coat and (mold(att, dfn) or (dfn.charging is not None and dfn.charging.effect in INVULNERABLE)):
+        return False
+    if not coat_bounces(b, att, mv, dfn):
+        return False
+    if not coat:
+        reveal(dfn)                      # Magic Bounce's own message
+    return True
+
+
 def teeter_dance_others(b, att, mv, dfn, first):
     """Teeter Dance (effect script 199, the confusion subscript on each
     target) in a double battle, where its range (ALL_ADJACENT) reaches every
@@ -7225,8 +7242,8 @@ def weather_move_fails(b, e):
 
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
-    if dfn.magic_coat and coat_bounces(b, att, mv, dfn):
-        b.reflecting = True              # Magic Coat turns it back on its user (coat_bounces)
+    if (dfn.magic_coat or dfn.ability == "Magic Bounce") and bounces(b, att, mv, dfn):
+        b.reflecting = True              # Magic Coat or Magic Bounce turns it back on its user (bounces)
         try:
             status_move(b, dfn, mv, att, first)
         finally:
