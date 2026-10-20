@@ -89,6 +89,10 @@
                 "MOVE_FLAMETHROWER"
             ],
             [
+                40,
+                "MOVE_SHELL_TRAP"
+            ],
+            [
                 43,
                 "MOVE_DRAGON_PULSE"
             ],
