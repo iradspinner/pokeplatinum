@@ -5117,6 +5117,21 @@ def pickpocket_checks():
              f"Weavile holds {wea.item}, Machop {mach.item}; Karate Chop with the Belt {belted}, after {bare}")]
 
 
+@b11
+def long_reach_checks():
+    """Long Reach on the calculator's real rows (approved 2026-10-14): the
+    player's Decidueye's Leaf Blade into a trainer's Gible with Rough Skin
+    costs it nothing; an Overgrow Decidueye loses an eighth."""
+    out = {}
+    for ab in ("Long Reach", "Overgrow"):
+        b, gible, dec = b8_battle([("Gible", 30, "Rough Skin", ["Tackle"])], [("Decidueye", 30, ab, ["Leaf Blade"])])
+        gible.hp = gible.maxhp = 10 ** 6
+        pl.use_move(b, dec, fs.move("Leaf Blade"), gible, True)
+        out[ab] = (dec.maxhp - dec.hp, dec.maxhp // 8)
+    ok = out["Long Reach"][0] == 0 and out["Overgrow"][0] == out["Overgrow"][1]
+    return [("the readings' Long Reach makes no contact", ok, f"(HP lost, an eighth) {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

@@ -1760,7 +1760,9 @@ class FormFight:
         return [move(m) for m in self.move_names.get(k, ())]
 
     def contact(self, k):
-        return any(mv.contact and mv.damaging() for mv in self.moves(k))
+        """Whether k has a damaging move that makes contact (makes_contact:
+        none for a Long Reach holder)."""
+        return self.ability(k) != "Long Reach" and any(mv.contact and mv.damaging() for mv in self.moves(k))
 
     def hit_types(self, k):
         """The types k's damaging moves can hit with: Weather Ball in each of
@@ -5092,14 +5094,24 @@ def contact_ability(b, att, dfn, mv, dealt, chance, pick):
     battle's dice."""
     if dealt <= 0:
         return
-    if not (dfn.ability and hit_ability(b, att, dfn, mv, chance)) and mv.contact:
+    contact = makes_contact(att, mv)
+    if not (dfn.ability and hit_ability(b, att, dfn, mv, chance)) and contact:
         if not (att.alive() and dfn.ability and _struck_back(b, att, dfn, chance, pick, mv)):
             if att.ability == "Poison Touch" and dfn.alive() and not dfn.status and chance("status", 0.3, dfn):
                 b.status_src = att
                 if give_status(b, dfn, "psn"):
                     reveal(att)
-    if mv.contact:
+    if contact:
         sticky_barb(att, dfn)
+
+
+def makes_contact(att, mv):
+    """Whether att's move makes contact (Battler_MoveMakesContact): a move
+    with the contact flag, unless its user has Long Reach, which every
+    contact answer asks (the on-hit abilities, Sticky Barb, Spiky Shield
+    and its kin, Mummy and Wandering Spirit). Until 2026-10-20 Long Reach
+    did nothing (Ian approved the fix)."""
+    return mv.contact and att.ability != "Long Reach"
 
 
 def sticky_barb(att, dfn):
@@ -6463,7 +6475,7 @@ def protected(b, att, mv, dfn):
         return b.guarded and mv.protect and guard_stops(b, att, mv, dfn)
     rollout_after(att, mv, False)
     guard = dfn.last.name if dfn.last is not None else None
-    if mv.contact and att.alive():
+    if makes_contact(att, mv) and att.alive():
         if guard == "Spiky Shield" and att.ability != "Magic Guard":
             hurt(b, att, max(1, att.maxhp // 8))
         elif guard == "Baneful Bunker" and not att.status:

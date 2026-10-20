@@ -5973,6 +5973,25 @@ def check_pickpocket(results):
             "Dragon Tail": (None, "Sitrus Berry"), "Dragon Tail, no bench": ("Sitrus Berry", None)}
     results.append(("Pickpocket takes a contact attacker's item", out == want, str(out)))
 
+
+@b11
+def check_long_reach(results):
+    """Long Reach (approved 2026-10-14; Battler_MoveMakesContact): its
+    holder's moves make no contact, so a Rough Skin target and a Spiky
+    Shield cost it nothing, where they cost another Pokemon an eighth."""
+    from . import perfectline as pl
+    out = {}
+    for case, ab in (("Long Reach", "Long Reach"), ("other", None)):
+        b, p, foe = b11_battle(["Tackle"], ["Tackle"], {("p", "Tackle"): [10] * 16}, hp=80)
+        p.ability, foe.ability = ab, "Rough Skin"
+        pl.use_move(b, p, fs.move("Tackle"), foe, True)
+        rough = p.maxhp - p.hp
+        p.hp, foe.protecting, foe.last = p.maxhp, True, fs.move("Spiky Shield")
+        pl.use_move(b, p, fs.move("Tackle"), foe, True)
+        out[case] = (rough, p.maxhp - p.hp)
+    want = {"Long Reach": (0, 0), "other": (10, 10)}
+    results.append(("Long Reach's moves make no contact", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
