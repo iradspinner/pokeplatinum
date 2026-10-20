@@ -7175,6 +7175,35 @@ def check_judgment(results):
     results.append(("Judgment takes its Plate's type", out == want, str(out)))
 
 
+@b12
+def check_laser_focus(results):
+    """Laser Focus (approved 2026-10-14; effect script 399,
+    subscript_laser_focus): its count is 2 when used, one off at each
+    turn's end, so the next turn's hits are critical (a 20 hit does 30)
+    and the turn after's are not; Shell Armor keeps it off, and leaving the
+    field ends it."""
+    from . import perfectline as pl
+    out = {}
+    b, p, foe = b11_battle(["Laser Focus", "Tackle"], ["Tackle"], {("p", "Tackle"): [20] * 16}, hp=200)
+    b.dice = sure12()
+    tackle = fs.move("Tackle")
+    pl.status_move(b, p, fs.move("Laser Focus"), foe, True)
+    out["used"] = (p.laser_focus, fs.crit_rate(b, p, foe, tackle))
+    fs.end_of_turn(b)
+    pl.attack(b, p, tackle, foe, True)
+    out["next turn"] = (p.laser_focus, 200 - foe.hp)
+    foe.ability = "Shell Armor"
+    out["Shell Armor"] = fs.crit_rate(b, p, foe, tackle)
+    foe.ability = None
+    fs.end_of_turn(b)
+    out["turn after"] = (p.laser_focus, fs.crit_rate(b, p, foe, tackle))
+    pl.status_move(b, p, fs.move("Laser Focus"), foe, True)
+    p.reset_volatile()
+    out["left"] = p.laser_focus
+    want = {"used": (2, 1.0), "next turn": (1, 30), "Shell Armor": 0.0, "turn after": (0, fs.CRIT_RATE[0]), "left": 0}
+    results.append(("Laser Focus makes its user's next turn's hits critical", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

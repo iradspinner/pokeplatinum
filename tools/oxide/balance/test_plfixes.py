@@ -6390,6 +6390,23 @@ def judgment_checks():
              f"(Judgment's type, Ponyta untouched, lit) {got}")]
 
 
+@b12
+def laser_focus_checks():
+    """Laser Focus in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): after the player's Bibarel uses it and the turn
+    ends, its Tackle into a trainer's Snorlax is critical, half again the
+    plain hit, on dice that land no critical hit by chance."""
+    b, sno, bib = b8_battle([("Snorlax", 30, "Thick Fat", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Laser Focus", "Tackle"])])
+    sno.hp = sno.maxhp = 999
+    plain = pl.damage_of(b, bib, sno, fs.move("Tackle"), False, True)
+    pl.status_move(b, bib, fs.move("Laser Focus"), sno, True)
+    fs.end_of_turn(b)
+    pl.attack(b, bib, fs.move("Tackle"), sno, True)
+    ok = abs((999 - sno.hp) - plain * 1.5) <= 1
+    return [("the readings' Laser Focus makes the next turn's hit critical", ok,
+             f"Tackle {999 - sno.hp} after Laser Focus, {plain} plain")]
+
+
 def main():
     results = []
 

@@ -773,8 +773,8 @@ def attack(b, att, mv, dfn, first):
             if att.item in ("Scope Lens", "Razor Claw"):
                 stage += 1
             rate = CRIT_RATE[min(stage, 4)]
-            if mv.sure or fs.merciless(att, dfn):
-                crit = True          # Frost Breath's kind, and Merciless on poison, forced (fightsim.sure_crit)
+            if mv.sure or fs.merciless(att, dfn) or fs.focused(att):
+                crit = True          # Frost Breath's kind, Merciless on poison and Laser Focus, forced (fightsim.sure_crit)
             else:
                 crit = b.dice.bad("crit", rate) if trainer else b.dice.good(rate, "crit")
         key = att.key
@@ -1167,6 +1167,8 @@ def status_move(b, att, mv, dfn, first):
         fs.fillet_away(b, att)           # half its HP for Attack, Sp. Atk and Speed (fightsim.fillet_away)
     elif e == "AUTOTOMIZE":
         fs.autotomize(att)               # two stages of Speed and 100 kg lighter (fightsim.autotomize)
+    elif e == "LASER_FOCUS":
+        fs.laser_focus(att)              # its next turn's hits critical (fightsim.laser_focus)
     elif e == "REMOVE_ALL_PP_ON_DEFEAT":
         att.grudge = att.rare = True     # Grudge, until its user next acts (fightsim.grudge)
     elif e == "OCTOLOCK":
@@ -1465,7 +1467,7 @@ def mon_key(m):
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
         key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.mud_sport, m.power_trick, m.bide, m.bide_damage,
                 m.transform_key, tuple(sorted(m.split.items())) if m.split else None, m.embargo, m.roomed, m.item_off,
-                m.grudge, m.octolocked, m.sky_holder, m.pirouette, m.lightened,
+                m.grudge, m.octolocked, m.sky_holder, m.pirouette, m.lightened, m.laser_focus,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key

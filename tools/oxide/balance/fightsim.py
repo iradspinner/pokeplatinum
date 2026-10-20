@@ -617,6 +617,11 @@ class Mon:
     # Bolt Beak and Fishious Rend (beak_doubles); set by the turn as it
     # switches, None before.
     switched_turn = None
+    # Laser Focus (MOVE_EFFECT_LASER_FOCUS): its count, 2 when used, one
+    # off at each turn's end, so its next turn's moves land critical while
+    # it stands at 1 or more (laser_focus); under the rare flag, cleared as
+    # it leaves.
+    laser_focus = 0
     # Soul Heart (soul_heart): how many other Pokemon of the battle were
     # down when it was last looked at, set as it comes in, so each later
     # faint counts once; kept only in a fight with a Soul Heart holder
@@ -697,6 +702,7 @@ class Mon:
             self.octolocked = False      # and Octolock with oxideFlags
             self.sky_holder = None       # and a Sky Drop's hold
             self.lightened = 0           # and its weight comes back from its species (autotomize)
+            self.laser_focus = 0         # and Laser Focus goes with moveEffectsMask
             if self.pirouette:
                 # Meloetta leaves the field as Aria (TryRestoreStatusOnSwitch
                 # writes the form back to its party record).
@@ -3971,7 +3977,7 @@ def attack(b, att, mv, dfn, first):
     if dmg is None:
         stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                   mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
-        crit = ((mv.sure or merciless(att, dfn) or b.rng.random() < CRIT_RATE[min(stage, 4)])
+        crit = ((mv.sure or merciless(att, dfn) or focused(att) or b.rng.random() < CRIT_RATE[min(stage, 4)])
                 and not crit_proof(att, dfn, b) and not b.st.get("first_battle"))
         if spit is not None:
             key, att.key = att.key, spit
@@ -4348,6 +4354,22 @@ def lucky_chant(side):
         side.lucky_chant = 5
 
 
+def laser_focus(att):
+    """Laser Focus (effect script 399, subscript_laser_focus): its user's
+    count is set to 2 (MOVE_EFFECT_LASER_FOCUS_1), one off at each turn's
+    end (MON_COND_CHECK_STATE_LOCK_ON, as Lock-On's), so every hit it
+    makes on the next turn is critical (focused) unless crit_proof or the
+    first battle keeps it off; gone as it leaves, and not handed on by
+    Baton Pass (MOVE_EFFECT_BATON_PASSED leaves it out). Until 2026-10-20
+    it did nothing (Ian approved the fix)."""
+    att.laser_focus, att.rare = 2, True
+
+
+def focused(att):
+    """Whether Laser Focus makes att's hits critical now (laser_focus)."""
+    return att.rare and att.laser_focus > 0
+
+
 def merciless(att, dfn):
     """Merciless (BattleSystem_CalcCriticalMulti): every hit its holder lands
     on a poisoned or badly poisoned target is critical, unless crit_proof or
@@ -4362,8 +4384,8 @@ def crit_rate(b, att, dfn, mv):
     a side under Lucky Chant and in the first battle (BtlCmd_CalcCrit)."""
     if crit_proof(att, dfn, b) or b.st.get("first_battle"):
         return 0.0
-    if mv.sure or merciless(att, dfn):
-        return 1.0                       # forced (sure_crit, merciless)
+    if mv.sure or merciless(att, dfn) or focused(att):
+        return 1.0                       # forced (sure_crit, merciless, laser_focus)
     stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                                                mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
     if att.item in ("Scope Lens", "Razor Claw"):
@@ -7700,6 +7722,8 @@ def status_move(b, att, mv, dfn, first):
         fillet_away(b, att)
     elif e == "AUTOTOMIZE":
         autotomize(att)
+    elif e == "LASER_FOCUS":
+        laser_focus(att)
     elif e == "REMOVE_ALL_PP_ON_DEFEAT":
         att.grudge = att.rare = True     # Grudge, until its user next acts (grudge)
     elif e == "OCTOLOCK":
@@ -8658,6 +8682,8 @@ def _end_of_turn_mon(b, side, m):
                 m.lock_on_by = None
         if m.throat_chop:
             m.throat_chop -= 1       # MON_COND_CHECK_STATE_LOCK_ON lowers Throat Chop's count, silently
+        if m.laser_focus:
+            m.laser_focus -= 1       # and Laser Focus's (laser_focus)
         if m.charged:
             m.charged -= 1           # MON_COND_CHECK_STATE_CHARGE: at 0 the mark is gone
     if m.taunt:
