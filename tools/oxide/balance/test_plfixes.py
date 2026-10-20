@@ -5100,6 +5100,23 @@ def gooey_checks():
     return [("the readings' Gooey slows a contact attacker", ok, f"(Speed stage, faster before, faster after) {out}")]
 
 
+@b11
+def pickpocket_checks():
+    """Pickpocket on the calculator's real rows (approved 2026-10-14): a
+    trainer's Machop holding a Black Belt Karate Chops the player's
+    Weavile, which takes the Belt, and the Machop's next Karate Chop does
+    less, by its item twin's row."""
+    b, mach, wea = b8_battle([("Machop", 30, "Guts", ["Karate Chop"], "Black Belt")],
+                             [("Weavile", 30, "Pickpocket", ["Ice Shard"])])
+    wea.hp = wea.maxhp = 10 ** 6
+    belted = b.damage(mach, wea, fs.move("Karate Chop"), roll=15)
+    pl.use_move(b, mach, fs.move("Karate Chop"), wea, True)
+    bare = b.damage(mach, wea, fs.move("Karate Chop"), roll=15)
+    ok = wea.item == "Black Belt" and mach.item is None and bare < belted
+    return [("the readings' Pickpocket takes a contact attacker's item", ok,
+             f"Weavile holds {wea.item}, Machop {mach.item}; Karate Chop with the Belt {belted}, after {bare}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

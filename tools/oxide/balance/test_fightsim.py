@@ -5945,6 +5945,34 @@ def check_gooey(results):
     want = {"contact": (-1, 0), "no contact": (0, 0), "Defiant": (-1, 2), "Clear Body": (0, 0), "Mist": (-1, 0)}
     results.append(("Gooey lowers a contact attacker's Speed", out == want, str(out)))
 
+
+@b11
+def check_pickpocket(results):
+    """Pickpocket (approved 2026-10-14; BattleSystem_TriggerAbilityOnHit,
+    subscript_pickpocket and TryPickpocket): a contact hit hands the
+    attacker's item to an empty-handed holder; not from a hit without
+    contact, not to a holder with an item, not from a Sticky Hold user, and
+    not on a Dragon Tail that will drag the holder out (Ian, 2026-10-15),
+    though with no one to drag in it steals."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, held, ab, bench in (("Tackle", "Tackle", None, None, True), ("Swift", "Swift", None, None, True),
+                                        ("holding", "Tackle", "Oran Berry", None, True),
+                                        ("Sticky Hold", "Tackle", None, "Sticky Hold", True),
+                                        ("Dragon Tail", "Dragon Tail", None, None, True),
+                                        ("Dragon Tail, no bench", "Dragon Tail", None, None, False)):
+        b, p, foe = b11_battle(["Tackle"], [name], {("b", name): [10] * 16})
+        if bench:
+            b.p.mons.append(fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p"))
+        p.ability, p.item, foe.ability, foe.item = "Pickpocket", held, ab, "Sitrus Berry"
+        foe.stages["acc"] = 6                # Dragon Tail sure to land
+        pl.use_move(b, foe, fs.move(name), p, True)
+        out[case] = (p.item, foe.item)
+    want = {"Tackle": ("Sitrus Berry", None), "Swift": (None, "Sitrus Berry"),
+            "holding": ("Oran Berry", "Sitrus Berry"), "Sticky Hold": (None, "Sitrus Berry"),
+            "Dragon Tail": (None, "Sitrus Berry"), "Dragon Tail, no bench": ("Sitrus Berry", None)}
+    results.append(("Pickpocket takes a contact attacker's item", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

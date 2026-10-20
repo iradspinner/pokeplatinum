@@ -3845,6 +3845,19 @@ def drag_out(b, att, dfn, pick):
         switch_in(b, side, side.mons.index(bench[pick("roar", len(bench))]))
 
 
+def drag_coming(b, att, dfn, mv):
+    """Whether this hit of Dragon Tail or Circle Throw will drag dfn out once
+    its ability and items have answered it (the engine's HitWillDragTarget,
+    which Pickpocket asks): hit_aftermath's and drag_out's own conditions,
+    read before the drag runs."""
+    if mv.effect != "FORCE_SWITCH_HIT" or getattr(b, "last_dealt", 0) <= 0 or b.sub_hit or getattr(b, "doubles", False):
+        return False
+    if not att.alive() or not dfn.alive() or getattr(dfn, "ingrained", False) \
+            or (dfn.ability == "Suction Cups" and not mold(att, dfn)):
+        return False
+    return bool((b.p if dfn.side == "p" else b.b).bench())
+
+
 @functools.lru_cache(maxsize=None)
 def incinerable():
     """The Berries Incinerate burns (subscript_incinerate's range, Cheri to
@@ -5080,7 +5093,7 @@ def contact_ability(b, att, dfn, mv, dealt, chance, pick):
     if dealt <= 0:
         return
     if not (dfn.ability and hit_ability(b, att, dfn, mv, chance)) and mv.contact:
-        if not (att.alive() and dfn.ability and _struck_back(b, att, dfn, chance, pick)):
+        if not (att.alive() and dfn.ability and _struck_back(b, att, dfn, chance, pick, mv)):
             if att.ability == "Poison Touch" and dfn.alive() and not dfn.status and chance("status", 0.3, dfn):
                 b.status_src = att
                 if give_status(b, dfn, "psn"):
@@ -5266,8 +5279,33 @@ def _spirit_swapped(ff):
                 yield k, None, ab, (f, None, "Wandering Spirit")
 
 
-def _struck_back(b, att, dfn, chance, pick):
-    """The defender's on-hit ability; whether it acted."""
+def pickpocket(b, att, dfn, mv):
+    """Pickpocket (BattleSystem_TriggerAbilityOnHit, subscript_pickpocket):
+    a contact move that did damage to its standing holder, which holds
+    nothing, from a user that holds an item, not one Sheer Force boosted,
+    and not a Dragon Tail or Circle Throw about to drag the holder out
+    (drag_coming, Ian's ruling of 2026-10-15). TryPickpocket then lets the
+    item go to the holder unless the holder's own item was knocked off this
+    battle, either has Multitype, the item is a Griseous Orb or the user
+    has Sticky Hold; the message names neither ability. Unlike Thief a
+    trainer's holder takes the item too. A trainer's Pokemon that loses
+    its item reads its item twin (mark_unheld). Whether the ability ran.
+    Until 2026-10-20 it did nothing (Ian approved the fix)."""
+    if att.item_off is not None or dfn.item_off is not None:
+        return raw_item_op((att, dfn), lambda: pickpocket(b, att, dfn, mv))
+    if (not dfn.alive() or dfn.item or not att.item or att is dfn or sheer_force_active(att, mv)
+            or drag_coming(b, att, dfn, mv)):
+        return False
+    if not (dfn.knocked_off or "Multitype" in (att.ability, dfn.ability) or att.item == "Griseous Orb"
+            or att.ability == "Sticky Hold"):
+        dfn.item, att.item = att.item, None
+        mark_unheld(b, att)
+    return True
+
+
+def _struck_back(b, att, dfn, chance, pick, mv):
+    """The defender's on-hit ability that a contact move of att's, mv, sets
+    off; whether it acted."""
     a = dfn.ability
     b.status_src = dfn           # a status the ability gives comes from dfn (Synchronize)
     if a == "Mummy":
@@ -5306,6 +5344,8 @@ def _struck_back(b, att, dfn, chance, pick):
         if ability_stages(dfn, att, "spe", -1) and att.ability in DEFIANT_STAT:
             raise_own(att, DEFIANT_STAT[att.ability], 2)
         return True
+    if a == "Pickpocket":
+        return pickpocket(b, att, dfn, mv)
     if att.status:
         return False
     if a == "Effect Spore":
@@ -5376,6 +5416,8 @@ ROW_NEUTRAL_ITEMS = frozenset({"White Herb", "Clear Amulet"})
 # The moves of a foe that take a trainer's item away, and the trainer's own
 # move that spends it.
 TAKES_ITEM = frozenset({"REMOVE_HELD_ITEM", "STEAL_HELD_ITEM", "SWITCH_HELD_ITEMS"})
+# The abilities that take a foe's item (pickpocket), for the same twins.
+TAKING_ABILITIES = frozenset({"Pickpocket"})
 
 
 def _compact(name):
@@ -9348,12 +9390,13 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                     if got:
                         pairs.append([d, t, got, w])
     # A trainer's held item that the fight can take away (the player's or a
-    # partner's Knock Off, Thief, Covet, Trick or Switcheroo, or the
-    # Pokemon's own Fling) and that its rows read (row_item): a twin with no
-    # item ("<key>#ni"), rowed both ways in every weather against every foe,
-    # which the battle reads once the item is gone (mark_unheld).
+    # partner's Knock Off, Thief, Covet, Trick or Switcheroo, Pickpocket, or
+    # the Pokemon's own Fling) and that its rows read (row_item): a twin with
+    # no item ("<key>#ni"), rowed both ways in every weather against every
+    # foe, which the battle reads once the item is gone (mark_unheld).
     item_twin = {}
-    takers = any(move(m).effect in TAKES_ITEM for k in pkeys + qkeys for m in moves[k])
+    takers = any(move(m).effect in TAKES_ITEM for k in pkeys + qkeys for m in moves[k]) \
+        or any(pokemon[k].get("ability") in TAKING_ABILITIES for k in pkeys + qkeys)
     for k in bkeys:
         if not row_item(pokemon[k].get("item")):
             continue
