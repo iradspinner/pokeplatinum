@@ -6364,6 +6364,31 @@ def check_sweet_veil(results):
     want = {"Spore": None, "Yawn": None, "Mold Breaker": "slp"}
     results.append(("Sweet Veil keeps its holder awake", out == want, str(out)))
 
+
+@b11
+def check_pastel_veil(results):
+    """Pastel Veil (approved 2026-10-14; subscript_poison and
+    subscript_badly_poison): its holder cannot be poisoned or badly
+    poisoned, by a move or by Toxic Spikes as it comes in; a Mold
+    Breaker's Toxic poisons it."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, ab in (("Toxic", "Toxic", None), ("Poison Gas", "Poison Gas", None),
+                           ("Mold Breaker", "Toxic", "Mold Breaker")):
+        b, p, foe = b11_battle([name], ["Splash"], {})
+        foe.ability, p.ability = "Pastel Veil", ab
+        p.stages["acc"] = 6
+        pl.use_move(b, p, fs.move(name), foe, True)
+        out[case] = foe.status
+    b, p, foe = b11_battle(["Tackle"], ["Splash"], {})
+    b.b.mons.append(fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Splash"], "b"))
+    b.b.mons[1].ability = "Pastel Veil"
+    b.b.hazards["tspikes"] = 2
+    fs.switch_in(b, b.b, 1)
+    out["Toxic Spikes"] = (b.b.cur().status, b.b.hazards["tspikes"])
+    want = {"Toxic": None, "Poison Gas": None, "Mold Breaker": "tox", "Toxic Spikes": (None, 2)}
+    results.append(("Pastel Veil keeps poison off its holder", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

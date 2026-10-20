@@ -5426,6 +5426,21 @@ def sweet_veil_checks():
     return [("the readings' Sweet Veil keeps its holder awake", ok, f"the Tsareena's status {out}")]
 
 
+@b11
+def pastel_veil_checks():
+    """Pastel Veil on the calculator's real rows (approved 2026-10-14): a
+    trainer's Grimer's Toxic does not poison the player's Pastel Veil
+    Ponyta, and badly poisons a Run Away one."""
+    out = {}
+    for ab in ("Pastel Veil", "Run Away"):
+        b, gri, pony = b8_battle([("Grimer", 30, "Stench", ["Toxic"])], [("Ponyta", 30, ab, ["Tackle"])])
+        b.dice = Lucky8(random.Random(1), True)
+        pl.status_move(b, gri, fs.move("Toxic"), pony, True)
+        out[ab] = pony.status
+    ok = out == {"Pastel Veil": None, "Run Away": "tox"}
+    return [("the readings' Pastel Veil keeps poison off its holder", ok, f"the Ponyta's status {out}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's
