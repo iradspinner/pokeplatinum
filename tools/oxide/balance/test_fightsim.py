@@ -6195,6 +6195,23 @@ def check_moody(results):
     want = (True, ["atk", "def", "spa", "spd", "spe"], ["atk", "def", "spa", "spd", "spe"], (2, [5, 6, 6, 6]))
     results.append(("Moody raises one stat two stages and lowers another at each turn's end", out == want, str(out)))
 
+
+@b11
+def check_screen_cleaner(results):
+    """Screen Cleaner (approved 2026-10-14; the switch-in check's Oxide
+    abilities step): as its holder comes in, Reflect, Light Screen and
+    Aurora Veil end on both sides; another Pokemon coming in ends none."""
+    out = {}
+    for ab in ("Screen Cleaner", None):
+        b, p, foe = b11_battle(["Tackle"], ["Tackle"], {})
+        b.p.mons.append(fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p"))
+        b.p.mons[1].ability = ab
+        b.p.screens["Reflect"], b.b.screens["Light Screen"], b.b.aurora_veil = 5, 3, 4
+        fs.switch_in(b, b.p, 1)
+        out[ab or "other"] = (b.p.screens["Reflect"], b.b.screens["Light Screen"], b.b.aurora_veil)
+    want = {"Screen Cleaner": (0, 0, 0), "other": (5, 3, 4)}
+    results.append(("Screen Cleaner ends every screen as its holder comes in", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

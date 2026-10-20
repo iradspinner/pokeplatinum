@@ -5285,6 +5285,26 @@ def moody_checks():
              f"the Bibarel's moved stages {moved}; the planner's last two draws {sizes[-2:]}")]
 
 
+@b11
+def screen_cleaner_checks():
+    """Screen Cleaner on the calculator's real rows (approved 2026-10-14):
+    the player's Jynx given Screen Cleaner coming in ends a trainer's
+    Reflect, so its Ice Punch into the trainer's Machop does what it does
+    with no screen up."""
+    b, mach, first = b8_battle([("Machop", 30, "Guts", ["Reflect"])],
+                               [("Bibarel", 30, "Simple", ["Tackle"]), ("Jynx", 30, "Screen Cleaner", ["Ice Punch"])])
+    mach.hp = mach.maxhp = 10 ** 6
+    rime = b.p.mons[1]
+    clear = pl.damage_of(b, rime, mach, fs.move("Ice Punch"), False, True)
+    pl.status_move(b, mach, fs.move("Reflect"), first, True)
+    screened = pl.damage_of(b, rime, mach, fs.move("Ice Punch"), False, True)
+    fs.switch_in(b, b.p, 1)
+    after = pl.damage_of(b, rime, mach, fs.move("Ice Punch"), False, True)
+    ok = screened < clear and after == clear and b.b.screens["Reflect"] == 0
+    return [("the readings' Screen Cleaner ends a trainer's Reflect", ok,
+             f"Ice Punch's top roll {clear} clear, {screened} under Reflect, {after} after Jynx came in")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

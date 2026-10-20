@@ -2009,7 +2009,24 @@ def entry_abilities(b, mons, intimidate=True, trace_now=True):
         intimidate_foes(b, mons)
         for new in mons:
             download(b, new)
+    for new in mons:
+        if new.ability == "Screen Cleaner" and new.alive():
+            screen_cleaner(b, new)       # Oxide's abilities' step, after Download
     forecast(b)                          # the check's form step comes after these
+
+
+def screen_cleaner(b, mon):
+    """Screen Cleaner (SWITCH_IN_CHECK_STATE_OXIDE_ABILITIES, once as its
+    holder comes in): Reflect, Light Screen and Aurora Veil end on both
+    sides; with none up it says nothing. Until 2026-10-20 it did nothing
+    (Ian approved the fix)."""
+    sides = (b.p, b.b)
+    if any(any(sd.screens.values()) or sd.aurora_veil for sd in sides):
+        for sd in sides:
+            sd.screens = dict.fromkeys(sd.screens, 0)
+            if sd.aurora_veil:
+                sd.aurora_veil = 0
+        reveal(mon)
 
 
 def download(b, mon):
