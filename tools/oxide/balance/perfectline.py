@@ -729,8 +729,8 @@ def attack(b, att, mv, dfn, first):
             if att.item in ("Scope Lens", "Razor Claw"):
                 stage += 1
             rate = CRIT_RATE[min(stage, 4)]
-            if mv.sure:
-                crit = True          # Frost Breath's kind, forced (fightsim.sure_crit)
+            if mv.sure or fs.merciless(att, dfn):
+                crit = True          # Frost Breath's kind, and Merciless on poison, forced (fightsim.sure_crit)
             else:
                 crit = b.dice.bad("crit", rate) if trainer else b.dice.good(rate, "crit")
         key = att.key

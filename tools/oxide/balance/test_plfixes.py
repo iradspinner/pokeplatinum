@@ -5173,6 +5173,25 @@ def anger_point_checks():
     return [("the readings' Anger Point maxes Attack after a critical hit", ok, f"(Attack stage, damage ratio) {out}")]
 
 
+@b11
+def merciless_checks():
+    """Merciless on the calculator's real rows (approved 2026-10-14): the
+    player's Toxapex's Liquidation lands critical, half again, on a
+    poisoned trainer's Machop, and plain on a healthy one (Sure7's dice
+    roll no critical hit)."""
+    out = {}
+    for status in ("psn", None):
+        b, mach, pex = b8_battle([("Machop", 30, "Guts", ["Karate Chop"])],
+                                 [("Toxapex", 30, "Merciless", ["Liquidation"])])
+        mach.hp = mach.maxhp = 10 ** 6
+        mach.status = status
+        pl.attack(b, pex, fs.move("Liquidation"), mach, True)
+        out[status] = mach.maxhp - mach.hp
+    plain = pl.damage_of(b, pex, mach, fs.move("Liquidation"), False, True)
+    ok = out[None] == plain and out["psn"] == pl.damage_of(b, pex, mach, fs.move("Liquidation"), True, True) > plain
+    return [("the readings' Merciless lands critical on a poisoned target", ok, f"(HP taken by status) {out}, plain {plain}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

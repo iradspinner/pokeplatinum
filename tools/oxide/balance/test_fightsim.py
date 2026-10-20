@@ -6040,6 +6040,42 @@ def check_anger_point(results):
     want = {"critical": 6, "plain": 0, "Substitute": 6, "fainting": 0, "two hits": 6}
     results.append(("Anger Point maxes Attack after a critical hit", out == want, str(out)))
 
+
+def _no_crit_dice():
+    """The readings' dice with every rolled critical hit missing, so only a
+    forced one lands."""
+    from . import perfectline as pl
+
+    class NoCrit(pl.RunDice):
+        def good(self, p, kind=None):
+            return False if kind == "crit" else super().good(p, kind)
+
+        def bad(self, kind, p):
+            return False if kind == "crit" else super().bad(kind, p)
+    return NoCrit(random.Random(1), True)
+
+
+@b11
+def check_merciless(results):
+    """Merciless (approved 2026-10-14; BattleSystem_CalcCriticalMulti): every
+    hit its holder lands on a poisoned or badly poisoned target is critical,
+    Oxide's 1.5 times, unless Shell Armor keeps it off; on a healthy target
+    a hit is plain, and a move of several hits has each hit critical."""
+    from . import perfectline as pl
+    out = {}
+    for case, status, ab in (("poisoned", "psn", None), ("badly poisoned", "tox", None), ("healthy", None, None),
+                             ("Shell Armor", "psn", "Shell Armor")):
+        b, p, foe = b11_battle(["Tackle"], ["Tackle"], {("p", "Tackle"): [10] * 16}, hp=200)
+        b.dice = _no_crit_dice()
+        p.ability, foe.status, foe.ability = "Merciless", status, ab
+        pl.attack(b, p, fs.move("Tackle"), foe, True)
+        out[case] = foe.maxhp - foe.hp
+    out["several hits"] = fs.crit_rate(b, p, foe, fs.move("Double Kick"))
+    foe.ability = None
+    out["several hits"] = (out["several hits"], fs.crit_rate(b, p, foe, fs.move("Double Kick")))
+    want = {"poisoned": 15, "badly poisoned": 15, "healthy": 10, "Shell Armor": 10, "several hits": (0.0, 1.0)}
+    results.append(("Merciless makes every hit on a poisoned target critical", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""

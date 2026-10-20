@@ -3689,7 +3689,7 @@ def attack(b, att, mv, dfn, first):
     if dmg is None:
         stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                   mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
-        crit = ((mv.sure or b.rng.random() < CRIT_RATE[min(stage, 4)])
+        crit = ((mv.sure or merciless(att, dfn) or b.rng.random() < CRIT_RATE[min(stage, 4)])
                 and not crit_proof(att, dfn, b) and not b.st.get("first_battle"))
         if spit is not None:
             key, att.key = att.key, spit
@@ -4055,14 +4055,22 @@ def lucky_chant(side):
         side.lucky_chant = 5
 
 
+def merciless(att, dfn):
+    """Merciless (BattleSystem_CalcCriticalMulti): every hit its holder lands
+    on a poisoned or badly poisoned target is critical, unless crit_proof or
+    the first battle keeps it off, as for an always-critical move. Until
+    2026-10-20 it did nothing (Ian approved the fix)."""
+    return att.ability == "Merciless" and dfn.status in ("psn", "tox")
+
+
 def crit_rate(b, att, dfn, mv):
     """The chance a hit of mv lands critical: Oxide's rate at the attacker's
     stage, 0 against Battle Armor or Shell Armor (unless Mold Breaker), on
     a side under Lucky Chant and in the first battle (BtlCmd_CalcCrit)."""
     if crit_proof(att, dfn, b) or b.st.get("first_battle"):
         return 0.0
-    if mv.sure:
-        return 1.0                       # forced (sure_crit)
+    if mv.sure or merciless(att, dfn):
+        return 1.0                       # forced (sure_crit, merciless)
     stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                                                mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
     if att.item in ("Scope Lens", "Razor Claw"):
