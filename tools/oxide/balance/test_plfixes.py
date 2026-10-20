@@ -6118,6 +6118,24 @@ def multiscale_checks():
              f"Machop's top roll {full} at full HP, {hurt} below; Pancham's {mold_full} and {mold_hurt}")]
 
 
+@b12
+def soul_heart_checks():
+    """Soul Heart on the calculator's real rows (approved 2026-10-14): the
+    player's Magearna's Flash Cannon knocks out a trainer's Machop, which
+    raises its Sp. Atk a stage as the move ends, so its hit on the
+    trainer's next Pokemon is harder."""
+    b, mach, mag = b8_battle([("Machop", 30, "Guts", ["Karate Chop"]), ("Geodude", 30, "Sturdy", ["Tackle"])],
+                             [("Magearna", 30, "Soul Heart", ["Flash Cannon"])])
+    geo = b.b.mons[1]
+    before = pl.damage_of(b, mag, geo, fs.move("Flash Cannon"), False, True)
+    mach.hp = 1
+    pl.use_move(b, mag, fs.move("Flash Cannon"), mach, True)
+    after = pl.damage_of(b, mag, geo, fs.move("Flash Cannon"), False, True)
+    ok = not mach.alive() and mag.stages["spa"] == 1 and after > before
+    return [("the readings' Soul Heart raises Sp. Atk as a foe faints", ok,
+             f"Sp. Atk stage {mag.stages['spa']}, Flash Cannon's top roll on Geodude {before} then {after}")]
+
+
 def main():
     results = []
 

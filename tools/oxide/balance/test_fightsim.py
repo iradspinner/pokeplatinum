@@ -6774,6 +6774,47 @@ def check_multiscale(results):
     results.append(("Multiscale halves a hit taken at full HP", out == want, str(out)))
 
 
+@b12
+def check_soul_heart(results):
+    """Soul Heart (approved 2026-10-14; BtlCmd_TrySoulHeart from
+    subscript_faint_mon): each time another Pokemon faints its standing
+    holder gains a stage of Sp. Atk: its own knockout of a foe as the move
+    ends, a foe fainting to its own recoil, a newcomer the hazards knock
+    out and a foe that poison faints at the turn's end; a faint before it
+    came in does not count, and nothing comes at +6."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("knockout", "recoil", "hazards", "poison", "earlier", "at +6"):
+        b, p, foe = b11_battle(["Tackle"], ["Double-Edge"], {("p", "Tackle"): [100] * 16,
+                                                             ("b", "Double-Edge"): [10] * 16})
+        b.st["soul_heart"] = True
+        p.ability = "Soul Heart"
+        second = fs.Mon("b0.1", {"species": "b0.1", "level": 50}, b.st["info"]["b0.0"], ["Tackle"], "b")
+        b.b.mons.append(second)
+        if case in ("knockout", "at +6"):
+            if case == "at +6":
+                p.stages["spa"] = 6
+            pl.use_move(b, p, fs.move("Tackle"), foe, True)
+        elif case == "recoil":
+            foe.hp = 1
+            pl.use_move(b, foe, fs.move("Double-Edge"), p, True)
+        elif case == "hazards":
+            pl.use_move(b, p, fs.move("Tackle"), foe, True)
+            b.b.hazards["rocks"] = 1
+            b.st["rock_eff"]["b0.1"] = 8
+            fs.switch_in(b, b.b, 1)
+        elif case == "poison":
+            foe.hp, foe.status = 1, "psn"
+            fs.end_of_turn(b)
+        else:
+            foe.hp = 0
+            fs.switch_in(b, b.p, 0)
+            fs.end_of_turn(b)
+        out[case] = p.stages["spa"]
+    want = {"knockout": 1, "recoil": 1, "hazards": 2, "poison": 1, "earlier": 0, "at +6": 6}
+    results.append(("Soul Heart raises Sp. Atk as each other Pokemon faints", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

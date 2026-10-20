@@ -556,6 +556,11 @@ class Mon:
     # `aria`; under the rare flag, and back to Aria as it leaves.
     pirouette = False
     aria = None
+    # Soul Heart (soul_heart): how many other Pokemon of the battle were
+    # down when it was last looked at, set as it comes in, so each later
+    # faint counts once; kept only in a fight with a Soul Heart holder
+    # (st["soul_heart"]).
+    soul_seen = 0
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -3529,12 +3534,45 @@ def move_end(b):
     (BattleControllerPlayer_MoveEnd), beyond Neutralizing Gas's step: a Trace
     holder still waiting for a foe it can copy traces now (trace), and its
     new ability's entry steps follow; then Castform takes the weather's form
-    (forecast)."""
+    (forecast). A move's knockouts come first, each faint subscript's Soul
+    Heart with them (soul_heart)."""
+    if b.st.get("soul_heart"):
+        soul_heart(b)
     if any(m.ability == "Trace" and not m.traced for m in b.p.on_field() + b.b.on_field()):
         traced = trace(b)
         if traced:
             entry_abilities(b, traced, trace_now=False)
     forecast(b)
+
+
+def fainted_others(b, mon):
+    """How many Pokemon of the battle but mon are down."""
+    return sum(1 for side in (b.p, b.b) for m in side.mons if m is not mon and not m.alive())
+
+
+def soul_heart(b):
+    """Soul Heart (BtlCmd_TrySoulHeart, run from subscript_faint_mon): each
+    time another Pokemon faints, a standing holder on the field gains a
+    stage of Sp. Atk through the stat-stage subscript (change_stages, so
+    Simple doubles it and Contrary turns it), nothing at +6; the message
+    names the ability. The faint subscripts run as a move ends, as the
+    hazards finish with a newcomer and as the turn ends, so it is looked at
+    there; each Pokemon on the field keeps the count of the others down
+    (Mon.soul_seen), so each faint counts once and one that gains the
+    ability later counts only the faints after. With two holders on the
+    field the engine raises only the faster, which a double battle alone
+    could show and which is not followed. Until 2026-10-20 it did nothing
+    (Ian approved the fix)."""
+    for m in b.p.on_field() + b.b.on_field():
+        if not m.alive():
+            continue
+        down = fainted_others(b, m)
+        if m.ability == "Soul Heart":
+            for _ in range(down - m.soul_seen):
+                if m.stages["spa"] < 6:
+                    change_stages(m, {"spa": 1})
+                    reveal(m)
+        m.soul_seen = down
 
 
 # Castform's type in each weather (BattleSystem_TriggerFormChange).
@@ -7890,6 +7928,8 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
     new.turns_in = -1 if getattr(b, "mid_turn", False) else 0
     new.toxic = 0                # Toxic's count starts again on a switch
     seal_newcomer(b, side, new)
+    if b.st.get("soul_heart"):
+        new.soul_seen = fainted_others(b, new)     # Soul Heart counts the faints from here on (soul_heart)
     if passed is not None:
         suppressed = passed.pop("suppressed")
         for k, v in passed.items():
@@ -7925,6 +7965,8 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
             give_status(b, new, "psn" if side.hazards["tspikes"] == 1 else "tox")
     if side.web and new.alive() and web_grounded(b, new):
         web_catch(new)               # Sticky Web last, past Magic Guard (subscript_hazards_check)
+    if b.st.get("soul_heart"):
+        soul_heart(b)                # a newcomer the hazards knocked out (soul_heart)
     if gas and gas_update(b):
         return                   # the gas wore off: the whole field's entry abilities went off, the newcomer's with them
     entry_abilities(b, [new], intimidate=not lead, trace_now=not lead)
@@ -7932,6 +7974,8 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
 
 def end_of_turn(b):
     _end_of_turn(b)
+    if b.st.get("soul_heart"):
+        soul_heart(b)                # the turn's end's knockouts (soul_heart)
     b.mid_turn = False
     if b.st.get("gas"):
         # A holder that fell at the turn's end takes its gas with it now; the
@@ -9879,6 +9923,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "water_sport": any(move(m).effect == "HALVE_FIRE_DAMAGE" for mv in moves.values() for m in mv),
             "mud_sport": any(move(m).effect == "HALVE_ELECTRIC_DAMAGE" for mv in moves.values() for m in mv),
             "heat_crash": heat_crash, "metal_raw": metal_raw,
+            "soul_heart": any(p.get("ability") == "Soul Heart" for p in pokemon.values()),
             "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo, "terrain": terrain,
             "fog": bool(fog)}
 
