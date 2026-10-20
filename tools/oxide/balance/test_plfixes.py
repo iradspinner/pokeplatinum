@@ -5244,6 +5244,24 @@ def metal_weight_checks():
              f"(the holder's top roll, the other's, ratio) {out}")]
 
 
+@b11
+def contrary_checks():
+    """Contrary on the calculator's real rows (approved 2026-10-14): the
+    player's Serperior's Leaf Storm raises its Sp. Atk two stages, so a
+    second Leaf Storm into a trainer's Machop hits harder than the first,
+    and the Machop's Leer raises its Defense."""
+    b, mach, serp = b8_battle([("Machop", 30, "Guts", ["Leer"])], [("Serperior", 30, "Contrary", ["Leaf Storm"])])
+    mach.hp = mach.maxhp = 10 ** 6
+    storm = fs.move("Leaf Storm")
+    first = pl.damage_of(b, serp, mach, storm, False, True)
+    pl.attack(b, serp, storm, mach, True)
+    second = pl.damage_of(b, serp, mach, storm, False, True)
+    pl.status_move(b, mach, fs.move("Leer"), serp, True)
+    ok = serp.stages["spa"] == 2 and second > first * 1.8 and serp.stages["def"] == 1
+    return [("the readings' Contrary turns Leaf Storm's drop and Leer's into rises", ok,
+             f"Sp. Atk {serp.stages['spa']}, Defense {serp.stages['def']}; Leaf Storm {first} then {second}")]
+
+
 def side_guard_checks():
     """Quick Guard in a whole turn of the readings' battle on the
     calculator's real rows (approved 2026-10-14): the player's Bibarel's

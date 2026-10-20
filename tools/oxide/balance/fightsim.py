@@ -2121,6 +2121,13 @@ def lower_stats(b, src, mon, changes, intimidate=False):
         if v >= 0:
             change_stages(mon, {stat: v})
             continue
+        if mon.ability == "Contrary" and not mold(src, mon):
+            # Contrary turns the drop into a rise before anything that
+            # stops a drop is asked (BtlCmd_ChangeStatStage), so Mist, the
+            # blockers and Mirror Armor play no part and Defiant has none
+            # to answer.
+            change_stages(mon, {stat: v})
+            continue
         if (src is not None and src is not mon and src.side != mon.side and src.alive()
                 and mon.ability == "Mirror Armor" and src.ability != "Mold Breaker"):
             if src.stages[stat] > -6:
@@ -2235,10 +2242,19 @@ def give_status(b, target, status):
     return True
 
 
+# How BtlCmd_ChangeStatStage scales a change by its target's ability:
+# Simple doubles it (Generation 5), and Contrary turns it round, from any
+# source, a rise into a fall and a fall into a rise.
+CHANGE_MULT = {"Simple": 2, "Contrary": -1}
+
+
 def change_stages(mon, changes, simple=True):
-    # Simple doubles every change to its own stages; a drop Mirror Armor
-    # turns back keeps the size it had (simple False).
-    mult = 2 if simple and getattr(mon, "ability", None) == "Simple" else 1
+    # Simple doubles every change to its own stages and Contrary turns it
+    # round (CHANGE_MULT), as BtlCmd_ChangeStatStage makes a move's, an
+    # item's and Intimidate's changes; a drop Mirror Armor turns back keeps
+    # the size it had, and one a Mold Breaker makes meets neither (simple
+    # False). Contrary did nothing until 2026-10-20 (Ian approved the fix).
+    mult = CHANGE_MULT.get(getattr(mon, "ability", None), 1) if simple else 1
     for k, v in changes.items():
         before = mon.stages[k]
         mon.stages[k] = max(-6, min(6, mon.stages[k] + v * mult))
@@ -3118,7 +3134,7 @@ def berry_check(mon, b=None):
         # stat-stage subscript (so Simple doubles it); with none that can,
         # the Berry stays uneaten. Until 2026-10-14 it did nothing (Ian
         # approved the fix).
-        room = [s for s in ("atk", "def", "spa", "spd", "spe") if mon.stages[s] < 6]
+        room = [s for s in ("atk", "def", "spa", "spd", "spe") if item_can_raise(mon, s)]
         if room:
             dice = getattr(b, "dice", None) if b is not None else None
             pick = (dice.choice("starf", len(room)) if dice is not None
@@ -3131,6 +3147,13 @@ def berry_check(mon, b=None):
     elif mon.item in ("Oran Berry", "Berry Juice") and mon.hp * 2 <= mon.maxhp:
         heal(mon, 10 if mon.item == "Oran Berry" else 20)
         consume(mon)
+
+
+def item_can_raise(mon, stat):
+    """Whether an item's raise would change mon's stat (Battler_ItemCanRaiseStat):
+    one below +6, or for a Contrary holder, which the raise lowers
+    (change_stages), one above -6."""
+    return mon.stages[stat] > -6 if mon.ability == "Contrary" else mon.stages[stat] < 6
 
 
 def binding_band(b, mon):
@@ -5069,10 +5092,10 @@ def eat_berry(mon, berry, pick):
         if mon.status in CURE_BERRY[berry]:
             mon.status, mon.sleep, mon.toxic = None, 0, 0
     elif berry in PINCH_BERRIES:
-        if mon.stages[PINCH_BERRIES[berry]] < 6:
+        if item_can_raise(mon, PINCH_BERRIES[berry]):
             change_stages(mon, {PINCH_BERRIES[berry]: 1})
     elif berry == "Starf Berry":
-        room = [s for s in ("atk", "def", "spa", "spd", "spe") if mon.stages[s] < 6]
+        room = [s for s in ("atk", "def", "spa", "spd", "spe") if item_can_raise(mon, s)]
         if room:
             change_stages(mon, {room[pick("starf", len(room))]: 2})
     elif berry == "Lansat Berry":

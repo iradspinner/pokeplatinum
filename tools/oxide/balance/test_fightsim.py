@@ -6132,6 +6132,41 @@ def check_metal_weight(results):
     want = {"Heavy Metal": (374.0, ["Steel", "Psychic"]), "Light Metal": 59.2, "twin": (59.2, ["Water"], True)}
     results.append(("Heavy Metal and Light Metal change the weight the rows are made with", out == want, str(out)))
 
+
+@b11
+def check_contrary(results):
+    """Contrary (approved 2026-10-14; BtlCmd_ChangeStatStage): every change
+    a move, an item or Intimidate makes to its holder's stages is turned
+    round: its Swords Dance lowers its Attack two stages, its Close Combat
+    raises its defences, a foe's Growl raises its Attack, under Mist too,
+    and Intimidate does; a Mold Breaker foe's Growl lowers it as usual,
+    and Belly Drum still maximises it, set directly."""
+    from . import perfectline as pl
+    out = {}
+    b, p, foe = b11_battle(["Swords Dance", "Close Combat", "Belly Drum"], ["Growl"],
+                           {("p", "Close Combat"): [10] * 16})
+    p.ability = "Contrary"
+    pl.status_move(b, p, fs.move("Swords Dance"), foe, True)
+    out["Swords Dance"] = p.stages["atk"]
+    pl.attack(b, p, fs.move("Close Combat"), foe, True)
+    out["Close Combat"] = (p.stages["def"], p.stages["spd"])
+    p.stages["atk"] = 0
+    b.p.mist = 5
+    pl.status_move(b, foe, fs.move("Growl"), p, True)
+    out["Growl under Mist"] = p.stages["atk"]
+    p.stages["atk"], foe.ability, b.p.mist = 0, "Mold Breaker", 0
+    pl.status_move(b, foe, fs.move("Growl"), p, True)
+    out["Mold Breaker's Growl"] = p.stages["atk"]
+    p.stages["atk"], foe.ability = 0, "Intimidate"
+    fs.intimidate_foes(b, [foe])
+    out["Intimidate"] = p.stages["atk"]
+    p.stages["atk"] = 0
+    pl.status_move(b, p, fs.move("Belly Drum"), foe, True)
+    out["Belly Drum"] = p.stages["atk"]
+    want = {"Swords Dance": -2, "Close Combat": (1, 1), "Growl under Mist": 1, "Mold Breaker's Growl": -1,
+            "Intimidate": 1, "Belly Drum": 6}
+    results.append(("Contrary turns every stat change round", out == want, str(out)))
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
