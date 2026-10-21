@@ -1383,7 +1383,8 @@ def make_battle(st, team, boss_keys, flags, lead):
     b = pl.make_battle(st, team, boss_keys, flags, lead)
     if CARRY is not None:
         for m, (hp, status, sleep, toxic, pp, item) in zip(b.p.mons, CARRY):
-            m.hp, m.status, m.sleep, m.toxic, m.pp, m.item = hp, status, sleep, toxic, dict(pp), item
+            m.hp, m.status, m.sleep, m.toxic, m.pp = hp, status, sleep, toxic, dict(pp)
+            fs.hold(st, m, item)         # a Plate types its Judgment (fightsim.hold)
             m.had_item = bool(item)
     return b
 

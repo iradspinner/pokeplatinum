@@ -2150,7 +2150,7 @@ def make_battle(st, team, boss_keys, flags, lead):
     # hand-played line's items, plstep3).
     held = st["held"] if "held" in st else fs.assign_items(st, team) if "split" in st else {}
     for m in pm:
-        m.item = held.get(m.key)
+        fs.hold(st, m, held.get(m.key))      # a Plate types its Judgment (fightsim.hold)
     bm = [fs.Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], "b") for k in boss_keys]
     b = fs.Battle(st, fs.Side(pm, "p"), fs.Side(bm, "b"), None, weather=st.get("base_weather"),
                   trick_room=st.get("trick_room", False), ai_flags=flags)

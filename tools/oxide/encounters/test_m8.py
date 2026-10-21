@@ -710,7 +710,9 @@ def check_calculator(results):
     # The picker: Oxide's species and the forms picked by hand, not every
     # species Showdown knows. Forms with a record carry Oxide's numbers
     # (Rotom's appliances are Electric/Fire here, Deoxys-Attack has Magic
-    # Guard); there is no Pixie Plate, so no Arceus-Fairy.
+    # Guard). Arceus has a form for every Plate, Fairy among them since
+    # element 7 gave the game its Pixie Plate (Ian approved the form on
+    # 2026-10-20; until then there was no Arceus-Fairy).
     from . import canon
     picker = set(blob["picker"])
     forms = calc_export.form_folders()
@@ -718,10 +720,16 @@ def check_calculator(results):
                     "forms, and nothing else",
                     picker == set(poks) and len(picker) == len(pokedex.species_list(root)) + len(forms)
                     and {"Rotom-Heat", "Giratina-Origin", "Shaymin-Sky", "Castform-Sunny",
-                         "Cherrim-Sunshine", "Arceus-Fire"} <= picker
-                    and not {"Arceus-Fairy", "Pikachu-Alola", "Burmy-Sandy"} & picker
+                         "Cherrim-Sunshine", "Arceus-Fire", "Arceus-Fairy"} <= picker
+                    and not {"Pikachu-Alola", "Burmy-Sandy"} & picker
                     and all(n in canon.table() for n in forms),
                     f"{len(picker)} names, {len(forms)} forms"))
+    arceus = poks.get("Arceus", {})
+    results.append(("an Arceus holding the Pixie Plate has its Fairy form, with Arceus's numbers",
+                    (poks.get("Arceus-Fairy") or {}).get("types") == ["Fairy"]
+                    and poks["Arceus-Fairy"]["bs"] == arceus.get("bs")
+                    and forms.get("Arceus-Fairy") == ("SPECIES_ARCEUS", "fairy"),
+                    str(poks.get("Arceus-Fairy"))[:120]))
     results.append(("a form with its own record carries Oxide's numbers for it",
                     poks["Rotom-Heat"]["types"] == ["Electric", "Fire"]
                     and poks["Rotom-Heat"]["bs"]["sp"] == 91

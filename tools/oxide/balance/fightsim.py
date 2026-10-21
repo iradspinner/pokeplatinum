@@ -561,6 +561,10 @@ class Mon:
     # rows' twins and the turn's end need look at them only then; cleared
     # with them when it leaves.
     rare = False
+    # A player's Pokemon that knows Judgment and holds a Plate: the key of
+    # its twin rowed with Judgment at the Plate's type (hold, plate_key),
+    # which Battle.row reads for Judgment; left on the class while None.
+    plated = None
     # Minimize's mark (MOVE_EFFECT_MINIMIZE), which Stomp and Steamroller
     # double on; cleared when it leaves.
     minimized = False
@@ -1028,6 +1032,8 @@ class Battle:
     def row(self, att, dfn, mv=None):
         # A Pokemon whose ability the gas has off reads its ability-blank twin's rows.
         ak = att.key if att.gas_stash is None else gas_key(self, att)
+        if att.plated is not None and mv is not None and mv.effect == "JUDGEMENT":
+            ak = att.plated      # the player's Judgment at its Plate's type (hold)
         dk = dfn.key if dfn.gas_stash is None else gas_key(self, dfn)
         if att.protean_type:
             ak = protean_key(self, att) or ak     # a Protean user's twin of its new type
@@ -9459,7 +9465,7 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
     pm = [Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], "p") for k in player_keys]
     held = assign_items(st, player_keys) if "split" in st else {}
     for m in pm:
-        m.item = held.get(m.key)
+        hold(st, m, held.get(m.key))
     bm = [Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], "b") for k in boss_keys]
     b = Battle(st, Side(pm, "p"), Side(bm, "b"), rng, weather=st.get("base_weather"),
                trick_room=trick_room, ai_flags=flags)
@@ -9638,7 +9644,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
     pm = [Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], "p") for k in player_keys]
     held = assign_items(st, player_keys) if "split" in st else {}
     for m in pm:
-        m.item = held.get(m.key)
+        hold(st, m, held.get(m.key))
     for m in pm:
         m.owner = "player"
     part = [Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], "p") for k in partner_keys]
@@ -9787,7 +9793,44 @@ def player_moves(rec, can_names, tiers, types):
 # The best offensive items are the type boosters (1.2 times), one of each
 # type, where the census finds one by the split; Leftovers and Sitrus
 # Berries as the census counts them.
-BOOSTER_TYPE = {it: t for t, items in pool.TYPE_ITEMS.items() for it in items}
+#
+# The Pixie Plate, which element 7 added, raises Fairy moves as the engine's
+# other Plates raise theirs (sTypeBoostingItems in battle_lib.c, by
+# HOLD_EFFECT_ARCEUS_FAIRY), so a player's Pokemon holding one gets the
+# fifth too. Until 2026-10-20 its Fairy moves got nothing (Ian approved the
+# fix). pool.TYPE_ITEMS, which player_items' census reads, has no Fairy
+# entry, so the census hands no Fairy booster out: a Pixie Plate reaches a
+# player's Pokemon only through a state's own items.
+BOOSTER_TYPE = dict({it: t for t, items in pool.TYPE_ITEMS.items() for it in items}, **{"Pixie Plate": "Fairy"})
+
+
+def plate_key(key, item):
+    """The twin a player's Pokemon reads Judgment from while it holds this
+    Plate ("<key>#jd<type>", which prepare adds for every Pokemon of the
+    player's that knows Judgment), or None for an item that is no Plate."""
+    t = JUDGMENT_TYPE.get(item)
+    return f"{key}#jd{t}" if t else None
+
+
+def hold(st, mon, item):
+    """A player's Pokemon handed its item as a battle starts (assign_items,
+    or a state's own items), its rows made with none. A Plate makes its
+    Judgment the Plate's type (effect script 268), for the battle's and the
+    trainer's AI's type reads (judgment_move, as Mon gives a trainer's from
+    its own record) and for its damage, which it reads from its twin rowed
+    at that type (plate_key, Battle.row); the Plate's fifth comes on top
+    (BOOSTER_TYPE). Without one Judgment is Normal again. Until 2026-10-20
+    a player's Judgment hit as Normal whatever it held (Ian approved the
+    fix)."""
+    mon.item = item
+    if item not in JUDGMENT_TYPE and mon.plated is None:
+        return
+    if not any(m.effect == "JUDGEMENT" for m in mon.moves):
+        return
+    mon.moves = [(judgment_move(m, item) if item in JUDGMENT_TYPE else move(m.name))
+                 if m.effect == "JUDGEMENT" else m for m in mon.moves]
+    twin = plate_key(mon.key, item)
+    mon.plated = twin if twin in st.get("pokemon", ()) else None
 
 
 @functools.lru_cache(maxsize=None)
@@ -10603,6 +10646,32 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                 pokemon.setdefault(t, dict(pokemon[d]))
                 for w in weathers:
                     pairs.append([a, t, mvs, w])
+    # The player's Judgment takes its held Plate's type (effect script 268),
+    # and a Multitype Arceus holding it is of that type too (Battler_MonType),
+    # where the player's rows are made with no item and read it as a Normal
+    # move from a Normal Pokemon. So each of the player's Pokemon that knows
+    # Judgment gets a twin per Plate type ("<key>#jd<type>", plate_key), its
+    # Judgment of that type and an Arceus in that type's form ("Arceus-Fire"
+    # and the rest, calc_export's), still holding nothing, rowed for
+    # Judgment against every trainer's key and twin; the battle reads it
+    # while the Pokemon holds that Plate (hold) and adds the Plate's fifth
+    # (BOOSTER_TYPE). None in a fight without the move, which only the
+    # Arceus of after the League knows.
+    judging = [k for k in pkeys if "Judgment" in moves[k]]
+    if judging:
+        jm = move("Judgment")
+        targets = [d for d in pokemon if d.startswith("b")]
+        for k in judging:
+            arceus = pokemon[k].get("species") == "Arceus" and pokemon[k].get("ability") == "Multitype"
+            for t in sorted(set(JUDGMENT_TYPE.values())):
+                tk = f"{k}#jd{t}"
+                pokemon[tk] = dict(pokemon[k], move_data=dict(pokemon[k].get("move_data") or {}, Judgment={
+                    "type": t, "category": jm.cat, "basePower": jm.power}))
+                if arceus and f"Arceus-{t}" in blob["poks"]:
+                    pokemon[tk]["species"] = f"Arceus-{t}"
+                for w in weathers:
+                    for d in targets:
+                        pairs.append([tk, d, ["Judgment"], w])
     # The calculator is told to leave off the abilities the battle applies
     # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once,
     # and each Pokemon's gender as the battle has it (calc_gender: "M", "F",

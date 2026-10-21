@@ -8062,6 +8062,48 @@ def check_rising_overrides(results):
             "fightsim": 20}
     results.append(("No Guard and Lock-On land only a rising move's first hit", out == want, str(out)))
 
+
+@b14
+def check_plates(results):
+    """The player's Plates (Ian approved the fixes on 2026-10-20;
+    sTypeBoostingItems in battle_lib.c, effect script 268): a Pixie Plate
+    gives the player's Fairy moves their fifth, as the other Plates give
+    theirs; and a Plate makes the player's Judgment the Plate's type, for
+    the battle's and the AI's type reads and for its damage, which comes
+    from its twin rowed at that type with the Plate's fifth on top, in the
+    readings' battle as it starts (perfectline.make_battle, a state's own
+    items) and in fightsim's (hold); with no Plate it is Normal."""
+    from . import perfectline as pl
+    out = {}
+    for item in (None, "Pixie Plate", "Flame Plate"):
+        b, p, foe = battle(["Moonblast", "Ember"], ["Tackle"], {("p", "Moonblast"): [40] * 16, ("p", "Ember"): [40] * 16})
+        p.item = item
+        out[f"{item}: Moonblast, Ember"] = (b.damage(p, foe, fs.move("Moonblast"), roll=0),
+                                            b.damage(p, foe, fs.move("Ember"), roll=0))
+    b, _p, _foe = battle(["Judgment"], ["Tackle"], {("p", "Judgment"): [40] * 16})
+    st = b.st
+    st["pokemon"]["p0#jdFire"] = dict(st["pokemon"]["p0"])
+    st["rows"][(None, "p0#jdFire", "b0.0")] = {"moves": {"Judgment": {"rolls": [30] * 16}}}
+    for item in ("Flame Plate", None):
+        st["held"] = {"p0": item}
+        r = pl.make_battle(st, ["p0"], ["b0.0"], 7, 0)
+        me, foe = r.p.cur(), r.b.cur()
+        jm = next(m for m in me.moves if m.effect == "JUDGEMENT")
+        out[f"readings, {item}: type, damage"] = (jm.type, r.damage(me, foe, jm, roll=0))
+    del st["held"]
+    me = fs.Mon("p0", st["pokemon"]["p0"], st["info"]["p0"], st["moves"]["p0"], "p")
+    # fightsim's battles hand the item through hold; on code without it the
+    # item is set as it was before, so the check fails rather than stops.
+    getattr(fs, "hold", lambda st, m, item: setattr(m, "item", item))(st, me, "Flame Plate")
+    jm = next(m for m in me.moves if m.effect == "JUDGEMENT")
+    out["fightsim, Flame Plate: type, damage"] = (jm.type, b.damage(me, b.b.cur(), jm, roll=0))
+    want = {"None: Moonblast, Ember": (40, 40), "Pixie Plate: Moonblast, Ember": (48, 40),
+            "Flame Plate: Moonblast, Ember": (40, 48),
+            "readings, Flame Plate: type, damage": ("Fire", 36), "readings, None: type, damage": ("Normal", 40),
+            "fightsim, Flame Plate: type, damage": ("Fire", 36)}
+    results.append(("the player's Plates give their type's fifth, and Judgment takes the held Plate's type",
+                    out == want, str(out)))
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

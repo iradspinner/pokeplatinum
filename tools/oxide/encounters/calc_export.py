@@ -152,8 +152,9 @@ def move_keys(root=None):
 # the twelve forms with a record of their own, whose numbers are Oxide's
 # (Rotom's appliances are Electric/Fire and so on here, and Deoxys-Attack has
 # Magic Guard); Castform's and Cherrim's weather forms; and Arceus under each
-# plate but Fairy, since the game has no Pixie Plate. Left out: the forms that
-# only change a sprite (Burmy's cloaks, the East Sea Shellos and Gastrodon, the
+# plate, Fairy among them since element 7 gave the game its Pixie Plate (until
+# 2026-10-20 Arceus had no Fairy form here). Left out: the forms that only
+# change a sprite (Burmy's cloaks, the East Sea Shellos and Gastrodon, the
 # Unown letters), whose numbers are the base species'.
 FORM_RECORDS = {
     ("SPECIES_DEOXYS", "attack"): "Deoxys-Attack",
@@ -178,7 +179,7 @@ TYPE_FORMS = {
     "Cherrim-Sunshine": ("SPECIES_CHERRIM", None),
 }
 TYPE_FORMS.update({f"Arceus-{t.title()}": ("SPECIES_ARCEUS", [t]) for t in (
-    "BUG", "DARK", "DRAGON", "ELECTRIC", "FIGHTING", "FIRE", "FLYING", "GHOST",
+    "BUG", "DARK", "DRAGON", "ELECTRIC", "FAIRY", "FIGHTING", "FIRE", "FLYING", "GHOST",
     "GRASS", "GROUND", "ICE", "POISON", "PSYCHIC", "ROCK", "STEEL", "WATER")})
 
 

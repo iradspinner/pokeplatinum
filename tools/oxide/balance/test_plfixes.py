@@ -6864,6 +6864,48 @@ def rising_overrides_checks():
     ok = 0 < out["every roll misses"] and 3 * out["every roll misses"] < out["every roll lands"]
     return [("the readings' No Guard lands only a rising move's first hit", ok, f"damage {out}")]
 
+
+@b14
+def plate_checks():
+    """The player's Plates in the readings' battle on the calculator's real
+    rows (Ian approved the fixes on 2026-10-20), with Roark's real rows: an
+    Arceus that knows Judgment has a twin per Plate type, in that type's
+    form (Arceus-Water and, with calc_export's Fairy form, Arceus-Fairy);
+    held, a Splash Plate makes its Judgment a Water hit on Roark's lead,
+    which a Normal one is not, the twin's row with the Plate's fifth; a
+    Pixie Plate makes it Fairy; and a Clefable's Pixie Plate gives its
+    Moonblast the fifth."""
+    recs = [{"constant": c, "species": sp, "how": "test", "level": 40, "nature": "Hardy", "ivs": IV, "evs": EV,
+             "ability": ab, "moves": mv, "fill": False}
+            for c, sp, ab, mv in (("SPECIES_ARCEUS", "Arceus", "Multitype", ["Judgment"]),
+                                  ("SPECIES_CLEFABLE", "Clefable", "Magic Guard", ["Moonblast"]))]
+    prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
+    st, (boss, flags, _s) = prep["st"], prep["variants"][0]
+    twins = {t: (st["pokemon"].get(f"p0#jd{t}") or {}).get("species") for t in ("Water", "Fairy")}
+    out = {"twins": twins}
+    for item in (None, "Splash Plate", "Pixie Plate"):
+        st["held"] = {"p0": item, "p1": None}
+        b = pl.make_battle(st, ["p0", "p1"], list(boss), flags, 0)
+        arc, foe = b.p.cur(), b.b.cur()
+        jm = next(m for m in arc.moves if m.effect == "JUDGEMENT")
+        r = b.rolls(arc, foe, jm)
+        out[item] = (jm.type, b.damage(arc, foe, jm, roll=15), r[-1] if r else None)
+    plain, water, fairy = out[None], out["Splash Plate"], out["Pixie Plate"]
+    hits = {}
+    for item in (None, "Pixie Plate"):
+        st["held"] = {"p0": None, "p1": item}
+        b = pl.make_battle(st, ["p1", "p0"], list(boss), flags, 0)
+        hits[item] = b.damage(b.p.cur(), b.b.cur(), fs.move("Moonblast"), roll=15)
+    out["Moonblast"] = hits
+    ok = (twins == {"Water": "Arceus-Water", "Fairy": "Arceus-Fairy"}
+          and plain[0] == "Normal" and water[0] == "Water" and fairy[0] == "Fairy"
+          and water[1] == int(water[2] * 1.2) and water[1] > 2 * plain[1]
+          and fairy[1] == int(fairy[2] * 1.2)
+          and hits["Pixie Plate"] == int(hits[None] * 1.2))
+    del st["held"]
+    return [("the readings' player's Plates type Judgment and give their fifth", ok,
+             f"(Judgment's type, damage, its row's top roll) {out}")]
+
 def main():
     results = []
 
