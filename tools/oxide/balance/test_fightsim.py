@@ -7457,6 +7457,32 @@ def check_chloroblast(results):
     results.append(("Chloroblast costs its user half its HP after a hit", out == want, str(out)))
 
 
+@b13
+def check_freezy_frost(results):
+    """Freezy Frost (approved 2026-10-14; effect script 313,
+    subscript_reset_all_stat_stages): any hit, a Substitute's and a
+    knockout's too, puts every stage of both Pokemon back to 0 and ends a
+    Focus Energy, as Haze's command does, in both battles."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("hit", "Substitute", "knockout", "fightsim"):
+        b, p, foe = b11_battle(["Freezy Frost"], ["Tackle"], {("p", "Freezy Frost"): [20] * 16})
+        b.dice = sure12()
+        p.stages["spa"], p.crit_stage, foe.stages["spd"], foe.stages["eva"] = 2, 2, 1, -1
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move("Freezy Frost"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Freezy Frost"), foe, True)
+        out[case] = (p.stages["spa"], p.crit_stage, foe.stages["spd"], foe.stages["eva"])
+    want = dict.fromkeys(("hit", "Substitute", "knockout", "fightsim"), (0, 0, 0, 0))
+    results.append(("Freezy Frost resets every stage on the field after a hit", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

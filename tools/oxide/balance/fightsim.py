@@ -4560,7 +4560,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     if e in RECOIL and att.ability not in RECOIL_PROOF:
         hurt(b, att, max(1, int(dealt * RECOIL[e])))
     if e in ANY_HIT:
-        any_hit(b, att, dfn, mv)         # Chloroblast's cost, after any hit (any_hit)
+        any_hit(b, att, dfn, mv)         # Chloroblast's cost, Freezy Frost's reset (any_hit)
     # Draining (subscript_drain_half_damage_dealt, _three_quarters): Heal Block
     # on the user stops the heal, not the damage, and Liquid Ooze turns it
     # into damage (drain).
@@ -7096,7 +7096,7 @@ def late_hit(b, att, dfn, mv, stripped, dealt):
 
 # The hits whose own effect runs ON_HIT on any hit, a knockout's or a
 # Substitute's included, each looked at once by effect (any_hit).
-ANY_HIT = frozenset({"RECOIL_HALF_MAX_HP"})
+ANY_HIT = frozenset({"RECOIL_HALF_MAX_HP", "RESET_STAT_CHANGES_HIT"})
 
 
 def any_hit(b, att, dfn, mv):
@@ -7108,11 +7108,28 @@ def any_hit(b, att, dfn, mv):
     Guard spares it and Rock Head does not, as it is a cost rather than
     recoil from the damage. Its script's Reckless 1.2 is in the row (the
     calculator's Oxide profile). Until 2026-10-20 it cost nothing (Ian
-    approved the fix)."""
+    approved the fix).
+
+    Freezy Frost (effect script 313, subscript_reset_all_stat_stages,
+    ON_HIT with no Pokemon of its own): Haze's command resets every
+    Pokemon on the field (reset_all_stats). Until 2026-10-20 every stage
+    stayed (Ian approved the fix)."""
     e = mv.effect
     if e == "RECOIL_HALF_MAX_HP":
         if att.ability != "Magic Guard":
             hurt(b, att, (att.maxhp + 1) // 2)
+    elif e == "RESET_STAT_CHANGES_HIT":
+        reset_all_stats(b)
+
+
+def reset_all_stats(b):
+    """BtlCmd_ResetAllStatChanges: every Pokemon on the field, on both
+    sides, back to no stat stages, and its Focus Energy gone (crit_stage,
+    VOLATILE_CONDITION_FOCUS_ENERGY here). Freezy Frost's hit runs it;
+    Haze's branch in status_move keeps its own older reset."""
+    for m in b.p.on_field() + b.b.on_field():
+        m.stages = dict.fromkeys(STAGE_KEYS, 0)
+        m.crit_stage = 0
 
 
 def jaw_lock(att, dfn):

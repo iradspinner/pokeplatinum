@@ -6520,6 +6520,19 @@ def chloroblast_checks():
              f"(hit, HP paid) {got} of {venu.maxhp}")]
 
 
+@b13
+def freezy_frost_checks():
+    """Freezy Frost in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Glaceon at +2 Sp. Atk hits a
+    trainer's Geodude at +2 Defense, and both are back at no stages."""
+    b, geo, glace = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Glaceon", 30, "Snow Cloak", ["Freezy Frost"])])
+    glace.stages["spa"], geo.stages["def"] = 2, 2
+    pl.attack(b, glace, fs.move("Freezy Frost"), geo, True)
+    got = (geo.hp < geo.maxhp, glace.stages["spa"], geo.stages["def"])
+    return [("the readings' Freezy Frost resets the stages on the field", got == (True, 0, 0),
+             f"(hit, Glaceon's Sp. Atk stage, Geodude's Defense stage) {got}")]
+
+
 def main():
     results = []
 
