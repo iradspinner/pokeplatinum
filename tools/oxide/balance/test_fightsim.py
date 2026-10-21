@@ -8995,6 +8995,28 @@ def check_doubles_partner_veils(results):
                     out == want, f"{out}"))
 
 
+@b15
+def check_doubles_analytic(results):
+    """Analytic in a double battle (Ian approved the double-battle part batch
+    11 left on 2026-10-14; BattleSystem_CalcMoveDamage's 13/10 once every
+    other battler still up has moved, Battler_MovedThisTurn): the slowest
+    Pokemon's Tackle of 40 takes 52, a spread move's each target too, and
+    one with a slower Pokemon still to act takes 40. Until 2026-10-21 a
+    double battle's Analytic never counted."""
+    def battle(move, last):
+        mons = {"p0": {"moves": [move], "ability": "Analytic"}, "p1": {"moves": ["Splash"]},
+                "b0.0": {"moves": ["Splash"]}, "b0.1": {"moves": ["Splash"]}}
+        rows = {("p0", "b0.0"): {move: 40}, ("p0", "b0.1"): {move: 40}}
+        st = doubles_st(mons, rows, speeds={"p0": 30, "p1": 50, "b0.0": 50, "b0.1": 50 if last else 10})
+        st["first_battle"] = True
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": (move, "b0.0")})
+        return [100 - mon_of(b, k).hp for k in ("b0.0", "b0.1")]
+    out = {"last, Tackle": battle("Tackle", True), "last, Hyper Voice": battle("Hyper Voice", True),
+           "a slower foe still to act, Tackle": battle("Tackle", False)}
+    want = {"last, Tackle": [52, 0], "last, Hyper Voice": [39, 39], "a slower foe still to act, Tackle": [40, 0]}
+    results.append(("doubles: Analytic counts once every other Pokemon has acted", out == want, f"damage {out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

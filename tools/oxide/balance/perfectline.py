@@ -536,13 +536,21 @@ def _spread_attack(b, att, mv, targets, paid):
     before = {id(t): t.hp for t in targets}
     try:
         for t in targets:
+            # Analytic: 13/10 power once every other Pokemon standing has acted
+            # this turn (Battler_MovedThisTurn for each), which run_doubles
+            # marks as moving_last (fightsim.moves_last, ability_power). Until
+            # 2026-10-21 a double battle's Analytic never counted (Ian approved
+            # the double-battle part batch 11 left on 2026-10-14).
+            b.analytic = att if att.ability == "Analytic" and fs.moves_last(b, t not in b.moved) else None
             attack(b, att, mv, t, t not in b.moved)
+            b.analytic = None
             fs.hit_aftermath(b, att, t, mv,
                              lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
                              lambda kind, n: b.dice.choice(kind, n))
     finally:
         b.spread = False
         b.spread_magnitude = None
+        b.analytic = None
     if b.blown is att:
         fs.mind_blown_cost(b, att)       # once, after every target (fightsim.mind_blown_cost)
     for t in targets:
