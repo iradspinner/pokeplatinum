@@ -3635,13 +3635,18 @@ def sky_drop(b, att, mv, dfn):
     The second turn drops the target: the move fails on one no longer held,
     does nothing to a Flying type, and otherwise hits. Until 2026-10-15 it
     hit on the turn it was used, nobody was held, and Flying types took it
-    (Ian approved the fix). Its double-battle part is left to the double
-    battles' own fixes."""
+    (Ian approved the fix). In a double battle it fails on an ally too
+    (TrySkyDrop), and while the hold lasts the user and the target are in
+    the air for every other Pokemon (sky_airborne), and the user's drop
+    goes to the Pokemon it holds (run_doubles); until 2026-10-21 it was a
+    plain hit there (Ian approved the double-battle part batch 8 left on
+    2026-10-14)."""
     if att.charging is None:
         weight = (calc.blob()["poks"].get(dfn.species) or {}).get("weightkg") or 0
         if (not dfn.alive() or dfn is att or (dfn.charging is not None and dfn.charging.effect in INVULNERABLE)
                 or dfn.protecting or dfn.sub or dfn.sky_holder is not None or weight >= 200
-                or getattr(b, "gravity", 0) or att.smacked):
+                or getattr(b, "gravity", 0) or att.smacked or dfn.side == att.side
+                or (b.doubles and sky_airborne(b, dfn))):
             return False
         att.charging = mv
         dfn.sky_holder, dfn.rare = att.key, True
@@ -3651,6 +3656,36 @@ def sky_drop(b, att, mv, dfn):
         return False
     dfn.sky_holder = None
     return "Flying" not in dfn.types
+
+
+def sky_airborne(b, mon):
+    """Whether, in a double battle, mon is up in the air with a Sky Drop:
+    its user charging it, or a Pokemon it holds (sky_held). TrySkyDrop and
+    the lift's script give both MOVE_EFFECT_AIRBORNE, as Fly gives its user,
+    so every other Pokemon's move meets them as it meets a Pokemon in the
+    air (sky_out_of_reach); a single battle has no other Pokemon to aim at
+    them."""
+    if mon.charging is not None and mon.charging.effect == "SKY_DROP":
+        return True
+    return mon.sky_holder is not None and sky_held(b, mon)
+
+
+def sky_out_of_reach(b, att, dfn, mv):
+    """Whether att's move cannot reach dfn up in the air with a Sky Drop
+    (sky_airborne), as BattleControllerPlayer_CheckMoveHitOverrides misses a
+    MOVE_EFFECT_AIRBORNE target: unless the move reaches the air (HIT_IN_AIR:
+    Gust, Twister, Thunder, Hurricane, Sky Uppercut, Smack Down) or No Guard
+    or Lock-On lands it (lands_sure)."""
+    if not sky_airborne(b, dfn):
+        return False
+    return not air_reach(mv) and not lands_sure(att, dfn, mv)
+
+
+def air_reach(mv):
+    """How a move strikes a Pokemon in the air: HIT_IN_AIR's 2 or 1, or 0;
+    Thousand Arrows shares Smack Down's effect but does not reach the air
+    (Oxide), as reach_mult has it."""
+    return HIT_IN_AIR.get(mv.effect, 0) if mv.name != "Thousand Arrows" else 0
 
 
 def heal(mon, amount):
@@ -6848,6 +6883,8 @@ def state_mult(b, att, dfn, mv):
         # (15/10) after a doubling and before Technician (helping_hand).
         m *= power_ratio(att, mv.power, mv.power * 15 // 10) if mv.power > 1 else 1.5
     reach = reach_mult(mv, dfn)
+    if not reach and b.doubles and (dfn.rare or dfn.charging is not None) and sky_airborne(b, dfn):
+        reach = air_reach(mv)    # Gust and Twister double on a Sky Drop's pair in the air, as on a flier
     if reach > 1:
         # The effect scripts double the power (POWER_MULTI 20) before
         # Technician is judged; Magnitude, whose power is rolled, doubles.
@@ -10084,6 +10121,10 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
                 consume(mon)             # its Custap Berry, eaten as it acts (subscript_check_quick_claw)
             if t is not None and not t.alive():
                 t = None
+            if mv.effect == "SKY_DROP" and mon.charging is not None:
+                # Sky Drop's drop, aimed at the Pokemon its user holds (the
+                # target it lifted, which BattleSystem_Defender keeps).
+                t = next((m for m in foes_of(b, mon) if m.sky_holder == mon.key), t)
             tl = targets_of(b, mon, mv, t, randomize=mv.effect == "STRUGGLE")
             first = bool(tl) and tl[0] not in b.moved
             # No standing battler acts after this one (moves_last, for Protect).

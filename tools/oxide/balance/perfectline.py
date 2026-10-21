@@ -460,7 +460,7 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         fs.mark_hit(b, mv, dfn, True, targets)
     if mv.effect in ("FLY", "BOUNCE") and att.smacked:
         return                       # brought down by Smack Down, it cannot fly (fightsim.smack_down)
-    if mv.effect == "SKY_DROP" and not b.doubles and not fs.sky_drop(b, att, mv, dfn):
+    if mv.effect == "SKY_DROP" and not fs.sky_drop(b, att, mv, dfn):
         return                       # Sky Drop's lift, or a drop that fails (fightsim.sky_drop)
     if mv.effect in fs.TWO_TURN and att.charging is None and not fs.charge_skipped(b, att, mv):
         att.charging = mv
@@ -762,6 +762,10 @@ def attack(b, att, mv, dfn, first):
         crash(b, att, dfn, mv)
         fs.rollout_break(att, mv)
         return                   # No Guard reaches it there (fightsim.no_guard)
+    if b.doubles and fs.sky_out_of_reach(b, att, dfn, mv):
+        crash(b, att, dfn, mv)
+        fs.rollout_break(att, mv)
+        return                   # up in the air with a Sky Drop, in a double battle (fightsim.sky_airborne)
     if fs.protected(b, att, mv, dfn):
         crash(b, att, dfn, mv)
         fs.rollout_break(att, mv)
@@ -1157,7 +1161,8 @@ def status_move(b, att, mv, dfn, first):
     if targets_foe and dfn.alive():
         if fs.protected(b, att, mv, dfn):
             return
-        if fs.status_out_of_reach(att, dfn, mv):
+        if fs.status_out_of_reach(att, dfn, mv) or (b.doubles and mv.range not in fs.OWN_RANGES
+                                                    and fs.sky_out_of_reach(b, att, dfn, mv)):
             return               # a target on its hidden turn of Fly and the like (fightsim.status_out_of_reach)
         # Only Thunder Wave among the status moves meets the type chart
         # (BattleControllerPlayer_CheckTypeChart): it fails on a Ground type,

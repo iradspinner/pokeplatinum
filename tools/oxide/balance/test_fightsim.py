@@ -8865,6 +8865,36 @@ def check_doubles_ally_support(results):
     results.append(("doubles: Coaching, Life Dew and Heal Pulse help the user's ally", out == want, f"{out}"))
 
 
+@b15
+def check_doubles_sky_drop(results):
+    """Sky Drop in a double battle (Ian approved the double-battle part
+    batch 8 left on 2026-10-14; effect script 414, TrySkyDrop and the lift's
+    MOVE_EFFECT_AIRBORNE on both): the first turn lifts the target, and while
+    it is held the user and the target are in the air for every other
+    Pokemon, so a Tackle at either misses while a Gust hits the user at
+    double, and the held target does nothing; the second turn drops the
+    target it holds, and the turn after that both are on the ground again.
+    Until 2026-10-21 it was a plain hit on the turn it was used."""
+    def battle(turns, gust=False):
+        move = "Gust" if gust else "Tackle"
+        mons = {"p0": {"moves": ["Sky Drop"]}, "p1": {"moves": ["Tackle"]},
+                "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": [move]}}
+        rows = {("p0", "b0.0"): {"Sky Drop": 60}, ("p1", "b0.0"): {"Tackle": 10},
+                ("b0.1", "p0"): {move: 10}, ("b0.0", "p1"): {"Tackle": 30}}
+        st = doubles_st(mons, rows, speeds={"p0": 200, "p1": 150, "b0.1": 100, "b0.0": 50})
+        st["first_battle"] = True
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"],
+                          {"p0": ("Sky Drop", "b0.0"), "p1": ("Tackle", "b0.0"), "b0.0": ("Tackle", "p1"),
+                           "b0.1": (move, "p0")}, turns=turns)
+        return {k: mon_of(b, k).hp for k in ("p0", "p1", "b0.0")}
+    out = {"after the lift": battle(1), "after the drop": battle(2), "a Gust at the user in the air": battle(1, True)}
+    want = {"after the lift": {"p0": 100, "p1": 100, "b0.0": 100},
+            "after the drop": {"p0": 90, "p1": 70, "b0.0": 30},
+            "a Gust at the user in the air": {"p0": 80, "p1": 100, "b0.0": 100}}
+    results.append(("doubles: Sky Drop lifts its target, both out of the others' reach, then drops it", out == want,
+                    f"HP {out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
