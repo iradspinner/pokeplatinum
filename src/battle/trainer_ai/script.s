@@ -2357,6 +2357,9 @@ Expert_Main:
     // Clear Smog resets its target's stat changes: Haze's routine, the
     // target's half.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CLEAR_SMOG, Expert_ClearSmog
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Freezy Frost resets every
+    // battler's stat changes after its hit: Haze's two halves, below Clear Smog's.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESET_STAT_CHANGES_HIT, Expert_FreezyFrost
     // Mortal Spin clears what Rapid Spin clears, without the Speed raise.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MORTAL_SPIN, Expert_MortalSpin
     // Salt Cure costs its target HP every turn: a routine of its own (Ian,
@@ -3170,6 +3173,53 @@ Expert_ClearSmog_TryScorePlus3:
     AddToMoveScore 3
 
 Expert_ClearSmog_End:
+    PopOrEnd
+
+Expert_FreezyFrost:
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read). Freezy Frost resets every
+    // battler's stat changes after its hit, as Haze does, so it takes both halves of
+    // Expert_Haze. As a damaging move it takes none of Haze's -1 when neither half applies,
+    // as Expert_ClearSmog leaves it out.
+    //
+    // If any of the attacker's stat stages are at +3 or higher, or any of the target's stat
+    // stages are at -3 or lower, 80.4% chance of score -3.
+    //
+    // If any of the attacker's stat stages are at -3 or lower, or any of the target's stat
+    // stages are at +3 or higher, 80.4% chance of score +3.
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 4, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 4, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 4, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 4, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_ACCURACY, 4, Expert_FreezyFrost_TryScoreMinus3
+    GoTo Expert_FreezyFrost_CheckToEncourage
+
+Expert_FreezyFrost_TryScoreMinus3:
+    IfRandomLessThan 50, Expert_FreezyFrost_CheckToEncourage
+    AddToMoveScore -3
+
+Expert_FreezyFrost_CheckToEncourage:
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 8, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 8, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 8, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 8, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 4, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 4, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 4, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 4, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 4, Expert_FreezyFrost_TryScorePlus3
+    GoTo Expert_FreezyFrost_End
+
+Expert_FreezyFrost_TryScorePlus3:
+    IfRandomLessThan 50, Expert_FreezyFrost_End
+    AddToMoveScore 3
+
+Expert_FreezyFrost_End:
     PopOrEnd
 
 Expert_Bide:

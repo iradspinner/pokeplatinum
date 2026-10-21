@@ -1472,6 +1472,20 @@ def x_clear_smog(c):
     return s
 
 
+def x_freezy_frost(c):
+    """Expert_FreezyFrost (Oxide, Ian, 2026-10-21): both halves of Haze for
+    the hit that resets every battler's stages, without Haze's -1."""
+    u, t = c.u, c.t
+    s = 0
+    if any(u.stages[k] >= 3 for k in FOUR + ("eva",)) or any(t.stages[k] <= -3 for k in FOUR + ("acc",)):
+        if c.roll(80.5):
+            s -= 3
+    if any(t.stages[k] >= 3 for k in FOUR + ("eva",)) or any(u.stages[k] <= -3 for k in FOUR + ("acc",)):
+        if c.roll(80.5):
+            s += 3
+    return s
+
+
 def x_bide(c):
     """Expert_Bide: -2 at 90% HP or less."""
     return -2 if c.hu <= 90 else 0
@@ -2970,7 +2984,7 @@ EXPERT_ROUTINES = {
     "Expert_Acrobatics": x_doubled, "Expert_BoltBeak": x_doubled,
     "Expert_RapidSpin": x_rapid_spin, "Expert_SpeedUpOnHit": x_speed_up_on_hit,
     "Expert_MortalSpin": x_mortal_spin, "Expert_SaltCure": x_salt_cure, "Expert_StoneAxe": x_stone_axe,
-    "Expert_CeaselessEdge": x_ceaseless_edge}
+    "Expert_CeaselessEdge": x_ceaseless_edge, "Expert_FreezyFrost": x_freezy_frost}
 
 
 @functools.lru_cache(maxsize=None)
