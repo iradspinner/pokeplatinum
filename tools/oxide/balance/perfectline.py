@@ -994,6 +994,9 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         return b.dice.lands_on_player(kind, chance / 100) if trainer else b.dice.good(chance / 100, kind)
     if e in fs.HIT_STATUS and chance and status_lands("status"):
         fs.give_status_by_move(b, att, dfn, mv, fs.HIT_STATUS[e])
+    if e in fs.STATUS_PICK and chance and status_lands("status"):
+        # Dire Claw's one status of three, drawn evenly (fightsim.STATUS_PICK)
+        fs.give_status_by_move(b, att, dfn, mv, fs.STATUS_PICK[e][b.dice.choice("status pick", 3)])
     # Burning Jealousy burns only a target one of whose stats rose this turn.
     if e == "BURN_HIT_IF_STATS_ROSE" and getattr(dfn, "stat_raised", False) and chance and status_lands("status"):
         fs.give_status_by_move(b, att, dfn, mv, "brn")

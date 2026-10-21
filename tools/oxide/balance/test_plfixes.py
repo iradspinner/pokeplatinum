@@ -6620,6 +6620,24 @@ def hazard_hit_checks():
     return [("the readings' Stone Axe and Ceaseless Edge lay their hazards", ok, f"(hit, rocks, Spikes) {out}")]
 
 
+@b13
+def dire_claw_checks():
+    """Dire Claw on real rows (approved 2026-10-14): the player's
+    Weavile's hit gives a trainer's Snorlax the status its pick of three
+    names when the chance lands: sleep, poison or paralysis."""
+    out = {}
+    for pick in range(3):
+        class Pick(Lucky8):
+            def choice(self, kind, n, _k=pick):
+                return _k
+        b, lax, wea = b8_battle([("Snorlax", 30, "Thick Fat", ["Tackle"])], [("Weavile", 30, "Pressure", ["Dire Claw"])],
+                                Pick)
+        pl.attack(b, wea, fs.move("Dire Claw"), lax, True)
+        out[pick] = (lax.hp < lax.maxhp, lax.status)
+    ok = out == {0: (True, "slp"), 1: (True, "psn"), 2: (True, "par")}
+    return [("the readings' Dire Claw gives the status it picks at its chance", ok, f"(hit, status) by pick {out}")]
+
+
 def main():
     results = []
 

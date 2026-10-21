@@ -7339,10 +7339,11 @@ def check_jaw_lock(results):
     results.append(("Jaw Lock holds its target and its user, each by the other", out == want, str(out)))
 
 
-def lucky13():
+def lucky13(pick=0):
     """Dice for batch 13's checks in the readings' battle: every chance
     lands that is above nothing (the player's own added effects and its
-    critical hits included), no miss, at the top damage roll."""
+    critical hits included), no miss, at the top damage roll, and every
+    pick among n is `pick`."""
     from . import perfectline as pl
 
     class Lucky(pl.RunDice):
@@ -7357,6 +7358,9 @@ def lucky13():
 
         def roll(self, top):
             return 15
+
+        def choice(self, kind, n):
+            return pick
     return Lucky(random.Random(1), True)
 
 
@@ -7616,6 +7620,33 @@ def check_hazard_hits(results):
     want.update({("Ceaseless Edge", "hit"): (0, 1, 0, 0), ("Ceaseless Edge", "full"): (0, 3, 0, 0),
                  ("Ceaseless Edge", "fightsim"): (0, 1, 0, 0)})
     results.append(("Stone Axe and Ceaseless Edge lay their hazard after a hit", out == want, str(out)))
+
+
+@b13
+def check_dire_claw(results):
+    """Dire Claw (approved 2026-10-14; effect script 350): at the move's
+    chance (30) it gives the one status its even pick of three names,
+    sleep, poison or paralysis, in both battles; a target immune to the
+    one picked (a Poison type to poison) takes none; a Substitute keeps it
+    off; and when the chance fails nothing comes."""
+    from . import perfectline as pl
+    out = {}
+    for case, pick, types in (("sleep", 0, ("Normal",)), ("poison", 1, ("Normal",)), ("paralysis", 2, ("Normal",)),
+                              ("poison into Poison", 1, ("Poison",)), ("Substitute", 2, ("Normal",)),
+                              ("misses", 0, ("Normal",)), ("fightsim", 0, ("Normal",))):
+        b, p, foe = b11_battle(["Dire Claw"], ["Tackle"], {("p", "Dire Claw"): [20] * 16}, b_types=types)
+        b.dice = sure12() if case == "misses" else lucky13(pick)
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move("Dire Claw"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Dire Claw"), foe, True)
+        out[case] = foe.status
+    want = {"sleep": "slp", "poison": "psn", "paralysis": "par", "poison into Poison": None, "Substitute": None,
+            "misses": None, "fightsim": "slp"}
+    results.append(("Dire Claw gives one status of three at its chance", out == want, str(out)))
 
 
 def main():

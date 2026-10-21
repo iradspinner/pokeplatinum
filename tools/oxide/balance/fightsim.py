@@ -202,6 +202,12 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               # strips. Until 2026-10-20 it never paralysed (Ian approved
               # the fix).
               "WILDBOLT_STORM": "par"}
+# Dire Claw (effect script 350): Random 2, 0 picks sleep, poison or
+# paralysis evenly, and only that one is tried at the move's chance (30),
+# through its own subscript and checks, so a target immune to the one
+# picked takes none. Sheer Force leaves it (not on sSheerForceEffects).
+# Until 2026-10-20 it never gave a status (Ian approved the fix).
+STATUS_PICK = {"SLEEP_POISON_PARALYZE_HIT": ("slp", "psn", "par")}
 FLINCH_HIT = {"FLINCH_HIT", "FLINCH_BURN_HIT", "FLINCH_PARALYZE_HIT", "FLINCH_FREEZE_HIT",
               "FLINCH_MINIMIZE_DOUBLE_HIT", "FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE",
               "UPPER_HAND",                       # at its 100%, as Fake Out's target flinches
@@ -4675,6 +4681,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         chance *= 2
     if e in HIT_STATUS and b.rng.random() * 100 < chance:
         give_status_by_move(b, att, dfn, mv, HIT_STATUS[e])
+    if e in STATUS_PICK and b.rng.random() * 100 < chance:
+        give_status_by_move(b, att, dfn, mv, b.rng.choice(STATUS_PICK[e]))     # Dire Claw's pick of three
     if e == "BURN_HIT_IF_STATS_ROSE" and getattr(dfn, "stat_raised", False) and b.rng.random() * 100 < chance:
         give_status_by_move(b, att, dfn, mv, "brn")
     if e == "TRI_ATTACK" and b.rng.random() * 100 < chance:
