@@ -2385,6 +2385,31 @@ def stat_drop_blocked(b, mon, changes, src=None, intimidate=False):
     return False
 
 
+def spicy_extract(b, att, dfn, mv):
+    """Spicy Extract (effect script 302, subscript_spicy_extract, a direct
+    effect on a target left standing): its Attack rises two stages, then
+    its Defense falls two, each through BtlCmd_ChangeStatStage, which works
+    out Simple and Contrary first (a Mold Breaker user gets past both).
+    Only a fall meets the blockers: a rise passes a Substitute and Mist,
+    while the fall stops at a Substitute (an Infiltrator's passes,
+    sub_blocks) and meets Mirror Armor, Mist, Flower Veil, the Clear Amulet,
+    Clear Body, Big Pecks and Defiant as any drop does (lower_stats). Under
+    Contrary the two swap: the Attack falls, past those same checks, and
+    the Defense rises. Until 2026-10-20 the move did nothing (Ian approved
+    the fix)."""
+    if not dfn.alive():
+        return
+    sub = sub_blocks(att, dfn, mv)
+    if dfn.ability == "Contrary" and not mold(att, dfn):
+        if not sub and dfn.stages["atk"] > -6 and not stat_drop_blocked(b, dfn, {"atk": -2}, src=att):
+            change_stages(dfn, {"atk": 2})       # Contrary's fall (CHANGE_MULT)
+        change_stages(dfn, {"def": -2})          # and its rise
+        return
+    change_stages(dfn, {"atk": 2}, simple=not mold(att, dfn))
+    if not sub:
+        lower_stats(b, att, dfn, {"def": -2})
+
+
 def mist(side):
     """Mist (BtlCmd_TryMist): five turns in which the other side's moves and
     abilities cannot lower the stats of this side's Pokemon
@@ -7889,6 +7914,8 @@ def status_move(b, att, mv, dfn, first):
     elif e in FOE_STAGES:
         if not sub_blocks(att, dfn, mv):
             lower_stats(b, att, dfn, FOE_STAGES[e])
+    elif e == "SPICY_EXTRACT":
+        spicy_extract(b, att, dfn, mv)
     elif e == "VENOM_DRENCH":
         # Only a poisoned target's stats fall (effect script 361); until
         # 2026-10-15 the move did nothing (Ian approved the fix).

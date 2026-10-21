@@ -7649,6 +7649,36 @@ def check_dire_claw(results):
     results.append(("Dire Claw gives one status of three at its chance", out == want, str(out)))
 
 
+@b13
+def check_spicy_extract(results):
+    """Spicy Extract (approved 2026-10-14; effect script 302,
+    subscript_spicy_extract): the target's Attack rises two stages and its
+    Defense falls two, in both battles; a Substitute stops the fall alone;
+    Contrary swaps them, its fall stopped by a Substitute too; Mirror Armor
+    turns the fall on the user; Clear Body stops the fall; Simple doubles
+    both, unless the user has Mold Breaker."""
+    from . import perfectline as pl
+    out = {}
+    cases = (("plain", None, None, 0), ("Substitute", None, None, 50), ("Contrary", "Contrary", None, 0),
+             ("Contrary behind a Substitute", "Contrary", None, 50), ("Mirror Armor", "Mirror Armor", None, 0),
+             ("Clear Body", "Clear Body", None, 0), ("Simple", "Simple", None, 0),
+             ("Simple, Mold Breaker", "Simple", "Mold Breaker", 0), ("fightsim", None, None, 0))
+    for case, ability, mine, sub in cases:
+        b, p, foe = b11_battle(["Spicy Extract"], ["Tackle"], {})
+        b.dice = sure12()
+        foe.ability, p.ability, foe.sub = ability, mine, sub
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.status_move(b, p, fs.move("Spicy Extract"), foe, True)
+        else:
+            pl.status_move(b, p, fs.move("Spicy Extract"), foe, True)
+        out[case] = (foe.stages["atk"], foe.stages["def"], p.stages["def"])
+    want = {"plain": (2, -2, 0), "Substitute": (2, 0, 0), "Contrary": (-2, 2, 0),
+            "Contrary behind a Substitute": (0, 2, 0), "Mirror Armor": (2, 0, -2), "Clear Body": (2, 0, 0),
+            "Simple": (4, -4, 0), "Simple, Mold Breaker": (2, -2, 0), "fightsim": (2, -2, 0)}
+    results.append(("Spicy Extract raises the target's Attack and lowers its Defense", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

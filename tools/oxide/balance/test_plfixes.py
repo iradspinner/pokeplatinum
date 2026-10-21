@@ -6638,6 +6638,18 @@ def dire_claw_checks():
     return [("the readings' Dire Claw gives the status it picks at its chance", ok, f"(hit, status) by pick {out}")]
 
 
+@b13
+def spicy_extract_checks():
+    """Spicy Extract on real rows (approved 2026-10-14): the player's
+    Bibarel raises a trainer's Geodude's Attack two stages and lowers its
+    Defense two."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Spicy Extract"])])
+    pl.status_move(b, bib, fs.move("Spicy Extract"), geo, True)
+    got = (geo.stages["atk"], geo.stages["def"])
+    return [("the readings' Spicy Extract trades the target's Defense for Attack", got == (2, -2),
+             f"(Attack stage, Defense stage) {got}")]
+
+
 def main():
     results = []
 

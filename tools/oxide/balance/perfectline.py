@@ -1144,6 +1144,8 @@ def status_move(b, att, mv, dfn, first):
     elif e in fs.FOE_STAGES:
         if not fs.sub_blocks(att, dfn, mv):
             fs.lower_stats(b, att, dfn, fs.FOE_STAGES[e])     # stat by stat (fightsim.lower_stats)
+    elif e == "SPICY_EXTRACT":
+        fs.spicy_extract(b, att, dfn, mv)    # Attack up two, then Defense down two (fightsim.spicy_extract)
     elif e == "VENOM_DRENCH":
         if dfn.status in ("psn", "tox") and not fs.sub_blocks(att, dfn, mv):
             fs.lower_stats(b, att, dfn, fs.VENOM_DRENCH_STAGES)     # a poisoned target's three stats
