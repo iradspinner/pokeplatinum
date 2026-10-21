@@ -9677,6 +9677,22 @@ def ally_of(b, mon):
     return next((m for m in side.on_field() if m is not mon and m.alive()), None)
 
 
+def pollen_puff_heal(dfn):
+    """Pollen Puff aimed at its user's ally (effect script 380's IfSameSide
+    branch, subscript_pollen_puff_heal): once the move has met the ally's
+    Protect, hidden turn and accuracy as a hit would, the ally gets back half
+    its maximum HP, rounded up, in place of any damage; nothing at full HP
+    (subscript_recover_hp), and Heal Block on the ally does not stop it. A
+    Telepathy ally takes nothing, as from any partner's move with power
+    (perfectline.attack). A Bulletproof ally, which the engine's immunity
+    check shields, is healed here: not followed, as no ally of the player's
+    or a trainer's is aimed at so today. Until 2026-10-21 a double battle's
+    Pollen Puff hit its user's ally (Ian approved the double-battle part
+    batch 7 left on 2026-10-14)."""
+    if dfn.alive() and dfn.hp < dfn.maxhp:
+        heal(dfn, (dfn.maxhp + 1) // 2)
+
+
 def after_you(b, att, dfn):
     """After You (effect script 305, subscript_handle_after_you,
     ChangeExecutionOrderPriority): in a double battle its target, yet to act
