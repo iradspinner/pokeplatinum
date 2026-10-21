@@ -874,3 +874,19 @@ The docs pass of 2026-10-21 moved these lines out of the tracker verbatim: the f
   - [ ] **Barry's split: only Barry's ace reaches the cap of 71** (Ian, 2026-09-30). The Fight Area tag battle, which keeps its Beacon Badge gate and so falls in that split, has its 74 and 75 aces brought slightly under 71 in the trainer pass
 
 - [x] **The reward table and roles file regenerated** (Ian, 2026-10-21, from the docs pass): landed at 3674c853c. `rewards check` was right at 47 of 85 spare flags; the report had counted three two-item trainers twice and missed the Pastoria ball's flag, and both now share one count. Nothing is placed differently.
+
+## Finished on 2026-10-21 (the QA pass)
+
+### Tidying
+
+- [x] **For Ian's QA pass, from the docs pass of 2026-10-21**, each a tool, data or branch question the pass left alone, since it changes no code or game data:
+  - The difficulty store, and so the OxiDex's Trainers tab, holds Roark's and Gardenia's goal 2 readings of the replaced teams, unmarked stale; `test_trainers.py` pins those numbers.
+  - The line tester warns on six approximations Ian accepted (Transform, Embargo, Magic Room, Guard Split, Power Split, Wonder Room) as open, since their rows lack the phrase `linetester.open_gaps` keys on.
+  - `pokemon_sources.py` still describes the retired clown in the Veilstone northeast house, so `pokemon-sources.md`'s Elekid row is wrong.
+  - Charjabug also evolves by a Thunder Stone, beside its level: is that intended (`species-pick-list.md`)? Salazzle keeps the game's level 30 for either gender (Ian, 2026-10-21).
+  - Wake's team holds a Choice Scarf, a Choice Band and a Life Orb, against the Choice ruling; his team is kept for the alpha.
+  - `ian-saves` carries the build plan's item 46 twice, so landing it adds a 75-line copy; `overseer-galactic-teams`, with Ian's changes to Mars 1 and Somnu 1, exists only in the local checkout.
+  - `integrate.sh`'s `resolve_tracker` still keys on the retired encounter paragraph (harmless: every tracker conflict now stops), and `plgoal3.py`'s docstring cites a handoff section, "Goal 3's reading", that does not exist.
+  - Element 6's re-read of the catch-up list (its entry in Phase 4) looks due by its own trigger: 222 moves past id 467 are on some species' level-up, TM or tutor list today against 163 on 2026-10-07, and the trainer AI's `script.s` last changed on 2026-10-12, so the newly learnable ones have had no routing check. Ian, 2026-10-21: done before the readings resume. Re-read on 2026-10-21 (landed at 3868628c4; the decision table is in `battle-ai/README.md`): of 61 moves no earlier pass named, 44 route right, 12 are mis-routes and 5 judgement calls, and only the first decision changes a fight read today. Ian approved all four as recommended (2026-10-21); landed at bd7ed0b3d with the full gate passing, the fixed-hit estimate as VANILLA FIX c967e9e04 with its simulator change (material for Barry 2 to 6, nine more main-path trainers, and Lucas and Dawn 2's Double Kick Jolteon). Its in-game check, Barry's Route 203 Chimchar, is in the checklist. It found two more things for the QA list: the committed move-pool survey is stale against a fresh run, and Floral Healing and Purify are status moves on the plain HIT effect (neither learnable).
+  - Step 15's time: the first page says 25 to 30 hours, the handoff 30 to 40, and the play-off of held versions adds fights (128 at Gardenia, 504 at Maylene).
+  - Worked by the QA pass of 2026-10-21 (`qa-review-2026-10-21.md`): each item is a finding there, the line tester's six warnings fixed at cfa61bdd4a; what is left went back to the tracker's Tidying list and its scorer section.
