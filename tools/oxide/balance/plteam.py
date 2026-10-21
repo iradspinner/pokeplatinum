@@ -185,28 +185,25 @@ def record(sp, level, nature, ability, ivs, moves, label=None, **extra):
                  "label": label or species_name(sp)}, **extra)
 
 
-# ---- held-back versions (Ian, 2026-10-15) ----------------------------------------------------------
+# ---- held-back versions (Ian, 2026-10-15 and 2026-10-21) -----------------------------------------
 #
 # A box offers each pre-evolution held back as well as evolved on time
-# wherever holding it back reaches a strong move sooner: a delay by the
-# learnset rules (the balance plan's "Delays" and the balance-rules skill).
-# A strong move is a damaging one of 85 or more a turn (learnstudy.STRONG,
-# by the strength model with its downside, as fightsim.play_strength reckons
-# it without the same-type bonus). A wait counts only from HOLD_MIN levels
-# past the level the stage could evolve at: within four levels it counts as
-# no wait. Ian's example: only a Starly held back, never a caught Staravia,
-# has Brave Bird by Maylene's split.
+# wherever holding it back reaches, by the fight, a move sooner than its
+# evolution does, or one its evolution never gets. Which holds count
+# depends on the Pokemon and the move, never a power threshold (Ian,
+# 2026-10-21: "It entirely depends on the pokemon and the move"): status
+# moves, pivots and coverage count, and the team search judges which matter
+# in each fight. His examples: a Fletchling held for Will-O-Wisp before
+# Gardenia, a Popplio for Flip Turn before Byron, a Venonat to 37 for Zen
+# Headbutt before Maylene, and (2026-10-15) a Starly for Brave Bird by
+# Maylene's split. The learnset rules' floor stays: a wait counts only from
+# HOLD_MIN levels past the level the stage could evolve at, since within
+# four levels it counts as no wait (none of Ian's examples is that close).
 
 HOLD_MIN = 5
 # The evolutions a hold can delay (chain's): by level alone, or by level with
 # the member's personality, gender or stats.
 HELD_KINDS = {"EVO_LEVEL"} | set(_LEVEL_IF)
-
-
-def strong(name):
-    """Whether a move is strong for a delay: damaging, 85 or more a turn."""
-    from .learnstudy import STRONG
-    return fs.play_strength(name, ()) >= STRONG
 
 
 def _level_evolves(stage, target):
@@ -217,11 +214,11 @@ def _level_evolves(stage, target):
 
 def holds_open(sp, caught, cap, base=None, places=(), gender=None, coin=None):
     """[(holds, gained, wait)]: each way to keep one stage of this member back
-    longer than `base` keeps it that brings a strong move by `cap` which the
-    member under `base` lacks. The stage must evolve by level under base, at
-    some level E, and learn the move by its own list at HOLD_MIN or more
-    levels past E. `holds` is base with that stage held to the move's level,
-    from which it evolves on as soon as it can; `gained` names the strong
+    longer than `base` keeps it that brings a move by `cap` which the member
+    under `base` lacks, of any kind. The stage must evolve by level under
+    base, at some level E, and learn the move by its own list at HOLD_MIN or
+    more levels past E. `holds` is base with that stage held to the move's
+    level, from which it evolves on as soon as it can; `gained` names the
     moves it brings that base lacks, `wait` the levels it is held past E.
     Shortest wait first. Rule A, which earlier fights' choices rule a hold
     out, is the caller's (plgoal3.box)."""
@@ -235,10 +232,10 @@ def holds_open(sp, caught, cap, base=None, places=(), gender=None, coin=None):
         if not _level_evolves(stage, nxt):
             continue
         for lv in sorted({l for l, mv in mon_data(stage)["learnset"]["by_level"]
-                          if at + HOLD_MIN <= l <= cap and mv in names and strong(names[mv])}):
+                          if at + HOLD_MIN <= l <= cap and mv in names and names[mv] not in have}):
             held = dict(base, **{stage: lv})
             got = move_pool(sp, caught, cap, held, places=places, gender=gender, coin=coin)[1]
-            gained = sorted(n for n in set(got) - have if strong(n))
+            gained = sorted(set(got) - have)
             if gained:
                 out.append((held, gained, lv - at))
     out.sort(key=lambda t: t[2])

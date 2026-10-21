@@ -37,11 +37,14 @@ earlier split's options. Each member is the stage it reaches by the
 fight's level, with its whole move pool from its catch, a Hardy nature,
 IVs of 15, its first ability, and a gender rolled once from a fixed seed.
 
-Held-back versions (Ian, 2026-10-15): a boss's box also offers each
-pre-evolution held back wherever that reaches a strong move sooner, a
-delay by the learnset rules (plteam.holds_open; only a Starly held back,
-never a caught Staravia, has Brave Bird by Maylene's split), and the team
-search weighs both, never taking two versions of one catch. So that a
+Held-back versions (Ian, 2026-10-15 and 2026-10-21): a boss's box also
+offers each pre-evolution held back wherever that reaches, by the fight, a
+move sooner than its evolution does or one its evolution never gets, of
+any kind, the Pokemon and the move deciding and no power threshold
+(plteam.holds_open; only a Starly held back, never a caught Staravia, has
+Brave Bird by Maylene's split; a Fletchling held to 25 has Will-O-Wisp at
+Gardenia), and the team search weighs both, never taking two versions of
+one catch. So that a
 hold's cost counts, a held-back version is offered only if no earlier
 fight of the seed used the catch in a form the hold rules out (rule A),
 and once a reading uses one, the seed's later fights see the line as the
@@ -428,16 +431,17 @@ def box(caught, f, lvl, seed, hist=None, holds=True):
     hold its last use in this seed left it (rule B, Ian, 2026-10-15: once a
     reading uses a held-back version, the seed's later fights see the line
     as the hold left it). `hist` is history's {area: [use]}. With `holds`,
-    a catch also comes held back wherever that reaches a strong move sooner
-    (plteam.holds_open, a delay by the learnset rules), unless an earlier
+    a catch also comes held back wherever that reaches a move sooner than
+    its evolution does, or one its evolution never gets (plteam.holds_open,
+    any kind of move, Ian, 2026-10-21), unless an earlier
     fight of the seed used the catch in a form the hold rules out (rule A,
     the same day): at that fight's level the hold would have made it a
     different stage, or one that evolved at another level. A hold rule A
     leaves out is listed in "ruled_out", not modelled, since testing it
     means reading that earlier fight again; it is left off the list where
-    an offered hold brings the same strong moves. Of the held versions that
-    bring the same strong moves (Starly held to 37 and Staravia to 43 both
-    bring Brave Bird by Wake), the one held the fewest levels is kept.
+    an offered hold brings the same moves. Of the held versions that bring
+    the same moves (Starly held to 37 and Staravia to 43 both bring Brave
+    Bird by Wake), the one held the fewest levels is kept.
 
     Every record carries its catch (its area; versions of one catch share
     it, and plteam's search never takes two in one six), its holds, whether

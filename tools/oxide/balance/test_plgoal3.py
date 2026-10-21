@@ -38,6 +38,45 @@ def use_of(rec, f, lvl):
     return g.uses({"pokemon": {"p0": rec}}, ["p0"], f, lvl)[0]
 
 
+def hold_rule_checks(by):
+    """Which holds count (Ian, 2026-10-21): by the Pokemon and the move, never
+    a power threshold. His three examples are offered, a status move, a
+    pivot and a coverage move, and the learnset rules' floor stays: a hold
+    of one to four levels past the evolution is no delay."""
+    out = []
+
+    def held(b):
+        return [(r["label"], r["moves"]) for r in b["records"] if r["held"]]
+
+    def offers(b, label, move):
+        on_time = b["records"][0]
+        return any(lab == label and move in mv for lab, mv in held(b)) and move not in on_time["moves"]
+
+    for sp, split, area, fight, lvl, label, move in (
+            ("SPECIES_FLETCHLING", "Roark", "Route 202", "gardenia", 26, "Fletchinder (Fletchling held to 25)",
+             "Will-O-Wisp"),
+            ("SPECIES_POPPLIO", "Gardenia", "Popplio's trade", "byron", 53, "Primarina (Popplio held to 51)",
+             "Flip Turn"),
+            ("SPECIES_VENONAT", "Fantina", "Venonat's place", "maylene", 39, "Venomoth (Venonat held to 37)",
+             "Zen Headbutt")):
+        b = g.box([g.Catch(sp, split, 1, area)], by[fight], lvl, 1)
+        out.append((f"Ian's example: {label} is offered for {move} at {by[fight]['name']}", offers(b, label, move),
+                    str([lab for lab, _m in held(b)])))
+    # Roost: Fletchling learns it at 20, four levels past its evolution at 16,
+    # and Fletchinder only at 22, so at 21 it is a hold the floor turns down.
+    fletchling = [g.Catch("SPECIES_FLETCHLING", "Roark", 1, "Route 202")]
+    b = g.box(fletchling, by["gardenia"], 21, 1)
+    hm, pt.HOLD_MIN = pt.HOLD_MIN, 4
+    try:
+        low = g.box(fletchling, by["gardenia"], 21, 1)
+    finally:
+        pt.HOLD_MIN = hm
+    out.append(("a hold of one to four levels past the evolution is no delay (Fletchling for Roost at 21)",
+                held(b) == [] and offers(low, "Fletchinder (Fletchling held to 20)", "Roost"),
+                f"floor 5: {[lab for lab, _m in held(b)]}; floor 4: {[lab for lab, _m in held(low)]}"))
+    return out
+
+
 def holds_checks(by):
     """Held-back versions (Ian, 2026-10-15): the delays a box offers, rules
     A and B on hand-built cases, the play order the seeds read in, and the
@@ -49,14 +88,21 @@ def holds_checks(by):
     def held(b):
         return [r["label"] for r in b["records"] if r["held"]]
 
+    def rec(b, label):
+        return next(r for r in b["records"] if r["label"] == label)
+
     # The delay: only a Starly held back has Brave Bird by Maylene's split.
+    # Held to 33 it brings Agility, which a Staraptor learns only at 41.
     b = g.box(starly, may, 39, 1)
-    out.append(("a Starly is offered held back at Maylene, with Brave Bird",
-                held(b) == ["Staraptor (Starly held to 37)"]
-                and "Brave Bird" in b["records"][1]["moves"] and "Brave Bird" not in b["records"][0]["moves"]
-                and b["records"][0]["catch"] == b["records"][1]["catch"], str(held(b))))
-    out.append(("no hold is offered where it brings no strong move by the fight (Fantina at 33)",
-                held(g.box(starly, fan, 33, 1)) == [], str(held(g.box(starly, fan, 33, 1)))))
+    bb = rec(b, "Staraptor (Starly held to 37)") if "Staraptor (Starly held to 37)" in held(b) else {"moves": []}
+    out.append(("a Starly is offered held back at Maylene, for Agility and for Brave Bird",
+                held(b) == ["Staraptor (Starly held to 33)", "Staraptor (Starly held to 37)"]
+                and "Brave Bird" in bb["moves"] and "Brave Bird" not in b["records"][0]["moves"]
+                and "Agility" in rec(b, "Staraptor (Starly held to 33)")["moves"]
+                and "Agility" not in b["records"][0]["moves"]
+                and len({r["catch"] for r in b["records"]}) == 1, str(held(b))))
+    out.append(("no hold is offered where it brings nothing by the fight (Mars 1 at 19)",
+                held(g.box(starly, by["mars_1"], 19, 1)) == [], str(held(g.box(starly, by["mars_1"], 19, 1)))))
     # Of two holds that bring the same moves, the shorter: Staravia held to
     # 43 (9 levels past 34) before Starly held to 37 (23 past 14) at Wake.
     out.append(("of holds bringing the same moves the shortest is offered",
@@ -78,13 +124,15 @@ def holds_checks(by):
     b = g.box(starly, may, 39, 1, hist)
     out.append(("rule A: Starly used as a Staravia at Fantina is not offered held back at Maylene",
                 held(b) == [] and [(h["label"], h["used_at"], h["used_as"]) for h in b["ruled_out"]]
-                == [("Staraptor (Starly held to 37)", "fantina", "Staravia")],
+                == [("Staraptor (Starly held to 33)", "fantina", "Staravia"),
+                    ("Staraptor (Starly held to 37)", "fantina", "Staravia")],
                 f"{held(b)}; ruled out {[(h['label'], h['used_at']) for h in b['ruled_out']]}"))
     # Used before it could evolve, it is no evolved form: the hold stays open.
     young = g.box(starly, by["barry_2"], 11, 1)["records"][0]
     b = g.box(starly, may, 39, 1, {"Route 201": [use_of(young, by["barry_2"], 11)]})
     out.append(("rule A: a Starly used at level 11, before it evolves, can still be held back later",
-                held(b) == ["Staraptor (Starly held to 37)"] and not b["ruled_out"], str(held(b))))
+                held(b) == ["Staraptor (Starly held to 33)", "Staraptor (Starly held to 37)"]
+                and not b["ruled_out"], str(held(b))))
     # Used on time at Fantina as a Staravia, it may still be held as a
     # Staravia: Staravia held to 43 keeps Fantina's form at 33.
     b = g.box(starly, wake, 44, 1, hist)
@@ -92,7 +140,7 @@ def holds_checks(by):
                 held(b) == ["Staraptor (Staravia held to 43)"], str(held(b))))
 
     # Rule B: a hold used at one fight carries to the next.
-    held_rec = g.box(starly, may, 39, 1)["records"][1]
+    held_rec = rec(g.box(starly, may, 39, 1), "Staraptor (Starly held to 37)")
     b = g.box(starly, wake, 44, 1, {"Route 201": [use_of(held_rec, may, 39)]})
     recs = b["records"]
     out.append(("rule B: a Starly held to 37 at Maylene is the same Staraptor at Wake, never on time",
@@ -202,25 +250,26 @@ def stubbed_read(run, slug, seed, screen_held):
 
 def paired_checks():
     """The paired reading (Ian, 2026-10-15) on Lucas and Dawn 2's box 1,
-    whose box offers Luxray (Shinx held to 29): read again without the
-    held-back versions where the screen puts one in a top six, once where
-    it puts none."""
+    whose box offers Luxray (Shinx held to 29) among others: read again
+    without the held-back versions where the screen puts one in a top six,
+    once where it puts none."""
     out = []
     r, calls = stubbed_read("t", "lucas_dawn_2", 1, True)
     pair = r.get("without_holds") or {}
     out.append(("a box whose screen holds a held-back version is read again without it, both kept",
-                r["held_in_screen"] == ["Luxray (Shinx held to 29)"] and r["real"]["won"] == 0.9
-                and pair.get("real", {}).get("won") == 0.7 and [c["held"] for c in calls] == [1, 0]
+                "Luxray (Shinx held to 29)" in r["held_in_screen"] and r["real"]["won"] == 0.9
+                and pair.get("real", {}).get("won") == 0.7 and [c["held"] for c in calls] == [len(r["offered"]), 0]
                 and calls[1]["model"] == "networks-x" and "Luxray (Shinx held to 29)" not in pair["winner"],
                 f"with {r['real']['won']:.0%}, without {pair.get('real', {}).get('won', 0):.0%}; searches "
                 f"{[(c['fight'].rsplit('-', 2)[-1], c['held']) for c in calls]}"))
     out.append(("the reading's chosen six keeps its held-back member for the seed's later fights",
-                r["held_used"] == ["Luxray (Shinx held to 29)"]
+                "Luxray (Shinx held to 29)" in r["held_used"]
                 and any(u["hold"] == {"SPECIES_SHINX": 29} and u["held"] for u in r["chosen"]),
                 f"{len(r['chosen'])} chosen"))
     table = g.paired_table({"lucas_dawn_2": [r]}, {f["slug"]: f for f in g.fights()})
     out.append(("the summary puts both readings side by side",
-                any("| Lucas and Dawn 2 | 1 | 90%, 1.00 | 70%, 1.00 | Luxray (Shinx held to 29) |" == t for t in table),
+                any(t.startswith("| Lucas and Dawn 2 | 1 | 90%, 1.00 | 70%, 1.00 | ") and "Luxray (Shinx held to 29)" in t
+                    for t in table),
                 table[-1] if table else "no table"))
     r, calls = stubbed_read("t", "lucas_dawn_2", 1, False)
     out.append(("a box whose screen holds none is read once", "without_holds" not in r and len(calls) == 1,
@@ -312,7 +361,8 @@ def planned_checks():
                 f"{len(plan)} catches, {len(waited)} waited for: {', '.join(c.area for c in waited)}"))
     r, calls = stubbed_read("t", "mars_1", g.PLANNED, False)
     out.append(("a planned box reads as any box does", r["seed"] == g.PLANNED and len(calls) == 1
-                and len(r["box"]) == len(mars) and r["chosen"], f"{len(r['box'])} members, starter {r['starter']}"))
+                and len(r["box"]) - len(r["offered"]) == len(mars) and r["chosen"],
+                f"{len(r['box'])} members, starter {r['starter']}"))
     with tempfile.TemporaryDirectory() as tmp:
         keep, g.OUT = g.OUT, tmp
         try:
@@ -466,6 +516,7 @@ def main():
            for k in want}
     results.append(("one run per seed keeps the box sizes over 20 seeds", got == want, str(got)))
 
+    results += hold_rule_checks(by)
     results += holds_checks(by)
     results += search_checks()
     results += paired_checks()
