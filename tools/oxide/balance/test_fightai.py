@@ -558,6 +558,11 @@ FLAG_ROWS = [
      _t(u_moves=("Fillet Away", "Baton Pass"), b_turn=2, u_hp=50), -10, -10),
     ("CheckHP, Victory Dance at 50%, as Dragon Dance", ai.CHECK_HP, "Victory Dance", _t(u_hp=50), -2, 0),
     ("CheckHP, Fillet Away, foe at 20%, as Dragon Dance", ai.CHECK_HP, "Fillet Away", _t(t_hp=20), -2, 0),
+    ("SetupFirstTurn, Take Heart on turn 0, as Calm Mind", ai.SETUP_FIRST, "Take Heart", None, 2, 0),
+    ("BatonPass flag, Take Heart on turn 0, knowing Baton Pass, as Calm Mind", ai.BATON, "Take Heart",
+     _t(u_moves=("Take Heart", "Baton Pass")), 5, 5),
+    ("CheckHP, Take Heart at 20%, as Calm Mind", ai.CHECK_HP, "Take Heart", _t(u_hp=20), -2, 0),
+    ("CheckHP, Take Heart, foe at 50%, as Calm Mind", ai.CHECK_HP, "Take Heart", _t(t_hp=50), -2, 0),
 ]
 
 

@@ -7387,6 +7387,9 @@ SetupFirstTurn_SetupEffects:
     TableEntry BATTLE_EFFECT_AUTOTOMIZE
     TableEntry BATTLE_EFFECT_TEARFUL_LOOK
     TableEntry BATTLE_EFFECT_SET_AURORA_VEIL
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Take Heart as
+    // Calm Mind, which Expert scores it as.
+    TableEntry BATTLE_EFFECT_TAKE_HEART
     TableEntry TABLE_END
 
 PrioritizeExtremes_Main:
@@ -7489,6 +7492,9 @@ BatonPass_EvalMove:
     // and Fillet Away, which Expert scores as Dragon Dance too.
     IfMoveEqualTo MOVE_VICTORY_DANCE, BatonPass_SetupAtHighHP
     IfMoveEqualTo MOVE_FILLET_AWAY, BatonPass_SetupAtHighHP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Take Heart, as
+    // Calm Mind.
+    IfMoveEqualTo MOVE_TAKE_HEART, BatonPass_SetupAtHighHP
 
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PROTECT, BatonPass_EvalProtect
 
@@ -8961,6 +8967,9 @@ CheckHP_DiscourageAtMediumHP:
     // and Fillet Away as Dragon Dance, which Expert scores them as.
     TableEntry BATTLE_EFFECT_ATK_DEF_SPEED_UP
     TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Take Heart as
+    // Calm Mind, which Expert scores it as.
+    TableEntry BATTLE_EFFECT_TAKE_HEART
     TableEntry TABLE_END
 
 CheckHP_DiscourageAtLowHP:
@@ -9037,6 +9046,9 @@ CheckHP_DiscourageAtLowHP:
     // and Fillet Away as Dragon Dance, which Expert scores them as.
     TableEntry BATTLE_EFFECT_ATK_DEF_SPEED_UP
     TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Take Heart as
+    // Calm Mind, which Expert scores it as.
+    TableEntry BATTLE_EFFECT_TAKE_HEART
     TableEntry TABLE_END
 
 CheckHP_Target_DiscourageAtHighHP:
@@ -9106,6 +9118,9 @@ CheckHP_Target_DiscourageAtMediumHP:
     // and Fillet Away as Dragon Dance, which Expert scores them as.
     TableEntry BATTLE_EFFECT_ATK_DEF_SPEED_UP
     TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Take Heart as
+    // Calm Mind, which Expert scores it as.
+    TableEntry BATTLE_EFFECT_TAKE_HEART
     TableEntry TABLE_END
 
 CheckHP_Target_DiscourageAtLowHP:
@@ -9195,6 +9210,9 @@ CheckHP_Target_DiscourageAtLowHP:
     // and Fillet Away as Dragon Dance, which Expert scores them as.
     TableEntry BATTLE_EFFECT_ATK_DEF_SPEED_UP
     TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Take Heart as
+    // Calm Mind, which Expert scores it as.
+    TableEntry BATTLE_EFFECT_TAKE_HEART
     TableEntry TABLE_END
 
 Weather_Main:
