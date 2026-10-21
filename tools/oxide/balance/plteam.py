@@ -750,22 +750,28 @@ def _fight_job(args):
     # With `used`, the moves the player chose in the fight, switches left
     # out, for the reading's report of what its wins lean on.
     chose = sorted({t["chose"] for t in turns if not str(t["chose"]).startswith("switch to ")}) if used else None
-    return tuple(team), r["won"], r["deaths"], r["clean"], [tuple(x) for x in r["faints"]], r["seconds"], chose
+    return (tuple(team), r["won"], r["deaths"], r["clean"], [tuple(x) for x in r["faints"]], r["seconds"], chose,
+            (seed, luck))
 
 
 class Tally:
-    """Every fight read for each six, and the race's score from them; where
-    the reading asked for them, the moves the player chose in each fight
-    (`chose`, in the order of `rows`)."""
+    """Every fight read for each six, and the race's score from them; the
+    fights themselves, (seed, luck), so that another six can be played on
+    the same ones (`fights`, the play-off's); and where the reading asked
+    for them, the moves the player chose in each fight (`chose`). Both in
+    the order of `rows`."""
 
     def __init__(self):
         self.rows = {}
         self.chose = {}
+        self.fights = {}
 
-    def add(self, team, won, deaths, clean, faints, chose=None):
+    def add(self, team, won, deaths, clean, faints, chose=None, fight=None):
         self.rows.setdefault(tuple(team), []).append((won, deaths, clean, faints))
         if chose is not None:
             self.chose.setdefault(tuple(team), []).append(chose)
+        if fight is not None:
+            self.fights.setdefault(tuple(team), []).append(tuple(fight))
 
     def score(self, team):
         r = self.rows.get(tuple(team), [])
@@ -791,10 +797,100 @@ def read(st, boss_keys, flags, teams, fights, cfg, luck="real", seed0=0, procs=N
         # every process) and the fights it has had, so a reading repeats.
         start = seed0 * 1_000_003 + zlib.crc32(",".join(t).encode()) + len(tally.rows.get(tuple(t), []))
         jobs += [(tuple(t), start + i, cfg, luck, used) for i in range(fights)]
+    return play_jobs(st, boss_keys, flags, jobs, procs, tally)
+
+
+def play_jobs(st, boss_keys, flags, jobs, procs=None, tally=None):
+    """Fights given one by one, (team, seed, cfg, luck, used), played in a
+    pool of workers and added to the tally."""
+    _JOB.update(st=st, boss_keys=boss_keys, flags=flags)
+    tally = tally or Tally()
     with plplan.fork_pool(procs or plplan.pool_size()) as pool_:
-        for team, won, deaths, clean, faints, _s, chose in pool_.imap_unordered(_fight_job, jobs, chunksize=1):
-            tally.add(team, won, deaths, clean, faints, chose)
+        for team, won, deaths, clean, faints, _s, chose, fight in pool_.imap_unordered(_fight_job, jobs, chunksize=1):
+            tally.add(team, won, deaths, clean, faints, chose, fight)
     return tally
+
+
+# ---- 3b. the play-off -----------------------------------------------------------------------------
+
+def with_gain(st, k):
+    """The four moves a held version plays the play-off with: the moves its
+    hold brings ("gained") that the screen's picks leave out, put in place
+    of its last picks, its first two picks always kept. The screen's
+    margins count hits only, so its picks can leave out the very move the
+    hold exists for (Will-O-Wisp on a Fletchling held to 25)."""
+    picks = list(st["moves"][k])
+    extra = [m for m in st["pokemon"][k].get("gained") or () if m not in picks]
+    if not extra:
+        return picks
+    kept = max(2, min(len(picks), 4) - len(extra))
+    return picks[:kept] + extra[:4 - kept]
+
+
+def playoff(st, boss_keys, flags, finalists, tally, cfg, slots, procs=None, log=print):
+    """Ian's play-off (2026-10-21, his option 1), after the race, for the
+    held versions the screen cannot see (a status move or a pivot gains no
+    hits in its margins). Each finalist is also played with every other
+    version of each of its members, one member swapped at a time, on the
+    same fights the race read it on (tally.fights, the race's own luck and
+    planner), every held version included, those the screen dropped as
+    dominated among them, since they are the point; a held version plays
+    with the moves its hold brings (with_gain), and keeps them from then on.
+    A swap is kept where it scores better than the finalist by the race's
+    own tally (Tally.score); of several winning swaps of one member, the
+    best. Where more than one member's swap wins, their combination is
+    played once more on the same fights and kept if it scores at least as
+    well as the best single swap, else that swap is. Returns (the finalists
+    after it, in order, a six that two finalists became counted once, and
+    a record for each finalist). A finalist with no other versions plays
+    nothing, so a box without held versions reads exactly as before."""
+    sl = slots
+    pos = sl.pos
+    name = lambda t: [member_name(st["pokemon"][k]) for k in t]
+    out, record = [], []
+    for fin in map(tuple, finalists):
+        fights = tally.fights.get(fin, [])
+        swaps = [(i, k, v, tuple(sorted(fin[:i] + (v,) + fin[i + 1:], key=pos.get)))
+                 for i, k in enumerate(fin) for v in sl.versions[sl.slot_of[k]] if v != k]
+        if not swaps or not fights:
+            out.append(fin)
+            record.append({"six": name(fin), "swaps": [], "kept": name(fin)})
+            continue
+        for _i, _k, v, _t in swaps:
+            if st["pokemon"][v].get("held"):
+                four = with_gain(st, v)
+                st["moves"][v] = four
+                st["pokemon"][v] = dict(st["pokemon"][v], moves=four)
+        played = play_jobs(st, boss_keys, flags, [(t, seed, cfg, luck, False) for _i, _k, _v, t in swaps
+                                                  for seed, luck in fights], procs)
+        base = tally.score(fin)
+        best = {}
+        for i, _k, v, t in swaps:
+            sc = played.score(t)
+            if sc > base and sc > best.get(i, (float("-inf"),))[0]:
+                best[i] = (sc, v, t)
+        rec = {"six": name(fin), "score": round(base, 3), "fights": len(fights),
+               "swaps": [{"out": member_name(st["pokemon"][k]), "in": member_name(st["pokemon"][v]),
+                          "score": round(played.score(t), 3)} for _i, k, v, t in swaps]}
+        kept = fin
+        if len(best) == 1:
+            kept = next(iter(best.values()))[2]
+        elif best:
+            combo = list(fin)
+            for i, (_sc, v, _t) in best.items():
+                combo[i] = v
+            combo = tuple(sorted(combo, key=pos.get))
+            play_jobs(st, boss_keys, flags, [(combo, seed, cfg, luck, False) for seed, luck in fights], procs, played)
+            top = max(best.values(), key=lambda b: b[0])
+            holds = played.score(combo) >= top[0]
+            kept = combo if holds else top[2]
+            rec["combined"] = {"six": name(combo), "score": round(played.score(combo), 3), "kept": holds}
+        rec["kept"] = name(kept)
+        log(f"  play-off on {', '.join(rec['six'])} ({base:.2f} on {len(fights)}): {len(swaps)} swaps; "
+            + (f"kept {', '.join(rec['kept'])}" if kept != fin else "no swap scored better"))
+        out.append(kept)
+        record.append(rec)
+    return list(dict.fromkeys(out)), record
 
 
 def round_size(slots, per_round):
@@ -1024,6 +1120,9 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
         "; ".join(f"{', '.join(names[k] for k in t)} ({tally.score(t):.2f} on {tally.numbers(t)['fights']})"
                   for t in finalists))
     log("member weights: " + ", ".join(f"{names[k]} {w[k]:.3f}" for k in sorted(w, key=lambda k: -w[k])))
+    t1 = time.time()
+    finalists, played = playoff(st, boss_keys, flags, finalists, tally, cfg, sl, procs=procs, log=log)
+    log(f"play-off in {time.time() - t1:.0f} s; finalists: " + "; ".join(", ".join(names[k] for k in t) for t in finalists))
     results = []
     for t in finalists:
         real, unlucky, _rows = full_reading(st, boss_keys, flags, list(t), cfg, procs=procs)
@@ -1076,7 +1175,7 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
                "finalists": [{"six": [names[k] for k in t], "real": r, "unlucky": u, "playouts": po.numbers(t)}
                              for t, r, u in results],
                "ours": {"network": ours_net, "playouts": ours_po} if mine else None, "bar": bar,
-               "winner": [names[k] for k in win], "winner_keys": list(win), "model": model,
+               "winner": [names[k] for k in win], "winner_keys": list(win), "model": model, "playoff": played,
                "playouts_on_winner": po.numbers(tuple(win)),
                "winner_faints_to": losing_enemies(po.rows[tuple(win)]),
                # Every six the play-out check read, the loop's included.
