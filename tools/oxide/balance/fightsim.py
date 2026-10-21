@@ -320,6 +320,11 @@ HIT_SELF_STAGES = {  # (stages, certain)
     # are plain hits (calc.blob). Until 2026-10-20 the evasion never rose
     # and every hit was critical (Ian approved the fix).
     "RAISE_EVA_HIT": ({"eva": 1}, False),
+    # Hyperspace Fury (effect script 343, subscript_hyperspace_fury, ON_HIT
+    # on its user): its target's protection ends (BREAKS_PROTECT) and the
+    # user's own Defense falls a stage, a knockout's or a Substitute's hit
+    # too. Until 2026-10-20 the Defense never fell (Ian approved the fix).
+    "USER_DEF_DOWN_HIT_REMOVE_PROTECT": ({"def": -1}, True),
 }
 RECOIL = {"RECOIL_THIRD": 1 / 3, "RECOIL_QUARTER": 1 / 4, "RECOIL_HALF": 1 / 2,
           "RECOIL_BURN_HIT": 1 / 3, "RECOIL_PARALYZE_HIT": 1 / 3,

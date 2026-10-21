@@ -7764,6 +7764,41 @@ def check_population_bomb(results):
     results.append(("Population Bomb lands up to ten hits until a later check misses", out == want, str(out)))
 
 
+def self_drop(name):
+    """A hit's fall in its user's own stats, by case: after a hit, a
+    Substitute's and a knockout in the readings' battle, a hit in
+    fightsim's own, and a Contrary user's, whose stats rise instead."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("hit", "Substitute", "knockout", "fightsim", "Contrary"):
+        b, p, foe = b11_battle([name], ["Tackle"], {("p", name): [20] * 16})
+        b.dice = sure12()
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "Contrary":
+            p.ability = "Contrary"
+        if case == "fightsim":
+            b.rng = FixedDice(0.5)
+            fs.attack(b, p, fs.move(name), foe, True)
+        else:
+            pl.attack(b, p, fs.move(name), foe, True)
+        out[case] = tuple(p.stages[k] for k in ("def", "spd", "spe"))
+    return out
+
+
+@b13
+def check_hyperspace_fury(results):
+    """Hyperspace Fury (approved 2026-10-14; effect script 343): any hit,
+    a Substitute's and a knockout's too, lowers its user's Defense a stage,
+    in both battles, and raises it for a Contrary user."""
+    out = self_drop("Hyperspace Fury")
+    want = {"hit": (-1, 0, 0), "Substitute": (-1, 0, 0), "knockout": (-1, 0, 0), "fightsim": (-1, 0, 0),
+            "Contrary": (1, 0, 0)}
+    results.append(("Hyperspace Fury lowers its user's Defense after a hit", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

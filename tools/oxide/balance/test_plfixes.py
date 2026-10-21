@@ -6683,6 +6683,24 @@ def population_bomb_checks():
              f"(top row, HP taken) by ability {out}")]
 
 
+def self_drop_checks(name, user, want):
+    """A hit's fall in its user's own stats on real rows: the player's
+    `user` hits a trainer's Geodude, and its Defense, Sp. Def and Speed
+    stages end as `want`."""
+    b, geo, mon = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [(user[0], 30, user[1], [name])])
+    pl.attack(b, mon, fs.move(name), geo, True)
+    got = (geo.hp < geo.maxhp,) + tuple(mon.stages[k] for k in ("def", "spd", "spe"))
+    return [(f"the readings' {name} lowers its user's own stats", got == (True,) + want,
+             f"(hit, Defense, Sp. Def, Speed) {got}")]
+
+
+@b13
+def hyperspace_fury_checks():
+    """Hyperspace Fury on real rows (approved 2026-10-14): the player's
+    Drapion's hit lowers its own Defense a stage."""
+    return self_drop_checks("Hyperspace Fury", ("Drapion", "Sniper"), (-1, 0, 0))
+
+
 def main():
     results = []
 
