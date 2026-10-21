@@ -551,6 +551,13 @@ FLAG_ROWS = [
     ("CheckHP, Final Gambit at 50% is left out", ai.CHECK_HP, "Final Gambit", _t(u_hp=50), 0, 0),
     ("BatonPass flag, Quiver Dance on turn 0, knowing Baton Pass, as Dragon Dance", ai.BATON, "Quiver Dance",
      _t(u_moves=("Quiver Dance", "Baton Pass")), 5, 5),
+    # The catch-up re-read's routing fixes (Ian, 2026-10-21; README decisions 2 to 13).
+    ("BatonPass flag, Victory Dance on turn 0, knowing Baton Pass, as Dragon Dance", ai.BATON, "Victory Dance",
+     _t(u_moves=("Victory Dance", "Baton Pass")), 5, 5),
+    ("BatonPass flag, Fillet Away on turn 2 at 50%, as Dragon Dance", ai.BATON, "Fillet Away",
+     _t(u_moves=("Fillet Away", "Baton Pass"), b_turn=2, u_hp=50), -10, -10),
+    ("CheckHP, Victory Dance at 50%, as Dragon Dance", ai.CHECK_HP, "Victory Dance", _t(u_hp=50), -2, 0),
+    ("CheckHP, Fillet Away, foe at 20%, as Dragon Dance", ai.CHECK_HP, "Fillet Away", _t(t_hp=20), -2, 0),
 ]
 
 

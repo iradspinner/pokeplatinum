@@ -7485,6 +7485,10 @@ BatonPass_EvalMove:
     IfMoveEqualTo MOVE_SHELL_SMASH, BatonPass_SetupAtHighHP
     IfMoveEqualTo MOVE_GEOMANCY, BatonPass_SetupAtHighHP
     IfMoveEqualTo MOVE_CLANGOROUS_SOUL, BatonPass_SetupAtHighHP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Victory Dance
+    // and Fillet Away, which Expert scores as Dragon Dance too.
+    IfMoveEqualTo MOVE_VICTORY_DANCE, BatonPass_SetupAtHighHP
+    IfMoveEqualTo MOVE_FILLET_AWAY, BatonPass_SetupAtHighHP
 
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PROTECT, BatonPass_EvalProtect
 
@@ -8953,6 +8957,10 @@ CheckHP_DiscourageAtMediumHP:
     TableEntry BATTLE_EFFECT_CHANGE_TO_WATER_TYPE
     TableEntry BATTLE_EFFECT_GUARD_SPLIT
     TableEntry BATTLE_EFFECT_POWER_SPLIT
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Victory Dance
+    // and Fillet Away as Dragon Dance, which Expert scores them as.
+    TableEntry BATTLE_EFFECT_ATK_DEF_SPEED_UP
+    TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP
     TableEntry TABLE_END
 
 CheckHP_DiscourageAtLowHP:
@@ -9025,6 +9033,10 @@ CheckHP_DiscourageAtLowHP:
     TableEntry BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2
     TableEntry BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP
     TableEntry BATTLE_EFFECT_CHANGE_TO_WATER_TYPE
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Victory Dance
+    // and Fillet Away as Dragon Dance, which Expert scores them as.
+    TableEntry BATTLE_EFFECT_ATK_DEF_SPEED_UP
+    TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP
     TableEntry TABLE_END
 
 CheckHP_Target_DiscourageAtHighHP:
@@ -9090,6 +9102,10 @@ CheckHP_Target_DiscourageAtMediumHP:
     TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN
     TableEntry BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2
     TableEntry BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Victory Dance
+    // and Fillet Away as Dragon Dance, which Expert scores them as.
+    TableEntry BATTLE_EFFECT_ATK_DEF_SPEED_UP
+    TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP
     TableEntry TABLE_END
 
 CheckHP_Target_DiscourageAtLowHP:
@@ -9175,6 +9191,10 @@ CheckHP_Target_DiscourageAtLowHP:
     TableEntry BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP
     TableEntry BATTLE_EFFECT_CHANGE_TO_WATER_TYPE
     TableEntry BATTLE_EFFECT_FINAL_GAMBIT
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Victory Dance
+    // and Fillet Away as Dragon Dance, which Expert scores them as.
+    TableEntry BATTLE_EFFECT_ATK_DEF_SPEED_UP
+    TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP
     TableEntry TABLE_END
 
 Weather_Main:
