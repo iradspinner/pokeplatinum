@@ -461,7 +461,7 @@ def box(caught, f, lvl, seed, hist=None, holds=True):
             return [list(p) for p in plteam.chain(c.species, min(caught_level, at), at, hold, places=where,
                                                   gender=gender, coin=coin)]
 
-        def member(hold, held):
+        def member(hold, held, gained=()):
             final, pool_ = plteam.move_pool(c.species, min(caught_level, lvl), lvl, hold, places=reached,
                                             gender=gender, coin=coin)
             name = plteam.species_name(final)
@@ -469,7 +469,7 @@ def box(caught, f, lvl, seed, hist=None, holds=True):
             return plteam.record(final, lvl, "Hardy", ability, 15, pool_, label=plteam.hold_label(name, hold),
                                  gender=gender, line=plniche.line_of(c.species), caught=c.species,
                                  caught_level=caught_level, area=c.area, catch=c.area, hold=dict(hold),
-                                 held=held, path=path(hold))
+                                 held=held, gained=list(gained), path=path(hold))
 
         uses = [u for u in hist.get(c.area, []) if u["caught"] == c.species]
         base = dict(uses[-1]["hold"]) if uses else {}
@@ -484,7 +484,7 @@ def box(caught, f, lvl, seed, hist=None, holds=True):
             against = next((u for u in uses if path(hold, u["level"], u["places"]) != u["path"]), None)
             if against is None:
                 offered.append(gained)
-                recs.append(member(hold, True))
+                recs.append(member(hold, True, gained))
             elif not any(set(o["gained"]) >= set(gained) for o in out):
                 stage = plteam.species_name(path(hold)[-1][0])
                 out.append({"area": c.area, "label": plteam.hold_label(stage, hold), "hold": hold,
@@ -623,6 +623,11 @@ def read_box(run, slug, seed, procs):
                       fainted=plstudy.fainted(rows), chosen=uses(st, win, f, lvl),
                       held_used=[st["pokemon"][k]["label"] for k in win if st["pokemon"][k]["held"]])
         result["sticky_web"] = web_report(st, boss_keys, flags, win, tallies, recs, real, procs)
+        # The play-off's record, and the held versions it put in a finalist
+        # (Ian's option 1, 2026-10-21).
+        result["playoff"] = summary.get("playoff") or []
+        result["playoff_won"] = sorted({n for p in result["playoff"] for n in p.get("kept", [])
+                                        if n not in p["six"] and n in set(result["offered"])})
         offered = set(result["offered"])
         result["held_in_screen"] = sorted({n for six in summary["screen"] for n in six} & offered)
         # Paired only where the chosen six uses a held version (Ian,
@@ -883,6 +888,8 @@ def box_notes(r):
         out.append(f"  - held back on offer: {', '.join(r['offered'])}")
     if r.get("held_used"):
         out.append(f"  - the winner took held back: {', '.join(r['held_used'])}")
+    if r.get("playoff_won"):
+        out.append(f"  - the play-off put in a finalist: {', '.join(r['playoff_won'])}")
     for h in r.get("ruled_out") or []:
         out.append(f"  - not offered, not modelled: {h['label']} for {', '.join(h['gained'])}, since "
                    f"{by_slug_name(h['used_at'])} used it as {h['used_as']}")

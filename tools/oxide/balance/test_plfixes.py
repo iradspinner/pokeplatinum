@@ -6993,6 +6993,160 @@ def arceus_plate_checks():
              f"(types, its two hits, the foe's hit on it, and for the player's the same after a switch) {out}")]
 
 
+# ---- batch 16: the five gaps batches 14b and 15 found, approved by Ian on 2026-10-21 ----
+
+# The batch's checks, run after batch 14b's in main.
+B16 = []
+
+
+def b16(fn):
+    B16.append(fn)
+    return fn
+
+
+@b16
+def booster_retyped_checks():
+    """A booster's fifth by the type the move hits with, in the readings'
+    battle on the calculator's real rows (Ian approved the fix on
+    2026-10-21), on Fantina's: the player's Pixilate Sylveon holding the
+    Fairy Feather gives its Swift, which its row makes Fairy, the Feather's
+    fifth over the row's top roll, as it gives its Moonblast; holding a
+    Silk Scarf, its Swift takes nothing, and its Moonblast nothing either."""
+    recs = [{"constant": "SPECIES_SYLVEON", "species": "Sylveon", "how": "test", "level": 30, "nature": "Hardy",
+             "ivs": IV, "evs": EV, "ability": "Pixilate", "moves": ["Swift", "Moonblast"], "fill": False}]
+    prep = plscore.prepare(plscore.parse_fight("fantina"), given_side=recs)
+    st, (boss, flags, _s) = prep["st"], prep["variants"][0]
+    out = {}
+    for item in ("Fairy Feather", "Silk Scarf"):
+        st["held"] = {"p0": item}
+        b = pl.make_battle(st, ["p0"], list(boss), flags, 0)
+        syl, foe = b.p.cur(), b.b.cur()
+        out[item] = tuple((pl.damage_of(b, syl, foe, fs.move(name), False, True),
+                           (b.rolls(syl, foe, fs.move(name)) or [None])[-1]) for name in ("Swift", "Moonblast"))
+    del st["held"]
+    (fs_, fm), (ss, sm) = out["Fairy Feather"], out["Silk Scarf"]
+    ok = (all(top for _d, top in (fs_, fm, ss, sm)) and fs_[0] == int(fs_[1] * 1.2) > fs_[1]
+          and fm[0] == int(fm[1] * 1.2) and ss[0] == ss[1] and sm[0] == sm[1])
+    return [("the readings' Pixilate Swift takes the Fairy Feather's fifth", ok,
+             f"(Swift's damage and its row's top roll, Moonblast's the same) {out}")]
+
+
+@b16
+def trainer_fling_checks():
+    """A trainer's Fling of the item its rows read, in the readings' battle
+    on the calculator's real rows (Ian approved the fix on 2026-10-21), as
+    Collector Jamal's Delibird has it: a trainer's Delibird holding a Thick
+    Club, which its rows read, so it has an item twin with none, flings it
+    at the player's Bibarel for the top roll of its own row's Fling, the
+    Club's 90 power, and is left with nothing."""
+    b, deli, bib = b8_battle([("Delibird", 30, "Vital Spirit", ["Fling", "Ice Shard"], "Thick Club")],
+                             [("Bibarel", 30, "Simple", ["Tackle"])])
+    twin = fs.item_key(b, deli)
+    top = (b.rolls(deli, bib, fs.move("Fling")) or [None])[-1]
+    hp = bib.hp
+    pl.attack(b, deli, fs.move("Fling"), bib, True)
+    ok = twin is not None and top and hp - bib.hp == top and deli.item is None
+    return [("the readings' trainer's Fling of its held item deals its row's damage", ok,
+             f"Delibird's item twin {twin}, its Fling's top roll {top}, Bibarel's HP {hp} to {bib.hp}, "
+             f"Delibird's item {deli.item}")]
+
+
+@b16
+def whirlwind_level_checks():
+    """Roar's level check in the readings' battle on the calculator's real
+    rows (Ian approved the fix on 2026-10-21; BattleSystem_CanWhirlwind), on
+    Roark's split with batch 7's sure dice, where no chance lands for the
+    trainer: a trainer's level 20 Growlithe's Roar leaves the player's level
+    30 Bibarel in, a level 30 Growlithe's drags it out for the Barboach,
+    and at the game's odds the level 20 Growlithe's fails 36 times in 256
+    (fightsim.whirlwind_odds), about 141 of 1000."""
+    out = {}
+    for lv in (20, 30):
+        b, gro, bib = b8_battle([("Growlithe", lv, "Intimidate", ["Roar"])],
+                                [("Bibarel", 30, "Simple", ["Tackle"]), ("Barboach", 30, "Oblivious", ["Water Gun"])])
+        pl.use_move(b, gro, fs.move("Roar"), bib, True)
+        out[f"level {lv}, sure dice"] = b.p.cur().species
+    fails = 0
+    for seed in range(1000):
+        b.p.active = 0
+        b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+        gro.level = 20
+        pl.status_move(b, gro, fs.move("Roar"), b.p.cur(), True)
+        fails += b.p.active == 0
+    out["level 20 fails, game odds (of 1000)"] = fails
+    out["odds"] = getattr(fs, "whirlwind_odds", lambda a, d: 1.0)(20, 30)
+    ok = (out["level 20, sure dice"] == "Bibarel" and out["level 30, sure dice"] == "Barboach"
+          and out["odds"] == 220 / 256 and 105 <= fails <= 180)
+    return [("the readings' trainer's Roar of a lower level fails at the engine's odds", ok,
+             f"(the player's Pokemon now in) {out}")]
+
+
+def _first_mover(b, pa, aa):
+    """The species that acts first in perfectline._turn(b, pa, aa), read by
+    watching perfectline.use_move for the turn."""
+    seen = []
+    real = pl.use_move
+
+    def watch(b_, att, mv_, dfn, first, targets=None):
+        seen.append(att.species)
+        return real(b_, att, mv_, dfn, first, targets)
+    pl.use_move = watch
+    try:
+        pl._turn(b, pa, aa)
+    finally:
+        pl.use_move = real
+    return seen[0] if seen else None
+
+
+@b16
+def slow_items_order_checks():
+    """Lagging Tail, Full Incense and Stall in the readings' turn order on
+    the calculator's real rows (Ian approved the fix on 2026-10-21;
+    BattleSystem_CompareBattlerSpeed), on Roark's split: the player's
+    Bibarel, faster than a trainer's Geodude, Tackles first holding nothing
+    and after the Geodude's Tackle holding a Lagging Tail or a Full
+    Incense; the player's Sableye, faster than the Geodude too, Tackles
+    after it with Stall and first with Keen Eye."""
+    out = {}
+    for item in (None, "Lagging Tail", "Full Incense"):
+        b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                                [("Bibarel", 30, "Simple", ["Tackle"], item)])
+        b.quick = {bib.key: False, geo.key: False}
+        out[item or "nothing"] = (b.speed(bib) > b.speed(geo),
+                                  _first_mover(b, ("move", fs.move("Tackle")), ("move", fs.move("Tackle"))))
+    for ability in ("Stall", "Keen Eye"):
+        b, geo, sab = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Sableye", 30, ability, ["Tackle"])])
+        b.quick = {sab.key: False, geo.key: False}
+        out[f"Sableye, {ability}"] = (b.speed(sab) > b.speed(geo),
+                                      _first_mover(b, ("move", fs.move("Tackle")), ("move", fs.move("Tackle"))))
+    want = {"nothing": (True, "Bibarel"), "Lagging Tail": (True, "Geodude"), "Full Incense": (True, "Geodude"),
+            "Sableye, Stall": (True, "Geodude"), "Sableye, Keen Eye": (True, "Sableye")}
+    ok = out == want
+    return [("the readings' Lagging Tail and Full Incense go last in their bracket, Stall too", ok,
+             f"(the player's Pokemon faster, the first to act) {out}, want {want}")]
+
+
+@b16
+def custap_any_priority_checks():
+    """A Custap Berry eaten on any priority in the readings' battle on the
+    calculator's real rows (Ian approved the fix on 2026-10-21;
+    CompareBattlerSpeed's custapBerry, subscript_check_quick_claw), on
+    Roark's split: the player's Bibarel at a quarter of its HP holding a
+    Custap Berry eats it as its Quick Attack goes before a trainer's
+    Geodude's Tackle (perfectline.play_turn rolls the turn's Berry), and
+    keeps it at full HP."""
+    out = {}
+    for quarter in (True, False):
+        b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                                [("Bibarel", 30, "Simple", ["Quick Attack"], "Custap Berry")])
+        if quarter:
+            bib.hp = bib.maxhp // 4
+        pl.play_turn(b, ("move", fs.move("Quick Attack")), random.Random(1))
+        out["a quarter" if quarter else "full"] = bib.item
+    ok = out == {"a quarter": None, "full": "Custap Berry"}
+    return [("the readings' Custap Berry is eaten on any priority", ok, f"(Bibarel's item after the turn) {out}")]
+
+
 def main():
     results = []
 
@@ -7585,6 +7739,8 @@ def main():
     for fn in B14:
         results += fn()
     for fn in B14B:
+        results += fn()
+    for fn in B16:
         results += fn()
 
     width = max(len(r[0]) for r in results)

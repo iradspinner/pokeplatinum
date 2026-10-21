@@ -474,6 +474,72 @@ def search_checks():
     return out
 
 
+def playoff_checks():
+    """The play-off (Ian, 2026-10-21, his option 1) on Gardenia's box 1,
+    whose Will-O-Wisp Fletchinder, Swagger Luxio and Yawn Bibarel the screen
+    drops as dominated, the fights stubbed. A race finalist is played with
+    every other version of each member, one swap at a time, on the fights
+    the race read it on; a swap scoring better by the race's tally is kept;
+    where two win, their combination is played and kept if it holds. A held
+    version plays with the moves its hold brings. A box without held
+    versions plays no swap."""
+    out = []
+    s = g.setup("t", "gardenia", 1)
+    recs = s["built"]["records"]
+    st, keys, bk, fl = g.fight_state(s["key"], recs, s["stock"], s["v"], "gardenia")
+    sixes, _sc, M, _mv = pt.screen(st, keys, bk)
+    sl = pt.Slots(st, keys, M)
+    key = {pt.member_name(st["pokemon"][k]): k for k in keys}
+    wanted = {"Fletchinder (Fletchling held to 25)": "Will-O-Wisp", "Luxio (Shinx held to 25)": "Swagger",
+              "Bibarel (Bidoof held to 25)": "Yawn"}
+    held = [key[n] for n in wanted]
+    dominated = all(k not in sl.cands[sl.slot_of[k]] for k in held)
+    on_time = [sl.slot_of[k] for k in held]
+    fin = tuple(sorted(on_time + [k for k in sixes[0] if sl.slot_of[k] not in on_time][:3], key=keys.index))
+    played, moves = [], {}
+
+    def play_jobs(st_, bk_, fl_, jobs, procs=None, tally=None):
+        t = tally or pt.Tally()
+        for team, seed, _cfg, luck, _used in jobs:
+            names = {pt.member_name(st_["pokemon"][k]) for k in team}
+            for k in team:
+                moves[pt.member_name(st_["pokemon"][k])] = list(st_["moves"][k])
+            fletch, bib = "Fletchinder (Fletchling held to 25)" in names, "Bibarel (Bidoof held to 25)" in names
+            won = fletch or (bib and seed % 10 < 8) or seed % 10 < 5
+            t.add(team, won, 0 if fletch and bib else 1, False, [], fight=(seed, luck))
+            played.append((team, seed))
+        return t
+
+    keep = getattr(pt, "play_jobs", None)
+    pt.play_jobs = play_jobs
+    try:
+        race = pt.Tally()
+        for i in range(10):
+            race.add(fin, i < 5, 1, False, [], fight=(100 + i, "real"))
+        finalists, record = pt.playoff(st, bk, fl, [fin], race, {}, sl, log=lambda *_a: None)
+        names = [pt.member_name(st["pokemon"][k]) for k in finalists[0]]
+        none = pt.playoff(st, bk, fl, [fin], race, {}, pt.Slots({"pokemon": {k: dict(st["pokemon"][k], catch=k)
+                                                                              for k in keys}}, keys, M),
+                          log=lambda *_a: None)[0]
+    except (AttributeError, TypeError) as e:
+        names, record, none = [str(e)], [], None
+    finally:
+        pt.play_jobs = keep
+    tried = {t for t, _s in played}
+    swapped_in = {pt.member_name(st["pokemon"][k]) for t in tried for k in t} & set(wanted)
+    out.append(("the play-off plays every held version of a finalist's members, the screen's dominated ones too",
+                dominated and swapped_in == set(wanted) and all(s_ >= 100 and s_ < 110 for _t, s_ in played),
+                f"dominated in the screen: {dominated}; swapped in {sorted(swapped_in)}; {len(tried)} sixes played"))
+    out.append(("a held version plays with the move its hold brings",
+                all(mv in moves.get(n, []) for n, mv in wanted.items()), str({n: moves.get(n) for n in wanted})))
+    out.append(("two winning swaps are played together and kept where the combination holds",
+                "Fletchinder (Fletchling held to 25)" in names and "Bibarel (Bidoof held to 25)" in names
+                and "Luxio" in names and record and record[0].get("combined"), str(names)))
+    out.append(("a box without held versions plays no swap", none == [fin] and len(played) == len(tried) * 10,
+                str(none)))
+    return out
+
+
 def main():
     results = []
     rows = g.fights()
@@ -579,6 +645,7 @@ def main():
     results += paired_checks()
     results += web_checks()
     results += planned_checks()
+    results += playoff_checks()
 
     got = {k: sorted(g.places(by[k])) for k in ("mars_1", "gardenia", "jupiter_1", "fantina", "candice")}
     # Mt. Coronet 1F North Room 1, off Route 211, is the first magnetic map.

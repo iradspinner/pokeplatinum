@@ -263,7 +263,7 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
         mult *= 2 / 3        # the calculator's row has Flash Fire always lit (fightsim's Battle.damage)
     elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
         mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
-    if fs.booster_fifth(att, mv):
+    if fs.booster_fifth(b, att, mv):
         mult *= 1.2              # the player's own booster, its rows item-free (fightsim.booster_fifth)
     side = b.p if dfn.side == "p" else b.b
     screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
@@ -560,6 +560,23 @@ def _spread_attack(b, att, mv, targets, paid):
         fs.knockout_boost(att, t, before[id(t)])
     if mv.const == "MOVE_RELIC_SONG":
         fs.relic_song(b, att, mv, any(t.hp < before[id(t)] for t in targets))    # once a use, whatever it hit
+
+
+def whirlwind_passes(b, att, dfn):
+    """Roar's and Whirlwind's level check, rolled once the target has
+    someone to send in (BattleScript_PickDraggedOutMon asks
+    BattleSystem_CanWhirlwind in a trainer battle, fightsim.whirlwind_odds):
+    a user of the target's level or higher always passes, with no roll; a
+    lower one fails at the engine's odds, which for the player is bad luck
+    and for the trainer good luck, as Protect's repeat has it. Until
+    2026-10-21 neither battle had the check, so Roar never failed on level
+    (Ian approved the fix on 2026-10-21)."""
+    if att.level >= dfn.level:
+        return True
+    p = fs.whirlwind_odds(att.level, dfn.level)
+    if player(att):
+        return not b.dice.bad("roarfail", 1 - p)
+    return b.dice.bad("roarworks", p)
 
 
 def struggle_damage(att, dfn, roll, room=False):
@@ -1464,13 +1481,15 @@ def status_move(b, att, mv, dfn, first):
             # into the target's slot (fightsim.drag_pick). Until 2026-10-21
             # the one drawn took the first slot, whichever it hit (Ian
             # approved the fix on 2026-10-20).
-            if dfn.alive() and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False):
+            if dfn.alive() and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False) \
+                    and fs.drag_pick(b, dfn, lambda kind, n: 0) is not None and whirlwind_passes(b, att, dfn):
                 idx = fs.drag_pick(b, dfn, lambda kind, n: b.dice.choice(kind, n))
                 if idx is not None:
                     fs.switch_in(b, foe_side, idx, slot=fs.slot_of(foe_side, dfn))
             return
         bench = foe_side.bench()
-        if bench and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False):     # Suction Cups
+        if bench and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False) \
+                and whirlwind_passes(b, att, dfn):     # Suction Cups, Ingrain, the level check
             nxt = bench[b.dice.choice("roar", len(bench))]
             fs.switch_in(b, foe_side, foe_side.mons.index(nxt))
     elif e == "FAINT_AND_ATK_SP_ATK_DOWN_2":
@@ -1966,15 +1985,37 @@ def _turn(c, pa, aa):
         order.append((foe, aa[1]))
     for mon, mv in order:
         mon.chosen = mv
+    custap = ()
     if len(order) == 2:
         (a, ma), (d, md) = order
+        if quick is not None:
+            # A Custap Berry in its pinch is eaten as its holder acts, on
+            # any priority, once both sides fight: CompareBattlerSpeed sets
+            # its custapBerry mark in the turn order's comparison of the two
+            # whatever their moves' priority, and subscript_check_quick_claw
+            # spends the Berry before the holder's move. Until 2026-10-21 it
+            # was eaten only when the two moves shared a priority (Ian
+            # approved the fix on 2026-10-21).
+            custap = [mon for mon in (me, foe) if quick.get(mon.key) and mon.item == "Custap Berry"]
         # Priority as the engine reckons it (Prankster, Gale Wings).
         if fs.move_priority(a, ma) != fs.move_priority(d, md):
             order.sort(key=lambda o: -fs.move_priority(o[0], o[1]))
         else:
-            sa, sd = c.speed(a), c.speed(d)
-            if c.trick_room:
-                sa, sd = -sa, -sd
+            raw = c.speed(a), c.speed(d)
+            sa, sd = (-raw[0], -raw[1]) if c.trick_room else raw
+
+            def by_speed():
+                return sa < sd or (sa == sd and not c.dice.tie_player_first())
+
+            def behind():
+                # Whether the player goes second with no Quick Claw or
+                # Custap Berry settling it: Lagging Tail and Full Incense,
+                # then Stall, put their holder last in the bracket
+                # (fightsim.slow_after, CompareBattlerSpeed), and without any
+                # Speed decides. Until 2026-10-21 neither battle's order had
+                # them (Ian approved the fix on 2026-10-21).
+                slow = fs.slow_after(me, foe, raw[0], raw[1], lambda: not c.dice.tie_player_first())
+                return by_speed() if slow is None else slow
             if quick is not None:
                 # A run: each Quick Claw was rolled before the trainer chose
                 # (speedRand, which the AI's speed reading also sees); one
@@ -1982,15 +2023,12 @@ def _turn(c, pa, aa):
                 qp, qf = quick.get(me.key, False), quick.get(foe.key, False)
                 if qf and not qp:
                     order.reverse()
-                elif qp == qf and (sa < sd or (sa == sd and not c.dice.tie_player_first())):
+                elif qp == qf and (by_speed() if qp else behind()):
                     order.reverse()
-                for mon in (me, foe):
-                    if quick.get(mon.key) and mon.item == "Custap Berry":
-                        fs.consume(mon)          # a Custap Berry that fired is eaten
-            elif sa < sd or (sa == sd and not c.dice.tie_player_first()):
-                # The player is slower: its Quick Claw (one in five) keeps it
-                # first. Before this the check sat after this branch and could
-                # never fire.
+            elif behind():
+                # The player goes second: its Quick Claw (one in five) keeps
+                # it first. Before this the check sat after this branch and
+                # could never fire.
                 if not (me.item == "Quick Claw" and c.dice.good(0.2, "quickclaw")):
                     order.reverse()
             elif foe.item == "Quick Claw" and c.dice.bad("quickclaw", 0.2):
@@ -1998,6 +2036,8 @@ def _turn(c, pa, aa):
     for i, (mon, mv) in enumerate(order):
         if i and fs.forced_out(c, mon):
             continue                     # dragged out before its turn, it does not act (fightsim.forced_out)
+        if mon in custap and mon.alive() and mon.item == "Custap Berry":
+            fs.consume(mon)              # its Custap Berry, eaten as it acts (subscript_check_quick_claw)
         target = fs.foe_of(c, mon)
         first = i == 0 and len(order) == 2
         use_move(c, mon, mv, target, first)
