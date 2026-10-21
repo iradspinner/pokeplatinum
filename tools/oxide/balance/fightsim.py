@@ -7463,10 +7463,14 @@ def multi_hit_odds(att, mv):
 def row_hits(att, mv):
     """The hits a calculator row adds up for this move (calc_headless.js
     rolls(), move.js): a two to five hit move at its lowest plus one, or its
-    most with Skill Link or a Grip Claw; Double Kick's kind at two; Triple
-    Dive's at three (THREE_HITS), so the trainer's AI, which divides its
-    row by this, rates it on one hit, as TrainerAI_ExpectedHitsDamage
-    leaves it; else one."""
+    most with Skill Link or a Grip Claw; Double Kick's kind at two
+    (TWO_HITS, Twineedle and Double Iron Bash with it); Triple Dive's at
+    three (THREE_HITS); else one. The trainer's AI divides its row by this
+    to get one hit, as the game's estimate starts, then counts the move's
+    hits (fightai.expected_hits). Until 2026-10-21 Twineedle and Double
+    Iron Bash counted one here, though their rows add up two, so the AI
+    rated Twineedle on both its hits where the game rated one; nothing
+    else read the count for them (hit_weights gives them two)."""
     if mv.effect == "MULTI_HIT":
         return 5 if att.ability == "Skill Link" or att.item == "Grip Claw" else 3
     if mv.effect in THREE_HITS:
@@ -7475,7 +7479,7 @@ def row_hits(att, mv):
         # Population Bomb (calc's multihit [1, 10]): two, ten for Skill Link
         # or a Grip Claw, which the engine's hits do not follow (TEN_HITS)
         return 10 if att.ability == "Skill Link" or att.item == "Grip Claw" else 2
-    return 2 if mv.effect == "HIT_TWICE" else 1
+    return 2 if mv.effect in TWO_HITS else 1
 
 
 def rising_scale(mv, hits):

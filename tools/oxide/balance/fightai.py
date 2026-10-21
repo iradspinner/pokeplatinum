@@ -235,12 +235,19 @@ def expected_hits(u, mv, d):
     (20, 40, 60) the game rates by their three hits' sum, which is what the
     calculator's row already adds up (its Oxide profile and gen4.js), so
     their row stands as it is. Until 2026-10-12 the rising row was taken as
-    one hit and multiplied again."""
+    one hit and multiplied again. The moves of a fixed two or three hits
+    (fs.TWO_HITS, fs.THREE_HITS) count every hit since 2026-10-21 (Ian's
+    approval of the catch-up re-read's first decision, a vanilla fix in
+    the game), where the game rated them on one."""
     p = mv.power
     if p <= 0:
         return d
     if mv.effect == "MULTI_HIT":
         return d * 5 if u.ability == "Skill Link" else d * 31 // 10
+    if mv.effect in fs.TWO_HITS:
+        return d * 2
+    if mv.effect in fs.THREE_HITS:
+        return d * 3
     return d
 
 

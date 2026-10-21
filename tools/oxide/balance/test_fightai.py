@@ -947,6 +947,22 @@ def damage_figure_and_engine():
     out.append(("expected hits: 3.1, Skill Link 5; the rising moves' rows (Fury Cutter, Triple Kick) as they are; "
                 "Bone Rush at 100%", (plain, link, cutter, kick, fs.move("Bone Rush").acc) == (310, 500, 100, 100, 100),
                 f"{plain}, {link}, {cutter}, {kick}; Bone Rush {fs.move('Bone Rush').acc}%"))
+    # The moves of a fixed two or three hits on every hit (Ian, 2026-10-21,
+    # a vanilla fix in the game): one hit's figure times two or three, where
+    # the game took one hit. Twineedle's row adds two hits, as Double Kick's
+    # does, so the AI takes half of it before counting.
+    fixed = tuple(ai.expected_hits(bre, fs.move(n), 100) for n in
+                  ("Double Kick", "Twineedle", "Double Iron Bash", "Dragon Darts", "Triple Dive", "Surging Strikes"))
+    out.append(("expected hits: the two-hit moves 2, Triple Dive and Surging Strikes 3", fixed ==
+                (200, 200, 200, 200, 300, 300), f"{fixed}"))
+    fb = battle([("Beedrill", 40, "Swarm", ["Twineedle", "Double Kick", "Triple Dive", "Dragon Darts"])],
+                [("Bidoof", 40, "Simple", ["Tackle"])])
+    bee, bid = fb.b.cur(), fb.p.cur()
+    rows = {n: (ai.figure(fb, bee, bid, fs.move(n)), fb.damage(bee, bid, fs.move(n), ai_view=True),
+                fs.row_hits(bee, fs.move(n))) for n in ("Twineedle", "Double Kick", "Triple Dive")}
+    out.append(("figure: Twineedle and Double Kick on both hits, Triple Dive on three (the rows add them up)",
+                all(f == (r // h) * h and h == want for (f, r, h), want in
+                    zip(rows.values(), (2, 2, 3))), f"{rows}"))
     _to(b, b.b, "Lucario")
     luc = b.b.cur()
     lo, raw = ai.figure(b, luc, t, fs.move("Aura Sphere")), b.damage(luc, t, fs.move("Aura Sphere"), ai_view=True)

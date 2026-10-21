@@ -308,6 +308,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   move (Gardenia's team carries Bullet Seed), it should now use that move
   where it is the strongest attack counted over about three hits, where it
   used to rate it as a single 25 power hit and seldom chose it.
+- [ ] **The AI rates two-hit and three-hit moves on every hit**
+  (`overseer-ai-fixes`, Ian's approval of 2026-10-21; the kit cannot show
+  it, for the same reason). Against Barry on Route 203 (the Turtwig
+  player's version), his Chimchar knows Ember and Double Kick: lead with a
+  Normal type and it should choose Double Kick nearly every turn, since two
+  30 power hits at double damage now count twice Ember's worth, where one
+  hit counted about the same as Ember and the two were close. Barry's
+  Ambipom from Route 209 on leans on Double Hit the same way.
 - [ ] **Gauntlets** (`main-gauntlets`, `docs/oxide/gauntlets.md`), on the
   test kit ROM. Take "Route 208, all badges" first, then the Warp menu's five
   gauntlet entries, each of which lands one step from a section's way in; walk
