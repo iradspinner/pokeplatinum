@@ -328,6 +328,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   its Leftovers. Before the change "The wild WOBBUFFET stole MEW's
   Leftovers!" came first. Take the set again and use Tackle: Wobbuffet
   steals the Leftovers, since no drag follows.
+- [ ] **Judgment with the Pixie Plate** (the "Pixie Plate" entry on the
+  "Element 7 items" menu, `overseer-signature-moves-2`; Ian, 2026-10-20).
+  The first Arceus holds the plate and is pink. Its Judgment on the wild
+  Dragonite brings "It's super effective!"; the second Arceus's Judgment,
+  with no plate, is a Normal hit with no message. Before the fix both hit
+  as Normal, since Judgment's effect script had no branch for the plate.
 - [ ] **The move reworks, for normal play** (the kit cannot run them):
   Petal Dance hitting both foes in a double battle; Dig still digging out of
   a cave from the field menu; a trainer's Hyper Beam, Giga Impact or Outrage
