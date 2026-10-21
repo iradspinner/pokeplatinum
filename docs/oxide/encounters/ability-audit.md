@@ -1,6 +1,6 @@
 # Ability audit for the ability pass
 
-A snapshot of 2026-09-29, from `tools/oxide/encounters/ability_audit.py`, which reruns it. It lists every Pokemon the player can obtain (on the species pick-list, and given by a table, a honey tree or a live scripted source, or evolved from one that is) whose abilities Oxide rules out or cannot use. Nothing here changes game data; the ability pass decides the replacements. The split is the first one the species can be had in, and the place is where; an evolved stage names the stage it comes from.
+A snapshot of 2026-10-21, from `tools/oxide/encounters/ability_audit.py`, which reruns it. It lists every Pokemon the player can obtain (on the species pick-list, and given by a table, a honey tree or a live scripted source, or evolved from one that is) whose abilities Oxide rules out or cannot use. Nothing here changes game data; the ability pass decides the replacements. The split is the first one the species can be had in, and the place is where; an evolved stage names the stage it comes from.
 
 The first list is the weather abilities in a regular slot. Ian's standing rule (2026-09-26) keeps weather out of the player's hands, allowing a weather ability only as a hidden one, which the game's single Ability Patch reaches.
 
@@ -31,8 +31,11 @@ For reference, the obtainable species whose hidden ability sets or cancels weath
 | Tyranitar | hidden | Sand Stream | sets a sandstorm | Fantina | Wayward Cave: grass, as Larvitar; Pupitar by level 30, then Tyranitar by level 55 |
 | Lickilicky | hidden | Cloud Nine | cancels weather | Maylene | Route 215: grass, as Lickitung; Lickilicky by knowing a set move |
 | Lickitung | hidden | Cloud Nine | cancels weather | Maylene | Route 215: grass |
+| Magcargo | hidden | Drought | sets sun | Maylene | Route 210: grass, as Slugma; Magcargo by level 30 |
 | Ninetales | hidden | Drought | sets sun | Maylene | Route 207: grass, as Vulpix; Ninetales by a Fire Stone |
+| Slugma | hidden | Drought | sets sun | Maylene | Route 210: grass |
 | Politoed | hidden | Drizzle | sets rain | Wake | Route 203: Old Rod, as Poliwag; Poliwhirl by level 25, then Politoed by holding a King's Rock |
+| Solrock | hidden | Drought | sets sun | Byron | Iron Island: grass |
 
 Flagged species with no way to obtain them now (held back, or with no source), left out of the lists above:
 

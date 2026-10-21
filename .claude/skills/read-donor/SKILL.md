@@ -36,8 +36,9 @@ readers already exist; use them rather than reopening the ROM by hand.
   yields and held items being zero is Hardlove's own choice, not a layout fact.
 - Donor index for a Gen 5 and later species is National Dex number plus 50,
   because 0494 to 0543 are form and spare slots. On the Oxide side that is a
-  lookup, not an identity: Oxide ids are dense after Arceus (494 to 652) in
-  pick-list `dex_pos` order, `docs/oxide/species-id-map.csv` is the assignment.
+  lookup, not an identity: Oxide ids are dense after Arceus (494 to 652 in
+  pick-list `dex_pos` order, then Meloetta at 653, added 2026-09-27);
+  `docs/oxide/species-id-map.csv` is the assignment.
 - Fairy is type 9 in the donor (the dead Mystery slot); Oxide's is 18.
 - **The donor is Hardlove's design, not a canonical reference.** Against the ROM
   it changes 28 of 493 natives' types and 317 of their abilities. So for the 159

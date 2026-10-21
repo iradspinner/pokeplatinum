@@ -50,7 +50,8 @@ the pass replaces them. Calibrate against `main`, never the working tree.
    since 2026-09-21 is the cap rather than a concentration arc: A11 to A19 in
    rotation, top slot 25 to 35% in every band. The game-wide budget in 2.3 is
    the constraint that only shows at the end, so check `report` every twenty
-   tables: R8's spread floor is 1.8x now (the authored game reads about 1.96x).
+   tables: R8's spread floor is 1.8x now (the authored game read 1.87x on
+   2026-10-21).
 4. Write the `cast` in share order: the first entry is the face. Pin a species
    to a rung with `{"species": X, "rung": r}` when the rung is the point of it.
    Two facts about the layout: an A5 head can never hold a top-rung slot (its 40
@@ -103,7 +104,8 @@ to read it.
 - Tables are designed per capture area (one location name, however many
   files) and per gym split. The splits, their level caps and the split each rod
   and Surf arrives in are the sidecar's `splits` table; Maylene's cap is 38 in
-  the tables and 39 in Ian's sheet, waiting on the balance track.
+  the tables and 39 in the engine (`src/system_vars.c`), and whether the
+  tables move to 39 is a tracker item.
 - A grass table holds eight to sixteen lines with distinct day and night pairs,
   and nothing over 35%.
 - A place whose tables sit in one spot is either identical throughout or very
@@ -180,7 +182,6 @@ or a post-League proposal, are warnings that give his reason, and the
 pre-commit hook and the gate both lint R12); `audit --fail-on-leak`
 exits 0; the ROM is built (`make rom`) and `python3
 tools/oxide/verify_narcs.py --built <rom> --encounters --source` reports all 190
-tables matching their JSON (the gate's count on oxide, 2026-09-27). The numbers from `report` go into the build plan's
-"Authoring pass" section against the targets in design doc 2.1; the tracker's
-encounter paragraph changes only if what is live changes, and nothing else in
-the tracker is touched.
+tables matching their JSON (the gate's count on oxide, 2026-09-27, and still
+190 on 2026-10-21). The numbers from `report` go with the batch's tracker
+item, against the targets in design doc 2.1.

@@ -6,7 +6,7 @@ Ian asked on 2026-10-20 for every official move that Oxide lacks, leaving out th
 
 No official move is missing. Oxide's move table, ported from hg-engine, holds every regular move through Generation 9's Indigo Disk. Two sources agree: the calculator's move tables for every generation, and hg-engine's own list of 923 moves. Once the old spellings Oxide keeps are matched (Hi Jump Kick, Faint Attack, SmellingSalt), the only moves Oxide lacks are Z-moves, which it does not want. Its extras are the 53 Z-moves and 19 Max moves, which nobody gets and which are due to be removed. One spelling slip turned up: Collision Course reads "ColisionCourse" in the game, and its constant is `MOVE_COLISION_COURSE`.
 
-So the useful question is which of Oxide's own moves nobody can use. On today's tree:
+So the useful question is which of Oxide's own moves nobody can use. On the tree it was read from, before the signature-move homes of 2026-10-20 and 21 (`signature-moves.md`) gave many of them a home:
 
 | Who can have the move | Moves |
 |---|---|
@@ -30,7 +30,7 @@ These are the picks worth a decision, all moves the engine runs as written:
 
 Speed control and priority are the strongest of these, by Ian's own reading of the Gardenia dials, so Aqua Step, Esper Wing, Drum Beating, Jet Punch and Thunderclap want the most care if any goes to the player.
 
-What Ian decides: whether the three returns go in, and whether a pass like the stranded-moves one should propose a home for each useful signature move (a level-up slot on an obtainable line where it fits, or an egg list where it should stay with trainers), put to him as a doc before anything changes. The 29 partly working and 47 dead moves wait on engine work before any of them is worth a home.
+Ian answered on 2026-10-20 by asking for that pass over the last three picks. It is `signature-moves.md`, which records his answers (the returns among them: Stone Axe to Kleavor, Lumina Crash to the Slowbro line rather than Glimmora, Shell Trap held for its in-game check) and the homes that landed. The 29 partly working and 47 dead moves wait on engine work before any of them is worth a home.
 
 The source of the engine verdicts is `move-access.md` of 2026-10-14; the engine changes since then (Eerie Spell, Burning Bulwark, the Dragon Tail drag and Pickpocket) touch none of these rows.
 

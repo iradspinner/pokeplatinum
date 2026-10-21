@@ -13,46 +13,12 @@ Checks marked **(live)** need a local agent attached to melonDS over the GDB stu
 (the `debug-live` skill). Ian drives; the agent reads memory. Nothing here asks
 an agent to launch an emulator.
 
-## 0. Before anything: the new CPU
-
-The old i9-14900K was degraded (design doc findings log, 2026-09-22). Its
-replacement went in on 2026-09-29, and all of this was done that day:
-
-- [x] Delete the venv block in the `Makefile`, the build retry in
-  `integrate.sh`, the wedge guard (its rule in `.claude/hooks/oxide_guard.py`,
-  `wedge_status.sh` and its test beside it, and the `statusLine` entry in
-  `~/.claude/settings.json`, which Ian edits himself), the local-build rule in
-  `.claude/hooks/oxide_guard.py` that refuses full builds, its paragraph in
-  CLAUDE.md's Build section, and the memory file
-  `no-local-builds-until-new-cpu.md`. `integrate.sh --rom` can stay.
-  Done 2026-09-29, after a gentle check of the new chip (microcode 0x12F; single-core
-  and four-copy runs all clean and repeatable). The `statusLine` entry is Ian's
-  to remove; CLAUDE.md and the standing rulings keep the three-job limit until
-  the stress check below passes, and GitHub ROMs until the build check does.
-- [x] Undo the BIOS change made for the old chip, before the stress check:
-  the P-cores' all-core ratio cap of 55 (2026-09-22, design doc findings
-  log) goes back to Auto, with MSI's Intel Default Settings profile on, so
-  the check runs the new chip as it will be used. The only other change,
-  Windows' maximum processor state at 99%, Ian undid on 2026-09-29.
-  Done by Ian the same day: P-core ratio 55 to Auto, CPU Cooler Tuning on
-  Intel Default Settings, P-Core Beyond 6GHz+ off.
-- [x] Rerun the parallel check (`C:\Users\Ian\oxide-flake-check\parallel.py`,
-  and the same file from WSL). WSL failed about ten times as often as Windows
-  under the same load, and the wedge may be a second, WSL-kernel problem that
-  the CPU has been hiding. Passed 2026-09-29, 32 copies at a time: 0 of 960
-  failed on Windows and 0 of 1,760 in WSL (the old chip: 1 and 16 of 160), no
-  wedge, and no WHEA error or crash in Windows' logs.
-- [x] Build `oxide` locally once and compare its SHA-1 with GitHub's build of
-  the same commit.
-  Passed 2026-09-29: two builds from an empty folder on every core, 17,816
-  steps in 47 and 48 seconds, both `917eb9a5` like GitHub's build of
-  252111fe3.
-
 ## 1. The ROMs and the save
 
 - [ ] Build the ordinary ROM and the test kit ROM of the current, pushed
-  `oxide` here (`make rom` and `make testkit`), check the ordinary one's SHA-1
-  against GitHub's build of the commit, and copy both into `~/oxide-playtest`.
+  `oxide` here (`make rom` and `make testkit`) and copy both into
+  `~/oxide-playtest`; GitHub's SHA-1 is compared by hand only if a build
+  looks wrong (Ian, 2026-10-13).
 - [ ] **Start a new game.** An old save reads every ability as NONE by design
   (element 2 moved the field) and is no valid test bed.
 - [ ] **The base ROM's visual overhaul** (`carry-over`, merged), compared
@@ -65,19 +31,9 @@ replacement went in on 2026-09-29, and all of this was done that day:
   post-game, May, Steven, Red and Gold showing their own battle sprites.
   Shadow Force's animation carries one changed byte nobody has explained;
   note anything odd about it.
-- [ ] Once `main-meloetta` merges, **your current save still loads**: the
-  Pokedex keeps its seen and caught counts, and mail and greetings read as
-  before. On mail written before it, an egg or a Deoxys, Unown, Burmy,
-  Wormadam, Shellos or Gastrodon form shows the icon one place along; that is
-  known and harmless (`save-layout.md`, the Meloetta section).
-
-- [x] **The battle log**: done 2026-09-28, three wins on Route 202 on
-  51fa6cdaa; the OxiDex's Battle Log listed all three, and Sync and the log
-  also work on melonDS-oxide's live feed. Still unseen: a lost fight logging
-  as lost.
-- [ ] **The battle recorder logs your moves** (alpha readiness step 11,
-  `overseer-beacon-moves` with the melonDS fork's `beacon-moves` build).
-  With the ROM from that branch, and that melonDS build swapped into your
+- [ ] **The battle recorder logs your moves** (alpha readiness step 11; the
+  game side landed at 0a27a2b0d, beside the melonDS fork's `beacon-moves`
+  build). With any ROM since, and that melonDS build swapped into your
   playing folder while melonDS is closed, start `record.py` in
   `~/oxide-playtest/battle-recordings/`. Fight one wild battle and one
   trainer; in each, use one attacking move, one stat move such as Growl or
@@ -126,12 +82,17 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   (63), Beak Blast burning a Tackle (65), and Sky Drop lifting a Chansey that
   then cannot act (66) and not affecting a Skarmory (67). Set 70: after a
   Ninjask's Throat Chop, Hyper Voice fails that turn and neither it nor Heal
-  Bell can be chosen the next, then both come back. Left out, since nothing
-  in the game carries their moves: sets 37 to 39, 41, 50, 53 to 56, 58, 59,
-  64, 68 and 69 (Last Respects, Hard Press, Pika Papow and Veevee Volley,
-  Grav Apple, Wonder Room, Electro Shot, Mind Blown, Nature's Madness, Spiky
-  Shield, Baneful Bunker, Core Enforcer, Freeze Shock and Ice Burn, Lunar
-  Blessing and Jungle Healing); sample one if a team or list takes its move.
+  Bell can be chosen the next, then both come back. Five that the cut left
+  out have since reached an obtainable line's level-up list, so sample them
+  too: Hard Press (38; Steelix, Bastiodon), Grav Apple (41; Shiftry),
+  Nature's Madness (56; Clefable, Florges), Core Enforcer (64; Goodra,
+  Kingdra) and Lunar Blessing (69; Cresselia, an Acuity Cavern draw). Left
+  out, since nothing the player catches or a trainer fields carries their
+  moves: sets 37, 39, 50, 53 to 55, 58, 59 and 68 (Last Respects and Baneful
+  Bunker are on egg lists only, Wonder Room and Mind Blown only on Nihilego
+  and Blacephalon; Pika Papow, Veevee Volley, Electro Shot, Spiky Shield,
+  Freeze Shock and Ice Burn on nothing), and Jungle Healing in set 69;
+  sample one if a team or list takes its move.
   A stub effect does its damage and skips its extra, or says "But nothing
   happened!"; that is expected. Autotomize prints no "became nimble!", as Ian
   ruled.
@@ -158,8 +119,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   about half the time). Friend Guard, and Rattled's answer to Intimidate, need
   a double battle or a switch the kit cannot arrange; they are for normal
   play.
-- [ ] **The staples rulings, the Modern rules menu** (its first 19 of 24
-  entries; the other five have their own checks below): Sturdy as a
+- [ ] **The staples rulings, the Modern rules menu** (its first 19 of 27
+  entries; the other eight have their own checks below): Sturdy as a
   Focus Sash, Lightning Rod and Storm Drain immunity, the Intimidate blockers,
   Grass against powder, Electric against paralysis, 1.5x critical hits, Defog
   clearing hazards from both sides and screens only from the target's, Rapid
@@ -245,9 +206,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   that order, each with its move. Then save, turn the game off and reload: the
   Bag (it grew), a swapped ability, a Mint's stats and a trained IV all come
   back as they were. "Vulpix, Ice Stone": the Ice Stone evolves one Vulpix
-  into Alolan Ninetales, the Fire Stone the other into Ninetales; note the
-  name the Alolan one takes, since its species name is still the form
-  placeholder "-----".
+  into Alolan Ninetales, the Fire Stone the other into Ninetales, and the
+  Alolan one is named A-NINETALS (the form names' check, section 4).
 - [ ] **Element 7, for normal play** once the balance track has placed items
   and given trainers theirs (the kit cannot give a foe an item or run a
   double battle): a foe's Red Card dragging out a teammate in a trainer
@@ -337,14 +297,25 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] **The move reworks, for normal play** (the kit cannot run them):
   Petal Dance hitting both foes in a double battle; Dig still digging out of
   a cave from the field menu; a trainer's Hyper Beam, Giga Impact or Outrage
-  used as an ordinary attack (Cynthia, Volkner and the Flint and Volkner tag
-  carry them), with no recharge turn and the recoil message.
+  used as an ordinary attack, with no recharge turn and the recoil message.
+  Since step 12's teams (2026-10-07) 49 trainers carry one, from Ruin Maniac
+  Calvin's Outrage at 33, Skier Bjorn's Giga Impact at 51 and Swimmer
+  Glenn's Hyper Beam at 55; Cynthia, Volkner and the Flint and Volkner tag
+  no longer do.
 - [ ] **The AI rates multi-hit moves on their expected hits** (the kit cannot
   show it, since a wild Pokemon picks its move at random and never runs the
   trainer AI). In a trainer battle against a Pokemon with a two to five hit
   move (Gardenia's team carries Bullet Seed), it should now use that move
   where it is the strongest attack counted over about three hits, where it
   used to rate it as a single 25 power hit and seldom chose it.
+- [ ] **The AI rates two-hit and three-hit moves on every hit**
+  (`overseer-ai-fixes`, Ian's approval of 2026-10-21; the kit cannot show
+  it, for the same reason). Against Barry on Route 203 (the Turtwig
+  player's version), his Chimchar knows Ember and Double Kick: lead with a
+  Normal type and it should choose Double Kick nearly every turn, since two
+  30 power hits at double damage now count twice Ember's worth, where one
+  hit counted about the same as Ember and the two were close. Barry's
+  Ambipom from Route 209 on leans on Double Hit the same way.
 - [ ] **Gauntlets** (`main-gauntlets`, `docs/oxide/gauntlets.md`), on the
   test kit ROM. Take "Route 208, all badges" first, then the Warp menu's five
   gauntlet entries, each of which lands one step from a section's way in; walk
@@ -428,7 +399,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   switching, it opens on the listing used last. A species' area map shows the
   same places as before; nothing else changes until the story gives the
   National Dex.
-- [ ] Once `carry-over` merges, **the Pocket PC** (received in Sandgem; Ian's
+- [ ] **The Pocket PC** (`carry-over`, merged; received in Sandgem; Ian's
   rulings are in `docs/oxide/pocket-pc.md`). From the bag and from the Y
   button, outdoors, in a building and in a cave, it opens a PC with Pokemon
   Storage, Healing Waves, Rare Candy and Misc. (Name Rater APP, Hidden Power
@@ -467,7 +438,6 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   teacher a Lum Berry, and Fantina two Strength HMs. No line names the old
   item. On Route 206, Hiker Theodore gives TM03 (Water Pulse) and then TM28
   (Dig) straight after the win, and nothing more when talked to again.
-- [x] The battle log (done 2026-09-28, section 1).
 - [ ] The Kaizo move data in normal play (`cloud/element4-kaizo-move-data`):
   TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
   Spore in a double battle lowers both foes' Speed; Drill Peck and Dragon
@@ -511,12 +481,15 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   which is a guess no Route 202 trainer exercises; swap it if anything reads
   wrong.
 - [ ] Element 6's absorber switch (`cloud/element6-changes`), Picnicker Siena
-  (level 15, Zigzagoon then an Electrike with Lightning Rod): hit Zigzagoon
-  with an Electric attack that does not knock it out. On about half such
-  turns she switches to Electrike instead of attacking; before the change she
-  never did. Take several tries before calling it.
+  on Route 205 South (since step 12's teams, a Plusle at 23 leading and an
+  Electrike with Lightning Rod behind it): hit Plusle with an Electric attack
+  that does not knock it out, from a Pokemon her Spark is not super effective
+  against, since a super-effective move of her own skips the switch two
+  times in three. On about half such turns she switches to Electrike instead
+  of attacking; before the change she never did. Take several tries before
+  calling it.
 - [ ] **(live)** Rapid Spin's clearing (`cloud/element6-followups`), Bug
-  Catcher Donald in Eterna Forest (level 17, a Pineco with Rapid Spin, Expert
+  Catcher Donald in Eterna Forest (a Pineco at 23 with Rapid Spin, Expert
   flag): seed Pineco with Leech Seed (a Cherubi learns it at level 7), break at
   the end of `TrainerAI_MainSingles` and read `moveScore`. Rapid Spin reads 2
   higher than on the turn before the seed, give or take the 1 its Speed raise
@@ -535,7 +508,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   tunnels line. In Oreburgh's Mining Museum the fossil researcher offers to
   revive a fossil without the kit (once a fossil can be had).
 - [ ] A trainer's hidden ability: in the Eterna Galactic building, 3F, the
-  grunt's level 24 Snover sets hail as it enters (Snow Warning, its hidden
+  grunt's level 25 Snover sets hail as it enters (Snow Warning, its hidden
   slot, through the party's ability 3; 20 trainers use it since aa3bbc3356).
 - [ ] Route 207: after Mira is found in Wayward Cave, the woman who asked for
   her says thank you and gives no evolution stones; her first line no longer
@@ -635,7 +608,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   it; a trainer's Infiltrator Pokemon still uses sleep, poison or paralysis moves through
   Ian's Safeguard; a trainer's Mold Breaker Pokemon treats one of Ian's holding an Ability
   Shield as keeping its ability (an Earthquake is not aimed at a shielded Levitate holder).
-- [ ] Double battles, once a trainer uses these moves (none does yet;
+- [ ] Double battles, once a trainer uses these moves in one (none does yet:
+  Ace Trainer Catherine in Fantina's gym has Flame Burst, in a single battle;
   `cloud/element4-partial-moves`): Flame Burst hits its target's partner for
   a sixteenth of its HP with "The bursting flame hit ...!"; Teatime's target
   screen shows every battler, as Haze's does, and it feeds every Pokemon on
@@ -685,8 +659,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Kangaskhan's Hammer Arm is not super effective, which would keep it in two
   turns in three.
 - [ ] Hyper Voice into Soundproof (a VANILLA FIX): against Ace Trainer Skylar
-  (level 60), lead with a Whismur-line Pokemon, whose only ability is
-  Soundproof. Her Exploud never chooses Hyper Voice.
+  (Stark Mountain, her Exploud at 62), lead with a Whismur-line Pokemon whose
+  summary shows Soundproof, its second ability. Her Exploud never chooses
+  Hyper Voice.
 - [ ] Level caps through the story: beating Gardenia lifts the cap to 33,
   Fantina to 39, Maylene to 44, Wake to 53, Byron to 56, Candice to 60, Saturn
   at Galactic HQ to 65, Cyrus in the Distortion World to 68, Volkner to 71
@@ -808,28 +783,6 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   running, the Overseer can check the received Meloetta field by field from
   the box export.
 
-- [x] **Eight items the balance census cannot reach** (2026-09-29): its map
-  flood finds no way to them, so no score counts them. For each, say whether
-  the player can pick it up and what it takes (which field move or path):
-  Wayward Cave B1F's Rare Candy, Grip Claw, Max Ether and hidden Stardust;
-  Victory Road's TM59, Max Elixir and Full Restore on the upper levels; and
-  Amity Square's Spooky Plate in the fenced pen. Tell the balance track.
-  Wayward Cave answered by Ian the same day: bike ramps carry the player
-  three tiles ahead, over the two between even when a rock sits on them, and
-  the basement's items are reached that way; the census models it.
-  Ian on the rest: Amity Square's ruins hold scripted teleporters into the
-  pen, and Victory Road's three are probably behind the way that opens only
-  after the Champion; the census follows both. Tick this once the balance
-  track reports all eight placed.
-  The balance track placed seven the same day: Wayward Cave's four and the
-  Spooky Plate in Fantina's split, Victory Road B1F's TM59 in Barry's (its
-  waterfall) and 2F's Full Restore in Barry's (Strength). One is left for
-  Ian: Victory Road 2F's Max Elixir (tile 4,5), in a pocket whose only ways
-  in are ledges out and the tile the bike ramp at (10,10) jumps over. Does a
-  slow ride onto that ramp stop on it, or is there another way in?
-  Ian, the same day: yes, the bike's slow gear jumps shorter, which reaches
-  it; the balance track models the short jump. All eight answered.
-
 ## 5. The ordinary ROM, after the League
 
 On a save with the National Dex and the game beaten:
@@ -862,3 +815,18 @@ On a save with the National Dex and the game beaten:
 ## Passed
 
 Ticked checks move here with the date they passed.
+
+- [x] **The battle log**: done 2026-09-28, three wins on Route 202 on
+  51fa6cdaa; the OxiDex's Battle Log listed all three, and Sync and the log
+  also work on melonDS-oxide's live feed. Still unseen: a lost fight logging
+  as lost.
+- [x] **The new CPU** (2026-09-29): the old chip's workarounds came out, the
+  BIOS went back to Intel Default Settings, the parallel check passed 0 of 960
+  on Windows and 0 of 1,760 in WSL, and two clean local builds matched
+  GitHub's SHA-1 for 252111fe3. The design doc's findings log (2026-09-29) has
+  the detail.
+- [x] **Eight items the balance census cannot reach** (2026-09-29): Ian
+  answered all eight the same day (Wayward Cave B1F's four by the bike ramps,
+  Amity Square's Spooky Plate by the ruins' teleporters, Victory Road's three
+  by its waterfall, Strength and the bike's short jump), and the census
+  models each.

@@ -15,27 +15,12 @@ Then say in one or two sentences what this session will do, and do it.
 
 ## Working rules (short form; the design doc has the full list)
 
-- **Each change is judged for its effect on difficulty, by judgement.** Ian,
+- **Each change is judged for its effect on difficulty, by judgement** (Ian,
   2026-10-07: "this should dictate every single decision on every single
-  agent." A change that does not materially move a fight's difficulty (a
-  starter's level 5 moves, a TM's location, a line of dialogue) stales
-  nothing and sets off no rescore or re-read; a material one names the
-  fights it moves, and only those are marked for reading. Scores never block
-  a landing: the gate reports stale scores and passes. Full readings happen
-  only at milestones (once before alpha 1, then once after each round of
-  alpha changes); between them the scorer reads only the fights Ian names,
-  and the simulator is frozen except for fixes he approves. The first scoring
-  system's cheap estimate is retired (Ian, 2026-10-13): the scorer is the one
-  measure of a fight. A problem Ian
-  reports is fixed as data, with common sense, never turned into a standing
-  rule, a generator rule or a gate check unless he asks for one. What counts
-  as material is read from the fight's shape in `docs/oxide/boss-shapes.md`:
-  a change to a boss's core, or to the player's core counterpiece to it, is
-  material, and a change to a one-off Pokemon is not (Ian, 2026-10-12).
-  Every landing commit says, in one line, "Difficulty: not material" or
-  "Difficulty: material, <fights>". The rule exists because Roark's split
-  was re-read more than 65 times before the alpha, and the full scorer costs
-  60 to 75 hours a pass.
+  agent"). Every landing commit says, in one line, "Difficulty: not
+  material" or "Difficulty: material, <fights>". The whole ruling, with what
+  counts as material and when readings happen, is the first entry of
+  `.claude/rules/standing-rulings.md`.
 - Work on `oxide` or a branch cut from it. Never commit to `main`; `main`
   tracks upstream pret.
 - Every data change is verified by rebuilding (`make rom`; see Build) and,
@@ -110,7 +95,12 @@ rulebook for any learnset, trainer, item or fight-scoring work),
 `.claude/commands/`, `/integrate` merges every track into `oxide` and runs the
 full verification gate, `/qa-pass <base>` reviews and re-checks a range of
 commits and writes up the findings, and `/docs-pass` audits the docs, skills and
-this file against the tree.
+this file against the tree. In `.claude/agents/`, every helper's type: `big-review`
+runs a docs pass, a QA pass or a risky merge's review at xhigh effort,
+`worker` builds engine, AI, simulator, scorer and data changes on Opus at
+high, `routine` does mechanical, fully specified jobs on Sonnet at medium,
+and `lookup` answers a read-only lookup on Haiku (Ian, 2026-10-21; the
+standing rulings).
 
 A hook in `.claude/settings.json` refuses `git add -A` or `.`, launching an
 emulator, and committing a file that carries the scratch marker

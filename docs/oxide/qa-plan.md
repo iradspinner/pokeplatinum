@@ -2,7 +2,7 @@
 
 > **Reference since 2026-10-13.** Open work for the QA order lives in the tracker's first page and its open work (`docs/oxide/tracker.md`; Ian made it the one home of open work). This doc keeps how the QA order works and its history; its own lists of next steps are no longer kept up to date.
 
-The in-game checklist (`ingame-checklist.md`) holds 119 open checks, written as a reference. This page is the order to work in. Most of those checks are things you notice while playing, and the OxiDex's Alpha tab already shows each one on the card of the zone where it happens. So QA comes down to one test kit session for the systems added this week, then the run itself with the Alpha tab open. Everything else waits. Use the QA ROM and test kit in `~/oxide-playtest` (today `pokeplatinum-oxide-df365a296.nds` and `pokeplatinum-oxide-testkit-df365a296.nds`), with melonDS's Break on startup off.
+The in-game checklist (`ingame-checklist.md`) holds 129 open checks, written as a reference. This page is the order to work in. Most of those checks are things you notice while playing, and the OxiDex's Alpha tab already shows each one on the card of the zone where it happens. So QA comes down to one test kit session for the systems added this week, then the run itself with the Alpha tab open. Everything else waits. Use the QA ROM and test kit in `~/oxide-playtest` (the newest of each), with melonDS's Break on startup off.
 
 ## 1. The test kit: this week's systems (about 45 minutes)
 
@@ -25,7 +25,6 @@ Start a new game on the ordinary ROM with the battle recorder running and the Ox
 
 ## 3. Waiting, not part of QA
 
-- **The older move sets 23 to 70** in the kit (48 obscure moves from element 4). Sample them later. I can first cut the list to the moves a trainer or the player's lists actually carry. Done on 2026-10-13: 34 sets stay, and the checklist entry names them and the 14 left out.
-- **The seven (live) checks**, which need me attached over the GDB stub. One joint session covers them. Three name today's teams (Camper Zackary's Castform, Worker Jackson's Wormadam, Volkner's Rotom-Mow), which the comb replaces, so they get rewritten first. Done on 2026-10-13: Ace Trainer Shannon's Victreebel takes the weather check (Gardenia's Cherrim went too), Jackson's Wormadam stays until the comb's draft drops it, and Volkner's rematch takes the Rotom-Mow check.
+- **The older move sets 23 to 70** in the kit (48 obscure moves from element 4). Sample them later. On 2026-10-13 the list was cut to the moves a trainer or the player's lists carry: 34 sets stay, and the checklist entry names them and the 14 left out.
+- **The seven (live) checks**, which need me attached over the GDB stub. One joint session covers them. Three were rewritten on 2026-10-13 for teams the comb replaces: Ace Trainer Shannon's Victreebel takes the weather check (Gardenia's Cherrim went too), Worker Jackson's Wormadam stays until the comb's draft drops it, and Volkner's rematch takes the Rotom-Mow check.
 - **Section 5, after the League**: only at the end of a run.
-- **One check is out of date**: "An HM taught from the case stays" (Single-use TMs). HMs became single-use TMs in the TM pass, so an HM is now used up like any TM. Fixed on 2026-10-13.

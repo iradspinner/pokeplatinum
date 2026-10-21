@@ -42,7 +42,7 @@ NO_CALC = {"HALVE_DEFENSE", "RECOVER_DAMAGE_SLEEP", "CHARGE_TURN_HIGH_CRIT",
 ALT_POWER = {"RANDOM_POWER_BASED_ON_IVS", "POWER_BASED_ON_LOW_SPEED", "NATURAL_GIFT", "JUDGEMENT",
              "40_DAMAGE_FLAT", "LEVEL_DAMAGE_FLAT", "RANDOM_DAMAGE_1_TO_150_LEVEL",
              "POWER_BASED_ON_FRIENDSHIP", "POWER_BASED_ON_LOW_FRIENDSHIP", "20_DAMAGE_FLAT",
-             "INCREASE_POWER_WITH_WEIGHT"}
+             "INCREASE_POWER_WITH_WEIGHT", "HEAVY_SLAM"}  # Heavy Slam and Heat Crash since 2026-10-21
 # sComputedPowerHits (Oxide, 67 to 71): listed at power 1, given a figure.
 COMPUTED_POWER_HITS = {"MOVE_ELECTRO_BALL", "MOVE_HARD_PRESS"}
 # The engine estimates one hit (BattleSystem_CalcMoveDamage), where the
@@ -235,12 +235,19 @@ def expected_hits(u, mv, d):
     (20, 40, 60) the game rates by their three hits' sum, which is what the
     calculator's row already adds up (its Oxide profile and gen4.js), so
     their row stands as it is. Until 2026-10-12 the rising row was taken as
-    one hit and multiplied again."""
+    one hit and multiplied again. The moves of a fixed two or three hits
+    (fs.TWO_HITS, fs.THREE_HITS) count every hit since 2026-10-21 (Ian's
+    approval of the catch-up re-read's first decision, a vanilla fix in
+    the game), where the game rated them on one."""
     p = mv.power
     if p <= 0:
         return d
     if mv.effect == "MULTI_HIT":
         return d * 5 if u.ability == "Skill Link" else d * 31 // 10
+    if mv.effect in fs.TWO_HITS:
+        return d * 2
+    if mv.effect in fs.THREE_HITS:
+        return d * 3
     return d
 
 
@@ -1465,6 +1472,20 @@ def x_clear_smog(c):
     return s
 
 
+def x_freezy_frost(c):
+    """Expert_FreezyFrost (Oxide, Ian, 2026-10-21): both halves of Haze for
+    the hit that resets every battler's stages, without Haze's -1."""
+    u, t = c.u, c.t
+    s = 0
+    if any(u.stages[k] >= 3 for k in FOUR + ("eva",)) or any(t.stages[k] <= -3 for k in FOUR + ("acc",)):
+        if c.roll(80.5):
+            s -= 3
+    if any(t.stages[k] >= 3 for k in FOUR + ("eva",)) or any(u.stages[k] <= -3 for k in FOUR + ("acc",)):
+        if c.roll(80.5):
+            s += 3
+    return s
+
+
 def x_bide(c):
     """Expert_Bide: -2 at 90% HP or less."""
     return -2 if c.hu <= 90 else 0
@@ -1905,6 +1926,26 @@ def x_hazards(c):
     return 1 + (1 if _knows(c.u, "MOVE_ROAR", "MOVE_WHIRLWIND") and c.roll(75) else 0)
 
 
+def x_stone_axe(c):
+    """Expert_StoneAxe (Oxide, Ian, 2026-10-21): Stealth Rock's routine for
+    the hit that lays rocks, which asks itself what Basic asks of the
+    status move: nothing once rocks are up on the foe's side or against
+    its last Pokemon, else as x_hazards."""
+    if c.foe.hazards["rocks"] or not c.foe.bench():
+        return 0
+    return x_hazards(c)
+
+
+def x_ceaseless_edge(c):
+    """Expert_CeaselessEdge (Oxide, Ian, 2026-10-21): Spikes' routine for
+    the hit that lays a layer, which asks itself what Basic asks of the
+    status move: nothing at three layers on the foe's side or against its
+    last Pokemon, else as x_hazards."""
+    if c.foe.hazards["spikes"] >= 3 or not c.foe.bench():
+        return 0
+    return x_hazards(c)
+
+
 def x_foresight(c):
     """Expert_Foresight (with the battle_edits fix): a Ghost foe, +2 at
     47.3%; a foe at +3 evasion, +2 at 68.75%; otherwise -2."""
@@ -2229,8 +2270,9 @@ def x_revenge(c):
 
 
 def x_brick_break(c):
-    """Expert_BrickBreak: +1 with Reflect or Light Screen on the foe's side."""
-    return 1 if c.foe.screens["Reflect"] or c.foe.screens["Light Screen"] else 0
+    """Expert_BrickBreak: +1 with Reflect or Light Screen on the foe's side,
+    or since 2026-10-21 (Ian) Aurora Veil, which the engine breaks too."""
+    return 1 if c.foe.screens["Reflect"] or c.foe.screens["Light Screen"] or c.foe.aurora_veil else 0
 
 
 def x_knock_off(c):
@@ -2548,7 +2590,10 @@ def x_trump_card(c):
 HEAL_BLOCK_SEEN = {"RECOVER_DAMAGE_SLEEP", "RESTORE_HALF_HP", "HEAL_HALF_REMOVE_FLYING_TYPE", "UNUSED_157",
                    "HEAL_HALF_MORE_IN_SUN", "REST", "SWALLOW", "RECOVER_HALF_DAMAGE_DEALT",
                    "GROUND_TRAP_USER_CONTINUOUS_HEAL", "RESTORE_HP_EVERY_TURN", "STATUS_LEECH_SEED",
-                   "FAINT_AND_FULL_HEAL_NEXT_MON", "FAINT_FULL_RESTORE_NEXT_MON"}
+                   "FAINT_AND_FULL_HEAL_NEXT_MON", "FAINT_FULL_RESTORE_NEXT_MON",
+                   # Oxide (Ian, 2026-10-21): the heals and draining hits added since Platinum.
+                   "STRENGTH_SAP", "LIFE_DEW", "LUNAR_BLESSING", "RECOVER_THREE_QUARTERS_DAMAGE_DEALT",
+                   "RECOVER_FULL_DAMAGE_DEALT", "RECOVER_HALF_DAMAGE_DEALT_BURN_HIT"}
 
 
 def x_heal_block(c):
@@ -2942,7 +2987,8 @@ EXPERT_ROUTINES = {
     "Expert_RecoilMove": x_recoil_move, "Expert_Hex": x_doubled, "Expert_Venoshock": x_doubled,
     "Expert_Acrobatics": x_doubled, "Expert_BoltBeak": x_doubled,
     "Expert_RapidSpin": x_rapid_spin, "Expert_SpeedUpOnHit": x_speed_up_on_hit,
-    "Expert_MortalSpin": x_mortal_spin, "Expert_SaltCure": x_salt_cure}
+    "Expert_MortalSpin": x_mortal_spin, "Expert_SaltCure": x_salt_cure, "Expert_StoneAxe": x_stone_axe,
+    "Expert_CeaselessEdge": x_ceaseless_edge, "Expert_FreezyFrost": x_freezy_frost}
 
 
 @functools.lru_cache(maxsize=None)

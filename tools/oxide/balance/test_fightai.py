@@ -230,6 +230,9 @@ EXPERT_ROWS = [
     ("Haze, foe Attack +3", "Haze", _t(t_atk=3), 3, 0),
     ("Haze, nothing raised", "Haze", None, -1, 0),
     ("ClearSmog, foe Sp. Atk +3", "Clear Smog", _t(t_spa=3), 3, 0),
+    ("FreezyFrost, foe Attack +3", "Freezy Frost", _t(t_atk=3, t_types=["Normal"]), 3, 0),
+    ("FreezyFrost, user Defense +3", "Freezy Frost", _t(u_def=3, t_types=["Normal"]), -3, 0),
+    ("FreezyFrost, nothing raised (no Haze -1)", "Freezy Frost", _t(t_types=["Normal"]), 0, 0),
     ("Bide, at 80%", "Bide", _t(u_hp=80), -2, -2),
     ("ForceSwitch, Roar, foe in for four turns", "Roar", _t(t_turns_in=4), 4, 0),
     ("ForceSwitch, Dragon Tail with nothing to gain", "Dragon Tail", None, -3, -3),
@@ -248,6 +251,7 @@ EXPERT_ROWS = [
     ("OHKOMove", "Sheer Cold", None, 1, 0),
     ("SuperFang, foe at 50%", "Super Fang", _t(t_hp=50), -1, -1),
     ("BindingMove, Mean Look on a cursed foe", "Mean Look", _t(t_cursed=True), 1, 0),
+    ("BindingMove, Jaw Lock on a cursed foe", "Jaw Lock", _t(t_cursed=True, t_types=["Normal"]), 1, 0),
     ("HighCritical, Slash, neutral", "Slash", _t(t_types=["Water"]), 1, 0),
     ("HighCritical, Drill Run into Levitate reads as immune", "Drill Run", _t(t_ability="Levitate"), 0, 0),
     ("HighCritical, Frost Breath into a Grass type", "Frost Breath", _t(t_types=["Grass"]), 1, 0),
@@ -306,6 +310,14 @@ EXPERT_ROWS = [
     ("Spikes, Sticky Web", "Sticky Web", None, 1, 0),
     ("ToxicSpikes, with Whirlwind", "Toxic Spikes", _t(u_moves=("Toxic Spikes", "Whirlwind")), 2, 0),
     ("StealthRock, with Dragon Tail (not Roar)", "Stealth Rock", _t(u_moves=("Stealth Rock", "Dragon Tail")), 1, 0),
+    ("StoneAxe, with Roar", "Stone Axe", _t(u_moves=("Stone Axe", "Roar"), t_types=["Normal"]), 2, 0),
+    ("StoneAxe, rocks already up", "Stone Axe", lambda b, u, t: b.p.hazards.update(rocks=1), 0, 0),
+    ("StoneAxe, the foe's last Pokemon", "Stone Axe",
+     lambda b, u, t: [setattr(m, "hp", 0) for m in b.p.mons if m is not t], 0, 0),
+    ("CeaselessEdge, with Whirlwind", "Ceaseless Edge", _t(u_moves=("Ceaseless Edge", "Whirlwind"), t_types=["Normal"]),
+     2, 0),
+    ("CeaselessEdge, three layers down", "Ceaseless Edge", lambda b, u, t: b.p.hazards.update(spikes=3), 0, 0),
+    ("CeaselessEdge, two layers down", "Ceaseless Edge", lambda b, u, t: b.p.hazards.update(spikes=2), 1, 0),
     ("Foresight, a Ghost foe", "Foresight", _t(t_types=["Ghost"]), 2, 0),
     ("Foresight, nothing", "Foresight", None, -2, -2),
     ("Endure, at 20%", "Endure", _t(u_hp=20), 1, 0),
@@ -352,6 +364,9 @@ EXPERT_ROWS = [
     ("Recycle, a Lum Berry to bring back", "Recycle", _t(u_recycle="Lum Berry"), 1, 0),
     ("Revenge, Avalanche, healthy foe", "Avalanche", None, 2, -2),
     ("BrickBreak, Reflect up", "Brick Break", lambda b, u, t: b.p.screens.update(Reflect=5), 1, 1),
+    ("BrickBreak, Psychic Fangs into Aurora Veil", "Psychic Fangs", lambda b, u, t: setattr(b.p, "aurora_veil", 5),
+     1, 1),
+    ("BrickBreak, no screen", "Raging Bull", None, 0, 0),
     ("KnockOff, second turn out", "Knock Off", _t(u_turns_in=1), 1, 0),
     ("Endeavor, faster at 40%", "Endeavor", _t(u_hp=40), 1, 1),
     ("Endeavor, faster at 41%", "Endeavor", _t(u_hp=41), -1, -1),
@@ -387,6 +402,13 @@ EXPERT_ROWS = [
     ("PsychoShift, healthy user", "Psycho Shift", None, -10, -10),
     ("TrumpCard, one PP left", "Trump Card", _t(u_pp={"Trump Card": 1}, t_types=["Normal"]), 3, 3),
     ("HealBlock, foe seen using Recover", "Heal Block", _t(t_shown=["Recover"]), 1, 0),
+    # A roll of 0.5 fails the 37.5% guess and passes the 90.2% +1, so the
+    # +1 comes only from a heal the foe has shown.
+    ("HealBlock, foe seen using Strength Sap, a middling roll", "Heal Block", _t(t_shown=["Strength Sap"]),
+     Dice(0.5), 1),
+    ("HealBlock, Psychic Noise, foe seen using Draining Kiss, a middling roll", "Psychic Noise",
+     _t(t_shown=["Draining Kiss"], t_types=["Normal"]), Dice(0.5), 1),
+    ("HealBlock, foe seen using Tackle, a middling roll", "Heal Block", _t(t_shown=["Tackle"]), Dice(0.5), 0),
     ("WringOut, foe at full HP, faster", "Wring Out", _t(t_types=["Normal"]), 3, 2),
     ("PowerTrick, at 30%", "Power Trick", _t(u_hp=30), -2, -2),
     ("GastroAcid, foe at 25%", "Gastro Acid", _t(t_hp=25), -2, 0),
@@ -544,6 +566,7 @@ FLAG_ROWS = [
     ("Risky, Flower Trick is left out (no gamble)", ai.RISKY, "Flower Trick", None, 0, 0),
     ("Harassment, Sticky Web, as Spikes", ai.HARASS, "Sticky Web", None, 2, 0),
     ("Harassment, Magic Room, as Embargo", ai.HARASS, "Magic Room", None, 2, 0),
+    ("Harassment, Ceaseless Edge, as Spikes", ai.HARASS, "Ceaseless Edge", None, 2, 0),
     ("CheckHP, Hone Claws at 50%, as Meditate", ai.CHECK_HP, "Hone Claws", _t(u_hp=50), -2, 0),
     ("CheckHP, Strength Sap at full HP, as Recover", ai.CHECK_HP, "Strength Sap", None, -2, 0),
     ("CheckHP, Final Gambit, foe at 20% (the target-low table only)", ai.CHECK_HP, "Final Gambit",
@@ -551,6 +574,20 @@ FLAG_ROWS = [
     ("CheckHP, Final Gambit at 50% is left out", ai.CHECK_HP, "Final Gambit", _t(u_hp=50), 0, 0),
     ("BatonPass flag, Quiver Dance on turn 0, knowing Baton Pass, as Dragon Dance", ai.BATON, "Quiver Dance",
      _t(u_moves=("Quiver Dance", "Baton Pass")), 5, 5),
+    # The catch-up re-read's routing fixes (Ian, 2026-10-21; README decisions 2 to 13).
+    ("BatonPass flag, Victory Dance on turn 0, knowing Baton Pass, as Dragon Dance", ai.BATON, "Victory Dance",
+     _t(u_moves=("Victory Dance", "Baton Pass")), 5, 5),
+    ("BatonPass flag, Fillet Away on turn 2 at 50%, as Dragon Dance", ai.BATON, "Fillet Away",
+     _t(u_moves=("Fillet Away", "Baton Pass"), b_turn=2, u_hp=50), -10, -10),
+    ("CheckHP, Victory Dance at 50%, as Dragon Dance", ai.CHECK_HP, "Victory Dance", _t(u_hp=50), -2, 0),
+    ("CheckHP, Fillet Away, foe at 20%, as Dragon Dance", ai.CHECK_HP, "Fillet Away", _t(t_hp=20), -2, 0),
+    ("SetupFirstTurn, Take Heart on turn 0, as Calm Mind", ai.SETUP_FIRST, "Take Heart", None, 2, 0),
+    ("BatonPass flag, Take Heart on turn 0, knowing Baton Pass, as Calm Mind", ai.BATON, "Take Heart",
+     _t(u_moves=("Take Heart", "Baton Pass")), 5, 5),
+    ("CheckHP, Take Heart at 20%, as Calm Mind", ai.CHECK_HP, "Take Heart", _t(u_hp=20), -2, 0),
+    ("CheckHP, Take Heart, foe at 50%, as Calm Mind", ai.CHECK_HP, "Take Heart", _t(t_hp=50), -2, 0),
+    ("CheckHP, Lunar Blessing at full HP, as Recover", ai.CHECK_HP, "Lunar Blessing", None, -2, 0),
+    ("CheckHP, Jungle Healing at full HP, on Lunar Blessing's effect", ai.CHECK_HP, "Jungle Healing", None, -2, 0),
 ]
 
 
@@ -947,6 +984,22 @@ def damage_figure_and_engine():
     out.append(("expected hits: 3.1, Skill Link 5; the rising moves' rows (Fury Cutter, Triple Kick) as they are; "
                 "Bone Rush at 100%", (plain, link, cutter, kick, fs.move("Bone Rush").acc) == (310, 500, 100, 100, 100),
                 f"{plain}, {link}, {cutter}, {kick}; Bone Rush {fs.move('Bone Rush').acc}%"))
+    # The moves of a fixed two or three hits on every hit (Ian, 2026-10-21,
+    # a vanilla fix in the game): one hit's figure times two or three, where
+    # the game took one hit. Twineedle's row adds two hits, as Double Kick's
+    # does, so the AI takes half of it before counting.
+    fixed = tuple(ai.expected_hits(bre, fs.move(n), 100) for n in
+                  ("Double Kick", "Twineedle", "Double Iron Bash", "Dragon Darts", "Triple Dive", "Surging Strikes"))
+    out.append(("expected hits: the two-hit moves 2, Triple Dive and Surging Strikes 3", fixed ==
+                (200, 200, 200, 200, 300, 300), f"{fixed}"))
+    fb = battle([("Beedrill", 40, "Swarm", ["Twineedle", "Double Kick", "Triple Dive", "Dragon Darts"])],
+                [("Bidoof", 40, "Simple", ["Tackle"])])
+    bee, bid = fb.b.cur(), fb.p.cur()
+    rows = {n: (ai.figure(fb, bee, bid, fs.move(n)), fb.damage(bee, bid, fs.move(n), ai_view=True),
+                fs.row_hits(bee, fs.move(n))) for n in ("Twineedle", "Double Kick", "Triple Dive")}
+    out.append(("figure: Twineedle and Double Kick on both hits, Triple Dive on three (the rows add them up)",
+                all(f == (r // h) * h and h == want for (f, r, h), want in
+                    zip(rows.values(), (2, 2, 3))), f"{rows}"))
     _to(b, b.b, "Lucario")
     luc = b.b.cur()
     lo, raw = ai.figure(b, luc, t, fs.move("Aura Sphere")), b.damage(luc, t, fs.move("Aura Sphere"), ai_view=True)
@@ -955,6 +1008,16 @@ def damage_figure_and_engine():
     kan = b.b.cur()
     lk = ai.figure(b, kan, t, fs.move("Low Kick"))
     out.append(("figure: Low Kick (listed at power 1) gets a figure", lk is not None and lk > 0, f"{lk}"))
+    # Heavy Slam and Heat Crash costed by weight (Ian, 2026-10-21): a
+    # figure, so Prioritize Extremes no longer takes them for status moves.
+    hb = battle([("Snorlax", 40, "Thick Fat", ["Heavy Slam", "Heat Crash", "Body Slam"])],
+                [("Machamp", 40, "Guts", ["Cross Chop"])])
+    sno, cha = hb.b.cur(), hb.p.cur()
+    slam = {n: (ai.figure(hb, sno, cha, fs.move(n)), hb.damage(sno, cha, fs.move(n), ai_view=True))
+            for n in ("Heavy Slam", "Heat Crash")}
+    ext = [ai.flag_score(ai.EXTREMES, hb, sno, cha, fs.move(n), slam[n][0], None) for n in slam]
+    out.append(("figure: Heavy Slam and Heat Crash (listed at power 1) costed by weight; no Prioritize Extremes +2",
+                all(f is not None and f == d > 0 for f, d in slam.values()) and ext == [0, 0], f"{slam}, {ext}"))
     out.append(("move type: Hidden Power at odd IVs is Dark", ai.move_type(b, kan, fs.move("Hidden Power")) == "Dark",
                 ai.move_type(b, kan, fs.move("Hidden Power"))))
     _to(b, b.b, "Raichu")

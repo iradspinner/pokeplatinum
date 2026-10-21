@@ -6,12 +6,14 @@ It acts only once trainers carry these moves. No trainer in the tree has any of 
 
 A move counts as learnable when any species' or form's level, TM, tutor or egg list has it, read by `tools/oxide/move_pool_survey.py` on `balance-tm-pass` after the learnset rewrite: 165 moves, against the Expert pass's 156. Of the 165, 27 are not named in the Expert pass's list, and 18 moves it names are no longer learnable; the 27 are listed in the section for Ian, since Expert itself was left alone. The nearest Platinum effect is the one the Expert pass and element 6 chose wherever they chose one, read from Expert's dispatch, so that the scoring track's simulator can use one mapping for every flag. The appendix gives it for all 165. A flag that lists effects routes every move on an added effect, learnable or not; none of the 20 added effects carries a move that is not learnable.
 
+The 165 are of 2026-10-07. After later learnset changes, among them the dead-move changes of 2026-10-14 and the signature-move homes of 2026-10-21, 230 are learnable at `1eb8eb71bd`, 61 of them named neither here nor in [expert-new-moves.md](expert-new-moves.md). The re-read of 2026-10-21 checked them in every flag: the section "The re-read of 2026-10-21" below says what each flag does with them and where four of them are left out, and the second appendix gives their effects and matches.
+
 | Flag | Newly routed | Already reached, by a Platinum effect or an earlier pass | Commit |
 |---|---|---|---|
 | Evaluate Attack | Final Gambit | Accelerock | 05f668d029 |
 | Setup First Turn | Hone Claws, Coil, Cotton Guard, Autotomize, Noble Roar, Tearful Look, Aurora Veil | Play Nice, Baby-Doll Eyes, Eerie Impulse, Shelter | d7f78a8014 |
 | Risky | Final Gambit | Drill Run, Aqua Cutter | 7d4744b142 |
-| Prioritize Extremes | none: it has no list of its own | every status move, Heavy Slam, Final Gambit, Nature's Madness | none |
+| Prioritize Extremes | none: it has no list of its own | every status move, Final Gambit, Nature's Madness (Heavy Slam until 2026-10-21) | none |
 | Baton Pass | Quiver Dance, Shift Gear, Shell Smash, Geomancy, Clangorous Soul | none | c89b37dce0 |
 | Tag Strategy | none | the seven spread moves of 2026-09-27; Accelerock | none |
 | Check HP | 18 moves, listed below | Play Nice, Baby-Doll Eyes, Eerie Impulse, Shelter, Shore Up, Nature's Madness | a556685571 |
@@ -40,7 +42,7 @@ These were left unbuilt, as the job required, since each needs a test or a score
 - Smack Down and Thousand Arrows in double battles. Expert scores them as Gravity, but Tag Strategy's Gravity case penalises the AI's own floating side, which Smack Down does not ground.
 - The terrains and Snowscape. Neither is learnable today; Snowscape would need its own weather test in the Weather flag and Hail's rows in Tag Strategy, and the terrains are not in Oxide.
 - Expert's own coverage. Of the 27 learnable moves that `expert-new-moves.md` does not name (Round, Stored Power, the three Pledges, Drill Run, Razor Shell, Relic Song, Icicle Crash, Origin Pulse, First Impression, High Horsepower, Throat Chop, Clangorous Soul, Meteor Beam, Lash Out, Scorching Sands, Wave Crash, Headlong Rush, Axe Kick, Pounce, Trailblaze, Chilling Water, Aqua Cutter, Alluring Voice, Temper Flare and Psychic Noise), all but five reach Expert through a Platinum effect or an existing dispatch line. Relic Song, Throat Chop, Meteor Beam, Axe Kick and Psychic Noise are on new effects that Expert's dispatch does not name; whether they need a routine is an Expert question, outside this job.
-- Prioritize Extremes, two mismatches that sit in `trainer_ai.c`'s damage tables, which Basic, Expert and every flag share and which this pass left alone. Heavy Slam has power 1 and an effect on no table, so it gets the flag's +2, which Low Kick, its Platinum match, does not; and Meteor Beam is costed as an attack, so it misses the +2 that Skull Bash, its match, gets as a charge move.
+- Prioritize Extremes, two mismatches that sit in `trainer_ai.c`'s damage tables, which Basic, Expert and every flag share and which this pass left alone. Heavy Slam had power 1 and an effect on no table, so it got the flag's +2, which Low Kick, its Platinum match, does not (settled on 2026-10-21: its effect is on the alternative-power table now, the README's decision 7); and Meteor Beam is costed as an attack, so it misses the +2 that Skull Bash, its match, gets as a charge move.
 
 ## Evaluate Attack
 
@@ -85,7 +87,7 @@ The table of effects that get +2 (50%) on any turn.
 
 ## Prioritize Extremes
 
-The flag gives +2 (60.9%) to any move the damage comparison skips, and it reads no list in `script.s`: the comparison's own tables are in `trainer_ai.c` and shared with every flag. So no commit. A learnable new move gets the +2 when it is a status move, has power 1 and an effect outside the alternative-power table (Heavy Slam, Final Gambit, Nature's Madness), or has an effect on the no-damage-calculation table (Solar Blade, on SolarBeam's). Every other new attack is compared and gets nothing. Two of these disagree with their Platinum match, Heavy Slam and Meteor Beam, as the section for Ian says.
+The flag gives +2 (60.9%) to any move the damage comparison skips, and it reads no list in `script.s`: the comparison's own tables are in `trainer_ai.c` and shared with every flag. So no commit. A learnable new move gets the +2 when it is a status move, has power 1 and an effect outside the alternative-power table (Final Gambit, Nature's Madness, and Heavy Slam until 2026-10-21), or has an effect on the no-damage-calculation table (Solar Blade, on SolarBeam's). Every other new attack is compared and gets nothing. Two of these disagree with their Platinum match, Heavy Slam and Meteor Beam, as the section for Ian says.
 
 ## Baton Pass
 
@@ -155,6 +157,29 @@ The table of effects that get +2 (50%) on any turn.
 | Octolock, Spirit Shackle, Anchor Shot, Thousand Waves | Mean Look | none, as Mean Look |
 | Entrainment | Worry Seed | none, as Worry Seed |
 | Soak | Conversion 2 | none, as Conversion 2 |
+
+## The re-read of 2026-10-21
+
+The 61 moves learnable since 2026-10-07 were read in each flag by the same rule: a move goes where the Platinum move it follows goes, and the move it follows is the one Expert's dispatch and [expert-new-moves.md](expert-new-moves.md) give it. Four are left out of a list their match is on, each one of the README's decisions for Ian of that day; every other move of the 61 gets from each flag what its Platinum match gets, by its effect or by a line an earlier pass wrote. Nothing in the code changed then. Ian approved all four routings later that day, and `overseer-ai-fixes` made them (the README's table names each commit), so none of the four is left out any more.
+
+| Move | Follows | Left out of | What routing it would do | Decision |
+|---|---|---|---|---|
+| Victory Dance | Dragon Dance | Baton Pass's named boosts; Check HP's attacker medium, attacker low, target medium and target low tables | Dragon Dance's Baton Pass case (+5 on the battle's first turn, -10 below 60% HP, else +1) and the four tables' -2 at 80.5% | 2 |
+| Fillet Away | Dragon Dance | the same | the same. Belly Drum is the other reading: Risky's +2 and Check HP's two attacker tables, and out of Baton Pass, as for Clangorous Soul | 3 |
+| Take Heart | Calm Mind | Setup First Turn's table; Baton Pass's named boosts; Check HP's attacker medium, attacker low, target medium and target low tables | Calm Mind's +2 at 68.75% on the first turn, its Baton Pass case and its four tables | 4 |
+| Lunar Blessing | Recover | Check HP's attacker high table | Recover's -2 at 80.5% above 70% HP, as Strength Sap and Life Dew have had since 2026-10-07 | 5 |
+
+What each flag does with the rest of the 61, by inheritance:
+
+- Evaluate Attack scores every damaging move of the 61 by its estimate. Jet Punch gets Quick Attack's extra +2 for a kill, and Thunderclap gets Sucker Punch's handling: about 80% of -2, and no kill, since its effect is on the no-damage-calculation list.
+- Risky gives its +2 at 50% to Snipe Shot (high critical) and Thunderclap (Sucker Punch's effect). Storm Throw and Frost Breath, on the always-critical effect, get nothing, as Flower Trick does (judgment calls, above).
+- Prioritize Extremes gives its +2 to the four status moves above, to Thunderclap, which skips the damage comparison as Sucker Punch does, and, until decision 7 gave it an estimate on 2026-10-21, to Heat Crash. Hard Press has a computed power and is compared.
+- Baton Pass gives Lunar Blessing the generic +3 for a status move, as Recover gets.
+- Tag Strategy checks Parabolic Charge beside its partner as Discharge (2026-09-27) and gives Jet Punch Quick Attack's priority bonus. Glaciate and Precipice Blades reach only the foes, so they need no partner check.
+- Weather: none of the 61 sets weather.
+- Harassment, whose table lists Spikes and Leech Seed, gives Ceaseless Edge Spikes' +2 at 50% since 2026-10-21 (decision 9), and nothing to Sappy Seed, which keeps no match (decision 11, Ian's answer). Jaw Lock follows Mean Look and Stone Axe Stealth Rock, which Harassment does not list.
+
+A routing fix here reaches the simulator with no edit, since `fightai.py` reads these tables and Baton Pass's named moves out of `script.s` (`script_table`, `script_jumps`); the fixes of 2026-10-21 to these flags needed none.
 
 ## Appendix: every learnable new move
 
@@ -327,3 +352,71 @@ The effect is the move's battle effect in `res/moves/`; effects up to 276 are Pl
 | Alluring Voice | 0, `HIT` | Tackle (its own effect) |
 | Temper Flare | 0, `HIT` | Tackle (its own effect) |
 | Psychic Noise | 320, `HIT_AND_PREVENT_HEALING` | Heal Block |
+
+## Appendix: the moves learnable since, 2026-10-21
+
+The 61 moves of the re-read, in the first appendix's form. A match marked with a decision is the nearest Platinum move, which the code does not follow today; the README's decision of that number says whether it should.
+
+| Move | Effect | Follows |
+|---|---|---|
+| Storm Throw | 282, `ALWAYS_CRITICAL` | Karate Chop |
+| Chip Away | 0, `HIT` | Tackle (its own effect) |
+| Circle Throw | 395, `FORCE_SWITCH_HIT` | Roar |
+| Frost Breath | 282, `ALWAYS_CRITICAL` | Karate Chop |
+| Heart Stamp | 31, `FLINCH_HIT` | Rolling Kick (its own effect) |
+| Heat Crash | 292, `HEAVY_SLAM` | Low Kick, as Heavy Slam |
+| Leaf Tornado | 73, `LOWER_ACCURACY_HIT` | Mud-Slap (its own effect) |
+| Night Daze | 73, `LOWER_ACCURACY_HIT` | Mud-Slap (its own effect) |
+| Psystrike | 0, `HIT` | Tackle (its own effect) |
+| Glaciate | 70, `LOWER_SPEED_HIT` | Icy Wind (its own effect) |
+| ParabolicCharge | 3, `RECOVER_HALF_DAMAGE_DEALT` | Giga Drain (its own effect) |
+| Light of Ruin | 269, `RECOIL_HALF` | Head Smash (its own effect) |
+| PrecipiceBlades | 0, `HIT` | Tackle (its own effect) |
+| Dragon Ascent | 229, `DEF_SPD_DOWN_HIT` | Close Combat (its own effect) |
+| Fire Lash | 69, `LOWER_DEFENSE_HIT` | Iron Tail (its own effect) |
+| Power Trip | 0, `HIT` | Tackle (its own effect) |
+| Psychic Fangs | 186, `REMOVE_SCREENS` | Brick Break (its own effect) |
+| Shadow Bone | 69, `LOWER_DEFENSE_HIT` | Iron Tail (its own effect) |
+| Buzzy Buzz | 6, `PARALYZE_HIT` | ThunderPunch (its own effect) |
+| Sizzly Slide | 4, `BURN_HIT` | Fire Punch (its own effect) |
+| Glitzy Glow | 311, `SET_LIGHT_SCREEN_HIT` | Light Screen (judgment call, decision 11) |
+| Baddy Bad | 312, `SET_REFLECT_HIT` | Reflect (judgment call, decision 11) |
+| Sappy Seed | 310, `LEECH_SEED_HIT` | Leech Seed (judgment call, decision 11) |
+| Freezy Frost | 313, `RESET_STAT_CHANGES_HIT` | Haze (judgment call, decision 10) |
+| Sparkly Swirl | 314, `CURE_PARTY_STATUS_HIT` | Heal Bell (judgment call, decision 11) |
+| Snipe Shot | 43, `HIGH_CRITICAL` | Karate Chop (its own effect) |
+| Jaw Lock | 352, `PREVENT_ESCAPE_BOTH_HIT` | Mean Look (decision 6) |
+| Dragon Darts | 44, `HIT_TWICE` | Double Kick (its own effect) |
+| Drum Beating | 70, `LOWER_SPEED_HIT` | Icy Wind (its own effect) |
+| Apple Acid | 72, `LOWER_SP_DEF_HIT` | Bug Buzz (its own effect) |
+| Grav Apple | 69, `LOWER_DEFENSE_HIT` | Iron Tail (its own effect) |
+| Spirit Break | 71, `LOWER_SP_ATK_HIT` | Mist Ball (its own effect) |
+| Rising Voltage | 0, `HIT` | Tackle (its own effect) |
+| Dire Claw | 350, `SLEEP_POISON_PARALYZE_HIT` | Tri Attack |
+| Psyshield Bash | 138, `RAISE_DEF_HIT` | Steel Wing (its own effect) |
+| Stone Axe | 353, `STEALTH_ROCK_HIT` | Stealth Rock (decision 8) |
+| Mystical Power | 276, `RAISE_SP_ATK_HIT` | Charge Beam (its own effect) |
+| Raging Fury | 417, `RECOIL_CONFUSE_HIT` | Volt Tackle |
+| Victory Dance | 344, `ATK_DEF_SPEED_UP` | Dragon Dance |
+| Barb Barrage | 322, `POISON_HIT_DOUBLE_POWER_ON_POISONED` | Wake-Up Slap |
+| Esper Wing | 368, `HIGH_CRITICAL_RAISE_SPEED_HIT` | Rapid Spin (its Speed part) |
+| Bitter Malice | 68, `LOWER_ATTACK_HIT` | Aurora Beam (its own effect) |
+| Infernal Parade | 321, `BURN_HIT_DOUBLE_POWER_ON_STATUS` | Wake-Up Slap |
+| Ceaseless Edge | 354, `SET_SPIKES_HIT` | Spikes (decision 9) |
+| Lunar Blessing | 415, `LUNAR_BLESSING` | Recover |
+| Take Heart | 367, `TAKE_HEART` | Calm Mind |
+| Last Respects | 0, `HIT` | Tackle (its own effect) |
+| Lumina Crash | 271, `LOWER_SP_DEF_2_HIT` | Seed Flare (its own effect) |
+| Jet Punch | 103, `PRIORITY_1` | Quick Attack (its own effect) |
+| Triple Dive | 299, `HIT_THREE_TIMES_FIXED_POWER` | Triple Kick |
+| Fillet Away | 303, `ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP` | Dragon Dance |
+| Kowtow Cleave | 17, `BYPASS_ACCURACY` | Swift (its own effect) |
+| Torch Song | 276, `RAISE_SP_ATK_HIT` | Charge Beam (its own effect) |
+| Aqua Step | 285, `RAISE_SPEED_HIT` | Rapid Spin (its Speed part) |
+| Raging Bull | 186, `REMOVE_SCREENS` | Brick Break (its own effect) |
+| Twin Beam | 44, `HIT_TWICE` | Double Kick (its own effect) |
+| Thunderclap | 248, `HIT_FIRST_IF_TARGET_ATTACKING` | Sucker Punch (its own effect) |
+| Mighty Cleave | 405, `IGNORE_PROTECT` | Tackle |
+| Tachyon Cutter | 44, `HIT_TWICE` | Double Kick (its own effect) |
+| Hard Press | 0, `HIT` | Tackle (its own effect) |
+| Malignant Chain | 202, `BADLY_POISON_HIT` | Poison Fang (its own effect) |

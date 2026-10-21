@@ -1,8 +1,8 @@
 # Encounter and Dex tool: visual design
 
-Project: Platinum Oxide. Written 2026-09-22. Status: v1.1, palette decided, ready for the encounter track to implement.
+Project: Platinum Oxide. Written 2026-09-22. Status: v1.1, palette decided; built and signed off by Ian on 2026-09-22, and updated for the redesign of 2026-09-29 (the build plan's item 46).
 
-This document covers how the tool looks: color, type, spacing, both themes, and each component. What the tool does is in `encounter-tool-design.md`, and what already exists is in the build plan's M4 and M8 entries. Nothing here changes behavior, an API, or a test's expectations. It is written against the `worktree-encounter-step0` branch as of 2026-09-22, where the Dex view (M8 D1 to D3) lives and has not yet merged into `oxide`.
+This document covers how the tool looks: color, type, spacing, both themes, and each component. What the tool does is in `encounter-tool-design.md`, and what already exists is in the build plan's M4 and M8 entries. Nothing here changes behavior, an API, or a test's expectations. It was written against the `worktree-encounter-step0` branch as of 2026-09-22, where the Dex view (M8 D1 to D3) then lived; both are on `oxide` now.
 
 Palette: B, Lake Guardians (Azelf teal for odds, Mesprit pink for place, Uxie gold for the number to act on), chosen by Ian on 2026-09-22 from the four options in the palette preview (`palette-options.html`, sent in that day's Cowork chat).
 
@@ -10,7 +10,7 @@ Palette: B, Lake Guardians (Azelf teal for odds, Mesprit pink for place, Uxie go
 
 The layout, every interaction, and the existing color logic stay. The M4 design pass settled on one hue per meaning and on drawing anything caught as absence, and both rules carry over unchanged. What changes is the palette (teal, pink and gold replacing teal and ochre), a dark theme beside the light one, a pixel display face for the tool's identity, color on type chips and gym splits, and more presence on the Dex species page.
 
-The tool's constraints still hold: no CDN, no npm, no build step, a stdlib server. The one new binary is a single font file of about 8 KB committed to the repo with its licence.
+The tool's constraints still hold: no CDN, no npm, no build step, a stdlib server. The only binaries are the font files in `ui/fonts/`, committed with their licences (since the redesign, seven files and about 120 KB, `ui/fonts/README.md`).
 
 Browser policy: the current Chrome or Edge on Ian's Windows desktop. `light-dark()` (Chrome and Edge 123 and later) is used without a fallback.
 
@@ -284,7 +284,7 @@ A grid of the eighteen type chips, six by three, each with its multiplier. Weakn
 
 ## 8. The damage calculator (D5)
 
-The vendored Dynamic Calc keeps its own markup and layout. When D5 lands, add `calc/oxide-skin.css` after its stylesheets. The skin links `../ui/theme.css`, loads `../ui/theme.js` so the calculator follows the same toggle, and maps its backgrounds, text, borders, buttons and select menus onto the tokens. Record the skin in `VENDORED.md`'s patch list so an upstream update re-applies it. Do not restyle its layout.
+The vendored Dynamic Calc keeps its own markup and layout. Since D5 landed, `calc/oxide-skin.css` comes after its stylesheets. The skin links `../ui/theme.css`, loads `../ui/theme.js` so the calculator follows the same toggle, and maps its backgrounds, text, borders, buttons and select menus onto the tokens. Record the skin in `VENDORED.md`'s patch list so an upstream update re-applies it. Do not restyle its layout.
 
 ## 9. Flavor, each optional and small
 
@@ -319,7 +319,7 @@ Every text role meets AA's 4.5 except `--faint`, which is reserved for caught, d
 
 Work on a worktree branch of the encounter track and merge when the suites are green.
 
-Files: new `ui/theme.css`, new `ui/theme.js`, new `ui/fonts/PixelifySans-600-latin.woff2` and `ui/fonts/OFL.txt`, and `ui/index.html`. `server.py` should need nothing, since it already serves `ui/` as static files and knows the font's MIME type.
+Files: new `ui/theme.css`, new `ui/theme.js`, new `ui/fonts/PixelifySans-600-latin.woff2` and `ui/fonts/OFL.txt`, and `ui/index.html`. `server.py` should need nothing, since it already serves `ui/` as static files and knows the font's MIME type. (Built as planned; the redesign later replaced Pixelify Sans with the three faces in section 4.)
 
 Order:
 

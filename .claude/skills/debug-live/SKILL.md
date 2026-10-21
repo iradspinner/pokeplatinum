@@ -1,6 +1,6 @@
 ---
 name: debug-live
-description: How the Platinum Oxide bug track debugs the running game. Ian runs melonDS on Windows and drives the game; the agent attaches to his emulator's GDB stub from WSL2 with tools/oxide/live_watch.py, plants breakpoints and reads memory. Use this for any in-game hang, crash, wrong behaviour or "what does the game do when", including every "Open bug" entry in the tracker, even if the user just says "look at the box hang" or "why does Sandgem crash".
+description: How Platinum Oxide debugs the running game. Ian runs melonDS on Windows and drives the game; the agent attaches to his emulator's GDB stub from WSL2 with tools/oxide/live_watch.py, plants breakpoints and reads memory. Use this for any in-game hang, crash, wrong behaviour or "what does the game do when", including every "Open bug" entry in the tracker, even if the user just says "look at the box hang" or "why does Sandgem crash".
 ---
 
 # Debugging the live game
@@ -18,7 +18,7 @@ and the reading.
    known, what was ruled out, and which functions to break on. Bugs are tracked
    there and nowhere else. A fixed bug's
    entry moves to `docs/oxide/tracker-archive.md`, which also keeps the fuller
-   wording of the two open entries as they stood on 2026-09-23.
+   wording of the bug entries as they stood on 2026-09-23.
 2. Read the design doc's findings log for the area. The whiteout hang
    (2026-09-21) is the worked example of this whole method: a misaligned
    movement block in a generated script, found by breaking on the script

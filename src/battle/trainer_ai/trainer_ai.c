@@ -59,6 +59,9 @@ static const u16 sAltPowerMoveEffects[] = {
     BATTLE_EFFECT_POWER_BASED_ON_LOW_FRIENDSHIP,
     BATTLE_EFFECT_20_DAMAGE_FLAT,
     BATTLE_EFFECT_INCREASE_POWER_WITH_WEIGHT,
+    // Oxide (Ian, 2026-10-21): Heavy Slam and Heat Crash, listed at power 1
+    // and costed by weight, as Low Kick is.
+    BATTLE_EFFECT_HEAVY_SLAM,
     0xFFFF
 };
 
@@ -3261,6 +3264,25 @@ static int TrainerAI_ComputedMovePower(BattleSystem *battleSys, BattleContext *b
 
     case MOVE_RAGE_FIST:
         return 50 + 50 * Battler_RageFistHits(battleSys, battleCtx, attacker);
+
+    case MOVE_HEAVY_SLAM:
+    case MOVE_HEAT_CRASH: {
+        // Oxide (Ian, 2026-10-21): BtlCmd_CalcHeavySlamPower's figure, the
+        // target's weight as a share of the user's picking 120 down to 40.
+        int attackerWeight = Battler_Weight(battleCtx, attacker, attacker);
+        u32 ratio = Battler_Weight(battleCtx, attacker, AI_CONTEXT.defender) * 10000 / attackerWeight;
+
+        if (ratio <= 2000) {
+            return 120;
+        } else if (ratio <= 2500) {
+            return 100;
+        } else if (ratio <= 3334) {
+            return 80;
+        } else if (ratio <= 5000) {
+            return 60;
+        }
+        return 40;
+    }
     }
 
     return 0;
@@ -3578,6 +3600,14 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
  * 20 more. Damage is close enough to proportional to power for the ratio to
  * stand in for three separate estimates.
  *
+ * The moves of a fixed two or three hits count every hit (vanilla fix, Ian,
+ * 2026-10-21): Double Kick's effect (Double Hit, Bonemerang, Dual Chop, Dual
+ * Wingbeat, Dragon Darts, Twin Beam, Tachyon Cutter, Gear Grind), Twineedle's
+ * and Double Iron Bash's two, and Triple Dive's and Surging Strikes' three.
+ * The engine checks their accuracy once and then lands every hit unless the
+ * target faints, so the count is fixed. Vanilla rated Double Kick, Twineedle
+ * and their kin on their first hit alone.
+ *
  * @param battleCtx
  * @param move
  * @param ability The attacker's ability
@@ -3604,6 +3634,17 @@ static s32 TrainerAI_ExpectedHitsDamage(BattleContext *battleCtx, u16 move, int 
 
     case BATTLE_EFFECT_HIT_THREE_TIMES_RISING_10:
         return damage * (power * 3 + 10 + 20) / power;
+
+    // Oxide, vanilla fix (Ian, 2026-10-21): two hits, every time.
+    case BATTLE_EFFECT_HIT_TWICE:
+    case BATTLE_EFFECT_POISON_MULTI_HIT:
+    case BATTLE_EFFECT_HIT_TWICE_AND_FLINCH:
+        return damage * 2;
+
+    // Oxide (Ian, 2026-10-21): three hits at the listed power.
+    case BATTLE_EFFECT_HIT_THREE_TIMES_FIXED_POWER:
+    case BATTLE_EFFECT_HIT_THREE_TIMES_ALWAYS_CRITICAL:
+        return damage * 3;
     }
 
     return damage;

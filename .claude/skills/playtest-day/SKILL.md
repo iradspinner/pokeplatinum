@@ -15,9 +15,10 @@ Never launch an emulator yourself.
 
 1. Read `docs/oxide/ingame-checklist.md` from the top.
 2. Build both ROMs of the current, pushed `oxide` (`make rom` and `make
-   testkit`), check the ordinary one's SHA-1 against GitHub's build of the
-   commit, and copy them into `~/oxide-playtest` as
-   `pokeplatinum-oxide-<commit>.nds` and `pokeplatinum-oxide-testkit-<commit>.nds`.
+   testkit`) and copy them into `~/oxide-playtest` as
+   `pokeplatinum-oxide-<commit>.nds` and `pokeplatinum-oxide-testkit-<commit>.nds`
+   (a landing has already copied the ordinary one). Local builds are trusted,
+   so there is no wait for GitHub's SHA-1 (Ian, 2026-10-06).
    Give Ian the Windows paths (`\\wsl$\Ubuntu\home\ian\oxide-playtest\...`).
 3. Pick the sections he can reach today. A new game covers sections 2 and 3;
    sections 4 and 5 need a mid-game or post-game save. Ask him which saves he

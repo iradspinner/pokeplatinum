@@ -6,7 +6,7 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 
 ## Roark (Oreburgh Gym, cap 16)
 
-**Status:** redesigned and in the game (Ian accepted it on 2026-10-13). The scorer reads it at 81, 77 and 99 percent won on goal 3's boxes 1 to 3, against today's 87, 91 and 100 ([roark-redesign.md](roark-redesign.md)).
+**Status:** redesigned and in the game (Ian accepted it on 2026-10-13). The scorer reads it at 81, 77 and 99 percent won on goal 3's boxes 1 to 3, against 87, 91 and 100 for the team it replaced ([roark-redesign.md](roark-redesign.md)).
 
 **Identity.** A Rock gym in permanent sand, where the sand is the gym's weapon. Each member asks a different question, and the bait the player always brings has to be played around, not walked through.
 
@@ -19,8 +19,8 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 - The gym's permanent sand.
 
 **The player's core counterpieces** (from the scorer's sixes):
-- **Barboach**, in every six the scorer has taken to Roark. Water/Ground: both its attacking types hit Rock super-effectively, it resists Rock, Electric can't touch it, and sand doesn't hurt it.
-- **Turtwig**, Bibarel and Dustox in most sixes against today's team; Fletchinder in some.
+- **Barboach**, in every six the scorer took to the replaced team. Water/Ground: both its attacking types hit Rock super-effectively, it resists Rock, Electric can't touch it, and sand doesn't hurt it.
+- **Turtwig**, Bibarel and Dustox in most sixes against the replaced team; Fletchinder in some.
 - Against the new team (the accepted team's reading, 2026-10-13): **Nidorino** and **Bibarel** in every six; Barboach in one of three, so it no longer walks through.
 
 **Material for this fight:**
@@ -33,13 +33,13 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 
 ## Gardenia (Eterna Gym, cap 26)
 
-**Status:** in the game since 2026-10-13: Ian's six-member sun team, locked in with his levels (Solrock 23, Cherrim 24, Lumineon 25, Exeggutor 24, Breloom 24, Roserade 26), Leech Seed in place of Cherrim's Weather Ball, and Roserade on Calm ([gardenia-redesign.md](gardenia-redesign.md)). His six read 52 percent won before the dials and 96 with them (Roserade then Sassy); the locked team's own reading is next.
+**Status:** in the game since 2026-10-13: Ian's six-member sun team, locked in with his levels (Solrock 23, Cherrim 24, Lumineon 25, Exeggutor 24, Breloom 24, Roserade 26), Leech Seed in place of Cherrim's Weather Ball, and Roserade on Calm ([gardenia-redesign.md](gardenia-redesign.md)). His six read 52 percent won before the dials and 96 with them (Roserade then Sassy); the locked team read 90 percent won (99, 87 and 83 by box) on the simulator from before the fixes of 2026-10-13 and 14, and stays the record (the tracker's Gardenia entry).
 
-**Identity.** The base ROM's team was a sun team (Cherrim with Sunny Day and a Heat Rock, Solar Beam, Weather Ball); the Kaizo study's draft, in the game today, dropped the sun because the player's Fire types gained more from it. Today's five are Roselia, Ludicolo, Exeggutor, Breloom and Roserade. Sun pays only from a setter that spends no turn (Drought) and for more than one member: in the fixed version, Exeggutor's turn-one Sunny Day cost it the fight.
+**Identity.** The base ROM's team was a sun team (Cherrim with Sunny Day and a Heat Rock, Solar Beam, Weather Ball); the Kaizo study's draft, in the game until 2026-10-13, dropped the sun because the player's Fire types gained more from it. Its five were Roselia, Ludicolo, Exeggutor, Breloom and Roserade. Sun pays only from a setter that spends no turn (Drought) and for more than one member: in the fixed version, Exeggutor's turn-one Sunny Day cost it the fight.
 
-**The boss's core today** (faints made over the three boxes): Exeggutor's Psychic and Giga Drain with Leftovers (145), Breloom's Rock Tomb and Mach Punch (127), Roserade's Sludge Bomb and Shadow Ball (104), Ludicolo's Ice Beam (50). Roselia made none: its Spikes and Sleep Powder lead gives the player free turns.
+**The Kaizo draft's core** (faints made over the three boxes): Exeggutor's Psychic and Giga Drain with Leftovers (145), Breloom's Rock Tomb and Mach Punch (127), Roserade's Sludge Bomb and Shadow Ball (104), Ludicolo's Ice Beam (50). Roselia made none: its Spikes and Sleep Powder lead gives the player free turns.
 
-**The player's core counterpieces** (from the scorer's sixes):
+**The player's core counterpieces** (from the scorer's sixes, against the draft and against Ian's six alike; `gardenia-redesign.md`):
 - **Golbat** (Poison and Flying), in every six, with Dual Wingbeat. It resists her Grass and Fighting moves four times over; only Ice Beam, Psychic and the Rock moves hit it hard.
 - **Alolan Ninetales** (Ice and Fairy), in every six whose box has it, caught wild from Route 211 West in this split. Icicle Spear hits four of her five, and Fairy turns Breloom's Fighting moves.
 - Without it, **Corvisquire** and **Vullaby** join Golbat (box 3, the only box with real losses). Steel pivots (Bronzor, Probopass) take the Poison moves.
@@ -47,7 +47,7 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 **Material for this fight:**
 - Golbat's and Alolan Ninetales' availability before Gardenia, their typing, Dual Wingbeat and Icicle Spear.
 - Corvisquire's and Vullaby's availability and Flying moves.
-- Sun mechanics (Drought, Sunny Day, Chlorophyll, Weather Ball, Heat Rock), if her team uses the sun.
+- Sun mechanics (Drought, Sunny Day, Chlorophyll, Weather Ball, Heat Rock), since Ian's six fights in a sun that never ends.
 - Rock, Electric, Fire or Ice moves on her members, the answers to the counterpieces.
 - The moves, abilities and items of her members.
 

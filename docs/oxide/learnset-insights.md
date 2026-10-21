@@ -181,7 +181,8 @@ Ian's verdict, verbatim (his numbering, with two 4s):
    are not present there, so we'll have to do the placement ourselves.
 
 He also approved Kaizo's one-turn versions of the rampage moves the same
-day (standing rulings), which lifts R9 once they land.
+day (standing rulings), which lifted R9 when they landed at 787c581c8
+(2026-10-07).
 
 The rules drawn from it:
 
@@ -670,8 +671,8 @@ The rules drawn from it:
 ## The locked rules (2026-10-06, after the fifteen)
 
 These are the rules from the fifteen lines above, locked before Ian judges the
-five exam lines, whose verdicts go to `learnset-exam.md` and are never read by
-the generator. The generator and the new checks are built from this section.
+five exam lines, whose verdicts went to `learnset-exam.md` and were kept from
+the generator until step 5. The generator and the new checks are built from this section.
 
 **Shape over the game.**
 R1 five or six usable moves by the first split's cap, with some flavour;

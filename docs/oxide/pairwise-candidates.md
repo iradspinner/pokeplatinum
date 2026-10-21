@@ -1,5 +1,7 @@
 # Pairwise candidates for the scoring rebuild
 
+> **A record since 2026-10-13.** The acceptance test below was overtaken: the turn-by-turn scorer replaced the old score as the judge of a fight on 2026-09-30, the first scoring system retired on 2026-10-13, and the teams Ian judged were the base ROM's, most of them replaced by the Kaizo comb (2026-10-07) and the redesigns since. His forty judgements stay here as a record of how he ranks fights.
+
 These 40 pairs are the test the rebuilt fight score has to pass (Ian, 2026-09-27). The
 balance track drafted them; Ian judges each one. Today's scores are left out on
 purpose, so that his judgements stay his own.

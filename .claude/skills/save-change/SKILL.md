@@ -56,13 +56,14 @@ should (Meloetta kept the Pokedex arrays at their size).
   `tools/oxide/encounters/savefile.py`; it checks the blocks, footers,
   party, boxes and flags. Work on a copy: never write to his save, and never
   commit one.
-- If the normal block's size or position changes, the reader's
-  `BLOCK_POSITIONS` must learn the new layout, or Sync stops reading his
-  save. The box count comes from the storage block's size, so more boxes
-  need no constant, but the block moves.
+- If the normal block's size changes, add the new sizes to the reader's
+  `KNOWN_LAYOUTS` and move `CURRENT_LAYOUT` to them, or the reader refuses
+  his new save's flags and variables as an older layout and gives only its
+  party and boxes. The box count comes from the
+  storage block's size, so more boxes need no constant, but the block moves.
 - Record the change in `docs/oxide/save-layout.md`: the field, what it was,
   what it is, why, and what an older save sees.
-- Tell the encounter tool builder: `savefile.py` and the OxiDex's readers
-  are the encounter track's files.
+- Bring `savefile.py` and the OxiDex's other save readers into step in the
+  same change; no track owns them since 2026-10-13.
 - Add an in-game check to `docs/oxide/ingame-checklist.md` for Ian's bug
   sweep: his save loads, and the changed thing shows.

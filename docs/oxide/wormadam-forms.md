@@ -4,8 +4,8 @@ Written on the branch `overseer-form-learnsets` from Ian's answers of
 2026-10-14. Both cloaks take the lists drafted here, with two changes of his.
 Sandy's Earthquake comes at 47, Fissure's old level, not at 53. Quiver Dance
 comes at 36 for Plant as well as Trash: Plant's moves there from 69, and
-Plant's Swagger moves from 36 to the free level 39. The branch lands once the
-Overseer has read it.
+Plant's Swagger moves from 36 to the free level 39. The branch landed on
+2026-10-14 (59b0dae66).
 
 ## Summary
 

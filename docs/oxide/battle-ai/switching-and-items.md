@@ -10,7 +10,7 @@ The short version, for a reader who wants the answer first. A trainer's turn is 
 
 A trainer battler's turn starts in `Task_TrainerSetCommandSelection` (`battle_display.c` lines 3408 to 3417), which calls `TrainerAI_PickCommand` (`trainer_ai.c` lines 3989 to 4040). That function decides the command.
 
-1. It only thinks at all when the battle is a trainer battle or the battler is on the player's side, which means an AI partner (line 4000). A wild Pokemon, in singles or in Oxide's wild doubles, skips straight to Fight.
+1. It only thinks at all when the battle is a trainer battle or the battler is on the player's side, which means an AI partner (line 4000). A wild Pokemon skips straight to Fight.
 2. It asks `TrainerAI_ShouldSwitch` first (line 4001). If that says yes, the command is Party (line 4030), and the slot to send in is settled before returning (lines 4004 to 4028; see "Choosing the Pokemon that comes in").
 3. Only if there is no switch does it ask `TrainerAI_ShouldUseItem` (lines 4034 to 4036). If that says yes, the command is Item.
 4. Otherwise the command is Fight (line 4039). The game then asks for a move through `Task_TrainerShowMoveSelectMenu`, which calls `TrainerAI_Main` (`battle_display.c` line 3590), the scoring engine described in `README.md`.
@@ -19,7 +19,7 @@ So the decision order is switch, item, move, and the move scoring never runs on 
 
 The execution order is separate from the decision order. Once every battler has chosen, the controller puts every Item and Party action ahead of every Fight action (`battle_controller_player.c` lines 753 to 770), sorting battlers who chose the same kind of action by speed. So an AI switch always happens before any move that turn, whatever the speeds.
 
-Two consequences follow for wild Pokemon, which matter because Oxide adds wild double battles. A wild Pokemon never switches and never uses an item (line 4000). And it never runs the scoring script either: `Task_TrainerShowMoveSelectMenu` only calls `TrainerAI_Main` for a trainer battle, a roamer, the game's scripted first battle, or a player-side battler (`battle_display.c` lines 3587 to 3590); any other wild Pokemon picks a random usable move (lines 3600 to 3612).
+Two consequences follow for wild Pokemon. A wild Pokemon never switches and never uses an item (line 4000). And it never runs the scoring script either: `Task_TrainerShowMoveSelectMenu` only calls `TrainerAI_Main` for a trainer battle, a roamer, the game's scripted first battle, or a player-side battler (`battle_display.c` lines 3587 to 3590); any other wild Pokemon picks a random usable move (lines 3600 to 3612).
 
 When a Pokemon faints, or uses U-turn, the replacement is asked for separately, through `Task_TrainerShowPartyMenu` (`battle_display.c` lines 4528 to 4562), described under "Choosing the Pokemon that comes in".
 

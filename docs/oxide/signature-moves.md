@@ -1,10 +1,10 @@
 # Signature moves
 
-This answers Ian's request of 2026-10-20 on `unused-moves.md`: "lets do the moves pass for the last 3 categories in the list. Not every move needs to be necessarily placed, but we should at least see if they have a fitting home that improves a moveset or makes teambuilding more fun." It covers that page's last three picks (the signature moves that would suit obtainable lines, the trainer palette, the legendary signatures) and the other signature moves in its table of moves the engine runs as written. It was read from origin/oxide at 3ebc6bd576. Ian answered its first two questions the same day. Branch `overseer-signature-moves-2` carries what he approved: Stone Axe on Kleavor, learned on evolving; Lumina Crash on Slowbro and Slowking at 40; Baneful Bunker on Mareanie's egg list; and a fix to Judgment with the Pixie Plate. Shell Trap on Turtonator waits for in-game check 82 on `overseer-shell-trap-hold`.
+This answers Ian's request of 2026-10-20 on `unused-moves.md`: "lets do the moves pass for the last 3 categories in the list. Not every move needs to be necessarily placed, but we should at least see if they have a fitting home that improves a moveset or makes teambuilding more fun." It covers that page's last three picks (the signature moves that would suit obtainable lines, the trainer palette, the legendary signatures) and the other signature moves in its table of moves the engine runs as written. It was read from origin/oxide at 3ebc6bd576. Ian answered its first two questions the same day, and what he approved landed at 47d90c688: Stone Axe on Kleavor, learned on evolving; Lumina Crash on Slowbro and Slowking at 40; Baneful Bunker on Mareanie's egg list; and a fix to Judgment with the Pixie Plate. Shell Trap on Turtonator waits for in-game check 82 on `overseer-shell-trap-hold`.
 
 ## Summary
 
-**Status (2026-10-21): Ian has answered every question below. Lumina Crash's home landed at 47d90c688. His answers to questions 3 to 6 landed at 67254f1d2, each applied row marked below: 41 level-up homes and 7 egg lists. Torch Song goes to Magcargo at 63, his pick of the three candidates, on `overseer-signature-moves-4`. The late-boss carriers wait until those teams are settled.**
+**Status (2026-10-21): Ian has answered every question below. Lumina Crash's home landed at 47d90c688. His answers to questions 3 to 6 landed at 67254f1d2, each applied row marked below: 41 level-up homes and 7 egg lists. Torch Song went to Magcargo at 63, his pick of the three candidates, landed at 8d633c9d0. The late-boss carriers wait until those teams are settled.**
 
 **A correction first.** `unused-moves.md` named Glimmora as Lumina Crash's owner, and Ian approved it as a return on that basis. Lumina Crash is Espathra's (learned on evolving in Scarlet and Violet and in Legends Z-A). Oxide has no Flittle line, and no game gives the move to Glimmora. Ian's answer (2026-10-20): it goes to the Slowbro line at 40, the alternative below, and the Glimmora commit is dropped.
 
@@ -40,7 +40,7 @@ This answers Ian's request of 2026-10-20 on `unused-moves.md`: "lets do the move
 
 **Next steps and time.**
 - The approved homes and egg lists: landed at 67254f1d2 (2026-10-21).
-- Torch Song on Magcargo at 63: on `overseer-signature-moves-4`, for the Overseer to land.
+- Torch Song on Magcargo at 63: landed at 8d633c9d0 (2026-10-21).
 - Each team change Ian takes: that boss's question, then its reading, 1 to 2 hours of machine time.
 - Every move on this page now runs in the readings (below).
 
@@ -76,11 +76,11 @@ The readings now run every move on this page as the engine does (checked on 2026
 
 The late bosses' table at the end keeps its Simulator column as it was on 2026-10-20, since Ian holds that table until those teams are settled.
 
-Shell Trap has worked in the engine since 2026-10-07, and the readings run it, but in-game check 82 is still open, and `learncheck.UNCHECKED` still lists it, so learncheck's check 16 would report the Turtonator entry as "not run as designed" (it fails no test). Ian held the entry for the check (2026-10-20); it waits on `overseer-shell-trap-hold`.
+Shell Trap has worked in the engine since 2026-10-07, and the readings run it, but in-game check 82 is still open, and `learncheck.UNCHECKED` still lists it, so learncheck's check 16 would report the Turtonator entry as "not run as designed" (it fails no test). Ian held the entry for the check (2026-10-20); it waits on `overseer-shell-trap-hold`, in the tracker's Scheduled list.
 
 ## The signature moves with homes
 
-"For" says whether a home serves the player or only trainers. A trainer home on the list of a species the player cannot obtain makes the move legal for trainers and changes no team; from Cyrus 3's split on, a trainer's move need not be legal at all. "Applied" marks a home written on `overseer-signature-moves-3` from Ian's answers of 2026-10-21; the trainer homes beside the player homes went in with them.
+"For" says whether a home serves the player or only trainers. A trainer home on the list of a species the player cannot obtain makes the move legal for trainers and changes no team; from Cyrus 3's split on, a trainer's move need not be legal at all. "Applied" marks a home written on `overseer-signature-moves-3` from Ian's answers of 2026-10-21 and landed at 67254f1d2; the trainer homes beside the player homes went in with them.
 
 ### Fairy
 
@@ -189,7 +189,7 @@ Special, 80, 100%, 10 PP; lowers the target's Sp. Def two stages every hit. Espa
 | Slowbro, Slowking | 40, Wake | climbs on Slowbro; a rung over on Slowking | Applied on `overseer-signature-moves-2` (Ian, 2026-10-20). The Slowpoke line's special Psychic runs from Confusion (15) to Psychic (48 on Slowking, 54 on Slowbro), one of the longest gaps among Oxide's special Psychic lines | player |
 
 #### Esper Wing
-Special, 80, 100%, 10 PP; a high critical-hit ratio, and raises the user's Speed a stage every hit. Hisuian Braviary's (25 in Legends: Arceus; on evolving in Scarlet and Violet). The simulator runs it approximately: the critical stage, not the Speed rise.
+Special, 80, 100%, 10 PP; a high critical-hit ratio, and raises the user's Speed a stage every hit. Hisuian Braviary's (25 in Legends: Arceus; on evolving in Scarlet and Violet). The simulator runs it (the Speed rise fixed at 953087fd4).
 
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
@@ -262,16 +262,16 @@ These are the other signature moves in `unused-moves.md`'s table of moves that r
 | Move | Reason |
 |---|---|
 | Veevee Volley, Pika Papow | power by friendship and never miss: Return and Frustration already serve |
-| Zippy Zap | raises the user's evasion on every use: Ian took Double Team off every player list, and evasion setups are rare for trainers. The readings run it wrongly |
+| Zippy Zap | raises the user's evasion on every use: Ian took Double Team off every player list, and evasion setups are rare for trainers. The readings ran it wrongly when this was written (fixed since at 09f607e70) |
 | Floaty Fall, Splishy Splash | Pikachu's partner coverage; nothing in Pikachu's or Raichu's lists asks for Flying or Water |
 | Silk Trap, King's Shield, Spiky Shield, Obstruct, Burning Bulwark | Protect variants, off player lists; their owners are not in Oxide, and trainers already have Protect and Detect |
-| Steamroller, Gear Grind, Spin Out, Overdrive, Order Up, Syrup Bomb, Spicy Extract | owners Oxide lacks and no line that asks for them. Order Up's effect needs a Tatsugiri inside its user; the readings do not run Spin Out's or Spicy Extract's effects |
-| Fickle Beam, Bolt Beak, Fishious Rend | the readings run them approximately or wrongly (Bolt Beak and Fishious Rend always doubled) |
+| Steamroller, Gear Grind, Spin Out, Overdrive, Order Up, Syrup Bomb, Spicy Extract | owners Oxide lacks and no line that asks for them. Order Up's effect needs a Tatsugiri inside its user; the readings did not run Spin Out's or Spicy Extract's effects when this was written (fixed since at b346795eb and 5bd5d24a0) |
+| Fickle Beam, Bolt Beak, Fishious Rend | the readings ran them approximately or wrongly when this was written (Bolt Beak and Fishious Rend always doubled; fixed since at 12753f216 and da8c63505), and Ian's answer 3 keeps them without a home |
 | Electro Shot | a charge move that skips its charge in rain, which the player never sets |
-| Population Bomb | one two-to-five-hit move per type: Normal keeps Fury Swipes and Tail Slap. The readings run it wrongly |
+| Population Bomb | one two-to-five-hit move per type: Normal keeps Fury Swipes and Tail Slap. The readings ran it wrongly when this was written (fixed since at 80c2e60bb) |
 | Mountain Gale | 85% (R37), and Oxide has no Bergmite line |
 | Head Charge | Double-Edge is the same 120 with the same recoil |
-| Chloroblast | half the user's HP: half a forced trade, as Mind Blown is. The readings take no HP |
+| Chloroblast | half the user's HP: half a forced trade, as Mind Blown is. The readings took no HP when this was written (fixed since at 051820a6c) |
 | Meteor Assault | a recharge turn |
 
 Eerie Spell and Burning Bulwark, which the stranded-moves pass left without a home, are not signature moves; the Slowpoke line's Psychic gap (above, under Lumina Crash) would suit Eerie Spell too.

@@ -55,18 +55,7 @@ WSL2 is a Linux environment that runs inside Windows. The decomp's build tools a
 
 ## Part 3: The routine once we are set up
 
-Each time I finish a change, I will say so. You then run, in Ubuntu:
-```
-cd ~/pokeplatinum && git pull && make rom
-```
-`make rom` skips the checksum test (which is expected to fail once we change things) and rebuilds only what changed, usually well under a minute. Copy the ROM out as in step 8 and play-test. Report what you see; screenshots help.
-
-**Builds on GitHub, retired.** From 2026-09-23 to 2026-09-29, while this box's CPU was degraded, playtest ROMs came from GitHub's machines, built by the private repo `iradspinner/oxide-rom-builder` through `tools/oxide/fetch-rom`. The replacement CPU builds the same ROM byte for byte, so both were retired on 2026-10-01 (Ian): every ROM is built here, and the public repo's build of each push to `oxide` gives the SHA-1 to compare with.
-
-If you ever want to throw away every local change and match my latest push exactly:
-```
-cd ~/pokeplatinum && git fetch && git reset --hard origin/oxide
-```
+You do not build. When a change lands, the session copies the ROM it built from the pushed commit into `~/oxide-playtest` as `pokeplatinum-oxide-<commit>.nds`, with the test kit beside it (`CLAUDE.md`, Build), and you play that file. Report what you see; screenshots help. `make rom` skips the checksum test, which fails once anything changes, and rebuilds only what changed.
 
 ## Part 3b: Python packages
 

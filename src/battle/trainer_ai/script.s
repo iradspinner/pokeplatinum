@@ -2326,6 +2326,15 @@ Expert_Main:
     // Octolock is built on Mean Look's effect.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ESCAPE_HIT, Expert_BindingMove
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_OCTOLOCK, Expert_BindingMove
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Jaw Lock traps
+    // both battlers after its hit, as Thousand Waves traps its target.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ESCAPE_BOTH_HIT, Expert_BindingMove
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Stone Axe lays Stealth Rock
+    // after its hit; Stealth Rock's routine, trimmed, below it.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK_HIT, Expert_StoneAxe
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Ceaseless Edge lays Spikes
+    // after its hit; Spikes' routine, trimmed, below it.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_SPIKES_HIT, Expert_CeaselessEdge
     // Dragon Tail forces a switch, as Roar and Whirlwind do.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FORCE_SWITCH_HIT, Expert_ForceSwitch
     // Incinerate burns up the target's Berry, as Pluck takes it.
@@ -2348,6 +2357,9 @@ Expert_Main:
     // Clear Smog resets its target's stat changes: Haze's routine, the
     // target's half.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CLEAR_SMOG, Expert_ClearSmog
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Freezy Frost resets every
+    // battler's stat changes after its hit: Haze's two halves, below Clear Smog's.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RESET_STAT_CHANGES_HIT, Expert_FreezyFrost
     // Mortal Spin clears what Rapid Spin clears, without the Speed raise.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MORTAL_SPIN, Expert_MortalSpin
     // Salt Cure costs its target HP every turn: a routine of its own (Ian,
@@ -3161,6 +3173,53 @@ Expert_ClearSmog_TryScorePlus3:
     AddToMoveScore 3
 
 Expert_ClearSmog_End:
+    PopOrEnd
+
+Expert_FreezyFrost:
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read). Freezy Frost resets every
+    // battler's stat changes after its hit, as Haze does, so it takes both halves of
+    // Expert_Haze. As a damaging move it takes none of Haze's -1 when neither half applies,
+    // as Expert_ClearSmog leaves it out.
+    //
+    // If any of the attacker's stat stages are at +3 or higher, or any of the target's stat
+    // stages are at -3 or lower, 80.4% chance of score -3.
+    //
+    // If any of the attacker's stat stages are at -3 or lower, or any of the target's stat
+    // stages are at +3 or higher, 80.4% chance of score +3.
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 8, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 8, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 8, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 8, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageGreaterThan AI_BATTLER_ATTACKER, BATTLE_STAT_EVASION, 8, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 4, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 4, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 4, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 4, Expert_FreezyFrost_TryScoreMinus3
+    IfStatStageLessThan AI_BATTLER_DEFENDER, BATTLE_STAT_ACCURACY, 4, Expert_FreezyFrost_TryScoreMinus3
+    GoTo Expert_FreezyFrost_CheckToEncourage
+
+Expert_FreezyFrost_TryScoreMinus3:
+    IfRandomLessThan 50, Expert_FreezyFrost_CheckToEncourage
+    AddToMoveScore -3
+
+Expert_FreezyFrost_CheckToEncourage:
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_ATTACK, 8, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_DEFENSE, 8, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_ATTACK, 8, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_SP_DEFENSE, 8, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ATTACK, 4, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_DEFENSE, 4, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_ATTACK, 4, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_SP_DEFENSE, 4, Expert_FreezyFrost_TryScorePlus3
+    IfStatStageLessThan AI_BATTLER_ATTACKER, BATTLE_STAT_ACCURACY, 4, Expert_FreezyFrost_TryScorePlus3
+    GoTo Expert_FreezyFrost_End
+
+Expert_FreezyFrost_TryScorePlus3:
+    IfRandomLessThan 50, Expert_FreezyFrost_End
+    AddToMoveScore 3
+
+Expert_FreezyFrost_End:
     PopOrEnd
 
 Expert_Bide:
@@ -4232,6 +4291,31 @@ Expert_Spikes_TryScorePlus1:
 Expert_Spikes_End:
     PopOrEnd 
 
+Expert_CeaselessEdge:
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read). Ceaseless Edge lays a layer of
+    // Spikes after its hit, so it takes Spikes' routine, trimmed: Basic refuses the status
+    // move at three layers or against a last Pokemon, but not a hit, so this routine asks
+    // the same first and adds nothing when either holds.
+    //
+    // Otherwise, 50% chance of score +0 and terminate; then score +1, and if the attacker
+    // knows either Roar or Whirlwind, 75% chance of additional score +1.
+    LoadSpikesLayers AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES
+    IfLoadedEqualTo 3, Expert_CeaselessEdge_End
+    CountAlivePartyBattlers AI_BATTLER_DEFENDER
+    IfLoadedEqualTo 0, Expert_CeaselessEdge_End
+    IfRandomLessThan 128, Expert_CeaselessEdge_End
+    AddToMoveScore 1
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_ROAR, Expert_CeaselessEdge_TryScorePlus1
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_WHIRLWIND, Expert_CeaselessEdge_TryScorePlus1
+    GoTo Expert_CeaselessEdge_End
+
+Expert_CeaselessEdge_TryScorePlus1:
+    IfRandomLessThan 64, Expert_CeaselessEdge_End
+    AddToMoveScore 1
+
+Expert_CeaselessEdge_End:
+    PopOrEnd
+
 Expert_Foresight:
     // If the attacker has a Ghost typing, 47.3% chance of score +2.
     // BUG: This should instead check the opponent's typing.
@@ -5208,6 +5292,9 @@ Expert_BrickBreak:
     // If the opponent's side of the field is under the effect of Reflect or Light Screen, score +1.
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_REFLECT, Expert_BrickBreak_ScorePlus1
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_LIGHT_SCREEN, Expert_BrickBreak_ScorePlus1
+    // Oxide (Ian, 2026-10-21, the catch-up re-read): the engine's BtlCmd_TryBreakScreens
+    // breaks Aurora Veil too, so it counts as a screen here.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_AURORA_VEIL, Expert_BrickBreak_ScorePlus1
     GoTo Expert_BrickBreak_End
 
 Expert_BrickBreak_ScorePlus1:
@@ -6208,6 +6295,8 @@ Expert_HealBlock:
     // - Aqua Ring
     // - Leech Seed
     // - Lunar Dance, Healing Wish
+    // - Oxide: Strength Sap, Life Dew, Lunar Blessing and Jungle Healing, and the new
+    //   draining moves (Draining Kiss, Oblivion Wing, Bouncy Bubble, Matcha Gotcha)
     //
     // If the attacker is under the effect of Leech Seed or the opponent is under the effect of Ingrain
     // or Aqua Ring, 90.2% chance of score +1.
@@ -6226,6 +6315,14 @@ Expert_HealBlock:
     IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_STATUS_LEECH_SEED, Expert_HealBlock_TryScorePlus1
     IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON, Expert_HealBlock_TryScorePlus1
     IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, Expert_HealBlock_TryScorePlus1
+    // Oxide (Ian, 2026-10-21, the catch-up re-read): the heals and draining hits added
+    // since Platinum, which Heal Block stops as it stops Recover and Giga Drain.
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_STRENGTH_SAP, Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_LIFE_DEW, Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_LUNAR_BLESSING, Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RECOVER_THREE_QUARTERS_DAMAGE_DEALT, Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RECOVER_FULL_DAMAGE_DEALT, Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT_BURN_HIT, Expert_HealBlock_TryScorePlus1
     IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LEECH_SEED, Expert_HealBlock_TryScorePlus1
     IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_AQUA_RING, Expert_HealBlock_TryScorePlus1
     IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_INGRAIN, Expert_HealBlock_TryScorePlus1
@@ -7165,6 +7262,30 @@ Expert_StealthRock_End:
     PopOrEnd 
     PopOrEnd 
 
+Expert_StoneAxe:
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read). Stone Axe lays Stealth Rock
+    // after its hit, so it takes Stealth Rock's routine, trimmed: Basic refuses the status
+    // move once rocks are up or against a last Pokemon, but not a hit, so this routine asks
+    // the same first and adds nothing when either holds.
+    //
+    // Otherwise, 50% chance to ignore all further score modifiers; then score +1, and if the
+    // attacker knows either Roar or Whirlwind, 75% chance of additional score +1.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, Expert_StoneAxe_End
+    CountAlivePartyBattlers AI_BATTLER_DEFENDER
+    IfLoadedEqualTo 0, Expert_StoneAxe_End
+    IfRandomLessThan 128, Expert_StoneAxe_End
+    AddToMoveScore 1
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_ROAR, Expert_StoneAxe_TryScorePlus1
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_WHIRLWIND, Expert_StoneAxe_TryScorePlus1
+    GoTo Expert_StoneAxe_End
+
+Expert_StoneAxe_TryScorePlus1:
+    IfRandomLessThan 64, Expert_StoneAxe_End
+    AddToMoveScore 1
+
+Expert_StoneAxe_End:
+    PopOrEnd
+
 Expert_RecoilMove:
     // If the opponent resists or is immune to the move, ignore all further score modifiers.
     //
@@ -7387,6 +7508,9 @@ SetupFirstTurn_SetupEffects:
     TableEntry BATTLE_EFFECT_AUTOTOMIZE
     TableEntry BATTLE_EFFECT_TEARFUL_LOOK
     TableEntry BATTLE_EFFECT_SET_AURORA_VEIL
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Take Heart as
+    // Calm Mind, which Expert scores it as.
+    TableEntry BATTLE_EFFECT_TAKE_HEART
     TableEntry TABLE_END
 
 PrioritizeExtremes_Main:
@@ -7485,6 +7609,13 @@ BatonPass_EvalMove:
     IfMoveEqualTo MOVE_SHELL_SMASH, BatonPass_SetupAtHighHP
     IfMoveEqualTo MOVE_GEOMANCY, BatonPass_SetupAtHighHP
     IfMoveEqualTo MOVE_CLANGOROUS_SOUL, BatonPass_SetupAtHighHP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Victory Dance
+    // and Fillet Away, which Expert scores as Dragon Dance too.
+    IfMoveEqualTo MOVE_VICTORY_DANCE, BatonPass_SetupAtHighHP
+    IfMoveEqualTo MOVE_FILLET_AWAY, BatonPass_SetupAtHighHP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Take Heart, as
+    // Calm Mind.
+    IfMoveEqualTo MOVE_TAKE_HEART, BatonPass_SetupAtHighHP
 
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PROTECT, BatonPass_EvalProtect
 
@@ -8883,6 +9014,9 @@ CheckHP_DiscourageAtHighHP:
     // Strength Sap and Life Dew as Recover.
     TableEntry BATTLE_EFFECT_STRENGTH_SAP
     TableEntry BATTLE_EFFECT_LIFE_DEW
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Lunar Blessing
+    // and Jungle Healing, on one effect, as Recover.
+    TableEntry BATTLE_EFFECT_LUNAR_BLESSING
     TableEntry TABLE_END
 
 CheckHP_DiscourageAtMediumHP:
@@ -8953,6 +9087,13 @@ CheckHP_DiscourageAtMediumHP:
     TableEntry BATTLE_EFFECT_CHANGE_TO_WATER_TYPE
     TableEntry BATTLE_EFFECT_GUARD_SPLIT
     TableEntry BATTLE_EFFECT_POWER_SPLIT
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Victory Dance
+    // and Fillet Away as Dragon Dance, which Expert scores them as.
+    TableEntry BATTLE_EFFECT_ATK_DEF_SPEED_UP
+    TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Take Heart as
+    // Calm Mind, which Expert scores it as.
+    TableEntry BATTLE_EFFECT_TAKE_HEART
     TableEntry TABLE_END
 
 CheckHP_DiscourageAtLowHP:
@@ -9025,6 +9166,13 @@ CheckHP_DiscourageAtLowHP:
     TableEntry BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2
     TableEntry BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP
     TableEntry BATTLE_EFFECT_CHANGE_TO_WATER_TYPE
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Victory Dance
+    // and Fillet Away as Dragon Dance, which Expert scores them as.
+    TableEntry BATTLE_EFFECT_ATK_DEF_SPEED_UP
+    TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Take Heart as
+    // Calm Mind, which Expert scores it as.
+    TableEntry BATTLE_EFFECT_TAKE_HEART
     TableEntry TABLE_END
 
 CheckHP_Target_DiscourageAtHighHP:
@@ -9090,6 +9238,13 @@ CheckHP_Target_DiscourageAtMediumHP:
     TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN
     TableEntry BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2
     TableEntry BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Victory Dance
+    // and Fillet Away as Dragon Dance, which Expert scores them as.
+    TableEntry BATTLE_EFFECT_ATK_DEF_SPEED_UP
+    TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Take Heart as
+    // Calm Mind, which Expert scores it as.
+    TableEntry BATTLE_EFFECT_TAKE_HEART
     TableEntry TABLE_END
 
 CheckHP_Target_DiscourageAtLowHP:
@@ -9175,6 +9330,13 @@ CheckHP_Target_DiscourageAtLowHP:
     TableEntry BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP
     TableEntry BATTLE_EFFECT_CHANGE_TO_WATER_TYPE
     TableEntry BATTLE_EFFECT_FINAL_GAMBIT
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Victory Dance
+    // and Fillet Away as Dragon Dance, which Expert scores them as.
+    TableEntry BATTLE_EFFECT_ATK_DEF_SPEED_UP
+    TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Take Heart as
+    // Calm Mind, which Expert scores it as.
+    TableEntry BATTLE_EFFECT_TAKE_HEART
     TableEntry TABLE_END
 
 Weather_Main:
@@ -9280,6 +9442,9 @@ Harrassment_Effects:
     TableEntry BATTLE_EFFECT_VENOM_DRENCH
     TableEntry BATTLE_EFFECT_STICKY_WEB
     TableEntry BATTLE_EFFECT_MAGIC_ROOM
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Ceaseless Edge,
+    // which lays Spikes after its hit, as Spikes.
+    TableEntry BATTLE_EFFECT_SET_SPIKES_HIT
     TableEntry TABLE_END
 
 RoamingPokemon_Main:

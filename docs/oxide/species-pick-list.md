@@ -114,7 +114,7 @@ already exist in Platinum; no new evolution stones are introduced.
 | Pawmot | Pawmo + Thunder Stone (method 7) |
 | Polteageist | Sinistea + Dusk Stone (method 7) |
 | Runerigus | Yamask, level up holding Reaper Cloth (methods 18/19) |
-| Salazzle | Salandit, level 33 female (method 23) - direct port |
+| Salazzle | Salandit, level 30, either gender, as the game has it (Ian, 2026-10-21, keeping the build over the plan of level 33 and female only) |
 | Sinistcha | Sinistea + Leaf Stone (method 7), a split with Polteageist's Dusk Stone (Ian, 2026-09-27) |
 | Sylveon | Eevee, level up knowing a Fairy move (method 20) |
 | Tsareena | Steenee, level up knowing Stomp (method 20) - direct port |
@@ -125,6 +125,11 @@ Direct ports need no decision: Salazzle, Vikavolt, Grapploct, Tsareena and
 Naganadel all use methods Gen 4 already has (level-up-female, magnetic field and
 level-up-knowing-move, the last being how Piloswine becomes Mamoswine).
 
+Three rows differ from what the game does (`res/pokemon/`, unchanged since
+element 3 imported them): Salandit evolves at level 30 with no gender
+condition, Charjabug also evolves by a Thunder Stone, and the Fairy move
+Sylveon's Eevee must know is Charm.
+
 No evolution is by friendship in Oxide (Ian, 2026-09-27): the sixteen that were,
 natives included, evolve by level, at a place or by a stone, as
 `docs/oxide/encounters/friendship-evolutions.md` sets out, with Crobat at 40.
@@ -133,15 +138,14 @@ Branch points worth noting: Yamask splits into Cofagrigus (level 34) or Runerigu
 (holding Reaper Cloth); Wooper splits into Quagsire (level 20) or Clodsire
 (holding Poison Barb); Goomy splits into Sliggoo (level) or Hisuian Sliggoo
 (holding Metal Coat); Charcadet splits on Sun Stone or Dusk Stone; Scyther now
-has three routes, Scizor by Metal Coat and Kleavor by Hard Stone, alongside the
-dead trade entry.
+has two routes, Scizor by Metal Coat and Kleavor by Hard Stone.
 
 ## Leftover trade entries
 
 The base ROM did not remove its trade evolutions, it added non-trade routes
-beside them. Seventeen trade entries (methods 5 and 6) are still in the table as
-unreachable dead weight. Harmless in single player. Stripping them is optional and
-would free evolution slots on Clamperl, which is at six of seven.
+beside them. Element 8 stripped the seventeen dead trade entries, so no
+species in `res/pokemon/` has a trade method left, and a record holds nine
+evolutions since element 3.
 
 ## Open, needs Ian
 

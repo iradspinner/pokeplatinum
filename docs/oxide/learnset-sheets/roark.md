@@ -7,98 +7,97 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Abra | wild | 4 to 5 | Oxide | Teleport | as Kadabra: Confusion 16 | Kadabra (from 16); Alakazam in Wake |
-| Abra | wild | 4 to 5 | Rewrite | Round, Calm Mind, Confusion | as Kadabra: Confusion 16 | Kadabra (from 16); Alakazam in Wake |
+| Abra | wild | 4 to 5 | Rewrite | Calm Mind, Stored Power | as Kadabra: Confusion 16 | Kadabra (from 16); Alakazam in Wake |
 | Machop | wild | 5 | Oxide | Low Kick, Leer | Focus Energy 7, Karate Chop 10, Foresight 13 | Machop; Machoke in Fantina |
-| Machop | wild | 5 | Rewrite | Low Kick, Leer, Bullet Punch | Focus Energy 7, Karate Chop 10, Foresight 13, Scary Face 15 | Machop; Machoke in Fantina |
+| Machop | wild | 5 | Rewrite | Low Kick, Leer, Dual Chop | Focus Energy 7, Karate Chop 10, Foresight 13, Scary Face 15 | Machop; Machoke in Fantina |
 | Minccino | wild | 5 | Oxide | Pound, Baby-Doll Eyes, Helping Hand | DoubleSlap 13, Sing 16 | Minccino; Cinccino in Wake |
-| Minccino | wild | 5 | Rewrite | Pound, Baby-Doll Eyes, Swift, Helping Hand | Chilling Water 7, DoubleSlap 13, Sing 16 | Minccino; Cinccino in Wake |
+| Minccino | wild | 5 | Rewrite | Pound, Baby-Doll Eyes, Bullet Seed, Helping Hand | Fury Swipes 13, Sing 16 | Minccino; Cinccino in Wake |
 | Pawmi | wild | 5 | Oxide | Scratch, Growl, ThunderShock | Quick Attack 6, Nuzzle 12 | Pawmi; Pawmo in Gardenia |
-| Pawmi | wild | 5 | Rewrite | Scratch, ThunderShock, Electroweb | Quick Attack 6, Mach Punch 8, Nuzzle 12 | Pawmi; Pawmo in Gardenia |
+| Pawmi | wild | 5 | Rewrite | Scratch, ThunderShock, Spark | Quick Attack 6, Bite 8, Bulk Up 10, Nuzzle 12 | Pawmi; Pawmo in Gardenia |
 | Purrloin | wild | 5 to 6 | Oxide | Scratch, Growl | Sand-Attack 6, Assist 6, Fake Out 12, Fury Swipes 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
-| Purrloin | wild | 5 to 6 | Rewrite | Scratch, Snarl | Sand-Attack 6, Nasty Plot 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
+| Purrloin | wild | 5 to 6 | Rewrite | Scratch, Taunt | Sand-Attack 6, Bullet Seed 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
 | Glameow | wild | 6 | Oxide | Fake Out, Scratch | Growl 8, Hypnosis 13 | Glameow; Purugly in Maylene |
-| Glameow | wild | 6 | Rewrite | Fake Out, Scratch, Taunt | Growl 8, Hypnosis 13 | Glameow; Purugly in Maylene |
+| Glameow | wild | 6 | Rewrite | Fake Out, Scratch, Fury Swipes | Growl 8, Taunt 10, Hypnosis 13, Dual Wingbeat 15 | Glameow; Purugly in Maylene |
 | Poochyena | wild | 6 | Oxide | Tackle, Howl | Sand-Attack 9, Bite 13 | Poochyena; Mightyena in Gardenia |
-| Poochyena | wild | 6 | Rewrite | Tackle, Howl, Scary Face | Sand-Attack 9, Bite 13 | Poochyena; Mightyena in Gardenia |
+| Poochyena | wild | 6 | Rewrite | Tackle, Howl, Scary Face | Sand-Attack 9, Bullet Seed 11, Bite 13 | Poochyena; Mightyena in Gardenia |
 | Rookidee | wild | 6 | Oxide | Peck, Leer, Fury Attack | Sand-Attack 12, Pluck 15 | Corvisquire (from 16); Corviknight in Wake |
 | Rookidee | wild | 6 | Rewrite | Peck, Leer, Taunt | Sand-Attack 12, Pluck 15 | Corvisquire (from 16); Corviknight in Wake |
 | Shinx | wild | 6 | Oxide | Tackle, Leer | Charge 9, Spark 13 | Luxio (from 15); Luxray in Fantina |
-| Shinx | wild | 6 | Rewrite | Tackle, Scary Face, Pursuit | Charge 9, Spark 13 | Luxio (from 15); Luxray in Fantina |
+| Shinx | wild | 6 | Rewrite | Tackle, Double Kick, Scary Face | Charge 9, Spark 13 | Luxio (from 15); Luxray in Fantina |
 | Starly | wild | 6 | Oxide | Tackle, Growl, Quick Attack | Wing Attack 9, Double Team 13 | Staravia (from 14); Staraptor in Maylene |
 | Starly | wild | 6 | Rewrite | Tackle, Pursuit, Quick Attack | Tailwind 7, Wing Attack 9 | Staravia (from 14); Staraptor in Maylene |
 | Murkrow | wild | 7 | Oxide | Peck, Astonish, Pursuit | Haze 11, Wing Attack 15 | Murkrow; Honchkrow in Fantina |
-| Murkrow | wild | 7 | Rewrite | Peck, Astonish, Pursuit | Taunt 8, Twister 10, Wing Attack 15 | Murkrow; Honchkrow in Fantina |
+| Murkrow | wild | 7 | Rewrite | Peck, Astonish, Pursuit | Taunt 8, Ominous Wind 10, Wing Attack 15 | Murkrow; Honchkrow in Fantina |
 | Skitty | wild | 7 | Oxide | Growl, Tail Whip, Tackle, Foresight | Attract 8, Sing 11, DoubleSlap 15 | Skitty; Delcatty in Gardenia |
-| Skitty | wild | 7 | Rewrite | Fake Out, Tackle, Baby-Doll Eyes, Foresight | Attract 8, Sing 11, Quick Attack 13, DoubleSlap 15 | Skitty; Delcatty in Gardenia |
+| Skitty | wild | 7 | Rewrite | Tackle, Baby-Doll Eyes, Foresight, Bullet Seed | Attract 8, Sing 11, Fury Swipes 15 | Skitty; Delcatty in Gardenia |
 | Glameow | gift | 8 | Oxide | Fake Out, Scratch, Growl | Hypnosis 13 | Glameow; Purugly in Maylene |
-| Glameow | gift | 8 | Rewrite | Fake Out, Scratch, Taunt, Growl | Hypnosis 13 | Glameow; Purugly in Maylene |
+| Glameow | gift | 8 | Rewrite | Fake Out, Scratch, Fury Swipes, Growl | Taunt 10, Hypnosis 13, Dual Wingbeat 15 | Glameow; Purugly in Maylene |
 | Purrloin | gift | 8 | Oxide | Scratch, Growl, Sand-Attack, Assist | Fake Out 12, Fury Swipes 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
-| Purrloin | gift | 8 | Rewrite | Scratch, Snarl, Sand-Attack, Nasty Plot | Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
+| Purrloin | gift | 8 | Rewrite | Scratch, Taunt, Sand-Attack, Bullet Seed | Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
 | Skitty | gift | 8 | Oxide | Tail Whip, Tackle, Foresight, Attract | Sing 11, DoubleSlap 15 | Skitty; Delcatty in Gardenia |
-| Skitty | gift | 8 | Rewrite | Tackle, Baby-Doll Eyes, Foresight, Attract | Sing 11, Quick Attack 13, DoubleSlap 15 | Skitty; Delcatty in Gardenia |
+| Skitty | gift | 8 | Rewrite | Baby-Doll Eyes, Foresight, Bullet Seed, Attract | Sing 11, Fury Swipes 15 | Skitty; Delcatty in Gardenia |
 
 ## Lake Verity
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Surskit | wild | 2 to 4 | Oxide | Bubble | Quick Attack 7, Sweet Scent 13 | Surskit; Masquerain in Gardenia |
-| Surskit | wild | 2 to 4 | Rewrite | Bubble, Silver Wind | Sticky Web 4, Quick Attack 7, Gust 9 | Surskit; Masquerain in Gardenia |
+| Surskit | wild | 2 to 4 | Rewrite | Bubble, Struggle Bug | Scary Face 4, Quick Attack 7, Gust 9 | Surskit; Masquerain in Gardenia |
 | Bidoof | wild | 3 | Oxide | Tackle | Growl 5, Defense Curl 9, Rollout 13; as Bibarel: Water Gun 15 | Bibarel (from 15) |
-| Bidoof | wild | 3 | Rewrite | Tackle, Swift, Taunt | Aqua Jet 5, Rollout 13; as Bibarel: Water Gun 15 | Bibarel (from 15) |
+| Bidoof | wild | 3 | Rewrite | Tackle, Fury Swipes, Taunt | Aqua Jet 5, Rollout 13; as Bibarel: Water Gun 15 | Bibarel (from 15) |
 | Chinchou | old rod | 3 | Oxide | Bubble, Supersonic | Thunder Wave 6, Flail 9, Water Gun 12 | Chinchou; Lanturn in Fantina |
-| Chinchou | old rod | 3 | Rewrite | Bubble, Supersonic, Spark | Thunder Wave 6, Flail 9, Water Gun 12, Screech 14 | Chinchou; Lanturn in Fantina |
+| Chinchou | old rod | 3 | Rewrite | Bubble, Supersonic, ThunderShock | Screech 4, Thunder Wave 6, Flail 9, Water Gun 12, Chilling Water 14 | Chinchou; Lanturn in Fantina |
 | Goldeen | old rod | 3 | Oxide | Peck, Tail Whip, Water Sport | Supersonic 7, Horn Attack 11 | Goldeen; Seaking in Fantina |
-| Goldeen | old rod | 3 | Rewrite | Peck, Water Sport, Water Pulse | Flip Turn 5, Horn Attack 11 | Goldeen; Seaking in Fantina |
+| Goldeen | old rod | 3 | Rewrite | Peck, Water Sport, Aqua Jet | Scald 5, Horn Attack 11 | Goldeen; Seaking in Fantina |
 | Lotad | wild | 3 to 5 | Oxide | Astonish, Growl | Absorb 5, Nature Power 7, Mist 11; as Lombre: Fury Swipes 15 | Lombre (from 14); Ludicolo in Maylene |
-| Lotad | wild | 3 to 5 | Rewrite | Astonish, Water Gun, Magical Leaf | Disarming Voice 5, Mist 11; as Lombre: Fake Out 14, Fury Swipes 15 | Lombre (from 14); Ludicolo in Maylene |
+| Lotad | wild | 3 to 5 | Rewrite | Astonish, Water Gun, Mega Drain | Magical Leaf 5, Disarming Voice 7, Mist 11; as Lombre: Fake Out 14, Fury Swipes 15 | Lombre (from 14); Ludicolo in Maylene |
 | Mudkip | old rod | 3 | Oxide | Tackle, Growl | Mud-Slap 6, Water Gun 10, Bide 15; as Marshtomp: Mud Shot 16 | Marshtomp (from 16); Swampert in Maylene |
-| Mudkip | old rod | 3 | Rewrite | Tackle, Screech, Water Pulse | Mud-Slap 6; as Marshtomp: Mud Shot 16 | Marshtomp (from 16); Swampert in Maylene |
+| Mudkip | old rod | 3 | Rewrite | Tackle, Rock Blast, Screech | Mud-Slap 6, Water Gun 10; as Marshtomp: Mud Shot 16 | Marshtomp (from 16); Swampert in Maylene |
 | Psyduck | old rod | 3 | Oxide | Water Sport, Scratch | Tail Whip 5, Water Gun 9, Disable 14 | Psyduck; Golduck in Fantina |
-| Psyduck | old rod | 3 | Rewrite | Scratch, Screech, Water Pulse | Trailblaze 5, Disable 14 | Psyduck; Golduck in Fantina |
+| Psyduck | old rod | 3 | Rewrite | Scratch, Aerial Ace, Screech | Water Gun 9, Disable 14 | Psyduck; Golduck in Fantina |
 | Purrloin | wild | 3 | Oxide | Scratch, Growl | Sand-Attack 6, Assist 6, Fake Out 12, Fury Swipes 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
-| Purrloin | wild | 3 | Rewrite | Scratch, Snarl | Sand-Attack 6, Nasty Plot 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
+| Purrloin | wild | 3 | Rewrite | Scratch, Taunt | Sand-Attack 6, Bullet Seed 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
 | Skitty | wild | 3 | Oxide | Fake Out, Growl, Tail Whip, Tackle | Foresight 4, Attract 8, Sing 11, DoubleSlap 15 | Skitty; Delcatty in Gardenia |
-| Skitty | wild | 3 | Rewrite | Fake Out, Tackle, Baby-Doll Eyes | Foresight 4, Attract 8, Sing 11, Quick Attack 13, DoubleSlap 15 | Skitty; Delcatty in Gardenia |
+| Skitty | wild | 3 | Rewrite | Fake Out, Tackle, Baby-Doll Eyes | Foresight 4, Bullet Seed 6, Attract 8, Sing 11, Fury Swipes 15 | Skitty; Delcatty in Gardenia |
 | Surskit | old rod | 3 | Oxide | Bubble | Quick Attack 7, Sweet Scent 13 | Surskit; Masquerain in Gardenia |
-| Surskit | old rod | 3 | Rewrite | Bubble, Silver Wind | Sticky Web 4, Quick Attack 7, Gust 9 | Surskit; Masquerain in Gardenia |
+| Surskit | old rod | 3 | Rewrite | Bubble, Struggle Bug | Scary Face 4, Quick Attack 7, Gust 9 | Surskit; Masquerain in Gardenia |
 | Wooloo | wild | 3 to 4 | Oxide | Tackle, Growl | Defense Curl 4, Copycat 8, Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
-| Wooloo | wild | 3 to 4 | Rewrite | Tackle, Round | Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
+| Wooloo | wild | 3 to 4 | Rewrite | Tackle, Double Hit | Fury Swipes 4, Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
 | Blipbug | wild | 4 | Oxide | Struggle Bug | as Dottler: Reflect 10, Light Screen 10, Confusion 10 | Dottler (from 10); Orbeetle in Fantina |
-| Blipbug | wild | 4 | Rewrite | Struggle Bug, Trailblaze, Calm Mind | as Dottler: Reflect 10, Confusion 11, Light Screen 12 | Dottler (from 10); Orbeetle in Fantina |
+| Blipbug | wild | 4 | Rewrite | Struggle Bug, Calm Mind, Confusion | as Dottler: Reflect 10, Confusion 11, Light Screen 12 | Dottler (from 10); Orbeetle in Fantina |
 | Buneary | wild | 4 | Oxide | Splash, Pound, Defense Curl, Foresight | Endure 6, Frustration 13, Quick Attack 16 | Buneary; Lopunny in Gardenia |
-| Buneary | wild | 4 | Rewrite | Pound, Defense Curl, Foresight | Covet 5, Endure 6, Baby-Doll Eyes 8, Power-Up Punch 10, Return 12, Frustration 13, Quick Attack 16 | Buneary; Lopunny in Gardenia |
+| Buneary | wild | 4 | Rewrite | Pound, Defense Curl, Foresight | Endure 6, Baby-Doll Eyes 7, Double Kick 8, Double Hit 10, Return 12, Frustration 13, Quick Attack 16 | Buneary; Lopunny in Gardenia |
 | Pikipek | wild | 4 | Oxide | Peck, Growl | Echoed Voice 7, Rock Smash 9, Supersonic 13; as Trumbeak: Pluck 16 | Trumbeak (from 14); Toucannon in Fantina |
 | Pikipek | wild | 4 | Rewrite | Peck, Screech, Pluck | Echoed Voice 7, Rock Smash 9, Supersonic 13; as Trumbeak: Pluck 16 | Trumbeak (from 14); Toucannon in Fantina |
 | Krabby | wild | 5 | Oxide | Mud Sport, Bubble, ViceGrip | Leer 9, Harden 11, BubbleBeam 15 | Krabby; Kingler in Fantina |
-| Krabby | wild | 5 | Rewrite | Bubble, Flip Turn, ViceGrip | Leer 9, BubbleBeam 15 | Krabby; Kingler in Fantina |
+| Krabby | wild | 5 | Rewrite | Bubble, Metal Claw, ViceGrip | Leer 9, BubbleBeam 15 | Krabby; Kingler in Fantina |
 
 ## Oreburgh City
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Vullaby | in-game trade | 1 | Oxide | Gust, Leer | Fury Attack 5, Pluck 11, Flatter 12 | Vullaby; Mandibuzz in Candice |
-| Vullaby | in-game trade | 1 | Rewrite | Gust, Leer | Faint Attack 2, Tailwind 4, Mud Shot 6, Pluck 11, Flatter 12 | Vullaby; Mandibuzz in Candice |
+| Vullaby | in-game trade | 1 | Rewrite | Gust, Leer | Snarl 2, Bone Rush 4, Tailwind 6, Pluck 11, Flatter 12 | Vullaby; Mandibuzz in Candice |
 
 ## Oreburgh Gate
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Zubat | wild | 5 to 6 | Oxide | Leech Life, Supersonic | Astonish 9, Bite 13 | Zubat; Golbat in Gardenia |
-| Zubat | wild | 5 to 6 | Rewrite | Leech Life, Venoshock, Wing Attack, Supersonic | Screech 7, Astonish 9, Bite 13 | Zubat; Golbat in Gardenia |
+| Zubat | wild | 5 to 6 | Rewrite | Leech Life, Poison Sting, Dual Wingbeat, Supersonic | Screech 7, Astonish 9, Bite 13 | Zubat; Golbat in Gardenia |
 | Makuhita | wild | 6 to 7 | Oxide | Tackle, Focus Energy, Sand-Attack | Arm Thrust 7, Vital Throw 10, Fake Out 13, Whirlwind 16 | Makuhita; Hariyama in Gardenia |
 | Makuhita | wild | 6 to 7 | Rewrite | Focus Energy, Sand-Attack, Belly Drum, Bullet Punch | Arm Thrust 7, Vital Throw 10, Fake Out 13, Whirlwind 16 | Makuhita; Hariyama in Gardenia |
-| Nacli | wild | 6 | Oxide | Tackle, Harden, Rock Throw | Mud Shot 7, Smack Down 10, Rock Polish 13, Headbutt 16 | Nacli; Naclstack in Gardenia |
-| Nacli | wild | 6 | Rewrite | Tackle, Rock Throw | Mud Shot 7, Smack Down 10, Headbutt 16 | Nacli; Naclstack in Gardenia |
-| Nosepass | wild | 6 to 7 | Oxide | Tackle | Harden 7, Rock Throw 13 | Nosepass; Probopass in Fantina |
-| Nosepass | wild | 6 to 7 | Rewrite | Tackle, Smack Down, Taunt, Rock Tomb | nothing | Nosepass; Probopass in Fantina |
+| Nacli | wild | 6 | both | Tackle, Harden, Rock Throw | Mud Shot 7, Smack Down 10, Rock Polish 13, Headbutt 16 | Nacli; Naclstack in Gardenia |
+| Nosepass | wild | 6 to 7 | Oxide | Tackle | Harden 7, Rock Throw 13 | Nosepass; Probopass in Gardenia |
+| Nosepass | wild | 6 to 7 | Rewrite | Tackle, Rock Blast, Taunt | nothing | Nosepass; Probopass in Gardenia |
 | Nidoran♂ | wild | 7 | Oxide | Leer, Peck, Focus Energy | Double Kick 9, Poison Sting 13 | Nidorino (from 16); Nidoking in Gardenia |
 | Nidoran♂ | wild | 7 | Rewrite | Peck, Venoshock, Toxic Spikes, Focus Energy | Double Kick 9, Poison Sting 13 | Nidorino (from 16); Nidoking in Gardenia |
 | Onix | wild | 7 | Oxide | Tackle, Harden, Bind, Screech | Rock Throw 9, Rage 14 | Onix; Steelix in Gardenia |
-| Onix | wild | 7 | Rewrite | Tackle, Rock Tomb, Bulldoze, Screech | Curse 16 | Onix; Steelix in Gardenia |
+| Onix | wild | 7 | Rewrite | Tackle, Rock Blast, Sand Tomb, Screech | Curse 16 | Onix; Steelix in Gardenia |
 | Purrloin | wild | 7 to 8 | Oxide | Scratch, Growl, Sand-Attack, Assist | Fake Out 12, Fury Swipes 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
-| Purrloin | wild | 7 to 8 | Rewrite | Scratch, Snarl, Sand-Attack | Nasty Plot 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
+| Purrloin | wild | 7 to 8 | Rewrite | Scratch, Taunt, Sand-Attack | Bullet Seed 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
 | Gligar | wild | 8 | Oxide | Poison Sting, Sand-Attack | Harden 9, Knock Off 12, Quick Attack 16 | Gligar; Gliscor in Wake |
-| Gligar | wild | 8 | Rewrite | Poison Sting, Sand-Attack, Aerial Ace | Harden 9, Knock Off 12, Bulldoze 14, Quick Attack 16 | Gligar; Gliscor in Wake |
+| Gligar | wild | 8 | Rewrite | Poison Sting, Sand-Attack, Dual Wingbeat | Harden 9, Screech 10, Knock Off 12, Sand Tomb 14, Quick Attack 16 | Gligar; Gliscor in Wake |
 
 ## Oreburgh Mine
 
@@ -107,311 +106,308 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Makuhita | wild | 5 to 7 | Oxide | Tackle, Focus Energy, Sand-Attack | Arm Thrust 7, Vital Throw 10, Fake Out 13, Whirlwind 16 | Makuhita; Hariyama in Gardenia |
 | Makuhita | wild | 5 to 7 | Rewrite | Tackle, Focus Energy, Sand-Attack, Belly Drum | Bullet Punch 6, Arm Thrust 7, Vital Throw 10, Fake Out 13, Whirlwind 16 | Makuhita; Hariyama in Gardenia |
 | Geodude | wild | 6 to 7 | Oxide | Tackle, Defense Curl, Mud Sport | Rock Polish 8, Rock Throw 11, Magnitude 15 | Geodude; Graveler in Gardenia |
-| Geodude | wild | 6 to 7 | Rewrite | Tackle, Smack Down, Bulldoze | Rock Throw 11, Magnitude 15 | Geodude; Graveler in Gardenia |
-| Nacli | wild | 6 to 8 | Oxide | Tackle, Harden, Rock Throw | Mud Shot 7, Smack Down 10, Rock Polish 13, Headbutt 16 | Nacli; Naclstack in Gardenia |
-| Nacli | wild | 6 to 8 | Rewrite | Tackle, Rock Throw | Mud Shot 7, Smack Down 10, Headbutt 16 | Nacli; Naclstack in Gardenia |
+| Geodude | wild | 6 to 7 | Rewrite | Tackle, Sand Tomb | Rock Polish 8, Rock Throw 11, Magnitude 15 | Geodude; Graveler in Gardenia |
+| Nacli | wild | 6 to 8 | both | Tackle, Harden, Rock Throw | Mud Shot 7, Smack Down 10, Rock Polish 13, Headbutt 16 | Nacli; Naclstack in Gardenia |
 | Onix | wild | 6 | Oxide | Tackle, Harden, Bind, Screech | Rock Throw 9, Rage 14 | Onix; Steelix in Gardenia |
-| Onix | wild | 6 | Rewrite | Tackle, Rock Tomb, Bulldoze, Screech | Curse 16 | Onix; Steelix in Gardenia |
+| Onix | wild | 6 | Rewrite | Tackle, Rock Blast, Sand Tomb, Screech | Curse 16 | Onix; Steelix in Gardenia |
 | Phanpy | wild | 6 to 7 | Oxide | Tackle, Growl, Defense Curl, Flail | Take Down 10, Rollout 15 | Phanpy; Donphan in Gardenia |
-| Phanpy | wild | 6 to 7 | Rewrite | Odor Sleuth, Tackle, Bulldoze, Flail | Ice Shard 8, Take Down 10, Rollout 15 | Phanpy; Donphan in Gardenia |
+| Phanpy | wild | 6 to 7 | Rewrite | Odor Sleuth, Tackle, Sand Tomb, Flail | Mud Shot 8, Take Down 10, Ice Shard 12, Rollout 15 | Phanpy; Donphan in Gardenia |
 | Zubat | wild | 6 | Oxide | Leech Life, Supersonic | Astonish 9, Bite 13 | Zubat; Golbat in Gardenia |
-| Zubat | wild | 6 | Rewrite | Leech Life, Venoshock, Wing Attack, Supersonic | Screech 7, Astonish 9, Bite 13 | Zubat; Golbat in Gardenia |
-| Nosepass | wild | 7 | Oxide | Tackle, Harden | Rock Throw 13 | Nosepass; Probopass in Fantina |
-| Nosepass | wild | 7 | Rewrite | Tackle, Smack Down, Taunt, Rock Tomb | nothing | Nosepass; Probopass in Fantina |
+| Zubat | wild | 6 | Rewrite | Leech Life, Poison Sting, Dual Wingbeat, Supersonic | Screech 7, Astonish 9, Bite 13 | Zubat; Golbat in Gardenia |
+| Nosepass | wild | 7 | Oxide | Tackle, Harden | Rock Throw 13 | Nosepass; Probopass in Gardenia |
+| Nosepass | wild | 7 | Rewrite | Tackle, Rock Blast, Taunt | nothing | Nosepass; Probopass in Gardenia |
 | Rhyhorn | wild | 7 | Oxide | Horn Attack, Tail Whip | Stomp 9, Fury Attack 13 | Rhyhorn; Rhydon in Wake |
-| Rhyhorn | wild | 7 | Rewrite | Horn Attack, Tail Whip, Bulldoze | Stomp 9, Smack Down 11, Peck 13 | Rhyhorn; Rhydon in Wake |
+| Rhyhorn | wild | 7 | Rewrite | Horn Attack, Tail Whip, Rock Blast | Stomp 9, Bite 11, Scary Face 13, Sand Tomb 15 | Rhyhorn; Rhydon in Wake |
 | Magby | wild | 8 | Oxide | Smog, Leer, Ember | SmokeScreen 10, Faint Attack 16 | Magby; Magmar in Fantina |
-| Magby | wild | 8 | Rewrite | Smog, Ember, Flame Wheel | SmokeScreen 10, Scary Face 12, Faint Attack 16 | Magby; Magmar in Fantina |
+| Magby | wild | 8 | Rewrite | Smog, Ember, Flame Charge | SmokeScreen 10, Scary Face 12, Faint Attack 16 | Magby; Magmar in Fantina |
 
 ## Ravaged Path
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Zubat | wild | 3 to 4 | Oxide | Leech Life | Supersonic 5, Astonish 9, Bite 13 | Zubat; Golbat in Gardenia |
-| Zubat | wild | 3 to 4 | Rewrite | Leech Life, Venoshock, Wing Attack | Supersonic 5, Screech 7, Astonish 9, Bite 13 | Zubat; Golbat in Gardenia |
+| Zubat | wild | 3 to 4 | Rewrite | Leech Life, Poison Sting, Dual Wingbeat | Supersonic 5, Screech 7, Astonish 9, Bite 13 | Zubat; Golbat in Gardenia |
 | Geodude | wild | 4 | Oxide | Tackle, Defense Curl, Mud Sport | Rock Polish 8, Rock Throw 11, Magnitude 15 | Geodude; Graveler in Gardenia |
-| Geodude | wild | 4 | Rewrite | Tackle, Smack Down, Bulldoze | Rock Throw 11, Magnitude 15 | Geodude; Graveler in Gardenia |
+| Geodude | wild | 4 | Rewrite | Tackle, Sand Tomb | Rock Polish 8, Rock Throw 11, Magnitude 15 | Geodude; Graveler in Gardenia |
 | Makuhita | wild | 4 | Oxide | Tackle, Focus Energy, Sand-Attack | Arm Thrust 7, Vital Throw 10, Fake Out 13, Whirlwind 16 | Makuhita; Hariyama in Gardenia |
 | Makuhita | wild | 4 | Rewrite | Tackle, Focus Energy, Sand-Attack | Belly Drum 5, Bullet Punch 6, Arm Thrust 7, Vital Throw 10, Fake Out 13, Whirlwind 16 | Makuhita; Hariyama in Gardenia |
-| Nacli | wild | 4 to 5 | Oxide | Tackle, Harden | Rock Throw 5, Mud Shot 7, Smack Down 10, Rock Polish 13, Headbutt 16 | Nacli; Naclstack in Gardenia |
-| Nacli | wild | 4 to 5 | Rewrite | Tackle | Rock Throw 5, Mud Shot 7, Smack Down 10, Headbutt 16 | Nacli; Naclstack in Gardenia |
-| Nosepass | wild | 4 to 5 | Oxide | Tackle | Harden 7, Rock Throw 13 | Nosepass; Probopass in Fantina |
-| Nosepass | wild | 4 to 5 | Rewrite | Tackle, Smack Down, Taunt | Rock Tomb 6 | Nosepass; Probopass in Fantina |
+| Nacli | wild | 4 to 5 | both | Tackle, Harden | Rock Throw 5, Mud Shot 7, Smack Down 10, Rock Polish 13, Headbutt 16 | Nacli; Naclstack in Gardenia |
+| Nosepass | wild | 4 to 5 | Oxide | Tackle | Harden 7, Rock Throw 13 | Nosepass; Probopass in Gardenia |
+| Nosepass | wild | 4 to 5 | Rewrite | Tackle, Rock Blast, Taunt | nothing | Nosepass; Probopass in Gardenia |
 | Phanpy | wild | 4 to 5 | Oxide | Odor Sleuth, Tackle, Growl, Defense Curl | Flail 6, Take Down 10, Rollout 15 | Phanpy; Donphan in Gardenia |
-| Phanpy | wild | 4 to 5 | Rewrite | Odor Sleuth, Tackle, Bulldoze | Flail 6, Ice Shard 8, Take Down 10, Rollout 15 | Phanpy; Donphan in Gardenia |
+| Phanpy | wild | 4 to 5 | Rewrite | Odor Sleuth, Tackle, Sand Tomb | Flail 6, Mud Shot 8, Take Down 10, Ice Shard 12, Rollout 15 | Phanpy; Donphan in Gardenia |
 | Barboach | old rod | 5 | Oxide | Mud-Slap | Mud Sport 6, Water Sport 6, Water Gun 10, Mud Bomb 14 | Barboach; Whiscash in Fantina |
-| Barboach | old rod | 5 | Rewrite | Mud-Slap, Scary Face | Water Sport 6, Water Gun 10, Mud Bomb 14 | Barboach; Whiscash in Fantina |
+| Barboach | old rod | 5 | Rewrite | Mud-Slap, Icy Wind | Water Sport 6, Water Gun 10, Mud Bomb 14 | Barboach; Whiscash in Fantina |
 | Corphish | old rod | 5 | Oxide | Bubble | Harden 7, ViceGrip 10, Leer 13 | Corphish; Crawdaunt in Fantina |
-| Corphish | old rod | 5 | Rewrite | Bubble, Taunt, BubbleBeam | ViceGrip 10, Leer 13 | Corphish; Crawdaunt in Fantina |
+| Corphish | old rod | 5 | Rewrite | Bubble, Dual Wingbeat, Taunt | ViceGrip 10, Leer 13 | Corphish; Crawdaunt in Fantina |
 | Goldeen | old rod | 5 | Oxide | Peck, Tail Whip, Water Sport | Supersonic 7, Horn Attack 11 | Goldeen; Seaking in Fantina |
-| Goldeen | old rod | 5 | Rewrite | Peck, Water Sport, Water Pulse, Flip Turn | Horn Attack 11 | Goldeen; Seaking in Fantina |
+| Goldeen | old rod | 5 | Rewrite | Peck, Water Sport, Aqua Jet, Scald | Horn Attack 11 | Goldeen; Seaking in Fantina |
 | Lotad | wild | 5 to 6 | Oxide | Astonish, Growl, Absorb | Nature Power 7, Mist 11; as Lombre: Fury Swipes 15 | Lombre (from 14); Ludicolo in Maylene |
-| Lotad | wild | 5 to 6 | Rewrite | Astonish, Water Gun, Magical Leaf, Disarming Voice | Mist 11; as Lombre: Fake Out 14, Fury Swipes 15 | Lombre (from 14); Ludicolo in Maylene |
+| Lotad | wild | 5 to 6 | Rewrite | Astonish, Water Gun, Mega Drain, Magical Leaf | Disarming Voice 7, Mist 11; as Lombre: Fake Out 14, Fury Swipes 15 | Lombre (from 14); Ludicolo in Maylene |
 | Mudkip | old rod | 5 | Oxide | Tackle, Growl | Mud-Slap 6, Water Gun 10, Bide 15; as Marshtomp: Mud Shot 16 | Marshtomp (from 16); Swampert in Maylene |
-| Mudkip | old rod | 5 | Rewrite | Tackle, Screech, Water Pulse | Mud-Slap 6; as Marshtomp: Mud Shot 16 | Marshtomp (from 16); Swampert in Maylene |
+| Mudkip | old rod | 5 | Rewrite | Tackle, Rock Blast, Screech | Mud-Slap 6, Water Gun 10; as Marshtomp: Mud Shot 16 | Marshtomp (from 16); Swampert in Maylene |
 | Onix | wild | 5 to 6 | Oxide | Mud Sport, Tackle, Harden, Bind | Screech 6, Rock Throw 9, Rage 14 | Onix; Steelix in Gardenia |
-| Onix | wild | 5 to 6 | Rewrite | Tackle, Rock Tomb, Bulldoze | Screech 6, Curse 16 | Onix; Steelix in Gardenia |
+| Onix | wild | 5 to 6 | Rewrite | Tackle, Rock Blast, Sand Tomb | Screech 6, Curse 16 | Onix; Steelix in Gardenia |
 | Wooper | old rod | 5 | Oxide | Water Gun, Tail Whip, Mud Sport | Mud Shot 9, Slam 15 | Wooper; Quagsire in Gardenia |
 | Wooper | old rod | 5 | Oxide | Water Gun, Tail Whip, Mud Sport | as Clodsire: Mud Shot 8, Poison Tail 12, Slam 16 | Clodsire (from 5) |
-| Wooper | old rod | 5 | Rewrite | Water Gun, Tail Whip, Poison Sting | Mud Shot 9, Slam 15 | Wooper; Quagsire in Gardenia |
-| Wooper | old rod | 5 | Rewrite | Water Gun, Tail Whip, Poison Sting | as Clodsire: Mud Shot 8, Poison Tail 12, Slam 16 | Clodsire (from 5) |
+| Wooper | old rod | 5 | Rewrite | Water Gun, Tail Whip, Double Kick | Mud Shot 9, Slam 15 | Wooper; Quagsire in Gardenia |
+| Wooper | old rod | 5 | Rewrite | Water Gun, Tail Whip, Double Kick | as Clodsire: Mud Shot 8, Poison Tail 12, Slam 16 | Clodsire (from 5) |
 
 ## Route 201
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Wooloo | wild | 2 | Oxide | Tackle, Growl | Defense Curl 4, Copycat 8, Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
-| Wooloo | wild | 2 | Rewrite | Tackle, Round | Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
+| Wooloo | wild | 2 | Rewrite | Tackle, Double Hit | Fury Swipes 4, Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
 | Blipbug | wild | 3 | Oxide | Struggle Bug | as Dottler: Reflect 10, Light Screen 10, Confusion 10 | Dottler (from 10); Orbeetle in Fantina |
-| Blipbug | wild | 3 | Rewrite | Struggle Bug, Trailblaze, Calm Mind | as Dottler: Reflect 10, Confusion 11, Light Screen 12 | Dottler (from 10); Orbeetle in Fantina |
+| Blipbug | wild | 3 | Rewrite | Struggle Bug, Calm Mind, Confusion | as Dottler: Reflect 10, Confusion 11, Light Screen 12 | Dottler (from 10); Orbeetle in Fantina |
 | Kricketot | wild | 3 | Oxide | Growl, Bide | as Kricketune: Fury Cutter 10, Leech Life 14 | Kricketune (from 10) |
-| Kricketot | wild | 3 | Rewrite | Growl, Screech, Struggle Bug | Pounce 5; as Kricketune: Fury Cutter 10, Leech Life 14 | Kricketune (from 10) |
+| Kricketot | wild | 3 | Rewrite | Growl, Struggle Bug, Fury Cutter | Karate Chop 5, Screech 7; as Kricketune: Fury Cutter 10, Leech Life 14 | Kricketune (from 10) |
 | Purrloin | wild | 3 to 4 | Oxide | Scratch, Growl | Sand-Attack 6, Assist 6, Fake Out 12, Fury Swipes 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
-| Purrloin | wild | 3 to 4 | Rewrite | Scratch, Snarl | Sand-Attack 6, Nasty Plot 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
+| Purrloin | wild | 3 to 4 | Rewrite | Scratch, Taunt | Sand-Attack 6, Bullet Seed 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
 | Rookidee | wild | 3 to 4 | Oxide | Peck, Leer | Fury Attack 4, Sand-Attack 12, Pluck 15 | Corvisquire (from 16); Corviknight in Wake |
 | Rookidee | wild | 3 to 4 | Rewrite | Peck, Leer, Taunt | Sand-Attack 12, Pluck 15 | Corvisquire (from 16); Corviknight in Wake |
 | Sentret | wild | 3 | Oxide | Scratch, Foresight | Defense Curl 4, Quick Attack 7, Fury Swipes 13 | Furret (from 15) |
-| Sentret | wild | 3 | Rewrite | Scratch, Foresight, Covet | Defense Curl 4, Quick Attack 7, Baby-Doll Eyes 9, Pursuit 11, Fury Swipes 13 | Furret (from 15) |
+| Sentret | wild | 3 | Rewrite | Scratch, Foresight, Baby-Doll Eyes | Defense Curl 4, Quick Attack 7, Pursuit 9, Fury Swipes 13 | Furret (from 15) |
 | Starly | wild | 3 | Oxide | Tackle, Growl | Quick Attack 5, Wing Attack 9, Double Team 13 | Staravia (from 14); Staraptor in Maylene |
 | Starly | wild | 3 | Rewrite | Tackle, Pursuit | Quick Attack 5, Tailwind 7, Wing Attack 9 | Staravia (from 14); Staraptor in Maylene |
 | Grubbin | wild | 4 | Oxide | ViceGrip, Mud-Slap | String Shot 5, Bug Bite 10, Bite 15 | Grubbin; Charjabug in Gardenia |
 | Grubbin | wild | 4 | Rewrite | ViceGrip, Mud-Slap, Sticky Web | String Shot 5, Bug Bite 10, Bite 15 | Grubbin; Charjabug in Gardenia |
 | Nidoran♀ | wild | 4 | Oxide | Growl, Scratch | Tail Whip 7, Double Kick 9, Poison Sting 13 | Nidorina (from 16); Nidoqueen in Gardenia |
-| Nidoran♀ | wild | 4 | Rewrite | Scratch, Toxic Spikes, Sludge | Pursuit 6, Double Kick 9, Poison Sting 13 | Nidorina (from 16); Nidoqueen in Gardenia |
+| Nidoran♀ | wild | 4 | Rewrite | Scratch, Clear Smog, Toxic Spikes | Double Kick 9, Poison Sting 13 | Nidorina (from 16); Nidoqueen in Gardenia |
 | Nidoran♂ | wild | 4 | Oxide | Leer, Peck | Focus Energy 7, Double Kick 9, Poison Sting 13 | Nidorino (from 16); Nidoking in Gardenia |
 | Nidoran♂ | wild | 4 | Rewrite | Leer, Peck, Venoshock | Toxic Spikes 6, Focus Energy 7, Double Kick 9, Poison Sting 13 | Nidorino (from 16); Nidoking in Gardenia |
 | Shinx | wild | 4 | Oxide | Tackle | Leer 5, Charge 9, Spark 13 | Luxio (from 15); Luxray in Fantina |
-| Shinx | wild | 4 | Rewrite | Tackle, Scary Face, Pursuit | Charge 9, Spark 13 | Luxio (from 15); Luxray in Fantina |
+| Shinx | wild | 4 | Rewrite | Tackle, Double Kick, Scary Face | Charge 9, Spark 13 | Luxio (from 15); Luxray in Fantina |
 | Fletchling | wild | 5 | Oxide | Tackle, Growl | Quick Attack 6, Aerial Ace 12 | Fletchinder (from 16); Talonflame in Maylene |
 | Fletchling | wild | 5 | Rewrite | Tackle, Ember, Tailwind | Quick Attack 6, Aerial Ace 12 | Fletchinder (from 16); Talonflame in Maylene |
 | Pachirisu | wild | 5 | Oxide | Growl, Bide, Quick Attack | Charm 9, Spark 13 | Pachirisu |
-| Pachirisu | wild | 5 | Rewrite | Growl, Electroweb, Quick Attack | Charm 9, Spark 13 | Pachirisu |
+| Pachirisu | wild | 5 | Rewrite | Growl, Electroweb, Quick Attack | Mud Shot 7, Charm 9, Spark 13 | Pachirisu |
 | Piplup | starter | 5 | Oxide | Pound, Growl | Bubble 8, Water Sport 11, Peck 15; as Prinplup: Metal Claw 16 | Prinplup (from 16); Empoleon in Maylene |
-| Piplup | starter | 5 | Rewrite | Pound, Scary Face, BubbleBeam | Peck 15; as Prinplup: Metal Claw 16 | Prinplup (from 16); Empoleon in Maylene |
+| Piplup | starter | 5 | Rewrite | Pound, Growl | Chilling Water 6, Bubble 8, Scary Face 10, Peck 15; as Prinplup: Metal Claw 16 | Prinplup (from 16); Empoleon in Maylene |
 | Scorbunny | starter | 5 | Oxide | Ember, Growl | Quick Attack 6, Sand-Attack 11, Double Kick 14 | Raboot (from 16); Cinderace in Maylene |
-| Scorbunny | starter | 5 | Rewrite | Ember, Growl, Flame Charge | Quick Attack 6, Taunt 8, Sand-Attack 11, Double Kick 14 | Raboot (from 16); Cinderace in Maylene |
+| Scorbunny | starter | 5 | Rewrite | Tackle, Growl | Quick Attack 6, Ember 7, Flame Charge 9, Sand-Attack 11, Double Kick 14, Taunt 16 | Raboot (from 16); Cinderace in Maylene |
 | Turtwig | starter | 5 | Oxide | Tackle, Withdraw | Absorb 9, Razor Leaf 13 | Turtwig; Grotle in Gardenia |
-| Turtwig | starter | 5 | Rewrite | Tackle, Trailblaze, Curse | Leech Seed 7, Razor Leaf 13 | Turtwig; Grotle in Gardenia |
+| Turtwig | starter | 5 | Rewrite | Tackle, Withdraw | Curse 6, Rock Blast 8, Bullet Seed 10, Razor Leaf 13 | Turtwig; Grotle in Gardenia |
 
 ## Route 202
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Shinx | wild | 2 | Oxide | Tackle | Leer 5, Charge 9, Spark 13 | Luxio (from 15); Luxray in Fantina |
-| Shinx | wild | 2 | Rewrite | Tackle, Scary Face | Pursuit 4, Charge 9, Spark 13 | Luxio (from 15); Luxray in Fantina |
+| Shinx | wild | 2 | Rewrite | Tackle, Double Kick | Scary Face 4, Charge 9, Spark 13 | Luxio (from 15); Luxray in Fantina |
 | Bidoof | wild | 3 | Oxide | Tackle | Growl 5, Defense Curl 9, Rollout 13; as Bibarel: Water Gun 15 | Bibarel (from 15) |
-| Bidoof | wild | 3 | Rewrite | Tackle, Swift, Taunt | Aqua Jet 5, Rollout 13; as Bibarel: Water Gun 15 | Bibarel (from 15) |
+| Bidoof | wild | 3 | Rewrite | Tackle, Fury Swipes, Taunt | Aqua Jet 5, Rollout 13; as Bibarel: Water Gun 15 | Bibarel (from 15) |
 | Blipbug | wild | 3 | Oxide | Struggle Bug | as Dottler: Reflect 10, Light Screen 10, Confusion 10 | Dottler (from 10); Orbeetle in Fantina |
-| Blipbug | wild | 3 | Rewrite | Struggle Bug, Trailblaze, Calm Mind | as Dottler: Reflect 10, Confusion 11, Light Screen 12 | Dottler (from 10); Orbeetle in Fantina |
+| Blipbug | wild | 3 | Rewrite | Struggle Bug, Calm Mind, Confusion | as Dottler: Reflect 10, Confusion 11, Light Screen 12 | Dottler (from 10); Orbeetle in Fantina |
 | Kricketot | wild | 3 | Oxide | Growl, Bide | as Kricketune: Fury Cutter 10, Leech Life 14 | Kricketune (from 10) |
-| Kricketot | wild | 3 | Rewrite | Growl, Screech, Struggle Bug | Pounce 5; as Kricketune: Fury Cutter 10, Leech Life 14 | Kricketune (from 10) |
+| Kricketot | wild | 3 | Rewrite | Growl, Struggle Bug, Fury Cutter | Karate Chop 5, Screech 7; as Kricketune: Fury Cutter 10, Leech Life 14 | Kricketune (from 10) |
 | Pikipek | wild | 3 | Oxide | Peck, Growl | Echoed Voice 7, Rock Smash 9, Supersonic 13; as Trumbeak: Pluck 16 | Trumbeak (from 14); Toucannon in Fantina |
 | Pikipek | wild | 3 | Rewrite | Peck, Screech, Pluck | Echoed Voice 7, Rock Smash 9, Supersonic 13; as Trumbeak: Pluck 16 | Trumbeak (from 14); Toucannon in Fantina |
 | Purrloin | wild | 3 to 4 | Oxide | Scratch, Growl | Sand-Attack 6, Assist 6, Fake Out 12, Fury Swipes 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
-| Purrloin | wild | 3 to 4 | Rewrite | Scratch, Snarl | Sand-Attack 6, Nasty Plot 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
+| Purrloin | wild | 3 to 4 | Rewrite | Scratch, Taunt | Sand-Attack 6, Bullet Seed 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
 | Sewaddle | wild | 3 | Oxide | Tackle, String Shot | Bug Bite 8, Razor Leaf 12 | Sewaddle; Swadloon in Gardenia |
 | Sewaddle | wild | 3 | Rewrite | Tackle, Pounce, Sticky Web | Bug Bite 8, Razor Leaf 12 | Sewaddle; Swadloon in Gardenia |
 | Wooloo | wild | 3 | Oxide | Tackle, Growl | Defense Curl 4, Copycat 8, Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
-| Wooloo | wild | 3 | Rewrite | Tackle, Round | Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
+| Wooloo | wild | 3 | Rewrite | Tackle, Double Hit | Fury Swipes 4, Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
 | Grubbin | wild | 4 | Oxide | ViceGrip, Mud-Slap | String Shot 5, Bug Bite 10, Bite 15 | Grubbin; Charjabug in Gardenia |
 | Grubbin | wild | 4 | Rewrite | ViceGrip, Mud-Slap, Sticky Web | String Shot 5, Bug Bite 10, Bite 15 | Grubbin; Charjabug in Gardenia |
 | Nidoran♀ | wild | 4 | Oxide | Growl, Scratch | Tail Whip 7, Double Kick 9, Poison Sting 13 | Nidorina (from 16); Nidoqueen in Gardenia |
-| Nidoran♀ | wild | 4 | Rewrite | Scratch, Toxic Spikes, Sludge | Pursuit 6, Double Kick 9, Poison Sting 13 | Nidorina (from 16); Nidoqueen in Gardenia |
+| Nidoran♀ | wild | 4 | Rewrite | Scratch, Clear Smog, Toxic Spikes | Double Kick 9, Poison Sting 13 | Nidorina (from 16); Nidoqueen in Gardenia |
 | Nidoran♂ | wild | 4 | Oxide | Leer, Peck | Focus Energy 7, Double Kick 9, Poison Sting 13 | Nidorino (from 16); Nidoking in Gardenia |
 | Nidoran♂ | wild | 4 | Rewrite | Leer, Peck, Venoshock | Toxic Spikes 6, Focus Energy 7, Double Kick 9, Poison Sting 13 | Nidorino (from 16); Nidoking in Gardenia |
 | Rookidee | wild | 4 | Oxide | Peck, Leer, Fury Attack | Sand-Attack 12, Pluck 15 | Corvisquire (from 16); Corviknight in Wake |
 | Rookidee | wild | 4 | Rewrite | Peck, Leer, Taunt | Sand-Attack 12, Pluck 15 | Corvisquire (from 16); Corviknight in Wake |
 | Starly | wild | 4 | Oxide | Tackle, Growl | Quick Attack 5, Wing Attack 9, Double Team 13 | Staravia (from 14); Staraptor in Maylene |
 | Starly | wild | 4 | Rewrite | Tackle, Pursuit | Quick Attack 5, Tailwind 7, Wing Attack 9 | Staravia (from 14); Staraptor in Maylene |
-| Budew | wild | 5 | Oxide | Absorb, Growth | Water Sport 7, Stun Spore 10, Mega Drain 13, Worry Seed 16 | Budew; Roselia in Fantina |
-| Budew | wild | 5 | Rewrite | Magical Leaf, Acid | Water Sport 7, Stun Spore 10, Mega Drain 13, Worry Seed 16 | Budew; Roselia in Fantina |
+| Budew | wild | 5 | Oxide | Absorb, Growth | Water Sport 7, Stun Spore 10, Mega Drain 13, Worry Seed 16 | Budew; Roselia in Gardenia |
+| Budew | wild | 5 | Rewrite | Clear Smog, Acid, Confusion | Water Sport 7, Stun Spore 10, Mega Drain 13, Worry Seed 16 | Budew; Roselia in Gardenia |
 | Smoliv | wild | 5 | Oxide | Tackle, Sweet Scent, Absorb | Growth 7, Razor Leaf 10, Helping Hand 13, Flail 16 | Smoliv; Dolliv in Gardenia |
-| Smoliv | wild | 5 | Rewrite | Tackle, Terrain Pulse | Razor Leaf 10, Helping Hand 13, Flail 16 | Smoliv; Dolliv in Gardenia |
+| Smoliv | wild | 5 | Rewrite | Tackle, Mega Drain | Razor Leaf 10, Helping Hand 13, Flail 16 | Smoliv; Dolliv in Gardenia |
 
 ## Route 203
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Barboach | old rod | 4 | Oxide | Mud-Slap | Mud Sport 6, Water Sport 6, Water Gun 10, Mud Bomb 14 | Barboach; Whiscash in Fantina |
-| Barboach | old rod | 4 | Rewrite | Mud-Slap, Scary Face | Water Sport 6, Water Gun 10, Mud Bomb 14 | Barboach; Whiscash in Fantina |
+| Barboach | old rod | 4 | Rewrite | Mud-Slap, Icy Wind | Water Sport 6, Water Gun 10, Mud Bomb 14 | Barboach; Whiscash in Fantina |
 | Corphish | old rod | 4 | Oxide | Bubble | Harden 7, ViceGrip 10, Leer 13 | Corphish; Crawdaunt in Fantina |
-| Corphish | old rod | 4 | Rewrite | Bubble, Taunt, BubbleBeam | ViceGrip 10, Leer 13 | Corphish; Crawdaunt in Fantina |
+| Corphish | old rod | 4 | Rewrite | Bubble, Dual Wingbeat, Taunt | ViceGrip 10, Leer 13 | Corphish; Crawdaunt in Fantina |
 | Froakie | old rod | 4 | Oxide | Pound | Water Gun 5, Growl 7, Quick Attack 10, Lick 13, Water Pulse 14, Icy Wind 16; as Frogadier: Icy Wind 16 | Frogadier (from 16); Greninja in Maylene |
 | Froakie | old rod | 4 | Rewrite | Pound | Water Gun 5, Quick Attack 10, Lick 13, Water Pulse 14, Icy Wind 16; as Frogadier: Icy Wind 16 | Frogadier (from 16); Greninja in Maylene |
 | Poliwag | old rod | 4 | Oxide | Water Sport | Bubble 5, Hypnosis 8, Water Gun 11, DoubleSlap 15 | Poliwag; Poliwhirl in Gardenia |
-| Poliwag | old rod | 4 | Rewrite | Water Sport, BubbleBeam, Mud Shot | Icy Wind 6, Hypnosis 8, DoubleSlap 15 | Poliwag; Poliwhirl in Gardenia |
+| Poliwag | old rod | 4 | Rewrite | Water Sport, Chilling Water, Mud Shot | Bubble 5, Hypnosis 8, Fury Swipes 15 | Poliwag; Poliwhirl in Gardenia |
 | Rookidee | wild | 4 | Oxide | Peck, Leer, Fury Attack | Sand-Attack 12, Pluck 15 | Corvisquire (from 16); Corviknight in Wake |
 | Rookidee | wild | 4 | Rewrite | Peck, Leer, Taunt | Sand-Attack 12, Pluck 15 | Corvisquire (from 16); Corviknight in Wake |
 | Wooper | old rod | 4 | Oxide | Water Gun, Tail Whip | Mud Sport 5, Mud Shot 9, Slam 15 | Wooper; Quagsire in Gardenia |
 | Wooper | old rod | 4 | Oxide | Water Gun, Tail Whip | as Clodsire: Mud Shot 8, Poison Tail 12, Slam 16 | Clodsire (from 4) |
-| Wooper | old rod | 4 | Rewrite | Water Gun, Tail Whip, Poison Sting | Mud Shot 9, Slam 15 | Wooper; Quagsire in Gardenia |
-| Wooper | old rod | 4 | Rewrite | Water Gun, Tail Whip, Poison Sting | as Clodsire: Mud Shot 8, Poison Tail 12, Slam 16 | Clodsire (from 4) |
+| Wooper | old rod | 4 | Rewrite | Water Gun, Tail Whip, Double Kick | Mud Shot 9, Slam 15 | Wooper; Quagsire in Gardenia |
+| Wooper | old rod | 4 | Rewrite | Water Gun, Tail Whip, Double Kick | as Clodsire: Mud Shot 8, Poison Tail 12, Slam 16 | Clodsire (from 4) |
 | Fletchling | wild | 5 to 7 | Oxide | Tackle, Growl | Quick Attack 6, Aerial Ace 12 | Fletchinder (from 16); Talonflame in Maylene |
 | Fletchling | wild | 5 to 7 | Rewrite | Tackle, Ember, Tailwind | Quick Attack 6, Aerial Ace 12 | Fletchinder (from 16); Talonflame in Maylene |
 | Grubbin | wild | 5 | Oxide | ViceGrip, Mud-Slap, String Shot | Bug Bite 10, Bite 15 | Grubbin; Charjabug in Gardenia |
 | Grubbin | wild | 5 | Rewrite | ViceGrip, Mud-Slap, Sticky Web, String Shot | Bug Bite 10, Bite 15 | Grubbin; Charjabug in Gardenia |
 | Nidoran♀ | wild | 5 | Oxide | Growl, Scratch | Tail Whip 7, Double Kick 9, Poison Sting 13 | Nidorina (from 16); Nidoqueen in Gardenia |
-| Nidoran♀ | wild | 5 | Rewrite | Scratch, Toxic Spikes, Sludge | Pursuit 6, Double Kick 9, Poison Sting 13 | Nidorina (from 16); Nidoqueen in Gardenia |
+| Nidoran♀ | wild | 5 | Rewrite | Scratch, Clear Smog, Toxic Spikes | Double Kick 9, Poison Sting 13 | Nidorina (from 16); Nidoqueen in Gardenia |
 | Nidoran♂ | wild | 5 | Oxide | Leer, Peck | Focus Energy 7, Double Kick 9, Poison Sting 13 | Nidorino (from 16); Nidoking in Gardenia |
 | Nidoran♂ | wild | 5 | Rewrite | Leer, Peck, Venoshock | Toxic Spikes 6, Focus Energy 7, Double Kick 9, Poison Sting 13 | Nidorino (from 16); Nidoking in Gardenia |
 | Purrloin | wild | 5 to 6 | Oxide | Scratch, Growl | Sand-Attack 6, Assist 6, Fake Out 12, Fury Swipes 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
-| Purrloin | wild | 5 to 6 | Rewrite | Scratch, Snarl | Sand-Attack 6, Nasty Plot 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
+| Purrloin | wild | 5 to 6 | Rewrite | Scratch, Taunt | Sand-Attack 6, Bullet Seed 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
 | Abra | wild | 6 to 7 | Oxide | Teleport | as Kadabra: Confusion 16 | Kadabra (from 16); Alakazam in Wake |
-| Abra | wild | 6 to 7 | Rewrite | Round, Calm Mind, Confusion | as Kadabra: Confusion 16 | Kadabra (from 16); Alakazam in Wake |
+| Abra | wild | 6 to 7 | Rewrite | Calm Mind, Stored Power | as Kadabra: Confusion 16 | Kadabra (from 16); Alakazam in Wake |
 | Makuhita | wild | 6 | Oxide | Tackle, Focus Energy, Sand-Attack | Arm Thrust 7, Vital Throw 10, Fake Out 13, Whirlwind 16 | Makuhita; Hariyama in Gardenia |
 | Makuhita | wild | 6 | Rewrite | Focus Energy, Sand-Attack, Belly Drum, Bullet Punch | Arm Thrust 7, Vital Throw 10, Fake Out 13, Whirlwind 16 | Makuhita; Hariyama in Gardenia |
 | Shinx | wild | 6 | Oxide | Tackle, Leer | Charge 9, Spark 13 | Luxio (from 15); Luxray in Fantina |
-| Shinx | wild | 6 | Rewrite | Tackle, Scary Face, Pursuit | Charge 9, Spark 13 | Luxio (from 15); Luxray in Fantina |
+| Shinx | wild | 6 | Rewrite | Tackle, Double Kick, Scary Face | Charge 9, Spark 13 | Luxio (from 15); Luxray in Fantina |
 
 ## Route 204
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
-| Budew | wild | 3 | Oxide | Absorb | Growth 4, Water Sport 7, Stun Spore 10, Mega Drain 13, Worry Seed 16 | Budew; Roselia in Fantina |
-| Budew | wild | 3 | Rewrite | Magical Leaf, Acid | Water Sport 7, Stun Spore 10, Mega Drain 13, Worry Seed 16 | Budew; Roselia in Fantina |
-| Bounsweet | wild | 4 to 5 | Oxide | Splash | Play Nice 5, Rapid Spin 9, Razor Leaf 12; as Steenee: Razor Leaf 12 | Steenee (from 12); Tsareena in Fantina |
-| Bounsweet | wild | 4 to 5 | Rewrite | Magical Leaf, Taunt | Play Nice 5, Rapid Spin 9, Razor Leaf 12; as Steenee: Razor Leaf 12 | Steenee (from 12); Tsareena in Fantina |
+| Budew | wild | 3 | Oxide | Absorb | Growth 4, Water Sport 7, Stun Spore 10, Mega Drain 13, Worry Seed 16 | Budew; Roselia in Gardenia |
+| Budew | wild | 3 | Rewrite | Clear Smog, Acid | Confusion 5, Water Sport 7, Stun Spore 10, Mega Drain 13, Worry Seed 16 | Budew; Roselia in Gardenia |
+| Bounsweet | wild | 4 to 5 | Oxide | Splash | Play Nice 5, Rapid Spin 9, Razor Leaf 12; as Steenee: Razor Leaf 12 | Steenee (from 12); Tsareena in Gardenia |
+| Bounsweet | wild | 4 to 5 | Rewrite | Taunt, Leafage | Play Nice 5, Rapid Spin 9, Razor Leaf 12; as Steenee: Razor Leaf 12 | Steenee (from 12); Tsareena in Gardenia |
 | Fletchling | wild | 4 | Oxide | Tackle, Growl | Quick Attack 6, Aerial Ace 12 | Fletchinder (from 16); Talonflame in Maylene |
 | Fletchling | wild | 4 | Rewrite | Tackle, Ember, Tailwind | Quick Attack 6, Aerial Ace 12 | Fletchinder (from 16); Talonflame in Maylene |
 | Grubbin | wild | 4 | Oxide | ViceGrip, Mud-Slap | String Shot 5, Bug Bite 10, Bite 15 | Grubbin; Charjabug in Gardenia |
 | Grubbin | wild | 4 | Rewrite | ViceGrip, Mud-Slap, Sticky Web | String Shot 5, Bug Bite 10, Bite 15 | Grubbin; Charjabug in Gardenia |
 | Purrloin | wild | 4 | Oxide | Scratch, Growl | Sand-Attack 6, Assist 6, Fake Out 12, Fury Swipes 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
-| Purrloin | wild | 4 | Rewrite | Scratch, Snarl | Sand-Attack 6, Nasty Plot 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
+| Purrloin | wild | 4 | Rewrite | Scratch, Taunt | Sand-Attack 6, Bullet Seed 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
 | Seedot | wild | 4 to 5 | Oxide | Bide, Harden | Growth 7, Nature Power 13 | Nuzleaf (from 14); Shiftry in Gardenia |
-| Seedot | wild | 4 to 5 | Rewrite | Scary Face, Harden, Giga Drain | Trailblaze 6, Fake Out 8; as Nuzleaf: Payback 14 | Nuzleaf (from 14); Shiftry in Gardenia |
+| Seedot | wild | 4 to 5 | Rewrite | Curse, Harden, Bullet Seed | Fake Out 6, Rock Blast 8; as Nuzleaf: Snarl 14 | Nuzleaf (from 14); Shiftry in Gardenia |
 | Sewaddle | wild | 4 to 5 | Oxide | Tackle, String Shot | Bug Bite 8, Razor Leaf 12 | Sewaddle; Swadloon in Gardenia |
 | Sewaddle | wild | 4 to 5 | Rewrite | Tackle, Pounce, Sticky Web | Bug Bite 8, Razor Leaf 12 | Sewaddle; Swadloon in Gardenia |
 | Wurmple | wild | 4 | Oxide | Tackle, String Shot | Poison Sting 5; as Silcoon: Harden 7; as Beautifly: Absorb 10, Gust 13 | Beautifly (from 10) |
 | Wurmple | wild | 4 | Oxide | Tackle, String Shot | Poison Sting 5; as Cascoon: Harden 7; as Dustox: Confusion 10, Gust 13 | Dustox (from 10) |
-| Wurmple | wild | 4 | Rewrite | Tackle, Stun Spore, Bug Bite | Poison Sting 5; as Silcoon: Harden 7; as Beautifly: Mega Drain 10, Gust 13 | Beautifly (from 10) |
-| Wurmple | wild | 4 | Rewrite | Tackle, Stun Spore, Bug Bite | Poison Sting 5; as Cascoon: Harden 7; as Dustox: Confusion 10, Gust 13 | Dustox (from 10) |
+| Wurmple | wild | 4 | Rewrite | Tackle, Pin Missile, Stun Spore | Poison Sting 5; as Silcoon: Harden 7; as Beautifly: Mega Drain 10, Gust 13 | Beautifly (from 10) |
+| Wurmple | wild | 4 | Rewrite | Tackle, Pin Missile, Stun Spore | Poison Sting 5; as Cascoon: Harden 7; as Dustox: Confusion 10, Gust 13 | Dustox (from 10) |
 | Barboach | old rod | 5 | Oxide | Mud-Slap | Mud Sport 6, Water Sport 6, Water Gun 10, Mud Bomb 14 | Barboach; Whiscash in Fantina |
-| Barboach | old rod | 5 | Rewrite | Mud-Slap, Scary Face | Water Sport 6, Water Gun 10, Mud Bomb 14 | Barboach; Whiscash in Fantina |
+| Barboach | old rod | 5 | Rewrite | Mud-Slap, Icy Wind | Water Sport 6, Water Gun 10, Mud Bomb 14 | Barboach; Whiscash in Fantina |
 | Corphish | old rod | 5 | Oxide | Bubble | Harden 7, ViceGrip 10, Leer 13 | Corphish; Crawdaunt in Fantina |
-| Corphish | old rod | 5 | Rewrite | Bubble, Taunt, BubbleBeam | ViceGrip 10, Leer 13 | Corphish; Crawdaunt in Fantina |
+| Corphish | old rod | 5 | Rewrite | Bubble, Dual Wingbeat, Taunt | ViceGrip 10, Leer 13 | Corphish; Crawdaunt in Fantina |
 | Froakie | old rod | 5 | Oxide | Pound, Water Gun | Growl 7, Quick Attack 10, Lick 13, Water Pulse 14, Icy Wind 16; as Frogadier: Icy Wind 16 | Frogadier (from 16); Greninja in Maylene |
 | Froakie | old rod | 5 | Rewrite | Pound, Water Gun | Quick Attack 10, Lick 13, Water Pulse 14, Icy Wind 16; as Frogadier: Icy Wind 16 | Frogadier (from 16); Greninja in Maylene |
 | Goldeen | old rod | 5 | Oxide | Peck, Tail Whip, Water Sport | Supersonic 7, Horn Attack 11 | Goldeen; Seaking in Fantina |
-| Goldeen | old rod | 5 | Rewrite | Peck, Water Sport, Water Pulse, Flip Turn | Horn Attack 11 | Goldeen; Seaking in Fantina |
+| Goldeen | old rod | 5 | Rewrite | Peck, Water Sport, Aqua Jet, Scald | Horn Attack 11 | Goldeen; Seaking in Fantina |
 | Lotad | old rod | 5 | Oxide | Astonish, Growl, Absorb | Nature Power 7, Mist 11; as Lombre: Fury Swipes 15 | Lombre (from 14); Ludicolo in Maylene |
-| Lotad | old rod | 5 | Rewrite | Astonish, Water Gun, Magical Leaf, Disarming Voice | Mist 11; as Lombre: Fake Out 14, Fury Swipes 15 | Lombre (from 14); Ludicolo in Maylene |
+| Lotad | old rod | 5 | Rewrite | Astonish, Water Gun, Mega Drain, Magical Leaf | Disarming Voice 7, Mist 11; as Lombre: Fake Out 14, Fury Swipes 15 | Lombre (from 14); Ludicolo in Maylene |
 | Lotad | wild | 5 | Oxide | Astonish, Growl, Absorb | Nature Power 7, Mist 11; as Lombre: Fury Swipes 15 | Lombre (from 14); Ludicolo in Maylene |
-| Lotad | wild | 5 | Rewrite | Astonish, Water Gun, Magical Leaf, Disarming Voice | Mist 11; as Lombre: Fake Out 14, Fury Swipes 15 | Lombre (from 14); Ludicolo in Maylene |
+| Lotad | wild | 5 | Rewrite | Astonish, Water Gun, Mega Drain, Magical Leaf | Disarming Voice 7, Mist 11; as Lombre: Fake Out 14, Fury Swipes 15 | Lombre (from 14); Ludicolo in Maylene |
 | Shroomish | wild | 5 | Oxide | Absorb, Tackle | Stun Spore 9, Leech Seed 13 | Shroomish; Breloom in Gardenia |
-| Shroomish | wild | 5 | Rewrite | Mach Punch, Magical Leaf, Tackle | Stun Spore 9, Leech Seed 13 | Shroomish; Breloom in Gardenia |
+| Shroomish | wild | 5 | Rewrite | Mach Punch, Bullet Seed, Tackle | Stun Spore 9, Leech Seed 13 | Shroomish; Breloom in Gardenia |
 | Wooloo | wild | 5 | Oxide | Tackle, Growl, Defense Curl | Copycat 8, Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
-| Wooloo | wild | 5 | Rewrite | Tackle, Round | Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
+| Wooloo | wild | 5 | Rewrite | Tackle, Double Hit, Fury Swipes | Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
 | Smoliv | wild | 6 | Oxide | Tackle, Sweet Scent, Absorb | Growth 7, Razor Leaf 10, Helping Hand 13, Flail 16 | Smoliv; Dolliv in Gardenia |
-| Smoliv | wild | 6 | Rewrite | Tackle, Terrain Pulse | Razor Leaf 10, Helping Hand 13, Flail 16 | Smoliv; Dolliv in Gardenia |
+| Smoliv | wild | 6 | Rewrite | Tackle, Mega Drain | Razor Leaf 10, Helping Hand 13, Flail 16 | Smoliv; Dolliv in Gardenia |
 | Snivy | wild | 6 | Oxide | Tackle, Vine Whip, Leer | Wrap 10, Hold Back 14 | Servine (from 16); Serperior in Maylene |
-| Snivy | wild | 6 | Rewrite | Tackle, Vine Whip, Magical Leaf | Calm Mind 8, Twister 10, Hold Back 14 | Servine (from 16); Serperior in Maylene |
+| Snivy | wild | 6 | Rewrite | Tackle, Vine Whip, Magical Leaf | Breaking Swipe 8, Calm Mind 10, Hold Back 14 | Servine (from 16); Serperior in Maylene |
 
 ## Route 207
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Ponyta | wild | 5 | Oxide | Growl, Tackle | Tail Whip 6, Ember 10, Flame Wheel 15 | Ponyta; Galarian Rapidash in Gardenia, Rapidash in Wake |
-| Ponyta | wild | 5 | Rewrite | Tackle, Quick Attack, Flame Charge | Ember 10, Flame Wheel 15 | Ponyta; Galarian Rapidash in Gardenia, Rapidash in Wake |
+| Ponyta | wild | 5 | Rewrite | Tackle, Flame Charge, Double Kick | Ember 10, Flame Wheel 15 | Ponyta; Galarian Rapidash in Gardenia, Rapidash in Wake |
 | Fletchling | wild | 6 to 7 | Oxide | Tackle, Growl, Quick Attack | Aerial Ace 12 | Fletchinder (from 16); Talonflame in Maylene |
 | Fletchling | wild | 6 to 7 | Rewrite | Tackle, Ember, Tailwind, Quick Attack | Aerial Ace 12 | Fletchinder (from 16); Talonflame in Maylene |
 | Houndour | wild | 6 to 7 | Oxide | Leer, Ember, Howl | Smog 9, Roar 14 | Houndour; Houndoom in Fantina |
-| Houndour | wild | 6 to 7 | Rewrite | Ember, Howl, Bite | Smog 9, Scary Face 11, Roar 14 | Houndour; Houndoom in Fantina |
+| Houndour | wild | 6 to 7 | Rewrite | Ember, Howl, Snarl | Smog 9, Nasty Plot 11, Roar 14 | Houndour; Houndoom in Fantina |
 | Machop | wild | 6 | Oxide | Low Kick, Leer | Focus Energy 7, Karate Chop 10, Foresight 13 | Machop; Machoke in Fantina |
-| Machop | wild | 6 | Rewrite | Low Kick, Leer, Bullet Punch | Focus Energy 7, Karate Chop 10, Foresight 13, Scary Face 15 | Machop; Machoke in Fantina |
-| Nacli | wild | 6 | Oxide | Tackle, Harden, Rock Throw | Mud Shot 7, Smack Down 10, Rock Polish 13, Headbutt 16 | Nacli; Naclstack in Gardenia |
-| Nacli | wild | 6 | Rewrite | Tackle, Rock Throw | Mud Shot 7, Smack Down 10, Headbutt 16 | Nacli; Naclstack in Gardenia |
+| Machop | wild | 6 | Rewrite | Low Kick, Leer, Dual Chop | Focus Energy 7, Karate Chop 10, Foresight 13, Scary Face 15 | Machop; Machoke in Fantina |
+| Nacli | wild | 6 | both | Tackle, Harden, Rock Throw | Mud Shot 7, Smack Down 10, Rock Polish 13, Headbutt 16 | Nacli; Naclstack in Gardenia |
 | Smoliv | wild | 6 to 7 | Oxide | Tackle, Sweet Scent, Absorb | Growth 7, Razor Leaf 10, Helping Hand 13, Flail 16 | Smoliv; Dolliv in Gardenia |
-| Smoliv | wild | 6 to 7 | Rewrite | Tackle, Terrain Pulse | Razor Leaf 10, Helping Hand 13, Flail 16 | Smoliv; Dolliv in Gardenia |
-| Vulpix | wild | 6 | Oxide | Ember, Tail Whip | Roar 7, Quick Attack 11, Will-O-Wisp 14 | Vulpix; Ninetales in Maylene |
-| Vulpix | wild | 6 | Rewrite | Ember, Incinerate, Tail Whip, Powder Snow | Quick Attack 11, Will-O-Wisp 14 | Vulpix; Ninetales in Maylene |
+| Smoliv | wild | 6 to 7 | Rewrite | Tackle, Mega Drain | Razor Leaf 10, Helping Hand 13, Flail 16 | Smoliv; Dolliv in Gardenia |
+| Vulpix | wild | 6 | Oxide | Ember, Tail Whip | Roar 7, Quick Attack 11, Will-O-Wisp 14 | Vulpix; Alolan Ninetales in Fantina, Ninetales in Maylene |
+| Vulpix | wild | 6 | Rewrite | Ember, Incinerate, Tail Whip, Icy Wind | Quick Attack 11, Will-O-Wisp 14 | Vulpix; Alolan Ninetales in Fantina, Ninetales in Maylene |
 | Geodude | wild | 7 | Oxide | Tackle, Defense Curl, Mud Sport | Rock Polish 8, Rock Throw 11, Magnitude 15 | Geodude; Graveler in Gardenia |
-| Geodude | wild | 7 | Rewrite | Tackle, Smack Down, Bulldoze | Rock Throw 11, Magnitude 15 | Geodude; Graveler in Gardenia |
+| Geodude | wild | 7 | Rewrite | Tackle, Sand Tomb | Rock Polish 8, Rock Throw 11, Magnitude 15 | Geodude; Graveler in Gardenia |
 | Makuhita | wild | 7 | Oxide | Tackle, Focus Energy, Sand-Attack, Arm Thrust | Vital Throw 10, Fake Out 13, Whirlwind 16 | Makuhita; Hariyama in Gardenia |
 | Makuhita | wild | 7 | Rewrite | Sand-Attack, Belly Drum, Bullet Punch, Arm Thrust | Vital Throw 10, Fake Out 13, Whirlwind 16 | Makuhita; Hariyama in Gardenia |
 | Phanpy | wild | 7 | Oxide | Tackle, Growl, Defense Curl, Flail | Take Down 10, Rollout 15 | Phanpy; Donphan in Gardenia |
-| Phanpy | wild | 7 | Rewrite | Odor Sleuth, Tackle, Bulldoze, Flail | Ice Shard 8, Take Down 10, Rollout 15 | Phanpy; Donphan in Gardenia |
+| Phanpy | wild | 7 | Rewrite | Odor Sleuth, Tackle, Sand Tomb, Flail | Mud Shot 8, Take Down 10, Ice Shard 12, Rollout 15 | Phanpy; Donphan in Gardenia |
 | Charmander | wild | 8 | Oxide | Scratch, Growl, Ember | SmokeScreen 10, Dragon Rage 16 | Charmeleon (from 16); Charizard in Maylene |
-| Charmander | wild | 8 | Rewrite | Scratch, Ember, Flame Wheel | Metal Claw 10, Scary Face 12 | Charmeleon (from 16); Charizard in Maylene |
+| Charmander | wild | 8 | Rewrite | Scratch, Ember, Flame Wheel | Bite 10, Scary Face 12 | Charmeleon (from 16); Charizard in Maylene |
 | Fennekin | wild | 8 | Oxide | Scratch, Tail Whip, Ember | Role Play 9, Psybeam 13 | Braixen (from 16); Delphox in Maylene |
-| Fennekin | wild | 8 | Rewrite | Scratch, Ember, Flame Charge | Role Play 9, Psybeam 13 | Braixen (from 16); Delphox in Maylene |
+| Fennekin | wild | 8 | Rewrite | Scratch, Ember, Incinerate | Role Play 9, Calm Mind 11, Psybeam 13 | Braixen (from 16); Delphox in Maylene |
 
 ## Route 218
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Corsola | old rod | 5 | Oxide | Tackle, Harden | Bubble 8, Recover 13, Refresh 16 | Corsola |
-| Corsola | old rod | 5 | Rewrite | Tackle, Rock Tomb, AncientPower | Bubble 8, Recover 13 | Corsola |
+| Corsola | old rod | 5 | Rewrite | Tackle, Icicle Spear, Rock Blast | Bubble 8, Recover 13 | Corsola |
 | Finneon | old rod | 5 | Oxide | Pound | Water Gun 6, Attract 10 | Finneon; Lumineon in Fantina |
-| Finneon | old rod | 5 | Rewrite | Pound, Tailwind, Water Pulse | Gust 8, Attract 10 | Finneon; Lumineon in Fantina |
+| Finneon | old rod | 5 | Rewrite | Pound, Gust, Tailwind | Water Gun 6, Attract 10 | Finneon; Lumineon in Fantina |
 | Krabby | old rod | 5 | Oxide | Mud Sport, Bubble, ViceGrip | Leer 9, Harden 11, BubbleBeam 15 | Krabby; Kingler in Fantina |
-| Krabby | old rod | 5 | Rewrite | Bubble, Flip Turn, ViceGrip | Leer 9, BubbleBeam 15 | Krabby; Kingler in Fantina |
+| Krabby | old rod | 5 | Rewrite | Bubble, Metal Claw, ViceGrip | Leer 9, BubbleBeam 15 | Krabby; Kingler in Fantina |
 | Remoraid | old rod | 5 | Oxide | Water Gun | Lock-On 6, Psybeam 10, Aurora Beam 14 | Remoraid; Octillery in Gardenia |
-| Remoraid | old rod | 5 | Rewrite | Water Gun, Screech, Water Pulse | Lock-On 6, Psybeam 10, Aurora Beam 14 | Remoraid; Octillery in Gardenia |
+| Remoraid | old rod | 5 | Rewrite | Water Gun, Chilling Water, Screech | Lock-On 6, Psybeam 10, Aurora Beam 14 | Remoraid; Octillery in Gardenia |
 | Squirtle | old rod | 5 | Oxide | Tackle, Tail Whip | Bubble 7, Withdraw 10, Water Gun 13, Bite 16; as Wartortle: Bite 16 | Wartortle (from 16); Blastoise in Maylene |
-| Squirtle | old rod | 5 | Rewrite | Tackle, Life Dew, Water Pulse | Bubble 7, Bite 16; as Wartortle: Bite 16 | Wartortle (from 16); Blastoise in Maylene |
+| Squirtle | old rod | 5 | Rewrite | Tackle, Life Dew | Bubble 7, Water Gun 13, Bite 16; as Wartortle: Bite 16 | Wartortle (from 16); Blastoise in Maylene |
 
 ## Route 219
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Finneon | old rod | 4 | Oxide | Pound | Water Gun 6, Attract 10 | Finneon; Lumineon in Fantina |
-| Finneon | old rod | 4 | Rewrite | Pound, Tailwind, Water Pulse | Gust 8, Attract 10 | Finneon; Lumineon in Fantina |
+| Finneon | old rod | 4 | Rewrite | Pound, Gust, Tailwind | Water Gun 6, Attract 10 | Finneon; Lumineon in Fantina |
 | Froakie | old rod | 4 | Oxide | Pound | Water Gun 5, Growl 7, Quick Attack 10, Lick 13, Water Pulse 14, Icy Wind 16; as Frogadier: Icy Wind 16 | Frogadier (from 16); Greninja in Maylene |
 | Froakie | old rod | 4 | Rewrite | Pound | Water Gun 5, Quick Attack 10, Lick 13, Water Pulse 14, Icy Wind 16; as Frogadier: Icy Wind 16 | Frogadier (from 16); Greninja in Maylene |
 | Luvdisc | old rod | 4 | Oxide | Tackle, Charm | Water Gun 7, Agility 9, Take Down 14 | Luvdisc; Alomomola in Fantina |
-| Luvdisc | old rod | 4 | Rewrite | Tackle, Draining Kiss, Charm | Water Gun 7, Aqua Jet 8, Take Down 14 | Luvdisc; Alomomola in Fantina |
+| Luvdisc | old rod | 4 | Rewrite | Tackle, Disarming Voice, Charm | Water Gun 7, Aqua Jet 8, Draining Kiss 10, Take Down 14 | Luvdisc; Alomomola in Fantina |
 | Remoraid | old rod | 4 | Oxide | Water Gun | Lock-On 6, Psybeam 10, Aurora Beam 14 | Remoraid; Octillery in Gardenia |
-| Remoraid | old rod | 4 | Rewrite | Water Gun, Screech, Water Pulse | Lock-On 6, Psybeam 10, Aurora Beam 14 | Remoraid; Octillery in Gardenia |
+| Remoraid | old rod | 4 | Rewrite | Water Gun, Chilling Water, Screech | Lock-On 6, Psybeam 10, Aurora Beam 14 | Remoraid; Octillery in Gardenia |
 | Tentacool | old rod | 4 | Oxide | Poison Sting | Supersonic 5, Constrict 8, Acid 12, Toxic Spikes 15 | Tentacool; Tentacruel in Fantina |
-| Tentacool | old rod | 4 | Rewrite | Poison Sting, Pounce, Water Pulse | Supersonic 5, Acid 12, Toxic Spikes 15 | Tentacool; Tentacruel in Fantina |
+| Tentacool | old rod | 4 | Rewrite | Poison Sting, Chilling Water, Water Gun | Supersonic 5, Pounce 7, Acid 12, Toxic Spikes 15 | Tentacool; Tentacruel in Fantina |
 
 ## Sandgem Town
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Kricketot | wild | 3 to 4 | Oxide | Growl, Bide | as Kricketune: Fury Cutter 10, Leech Life 14 | Kricketune (from 10) |
-| Kricketot | wild | 3 to 4 | Rewrite | Growl, Screech, Struggle Bug | Pounce 5; as Kricketune: Fury Cutter 10, Leech Life 14 | Kricketune (from 10) |
+| Kricketot | wild | 3 to 4 | Rewrite | Growl, Struggle Bug, Fury Cutter | Karate Chop 5, Screech 7; as Kricketune: Fury Cutter 10, Leech Life 14 | Kricketune (from 10) |
 | Bidoof | wild | 4 | Oxide | Tackle | Growl 5, Defense Curl 9, Rollout 13; as Bibarel: Water Gun 15 | Bibarel (from 15) |
-| Bidoof | wild | 4 | Rewrite | Tackle, Swift, Taunt | Aqua Jet 5, Rollout 13; as Bibarel: Water Gun 15 | Bibarel (from 15) |
+| Bidoof | wild | 4 | Rewrite | Tackle, Fury Swipes, Taunt | Aqua Jet 5, Rollout 13; as Bibarel: Water Gun 15 | Bibarel (from 15) |
 | Pikipek | wild | 4 to 5 | Oxide | Peck, Growl | Echoed Voice 7, Rock Smash 9, Supersonic 13; as Trumbeak: Pluck 16 | Trumbeak (from 14); Toucannon in Fantina |
 | Pikipek | wild | 4 to 5 | Rewrite | Peck, Screech, Pluck | Echoed Voice 7, Rock Smash 9, Supersonic 13; as Trumbeak: Pluck 16 | Trumbeak (from 14); Toucannon in Fantina |
 | Purrloin | wild | 4 | Oxide | Scratch, Growl | Sand-Attack 6, Assist 6, Fake Out 12, Fury Swipes 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
-| Purrloin | wild | 4 | Rewrite | Scratch, Snarl | Sand-Attack 6, Nasty Plot 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
+| Purrloin | wild | 4 | Rewrite | Scratch, Taunt | Sand-Attack 6, Bullet Seed 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
 | Starly | wild | 4 | Oxide | Tackle, Growl | Quick Attack 5, Wing Attack 9, Double Team 13 | Staravia (from 14); Staraptor in Maylene |
 | Starly | wild | 4 | Rewrite | Tackle, Pursuit | Quick Attack 5, Tailwind 7, Wing Attack 9 | Staravia (from 14); Staraptor in Maylene |
 | Wurmple | wild | 4 | Oxide | Tackle, String Shot | Poison Sting 5; as Silcoon: Harden 7; as Beautifly: Absorb 10, Gust 13 | Beautifly (from 10) |
 | Wurmple | wild | 4 | Oxide | Tackle, String Shot | Poison Sting 5; as Cascoon: Harden 7; as Dustox: Confusion 10, Gust 13 | Dustox (from 10) |
-| Wurmple | wild | 4 | Rewrite | Tackle, Stun Spore, Bug Bite | Poison Sting 5; as Silcoon: Harden 7; as Beautifly: Mega Drain 10, Gust 13 | Beautifly (from 10) |
-| Wurmple | wild | 4 | Rewrite | Tackle, Stun Spore, Bug Bite | Poison Sting 5; as Cascoon: Harden 7; as Dustox: Confusion 10, Gust 13 | Dustox (from 10) |
+| Wurmple | wild | 4 | Rewrite | Tackle, Pin Missile, Stun Spore | Poison Sting 5; as Silcoon: Harden 7; as Beautifly: Mega Drain 10, Gust 13 | Beautifly (from 10) |
+| Wurmple | wild | 4 | Rewrite | Tackle, Pin Missile, Stun Spore | Poison Sting 5; as Cascoon: Harden 7; as Dustox: Confusion 10, Gust 13 | Dustox (from 10) |
 | Blipbug | wild | 5 | Oxide | Struggle Bug | as Dottler: Reflect 10, Light Screen 10, Confusion 10 | Dottler (from 10); Orbeetle in Fantina |
-| Blipbug | wild | 5 | Rewrite | Struggle Bug, Trailblaze, Calm Mind | as Dottler: Reflect 10, Confusion 11, Light Screen 12 | Dottler (from 10); Orbeetle in Fantina |
+| Blipbug | wild | 5 | Rewrite | Struggle Bug, Calm Mind, Confusion | as Dottler: Reflect 10, Confusion 11, Light Screen 12 | Dottler (from 10); Orbeetle in Fantina |
 | Rookidee | wild | 5 | Oxide | Peck, Leer, Fury Attack | Sand-Attack 12, Pluck 15 | Corvisquire (from 16); Corviknight in Wake |
 | Rookidee | wild | 5 | Rewrite | Peck, Leer, Taunt | Sand-Attack 12, Pluck 15 | Corvisquire (from 16); Corviknight in Wake |
 | Sentret | wild | 5 | Oxide | Scratch, Foresight, Defense Curl | Quick Attack 7, Fury Swipes 13 | Furret (from 15) |
-| Sentret | wild | 5 | Rewrite | Scratch, Foresight, Covet, Defense Curl | Quick Attack 7, Baby-Doll Eyes 9, Pursuit 11, Fury Swipes 13 | Furret (from 15) |
+| Sentret | wild | 5 | Rewrite | Scratch, Foresight, Baby-Doll Eyes, Defense Curl | Quick Attack 7, Pursuit 9, Fury Swipes 13 | Furret (from 15) |
 | Wingull | wild | 5 | Oxide | Growl, Water Gun | Supersonic 6, Wing Attack 11, Mist 16 | Wingull; Pelipper in Gardenia |
 | Wingull | wild | 5 | Rewrite | Water Gun, Twister, Tailwind | Supersonic 6, Wing Attack 11 | Wingull; Pelipper in Gardenia |
 | Wooloo | wild | 5 | Oxide | Tackle, Growl, Defense Curl | Copycat 8, Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
-| Wooloo | wild | 5 | Rewrite | Tackle, Round | Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
+| Wooloo | wild | 5 | Rewrite | Tackle, Double Hit, Fury Swipes | Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
 | Abra | wild | 6 | Oxide | Teleport | as Kadabra: Confusion 16 | Kadabra (from 16); Alakazam in Wake |
-| Abra | wild | 6 | Rewrite | Round, Calm Mind, Confusion | as Kadabra: Confusion 16 | Kadabra (from 16); Alakazam in Wake |
+| Abra | wild | 6 | Rewrite | Calm Mind, Stored Power | as Kadabra: Confusion 16 | Kadabra (from 16); Alakazam in Wake |
 | Poochyena | wild | 6 | Oxide | Tackle, Howl | Sand-Attack 9, Bite 13 | Poochyena; Mightyena in Gardenia |
-| Poochyena | wild | 6 | Rewrite | Tackle, Howl, Scary Face | Sand-Attack 9, Bite 13 | Poochyena; Mightyena in Gardenia |
+| Poochyena | wild | 6 | Rewrite | Tackle, Howl, Scary Face | Sand-Attack 9, Bullet Seed 11, Bite 13 | Poochyena; Mightyena in Gardenia |
 
 ## Twinleaf Town
 
 | Pokemon | Found as | Level | Lists | Knows at capture | Learns by level-up by 16 | At the cap |
 |---|---|---|---|---|---|---|
 | Barboach | old rod | 3 | Oxide | Mud-Slap | Mud Sport 6, Water Sport 6, Water Gun 10, Mud Bomb 14 | Barboach; Whiscash in Fantina |
-| Barboach | old rod | 3 | Rewrite | Mud-Slap, Scary Face | Water Sport 6, Water Gun 10, Mud Bomb 14 | Barboach; Whiscash in Fantina |
+| Barboach | old rod | 3 | Rewrite | Mud-Slap, Icy Wind | Water Sport 6, Water Gun 10, Mud Bomb 14 | Barboach; Whiscash in Fantina |
 | Buizel | old rod | 3 | Oxide | SonicBoom, Growl, Water Sport, Quick Attack | Water Gun 6, Pursuit 10, Swift 15 | Buizel; Floatzel in Gardenia |
-| Buizel | old rod | 3 | Rewrite | SonicBoom, Water Sport, BubbleBeam, Quick Attack | Scary Face 8, Pursuit 10, Swift 15 | Buizel; Floatzel in Gardenia |
+| Buizel | old rod | 3 | Rewrite | SonicBoom, Water Sport, Chilling Water, Quick Attack | Scary Face 8, Pursuit 10, Swift 15 | Buizel; Floatzel in Gardenia |
 | Corphish | old rod | 3 | Oxide | Bubble | Harden 7, ViceGrip 10, Leer 13 | Corphish; Crawdaunt in Fantina |
-| Corphish | old rod | 3 | Rewrite | Bubble, Taunt, BubbleBeam | ViceGrip 10, Leer 13 | Corphish; Crawdaunt in Fantina |
+| Corphish | old rod | 3 | Rewrite | Bubble, Dual Wingbeat, Taunt | ViceGrip 10, Leer 13 | Corphish; Crawdaunt in Fantina |
 | Goldeen | old rod | 3 | Oxide | Peck, Tail Whip, Water Sport | Supersonic 7, Horn Attack 11 | Goldeen; Seaking in Fantina |
-| Goldeen | old rod | 3 | Rewrite | Peck, Water Sport, Water Pulse | Flip Turn 5, Horn Attack 11 | Goldeen; Seaking in Fantina |
+| Goldeen | old rod | 3 | Rewrite | Peck, Water Sport, Aqua Jet | Scald 5, Horn Attack 11 | Goldeen; Seaking in Fantina |
 | Squirtle | old rod | 3 | Oxide | Tackle | Tail Whip 4, Bubble 7, Withdraw 10, Water Gun 13, Bite 16; as Wartortle: Bite 16 | Wartortle (from 16); Blastoise in Maylene |
-| Squirtle | old rod | 3 | Rewrite | Tackle, Life Dew, Water Pulse | Bubble 7, Bite 16; as Wartortle: Bite 16 | Wartortle (from 16); Blastoise in Maylene |
+| Squirtle | old rod | 3 | Rewrite | Tackle, Life Dew | Bubble 7, Water Gun 13, Bite 16; as Wartortle: Bite 16 | Wartortle (from 16); Blastoise in Maylene |
 
 ## Verity Lakefront
 
@@ -420,22 +416,22 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Starly | wild | 2 | Oxide | Tackle, Growl | Quick Attack 5, Wing Attack 9, Double Team 13 | Staravia (from 14); Staraptor in Maylene |
 | Starly | wild | 2 | Rewrite | Tackle, Pursuit | Quick Attack 5, Tailwind 7, Wing Attack 9 | Staravia (from 14); Staraptor in Maylene |
 | Blipbug | wild | 3 | Oxide | Struggle Bug | as Dottler: Reflect 10, Light Screen 10, Confusion 10 | Dottler (from 10); Orbeetle in Fantina |
-| Blipbug | wild | 3 | Rewrite | Struggle Bug, Trailblaze, Calm Mind | as Dottler: Reflect 10, Confusion 11, Light Screen 12 | Dottler (from 10); Orbeetle in Fantina |
+| Blipbug | wild | 3 | Rewrite | Struggle Bug, Calm Mind, Confusion | as Dottler: Reflect 10, Confusion 11, Light Screen 12 | Dottler (from 10); Orbeetle in Fantina |
 | Kricketot | wild | 3 | Oxide | Growl, Bide | as Kricketune: Fury Cutter 10, Leech Life 14 | Kricketune (from 10) |
-| Kricketot | wild | 3 | Rewrite | Growl, Screech, Struggle Bug | Pounce 5; as Kricketune: Fury Cutter 10, Leech Life 14 | Kricketune (from 10) |
+| Kricketot | wild | 3 | Rewrite | Growl, Struggle Bug, Fury Cutter | Karate Chop 5, Screech 7; as Kricketune: Fury Cutter 10, Leech Life 14 | Kricketune (from 10) |
 | Minccino | wild | 3 | Oxide | Pound, Baby-Doll Eyes | Helping Hand 5, DoubleSlap 13, Sing 16 | Minccino; Cinccino in Wake |
-| Minccino | wild | 3 | Rewrite | Pound, Baby-Doll Eyes, Swift | Helping Hand 5, Chilling Water 7, DoubleSlap 13, Sing 16 | Minccino; Cinccino in Wake |
+| Minccino | wild | 3 | Rewrite | Pound, Baby-Doll Eyes, Bullet Seed | Helping Hand 5, Fury Swipes 13, Sing 16 | Minccino; Cinccino in Wake |
 | Pikipek | wild | 3 | Oxide | Peck, Growl | Echoed Voice 7, Rock Smash 9, Supersonic 13; as Trumbeak: Pluck 16 | Trumbeak (from 14); Toucannon in Fantina |
 | Pikipek | wild | 3 | Rewrite | Peck, Screech, Pluck | Echoed Voice 7, Rock Smash 9, Supersonic 13; as Trumbeak: Pluck 16 | Trumbeak (from 14); Toucannon in Fantina |
 | Purrloin | wild | 3 to 4 | Oxide | Scratch, Growl | Sand-Attack 6, Assist 6, Fake Out 12, Fury Swipes 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
-| Purrloin | wild | 3 to 4 | Rewrite | Scratch, Snarl | Sand-Attack 6, Nasty Plot 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
+| Purrloin | wild | 3 to 4 | Rewrite | Scratch, Taunt | Sand-Attack 6, Bullet Seed 8, Fury Swipes 11, Fake Out 12, Pursuit 15 | Purrloin; Liepard in Gardenia |
 | Wooloo | wild | 3 to 4 | Oxide | Tackle, Growl | Defense Curl 4, Copycat 8, Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
-| Wooloo | wild | 3 to 4 | Rewrite | Tackle, Round | Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
+| Wooloo | wild | 3 to 4 | Rewrite | Tackle, Double Hit | Fury Swipes 4, Guard Split 12, Double Kick 16 | Wooloo; Dubwool in Gardenia |
 | Buneary | wild | 4 to 5 | Oxide | Splash, Pound, Defense Curl, Foresight | Endure 6, Frustration 13, Quick Attack 16 | Buneary; Lopunny in Gardenia |
-| Buneary | wild | 4 to 5 | Rewrite | Pound, Defense Curl, Foresight | Covet 5, Endure 6, Baby-Doll Eyes 8, Power-Up Punch 10, Return 12, Frustration 13, Quick Attack 16 | Buneary; Lopunny in Gardenia |
+| Buneary | wild | 4 to 5 | Rewrite | Pound, Defense Curl, Foresight | Endure 6, Baby-Doll Eyes 7, Double Kick 8, Double Hit 10, Return 12, Frustration 13, Quick Attack 16 | Buneary; Lopunny in Gardenia |
 | Sentret | wild | 4 | Oxide | Scratch, Foresight, Defense Curl | Quick Attack 7, Fury Swipes 13 | Furret (from 15) |
-| Sentret | wild | 4 | Rewrite | Scratch, Foresight, Covet, Defense Curl | Quick Attack 7, Baby-Doll Eyes 9, Pursuit 11, Fury Swipes 13 | Furret (from 15) |
+| Sentret | wild | 4 | Rewrite | Scratch, Foresight, Baby-Doll Eyes, Defense Curl | Quick Attack 7, Pursuit 9, Fury Swipes 13 | Furret (from 15) |
 | Surskit | wild | 4 | Oxide | Bubble | Quick Attack 7, Sweet Scent 13 | Surskit; Masquerain in Gardenia |
-| Surskit | wild | 4 | Rewrite | Bubble, Silver Wind, Sticky Web | Quick Attack 7, Gust 9 | Surskit; Masquerain in Gardenia |
-| Vulpix | wild | 4 to 5 | Oxide | Ember, Tail Whip | Roar 7, Quick Attack 11, Will-O-Wisp 14 | Vulpix; Ninetales in Maylene |
-| Vulpix | wild | 4 to 5 | Rewrite | Ember, Incinerate, Tail Whip | Powder Snow 6, Quick Attack 11, Will-O-Wisp 14 | Vulpix; Ninetales in Maylene |
+| Surskit | wild | 4 | Rewrite | Bubble, Struggle Bug, Scary Face | Quick Attack 7, Gust 9 | Surskit; Masquerain in Gardenia |
+| Vulpix | wild | 4 to 5 | Oxide | Ember, Tail Whip | Roar 7, Quick Attack 11, Will-O-Wisp 14 | Vulpix; Alolan Ninetales in Fantina, Ninetales in Maylene |
+| Vulpix | wild | 4 to 5 | Rewrite | Ember, Incinerate, Tail Whip | Icy Wind 6, Quick Attack 11, Will-O-Wisp 14 | Vulpix; Alolan Ninetales in Fantina, Ninetales in Maylene |
