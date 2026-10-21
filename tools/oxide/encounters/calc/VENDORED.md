@@ -240,6 +240,22 @@ calculator checks fail if the offline ones are lost.
     Chrome on a synthetic 30-box save: boxes 18 and 19 imported, box 30's
     Pokemon went to the graveyard, and an 18-box save still counted 18.
 
+22. **`js/oxide/fight_button.js`, the Fight button** (2026-10-21, the line
+    tester, `docs/oxide/line-tester.md`). `index.html` loads it last. Under
+    the party, beside Clear and Edge, a Fight button sends the six species of
+    `currentParty`, each with its "My Box" set (level, nature, ability, item,
+    moves, IVs and EVs), and the trainer on the right side, by the `tr_id`
+    its set carries (`calc_trainers.py`), to the OxiDex's `/api/battle`,
+    which starts a battle of that party against that trainer
+    (`linetester.py`). In the OxiDex's Calc tab the page then opens it in
+    its Battle tab (`openBattle`); a calculator opened on its own opens the
+    tab in a new window. The button shows whenever upstream shows the
+    party's Clear button and copies that button's look, so it needs no
+    stylesheet. `test_m8` checks the patch, and it was checked in headless
+    Chrome: six sets imported through the calculator's own Import, put in
+    the party by its box shortcut, Gardenia's Solrock on the right, and the
+    button opened Gardenia against that party in the Battle tab.
+
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
 
