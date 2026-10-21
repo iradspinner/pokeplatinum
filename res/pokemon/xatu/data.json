@@ -50,6 +50,7 @@
             [ 37, "MOVE_PSYCHO_SHIFT" ],
             [ 42, "MOVE_FUTURE_SIGHT" ],
             [ 47, "MOVE_OMINOUS_WIND" ],
+            [ 50, "MOVE_ESPER_WING" ],
             [ 54, "MOVE_POWER_SWAP" ],
             [ 55, "MOVE_GUARD_SWAP" ],
             [ 59, "MOVE_PSYCHIC" ]

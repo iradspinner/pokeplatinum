@@ -54,6 +54,7 @@
             [ 39, "MOVE_SCALD" ],
             [ 42, "MOVE_SURF" ],
             [ 44, "MOVE_ZEN_HEADBUTT" ],
+            [ 47, "MOVE_AQUA_STEP" ],
             [ 50, "MOVE_AMNESIA" ],
             [ 56, "MOVE_MUDDY_WATER" ],
             [ 58, "MOVE_POWER_GEM" ],

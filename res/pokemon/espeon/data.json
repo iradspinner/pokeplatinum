@@ -55,6 +55,7 @@
             [ 52, "MOVE_ALLURING_VOICE" ],
             [ 57, "MOVE_PSYCH_UP" ],
             [ 64, "MOVE_PSYCHIC" ],
+            [ 70, "MOVE_GLITZY_GLOW" ],
             [ 71, "MOVE_MORNING_SUN" ],
             [ 78, "MOVE_POWER_SWAP" ]
         ],

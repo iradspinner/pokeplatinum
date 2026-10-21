@@ -46,6 +46,7 @@
             [ 40, "MOVE_THROAT_CHOP" ],
             [ 43, "MOVE_BRICK_BREAK" ],
             [ 45, "MOVE_BODY_PRESS" ],
+            [ 46, "MOVE_JET_PUNCH" ],
             [ 50, "MOVE_VICTORY_DANCE" ],
             [ 53, "MOVE_MIND_READER" ],
             [ 55, "MOVE_ROCK_TOMB" ],

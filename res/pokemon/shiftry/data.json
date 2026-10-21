@@ -47,6 +47,7 @@
             [ 43, "MOVE_SWAGGER" ],
             [ 48, "MOVE_EXTRASENSORY" ],
             [ 49, "MOVE_LEAF_STORM" ],
+            [ 50, "MOVE_GRAV_APPLE" ],
             [ 56, "MOVE_LOW_SWEEP" ],
             [ 58, "MOVE_HEAT_WAVE" ],
             [ 64, "MOVE_GIGA_DRAIN" ],

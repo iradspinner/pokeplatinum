@@ -81,6 +81,10 @@
                 "MOVE_SHIFT_GEAR"
             ],
             [
+                49,
+                "MOVE_FLEUR_CANNON"
+            ],
+            [
                 54,
                 "MOVE_TRICK"
             ],

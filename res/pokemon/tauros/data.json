@@ -47,6 +47,7 @@
             [ 24, "MOVE_PAYBACK" ],
             [ 29, "MOVE_ZEN_HEADBUTT" ],
             [ 35, "MOVE_TAKE_DOWN" ],
+            [ 36, "MOVE_RAGING_BULL" ],
             [ 41, "MOVE_SWAGGER" ],
             [ 55, "MOVE_GIGA_IMPACT" ],
             [ 57, "MOVE_THRASH" ]

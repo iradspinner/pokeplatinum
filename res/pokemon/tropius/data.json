@@ -51,6 +51,7 @@
             [ 37, "MOVE_BODY_SLAM" ],
             [ 41, "MOVE_SYNTHESIS" ],
             [ 43, "MOVE_DUAL_WINGBEAT" ],
+            [ 46, "MOVE_APPLE_ACID" ],
             [ 47, "MOVE_AIR_SLASH" ],
             [ 51, "MOVE_SOLAR_BEAM" ],
             [ 53, "MOVE_ZEN_HEADBUTT" ],

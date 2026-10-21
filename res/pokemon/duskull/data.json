@@ -95,7 +95,8 @@
             "MOVE_GRUDGE",
             "MOVE_MEMENTO",
             "MOVE_FAINT_ATTACK",
-            "MOVE_OMINOUS_WIND"
+            "MOVE_OMINOUS_WIND",
+            "MOVE_LAST_RESPECTS"
         ]
     },
     "evolutions": [
