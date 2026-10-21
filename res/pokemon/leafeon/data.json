@@ -58,6 +58,7 @@
             [ 53, "MOVE_LEECH_SEED" ],
             [ 57, "MOVE_GRASS_WHISTLE" ],
             [ 61, "MOVE_X_SCISSOR" ],
+            [ 70, "MOVE_SAPPY_SEED" ],
             [ 71, "MOVE_LEAF_BLADE" ],
             [ 78, "MOVE_SWORDS_DANCE" ]
         ],

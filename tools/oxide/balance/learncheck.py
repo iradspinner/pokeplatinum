@@ -1083,10 +1083,14 @@ R37_ACCURACY = 90
 # Ian's exceptions to R37: an attack under the bar that he chose for one
 # line by name, which check 19 passes over. Pelipper takes Hurricane at 58
 # rather than the accurate Aeroblast at 55 (Ian, 2026-10-14, on
-# stranded-moves.md). Head Smash on Cranidos, Rampardos and Relicanth has no
-# such ruling written down: the generator keeps it because no accurate move
-# of its type comes near its damage, and check 19 still lists it.
-R37_EXCEPTIONS = {("SPECIES_PELIPPER", "MOVE_HURRICANE"): "Ian, 2026-10-14, on stranded-moves.md"}
+# stranded-moves.md). Sylveon takes Sparkly Swirl (85%) at 70, one of Eevee's
+# partner moves, which Ian placed on their own Eeveelutions late in the game
+# (2026-10-21, on signature-moves.md). Head Smash on Cranidos, Rampardos and
+# Relicanth has no such ruling written down: the generator keeps it because
+# no accurate move of its type comes near its damage, and check 19 still
+# lists it.
+R37_EXCEPTIONS = {("SPECIES_PELIPPER", "MOVE_HURRICANE"): "Ian, 2026-10-14, on stranded-moves.md",
+                  ("SPECIES_SYLVEON", "MOVE_SPARKLY_SWIRL"): "Ian, 2026-10-21, on signature-moves.md"}
 # The late move (2026-09-28): each final stage learns a real move from here.
 LATE_FROM = 61
 # A move's stat fits the Pokemon when it is this share of its better attacking stat (R15).

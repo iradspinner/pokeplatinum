@@ -48,6 +48,7 @@
             [ 17, "MOVE_FOCUS_ENERGY" ],
             [ 21, "MOVE_BONEMERANG" ],
             [ 27, "MOVE_FALSE_SWIPE" ],
+            [ 28, "MOVE_SHADOW_BONE" ],
             [ 37, "MOVE_FLING" ],
             [ 43, "MOVE_BONE_RUSH" ],
             [ 45, "MOVE_THRASH" ],

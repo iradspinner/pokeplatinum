@@ -51,7 +51,8 @@
             [ 41, "MOVE_CLOSE_COMBAT" ],
             [ 45, "MOVE_FIRE_SPIN" ],
             [ 53, "MOVE_CALM_MIND" ],
-            [ 57, "MOVE_FLARE_BLITZ" ]
+            [ 57, "MOVE_FLARE_BLITZ" ],
+            [ 65, "MOVE_RAGING_FURY" ]
         ],
         "by_tm": [
             "TM04",
