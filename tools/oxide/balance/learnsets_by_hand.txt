@@ -135,3 +135,5 @@ SPECIES_VIKAVOLT    Rising Voltage at 38, a stranded move's home (Ian, 2026-10-1
 SPECIES_VOLCARONA   Fiery Dance at 63, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_VULLABY     Power Trip at 38, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_WALREIN     Glaciate at 36, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
+SPECIES_SLOWBRO     Lumina Crash at 40, a signature move's home (Ian, 2026-10-20, on signature-moves.md)
+SPECIES_SLOWKING    Lumina Crash at 40, a signature move's home (Ian, 2026-10-20, on signature-moves.md)
