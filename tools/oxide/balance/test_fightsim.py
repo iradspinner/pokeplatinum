@@ -8629,6 +8629,61 @@ def check_doubles_pivots(results):
                     f"{out}"))
 
 
+@b15
+def check_doubles_drag(results):
+    """Roar, Whirlwind, Dragon Tail and Circle Throw in a double battle (Ian
+    approved Roar's slot on 2026-10-20 and Dragon Tail's drag with batch 7's
+    parts on 2026-10-14; BattleScript_PickDraggedOutMon,
+    subscript_force_target_to_switch_or_flee, subscript_force_switch_hit):
+    the Pokemon drawn comes into the dragged one's slot, drawn at random
+    from that trainer's own party, in a tag battle the target's trainer's
+    alone; the move fails when the target's party has no more Pokemon
+    standing than the slots it fills, as a pair whose other slot has fainted
+    with one waiting; and a Pokemon dragged out before its own -6 move does
+    not use it. Until 2026-10-21 Roar's draw took the first slot whichever
+    it hit, from the whole side, and Dragon Tail dragged no one."""
+    def battle(user_move, foes, seed=1, start=None, extra=(), target=None):
+        mons = {"p0": {"moves": [user_move]}, "p1": {"moves": ["Splash"]}, "p2": {"moves": ["Splash"]}}
+        for k in [k for g in foes for k in g]:
+            mons[k] = {"moves": ["Splash"]}
+        for k, moves in extra:
+            mons[k]["moves"] = moves
+        rows = {("p0", k): {user_move: 10} for k in mons if k[0] == "b"}
+        st = doubles_st(mons, rows, speeds={"p0": 200, "p1": 1, "p2": 1})
+        target = target or (foes[1][0] if len(foes) == 2 else foes[0][1])
+        choices = {"p0": (user_move, target)}
+        choices.update({k: (moves[0], "p1") for k, moves in extra})
+        return doubles_turns(st, ["p0", "p1", "p2"], foes if len(foes) == 2 else foes[0], choices, seed=seed,
+                             start=start)
+    out = {}
+    out["Roar, a pair"] = [m.key for m in battle("Roar", [["b0.0", "b0.1", "b0.2"]]).b.on_field()]
+    out["Dragon Tail, a pair"] = [m.key for m in battle("Dragon Tail", [["b0.0", "b0.1", "b0.2"]]).b.on_field()]
+    drawn = collections.Counter()
+    for seed in range(30):
+        b = battle("Whirlwind", [["b0.0", "b0.1", "b0.2", "b0.3"]], seed=seed)
+        drawn[b.b.mons[b.b.active2].key] += 1
+    tag = collections.Counter()
+    for seed in range(20):
+        b = battle("Roar", [["b0.0", "b0.1"], ["b1.0", "b1.1"]], seed=seed)
+        tag[b.b.on_field()[1].key] += 1
+    out["Roar in a tag battle (of 20)"] = dict(tag)
+
+    def fainted_partner(b):
+        mon_of(b, "b0.1").hp = 0
+    # Roar fails, and the turn's end refills the fainted slot; had it
+    # worked, b0.0 would be on the bench and back in the other slot.
+    b = battle("Roar", [["b0.0", "b0.1", "b0.2"]], start=fainted_partner, target="b0.0")
+    out["Roar, the partner fainted, one waiting"] = [m.key for m in b.b.on_field()]
+    b = battle("Roar", [["b0.0", "b0.1", "b0.2"]], extra=[("b0.1", ["Roar"])])
+    out["the dragged Pokemon's own Roar"] = [m.key for m in b.p.on_field()]
+    want = {"Roar, a pair": ["b0.0", "b0.2"], "Dragon Tail, a pair": ["b0.0", "b0.2"],
+            "Roar in a tag battle (of 20)": {"b1.1": 20},
+            "Roar, the partner fainted, one waiting": ["b0.0", "b0.2"],
+            "the dragged Pokemon's own Roar": ["p0", "p1"]}
+    ok = out == want and set(drawn) == {"b0.2", "b0.3"}
+    out["Whirlwind's draws of two waiting (of 30)"] = dict(sorted(drawn.items()))
+    results.append(("doubles: Roar and Dragon Tail draw from the target's party into its slot", ok, f"{out}"))
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

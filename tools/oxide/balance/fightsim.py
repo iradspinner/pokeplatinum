@@ -4384,16 +4384,47 @@ def drag_out(b, att, dfn, pick):
     Ingrain roots it, the target is dragged out for a party member drawn at
     random (BtlCmd_TryDragonTail), which meets the hazards as it comes in;
     with no one left to send in, nothing happens. The hit has done its
-    damage, so none of these fails the move. In a double battle the drag is
-    left to the double battles' own fixes. Until 2026-10-15 the target
-    stayed in (Ian approved the fix)."""
-    if getattr(b, "doubles", False) or not att.alive() or not dfn.alive() or getattr(dfn, "ingrained", False) \
+    damage, so none of these fails the move. Until 2026-10-15 the target
+    stayed in (Ian approved the fix). In a double battle the one drawn
+    comes from the target's own trainer's party into the target's slot
+    (drag_pick); until 2026-10-21 the target stayed in there (Ian approved
+    the double-battle part of batch 7 on 2026-10-14)."""
+    if not att.alive() or not dfn.alive() or getattr(dfn, "ingrained", False) \
             or (dfn.ability == "Suction Cups" and not mold(att, dfn)):
         return
     side = b.p if dfn.side == "p" else b.b
+    if b.doubles:
+        idx = drag_pick(b, dfn, pick)
+        if idx is not None:
+            switch_in(b, side, idx, slot=slot_of(side, dfn))
+        return
     bench = side.bench()
     if bench:
         switch_in(b, side, side.mons.index(bench[pick("roar", len(bench))]))
+
+
+def drag_pick(b, dfn, pick):
+    """The party index BattleScript_PickDraggedOutMon draws to come in for
+    dfn in a double battle, or None. The party is dfn's own trainer's (a
+    tag battle's two trainers, or the player and a partner, each have their
+    own; one trainer's double battle has one), and the move fails unless it
+    has more Pokemon standing, those on the field included, than the
+    slots it fills, two for one trainer's pair and one each in a tag or
+    partner battle: a pair whose other slot has fainted with one Pokemon
+    waiting fails. The one drawn is any of that party standing off the
+    field, at even odds (pick(kind, n)). Roar's and Whirlwind's level check
+    (BattleSystem_CanWhirlwind) is not followed, in either battle."""
+    side = b.p if dfn.side == "p" else b.b
+    owner = getattr(dfn, "owner", None)
+    mine = [m for m in side.mons if getattr(m, "owner", None) == owner]
+    field = side.on_field()
+    slots = sum(1 for m in field if getattr(m, "owner", None) == owner)
+    if sum(m.alive() for m in mine) <= slots:
+        return None
+    cands = [m for m in mine if m.alive() and m not in field]
+    if not cands:
+        return None
+    return side.mons.index(cands[pick("roar", len(cands))])
 
 
 def drag_coming(b, att, dfn, mv):
@@ -4401,11 +4432,13 @@ def drag_coming(b, att, dfn, mv):
     its ability and items have answered it (the engine's HitWillDragTarget,
     which Pickpocket asks): hit_aftermath's and drag_out's own conditions,
     read before the drag runs."""
-    if mv.effect != "FORCE_SWITCH_HIT" or getattr(b, "last_dealt", 0) <= 0 or b.sub_hit or getattr(b, "doubles", False):
+    if mv.effect != "FORCE_SWITCH_HIT" or getattr(b, "last_dealt", 0) <= 0 or b.sub_hit:
         return False
     if not att.alive() or not dfn.alive() or getattr(dfn, "ingrained", False) \
             or (dfn.ability == "Suction Cups" and not mold(att, dfn)):
         return False
+    if b.doubles:
+        return drag_pick(b, dfn, lambda kind, n: 0) is not None
     return bool((b.p if dfn.side == "p" else b.b).bench())
 
 
@@ -9885,8 +9918,8 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
         b.mid_turn = True
         ordered = doubles_order(b, acts)
         for i, (mon, mv, t) in enumerate(ordered):
-            if not mon.alive():
-                continue
+            if not mon.alive() or mon not in (b.p if mon.side == "p" else b.b).on_field():
+                continue                 # fainted, or dragged out before its turn (forced_out)
             if mon.key in b.custap:
                 consume(mon)             # its Custap Berry, eaten as it acts (subscript_check_quick_claw)
             if t is not None and not t.alive():

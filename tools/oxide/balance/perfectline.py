@@ -1427,6 +1427,16 @@ def status_move(b, att, mv, dfn, first):
     elif e == "AVERAGE_HP":
         fs.pain_split(b, att, dfn)
     elif e == "FORCE_SWITCH":
+        if b.doubles:
+            # A double battle's draw, from the target's own trainer's party
+            # into the target's slot (fightsim.drag_pick). Until 2026-10-21
+            # the one drawn took the first slot, whichever it hit (Ian
+            # approved the fix on 2026-10-20).
+            if dfn.alive() and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False):
+                idx = fs.drag_pick(b, dfn, lambda kind, n: b.dice.choice(kind, n))
+                if idx is not None:
+                    fs.switch_in(b, foe_side, idx, slot=fs.slot_of(foe_side, dfn))
+            return
         bench = foe_side.bench()
         if bench and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False):     # Suction Cups
             nxt = bench[b.dice.choice("roar", len(bench))]
