@@ -73,7 +73,7 @@ SPECIES_HONCHKROW   Oblivion Wing at 50, a stranded move's home (Ian, 2026-10-14
 SPECIES_HOUNDOOM    Fiery Wrath at 56, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_JYNX        Freezing Glare at 47, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_KINGDRA     Core Enforcer at 62, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
-SPECIES_KLEAVOR     Mighty Cleave at 48, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
+SPECIES_KLEAVOR     Mighty Cleave at 48, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md); Stone Axe learned on evolving, its own move (Ian, 2026-10-20, on signature-moves.md)
 SPECIES_LAMPENT     Fiery Dance at 48, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_LEAFEON     Horn Leech at 47, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_LICKILICKY  Chip Away at 37, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
