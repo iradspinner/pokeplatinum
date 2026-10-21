@@ -1131,7 +1131,10 @@ def status_move(b, att, mv, dfn, first):
     elif e == "STOCKPILE":
         fs.stockpile(att)                # its count, up to three (fightsim.stockpile)
     elif e in fs.SELF_STAGES:
-        fs.change_stages(att, fs.SELF_STAGES[e])
+        if e == "TAKE_HEART":
+            fs.take_heart(att)           # the two stages, then its status cured (fightsim.take_heart)
+        else:
+            fs.change_stages(att, fs.SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
         if e == "EVA_UP_2_MINIMIZE":

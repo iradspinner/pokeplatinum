@@ -6650,6 +6650,18 @@ def spicy_extract_checks():
              f"(Attack stage, Defense stage) {got}")]
 
 
+@b13
+def take_heart_checks():
+    """Take Heart on real rows (approved 2026-10-14): the player's burned
+    Cresselia raises its Sp. Atk and Sp. Def a stage each and is cured."""
+    b, geo, cres = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Cresselia", 30, "Levitate", ["Take Heart"])])
+    cres.status = "brn"
+    pl.status_move(b, cres, fs.move("Take Heart"), geo, True)
+    got = (cres.stages["spa"], cres.stages["spd"], cres.status)
+    return [("the readings' Take Heart raises its user's stats and cures it", got == (1, 1, None),
+             f"(Sp. Atk stage, Sp. Def stage, status) {got}")]
+
+
 def main():
     results = []
 

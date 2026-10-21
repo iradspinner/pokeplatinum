@@ -7679,6 +7679,33 @@ def check_spicy_extract(results):
     results.append(("Spicy Extract raises the target's Attack and lowers its Defense", out == want, str(out)))
 
 
+@b13
+def check_take_heart(results):
+    """Take Heart (approved 2026-10-14; effect script 367,
+    subscript_take_heart): Sp. Atk and Sp. Def rise a stage each and the
+    user's status is cured, Toxic's count with it, in both battles; at +6
+    in both the stages stay, a Contrary holder's too, and the status is
+    cured all the same."""
+    from . import perfectline as pl
+    out = {}
+    for case, status, start, ability in (("burned", "brn", 0, None), ("badly poisoned", "tox", 0, None),
+                                         ("at +6", "par", 6, None), ("Contrary at +6", "par", 6, "Contrary"),
+                                         ("fightsim", "brn", 0, None)):
+        b, p, foe = b11_battle(["Take Heart"], ["Tackle"], {})
+        b.dice = sure12()
+        p.status, p.toxic, p.ability = status, 3 if status == "tox" else 0, ability
+        p.stages["spa"] = p.stages["spd"] = start
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.status_move(b, p, fs.move("Take Heart"), foe, True)
+        else:
+            pl.status_move(b, p, fs.move("Take Heart"), foe, True)
+        out[case] = (p.stages["spa"], p.stages["spd"], p.status, p.toxic)
+    want = {"burned": (1, 1, None, 0), "badly poisoned": (1, 1, None, 0), "at +6": (6, 6, None, 0),
+            "Contrary at +6": (6, 6, None, 0), "fightsim": (1, 1, None, 0)}
+    results.append(("Take Heart raises Sp. Atk and Sp. Def and cures its user's status", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

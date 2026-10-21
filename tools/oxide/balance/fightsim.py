@@ -2385,6 +2385,19 @@ def stat_drop_blocked(b, mon, changes, src=None, intimidate=False):
     return False
 
 
+def take_heart(att):
+    """Take Heart (effect script 367, subscript_take_heart, a direct effect
+    on its user): a stage each of Sp. Atk and Sp. Def, unless both are at +6
+    already, and then, whether they rose or not, the user's status is cured
+    (MON_CONDITION_NONE, with a sleep's turns and Toxic's count). Until
+    2026-10-20 the stages rose and the status stayed (Ian approved the
+    fix)."""
+    if not (att.stages["spa"] == 6 and att.stages["spd"] == 6):
+        change_stages(att, SELF_STAGES["TAKE_HEART"])
+    if att.status:
+        att.status, att.sleep, att.toxic = None, 0, 0
+
+
 def spicy_extract(b, att, dfn, mv):
     """Spicy Extract (effect script 302, subscript_spicy_extract, a direct
     effect on a target left standing): its Attack rises two stages, then
@@ -7901,7 +7914,10 @@ def status_move(b, att, mv, dfn, first):
     elif e == "STOCKPILE":
         stockpile(att)
     elif e in SELF_STAGES:
-        change_stages(att, SELF_STAGES[e])
+        if e == "TAKE_HEART":
+            take_heart(att)              # the two stages, then its status cured (take_heart)
+        else:
+            change_stages(att, SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
         if e == "EVA_UP_2_MINIMIZE":
