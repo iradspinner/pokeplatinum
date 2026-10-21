@@ -1058,6 +1058,9 @@ class Battle:
     # After You changes; None outside a double battle's turn.
     queue = None
     queue_pos = -1
+    # How many of the battle's Pokemon were down when Soul Heart last looked,
+    # in a double battle (soul_heart); left on the class while 0.
+    soul_down = 0
     # A double battle's damaging move is hitting more than one target, so
     # each hit is at three quarters (Battle.damage, perfectline.damage_of);
     # set around the move by the spread loop.
@@ -3968,7 +3971,24 @@ def soul_heart(b):
     ability later counts only the faints after. With two holders on the
     field the engine raises only the faster, which a double battle alone
     could show and which is not followed. Until 2026-10-20 it did nothing
-    (Ian approved the fix)."""
+    (Ian approved the fix). In a double battle each faint raises the first
+    holder in speed order that is up and below +6 (BtlCmd_TrySoulHeart over
+    monSpeedOrder, end_order here), so of two holders only the faster
+    gains, the slower when the faster is at +6; the faints are counted for
+    the battle (Battle.soul_down), so a holder that comes in counts only
+    those after. Until 2026-10-21 every holder gained (Ian approved the
+    double-battle part batch 12 left on 2026-10-20)."""
+    if b.doubles:
+        down = sum(1 for side in (b.p, b.b) for m in side.mons if not m.alive())
+        new, b.soul_down = down - b.soul_down, down
+        holders = [m for m in end_order(b) if m.alive() and m.ability == "Soul Heart"] if new > 0 else ()
+        for _ in range(new):
+            m = next((m for m in holders if m.stages["spa"] < 6), None)
+            if m is None:
+                break
+            change_stages(m, {"spa": 1})
+            reveal(m)
+        return
     for m in b.p.on_field() + b.b.on_field():
         if not m.alive():
             continue

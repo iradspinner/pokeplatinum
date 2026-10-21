@@ -9017,6 +9017,29 @@ def check_doubles_analytic(results):
     results.append(("doubles: Analytic counts once every other Pokemon has acted", out == want, f"damage {out}"))
 
 
+@b15
+def check_doubles_soul_heart(results):
+    """Soul Heart with two holders on the field (Ian approved the
+    double-battle part batch 12 left on 2026-10-20; BtlCmd_TrySoulHeart):
+    each faint raises the first holder in speed order that is up and below
+    +6, so a knockout raises the faster holder alone, and the slower one
+    when the faster is at +6 already. Until 2026-10-21 both rose."""
+    def battle(start=None):
+        mons = {"p0": {"moves": ["Tackle"], "ability": "Soul Heart"}, "p1": {"moves": ["Splash"], "ability": "Soul Heart"},
+                "b0.0": {"moves": ["Splash"]}, "b0.1": {"moves": ["Splash"]}}
+        st = doubles_st(mons, {("p0", "b0.0"): {"Tackle": 200}}, speeds={"p0": 100, "p1": 50})
+        st["soul_heart"] = True
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": ("Tackle", "b0.0")}, start=start)
+        return mon_of(b, "p0").stages["spa"], mon_of(b, "p1").stages["spa"]
+
+    def maxed(b):
+        mon_of(b, "p0").stages["spa"] = 6
+    out = {"a knockout (the faster's Sp. Atk, the slower's)": battle(),
+           "the faster at +6 already": battle(maxed)}
+    want = {"a knockout (the faster's Sp. Atk, the slower's)": (1, 0), "the faster at +6 already": (6, 1)}
+    results.append(("doubles: with two Soul Heart holders only the faster gains from a faint", out == want, f"{out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
