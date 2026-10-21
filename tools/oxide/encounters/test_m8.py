@@ -511,6 +511,13 @@ def check_moves_view(results):
                     and not moves["MOVE_FLAMETHROWER"]["stub"]
                     and not moves["MOVE_FROST_BREATH"]["stub"],
                     f"{sum(m['stub'] for m in moves.values())} moves"))
+    # Mighty Cleave's plain-hit script is right: Protect lets it through
+    # because its record lacks the CAN_PROTECT flag (Ian, 2026-10-21).
+    results.append(("Mighty Cleave is no placeholder, and its record lacks the Protect flag",
+                    not moves["MOVE_MIGHTY_CLEAVE"]["stub"]
+                    and "IGNORE_PROTECT" not in stubs
+                    and "CAN_PROTECT" not in moves["MOVE_MIGHTY_CLEAVE"]["flags"],
+                    f"stub {moves['MOVE_MIGHTY_CLEAVE']['stub']}"))
 
     vanilla = pokedex.vanilla_moves(root)
     d = lambda mv: pokedex.move_delta(moves[mv], vanilla.get(mv))

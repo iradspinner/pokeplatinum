@@ -345,8 +345,11 @@ def _effect_ids(root):
 FIRST_DONOR_EFFECT = 277
 EFFECT_SCRIPTS = os.path.join("res", "battle", "scripts", "effects")
 # Donor effects the engine carries out in C, for which a plain hit is the
-# right script: the always-critical moves' crit is forced in battle_lib.c.
-EFFECTS_DONE_IN_C = frozenset({"ALWAYS_CRITICAL"})
+# right script: the always-critical moves' crit is forced in battle_lib.c,
+# and Mighty Cleave (IGNORE_PROTECT) passes Protect because its move record
+# lacks the CAN_PROTECT flag, as Feint's does (the AI catch-up re-read,
+# 2026-10-21; Ian ruled it no stub).
+EFFECTS_DONE_IN_C = frozenset({"ALWAYS_CRITICAL", "IGNORE_PROTECT"})
 
 
 def stub_effects(root):

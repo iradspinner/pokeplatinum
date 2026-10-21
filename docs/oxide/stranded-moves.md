@@ -62,7 +62,7 @@ Eerie Spell and Burning Bulwark were on this list when it was read. Since 2026-1
 
 Upper Hand and Burning Jealousy were broken when the balance rules were written. The move reworks made both work on 2026-10-07, but their in-game checks (81 and 83 in `ingame-checklist.md`) still wait on Ian, and the generator holds both off player lists until then. Their homes below are for after those checks.
 
-The generator reads Mighty Cleave as not working. Its effect script is a plain hit, which is right, since the Protect bypass comes from its missing Protect flag. The stub check (`pokedex.stub_effects`) takes any donor effect whose script copies the plain hit's for a placeholder unless it is listed as done in C, and IGNORE_PROTECT is not listed. Until it is, Mighty Cleave can only be placed by hand.
+The generator read Mighty Cleave as not working until 2026-10-21. Its effect script is a plain hit, which is right, since the Protect bypass comes from its missing Protect flag. The stub check (`pokedex.stub_effects`) takes any donor effect whose script copies the plain hit's for a placeholder unless it is listed as done in C, and IGNORE_PROTECT was not listed. Ian ruled on 2026-10-21 that it is no stub (the AI catch-up re-read's fourth decision), and it is listed now, so the generator, the OxiDex and the move pool survey all read it as working; the homes below were placed by hand before that.
 
 The simulator gaps these moves meet are listed with each move, as they stood on 2026-10-14; every one is fixed since (`simulator-gaps.md`). Four were found while reading for this page, in moves whose effect is a plain hit and whose work the engine does in code keyed on the move; they are the gaps doc's plain HIT rows, fixed in batch 2:
 - Sacred Sword and Chip Away (and Darkest Lariat, open to the player already) ignore the target's stat stages in the engine, but not in the readings.
@@ -393,7 +393,7 @@ Physical, 90, 100%, 10 PP, hits both foes; traps the target. Zygarde's. Gap: the
 ### Rock
 
 #### Mighty Cleave
-Physical, 95, 100%, 5 PP; goes through Protect. A slicing move. Fixed: the readings let it through Protect. The generator cannot place it (see the engine notes), so these are by hand.
+Physical, 95, 100%, 5 PP; goes through Protect. A slicing move. Fixed: the readings let it through Protect. The generator could not place it until 2026-10-21 (see the engine notes), so these are by hand.
 
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
