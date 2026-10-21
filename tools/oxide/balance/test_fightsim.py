@@ -7483,6 +7483,33 @@ def check_freezy_frost(results):
     results.append(("Freezy Frost resets every stage on the field after a hit", out == want, str(out)))
 
 
+@b13
+def check_rain_sure(results):
+    """Thunder, Hurricane and the three storms in the rain (Ian's addition
+    of 2026-10-20; BattleControllerPlayer_CheckMoveHitOverrides): each
+    never misses, past an accuracy stage of -6, in both battles; Thunder
+    misses so out of the rain, and in the rain while Cloud Nine is out;
+    a Tackle misses so in the rain."""
+    from . import perfectline as pl
+    out = {}
+    cases = [(name, "Rain", None) for name in ("Thunder", "Hurricane", "Bleakwind Storm", "Wildbolt Storm",
+                                                "Sandsear Storm", "Tackle")]
+    cases += [("Thunder", None, None), ("Thunder", "Rain", "Cloud Nine")]
+    for name, weather, ability in cases:
+        b, p, foe = b11_battle([name], ["Tackle"], {})
+        b.dice = misses13()
+        b.rng = FixedDice(0.999)
+        b.weather, p.stages["acc"] = weather, -6
+        if ability:
+            foe.ability, b.cloudy = ability, True
+        mv = fs.move(name)
+        out[(name, weather, ability)] = (pl.accuracy_hits(b, p, foe, mv), b.accuracy_hits(p, foe, mv))
+    want = {k: (True, True) for k in cases[:5]}
+    want.update({("Tackle", "Rain", None): (False, False), ("Thunder", None, None): (False, False),
+                 ("Thunder", "Rain", "Cloud Nine"): (False, False)})
+    results.append(("Thunder, Hurricane and the storms never miss in the rain", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

@@ -255,7 +255,7 @@ HIT_FOE_STAGES = {
     # Bleakwind Storm (effect script 356): each target's Speed falls a stage
     # at the move's chance (30), an indirect effect Sheer Force strips; it
     # never misses in the rain (BattleControllerPlayer_CheckMoveHitOverrides,
-    # unless Cloud Nine or Air Lock is out: accuracy_hits). Until 2026-10-20
+    # unless Cloud Nine or Air Lock is out: RAIN_SURE). Until 2026-10-20
     # the hit landed with neither (Ian approved the fix).
     "BLEAKWIND_STORM": {"spe": -1},
 }
@@ -1184,12 +1184,12 @@ class Battle:
         if dfn.ability == "Wonder Skin" and mv.cat == "Status":
             acc = wonder_skin(att, dfn, acc)
         weather = weather_now(self)          # none under Cloud Nine or Air Lock
-        if mv.effect in ("THUNDER", "HURRICANE"):           # Oxide: Hurricane as Thunder in weather
-            acc = 100 if weather == "Rain" else 50 if weather == "Sun" else acc
+        if weather == "Rain" and mv.effect in RAIN_SURE:
+            return True      # never a miss in the rain, past every stage (RAIN_SURE)
+        if mv.effect in ("THUNDER", "HURRICANE") and weather == "Sun":
+            acc = 50         # Oxide: Hurricane as Thunder in the sun
         if mv.effect == "BLIZZARD" and weather == "Hail":
             return True
-        if mv.effect == "BLEAKWIND_STORM" and weather == "Rain":
-            return True      # it never misses in the rain (HIT_FOE_STAGES)
         acc *= accuracy_scale(att, dfn, mv, first)
         if att.ability == "Compound Eyes":
             acc *= 1.3
@@ -1202,6 +1202,17 @@ class Battle:
         if self.gravity:
             acc = acc * 10 / 6           # Gravity's ten sixths, after everything else
         return self.rng.random() * 100 < acc
+
+
+# The moves that never miss in the rain: BattleControllerPlayer_CheckMoveHitOverrides
+# clears the miss the accuracy roll made, unless Cloud Nine or Air Lock is
+# out, so no stage, item or ability that cuts accuracy can make them miss
+# there. Thunder, Hurricane and the three Hisuian storms. Until 2026-10-20
+# Thunder and Hurricane were set at 100 in the rain and then met the stages,
+# so a lowered accuracy or a raised evasion could still make them miss, and
+# Wildbolt Storm and Sandsear Storm met the rain as any weather (Ian approved
+# the fix on 2026-10-20; Bleakwind Storm's came in on 2026-10-20 too).
+RAIN_SURE = frozenset({"THUNDER", "HURRICANE", "BLEAKWIND_STORM", "WILDBOLT_STORM", "SANDSEAR_STORM"})
 
 
 def wonder_skin(att, dfn, acc):

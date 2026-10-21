@@ -319,12 +319,12 @@ def accuracy_hits(b, att, dfn, mv, first=True):
     if dfn.ability == "Wonder Skin" and mv.cat == "Status":
         acc = fs.wonder_skin(att, dfn, acc)      # half at most, before the stages (fightsim.wonder_skin)
     weather = fs.weather_now(b)          # none while Cloud Nine or Air Lock is out (NO_CLOUD_NINE)
-    if mv.effect in ("THUNDER", "HURRICANE"):               # Oxide: Hurricane as Thunder in weather
-        acc = 100 if weather == "Rain" else 50 if weather == "Sun" else acc
+    if weather == "Rain" and mv.effect in fs.RAIN_SURE:
+        return True          # never a miss in the rain, past every stage (fightsim.RAIN_SURE)
+    if mv.effect in ("THUNDER", "HURRICANE") and weather == "Sun":
+        acc = 50             # Oxide: Hurricane as Thunder in the sun
     if mv.effect == "BLIZZARD" and weather == "Hail":
         return True
-    if mv.effect == "BLEAKWIND_STORM" and weather == "Rain":
-        return True          # it never misses in the rain (fightsim.HIT_FOE_STAGES)
     # The stages, with Unaware, Keen Eye and Sacred Sword's kind, Tangled
     # Feet and the Zoom Lens (fightsim.accuracy_scale).
     acc *= fs.accuracy_scale(att, dfn, mv, first)

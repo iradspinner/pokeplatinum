@@ -6533,6 +6533,31 @@ def freezy_frost_checks():
              f"(hit, Glaceon's Sp. Atk stage, Geodude's Defense stage) {got}")]
 
 
+@b13
+def rain_sure_checks():
+    """Thunder in the rain on the calculator's real rows (Ian's addition of
+    2026-10-20): a trainer's Pikachu at -6 accuracy, with every chance of
+    its miss landing for the player, still hits the player's Snorlax in the
+    rain, and misses out of it."""
+    from .test_fightai import battle
+
+    class TrainerMisses(Sure7):
+        def good(self, p, kind=None):
+            return p > 0 and kind is None        # the trainer's miss, the player's luck
+    out = {}
+    for weather in ("Rain", None):
+        b = battle([("Pikachu", 30, "Static", ["Thunder"])], [("Snorlax", 30, "Thick Fat", ["Tackle"])], weather=weather)
+        b.dice, b.rng = TrainerMisses(random.Random(1), True), random.Random(1)
+        b.weather = weather
+        pika, lax = b.b.cur(), b.p.cur()
+        pika.stages["acc"] = -6
+        hp = lax.hp
+        pl.attack(b, pika, fs.move("Thunder"), lax, True)
+        out[weather] = lax.hp < hp
+    return [("the readings' Thunder never misses in the rain", out == {"Rain": True, None: False},
+             f"(hit in the rain, hit out of it) {out}")]
+
+
 def main():
     results = []
 
