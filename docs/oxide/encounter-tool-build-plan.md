@@ -30,10 +30,10 @@ For a session that has none of the conversation this came out of.
 `git log --oneline | grep "Encounter tool M1"` finds nothing, you are on a branch
 that predates the merge and none of the files below exist.
 
-The encounter tool and the Phase 3 script/event carry-over run in parallel on the
-same branch and share no files: this track owns `tools/oxide/encounters/`,
-`res/field/encounters/` and the three `encounter-*.md` docs, and touches nothing
-else. Its footprint in `tracker.md` is one paragraph (design doc rule 11).
+When this was written the encounter track owned `tools/oxide/encounters/`,
+`res/field/encounters/` and the three `encounter-*.md` docs and kept one
+paragraph in `tracker.md`. Since 2026-10-13 no session owns files, and the
+tool's open work is in the tracker with the rest.
 
 **One thing from the other track that lands here.** The base ROM's custom script
 command, long unidentified, turned out to be a *Repel prompt*: "Repel's effect
@@ -44,7 +44,8 @@ game he wants — and it makes the manip loop this tool is built around material
 cheaper to actually play. Worth remembering when weighing R3's uplift threshold:
 the cost side of a manip is lower in this ROM than in vanilla.
 
-**Read in this order.** This file for what to do next. Then
+**Read in this order.** The tracker for what to do next, and this file for how
+the tool works. Then
 `docs/oxide/encounter-tool-design.md` sections 1, 2 and 6 for the model — section 1
 is the game's actual repel behaviour and is the part that must not be paraphrased
 from memory. `docs/oxide/encounter-design-survey.md` only when a number in the
@@ -61,23 +62,25 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint --ignore R12   # 0 errors (R12 prices Oxide's sources, so vanilla fails it)
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # 0 errors; warnings are aspirational or rulings
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 60/60
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 62/62
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 15/15
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 98/98, the dex, moves, calculator and trainer sets
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 111/111, the dex, moves, calculator and trainer sets
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0  # expect 35/35
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 23/23
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 19/19
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3  # expect 36/36
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5  # expect 25/25
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_sim    # expect 19/19, the Box sim
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_trainers   # expect 38/38
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_trainers   # expect 36/36; the save check needs the packer built (make rom), and the last check a quiet checkout
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_saves      # expect 5/5
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_savefile   # expect 18/18
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_savewatch  # expect 8/8
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_battlelog  # expect 26/26
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_docview    # expect 16/16
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_alpha      # expect 27/27, the Alpha tab
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_linetester # expect 11/11, the Battle tab's line tester
 PYTHONPATH=. python3 -m tools.oxide.encounters.calc_export # what the calculator cannot model
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
 python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --encounters --source   # M7, after make rom
@@ -86,7 +89,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8
 
 The `--source` line is the one that closes the loop: it needs a built ROM and no
 reference ROM, and it must read "all 190 tables match their source JSON" (the
-counts above are as of 2026-09-30). It is the
+counts above are as of 2026-10-21). It is the
 only check here that looks at what the game actually runs.
 
 The `plan` line is the whole design in one command: it should take Growlithe from
@@ -95,7 +98,8 @@ The `plan` line is the whole design in one command: it should take Growlithe fro
 The two reports are the heart of it. The first is vanilla and should read median
 HHI 0.275, spread 2.48x, 71 signatures. The second is the tables the authoring
 pass wrote, under Ian's level caps, and on 2026-09-23 it read median HHI 0.169,
-spread 1.96x, 11 signatures, top slot 25%: flat by design, since the cap replaced
+spread 1.96x, 11 signatures, top slot 25% (on 2026-10-21, after the later
+table work: 0.184, 1.87x, 54 signatures, top slot 25%): flat by design, since the cap replaced
 the old concentration arc (design doc 2.5). `main` holds vanilla, and every "does
 this match vanilla" check reads `--ref main`. What the second report read before
 the pass, and what that proved, is in the archive under M2.
@@ -117,7 +121,8 @@ suites) are described where they landed, in the archive.
 **Where it stands (2026-09-23).** The tool is complete: M1 to M7, and M8's dex,
 moves and damage calculator, are done. The authoring pass has written every wild,
 water and scripted source from the pick-list, and the tree builds with every table
-matching its JSON. What is still open is in "What is open" below. The finished
+matching its JSON. Open work is in the tracker; "What was open" below is the
+list as this doc last kept it, for its history. The finished
 milestones and steps, with what each one found, moved verbatim to
 `docs/oxide/encounter-tool-build-plan-archive.md`, and a one-line pointer stands
 where each used to be. The rules still in force from them are in the `author-table`
@@ -153,10 +158,13 @@ generator, and they are the part most likely to be cut or deferred.
 | M6 | Generator, levels-only ✔ | `generate.py`, `cli generate` | A generated band clears R1/R2/R6 and reaches the R3 aim — **passed** |
 | M7 | ROM verification ✔ | `verify_narcs.py --source` | Built ROM's NARC matches the source JSON — **passed, 183/183, 21,045 fields** |
 
-## What is open
+## What was open
 
-Every item still open, gathered from the sections now archived and the two below
-that stay. None blocks anything.
+The list as this doc kept it until 2026-10-13, gathered from the sections now
+archived and the two below that stay; most items closed long since, and the
+ones still open (Maylene's cap, Ian's damage roll, the honey tree shakes, the
+regional dex order) are tracker entries. Item 5 is answered: every trainer
+Pokemon has a nature of its own (Ian, 2026-10-12, the standing rulings).
 
 1. **Maylene's cap.** The tables are designed at 38 and Ian's sheet says 39. They
    wait for the balance track's final caps, then `cli evolve` is re-run once
@@ -1514,7 +1522,10 @@ balance track is redesigning the whole cap curve first and taking it to him.
 Until those final caps land, the tables stay as designed at 38. Then they
 re-run `cli evolve` once against the final caps (the evolution stages are the
 only part of a table that depends on a cap), with the suites and the source
-check after it, rather than moving for 39 now and again later.
+check after it, rather than moving for 39 now and again later. Since then the
+engine has capped Maylene's split at 39 (`sLevelCaps` in `src/system_vars.c`),
+the cap redesign was moved to after alpha 1 (Ian, 2026-10-06), and the
+sidecar still says 38; the tracker's Encounters entry carries the rerun.
 
 Two later entries are done and archived in `encounter-tool-build-plan-archive.md`: Ian's notes on the Tables view (2026-09-22) and the QA pass before the merge (2026-09-22).
 

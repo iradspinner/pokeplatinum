@@ -65,7 +65,14 @@ the newer species in on purpose (Ian, 2026-09-27).
   100, and level 1 teams.
 - The 12 "unused" early teams (levels 3 to 7) are Platinum's own leftovers.
 
-## What the placed teams show
+## What the placed teams show (2026-09-27)
+
+The Kaizo comb's teams (alpha readiness step 12, 2026-10-07) and the
+redesigns since have replaced most placed teams, so the three bullets
+below describe the survey's day. Counted on 2026-10-21: 29 Choice items
+remain in 19 trainer files, all Brain drafts, superbosses and rematches
+but Wake's two (his team is kept for the alpha, its rework scheduled after
+it), and 13 trainer files carry one of the 160 new species.
 
 - **Choice items:** 43 on placed trainers, 19 of them in the League: every
   Elite Four member and Cynthia carries two to four. The Choice ruling's work

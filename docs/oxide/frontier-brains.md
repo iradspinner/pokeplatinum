@@ -3,9 +3,9 @@
 Ian's design of 2026-09-27: the five Battle Frontier Brains become optional
 boss fights spread through the story, so they are not all in the Battle Zone.
 Ian builds the teams; the drafts below are his, with levels, moves, items,
-abilities and natures still to come. The balance track scores each team as it
-firms up (all but the double battle, which its tool cannot score), and the main
-track scripts the fights once the teams are final.
+abilities and natures still to come. The scorer reads each team as it firms up
+(the double battle once the readings take doubles, which they do not yet), and
+the fights are scripted once the teams are final.
 
 ## Where each fight is, and what it guards
 

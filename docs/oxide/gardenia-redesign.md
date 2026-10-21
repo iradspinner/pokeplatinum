@@ -19,7 +19,7 @@ The locked team's reading came in on 2026-10-14 at 90 percent won (faints 2.04, 
 
 **Settled:** the soft barometer for "unsolvably hard" is the first reading's box 3 (27 percent won, difficulty 34.7), the box Ian nearly solved by hand (2026-10-13).
 
-**Next steps:** none for the fight itself until a bigger change to it; Ian's Slugma answer (evolve by Fantina's split at the latest) waits in the tracker.
+**Next steps:** none for the fight itself until a bigger change to it. Ian's Slugma answer (evolve by Fantina's split at the latest) landed on 2026-10-14: Slugma evolves at 30, not 38 (17a896321).
 
 ## The first reading of Ian's six (2026-10-13, afternoon)
 

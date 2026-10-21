@@ -1,6 +1,6 @@
 ---
 name: oxide-session
-description: Start-of-session and end-of-session protocol for the Platinum Oxide project (the pokeplatinum fork on branch oxide). Use this at the start of every session in this repo before doing anything else, and again before ending a session or handing work back to Ian, whether or not the user mentions it. Also use it whenever a session is about to commit, push, update the tracker, or record a finding, because it says where each kind of fact lives and which files a track may edit.
+description: Start-of-session and end-of-session protocol for the Platinum Oxide project (the pokeplatinum fork on branch oxide). Use this at the start of every session in this repo before doing anything else, and again before ending a session or handing work back to Ian, whether or not the user mentions it. Also use it whenever a session is about to commit, push, update the tracker, or record a finding, because it says where each kind of fact lives.
 ---
 
 # Oxide session protocol
@@ -96,9 +96,7 @@ Run these in order; skipping one is how the next session starts confused.
    to be done on a later day or once something happens goes in the Scheduled
    list with its "Why:" and "Unneeded if:". If this session changed something
    an entry rests on (hardware, a ruling, a dropped feature), update every
-   entry, doc and memory resting on it in the same commit. If you are the encounter track, edit only your
-   one paragraph here; the balance and scoring tracks edit their own docs
-   instead.
+   entry, doc and memory resting on it in the same commit.
 2. **Findings.** A durable fact learned this session (a correction, a defect, a
    measurement, a format detail) goes in the design doc's section 8 findings log,
    dated, and the design doc's version and date at the top are bumped. Status
@@ -141,9 +139,11 @@ Delegate a task to a background general-purpose agent when it can run in
 parallel with other work, or when it is a long read (a catalogue, a survey, a
 batch of tables) whose detail this session does not need to hold; Ian has made
 that a standing preference. Do the rest inline. A subagent runs on the same
-model as this session, so it saves nothing by being cheaper, and it starts
-cold. Keep here anything that needs judgment across the project, anything in
-another track's files, and the report itself, since a subagent's report never
+model as this session unless its agent type in `.claude/agents` says
+otherwise (`big-review` at xhigh effort for a docs pass, a QA pass or a risky
+merge's review, and `lookup` on Haiku for read-only lookups; Ian,
+2026-10-21), and it starts cold. Keep here anything that needs judgment
+across the project and the report itself, since a subagent's report never
 reaches Ian. The brief has to carry everything:
 
 ```

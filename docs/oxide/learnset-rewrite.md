@@ -5,7 +5,7 @@ Step 4 of `docs/oxide/learnset-checks.md`: the locked rules of
 rewrites every level-up list. The branch is `balance-learnset-rewrite`, cut
 from `oxide` at da6b92496c (Poison Fang landed). Step 5's exam judged the
 first loop's lists; the second loop answers its verdicts, and the branch
-lands once the Overseer has read it.
+landed at 085f72211 on 2026-10-06.
 
 ## Summary (2026-10-06, the second loop done)
 
@@ -60,23 +60,13 @@ The exam's lines, read again as a regression check (not a fresh exam):
 - **Scorbunny** (passed): Raboot's Acrobatics at 17 is gone, read now at
   the 110 power it hits for with no item.
 
-**Ian's action items**, each set out below:
-
-1. The open questions of the first loop still stand where the second loop
-   left them: the move reworks, the named cases, and staple coverage
-   (question 4, with the new screen's numbers).
-2. Say whether check 8's late shortfall is acceptable: 82 stages miss a
-   new move only in bands from 61 on, where no move passes the fit bar.
-3. Nothing else waits on him before the Overseer lands the branch.
-
-**Next steps.**
-
-| Step | What | Who | About how long |
-|---|---|---|---|
-| Landing | The branch onto `oxide` with `merge-branch.sh` | Overseer | under an hour |
-| Reworks | The engine side of Ian's rework rulings, Upper Hand, Shell Trap and Burning Jealousy among them | a cloud job | a session |
-| TM pass | Rerun on the new lists, with the reward table and gauntlets | Balance Agent | 2 to 3 hours, then 2 to 3 to write it in |
-| 15 | The bosses read against their bands, once on the QA ROM | Scoring Agent | hours of machine time |
+**Ian's action items, as they stand.** He accepted the move reworks as
+listed on 2026-10-06 (question 1), and the engine and the simulator have
+run them since 787c581c8 (2026-10-07). He left the late shortfall
+(question 2), the named cases (question 3) and staple coverage (question 4)
+for after the alpha; the tracker's learnset item carries them. The landing,
+the reworks and the TM pass are done (`alpha-readiness.md`, steps 2, 5 and
+6), and step 15's reading is on the tracker's first page.
 
 ## The second loop: what changed and why
 
@@ -104,7 +94,9 @@ instruction to it said. Each verdict became a rule over every list:
    knock their user out) goes to the line's egg list, the trainers'
    palette, never a wild catch's four moves. 29 egg lists changed.
 5. **Working moves only.** Upper Hand, Shell Trap and Burning Jealousy are
-   off the lists until the rework job builds their conditions.
+   off the lists until the rework job builds their conditions. (It built
+   them at 787c581c8; each waits for its in-game check before it joins a
+   list, `signature-moves.md` question 2.)
 6. **Fit.** At most two recovery moves a list, and one added only where
    the line has none. An attack uses the line's better attacking stat; an
    off-stat one fills only an early gap (a type with no attack, or no
@@ -140,8 +132,10 @@ track's files).
 
 ### 1. The move reworks
 
-These moves sit on player lists today, and no check counts them until Ian
-rules, so no list relies on one. Each row gives Oxide's numbers, how many
+Answered: Ian accepted the recommendations as listed on 2026-10-06, and
+the engine runs them since 787c581c8; the standing rulings hold the
+numbers. When this was written, these moves sat on player lists, and no
+check counted them until Ian ruled, so no list relied on one. Each row gives Oxide's numbers, how many
 lines the player can own learn it by level-up in the rewrite, Kaizo's
 change where it made one, and a recommendation.
 
@@ -262,6 +256,8 @@ the scores and checks run again (about an hour of machine time), and the
 exam is read on the new lists.
 
 ### 5. Two notes for the TM pass
+
+The TM pass has landed since, with the combined branch at 787c581c8.
 
 R5's coverage by level-up draws most on staple TM moves: in the second
 loop Bulldoze is new on 65 lines' lists, Rock Tomb on 47, Throat Chop on
@@ -488,9 +484,9 @@ Ian named the first two in the insight sessions; the third is his ruling of
 2026-09-30. The checks and the generator apply all three; the pool the
 stored scores read is left alone, so the census still owes them.
 
-- Amity Square's table has no map header, so no one can meet it: its 16
-  catch rows are left out (Swablu is first caught on Route 210 in
-  Maylene's split). The encounter track owns wiring or explaining it.
+- Amity Square's table had no map header when this was written, so its 16
+  catch rows were left out. It has been in use since 506b11dbec, so that
+  correction is dropped (the tracker's census item).
 - Cynthia's Togepi egg is received in Fantina's split, after the Eterna
   building, not in Gardenia's.
 - The Mining Museum revives fossils only after Cycling Road, so the four

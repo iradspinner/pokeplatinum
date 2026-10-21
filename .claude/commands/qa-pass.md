@@ -45,7 +45,7 @@ Then put a trace in the tracker, editing only the tracker:
 
 ## 6. Fix what is plainly a defect
 
-A defect whose fix is clear gets fixed, as its own commit, with the check that proves it in the message. Leave design choices to Ian, and leave anything in another track's files to that track. Say so in the findings file for each one left.
+A defect whose fix is clear gets fixed, as its own commit, with the check that proves it in the message. Leave design choices to Ian, and a fix to the simulator, its AI or the scorer to his approval (the standing rulings). Say so in the findings file for each one left.
 
 ## 7. Report
 

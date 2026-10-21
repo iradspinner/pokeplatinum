@@ -1,7 +1,7 @@
 # The encounter tool: build plan archive
 
 Finished milestones and steps of `docs/oxide/encounter-tool-build-plan.md`, moved here verbatim on 2026-09-23 under the headings they had there.
-Read this only when the build plan points here; what is open, and the rules still in force, stay in the build plan and the `author-table` skill.
+Read this only when the build plan points here; what is open is in the tracker (since 2026-10-13), and the rules still in force are in the build plan's "Standing rules" and the `author-table` skill.
 
 ## From "Resuming cold", superseded 2026-09-23
 

@@ -7,6 +7,11 @@ the tool's state is `encounter-tool-build-plan.md`. This file says what to do,
 in what order, with what gate at each step, and which decisions were taken here
 so they are not re-decided.
 
+The pass is finished: Steps 0 to 8 were done by 2026-09-22 (the build plan's
+"Authoring pass" section), so this file is kept for its decisions. The rules
+still in force are in the `author-table` skill, and open encounter work is in
+the tracker (`docs/oxide/tracker.md`), not here.
+
 ## Resuming cold
 
 > **Added 2026-09-20, after this plan was written.** The tool did not stop at M4.
@@ -101,13 +106,12 @@ so they are not re-decided.
 Read, in order: this file; `docs/oxide/encounter-tool-build-plan.md` "Resuming
 cold" (run its check commands, they must all pass before anything is touched);
 `docs/oxide/encounter-tool-design.md` sections 1, 2 and 7; `CLAUDE.md` and
-`docs/oxide/design-doc.md` section 5 for the working rules. This track owns
-`tools/oxide/encounters/`, `res/field/encounters/`, `docs/oxide/encounters/` and
-the `encounter-*.md` docs. Status for this work goes in the build plan under a
-new "Authoring pass" section and in the one encounter paragraph at the top of
-the tracker, nowhere else. Work on a worktree branch and merge into `oxide` when
-green (`tools/oxide/integrate.sh` does the merge; `/integrate` in the planning
-session runs it).
+`docs/oxide/design-doc.md` section 5 for the working rules. When this was
+written the encounter track owned `tools/oxide/encounters/`,
+`res/field/encounters/`, `docs/oxide/encounters/` and the `encounter-*.md` docs,
+and kept its status in the build plan; since 2026-10-13 no session owns files
+and open work lives only in the tracker. Work on a worktree branch, which the
+Overseer lands on `oxide` with `tools/oxide/merge-branch.sh`.
 
 ## What the job is
 
@@ -339,6 +343,7 @@ none), and the leak audit's script list.
 - ~~Whether Unown returns to the list and whether surf gets designed now~~ done
   2026-09-21: Unown off, surf designed but counted only where reachable
   (decisions 5 and 9).
-- Any off-list species the leak audit finds in scripts.
-- Whether the first two splits' feel is right, from his review in the tool (the
-  playthrough is off Step 3's gate).
+- ~~Any off-list species the leak audit finds in scripts~~ none: Step 5's
+  `cli audit --fail-on-leak` exits 0.
+- ~~Whether the first two splits' feel is right~~ Ian approved it before Step 4
+  (2026-09-21).

@@ -5,8 +5,13 @@ Overseer to relay to Ian. It measures Oxide's level-up lists as they stand on
 `oxide` (a17624478c) and learnset v3's (the proposal on
 `origin/balance-learngen-v2`, b04408cfcb, unlanded) with the same code, so
 every difference between the two columns is the lists' doing. Checks 2 and 3
-are the scoring track's and have a placeholder below. Nothing here changes a
+are the scoring track's, and came in later (below). Nothing here changes a
 learnset or a move.
+
+It is a record of 2026-10-06. The rewrite (085f72211), the TM pass and the
+PP fixes have since changed what it measured: the fourteen stat-lowering
+moves of check 5 are at 5 PP and Defog at 1, and the TM list lost Ian's
+removed TMs. `learncheck.py rules` reads today's lists.
 
 Learnset v3 is not better than Oxide's lists on these checks. On the
 own-type rule it mends as many stages as it breaks. It leaves three catches
@@ -172,24 +177,14 @@ caught; the moves that raise or lower a stat beside something else
 judged. The splits' caps are fights.json's, with Maylene's at 39, which Ian
 confirmed on 2026-09-22.
 
-## Checks 2 and 3: placeholder for the scoring track's results
+## Checks 2 and 3: the scoring track's results
 
-**Not yet in.** When this was written, `~/oxide-trials/learnset-baseline/`
-held only the scoring track's reading of v3 (`build_v3.py` and
-`v3_learnsets.json`), no results. This report reads v3 the same way, and its
-test checks that the two readings agree for all 653 species. When the
-results land, they go here, side by side like the rest, with three rules
-from Ian (2026-10-06) on how check 2 is read:
-
-- The matchup screen counts hits, so it cannot see a plan that wins on turns
-  (it ranked the Mars 1 PP-stall six 1,831st of 38,760, and only the later
-  race recovered it). Check 2's list of lines no boss takes is a list of
-  leads, not verdicts.
-- Walls, stallers and support lines on that list (Togetic, a Vullaby stall
-  and the like) are marked as likely misreads, to be checked with the race
-  or a reading.
-- A flagged support line is never to be fixed just by giving it more
-  attacks.
+They came in after this report was written, in
+`~/oxide-trials/learnset-baseline/checks-2-3.md`: of 86 lines that met a
+boss in their window, 38 were taken by none and 20 by every boss that met
+them; `learnset-rewrite.md` sets them beside the rewrite's. Ian's three
+rules on reading check 2 (2026-10-06) are under check 2 in
+`learnset-checks.md`.
 
 The same caution applies to check 1's support lines above: Togetic, Happiny
 and Delibird fail a rule written about attacks, which says nothing yet about
@@ -257,7 +252,8 @@ Ian picks.
 - Unown knows only Hidden Power, whose type the check cannot read, so it
   fails as having no attack.
 - `test_learncheck.py` reads `origin/balance-learngen-v2`, so it needs that
-  branch fetched, and it is not in the gate's list of balance tests.
+  branch fetched. The gate has run it with the other balance suites since
+  the rewrite landed (`integrate.sh`, `BALANCE_SUITES`).
 
 ## The tables
 

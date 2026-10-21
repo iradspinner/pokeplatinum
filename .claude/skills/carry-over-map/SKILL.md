@@ -1,6 +1,6 @@
 ---
 name: carry-over-map
-description: How to carry one map's field script, object events and text over from the base ROM into the pokeplatinum decomp's idiom, or re-humanise one of the 86 machine-generated scripts, for Platinum Oxide. Use this whenever a session touches res/field/scripts/*.s, res/field/events/*.json or a map's text bank in res/text/, is asked to make a generated script readable, to unify the clown gift scripts, or to check a map against the base ROM with mapdiff.py and checkmap.py.
+description: How to carry one map's field script, object events and text over from the base ROM into the pokeplatinum decomp's idiom, or re-humanise one of the 83 machine-generated scripts, for Platinum Oxide. Use this whenever a session touches res/field/scripts/*.s, res/field/events/*.json or a map's text bank in res/text/, is asked to make a generated script readable, to unify the clown gift scripts, or to check a map against the base ROM with mapdiff.py and checkmap.py.
 ---
 
 # Carrying over one map
@@ -80,8 +80,8 @@ any member of either ROM; `--roundtrip` proves the emitter, and
    unreferenced. Remove them as the map is done (the tracker's backlog lists the
    counts per map) and let the ids renumber.
 5. **Some files diverge from the base ROM on purpose** and must stay that way.
-   `DIVERGED` in `bulk_scripts.py` names 54 script files and the one in
-   `bulk_events.py` 49 event files, each with its reason; the bulk tools skip
+   `DIVERGED` in `bulk_scripts.py` names 78 script files and the one in
+   `bulk_events.py` 55 event files, each with its reason; the bulk tools skip
    them, a difference `checkmap.py` reports on one may be the intended one its
    entry names, and nobody should "fix" them. The first two were
    `scripts_common`, which uses the new `SetRepelSteps` command instead of the

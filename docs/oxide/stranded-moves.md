@@ -28,13 +28,13 @@ This answers Ian's request of 2026-10-14. He asked for the working moves among t
 **What Ian picked (2026-10-14).**
 1. Every home in the tables below stays. Each player pick is a level-up entry and needs no new mechanic.
 2. Hurricane: Pelipper takes it at 58 as an exception to R37, as the rewrite kept Head Smash. The exception is recorded in `learncheck.R37_EXCEPTIONS`, which check 19 passes over.
-3. Upper Hand and Burning Jealousy: their homes wait for in-game checks 81 and 83.
+3. Upper Hand and Burning Jealousy: their homes wait for in-game checks 81 and 83 (the tracker's Scheduled list).
 4. Trainer homes: each one changes a boss's team, so each is a question about that fight, asked once Ian wants it.
 
 **Difficulty.** The earliest homes sit in Gardenia's split. They go to lines that are not counterpieces to Roark or Gardenia in `boss-shapes.md`, so none is material for those two fights. A trainer home is material for its boss.
 
 **Next steps and time.**
-- Upper Hand's and Burning Jealousy's homes: written once checks 81 and 83 pass, a few minutes each, then a rebuild.
+- Upper Hand's and Burning Jealousy's homes: a few minutes each, then a rebuild, when checks 81 and 83 pass (the tracker's Scheduled list).
 - Each trainer home Ian takes: that boss's team change, then its reading, at 1 to 2 hours of machine time a boss.
 
 ## How the homes were chosen
@@ -64,7 +64,7 @@ Upper Hand and Burning Jealousy were broken when the balance rules were written.
 
 The generator reads Mighty Cleave as not working. Its effect script is a plain hit, which is right, since the Protect bypass comes from its missing Protect flag. The stub check (`pokedex.stub_effects`) takes any donor effect whose script copies the plain hit's for a placeholder unless it is listed as done in C, and IGNORE_PROTECT is not listed. Until it is, Mighty Cleave can only be placed by hand.
 
-The simulator gaps these moves meet are listed with each move. Several are fixed since 2026-10-14: the two-hit moves land hit by hit, Mighty Cleave passes Protect, Psychic Fangs breaks a screen before the readings halve it, and Doom Desire strikes two turns later. Four gaps were found while reading for this page and are approved and being fixed in batch 2. `simulator-gaps.md` did not list them, because each move's effect is a plain hit and the engine does its work in code keyed on the move:
+The simulator gaps these moves meet are listed with each move, as they stood on 2026-10-14; every one is fixed since (`simulator-gaps.md`). Four were found while reading for this page, in moves whose effect is a plain hit and whose work the engine does in code keyed on the move; they are the gaps doc's plain HIT rows, fixed in batch 2:
 - Sacred Sword and Chip Away (and Darkest Lariat, open to the player already) ignore the target's stat stages in the engine, but not in the readings.
 - Power Trip (and Stored Power) read at 20 whatever the user's stages.
 - Hard Press reads at full power whatever the target's HP.
@@ -113,7 +113,7 @@ Physical; power from the user's weight against the target's, 120 at five times d
 ### Electric
 
 #### Electro Ball
-Special; power from the user's Speed against the target's: 150 at four times, 120 at three, 80 at two, 60 at even, 40 below. Most Electric lines learn it by level in the later games. Gap: the readings keep the opening Speeds (batch 2).
+Special; power from the user's Speed against the target's: 150 at four times, 120 at three, 80 at two, 60 at even, 40 below. Most Electric lines learn it by level in the later games. Gap: the readings keep the opening Speeds (fixed in batch 2).
 
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
@@ -208,7 +208,7 @@ Physical, 90, 100%, 10 PP; lowers the target's Defense a stage every hit. Galari
 | Lopunny | 56, Candice | climbs from Jump Kick | Jump Kick (23) without the crash. Little new | player |
 
 #### Sacred Sword
-Physical, 90, 100%, 15 PP; ignores the target's stat stages and evasion. A slicing move. Gallade's in Legends Z-A. Gap: the readings let the target's stages count (batch 2).
+Physical, 90, 100%, 15 PP; ignores the target's stat stages and evasion. A slicing move. Gallade's in Legends Z-A. Gap: the readings let the target's stages count (fixed in batch 2).
 
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
@@ -314,7 +314,7 @@ Physical, 80, 100%, 10 PP; traps both the user and the target. The Chewtle line'
 | Mightyena | 46, Byron | climbs | The same on a hyena, beside Crunch (34) and Throat Chop (39) | player |
 
 #### Power Trip
-Physical, 20 power plus 20 for each of the user's raised stages, 100%, 10 PP. The Rookidee line's in Scarlet and Violet. Gap: the readings keep it at 20 (batch 2).
+Physical, 20 power plus 20 for each of the user's raised stages, 100%, 10 PP. The Rookidee line's in Scarlet and Violet. Gap: the readings keep it at 20 (fixed in batch 2).
 
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
@@ -412,7 +412,7 @@ Physical, 100, 100% in Oxide, 5 PP, hits both foes; raises the user's Defense tw
 ### Steel
 
 #### Hard Press
-Physical; power 100 times the target's remaining share of its HP. A TM for heavy lines in Scarlet and Violet. Gap: the readings keep it at full power (batch 2).
+Physical; power 100 times the target's remaining share of its HP. A TM for heavy lines in Scarlet and Violet. Gap: the readings keep it at full power (fixed in batch 2).
 
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
@@ -474,7 +474,7 @@ Status, 1 PP in Oxide; raises Attack, Sp. Atk and Speed two stages for half the 
 ### Normal
 
 #### Chip Away
-Physical, 70, 100%, 20 PP; ignores the target's stat stages. Many lines learn it in Generations 5 to 7. Gap: the readings let the target's stages count (batch 2).
+Physical, 70, 100%, 20 PP; ignores the target's stat stages. Many lines learn it in Generations 5 to 7. Gap: the readings let the target's stages count (fixed in batch 2).
 
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
@@ -528,7 +528,7 @@ Shaymin would fit too, but only in the post-game.
 | Move | Why not the player | Trainer homes |
 |---|---|---|
 | Hurricane | 80% (R37): the generator never adds an attack under 90%. Ian excepted Pelipper at 58, where it climbs, and that home is applied (2026-10-14) | Jupiter's planned Drizzle Zapdos, or an ordinary rain team's Pelipper: in rain it never misses |
-| Zap Cannon | 50% (R37); Ian named it welcome on trainers (2026-10-06) | A trainer's Magnezone with Lock-On (Byron's, Volkner's or Cyrus's at Galactic HQ). The readings do not yet model Lock-On's sure hit |
+| Zap Cannon | 50% (R37); Ian named it welcome on trainers (2026-10-06) | A trainer's Magnezone with Lock-On (Byron's, Volkner's or Cyrus's at Galactic HQ). The readings model Lock-On's sure hit since 5752d7351 |
 | Inferno | 50% (R37) | A late Fire trainer's Magmortar (Ace Trainers Keenan and Henry) or Flint's Ninetales: a coin-flip sure burn |
 | Misty Explosion | it knocks its user out (R26). Its Oxide power is 200, from Hardlove's data; Sword and Shield's is 100 | The Tyche and Hermes double, whose theme is Protect beside Explosion, or Saturn's Mr. Mime as his one forced trade |
 | Mind Blown | 150 power for half the user's HP: half a forced trade in a permadeath run, and the generator never adds it. Gap: the readings take no HP (open) | Cyrus 3's Heatran, or Flint's Magmortar |

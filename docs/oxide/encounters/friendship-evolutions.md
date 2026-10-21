@@ -5,8 +5,9 @@ same day as relayed by the Overseer: Happiness Up is gone, and every
 friendship evolution moves to a method that cannot be ground as easily. The
 data has sixteen friendship evolutions over fifteen lines. This proposes one
 method each, says the split it lands in, and measures what it changes in the
-encounter tables and the box simulator. Nothing here is built; the main
-track edits the evolution data.
+encounter tables and the box simulator. All of it is built: the evolution
+data carries every method in the table below, and no wild Crobat stands
+under level 40.
 
 ## Rulings
 
@@ -71,11 +72,11 @@ so Roselia would be ready for Roark's gym. Frosmoth at the Ice Rock matches
 the tables, which already place Frosmoth from Candice's split on, and it
 means the one early Snom (Coronet 1F south, 1%) stays a Snom until Route 217.
 
-Espeon and Umbreon by stone depend on where the stones are. Today the Sun and
-Moon Stones come only from digging in the Underground, which the Explorer Kit
-opens before Bebe's gift. The item pass may want to place one of each as a
-fixed find, so a wanted line does not wait on the luck of the dig. Eevee
-keeps eight of its nine evolution slots, as now.
+Espeon and Umbreon by stone depend on where the stones are. Both now have
+fixed finds beside the Underground's digging, hidden items kept from vanilla
+(the Sun Stone at Valor Lakefront; the Moon Stone in Eterna City and outside
+Mt. Coronet's north side; `script-index.md`), and the tracker says how late
+each is reached. Eevee keeps eight of its nine evolution slots, as now.
 
 Luvdisc to Alomomola is Oxide's own evolution, not canon's or Hardlove's.
 Level 30 leaves it where the tables and the simulator already have it.
@@ -131,6 +132,6 @@ The evolve pass and the simulator have both been reading every friendship
 evolution as level 32, not the 20 their shared code comment promises, because
 the table of judged levels names methods the data spells differently. The
 same slip reads a held-item trade as 32 rather than 38. The numbers above
-compare against what the tools do today. Once Ian rules, the friendship
-entries go and the trade one is corrected in the same commit, and the
-simulator's suite is rerun.
+compare against what the tools did then. The slip is gone: the table is
+keyed by the names the data uses, and it has no friendship or trade entry,
+since Oxide has neither method left (`tools/oxide/encounters/evolve.py`).

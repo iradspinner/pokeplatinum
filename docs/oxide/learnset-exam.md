@@ -2,10 +2,9 @@
 
 Step 3 of `docs/oxide/learnset-checks.md`. Ian judged these five lines after
 the rules from the other fifteen were locked (`learnset-insights.md`, "The
-locked rules", committed at 03ad8fdf41). **The generator and any session
-writing learnsets must not read this file.** It is read only in step 5, to
-judge whether the rewritten learnsets satisfy what Ian said about lines whose
-verdicts never shaped the rules.
+locked rules", committed at 03ad8fdf41). It was sealed from the generator
+until step 5, which read it to judge whether the rewritten learnsets satisfy
+what Ian said about lines whose verdicts never shaped the rules.
 
 **The seal is lifted** (Ian, 2026-10-06, after the exam was judged): the Balance Agent may read this file for the second loop, which turns its misses into rules. The five lines can no longer test rules drawn from them; the test on lines the rules were not built from is the alpha run.
 

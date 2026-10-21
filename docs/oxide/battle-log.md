@@ -173,8 +173,9 @@ at most entry 20's value, or is entry 21's value with `commandNext` at most
 entry 20's (a trainer's message or a switch-in ability between turns). The
 turn being chosen or played is `totalTurns` plus one. A battler whose command
 flag is clear chose nothing: it is recharging (`VOLATILE_CONDITION_RECHARGING`)
-or locked into its move (a rampage, Uproar, or a two-turn or rolling move),
-and its move slot is still the one that locked it.
+or locked into its move (a two-turn or rolling move; Oxide's rampage moves
+and Uproar take one turn since the move reworks), and its move slot is
+still the one that locked it.
 
 Known limits, none of which matter to a boss rating: Struggle reads as the
 last move slot chosen (all its PP at 0 shows it); running from the move menu's

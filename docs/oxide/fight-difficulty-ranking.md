@@ -4,7 +4,7 @@ Difficulty is a fight's average faints plus 40 times its losing rate, at real od
 
 Of the 666 pairs among these 37 readings it orders two against that rule (win rate first, rates within 5 points equal, then faints), both within 5 points of each other; faints plus 6 times the losing rate orders 8 against it.
 
-Stale means something the reading depends on has changed since it was read, the move reworks included: a move's or species' data, the simulator's handling of a move or ability in it, the trainer's team, or, for three comb readings, the gym's sand; 27 of 37 are stale, and goal 3 reads every fight again.
+Stale means something the reading depends on has changed since it was read, the move reworks included: a move's or species' data, the simulator's handling of a move or ability in it, the trainer's team, or, for three comb readings, the gym's sand; 27 of 37 were stale when this was written (2026-10-07), and the column is that day's. Since then the rest have aged too: Roark's and Gardenia's Oxide readings are of the teams Ian replaced on 2026-10-13, and the simulator fixes since have moved other fights (each fix's commit names the fights it moves). Goal 3 reads every fight again.
 
 | Fight | Team | Difficulty | Won | Clean | Faints | Reading |
 |---|---|---|---|---|---|---|

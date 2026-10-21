@@ -133,14 +133,17 @@ a route cannot change character between morning and night, only accent.
 **Out of the first pass, tracked for later:** honey trees, in-game trades, gift and static
 Pokémon, swarms, radar, dual-slot, Trophy Garden. Availability accounting (section 2.4)
 must eventually include trades and gifts, because a line given by a trade should not also
-need a wild slot. Until then the tool treats them as absent and Ian hand-adjusts. The gift
-Pokémon are already catalogued in `docs/oxide/pokemon-gifts.md`, ready for that accounting.
+need a wild slot. That accounting is built: since 2026-09-27 R12 and the availability
+gate read the tree's own gifts, trades, statics and eggs (`docs/oxide/encounters/scripted.json`
+and the sources catalogue, `docs/oxide/pokemon-sources.md`), and the honey trees count too.
+Swarms, the radar and dual-slot are emptied for good (Ian, 2026-09-26; lint R17).
 
 *(v1.1)* Water and the three rods were also out of the first pass as written, but came in
 with M4 for 53 areas: surf and old rod roll 60/30/5/4/1, good and super rod 40/40/15/4/1,
 and a water slot carries a level range rolled uniformly, so a repel admits a fraction of a
-slot. They are read, analysed and editable. The linter stays land-only because every rule
-was calibrated on land tables.
+slot. They are read, analysed and editable. The linter's rules here are land-only because
+each was calibrated on land tables; the water principles came in later as aspirational
+warnings of their own, R19 to R24 (2026-09-29, `docs/oxide/encounters/water-lint-draft.md`).
 
 ---
 
@@ -355,7 +358,7 @@ Confirmed as a house rule for Oxide: an encounter of an already-owned species do
 count. "Owned" is by family, the evolution graph's line. A regional form its base reaches
 by a stone is one family with the base (Ian, 2026-09-28): owning a Koffing makes a wild
 Galarian Weezing a dupe and the reverse, and the same for Ponyta with Galarian Rapidash and
-Vulpix with Alolan Ninetales once the Ice Stone record lands. Within the family the regional
+Vulpix with Alolan Ninetales by the Ice Stone (its record is in). Within the family the regional
 form is a branch with its own home (availability.py, the build plan's item 41).
 
 Two distinct numbers, and the tool shows both:
@@ -655,8 +658,8 @@ kind it is. The vanilla pass rates below are from M3.
 - **R11b (warn, aspirational) — Arc bounds.** Early ≥ 0.35, late ≤ 0.25. *(v1.1)* Split
   out of R11 because vanilla's late band is 0.275 and cannot pass ≤ 0.25.
 - **R12 (error) — Availability.** Every line on the pick-list has an acquisition cost
-  below its tier's threshold. This is Ian's guarantee, in its enforceable form. Reports
-  itself as *skipped*, not passed, until the pick-list has a `tier` column.
+  below its tier's threshold. This is Ian's guarantee, in its enforceable form. It
+  reported itself as *skipped* until the pick-list gained its `tier` column (2026-09-20).
 - **R13 (warn, aspirational) — Repetition varies.** Any species on 4+ tables spans ≥ 4x
   between its largest and smallest share. *This is the rule that makes Drayano-style
   availability generate variety instead of consuming it.* *(v1.1)* Vanilla's median span
@@ -773,13 +776,13 @@ holds.
 
 ## 10. Out of scope, tracked
 
-- **Honey trees, in-game trades, gift and static Pokémon.** Must eventually feed R12's
-  availability accounting: a line handed over by a trade should not also consume a wild
-  slot. Until then R12 over-reports and Ian hand-waives.
+- **Honey trees, in-game trades, gift and static Pokémon.** Done: they feed R12's
+  availability accounting since 2026-09-27 (section 1.4).
 - Rock Smash tables. Same engine, same math, different rate array; the analysis layer is
   rate-array-agnostic so adding them is a config change. *(v1.1)* Surf and the three rods
-  are already in (section 1.4); lint for water tables is not, pending calibration.
-- Swarms, Poké Radar, dual-slot, Trophy Garden. Read and displayed, never written.
+  are already in (section 1.4), and the water lint is R19 to R24.
+- Swarms, Poké Radar, dual-slot: emptied in every table and never written (lint R17).
+  Trophy Garden's dailies: read and displayed, never written.
 - Shiny/hue-shift interactions from the base ROM. Orthogonal.
 
 ---

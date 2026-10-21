@@ -11,6 +11,8 @@ A move is counted as learnable when any species' or form's level, TM, tutor or e
 | with none | 93 |
 | of those, judgment calls, left with none by Ian's ruling (below) | 10 |
 
+Those counts are of 2026-10-07. The learnset changes since, among them the dead-move changes of 2026-10-14 and the signature-move homes of 2026-10-21, made 65 more moves past 467 learnable (229 in all on 2026-10-21, read from `res/pokemon`'s level, TM, tutor and egg lists), Stone Axe, Torch Song and Eevee's partner moves among them. No pass has checked their routing against this ruling since (`script.s` last changed on 2026-10-12), so this page does not name them.
+
 A move a routine names below is scored as that Platinum move is; the routines are described in [expert-1.md](expert-1.md) and [expert-2.md](expert-2.md), and the ones element 6 wrote in the README. Two are trimmed copies made for this pass, as element 6 made one of Thunder's for the Hisuian storms: `Expert_ClearSmog` keeps Haze's tests of the target's stages and drops those of the user's, and `Expert_MortalSpin` keeps Rapid Spin's clearing and drops its Speed raise. Salt Cure has a routine of its own, `Expert_SaltCure` (Ian, 2026-10-12), below.
 
 ## Judgment calls, settled

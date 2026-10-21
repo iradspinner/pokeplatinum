@@ -4,7 +4,7 @@
 
 > **Retired on 2026-10-13** with the first scoring system (Ian approved retiring the dead experiments): the September line search `plines.py`, `plkaizo.py` and `kaizoteams.py`, `plrescore.py` with `test_pline.py` and `perfectline.json`, `ppairs.py`, `plgoal2.py`, `plpolicy.py` and `plspeed.py`. `plscore.py` keeps the fight preparation, `plstep3.py` the three-gym fixtures and `plstudy.py` the blind and section readings; their runners went with the line search. The calculator runner moved from `pressure.py` to `calc.py`. The balance plan's banner names the last commit that has them all.
 
-## Summary for Ian (kept current with every commit; last 2026-10-07)
+## Summary for Ian (last kept current on 2026-10-07; its status corrected on 2026-10-21)
 
 **Outcome.** The scorer reads a fight by playing it turn by turn in the
 simulator at the game's real odds, 100 fights a reading (75 at real odds,
@@ -19,29 +19,58 @@ to Poison Fang left no reading stale. Three of the comb's readings (Roark
 and two of his gym trainers) ran without the gym's permanent sand; the
 reader now takes every trainer's map weather, and they are not read again.
 
-**Your action items.** None today. When you want double and tag battles
-read (about 60 fights after Roark's split), say when; the estimate is
-below.
+**Your action items and the next steps** are in the tracker's first page,
+the one home of open work since 2026-10-13; this summary no longer keeps
+its own.
 
-**Next steps, and how long each takes on this machine.** Goal 3
-(alpha-readiness step 15) is the one milestone reading before alpha 1,
-cut down by Ian on 2026-10-07: the 39 bosses only, on three boxes each,
-with one pair of networks per boss, trained on its first box and reused
-on the other two. By his rule of the same day (each change is judged for
-its effect on difficulty), nothing else is read until the next milestone
-unless he names the fight, and the simulator stays frozen but for fixes he
-approves. It reads step 12's commit, 988ff99ed, from an extracted copy in
-`~/oxide-trials/goal3/tree`, with this branch's reader laid over it, so
-every trainer, learnset, encounter and item file is that commit's. Its
-driver is `plgoal3.py`. How it reads each fight (Ian's answers of
-2026-10-07, relayed by the Overseer):
+**Since 2026-10-07.** The gaps `docs/oxide/simulator-gaps.md` listed were
+fixed batch by batch, the last on 2026-10-21 (Ian's approval of
+2026-10-14), all but the Z and Max moves; that doc is the record of each
+fix, and of the new gaps the last batches found (the doubles-only ones
+wait for the first reading of a double, the tracker's Scheduled list).
+Batch 15 gave the simulator a double battle's own path
+(`fightsim.run_doubles`), but goal 3 still refuses a double. The boxes became runs through the game,
+with held-back pre-evolutions and a play-off of held versions, as the
+bullets below say.
 
-- Boxes: three random runs of the encounter simulator for each split,
-  seeds 1 to 3, the same three for every fight of a split, every catch
-  alive. Box k's starter is Turtwig, Scorbunny, Piplup, so every rival
-  team is met once, and a rival's readings are kept per team. A fight that
-  closes its split, and each Elite Four fight, takes the box at the split's
-  end; any other takes the catches made before it in walking order.
+**Goal 3** (alpha-readiness step 15) is the one milestone reading before
+alpha 1, cut down by Ian on 2026-10-07: the 39 bosses only, on three boxes
+each, with one pair of networks per boss, trained on its first box and
+reused on the other two. By his rule of the same day (each change is
+judged for its effect on difficulty), nothing else is read until the next
+milestone unless he names the fight, and the simulator stays frozen but
+for fixes he approves. It reads one commit from an extracted copy in
+`~/oxide-trials/goal3/tree`, so every trainer, learnset, encounter and
+item file is that commit's: step 12's, 988ff99ed, in the run of
+2026-10-07, and the commit QA settles on when it restarts. Its driver is
+`plgoal3.py`, whose docstring has the commands to run, resume and store
+it. How it reads each fight (Ian's answers of 2026-10-07, relayed by the
+Overseer, and the later rulings named in each bullet):
+
+- Boxes: three random runs of the encounter simulator, seeds 1 to 3,
+  every catch alive. Each seed is one run through the whole game (Ian,
+  2026-10-15): each capture area is rolled once, at the run's first
+  visit, among the options open then, so a catch is the same Pokemon at
+  every fight. Box k's starter is Turtwig, Scorbunny, Piplup, so every
+  rival team is met once, and a rival's readings are kept per team. A
+  fight that closes its split, and each Elite Four fight, takes the run's
+  catches by the split's end; any other takes the catches made before it
+  in walking order.
+- Held-back versions (Ian, 2026-10-15 and 2026-10-21): a boss's box also
+  offers each pre-evolution held back wherever that reaches a move sooner
+  than its evolution does, or one its evolution never gets, judged by the
+  Pokemon and the move with no power threshold (`plteam.holds_open`). A
+  catch's versions share one slot in the team search. A hold is offered
+  only if no earlier fight of the seed used the catch in a form it rules
+  out, and once a reading uses one, the seed's later fights see the line
+  as the hold left it, so each seed's fights read in play order. A box
+  whose chosen six uses a held version is read again with none on offer,
+  and the result keeps both readings.
+- The play-off (Ian, 2026-10-21): after the race, each finalist is also
+  played with every held version of its members, one swap at a time on
+  the race's own fights, and keeps a swap that scores better
+  (`plteam.playoff`), since the screen weighs damage and speed alone and
+  never picks a hold for a status move or a pivot.
 - Levels: a split-closing boss at the split's cap, the Elite Four at their
   aces, and every other boss at its own ace (goal 2's soft caps, now also
   Barry 3 to 6, Cyrus 1 and 2, Saturn 1 and 2, Mars 2, Lucas and Dawn 3 and
@@ -53,32 +82,18 @@ driver is `plgoal3.py`. How it reads each fight (Ian's answers of
   read slightly hard; the results will say so.
 - Readings: a boss by the team search on each box and then its winner's
   100 fights, the three boxes pooled into the difficulty store the OxiDex
-  shows. (An Ace Trainer would be read blind, its 100 fights shared among
-  the boxes; this milestone leaves them out.)
+  shows. Each boss's reading also reports how its six uses Sticky Web and
+  whether the wins lean on it (Ian, 2026-10-15), and `--planned` reads
+  Mars 1, Gardenia, Maylene and Wake on a fourth, planned box beside the
+  random ones. (An Ace Trainer would be read blind, its 100 fights shared
+  among the boxes; this milestone leaves them out.)
 
-**Under way.** The reading started at 16:52 on 2026-10-07 (two boxes at
-once on 13 workers each, under a 9 GB cap so that a first box's network
-training, about 16.5 GB, fits beside it); each box's result lands in
-`~/oxide-trials/goal3/988ff99ed/` as it finishes, and a stopped run
-resumes with the same command. At 18:20 that evening, when the session
-wound down for the night and left it running: Barry 2's first box done
-(100% won, 0.52 faints, 39 minutes), Roark's and Mars 1's first boxes
-running, and Lucas and Dawn 1's first box failed, on purpose: its race
-hung on a seven-Pokemon box (fixed in 3173647915) and was stopped. The
-next checks, in the morning:
-
-1. `tail ~/oxide-trials/goal3/988ff99ed-run.log`: how many of the 117
-   boxes are done, and any FAILED line beyond Lucas and Dawn 1's (each
-   box's `log.txt` says why).
-2. If the driver has exited, run the same command again from the tree; it
-   reads only the boxes not done, Lucas and Dawn 1's first among them:
-
-       cd ~/oxide-trials/goal3/tree && PYTHONPATH=. tools/oxide/capped --max 9G python3 -m tools.oxide.balance.plgoal3 --run 988ff99ed --parallel 2 --procs 13 >> ~/oxide-trials/goal3/988ff99ed-run.log 2>&1
-
-3. Firm up the estimate from the first boxes' minutes and tell the
-   Overseer.
-4. When all 117 are in, from this worktree, `plgoal3 --run 988ff99ed
-   --store` puts the pooled readings in the store and writes the summary.
+The run of 2026-10-07 on 988ff99ed stopped after 1 of its 117 boxes,
+Barry 2's first (100% won, 0.52 faints, 39 minutes; its log in
+`~/oxide-trials/goal3/988ff99ed-run.log`); Lucas and Dawn 1's race hang on
+a seven-Pokemon box was fixed in 3173647915. That run read two boxes at
+once on 13 workers each, under a 9 GB cap, which left room beside it for a
+first box's network training (about 16.5 GB).
 
 The dry run measured one box on 14 workers: Roark by the team search in
 44 minutes, 17 of them training networks on a GPU that melonDS shares;
@@ -108,8 +123,8 @@ two to five hit move, 5 under Skill Link; Fury Cutter, Triple Kick and
 Triple Axel on their three hits), and Bone Rush is at 100%. Reckless raises
 the newly recoiling moves by 1.2, as the game's effect scripts do. The
 simulator adds it only where the calculator does not: the encounter track's
-c5aed2a7bf gives the calculator the game's own list, and once it lands the
-simulator adds nothing (test_plfixes passes 87/87 on both calculators, and
+c5aed2a7bf, on `oxide` since 2026-10-07, gives the calculator the game's
+own list, so the simulator adds nothing (test_plfixes passes 87/87 on both calculators, and
 re-measures the calculator so the two never stack). A Sheer Force user
 with a Life Orb takes no Life Orb recoil on a move Sheer Force boosts and
 keeps both boosts (Ian, 2026-10-07), as the game's fix does; the
@@ -141,7 +156,7 @@ small: contact effects per hit of a multi-hit move. Goal 3's preflight
 passed (2026-10-07): with a learnset change planted in an extracted copy,
 both box builders read it from the copy and not from this branch, once
 goal 2's builder (in `~/oxide-trials/three-gym-run`) stopped naming this
-worktree as its root. Next: nothing queued.
+worktree as its root.
 
 | Step | Takes |
 |---|---|
@@ -150,13 +165,15 @@ worktree as its root. Next: nothing queued.
 | of which its two later boxes, which reuse them | about 25 to 35 minutes each |
 | the 41 Ace Trainers | not read at this milestone (Ian, 2026-10-07); blind, about 1 hour each on 14 workers |
 | Re-reading a boss whose team lands after the QA ROM | about 1 to 2 hours for one boss alone; about 35 minutes each when several run together |
-| Goal 3's 8 tag battles | not in the total; they wait for the doubles planner below |
-| Double and tag battles, on the backlog: build and check the planner for them | about 3 to 4 working sessions, then your check of one hand-played double |
+| Goal 3's 8 tag battles | not in the total; goal 3 refuses a double |
+| Double and tag battles: the simulator's path landed in batch 15 (2026-10-21); reading them in goal 3 and your check of one hand-played double are left | not re-estimated since batch 15 |
 | Then reading the 60 or so doubles | roughly 60 to 100 hours of machine time, if a double costs 2 to 3 times a single |
 
-The rest of this document is the track's working record. The latest
+The rest of this document is the track's working record. Its latest
 readings are in its sections dated 2026-10-03 and 2026-10-06, from "Goal 2's
-readings" to "Learnset checks 2 and 3".
+readings" to "Learnset checks 2 and 3"; the readings of Roark's and
+Gardenia's redesigns since are in `roark-redesign.md` and
+`gardenia-redesign.md`.
 
 ## The brief
 
@@ -170,27 +187,28 @@ simulator's state, and Ian's answers on how the work is to be run.
 
 ## The track
 
-Ian gave this work to a new, dedicated session, the **Scoring Agent**
-(2026-09-30). This document is its status home: it keeps a dated "Where it
-stands" paragraph under this section and adds its findings below, the way the
-balance plan does. Like every track it works on its own branch and the
-Overseer lands it.
-
-It owns the fight simulator, its trainer AI and the perfect-line scorer in
-`tools/oxide/balance/` (Ian, 2026-09-30):
+Ian gave this work to a dedicated session, the **Scoring Agent**, on
+2026-09-30. Since 2026-10-13 no session owns files and the Overseer is the
+one standing session; the scorer's open work is in the tracker. The fight
+simulator, its trainer AI and the scorer are these files in
+`tools/oxide/balance/`; the standing rulings hold `fightsim.py`,
+`fightai.py`, `perfectline.py` and the `pl*.py` modules to Ian's approval
+of each fix:
 
 - `fightsim.py` and `fightai.py`
-- `perfectline.py`, `perfectline.json` and `perfectline_results/`
-- `plscore.py`, `plines.py`, `plkaizo.py`, `plrescore.py`, `plstep3.py`
-  (step 3's runner, added 2026-10-01), `ppairs.py`, `pboxes.py` and
-  `pdoubles.py`
-- their tests: `test_fightsim.py`, `test_plfixes.py`, `test_pline.py` and
-  `test_fightai.py` (the AI routine by routine, added 2026-10-01)
+- `perfectline.py` and `perfectline_results/`
+- the `pl*.py` modules: `plscore.py`, `plplan.py`, `plteam.py`,
+  `plgoal3.py`, `plstudy.py`, `plstep3.py`, `plniche.py`,
+  `pldifficulty.py`, `plthreads.py`, stage 2's `pldata.py`, `plfeat.py`,
+  `plnet.py`, `plvalue.py` and `plgen.py`, and `plteam_test.py`
+- `pboxes.py` and `pdoubles.py`, and the calculator runner `calc.py` with
+  `calc_headless.js`
+- their tests: `test_fightsim.py`, `test_plfixes.py` (with its two JSON
+  fixtures), `test_fightai.py`, `test_plplan.py`, `test_plfeat.py`,
+  `test_plgoal3.py` and `test_difficulty.py`, and the store
+  `difficulty.json`
 
-The rest of `tools/oxide/balance/` stays the balance track's. The balance
-track runs the scorer for its passes and asks this track for any change to
-it. The fightai audit, which the Balance Agent had paused, moves here with the
-files.
+The rest of `tools/oxide/balance/` is the balance passes' tools.
 
 **Ian checks this agent's reasoning** until he is reasonably sure it picks up
 the trends the three-gym run found (2026-09-30). Until he says so, every fight
@@ -201,75 +219,22 @@ the nine ideas below arose on their own. A finding he has not checked stays a
 draft. When the agent pauses for his check, it tells the Overseer first, in
 one line.
 
-**Starting the session.** Ian starts it with this prompt:
-
-```
-You are the Scoring Agent for Platinum Oxide. Read CLAUDE.md, then
-docs/oxide/trainer-scoring-handoff.md, which is your brief and your status
-home. Ian checks your reasoning on every line and every new planning idea
-before you build on it. Start with step 1 of its order of work.
-```
-
-**Where it stands (2026-10-03).** The fightai audit and the known gaps are
-on `oxide` (6ce38e1e26). The work now follows Ian's four goals in order ("The
-order of work", below), on branch `scoring-step3-bar`: the scorer is rebuilt
-as a planner (`plplan.py`) that decides turn by turn by simulating its options
-at real odds (his rulings of 2026-10-01 and 2026-10-02, below). Stage 1 of
-the speed plan is closed (`docs/oxide/scorer-speed-plan.md`), and stage 2's
-networks, learned from the play-out planner's own values, choose for it at
-about a fortieth of the cost. **Goal 1 is passed** (Ian, 2026-10-02, "close
-enough, pass"): the average of three networks (d1b+d2+d3) reads Roark at
-97.7% clean, 100% won, 0.025 faints over 2,000 fights, against our line's
-98.5%, 100%, 0.015 ("The network planner's Roark, for Ian's check"). It also
-meets the Mars 1 bar, and Ian passed its Gardenia line as good enough for
-now. The planner ranks its options by Ian's order, wins first and faints
-second ("Wins first, then faints"). Goal 2 has begun: the rival fights of
-Roark's split are read (Barry 1 is ruled not to count), and goal 2's boxes
-are built from Ian's accepted choices. A network judges easy trainers it
-never saw nearly as well as play-outs, but not a held-out boss or Ace
-Trainer, so goal 3's fights each need labels of their own ("The cost of
-labelling every boss"). For bosses the scorer now chooses its own six: the
-team search, with its two fixes, found our six's equal at Roark and sixes
-better than ours at Mars 1 at 19 and Gardenia ("The team search's first
-test"), and it now ends with Ian's diagnose-and-loop. The learned stand-in
-player failed its test, and budget 64 chooses as well as 192 ("The learned
-stand-in player, and smaller budgets"). Goal 2's four fights with no
-hand-played line are read, on a simulator that now has Magnet Rise,
-Torment, Pain Split and Destiny Bond ("Moves the simulator ignored"):
-Barry 2, Jupiter 1 and Lucas and Dawn 2 are easy, and Fantina is won about
-19 times in 20 at two or three faints ("Goal 2's readings"). **Goal 2 is
-passed** (Ian, 2026-10-03, "Ian's answers (2026-10-03)"): play-out readings
-now run at budget 64 with a five-point tolerance on wins, and the loop
-stands as built. Since then genders, Attract and Cute Charm, Wish, Spite
-and Recycle, and two sweeps of battle-state items, abilities and move
-effects are in ("Moves the simulator ignored", and the second sweep under
-"The Kaizo study's worked examples"); Camouflage waits for Barry 3, in the
-tracker's Scheduled list. Goal 2's fights and the three gyms were read
-again on the fixed simulator, and only Fantina moved, harder by about 0.7
-faints a fight through Drifblim's Unburden ("Goal 2 read again"). The Kaizo
-study's five worked examples are read ("The Kaizo study's worked
-examples"), and so is the Kaizo anchor, Kaizo's six readable bosses of its
-first three splits on goal 2's boxes, which those boxes win 0 to 81 times
-in 100 but for Fantina's second team ("The Kaizo anchor"). By Ian's
-answers of 2026-10-04 a blind six now comes from the box's stronger half,
-never a member held below the cap, and the Jubilife grunts' tag battle is
-in Gardenia's split ("Ian's answers (2026-10-04)"). Goal 3 is held
-until it follows the study's comb, by the tracker's Scheduled list. Every
-reading is 75 fights at real odds and 25 very unlucky. The perfect-line store has been stale since the simulator
-fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
-blind study before it, are entries in the tracker's Scheduled list. The
-Kaizo reader's `perfectline_results/kaizo.json` was never committed; rerun
-`plkaizo.py` rather than copying it.
+**Where it stood on 2026-10-03** is in the dated sections below, goals 1
+and 2 passed among them. The Scoring Agent's start prompt and its dated
+status paragraph were cut in the docs pass of 2026-10-21, since the
+tracker holds the scorer's state; `plkaizo.py` and the perfect-line
+store's rescore were retired with the first scoring system on 2026-10-13.
 
 ## The job
 
-The scorer's direction is already set in the balance plan
-(`docs/oxide/balance-plan.md`, its opening section on the perfect-line
-scorer). A fight reads as the clean-win rate of the best line found, with that
-line's mean deaths and wipe chance beside it. Bosses are read with a planned
-team, ordinary trainers blind. The boss target waits until the scorer reads
-Roark sensibly. These three fights are the first bosses with hand-checked
-answers.
+The scorer's direction was first set in the balance plan
+(`docs/oxide/balance-plan.md`); the standing rulings hold it today. A
+fight's lines are ranked by win rate first and average faints second, with
+the clean rate reported beside them (Ian, 2026-10-02, replacing the
+clean-win rate of the first brief). Bosses are read with a planned team,
+ordinary trainers blind. The boss targets were set on 2026-10-04, once the
+scorer read Roark sensibly (the standing rulings). These three fights are
+the first bosses with hand-checked answers.
 
 Make the scorer find lines at least as good as the hand-played ones, on the
 same box, by planning in the simulator rather than by rules written for these
@@ -510,6 +475,8 @@ it looked one decision ahead.
 
 ## The simulator
 
+This section keeps the fixes of 2026-09-30 and 2026-10-01; every fix since
+2026-10-14 is recorded in `docs/oxide/simulator-gaps.md`, batch by batch.
 The fixes from this work are on `oxide` since 153d11de2, with tests in
 `tools/oxide/balance/test_plfixes.py` (24 of 24) and `test_fightsim.py`
 (17 of 17). The last five were:
@@ -2388,12 +2355,14 @@ pools, since the screen takes one attack a type.
 
 `plgoal3.py` reads goal 3's 80 single battles (39 bosses, 41 Ace Trainers)
 from an extracted copy of step 12's commit, on the rules the summary lists
-and Ian's answers of 2026-10-07 set; `test_plgoal3` checks them (14 of 14).
-The run goes box by box (every fight's first box, then every fight's
-second), two jobs side by side so that one job's network training on the
-GPU overlaps the other's play-outs, and each box's result is written as it
-finishes, so a stopped run resumes where it stopped and a run stopped early
-still orders the whole game on fewer boxes. `--store` then pools each
+and Ian's answers of 2026-10-07 set; `test_plgoal3` checks them. The run
+goes fight by fight in play order, since a seed's holds carry from fight
+to fight (2026-10-20; it went box by box before): a job starts once every
+earlier fight of its seed is done, the seeds side by side and a boss's
+later boxes a step behind its first, two jobs at once so that one job's
+network training on the GPU overlaps the other's play-outs, and each
+box's result is written as it finishes, so a stopped run resumes where it stopped and a run stopped early
+has read the early game on every box. `--store` then pools each
 fight's boxes into the difficulty store and writes a summary with each
 box's winning six.
 
@@ -2416,7 +2385,7 @@ Eevee, Budew and Snom never met their rocks (goal 2's boxes and the
 learnset checks shared this). Now a member takes the evolution its
 personality, gender or stats give, and the place evolutions it has
 reached; where several are open (Eevee's) a coin fixed per member picks
-one, so the five boxes spread over them. Stones, held items, trades,
+one, so the boxes spread over them. Stones, held items, trades,
 friendship and Shedinja stay out, as before. A box whose starter is
 Scorbunny met the first rival team, not the one for the Scorbunny player
 (the `_CHIMCHAR` slot), and Lucas and Dawn's team was picked by hand; both
@@ -2574,7 +2543,8 @@ enough for the last of them.
    it looks, how it values a position, how it reads the AI), never into a
    behaviour named for an idea. Stage 1 of the speed plan, which may not
    change any answer, serves this step.
-2. **The three-gym split, through Fantina at cap 33,** under the three-gym
+2. **The three-gym split, through Fantina at cap 33** (passed 2026-10-03,
+   "Ian's answers (2026-10-03)"), under the three-gym
    run's rules: the box rolled area by area, one capture per location name,
    dupes re-rolled, honey trees counted, the two trades, only the items
    reachable by each fight, TMs out until the TM pass, and evolutions held for
@@ -2600,6 +2570,9 @@ enough for the last of them.
    plays not to lose any. The scorer keeps the clean-win rate as its
    headline. It reports wins with losses beside it, along with what was
    lost, and a planned sacrifice counts as a cost, not as a failure.
+   (Superseded on 2026-10-02: lines are ranked by win rate first and
+   average faints second, and the clean rate is reported, not optimised;
+   "Wins first, then faints", above.)
 3. **The box model for bosses:** a spread of boxes. The point is that a
    fight's answers must not narrow to one Pokemon. Read each boss over many
    rolled boxes, and report how the best lines spread across them. Flag a

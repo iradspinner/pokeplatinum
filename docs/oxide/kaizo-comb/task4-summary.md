@@ -41,7 +41,7 @@ battles and the restaurant's nine pairs are not readable yet.
 | Wake | Three teams set weather with an ability, one per route, so it lasts the whole fight | Accept, or use the weather moves |
 | Byron | Ninja Boy Brennan's Wonder Guard Shedinja; Swimmer Vincent's rain team reads 93 | Accept |
 | HQ | Grunts and scientists bring two Pokemon, as today's files do, below the dial's four | Accept (three each read 8 to 13 won as sections) |
-| Galactic | Read Somnu as a boss outside the Mt. Coronet section; Tyche and Hermes lose today's Explosions | Accept both |
+| Galactic | Read Somnu as a boss outside the Mt. Coronet section; Tyche and Hermes lose today's Explosions | Accept both. Superseded on 2026-10-13: the named Galactic fights are redesigned with the Overseer, so Tyche's and Hermes's drafts stay out of the landing (Ian's rule, `resume-notes.md`) |
 
 ## Rulings applied the same evening
 

@@ -397,10 +397,11 @@ Listed so the next change can be planned rather than discovered:
   grows by 4 bytes for each 32 more (`TM_LEARNSET_MASKS`), which is not save
   data but moves `pl_personal.narc`'s record size, and `verify_narcs.py`'s
   `PERSONAL_NEW_SIZE` would have to follow it
-- The normal block, from the 30 PC boxes on (below). It may grow by at most
-  3,100 bytes before the main save reaches the battle log's sector 44, and by
-  3,684 before the log's RAM copy no longer fits the image's tail; the TM
-  pass's 4 bytes a TM are far inside both. `tools/oxide/save_budget.py`
+- The normal block, from the 30 PC boxes on (above). It may grow by at most
+  3,092 bytes before the main save reaches the battle log's sector 44, and by
+  3,676 before the log's RAM copy no longer fits the image's tail
+  (`save_budget.py` on the build of 2026-10-21); the TM pass's 4 bytes a TM
+  are far inside both. `tools/oxide/save_budget.py`
   measures both after any change. Past that, raise `SAVE_PAGE_MAX` and move
   the log up with it; `SAVE_PAGE_MAX` cannot pass 52, because the extra save
   table runs from `SAVE_PAGE_MAX + 0` to `+ 11` and would reach the backup

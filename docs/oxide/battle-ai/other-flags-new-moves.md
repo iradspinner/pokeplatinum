@@ -6,6 +6,8 @@ It acts only once trainers carry these moves. No trainer in the tree has any of 
 
 A move counts as learnable when any species' or form's level, TM, tutor or egg list has it, read by `tools/oxide/move_pool_survey.py` on `balance-tm-pass` after the learnset rewrite: 165 moves, against the Expert pass's 156. Of the 165, 27 are not named in the Expert pass's list, and 18 moves it names are no longer learnable; the 27 are listed in the section for Ian, since Expert itself was left alone. The nearest Platinum effect is the one the Expert pass and element 6 chose wherever they chose one, read from Expert's dispatch, so that the scoring track's simulator can use one mapping for every flag. The appendix gives it for all 165. A flag that lists effects routes every move on an added effect, learnable or not; none of the 20 added effects carries a move that is not learnable.
 
+The 165 are of 2026-10-07. 65 more are learnable on 2026-10-21 (229 in all, read from `res/pokemon`'s lists), after later learnset changes among them the dead-move changes of 2026-10-14 and the signature-move homes of 2026-10-21, and no pass has routed them here since ([expert-new-moves.md](expert-new-moves.md) says the same for Expert).
+
 | Flag | Newly routed | Already reached, by a Platinum effect or an earlier pass | Commit |
 |---|---|---|---|
 | Evaluate Attack | Final Gambit | Accelerock | 05f668d029 |

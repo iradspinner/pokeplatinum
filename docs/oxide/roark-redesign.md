@@ -54,4 +54,4 @@ Where the faints fell, over the three boxes: Cranidos 171, Lileep 169, Naclstack
 
 ## The decision
 
-Ian accepted the uncut team with Recover on 2026-10-13 as the right difficulty for Roark, and it is in the game. Gardenia's redesign comes next, stage by stage, starting at the evidence stage.
+Ian accepted the uncut team with Recover on 2026-10-13 as the right difficulty for Roark, and it is in the game. Gardenia's redesign followed, and her team was locked in the same day (`gardenia-redesign.md`).

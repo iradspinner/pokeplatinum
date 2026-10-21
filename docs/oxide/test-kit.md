@@ -13,17 +13,18 @@ make testkit                               # writes build-testkit/pokeplatinum.u
 ```
 
 Build it from the same pushed commit as the ordinary ROM, and copy it into
-`~/oxide-playtest` as `pokeplatinum-oxide-testkit-<commit>.nds` for Ian. The
-ordinary ROM of that commit is the one checked against GitHub's SHA-1, since
-GitHub builds only the ordinary ROM. The private builder that once built the
-test kit on GitHub was retired on 2026-10-01.
+`~/oxide-playtest` as `pokeplatinum-oxide-testkit-<commit>.nds` for Ian.
+GitHub builds only the ordinary ROM, so only its SHA-1 can be compared by
+hand, and only if a build looks wrong (Ian, 2026-10-13: the gate no longer
+compares it). The private builder that once built the test kit on GitHub
+was retired on 2026-10-01.
 
 ## Why the ROM of record cannot change
 
 The kit is a meson option, `oxide_testkit`, off by default. Meson remembers an
 option in the build folder once set, so `make testkit` sets it up in its own
-folder, `build-testkit/`, and `build/` never carries it. GitHub's workflow and
-the builder's ordinary builds run `make rom`, so the ROM whose hash they print
+folder, `build-testkit/`, and `build/` never carries it. GitHub's workflow
+runs `make rom`, so the ROM whose hash it prints
 is the same with or without the kit's source in the tree. That is checked by
 building `make rom` on the kit's branch and matching the hash GitHub printed
 for its base commit.
@@ -35,6 +36,7 @@ With the option on:
 | The NPC's script, at the end of `scripts_twinleaf_town_player_house_2f.s` | an `#ifdef OXIDE_TESTKIT` block; field scripts run through the C preprocessor, and `make_script_bin.sh --define` passes the symbol |
 | The NPC's object event and its text | fragments in `res/testkit/`, appended to the bedroom's real events file and text bank at build time by `tools/oxide/testkit_merge.py`, so the kit never keeps a copy that could drift |
 | `TestKitSetPartyMonForm`, `TestKitSetPartyMonAbility` and `TestKitStartWildBattle`, the kit's three script commands | `#ifdef` blocks at the end of `include/data/scripts/scrcmd.h` and `asm/macros/scrcmd.inc`, and in `src/scrcmd_party.c`, `src/scrcmd.c`, `src/encounter.c` and `include/encounter.h`, so no existing opcode moves |
+| Sylveon's stand-in evolution move, Moonblast, for the kit's Eevee | an `#ifdef` block in `src/pokemon.c` |
 
 ## What the NPC hands out
 

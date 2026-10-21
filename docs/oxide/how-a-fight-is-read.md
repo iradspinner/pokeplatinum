@@ -44,6 +44,14 @@ improved: the enemies that made it lose Pokemon point to the box members
 that answer them, and sixes built with those are read too. The best six by
 wins, then faints, is the boss's six.
 
+**The box.** Since 2026-10-15 each box is one run through the game, each
+capture area rolled once at the run's first visit. A boss's box also offers
+each pre-evolution held back wherever holding it reaches a move sooner than
+its evolution does, or one its evolution never gets, and a catch's versions
+share one place in a six. Since 2026-10-21 each finalist is also played with
+every held version of its members, keeping whichever wins more. The rules are
+in the standing rulings, and the machinery in `plgoal3.py` and `plteam.py`.
+
 **The reading.** A fight is read on 100 simulated fights: 75 at real odds and
 25 very unlucky, where every crit and status check rolls twice and keeps
 the result worse for the player. It gives three numbers: the win rate (won
@@ -54,7 +62,9 @@ fight in 25 moves a rate by four points, so differences of a few points
 between readings are noise.
 
 **What the numbers look like.** Readings on the simulator of 2026-10-03,
-real odds, with the six the scorer chose:
+real odds, with the six the scorer chose (before the Roark and Gardenia
+redesigns and every simulator fix since, so they show the scale of the
+numbers, not today's fights):
 
 | Fight | Won | Faints |
 |---|---|---|
@@ -70,9 +80,8 @@ Kaizo's own bosses of the same splits, read on the same boxes, are won 0 to
 81% of the time (Barry 2 0%, Roark 81%, Gardenia 24%, Jupiter 80%,
 Fantina 40%).
 
-**What it does not yet model.** Double battles' AI partners; Gravity,
-Foresight, Embargo and Judgment's plate; a two-to-five-hit move counts as
-three hits; Baton Pass passes nothing; Camouflage and Secret Power's
-secondary effect need the battle's terrain; Smack Down does not ground. The
-learned judge misreads hard fights badly, so it only shortlists; every
-number above comes from the full scorer.
+**What it does not yet model.** Double and tag battles, which no reading
+reads until a doubles planner is built. Every other gap `simulator-gaps.md`
+listed is fixed, or left as it is by Ian's choice. The learned judge misreads
+hard fights badly, so it only shortlists; every number above comes from the
+full scorer.

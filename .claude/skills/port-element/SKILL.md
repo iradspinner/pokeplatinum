@@ -79,8 +79,9 @@ are the house style.
   The move-effects mask is now full, so a later-games volatile state goes in
   `BattleMon.oxideFlags` (the old `padding007A`, `OXIDE_MON_FLAG_*` in
   `constants/battle/moves.h`, reached by scripts as `BATTLEMON_OXIDE_FLAGS`):
-  bits 0 to 4 are taken (Salt Cure, Octolock, Sky Drop's hold and holder),
-  and the word clears when the battler leaves the field. A per-action flag
+  bits 0 to 6 are taken (Salt Cure, Octolock, Sky Drop's hold and holder,
+  Throat Chop's two turns), and the word clears when the battler leaves the
+  field. A per-action flag
   goes in `SelfTurnFlags.statusFlags` (bit 4, Mind Blown's cost). Field-wide
   state with a counter has `BattleContext`'s old padding: `magicRoomTurns`
   (was `padding0060`, script variable `BTLVAR_MAGIC_ROOM_TURNS`) and
@@ -198,8 +199,9 @@ are the house style.
 
 ## Things already decided, so do not re-decide them
 
-- Species ids are dense and appended after Arceus (494 to 652, pick-list
-  `dex_pos` order); `docs/oxide/species-id-scheme.md` and `species-id-map.csv`.
+- Species ids are dense and appended after Arceus (494 to 652 in pick-list
+  `dex_pos` order, then Meloetta at 653); `docs/oxide/species-id-scheme.md`
+  and `species-id-map.csv`.
 - Ability ids equal the donor's; the whole 319-entry table is imported.
 - Fairy is type 18 here and type 9 (the dead Mystery slot) in the donor.
 - Save compatibility with vanilla and PKHeX is not a goal; breaking it is fine

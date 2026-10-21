@@ -4,9 +4,9 @@ Scoping note, 2026-09-25, from the encounter track at Ian's request. Ian wants
 the Battle Zone (the Fight Area, Routes 225 to 230, the Survival Area, the
 Resort Area and Stark Mountain) open before the League, as Platinum Kaizo has
 it, for the fights and the captures it adds. Ian ruled on the three open
-questions the same day (below). The main and encounter tracks' parts are
-done and merged; the balance track's re-levelling is what is left, in the
-tracker's Battle Zone entry.
+questions the same day (below). Every part is done and merged, the trainers'
+re-levelling included (the table below has today's levels); the tracker's
+Battle Zone entry keeps what is left.
 
 ## Current state (2026-09-27; read this first)
 
@@ -69,10 +69,10 @@ badges, are the likely needs there.
 
 ## What is in it
 
-| | Count | Levels now |
+| | Count | Levels (aces; 73 to 78 before the re-levelling) |
 |---|---|---|
-| Route trainers (Routes 225 to 230, Stark Mountain) | 52 | 73 to 78, a few on Route 228 from 55 |
-| Scripted fights: Volkner and Flint's tag battle at the Fight Area, Buck on Route 227, Mars and Jupiter at Stark Mountain | 5 trainers | 74 to 78 |
+| Route trainers (Routes 225 to 230, Stark Mountain) | 52 | 55 to 64 (2026-10-21) |
+| Scripted fights: Volkner and Flint's tag battle at the Fight Area, Buck on Route 227, Mars and Jupiter at Stark Mountain | 5 trainers | Volkner and Flint 69, Buck 60, Mars and Jupiter 65 (2026-10-21) |
 | Battleground rematches (Buck, Cheryl, Riley, Marley, Mira, the Frontier Brains, the rival) | about 20 | 59 to 90 |
 | Wild tables (Routes 225 to 230, the Resort Area, Stark Mountain's three) | 10 tables, 8 capture areas | land 47 to 55, water 22 to 60 |
 
@@ -93,9 +93,9 @@ Main track: done on `main-scripts` and merged, to the placement after Galactic
 HQ (see "Current state"); the tracker archive's Battle Zone entry has each
 sub-item with its commit.
 
-Balance track: the caps and the re-levelling, in the tracker's Battle Zone
-entry, which has the current numbers (this plan's were for a Galactic cap of
-64).
+Balance track: the caps and the re-levelling, done (the table above); the
+tracker's Battle Zone entry has the current caps (this plan's were for a
+Galactic cap of 64).
 
 Encounter track (this one):
 

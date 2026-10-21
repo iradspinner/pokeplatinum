@@ -119,8 +119,10 @@ is listed for Ian.
   2026-10-06, relayed by the balance track; it replaces the rule that moves
   later games give only by TM, tutor or egg wait for the TM pass). Place only
   moves whose effect the engine has been checked to run: Upper Hand, Shell
-  Trap and Burning Jealousy run as plain hits or always burn (found
-  2026-10-06) and stay off player lists until the move rework job fixes them. Judge a move by
+  Trap and Burning Jealousy ran as plain hits or always burned (found
+  2026-10-06); the move rework gave each its own effect, and each stays off
+  player lists until its in-game check passes (test-kit sets 81 to 83; Ian,
+  2026-10-20). Judge a move by
   what Oxide's engine does with it (the move-pool survey's `engine_status`),
   not by whether the survey lists it. A move missing only a doubles effect
   (Flame Burst) may be placed. Synchronoise and the other broken ones stay
@@ -185,7 +187,7 @@ is listed for Ian.
   read any change against the speed tiers of the player's likely answers. When a fight reads too hard, change the player's move pools first: they
   are sparse in interesting options and lack many modern moves. The scorer's
   goals, the Kaizo study's comb and the full readings come in the order the
-  tracker's Scoring Agent entry and Scheduled list give.
+  tracker's scorer items and Scheduled list give.
 - **Every trainer team is set by hand** (Ian, 2026-09-27): in the finished
   ROM no trainer keeps default moves, so default movesets carry no weight in
   any argument about learnsets or level-1 order.

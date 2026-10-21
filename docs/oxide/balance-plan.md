@@ -2,9 +2,9 @@
 
 > **Reference since 2026-10-13.** Open work for the balance track lives in the tracker's first page and its open work (`docs/oxide/tracker.md`; Ian made it the one home of open work). This doc keeps how the balance track works and its history; its own lists of next steps are no longer kept up to date.
 
-> **The first scoring system's code was retired on 2026-10-13** (Ian's decision that day). B2's structural metrics, B3's pressure scores and B3b's reference seats, B4's level curve and split shape, B5's calibration, B6's audit with its levers and pairs, the team builder's estimate, the rescore and their stored results left `tools/oxide/balance/`, with the dead experiments, and the OxiDex lost the estimate and the old fight scale. The perfect-line scorer (`plgoal3.py` and the modules it runs, with Ian's difficulty number in `pldifficulty.py`) is the one measure of a fight. The calculator runner the scorer uses moved to `calc.py`, the census's trainer placement to `required.py`, and what the player can own and the wild slots to `pool.py`. The sections below describe the retired tools as they were; the last commit that has all of them, the OxiDex's estimate included, is `af6c3f6f64` (`git show af6c3f6f64:tools/oxide/balance/<file>`).
+> **The first scoring system's code was retired on 2026-10-13** (Ian's decision that day). B2's structural metrics, B3's pressure scores and B3b's reference seats, B4's level curve and split shape, B5's calibration, B6's audit with its levers and pairs, the team builder's estimate, the rescore and their stored results left `tools/oxide/balance/`, with the dead experiments (the learnset study's `learngen.py`, `learnwild.py`, `kaizoteams.py` and `kaizo_docs.py` among them), and the OxiDex lost the estimate and the old fight scale. The perfect-line scorer (`plgoal3.py` and the modules it runs, with Ian's difficulty number in `pldifficulty.py`) is the one measure of a fight. The calculator runner the scorer uses moved to `calc.py`, the census's trainer placement to `required.py`, and what the player can own and the wild slots to `pool.py`. The sections below describe the retired tools as they were; the last commit that has all of them, the OxiDex's estimate included, is `af6c3f6f64` (`git show af6c3f6f64:tools/oxide/balance/<file>`).
 
-This is the balance track's status home. Ian put this session in charge of
+This was the balance track's status home until 2026-10-13. Ian put this session in charge of
 balance on 2026-09-22, once element 4 had put most moves and species in the
 tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
@@ -22,7 +22,8 @@ data, with common sense, never turned into a rule or a check unless Ian
 asks for one. The standing rulings hold the whole of it.
 
 **Outcome.** The learnset rewrite landed on `oxide` (085f72211). Step 6,
-the TM pass, is built on `balance-tm-pass`:
+the TM pass, was built on `balance-tm-pass` and landed with the combined
+branch at 787c581c8 (2026-10-07; `alpha-readiness.md`, steps 6 to 10):
 - **TM list.** Ian approved it, 100 TMs, frozen with their numbers.
 - **Reward table.** It places every TM copy and element 7's and the Game
   Corner's 24 held items once each, spread across the splits by their
@@ -40,40 +41,10 @@ the TM pass, is built on `balance-tm-pass`:
 The reports are `docs/oxide/reward-table.md` and
 `docs/oxide/early-kits-read.md`.
 
-**Where the track stopped (2026-10-07, for the night).** The TM pass,
-step 12 (the Kaizo comb's teams, with Ian's boss levels), the starters'
-level 5 moves as data and the stale-score warning are all on `oxide`
-(623dae76a). Nothing of this track is uncommitted. The starter data
-leaves 179 scores stale, which waits for step 15's milestone reading.
-The track is idle until the Overseer sends the next job.
-
-**Where it stood before landing (2026-10-07).** The branch had merged
-the rework job (ab8922caf2), the calculator branch (c5aed2a7bf), the
-scoring branch (4042d8aecf) and `main-tm-items` with step 10's apply
-(d69dc80362), and it builds. The rescore recomputed all 1,031 stored
-scores, and its second pass agreed on every one. The readings moved
-little: each B6 measure moves under 0.005 on average across the 426
-trainers scored before.
-- **New-TM leak fixed.** The generator had read old TM numbers through
-  the new item records, which gave 136 species 203 level-up entries
-  linked only by the new TMs (Block from Substitute's TM90). It now reads
-  the records of the same commit, and no entry's only link is the new TM
-  list. The same fix ends TM93 and TM94's double placement.
-- **Multi-hit swaps.** Ian's ruling (one two-to-five-hit move per type)
-  is in the generator; each learner's stand-in is in the 2026-10-07
-  report to the Overseer.
-- **TM read-back.** `tmcompat check` reads every species' TM bits from
-  the built ROM against its JSON through `tm-list.tsv`: 653 species, 0
-  failures. The gate runs it.
-- **Census.** It reads the TM pass's two new sources: trainer rewards in
-  `scripts_battles.s`, at the split the trainer is first reached, and the
-  badge-gated shop TMs in `sold_tms.h`, at their badge count's split.
-  test_b1 checks every TM and HM on the list has a source.
-
-**Next steps.** The Overseer lands the branch. Then step 12, the Kaizo
-comb's teams in `res/trainers`, and its smaller rescore (40 minutes to an
-hour). No boss is read until the TM pass has landed (Ian, 2026-10-06;
-`alpha-readiness.md`, step 15).
+The track's status notes of 2026-10-07 (where it stopped, the state
+before landing, its next steps) are history; the fixes they record live
+in the tools (`learnrewrite.py`, `tmcompat check` in the gate, the census
+in `test_b1`), and the last copy is at cb8a751d01.
 
 **Ian's rulings of 2026-10-07 (relayed by the Overseer).**
 - **The table is frozen.** The reward table keeps the timing Ian
@@ -85,8 +56,8 @@ hour). No boss is read until the TM pass has landed (Ian, 2026-10-06;
   Galactic's split); Dig a second reward from Hiker Theodore (Route 206).
   The two balls Outrage and Dig leave (Galactic HQ 1F, Amity Square) give
   a Sitrus and a Lum Berry, as the table's other emptied places do.
-- **The gauntlets follow the built code** (`src/gauntlet.c` on
-  `main-gauntlets`): ten sections. Victory Road's 2F and B1F are detours
+- **The gauntlets follow the built code** (`src/gauntlet.c`,
+  on `oxide` since 787c581c8): ten sections. Victory Road's 2F and B1F are detours
   inside 1F's locks, not sections (Ian's ruling of 2026-09-29, restated),
   so their eight trainers are optional. 1F's near half holds Bryce, Hana
   and Mariah, and its far half Miles, Clinton and Edgar.
@@ -123,93 +94,31 @@ type's attacks, physical and special side by side:
 - **Darkrai** keeps Dark Void on its egg list for Officer Somnu, his call
   for one move.
 
-**Ian's exam verdicts (2026-10-06, relayed by the Overseer)**, now rules
-of the generator and the checks: a strong move below a catch level moves
-to it; branches of one line are close in worth where the player chooses
-(check 24); a trainer-only move never lands in a wild catch's four (it
-goes to the egg list); the Eeveelutions are the exception to the stone
-rule and learn from 20; Haze and Memento are terrible; anything under 90%
-accuracy is hard to justify. The ceilings bind only the moves the
-generator adds or moves; Oxide's existing entries stay (the Overseer's
-correction, the same day).
-
-**Ian's ruling of 2026-10-06 for this track.** Additions to a level-up list
-come from the whole pool of moves Oxide has; later games' learnsets
-(hg-engine's, or looked up) are inspiration, not pick lists. For level-up
-lists it supersedes the rule of 2026-09-27 under which only later games'
-level-up moves came in and TM, tutor and egg moves waited for the TM pass.
-He accepted two narrowings for alpha 1 the same day (relayed by the
-Overseer): an added status move must already be linked to the line, and an
-unlinked attack only fills a gap a rule asks for; and added moves keep
-under a per-split ceiling, which sets aside his answer 8 of 2026-09-27 (no
-ceiling on coverage power) for this pass.
+**Ian's exam verdicts and his ruling on the move pool (2026-10-06)** are
+in the standing rulings ("A level-up list may take any working move" and
+"From the learnset exam"), with Haze and Memento rated terrible in
+`learnset-insights.md`'s tiers; `learnset-rewrite.md` says how the
+generator applies them. The ceilings bind only the moves the generator
+adds or moves; Oxide's existing entries stay (the Overseer's correction,
+the same day).
 
 **Facts the learnset rewrite met (2026-10-06).** A level-up list holds at
 most 34 entries, level-1 entries included (`MAX_LEARNSET_ENTRIES` in
 `include/struct_defs/species.h`; the build refuses a longer one), so a
 generator budgets each list. The pool still reads three catches wrongly,
 which `learncheck.py` corrects only for itself so the stored scores do not
-move: Amity Square's table has no map header, Cynthia's Togepi egg comes
+move: Amity Square's table had no map header, Cynthia's Togepi egg comes
 in Fantina's split, and the fossils, which the pool leaves out, come in
-Fantina's split too (Ian, 2026-09-30); the census owes all three at the
-next rescore. And `tools/oxide/balance/learngen.py` is the learnset
-study's part 3, imported by `learnwild.py` and `kaizoteams.py`; the
-rewrite's generator once overwrote it and is `learnrewrite.py`.
+Fantina's split too (Ian, 2026-09-30). The tracker's census item carries
+the last two; Amity's table has been in use since 506b11dbec. The learnset
+study's part 3 (`learngen.py`, with `learnwild.py` and `kaizoteams.py`) was
+deleted on 2026-10-13 with the dead experiments; the rewrite's generator is
+`learnrewrite.py`.
 
-**Where it stood (2026-09-29).** Every score is rescored on the combined
-landing branch (`balance-combined-rescore`), and two passes agreed on all
-1,030. The census leaves out the test kit, the pool takes the encounter
-tool's scripted sources it lacked (the fossils in Fantina's split, Acuity
-Cavern's draw in Volkner's), and an item counts from the split the way to
-it opens: Surf, the other field moves, the bike, its ramp jumps and
-scripted arrivals (the stone correction under the item pass). Doubles
-against two trainers at once are rescore units of their own (56 pairs),
-and Somnu and Moira at Lake Verity are a story fight (6.2 on Ian's
-scale). No story fight moved by 0.3 or more. Then (`balance-retypes-rescore`)
-Ian's 17 retypes and three stat slips, field moves on their badge alone,
-and the last weather abilities moved to the hidden slot, all rescored and
-verified: Volkner's fight reads harder with the Electric/Fighting
-Electivire and Electric/Dark Luxray, and the rank correlation with Ian's
-ratings is -0.57. Then (`balance-buffs`) the buff review's decisions:
-the sheet's slips, section A's junk-ability fixes, section B, and Ian's
-second answers (Wormadam's Overcoat, Armaldo's abilities, Donphan,
-Tangela, Politoed and Rotom's stats, and Kaizo's numbers for the species
-the player cannot catch). The variants were scored in
-[the review's scores](reviews/buff-review/scores.md) (no single change
-moved a story fight by more than 0.1), and Ian took sections C and D,
-Houndoom's line (Houndour evolving at 27) and Talonflame's Gale Wings,
-with Haunter and Emolga approved by name as flagged stages; Glaceon's Ice
-Scales waits for testing in play. His last answers: one fix each for the
-lines whose hidden ability repeated a regular one, Kaizo's Gallade,
-Drought hidden for the Slugma line, and halfway buffs for Articuno and
-Suicune. All of it is rescored and verified. Next: learnset v3 on these
-stats, then the TM pass.
-
-**Where it stood (2026-09-27).** Test.nds is Oxide's base ROM, with Ian's
-late boss updates and his sheet's testing teams as the baseline, merged.
-The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), the Battle
-Zone has come down 18 levels to fit them, and Saturn 2 is scored under his
-permanent Trick Room. Done: B1a, B1b, B1d, B1e, B2, B3a, B3b and B4's
-tools. B5 has its readings, fits to the references and to Ian's own
-ratings of sixteen fights, and his explanations of the fights the scores
-misread: safe switch-ins read both best ("What B3b and B5 found", "What
-Ian's ratings showed"). Every score is on the combined branch of
-2026-09-27 (the calculator's items 22 and 23, the friendship and trade
-evolutions, the new grass tables and sources, Heatran out of Stark
-Mountain, the Kaizo move data and element 4's partly working moves, the
-Sinistea split, the stone gate), and rescores are incremental. The encounter tool's team
-builder scores a team through `teamscore.py`. B6 is done ("What B6 found"): the bottom band
-is the one- and two-Pokemon ordinary trainers, the hyper-offense is six
-fights with their damage spread across each team, and of the player's
-levers only caps and map weather move the scores much. The Barry split
-(cap 71) and four fixes to the player's side are scored ("The player's
-side fixed, and the Barry split"). Next: the design
-passes, starting with the learnset study (design pass 3). Its parts 1 and
-2 have found Kaizo's patterns as rules ("What parts 1 and 2 found"), and
-the generator waits on Ian's word on them. The scores weigh the stone
-plan now and read Ian's three Lucas and Dawn fights as story fights, and
-the gauntlet proposal (design pass 5) waits on his choice of areas and
-two questions.
+The status notes of 2026-09-27 and 2026-09-29 (the rescores of the
+combined, retypes and buffs branches, and the B1 to B6 milestones) are
+history; the last copy is at cb8a751d01, and the buff review's decisions
+are in `reviews/buff-review/`.
 
 ## The target
 
@@ -244,8 +153,7 @@ he can make a fight when he designs one. His ratings of sixteen fights
 **These goals gate two legendary encounters** (Ian, 2026-09-27). Valor
 Cavern and Stark Mountain hold no legendary until the difficulty has risen
 enough that more legendary-tier encounters would not inflate the quality
-of the player's box. When B6 or a later rescore shows the difficulty where
-Ian wants it, this track says so, and the question goes back to him.
+of the player's box. The tracker holds when the question goes back to him.
 
 Ian named three more comparison points without a number: **Pokemon Odyssey**
 as a good match for the target, though it is all double battles with many
@@ -1155,8 +1063,9 @@ content in is the trainer pass's job.
 
 **The legendary gate** (Ian, 2026-09-27): not yet. Nothing here has moved
 the difficulty; the bottom band and the hyper-offense are as the base ROM
-left them, so the question of Valor Cavern and Stark Mountain stays
-closed until the trainer pass lands and is rescored.
+left them, so the question of Valor Cavern and Stark Mountain stayed
+closed (B6's reading of 2026-09-27). The question now waits for step 15's
+readings, and the tracker holds it.
 
 ## The player's side fixed, and the Barry split (2026-09-27)
 
@@ -1462,7 +1371,13 @@ report says so. Ian's playtests remain the final gate. The scores aim the
 changes and catch outliers, and they are recalibrated when Ian's feel
 disagrees with them.
 
-## The scoring rebuild (design of 2026-09-27, under way)
+## The scoring rebuild (design of 2026-09-27)
+
+The rebuild became the perfect-line scorer, whose reference is
+`trainer-scoring-handoff.md` and `how-a-fight-is-read.md`; this section is
+its first design. The two questions for Ian at its end are answered: the
+player uses no items in battle, and an ordinary trainer is read blind from
+the stronger half of the box (the standing rulings).
 
 The headline score is a damage race that cannot see status or setup, so it
 read the Galactic HQ B2F grunt above Officer Somnu's sleep team. Ian
@@ -1587,6 +1502,10 @@ Ian's ratings of sixteen fights (open question 1 until 2026-09-25) are in
 on 2026-09-27 (design pass 2).
 
 ## Order of work
+
+A record of the track's work to 2026-10-07. An open box below is not open
+work: the tracker holds what is open, and `alpha-readiness.md` the steps
+that finished the TM pass.
 
 - [x] **B0, scoping** (2026-09-22). Ian's answers are in, and the reference
   data is pinned.
@@ -2184,8 +2103,8 @@ lands, and each change is re-scored as it lands.
    The proposal turns most delays into a move the evolved stage learns a
    split later, not never: Kaizo keeps many more exclusive ones.
 
-   (b) Wild movesets (`docs/oxide/wild-movesets.md` lists every flagged
-   slot). A wild Pokemon knows the last four level-up moves at or below its
+   (b) Wild movesets (its table, `wild-movesets.md`, came from
+   `learnwild.py`, deleted on 2026-10-13; the last copy is at cb8a751d01). A wild Pokemon knows the last four level-up moves at or below its
    level and picks at random, so a move that ends the encounter (Roar,
    Whirlwind, Teleport, Self-Destruct, Explosion, Memento; Kaizo's six
    hazards, and four more) comes up a quarter of the time when it is one of

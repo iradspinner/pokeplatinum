@@ -192,7 +192,7 @@ read, so they are written here too. Each is a standing instruction.
   which matter in each fight. Since the screen weighs damage and speed alone,
   each of the race's finalists is also played with every held version of
   its members, and the simulator keeps whichever wins more (Ian,
-  2026-10-21, trying it "to see how it plays out"). This comes in before the readings resume. So that a hold's cost counts, each box seed is one run through
+  2026-10-21, trying it "to see how it plays out"; landed on 2026-10-21). So that a hold's cost counts, each box seed is one run through
   the game, every fight's box that run's catches by its split, each area
   rolled once at the run's first visit among the options open then, so
   boxes keep today's sizes and nobody waits for Surf or a rod; and a
@@ -313,9 +313,10 @@ read, so they are written here too. Each is a standing instruction.
   Protect, Double Team, the four weather moves, Thief, Snatch, Skill Swap,
   Focus Punch, Substitute, Dream Eater, Swords Dance and Embargo; Toxic,
   Will-O-Wisp and status of Thunder Wave's reliability may be TMs only as
-  single copies. Once field moves work on the badge alone, the HMs become
-  single-use TMs too, and Fly, Strength, Defog and Rock Climb need buffs to
-  earn a place. Egg move lists serve only as trainer teams' palette: a
+  single copies. Since field moves work on the badge alone (2026-09-29), the
+  HMs are single-use TMs too, less Cut and Rock Smash (the TM list of
+  2026-10-06), and Fly, Strength, Defog and Rock Climb need buffs to earn a
+  place. Egg move lists serve only as trainer teams' palette: a
   nuzlocke has no breeding.
 - A change that moves what the save stores costs Ian a fresh start, not a
   save converter (Ian, 2026-09-28, on element 7's bigger Bag): he starts a

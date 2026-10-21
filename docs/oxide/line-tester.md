@@ -1,6 +1,6 @@
 # The line tester
 
-A Battle tab for the OxiDex, planned on 2026-10-14; version 1 landed at 5b14152df on 2026-10-21. Ian sets up a party, presses Fight against a trainer's team, and plays his hand-made line turn by turn on the same simulator and trainer AI the readings use, seeing the AI's odds for every move and every way each turn can go. When it is built: the tracker's Scheduled list holds it, once every simulator fix has landed.
+A Battle tab for the OxiDex, planned on 2026-10-14; version 1 landed at 5b14152df on 2026-10-21. Ian sets up a party, presses Fight against a trainer's team, and plays his hand-made line turn by turn on the same simulator and trainer AI the readings use, seeing the AI's odds for every move and every way each turn can go. Checks 1 and 4 wait on Ian (the tracker's line tester item).
 
 ## Summary
 
@@ -19,7 +19,7 @@ His answers the same day to the Overseer's four questions:
 
 Later the same day a side agent noted that the planner's turn outcomes carry each damage band on from one roll inside it, so a close call could look safer than it is, and Ian added: "It should have an option that I can toggle a crit or pick an option along with the random chance play-by-play." So every chance check in a turn can be pinned or left to chance, and play always continues from an exact roll (the section "How a turn is settled").
 
-The tool reads the simulator and never changes it. Nothing in `fightsim.py`, `fightai.py`, `perfectline.py`, `plplan.py` or the other `pl*.py` modules is edited, so the simulator's freeze does not apply and no reading moves. It runs the simulator's copy of the trainer AI, written from the game's AI scripts, which is the AI the scorer trusts; the game's own code could run only in an emulator, and sessions never launch one. Version 1 is singles only, since the turn enumeration and the planner are singles only, and the readings leave tag battles out for the same reason. By the Overseer's estimate it is about half a day of helper work.
+The tool reads the simulator and never changes it. Nothing in `fightsim.py`, `fightai.py`, `perfectline.py`, `plplan.py` or the other `pl*.py` modules is edited, so the simulator's freeze does not apply and no reading moves. It runs the simulator's copy of the trainer AI, written from the game's AI scripts, which is the AI the scorer trusts; the game's own code could run only in an emulator, and sessions never launch one. Version 1 is singles only, since the turn enumeration and the planner are singles only, and the readings leave tag battles out for the same reason.
 
 Version 1 is done when these checks pass:
 
@@ -50,11 +50,11 @@ He can also set a position by hand (HP, status, stages, weather, field) and read
 
 The planner's enumeration is built for the scorer's averages, and it blurs exactly what a hand line turns on. Of a hit's 16 damage rolls it groups those that knock out, splits the rest into at most three bands (`ROLL_BANDS`), and plays each group on from its middle roll (`EnumDice.roll_grouped`); it then merges positions whose HP agree within a sixteenth of each Pokemon's maximum, keeping the likelier one (`turn_outcomes`, `HP_BUCKETS`). A line where Tsareena survives the next hit at 44% but never at 38% would look safe if the band's stand-in sat at 44%. So the tester never continues from a stand-in: every position it reaches comes from exact rolls.
 
-After Ian picks his action, the page lists every chance check the turn will make, in order, each with its odds: the Quick Claw rolls, the AI's choice (its odds from `ai_distribution`), a speed tie, each move's accuracy, its crit (for a multi-hit move, how many hits crit), its damage roll (all 16, each with the damage and the HP it leaves), each secondary effect, full paralysis, a confusion self-hit and its roll, a thaw, and the lengths of sleep, confusion, Taunt and binding. Each check is left to chance unless he pins it: he can toggle a crit on or off, pick the AI's move, pick a roll, or make an effect land or miss. Play runs the turn with the pinned checks as set and every other check drawn at its real odds, and Roll is Play with nothing pinned. A pin can change which checks come after it (a move that misses has no crit check), so the list is rebuilt after every change, and a pin that no longer matches its check is dropped with a note.
+After Ian picks his action, the page lists every chance check the turn will make, in order, each with its odds: the Quick Claw rolls, the AI's choice (its odds from `ai_distribution`), a speed tie, each move's accuracy, its crit (for a multi-hit move, how many hits crit), its damage roll (all 16, each with the damage and the HP it leaves; since 2026-10-21 a move of several hits rolls each hit as a check of its own, as the game does), each secondary effect, full paralysis, a confusion self-hit and its roll, a thaw, and the lengths of sleep, confusion, Taunt and binding. Each check is left to chance unless he pins it: he can toggle a crit on or off, pick the AI's move, pick a roll, or make an effect land or miss. Play runs the turn with the pinned checks as set and every other check drawn at its real odds, and Roll is Play with nothing pinned. A pin can change which checks come after it (a move that misses has no crit check), so the list is rebuilt after every change, and a pin that no longer matches its check is dropped with a note.
 
 The tester's own dice give this without touching the simulator. They answer the same calls as the planner's `EnumDice` (`bad`, `good`, `lands_on_player`, `roll`, `roll_grouped`, `pick_weighted`, `crit_count`, `sleep`, `confusion`, `taunt`, `bind`, `outrage`, `thaws`, `tie_player_first`, `choice` and `confusion_roll`), recording each as a check with its odds and returning the pinned outcome or a drawn one. Where `perfectline` asks for a hit's roll through `roll_grouped` it passes the damage of every roll, so the 16 values on the page are the simulator's own; where it asks through `roll` alone, the page works each roll's damage out with `Battle.damage`. Either way the dice return one exact roll, pinned or drawn evenly from the 16. The AI's choice and the Quick Claw rolls are settled before the turn runs (`b.quick`, then the action handed to `perfectline._turn`), pinned or drawn the same way. Each check is labelled with the Pokemon and move it belongs to. Where a call does not carry enough to say, the tester may wrap the simulator's move function in its own process with a pass-through that records the current user and move and changes nothing else, and a test checks every label.
 
-The overview's outcomes are shortcuts into the same pins. Following one pins the checks that define it and opens its band's rolls, each with the HP it leaves, so Ian picks the roll, or takes the band's worst for him (his own hits at their lowest, the trainer's at their highest), or draws one within the band at its odds.
+The overview's outcomes are shortcuts into the same pins. Following one pins the checks that define it and opens its band's rolls, each with the HP it leaves, so Ian picks the roll, or takes the band's worst for him (his own hits at their lowest, the trainer's at their highest), or draws one within the band at its odds. For a move of several hits, following a band plays every hit at the band's roll.
 
 ## The tree
 
@@ -92,30 +92,22 @@ Gardenia box 3 with Ian's six, at bf04a3fea, in one process:
 | `turn_outcomes` for Razor Leaf against Stealth Rock (3 merged positions) | 1 ms |
 | `Planner.decide`, not used in version 1 | 5.5 s |
 
-This snippet builds the fight as the readings do, and is the base of check 4:
+This snippet builds Ian's six at the readings' rules (level 26, Hardy, IVs of 15, the first ability) through the tester's own `build`, as `test_linetester` does, and is the base of check 4. It printed the 75 and 25 percent above on 2026-10-21. The snippet of 2026-10-14 rolled box 3 from the encounter tables instead, and has failed since each box became one run (2026-10-15), as box 3 no longer holds a Tsareena.
 
 ```python
-from tools.oxide.balance import plgoal3 as g, plscore, plplan, fightsim as fs
+from tools.oxide.balance import fightsim as fs, plplan, plteam
+from tools.oxide.encounters import linetester as lt
 
-f = next(x for x in g.fights() if x["slug"] == "gardenia")
-whole = g.roll(f["split"], 3)
-caught = g.cut(whole, f)
-key, v, trainer = g.met(f, whole[0].species)
-recs = g.records(caught, f, g.level(f, trainer), 3)
-prep = plscore.prepare(plscore.parse_fight(key), given_side=recs)
-st = prep["st"]
-st["item_stock"] = dict(fs.player_items(f["split"]))
-boss_keys, flags, _s = prep["variants"][v]
-keys = {r["species"]: f"p{i}" for i, r in enumerate(recs)}
-SETS = {"Tsareena": ["Razor Leaf", "Rapid Spin", "Double Kick", "Taunt"],
-        "Carbink": ["Reflect", "Ancient Power", "Draining Kiss", "Rock Throw"],
-        "Nuzleaf": ["Fake Out", "Silver Wind", "Snarl", "Bullet Seed"],
-        "Golbat": ["Dual Wingbeat", "Leech Life", "Bite", "Poison Sting"],
-        "Breloom": ["Bullet Seed", "Mach Punch", "Headbutt", "Leech Seed"],
-        "Corvisquire": ["Dual Wingbeat", "Drill Peck", "Steel Wing", "Taunt"]}
-for s, mv in SETS.items():
-    st["moves"][keys[s]] = mv
-b = plplan.make_battle(st, [keys[s] for s in SETS], boss_keys, flags, 0)
+SIX = [("SPECIES_TSAREENA", ["Razor Leaf", "Rapid Spin", "Double Kick", "Taunt"]),
+       ("SPECIES_CARBINK", ["Reflect", "Ancient Power", "Draining Kiss", "Rock Throw"]),
+       ("SPECIES_NUZLEAF", ["Fake Out", "Silver Wind", "Snarl", "Bullet Seed"]),
+       ("SPECIES_GOLBAT", ["Dual Wingbeat", "Leech Life", "Bite", "Poison Sting"]),
+       ("SPECIES_BRELOOM", ["Bullet Seed", "Mach Punch", "Headbutt", "Leech Seed"]),
+       ("SPECIES_CORVISQUIRE", ["Dual Wingbeat", "Drill Peck", "Steel Wing", "Taunt"])]
+blob = fs.calc.blob()["poks"]
+recs = [plteam.record(c, 26, "Hardy", blob[plteam.species_name(c)]["abilities"]["0"], 15, mv) for c, mv in SIX]
+setup = {"fight": "gardenia", "variant": 0, "records": recs, "moves": [mv for _c, mv in SIX], "held": None, "lead": 0}
+st, team, boss_keys, flags, b, split = lt.build(setup)
 b.quick = {}
 print(plplan.ai_distribution(b))
 ```

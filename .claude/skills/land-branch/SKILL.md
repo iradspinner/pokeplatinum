@@ -73,7 +73,7 @@ worktree.
    that command). The page's files update on a reload, but the Python
    process does not, and a new page against an old server fails.
 3. Tell the sessions the new head and the pass count.
-4. Update the tracker's "Who is on what", and move a finished block to the
+4. Update the tracker's first page, and move a finished block to the
    archive.
 
 ## Shortcuts

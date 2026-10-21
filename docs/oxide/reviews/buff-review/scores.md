@@ -1,5 +1,7 @@
 # Buff review: the changes Ian decides from the scores
 
+> **A record since 2026-10-13.** `buffvariants.py` and B6's scale retired with the first scoring system on 2026-10-13, so these scores cannot be rerun and no longer measure a fight; the variants Ian took from them landed on 2026-09-30 (9c8a3f3f5), and the tracker archive's buff review entry has his decisions.
+
 Written by `tools/oxide/balance/buffvariants.py` for the buff review's sections C and D and the variants Ian asked for (2026-09-29). Each variant is scored on the 33 story fights and Hesperid's two, as B6's levers score them, against the tree with his approved changes (the sheet's slips, section A's five lines and section B). A negative change on his scale is an easier fight. A species' share is the boss Pokemon it surely answers out of those it faces, over the story fights it is on the player's side for; B6 flags a species that carries the game at 0.85 or more over 5 or more fights.
 
 Gale Wings is read at its best case: the Flying moves of a Gale Wings Pokemon go first in every matchup, since the scorer cannot follow its full-HP condition turn by turn. A variant that adds an ability puts it in the first slot, which the player's side reads.

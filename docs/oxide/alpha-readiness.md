@@ -4,8 +4,7 @@
 
 Every step follows the rule that heads CLAUDE.md (Ian, 2026-10-07): each change is judged for its effect on difficulty, by judgement, and nothing waits on a rescore. Ian's order (2026-10-06): the move rebalance and the TM pass, then his
 in-game QA, then the first alpha run. Neither QA nor the alpha waits for the
-Kaizo comb; the splits it has finished when the TM pass lands go in. The
-Overseer updates this page as each step finishes and tells Ian, step by step.
+Kaizo comb; the splits it had finished when the TM pass landed went in.
 
 **Status on 2026-10-12.** Steps 1 to 13, 17 and 18 are done, and QA runs on Ian's QA ROM (`03a941808`). Step 15's milestone reading stopped on 2026-10-07 after one box and waits to be restarted. The 271 ordinary trainers of the comb's task 4 wait for the next comb landing.
 two to three days, set mostly by Ian's three decision points (steps 3, 7 and
@@ -38,94 +37,16 @@ alpha starts another on step 16's. Doubles and tag battles stay unread in
 step 15 (the tracker's backlog), and the level-cap design pass is not in
 alpha 1.
 
-## How this page is kept
+## The briefs
 
-The Overseer ticks a step's status the day it finishes, with its commit, and
-sends Ian one line saying which step finished and which starts. A step that
-slips past its estimate by half again gets a line too, with the reason. The
-tracker's first-full-run entry points here and does not repeat it.
-
-## Brief for the main-track session (steps 9 and 10)
-
-Repo `~/pokeplatinum`. Invoke the `oxide-session` skill first, then
-`carry-over-map` for the scripts and events and `save-change` before choosing
-flags. Work in two worktrees: `main-placements`, cut from `oxide`, and
-`main-gauntlets` (built and held at e5bf0f2cf, 318 commits behind `oxide`).
-
-The Balance Agent's two tables, drafts until learnset step 5 closes (the
-formats are settled; the rows come in step 6):
-
-- `docs/oxide/reward-placements.tsv`, the table the placement tool reads, one
-  row per placement: `reward` (item constant), `copies`, `kind` (ball,
-  hidden, gift, trainer or mart), `split`, `map` (map header constant),
-  `place` (the object's local id, or the mart's id), `replaces` (the item the
-  place holds today, so vanilla's balls and gifts are repointed and none is
-  lost), `trainer_id` (for kind trainer, the key into the next table),
-  `note`.
-- `docs/oxide/trainer-roles.tsv`, one row per trainer before the post-game:
-  `split`, `trainer_id`, `trainer`, `map`, `object`, `required`, `role`
-  (gauntlet, reward or none), `section` (the gauntlet section), `reward`,
-  `copies`, `size`, `reading`, `flag`, `note`. The gauntlets read `role` and
-  `section`; its reward columns are a copy for Ian, checked against the
-  placements table.
-
-Step 9, now, before the tables have rows:
-
-1. Write `tools/oxide/place_rewards.py`, with a test. It reads
-   `reward-placements.tsv` and writes each row into the map's events and
-   scripts in the files' own style. A trainer reward is given automatically
-   straight after the player wins, once, under its own spare flag (Ian,
-   2026-10-06, relayed by the main track); talking to the trainer again
-   retries only if the Bag was full the first time. A
-   checker reads every placement back out of the built ROM with
-   `scriptdis.py` and finds each table row exactly once. Use the TM pass
-   draft's table (`docs/oxide/tm-pass.md` on `origin/balance-learngen-v2`,
-   read with `git show`) as test data only. Commit no placements from it.
-2. Merge `oxide` into `main-gauntlets`, rebuild, and run the gate.
-
-Step 10, when Ian has approved the reward table and the gauntlet list:
-
-3. Apply the table. Vanilla's TM balls and gifts are repointed, the new
-   trainer rewards and balls added, and every changed map named in the
-   `DIVERGED` lists of `bulk_scripts.py` and `bulk_events.py` with the reason,
-   so the restart checks never regenerate it from the base ROM.
-4. Fill in the gauntlets' trainer table from the approved list.
-5. Build, run `bash tools/oxide/integrate.sh --verify-only`, add test-kit warps
-   for a sample (one ball, one trainer reward, one gift, one gauntlet), and
-   write their checks into `docs/oxide/ingame-checklist.md`. The Overseer
-   lands each branch with `merge-branch.sh`.
-
-Rules that bite: stage files by name; never reformat a `res/` JSON file;
-never launch an emulator; edit only `res/field/`, `res/text/` where a reward
-needs a line, `include/data/field/hidden_items.h` and `include/data/mart_items.h`
-for hidden-item and mart rows, `tools/oxide/place_rewards.py` and its test,
-the two `DIVERGED` lists, the test kit and the checklist, and ask the Overseer before anything
-else. A spare flag moves nothing in the save, but check it with the
-`save-change` skill.
-
-Done means the checker finds every row exactly once, the gate passes, and the
-test kit reaches the sample. Report to the Oxide Overseer with SendMessage at
-the end of each step: a one-page summary first (what changed, what was
-checked and how, what waits on Ian, how long the next step takes), failures
-first.
-
-Ian's writing rules bind every report, comment and commit message. The hard
-rules, quoted from `~/.claude/CLAUDE.md`:
-
-```
-- No em-dashes or en-dashes as punctuation. Use a comma, a full stop, a colon,
-  or parentheses. This applies inside code comments and commit messages too.
-- No opening praise or acknowledgement ("Great question", "Good catch",
-  "You're right to ask"). Start with the answer.
-- No closing offers or sign-offs ("Let me know if", "Hope this helps",
-  "Happy to", "Feel free to"). Stop when the content stops.
-- Prose over bullets. A list is for genuinely parallel items (files, steps,
-  options, findings). Argument, explanation and narrative are paragraphs.
-- No bold-label bullets that are really paragraphs in disguise, and no headers
-  in anything under about five hundred words.
-- Do not assume Ian is the expert on a question he asked. Answer it.
-- Annotate code in plain English: what it does and why, not what the syntax is.
-```
+The brief for steps 9 and 10 (the placement tool and the placed rewards) is in
+git history, in this file before the docs pass of 2026-10-21: both steps are
+done, the tool is `tools/oxide/place_rewards.py` with its test in the gate, and
+its rules live in CLAUDE.md (the bulk tools' lists of deliberate divergences,
+staging by name), the
+standing rulings (a reward given straight after the win) and the design doc's
+findings log (where spare flags come from). Step 17's
+checks stay below, since check 7 is still Ian's.
 
 ## Brief for the encounter track (step 17, the alpha checklist)
 
@@ -162,11 +83,8 @@ marked:
    file in the repo for the other sessions, and reads back.
 7. Ian checks the page in his browser on today's data (Ian).
 
-Sources: `docs/oxide/trainer-roles.tsv` and `docs/oxide/reward-placements.tsv`
-(on `balance-tm-pass` until it lands; read them from `oxide` after),
+Sources: `docs/oxide/trainer-roles.tsv` and `docs/oxide/reward-placements.tsv`,
 `docs/oxide/tm-list.tsv`, the events files and `include/data/field/hidden_items.h`
 for balls and hidden items, the tool's own scripted sources for gifts, and
-the encounter tables. Work on the track's own branch; the Overseer lands it
-and restarts Ian's server. Send the Overseer an estimate before starting, and
-a one-page summary at the end.
+the encounter tables.
 

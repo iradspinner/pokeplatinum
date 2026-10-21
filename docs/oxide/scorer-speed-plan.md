@@ -19,14 +19,13 @@ order (Ian, 2026-10-02):
 3. Every major boss, rival, named Galactic fight and Ace Trainer, after the
    Kaizo study's broad comb of the trainers.
 4. Everything, the full rescore: the reading this plan aims to bring down to
-   hours. The Scoring
-Agent owns the work and records its progress in its status home,
-`docs/oxide/trainer-scoring-handoff.md`; the steps that wait on Ian are in the
-tracker's Scheduled list.
+   hours. Its open work is in the tracker (goal 4, under the scorer);
+`docs/oxide/trainer-scoring-handoff.md` keeps the readings behind it.
+Goals 1 and 2 passed on 2026-10-02 and 2026-10-03.
 
 ## Where the time goes (2026-10-02)
 
-The planner (`tools/oxide/balance/plplan.py` on `scoring-step3-bar`) decides
+The planner (`tools/oxide/balance/plplan.py`, then on `scoring-step3-bar`) decides
 each turn by playing every option forward to the end of the fight in the
 simulator, about 100 play-outs per decision. The Overseer profiled it on
 Roark, one process on an idle machine, at its default settings: about 18
@@ -55,7 +54,7 @@ Inside a fight, by the profile:
 
 | Stage | Lever | Expected gain | Effort | Status |
 |---|---|---|---|---|
-| 1 | Store repeated lookups, the AI's odds per position, and the setup's file checks, instead of recomputing them | 2 to 3 times | a day or two | approved tentatively (Ian, 2026-10-02) |
+| 1 | Store repeated lookups, the AI's odds per position, and the setup's file checks, instead of recomputing them | 2 to 3 times | a day or two | done 2026-10-02: the memory fixed, about 14% faster (below) |
 | 1 | Run under PyPy, a faster engine for the same Python code, installed portably in the home folder | 3 to 5 times | hours to test | measured 2026-10-02: no real gain, not used (below) |
 | 2 | A learned position value on the GPU in place of play-outs | 10 to 50 times per decision | one to two weeks | working (2026-10-02): about a fiftieth of the cost per fight, play close to the play-out planner except at Mars 1 (below) |
 | 3 | The simulator and AI rewritten in a compiled language | 30 to 100 times on the hot loop | weeks | in reserve |
@@ -227,8 +226,8 @@ full reading about an hour and a half.
 - CPU: Intel i9-14900K, 8 performance and 16 efficiency cores, 32 threads.
 - Memory: 31 GB visible in WSL.
 - GPU: NVIDIA RTX 4070 Ti SUPER, 16 GB, CUDA visible in WSL.
-- Python 3.14 with numpy; no scikit-learn, and no PyPy yet (stage 1 installs
-  it).
+- Python 3.14 with numpy; no scikit-learn. PyPy is in `~/pypy`, installed for
+  stage 1 and not used ("What stage 1 measured").
 - PyTorch 2.14.1, built for CUDA 13.0, installed on 2026-10-02 at Ian's word
   in its own environment, `~/venvs/oxide-ml` (made with `uv`, seeing the
   system's packages too; 5.2 GB, removed by deleting the folder). Run it as
@@ -236,5 +235,5 @@ full reading about an hour and a half.
   matrix product matches the CPU's, the card reaches about 30 TFLOP/s in
   float32, and a small three-layer network of the kind stage 2 would train
   judges about 5.9 million positions a second, against roughly a hundred
-  play-outs a second on one CPU core. Installing it does not start stage 2,
-  which still waits on Ian's word.
+  play-outs a second on one CPU core. Stage 2 started on Ian's word the same
+  night.

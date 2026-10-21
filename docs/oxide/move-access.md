@@ -2,7 +2,7 @@
 
 This sorts every move in the game by who can have it, to answer Ian's question of 2026-10-14: how many moves sit in the data that no player and no trainer can use? It was read from origin/oxide at 0e3f757e81 and changes no game data.
 
-Since 2026-10-14 (f5672c2460, Ian's picks from `stranded-moves.md`), 46 of these moves have a player learner by level-up, which leaves (a) at 198, (b) at 15 and (e) at 599; the tables below are as audited. The 26 from (a) are Chip Away, Circle Throw, Dragon Darts, Electro Ball, Fiery Dance, Fillet Away, Fire Lash, Frost Breath, Glaciate, Hard Press, Heart Stamp, Heat Crash, Jaw Lock, Leaf Tornado, Mighty Cleave, Mystical Power, Parabolic Charge, Power Trip, Psychic Fangs, Rising Voltage, Storm Throw, Tachyon Cutter, Take Heart, Triple Dive, Twin Beam and Victory Dance. The 20 from (b) are Aeroblast, Coil, Core Enforcer, Diamond Storm, Doom Desire, Fiery Wrath, Freezing Glare, Horn Leech, Hurricane, Luster Purge, Mist Ball, Nature's Madness, Oblivion Wing, Origin Pulse, Power-Up Punch, Sacred Sword, Shift Gear, Thousand Arrows, Thousand Waves and Thunderous Kick. Upper Hand and Burning Jealousy wait on in-game checks 81 and 83, and Psycho Boost stays trainer only.
+Since 2026-10-14 (f5672c2460, Ian's picks from `stranded-moves.md`), 46 of these moves have a player learner by level-up, which leaves (a) at 198, (b) at 15 and (e) at 599; the tables below are as audited. The 26 from (a) are Chip Away, Circle Throw, Dragon Darts, Electro Ball, Fiery Dance, Fillet Away, Fire Lash, Frost Breath, Glaciate, Hard Press, Heart Stamp, Heat Crash, Jaw Lock, Leaf Tornado, Mighty Cleave, Mystical Power, Parabolic Charge, Power Trip, Psychic Fangs, Rising Voltage, Storm Throw, Tachyon Cutter, Take Heart, Triple Dive, Twin Beam and Victory Dance. The 20 from (b) are Aeroblast, Coil, Core Enforcer, Diamond Storm, Doom Desire, Fiery Wrath, Freezing Glare, Horn Leech, Hurricane, Luster Purge, Mist Ball, Nature's Madness, Oblivion Wing, Origin Pulse, Power-Up Punch, Sacred Sword, Shift Gear, Thousand Arrows, Thousand Waves and Thunderous Kick. Upper Hand and Burning Jealousy wait on in-game checks 81 and 83 (the tracker's Scheduled list), and Psycho Boost stays trainer only. The signature-move homes of 2026-10-20 and 21 (`signature-moves.md`) have given more moves of (a) and (b) a learner or an egg list since; the counts here leave them out.
 
 ## Summary
 
@@ -28,13 +28,13 @@ Of the 259 moves in (a) and (b), Oxide's engine runs 184 as written, runs 29 as 
 
 The audit also turned up three things Ian may want to act on.
 
-First, form records the learnset rewrite did not touch put three ruled-out moves in the player's reach. Rotom's five alternate forms learn Double Team, Wormadam's Sandy and Trash forms learn Protect, and the Sandy form learns Fissure. Shaymin's Sky form also learns Seed Flare, which base Shaymin no longer does.
+First, form records the learnset rewrite did not touch put three ruled-out moves in the player's reach. Rotom's five alternate forms learned Double Team, Wormadam's Sandy and Trash forms Protect, and the Sandy form Fissure; Shaymin's Sky form learned Seed Flare, which base Shaymin no longer did. All four are settled since 2026-10-14, on Ian's answers: the Rotom forms mirror their base form's lists (ad19a76c3), the two cloaks have their own (690310868, `wormadam-forms.md`), and both Shaymin forms learn Seed Flare at 78 (666a06b8c, 3b378a741).
 
 Second, trainers still carry moves Ian ruled out: the one-hit KO moves (Guillotine on 5 teams and Sheer Cold on 6, with Horn Drill on 5 through egg lists), and Double Slap (2 teams) and Spike Cannon (1), which left the game with the multi-hit ruling. These go as each team is set by hand. The weather moves in (c) (Rain Dance on 19 teams, Sunny Day on 15, Sandstorm on 7, Hail on 1) are trainer-only by design.
 
 Third, the simulator-gaps doc had not counted form records in its player columns. This branch corrects the cells that change (Protect, the one-hit KO moves and a few species counts); no gap changes group.
 
-The next steps are Ian's. Cleaning the four form leftovers is a few minutes' data change once he rules on it. Giving a working (a) or (b) move to a line or a trainer is learnset or team work under the balance rules, a move at a time. Whether the 46 moves that do nothing and the 13 Let's Go moves should stay in the data is his call too. Leaving them costs nothing in play, and cutting move records would touch the move expansion, which is larger work.
+The next steps are Ian's. Giving a working (a) or (b) move to a line or a trainer is learnset or team work under the balance rules, a move at a time. Whether the 46 moves that do nothing and the 13 Let's Go moves should stay in the data is his call too. Leaving them costs nothing in play, and cutting move records would touch the move expansion, which is larger work.
 
 ## (a) No species or form learns it, and no trainer carries it (224)
 

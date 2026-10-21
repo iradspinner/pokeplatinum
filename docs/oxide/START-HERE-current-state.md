@@ -3,12 +3,10 @@
 One page, for a fresh chat that needs to be useful without reading everything.
 Written 2026-09-15, rewritten 2026-09-20. This file deliberately carries **no
 status**: status moves faster than any snapshot, and a stale snapshot is worse
-than none. For where things stand, read the top block of `docs/oxide/tracker.md`
-on branch `oxide` of `iradspinner/pokeplatinum`; for the encounter tool, the
-"Resuming cold" section of `docs/oxide/encounter-tool-build-plan.md`; for the
-balance track, `docs/oxide/balance-plan.md`. The G:
-folder holds mirrors of both, refreshed by `tools/oxide/sync-docs.sh`, and the
-mirror can lag the repo by a session.
+than none. For where things stand, read the first page of `docs/oxide/tracker.md`
+on branch `oxide` of `iradspinner/pokeplatinum`, the one home of open work
+since 2026-10-13. The G: folder holds mirrors of the docs, refreshed by
+`tools/oxide/sync-docs.sh`, and the mirror can lag the repo by a session.
 
 ## What the project is
 
@@ -21,16 +19,18 @@ source, not to patch a ROM. Hobby project, no QA gate.
 The work runs in phases. Phases 0 to 2 (setup, survey, approach) are done. Phase 3
 carried Ian's earlier hand edits from an old DSPRE-edited ROM ("the base ROM") into
 the source tree, so nothing of his was lost by switching to a source build. Phase 4
-is the actual engine port, one element at a time. Alongside run two tracks of
-their own: the **Platinum OxiDex** (OxiDex for short), the encounter tool that
-designs the wild encounter tables, and the **balance track**, which analyses and
-tunes the whole game's balance.
+is the actual engine port, one element at a time, and is done but for small
+leftovers. Beside it are the **Platinum OxiDex** (OxiDex for short), the
+encounter tool that designs the wild encounter tables and shows Ian the game's
+data, and the balance work, which analyses and tunes the whole game's balance
+with a fight simulator and scorer. Since 2026-10-13 one standing session, the
+Oxide Overseer, keeps the tracker and lands every branch.
 
 ## The surfaces and who owns what
 
 | Surface | Owns |
 |---|---|
-| Claude Code in WSL2, `~/pokeplatinum`, branch `oxide` | Source edits, commits, pushes and merges, by several sessions at once, each on its own branch or worktree; the Oxide Overseer merges them. Builds run on GitHub while the CPU is degraded (gotcha 7). `docs/oxide/` in the repo is the live design doc, tracker and notes. |
+| Claude Code in WSL2, `~/pokeplatinum`, branch `oxide` | Source edits, commits, pushes and merges. The Oxide Overseer is the one standing session; any other session Ian starts works on its own branch or worktree, and the Overseer merges it. Builds are local (gotcha 7). `docs/oxide/` in the repo is the live design doc, tracker and notes. |
 | Claude Code cloud sessions (claude.ai/code) | Jobs on their own `cloud/<track>-<topic>` branches, built on a healthy VM; they report through the branch and the Overseer merges them (`CLAUDE.md`, "Cloud sessions"). |
 | A chat in this project (this file's audience) | Design questions, Hardlove donor analysis, base-ROM archaeology, anything that needs a second opinion before it becomes code. Produces notes, not commits. Notes it writes land in the G: folder and are brought into `docs/oxide/` when they matter. |
 | The project folder `G:\...\Hardlove Gold-Platinum Oxide Integration Project` | Both ROMs, both DSPRE extractions, and mirror copies of the docs. |
@@ -43,7 +43,7 @@ frozen 2026-09-15. Treat them as background, not current status.
 1. `docs/oxide/design-doc.md`: what the project is, ground truth, scope, working rules, findings log.
 2. `docs/oxide/tracker.md`: open work, next steps, what is waiting on Ian. Finished work is in `tracker-archive.md`, read when the tracker points there.
 3. Only as the tracker points you there: `phase1-hg-engine-survey.md` (what hg-engine is and its feature menu), `phase3-base-rom-inventory.md` (what the base ROM changed, with its corrections at the top) and `phase3-answers-and-trainer-format.md` (the base ROM's trainer format), `phase4-engine-change-answers.md` (what Phase 4 ports beyond the four expansions, and why), `species-pick-list.md`, `pokemon-sources.md` (every non-land source of a Pokemon in the tree).
-4. For the OxiDex: `encounter-tool-build-plan.md` first, then `encounter-tool-design.md` sections 1, 2 and 6, then `encounter-design-survey.md` only for a number's provenance. For the pass that writes the tables: `encounter-authoring-plan.md`.
+4. For the OxiDex: its open work is in the tracker; for how it works, `encounter-tool-build-plan.md` first, then `encounter-tool-design.md` sections 1, 2 and 6, then `encounter-design-survey.md` only for a number's provenance. For the pass that writes the tables: `encounter-authoring-plan.md`.
 
 ## Decided, do not relitigate without reason
 
@@ -88,13 +88,13 @@ Ian's standing rulings, which every session follows, are in
    `git show main:<path>`, or `--ref main` in the encounter tool. Calibrating a
    tool against the checked-out files measures the tables the project is trying
    to replace.
-5. **86 of the field scripts are machine-generated.** Each says so in its first
+5. **83 of the field scripts are machine-generated.** Each says so in its first
    line. They are correct against the base ROM and not the repo's idiom; do not
    take them as examples of how to write a script.
-6. **Several sessions in parallel means one status home each.** The tracker is
-   for the main track and the Overseer, `encounter-tool-build-plan.md` for the
-   OxiDex, `balance-plan.md` for the balance track. Editing another track's file
-   is how the merge conflicts happened.
+6. **One status home.** Since 2026-10-13 all open work lives in the tracker;
+   `encounter-tool-build-plan.md` and `balance-plan.md` are reference, for how
+   their tools work and why. A parallel session still works on its own branch,
+   since sessions share one checkout.
 7. **Builds are local.** The replacement CPU passed its checks on 2026-09-29
    and builds the same ROM as GitHub byte for byte. Every push to `oxide` is
    also built on GitHub, for its SHA-1 to compare with; GitHub Actions in the

@@ -3,6 +3,16 @@
 Written 2026-09-21 from `docs/oxide/pokemon-sources.csv`, which
 `tools/oxide/pokemon_sources.py` generates by reading the scripts themselves.
 
+Most of the pools and counts below are the state of 2026-09-21 to 25 and have
+changed since. The clowns, the Eterna condominium's gift, the Canalave
+Library's and the Fan Club's went on 2026-09-27 (`clown-replacements.md`), so
+the gifts left are Bebe's Eevee, the Veilstone Elekid and the Day Care's
+Floette; the Route 226 trade now gives Meloetta for a Finneon, and Snowpoint's
+a Suicune for a Snover. `docs/oxide/pokemon-sources.md`, regenerated from the
+scripts, is the list as it is today. The rules here still hold: a gift is an
+even-odds pool handed out once under its own flag, a scripted Pokemon's
+capture area is its map's location name, and an egg counts where it hatches.
+
 A *source* is one person or one machine, not one species. The clown in the
 Sandgem house offers three Pokemon, but he is a single source and you leave with
 one of them, so his three are a pool the way a table's slots are a pool, and
@@ -18,7 +28,7 @@ table is: a level that suits the split, types that do not repeat each other, and
 lines whose wild homes are somewhere else, so that taking the gift is a real
 choice rather than a duplicate of the route outside.
 
-## The gifts, as they now stand
+## The gifts, as they stood on 2026-09-21
 
 Every pool below is on the pick-list. The species that changed are the ones that
 were not.
@@ -89,7 +99,7 @@ table with a line of the same kind the table lacked. The Popplio line's
 water slots were different: the on-list water pool is too thin to fill
 them without flooding two lines, so each went to a neighbour in its own
 table until Ian adds water lines to the pick-list. The Route 226 trade's
-Magikarp still breaks the rule; that trade is to change (backlog).
+Magikarp broke the rule until the trade became Meloetta's.
 
 ## The trades
 
@@ -111,8 +121,8 @@ four; that assert is gone. The level is the one thing the trade data cannot
 express, because the game hands you a Pokemon at the level of the one you gave
 up, which is no longer sensible when it will take anything. A short table in
 `src/overlay006/npc_trade.c` names the level per trade, and 0 keeps vanilla's
-behaviour for the Snowpoint and Route 226 trades, which are untouched and both
-on the list.
+behaviour for the Snowpoint and Route 226 trades, which ask for a species
+(today a Snover for Suicune and a Finneon for Meloetta).
 
 The nicknames are unchanged, so the Vullaby is still called Kazza and the
 Popplio Charap. Say the word and they move, but each one is a text bank.
@@ -147,8 +157,8 @@ and like that one it is registered at the end so no existing opcode moves.
   Anorith. Ian's call of 2026-09-21 is to **delete those four items** rather than
   repoint them, which takes them out of the Underground's dig pools and the route
   drops that hand them out, and leaves the museum's four branches unreachable.
-  That is item and script work outside this track, and it is in the tracker's
-  backlog. The alternative, four more fossil lines on the list, would need
+  Done on 2026-09-27 (`main-daily-balls`, with the Underground closed): nothing
+  hands those four out now. The alternative, four more fossil lines on the list, would need
   Tyrunt, Amaura, Archen or Tirtouga ported first, since none is in the tree.
 
 **Chimchar is settled rather than flagged.** Ian's call of 2026-09-21: Rowan's
@@ -207,7 +217,7 @@ level 1 with the giver named; until 2026-09-25 it read `GiveEgg`'s second
 operand, the giver, as a level, which dropped Riley's egg and put Togepi at 11
 and Manaphy at 8.
 Mesprit takes the name of the route it is caught on. Snowpoint City's trade
-wants a Medicham.
+wants a Snover.
 
 The count: 52 wild locations open by the end of the League split, 14 scripted
 ones of their own, and 3 eggs, **69**. (Since 2026-09-26 Mt. Coronet counts as
@@ -217,9 +227,11 @@ changes exist, all in the tracker's backlog: Verity Lakefront's grass and
 header, Amity Square's grass and header, Snowpoint City's header (its rods; the
 trade then shares the name), and the Pastoria City clown moved into the
 Restaurant on Route 213, which Ian asked for so that Pastoria's water and the
-gift stop sharing one capture. The encounter tool already carries the three
-tables (`planned_location` in the sidecar). The clown keeps its pool of six
-water lines; only its map changes.
+gift stop sharing one capture. Three of the four are built (the three tables
+are real files now, and the sidecar has no `planned_location` left); the
+fourth was overtaken when the clowns went on 2026-09-27, so Pastoria's clown
+was removed rather than moved, and the clowns' grass, Ironworks Hall and the
+lost gifts changed the count again (`clown-replacements.md`).
 
 Ian's sheet (`My Version RomHack Docs - For Claude.xlsx`, General Encounters)
 has 127 blocks, about 80 once its floors and rooms are folded into location

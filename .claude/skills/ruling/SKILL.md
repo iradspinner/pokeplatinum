@@ -1,6 +1,6 @@
 ---
 name: ruling
-description: How to record one of Ian's rulings for Platinum Oxide so that every session and every future session acts on it, and nothing contradicts it. Covers where each kind of ruling is written (the tracker, the owning track's plan, the standing rulings file cloud sessions read, local memory, the design doc), what to mark superseded, and which sessions to tell. Use this whenever Ian decides something (answers a question, sets a cap, rules a mechanic in or out, changes an earlier call), whether he says it to this session directly or another session relays it, even if the decision arrives as a one-line aside.
+description: How to record one of Ian's rulings for Platinum Oxide so that every session and every future session acts on it, and nothing contradicts it. Covers where each kind of ruling is written (the tracker, a reference doc it changes, the standing rulings file cloud sessions read, local memory, the design doc), what to mark superseded, and which sessions to tell. Use this whenever Ian decides something (answers a question, sets a cap, rules a mechanic in or out, changes an earlier call), whether he says it to this session directly or another session relays it, even if the decision arrives as a one-line aside.
 ---
 
 # Recording a ruling
@@ -43,7 +43,7 @@ make a ruling.
 - **A design decision** settles one feature. Examples: Rage Fist's formula,
   Saturn 2's Trick Room, a split's cap.
 - **An answer that unblocks a task** lets work go ahead. Examples: approving
-  one edit to another track's file, confirming a reading of an earlier answer.
+  one simulator fix, confirming a reading of an earlier answer.
 
 ## 3. Write it where it will be read
 
