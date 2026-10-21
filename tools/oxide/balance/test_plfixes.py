@@ -6662,6 +6662,27 @@ def take_heart_checks():
              f"(Sp. Atk stage, Sp. Def stage, status) {got}")]
 
 
+@b13
+def population_bomb_checks():
+    """Population Bomb on real rows (approved 2026-10-14): a Skill Link
+    Minccino's row adds up ten hits, about five times a Cute Charm one's
+    two, yet with no miss each deals ten hits and the same damage to a
+    trainer's Snorlax, since Skill Link changes nothing in Oxide's engine."""
+    out = {}
+    for ability in ("Cute Charm", "Skill Link"):
+        b, lax, minc = b8_battle([("Snorlax", 50, "Thick Fat", ["Tackle"])],
+                                 [("Minccino", 50, ability, ["Population Bomb"])])
+        row = b.rolls(minc, lax, fs.move("Population Bomb"))[-1]
+        hp = lax.hp
+        pl.attack(b, minc, fs.move("Population Bomb"), lax, True)
+        out[ability] = (row, hp - lax.hp)
+    rows = out["Cute Charm"][0], out["Skill Link"][0]
+    ok = (abs(rows[1] - 5 * rows[0]) <= 5 and out["Cute Charm"][1] == out["Skill Link"][1]
+          and abs(out["Cute Charm"][1] - 5 * rows[0]) <= 5)
+    return [("the readings' Population Bomb lands ten hits whatever the row adds up", ok,
+             f"(top row, HP taken) by ability {out}")]
+
+
 def main():
     results = []
 

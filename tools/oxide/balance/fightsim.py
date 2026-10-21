@@ -1191,11 +1191,13 @@ class Battle:
             mult *= rollout_mult(att, mv)
         return max(1, int(base * mult))
 
-    def accuracy_hits(self, att, dfn, mv, first=True):
+    def accuracy_hits(self, att, dfn, mv, first=True, later=False):
         """Whether the move lands (BattleControllerPlayer_CheckMoveHitAccuracy
         and the hit overrides). `first`: whether the target has yet to move
-        this turn, for the Zoom Lens."""
-        if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or no_guard(att, dfn, mv) or (dfn.rare and lands_sure(att, dfn, mv)):
+        this turn, for the Zoom Lens. `later`: a later hit of Population
+        Bomb's, whose check skips the overrides (TEN_HITS)."""
+        if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or (
+                not later and (no_guard(att, dfn, mv) or (dfn.rare and lands_sure(att, dfn, mv)))):
             return True
         acc = mv.acc
         if dfn.ability == "Wonder Skin" and mv.cat == "Status":
@@ -2510,13 +2512,25 @@ TWO_HITS = frozenset({"HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE_AND_FLINCH"})
 # Lucky Chant keeps it off). Until 2026-10-20 each landed as one hit holding
 # the row's three (Ian approved the fixes).
 THREE_HITS = frozenset({"HIT_THREE_TIMES_FIXED_POWER", "HIT_THREE_TIMES_ALWAYS_CRITICAL"})
+# Population Bomb (effect script 297): SetMultiHit 10 with Triple Kick's
+# flags, so up to ten hits at the listed power, each after the first
+# checking accuracy again but skipping the hit overrides
+# (SYSCTL_SKIP_ACCURACY_OVERRIDES: No Guard and Lock-On do not land it),
+# the move stopping at the first miss; a Loaded Dice makes it four to ten
+# hits evenly (10 - Random % 7) with no later checks (BtlCmd_SetMultiHit),
+# and Skill Link changes nothing. The calculator's row adds up two hits,
+# ten with Skill Link or a Grip Claw (row_hits). Until 2026-10-20 it landed
+# as one hit holding the row's two (Ian approved the fix).
+TEN_HITS = "UP_TO_10_HITS"
+TEN_LOADED = tuple((h, 1) for h in range(4, 11))
 # Every effect whose hits the engine lands one at a time and the calculator's
-# row adds up (SetMultiHit in effect scripts 29, 44, 77, 296, 298, 299 and
-# 416): the two to five hit moves, the two-hit and three-hit moves and the
-# three rising ones. Population Bomb is left out, as neither side can have
-# it today; Beat Up lands its own (beat_up_hits).
+# row adds up (SetMultiHit in effect scripts 29, 44, 77, 296, 297, 298, 299
+# and 416): the two to five hit moves, the two-hit and three-hit moves, the
+# three rising ones and Population Bomb; Beat Up lands its own
+# (beat_up_hits).
 HIT_BY_HIT = frozenset({"MULTI_HIT", "HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE_AND_FLINCH",
-                        "HIT_THREE_TIMES_RISING_10", "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20"}) | THREE_HITS
+                        "HIT_THREE_TIMES_RISING_10", "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20",
+                        TEN_HITS}) | THREE_HITS
 # The secondary effect each of the two-hit kin rolls once a hit (effect
 # scripts 77 and 296 set it for every hit): Twineedle's poison and Double
 # Iron Bash's flinch, at the move's chance.
@@ -2548,7 +2562,7 @@ def hit_weights(att, mv, hits):
     if mv.effect in RISING:
         powers = rising_powers(mv)
         return powers[:hits], sum(powers)
-    total = row_hits(att, mv) if mv.effect == "MULTI_HIT" or mv.effect in THREE_HITS else 2
+    total = row_hits(att, mv) if mv.effect in ("MULTI_HIT", TEN_HITS) or mv.effect in THREE_HITS else 2
     return [1] * hits, total
 
 
@@ -4056,6 +4070,10 @@ def attack(b, att, mv, dfn, first):
         hits = b.rng.choices([h for h, _w in odds], [w for _h, w in odds])[0]
     elif mv.effect in RISING:
         while hits < RISING_COUNT and (att.item == "Loaded Dice" or b.accuracy_hits(att, dfn, mv, first)):
+            hits += 1
+    elif mv.effect == TEN_HITS:
+        # Population Bomb's later checks skip the hit overrides (TEN_HITS)
+        while hits < 10 and b.accuracy_hits(att, dfn, mv, first, later=True):
             hits += 1
     elif mv.effect in TWO_HITS:
         hits = 2
@@ -6996,9 +7014,10 @@ def scale_hits(att, mv, dmg, hits):
 
 
 def multi_hit_odds(att, mv):
-    """[(hits, weight)] for a two to five hit move, else None."""
+    """[(hits, weight)] for a two to five hit move, and for a Loaded Dice
+    holder's Population Bomb (TEN_LOADED); else None."""
     if mv.effect != "MULTI_HIT":
-        return None
+        return TEN_LOADED if mv.effect == TEN_HITS and att.item == "Loaded Dice" else None
     if att.ability == "Skill Link":
         return ((5, 1),)
     if att.item == "Loaded Dice":
@@ -7017,6 +7036,10 @@ def row_hits(att, mv):
         return 5 if att.ability == "Skill Link" or att.item == "Grip Claw" else 3
     if mv.effect in THREE_HITS:
         return 3             # Triple Dive's kind (calc's multihit 3)
+    if mv.effect == TEN_HITS:
+        # Population Bomb (calc's multihit [1, 10]): two, ten for Skill Link
+        # or a Grip Claw, which the engine's hits do not follow (TEN_HITS)
+        return 10 if att.ability == "Skill Link" or att.item == "Grip Claw" else 2
     return 2 if mv.effect == "HIT_TWICE" else 1
 
 
@@ -7030,13 +7053,20 @@ def rising_scale(mv, hits):
     return sum(powers[:hits]) / sum(powers)
 
 
-def expected_hit_scale(mv):
+def expected_hit_scale(mv, att=None):
     """A move's expected damage as a multiple of its calculator row, for the
     reckonings that read rows (exp_damage, plfeat._expected), before the
     first hit's accuracy: a rising move's later hits each need accuracy
     again, and its row adds all three (Triple Axel's too since 2026-10-14).
     A two to five hit move's row counts three hits, close to its expected
-    3.1, so it is left as it is."""
+    3.1, so it is left as it is. Population Bomb's ten hits each need the
+    accuracy after the first, seven on average with a Loaded Dice, over
+    the row's two, or ten for a Skill Link or Grip Claw holder (`att`, an
+    object with its ability and item, or None for neither)."""
+    if mv.effect == TEN_HITS:
+        acc = 1.0 if mv.acc == 0 else min(1.0, mv.acc / 100)
+        hits = 7.0 if getattr(att, "item", None) == "Loaded Dice" else sum(acc ** i for i in range(10))
+        return hits / (row_hits(att, mv) if att is not None else 2)
     if mv.effect not in RISING:
         return 1.0
     acc = 1.0 if mv.acc == 0 else min(1.0, mv.acc / 100)
@@ -8974,7 +9004,7 @@ def exp_damage(b, att, dfn, mv):
     r = b.rolls(att, dfn, mv)
     if r is None:
         return 0.0
-    d = (b.damage(att, dfn, mv, roll=len(r) // 2) or 0) * expected_hit_scale(mv) * reckless_fix(att, mv)
+    d = (b.damage(att, dfn, mv, roll=len(r) // 2) or 0) * expected_hit_scale(mv, att) * reckless_fix(att, mv)
     acc = 1.0 if mv.acc == 0 else min(1.0, mv.acc / 100)
     if mv.effect in TWO_TURN or mv.effect == "RECHARGE_AFTER":
         d /= 2

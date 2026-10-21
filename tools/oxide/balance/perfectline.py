@@ -310,10 +310,13 @@ def give_status(b, target, status):
 fs.give_status = give_status   # Yawn and Toxic Spikes inside fightsim reach this one
 
 
-def accuracy_hits(b, att, dfn, mv, first=True):
+def accuracy_hits(b, att, dfn, mv, first=True, later=False):
     """Whether the move lands, a miss bad luck for its user's side.
-    `first`: whether the target has yet to move this turn (the Zoom Lens)."""
-    if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or fs.no_guard(att, dfn, mv) or (dfn.rare and fs.lands_sure(att, dfn, mv)):
+    `first`: whether the target has yet to move this turn (the Zoom Lens).
+    `later`: a later hit of Population Bomb's, whose check skips the hit
+    overrides, No Guard and Lock-On (fightsim.TEN_HITS)."""
+    if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or (
+            not later and (fs.no_guard(att, dfn, mv) or (dfn.rare and fs.lands_sure(att, dfn, mv)))):
         return True
     acc = mv.acc
     if dfn.ability == "Wonder Skin" and mv.cat == "Status":
@@ -516,7 +519,8 @@ def rolled_hits(b, att, dfn, mv, trainer, first=True):
     (fs.multi_hit_odds), rolled by a run's dice and enumerated at its odds by
     the planner's; a rising move's hits (Fury Cutter, Triple Kick, Triple
     Axel) until its first miss, each later hit checking accuracy again unless
-    a Loaded Dice skips the check; two for the two-hit moves and three for
+    a Loaded Dice skips the check; Population Bomb's up to ten the same way
+    (fightsim.TEN_HITS); two for the two-hit moves and three for
     the three-hit ones (fightsim.THREE_HITS). In the strict
     search the trainer gets its most hits and the player its fewest."""
     odds = fs.multi_hit_odds(att, mv)
@@ -531,6 +535,14 @@ def rolled_hits(b, att, dfn, mv, trainer, first=True):
     if mv.effect in fs.RISING:
         hits = 1
         while hits < fs.RISING_COUNT and (att.item == "Loaded Dice" or accuracy_hits(b, att, dfn, mv, first)):
+            hits += 1
+        return hits
+    if mv.effect == fs.TEN_HITS:
+        # Population Bomb's ten, until the first miss of a later check that
+        # skips the hit overrides (fightsim.TEN_HITS); a Loaded Dice's are
+        # its odds above.
+        hits = 1
+        while hits < 10 and accuracy_hits(b, att, dfn, mv, first, later=True):
             hits += 1
         return hits
     return 2 if mv.effect in fs.TWO_HITS else 3 if mv.effect in fs.THREE_HITS else 1

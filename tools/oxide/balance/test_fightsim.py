@@ -7706,6 +7706,64 @@ def check_take_heart(results):
     results.append(("Take Heart raises Sp. Atk and Sp. Def and cures its user's status", out == want, str(out)))
 
 
+def after_first13(pick=None):
+    """Dice for batch 13's checks in the readings' battle: the player's
+    first accuracy check lands and every later one misses; no other chance
+    lands but a certain one; a weighted pick takes `pick`."""
+    from . import perfectline as pl
+
+    class AfterFirst(pl.RunDice):
+        checks = 0
+
+        def bad(self, kind, p):
+            if kind != "miss" or p <= 0:
+                return False
+            self.checks += 1
+            return self.checks > 1
+
+        def good(self, p, kind=None):
+            return p >= 1
+
+        def roll(self, top):
+            return 15
+
+        def pick_weighted(self, items, weights):
+            return items[0] if pick is None else pick
+    return AfterFirst(random.Random(1), True)
+
+
+@b13
+def check_population_bomb(results):
+    """Population Bomb (approved 2026-10-14; effect script 297): up to ten
+    hits, each a share of the row's two, every later one checking accuracy
+    and the move stopping at the first miss, in both battles; a No Guard
+    user's later checks skip No Guard, so they miss too; a Loaded Dice
+    holder hits four to ten times with no later checks; the row counts two
+    hits, ten for a Skill Link or Grip Claw holder."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("every check lands", "later checks miss", "No Guard", "Loaded Dice", "fightsim"):
+        b, p, foe = b11_battle(["Population Bomb"], ["Tackle"], {("p", "Population Bomb"): [20] * 16}, hp=500)
+        b.dice = sure12() if case == "every check lands" else misses13() if case == "No Guard" else after_first13(4)
+        if case == "No Guard":
+            p.ability = "No Guard"       # its first hit lands by No Guard, its later checks consult the dice
+        if case == "Loaded Dice":
+            p.item = "Loaded Dice"
+        if case == "fightsim":
+            b.rng = FixedDice(0.5)       # every accuracy check passes, no critical hit
+            fs.attack(b, p, fs.move("Population Bomb"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Population Bomb"), foe, True)
+        out[case] = foe.maxhp - foe.hp
+    p.item, p.ability = None, "Skill Link"
+    out["row hits"] = (fs.row_hits(p, fs.move("Population Bomb")),)
+    p.ability = "Run Away"
+    out["row hits"] += (fs.row_hits(p, fs.move("Population Bomb")),)
+    want = {"every check lands": 100, "later checks miss": 10, "No Guard": 10, "Loaded Dice": 40, "fightsim": 100,
+            "row hits": (10, 2)}
+    results.append(("Population Bomb lands up to ten hits until a later check misses", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

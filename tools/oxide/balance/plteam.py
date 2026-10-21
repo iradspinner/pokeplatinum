@@ -209,22 +209,23 @@ def matchups(st, keys, boss_keys):
         return st["rows"].get((w, a, t)) or st["rows"].get((None, a, t))
 
     def expected(k, e, name, mv):
+        info = st["info"].get(k)         # its ability and item, for a Population Bomb's row (plfeat._expected)
         if name == "Magnitude":
             # Its power is rolled on use, so its rows are one per power, under
             # twin keys (fightsim.prepare); the expectation weighs them by odds.
-            return sum(pct / 100 * plfeat._expected((row(f"{k}#m{p}", e) or {}).get("moves", {}).get(name), mv)
+            return sum(pct / 100 * plfeat._expected((row(f"{k}#m{p}", e) or {}).get("moves", {}).get(name), mv, info)
                        for p, pct in fs.MAGNITUDE_POWERS.items())
         if name == "Heat Crash":
             # Its power is set by the two weights, so its row is the one made
             # at that power under a twin key (fightsim.prepare's heat_crash).
             power = (st.get("heat_crash") or {}).get((k, e))
-            return plfeat._expected((row(f"{k}#hc{power}", e) or {}).get("moves", {}).get(name), mv) if power else 0.0
+            return plfeat._expected((row(f"{k}#hc{power}", e) or {}).get("moves", {}).get(name), mv, info) if power else 0.0
         raw = (st.get("metal_raw") or {}).get(e) if name in fs.WEIGHT_MOVES else None
         if raw and row(k, raw):
             # a Mold Breaker's weight move reads a Heavy Metal or Light Metal
             # foe at its own weight (fightsim.metal_raw_key)
-            return plfeat._expected(row(k, raw).get("moves", {}).get(name), mv)
-        return plfeat._expected((row(k, e) or {}).get("moves", {}).get(name), mv)
+            return plfeat._expected(row(k, raw).get("moves", {}).get(name), mv, info)
+        return plfeat._expected((row(k, e) or {}).get("moves", {}).get(name), mv, info)
 
     mine = {}       # (member, move): [share of each enemy's HP]
     for k in keys:
@@ -241,7 +242,7 @@ def matchups(st, keys, boss_keys):
             for name in st["moves"][e]:
                 mv = fs.move(name)
                 if mv.damaging() and r:
-                    best = max(best, plfeat._expected(r["moves"].get(name), mv))
+                    best = max(best, plfeat._expected(r["moves"].get(name), mv, st["info"].get(e)))
             theirs[(e, k)] = best / st["info"][k]["hp"]
     speed = {k: st["speed"].get((w, k)) or st["speed"].get((None, k)) or 1 for k in keys + list(boss_keys)}
     return mine, theirs, speed
