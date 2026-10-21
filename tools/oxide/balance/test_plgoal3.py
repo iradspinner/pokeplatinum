@@ -331,6 +331,42 @@ def planned_checks():
     return out
 
 
+def search_checks():
+    """The team search on a real box with held-back versions (Maylene's box
+    1, which offers six), its fights stubbed: the screen's sixes, the
+    race's draws and the loop's candidates never take two versions of one
+    catch."""
+    s = g.setup("t", "maylene", 1)
+    recs = s["built"]["records"]
+    st, keys, boss_keys, flags = g.fight_state(s["key"], recs, s["stock"], s["v"], "maylene")
+    sixes, _scores, M, _moves = pt.screen(st, keys, boss_keys)
+    group = pt.groups_of(st, keys)
+    seen = []
+    rng = __import__("random").Random(3)
+
+    def read(st_, bk, fl, teams, fights, cfg, luck="real", seed0=0, procs=None, tally=None, used=False):
+        tally = tally or pt.Tally()
+        for t in teams:
+            seen.append(tuple(t))
+            for _i in range(fights):
+                tally.add(tuple(t), rng.random() < 0.6, rng.randrange(3), False,
+                          [(st_["pokemon"][t[0]]["species"], st_["pokemon"][bk[0]]["species"])])
+        return tally
+
+    keep, pt.read = pt.read, read
+    try:
+        _cands, po, _w = pt.race(st, keys, boss_keys, flags, sixes, {}, rounds=2, log=lambda *_a: None)
+        best = max(po.rows, key=po.score)
+        pt.improve(st, keys, boss_keys, flags, M, best, po, check=2, log=lambda *_a: None)
+    finally:
+        pt.read = keep
+    bad = [t for t in sixes + seen if not pt.valid_six(t, group)]
+    held = sum(any(st["pokemon"][k]["held"] for k in t) for t in seen)
+    return [("the screen, the race and the loop never take two versions of one catch (Maylene's box 1)",
+             not bad and held > 0 and len(set(seen)) > 16,
+             f"{len(set(seen))} sixes read, {held} with a held-back version; {len(bad)} with two of one catch")]
+
+
 def main():
     results = []
     rows = g.fights()
@@ -431,6 +467,7 @@ def main():
     results.append(("one run per seed keeps the box sizes over 20 seeds", got == want, str(got)))
 
     results += holds_checks(by)
+    results += search_checks()
     results += paired_checks()
     results += web_checks()
     results += planned_checks()
