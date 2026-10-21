@@ -9070,6 +9070,252 @@ def check_doubles_partner_booster(results):
     results.append(("doubles: a tag partner's type booster counts once", out == want, f"damage {out}"))
 
 
+# ---- batch 16: the five gaps batches 14b and 15 found, approved by Ian on 2026-10-21 ----
+
+# The batch's checks, run after batch 15's in main.
+B16 = []
+
+
+def b16(fn):
+    B16.append(fn)
+    return fn
+
+
+@b16
+def check_booster_retyped(results):
+    """A booster's fifth goes by the type the move hits with (Ian approved
+    the fix on 2026-10-21; BattleScript_CalcMoveDamage hands
+    BattleSystem_CalcMoveDamage battleCtx->moveType, which
+    sTypeBoostingItems matches): a Pixilate user's Swift takes the Fairy
+    Feather's fifth and none of the Silk Scarf's; Weather Ball takes Mystic
+    Water's in the rain and the Silk Scarf's in no weather; Hidden Power at
+    odd IVs, Dark, takes the Black Glasses'; a Liquid Voice user's Hyper
+    Voice takes Mystic Water's; a Normalize user's Ember takes the Silk
+    Scarf's and none of the Charcoal's; a plain Tackle still takes the Silk
+    Scarf's. Each pair is the hit with the item and without, on a row of
+    40. Until 2026-10-21 the check read the move's own type."""
+    odd = {k: 15 for k in ("hp", "at", "df", "sp", "sa", "sd")}
+    cases = {"Pixilate Swift, Fairy Feather": ("Swift", "Fairy Feather", "Pixilate", None, None),
+             "Pixilate Swift, Silk Scarf": ("Swift", "Silk Scarf", "Pixilate", None, None),
+             "Weather Ball in rain, Mystic Water": ("Weather Ball", "Mystic Water", None, "Rain", None),
+             "Weather Ball in no weather, Silk Scarf": ("Weather Ball", "Silk Scarf", None, None, None),
+             "Weather Ball in no weather, Mystic Water": ("Weather Ball", "Mystic Water", None, None, None),
+             "Hidden Power at odd IVs, Black Glasses": ("Hidden Power", "Black Glasses", None, None, odd),
+             "Liquid Voice Hyper Voice, Mystic Water": ("Hyper Voice", "Mystic Water", "Liquid Voice", None, None),
+             "Normalize Ember, Silk Scarf": ("Ember", "Silk Scarf", "Normalize", None, None),
+             "Normalize Ember, Charcoal": ("Ember", "Charcoal", "Normalize", None, None),
+             "Tackle, Silk Scarf": ("Tackle", "Silk Scarf", None, None, None)}
+    out = {}
+    for case, (name, item, ability, weather, ivs) in cases.items():
+        got = []
+        for held in (item, None):
+            b, p, foe = battle([name], ["Splash"], {("p", name): [40] * 16})
+            p.item, p.ability, b.weather = held, ability, weather
+            if ivs:
+                p.ivs = ivs
+            got.append(b.damage(p, foe, fs.move(name), roll=0))
+        out[case] = tuple(got)
+    want = {case: (48 if case in ("Pixilate Swift, Fairy Feather", "Weather Ball in rain, Mystic Water",
+                                  "Weather Ball in no weather, Silk Scarf", "Hidden Power at odd IVs, Black Glasses",
+                                  "Liquid Voice Hyper Voice, Mystic Water", "Normalize Ember, Silk Scarf",
+                                  "Tackle, Silk Scarf") else 40, 40) for case in cases}
+    results.append(("a booster's fifth goes by the type the move hits with (Pixilate, Weather Ball, Hidden Power)",
+                    out == want, f"(with the item, without) {out}"))
+
+
+@b16
+def check_trainer_fling_rows(results):
+    """A trainer's Fling of the item its rows read deals its damage (Ian
+    approved the fix on 2026-10-21; Fling's script spends the item before
+    the hit, but RemoveItem comes after CalcDamage): the Fling of a held
+    Thick Club, whose twin with no item rows Fling at nothing, is read from
+    the trainer's own row, 30; its Tackle afterwards reads the twin's row,
+    15 against its own 20, as before; and a Fling of an item the battle
+    handed it reads its own row too, at its own item's power, as Ian
+    accepted on 2026-10-15 for a Fling after the player's Trick. Until
+    2026-10-21 both Flings read the twin and dealt nothing."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("own item", "handed item"):
+        b, p, foe = battle(["Splash"], ["Fling", "Tackle"], {("b", "Fling"): [30] * 16, ("b", "Tackle"): [20] * 16},
+                           hp=200)
+        b.st["pokemon"]["b0.0"]["item"] = "Thick Club"
+        b.st["pokemon"]["b0.0#ni"] = dict(b.st["pokemon"]["b0.0"], item=None)
+        b.st["item_twin"] = {"b0.0": "b0.0#ni"}
+        b.st["rows"][(None, "b0.0#ni", "p0")] = {"moves": {"Fling": {"rolls": [0] * 16}, "Tackle": {"rolls": [15] * 16}}}
+        foe.item = "Thick Club" if case == "own item" else "Hard Stone"
+        fs.mark_unheld(b, foe)
+        b.dice, b.rng = sure12(), random.Random(1)
+        b.st["first_battle"] = True          # no critical hit, so each hit is its row's
+        pl.attack(b, foe, fs.move("Fling"), p, True)
+        flung = 200 - p.hp
+        pl.attack(b, foe, fs.move("Tackle"), p, False)
+        out[case] = (flung, 200 - p.hp - flung, foe.item)
+    want = {"own item": (30, 15, None), "handed item": (30, 15, None)}
+    results.append(("a trainer's Fling of the item its rows read deals its damage", out == want,
+                    f"(the Fling's damage, the Tackle's after, the item left) {out}"))
+
+
+@b16
+def check_whirlwind_level(results):
+    """Roar's and Whirlwind's level check in a trainer battle (Ian approved
+    the fix on 2026-10-21; BattleScript_PickDraggedOutMon asks
+    BattleSystem_CanWhirlwind once the target has someone to send in): the
+    odds are 217 in 256 for a level 30 user on a level 50 target and
+    certain at equal levels; in the readings' battle, on dice where every
+    chance goes against the player, the player's level 30 Roar leaves the
+    level 50 target in and the trainer's level 30 Roar drags the player's
+    out, and on dice where every chance goes the player's way the reverse;
+    at equal levels both drag on either dice; at the game's odds the
+    player's lower Roar fails about 15 times in 100 (304 of 2000 expected);
+    and in a double battle (run_doubles) a level 30 Roar on a level 50 foe
+    fails at the same odds. Until 2026-10-21 none of these failed."""
+    from . import perfectline as pl
+
+    class Dice(pl.RunDice):
+        def __init__(self, against):
+            super().__init__(random.Random(1), True)
+            self.against = against
+
+        def bad(self, kind, p):
+            return self.against and p > 0
+
+        def good(self, p, kind=None):
+            return p >= 1 or (not self.against and p > 0)
+
+    def roar(user, levels, dice):
+        b, p, foe = battle(["Roar"], ["Roar"], {})
+        b.p.mons.append(fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Roar"], "p"))
+        b.b.mons.append(fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Roar"], "b"))
+        p.level, foe.level = levels if user == "p" else levels[::-1]
+        b.dice, b.rng = dice, random.Random(1)
+        att, dfn = (p, foe) if user == "p" else (foe, p)
+        pl.status_move(b, att, fs.move("Roar"), dfn, True)
+        return (b.b if user == "p" else b.p).active
+
+    odds = getattr(fs, "whirlwind_odds", lambda a, d: 1.0)
+    out = {"odds": (odds(30, 50), odds(50, 50))}
+    for against in (True, False):
+        for user in ("p", "b"):
+            for levels in ((30, 50), (50, 50)):
+                out[("against the player" if against else "for the player", user, levels)] = roar(
+                    user, levels, Dice(against))
+    out["player's level 30 Roar fails (of 2000)"] = sum(
+        roar("p", (30, 50), pl.RunDice(random.Random(seed), True)) == 0 for seed in range(2000))
+
+    def doubles(seed):
+        mons = {"p0": {"moves": ["Roar"], "level": 30}, "p1": {"moves": ["Splash"]},
+                "b0.0": {"moves": ["Splash"], "level": 50}, "b0.1": {"moves": ["Splash"]},
+                "b0.2": {"moves": ["Splash"]}}
+        st = doubles_st(mons)
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1", "b0.2"], {"p0": ("Roar", "b0.0")}, seed=seed)
+        return mon_of(b, "b0.0") in b.b.on_field()
+    out["doubles: level 30 Roar fails (of 600)"] = sum(doubles(seed) for seed in range(600))
+    want_turn = {("against the player", "p", (30, 50)): 0, ("against the player", "b", (30, 50)): 1,
+                 ("for the player", "p", (30, 50)): 1, ("for the player", "b", (30, 50)): 0}
+    ok = (out["odds"] == (217 / 256, 1.0)
+          and all(out[k] == v for k, v in want_turn.items())
+          and all(out[(a, u, (50, 50))] == 1 for a in ("against the player", "for the player") for u in ("p", "b"))
+          and 230 <= out["player's level 30 Roar fails (of 2000)"] <= 380
+          and 60 <= out["doubles: level 30 Roar fails (of 600)"] <= 125)
+    results.append(("Roar and Whirlwind fail on level at the engine's odds (CanWhirlwind)", ok,
+                    "(the index now in for the target's side) " + str(out)))
+
+
+@b16
+def check_slow_items_order(results):
+    """Lagging Tail, Full Incense and Stall in the turn's order (Ian
+    approved the fix on 2026-10-21; BattleSystem_CompareBattlerSpeed's
+    HOLD_EFFECT_PRIORITY_DOWN and ABILITY_STALL, after the Quick Claw and
+    the Custap Berry): in the readings' single battle, each side's Tackle
+    knocks the other out, so the Pokemon that moves first is the one left
+    standing. A faster player's Pokemon holding a Lagging Tail or a Full
+    Incense, or with Stall, moves after the slower foe; of two Lagging Tail
+    holders the slower moves first; a Lagging Tail holder goes after a
+    Stall foe, and a Stall Pokemon before a Lagging Tail foe; a slower
+    player's Pokemon moves before a faster Lagging Tail foe; a Quick Claw
+    that fired puts its slow holder before a faster Lagging Tail foe; the
+    battle's dice with no Quick Claw rolled (perfectline's search) put the
+    Lagging Tail holder last too. In a double battle (run_doubles) a faster
+    Lagging Tail holder's Tackle comes after the slower foe's. Until
+    2026-10-21 Speed alone decided all these."""
+    from . import perfectline as pl
+    rows = {("p", "Tackle"): [100] * 16, ("b", "Tackle"): [100] * 16}
+
+    def single(p_item=None, b_item=None, p_ability=None, b_ability=None, p_speed=100, b_speed=50, quick=True,
+               p_quick=False):
+        b, p, foe = battle(["Tackle"], ["Tackle"], rows, p_speed=p_speed, b_speed=b_speed)
+        p.item, foe.item, p.ability, foe.ability = p_item, b_item, p_ability, b_ability
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        b.st["first_battle"] = True          # no critical hit
+        if quick:
+            b.quick = {"p0": p_quick, "b0.0": False}
+        pl._turn(b, ("move", fs.move("Tackle")), ("move", fs.move("Tackle")))
+        return "player first" if p.alive() else "foe first"
+    out = {"no item": single(), "Lagging Tail": single("Lagging Tail"), "Full Incense": single("Full Incense"),
+           "Stall": single(p_ability="Stall"), "both Lagging Tail": single("Lagging Tail", "Lagging Tail"),
+           "Lagging Tail against Stall": single("Lagging Tail", b_ability="Stall"),
+           "Stall against Lagging Tail": single(p_ability="Stall", b_item="Lagging Tail"),
+           "slower against a Lagging Tail": single(b_item="Lagging Tail", p_speed=30, b_speed=100),
+           "fired Quick Claw against a faster Lagging Tail": single("Quick Claw", "Lagging Tail", p_speed=30,
+                                                                     b_speed=100, p_quick=True),
+           "no Quick Claw rolled, Lagging Tail": single("Lagging Tail", quick=False)}
+    mons = {"p0": {"moves": ["Tackle"], "item": "Lagging Tail"}, "p1": {"moves": ["Splash"]},
+            "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
+    for item in ("Lagging Tail", None):
+        mons["p0"]["item"] = item
+        st = doubles_st(mons, {("p0", "b0.0"): {"Tackle": 100}, ("b0.0", "p0"): {"Tackle": 100}},
+                        speeds={"p0": 100, "p1": 5, "b0.0": 50, "b0.1": 5})
+        st["first_battle"] = True
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": ("Tackle", "b0.0"), "b0.0": ("Tackle", "p0")})
+        out[f"doubles, {item or 'no item'}"] = "player first" if mon_of(b, "p0").alive() else "foe first"
+    want = {"no item": "player first", "Lagging Tail": "foe first", "Full Incense": "foe first", "Stall": "foe first",
+            "both Lagging Tail": "foe first", "Lagging Tail against Stall": "foe first",
+            "Stall against Lagging Tail": "player first", "slower against a Lagging Tail": "player first",
+            "fired Quick Claw against a faster Lagging Tail": "player first",
+            "no Quick Claw rolled, Lagging Tail": "foe first",
+            "doubles, Lagging Tail": "foe first", "doubles, no item": "player first"}
+    results.append(("Lagging Tail, Full Incense and Stall go last in their priority bracket", out == want, str(out)))
+
+
+@b16
+def check_custap_any_priority(results):
+    """A Custap Berry in its pinch is eaten as its holder acts, on any
+    priority (Ian approved the fix on 2026-10-21; CompareBattlerSpeed sets
+    custapBerry in the turn order's comparison whatever the moves'
+    priority, and subscript_check_quick_claw spends it before the holder's
+    move): in the readings' single battle the player's Pokemon at a quarter
+    of its HP, its Custap Berry fired (perfectline.play_turn's roll), eats
+    it when its Tackle comes after the foe's Quick Attack, and when its
+    Quick Attack comes before the foe's Tackle, as when both Tackle; it
+    keeps it when it switches out, when the foe's Quick Attack knocks it out
+    first, and above a quarter. Until 2026-10-21 it was eaten only when the
+    two moves shared a priority."""
+    from . import perfectline as pl
+    rows = {("p", "Tackle"): [10] * 16, ("p", "Quick Attack"): [10] * 16, ("b", "Tackle"): [10] * 16,
+            ("b", "Quick Attack"): [10] * 16}
+    out = {}
+    for case, mine, theirs, hp in (("Tackle after a Quick Attack", "Tackle", "Quick Attack", 25),
+                                   ("Quick Attack before a Tackle", "Quick Attack", "Tackle", 25),
+                                   ("both Tackle", "Tackle", "Tackle", 25),
+                                   ("switching out", None, "Tackle", 25),
+                                   ("knocked out first", "Tackle", "Quick Attack", 10),
+                                   ("above a quarter", "Tackle", "Quick Attack", 26)):
+        b, p, foe = battle(["Tackle", "Quick Attack"], ["Tackle", "Quick Attack"], rows)
+        b.p.mons.append(fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p"))
+        p.item, p.hp = "Custap Berry", hp
+        b.dice, b.rng = sure12(), random.Random(1)
+        b.st["first_battle"] = True
+        b.quick = {m.key: fs.custap_fires(m, b) for m in (p, foe)}
+        pa = ("switch", 1) if mine is None else ("move", fs.move(mine))
+        pl._turn(b, pa, ("move", fs.move(theirs)))
+        out[case] = p.item
+    want = {"Tackle after a Quick Attack": None, "Quick Attack before a Tackle": None, "both Tackle": None,
+            "switching out": "Custap Berry", "knocked out first": "Custap Berry", "above a quarter": "Custap Berry"}
+    results.append(("a Custap Berry in its pinch is eaten as its holder acts, on any priority", out == want,
+                    f"(the item left) {out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
@@ -9136,7 +9382,7 @@ def main():
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
                   check_self_risk, check_sure, check_reward_items) + tuple(B11) + tuple(B12) + tuple(B13) \
-            + tuple(B14) + tuple(B14B) + tuple(B15):
+            + tuple(B14) + tuple(B14B) + tuple(B15) + tuple(B16):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

@@ -1142,7 +1142,14 @@ class Battle:
             # A trainer's Pokemon whose item the battle took reads its item
             # twin (mark_unheld), where nothing else has changed its key; a
             # pair prepare() did not row with the twin keeps its own rows.
-            ua = item_key(self, att) if att.unheld and ak == att.key else None
+            # Its Fling reads its own rows, made with its own item: the item
+            # is spent before the hit (Fling's script), but its damage is
+            # worked out from the item still held (RemoveItem comes after
+            # CalcDamage). An item the player's Trick gave it flings at its
+            # own item's power, as Ian accepted on 2026-10-15. Until
+            # 2026-10-21 it read the twin, which holds nothing, so the Fling
+            # dealt nothing (Ian approved the fix on 2026-10-21).
+            ua = item_key(self, att) if att.unheld and ak == att.key and not flinging(mv) else None
             ud = item_key(self, dfn) if dfn.unheld and dk == dfn.key else None
             if ua or ud:
                 a, d = ua or ak, ud or dk
@@ -1278,7 +1285,7 @@ class Battle:
             mult *= 2 / 3        # the calculator's row has Flash Fire always lit
         elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
             mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
-        if booster_fifth(att, mv):
+        if booster_fifth(self, att, mv):
             mult *= 1.2          # the player's rows are item-free; a booster adds its fifth here
         side = self.p if dfn.side == "p" else self.b
         screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
@@ -4561,7 +4568,9 @@ def drag_pick(b, dfn, pick):
     partner battle: a pair whose other slot has fainted with one Pokemon
     waiting fails. The one drawn is any of that party standing off the
     field, at even odds (pick(kind, n)). Roar's and Whirlwind's level check
-    (BattleSystem_CanWhirlwind) is not followed, in either battle."""
+    (BattleSystem_CanWhirlwind, whirlwind_odds) comes before the draw, in
+    the double battles as in the single ones (perfectline.whirlwind_passes);
+    until 2026-10-21 neither had it."""
     side = b.p if dfn.side == "p" else b.b
     owner = getattr(dfn, "owner", None)
     mine = [m for m in side.mons if getattr(m, "owner", None) == owner]
@@ -4573,6 +4582,20 @@ def drag_pick(b, dfn, pick):
     if not cands:
         return None
     return side.mons.index(cands[pick("roar", len(cands))])
+
+
+@functools.lru_cache(maxsize=None)
+def whirlwind_odds(user_level, target_level):
+    """The chance Roar or Whirlwind passes its level check in a trainer
+    battle (BattleScript_PickDraggedOutMon with checkLevel, once its target
+    has someone to send in, asks BattleSystem_CanWhirlwind): always when the
+    user is of the target's level or higher; otherwise a random byte r
+    passes when ((r * (user's level + target's level)) >> 8) + 1 is above a
+    quarter of the target's level, rounded down. Dragon Tail and Circle
+    Throw skip the check (BtlCmd_TryDragonTail)."""
+    if user_level >= target_level:
+        return 1.0
+    return sum(((r * (user_level + target_level)) >> 8) + 1 > target_level // 4 for r in range(256)) / 256
 
 
 def drag_coming(b, att, dfn, mv):
@@ -6453,6 +6476,13 @@ def row_item(item):
 def item_key(b, mon):
     """The key of mon's item twin (prepare's item_twin), or None."""
     return (b.st.get("item_twin") or {}).get(mon.key)
+
+
+def flinging(mv):
+    """Whether mv is Fling, whose hit a trainer's Pokemon reads from its own
+    rows, made with its own item, even once the throw has spent the item
+    (Battle.row): a Fling with nothing to throw fails before its hit."""
+    return mv is not None and mv.name == "Fling"
 
 
 def mark_unheld(b, *mons):
@@ -8566,7 +8596,8 @@ def status_move(b, att, mv, dfn, first):
         pain_split(b, att, dfn)
     elif e == "FORCE_SWITCH":
         bench = foe_side.bench()
-        if bench and not anchored(att, dfn) and not getattr(dfn, "ingrained", False):
+        if bench and not anchored(att, dfn) and not getattr(dfn, "ingrained", False) \
+                and (att.level >= dfn.level or b.rng.random() < whirlwind_odds(att.level, dfn.level)):
             nxt = b.rng.choice(bench)
             switch_in(b, foe_side, foe_side.mons.index(nxt))
     elif e == "FAINT_AND_ATK_SP_ATK_DOWN_2":
@@ -9067,6 +9098,29 @@ def moody(b, m):
         ability_stages(m, m, up, 2)
     if down is not None:
         ability_stages(m, m, down, -1)
+
+
+SLOW_ITEMS = ("Lagging Tail", "Full Incense")
+
+
+def slow_after(m1, m2, s1, s2, tie):
+    """Lagging Tail and Full Incense, then Stall, in a comparison of two
+    Pokemon in one priority bracket that no Quick Claw or Custap Berry has
+    settled (BattleSystem_CompareBattlerSpeed, HOLD_EFFECT_PRIORITY_DOWN and
+    ABILITY_STALL): None when neither holds such an item and neither has
+    Stall, so Speed decides; else whether m1 goes after m2. A holder goes
+    after one without, and of two holders the slower goes first (s1 and s2
+    their Speeds, Trick Room or not), tie() deciding equal Speeds. Each item
+    is checked before Stall, so a Lagging Tail holder goes after a Stall
+    Pokemon."""
+    l1, l2 = m1.item in SLOW_ITEMS, m2.item in SLOW_ITEMS
+    if not (l1 or l2):
+        l1, l2 = m1.ability == "Stall", m2.ability == "Stall"
+        if not (l1 or l2):
+            return None
+    if l1 != l2:
+        return l1
+    return s1 > s2 or (s1 == s2 and tie())
 
 
 def end_order(b):
@@ -10130,7 +10184,10 @@ def doubles_order(b, acts):
     which subscript_check_quick_claw reads), and is noted in b.custap. acts
     is [(Pokemon, move, target)], returned in order. Until 2026-10-21 the
     double battles went by priority and Speed alone, so neither item did
-    anything (Ian approved the double battles' path on 2026-10-14)."""
+    anything (Ian approved the double battles' path on 2026-10-14). Where
+    neither has fired, a Lagging Tail or Full Incense, then Stall, puts its
+    holder last in the bracket (slow_after); until 2026-10-21 neither
+    battle's order had them (Ian approved the fix on 2026-10-21)."""
     quick = {}
     for mon, _mv, _t in acts:
         q = bool(b.quick.get(mon.key))
@@ -10148,6 +10205,12 @@ def doubles_order(b, acts):
         qx, qy = quick[x[0].key], quick[y[0].key]
         if qx != qy:
             return qy
+        if not qx:
+            # Lagging Tail and Full Incense, then Stall, once neither
+            # Pokemon's Quick Claw or Custap Berry has fired (slow_after).
+            slow = slow_after(x[0], y[0], sx, sy, lambda: b.rng.random() < 0.5)
+            if slow is not None:
+                return slow
         if b.trick_room and not (qx and qy):
             return sx > sy or (sx == sy and b.rng.random() < 0.5)
         return sx < sy or (sx == sy and b.rng.random() < 0.5)
@@ -10377,8 +10440,14 @@ def player_moves(rec, can_names, tiers, types):
 # 2026-10-20).
 BOOSTER_TYPE = {it: t for t, items in TYPE_BOOSTERS.items() for it in items}
 
+# The abilities and moves whose type the battle sets as the move is used
+# (move_type_used), so a booster's fifth goes by that type and not by the
+# move's own; any other move keeps its own type, which is read at no cost.
+RETYPING_ABILITIES = frozenset({"Normalize", "Pixilate", "Liquid Voice"})
+RETYPED_MOVES = frozenset({"Weather Ball", "Hidden Power", "Natural Gift"})
 
-def booster_fifth(att, mv):
+
+def booster_fifth(b, att, mv):
     """Whether the battle adds a type booster's fifth to att's move
     (sTypeBoostingItems, BattleSystem_CalcMoveDamage): only for the player's
     own Pokemon, whose rows are made with no item (prepare, assign_items). A
@@ -10386,8 +10455,24 @@ def booster_fifth(att, mv):
     its trainer's record, its item in the row already, so its fifth is not
     added again. Until 2026-10-21 a partner's booster counted twice (Ian
     approved the fix on 2026-10-20 after batch 14; Barry's partner teams
-    hold no item today, so nothing read differently)."""
-    return att.side == "p" and att.key[0] != "q" and BOOSTER_TYPE.get(att.item) == mv.type
+    hold no item today, so nothing read differently).
+
+    The booster matches the type the move hits with, which
+    BattleScript_CalcMoveDamage hands the damage (battleCtx->moveType, or
+    Normal for a Normalize user): a Pixilate user's Normal move is Fairy and
+    takes the Fairy Feather, Weather Ball takes the booster of its weather's
+    type, Hidden Power that of its IVs' type, and a Liquid Voice user's
+    sound move Mystic Water (move_type_used). Until 2026-10-21 the check
+    read the move's own type, so a Pixilate Sylveon's Swift took nothing
+    from its Fairy Feather (Ian approved the fix on 2026-10-21)."""
+    if att.side != "p" or att.key[0] == "q":
+        return False
+    t = BOOSTER_TYPE.get(att.item)
+    if t is None:
+        return False
+    if att.ability in RETYPING_ABILITIES or mv.name in RETYPED_MOVES:
+        return move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b)) == t
+    return mv.type == t
 
 
 def plate_key(key, item):
