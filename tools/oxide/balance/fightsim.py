@@ -4582,7 +4582,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     if e in RECOIL and att.ability not in RECOIL_PROOF:
         hurt(b, att, max(1, int(dealt * RECOIL[e])))
     if e in ANY_HIT:
-        any_hit(b, att, dfn, mv)         # Chloroblast's cost, Freezy Frost's reset (any_hit)
+        any_hit(b, att, dfn, mv)         # Chloroblast's cost, Freezy Frost's reset, the screens (any_hit)
     # Draining (subscript_drain_half_damage_dealt, _three_quarters): Heal Block
     # on the user stops the heal, not the damage, and Liquid Ooze turns it
     # into damage (drain).
@@ -7118,7 +7118,9 @@ def late_hit(b, att, dfn, mv, stripped, dealt):
 
 # The hits whose own effect runs ON_HIT on any hit, a knockout's or a
 # Substitute's included, each looked at once by effect (any_hit).
-ANY_HIT = frozenset({"RECOIL_HALF_MAX_HP", "RESET_STAT_CHANGES_HIT"})
+ANY_HIT = frozenset({"RECOIL_HALF_MAX_HP", "RESET_STAT_CHANGES_HIT", "SET_LIGHT_SCREEN_HIT", "SET_REFLECT_HIT"})
+# The screen each screen-raising hit puts up on its user's side (any_hit).
+HIT_SCREENS = {"SET_LIGHT_SCREEN_HIT": "Light Screen", "SET_REFLECT_HIT": "Reflect"}
 
 
 def any_hit(b, att, dfn, mv):
@@ -7135,13 +7137,25 @@ def any_hit(b, att, dfn, mv):
     Freezy Frost (effect script 313, subscript_reset_all_stat_stages,
     ON_HIT with no Pokemon of its own): Haze's command resets every
     Pokemon on the field (reset_all_stats). Until 2026-10-20 every stage
-    stayed (Ian approved the fix)."""
+    stayed (Ian approved the fix).
+
+    Glitzy Glow and Baddy Bad (effect scripts 311 and 312,
+    subscript_light_screen and subscript_reflect, ON_HIT): the screen goes
+    up on the user's side for five turns, eight with a Light Clay, as the
+    status moves raise it (BtlCmd_TryLightScreen, BtlCmd_TryReflect); one
+    already up stays as it is, and the move, which has done its damage, has
+    not failed. Until 2026-10-20 no screen went up (Ian approved the
+    fixes)."""
     e = mv.effect
     if e == "RECOIL_HALF_MAX_HP":
         if att.ability != "Magic Guard":
             hurt(b, att, (att.maxhp + 1) // 2)
     elif e == "RESET_STAT_CHANGES_HIT":
         reset_all_stats(b)
+    elif e in HIT_SCREENS:
+        side = b.p if att.side == "p" else b.b
+        if not side.screens[HIT_SCREENS[e]]:
+            side.screens[HIT_SCREENS[e]] = 8 if att.item == "Light Clay" else 5
 
 
 def reset_all_stats(b):

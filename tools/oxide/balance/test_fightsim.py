@@ -7551,6 +7551,39 @@ def check_wildbolt_storm(results):
     results.append(("Wildbolt Storm paralyses at its chance", ok, note))
 
 
+@b13
+def check_screen_hits(results):
+    """Glitzy Glow and Baddy Bad (approved 2026-10-14; effect scripts 311
+    and 312): any hit, a Substitute's and a knockout's too, puts Light
+    Screen or Reflect up on the user's side for five turns, eight with a
+    Light Clay, in both battles; a screen already up keeps its turns."""
+    from . import perfectline as pl
+    out = {}
+    for name, case in (("Glitzy Glow", "hit"), ("Glitzy Glow", "Light Clay"), ("Glitzy Glow", "up"),
+                       ("Glitzy Glow", "Substitute"), ("Glitzy Glow", "knockout"), ("Glitzy Glow", "fightsim"),
+                       ("Baddy Bad", "hit"), ("Baddy Bad", "fightsim")):
+        b, p, foe = b11_battle([name], ["Tackle"], {("p", name): [20] * 16})
+        b.dice = sure12()
+        screen = "Light Screen" if name == "Glitzy Glow" else "Reflect"
+        if case == "Light Clay":
+            p.item = "Light Clay"
+        if case == "up":
+            b.p.screens[screen] = 3
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move(name), foe, True)
+        else:
+            pl.attack(b, p, fs.move(name), foe, True)
+        out[(name, case)] = (b.p.screens[screen], b.b.screens[screen])
+    want = {k: (5, 0) for k in out}
+    want.update({("Glitzy Glow", "Light Clay"): (8, 0), ("Glitzy Glow", "up"): (3, 0)})
+    results.append(("Glitzy Glow and Baddy Bad put up their user's screen", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

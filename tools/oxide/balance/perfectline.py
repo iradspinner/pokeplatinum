@@ -910,7 +910,7 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     if e in fs.RECOIL and att.ability not in fs.RECOIL_PROOF:     # Rock Head and Magic Guard
         fs.hurt(b, att, max(1, int(dealt * fs.RECOIL[e])))
     if e in fs.ANY_HIT:
-        fs.any_hit(b, att, dfn, mv)      # Chloroblast's cost, Freezy Frost's reset (fightsim.any_hit)
+        fs.any_hit(b, att, dfn, mv)      # Chloroblast's cost, Freezy Frost's reset, the screens (fightsim.any_hit)
     if e in fs.DRAIN:
         # Big Root raises what a draining move restores by 30%; Heal Block on
         # the user stops the heal, not the damage, and the target's Liquid

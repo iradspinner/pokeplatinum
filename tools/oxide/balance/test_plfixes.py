@@ -6592,6 +6592,20 @@ def wildbolt_storm_checks():
     return [("the readings' Wildbolt Storm paralyses at its chance", ok, f"(hit, status) {out}")]
 
 
+@b13
+def screen_hit_checks():
+    """Glitzy Glow and Baddy Bad on real rows (approved 2026-10-14): the
+    player's Espeon's Glitzy Glow puts Light Screen up on its side, and its
+    Umbreon's Baddy Bad Reflect, each for five turns."""
+    out = {}
+    for user, name, screen in (("Espeon", "Glitzy Glow", "Light Screen"), ("Umbreon", "Baddy Bad", "Reflect")):
+        b, geo, mon = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [(user, 30, "Synchronize", [name])])
+        pl.attack(b, mon, fs.move(name), geo, True)
+        out[name] = (geo.hp < geo.maxhp, b.p.screens[screen])
+    ok = out == {"Glitzy Glow": (True, 5), "Baddy Bad": (True, 5)}
+    return [("the readings' Glitzy Glow and Baddy Bad put up their screens", ok, f"(hit, turns) {out}")]
+
+
 def main():
     results = []
 
