@@ -2332,6 +2332,9 @@ Expert_Main:
     // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Stone Axe lays Stealth Rock
     // after its hit; Stealth Rock's routine, trimmed, below it.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK_HIT, Expert_StoneAxe
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Ceaseless Edge lays Spikes
+    // after its hit; Spikes' routine, trimmed, below it.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_SPIKES_HIT, Expert_CeaselessEdge
     // Dragon Tail forces a switch, as Roar and Whirlwind do.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FORCE_SWITCH_HIT, Expert_ForceSwitch
     // Incinerate burns up the target's Berry, as Pluck takes it.
@@ -4237,6 +4240,31 @@ Expert_Spikes_TryScorePlus1:
 
 Expert_Spikes_End:
     PopOrEnd 
+
+Expert_CeaselessEdge:
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read). Ceaseless Edge lays a layer of
+    // Spikes after its hit, so it takes Spikes' routine, trimmed: Basic refuses the status
+    // move at three layers or against a last Pokemon, but not a hit, so this routine asks
+    // the same first and adds nothing when either holds.
+    //
+    // Otherwise, 50% chance of score +0 and terminate; then score +1, and if the attacker
+    // knows either Roar or Whirlwind, 75% chance of additional score +1.
+    LoadSpikesLayers AI_BATTLER_DEFENDER, SIDE_CONDITION_SPIKES
+    IfLoadedEqualTo 3, Expert_CeaselessEdge_End
+    CountAlivePartyBattlers AI_BATTLER_DEFENDER
+    IfLoadedEqualTo 0, Expert_CeaselessEdge_End
+    IfRandomLessThan 128, Expert_CeaselessEdge_End
+    AddToMoveScore 1
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_ROAR, Expert_CeaselessEdge_TryScorePlus1
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_WHIRLWIND, Expert_CeaselessEdge_TryScorePlus1
+    GoTo Expert_CeaselessEdge_End
+
+Expert_CeaselessEdge_TryScorePlus1:
+    IfRandomLessThan 64, Expert_CeaselessEdge_End
+    AddToMoveScore 1
+
+Expert_CeaselessEdge_End:
+    PopOrEnd
 
 Expert_Foresight:
     // If the attacker has a Ghost typing, 47.3% chance of score +2.
@@ -9351,6 +9379,9 @@ Harrassment_Effects:
     TableEntry BATTLE_EFFECT_VENOM_DRENCH
     TableEntry BATTLE_EFFECT_STICKY_WEB
     TableEntry BATTLE_EFFECT_MAGIC_ROOM
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Ceaseless Edge,
+    // which lays Spikes after its hit, as Spikes.
+    TableEntry BATTLE_EFFECT_SET_SPIKES_HIT
     TableEntry TABLE_END
 
 RoamingPokemon_Main:
