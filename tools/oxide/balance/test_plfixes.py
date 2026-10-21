@@ -6752,6 +6752,22 @@ def last_respects_checks():
     return [("the readings' Last Respects grows with its party's fainted", ok, f"top damage {before} to {after}")]
 
 
+@b13
+def heal_bell_checks():
+    """Heal Bell on real rows (Ian's addition of 2026-10-20): the player's
+    Chimecho cures its burned Bibarel and leaves its poisoned Voltorb,
+    whose Soundproof keeps the bell out."""
+    b, geo, chime = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                              [("Chimecho", 30, "Levitate", ["Heal Bell"]), ("Bibarel", 30, "Simple", ["Tackle"]),
+                               ("Voltorb", 30, "Soundproof", ["Tackle"])])
+    bib, volt = b.p.mons[1], b.p.mons[2]
+    bib.status, volt.status = "brn", "psn"
+    pl.status_move(b, chime, fs.move("Heal Bell"), geo, True)
+    got = (bib.status, volt.status, volt.ability)
+    return [("the readings' Heal Bell spares a Soundproof party member", got == (None, "psn", "Soundproof"),
+             f"(Bibarel's status, Voltorb's status, Voltorb's ability) {got}")]
+
+
 def main():
     results = []
 

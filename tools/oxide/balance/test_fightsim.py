@@ -7876,6 +7876,39 @@ def check_last_respects(results):
     results.append(("Last Respects gains 50 power for each fainted party member", out == want, str(out)))
 
 
+@b13
+def check_heal_bell(results):
+    """Heal Bell and Aromatherapy (Ian's addition of 2026-10-20; effect
+    script 102, subscript_heal_bell): Heal Bell cures its user's party but
+    a Soundproof member, unless the user has Mold Breaker, and never a
+    Soundproof user itself; Aromatherapy cures them all; the user on the
+    field loses Nightmare with its sleep; in both battles."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, mine in (("Heal Bell", "Heal Bell", None), ("Mold Breaker", "Heal Bell", "Mold Breaker"),
+                             ("Soundproof user", "Heal Bell", "Soundproof"), ("Aromatherapy", "Aromatherapy", None),
+                             ("fightsim", "Heal Bell", None)):
+        b, p, foe = battle([name], ["Tackle"], {})
+        b.rng = FixedDice(0.5)
+        b.dice = sure12()
+        mates = []
+        for i, (ability, status) in enumerate((("Soundproof", "psn"), ("Run Away", "brn")), 1):
+            m = fs.Mon(f"p{i}", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p")
+            m.ability, m.status = ability, status
+            b.p.mons.append(m)
+            mates.append(m)
+        p.ability, p.status, p.sleep, p.nightmare = mine, "slp", 2, True
+        if case == "fightsim":
+            fs.status_move(b, p, fs.move(name), foe, True)
+        else:
+            pl.status_move(b, p, fs.move(name), foe, True)
+        out[case] = (p.status, p.nightmare, mates[0].status, mates[1].status)
+    want = {"Heal Bell": (None, False, "psn", None), "Mold Breaker": (None, False, None, None),
+            "Soundproof user": ("slp", True, "psn", None), "Aromatherapy": (None, False, None, None),
+            "fightsim": (None, False, "psn", None)}
+    results.append(("Heal Bell spares Soundproof and ends Nightmare", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

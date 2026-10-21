@@ -1317,8 +1317,7 @@ def status_move(b, att, mv, dfn, first):
     elif e == "RANDOM_STAT_UP_2":
         fs.acupressure(att, lambda n: b.dice.choice("acupressure", n))     # two stages of a stat drawn evenly
     elif e == "CURE_PARTY_STATUS":
-        for m in own_side.mons:
-            m.status = None
+        fs.party_cure(b, att, mv)        # Heal Bell spares Soundproof, both end Nightmare (fightsim.party_cure)
     elif e == "PREVENT_STATUS":
         own_side.safeguard = 5
     elif e == "PREVENT_STAT_REDUCTION":

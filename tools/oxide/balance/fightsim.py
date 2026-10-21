@@ -6392,6 +6392,32 @@ def spin(b, att, dfn, e):
         change_stages(att, {"spe": 1})
 
 
+def party_cure(b, att, mv):
+    """Heal Bell and Aromatherapy (effect script 102, subscript_heal_bell):
+    TryPartyStatusRefresh cures the user and, in a double battle, its
+    partner on the field, each losing Nightmare with its status, and
+    BtlIOCmd_RefreshPartyStatus cures every Pokemon of the user's own
+    party. Heal Bell, a sound, spares a Soundproof Pokemon: the user's own
+    Soundproof always, a partner's and a party member's unless the user
+    has Mold Breaker (the partner's through Battler_IgnorableAbility, the
+    party's because the message passes a Mold Breaker user's ability as
+    none). Aromatherapy cures them all. The cure clears the status as
+    sparkly_swirl does. Until 2026-10-20 both cured every Pokemon on the
+    side and left Nightmare (Ian approved the fix on 2026-10-20)."""
+    side = b.p if att.side == "p" else b.b
+    field = side.on_field()
+    bell = mv.const == "MOVE_HEAL_BELL"
+    owner = getattr(att, "owner", None)
+    for m in side.mons:
+        if m not in field and getattr(m, "owner", None) != owner:
+            continue
+        if bell and m.ability == "Soundproof" and (m is att or att.ability != "Mold Breaker"):
+            continue
+        m.status = None
+        if m in field:
+            m.nightmare = False
+
+
 def sparkly_swirl(b, att):
     """Sparkly Swirl (effect script 314): once its hit lands, a Substitute's
     or a knockout's too (an indirect effect run ON_HIT, which Sheer Force
@@ -8177,8 +8203,7 @@ def status_move(b, att, mv, dfn, first):
     elif e == "RANDOM_STAT_UP_2":
         acupressure(att, b.rng.randrange)
     elif e == "CURE_PARTY_STATUS":
-        for m in own_side.mons:
-            m.status = None
+        party_cure(b, att, mv)           # Heal Bell spares Soundproof, both end Nightmare (party_cure)
     elif e == "PREVENT_STATUS":
         own_side.safeguard = 5
     elif e == "PREVENT_STAT_REDUCTION":
