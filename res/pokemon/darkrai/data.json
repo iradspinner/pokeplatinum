@@ -41,6 +41,7 @@
             [ 20, "MOVE_HYPNOSIS" ],
             [ 29, "MOVE_FAINT_ATTACK" ],
             [ 38, "MOVE_NIGHTMARE" ],
+            [ 47, "MOVE_NIGHT_DAZE" ],
             [ 66, "MOVE_DARK_VOID" ],
             [ 75, "MOVE_NASTY_PLOT" ]
         ],

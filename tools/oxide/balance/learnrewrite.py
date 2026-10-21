@@ -123,6 +123,10 @@ IAN_EGG_MOVES = {
                                                 "trainers' Gengar, which has its types")],
     "SPECIES_DUSKULL": [("MOVE_LAST_RESPECTS", "Ian, 2026-10-21, on signature-moves.md: Houndstone's, for "
                                                "trainers' Dusknoir, which guides spirits")],
+    # One more of the page's homes for trainers: a line the player cannot
+    # obtain, whose later-game owner Oxide lacks.
+    "SPECIES_STANTLER": [("MOVE_PSYSHIELD_BASH", "Ian, 2026-10-21, on signature-moves.md: Wyrdeer's, and "
+                                                 "Stantler's own in Legends: Arceus, for trainers")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

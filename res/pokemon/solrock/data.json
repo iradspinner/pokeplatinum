@@ -45,6 +45,7 @@
             [ 32, "MOVE_ROCK_THROW" ],
             [ 34, "MOVE_COSMIC_POWER" ],
             [ 42, "MOVE_HEAL_BLOCK" ],
+            [ 44, "MOVE_PSYSHIELD_BASH" ],
             [ 45, "MOVE_ROCK_SLIDE" ],
             [ 47, "MOVE_BULLDOZE" ],
             [ 53, "MOVE_SOLAR_BEAM" ],

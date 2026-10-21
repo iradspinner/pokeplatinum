@@ -45,6 +45,7 @@
             [ 17, "MOVE_STOMP" ],
             [ 27, "MOVE_EGG_BOMB" ],
             [ 37, "MOVE_WOOD_HAMMER" ],
+            [ 42, "MOVE_APPLE_ACID" ],
             [ 47, "MOVE_LEAF_STORM" ]
         ],
         "by_tm": [
