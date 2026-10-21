@@ -58,6 +58,7 @@ from . import calc_trainers
 LINES = os.environ.get("OXIDE_LINES") or os.path.expanduser("~/oxide-lines")
 READINGS = plgoal3.OUT
 FORMAT = "oxide-line 1"
+OVERVIEWS_KEPT = 24
 
 
 class Refused(Exception):
@@ -879,6 +880,8 @@ class _BranchTrainers:
 
     def __enter__(self):
         root = bdata.ROOT
+        if not re.fullmatch(r"[A-Za-z0-9_.][A-Za-z0-9_./~^-]*", self.branch or ""):
+            raise Refused(f"{self.branch!r} is not a branch or commit name")
         files = {}
         for stem in self.stems:
             try:
@@ -1607,6 +1610,11 @@ class Line:
                     lines.append({"quick": quick, "pq": pq, "ai": ai_label(c0, aa), "pa": pa, "p": out["p"],
                                   "chance": pq * pa * out["p"], "out": out, "c0": c0})
         lines.sort(key=lambda x: -x["chance"])
+        # The overviews of the last few turns looked at, kept for following
+        # and for the chance of a played turn; an enumeration holds many
+        # positions, so the oldest goes once there are OVERVIEWS_KEPT.
+        while len(self.overviews) >= OVERVIEWS_KEPT:
+            self.overviews.pop(next(iter(self.overviews)))
         self.overviews[ck] = lines
         return lines
 

@@ -3290,6 +3290,7 @@ function drawBtLeft() {
     <div class="row"><input id="btagain" placeholder="a branch, or empty for this tree" spellcheck="false"
         value="${esc((BT.view && BT.view.branch) || "")}" style="flex:1">
       <button id="btagaingo" title="The same party against this fight's trainer read from that branch, as a new line">Fight again</button></div>`;
+  h += `<div class="row"><button id="btreread" title="After an edit to a trainer, a learnset or the tables: the next battle reads the files again. Lines are kept on disk.">Read the game's files again</button></div>`;
   const lines = (BT.lines || []).slice(0, 14);
   h += lines.length ? lines.map(l => `<div class="row"><button class="linkish" data-openline="${esc(l.name)}"
       title="${esc(l.label || l.fight)}, saved ${esc(l.saved || "")} at ${esc(l.commit || "?")}">${esc(l.name)}</button>
@@ -3665,6 +3666,13 @@ $("#btleft").addEventListener("click", async ev => {
       remember();
     } catch (e) { toast(e.message, true); }
     BT.busy = false; drawBattle();
+  } else if (t.id === "btreread") {
+    try {
+      await bt("restart");
+      BT.box = null; BT.fights = null;
+      toast("The next request reads the game's files again");
+      await battleShown();
+    } catch (e) { toast(e.message, true); }
   } else if (t.id === "bttranscript") {
     try {
       const out = await bt("transcript", { line: BT.line });

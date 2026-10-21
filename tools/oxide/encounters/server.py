@@ -839,7 +839,22 @@ class LineTester:
                 stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=log, cwd=root, env=env,
                 text=True, bufsize=1)
 
+    def restart(self):
+        """Stop the worker, so the next request starts one that reads the
+        game's files afresh (the simulator keeps what it has read)."""
+        with self.lock:
+            if self.proc is not None and self.proc.poll() is None:
+                self.proc.stdin.close()
+                try:
+                    self.proc.wait(timeout=10)
+                except subprocess.TimeoutExpired:
+                    self.proc.terminate()
+            self.proc = None
+        return {"restarted": True}
+
     def ask(self, req):
+        if req.get("op") == "restart":
+            return self.restart()
         with self.lock:
             for _attempt in range(2):
                 if self.proc is None or self.proc.poll() is not None:
