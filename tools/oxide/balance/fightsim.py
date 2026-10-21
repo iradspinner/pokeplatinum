@@ -1599,6 +1599,8 @@ def can_status(b, target, status):
         return False
     if status == "par" and "Electric" in t:
         return False
+    if b.doubles and status in PARTNER_STATUS_VEIL and veil_partner(b, target, status) is not None:
+        return False
     if status_ability_ignored(b, target):
         return True              # a Mold Breaker's move passes the abilities below
     if target.ability == "Purifying Salt":
@@ -1620,6 +1622,9 @@ def can_status(b, target, status):
 STATUS_ABILITIES = {"slp": {"Insomnia", "Vital Spirit", "Sweet Veil"}, "par": {"Limber"},
                     "brn": {"Water Veil", "Water Bubble"},
                     "psn": {"Immunity", "Pastel Veil"}, "tox": {"Immunity", "Pastel Veil"}, "frz": {"Magma Armor"}}
+# The abilities that keep a status off their holder's partner too, in a
+# double battle (can_status).
+PARTNER_STATUS_VEIL = {"slp": "Sweet Veil", "psn": "Pastel Veil", "tox": "Pastel Veil"}
 # The abilities announced as their holder comes in (each message tags the
 # ability, so BattleAI_SetAbility records it).
 ENTRY_ANNOUNCED = {"Intimidate", "Pressure", "Mold Breaker", "Drizzle", "Drought", "Sand Stream",
@@ -2285,6 +2290,15 @@ def entry_abilities(b, mons, intimidate=True, trace_now=True):
             screen_cleaner(b, new)       # Oxide's abilities' step, after Download
         elif new.ability == "Hospitality" and new.alive() and b.doubles:
             hospitality(b, new)
+        elif new.ability == "Pastel Veil" and new.alive() and b.doubles:
+            ally = ally_of(b, new)
+            if ally is not None and ally.status in ("psn", "tox"):
+                # BattleSystem_TriggerEffectOnSwitch's Oxide abilities,
+                # subscript_pastel_veil: a poisoned partner is cured as the
+                # holder comes in. Until 2026-10-21 it was not (Ian approved
+                # the double-battle part batch 11 left on 2026-10-14).
+                ally.status, ally.toxic = None, 0
+                reveal(new)
     forecast(b)                          # the check's form step comes after these
 
 
@@ -2488,11 +2502,17 @@ def stat_drop_blocked(b, mon, changes, src=None, intimidate=False):
         return True
     if mon.ability == "Flower Veil" and "Grass" in mon.types and not mold(src, mon):
         # Oxide's Flower Veil keeps the other side from lowering a Grass-type
-        # holder's stats, after Mist; its message names no ability. Its
-        # shield over a Grass-type partner in a double battle is left to the
-        # double battles' own batch. Until 2026-10-20 it did nothing (Ian
-        # approved the fix).
+        # holder's stats, after Mist; its message names no ability. Until
+        # 2026-10-20 it did nothing (Ian approved the fix).
         return True
+    if b.doubles and "Grass" in mon.types:
+        # And a Grass-type partner's, in a double battle (PartnerHasFlowerVeil:
+        # a standing partner, unless a Mold Breaker gets past it). Until
+        # 2026-10-21 the partner had no shield (Ian approved the
+        # double-battle part batch 11 left on 2026-10-14).
+        ally = ally_of(b, mon)
+        if ally is not None and ally.ability == "Flower Veil" and not mold(src, ally):
+            return True
     if mon.item == "Clear Amulet":
         return True
     # A Mold Breaker src gets past the abilities (AbilityBlocksSpecificStatReduction
@@ -2574,11 +2594,30 @@ def leaf_guarded(b, target):
             and not weather_ignored(b))
 
 
+def veil_partner(b, target, status):
+    """The standing partner whose Sweet Veil or Pastel Veil keeps this status
+    off target in a double battle (the status subscripts' CHECK_HAVE_ON_SIDE),
+    unless a Mold Breaker's move gets past the partner's ability
+    (CheckIgnorableAbility; Toxic Spikes' check is not ignorable, and its
+    status has no source), or None. Until 2026-10-21 neither shielded the
+    partner (Ian approved the double-battle parts batch 11 left on
+    2026-10-14)."""
+    ally = ally_of(b, target)
+    if ally is not None and ally.ability == PARTNER_STATUS_VEIL.get(status) \
+            and not mold(getattr(b, "status_src", None), ally):
+        return ally
+    return None
+
+
 def give_status(b, target, status):
     if not can_status(b, target, status) or leaf_guarded(b, target):
         if target.alive() and not target.status and not status_ability_ignored(b, target) \
                 and (target.ability in STATUS_ABILITIES.get(status, ()) or leaf_guarded(b, target)):
             reveal(target)
+        elif b.doubles and target.alive() and not target.status:
+            veil = veil_partner(b, target, status)
+            if veil is not None:
+                reveal(veil)         # the message names the partner's veil
         return False
     target.status = status
     if status == "slp":
@@ -5113,6 +5152,22 @@ def majesty_blocked(att, dfn, mv):
     if dfn is att or dfn.side == att.side or mold(att, dfn) or move_priority(att, mv) <= 0:
         return False
     reveal(dfn)
+    return True
+
+
+def majesty_partner_blocked(b, att, dfn, mv):
+    """Queenly Majesty on the target's standing partner, in a double battle
+    (BattleControllerPlayer_PriorityBlock, after the target's own): a move
+    of raised priority aimed at a foe fails if that foe's partner has it,
+    unless a Mold Breaker gets past it; the message names the ability.
+    Until 2026-10-21 only the target's own shielded it (Ian approved the
+    double-battle part batch 11 left on 2026-10-14)."""
+    if dfn is att or dfn.side == att.side or move_priority(att, mv) <= 0:
+        return False
+    ally = ally_of(b, dfn)
+    if ally is None or ally.ability != "Queenly Majesty" or mold(att, ally):
+        return False
+    reveal(ally)
     return True
 
 

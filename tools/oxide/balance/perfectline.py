@@ -299,6 +299,10 @@ def give_status(b, target, status):
         if target.alive() and not target.status and not fs.status_ability_ignored(b, target) \
                 and (target.ability in fs.STATUS_ABILITIES.get(status, ()) or fs.leaf_guarded(b, target)):
             fs.reveal(target)
+        elif b.doubles and target.alive() and not target.status:
+            veil = fs.veil_partner(b, target, status)
+            if veil is not None:
+                fs.reveal(veil)          # a partner's Sweet Veil or Pastel Veil (fightsim.veil_partner)
         return False
     target.status = status
     if status == "slp":
@@ -804,6 +808,8 @@ def attack(b, att, mv, dfn, first):
         return
     if dfn.ability == "Queenly Majesty" and fs.majesty_blocked(att, dfn, mv):
         return                               # a raised move into Queenly Majesty (fightsim.majesty_blocked)
+    if b.doubles and fs.majesty_partner_blocked(b, att, dfn, mv):
+        return                               # or into its partner's, in a double battle
     fs.rollout_after(att, mv, True)
     trainer = not player(att)
     if mv.effect == "BEAT_UP":
@@ -1180,6 +1186,8 @@ def status_move(b, att, mv, dfn, first):
             return               # Sing, Growl or Roar into Soundproof (fightsim.soundproofed)
         if dfn.ability == "Queenly Majesty" and fs.majesty_blocked(att, dfn, mv):
             return               # a raised move into Queenly Majesty (fightsim.majesty_blocked)
+        if b.doubles and fs.majesty_partner_blocked(b, att, dfn, mv):
+            return               # or into its partner's, in a double battle
         if att.ability == "Prankster" and fs.prankster_blocked(att, dfn, mv):
             return               # a raised status move into a Dark type (fightsim.prankster_blocked)
     if e in fs.STATUS_OF:

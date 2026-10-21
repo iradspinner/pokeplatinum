@@ -8947,6 +8947,54 @@ def check_doubles_partner_abilities(results):
     results.append(("doubles: Healer, Friend Guard, Battery and Hospitality act on the partner", ok, f"{out}"))
 
 
+@b15
+def check_doubles_partner_veils(results):
+    """The veils and Queenly Majesty shield the holder's partner in a double
+    battle (Ian approved the double-battle parts batch 11 left on
+    2026-10-14): Sweet Veil keeps a Spore off the partner, Pastel Veil a
+    Toxic (the status subscripts' CHECK_HAVE_ON_SIDE), unless the user's
+    Mold Breaker gets past it; a Pastel Veil holder coming in cures its
+    poisoned partner (BattleSystem_TriggerEffectOnSwitch); Flower Veil keeps
+    a Growl off a Grass-type partner but not off its non-Grass holder
+    (PartnerHasFlowerVeil); Queenly Majesty stops a Quick Attack aimed at
+    its partner (BattleControllerPlayer_PriorityBlock). Until 2026-10-21
+    each shielded its holder alone."""
+    def battle(move, veil, foe_ability=None, p0_types=("Normal",), start=None, bench=False):
+        mons = {"p0": {"moves": ["Splash"], "types": p0_types}, "p1": {"moves": ["Splash"], "ability": veil},
+                "b0.0": {"moves": [move], "ability": foe_ability}, "b0.1": {"moves": ["Splash"]}}
+        player = ["p0", "p1"]
+        if bench:
+            mons["p2"] = {"moves": ["Splash"], "ability": veil}
+            mons["p1"]["ability"] = None
+            player.append("p2")
+        rows = {("b0.0", "p0"): {move: 10}, ("b0.0", "p1"): {move: 100 if bench else 10}}
+        st = doubles_st(mons, rows)
+        st["first_battle"] = True
+        return doubles_turns(st, player, ["b0.0", "b0.1"], {"b0.0": (move, "p1" if bench else "p0")}, start=start)
+    out = {}
+    for veil, move, status in (("Sweet Veil", "Spore", "slp"), ("Pastel Veil", "Toxic", "tox")):
+        for foe in (None, "Mold Breaker"):
+            out[f"{veil}, {move} from a {foe or 'plain'} foe"] = battle(move, veil, foe).p.mons[0].status
+    def poisoned(b):
+        mon_of(b, "p0").status = "psn"
+    b = battle("Tackle", "Pastel Veil", start=poisoned, bench=True)
+    out["Pastel Veil's newcomer beside a poisoned partner"] = (b.p.mons[b.p.active2].key, mon_of(b, "p0").status)
+    b = battle("Growl", "Flower Veil", p0_types=("Grass",))
+    out["Flower Veil, Growl (the Grass partner's Attack, the holder's)"] = (mon_of(b, "p0").stages["atk"],
+                                                                           mon_of(b, "p1").stages["atk"])
+    for foe in (None, "Mold Breaker"):
+        out[f"Queenly Majesty, a {foe or 'plain'} Quick Attack (the partner's HP)"] = \
+            mon_of(battle("Quick Attack", "Queenly Majesty", foe), "p0").hp
+    want = {"Sweet Veil, Spore from a plain foe": None, "Sweet Veil, Spore from a Mold Breaker foe": "slp",
+            "Pastel Veil, Toxic from a plain foe": None, "Pastel Veil, Toxic from a Mold Breaker foe": "tox",
+            "Pastel Veil's newcomer beside a poisoned partner": ("p2", None),
+            "Flower Veil, Growl (the Grass partner's Attack, the holder's)": (0, -1),
+            "Queenly Majesty, a plain Quick Attack (the partner's HP)": 100,
+            "Queenly Majesty, a Mold Breaker Quick Attack (the partner's HP)": 90}
+    results.append(("doubles: Sweet Veil, Pastel Veil, Flower Veil and Queenly Majesty shield the partner",
+                    out == want, f"{out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
