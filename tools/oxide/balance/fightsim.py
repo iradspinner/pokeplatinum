@@ -8533,30 +8533,35 @@ def healing_wish(b, att, lunar=False):
     lunar, Lunar Dance (effect script 270, subscript_lunar_dance): it fails
     when no party member can come in (TryReplaceFaintedMon); otherwise its
     user faints, and the turn sends in its replacement at once
-    (wish_comes_true). In a double battle the move is left to the double
-    battles' own fixes. Until 2026-10-15 both did nothing (Ian approved the
-    fixes)."""
+    (wish_comes_true). Until 2026-10-15 both did nothing (Ian approved the
+    fixes). In a double battle the party is the user's own trainer's
+    (BattleSystem_AnyReplacementMons keeps a tag battle's apart), and the
+    one sent in takes the user's slot; until 2026-10-21 both did nothing
+    there (Ian approved the double-battle parts of batches 7 and 8 on
+    2026-10-14)."""
     side = b.p if att.side == "p" else b.b
-    if getattr(b, "doubles", False) or not side.bench():
+    if not side.bench(owner=getattr(att, "owner", None) if b.doubles else None):
         return
     att.hp = 0
     att.wished = "lunar" if lunar else True
 
 
-def wish_comes_true(b, mon, choose):
+def wish_comes_true(b, mon, choose, slot=0, owner=None):
     """Healing Wish's and Lunar Dance's replacement (their subscripts,
     straight after the move): the party member choose(side) picks comes in
     and meets the hazards, and one left standing gets its HP back in full
     and its status cured, and after Lunar Dance every move's PP too; one the
-    hazards knock out is replaced in turn, the wish waiting for the next."""
+    hazards knock out is replaced in turn, the wish waiting for the next.
+    In a double battle the one sent in takes the user's slot (`slot`), from
+    its own trainer's party (`owner`)."""
     lunar = mon.wished == "lunar"
     mon.wished = False
     side = b.p if mon.side == "p" else b.b
-    while side.bench():
+    while side.bench(owner):
         idx = choose(side)
         if idx is None or not side.mons[idx].alive():
             return
-        switch_in(b, side, idx)
+        switch_in(b, side, idx, slot=slot)
         new = side.mons[idx]
         if new.alive():
             new.hp, new.status, new.sleep, new.toxic = new.maxhp, None, 0, 0
@@ -9933,6 +9938,12 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
             pl.use_move(b, mon, mv, tl[0] if tl else foe_of(b, mon), first,
                         targets=tl if mv.damaging() or (mv.range in SPREAD and tl) else None)
             b.moved.add(mon)
+            if mon.wished:
+                # Healing Wish and Lunar Dance: the user's replacement now,
+                # into its slot (wish_comes_true).
+                side = b.p if mon.side == "p" else b.b
+                wish_comes_true(b, mon, lambda sd, mon=mon: doubles_replacement(b, sd, mon),
+                                slot=slot_of(side, mon), owner=mon.owner)
             if mon.u_turn or mon.baton:
                 doubles_switch_out(b, mon)
         b.moving_last = None

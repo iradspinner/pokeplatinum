@@ -8684,6 +8684,45 @@ def check_doubles_drag(results):
     out["Whirlwind's draws of two waiting (of 30)"] = dict(sorted(drawn.items()))
     results.append(("doubles: Roar and Dragon Tail draw from the target's party into its slot", ok, f"{out}"))
 
+@b15
+def check_doubles_healing_wish(results):
+    """Healing Wish and Lunar Dance in a double battle (Ian approved the
+    double-battle parts of batches 7 and 8 on 2026-10-14; effect scripts
+    220 and 270, subscript_healing_wish and subscript_lunar_dance): the user
+    faints and its own party's Pokemon comes into its slot at once, its HP
+    full and its status cured, and after Lunar Dance its PP restored; the
+    player's in the second slot as the trainer's; with no one to send in the
+    move fails and its user stays up. Until 2026-10-21 both did nothing in a
+    double battle."""
+    def battle(user, move, bench):
+        mons = {"p0": {"moves": ["Splash"]}, "p1": {"moves": ["Splash"]},
+                "b0.0": {"moves": ["Splash"]}, "b0.1": {"moves": ["Splash"]}}
+        for k in bench:
+            mons[k] = {"moves": ["Tackle"]}
+        mons[user]["moves"] = [move]
+        player = ["p0", "p1"] + [k for k in bench if k[0] == "p"]
+        foes = ["b0.0", "b0.1"] + [k for k in bench if k[0] == "b"]
+
+        def start(b):
+            for k in bench:
+                m = mon_of(b, k)
+                m.hp, m.status, m.pp["Tackle"] = 30, "brn", 1
+        b = doubles_turns(doubles_st(mons), player, foes, {user: (move, None)}, start=start)
+        side = b.p if user[0] == "p" else b.b
+        slot = side.mons[side.active2] if user in ("p1", "b0.1") else side.cur()
+        return (slot.key, slot.hp, slot.status, slot.pp.get("Tackle"), mon_of(b, user).hp)
+    out = {"Healing Wish, the player's first slot": battle("p0", "Healing Wish", ["p2"]),
+           "Lunar Dance, the player's second slot": battle("p1", "Lunar Dance", ["p2"]),
+           "Healing Wish, the trainer's second slot": battle("b0.1", "Healing Wish", ["b0.2"]),
+           "Healing Wish, no one to send in": battle("p0", "Healing Wish", [])}
+    want = {"Healing Wish, the player's first slot": ("p2", 100, None, 1, 0),
+            "Lunar Dance, the player's second slot": ("p2", 100, None, 35, 0),
+            "Healing Wish, the trainer's second slot": ("b0.2", 100, None, 1, 0),
+            "Healing Wish, no one to send in": ("p0", 100, None, None, 100)}
+    results.append(("doubles: Healing Wish and Lunar Dance send in and heal the user's replacement", out == want,
+                    f"(the slot's Pokemon, its HP, status, Tackle's PP; the user's HP) {out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
