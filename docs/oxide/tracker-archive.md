@@ -872,3 +872,5 @@ The docs pass of 2026-10-21 moved these lines out of the tracker verbatim: the f
 ### Phase 5: the gauntlets' Barry split sub-item
 
   - [ ] **Barry's split: only Barry's ace reaches the cap of 71** (Ian, 2026-09-30). The Fight Area tag battle, which keeps its Beacon Badge gate and so falls in that split, has its 74 and 75 aces brought slightly under 71 in the trainer pass
+
+- [x] **The reward table and roles file regenerated** (Ian, 2026-10-21, from the docs pass): landed at 3674c853c. `rewards check` was right at 47 of 85 spare flags; the report had counted three two-item trainers twice and missed the Pastoria ball's flag, and both now share one count. Nothing is placed differently.
