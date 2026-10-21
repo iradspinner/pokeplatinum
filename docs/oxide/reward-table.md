@@ -5,7 +5,7 @@ the placement tool applies the approved table in step 10.
 
 ## Summary
 
-**Outcome.** The TM list Ian approved on 2026-10-06 has 100 TMs: 66 of vanilla's 92 kept, the six HMs less Cut and Rock Smash as single-use TMs, and 28 new moves, their numbers fixed. 43 are strong (one copy), 46 utility (two copies) and 11 weak (one copy, each the reward for one optional trainer). This version carries Ian's answers of the same day: his four timing notes; an even spread across the splits by their length (62 TMs by the end of Byron's split, where the first draft had 73); and the Department Store's and the Game Corner's 28 TMs sold once each, unlocked by badge count in order of usefulness. Every TM and each of element 7's 24 held items has exactly one place, every vanilla TM ball, gift and shop TM is repointed, and the reward trainers take 48 of the 46 spare story flags. The table's own check passes.
+**Outcome.** The TM list Ian approved on 2026-10-06 has 100 TMs: 66 of vanilla's 92 kept, the six HMs less Cut and Rock Smash as single-use TMs, and 28 new moves, their numbers fixed. 43 are strong (one copy), 46 utility (two copies) and 11 weak (one copy, each the reward for one optional trainer). This version carries Ian's answers of the same day: his four timing notes; an even spread across the splits by their length (62 TMs by the end of Byron's split, where the first draft had 73); and the Department Store's and the Game Corner's 28 TMs sold once each, unlocked by badge count in order of usefulness. Every TM and each of element 7's 24 held items has exactly one place, every vanilla TM ball, gift and shop TM is repointed, and the 46 reward trainers (one flag each, however many items they give) and 1 new ball take 47 of the 85 spare flags. The table's own check passes.
 
 **What can still move.** The move-rework cloud job changes the numbers of Hyper Beam, Giga Impact and the multi-hit moves, so their tiers, and with them their copies and places, are read on today's data. The numbers and moves stay as they are.
 
@@ -82,7 +82,7 @@ Every number from TM01, then the HMs: the move vanilla teaches by it, the move i
 | TM55 | Brine | Brine | Maylene |  |
 | TM56 | Fling | Hex | HQ | Fling left (hangs on a held item); new: 26 lines gain it that cannot learn it by level-up, 6 of them lines no boss takes |
 | TM57 | Charge Beam | Charge Beam | Gardenia |  |
-| TM58 | Endure | Triple Axel | Galactic | Endure left (a status move Ian rates under pretty solid); new: 17 lines gain it that cannot learn it by level-up, 5 of them lines no boss takes |
+| TM58 | Endure | Triple Axel | Galactic | Endure left (a status move Ian rates under pretty solid); new: 19 lines gain it that cannot learn it by level-up, 5 of them lines no boss takes |
 | TM59 | Dragon Pulse | Dragon Pulse | Wake |  |
 | TM60 | Drain Punch | Drain Punch | Galactic |  |
 | TM61 | Will-O-Wisp | Will-O-Wisp | Wake |  |
@@ -114,7 +114,7 @@ Every number from TM01, then the HMs: the move vanilla teaches by it, the move i
 | TM87 | Swagger | Swagger | Galactic |  |
 | TM88 | Pluck | Pluck | Gardenia |  |
 | TM89 | U-turn | U-turn | Wake |  |
-| TM90 | Substitute | Block | Roark | Substitute left (Ian's removal); new: 16 lines gain it that cannot learn it by level-up, 4 of them lines no boss takes |
+| TM90 | Substitute | Block | Roark | Substitute left (Ian's removal); new: 17 lines gain it that cannot learn it by level-up, 5 of them lines no boss takes |
 | TM91 | Flash Cannon | Flash Cannon | Wake |  |
 | TM92 | Trick Room | Trick Room | Galactic |  |
 | TM93 | - | Psychic Noise | Fantina | new: 17 lines gain it that cannot learn it by level-up, 4 of them lines no boss takes |
@@ -136,10 +136,10 @@ TMs by the split they first come in, against each split's share by its length (t
 
 | Split | Share | Now | First draft |
 |---|---|---|---|
-| Roark | 4.2 | 4 | 3 |
-| Gardenia | 8.7 | 8 | 13 |
+| Roark | 3.7 | 4 | 3 |
+| Gardenia | 9.1 | 8 | 13 |
 | Fantina | 10.3 | 10 | 14 |
-| Maylene | 8.9 | 9 | 17 |
+| Maylene | 9.1 | 9 | 17 |
 | Wake | 17.1 | 17 | 9 |
 | Byron | 14.3 | 14 | 17 |
 | Candice | 6.8 | 7 | 6 |
@@ -420,7 +420,7 @@ One row per TM, by the split it first comes in. A number past 92 is new; a numbe
 | TM48 | Iron Defense | 38 lines gain it that cannot learn it by level-up, 5 of them lines no boss takes today |
 | TM49 | Agility | 29 lines gain it that cannot learn it by level-up, 4 of them lines no boss takes today |
 | TM56 | Hex | 26 lines gain it that cannot learn it by level-up, 6 of them lines no boss takes today |
-| TM58 | Triple Axel | 17 lines gain it that cannot learn it by level-up, 5 of them lines no boss takes today |
+| TM58 | Triple Axel | 19 lines gain it that cannot learn it by level-up, 5 of them lines no boss takes today |
 | TM63 | Confuse Ray | 20 lines gain it that cannot learn it by level-up, 4 of them lines no boss takes today |
 | TM64 | Play Rough | 19 lines gain it that cannot learn it by level-up, 4 of them lines no boss takes today |
 | TM67 | Ice Punch | 40 lines gain it that cannot learn it by level-up, 2 of them lines no boss takes today |
@@ -430,11 +430,11 @@ One row per TM, by the split it first comes in. A number past 92 is new; a numbe
 | TM82 | Bounce | 16 lines gain it that cannot learn it by level-up, 2 of them lines no boss takes today |
 | TM83 | Expanding Force | 18 lines gain it that cannot learn it by level-up, 4 of them lines no boss takes today |
 | TM85 | Skitter Smack | 15 lines gain it that cannot learn it by level-up, 5 of them lines no boss takes today |
-| TM90 | Block | 16 lines gain it that cannot learn it by level-up, 4 of them lines no boss takes today |
+| TM90 | Block | 17 lines gain it that cannot learn it by level-up, 5 of them lines no boss takes today |
 | TM93 | Psychic Noise | 17 lines gain it that cannot learn it by level-up, 4 of them lines no boss takes today |
 | TM94 | Psybeam | 17 lines gain it that cannot learn it by level-up, 4 of them lines no boss takes today |
 
-Just below the line: Tera Blast (155 lines), Uproar (53 lines), Hyper Voice (33 lines), Seed Bomb (32 lines), Earth Power (34 lines), Acrobatics (31 lines), Poltergeist (14 lines), ThunderPunch (44 lines), Body Press (36 lines), Aqua Tail (28 lines), Encore (27 lines), Hurricane (27 lines), Gunk Shot (26 lines), Psyshock (24 lines), Air Slash (18 lines).
+Just below the line: Tera Blast (155 lines), Uproar (53 lines), Hyper Voice (33 lines), Seed Bomb (32 lines), Earth Power (34 lines), Acrobatics (31 lines), Poltergeist (14 lines), ThunderPunch (44 lines), Body Press (36 lines), Aqua Tail (28 lines), Encore (27 lines), Gunk Shot (26 lines), Hurricane (26 lines), Psyshock (24 lines), Air Slash (18 lines).
 
 Left out as doing the same job as a TM in the list: Take Down (beside Facade), Body Slam (beside Facade), Headbutt (beside Facade), Double-Edge (beside Frustration), Liquidation (beside Waterfall), Dive (beside Waterfall), Icicle Spear (beside Avalanche), Scald (beside Surf), Assurance (beside Payback), Retaliate (beside Facade), Low Sweep (beside Brick Break), Muddy Water (beside Surf), Leaf Storm (beside Energy Ball), Lunge (beside Skitter Smack), Water Pledge (beside Surf), Heat Wave (beside Fire Blast), Sky Attack (beside Fly), Brave Bird (beside Fly), Hydro Cannon (beside Hydro Pump), Swift (beside Hidden Power).
 
@@ -467,6 +467,7 @@ Each is optional (the census reads it as avoidable or off the story path) and gi
 | Metronome | Candice | Galactic Grunt | Lake Valor Drained | 2.3 |
 | Ring Target | Candice | Ace Trainer Blake | Route 216 | 2.4 |
 | Ability Shield | Candice | Skier Lexie | Route 217 | 2.4 |
+| Ability Patch | Galactic | Ace Trainer Jose | Route 228 | the game's one Ability Patch, a second reward from a six-Pokemon optional fight (Ian, 2026-10-13: in the Battle Zone) |
 | Pixie Plate | Volkner | Beauty Nicola | Route 222 | 2.3 |
 | TM88 Pluck | Gardenia | Fisherman Zachary | Route 205 North | 2.3 |
 | TM57 Charge Beam | Gardenia | Picnicker Karina | Route 205 South | 2.3 |
@@ -475,7 +476,7 @@ Each is optional (the census reads it as avoidable or off the story path) and gi
 | TM03 Water Pulse | Fantina | Hiker Theodore | Route 206 | 2.3 |
 | TM28 Dig | Fantina | Hiker Theodore | Route 206 | Dig, weak since the rework (60, one turn): one copy, a second reward from Hiker Theodore, as a weak TM is an optional trainer's (Ian, 2026-10-07) |
 | TM34 Shock Wave | Maylene | Collector Edwin | Cafe | 2.3 |
-| TM32 Zen Headbutt | Maylene | a new trainer (the main track) | Game Corner | Zen Headbutt, utility; in place of the gift for ten straight bonus rounds (ITEM_TM64), a new optional trainer |
+| TM32 Zen Headbutt | Maylene | Roughneck Rocco | Game Corner | Zen Headbutt, utility; in place of the gift for ten straight bonus rounds (ITEM_TM64), a new optional trainer |
 | TM10 Hidden Power | Maylene | Jogger Wyatt | Route 210 South | 2.3 |
 | TM22 SolarBeam | Maylene | Ruin Maniac Calvin | Route 215 | 2.3 |
 | TM40 Aerial Ace | Maylene | Jogger Scott | Route 215 | 2.3 |
@@ -494,20 +495,20 @@ Each is optional (the census reads it as avoidable or off the story path) and gi
 
 ## The gauntlets
 
-The sections of the gauntlet proposal (balance plan, "The gauntlets, reworked on Ian's rulings"), with their trainers in walking order. A section of 2 to 5 mandatory trainers on the easier side of its split's average; bosses stay outside. The reading is `gauntlet.py`'s second one on the lists in the tree: clean clears, then deaths a run.
+The sections of the gauntlet proposal (balance plan, "The gauntlets, reworked on Ian's rulings"), with their trainers in walking order. A section of 2 to 5 mandatory trainers on the easier side of its split's average; bosses stay outside. The reading, clean clears then deaths a run, is shown when a saved printout of `gauntlet.py`'s second reading is given; that reading ran on the first scoring system and was retired with it on 2026-10-13, and the perfect-line scorer will read the sections.
 
 | Area | Section | Split | Trainers | Reading |
 |---|---|---|---|---|
-| Team Galactic's Eterna building | 1F and 2F | Fantina | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt | 1.00, 0.00 |
-| Team Galactic's Eterna building | 3F | Fantina | Scientist Travon, Galactic Officer Moira | 1.00, 0.00 |
-| The Galactic HQ | 1F | HQ | Galactic Grunt, Scientist Fredrick | 0.89, 0.12 |
-| The Galactic HQ | 2F | HQ | Galactic Grunt, Galactic Grunt, Galactic Grunt, Scientist Darrius | 0.69, 0.43 |
-| The Galactic HQ | 3F | HQ | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt | 0.84, 0.19 |
-| The Galactic HQ | B2F | HQ | Galactic Grunt, Galactic Grunt | 0.69, 0.34 |
-| Mt. Coronet | 1F's tunnel | Galactic | Galactic Grunt, Galactic Grunt, Galactic Grunt | 0.95, 0.05 |
-| Mt. Coronet | 3F, 4F and Somnu on 5F | Galactic | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Officer Somnu | 0.95, 0.06 |
-| Victory Road | 1F, the half nearer the entrance | Barry | Psychic Bryce, Bird Keeper Hana, Ace Trainer Mariah | 0.83, 0.20 |
-| Victory Road | 1F, the far half | Barry | Black Belt Miles, Dragon Tamer Clinton, Veteran Edgar | 0.64, 0.47 |
+| Team Galactic's Eterna building | 1F and 2F | Fantina | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt |  |
+| Team Galactic's Eterna building | 3F | Fantina | Scientist Travon, Galactic Officer Moira |  |
+| The Galactic HQ | 1F | HQ | Galactic Grunt, Scientist Fredrick |  |
+| The Galactic HQ | 2F | HQ | Galactic Grunt, Galactic Grunt, Galactic Grunt, Scientist Darrius |  |
+| The Galactic HQ | 3F | HQ | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt |  |
+| The Galactic HQ | B2F | HQ | Galactic Grunt, Galactic Grunt |  |
+| Mt. Coronet | 1F's tunnel | Galactic | Galactic Grunt, Galactic Grunt, Galactic Grunt |  |
+| Mt. Coronet | 3F, 4F and Somnu on 5F | Galactic | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Officer Somnu |  |
+| Victory Road | 1F, the half nearer the entrance | Barry | Psychic Bryce, Bird Keeper Hana, Ace Trainer Mariah |  |
+| Victory Road | 1F, the far half | Barry | Black Belt Miles, Dragon Tamer Clinton, Veteran Edgar |  |
 
 ## The Department Store and the Game Corner
 
@@ -530,12 +531,12 @@ A strong TM comes no earlier than the split each flagged line that learns it has
 
 - Blizzard: Absol, Arceus, Articuno, Blastoise, Castform, Cranidos, Crawdaunt, Darkrai and 33 more
 - Earthquake: Aerodactyl, Arceus, Armaldo, Blastoise, Blaziken, Charizard, Cranidos, Dhelmise and 35 more
-- Energy Ball: Abra, Alakazam, Arceus, Armarouge, Castform, Chandelure, Chimecho, Gallade and 13 more
+- Energy Ball: Abra, Alakazam, Arceus, Armarouge, Castform, Chandelure, Chimecho, Gallade and 12 more
 - Fire Blast: Absol, Aerodactyl, Arceus, Castform, Cranidos, Dialga, Flygon, Garchomp and 15 more
 - Flamethrower: Absol, Aerodactyl, Arceus, Castform, Cranidos, Dialga, Electivire, Flygon and 17 more
 - Fly: Arceus, Articuno, Chatot, Moltres, Togekiss, Volcarona, Zapdos
-- Focus Blast: Alakazam, Ampharos, Annihilape, Arceus, Armarouge, Blaziken, Charizard, Cinccino and 30 more
-- Foul Play: Abra, Absol, Alakazam, Alolan Ninetales, Ambipom, Arceus, Darkrai, Delphox and 14 more
+- Focus Blast: Alakazam, Ampharos, Annihilape, Arceus, Armarouge, Charizard, Cinccino, Darkrai and 29 more
+- Foul Play: Abra, Alakazam, Alolan Ninetales, Ambipom, Arceus, Darkrai, Delphox, Haunter and 13 more
 - Frustration: Abra, Absol, Alakazam, Ampharos, Arceus, Armaldo, Articuno, Blastoise and 70 more
 - Giga Impact: Absol, Alakazam, Alolan Ninetales, Ampharos, Arboliva, Arceus, Armaldo, Articuno and 95 more
 - Hydro Pump: Arceus, Castform, Dhelmise, Feraligatr, Floatzel, Grapploct, Hisuian Goodra, Kabutops and 7 more
@@ -547,7 +548,7 @@ A strong TM comes no earlier than the split each flagged line that learns it has
 - Outrage: Ampharos, Annihilape, Arceus, Blastoise, Charizard, Dialga, Feraligatr, Granbull and 14 more
 - Overheat: Annihilape, Arceus, Dialga, Granbull, Moltres, Primeape, Solrock, Toucannon and 1 more
 - Play Rough: Absol, Cinccino, Donphan, Liepard, Lopunny, Luxray, Meloetta, Minun and 5 more
-- Psychic: Abra, Arceus, Armarouge, Chandelure, Darkrai, Electabuzz, Electivire, Florges and 18 more
+- Psychic: Abra, Arceus, Chandelure, Darkrai, Electabuzz, Electivire, Florges, Froslass and 15 more
 - Return: Abra, Absol, Alakazam, Ampharos, Arceus, Armaldo, Articuno, Blastoise and 70 more
 - Rock Climb: Ampharos, Arceus, Blastoise, Blaziken, Darkrai, Electabuzz, Electivire, Empoleon and 11 more
 - Sludge Bomb: Arceus, Crawdaunt, Darkrai, Gengar, Glimmet, Goodra, Granbull, Haunter and 7 more
@@ -555,5 +556,5 @@ A strong TM comes no earlier than the split each flagged line that learns it has
 - Surf: Arceus, Dhelmise, Feraligatr, Floatzel, Garchomp, Grapploct, Hariyama, Hisuian Goodra and 15 more
 - Thunder: Absol, Ambipom, Annihilape, Arceus, Castform, Cinccino, Cranidos, Darkrai and 28 more
 - Thunderbolt: Absol, Ambipom, Annihilape, Arceus, Castform, Cinccino, Cranidos, Darkrai and 30 more
-- Triple Axel: Ambipom, Articuno, Cinccino, Frosmoth, Gallade, Gardevoir, Glaceon, Lopunny and 5 more
+- Triple Axel: Ambipom, Articuno, Cinccino, Frosmoth, Gallade, Gardevoir, Glaceon, Leavanny and 7 more
 - Waterfall: Arceus, Feraligatr, Floatzel, Grapploct, Kabutops, Palkia, Sharpedo, Starmie
