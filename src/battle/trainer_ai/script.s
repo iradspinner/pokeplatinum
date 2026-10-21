@@ -6295,6 +6295,8 @@ Expert_HealBlock:
     // - Aqua Ring
     // - Leech Seed
     // - Lunar Dance, Healing Wish
+    // - Oxide: Strength Sap, Life Dew, Lunar Blessing and Jungle Healing, and the new
+    //   draining moves (Draining Kiss, Oblivion Wing, Bouncy Bubble, Matcha Gotcha)
     //
     // If the attacker is under the effect of Leech Seed or the opponent is under the effect of Ingrain
     // or Aqua Ring, 90.2% chance of score +1.
@@ -6313,6 +6315,14 @@ Expert_HealBlock:
     IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_STATUS_LEECH_SEED, Expert_HealBlock_TryScorePlus1
     IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON, Expert_HealBlock_TryScorePlus1
     IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, Expert_HealBlock_TryScorePlus1
+    // Oxide (Ian, 2026-10-21, the catch-up re-read): the heals and draining hits added
+    // since Platinum, which Heal Block stops as it stops Recover and Giga Drain.
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_STRENGTH_SAP, Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_LIFE_DEW, Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_LUNAR_BLESSING, Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RECOVER_THREE_QUARTERS_DAMAGE_DEALT, Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RECOVER_FULL_DAMAGE_DEALT, Expert_HealBlock_TryScorePlus1
+    IfMoveEffectKnown AI_BATTLER_DEFENDER, BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT_BURN_HIT, Expert_HealBlock_TryScorePlus1
     IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_LEECH_SEED, Expert_HealBlock_TryScorePlus1
     IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_AQUA_RING, Expert_HealBlock_TryScorePlus1
     IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_INGRAIN, Expert_HealBlock_TryScorePlus1

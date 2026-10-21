@@ -402,6 +402,13 @@ EXPERT_ROWS = [
     ("PsychoShift, healthy user", "Psycho Shift", None, -10, -10),
     ("TrumpCard, one PP left", "Trump Card", _t(u_pp={"Trump Card": 1}, t_types=["Normal"]), 3, 3),
     ("HealBlock, foe seen using Recover", "Heal Block", _t(t_shown=["Recover"]), 1, 0),
+    # A roll of 0.5 fails the 37.5% guess and passes the 90.2% +1, so the
+    # +1 comes only from a heal the foe has shown.
+    ("HealBlock, foe seen using Strength Sap, a middling roll", "Heal Block", _t(t_shown=["Strength Sap"]),
+     Dice(0.5), 1),
+    ("HealBlock, Psychic Noise, foe seen using Draining Kiss, a middling roll", "Psychic Noise",
+     _t(t_shown=["Draining Kiss"], t_types=["Normal"]), Dice(0.5), 1),
+    ("HealBlock, foe seen using Tackle, a middling roll", "Heal Block", _t(t_shown=["Tackle"]), Dice(0.5), 0),
     ("WringOut, foe at full HP, faster", "Wring Out", _t(t_types=["Normal"]), 3, 2),
     ("PowerTrick, at 30%", "Power Trick", _t(u_hp=30), -2, -2),
     ("GastroAcid, foe at 25%", "Gastro Acid", _t(t_hp=25), -2, 0),
