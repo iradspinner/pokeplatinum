@@ -114,7 +114,7 @@ already exist in Platinum; no new evolution stones are introduced.
 | Pawmot | Pawmo + Thunder Stone (method 7) |
 | Polteageist | Sinistea + Dusk Stone (method 7) |
 | Runerigus | Yamask, level up holding Reaper Cloth (methods 18/19) |
-| Salazzle | Salandit, level 33 female (method 23) - direct port |
+| Salazzle | Salandit, level 30, either gender, as the game has it (Ian, 2026-10-21, keeping the build over the plan of level 33 and female only) |
 | Sinistcha | Sinistea + Leaf Stone (method 7), a split with Polteageist's Dusk Stone (Ian, 2026-09-27) |
 | Sylveon | Eevee, level up knowing a Fairy move (method 20) |
 | Tsareena | Steenee, level up knowing Stomp (method 20) - direct port |

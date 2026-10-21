@@ -49,3 +49,5 @@ with the pass's recommendation; nothing has been carried out.
 3. skill-creator's evals: drop them for now. CLAUDE.md names the skill each kind of task uses, so whether a skill fires on its own matters little; revisit if one is seen not to fire.
 4. code-review and code-simplifier, both "no": uninstall them. Each adds its lines to every session's lists of skills and agents, and Oxide uses neither.
 5. frontend-design, never reviewed: remove it. It is installed only for the worktree `encounter-tool-plan` of 2026-09-20, which no longer exists, so nothing loads it today.
+
+Ian's answer (2026-10-21): all five as recommended. He uninstalls code-review and code-simplifier himself (`claude plugin uninstall`); frontend-design stays where it is, since nothing loads it; feature-dev, claude-md-management and skill-creator stay installed but are not built into any procedure.
