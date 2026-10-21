@@ -186,14 +186,17 @@ def stubbed_read(run, slug, seed, screen_held):
         side = {"fights": 75, "won": won, "faints": 1.0, "clean": 0.5}
         return side, dict(side, fights=25), [(True, 1, False, [("Shinx", "Foe")])] * 75
 
-    keep = g.OUT, g.plteam.search, g.plteam.full_reading
+    keep = g.OUT, g.plteam.search, g.plteam.full_reading, g.web_report
     with tempfile.TemporaryDirectory() as tmp:
-        g.OUT, g.plteam.search, g.plteam.full_reading = tmp, search, full_reading
+        # The web report reads fights of its own where a six carries the
+        # web; web_checks tests it, so here it is stubbed too.
+        g.OUT, g.plteam.search, g.plteam.full_reading, g.web_report = (tmp, search, full_reading,
+                                                                       lambda *_a, **_k: {"carried_by": []})
         try:
             with contextlib.redirect_stdout(io.StringIO()):
                 r = g.read_box(run, slug, seed, 1)
         finally:
-            g.OUT, g.plteam.search, g.plteam.full_reading = keep
+            g.OUT, g.plteam.search, g.plteam.full_reading, g.web_report = keep
     return r, calls
 
 
@@ -222,6 +225,67 @@ def paired_checks():
     r, calls = stubbed_read("t", "lucas_dawn_2", 1, False)
     out.append(("a box whose screen holds none is read once", "without_holds" not in r and len(calls) == 1,
                 f"{len(calls)} search"))
+    return out
+
+
+def web_checks():
+    """The Sticky Web report (Ian, 2026-10-15): on a hand-built six whose
+    Ariados carries the web, the fights it was laid in, the wins each way,
+    and the check without it (stubbed) with its strongest other attack in
+    its place; and, on a real Roark fight at a small budget, that keeping
+    the moves chosen in each fight changes no fight's outcome."""
+    out = []
+    st = {"moves": {"p0": ["Sticky Web", "Bug Bite", "Poison Jab", "Shadow Sneak"], "p1": ["Tackle"]},
+          "pokemon": {"p0": {"species": "Ariados", "moves": ["Sticky Web", "Bug Bite", "Poison Jab", "Shadow Sneak"]},
+                      "p1": {"species": "Bidoof", "moves": ["Tackle"]}}}
+    recs = [{"moves": ["Sticky Web", "Bug Bite", "Poison Jab", "Shadow Sneak", "Megahorn", "Night Shade"]},
+            {"moves": ["Tackle"]}]
+    real, unl = pt.Tally(), pt.Tally()
+    for i in range(10):
+        laid = i < 4
+        real.add(("p0", "p1"), laid or i % 2 == 0, 1, False, [], ["Bug Bite"] + (["Sticky Web"] if laid else []))
+    unl.add(("p0", "p1"), False, 2, False, [], ["Sticky Web"])
+    seen = {}
+
+    def read(st_, boss_keys, flags, teams, fights, cfg, procs=None, **_kw):
+        seen["moves"] = list(st_["moves"]["p0"])
+        t = pt.Tally()
+        for i in range(fights):
+            t.add(tuple(teams[0]), i % 2 == 0, 2, False, [])
+        return t
+
+    keep, g.plteam.read = g.plteam.read, read
+    try:
+        w = g.web_report(st, [], {}, ["p0", "p1"], [real, unl], recs, real.numbers(("p0", "p1")), 1, check=10)
+    finally:
+        g.plteam.read = keep
+    out.append(("the reading reports the web's carriers, the fights it was laid in and the wins each way",
+                w["carried_by"] == ["Ariados"] and w["real"] == {"fights": 10, "laid": 4, "won_laid": 4,
+                                                                  "won_not_laid": 3}
+                and w["unlucky"]["laid"] == 1, str({k: w[k] for k in ("carried_by", "real")})))
+    out.append(("where the six carries it, it is read again without it, which says whether the wins lean on it",
+                seen["moves"] == ["Bug Bite", "Poison Jab", "Shadow Sneak", "Megahorn"]
+                and w["without"]["swapped"] == {"Ariados": "Megahorn"} and w["without"]["won"] == 0.5
+                and w["leans"] and st["moves"]["p0"][0] == "Sticky Web",
+                f"won {real.numbers(('p0', 'p1'))['won']:.0%} with it, {w['without']['won']:.0%} without"))
+    w = g.web_report(st, [], {}, ["p1"], [real, unl], recs, real.numbers(("p0", "p1")), 1)
+    out.append(("a six without it says so and reads nothing more", w == {"carried_by": []}, str(w)))
+
+    # Keeping the chosen moves changes no fight's outcome.
+    f = next(x for x in g.fights() if x["slug"] == "roark")
+    recs = g.records(g.cut(g.roll("Roark", 1), f), f, 16, 1)
+    key, v, _t = g.met(f, recs[0]["constant"])
+    st, keys, boss_keys, flags = g.fight_state(key, recs, g.fs.player_items("Roark"), v, "roark")
+    # Two members, so that the fights are short (they lose to Roark fast).
+    team, cfg = keys[:2], {"budget": 2}
+    pick = ("won", "deaths", "faints", "turns")
+    plain = g.plteam.plplan.play(st, team, boss_keys, flags, 0, 5, cfg, "real")
+    kept = g.plteam.plplan.play(st, team, boss_keys, flags, 0, 5, cfg, "real", record=[])
+    with contextlib.redirect_stdout(io.StringIO()):
+        t = pt.read(st, boss_keys, flags, [team], 1, cfg, procs=1, used=True)
+    out.append(("keeping the moves chosen in each fight changes no fight's outcome",
+                {k: plain[k] for k in pick} == {k: kept[k] for k in pick} and len(t.chose[tuple(team)]) == 1
+                and t.chose[tuple(team)][0], f"{plain['turns']} turns; chose {t.chose[tuple(team)][0]}"))
     return out
 
 
@@ -326,6 +390,7 @@ def main():
 
     results += holds_checks(by)
     results += paired_checks()
+    results += web_checks()
 
     got = {k: sorted(g.places(by[k])) for k in ("mars_1", "gardenia", "jupiter_1", "fantina", "candice")}
     # Mt. Coronet 1F North Room 1, off Route 211, is the first magnetic map.

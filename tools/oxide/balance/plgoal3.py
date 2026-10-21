@@ -77,7 +77,9 @@ networks serves each boss (Ian's yes, 2026-10-07): its first box labels
 and trains them, and its other boxes reuse them, skipping both; the race
 they steer is a shortlist, and the play-out check and the loop decide on
 each box. An Ace Trainer is read blind (plstudy.blind), its 75 and 25
-fights shared among the boxes. Each box's result goes to
+fights shared among the boxes. Each boss's reading also reports how its
+six uses Sticky Web and, where it carries the move, whether the wins lean
+on it (web_report; Ian, 2026-10-15). Each box's result goes to
 ~/oxide-trials/goal3/<run>/ as it finishes, so a run stopped midway
 resumes where it stopped. Jobs run fight by fight in play order, each
 fight's boxes side by side once its first box is done (its networks), so
@@ -577,13 +579,15 @@ def read_box(run, slug, seed, procs):
                                 procs=procs, prepared=(st, keys, boss_keys, flags), model=model)
         result.update(model=summary.get("model"), reused=model is not None)
         win = summary["winner_keys"]
-        real, unlucky, rows = plteam.full_reading(st, boss_keys, flags, win, {}, procs=procs)
+        tallies = []
+        real, unlucky, rows = plteam.full_reading(st, boss_keys, flags, win, {}, procs=procs, tallies=tallies)
         result.update(how="search", winner=summary["winner"],
                       moves={st["pokemon"][k]["species"]: st["moves"][k] for k in win},
                       items={st["pokemon"][k]["species"]: it for k, it in fs.assign_items(st, win).items() if it},
                       real=real, unlucky=unlucky, faints_to=plteam.losing_enemies(rows),
                       fainted=plstudy.fainted(rows), chosen=uses(st, win, f, lvl),
                       held_used=[st["pokemon"][k]["label"] for k in win if st["pokemon"][k]["held"]])
+        result["sticky_web"] = web_report(st, boss_keys, flags, win, tallies, recs, real, procs)
         offered = set(result["offered"])
         result["held_in_screen"] = sorted({n for six in summary["screen"] for n in six} & offered)
         if result["held_in_screen"]:
@@ -599,6 +603,50 @@ def read_box(run, slug, seed, procs):
           + (f"; without holds {pair['real']['won']:.0%} won, {pair['real']['faints']:.2f} faints" if pair else "")
           + f"; {result['minutes']} minutes", flush=True)
     return result
+
+
+WEB = "Sticky Web"
+
+
+def web_report(st, boss_keys, flags, win, tallies, recs, real, procs, check=25):
+    """How the reading's six uses Sticky Web (Ian, 2026-10-15: keep an eye
+    out in case it becomes an omnipresent strategy for the scorer): the
+    members whose four moves carry it, and for each of the reading's two
+    tallies (real odds, very unlucky) the fights it was laid in and the
+    wins with it laid and without. Where the six carries it, the six is
+    read again on `check` fights at real odds by the same play-out planner,
+    each carrier's web swapped for its strongest other attack from its move
+    pool (by fightsim.play_strength), and "leans" says whether the win rate
+    fell more than plteam.WIN_TOL below the reading's without it."""
+    team = tuple(win)
+    carriers = [k for k in win if WEB in st["moves"][k]]
+    out = {"carried_by": [plteam.member_name(st["pokemon"][k]) for k in carriers]}
+    if not carriers:
+        return out
+    for luck, t in zip(("real", "unlucky"), tallies):
+        rows, chose = t.rows[team], t.chose.get(team, [])
+        laid = [WEB in c for c in chose]
+        out[luck] = {"fights": len(rows), "laid": sum(laid),
+                     "won_laid": sum(1 for r, lay in zip(rows, laid) if lay and r[0]),
+                     "won_not_laid": sum(1 for r, lay in zip(rows, laid) if not lay and r[0])}
+    kept, swapped = {k: (st["moves"][k], st["pokemon"][k]) for k in carriers}, {}
+    try:
+        for k in carriers:
+            pool_ = recs[int(k[1:])]["moves"]           # the record's whole move pool
+            types = (fs.calc.blob()["poks"].get(st["pokemon"][k]["species"]) or {}).get("types") or []
+            spare = sorted((n for n in pool_ if n not in st["moves"][k] and fs.move(n).damaging()
+                            and fs.play_strength(n, types) > 0), key=lambda n: -fs.play_strength(n, types))
+            new = [n for n in st["moves"][k] if n != WEB] + spare[:1]
+            swapped[plteam.member_name(st["pokemon"][k])] = spare[0] if spare else None
+            st["moves"][k] = new
+            st["pokemon"][k] = dict(st["pokemon"][k], moves=new)
+        t = plteam.read(st, boss_keys, flags, [list(win)], check, {}, procs=procs, seed0=4243)
+    finally:
+        for k, (mv, rec) in kept.items():
+            st["moves"][k], st["pokemon"][k] = mv, rec
+    out["without"] = dict(t.numbers(team), swapped=swapped)
+    out["leans"] = out["without"]["won"] < real["won"] - plteam.WIN_TOL
+    return out
 
 
 def without_holds(run, slug, seed, s, model, procs, out_dir):
@@ -780,6 +828,33 @@ def box_notes(r):
     return out
 
 
+def web_lines(rs):
+    """A fight's lines on Sticky Web for the summary (Ian, 2026-10-15): each
+    box whose winner carries it, the fights it was laid in, and the win rate
+    with it and with it swapped out, which says whether the wins lean on it."""
+    out = []
+    for r in rs:
+        w = r.get("sticky_web") or {}
+        if not w.get("carried_by"):
+            continue
+        real, no = w["real"], w["without"]
+        swap = ", ".join(f"{who} {mv or 'nothing'}" for who, mv in no["swapped"].items())
+        out.append(f"- Sticky Web in box {r['seed']}'s six ({', '.join(w['carried_by'])}): laid in {real['laid']} "
+                   f"of {real['fights']} fights at real odds, {real['won_laid']} of them won; {r['real']['won']:.0%} "
+                   f"won with it, {no['won']:.0%} with {swap} in its place, so the wins "
+                   f"{'lean' if w['leans'] else 'do not lean'} on it")
+    return out
+
+
+def web_total(res):
+    """The summary's line on Sticky Web over the whole run."""
+    rs = [r for v in res.values() for r in v if r.get("how") == "search"]
+    carry = [r for r in rs if (r.get("sticky_web") or {}).get("carried_by")]
+    lean = [r for r in carry if r["sticky_web"]["leans"]]
+    return ["", f"Sticky Web: carried by the winners of {len(carry)} of {len(rs)} boss boxes read; their wins "
+                f"lean on it in {len(lean)}."]
+
+
 def paired_table(res, by_slug):
     """The summary's table of the paired readings (Ian, 2026-10-15): each box
     whose screen put a held-back version in a top six, read with the holds
@@ -835,7 +910,9 @@ def summary(run, commit):
             every = set.intersection(*({species_of(n) for n in r["winner"]} for r in rs)) if len(rs) > 1 else set()
             if every:
                 detail.append(f"- every box's winner took {', '.join(sorted(every))}")
+            detail += web_lines(rs)
             detail.append("")
+    lines += web_total(results(run))
     lines += paired_table(results(run), by_slug)
     text = "\n".join(lines + [""] + detail)
     with open(os.path.join(OUT, run, "summary.md"), "w") as fh:

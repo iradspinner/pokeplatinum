@@ -663,23 +663,32 @@ _LEADS = {}
 
 
 def _fight_job(args):
-    team, seed, cfg, luck = args
+    team, seed, cfg, luck, used = args
     j = _JOB
     lk = (tuple(team), json.dumps(cfg, sort_keys=True))
     if lk not in _LEADS:
         _LEADS[lk] = plplan.Planner(0, **cfg).lead(j["st"], list(team), j["boss_keys"], j["flags"])[0]
-    r = plplan.play(j["st"], list(team), j["boss_keys"], j["flags"], _LEADS[lk], seed, cfg, luck)
-    return tuple(team), r["won"], r["deaths"], r["clean"], [tuple(x) for x in r["faints"]], r["seconds"]
+    turns = [] if used else None
+    r = plplan.play(j["st"], list(team), j["boss_keys"], j["flags"], _LEADS[lk], seed, cfg, luck, record=turns)
+    # With `used`, the moves the player chose in the fight, switches left
+    # out, for the reading's report of what its wins lean on.
+    chose = sorted({t["chose"] for t in turns if not str(t["chose"]).startswith("switch to ")}) if used else None
+    return tuple(team), r["won"], r["deaths"], r["clean"], [tuple(x) for x in r["faints"]], r["seconds"], chose
 
 
 class Tally:
-    """Every fight read for each six, and the race's score from them."""
+    """Every fight read for each six, and the race's score from them; where
+    the reading asked for them, the moves the player chose in each fight
+    (`chose`, in the order of `rows`)."""
 
     def __init__(self):
         self.rows = {}
+        self.chose = {}
 
-    def add(self, team, won, deaths, clean, faints):
+    def add(self, team, won, deaths, clean, faints, chose=None):
         self.rows.setdefault(tuple(team), []).append((won, deaths, clean, faints))
+        if chose is not None:
+            self.chose.setdefault(tuple(team), []).append(chose)
 
     def score(self, team):
         r = self.rows.get(tuple(team), [])
@@ -694,8 +703,9 @@ class Tally:
                 "clean": sum(c for _w, _d, c, _f in r) / n}
 
 
-def read(st, boss_keys, flags, teams, fights, cfg, luck="real", seed0=0, procs=None, tally=None):
-    """Each team read on `fights` more fights; the tally."""
+def read(st, boss_keys, flags, teams, fights, cfg, luck="real", seed0=0, procs=None, tally=None, used=False):
+    """Each team read on `fights` more fights; the tally. With `used`, the
+    tally keeps the moves the player chose in each fight."""
     _JOB.update(st=st, boss_keys=boss_keys, flags=flags)
     tally = tally or Tally()
     jobs = []
@@ -703,10 +713,10 @@ def read(st, boss_keys, flags, teams, fights, cfg, luck="real", seed0=0, procs=N
         # Each team's seeds follow from its members (a checksum, the same in
         # every process) and the fights it has had, so a reading repeats.
         start = seed0 * 1_000_003 + zlib.crc32(",".join(t).encode()) + len(tally.rows.get(tuple(t), []))
-        jobs += [(tuple(t), start + i, cfg, luck) for i in range(fights)]
+        jobs += [(tuple(t), start + i, cfg, luck, used) for i in range(fights)]
     with plplan.fork_pool(procs or plplan.pool_size()) as pool_:
-        for team, won, deaths, clean, faints, _s in pool_.imap_unordered(_fight_job, jobs, chunksize=1):
-            tally.add(team, won, deaths, clean, faints)
+        for team, won, deaths, clean, faints, _s, chose in pool_.imap_unordered(_fight_job, jobs, chunksize=1):
+            tally.add(team, won, deaths, clean, faints, chose)
     return tally
 
 
@@ -768,10 +778,15 @@ def race(st, keys, boss_keys, flags, screened, cfg, rounds=5, per_round=16, figh
     return cands, tally, w
 
 
-def full_reading(st, boss_keys, flags, team, cfg, real=75, unlucky=25, procs=None, seed=9):
-    """The reading Ian rules: 75 fights at real odds and 25 very unlucky."""
-    a = read(st, boss_keys, flags, [team], real, cfg, "real", seed0=seed * 31337, procs=procs)
-    b = read(st, boss_keys, flags, [team], unlucky, cfg, "unlucky", seed0=seed * 31337 + 1, procs=procs)
+def full_reading(st, boss_keys, flags, team, cfg, real=75, unlucky=25, procs=None, seed=9, tallies=None):
+    """The reading Ian rules: 75 fights at real odds and 25 very unlucky.
+    With `tallies` (a list), its two tallies are added to it, each keeping
+    the moves the player chose in every fight."""
+    used = tallies is not None
+    a = read(st, boss_keys, flags, [team], real, cfg, "real", seed0=seed * 31337, procs=procs, used=used)
+    b = read(st, boss_keys, flags, [team], unlucky, cfg, "unlucky", seed0=seed * 31337 + 1, procs=procs, used=used)
+    if used:
+        tallies.extend([a, b])
     return a.numbers(team), b.numbers(team), a.rows[tuple(team)]
 
 
