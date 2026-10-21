@@ -83,6 +83,31 @@ def main():
                     all(r["level"] == 19 and "gender" in r and r["moves"] for r in recs),
                     ", ".join(f"{r['species']} {r['gender']}" for r in recs)))
 
+    # One run per seed (Ian, 2026-10-15): every fight of a seed draws on the
+    # same catches, so an area gives one Pokemon all game. Until then
+    # Gardenia's and Maylene's seed 1 agreed on 17 of 25 areas' catches.
+    clash = []
+    for s in g.SEEDS:
+        seen = {}
+        for f in rows:
+            for c in g.cut(g.roll(f["split"], s), f):
+                if seen.setdefault(c.area, c.species) != c.species:
+                    clash.append(f"seed {s} {c.area}: {seen[c.area]} and {c.species} ({f['slug']})")
+    results.append(("a seed's catches agree across all its fights", not clash, "; ".join(clash[:3]) or
+                    f"{len(rows)} fights on seeds {', '.join(map(str, g.SEEDS))}"))
+    gard = {c.area: c.species for c in g.cut(g.roll("Gardenia", 1), by["gardenia"])}
+    may = {c.area: c.species for c in g.cut(g.roll("Maylene", 1), by["maylene"])}
+    agree = sum(may.get(a) == sp for a, sp in gard.items())
+    results.append(("Gardenia's and Maylene's seed 1 agree on every area Gardenia's box has",
+                    agree == len(gard) and set(gard) <= set(may), f"{agree} of {len(gard)}"))
+    # The box sizes over 20 seeds hold the Overseer's measure of 2026-10-15
+    # (boxsizes.py's first-visit mode), the per-split rolls' sizes.
+    want = {"roark": 17.0, "mars_1": 21.0, "gardenia": 25.0, "jupiter_1": 27.0, "fantina": 34.0,
+            "maylene": 41.0, "wake": 51.0}
+    got = {k: round(sum(len(g.cut(g.roll(by[k]["split"], s), by[k])) for s in range(1, 21)) / 20, 1)
+           for k in want}
+    results.append(("one run per seed keeps the box sizes over 20 seeds", got == want, str(got)))
+
     got = {k: sorted(g.places(by[k])) for k in ("mars_1", "gardenia", "jupiter_1", "fantina", "candice")}
     # Mt. Coronet 1F North Room 1, off Route 211, is the first magnetic map.
     want = {"mars_1": [], "gardenia": ["LEVEL_MAGNETIC_FIELD", "LEVEL_MOSS_ROCK"],

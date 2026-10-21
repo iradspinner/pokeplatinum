@@ -22,13 +22,16 @@ Trainers. The milestone reading before alpha 1 reads the bosses only (Ian,
 difficulty), so --kinds defaults to them.
 
 The boxes (Ian's answer 3 of 2026-09-30, a spread of rolled boxes): three
-random runs of the encounter simulator for each split, seeds 1 to 3 (Ian
-cut five to three for this milestone, 2026-10-07), every catch alive. Box
-k's starter is the starter list's k-th (Turtwig, Scorbunny, Piplup), so
-every rival team is met by one box; the rest of the run is the seed's own
-rolls, the same for every fight of a split. A fight that closes its split (and each Elite Four
-fight) takes the box as it stands at the split's end; any other takes
-only the catches made before it in walking order (the encounter sidecar's
+random runs of the encounter simulator, seeds 1 to 3 (Ian cut five to three
+for this milestone, 2026-10-07), every catch alive. Each seed is one run
+through the whole game (Ian, 2026-10-15), so a catch is the same Pokemon
+at every fight: each capture area is rolled once, at the run's first
+visit, among the options open then (Ian's choice: nobody waits for Surf or
+a rod), which keeps the box sizes the per-split rolls had. Box k's starter
+is the starter list's k-th (Turtwig, Scorbunny, Piplup), so every rival
+team is met by one box. A fight that closes its split (and each Elite Four
+fight) takes the run's catches by the split's end; any other takes only
+the catches made before it in walking order (the encounter sidecar's
 order, which the OxiDex's Alpha tab follows) and every catch made from an
 earlier split's options. Each member is the stage it reaches by the
 fight's level, with its whole move pool from its catch, a Hardy nature,
@@ -231,11 +234,26 @@ def level(f, trainer):
 
 # ---- the boxes ----------------------------------------------------------------------------------------------
 
+# A run is rolled over every capture area of the game, the last split's.
+LAST = "League"
+
+
 @functools.lru_cache(maxsize=None)
-def roll(split, seed):
-    """[Catch] of one random run's box by the split's end, the starter
-    first: plniche.roll's run, with box seed's starter set in turn."""
-    ctx = pboxes.context(split)
+def run_of(seed):
+    """[Catch] of box seed's one run through the whole game, the starter
+    first (Ian, 2026-10-15: each box seed is one run, so a catch is the same
+    Pokemon at every fight; until then each split rolled its own box, and
+    Gardenia's and Maylene's seed 1 agreed on 17 of 25 areas' catches).
+    Each capture area, in the simulator's walking order, is rolled once at
+    the run's first visit, among the options open then (Ian's choice:
+    nobody waits for Surf or a rod): the options of the earliest split any
+    of its options opens in, with no repel manipulation and no trade that
+    costs a Pokemon, a species drawn by the option's own odds under the
+    dupes clause. Box k's starter is the starter list's k-th. This keeps
+    the box sizes the per-split rolls had, where one roll among all of an
+    area's options left the early boxes a third smaller (test_plgoal3 holds
+    the sizes)."""
+    ctx = pboxes.context(LAST)
     rank, values = ctx["rank"], ctx["values"]
     rng = random.Random(seed)
     box = pboxes.sim.Box(ctx["root"], values)
@@ -249,11 +267,11 @@ def roll(split, seed):
     for area in ctx["areas"]:
         if area["name"] == where:
             continue
-        opts = [o for o in area["options"]
-                if rank.get(o.split, 99) <= rank[split] and o.repel is None and not o.requires]
+        opts = [o for o in area["options"] if o.repel is None and not o.requires]
         if not opts:
             continue
-        opt = rng.choice(opts)
+        first = min(rank.get(o.split, 99) for o in opts)
+        opt = rng.choice([o for o in opts if rank.get(o.split, 99) == first])
         sp = pboxes.sim._roll(opt, box, rng, drawn)
         if sp is None:
             continue
@@ -262,6 +280,15 @@ def roll(split, seed):
         box.add(sp, area["name"])
         caught.append(Catch(sp, opt.split, area_place(area), area["name"]))
     return tuple(caught)
+
+
+@functools.lru_cache(maxsize=None)
+def roll(split, seed):
+    """[Catch] of box seed's run by the split's end: its catches from options
+    open by then, the starter first. Every fight of the seed draws on the
+    one run (run_of)."""
+    rank = pboxes.context(LAST)["rank"]
+    return tuple(c for c in run_of(seed) if c.split is None or rank.get(c.split, 99) <= rank[split])
 
 
 def cut(caught, f):
