@@ -69,7 +69,9 @@ def build_line(rng):
     """The test line: random actions from the menu for six turns, then a
     position set by hand with a Quick Claw on every Pokemon, played on with
     random actions for fourteen turns, so the AI's odds are mixed over four
-    rolls in most of its positions."""
+    rolls in most of its positions; and two branches from the start set by
+    hand, a confused Pokemon at +2 Attack and a paralysed one, each using
+    its moves."""
     line = lt.Line(setup(), name="test-line")
     nid = 0
     for _t in range(6):
@@ -83,6 +85,18 @@ def build_line(rng):
         if lt.finished(line.node(nid).b):
             break
         nid = play(line, nid, rng.choice(menu_actions(line, nid)), {}, rng.randrange(1 << 30), rng)
+    # Two branches from the start set by hand, as Ian's Gardenia questions
+    # were: Nuzleaf confused at +2 Attack in front of Lumineon, and a
+    # paralysed Breloom, each played on for three turns.
+    for edits in ({"player": {"active": 2, "mons": {"2": {"confused": 4, "stages": {"atk": 2}}}},
+                   "trainer": {"active": 2}},
+                  {"player": {"active": 4, "mons": {"4": {"status": "par"}}}}):
+        nid = line.set_position(0, edits)["node"]
+        for _t in range(3):
+            if lt.finished(line.node(nid).b):
+                break
+            moves = [a for a in menu_actions(line, nid) if a[0] == "move"]
+            nid = play(line, nid, rng.choice(moves), {}, rng.randrange(1 << 30), rng)
     return line
 
 
@@ -332,7 +346,7 @@ def check_labels(results, line):
             elif not label.startswith(("Speed tie", "End of turn", "This turn")):
                 bad.append((ch["key"], label))
     results.append(("every check of the test line is labelled with its Pokemon, and its move where it has one",
-                    not bad and seen >= 60, f"{seen} checks of {len(kinds)} kinds ({', '.join(sorted(kinds))}); "
+                    not bad and seen >= 60 and {"paralysis", "confusion", "confusion roll"} <= kinds, f"{seen} checks of {len(kinds)} kinds ({', '.join(sorted(kinds))}); "
                                             f"unlabelled {bad[:3]}"))
 
 

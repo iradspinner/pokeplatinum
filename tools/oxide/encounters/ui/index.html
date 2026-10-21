@@ -3430,6 +3430,8 @@ function btEditCard(v) {
       <label>its status <select data-e="${name}.mons.${i}.status">${statuses.map(([k, w]) => `<option value="${k}"${(m.status || "") === k ? " selected" : ""}>${w}</option>`).join("")}</select></label>`).join("")}
     ${["atk", "def", "spa", "spd", "spe", "acc", "eva"].map(k => { const m = s.mons[s.active]; return `<label>${esc(m.species)} ${k} <input type="number" min="-6" max="6" value="${(m.stages || {})[k] || 0}" data-e="${name}.mons.${s.active}.stages.${k}"></label>`; }).join("")}
     <label>${esc(s.mons[s.active].species)} item <input value="${esc(s.mons[s.active].item || "")}" data-e="${name}.mons.${s.active}.item"></label>
+    <label>${esc(s.mons[s.active].species)} confused, turns left <input type="number" min="0" max="5" value="${s.mons[s.active].confused || 0}" data-e="${name}.mons.${s.active}.confused"></label>
+    ${s.mons[s.active].status === "slp" ? `<label>${esc(s.mons[s.active].species)} asleep, turns left <input type="number" min="1" max="4" value="${s.mons[s.active].sleep || 1}" data-e="${name}.mons.${s.active}.sleep"></label>` : ""}
     <label>Reflect turns <input type="number" min="0" value="${(s.screens || {}).Reflect || 0}" data-e="${name}.screens.Reflect"></label>
     <label>Light Screen turns <input type="number" min="0" value="${(s.screens || {})["Light Screen"] || 0}" data-e="${name}.screens.Light Screen"></label>
     <label>Tailwind turns <input type="number" min="0" value="${s.tailwind || 0}" data-e="${name}.tailwind"></label>

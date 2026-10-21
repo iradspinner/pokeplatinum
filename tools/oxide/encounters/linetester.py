@@ -577,8 +577,9 @@ class TesterDice:
         dmg = [pl.confusion_damage(mon, 85 + r) for r in range(16)] if mon is not None else [None] * 16
         info = {"dmg": dmg, "hp": mon.hp if mon else None, "maxhp": mon.maxhp if mon else None,
                 "victim": mon.side if mon else None, "victim_name": _name(mon)}
+        _who, _what, _phase, words = _subject(frame)
         return 85 + self._choose("confusion roll", None, (1 / 16,) * 16, [f"roll {r + 1}" for r in range(16)],
-                                 f"{_owner(mon)} {_name(mon)}: its confusion self-hit's damage roll", {"rolls": info})
+                                 f"{words}: the damage roll of its hit on itself in confusion", {"rolls": info})
 
 
 def _draw(rng, probs):
@@ -1259,6 +1260,7 @@ def mon_view(b, m, side, i):
     out = {"index": i, "key": m.key, "species": m.species, "constant": _constant_of(b, m), "level": m.level,
            "hp": m.hp, "maxhp": m.maxhp,
            "status": m.status, "status_words": STATUS_WORDS.get(m.status), "sleep": m.sleep, "toxic": m.toxic,
+           "confused": m.confused,
            "stages": {k: v for k, v in m.stages.items() if v}, "item": m.item, "ability": m.ability,
            "types": m.types, "alive": m.alive(), "active": i == side.active,
            "moves": [{"name": mv.name, "type": mv.type, "cat": mv.cat, "power": mv.power, "acc": mv.acc,
