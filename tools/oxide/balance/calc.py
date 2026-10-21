@@ -29,11 +29,30 @@ RUNNER = os.path.join(HERE, "calc_headless.js")
 CALC_WEATHER = {"Rain": "Rain", "Sun": "Sun", "Sand": "Sand", "Hail": "Hail"}
 
 
+# The effects whose every hit Oxide's engine makes critical (effect scripts
+# 282 and 366; fightsim.Move.sure).
+ALWAYS_CRIT_EFFECTS = frozenset({"ALWAYS_CRITICAL", "HIT_THREE_TIMES_ALWAYS_CRITICAL"})
+
+
 @functools.lru_cache(maxsize=None)
 def blob():
     """The calculator's data (species, moves, type chart), as the encounter
-    tool's server hands it to the calculator's page; built once a process."""
-    return calc_export.build()
+    tool's server hands it to the calculator's page; built once a process.
+
+    For the runner, the engine's effect decides whether a move's hits are
+    always critical: every move whose effect is not one of
+    ALWAYS_CRIT_EFFECTS goes to it marked as not (willCrit false). The
+    calculator keeps a known move's own data, and its Zippy Zap is the
+    always critical move of Let's Go, where Oxide's (effect script 316)
+    is a plain hit that raises its user's evasion. Until 2026-10-20 Zippy
+    Zap's rows were critical hits (Ian approved the fix)."""
+    from ..encounters import pokedex
+    out = calc_export.build()
+    keys = calc_export.move_keys(data.ROOT)
+    plain = {keys[r["move"]] for r in pokedex.moves(data.ROOT).values()
+             if r["move"] in keys and r["effect"] not in ALWAYS_CRIT_EFFECTS}
+    out["moves"] = {k: dict(v, willCrit=False) if k in plain else v for k, v in out["moves"].items()}
+    return out
 
 
 @functools.lru_cache(maxsize=None)

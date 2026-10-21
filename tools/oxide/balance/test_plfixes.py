@@ -6490,6 +6490,24 @@ def diamond_storm_checks():
     return [("the readings' Diamond Storm raises its user's Defense", got == (True, 2), f"(hit, Defense stage) {got}")]
 
 
+@b13
+def zippy_zap_checks():
+    """Zippy Zap in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Pikachu's row on a trainer's Swift
+    Swim Kabuto is the one on a Battle Armor Kabuto, which no critical hit
+    reaches, so it is no critical hit; and its hit raises its evasion."""
+    b, armour, swim = b8_battle([("Kabuto", 30, "Battle Armor", ["Tackle"]), ("Kabuto", 30, "Swift Swim", ["Tackle"])],
+                                [("Pikachu", 30, "Static", ["Zippy Zap"])])
+    pika = b.p.cur()
+    swim = b.b.mons[1]
+    mv = fs.move("Zippy Zap")
+    rows = (b.rolls(pika, armour, mv), b.rolls(pika, swim, mv))
+    pl.attack(b, pika, mv, armour, True)
+    got = (rows[0] == rows[1], pika.stages["eva"])
+    return [("the readings' Zippy Zap is no critical hit and raises its user's evasion", got == (True, 1),
+             f"(the rows alike, evasion stage) {got}; rows {rows[0][-1]} and {rows[1][-1]}")]
+
+
 def main():
     results = []
 

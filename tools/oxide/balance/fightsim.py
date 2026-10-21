@@ -297,6 +297,12 @@ HIT_SELF_STAGES = {  # (stages, certain)
     # as the effect is not on sSheerForceEffects. Until 2026-10-20 the
     # Defense never rose (Ian approved the fix).
     "RAISE_DEF_2_HIT": ({"def": 2}, False),
+    # Zippy Zap (effect script 316): the user's evasion rises a stage at the
+    # move's chance (100), an indirect effect on the user, so a knockout's
+    # or a Substitute's hit raises it too; Sheer Force leaves it. Its rows
+    # are plain hits (calc.blob). Until 2026-10-20 the evasion never rose
+    # and every hit was critical (Ian approved the fix).
+    "RAISE_EVA_HIT": ({"eva": 1}, False),
 }
 RECOIL = {"RECOIL_THIRD": 1 / 3, "RECOIL_QUARTER": 1 / 4, "RECOIL_HALF": 1 / 2,
           "RECOIL_BURN_HIT": 1 / 3, "RECOIL_PARALYZE_HIT": 1 / 3,

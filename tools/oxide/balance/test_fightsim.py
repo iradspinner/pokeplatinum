@@ -7385,6 +7385,33 @@ def check_diamond_storm(results):
     results.append(("Diamond Storm raises its user's Defense two stages at its chance", out == want, str(out)))
 
 
+@b13
+def check_zippy_zap(results):
+    """Zippy Zap (approved 2026-10-14; effect script 316): its user's
+    evasion rises a stage at the move's chance (100), after a hit on a
+    Substitute and a knockout too, in both battles; and the runner's data
+    marks it as no always critical move (calc.blob), while Frost Breath
+    keeps the calculator's own mark."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("hit", "Substitute", "knockout", "fightsim"):
+        b, p, foe = b11_battle(["Zippy Zap"], ["Tackle"], {("p", "Zippy Zap"): [20] * 16})
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move("Zippy Zap"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Zippy Zap"), foe, True)
+        out[case] = p.stages["eva"]
+    moves = fs.calc.blob()["moves"]
+    out["willCrit"] = (moves["Zippy Zap"].get("willCrit"), moves["Frost Breath"].get("willCrit"))
+    want = {"hit": 1, "Substitute": 1, "knockout": 1, "fightsim": 1, "willCrit": (False, None)}
+    results.append(("Zippy Zap raises its user's evasion and is no critical hit", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
