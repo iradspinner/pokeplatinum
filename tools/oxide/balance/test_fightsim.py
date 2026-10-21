@@ -8832,6 +8832,39 @@ def check_doubles_pollen_puff(results):
     results.append(("doubles: Pollen Puff heals an ally and hits a foe", out == want, f"{out}"))
 
 
+@b15
+def check_doubles_ally_support(results):
+    """The moves that help an ally in a double battle (Ian approved the
+    double-battle parts batches 7 and 8 left on 2026-10-14): Coaching raises
+    the user's ally's Attack and Defense a stage (effect script 381, its
+    target the ally whatever was chosen, RANGE_ALLY); Life Dew heals a
+    quarter of the user and of its ally (subscript_life_dew). Until
+    2026-10-21 Coaching did nothing and Life Dew healed the user alone.
+    Heal Pulse aimed at the ally heals it by half (subscript_heal_pulse), as
+    it did on the starting code, where run_doubles already sent a status
+    move to the ally it was aimed at."""
+    def battle(move, target, hp):
+        mons = {"p0": {"moves": [move]}, "p1": {"moves": ["Splash"]},
+                "b0.0": {"moves": ["Splash"]}, "b0.1": {"moves": ["Splash"]}}
+
+        def start(b):
+            for k, v in hp.items():
+                mon_of(b, k).hp = v
+        b = doubles_turns(doubles_st(mons), ["p0", "p1"], ["b0.0", "b0.1"], {"p0": (move, target)}, start=start)
+        return b
+    b = battle("Coaching", "b0.0", {})
+    out = {"Coaching (the ally's Attack, Defense; the foe's Attack)": (mon_of(b, "p1").stages["atk"],
+                                                                         mon_of(b, "p1").stages["def"],
+                                                                         mon_of(b, "b0.0").stages["atk"])}
+    b = battle("Life Dew", None, {"p0": 50, "p1": 40})
+    out["Life Dew (the user's HP, the ally's)"] = (mon_of(b, "p0").hp, mon_of(b, "p1").hp)
+    b = battle("Heal Pulse", "p1", {"p1": 40})
+    out["Heal Pulse on the ally (its HP)"] = mon_of(b, "p1").hp
+    want = {"Coaching (the ally's Attack, Defense; the foe's Attack)": (1, 1, 0),
+            "Life Dew (the user's HP, the ally's)": (75, 65), "Heal Pulse on the ally (its HP)": 90}
+    results.append(("doubles: Coaching, Life Dew and Heal Pulse help the user's ally", out == want, f"{out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

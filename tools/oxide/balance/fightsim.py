@@ -3419,15 +3419,34 @@ def engine_divide(value, divisor):
     return 0 if value == 0 else max(1, value // divisor)
 
 
-def life_dew(att):
+def life_dew(att, b=None):
     """Life Dew (effect script 383, subscript_life_dew): it fails under Heal
     Block, which the script checks itself (the move is not on
     sMovesAffectedByHealBlock, so it can be chosen); otherwise its user gets
-    back a quarter of its maximum HP, rounded up, unless its HP is full. Its
-    heal of an ally in a double battle is left to the double battles' own
-    fixes. Until 2026-10-15 it did nothing (Ian approved the fix)."""
-    if not heal_blocked(att):
-        heal(att, (att.maxhp + 3) // 4)
+    back a quarter of its maximum HP, rounded up, unless its HP is full, and
+    in a double battle so does its standing ally, the ally's own Heal Block
+    unread. Until 2026-10-15 it did nothing (Ian approved the fix); until
+    2026-10-21 the ally got nothing (Ian approved the double-battle part
+    batch 7 left on 2026-10-14)."""
+    if heal_blocked(att):
+        return
+    heal(att, (att.maxhp + 3) // 4)
+    ally = ally_of(b, att) if b is not None and b.doubles else None
+    if ally is not None:
+        heal(ally, (ally.maxhp + 3) // 4)
+
+
+def coaching(b, att, dfn):
+    """Coaching (effect script 381, subscript_coaching): its target is the
+    user's ally (RANGE_ALLY), whose Attack and Defense rise a stage each
+    through the stat-stage subscript (change_stages: Simple and Contrary
+    count); with no ally the target is the user and the move fails, as it
+    does on a fainted ally. So it does nothing in a single battle. Until
+    2026-10-21 it did nothing in a double battle either (Ian approved the
+    double-battle part batch 8 left on 2026-10-14)."""
+    if not b.doubles or dfn is att or dfn.side != att.side or not dfn.alive():
+        return
+    change_stages(dfn, {"atk": 1, "def": 1})
 
 
 def strength_sap(b, att, dfn, mv):
@@ -8270,7 +8289,7 @@ def status_move(b, att, mv, dfn, first):
     elif e == "HEAL_HALF_MORE_IN_SUN":
         heal(att, weather_heal(b, att, mv))
     elif e == "LIFE_DEW":
-        life_dew(att)
+        life_dew(att, b)
     elif e == "STRENGTH_SAP":
         strength_sap(b, att, dfn, mv)
     elif e == "REST":
@@ -9760,6 +9779,11 @@ def targets_of(b, att, mv, chosen, randomize=False):
             return [mon]
     if mv.range == "RANDOM_OPPONENT" or randomize:
         return [foes[pick_one(b, "target", len(foes))]] if foes else []
+    if mv.range == "ALLY":
+        # Helping Hand's and Coaching's target is the user's partner whatever
+        # was chosen (BattleSystem_Defender), the user itself with none.
+        ally = ally_of(b, att)
+        return [ally] if ally is not None else [att]
     if chosen is not None and chosen in foes:
         return [chosen]
     if chosen is not None and (chosen is att or chosen is ally_of(b, att)):

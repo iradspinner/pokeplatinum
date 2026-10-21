@@ -1290,7 +1290,7 @@ def status_move(b, att, mv, dfn, first):
     elif e == "HEAL_HALF_MORE_IN_SUN":
         fs.heal(att, fs.weather_heal(b, att, mv))     # Shore Up's sand, Cloud Nine (fightsim.weather_heal)
     elif e == "LIFE_DEW":
-        fs.life_dew(att)                 # a quarter back, rounded up, not under Heal Block (fightsim.life_dew)
+        fs.life_dew(att, b)              # a quarter back, rounded up, its ally's too, not under Heal Block (fightsim.life_dew)
     elif e == "STRENGTH_SAP":
         fs.strength_sap(b, att, dfn, mv)     # the target's Attack back as HP, then a stage off it (fightsim.strength_sap)
     elif e == "REST":
@@ -1379,6 +1379,8 @@ def status_move(b, att, mv, dfn, first):
         fs.follow_me(b, att, mv)         # Follow Me, Rage Powder, Spotlight: the center of attention (fightsim.follow_me)
     elif e == "AFTER_YOU":
         fs.after_you(b, att, dfn)        # its target acts next, in a double battle (fightsim.after_you)
+    elif e == "COACHING":
+        fs.coaching(b, att, dfn)         # its ally's Attack and Defense, in a double battle (fightsim.coaching)
     elif e == "HALVE_FIRE_DAMAGE":
         fs.water_sport(att)              # Fire moves at half power while it stands (fightsim.sport_half)
     elif e == "HALVE_ELECTRIC_DAMAGE":
