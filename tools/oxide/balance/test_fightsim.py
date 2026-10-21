@@ -7799,6 +7799,18 @@ def check_hyperspace_fury(results):
     results.append(("Hyperspace Fury lowers its user's Defense after a hit", out == want, str(out)))
 
 
+@b13
+def check_v_create(results):
+    """V-create (approved 2026-10-14; effect script 291): any hit, a
+    Substitute's and a knockout's too, lowers its user's Defense, Sp. Def
+    and Speed a stage each, in both battles, and raises them for a Contrary
+    user."""
+    out = self_drop("V-create")
+    want = {"hit": (-1, -1, -1), "Substitute": (-1, -1, -1), "knockout": (-1, -1, -1), "fightsim": (-1, -1, -1),
+            "Contrary": (1, 1, 1)}
+    results.append(("V-create lowers its user's Defense, Sp. Def and Speed after a hit", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

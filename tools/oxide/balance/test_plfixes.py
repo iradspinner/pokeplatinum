@@ -6701,6 +6701,14 @@ def hyperspace_fury_checks():
     return self_drop_checks("Hyperspace Fury", ("Drapion", "Sniper"), (-1, 0, 0))
 
 
+@b13
+def v_create_checks():
+    """V-create on real rows (approved 2026-10-14): the player's
+    Infernape's hit lowers its own Defense, Sp. Def and Speed a stage
+    each."""
+    return self_drop_checks("V-create", ("Infernape", "Blaze"), (-1, -1, -1))
+
+
 def main():
     results = []
 
