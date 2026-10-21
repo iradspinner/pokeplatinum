@@ -107,6 +107,9 @@ IAN_EGG_MOVES = {
     "SPECIES_DARKRAI": [("MOVE_DARK_VOID", "Ian, 2026-10-06: Officer Somnu's Darkrai keeps Dark Void, which "
                                            "Darkrai learns only at 66, above Somnu's levels; the player never "
                                            "reaches an egg list")],
+    "SPECIES_MAREANIE": [("MOVE_BANEFUL_BUNKER", "Ian, 2026-10-20, on unused-moves.md: Toxapex's own move, a "
+                                                "Protect variant, kept for trainers on the egg list of the "
+                                                "stage the line hatches as")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
