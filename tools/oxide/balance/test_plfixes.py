@@ -6478,6 +6478,18 @@ def jaw_lock_checks():
              f"(hit, Geodude held, Mightyena held, Mightyena held after Onix comes in) {got}")]
 
 
+@b13
+def diamond_storm_checks():
+    """Diamond Storm in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Garganacl's hit on a trainer's
+    Geodude raises its own Defense two stages when the chance lands."""
+    b, geo, salt = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                             [("Garganacl", 30, "Purifying Salt", ["Diamond Storm"])], Lucky8)
+    pl.attack(b, salt, fs.move("Diamond Storm"), geo, True)
+    got = (geo.hp < geo.maxhp, salt.stages["def"])
+    return [("the readings' Diamond Storm raises its user's Defense", got == (True, 2), f"(hit, Defense stage) {got}")]
+
+
 def main():
     results = []
 

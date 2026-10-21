@@ -291,6 +291,12 @@ HIT_SELF_STAGES = {  # (stages, certain)
     # effect's name (HIGH_CRITICAL). Until 2026-10-20 the Speed never rose
     # (Ian approved the fix).
     "HIGH_CRITICAL_RAISE_SPEED_HIT": ({"spe": 1}, False),
+    # Diamond Storm (effect script 317): the user's Defense rises two stages
+    # at the move's chance (50), an indirect effect on the user, so a
+    # knockout's or a Substitute's hit raises it too; Sheer Force leaves it,
+    # as the effect is not on sSheerForceEffects. Until 2026-10-20 the
+    # Defense never rose (Ian approved the fix).
+    "RAISE_DEF_2_HIT": ({"def": 2}, False),
 }
 RECOIL = {"RECOIL_THIRD": 1 / 3, "RECOIL_QUARTER": 1 / 4, "RECOIL_HALF": 1 / 2,
           "RECOIL_BURN_HIT": 1 / 3, "RECOIL_PARALYZE_HIT": 1 / 3,

@@ -7339,6 +7339,52 @@ def check_jaw_lock(results):
     results.append(("Jaw Lock holds its target and its user, each by the other", out == want, str(out)))
 
 
+def lucky13():
+    """Dice for batch 13's checks in the readings' battle: every chance
+    lands that is above nothing (the player's own added effects and its
+    critical hits included), no miss, at the top damage roll."""
+    from . import perfectline as pl
+
+    class Lucky(pl.RunDice):
+        def bad(self, kind, p):
+            return False
+
+        def good(self, p, kind=None):
+            return p > 0
+
+        def lands_on_player(self, kind, p):
+            return p > 0
+
+        def roll(self, top):
+            return 15
+    return Lucky(random.Random(1), True)
+
+
+@b13
+def check_diamond_storm(results):
+    """Diamond Storm (approved 2026-10-14; effect script 317): its user's
+    Defense rises two stages when the move's chance (50) lands, after a hit
+    on a Substitute and a knockout too, in both battles; when the chance
+    does not land it stays."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("lands", "misses", "Substitute", "knockout", "fightsim"):
+        b, p, foe = b11_battle(["Diamond Storm"], ["Tackle"], {("p", "Diamond Storm"): [20] * 16})
+        b.dice = sure12() if case == "misses" else lucky13()
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move("Diamond Storm"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Diamond Storm"), foe, True)
+        out[case] = p.stages["def"]
+    want = {"lands": 2, "misses": 0, "Substitute": 2, "knockout": 2, "fightsim": 2}
+    results.append(("Diamond Storm raises its user's Defense two stages at its chance", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
