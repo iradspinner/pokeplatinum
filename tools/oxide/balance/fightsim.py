@@ -140,10 +140,13 @@ def move(name):
 
 
 # The Plates whose type Judgment takes (effect script 268 sets the move's
-# type by the holder's HOLD_EFFECT_ARCEUS_*): the sixteen of Platinum. The
-# Pixie Plate, which element 7 added, is not in the script, so its
-# Judgment stays Normal in the battle.
-JUDGMENT_TYPE = {item: t for t, items in pool.TYPE_ITEMS.items() for item in items if item.endswith(" Plate")}
+# type by the holder's HOLD_EFFECT_ARCEUS_*): the sixteen of Platinum, and
+# the Pixie Plate, which element 7 added and the script has made Fairy since
+# bb4b3021b (2026-10-20). Until then the script left a Pixie Plate's
+# Judgment Normal, and so did the simulator; it follows the fix (Ian
+# approved it on 2026-10-20).
+JUDGMENT_TYPE = dict({item: t for t, items in pool.TYPE_ITEMS.items() for item in items if item.endswith(" Plate")},
+                     **{"Pixie Plate": "Fairy"})
 
 
 @functools.lru_cache(maxsize=None)

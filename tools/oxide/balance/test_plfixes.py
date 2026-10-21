@@ -6768,6 +6768,20 @@ def heal_bell_checks():
              f"(Bibarel's status, Voltorb's status, Voltorb's ability) {got}")]
 
 
+@b13
+def pixie_plate_checks():
+    """Judgment with a Pixie Plate on real rows (the engine's fix of
+    2026-10-20): a trainer's Arceus holding one has a Fairy Judgment, as
+    the calculator's row types it, and the player's Ponyta's Flash Fire,
+    which a Fire Judgment lights, stays unlit."""
+    b, arc, pon = b8_battle([("Arceus", 30, "Multitype", ["Judgment"], "Pixie Plate")],
+                            [("Ponyta", 30, "Flash Fire", ["Tackle"])])
+    pl.attack(b, arc, arc.moves[0], pon, True)
+    got = (arc.moves[0].type, pon.hp < pon.maxhp, pon.flash_fire)
+    return [("the readings' Judgment with a Pixie Plate is a Fairy move", got == ("Fairy", True, False),
+             f"(Judgment's type, Ponyta hit, lit) {got}")]
+
+
 def main():
     results = []
 

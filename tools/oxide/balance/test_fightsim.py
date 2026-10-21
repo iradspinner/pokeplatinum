@@ -7161,8 +7161,8 @@ def check_judgment(results):
     """Judgment (approved 2026-10-14; effect script 268): its holder's Plate
     sets its type, which the battle's own reads meet: a Flame Plate's Fire
     Judgment that a Flash Fire target takes lights it, a plain one does
-    not; the Pixie Plate, which the script does not list, leaves it
-    Normal."""
+    not; the Pixie Plate, which the script lists since bb4b3021b, makes it
+    Fairy (check_pixie_plate)."""
     out = {}
     for item in ("Flame Plate", None, "Pixie Plate"):
         b, p, foe = battle(["Judgment"], ["Tackle"], {("p", "Judgment"): [0] * 16})
@@ -7171,7 +7171,7 @@ def check_judgment(results):
         b.rng, foe.ability, foe.types = FixedDice(0.999), "Flash Fire", ["Fire"]
         fs.attack(b, user, user.moves[0], foe, True)
         out[item] = (user.moves[0].type, foe.flash_fire)
-    want = {"Flame Plate": ("Fire", True), None: ("Normal", False), "Pixie Plate": ("Normal", False)}
+    want = {"Flame Plate": ("Fire", True), None: ("Normal", False), "Pixie Plate": ("Fairy", False)}
     results.append(("Judgment takes its Plate's type", out == want, str(out)))
 
 
@@ -7907,6 +7907,23 @@ def check_heal_bell(results):
             "Soundproof user": ("slp", True, "psn", None), "Aromatherapy": (None, False, None, None),
             "fightsim": (None, False, "psn", None)}
     results.append(("Heal Bell spares Soundproof and ends Nightmare", out == want, str(out)))
+
+
+@b13
+def check_pixie_plate(results):
+    """Judgment with a Pixie Plate (the engine's fix of 2026-10-20,
+    bb4b3021b; effect script 268's HOLD_EFFECT_ARCEUS_FAIRY branch): a
+    Fairy move for the battle's own type reads and for the trainer's AI's
+    (TrainerAI_MoveType); a Plate of Platinum's keeps its own type."""
+    from . import fightai
+    out = {}
+    for item in ("Pixie Plate", "Draco Plate"):
+        b, p, foe = battle(["Judgment"], ["Tackle"], {("p", "Judgment"): [10] * 16})
+        user = fs.Mon("p0", b.st["pokemon"]["p0"], dict(b.st["info"]["p0"], item=item), ["Judgment"], "p")
+        b.p.mons[0] = user
+        out[item] = (user.moves[0].type, fightai.move_type(b, user, user.moves[0]))
+    want = {"Pixie Plate": ("Fairy", "Fairy"), "Draco Plate": ("Dragon", "Dragon")}
+    results.append(("Judgment with a Pixie Plate is a Fairy move", out == want, str(out)))
 
 
 def main():
