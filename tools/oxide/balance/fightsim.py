@@ -320,8 +320,8 @@ HIT_SELF_STAGES = {  # (stages, certain)
     # Zippy Zap (effect script 316): the user's evasion rises a stage at the
     # move's chance (100), an indirect effect on the user, so a knockout's
     # or a Substitute's hit raises it too; Sheer Force leaves it. Its rows
-    # are plain hits (calc.blob). Until 2026-10-20 the evasion never rose
-    # and every hit was critical (Ian approved the fix).
+    # are plain hits (calc_export.move_entry). Until 2026-10-20 the evasion
+    # never rose and every hit was critical (Ian approved the fix).
     "RAISE_EVA_HIT": ({"eva": 1}, False),
     # Hyperspace Fury (effect script 343, subscript_hyperspace_fury, ON_HIT
     # on its user): its target's protection ends (BREAKS_PROTECT) and the
