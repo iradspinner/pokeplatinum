@@ -258,47 +258,143 @@ def member_name(rec):
     return (rec.get("label") or rec["species"]) if rec.get("hold") else rec["species"]
 
 
-def groups_of(st, keys):
-    """{key: the catch it is a version of}: a held-back version and the same
-    catch evolved on time share one (the record's "catch"), so that no six
-    takes both; a member without one is its own."""
-    return {k: st["pokemon"][k].get("catch") or k for k in keys}
+class Slots:
+    """A box's catches as the team search weighs them (Ian, 2026-10-21): a
+    catch's versions, evolved on time and each held back (a record's
+    "catch" names its catch), share one slot, so a six is six catches and
+    holds do not multiply the sixes. Each six takes, for each of its
+    catches, the version that gives that six the best score by the screen's
+    own reckoning (score_rows over the margin table M), and the race, the
+    loop and the readings see those versions. A version no better than
+    another of its catch against every enemy is never taken, since it can
+    raise no six's score (the score never falls as a margin rises); of
+    versions equal against every enemy, the first in box order is taken.
+    A member without a catch is a slot of its own, so a box without held
+    versions is searched exactly as before."""
+
+    def __init__(self, st, keys, M=None):
+        self.keys, self.M = list(keys), M
+        self.pos = {k: i for i, k in enumerate(self.keys)}
+        self.slots, self.versions, self.slot_of = [], {}, {}
+        first = {}
+        for k in self.keys:
+            s = first.setdefault(st["pokemon"][k].get("catch") or k, k)   # a slot goes by its first version
+            if s == k:
+                self.slots.append(k)
+                self.versions[k] = []
+            self.versions[s].append(k)
+            self.slot_of[k] = s
+        self.multi = any(len(v) > 1 for v in self.versions.values())
+        self.cands = {s: self._undominated(v) for s, v in self.versions.items()}
+        self._best = {}
+
+    @classmethod
+    def of_state(cls, st, keys, boss_keys):
+        """The box's slots, with the margin table worked out from the state's
+        moves where a catch has several versions to choose between."""
+        sl = cls(st, keys)
+        if not sl.multi:
+            return sl
+        mine, theirs, speed = matchups(st, keys, boss_keys)
+        return cls(st, keys, margins(st, keys, boss_keys, {k: st["moves"][k] for k in keys}, mine, theirs, speed))
+
+    def _undominated(self, vs):
+        if len(vs) == 1 or self.M is None:
+            return list(vs)
+        R = self.M[[self.pos[k] for k in vs]]
+        return [k for i, k in enumerate(vs)
+                if not any(j != i and (R[j] >= R[i]).all() and ((R[j] > R[i]).any() or j < i) for j in range(len(vs)))]
+
+    def upper(self):
+        """Each slot's margins at the best of its versions against each enemy:
+        no choice of versions scores a six of these catches higher."""
+        return np.array([self.M[[self.pos[k] for k in self.cands[s]]].max(axis=0) for s in self.slots])
+
+    def team(self, members):
+        """The six these catches make (given by slots or any versions' keys):
+        each catch at its best version for that six, in box order."""
+        slots = sorted({self.slot_of[k] for k in members}, key=self.pos.get)
+        if all(len(self.cands[s]) == 1 for s in slots):
+            return tuple(self.cands[s][0] for s in slots)
+        return self.best(slots)[1]
+
+    def best(self, slots):
+        """(score, six): the version of each of these catches that gives the
+        six the screen's best score, the earliest combination of the best;
+        beyond BEST_CAP combinations, which no box measured had, the best
+        found by changing one catch's version at a time."""
+        slots = tuple(sorted({self.slot_of[k] for k in slots}, key=self.pos.get))
+        if slots not in self._best:
+            opts = [self.cands[s] for s in slots]
+            rows = lambda team: self.M[[self.pos[k] for k in team]]
+            if math.prod(len(o) for o in opts) <= BEST_CAP:
+                combos = list(itertools.product(*opts))
+                scores = score_rows(self.M[np.array([[self.pos[k] for k in c] for c in combos])])
+                j = int(np.argmax(scores))
+                got = (float(scores[j]), combos[j])
+            else:
+                team = [o[0] for o in opts]
+                got = (float(score_rows(rows(team))), tuple(team))
+                better = True
+                while better:
+                    better = False
+                    for i, o in enumerate(opts):
+                        for k in o:
+                            trial = list(got[1][:i]) + [k] + list(got[1][i + 1:])
+                            sc = float(score_rows(rows(trial)))
+                            if sc > got[0]:
+                                got, better = (sc, tuple(trial)), True
+            self._best[slots] = (got[0], tuple(sorted(got[1], key=self.pos.get)))
+        return self._best[slots]
+
+    def top(self, n=20, apart=2):
+        """The screen's top sixes, [(score, six)] best first, each six of
+        catches at their best versions for it and differing from every one
+        kept before it in at least `apart` catches. The sixes of catches are
+        scored first at each catch's best against each enemy (upper), which
+        bounds what any choice of versions can score; they are then scored
+        at their best versions in the bound's order, only as far as the top
+        needs, so the list is exact. Without held versions the bound is the
+        score, and the screen is today's: by score, ties in the order the
+        sixes are drawn up."""
+        U = self.upper()
+        total = math.comb(len(self.slots), min(6, len(self.slots)))
+        keep = SCREEN_KEEP
+        while True:
+            listed = score_sixes(U, keep=keep, index=True)
+            complete = keep is None or len(listed) < keep
+            done, at, kept = [], 0, []
+            while True:
+                for bound, idx, drawn in listed[at:at + 2000]:
+                    slots = [self.slots[i] for i in idx]
+                    if any(len(self.cands[s]) > 1 for s in slots):
+                        score, six = self.best(slots)
+                    else:
+                        score, six = bound, tuple(self.cands[s][0] for s in slots)
+                    done.append((-score, drawn, six, idx))
+                at = min(at + 2000, len(listed))
+                done.sort()
+                # Every six not yet scored at its best versions scores at most
+                # this, so the sixes scoring more are in their final order.
+                limit = listed[at][0] if at < len(listed) else (float("-inf") if complete else listed[-1][0])
+                kept = []
+                for neg, _d, six, idx in done:
+                    if -neg <= limit:
+                        break
+                    if all(len(set(idx) - set(j)) >= apart for _s, _t, j in kept):
+                        kept.append((-neg, six, idx))
+                        if len(kept) >= n:
+                            return [(sc, t) for sc, t, _j in kept]
+                if at >= len(listed):
+                    break
+            if complete:
+                return [(sc, t) for sc, t, _j in kept]
+            keep = None if keep * 4 >= total else keep * 4
 
 
-def six_count(keys, size, group=None):
-    """How many different teams of `size` the box makes when no team takes
-    two versions of one catch: math.comb(len(keys), size) when every member
-    is its own catch."""
-    if group is None:
-        return math.comb(len(keys), size)
-    mult = {}
-    for k in keys:
-        mult[group[k]] = mult.get(group[k], 0) + 1
-    e = [1] + [0] * size           # elementary symmetric sums of the versions per catch
-    for m in mult.values():
-        for j in range(size, 0, -1):
-            e[j] += e[j - 1] * m
-    return e[size]
-
-
-def valid_six(six, group):
-    """Whether a team takes at most one version of each catch."""
-    return group is None or len({group[k] for k in six}) == len(six)
-
-
-def take(ranked, size, group, chosen=()):
-    """The first members of `ranked`, after `chosen`, up to `size` in all,
-    skipping any whose catch is already taken (ranked[:size] when every
-    member is its own catch)."""
-    out, seen = list(chosen), {group[k] if group else k for k in chosen}
-    for k in ranked:
-        if len(out) >= size:
-            break
-        g = group[k] if group else k
-        if k not in out and g not in seen:
-            out.append(k)
-            seen.add(g)
-    return out
+# Beyond this many combinations of versions for one six, Slots.best improves
+# one catch's version at a time instead of trying them all.
+BEST_CAP = 4096
 
 
 # ---- 1. the screen ---------------------------------------------------------------------------------------
@@ -506,27 +602,28 @@ def blind_pool(st, keys, split, cap=None, leave_out=()):
     return [k for k in keys if k in kept]
 
 
-def score_sixes(M, size=6, depth=0.3, hole=2.0, groups=None, keep=None):
-    """Every six of the box scored at once: per enemy, its best answer's
-    margin and a little for a second answer, less a penalty for each enemy
-    no member answers. [(score, member indices)], best first, ties in the
-    order the sixes are drawn up.
+def score_rows(R, depth=0.3, hole=2.0):
+    """The screen's score of sixes given by their members' rows of the margin
+    table (... x members x enemies): per enemy, its best answer's margin and
+    a little for a second answer, less a penalty for each enemy no member
+    answers."""
+    top = np.sort(R, axis=-2)
+    best = top[..., -1, :]
+    second = top[..., -2, :] if R.shape[-2] > 1 else np.zeros_like(best)
+    return (np.clip(best, -3, 3) + depth * np.clip(second, 0, 3)).sum(-1) - hole * (best <= 0).sum(-1)
 
-    `groups` (one entry per row of M) names the catch each member is a
-    version of: a six never takes two versions of one catch (a held-back
-    pre-evolution beside the same catch evolved on time). With `keep`, only
-    the best `keep` come back, exactly the first `keep` of the whole list:
-    the sixes are drawn up and scored a block at a time and only the best of
-    each block are held, so a box of fifty or more fits in memory (every six
-    of a 51-member box held at once took 5.3 GB, the best 100,000 take 0.2).
-    With groups, a six is as many members as the box has catches, at most
-    `size`."""
+
+def score_sixes(M, size=6, depth=0.3, hole=2.0, keep=None, index=False):
+    """Every six of the box scored at once (score_rows). [(score, member
+    indices)], best first, ties in the order the sixes are drawn up; with
+    `index`, [(score, member indices, the order it was drawn up in)]. With
+    `keep`, only the best `keep` come back, exactly the first `keep` of the
+    whole list: the sixes are drawn up and scored a block at a time and
+    only the best of each block are held, so a box of fifty or more fits in
+    memory (every six of a 51-member box held at once took 5.3 GB, the best
+    100,000 take 0.2)."""
     n = M.shape[0]
-    size = min(size, n if groups is None else len(set(groups)))
-    g = None
-    if groups is not None:
-        ids = {}
-        g = np.array([ids.setdefault(x, len(ids)) for x in groups])
+    size = min(size, n)
     it = itertools.combinations(range(n), size)
     Ss, Cs, Is = [], [], []          # the blocks held so far: scores, sixes, the order they were drawn in
     held, drawn = 0, 0
@@ -537,16 +634,7 @@ def score_sixes(M, size=6, depth=0.3, hole=2.0, groups=None, keep=None):
         c = np.array(block)
         idx = np.arange(drawn, drawn + len(c))
         drawn += len(c)
-        if g is not None and size > 1:
-            gs = np.sort(g[c], axis=1)
-            ok = (gs[:, 1:] != gs[:, :-1]).all(axis=1)
-            c, idx = c[ok], idx[ok]
-            if not len(c):
-                continue
-        m = M[c]                                     # sixes x members x enemies
-        top = np.sort(m, axis=1)
-        best, second = top[:, -1, :], top[:, -2, :] if m.shape[1] > 1 else np.zeros_like(top[:, -1, :])
-        s = (np.clip(best, -3, 3) + depth * np.clip(second, 0, 3)).sum(1) - hole * (best <= 0).sum(1)
+        s = score_rows(M[c], depth, hole)            # M[c]: sixes x members x enemies
         Ss.append(s), Cs.append(c), Is.append(idx)
         held += len(s)
         if keep is not None and held > 2 * keep:
@@ -563,39 +651,31 @@ def score_sixes(M, size=6, depth=0.3, hole=2.0, groups=None, keep=None):
     order = np.lexsort((I, -S))
     if keep is not None:
         order = order[:keep]
+    if index:
+        return [(float(S[j]), tuple(C[j].tolist()), int(I[j])) for j in order]
     return [(float(S[j]), tuple(C[j].tolist())) for j in order]
 
 
 # The sixes the screen holds while it looks for its top ones (score_sixes'
-# `keep`); it looks again over every six in the rare case these run out.
+# `keep`); it looks again over more of them in the rare case these run out.
 SCREEN_KEEP = 100000
 
 
 def screen(st, keys, boss_keys, top=20, apart=2):
     """The screen: each member's moves for this fight (set into the state,
-    so every later fight uses them) and the top sixes, each differing from
-    every one kept before it in at least `apart` members and none taking two
-    versions of one catch (groups_of). Returns (sixes as key lists, their
-    scores, the margin table, each member's moves)."""
+    so every later fight uses them) and the top sixes, each six of the box's
+    catches at their best versions for it (Slots: a catch's versions share
+    one slot) and differing from every one kept before it in at least
+    `apart` catches. Returns (sixes as key lists, their scores, the margin
+    table, each member's moves)."""
     mine, theirs, speed = matchups(st, keys, boss_keys)
     moves = {k: pick_moves(st, k, boss_keys, mine) for k in keys}
     for k in keys:
         st["moves"][k] = moves[k]
         st["pokemon"][k] = dict(st["pokemon"][k], moves=moves[k])
     M = margins(st, keys, boss_keys, moves, mine, theirs, speed)
-    group = groups_of(st, keys)
-    groups = [group[k] for k in keys]
-    for keep in (SCREEN_KEEP, None):
-        kept = []
-        scored = score_sixes(M, groups=groups, keep=keep)
-        for s, idx in scored:
-            if all(len(set(idx) - set(j)) >= apart for _s, j in kept):
-                kept.append((s, idx))
-            if len(kept) >= top:
-                break
-        if len(kept) >= top or keep is None or len(scored) < keep:
-            break
-    return [[keys[i] for i in idx] for _s, idx in kept], [s for s, _i in kept], M, moves
+    kept = Slots(st, keys, M).top(top, apart)
+    return [list(six) for _s, six in kept], [s for s, _six in kept], M, moves
 
 
 # ---- 2. labels and networks --------------------------------------------------------------------------------
@@ -717,55 +797,55 @@ def read(st, boss_keys, flags, teams, fights, cfg, luck="real", seed0=0, procs=N
     return tally
 
 
-def round_size(keys, per_round, group=None):
+def round_size(slots, per_round):
     """(team size, sixes a race round draws). A small box holds fewer
     different sixes than a round draws (seven members make seven): a round
     then takes them all, where it used to draw for ever (Lucas and Dawn 1,
-    goal 3, 2026-10-07); a box under six fields all it has. With `group`
-    (groups_of), versions of one catch count once."""
-    catches = len(set(group[k] for k in keys)) if group else len(keys)
-    size = min(6, catches)
-    return size, min(per_round, six_count(keys, size, group))
+    goal 3, 2026-10-07); a box under six fields all it has. `slots` are the
+    box's catches (Slots.slots), so a catch's versions count once."""
+    size = min(6, len(slots))
+    return size, min(per_round, math.comb(len(slots), size))
 
 
-def spread_room(keys, top, group=None):
+def spread_room(slots, top):
     """How many sixes drawn at random the labels can add beside the screen's
-    `top` ones: five, or as many as the box has left."""
-    catches = len(set(group[k] for k in keys)) if group else len(keys)
-    return min(5, six_count(keys, 6, group) - len(top)) if catches > 6 else 0
+    `top` ones: five, or as many as the box's catches have left."""
+    return min(5, math.comb(len(slots), 6) - len(top)) if len(slots) > 6 else 0
 
 
 def race(st, keys, boss_keys, flags, screened, cfg, rounds=5, per_round=16, fights=4, elite=4, rate=0.3,
-         log=print, seed=1):
+         log=print, seed=1, slots=None):
     """Ian's member ratings, then halving: (finalists best first, the tally,
-    the members' final weights). Weights start from how often each member is
-    in the screen's sixes; each round draws `per_round` sixes by weight
-    (the screen's best always among the first round's), reads each on
-    `fights` fights, and moves the weights toward the members of the
-    `elite` best sixes so far. A six never takes two versions of one catch
-    (groups_of): drawing one takes its other versions out of the draw."""
+    the members' final weights). The members are the box's catches (Slots:
+    a catch's versions share one slot), each six drawn taking its catches'
+    best versions for it. Weights start from how often each catch is in
+    the screen's sixes; each round draws `per_round` sixes by weight (the
+    screen's best always among the first round's), reads each on `fights`
+    fights, and moves the weights toward the catches of the `elite` best
+    sixes so far."""
+    sl = slots or Slots.of_state(st, keys, boss_keys)
+    of = sl.slot_of
     rng = random.Random(seed)
-    counts = {k: 1.0 + sum(k in s for s in screened) for k in keys}
-    w = {k: c / sum(counts.values()) for k, c in counts.items()}
+    counts = {c: 1.0 + sum(any(of[k] == c for k in s) for s in screened) for c in sl.slots}
+    w = {c: n / sum(counts.values()) for c, n in counts.items()}
     tally = Tally()
-    group = groups_of(st, keys)
-    size, per_round = round_size(keys, per_round, group)
+    size, per_round = round_size(sl.slots, per_round)
     for r in range(rounds):
         teams = [tuple(s) for s in screened[:per_round // 2]] if r == 0 else []
         while len(teams) < per_round:
-            pool_ = list(keys)
+            pool_ = list(sl.slots)
             six = []
             for _ in range(size):
                 pick = rng.choices(pool_, weights=[w[k] for k in pool_])[0]
                 six.append(pick)
-                pool_ = [k for k in pool_ if group[k] != group[pick]]
-            t = tuple(sorted(six, key=keys.index))
+                pool_.remove(pick)
+            t = tuple(sorted(sl.team(six), key=keys.index))
             if t not in teams:
                 teams.append(t)
         read(st, boss_keys, flags, teams, fights, cfg, seed0=seed * 7919 + r, tally=tally)
         best = sorted(tally.rows, key=lambda t: -tally.score(t))[:elite]
-        share = {k: sum(k in t for t in best) / elite for k in keys}
-        w = {k: (1 - rate) * w[k] + rate * (share[k] + 0.01) for k in keys}
+        share = {c: sum(any(of[k] == c for k in t) for t in best) / elite for c in sl.slots}
+        w = {c: (1 - rate) * w[c] + rate * (share[c] + 0.01) for c in sl.slots}
         log(f"  race round {r + 1}: best {[st['pokemon'][k]['species'] for k in best[0]]} "
             f"score {tally.score(best[0]):.2f}; heaviest {sorted(w, key=lambda k: -w[k])[:6]}")
     cands = sorted(tally.rows, key=lambda t: -tally.score(t))[:5]
@@ -812,7 +892,7 @@ def ian_best(teams, numbers):
     return min(near, key=lambda t: numbers(t)["faints"])
 
 
-def improve(st, keys, boss_keys, flags, M, best, po, check=25, procs=None, rounds=3, log=print):
+def improve(st, keys, boss_keys, flags, M, best, po, check=25, procs=None, rounds=3, log=print, slots=None):
     """Ian's diagnose-and-loop, read by the play-outs: the enemies the best
     six's faints fell to, weighted by how many, pick the box members whose
     screen margins answer them best; two candidates built from those (the
@@ -824,24 +904,26 @@ def improve(st, keys, boss_keys, flags, M, best, po, check=25, procs=None, round
     a network that read the finalists at 40% won against the play-outs' 92
     to 96%, kept a core whose margins against Mismagius, Rotom and Sableye
     were among the box's worst, and two sixes built this way won every
-    fight with 2.8 faints against the winner's 96% and 4.2. Returns the
+    fight with 2.8 faints against the winner's 96% and 4.2. The members are
+    the box's catches (Slots), each answering as its best version does, and
+    each candidate takes its catches' best versions for it. Returns the
     best six (a tuple of keys)."""
+    sl = slots or Slots(st, keys, M)
+    of = sl.slot_of
     names = {k: member_name(st["pokemon"][k]) for k in keys}
     foes = [st["pokemon"][k]["species"] for k in boss_keys]
-    group = groups_of(st, keys)
     for r in range(rounds):
         lost = dict(losing_enemies(po.rows[tuple(best)]))
         if not lost:
             break
         weight = [lost.get(f, 0) for f in foes]
         answer = {k: sum(weight[j] * M[i][j] for j in range(len(foes))) for i, k in enumerate(keys)}
-        ranked = sorted(keys, key=lambda k: -answer[k])
-        weakest = sorted(best, key=lambda k: answer[k])[:2]
-        # Neither candidate takes two versions of one catch (take).
-        stay = [k for k in best if k not in weakest]
-        incoming = take([k for k in ranked if k not in best], len(stay) + 2, group, stay)[len(stay):]
-        cands = [tuple(sorted(take(ranked, 6, group), key=keys.index)),
-                 tuple(sorted(stay + incoming, key=keys.index))]
+        ranked = sorted(sl.slots, key=lambda c: -max(answer[k] for k in sl.cands[c]))
+        weakest = [of[k] for k in sorted(best, key=lambda k: answer[k])[:2]]
+        stay = [of[k] for k in best if of[k] not in weakest]
+        incoming = [c for c in ranked if c not in {of[k] for k in best}][:2]
+        cands = [tuple(sorted(sl.team(ranked[:6]), key=keys.index)),
+                 tuple(sorted(sl.team(stay + incoming), key=keys.index))]
         cands = [c for c in dict.fromkeys(cands) if c not in po.rows]
         if not cands:
             break
@@ -894,18 +976,20 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
     # A held-back version goes by its label ("Staraptor (Starly held to
     # 37)"), so that it and the same catch evolved on time are told apart.
     names = {k: member_name(st["pokemon"][k]) for k in keys}
-    group = groups_of(st, keys)
     foes = [f"{st['pokemon'][k]['species']} {st['pokemon'][k]['level']}" for k in boss_keys]
     log(f"== {fight}: {', '.join(foes)}; box of {len(keys)}: {', '.join(names[k] for k in keys)}; "
         f"items {stock}; prepared in {time.time() - t0:.0f} s")
     sixes, scores, M, moves = screen(st, keys, boss_keys)
+    # The box's catches, a catch's versions sharing one slot: every six the
+    # labels, the race and the loop read takes its catches' best versions.
+    sl = Slots(st, keys, M)
     log("screen, top sixes:")
     for s, sc in list(zip(sixes, scores))[:10]:
         log(f"  {sc:6.2f}  {', '.join(names[k] for k in s)}")
     mine = [k for k in keys if names[k] in ours] if ours else None
     rank = None
     if mine:
-        all_scores = score_sixes(M, groups=[group[k] for k in keys])
+        all_scores = score_sixes(M)
         rank = next((i for i, (_s, idx) in enumerate(all_scores) if {keys[j] for j in idx} == set(mine)), None)
         log(f"our six ({', '.join(names[k] for k in mine)}): screen rank {rank} of {len(all_scores)}")
     log("moves picked: " + "; ".join(f"{names[k]} {', '.join(moves[k])}" for k in keys))
@@ -919,10 +1003,10 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
         t1 = time.time()
         rng = random.Random(fight)
         spread = []
-        room = spread_room(keys, sixes[:5], group)
+        room = spread_room(sl.slots, sixes[:5])
         while len(spread) < room:
-            s = sorted(rng.sample(keys, 6), key=keys.index)
-            if valid_six(s, group) and s not in sixes[:5] and s not in spread:
+            s = list(sl.team(rng.sample(sl.slots, 6)))
+            if s not in sixes[:5] and s not in spread:
                 spread.append(s)
         lab_dir = os.path.join(out_dir, "labels")
         metas = label(st, sixes[:5] + spread, boss_keys, flags, f"team:{fight}", lab_dir, procs=procs)
@@ -935,11 +1019,11 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
     cfg = {"value": model}
 
     t1 = time.time()
-    finalists, tally, w = race(st, keys, boss_keys, flags, sixes, cfg, log=log)
+    finalists, tally, w = race(st, keys, boss_keys, flags, sixes, cfg, log=log, slots=sl)
     log(f"race in {time.time() - t1:.0f} s; finalists: " +
         "; ".join(f"{', '.join(names[k] for k in t)} ({tally.score(t):.2f} on {tally.numbers(t)['fights']})"
                   for t in finalists))
-    log("member weights: " + ", ".join(f"{names[k]} {w[k]:.3f}" for k in sorted(keys, key=lambda k: -w[k])))
+    log("member weights: " + ", ".join(f"{names[k]} {w[k]:.3f}" for k in sorted(w, key=lambda k: -w[k])))
     results = []
     for t in finalists:
         real, unlucky, _rows = full_reading(st, boss_keys, flags, list(t), cfg, procs=procs)
@@ -970,7 +1054,7 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
     log(f"best finalist by the play-outs: {', '.join(names[k] for k in best[0])}; its faints fell to: "
         + str(losing_enemies(po.rows[tuple(best[0])])[:4]))
     t1 = time.time()
-    win = list(improve(st, keys, boss_keys, flags, M, best[0], po, check, procs, log=log))
+    win = list(improve(st, keys, boss_keys, flags, M, best[0], po, check, procs, log=log, slots=sl))
     log(f"winner by the play-outs after the loop ({time.time() - t1:.0f} s): {', '.join(names[k] for k in win)}; "
         f"{po.numbers(tuple(win))}; its faints fell to: " + str(losing_enemies(po.rows[tuple(win)])[:4]))
 

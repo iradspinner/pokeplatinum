@@ -188,25 +188,27 @@ def holds_checks(by):
                 and not any(by[s]["kind"] == g.ACE for s, _b in w) and (ace, 1) not in wa,
                 f"{len(w)} for Maylene box 2"))
 
-    # The team search never takes two versions of one catch, and its screen,
-    # now drawn up a block at a time, gives the list the old one gave.
+    # The screen, drawn up a block at a time, gives the list the old one
+    # gave; and a box without held versions (Gardenia's box 1 with its
+    # holds left off) is screened exactly as the old screen did.
     rng = np.random.default_rng(7)
     M = np.clip(np.round(rng.normal(size=(12, 5)) * 2) / 2, -3, 3)   # half hits, so ties are many
-    groups = [0, 0, 1, 2, 2, 2, 3, 4, 5, 6, 7, 8]
     whole = pt.score_sixes(M)
-    grouped = pt.score_sixes(M, groups=groups)
     out.append(("the six screen gives the old screen's list, and its head with keep",
                 whole == old_score_sixes(M) and pt.score_sixes(M, keep=40) == whole[:40], f"{len(whole)} sixes"))
-    out.append(("the six screen never takes two versions of one catch",
-                grouped == [t for t in whole if len({groups[i] for i in t[1]}) == 6], f"{len(grouped)} sixes"))
-    keys = [f"p{i}" for i in range(12)]
-    group = dict(zip(keys, groups))
-    got = (pt.six_count(keys, 6, group), pt.round_size(keys, 1000, group), pt.spread_room(keys, [1] * 3, group),
-           pt.take(["p0", "p1", "p2", "p3", "p4"], 3, group), pt.take(["p1", "p4", "p5"], 3, group, ["p3"]),
-           pt.valid_six(["p0", "p1"], group), pt.six_count(keys, 6))
-    out.append(("the race and the loop count and fill sixes one version a catch",
-                got == (len(grouped), (6, len(grouped)), 5, ["p0", "p2", "p3"], ["p3", "p1"], False, 924)
-                , str(got)))
+    s = g.setup("t", "gardenia", 1)
+    recs = g.box(s["caught"], s["f"], s["lvl"], 1, holds=False)["records"]
+    st, keys, boss_keys, _fl = g.fight_state(s["key"], recs, s["stock"], s["v"], "gardenia")
+    sixes, scores, Mg, _moves = pt.screen(st, keys, boss_keys)
+    kept = []
+    for sc, idx in old_score_sixes(Mg):
+        if all(len(set(idx) - set(j)) >= 2 for _s, j in kept):
+            kept.append((sc, idx))
+        if len(kept) >= 20:
+            break
+    out.append(("a box without held versions is screened as before",
+                not any(r["held"] for r in recs) and [[keys[i] for i in j] for _s, j in kept] == sixes
+                and np.allclose([sc for sc, _j in kept], scores), f"{len(sixes)} top sixes of {len(keys)} members"))
     return out
 
 
@@ -220,11 +222,20 @@ def stubbed_read(run, slug, seed, screen_held):
 
     def search(fight, key, recs, stock, out_dir, procs=None, prepared=None, model=None, **_kw):
         st, keys, _bk, _fl = prepared
-        group = pt.groups_of(st, keys)
         held = [k for k in keys if st["pokemon"][k].get("held")]
         names = {k: pt.member_name(st["pokemon"][k]) for k in keys}
-        win = pt.take(held + [k for k in keys if k not in held], 6, group)
-        top = win if screen_held else pt.take([k for k in keys if k not in held], 6, group)
+
+        def six(ranked):
+            """The first six of `ranked`, one version a catch."""
+            out, seen = [], set()
+            for k in ranked:
+                if st["pokemon"][k]["catch"] not in seen and len(out) < 6:
+                    out.append(k)
+                    seen.add(st["pokemon"][k]["catch"])
+            return out
+
+        win = six(held + [k for k in keys if k not in held])
+        top = win if screen_held else six([k for k in keys if k not in held])
         calls.append({"fight": fight, "held": len(held), "model": model})
         return {"winner_keys": win, "winner": [names[k] for k in win], "screen": [[names[k] for k in top]],
                 "model": model or "networks-x"}
@@ -381,16 +392,31 @@ def planned_checks():
     return out
 
 
+def screen_score(M, rows):
+    """The screen's score of one six (plteam.score_sixes' reckoning), from
+    its members' rows of the margin table."""
+    top = np.sort(M[rows], axis=0)
+    return float((np.clip(top[-1], -3, 3) + 0.3 * np.clip(top[-2], 0, 3)).sum() - 2.0 * (top[-1] <= 0).sum())
+
+
 def search_checks():
-    """The team search on a real box with held-back versions (Maylene's box
-    1, which offers six), its fights stubbed: the screen's sixes, the
-    race's draws and the loop's candidates never take two versions of one
-    catch."""
+    """A catch's versions share one slot (Ian, 2026-10-21): on Maylene's box
+    1 (41 catches, each held version beside its catch), the fights stubbed,
+    the screen's top sixes differ from one another in two catches or more,
+    and every six the screen, the race and the loop read takes one version
+    of each of its catches, the one that gives that six the screen's best
+    score. On a box of seven catches, one with a held version, the race
+    counts seven sixes, not thirteen."""
+    out = []
     s = g.setup("t", "maylene", 1)
     recs = s["built"]["records"]
     st, keys, boss_keys, flags = g.fight_state(s["key"], recs, s["stock"], s["v"], "maylene")
     sixes, _scores, M, _moves = pt.screen(st, keys, boss_keys)
-    group = pt.groups_of(st, keys)
+    pos = {k: i for i, k in enumerate(keys)}
+    catch = {k: st["pokemon"][k]["catch"] for k in keys}
+    versions = {}
+    for k in keys:
+        versions.setdefault(catch[k], []).append(k)
     seen = []
     rng = __import__("random").Random(3)
 
@@ -410,11 +436,40 @@ def search_checks():
         pt.improve(st, keys, boss_keys, flags, M, best, po, check=2, log=lambda *_a: None)
     finally:
         pt.read = keep
-    bad = [t for t in sixes + seen if not pt.valid_six(t, group)]
-    held = sum(any(st["pokemon"][k]["held"] for k in t) for t in seen)
-    return [("the screen, the race and the loop never take two versions of one catch (Maylene's box 1)",
-             not bad and held > 0 and len(set(seen)) > 16,
-             f"{len(set(seen))} sixes read, {held} with a held-back version; {len(bad)} with two of one catch")]
+
+    def best_of(team):
+        return max(screen_score(M, [pos[k] for k in c]) for c in itertools.product(*(versions[catch[k]] for k in team)))
+
+    teams = list(dict.fromkeys([tuple(t) for t in sixes] + seen))
+    two = [t for t in teams if len({catch[k] for k in t}) < len(t)]
+    worse = [t for t in teams if screen_score(M, [pos[k] for k in t]) < best_of(t) - 1e-9]
+    close = [(a, b) for a, b in itertools.combinations(sixes, 2)
+             if len({catch[k] for k in a} - {catch[k] for k in b}) < 2]
+    held = sum(any(st["pokemon"][k]["held"] for k in t) for t in teams)
+    out.append(("every six the screen, the race and the loop read takes its catches' best versions for it",
+                not two and not worse and held > 0 and len(teams) > 16,
+                f"{len(teams)} sixes, {held} with a held version; {len(worse)} not at their best versions, "
+                f"{len(two)} with two of one catch"))
+    out.append(("the screen's top sixes differ from one another in two catches or more", not close,
+                f"{len(close)} pairs of its {len(sixes)} top sixes share five catches"))
+
+    # Holds do not multiply the sixes: seven catches, one with a held
+    # version, make seven sixes.
+    ks = [f"p{i}" for i in range(8)]
+    small = {"pokemon": {k: {"catch": "A" if k in ("p0", "p1") else k, "held": k == "p1", "species": "Bidoof"}
+                         for k in ks}}
+    m = np.clip(np.round(np.random.default_rng(5).normal(size=(8, 4)) * 2) / 2, -3, 3)
+    try:
+        sl = pt.Slots(small, ks, m)
+        got = (len(sl.slots), pt.round_size(sl.slots, 100), pt.spread_room(sl.slots, []))
+        team = sl.team(["p0", "p2", "p3", "p4", "p5", "p6"])
+        best_ok = screen_score(m, [ks.index(k) for k in team]) >= max(
+            screen_score(m, [ks.index(v), 2, 3, 4, 5, 6]) for v in ("p0", "p1")) - 1e-9
+    except AttributeError as e:
+        got, best_ok = str(e), False
+    out.append(("a catch's versions share one slot: seven catches, one held version, make seven sixes",
+                got == (7, (6, 7), 5) and best_ok, str(got)))
+    return out
 
 
 def main():
