@@ -918,6 +918,17 @@ def read_tsv(path):
         return list(csv.DictReader((line for line in f if not line.startswith("#")), delimiter="\t"))
 
 
+def spare_flags(rows):
+    """(reward trainers, new balls): what a table takes from the flag pool,
+    counted as place_rewards.py hands flags out. A trainer takes one flag
+    however many items it gives (Deanna, Theodore and Jose give two), and a
+    new ball, a ball row whose place is a tile rather than an object, takes
+    one. Rows are dicts, as read_tsv gives them."""
+    trainers = {r["trainer_id"] for r in rows if r["kind"] == "trainer"}
+    balls = sum(1 for r in rows if r["kind"] == "ball" and "," in (r["place"] or ""))
+    return len(trainers), balls
+
+
 def check(out=sys.stdout):
     """[failure]: every TM in the set and every held item placed exactly
     once; the trainer rows of the two tables agree; no more reward trainers
@@ -944,8 +955,8 @@ def check(out=sys.stdout):
         if not a or not b or ", ".join(x for x, _n in a) != b["reward"] \
                 or ", ".join(n for _x, n in a) != str(b["copies"]):
             fails.append(f"{t}: the placements and the roles disagree")
-    new_balls = sum(1 for r in placed if r["kind"] == "ball" and "," in (r["place"] or ""))
-    flags = len(trainers) + new_balls
+    n_trainers, new_balls = spare_flags(placed)
+    flags = n_trainers + new_balls
     if flags > FLAG_POOL:
         fails.append(f"{flags} spare flags needed, {FLAG_POOL} in the pool")
     today = collections.Counter((header(p["map"]), p["item"]) for p in tm_places())
@@ -969,7 +980,7 @@ def check(out=sys.stdout):
     for k, n in sorted(sold.items()):
         if resold[k] < n and applied_shops[k] < n:
             fails.append(f"{k[1]} at {k[0]} is still sold as it is today")
-    print(f"{len(placed)} placements, {len(trainers)} reward trainers, {new_balls} new balls: "
+    print(f"{len(placed)} placements, {n_trainers} reward trainers, {new_balls} new balls: "
           f"{flags} of {FLAG_POOL} spare flags; {sum(1 for r in shop_rows if r["reward"] != DROPPED)} shop TMs; {len(fails)} failures", file=out)
     for f_ in fails:
         print("  " + f_, file=out)
@@ -1043,7 +1054,9 @@ def report(st, item, rows, facts, gauntlets=None, out=None):
     held_rows = [r for r in rows if r.kind == "trainer" and not r.reward.startswith(("ITEM_TM", "ITEM_HM"))]
     weak_rows = [r for r in rows if r.kind == "trainer" and r.reward.startswith("ITEM_TM")]
     tiers = collections.Counter(tier(c) for c in move_of.values())
-    flags = sum(1 for r in rows if r.kind == "trainer")
+    # Counted as check() counts them, so the report and the check agree.
+    n_trainers, n_balls = spare_flags([r._asdict() for r in rows])
+    flags = n_trainers + n_balls
     shop_rows = [r for r in rows if r.kind in ("mart", "prize")]
     shop_tms = [r for r in shop_rows if r.reward.startswith(("ITEM_TM", "ITEM_HM"))]
     by_split = collections.Counter(r.split for r in tm_rows.values())
@@ -1066,8 +1079,9 @@ def report(st, item, rows, facts, gauntlets=None, out=None):
       f"length ({early_now} TMs by the end of Byron's split, where the first draft had {early_then}); and the "
       f"Department Store's and the Game Corner's {len(shop_tms)} TMs sold once each, unlocked by badge count "
       f"in order of usefulness. Every TM and each of element 7's {len(HELD)} held items has exactly one place, "
-      f"every vanilla TM ball, gift and shop TM is repointed, and the reward trainers take {flags} of the "
-      f"{FLAG_POOL} spare flags. The table's own check passes.")
+      f"every vanilla TM ball, gift and shop TM is repointed, and the {n_trainers} reward trainers (one flag "
+      f"each, however many items they give) and {n_balls} new ball{'' if n_balls == 1 else 's'} take {flags} "
+      f"of the {FLAG_POOL} spare flags. The table's own check passes.")
     p()
     p("**What can still move.** The move-rework cloud job changes the numbers of Hyper Beam, Giga Impact and "
       "the multi-hit moves, so their tiers, and with them their copies and places, are read on today's data. "
