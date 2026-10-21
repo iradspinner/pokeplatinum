@@ -48,7 +48,9 @@ read, so they are written here too. Each is a standing instruction.
 - A big review (a `/docs-pass`, a `/qa-pass`, a risky merge's review) goes to a
   helper the local session runs at xhigh effort with the Agent tool's effort
   setting, rather than asking Ian to switch (Ian, 2026-10-21); a routine
-  helper may run at lower effort once he agrees to it for that job.
+  helper may run at lower effort once he agrees to it for that job. The
+  agent types in `.claude/agents` carry the settings: `big-review` at xhigh,
+  and `lookup` on Haiku for read-only lookups (Ian's yes, 2026-10-21).
 - The cloud code review (`/code-review ultra`) is never built into a procedure;
   run it only when Ian asks for it.
 - Ian's user settings (`~/.claude/settings.json`) are his to edit. Hand him the
