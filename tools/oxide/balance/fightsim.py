@@ -139,14 +139,25 @@ def move(name):
     return Move(name)
 
 
+# The type boosters, by the type whose moves each raises by a fifth (its
+# effectParam of 20 in sTypeBoostingItems, BattleSystem_CalcMoveDamage):
+# pool.TYPE_ITEMS' list, and Fairy's two, which element 7 added, the Fairy
+# Feather (HOLD_EFFECT_STRENGTHEN_FAIRY) and the Pixie Plate
+# (HOLD_EFFECT_ARCEUS_FAIRY). pool.TYPE_ITEMS has no Fairy entry, and until
+# 2026-10-21 the census of the player's items (player_items) and the
+# battle's fifth (BOOSTER_TYPE) read it alone, so no Fairy booster reached
+# a six and a Fairy Feather raised nothing (Ian approved the fix on
+# 2026-10-20). Each type's classic booster comes before its Plate, the
+# order the census takes them in.
+TYPE_BOOSTERS = dict(pool.TYPE_ITEMS, Fairy=["Fairy Feather", "Pixie Plate"])
+
 # The Plates whose type Judgment takes (effect script 268 sets the move's
 # type by the holder's HOLD_EFFECT_ARCEUS_*): the sixteen of Platinum, and
 # the Pixie Plate, which element 7 added and the script has made Fairy since
 # bb4b3021b (2026-10-20). Until then the script left a Pixie Plate's
 # Judgment Normal, and so did the simulator; it follows the fix (Ian
 # approved it on 2026-10-20).
-JUDGMENT_TYPE = dict({item: t for t, items in pool.TYPE_ITEMS.items() for item in items if item.endswith(" Plate")},
-                     **{"Pixie Plate": "Fairy"})
+JUDGMENT_TYPE = {item: t for t, items in TYPE_BOOSTERS.items() for item in items if item.endswith(" Plate")}
 
 
 @functools.lru_cache(maxsize=None)
@@ -565,6 +576,14 @@ class Mon:
     # its twin rowed with Judgment at the Plate's type (hold, plate_key),
     # which Battle.row reads for Judgment; left on the class while None.
     plated = None
+    # A player's Arceus with Multitype holding a Plate (hold): the Plate's
+    # type, as a one-item tuple, which is its type for the whole battle
+    # (Battler_MonType); its rows are its twin's of that form (form_key,
+    # through the battle's form_twin), kept through switching since its
+    # party record keeps the Plate. Left on the class while None, and so
+    # for a trainer's, whose record is in its Plate's form already
+    # (plate_form).
+    plate_types = None
     # Minimize's mark (MOVE_EFFECT_MINIMIZE), which Stomp and Steamroller
     # double on; cleared when it leaves.
     minimized = False
@@ -839,6 +858,11 @@ class Mon:
         self.traced = False              # Trace has gone off this stay (traceAnnounced)
         self.camouflaged = False         # Camouflage has retyped it (MOVE_EFFECT_CAMOUFLAGE)
         self.formed = False
+        if self.plate_types is not None:
+            # A player's Arceus keeps its Plate's form through switching
+            # (Battler_MonType reads the held Plate at every read), so its
+            # rows stay its twin's of that form (hold).
+            self.row_types, self.formed = self.plate_types, True
         self.last = None
         self.turns_in = 0
         self.hit_this_turn = None        # (category, damage) of the last hit taken this turn
@@ -2873,6 +2897,21 @@ def power_row_keys(name, knows, takes):
     all_hits for a Pokemon with Copycat, Me First, Mimic, Mirror Move or
     Sketch), in knows' order."""
     return [k for k in knows if name in knows[k] or name in takes.get(k, ())]
+
+
+# A trainer's power keys, each rowed with its one move at one power
+# (prepare): Magnitude's "<key>#m<power>", Present's "#pr", Heat Crash's
+# "#hc" and Spit Up's "#su".
+POWER_KEY = re.compile(r"#(m|pr|hc|su)\d+$")
+POWER_MOVES = {"m": "Magnitude", "pr": "Present", "hc": "Heat Crash", "su": "Spit Up"}
+
+
+def carried_moves(key, all_hits):
+    """The damaging moves the rows of a trainer's key carry, for a new
+    twin rowed against it: a power key's one move, else its Pokemon's
+    (all_hits of the key it twins: its party's, and what it can borrow)."""
+    m = POWER_KEY.search(key)
+    return [POWER_MOVES[m.group(1)]] if m else all_hits(key.split("#")[0])
 
 
 def friendship_power(species):
@@ -5426,6 +5465,8 @@ def consume(mon, eaten=True):
     if eaten and mon.item and mon.item.endswith("Berry"):
         mon.ate_berry = True
     mon.recycle, mon.item = mon.item, None
+    if mon.plate_types is not None:
+        unplate(mon)             # a player's Arceus that flung its Plate is Normal again
 
 
 def lock_item(mon):
@@ -6219,6 +6260,8 @@ def mark_unheld(b, *mons):
             m.unheld = m.item != b.st["pokemon"][m.key].get("item")
             if m.unheld:
                 b.unheld = True
+                if m.ability == "Multitype" and m.item not in JUDGMENT_TYPE:
+                    unplate(m)   # an Arceus whose Plate is gone is Normal, its twin too (plate_form)
 
 
 # ---- Meloetta's two forms (batch 10, approved 2026-10-15) ----
@@ -8676,7 +8719,11 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
     # every hazard reached it (Ian approved the fix).
     guarded = new.ability == "Magic Guard"
     if side.hazards["rocks"] and not guarded:
-        eff = b.st["rock_eff"].get(new.key, 1)
+        # An Arceus with Multitype meets the rocks as the type its Plate gives
+        # it, or as Normal without one (Battler_MonType), where rock_eff has
+        # its record's types (a player's record holds no item).
+        eff = effectiveness(b.st["chart"], "Rock", new.types) if new.ability == "Multitype" \
+            else b.st["rock_eff"].get(new.key, 1)
         hurt(b, new, int(new.maxhp * eff / 8))
     # Gravity holds a Flying or Levitate newcomer down for the Spikes
     # (subscript_hazards_check).
@@ -9798,10 +9845,16 @@ def player_moves(rec, can_names, tiers, types):
 # other Plates raise theirs (sTypeBoostingItems in battle_lib.c, by
 # HOLD_EFFECT_ARCEUS_FAIRY), so a player's Pokemon holding one gets the
 # fifth too. Until 2026-10-20 its Fairy moves got nothing (Ian approved the
-# fix). pool.TYPE_ITEMS, which player_items' census reads, has no Fairy
-# entry, so the census hands no Fairy booster out: a Pixie Plate reaches a
-# player's Pokemon only through a state's own items.
-BOOSTER_TYPE = dict({it: t for t, items in pool.TYPE_ITEMS.items() for it in items}, **{"Pixie Plate": "Fairy"})
+# fix). The Fairy Feather (HOLD_EFFECT_STRENGTHEN_FAIRY) does the same, and
+# both are in the census (TYPE_BOOSTERS), which hands out one booster of
+# each type: the Fairy Feather from Fantina's split, Camper Anthony's
+# reward, and still the Feather once Volkner's split adds Beauty Nicola's
+# Pixie Plate, as each type's classic booster comes before its Plate. So a
+# Fairy type's Fairy attack takes it as any other type's same-type attack
+# takes its booster (assign_items). Until 2026-10-21 neither reached a six,
+# and a Fairy Feather held gave nothing (Ian approved the fix on
+# 2026-10-20).
+BOOSTER_TYPE = {it: t for t, items in TYPE_BOOSTERS.items() for it in items}
 
 
 def plate_key(key, item):
@@ -9821,8 +9874,29 @@ def hold(st, mon, item):
     at that type (plate_key, Battle.row); the Plate's fifth comes on top
     (BOOSTER_TYPE). Without one Judgment is Normal again. Until 2026-10-20
     a player's Judgment hit as Normal whatever it held (Ian approved the
-    fix)."""
+    fix).
+
+    An Arceus with Multitype is of its Plate's type for every read, not
+    Judgment's alone (Battler_MonType), so one handed a Plate takes that
+    type for the battle's and the AI's type reads, and every row of its
+    from its twin in that form, which for such an Arceus is rowed for every
+    move both ways and named in st["form_twin"] (prepare): the battle reads
+    it through form_key as it reads a type batch 3's machinery changed,
+    kept through switching (Mon.plate_types), its Judgment that twin's too.
+    Until 2026-10-21 it stayed Normal everywhere but in its Judgment's
+    damage (Ian approved the fix on 2026-10-20)."""
     mon.item = item
+    if mon.ability == "Multitype" and mon.species == "Arceus":
+        t = JUDGMENT_TYPE.get(item)
+        twins = ((st.get("form_twin") or {}).get(mon.key) or {}).get("twins") or {}
+        if t and twins.get(((t,), row_ability(mon.ability))):
+            mon.moves = [judgment_move(m, item) if m.effect == "JUDGEMENT" else m for m in mon.moves]
+            mon.types, mon.base_types = [t], [t]
+            mon.plate_types = mon.row_types = (t,)
+            mon.formed, mon.plated = True, None
+            return
+        if mon.plate_types is not None:
+            unplate(mon)
     if item not in JUDGMENT_TYPE and mon.plated is None:
         return
     if not any(m.effect == "JUDGEMENT" for m in mon.moves):
@@ -9831,6 +9905,34 @@ def hold(st, mon, item):
                  if m.effect == "JUDGEMENT" else m for m in mon.moves]
     twin = plate_key(mon.key, item)
     mon.plated = twin if twin in st.get("pokemon", ()) else None
+
+
+def unplate(mon):
+    """An Arceus with Multitype left without its Plate, which only its own
+    Fling takes from it (Multitype stops Knock Off, Thief, Covet, Trick and
+    Pickpocket): Normal again for every read (Battler_MonType's default),
+    its rows its own Normal form's, a trainer's its item twin's
+    (mark_unheld), and its Judgment Normal."""
+    if mon.plate_types is not None:
+        mon.plate_types = mon.row_types = None
+        mon.formed = False
+    mon.types, mon.base_types = ["Normal"], ["Normal"]
+    mon.moves = [move(m.name) if m.effect == "JUDGEMENT" else m for m in mon.moves]
+    mon.plated = None
+
+
+def plate_form(rec, poks):
+    """A trainer's or a partner's Pokemon as its rows are made: an Arceus
+    with Multitype holding a Plate in that Plate's form ("Arceus-Fire" and
+    the rest, calc_export's TYPE_FORMS, with Arceus's numbers), since
+    Battler_MonType makes it of the Plate's type for every read of the
+    battle, and only its own Fling takes the Plate away; any other record
+    as it is. Until 2026-10-21 such an Arceus was Normal in every row but
+    its Judgment's (Ian approved the fix on 2026-10-20)."""
+    t = JUDGMENT_TYPE.get(rec.get("item"))
+    if t and rec.get("species") == "Arceus" and rec.get("ability") == "Multitype" and f"Arceus-{t}" in poks:
+        return dict(rec, species=f"Arceus-{t}")
+    return rec
 
 
 @functools.lru_cache(maxsize=None)
@@ -9858,7 +9960,7 @@ def player_items(split):
             finds[name(it)] += 1
     marts ={name(it) for s, _t, it in sp.marts() if upto(s)}
     boosters = {}
-    for t, items in pool.TYPE_ITEMS.items():
+    for t, items in TYPE_BOOSTERS.items():       # Fairy's two among them since 2026-10-21
         have = [i for i in items if finds.get(i) or i in marts]
         if have:
             boosters[t] = have[0]
@@ -10093,12 +10195,14 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             return mon
         return dict(mon, move_data=dict(mon.get("move_data") or {}, **own))
 
+    # A trainer's or a partner's Arceus holding a Plate is rowed in that
+    # Plate's form (plate_form), its rows, twins and types the form's.
     boss_keys = []
     for v, party in enumerate(parties):
         keys = []
         for j, mon in enumerate(party):
             k = f"b{v}.{j}"
-            pokemon[k] = friendly(mon)
+            pokemon[k] = plate_form(friendly(mon), blob["poks"])
             moves[k] = list(mon["moves"])
             keys.append(k)
         boss_keys.append(keys)
@@ -10107,7 +10211,7 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         keys = []
         for j, mon in enumerate(party):
             k = f"q{v}.{j}"
-            pokemon[k] = mon
+            pokemon[k] = plate_form(mon, blob["poks"])
             moves[k] = list(mon["moves"])
             keys.append(k)
         partner_keys.append(keys)
@@ -10589,6 +10693,8 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             continue
         t = f"{k}#ni"
         pokemon[t] = dict(pokemon[k], item=None)
+        if pokemon[k].get("ability") == "Multitype" and pokemon[k]["species"].startswith("Arceus-"):
+            pokemon[t]["species"] = "Arceus"     # its Plate flung, an Arceus is Normal again (plate_form)
         item_twin[k] = t
         for w in weathers:
             for d in pkeys + qkeys:
@@ -10657,21 +10763,54 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     # while the Pokemon holds that Plate (hold) and adds the Plate's fifth
     # (BOOSTER_TYPE). None in a fight without the move, which only the
     # Arceus of after the League knows.
+    #
+    # An Arceus with Multitype is of its Plate's type for every read, not
+    # for Judgment's alone (Battler_MonType). So each of the player's Arceus
+    # with Multitype has these twins whether or not it knows Judgment, and
+    # each in its form is rowed for every move both ways: its moves against
+    # every trainer's key and twin, theirs against it (a power key with its
+    # one move, carried_moves), in every weather, and in a double battle its
+    # allies' spread moves on it and its on them. Each is named in form_twin
+    # as its type's change ((type,), its ability as rows read it), which
+    # hold sets while it holds that Plate, so the battle reads it through
+    # form_key as it reads a type batch 3's machinery changed. Until
+    # 2026-10-21 such an Arceus was Normal in every row but its Judgment's
+    # (Ian approved the fix on 2026-10-20). None in a fight without one.
     judging = [k for k in pkeys if "Judgment" in moves[k]]
-    if judging:
+    multitype = [k for k in pkeys if pokemon[k].get("species") == "Arceus" and pokemon[k].get("ability") == "Multitype"]
+    if judging or multitype:
         jm = move("Judgment")
         targets = [d for d in pokemon if d.startswith("b")]
-        for k in judging:
-            arceus = pokemon[k].get("species") == "Arceus" and pokemon[k].get("ability") == "Multitype"
+        for k in dict.fromkeys(judging + multitype):
             for t in sorted(set(JUDGMENT_TYPE.values())):
                 tk = f"{k}#jd{t}"
                 pokemon[tk] = dict(pokemon[k], move_data=dict(pokemon[k].get("move_data") or {}, Judgment={
                     "type": t, "category": jm.cat, "basePower": jm.power}))
-                if arceus and f"Arceus-{t}" in blob["poks"]:
+                formed = k in multitype and f"Arceus-{t}" in blob["poks"]
+                if formed:
                     pokemon[tk]["species"] = f"Arceus-{t}"
+                if not formed:
+                    for w in weathers:
+                        for d in targets:
+                            pairs.append([tk, d, ["Judgment"], w])
+                    continue
+                ab = row_ability(pokemon[k].get("ability"))
+                form_twin.setdefault(k, {"ability": ab, "twins": {}})["twins"][((t,), ab)] = tk
+                mine = all_hits(k)
                 for w in weathers:
                     for d in targets:
-                        pairs.append([tk, d, ["Judgment"], w])
+                        got = carried_moves(d, all_hits)
+                        if mine and not POWER_KEY.search(d):
+                            pairs.append([tk, d, mine, w])
+                        if got:
+                            pairs.append([d, tk, got, w])
+                    if doubles or partners:
+                        for a in pkeys + qkeys:
+                            if a.split("~")[0] != k.split("~")[0]:
+                                if spread(a):
+                                    pairs.append([a, tk, spread(a), w])
+                                if spread(k):
+                                    pairs.append([tk, a, spread(k), w])
     # The calculator is told to leave off the abilities the battle applies
     # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once,
     # and each Pokemon's gender as the battle has it (calc_gender: "M", "F",

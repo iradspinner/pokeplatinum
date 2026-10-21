@@ -17,6 +17,7 @@ The one home of open work (Ian, 2026-10-13). Every session adds its items here a
 Before alpha 1, Ian decides: whether the comb's 269 ordinary trainers (Maylene's split to the League) land first, and which bosses besides Roark get the full redesign before the alpha.
 
 **Waiting on Ian**, each with its entry below:
+- Torch Song's home: Magcargo, Turtonator or Flareon (the signature-move homes item).
 - Whether the race tries the held versions the screen cannot judge (a status move or a pivot), before the readings resume (the delays item).
 - QA itself, and the in-game checks (`ingame-checklist.md`; add new ones there).
 - The Kaizo study's open questions: six decisions on the later ordinary trainers, three weather rocks that do nothing, and the retunes after step 15.
@@ -56,7 +57,7 @@ Items the old status homes and plans held that this tracker lacked or held only 
 - [ ] The legendary gate: Valor Cavern and Stark Mountain stay empty until step 15's readings, then the question goes back to Ian.
 
 **Item and learnset passes**
-- [ ] **The signature-move homes** (Ian's answers of 2026-10-21 to `signature-moves.md`, its questions 3 to 6): the player homes, the five trainer egg lists, the legendary returns and Eevee's seven partner moves at about 70 and up, with his changes (Aqua Step on Golduck, Esper Wing on Cresselia and Xatu for now, Bitter Malice later on Spiritomb). One helper after the usage reset, landing before the readings reach Maylene's split, where the earliest home sits. Torch Song's home waits on Ian's pick from the helper's candidates, since Ninetales is too usable a line for it.
+- [ ] **The signature-move homes** (Ian's answers of 2026-10-21 to `signature-moves.md`, its questions 3 to 6): landed at 67254f1d2 (the 26 player homes, the five trainer egg lists, the seven legendary returns, Eevee's seven partner moves at 70, Raging Fury and Shadow Bone, and the trainer-only rows beside them). Torch Song's home waits on Ian's pick from Magcargo, Turtonator and Flareon; the Overseer recommends Flareon, which has no Shell Smash to sweep with it. Every Floette in the readings' boxes knows Light of Ruin from 50, not only a held-back one.
 - [ ] **Eerie Spell and Burning Bulwark in the engine** (Ian, 2026-10-14): landed at f7e79aac4. Eerie Spell drains 3 PP from the target's last move after its hit, a Substitute stopping it as it stops every Oxide sound move; Burning Bulwark burns a contact attacker. Left: Ian's in-game checks, test-kit sets 85 and 86 (`pokeplatinum-oxide-testkit-f7e79aac4.nds`); the simulator copied both at bf04a3fea. The burn subscript's change also alters Beak Blast's failure messages.
 - [ ] Four kept evolution stones come later than planned (Eterna's Moon Stone, Coronet 1F's Dawn Stone and Route 213's Water Stone need Surf; Valor Lakefront's Sun Stone needs Rock Climb); each goes to Ian at the item pass.
 - [ ] The tutor pass: is one still wanted? New species' tutor lists are empty, and the player's side does not read the world's Draco Meteor or starter-move tutors. Ian's question.
