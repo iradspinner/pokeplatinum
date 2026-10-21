@@ -896,7 +896,7 @@ def web_lines(rs):
         if not w.get("carried_by"):
             continue
         real, no = w["real"], w["without"]
-        swap = ", ".join(f"{who} {mv or 'nothing'}" for who, mv in no["swapped"].items())
+        swap = ", ".join(f"{mv or 'nothing'} on {who}" for who, mv in no["swapped"].items())
         box = "the planned box" if r["seed"] == PLANNED else f"box {r['seed']}"
         out.append(f"- Sticky Web in {box}'s six ({', '.join(w['carried_by'])}): laid in {real['laid']} "
                    f"of {real['fights']} fights at real odds, {real['won_laid']} of them won; {r['real']['won']:.0%} "
