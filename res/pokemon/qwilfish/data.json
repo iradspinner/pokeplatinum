@@ -111,7 +111,8 @@
             "MOVE_ASTONISH",
             "MOVE_SIGNAL_BEAM",
             "MOVE_POISON_JAB",
-            "MOVE_DESTINY_BOND"
+            "MOVE_DESTINY_BOND",
+            "MOVE_BARB_BARRAGE"
         ]
     },
     "evolutions": [  ],

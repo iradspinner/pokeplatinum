@@ -110,6 +110,19 @@ IAN_EGG_MOVES = {
     "SPECIES_MAREANIE": [("MOVE_BANEFUL_BUNKER", "Ian, 2026-10-20, on unused-moves.md: Toxapex's own move, a "
                                                 "Protect variant, kept for trainers on the egg list of the "
                                                 "stage the line hatches as")],
+    # The trainer palette of signature-moves.md (Ian, 2026-10-21): each the
+    # signature move of a species Oxide lacks, on the egg list of the first
+    # stage of the line that suits it, so trainers carry it legally.
+    "SPECIES_CORPHISH": [("MOVE_CEASELESS_EDGE", "Ian, 2026-10-21, on signature-moves.md: Hisuian Samurott's, "
+                                                "for trainers' Crawdaunt, its types and a slicing claw")],
+    "SPECIES_SNEASEL": [("MOVE_DIRE_CLAW", "Ian, 2026-10-21, on signature-moves.md: Sneasler's, for trainers' "
+                                          "Weavile")],
+    "SPECIES_QWILFISH": [("MOVE_BARB_BARRAGE", "Ian, 2026-10-21, on signature-moves.md: Overqwil's, and "
+                                               "Qwilfish's egg move in Scarlet and Violet, for trainers")],
+    "SPECIES_GASTLY": [("MOVE_MALIGNANT_CHAIN", "Ian, 2026-10-21, on signature-moves.md: Pecharunt's, for "
+                                                "trainers' Gengar, which has its types")],
+    "SPECIES_DUSKULL": [("MOVE_LAST_RESPECTS", "Ian, 2026-10-21, on signature-moves.md: Houndstone's, for "
+                                               "trainers' Dusknoir, which guides spirits")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
