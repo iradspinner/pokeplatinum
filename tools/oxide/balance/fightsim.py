@@ -2283,7 +2283,22 @@ def entry_abilities(b, mons, intimidate=True, trace_now=True):
     for new in mons:
         if new.ability == "Screen Cleaner" and new.alive():
             screen_cleaner(b, new)       # Oxide's abilities' step, after Download
+        elif new.ability == "Hospitality" and new.alive() and b.doubles:
+            hospitality(b, new)
     forecast(b)                          # the check's form step comes after these
+
+
+def hospitality(b, mon):
+    """Hospitality (BattleSystem_TriggerEffectOnSwitch's Oxide abilities,
+    subscript_hospitality): as its holder comes in, in a double battle, its
+    standing partner below full HP gets back a quarter of its maximum HP
+    (BattleSystem_Divide). In a single battle it has no partner. Until
+    2026-10-21 it did nothing (Ian approved the double-battle part batch 11
+    left on 2026-10-14)."""
+    ally = ally_of(b, mon)
+    if ally is not None and ally.hp < ally.maxhp:
+        heal(ally, engine_divide(ally.maxhp, 4))
+        reveal(mon)
 
 
 def screen_cleaner(b, mon):
@@ -6723,6 +6738,27 @@ def plus_minus(b, att, mv):
     return 1.5 if ally is not None and ally.ability in ("Plus", "Minus") else 1.0
 
 
+def partner_power(b, att, dfn, mv):
+    """The partner abilities' factors on a double battle's hit
+    (BattleSystem_CalcMoveDamage): Battery, on the attacker's standing
+    partner, raises a special move's power by 13/10 after Technician (the
+    holder's own moves only beside a second holder: the count of holders on
+    its side must pass its own); Friend Guard, on the target's standing
+    partner, cuts the damage to three quarters, unless the attacker's Mold
+    Breaker gets past it. The calculator's rows have neither. Until
+    2026-10-21 neither did anything (Ian approved the double-battle parts
+    batch 11 left on 2026-10-14)."""
+    m = 1.0
+    if mv.cat == "Special":
+        ally = ally_of(b, att)
+        if ally is not None and ally.ability == "Battery":
+            m *= 1.3
+    guard = ally_of(b, dfn)
+    if guard is not None and guard.ability == "Friend Guard" and not mold(att, guard):
+        m *= 0.75
+    return m
+
+
 def marvel_scale(att, dfn, mv):
     """Marvel Scale's half again to its holder's Defense while it has a
     status (BattleSystem_CalcMoveDamage, which Mold Breaker gets past), for
@@ -6766,6 +6802,8 @@ def state_mult(b, att, dfn, mv):
         # nothing (Ian approved the fix).
         m *= 0.5
     m *= plus_minus(b, att, mv)
+    if b.doubles:
+        m *= partner_power(b, att, dfn, mv)      # Battery's 13/10 and Friend Guard's three quarters
     berry = resist_berry(b, dfn, mv)
     if berry and not berry_works(b, dfn, berry):
         m *= 2               # the row's halving gone with the Berry, or held off by Unnerve
@@ -8928,6 +8966,19 @@ def pick_one(b, kind, n):
 MOODY_STATS = ("atk", "def", "spe", "spa", "spd")
 
 
+def healer(b, m):
+    """Healer (BattleSystem_TriggerTurnEndAbility, subscript_healer): at each
+    turn's end, in a double battle, three times in ten its standing
+    partner's status is cured, and Nightmare with it; the message names the
+    ability. In a single battle it has no partner. Until 2026-10-21 it did
+    nothing (Ian approved the double-battle part batch 11 left on
+    2026-10-14)."""
+    ally = ally_of(b, m)
+    if m.alive() and ally is not None and ally.status and helps(b, ally, "healer", 0.3):
+        ally.status, ally.sleep, ally.toxic, ally.nightmare = None, 0, 0, False
+        reveal(m)
+
+
 def moody(b, m):
     """Moody (BattleSystem_TriggerTurnEndAbility, subscript_moody): at each
     turn's end one of the five stats other than accuracy and evasion that
@@ -9149,6 +9200,8 @@ def _end_of_turn_mon(b, side, m):
     if m.ability == "Shed Skin" and m.status and helps(b, m, "shedskin", 1 / 3):
         m.status, m.sleep, m.toxic = None, 0, 0
         reveal(m)
+    if m.ability == "Healer" and b.doubles:
+        healer(b, m)
     # Harvest (the same function, battle_lib.c 4225): a berry it used up,
     # Natural Gift's included, grows back while it holds nothing, every turn
     # in sun that Cloud Nine and Air Lock leave alone, and on a coin flip

@@ -8895,6 +8895,58 @@ def check_doubles_sky_drop(results):
                     f"HP {out}"))
 
 
+@b15
+def check_doubles_partner_abilities(results):
+    """The abilities that act on a partner, in a double battle (Ian approved
+    the double-battle parts batch 11 left on 2026-10-14): Healer cures its
+    partner's status at the turn's end three times in ten
+    (BattleSystem_TriggerTurnEndAbility); Friend Guard takes a quarter off
+    the damage its partner takes, unless the attacker's Mold Breaker gets
+    past it, and Battery raises its partner's special moves by 13/10
+    (BattleSystem_CalcMoveDamage); Hospitality heals a hurt partner a
+    quarter as its holder comes in (BattleSystem_TriggerEffectOnSwitch).
+    Until 2026-10-21 none did anything."""
+    out = {}
+    cured = 0
+    for seed in range(200):
+        mons = {"p0": {"moves": ["Splash"], "ability": "Healer"}, "p1": {"moves": ["Splash"]},
+                "b0.0": {"moves": ["Splash"]}, "b0.1": {"moves": ["Splash"]}}
+
+        def start(b):
+            mon_of(b, "p1").status = "par"
+        b = doubles_turns(doubles_st(mons), ["p0", "p1"], ["b0.0", "b0.1"], {}, seed=seed, start=start)
+        cured += mon_of(b, "p1").status is None
+    out["Healer's cures of 200"] = cured
+    for ability in ("Friend Guard", "Battery"):
+        for attacker in (None, "Mold Breaker"):
+            mons = {"p0": {"moves": ["Water Gun", "Tackle"]}, "p1": {"moves": ["Splash"], "ability": ability},
+                    "b0.0": {"moves": ["Tackle"], "ability": attacker}, "b0.1": {"moves": ["Splash"]}}
+            rows = {("p0", "b0.0"): {"Water Gun": 40, "Tackle": 40}, ("b0.0", "p0"): {"Tackle": 40}}
+            st = doubles_st(mons, rows)
+            st["first_battle"] = True
+            got = []
+            for mv in ("Water Gun", "Tackle"):
+                b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": (mv, "b0.0"), "b0.0": ("Tackle", "p0")})
+                got.append((100 - mon_of(b, "b0.0").hp, 100 - mon_of(b, "p0").hp))
+            out[f"{ability}, the foe {attacker or 'plain'} (dealt, taken)"] = got
+    mons = {"p0": {"moves": ["Splash"]}, "p1": {"moves": ["Splash"]}, "p2": {"moves": ["Splash"], "ability": "Hospitality"},
+            "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
+    st = doubles_st(mons, {("b0.0", "p1"): {"Tackle": 100}})
+
+    def start(b):
+        mon_of(b, "p0").hp = 40
+    b = doubles_turns(st, ["p0", "p1", "p2"], ["b0.0", "b0.1"], {"b0.0": ("Tackle", "p1")}, start=start)
+    out["Hospitality's newcomer beside a partner at 40"] = (b.p.mons[b.p.active2].key, mon_of(b, "p0").hp)
+    want = {"Healer's cures of 200": cured,
+            "Friend Guard, the foe plain (dealt, taken)": [(40, 30), (40, 30)],
+            "Friend Guard, the foe Mold Breaker (dealt, taken)": [(40, 40), (40, 40)],
+            "Battery, the foe plain (dealt, taken)": [(52, 40), (40, 40)],
+            "Battery, the foe Mold Breaker (dealt, taken)": [(52, 40), (40, 40)],
+            "Hospitality's newcomer beside a partner at 40": ("p2", 65)}
+    ok = out == want and 40 <= cured <= 80
+    results.append(("doubles: Healer, Friend Guard, Battery and Hospitality act on the partner", ok, f"{out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
