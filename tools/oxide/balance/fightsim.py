@@ -190,7 +190,13 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               # a burn at the move's chance (20) on a target left standing,
               # and the drain of DRAIN below either way. Until 2026-10-15 it
               # was a plain hit (Ian approved the fix).
-              "RECOVER_HALF_DAMAGE_DEALT_BURN_HIT": "brn"}
+              "RECOVER_HALF_DAMAGE_DEALT_BURN_HIT": "brn",
+              # Sandsear Storm (effect script 358): a burn at the move's
+              # chance (30) on each target, an indirect effect Sheer Force
+              # strips (sSheerForceEffects); it never misses in the rain
+              # (RAIN_SURE). Until 2026-10-20 it never burned (Ian approved
+              # the fix).
+              "SANDSEAR_STORM": "brn"}
 FLINCH_HIT = {"FLINCH_HIT", "FLINCH_BURN_HIT", "FLINCH_PARALYZE_HIT", "FLINCH_FREEZE_HIT",
               "FLINCH_MINIMIZE_DOUBLE_HIT", "FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE",
               "UPPER_HAND",                       # at its 100%, as Fake Out's target flinches

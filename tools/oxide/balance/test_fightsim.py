@@ -7510,6 +7510,38 @@ def check_rain_sure(results):
     results.append(("Thunder, Hurricane and the storms never miss in the rain", out == want, str(out)))
 
 
+def storm_status(name, status):
+    """[(label, ok, note)] for a storm's status at its chance: it lands
+    with the chance, in both battles, and not for a Sheer Force user, nor
+    through a Substitute, nor when the chance fails."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("lands", "misses", "Sheer Force", "Substitute", "fightsim"):
+        b, p, foe = b11_battle([name], ["Tackle"], {("p", name): [20] * 16})
+        b.dice = sure12() if case == "misses" else lucky13()
+        if case == "Sheer Force":
+            p.ability = "Sheer Force"
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move(name), foe, True)
+        else:
+            pl.attack(b, p, fs.move(name), foe, True)
+        out[case] = foe.status
+    want = {"lands": status, "misses": None, "Sheer Force": None, "Substitute": None, "fightsim": status}
+    return out == want, str(out)
+
+
+@b13
+def check_sandsear_storm(results):
+    """Sandsear Storm (approved 2026-10-14; effect script 358): a burn at
+    the move's chance (30), stripped by Sheer Force, kept off by a
+    Substitute."""
+    ok, note = storm_status("Sandsear Storm", "brn")
+    results.append(("Sandsear Storm burns at its chance", ok, note))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

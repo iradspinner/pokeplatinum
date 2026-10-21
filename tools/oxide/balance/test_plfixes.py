@@ -6558,6 +6558,26 @@ def rain_sure_checks():
              f"(hit in the rain, hit out of it) {out}")]
 
 
+def storm_status_checks(name, user, status, word):
+    """A storm's status in the readings' battle on the calculator's real
+    rows: the player's hit on a trainer's Geodude gives it when the chance
+    lands, and a Sheer Force user's never does."""
+    out = {}
+    for ability in (user[1], "Sheer Force"):
+        b, geo, mon = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [(user[0], 30, ability, [name])], Lucky8)
+        pl.attack(b, mon, fs.move(name), geo, True)
+        out[ability] = (geo.hp < geo.maxhp, geo.status)
+    ok = out == {user[1]: (True, status), "Sheer Force": (True, None)}
+    return [(f"the readings' {name} {word} at its chance", ok, f"(hit, status) {out}")]
+
+
+@b13
+def sandsear_storm_checks():
+    """Sandsear Storm on real rows (approved 2026-10-14): the player's
+    Nidoking burns a trainer's Geodude when the chance lands."""
+    return storm_status_checks("Sandsear Storm", ("Nidoking", "Poison Point"), "brn", "burns")
+
+
 def main():
     results = []
 
