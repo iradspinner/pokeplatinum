@@ -1034,6 +1034,16 @@ class Battle:
     # it and before any Berry answers it, so the target's on-hit ability
     # reads the HP the engine's does (Berserk, hit_ability).
     hit_left = None
+    # A double battle (run_doubles sets it); left on the class while False.
+    doubles = False
+    # A double battle's damaging move is hitting more than one target, so
+    # each hit is at three quarters (Battle.damage, perfectline.damage_of);
+    # set around the move by the spread loop.
+    spread = False
+    # Magnitude's power for the use being worked out, in a double battle,
+    # where one roll serves every target (BtlCmd_CalcMagnitudePower keeps
+    # battleCtx->magnitude until the move ends); None between moves.
+    spread_magnitude = None
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -9687,7 +9697,17 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
     """One double battle: (the player's Pokemon lost, whether the player won).
     boss_groups is one party (a doubles trainer fills both slots) or two
     (a tag battle, each opponent filling its own slot); partner_keys is a
-    partner's party (Barry), driven by its own flags beside the player."""
+    partner's party (Barry), driven by its own flags beside the player.
+
+    Every move is played through perfectline's use_move, attack and
+    status_move, on perfectline's dice at the game's odds (RunDice, "real"),
+    as the singles readings play them, so each branch they hold runs here
+    too: the Berries on a hit, Mean Look and Ingrain, Scope Lens, King's
+    Rock, Focus Band, Big Root, Struggle, Magnitude's rolled power and the
+    rest. Until 2026-10-21 the double battles ran fightsim's own attack and
+    status_move, which lacked them (Ian approved the double battles' path on
+    2026-10-14 with the gaps list, simulator-gaps.md's "Double battles")."""
+    from . import perfectline as pl      # imported here: perfectline imports this module
     pm = [Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], "p") for k in player_keys]
     held = assign_items(st, player_keys) if "split" in st else {}
     for m in pm:
@@ -9706,6 +9726,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
     b = Battle(st, Side(pm + part, "p"), Side(bm, "b"), rng, weather=st.get("base_weather"),
                trick_room=trick_room, ai_flags=boss_flags[0])
     b.doubles, b.moved = True, set()
+    b.dice = pl.RunDice(rng, luck="real")    # the game's odds on both sides, as pdoubles reports ("dice")
     flags_of = {g: boss_flags[min(g, len(boss_flags) - 1)] for g in range(len(boss_groups))}
     flags_of["partner"] = partner_flags
     # The leads.
@@ -9748,8 +9769,8 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
             first = bool(tl) and tl[0] not in b.moved
             # No standing battler acts after this one (moves_last, for Protect).
             b.moving_last = not any(later[3].alive() for later in ordered[i + 1:])
-            use_move(b, mon, mv, tl[0] if tl else foe_of(b, mon), first,
-                     targets=tl if mv.damaging() else None)
+            pl.use_move(b, mon, mv, tl[0] if tl else foe_of(b, mon), first,
+                        targets=tl if mv.damaging() else None)
             b.moved.add(mon)
         b.moving_last = None
         end_of_turn(b)

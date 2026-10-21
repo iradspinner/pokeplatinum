@@ -8206,6 +8206,297 @@ def check_arceus_plates(results):
                     out == want, str(out)))
 
 
+# ---- batch 15: the double battles' own path ----
+
+# The batch's checks, run after batch 14b's in main. Each plays fightsim's
+# run_doubles itself on a battle built by hand, its choosers held to the
+# moves the check names (doubles_turns), so the same check runs on the
+# starting code, where it shows the gap, and on the fix.
+B15 = []
+
+
+def b15(fn):
+    B15.append(fn)
+    return fn
+
+
+def doubles_st(mons, rows=None, speeds=None):
+    """A double battle's state from a sketch, as pdoubles prepares one: mons
+    is {key: spec}, spec a dict with "moves" and any of "types", "ability",
+    "item", "hp" and "stats"; the player's keys start with p (the first two
+    lead), a partner's with q, the trainer's with b (b0.0 and b0.1 lead, or
+    b0.0 and b1.0 for two trainers); rows is {(attacker, target): {move:
+    damage}}, every pair it leaves out rowed at 0 for the attacker's moves;
+    speeds is {key: Speed}, 100 for the player's side and 50 for the
+    trainer's unless given."""
+    st = {"rows": {}, "speed": {}, "info": {}, "pokemon": {}, "moves": {}, "chart": _chart(),
+          "rock_eff": {}, "base_weather": None, "trick_room": False}
+    for key, spec in mons.items():
+        stats = dict({"atk": 100, "def": 100, "spa": 100, "spd": 100, "spe": 100}, **spec.get("stats", {}))
+        st["info"][key] = {"hp": spec.get("hp", 100), "stats": stats, "types": list(spec.get("types", ("Normal",))),
+                           "ability": spec.get("ability"), "item": spec.get("item")}
+        st["pokemon"][key] = {"species": spec.get("species", key), "level": spec.get("level", 50)}
+        st["moves"][key] = list(spec["moves"])
+        st["speed"][(None, key)] = (speeds or {}).get(key, 50 if key[0] == "b" else 100)
+    for a in mons:
+        for d in mons:
+            if a != d:
+                got = (rows or {}).get((a, d), {})
+                st["rows"][(None, a, d)] = {"moves": {m: {"rolls": [got.get(m, 0)] * 16} for m in mons[a]["moves"]}}
+    for (a, d), got in (rows or {}).items():
+        if a not in mons:            # a power row's key, Magnitude's "<key>#m<power>"
+            st["rows"][(None, a, d)] = {"moves": {m: {"rolls": [v] * 16} for m, v in got.items()}}
+    return st
+
+
+def doubles_turns(st, player, foes, choices, turns=1, seed=1, partner=(), flags=0):
+    """Play fightsim.run_doubles on st for `turns` turns, every Pokemon's
+    action held: choices is {key: (move, target key or None)}, a Pokemon it
+    leaves out using its first move with no target named; a locked or
+    charging Pokemon goes on as the battle's choosers have it. foes is the
+    trainer's party, or a list of two parties for a tag battle. The battle
+    as the last turn left it."""
+    seen = {}
+    groups = foes if foes and isinstance(foes[0], (list, tuple)) else [foes]
+
+    def pick(b, me):
+        seen["b"] = b
+        if me.lock:
+            return "move", me.lock[0], None
+        if me.charging is not None:
+            return "move", me.charging, None
+        name, target = choices.get(me.key, (me.moves[0].name, None))
+        tmon = next((m for m in b.p.mons + b.b.mons if m.key == target), None) if target else None
+        return "move", fs.move(name), tmon
+    real_hold = fs.hold
+
+    def hold(st_, mon, item):
+        # The player's items are the sketch's own (a prepared state hands
+        # them out through assign_items, which a sketch has no split for).
+        real_hold(st_, mon, item if item is not None else st_["info"][mon.key].get("item"))
+    old = (fs.player_choice_doubles, fightai.choose_doubles, fs.MAX_TURNS, fs.hold)
+    fs.player_choice_doubles, fightai.choose_doubles, fs.MAX_TURNS, fs.hold = pick, pick, turns, hold
+    try:
+        fs.run_doubles(st, list(player), [list(g) for g in groups], random.Random(seed), [flags] * len(groups),
+                       partner_keys=list(partner))
+    finally:
+        fs.player_choice_doubles, fightai.choose_doubles, fs.MAX_TURNS, fs.hold = old
+    return seen["b"]
+
+
+def mon_of(b, key):
+    return next(m for m in b.p.mons + b.b.mons if m.key == key)
+
+
+@b15
+def check_doubles_berries_on_hit(results):
+    """The Berries on a hit, in a double battle (perfectline.attack's
+    berry_check after the hit; Ian approved the double battles' path on
+    2026-10-14): a Sitrus Berry heals its holder the moment a hit takes it
+    to half, before the second foe's hit; an Oran Berry the same at half;
+    and a Liechi Berry raises its holder's Attack at a quarter, before the
+    holder's own move later in the turn. Until 2026-10-21 run_doubles ate
+    them only at the turn's end, so the second hit knocked the Sitrus and
+    Oran holders out and the Liechi holder struck at +0."""
+    out = {}
+    for item, hit in (("Sitrus Berry", 55), ("Oran Berry", 50)):
+        mons = {"p0": {"moves": ["Splash"], "item": item}, "p1": {"moves": ["Splash"]},
+                "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Tackle"]}}
+        rows = {("b0.0", "p0"): {"Tackle": hit}, ("b0.1", "p0"): {"Tackle": hit}}
+        st = doubles_st(mons, rows, speeds={"p0": 10, "p1": 10, "b0.0": 100, "b0.1": 90})
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"b0.0": ("Tackle", "p0"), "b0.1": ("Tackle", "p0")})
+        holder = mon_of(b, "p0")
+        out[item] = (holder.hp, holder.item)
+    mons = {"p0": {"moves": ["Tackle"], "item": "Liechi Berry"}, "p1": {"moves": ["Splash"]},
+            "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
+    rows = {("b0.0", "p0"): {"Tackle": 80}, ("p0", "b0.1"): {"Tackle": 40}}
+    st = doubles_st(mons, rows, speeds={"p0": 60, "p1": 10, "b0.0": 100, "b0.1": 50})
+    b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"b0.0": ("Tackle", "p0"), "p0": ("Tackle", "b0.1")})
+    out["Liechi Berry"] = (mon_of(b, "p0").stages["atk"], mon_of(b, "b0.1").hp)
+    want = {"Sitrus Berry": (15, None), "Oran Berry": (10, None), "Liechi Berry": (1, 40)}
+    results.append(("doubles: a Sitrus, Oran or pinch Berry answers the hit that reaches its line", out == want,
+                    f"(the holder's HP, its item) and (the Liechi holder's Attack stage, its target's HP) {out}"))
+
+
+@b15
+def check_doubles_trap_moves(results):
+    """Mean Look, Block, Spider Web and Ingrain in a double battle
+    (perfectline.status_move's PREVENT_ESCAPE and
+    GROUND_TRAP_USER_CONTINUOUS_HEAL branches; Ian approved the double
+    battles' path on 2026-10-14): each of the three holds its target in
+    (trapped_by), and Ingrain roots its user and heals it a sixteenth at the
+    turn's end. Until 2026-10-21 run_doubles' status_move had no branch for
+    either, so nothing was held and nothing rooted."""
+    out = {}
+    for name in ("Mean Look", "Block", "Spider Web"):
+        mons = {"p0": {"moves": [name]}, "p1": {"moves": ["Splash"]},
+                "b0.0": {"moves": ["Splash"]}, "b0.1": {"moves": ["Splash"]}}
+        b = doubles_turns(doubles_st(mons), ["p0", "p1"], ["b0.0", "b0.1"], {"p0": (name, "b0.1")})
+        out[name] = (mon_of(b, "b0.1").trapped_by, mon_of(b, "b0.0").trapped_by)
+    mons = {"p0": {"moves": ["Ingrain"], "hp": 160}, "p1": {"moves": ["Splash"]},
+            "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
+    st = doubles_st(mons, {("b0.0", "p0"): {"Tackle": 50}})
+    b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"b0.0": ("Tackle", "p0")})
+    out["Ingrain"] = (mon_of(b, "p0").ingrained, mon_of(b, "p0").hp)
+    want = {"Mean Look": ("p0", None), "Block": ("p0", None), "Spider Web": ("p0", None), "Ingrain": (True, 120)}
+    results.append(("doubles: Mean Look, Block and Spider Web hold their target, Ingrain roots and heals", out == want,
+                    f"(the target's holder, the other foe's) and (rooted, HP after a 50 hit and the heal) {out}"))
+
+
+@b15
+def check_doubles_item_rates(results):
+    """The items that move a hit's odds, in a double battle (perfectline's
+    attack, _after_attack and accuracy_hits; Ian approved the double
+    battles' path on 2026-10-14), each over 600 one-turn battles of a
+    Tackle into one foe: a Scope Lens takes the critical rate from 1 in 24
+    to 1 in 8; a King's Rock flinches a slower target one time in ten; a
+    Focus Band holds a knockout one time in ten; a Bright Powder on the
+    target makes a sure Tackle miss one time in ten. Until 2026-10-21
+    run_doubles' attack had none of the four."""
+    def runs(item, holder, rows, speeds, measure):
+        n = 0
+        for seed in range(600):
+            mons = {"p0": {"moves": ["Tackle"]}, "p1": {"moves": ["Splash"]},
+                    "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
+            mons[holder]["item"] = item
+            st = doubles_st(mons, rows, speeds)
+            b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"],
+                              {"p0": ("Tackle", "b0.0"), "b0.0": ("Tackle", "p0")}, seed=seed)
+            n += measure(b)
+        return n
+    fast = {"p0": 100, "p1": 10, "b0.0": 50, "b0.1": 10}
+    out = {"Scope Lens crits": runs("Scope Lens", "p0", {("p0", "b0.0"): {"Tackle": 40}}, fast,
+                                    lambda b: mon_of(b, "b0.0").hp == 40),
+           "King's Rock flinches": runs("King's Rock", "p0", {("p0", "b0.0"): {"Tackle": 10}, ("b0.0", "p0"): {"Tackle": 10}},
+                                        fast, lambda b: mon_of(b, "p0").hp == 100),
+           "Focus Band holds": runs("Focus Band", "b0.0", {("p0", "b0.0"): {"Tackle": 200}}, fast,
+                                    lambda b: mon_of(b, "b0.0").hp == 1),
+           "Bright Powder misses": runs("Bright Powder", "b0.0", {("p0", "b0.0"): {"Tackle": 10}}, fast,
+                                        lambda b: mon_of(b, "b0.0").hp == 100)}
+    ok = (45 <= out["Scope Lens crits"] <= 110 and 35 <= out["King's Rock flinches"] <= 90
+          and 35 <= out["Focus Band holds"] <= 90 and 35 <= out["Bright Powder misses"] <= 90)
+    results.append(("doubles: Scope Lens, King's Rock, Focus Band and Bright Powder at their odds", ok,
+                    f"of 600 (about 75, 60, 60 and 60 expected) {out}"))
+
+
+@b15
+def check_doubles_sturdy_mold_breaker(results):
+    """Mold Breaker against Sturdy in a double battle (perfectline.attack;
+    Ian approved the double battles' path on 2026-10-14): a hit of 200 on a
+    Sturdy holder at full HP leaves it 1 HP, unless the attacker has Mold
+    Breaker, which knocks it out. Until 2026-10-21 Sturdy held against Mold
+    Breaker in run_doubles."""
+    out = {}
+    for ability in ("Mold Breaker", None):
+        mons = {"p0": {"moves": ["Tackle"], "ability": ability}, "p1": {"moves": ["Splash"]},
+                "b0.0": {"moves": ["Splash"], "ability": "Sturdy"}, "b0.1": {"moves": ["Splash"]}}
+        st = doubles_st(mons, {("p0", "b0.0"): {"Tackle": 200}})
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": ("Tackle", "b0.0")})
+        out[ability or "plain"] = mon_of(b, "b0.0").hp
+    want = {"Mold Breaker": 0, "plain": 1}
+    results.append(("doubles: Mold Breaker gets past Sturdy", out == want, f"the Sturdy holder's HP {out}"))
+
+
+@b15
+def check_doubles_big_root_struggle(results):
+    """Big Root and Struggle in a double battle (perfectline's attack and
+    _after_attack; Ian approved the double battles' path on 2026-10-14): a
+    Giga Drain of 40 gives its Big Root holder 26 back, a third more than
+    half; a Struggle hits a Ghost type, as it meets no type chart, and costs
+    its user a quarter of its maximum HP. Until 2026-10-21 run_doubles gave
+    the Big Root holder 20, and its Struggle read the calculator's row, 0:
+    no damage and no cost."""
+    mons = {"p0": {"moves": ["Giga Drain"], "item": "Big Root", "hp": 200}, "p1": {"moves": ["Splash"]},
+            "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
+    st = doubles_st(mons, {("p0", "b0.0"): {"Giga Drain": 40}, ("b0.0", "p0"): {"Tackle": 100}},
+                    speeds={"b0.0": 200})
+    b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": ("Giga Drain", "b0.0"), "b0.0": ("Tackle", "p0")})
+    root = mon_of(b, "p0").hp
+    mons = {"p0": {"moves": ["Struggle"]}, "p1": {"moves": ["Splash"]},
+            "b0.0": {"moves": ["Splash"], "types": ("Ghost",)}, "b0.1": {"moves": ["Splash"]}}
+    b = doubles_turns(doubles_st(mons), ["p0", "p1"], ["b0.0", "b0.1"], {"p0": ("Struggle", "b0.0")})
+    out = {"Big Root": root, "Struggle (the Ghost hit, its user's HP)": (mon_of(b, "b0.0").hp < 100, mon_of(b, "p0").hp)}
+    want = {"Big Root": 126, "Struggle (the Ghost hit, its user's HP)": (True, 75)}
+    results.append(("doubles: Big Root's third more, and Struggle's hit and its quarter", out == want, f"{out}"))
+
+
+@b15
+def check_doubles_magnitude(results):
+    """Magnitude in a double battle (perfectline.attack's power rows,
+    BtlCmd_CalcMagnitudePower; Ian approved the double battles' path on
+    2026-10-14): its power is rolled at Magnitude's odds and read from its
+    row at that power ("<key>#m<power>"), once for the whole use, so its
+    three targets take the same power. Over 400 uses each power's share is
+    near its odds (5, 10, 20, 30, 20, 10 and 5 in a hundred, from 10 to
+    150). Until 2026-10-21 run_doubles read Magnitude's own row, at its
+    listed power, every time."""
+    powers = (10, 30, 50, 70, 90, 110, 150)
+    mons = {"p0": {"moves": ["Splash"], "hp": 400}, "p1": {"moves": ["Splash"], "hp": 400},
+            "b0.0": {"moves": ["Magnitude"]}, "b0.1": {"moves": ["Splash"], "hp": 400}}
+    rows = {("b0.0", d): {"Magnitude": 1} for d in ("p0", "p1", "b0.1")}
+    rows.update({(f"b0.0#m{p}", d): {"Magnitude": p} for p in powers for d in ("p0", "p1", "b0.1")})
+    st = doubles_st(mons, rows)
+    st["first_battle"] = True        # no critical hit, so each target's loss is its power's alone
+    seen, same = collections.Counter(), 0
+    for seed in range(400):
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"b0.0": ("Magnitude", None)}, seed=seed)
+        lost = [400 - mon_of(b, k).hp for k in ("p0", "p1", "b0.1")]
+        same += len(set(lost)) == 1
+        seen[lost[0]] += 1
+    # each target takes three quarters of the power's row (a spread move)
+    shares = {p: seen[p * 3 // 4] for p in powers}
+    odds = {10: 5, 30: 10, 50: 20, 70: 30, 90: 20, 110: 10, 150: 5}
+    ok = same == 400 and all(abs(shares[p] - 4 * odds[p]) <= max(14, 2 * odds[p]) for p in powers)
+    results.append(("doubles: Magnitude rolls its power once a use, at its odds", ok,
+                    f"uses alike on every target {same} of 400; uses by power (of 400) {shares}"))
+
+@b15
+def check_doubles_kept(results):
+    """What fightsim's own double battle already ran holds on perfectline's
+    path (Ian approved the double battles' path on 2026-10-14): a screen
+    takes a third off in a double battle (BattleSystem_CalcMoveDamage, two
+    Pokemon on the side), a move that hits more than one takes a quarter
+    off each, a Telepathy holder takes nothing from its partner's
+    Earthquake (BattleControllerPlayer_PriorityBlock), and Teeter Dance
+    confuses every other Pokemon on the field. It passes on the starting
+    code as on the fix."""
+    mons = {"p0": {"moves": ["Teeter Dance"]}, "p1": {"moves": ["Reflect"]},
+            "b0.0": {"moves": ["Tackle"], "ability": "Telepathy"}, "b0.1": {"moves": ["Earthquake"]}}
+    rows = {("b0.0", "p0"): {"Tackle": 60}, ("b0.1", "p0"): {"Earthquake": 80}, ("b0.1", "p1"): {"Earthquake": 80},
+            ("b0.1", "b0.0"): {"Earthquake": 80}}
+    st = doubles_st(mons, rows, speeds={"p0": 10, "p1": 300, "b0.0": 200, "b0.1": 150})
+    st["first_battle"] = True
+    b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": ("Teeter Dance", "b0.0"), "b0.0": ("Tackle", "p0"),
+                                                         "b0.1": ("Earthquake", None)})
+    out = {k: (mon_of(b, k).hp, bool(mon_of(b, k).confused)) for k in ("p0", "p1", "b0.0", "b0.1")}
+    want = {"p0": (20, False), "p1": (60, True), "b0.0": (100, True), "b0.1": (100, True)}
+    results.append(("doubles: screens, spread moves, Telepathy and Teeter Dance as before", out == want,
+                    f"(HP, confused) {out}"))
+
+
+@b15
+def check_pdoubles_reader(results):
+    """pdoubles' reader plays run_doubles with the battle's own choosers:
+    on a sketch where the player's Rock Slide takes 60 off each foe and the
+    foes' Tackle 10, every one of 20 battles is a clean win, read through
+    pdoubles.stats and its search, on the starting code as on the fix."""
+    from . import pdoubles
+    mons = {"p0": {"moves": ["Rock Slide"]}, "p1": {"moves": ["Rock Slide"]}, "p2": {"moves": ["Rock Slide"]},
+            "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Tackle"]}, "b0.2": {"moves": ["Tackle"]}}
+    rows = {}
+    for a in ("p0", "p1", "p2"):
+        for d in ("b0.0", "b0.1", "b0.2"):
+            rows[(a, d)] = {"Rock Slide": 80}
+            rows[(d, a)] = {"Tackle": 10}
+    st = doubles_st(mons, rows)
+    st.update(battle="doubles", bosses=[["b0.0", "b0.1", "b0.2"]], group_flags=[7])
+    rate, deaths, wipes = pdoubles.stats(st, ["p0", "p1", "p2"], 20, random.Random(4))
+    best = pdoubles.search(st, ["p0", "p1", "p2"], screen_runs=4, keep=1, confirm_runs=8)
+    ok = (rate, deaths, wipes) == (1.0, 0.0, 0.0) and best["rate"] == 1.0 and best["dice"] == "game odds"
+    results.append(("doubles: pdoubles' reader plays its battles to their end", ok,
+                    f"(clean rate, deaths, wipes) {(rate, deaths, wipes)}; search {best['rate']}, {best['line']}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
@@ -8272,7 +8563,7 @@ def main():
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
                   check_self_risk, check_sure, check_reward_items) + tuple(B11) + tuple(B12) + tuple(B13) \
-            + tuple(B14) + tuple(B14B):
+            + tuple(B14) + tuple(B14B) + tuple(B15):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

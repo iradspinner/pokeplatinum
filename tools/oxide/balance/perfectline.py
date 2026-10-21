@@ -272,7 +272,11 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
     # as fightsim's Battle.damage has it.
     if (side.screens[screen] or side.aurora_veil) and not crit and mv.effect != "REMOVE_SCREENS" \
             and att.ability != "Infiltrator":
-        mult *= 0.5              # Aurora Veil halves both kinds, once with a screen (fightsim.aurora_veil)
+        # Aurora Veil halves both kinds, once with a screen (fightsim.aurora_veil);
+        # a double battle's screen takes a third, as Battle.damage has it.
+        mult *= 2 / 3 if b.doubles else 0.5
+    if b.spread:
+        mult *= 0.75             # a double battle's move that hits more than one (fightsim.Battle.spread)
     if mv.sure:
         mult *= fs.row_crit_mult(att, dfn, crit)    # the row's own critical hit (fightsim.row_crit_mult)
     elif crit:
@@ -358,10 +362,12 @@ def accuracy_hits(b, att, dfn, mv, first=True, later=False):
 fs.DICE_ACCURACY = accuracy_hits   # a landing Future Sight checks its accuracy on these dice
 
 
-def use_move(b, att, mv, dfn, first):
+def use_move(b, att, mv, dfn, first, targets=None):
     """One move, then the switch-in check that ends it, where a Neutralizing
-    Gas whose holder fell wears off (fightsim.use_move)."""
-    _use_move(b, att, mv, dfn, first)
+    Gas whose holder fell wears off (fightsim.use_move). `targets`: in a
+    double battle, the Pokemon a damaging move hits, each in turn
+    (fightsim.run_doubles); None in a single battle, where dfn is the one."""
+    _use_move(b, att, mv, dfn, first, targets)
     if att.me_first:
         att.me_first = False             # Me First's half again lasts the move it took (fightsim.me_first_move)
     if b.st.get("gas"):
@@ -369,7 +375,7 @@ def use_move(b, att, mv, dfn, first):
     fs.move_end(b)          # a waiting Trace (fightsim.move_end)
 
 
-def _use_move(b, att, mv, dfn, first):
+def _use_move(b, att, mv, dfn, first, targets=None):
     if not att.alive():
         return
     att.acted_turn = b.turn          # its action this turn has begun (fightsim._use_move)
@@ -382,52 +388,52 @@ def _use_move(b, att, mv, dfn, first):
         if att.grudge:
             att.grudge = False       # and its Grudge (fightsim.grudge)
         if att.sky_holder is not None and fs.sky_held(b, att):
-            return fs.could_not_act(b, att, mv, dfn)     # held in the air by Sky Drop (fightsim.sky_held)
+            return fs.could_not_act(b, att, mv, dfn, targets)     # held in the air by Sky Drop (fightsim.sky_held)
     if att.recharge:
         att.recharge = False
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     if fs.loafs(att):
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     if att.status == "frz":
         # In the search the trainer thaws at once and the player stays
         # frozen (question 9); in a run both thaw at 1 in 5 a turn.
         if mv.effect == "THAW_AND_BURN_HIT" or b.dice.thaws(att):
             att.status = None
         else:
-            return fs.could_not_act(b, att, mv, dfn)
+            return fs.could_not_act(b, att, mv, dfn, targets)
     if att.status == "slp":
         if fs.sleep_tick(att):
             if mv.effect not in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):
-                return fs.could_not_act(b, att, mv, dfn)
+                return fs.could_not_act(b, att, mv, dfn, targets)
     if att.flinch:
         fs.flinched(att)                 # Steadfast answers it
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     if att.disabled is not None and mv.name == att.disabled:
         att.choice = None                # subscript_move_is_disabled lets go of a Choice item's lock
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     # Taunt, Imprison, Gravity, Heal Block and Throat Chop, in the engine's
     # order, before confusion, paralysis and love (fightsim._use_move).
     if att.taunt and mv.cat == "Status":
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     if mv.name in att.sealed:
         att.choice = None                # a foe's Imprison, as Disable (fightsim.disabled_out)
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     if ((att.rare or b.gravity) and fs.move_barred(b, att, mv)) or fs.move_heal_blocked(att, mv):
-        return fs.could_not_act(b, att, mv, dfn)     # Gravity's, Heal Block's or Throat Chop's (fightsim.move_barred)
+        return fs.could_not_act(b, att, mv, dfn, targets)     # Gravity's, Heal Block's or Throat Chop's (fightsim.move_barred)
     if att.confused:
         att.confused -= 1
         if att.confused and (b.dice.bad("confusion", 0.5) if player(att) else b.dice.good(0.5, "confusion")):
             fs.hurt(b, att, confusion_damage(att, b.dice.confusion_roll()))
-            return fs.could_not_act(b, att, mv, dfn)
+            return fs.could_not_act(b, att, mv, dfn, targets)
     if att.status == "par" and (b.dice.bad("paralysis", 0.25) if player(att) else b.dice.good(0.25, "paralysis")):
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     if att.infatuated and (b.dice.bad("love", 0.5) if player(att) else b.dice.good(0.5, "love")):
-        return fs.could_not_act(b, att, mv, dfn)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
+        return fs.could_not_act(b, att, mv, dfn, targets)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
     if fs.tormented_out(att, mv):
-        return fs.could_not_act(b, att, mv, dfn)
-    fs.mark_hit(b, mv, dfn, True)
+        return fs.could_not_act(b, att, mv, dfn, targets)
+    fs.mark_hit(b, mv, dfn, True, targets)
     prev = fs.note_move(b, mv)           # the move before this one, for Copycat (fightsim.note_move)
-    fs.spend_pp(b, att, mv, dfn)       # once a choice, and Pressure's (fightsim.spend_pp)
+    fs.spend_pp(b, att, mv, dfn, targets)     # once a choice, and Pressure's (fightsim.spend_pp)
     paid = mv                        # the slot that paid, whatever it calls (fightsim.grudge)
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP") and mv.const not in fs.KEEPS_PROTECT_RUN:
         att.protect_run = 0
@@ -443,18 +449,18 @@ def _use_move(b, att, mv, dfn, first):
         mv = fs.called_move(b, att, mv, prev, lambda kind, n: b.dice.choice(kind, n))
         if mv is None:
             return
-        fs.mark_hit(b, mv, dfn, True)
+        fs.mark_hit(b, mv, dfn, True, targets)
     if mv.effect == "USE_MOVE_FIRST":
         mv = fs.me_first_move(att, dfn, first)    # the target's chosen hit, at half again (fightsim.me_first_move)
         if mv is None:
             return
-        fs.mark_hit(b, mv, dfn, True)
+        fs.mark_hit(b, mv, dfn, True, targets)
     if mv.effect == "NATURE_POWER":
         mv = fs.move(fs.nature_power_move(b.st.get("terrain")))     # its terrain's move (fightsim.nature_power_move)
-        fs.mark_hit(b, mv, dfn, True)
+        fs.mark_hit(b, mv, dfn, True, targets)
     if mv.effect in ("FLY", "BOUNCE") and att.smacked:
         return                       # brought down by Smack Down, it cannot fly (fightsim.smack_down)
-    if mv.effect == "SKY_DROP" and not fs.sky_drop(b, att, mv, dfn):
+    if mv.effect == "SKY_DROP" and not b.doubles and not fs.sky_drop(b, att, mv, dfn):
         return                       # Sky Drop's lift, or a drop that fails (fightsim.sky_drop)
     if mv.effect in fs.TWO_TURN and att.charging is None and not fs.charge_skipped(b, att, mv):
         att.charging = mv
@@ -471,6 +477,9 @@ def _use_move(b, att, mv, dfn, first):
             status_move(b, thief, mv, att, first)     # a waiting Snatch user takes it (fightsim.snatched)
             return
         status_move(b, att, mv, dfn, first)
+        return
+    if targets is not None:
+        _spread_attack(b, att, mv, targets, paid)
         return
     before = dfn.hp
     if att.ability == "Analytic" and fs.moves_last(b, first):
@@ -497,6 +506,39 @@ def _use_move(b, att, mv, dfn, first):
     fs.knockout_boost(att, dfn, before)      # Moxie and Beast Boost
     if mv.const == "MOVE_RELIC_SONG":
         fs.relic_song(b, att, mv, b.last_dealt > 0)     # Meloetta's form (fightsim.relic_song)
+
+
+def _spread_attack(b, att, mv, targets, paid):
+    """A damaging move in a double battle (fightsim.run_doubles), on each
+    Pokemon it hits in turn, as fightsim._use_move's own loop ran it until
+    2026-10-21: a move that hits more than one is at three quarters on each
+    (Battle.spread, read by damage_of); each target's hit and its contact
+    ability's answer, then Mind Blown's cost once, then each target's
+    Destiny Bond, Grudge and Moxie, and Relic Song's form once a use.
+    `first` for each is whether that target has yet to act this turn.
+    Magnitude's power is rolled once for the whole use (BtlCmd_CalcMagnitudePower
+    keeps battleCtx->magnitude until the move ends), held in
+    Battle.spread_magnitude meanwhile."""
+    b.spread = len(targets) > 1
+    before = {id(t): t.hp for t in targets}
+    try:
+        for t in targets:
+            attack(b, att, mv, t, t not in b.moved)
+            fs.hit_aftermath(b, att, t, mv,
+                             lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
+                             lambda kind, n: b.dice.choice(kind, n))
+    finally:
+        b.spread = False
+        b.spread_magnitude = None
+    if b.blown is att:
+        fs.mind_blown_cost(b, att)       # once, after every target (fightsim.mind_blown_cost)
+    for t in targets:
+        fs.destiny_bond(att, t)
+        if t.grudge:
+            fs.grudge(att, t, paid, mv)
+        fs.knockout_boost(att, t, before[id(t)])
+    if mv.const == "MOVE_RELIC_SONG":
+        fs.relic_song(b, att, mv, any(t.hp < before[id(t)] for t in targets))    # once a use, whatever it hit
 
 
 def struggle_damage(att, dfn, roll, room=False):
@@ -685,6 +727,9 @@ def attack(b, att, mv, dfn, first):
     spit = fs.spit_up_key(att) if mv.effect == "SPIT_UP" else None
     if mv.effect == "SPIT_UP" and spit is None:
         return                           # Spit Up with nothing stored (fightsim.spit_up_key)
+    if att is not dfn and att.side == dfn.side and dfn.ability == "Telepathy" and mv.power and not fs.mold(att, dfn):
+        fs.reveal(dfn)
+        return                           # a partner's damaging move into Telepathy (fightsim.attack), a double battle's
     if mv.effect == "MIND_BLOWN" and not fs.mind_blown(b, att):
         return                           # a Damp Pokemon stops it, and nothing is paid (fightsim.mind_blown)
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
@@ -808,7 +853,11 @@ def attack(b, att, mv, dfn, first):
             weights = [fs.MAGNITUDE_POWERS[p] for p in powers]
             rng = getattr(b, "rng", None)
             pick = getattr(b.dice, "pick_weighted", None)
-            p = pick(powers, weights) if pick else (rng.choices(powers, weights)[0] if rng is not None else 70)
+            p = b.spread_magnitude
+            if p is None:
+                p = pick(powers, weights) if pick else (rng.choices(powers, weights)[0] if rng is not None else 70)
+                if b.doubles:
+                    b.spread_magnitude = p   # one roll for every target of the use (_spread_attack)
             att.key = f"{key}#m{p}"
             b.last_magnitude = p
         if present is not None:
@@ -1091,6 +1140,8 @@ def status_move(b, att, mv, dfn, first):
     foe_side = b.p if player(dfn) else b.b
     own_side = b.p if player(att) else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
+    if e == "CONFUSE_ALL" and b.doubles:
+        fs.teeter_dance_others(b, att, mv, dfn, first)     # Teeter Dance's other targets in a double battle
     if e == "FAINT_AND_ATK_SP_ATK_DOWN_2" and not fs.memento_faints(att, dfn):
         return                           # Memento faints its user before its checks, or with no target does nothing
     if targets_foe and dfn.alive():
