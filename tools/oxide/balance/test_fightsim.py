@@ -9278,6 +9278,44 @@ def check_slow_items_order(results):
     results.append(("Lagging Tail, Full Incense and Stall go last in their priority bracket", out == want, str(out)))
 
 
+@b16
+def check_custap_any_priority(results):
+    """A Custap Berry in its pinch is eaten as its holder acts, on any
+    priority (Ian approved the fix on 2026-10-21; CompareBattlerSpeed sets
+    custapBerry in the turn order's comparison whatever the moves'
+    priority, and subscript_check_quick_claw spends it before the holder's
+    move): in the readings' single battle the player's Pokemon at a quarter
+    of its HP, its Custap Berry fired (perfectline.play_turn's roll), eats
+    it when its Tackle comes after the foe's Quick Attack, and when its
+    Quick Attack comes before the foe's Tackle, as when both Tackle; it
+    keeps it when it switches out, when the foe's Quick Attack knocks it out
+    first, and above a quarter. Until 2026-10-21 it was eaten only when the
+    two moves shared a priority."""
+    from . import perfectline as pl
+    rows = {("p", "Tackle"): [10] * 16, ("p", "Quick Attack"): [10] * 16, ("b", "Tackle"): [10] * 16,
+            ("b", "Quick Attack"): [10] * 16}
+    out = {}
+    for case, mine, theirs, hp in (("Tackle after a Quick Attack", "Tackle", "Quick Attack", 25),
+                                   ("Quick Attack before a Tackle", "Quick Attack", "Tackle", 25),
+                                   ("both Tackle", "Tackle", "Tackle", 25),
+                                   ("switching out", None, "Tackle", 25),
+                                   ("knocked out first", "Tackle", "Quick Attack", 10),
+                                   ("above a quarter", "Tackle", "Quick Attack", 26)):
+        b, p, foe = battle(["Tackle", "Quick Attack"], ["Tackle", "Quick Attack"], rows)
+        b.p.mons.append(fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p"))
+        p.item, p.hp = "Custap Berry", hp
+        b.dice, b.rng = sure12(), random.Random(1)
+        b.st["first_battle"] = True
+        b.quick = {m.key: fs.custap_fires(m, b) for m in (p, foe)}
+        pa = ("switch", 1) if mine is None else ("move", fs.move(mine))
+        pl._turn(b, pa, ("move", fs.move(theirs)))
+        out[case] = p.item
+    want = {"Tackle after a Quick Attack": None, "Quick Attack before a Tackle": None, "both Tackle": None,
+            "switching out": "Custap Berry", "knocked out first": "Custap Berry", "above a quarter": "Custap Berry"}
+    results.append(("a Custap Berry in its pinch is eaten as its holder acts, on any priority", out == want,
+                    f"(the item left) {out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

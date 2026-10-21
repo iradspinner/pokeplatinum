@@ -7126,6 +7126,27 @@ def slow_items_order_checks():
              f"(the player's Pokemon faster, the first to act) {out}, want {want}")]
 
 
+@b16
+def custap_any_priority_checks():
+    """A Custap Berry eaten on any priority in the readings' battle on the
+    calculator's real rows (Ian approved the fix on 2026-10-21;
+    CompareBattlerSpeed's custapBerry, subscript_check_quick_claw), on
+    Roark's split: the player's Bibarel at a quarter of its HP holding a
+    Custap Berry eats it as its Quick Attack goes before a trainer's
+    Geodude's Tackle (perfectline.play_turn rolls the turn's Berry), and
+    keeps it at full HP."""
+    out = {}
+    for quarter in (True, False):
+        b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                                [("Bibarel", 30, "Simple", ["Quick Attack"], "Custap Berry")])
+        if quarter:
+            bib.hp = bib.maxhp // 4
+        pl.play_turn(b, ("move", fs.move("Quick Attack")), random.Random(1))
+        out["a quarter" if quarter else "full"] = bib.item
+    ok = out == {"a quarter": None, "full": "Custap Berry"}
+    return [("the readings' Custap Berry is eaten on any priority", ok, f"(Bibarel's item after the turn) {out}")]
+
+
 def main():
     results = []
 

@@ -1985,8 +1985,18 @@ def _turn(c, pa, aa):
         order.append((foe, aa[1]))
     for mon, mv in order:
         mon.chosen = mv
+    custap = ()
     if len(order) == 2:
         (a, ma), (d, md) = order
+        if quick is not None:
+            # A Custap Berry in its pinch is eaten as its holder acts, on
+            # any priority, once both sides fight: CompareBattlerSpeed sets
+            # its custapBerry mark in the turn order's comparison of the two
+            # whatever their moves' priority, and subscript_check_quick_claw
+            # spends the Berry before the holder's move. Until 2026-10-21 it
+            # was eaten only when the two moves shared a priority (Ian
+            # approved the fix on 2026-10-21).
+            custap = [mon for mon in (me, foe) if quick.get(mon.key) and mon.item == "Custap Berry"]
         # Priority as the engine reckons it (Prankster, Gale Wings).
         if fs.move_priority(a, ma) != fs.move_priority(d, md):
             order.sort(key=lambda o: -fs.move_priority(o[0], o[1]))
@@ -2015,9 +2025,6 @@ def _turn(c, pa, aa):
                     order.reverse()
                 elif qp == qf and (by_speed() if qp else behind()):
                     order.reverse()
-                for mon in (me, foe):
-                    if quick.get(mon.key) and mon.item == "Custap Berry":
-                        fs.consume(mon)          # a Custap Berry that fired is eaten
             elif behind():
                 # The player goes second: its Quick Claw (one in five) keeps
                 # it first. Before this the check sat after this branch and
@@ -2029,6 +2036,8 @@ def _turn(c, pa, aa):
     for i, (mon, mv) in enumerate(order):
         if i and fs.forced_out(c, mon):
             continue                     # dragged out before its turn, it does not act (fightsim.forced_out)
+        if mon in custap and mon.alive() and mon.item == "Custap Berry":
+            fs.consume(mon)              # its Custap Berry, eaten as it acts (subscript_check_quick_claw)
         target = fs.foe_of(c, mon)
         first = i == 0 and len(order) == 2
         use_move(c, mon, mv, target, first)
