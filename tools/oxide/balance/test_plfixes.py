@@ -6578,6 +6578,20 @@ def sandsear_storm_checks():
     return storm_status_checks("Sandsear Storm", ("Nidoking", "Poison Point"), "brn", "burns")
 
 
+@b13
+def wildbolt_storm_checks():
+    """Wildbolt Storm on real rows (approved 2026-10-14): the player's
+    Raichu paralyses a trainer's Snorlax when the chance lands."""
+    out = {}
+    for ability in ("Static", "Sheer Force"):
+        b, lax, rai = b8_battle([("Snorlax", 30, "Thick Fat", ["Tackle"])], [("Raichu", 30, ability, ["Wildbolt Storm"])],
+                                Lucky8)
+        pl.attack(b, rai, fs.move("Wildbolt Storm"), lax, True)
+        out[ability] = (lax.hp < lax.maxhp, lax.status)
+    ok = out == {"Static": (True, "par"), "Sheer Force": (True, None)}
+    return [("the readings' Wildbolt Storm paralyses at its chance", ok, f"(hit, status) {out}")]
+
+
 def main():
     results = []
 

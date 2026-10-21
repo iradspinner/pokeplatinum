@@ -7542,6 +7542,15 @@ def check_sandsear_storm(results):
     results.append(("Sandsear Storm burns at its chance", ok, note))
 
 
+@b13
+def check_wildbolt_storm(results):
+    """Wildbolt Storm (approved 2026-10-14; effect script 357): a paralysis
+    at the move's chance (30), stripped by Sheer Force, kept off by a
+    Substitute."""
+    ok, note = storm_status("Wildbolt Storm", "par")
+    results.append(("Wildbolt Storm paralyses at its chance", ok, note))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

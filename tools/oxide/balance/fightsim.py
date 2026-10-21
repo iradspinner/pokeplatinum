@@ -196,7 +196,12 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               # strips (sSheerForceEffects); it never misses in the rain
               # (RAIN_SURE). Until 2026-10-20 it never burned (Ian approved
               # the fix).
-              "SANDSEAR_STORM": "brn"}
+              "SANDSEAR_STORM": "brn",
+              # Wildbolt Storm (effect script 357): a paralysis at the move's
+              # chance (30), as Sandsear Storm's burn, which Sheer Force
+              # strips. Until 2026-10-20 it never paralysed (Ian approved
+              # the fix).
+              "WILDBOLT_STORM": "par"}
 FLINCH_HIT = {"FLINCH_HIT", "FLINCH_BURN_HIT", "FLINCH_PARALYZE_HIT", "FLINCH_FREEZE_HIT",
               "FLINCH_MINIMIZE_DOUBLE_HIT", "FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE",
               "UPPER_HAND",                       # at its 100%, as Fake Out's target flinches
