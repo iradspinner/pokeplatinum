@@ -11,7 +11,7 @@ A move is counted as learnable when any species' or form's level, TM, tutor or e
 | with none | 93 |
 | of those, judgment calls, left with none by Ian's ruling (below) | 10 |
 
-Those counts are of 2026-10-07. The learnset changes since, among them the dead-move changes of 2026-10-14 and the signature-move homes of 2026-10-21, made 65 more moves past 467 learnable (229 in all on 2026-10-21, read from `res/pokemon`'s level, TM, tutor and egg lists), Stone Axe, Torch Song and Eevee's partner moves among them. No pass has checked their routing against this ruling since (`script.s` last changed on 2026-10-12), so this page does not name them.
+Those counts are of 2026-10-07. The learnset changes since, among them the dead-move changes of 2026-10-14 and the signature-move homes of 2026-10-21, left 230 moves past 467 learnable at `1eb8eb71bd` (read from `res/pokemon`'s level, TM, tutor and egg lists), 61 of them named neither here nor in [other-flags-new-moves.md](other-flags-new-moves.md): Stone Axe, Torch Song and Eevee's partner moves among them. The re-read of 2026-10-21 checked each of the 61 against this ruling; the last section of this page gives each its routine or none, and the README's section of that day has the decisions it left for Ian.
 
 A move a routine names below is scored as that Platinum move is; the routines are described in [expert-1.md](expert-1.md) and [expert-2.md](expert-2.md), and the ones element 6 wrote in the README. Two are trimmed copies made for this pass, as element 6 made one of Thunder's for the Hisuian storms: `Expert_ClearSmog` keeps Haze's tests of the target's stages and drops those of the user's, and `Expert_MortalSpin` keeps Rapid Spin's clearing and drops its Speed raise. Salt Cure has a routine of its own, `Expert_SaltCure` (Ian, 2026-10-12), below.
 
@@ -193,3 +193,78 @@ Each of these is left with none, though a Platinum routine is near, because that
 - Wide Guard: none; the nearest is Platinum's Protect, whose routine would misjudge it (a judgment call, above).
 - Wonder Room: none; the nearest is Platinum's Trick Room, whose routine would misjudge it (a judgment call, above).
 - Zing Zap: none, as Platinum's Rolling Kick.
+
+## The moves learnable since, re-read on 2026-10-21
+
+The 61 moves past 467 that became learnable after 2026-10-07, each read against Expert's dispatch and its effect script (README, "The catch-up re-read, 2026-10-21"). Nothing here changed the code: a move under "For Ian" is scored as the line says until Ian decides. What the other flags do with the 61 is in [other-flags-new-moves.md](other-flags-new-moves.md).
+
+### Scored by a routine, and rightly
+
+- Aqua Step: Rapid Spin's Speed part (`Expert_SpeedUpOnHit`), routed by element 6.
+- Barb Barrage: Wake-Up Slap's shape (`Expert_Venoshock`), routed by element 6.
+- Circle Throw: Roar's, through Dragon Tail's effect, as this page's opening says.
+- Dragon Ascent: Close Combat's, by its own Platinum effect.
+- Drum Beating: Icy Wind's, named in the routine for attacks that lower Speed, by element 6.
+- Esper Wing: Rapid Spin's Speed part, routed by element 6.
+- Fillet Away: Dragon Dance's, routed by element 6. The other flags leave it out (decision 3).
+- Frost Breath: Karate Chop's high critical routine, routed by element 6.
+- Glaciate: Icy Wind's, named by element 6.
+- Infernal Parade: Wake-Up Slap's shape (`Expert_Hex`), routed by element 6.
+- Kowtow Cleave: Swift's, by its own Platinum effect.
+- Light of Ruin: Head Smash's recoil routine, by its own Platinum effect; since the move reworks it is costed as an ordinary attack.
+- Lunar Blessing: Recover's, routed on 2026-09-30. Check HP leaves it out (decision 5).
+- Parabolic Charge: Giga Drain's, by its own Platinum effect; Tag Strategy checks its partner as Discharge's.
+- Psychic Fangs: Brick Break's, by its own Platinum effect. Note: the routine's +1 sees Reflect and Light Screen, not the Aurora Veil the engine breaks too (decision 12).
+- Raging Bull: Brick Break's, as Psychic Fangs. Oxide has no Paldean Tauros, and no engine code changes its type.
+- Raging Fury: the recoil routine, by the move reworks' line.
+- Snipe Shot: the high critical routine, by its own Platinum effect.
+- Storm Throw: the high critical routine, routed by element 6.
+- Take Heart: Calm Mind's Sp. Def raise, routed by element 6. The other flags leave it out (decision 4).
+- Thunderclap: Sucker Punch's, by its own Platinum effect.
+- Victory Dance: Dragon Dance's, routed by element 6. The other flags leave it out (decision 2).
+
+### Left with none, and rightly
+
+- Apple Acid: none, as Platinum's Bug Buzz.
+- Bitter Malice: none, as Platinum's Aurora Beam.
+- Buzzy Buzz: none, as Platinum's ThunderPunch.
+- Chip Away: none, a plain hit, as Sacred Sword; it ignores the target's stat changes inside the engine's damage calculation, which the estimate calls.
+- Dire Claw: none, as Platinum's Tri Attack: a hit with a chance of one of three statuses.
+- Fire Lash: none, as Platinum's Iron Tail.
+- Grav Apple: none, as Platinum's Iron Tail; its power under Gravity is in `TrainerAI_ComputedMovePower`.
+- Hard Press: none, a plain hit; its power from the target's HP is in `TrainerAI_ComputedMovePower`.
+- Heart Stamp: none, as Platinum's Rolling Kick.
+- Jet Punch: none, as Platinum's Quick Attack, whose effect Evaluate Attack and Tag Strategy read.
+- Last Respects: none, a plain hit; its power from the fainted party is in `TrainerAI_ComputedMovePower`.
+- Leaf Tornado: none, as Platinum's Mud-Slap.
+- Lumina Crash: none, as Platinum's Seed Flare.
+- Malignant Chain: none, as Platinum's Poison Fang.
+- Mighty Cleave: none, a plain hit; it passes Protect because it lacks the CAN_PROTECT flag, which no routine reads for an attack.
+- Mystical Power: none, as Platinum's Charge Beam.
+- Night Daze: none, as Platinum's Mud-Slap.
+- Power Trip: none, a plain hit; its power from its user's boosts is in `TrainerAI_ComputedMovePower`.
+- Precipice Blades: none, a plain hit; it reaches both foes and never the partner.
+- Psyshield Bash: none, as Platinum's Steel Wing.
+- Psystrike: none, a plain hit; it hits the target's Defense inside the engine's damage calculation, as Psyshock does.
+- Rising Voltage: none, a plain hit; Oxide has no terrain to double it.
+- Shadow Bone: none, as Platinum's Iron Tail.
+- Sizzly Slide: none, as Platinum's Fire Punch.
+- Spirit Break: none, as Platinum's Mist Ball.
+- Torch Song: none, as Platinum's Charge Beam; Basic's Soundproof list names it.
+
+### Routed rightly, costed wrongly (for Ian)
+
+- Dragon Darts, Tachyon Cutter, Twin Beam: none, as Platinum's Double Kick, which is right; but the damage estimate rates them on one hit of two (decision 1).
+- Triple Dive: none, as Platinum's Triple Kick; the estimate rates it on one hit of three (decision 1).
+- Heat Crash: none, as Heavy Slam and Platinum's Low Kick; but it has no damage estimate at all (decision 7).
+
+### For Ian
+
+- Baddy Bad: none today; the nearest is Platinum's Reflect, whose routine takes -2 below half HP and would misjudge an 80 power attack. Recommended: none (decision 11).
+- Ceaseless Edge: none today; the nearest is Spikes, whose routine adds +1 at 50% without asking whether three layers are down. Recommended: a trimmed copy that adds nothing at three layers or against a last Pokemon (decision 9).
+- Freezy Frost: none today; the nearest is Haze, whose two halves fit a hit that resets every battler's stages and whose -1 when nothing would change does not. Recommended: a trimmed copy without the -1, as `Expert_ClearSmog` leaves it out (decision 10).
+- Glitzy Glow: none today; as Baddy Bad, with Light Screen. Recommended: none (decision 11).
+- Jaw Lock: none today; it traps as Thousand Waves, Spirit Shackle and Anchor Shot do, which take Mean Look's routine. Recommended: Mean Look's (decision 6).
+- Sappy Seed: none today; the nearest is Leech Seed, whose routine takes -3 when either side is at half HP, which would steer the AI off a 100 power attack. Recommended: none (decision 11).
+- Sparkly Swirl: none today; the nearest is Heal Bell, whose routine takes -5 when no one in the party has a status. Recommended: none (decision 11).
+- Stone Axe: none today; the nearest is Stealth Rock, whose routine adds +1 at 50% without asking whether rocks are up. Recommended: a trimmed copy that adds nothing once they are up or against a last Pokemon (decision 8).
