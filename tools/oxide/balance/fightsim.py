@@ -330,6 +330,10 @@ HIT_SELF_STAGES = {  # (stages, certain)
     # a knockout's or a Substitute's hit too. Until 2026-10-20 none fell
     # (Ian approved the fix).
     "USER_DEF_SP_DEF_SPEED_DOWN_HIT": ({"spe": -1, "def": -1, "spd": -1}, True),
+    # Spin Out (effect script 355, ON_HIT on its user): its Speed falls two
+    # stages, a knockout's or a Substitute's hit too. Until 2026-10-20 it
+    # never fell (Ian approved the fix).
+    "USER_SPEED_DOWN_2_HIT": ({"spe": -2}, True),
 }
 RECOIL = {"RECOIL_THIRD": 1 / 3, "RECOIL_QUARTER": 1 / 4, "RECOIL_HALF": 1 / 2,
           "RECOIL_BURN_HIT": 1 / 3, "RECOIL_PARALYZE_HIT": 1 / 3,

@@ -7811,6 +7811,17 @@ def check_v_create(results):
     results.append(("V-create lowers its user's Defense, Sp. Def and Speed after a hit", out == want, str(out)))
 
 
+@b13
+def check_spin_out(results):
+    """Spin Out (approved 2026-10-14; effect script 355): any hit, a
+    Substitute's and a knockout's too, lowers its user's Speed two stages,
+    in both battles, and raises it for a Contrary user."""
+    out = self_drop("Spin Out")
+    want = {"hit": (0, 0, -2), "Substitute": (0, 0, -2), "knockout": (0, 0, -2), "fightsim": (0, 0, -2),
+            "Contrary": (0, 0, 2)}
+    results.append(("Spin Out lowers its user's Speed two stages after a hit", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

@@ -6709,6 +6709,13 @@ def v_create_checks():
     return self_drop_checks("V-create", ("Infernape", "Blaze"), (-1, -1, -1))
 
 
+@b13
+def spin_out_checks():
+    """Spin Out on real rows (approved 2026-10-14): the player's
+    Bronzong's hit lowers its own Speed two stages."""
+    return self_drop_checks("Spin Out", ("Bronzong", "Levitate"), (0, 0, -2))
+
+
 def main():
     results = []
 
