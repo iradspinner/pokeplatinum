@@ -45,6 +45,10 @@ read, so they are written here too. Each is a standing instruction.
   through the Overseer; a new behaviour outside the list still needs his
   approval. The Z-moves and Max moves are not fixed and no player or
   trainer gets them; they were added by accident and are to be removed.
+- A big review (a `/docs-pass`, a `/qa-pass`, a risky merge's review) goes to a
+  helper the local session runs at xhigh effort with the Agent tool's effort
+  setting, rather than asking Ian to switch (Ian, 2026-10-21); a routine
+  helper may run at lower effort once he agrees to it for that job.
 - The cloud code review (`/code-review ultra`) is never built into a procedure;
   run it only when Ian asks for it.
 - Ian's user settings (`~/.claude/settings.json`) are his to edit. Hand him the
