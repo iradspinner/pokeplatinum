@@ -4,6 +4,8 @@ and their cut at a fight's place, and the pooling into the store's shape.
 
     PYTHONPATH=. python3 -m tools.oxide.balance.test_plgoal3
 """
+import contextlib
+import io
 import itertools
 import json
 import os
@@ -160,6 +162,69 @@ def holds_checks(by):
     return out
 
 
+def stubbed_read(run, slug, seed, screen_held):
+    """read_box on a real box with the team search and the full reading
+    stubbed, in a scratch output folder: (its result, the searches it ran).
+    The stub's winner takes the box's held-back versions first; its screen
+    shows them in a top six or not, as `screen_held` says; the first
+    reading wins 90% of its fights, any later one 70%."""
+    calls = []
+
+    def search(fight, key, recs, stock, out_dir, procs=None, prepared=None, model=None, **_kw):
+        st, keys, _bk, _fl = prepared
+        group = pt.groups_of(st, keys)
+        held = [k for k in keys if st["pokemon"][k].get("held")]
+        names = {k: pt.member_name(st["pokemon"][k]) for k in keys}
+        win = pt.take(held + [k for k in keys if k not in held], 6, group)
+        top = win if screen_held else pt.take([k for k in keys if k not in held], 6, group)
+        calls.append({"fight": fight, "held": len(held), "model": model})
+        return {"winner_keys": win, "winner": [names[k] for k in win], "screen": [[names[k] for k in top]],
+                "model": model or "networks-x"}
+
+    def full_reading(st, boss_keys, flags, team, cfg, procs=None, **_kw):
+        won = 0.9 if len(calls) == 1 else 0.7
+        side = {"fights": 75, "won": won, "faints": 1.0, "clean": 0.5}
+        return side, dict(side, fights=25), [(True, 1, False, [("Shinx", "Foe")])] * 75
+
+    keep = g.OUT, g.plteam.search, g.plteam.full_reading
+    with tempfile.TemporaryDirectory() as tmp:
+        g.OUT, g.plteam.search, g.plteam.full_reading = tmp, search, full_reading
+        try:
+            with contextlib.redirect_stdout(io.StringIO()):
+                r = g.read_box(run, slug, seed, 1)
+        finally:
+            g.OUT, g.plteam.search, g.plteam.full_reading = keep
+    return r, calls
+
+
+def paired_checks():
+    """The paired reading (Ian, 2026-10-15) on Lucas and Dawn 2's box 1,
+    whose box offers Luxray (Shinx held to 29): read again without the
+    held-back versions where the screen puts one in a top six, once where
+    it puts none."""
+    out = []
+    r, calls = stubbed_read("t", "lucas_dawn_2", 1, True)
+    pair = r.get("without_holds") or {}
+    out.append(("a box whose screen holds a held-back version is read again without it, both kept",
+                r["held_in_screen"] == ["Luxray (Shinx held to 29)"] and r["real"]["won"] == 0.9
+                and pair.get("real", {}).get("won") == 0.7 and [c["held"] for c in calls] == [1, 0]
+                and calls[1]["model"] == "networks-x" and "Luxray (Shinx held to 29)" not in pair["winner"],
+                f"with {r['real']['won']:.0%}, without {pair.get('real', {}).get('won', 0):.0%}; searches "
+                f"{[(c['fight'].rsplit('-', 2)[-1], c['held']) for c in calls]}"))
+    out.append(("the reading's chosen six keeps its held-back member for the seed's later fights",
+                r["held_used"] == ["Luxray (Shinx held to 29)"]
+                and any(u["hold"] == {"SPECIES_SHINX": 29} and u["held"] for u in r["chosen"]),
+                f"{len(r['chosen'])} chosen"))
+    table = g.paired_table({"lucas_dawn_2": [r]}, {f["slug"]: f for f in g.fights()})
+    out.append(("the summary puts both readings side by side",
+                any("| Lucas and Dawn 2 | 1 | 90%, 1.00 | 70%, 1.00 | Luxray (Shinx held to 29) |" == t for t in table),
+                table[-1] if table else "no table"))
+    r, calls = stubbed_read("t", "lucas_dawn_2", 1, False)
+    out.append(("a box whose screen holds none is read once", "without_holds" not in r and len(calls) == 1,
+                f"{len(calls)} search"))
+    return out
+
+
 def main():
     results = []
     rows = g.fights()
@@ -260,6 +325,7 @@ def main():
     results.append(("one run per seed keeps the box sizes over 20 seeds", got == want, str(got)))
 
     results += holds_checks(by)
+    results += paired_checks()
 
     got = {k: sorted(g.places(by[k])) for k in ("mars_1", "gardenia", "jupiter_1", "fantina", "candice")}
     # Mt. Coronet 1F North Room 1, off Route 211, is the first magnetic map.

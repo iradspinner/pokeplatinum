@@ -51,8 +51,11 @@ of every earlier fight of the same seed, so each seed's fights read in
 play order (play_order, run_all); the seeds still run side by side. A
 hold rule A leaves out is listed in the result ("ruled_out") and the
 summary, not modelled, since testing it means reading that earlier fight
-again. An Ace Trainer's blind reading is offered no holds and chooses no
-six, so it records nothing for later fights.
+again. Where the matchup screen puts a held-back version in one of its
+top sixes, the box is read a second time with none on offer, and the
+result keeps both readings ("without_holds", Ian, 2026-10-15: to measure
+what holds change). An Ace Trainer's blind reading is offered no holds
+and chooses no six, so it records nothing for later fights.
 
 The levels (Ian, 2026-10-07): a fight that closes its split at the split's
 cap, the Elite Four at their aces, every other boss at its own ace's level
@@ -581,15 +584,42 @@ def read_box(run, slug, seed, procs):
                       real=real, unlucky=unlucky, faints_to=plteam.losing_enemies(rows),
                       fainted=plstudy.fainted(rows), chosen=uses(st, win, f, lvl),
                       held_used=[st["pokemon"][k]["label"] for k in win if st["pokemon"][k]["held"]])
+        offered = set(result["offered"])
+        result["held_in_screen"] = sorted({n for six in summary["screen"] for n in six} & offered)
+        if result["held_in_screen"]:
+            result["without_holds"] = without_holds(run, slug, seed, s, summary.get("model"), procs, out_dir)
     result["minutes"] = round((time.time() - t0) / 60, 1)
     with open(path + ".part", "w") as fh:
         json.dump(result, fh, indent=1)
     os.replace(path + ".part", path)
     r, u = result["real"], result["unlucky"]
+    pair = result.get("without_holds")
     print(f"{f['name']} box {seed} ({result['how']}, level {lvl}): real {r['won']:.0%} won, {r['faints']:.2f} "
-          f"faints, {r['clean']:.0%} clean; very unlucky {u['won']:.0%}, {u['faints']:.2f}; "
-          f"{result['minutes']} minutes", flush=True)
+          f"faints, {r['clean']:.0%} clean; very unlucky {u['won']:.0%}, {u['faints']:.2f}"
+          + (f"; without holds {pair['real']['won']:.0%} won, {pair['real']['faints']:.2f} faints" if pair else "")
+          + f"; {result['minutes']} minutes", flush=True)
     return result
+
+
+def without_holds(run, slug, seed, s, model, procs, out_dir):
+    """The paired reading (Ian, 2026-10-15): where the matchup screen put a
+    held-back version in one of its top sixes, the same box is read again
+    with none on offer, each line as it stands (the holds rule B carries
+    stay), by the same search and reading, so that the reading reports what
+    the holds change. The search reuses the networks of the box's own
+    search. Its winner chooses nothing for later fights: the reading with
+    the holds on offer is the box's reading."""
+    t0 = time.time()
+    base = [r for r in s["built"]["records"] if not r["held"]]
+    st, keys, boss_keys, flags = fight_state(s["key"], base, s["stock"], s["v"], slug)
+    summary = plteam.search(f"g3-{run}-{slug}-b{seed}-without-holds", s["key"], base, s["stock"],
+                            os.path.join(out_dir, "search-without-holds"), procs=procs,
+                            prepared=(st, keys, boss_keys, flags), model=model)
+    win = summary["winner_keys"]
+    real, unlucky, rows = plteam.full_reading(st, boss_keys, flags, win, {}, procs=procs)
+    return {"winner": summary["winner"], "moves": {st["pokemon"][k]["species"]: st["moves"][k] for k in win},
+            "real": real, "unlucky": unlucky, "faints_to": plteam.losing_enemies(rows),
+            "minutes": round((time.time() - t0) / 60, 1)}
 
 
 # ---- the run ------------------------------------------------------------------------------------------------
@@ -743,6 +773,28 @@ def box_notes(r):
     for h in r.get("ruled_out") or []:
         out.append(f"  - not offered, not modelled: {h['label']} for {', '.join(h['gained'])}, since "
                    f"{by_slug_name(h['used_at'])} used it as {h['used_as']}")
+    pair = r.get("without_holds")
+    if pair:
+        out.append(f"  - read again without them: {', '.join(pair['winner'])}; {pair['real']['won']:.0%} won, "
+                   f"{pair['real']['faints']:.2f} faints")
+    return out
+
+
+def paired_table(res, by_slug):
+    """The summary's table of the paired readings (Ian, 2026-10-15): each box
+    whose screen put a held-back version in a top six, read with the holds
+    on offer and again without, both numbers side by side."""
+    rows = [(by_slug[slug], r) for slug, rs in res.items() for r in rs if r.get("without_holds")]
+    if not rows:
+        return []
+    out = ["", "Paired readings: the boxes whose matchup screen put a held-back version in a top six, read again "
+               "with none on offer.", "",
+           "| Fight | Box | With holds: won, faints | Without: won, faints | Held back in the screen's top sixes |",
+           "|---|---|---|---|---|"]
+    for f, r in rows:
+        a, b = r["real"], r["without_holds"]["real"]
+        out.append(f"| {f['name']} | {r['seed']} | {a['won']:.0%}, {a['faints']:.2f} | {b['won']:.0%}, "
+                   f"{b['faints']:.2f} | {', '.join(r['held_in_screen'])} |")
     return out
 
 
@@ -784,6 +836,7 @@ def summary(run, commit):
             if every:
                 detail.append(f"- every box's winner took {', '.join(sorted(every))}")
             detail.append("")
+    lines += paired_table(results(run), by_slug)
     text = "\n".join(lines + [""] + detail)
     with open(os.path.join(OUT, run, "summary.md"), "w") as fh:
         fh.write(text + "\n")
@@ -812,8 +865,9 @@ def dry(run, slug, seed, screen=False):
     held = {k for k in keys if st["pokemon"][k]["held"]}
     for six, score in zip(sixes, scores):
         print(f"  {score:6.2f}  " + ", ".join(plteam.member_name(st["pokemon"][k]) for k in six))
-    print(f"held-back versions in the screen's top sixes: "
-          f"{', '.join(sorted({plteam.member_name(st['pokemon'][k]) for six in sixes for k in six if k in held})) or 'none'}")
+    inside = sorted({plteam.member_name(st["pokemon"][k]) for six in sixes for k in six if k in held})
+    print(f"held-back versions in the screen's top sixes: {', '.join(inside) or 'none'}"
+          + ("; the box would be read again without them" if inside else ""))
 
 
 def main(argv=None):
