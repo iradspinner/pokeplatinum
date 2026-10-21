@@ -2326,6 +2326,9 @@ Expert_Main:
     // Octolock is built on Mean Look's effect.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ESCAPE_HIT, Expert_BindingMove
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_OCTOLOCK, Expert_BindingMove
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Jaw Lock traps
+    // both battlers after its hit, as Thousand Waves traps its target.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ESCAPE_BOTH_HIT, Expert_BindingMove
     // Dragon Tail forces a switch, as Roar and Whirlwind do.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FORCE_SWITCH_HIT, Expert_ForceSwitch
     // Incinerate burns up the target's Berry, as Pluck takes it.

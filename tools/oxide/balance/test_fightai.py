@@ -248,6 +248,7 @@ EXPERT_ROWS = [
     ("OHKOMove", "Sheer Cold", None, 1, 0),
     ("SuperFang, foe at 50%", "Super Fang", _t(t_hp=50), -1, -1),
     ("BindingMove, Mean Look on a cursed foe", "Mean Look", _t(t_cursed=True), 1, 0),
+    ("BindingMove, Jaw Lock on a cursed foe", "Jaw Lock", _t(t_cursed=True, t_types=["Normal"]), 1, 0),
     ("HighCritical, Slash, neutral", "Slash", _t(t_types=["Water"]), 1, 0),
     ("HighCritical, Drill Run into Levitate reads as immune", "Drill Run", _t(t_ability="Levitate"), 0, 0),
     ("HighCritical, Frost Breath into a Grass type", "Frost Breath", _t(t_types=["Grass"]), 1, 0),
