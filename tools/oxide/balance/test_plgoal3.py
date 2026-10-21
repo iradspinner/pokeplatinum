@@ -212,12 +212,13 @@ def holds_checks(by):
     return out
 
 
-def stubbed_read(run, slug, seed, screen_held):
+def stubbed_read(run, slug, seed, screen_held, win_held=True):
     """read_box on a real box with the team search and the full reading
     stubbed, in a scratch output folder: (its result, the searches it ran).
-    The stub's winner takes the box's held-back versions first; its screen
-    shows them in a top six or not, as `screen_held` says; the first
-    reading wins 90% of its fights, any later one 70%."""
+    The stub's winner takes the box's held-back versions first, or none, as
+    `win_held` says; its screen shows held versions in a top six or not, as
+    `screen_held` says; the first reading wins 90% of its fights, any later
+    one 70%."""
     calls = []
 
     def search(fight, key, recs, stock, out_dir, procs=None, prepared=None, model=None, **_kw):
@@ -234,8 +235,8 @@ def stubbed_read(run, slug, seed, screen_held):
                     seen.add(st["pokemon"][k]["catch"])
             return out
 
-        win = six(held + [k for k in keys if k not in held])
-        top = win if screen_held else six([k for k in keys if k not in held])
+        win = six(held + [k for k in keys if k not in held]) if win_held else six([k for k in keys if k not in held])
+        top = six(held + [k for k in keys if k not in held]) if screen_held else six([k for k in keys if k not in held])
         calls.append({"fight": fight, "held": len(held), "model": model})
         return {"winner_keys": win, "winner": [names[k] for k in win], "screen": [[names[k] for k in top]],
                 "model": model or "networks-x"}
@@ -260,17 +261,17 @@ def stubbed_read(run, slug, seed, screen_held):
 
 
 def paired_checks():
-    """The paired reading (Ian, 2026-10-15) on Lucas and Dawn 2's box 1,
-    whose box offers Luxray (Shinx held to 29) among others: read again
-    without the held-back versions where the screen puts one in a top six,
-    once where it puts none."""
+    """The paired reading (Ian, 2026-10-15, narrowed on 2026-10-21) on Lucas
+    and Dawn 2's box 1, whose box offers Luxray (Shinx held to 29) among
+    others: read again without the held-back versions only where the
+    reading's chosen six uses one, whatever the screen's top sixes hold."""
     out = []
-    r, calls = stubbed_read("t", "lucas_dawn_2", 1, True)
+    r, calls = stubbed_read("t", "lucas_dawn_2", 1, False, True)
     pair = r.get("without_holds") or {}
-    out.append(("a box whose screen holds a held-back version is read again without it, both kept",
-                "Luxray (Shinx held to 29)" in r["held_in_screen"] and r["real"]["won"] == 0.9
+    out.append(("a box whose chosen six uses a held version is read again without holds, both kept",
+                "Luxray (Shinx held to 29)" in r["held_used"] and not r["held_in_screen"] and r["real"]["won"] == 0.9
                 and pair.get("real", {}).get("won") == 0.7 and [c["held"] for c in calls] == [len(r["offered"]), 0]
-                and calls[1]["model"] == "networks-x" and "Luxray (Shinx held to 29)" not in pair["winner"],
+                and calls[1]["model"] == "networks-x" and "Luxray (Shinx held to 29)" not in pair.get("winner", []),
                 f"with {r['real']['won']:.0%}, without {pair.get('real', {}).get('won', 0):.0%}; searches "
                 f"{[(c['fight'].rsplit('-', 2)[-1], c['held']) for c in calls]}"))
     out.append(("the reading's chosen six keeps its held-back member for the seed's later fights",
@@ -278,13 +279,14 @@ def paired_checks():
                 and any(u["hold"] == {"SPECIES_SHINX": 29} and u["held"] for u in r["chosen"]),
                 f"{len(r['chosen'])} chosen"))
     table = g.paired_table({"lucas_dawn_2": [r]}, {f["slug"]: f for f in g.fights()})
-    out.append(("the summary puts both readings side by side",
+    out.append(("the summary puts both readings side by side, with the chosen six's held versions",
                 any(t.startswith("| Lucas and Dawn 2 | 1 | 90%, 1.00 | 70%, 1.00 | ") and "Luxray (Shinx held to 29)" in t
-                    for t in table),
+                    for t in table) and any("chosen six" in t for t in table),
                 table[-1] if table else "no table"))
-    r, calls = stubbed_read("t", "lucas_dawn_2", 1, False)
-    out.append(("a box whose screen holds none is read once", "without_holds" not in r and len(calls) == 1,
-                f"{len(calls)} search"))
+    r, calls = stubbed_read("t", "lucas_dawn_2", 1, True, False)
+    out.append(("a box whose chosen six uses none is read once, though its screen's top sixes hold some",
+                "without_holds" not in r and len(calls) == 1 and r["held_in_screen"] and not r["held_used"],
+                f"{len(calls)} search; {len(r['held_in_screen'])} held versions in the screen's top sixes"))
     return out
 
 
@@ -370,7 +372,7 @@ def planned_checks():
                 plan[0].split is None and waited and all(c.split == "Gardenia" for c in waited)
                 and not set(waited) & set(mars) and set(waited) <= set(gard) and len(gard) == len(plan),
                 f"{len(plan)} catches, {len(waited)} waited for: {', '.join(c.area for c in waited)}"))
-    r, calls = stubbed_read("t", "mars_1", g.PLANNED, False)
+    r, calls = stubbed_read("t", "mars_1", g.PLANNED, False, False)
     out.append(("a planned box reads as any box does", r["seed"] == g.PLANNED and len(calls) == 1
                 and len(r["box"]) - len(r["offered"]) == len(mars) and r["chosen"],
                 f"{len(r['box'])} members, starter {r['starter']}"))

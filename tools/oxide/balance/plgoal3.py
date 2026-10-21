@@ -54,10 +54,10 @@ of every earlier fight of the same seed, so each seed's fights read in
 play order (play_order, run_all); the seeds still run side by side. A
 hold rule A leaves out is listed in the result ("ruled_out") and the
 summary, not modelled, since testing it means reading that earlier fight
-again. Where the matchup screen puts a held-back version in one of its
-top sixes, the box is read a second time with none on offer, and the
-result keeps both readings ("without_holds", Ian, 2026-10-15: to measure
-what holds change). An Ace Trainer's blind reading is offered no holds
+again. Where the reading's chosen six uses a held-back version, the box
+is read a second time with none on offer, and the result keeps both
+readings ("without_holds", Ian, 2026-10-15: to measure what holds change;
+narrowed on 2026-10-21 from wherever the screen's top sixes held one). An Ace Trainer's blind reading is offered no holds
 and chooses no six, so it records nothing for later fights.
 
 The planned-box sample (Ian, 2026-10-15): with --planned, Mars 1,
@@ -625,7 +625,10 @@ def read_box(run, slug, seed, procs):
         result["sticky_web"] = web_report(st, boss_keys, flags, win, tallies, recs, real, procs)
         offered = set(result["offered"])
         result["held_in_screen"] = sorted({n for six in summary["screen"] for n in six} & offered)
-        if result["held_in_screen"]:
+        # Paired only where the chosen six uses a held version (Ian,
+        # 2026-10-21; until then wherever the screen's top sixes held one,
+        # which from Barry 3 on was nearly every box).
+        if result["held_used"]:
             result["without_holds"] = without_holds(run, slug, seed, s, summary.get("model"), procs, out_dir)
     result["minutes"] = round((time.time() - t0) / 60, 1)
     with open(path + ".part", "w") as fh:
@@ -685,11 +688,11 @@ def web_report(st, boss_keys, flags, win, tallies, recs, real, procs, check=25):
 
 
 def without_holds(run, slug, seed, s, model, procs, out_dir):
-    """The paired reading (Ian, 2026-10-15): where the matchup screen put a
-    held-back version in one of its top sixes, the same box is read again
-    with none on offer, each line as it stands (the holds rule B carries
-    stay), by the same search and reading, so that the reading reports what
-    the holds change. The search reuses the networks of the box's own
+    """The paired reading (Ian, 2026-10-15): where the reading's chosen six
+    uses a held-back version (the trigger Ian narrowed on 2026-10-21), the
+    same box is read again with none on offer, each line as it stands (the
+    holds rule B carries stay), by the same search and reading, so that the
+    reading reports what the holds change. The search reuses the networks of the box's own
     search. Its winner chooses nothing for later fights: the reading with
     the holds on offer is the box's reading."""
     t0 = time.time()
@@ -920,19 +923,19 @@ def web_total(res):
 
 def paired_table(res, by_slug):
     """The summary's table of the paired readings (Ian, 2026-10-15): each box
-    whose screen put a held-back version in a top six, read with the holds
-    on offer and again without, both numbers side by side."""
+    whose chosen six uses a held-back version, read with the holds on offer
+    and again without, both numbers side by side."""
     rows = [(by_slug[slug], r) for slug, rs in res.items() for r in rs if r.get("without_holds")]
     if not rows:
         return []
-    out = ["", "Paired readings: the boxes whose matchup screen put a held-back version in a top six, read again "
-               "with none on offer.", "",
-           "| Fight | Box | With holds: won, faints | Without: won, faints | Held back in the screen's top sixes |",
+    out = ["", "Paired readings: the boxes whose chosen six uses a held-back version, read again with none on "
+               "offer.", "",
+           "| Fight | Box | With holds: won, faints | Without: won, faints | Held back in the chosen six |",
            "|---|---|---|---|---|"]
     for f, r in rows:
         a, b = r["real"], r["without_holds"]["real"]
         out.append(f"| {f['name']} | {r['seed']} | {a['won']:.0%}, {a['faints']:.2f} | {b['won']:.0%}, "
-                   f"{b['faints']:.2f} | {', '.join(r['held_in_screen'])} |")
+                   f"{b['faints']:.2f} | {', '.join(r['held_used'])} |")
     return out
 
 
@@ -1013,7 +1016,7 @@ def dry(run, slug, seed, screen=False):
         print(f"  {score:6.2f}  " + ", ".join(plteam.member_name(st["pokemon"][k]) for k in six))
     inside = sorted({plteam.member_name(st["pokemon"][k]) for six in sixes for k in six if k in held})
     print(f"held-back versions in the screen's top sixes: {', '.join(inside) or 'none'}"
-          + ("; the box would be read again without them" if inside else ""))
+          + ("; the box is read again without them if its chosen six takes one" if inside else ""))
 
 
 def seed_of(text):
