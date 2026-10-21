@@ -7412,6 +7412,51 @@ def check_zippy_zap(results):
     results.append(("Zippy Zap raises its user's evasion and is no critical hit", out == want, str(out)))
 
 
+def misses13():
+    """Dice for batch 13's checks in the readings' battle: the player's
+    every move misses, and no other chance lands but a certain one."""
+    from . import perfectline as pl
+
+    class Misses(pl.RunDice):
+        def bad(self, kind, p):
+            return kind == "miss" and p > 0
+
+        def good(self, p, kind=None):
+            return p >= 1
+
+        def roll(self, top):
+            return 15
+    return Misses(random.Random(1), True)
+
+
+@b13
+def check_chloroblast(results):
+    """Chloroblast (approved 2026-10-14; effect script 403,
+    subscript_recoil_half_max_hp): any hit, a Substitute's and a knockout's
+    too, costs its user half its maximum HP, rounded up, in both battles;
+    Magic Guard spares it and Rock Head does not; a miss costs nothing."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("hit", "Magic Guard", "Rock Head", "Substitute", "knockout", "miss", "fightsim"):
+        b, p, foe = b11_battle(["Chloroblast"], ["Tackle"], {("p", "Chloroblast"): [20] * 16}, hp=101)
+        b.dice = misses13() if case == "miss" else sure12()
+        if case in ("Magic Guard", "Rock Head"):
+            p.ability = case
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move("Chloroblast"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Chloroblast"), foe, True)
+        out[case] = p.hp
+    want = {"hit": 50, "Magic Guard": 101, "Rock Head": 50, "Substitute": 50, "knockout": 50, "miss": 101,
+            "fightsim": 50}
+    results.append(("Chloroblast costs its user half its HP after a hit", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

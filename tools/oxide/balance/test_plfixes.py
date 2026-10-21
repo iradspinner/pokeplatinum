@@ -6508,6 +6508,18 @@ def zippy_zap_checks():
              f"(the rows alike, evasion stage) {got}; rows {rows[0][-1]} and {rows[1][-1]}")]
 
 
+@b13
+def chloroblast_checks():
+    """Chloroblast in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Venusaur's hit on a trainer's
+    Geodude costs it half its maximum HP, rounded up."""
+    b, geo, venu = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Venusaur", 30, "Overgrow", ["Chloroblast"])])
+    pl.attack(b, venu, fs.move("Chloroblast"), geo, True)
+    got = (geo.hp < geo.maxhp, venu.maxhp - venu.hp)
+    return [("the readings' Chloroblast costs its user half its HP", got == (True, (venu.maxhp + 1) // 2),
+             f"(hit, HP paid) {got} of {venu.maxhp}")]
+
+
 def main():
     results = []
 

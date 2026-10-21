@@ -4559,6 +4559,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         dfn.protecting = False
     if e in RECOIL and att.ability not in RECOIL_PROOF:
         hurt(b, att, max(1, int(dealt * RECOIL[e])))
+    if e in ANY_HIT:
+        any_hit(b, att, dfn, mv)         # Chloroblast's cost, after any hit (any_hit)
     # Draining (subscript_drain_half_damage_dealt, _three_quarters): Heal Block
     # on the user stops the heal, not the damage, and Liquid Ooze turns it
     # into damage (drain).
@@ -7090,6 +7092,27 @@ def late_hit(b, att, dfn, mv, stripped, dealt):
     elif e == "PREVENT_ESCAPE_HIT":
         if not stripped and dealt > 0 and dfn.alive() and dfn.trapped_by is None:
             dfn.trapped_by = att.key
+
+
+# The hits whose own effect runs ON_HIT on any hit, a knockout's or a
+# Substitute's included, each looked at once by effect (any_hit).
+ANY_HIT = frozenset({"RECOIL_HALF_MAX_HP"})
+
+
+def any_hit(b, att, dfn, mv):
+    """A hit's own effect for the effects in ANY_HIT, once the hit is in,
+    before the knockout and Substitute checks that end the others.
+
+    Chloroblast (effect script 403, subscript_recoil_half_max_hp, ON_HIT
+    on its user): the user loses half its maximum HP, rounded up; Magic
+    Guard spares it and Rock Head does not, as it is a cost rather than
+    recoil from the damage. Its script's Reckless 1.2 is in the row (the
+    calculator's Oxide profile). Until 2026-10-20 it cost nothing (Ian
+    approved the fix)."""
+    e = mv.effect
+    if e == "RECOIL_HALF_MAX_HP":
+        if att.ability != "Magic Guard":
+            hurt(b, att, (att.maxhp + 1) // 2)
 
 
 def jaw_lock(att, dfn):
