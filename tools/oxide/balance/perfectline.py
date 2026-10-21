@@ -1991,9 +1991,21 @@ def _turn(c, pa, aa):
         if fs.move_priority(a, ma) != fs.move_priority(d, md):
             order.sort(key=lambda o: -fs.move_priority(o[0], o[1]))
         else:
-            sa, sd = c.speed(a), c.speed(d)
-            if c.trick_room:
-                sa, sd = -sa, -sd
+            raw = c.speed(a), c.speed(d)
+            sa, sd = (-raw[0], -raw[1]) if c.trick_room else raw
+
+            def by_speed():
+                return sa < sd or (sa == sd and not c.dice.tie_player_first())
+
+            def behind():
+                # Whether the player goes second with no Quick Claw or
+                # Custap Berry settling it: Lagging Tail and Full Incense,
+                # then Stall, put their holder last in the bracket
+                # (fightsim.slow_after, CompareBattlerSpeed), and without any
+                # Speed decides. Until 2026-10-21 neither battle's order had
+                # them (Ian approved the fix on 2026-10-21).
+                slow = fs.slow_after(me, foe, raw[0], raw[1], lambda: not c.dice.tie_player_first())
+                return by_speed() if slow is None else slow
             if quick is not None:
                 # A run: each Quick Claw was rolled before the trainer chose
                 # (speedRand, which the AI's speed reading also sees); one
@@ -2001,15 +2013,15 @@ def _turn(c, pa, aa):
                 qp, qf = quick.get(me.key, False), quick.get(foe.key, False)
                 if qf and not qp:
                     order.reverse()
-                elif qp == qf and (sa < sd or (sa == sd and not c.dice.tie_player_first())):
+                elif qp == qf and (by_speed() if qp else behind()):
                     order.reverse()
                 for mon in (me, foe):
                     if quick.get(mon.key) and mon.item == "Custap Berry":
                         fs.consume(mon)          # a Custap Berry that fired is eaten
-            elif sa < sd or (sa == sd and not c.dice.tie_player_first()):
-                # The player is slower: its Quick Claw (one in five) keeps it
-                # first. Before this the check sat after this branch and could
-                # never fire.
+            elif behind():
+                # The player goes second: its Quick Claw (one in five) keeps
+                # it first. Before this the check sat after this branch and
+                # could never fire.
                 if not (me.item == "Quick Claw" and c.dice.good(0.2, "quickclaw")):
                     order.reverse()
             elif foe.item == "Quick Claw" and c.dice.bad("quickclaw", 0.2):

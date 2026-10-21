@@ -9222,6 +9222,62 @@ def check_whirlwind_level(results):
                     "(the index now in for the target's side) " + str(out)))
 
 
+@b16
+def check_slow_items_order(results):
+    """Lagging Tail, Full Incense and Stall in the turn's order (Ian
+    approved the fix on 2026-10-21; BattleSystem_CompareBattlerSpeed's
+    HOLD_EFFECT_PRIORITY_DOWN and ABILITY_STALL, after the Quick Claw and
+    the Custap Berry): in the readings' single battle, each side's Tackle
+    knocks the other out, so the Pokemon that moves first is the one left
+    standing. A faster player's Pokemon holding a Lagging Tail or a Full
+    Incense, or with Stall, moves after the slower foe; of two Lagging Tail
+    holders the slower moves first; a Lagging Tail holder goes after a
+    Stall foe, and a Stall Pokemon before a Lagging Tail foe; a slower
+    player's Pokemon moves before a faster Lagging Tail foe; a Quick Claw
+    that fired puts its slow holder before a faster Lagging Tail foe; the
+    battle's dice with no Quick Claw rolled (perfectline's search) put the
+    Lagging Tail holder last too. In a double battle (run_doubles) a faster
+    Lagging Tail holder's Tackle comes after the slower foe's. Until
+    2026-10-21 Speed alone decided all these."""
+    from . import perfectline as pl
+    rows = {("p", "Tackle"): [100] * 16, ("b", "Tackle"): [100] * 16}
+
+    def single(p_item=None, b_item=None, p_ability=None, b_ability=None, p_speed=100, b_speed=50, quick=True,
+               p_quick=False):
+        b, p, foe = battle(["Tackle"], ["Tackle"], rows, p_speed=p_speed, b_speed=b_speed)
+        p.item, foe.item, p.ability, foe.ability = p_item, b_item, p_ability, b_ability
+        b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
+        b.st["first_battle"] = True          # no critical hit
+        if quick:
+            b.quick = {"p0": p_quick, "b0.0": False}
+        pl._turn(b, ("move", fs.move("Tackle")), ("move", fs.move("Tackle")))
+        return "player first" if p.alive() else "foe first"
+    out = {"no item": single(), "Lagging Tail": single("Lagging Tail"), "Full Incense": single("Full Incense"),
+           "Stall": single(p_ability="Stall"), "both Lagging Tail": single("Lagging Tail", "Lagging Tail"),
+           "Lagging Tail against Stall": single("Lagging Tail", b_ability="Stall"),
+           "Stall against Lagging Tail": single(p_ability="Stall", b_item="Lagging Tail"),
+           "slower against a Lagging Tail": single(b_item="Lagging Tail", p_speed=30, b_speed=100),
+           "fired Quick Claw against a faster Lagging Tail": single("Quick Claw", "Lagging Tail", p_speed=30,
+                                                                     b_speed=100, p_quick=True),
+           "no Quick Claw rolled, Lagging Tail": single("Lagging Tail", quick=False)}
+    mons = {"p0": {"moves": ["Tackle"], "item": "Lagging Tail"}, "p1": {"moves": ["Splash"]},
+            "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
+    for item in ("Lagging Tail", None):
+        mons["p0"]["item"] = item
+        st = doubles_st(mons, {("p0", "b0.0"): {"Tackle": 100}, ("b0.0", "p0"): {"Tackle": 100}},
+                        speeds={"p0": 100, "p1": 5, "b0.0": 50, "b0.1": 5})
+        st["first_battle"] = True
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": ("Tackle", "b0.0"), "b0.0": ("Tackle", "p0")})
+        out[f"doubles, {item or 'no item'}"] = "player first" if mon_of(b, "p0").alive() else "foe first"
+    want = {"no item": "player first", "Lagging Tail": "foe first", "Full Incense": "foe first", "Stall": "foe first",
+            "both Lagging Tail": "foe first", "Lagging Tail against Stall": "foe first",
+            "Stall against Lagging Tail": "player first", "slower against a Lagging Tail": "player first",
+            "fired Quick Claw against a faster Lagging Tail": "player first",
+            "no Quick Claw rolled, Lagging Tail": "foe first",
+            "doubles, Lagging Tail": "foe first", "doubles, no item": "player first"}
+    results.append(("Lagging Tail, Full Incense and Stall go last in their priority bracket", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

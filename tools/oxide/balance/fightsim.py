@@ -9100,6 +9100,29 @@ def moody(b, m):
         ability_stages(m, m, down, -1)
 
 
+SLOW_ITEMS = ("Lagging Tail", "Full Incense")
+
+
+def slow_after(m1, m2, s1, s2, tie):
+    """Lagging Tail and Full Incense, then Stall, in a comparison of two
+    Pokemon in one priority bracket that no Quick Claw or Custap Berry has
+    settled (BattleSystem_CompareBattlerSpeed, HOLD_EFFECT_PRIORITY_DOWN and
+    ABILITY_STALL): None when neither holds such an item and neither has
+    Stall, so Speed decides; else whether m1 goes after m2. A holder goes
+    after one without, and of two holders the slower goes first (s1 and s2
+    their Speeds, Trick Room or not), tie() deciding equal Speeds. Each item
+    is checked before Stall, so a Lagging Tail holder goes after a Stall
+    Pokemon."""
+    l1, l2 = m1.item in SLOW_ITEMS, m2.item in SLOW_ITEMS
+    if not (l1 or l2):
+        l1, l2 = m1.ability == "Stall", m2.ability == "Stall"
+        if not (l1 or l2):
+            return None
+    if l1 != l2:
+        return l1
+    return s1 > s2 or (s1 == s2 and tie())
+
+
 def end_order(b):
     """The Pokemon on the field in the order the engine runs the turn's end:
     BattleSystem_SortMonSpeedOrder, re-run once the moves are done
@@ -10161,7 +10184,10 @@ def doubles_order(b, acts):
     which subscript_check_quick_claw reads), and is noted in b.custap. acts
     is [(Pokemon, move, target)], returned in order. Until 2026-10-21 the
     double battles went by priority and Speed alone, so neither item did
-    anything (Ian approved the double battles' path on 2026-10-14)."""
+    anything (Ian approved the double battles' path on 2026-10-14). Where
+    neither has fired, a Lagging Tail or Full Incense, then Stall, puts its
+    holder last in the bracket (slow_after); until 2026-10-21 neither
+    battle's order had them (Ian approved the fix on 2026-10-21)."""
     quick = {}
     for mon, _mv, _t in acts:
         q = bool(b.quick.get(mon.key))
@@ -10179,6 +10205,12 @@ def doubles_order(b, acts):
         qx, qy = quick[x[0].key], quick[y[0].key]
         if qx != qy:
             return qy
+        if not qx:
+            # Lagging Tail and Full Incense, then Stall, once neither
+            # Pokemon's Quick Claw or Custap Berry has fired (slow_after).
+            slow = slow_after(x[0], y[0], sx, sy, lambda: b.rng.random() < 0.5)
+            if slow is not None:
+                return slow
         if b.trick_room and not (qx and qy):
             return sx > sy or (sx == sy and b.rng.random() < 0.5)
         return sx < sy or (sx == sy and b.rng.random() < 0.5)

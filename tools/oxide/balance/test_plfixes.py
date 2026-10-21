@@ -7081,6 +7081,51 @@ def whirlwind_level_checks():
              f"(the player's Pokemon now in) {out}")]
 
 
+def _first_mover(b, pa, aa):
+    """The species that acts first in perfectline._turn(b, pa, aa), read by
+    watching perfectline.use_move for the turn."""
+    seen = []
+    real = pl.use_move
+
+    def watch(b_, att, mv_, dfn, first, targets=None):
+        seen.append(att.species)
+        return real(b_, att, mv_, dfn, first, targets)
+    pl.use_move = watch
+    try:
+        pl._turn(b, pa, aa)
+    finally:
+        pl.use_move = real
+    return seen[0] if seen else None
+
+
+@b16
+def slow_items_order_checks():
+    """Lagging Tail, Full Incense and Stall in the readings' turn order on
+    the calculator's real rows (Ian approved the fix on 2026-10-21;
+    BattleSystem_CompareBattlerSpeed), on Roark's split: the player's
+    Bibarel, faster than a trainer's Geodude, Tackles first holding nothing
+    and after the Geodude's Tackle holding a Lagging Tail or a Full
+    Incense; the player's Sableye, faster than the Geodude too, Tackles
+    after it with Stall and first with Keen Eye."""
+    out = {}
+    for item in (None, "Lagging Tail", "Full Incense"):
+        b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                                [("Bibarel", 30, "Simple", ["Tackle"], item)])
+        b.quick = {bib.key: False, geo.key: False}
+        out[item or "nothing"] = (b.speed(bib) > b.speed(geo),
+                                  _first_mover(b, ("move", fs.move("Tackle")), ("move", fs.move("Tackle"))))
+    for ability in ("Stall", "Keen Eye"):
+        b, geo, sab = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Sableye", 30, ability, ["Tackle"])])
+        b.quick = {sab.key: False, geo.key: False}
+        out[f"Sableye, {ability}"] = (b.speed(sab) > b.speed(geo),
+                                      _first_mover(b, ("move", fs.move("Tackle")), ("move", fs.move("Tackle"))))
+    want = {"nothing": (True, "Bibarel"), "Lagging Tail": (True, "Geodude"), "Full Incense": (True, "Geodude"),
+            "Sableye, Stall": (True, "Geodude"), "Sableye, Keen Eye": (True, "Sableye")}
+    ok = out == want
+    return [("the readings' Lagging Tail and Full Incense go last in their bracket, Stall too", ok,
+             f"(the player's Pokemon faster, the first to act) {out}, want {want}")]
+
+
 def main():
     results = []
 
