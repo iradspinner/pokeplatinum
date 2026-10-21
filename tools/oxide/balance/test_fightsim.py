@@ -8249,17 +8249,20 @@ def doubles_st(mons, rows=None, speeds=None):
     return st
 
 
-def doubles_turns(st, player, foes, choices, turns=1, seed=1, partner=(), flags=0):
+def doubles_turns(st, player, foes, choices, turns=1, seed=1, partner=(), flags=0, start=None):
     """Play fightsim.run_doubles on st for `turns` turns, every Pokemon's
     action held: choices is {key: (move, target key or None)}, a Pokemon it
     leaves out using its first move with no target named; a locked or
     charging Pokemon goes on as the battle's choosers have it. foes is the
-    trainer's party, or a list of two parties for a tag battle. The battle
-    as the last turn left it."""
+    trainer's party, or a list of two parties for a tag battle. start(b),
+    if given, runs once as the first choice is asked for, the leads in.
+    The battle as the last turn left it."""
     seen = {}
     groups = foes if foes and isinstance(foes[0], (list, tuple)) else [foes]
 
     def pick(b, me):
+        if "b" not in seen and start is not None:
+            start(b)
         seen["b"] = b
         if me.lock:
             return "move", me.lock[0], None
@@ -8495,6 +8498,36 @@ def check_pdoubles_reader(results):
     ok = (rate, deaths, wipes) == (1.0, 0.0, 0.0) and best["rate"] == 1.0 and best["dice"] == "game odds"
     results.append(("doubles: pdoubles' reader plays its battles to their end", ok,
                     f"(clean rate, deaths, wipes) {(rate, deaths, wipes)}; search {best['rate']}, {best['line']}"))
+
+
+@b15
+def check_doubles_quick_claw(results):
+    """Quick Claw and Custap Berry in a double battle
+    (BattleControllerPlayer_CalcTurnOrder on BattleSystem_CompareBattlerSpeed;
+    Ian approved the double battles' path on 2026-10-14): a slow Quick Claw
+    holder moves before a faster foe about one turn in five, and so knocks
+    it out first in about 120 of 600 battles; a Custap Berry holder at a
+    quarter of its HP always does, and the Berry is eaten. Until 2026-10-21
+    run_doubles ordered by priority and Speed alone, so the holder always
+    fell first."""
+    def battle(item, seed, hp=100):
+        mons = {"p0": {"moves": ["Tackle"], "item": item}, "p1": {"moves": ["Splash"]},
+                "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
+        rows = {("p0", "b0.0"): {"Tackle": 100}, ("b0.0", "p0"): {"Tackle": 100}}
+        st = doubles_st(mons, rows, speeds={"p0": 10, "p1": 5, "b0.0": 100, "b0.1": 5})
+
+        def start(b):
+            mon_of(b, "p0").hp = hp
+        return doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": ("Tackle", "b0.0"), "b0.0": ("Tackle", "p0")},
+                             seed=seed, start=start)
+    first = sum(mon_of(battle("Quick Claw", seed), "p0").alive() for seed in range(600))
+    plain = sum(mon_of(battle(None, seed), "p0").alive() for seed in range(100))
+    custap = [battle("Custap Berry", seed, hp=25) for seed in range(20)]
+    out = {"Quick Claw first (of 600)": first, "no item first (of 100)": plain,
+           "Custap first (of 20)": sum(mon_of(b, "p0").alive() for b in custap),
+           "Custap eaten": all(mon_of(b, "p0").item is None for b in custap)}
+    ok = 80 <= first <= 165 and plain == 0 and out["Custap first (of 20)"] == 20 and out["Custap eaten"]
+    results.append(("doubles: Quick Claw and Custap Berry move their holder first", ok, f"{out}"))
 
 
 def main():

@@ -9692,6 +9692,64 @@ def player_replacement_doubles(b, side, owner):
     return best[1] if best else None
 
 
+def doubles_quick(b):
+    """Each Pokemon's Quick Claw for the turn, rolled before anyone chooses,
+    as in the single battles (perfectline.play_turn): the engine reads
+    speedRand, drawn for every battler before the turn (BattleContext_InitCounters,
+    then each turn's PRE_MOVE_ACTION_STATE_SPEED_RNG), against the claw's one
+    in five, and the trainer's AI reads it too (fightai._first_item). The
+    player's side rolls as its luck, the trainer's as the player's bad luck,
+    alike at the game's odds."""
+    b.quick = {m.key: m.item == "Quick Claw" and (b.dice.good(0.2, "quickclaw") if m.side == "p"
+                                                  else b.dice.bad("quickclaw", 0.2))
+               for m in b.p.on_field() + b.b.on_field() if m.alive()}
+    b.custap = set()
+
+
+def doubles_order(b, acts):
+    """The turn's moves in a double battle in the engine's order
+    (BattleControllerPlayer_CalcTurnOrder): an exchange sort over the four
+    on BattleSystem_CompareBattlerSpeed, so the higher priority goes first
+    (move_priority: Prankster and Gale Wings count); within a priority a
+    Quick Claw that fired this turn (doubles_quick) or a Custap Berry in its
+    pinch (custap_fires, a quarter of its HP, half with Gluttony, unless
+    Unnerve holds it) puts its holder first, and two such holders go by
+    Speed; then Speed, the slower first under Trick Room; a tie swaps on a
+    coin. A Custap Berry so found is eaten as its holder acts, whatever its
+    move's priority (CompareBattlerSpeed sets moveEffectsData.custapBerry,
+    which subscript_check_quick_claw reads), and is noted in b.custap. acts
+    is [(Pokemon, move, target)], returned in order. Until 2026-10-21 the
+    double battles went by priority and Speed alone, so neither item did
+    anything (Ian approved the double battles' path on 2026-10-14)."""
+    quick = {}
+    for mon, _mv, _t in acts:
+        q = bool(b.quick.get(mon.key))
+        if custap_fires(mon, b):
+            q = True
+            b.custap.add(mon.key)
+        quick[mon.key] = q
+
+    def after(x, y):
+        """Whether x goes after y: CompareBattlerSpeed's nonzero result."""
+        px, py = move_priority(x[0], x[1]), move_priority(y[0], y[1])
+        if px != py:
+            return px < py
+        sx, sy = b.speed(x[0]), b.speed(y[0])
+        qx, qy = quick[x[0].key], quick[y[0].key]
+        if qx != qy:
+            return qy
+        if b.trick_room and not (qx and qy):
+            return sx > sy or (sx == sy and b.rng.random() < 0.5)
+        return sx < sy or (sx == sy and b.rng.random() < 0.5)
+
+    order = list(acts)
+    for i in range(len(order) - 1):
+        for j in range(i + 1, len(order)):
+            if after(order[i], order[j]):
+                order[i], order[j] = order[j], order[i]
+    return order
+
+
 def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), partner_flags=0,
                 trick_room=False):
     """One double battle: (the player's Pokemon lost, whether the player won).
@@ -9741,6 +9799,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
 
     while b.turn < MAX_TURNS and b.p.alive() and b.b.alive():
         b.moved = set()
+        doubles_quick(b)
         acts = []
         for mon in b.p.on_field() + b.b.on_field():
             if not mon.alive():
@@ -9756,19 +9815,18 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
         for mon, mv, _t in acts:
             mon.chosen = mv
         b.mid_turn = True
-        keyed = [(-move_priority(mon, mv), -b.speed(mon) if not b.trick_room else b.speed(mon), rng.random(),
-                  mon, mv, t)
-                 for mon, mv, t in acts]
-        ordered = sorted(keyed, key=lambda x: x[:3])
-        for i, (*_k, mon, mv, t) in enumerate(ordered):
+        ordered = doubles_order(b, acts)
+        for i, (mon, mv, t) in enumerate(ordered):
             if not mon.alive():
                 continue
+            if mon.key in b.custap:
+                consume(mon)             # its Custap Berry, eaten as it acts (subscript_check_quick_claw)
             if t is not None and not t.alive():
                 t = None
             tl = targets_of(b, mon, mv, t)
             first = bool(tl) and tl[0] not in b.moved
             # No standing battler acts after this one (moves_last, for Protect).
-            b.moving_last = not any(later[3].alive() for later in ordered[i + 1:])
+            b.moving_last = not any(later[0].alive() for later in ordered[i + 1:])
             pl.use_move(b, mon, mv, tl[0] if tl else foe_of(b, mon), first,
                         targets=tl if mv.damaging() else None)
             b.moved.add(mon)
