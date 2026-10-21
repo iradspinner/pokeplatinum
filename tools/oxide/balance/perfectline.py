@@ -955,7 +955,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     stripped = fs.sheer_force_strips(att, mv)
     if e in fs.HIT_SELF_STAGES and not (stripped and not fs.HIT_SELF_STAGES[e][1]):
         ch, certain = fs.HIT_SELF_STAGES[e]
-        if certain or secondary("statup", (mv.chance or 10) / 100):
+        # Its chance, doubled for Serene Grace (fightsim.self_raise_chance).
+        if certain or secondary("statup", min(100, fs.self_raise_chance(att, mv)) / 100):
             fs.change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         fs.spin(b, att, dfn, e)

@@ -7976,6 +7976,57 @@ def check_haze(results):
             "the planner keeps it on a Focus Energy alone": True}
     results.append(("Haze resets every stage on the field and ends Focus Energy", out == want, str(out)))
 
+
+def half_chance_dice():
+    """Readings' dice for batch 14's checks: as sure12 (the top roll, no
+    miss, no critical hit), and an added effect lands when its chance is 15
+    in 100 or more, so a 10 percent chance misses and the same chance
+    doubled lands."""
+    from . import perfectline as pl
+
+    class Half(pl.RunDice):
+        def bad(self, kind, p):
+            return False
+
+        def good(self, p, kind=None):
+            return p >= 1 or (kind not in (None, "crit") and p >= 0.15)
+
+        def roll(self, top):
+            return 15
+    return Half(random.Random(1), True)
+
+
+@b14
+def check_serene_grace_raise(results):
+    """Serene Grace doubles a hit's chance to raise its user's own stats
+    (Ian approved the fix on 2026-10-20; BattleSystem_TriggerSecondaryEffect
+    doubles every indirect effect's chance): Ancient Power's 10 percent
+    lands where 15 in 100 is needed with Serene Grace and not without, in
+    both battles; Charge Beam's 70 is certain with it."""
+    from . import perfectline as pl
+    out = {}
+    for ability in ("Serene Grace", "Hustle"):
+        for case in ("perfectline", "fightsim"):
+            b, p, foe = b11_battle(["Ancient Power", "Charge Beam"], ["Tackle"],
+                                   {("p", "Ancient Power"): [20] * 16, ("p", "Charge Beam"): [20] * 16})
+            p.ability = ability
+            b.dice = half_chance_dice()
+            if case == "fightsim":
+                b.rng = FixedDice(0.15)
+                fs.attack(b, p, fs.move("Ancient Power"), foe, True)
+            else:
+                pl.attack(b, p, fs.move("Ancient Power"), foe, True)
+            out[f"{ability}, {case}"] = p.stages["spe"]
+        b, p, foe = b11_battle(["Charge Beam"], ["Tackle"], {("p", "Charge Beam"): [20] * 16})
+        p.ability = ability
+        b.rng = FixedDice(0.99)
+        fs.attack(b, p, fs.move("Charge Beam"), foe, True)
+        out[f"{ability}, Charge Beam at a roll of 99"] = p.stages["spa"]
+    want = {"Serene Grace, perfectline": 1, "Serene Grace, fightsim": 1, "Hustle, perfectline": 0,
+            "Hustle, fightsim": 0, "Serene Grace, Charge Beam at a roll of 99": 1,
+            "Hustle, Charge Beam at a roll of 99": 0}
+    results.append(("Serene Grace doubles a hit's chance to raise its user's stats", out == want, str(out)))
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

@@ -338,6 +338,19 @@ HIT_SELF_STAGES = {  # (stages, certain)
     # never fell (Ian approved the fix).
     "USER_SPEED_DOWN_2_HIT": ({"spe": -2}, True),
 }
+
+
+def self_raise_chance(att, mv):
+    """The percent chance of a hit's raise of its own user's stats (the
+    HIT_SELF_STAGES that are not certain): the move's chance, doubled for
+    a Serene Grace user, as BattleSystem_TriggerSecondaryEffect doubles
+    every indirect effect's chance whichever Pokemon it lands on. Until
+    2026-10-20 Serene Grace left these alone, so a Togetic's Ancient Power
+    raised its stats one time in ten, not two (Ian approved the fix)."""
+    chance = mv.chance or 10
+    return chance * 2 if att.ability == "Serene Grace" else chance
+
+
 RECOIL = {"RECOIL_THIRD": 1 / 3, "RECOIL_QUARTER": 1 / 4, "RECOIL_HALF": 1 / 2,
           "RECOIL_BURN_HIT": 1 / 3, "RECOIL_PARALYZE_HIT": 1 / 3,
           "RECOIL_CONFUSE_HIT": 1 / 3}           # Raging Fury (effect 417)
@@ -4688,7 +4701,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     stripped = sheer_force_strips(att, mv)
     if e in HIT_SELF_STAGES and not (stripped and not HIT_SELF_STAGES[e][1]):
         ch, certain = HIT_SELF_STAGES[e]
-        if certain or b.rng.random() * 100 < (mv.chance or 10):
+        if certain or b.rng.random() * 100 < self_raise_chance(att, mv):
             change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         spin(b, att, dfn, e)

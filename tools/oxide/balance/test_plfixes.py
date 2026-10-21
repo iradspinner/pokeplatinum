@@ -6809,6 +6809,35 @@ def haze_checks():
     return [("the readings' Haze resets the stages on the field and ends Focus Energy", got == (2, 0, 0, 0),
              f"(Focus Energy before, after, Kingler's Attack stage, Goldeen's Speed stage) {got}")]
 
+
+class Half14(Sure7):
+    """Batch 14's dice: as Sure7 (the top roll, no miss, no critical hit),
+    and an added effect lands when its chance is 15 in 100 or more, so a
+    10 percent chance misses and the same chance doubled lands."""
+    def good(self, p, kind=None):
+        return p >= 1 or (kind not in (None, "crit") and p >= 0.15)
+
+    def lands_on_player(self, kind, p):
+        return p >= 0.15
+
+
+@b14
+def serene_grace_raise_checks():
+    """Serene Grace and a hit that raises its user's stats in the readings'
+    battle on the calculator's real rows (Ian approved the fix on
+    2026-10-20): the player's Serene Grace Togetic's Ancient Power on a
+    trainer's Geodude raises its stats at twice the move's 10 percent, which
+    lands on dice that need 15, and a Super Luck Togetic's does not."""
+    out = {}
+    for ability in ("Serene Grace", "Super Luck"):
+        b, geo, tog = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                                [("Togetic", 30, ability, ["Ancient Power"])], Half14)
+        pl.attack(b, tog, fs.move("Ancient Power"), geo, True)
+        out[ability] = (geo.hp < geo.maxhp, tog.stages["spa"], tog.stages["spe"])
+    ok = out == {"Serene Grace": (True, 1, 1), "Super Luck": (True, 0, 0)}
+    return [("the readings' Serene Grace doubles Ancient Power's chance to raise its user's stats", ok,
+             f"(hit, Sp. Atk stage, Speed stage) {out}")]
+
 def main():
     results = []
 
