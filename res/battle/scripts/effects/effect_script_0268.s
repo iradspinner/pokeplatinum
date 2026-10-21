@@ -18,6 +18,10 @@ _000:
     CheckItemHoldEffect CHECK_HAVE, BTLSCR_ATTACKER, HOLD_EFFECT_ARCEUS_ICE, _159
     CheckItemHoldEffect CHECK_HAVE, BTLSCR_ATTACKER, HOLD_EFFECT_ARCEUS_DRAGON, _165
     CheckItemHoldEffect CHECK_HAVE, BTLSCR_ATTACKER, HOLD_EFFECT_ARCEUS_DARK, _171
+    // Oxide, element 7: the Pixie Plate makes Judgment a Fairy move. The
+    // engine's CalcMoveType and the trainer AI already read it so, and the
+    // calculator rows it Fairy; without this branch it hit as Normal.
+    CheckItemHoldEffect CHECK_HAVE, BTLSCR_ATTACKER, HOLD_EFFECT_ARCEUS_FAIRY, _fairy
     GoTo _175
 
 _081:
@@ -78,6 +82,10 @@ _159:
 
 _165:
     UpdateVar OPCODE_SET, BTLVAR_MOVE_TYPE, TYPE_DRAGON
+    GoTo _175
+
+_fairy:
+    UpdateVar OPCODE_SET, BTLVAR_MOVE_TYPE, TYPE_FAIRY
     GoTo _175
 
 _171:
