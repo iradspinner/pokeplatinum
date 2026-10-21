@@ -51,6 +51,7 @@
             [ 34, "MOVE_ZEN_HEADBUTT" ],
             [ 37, "MOVE_WITHDRAW" ],
             [ 39, "MOVE_ICY_WIND" ],
+            [ 40, "MOVE_LUMINA_CRASH" ],
             [ 41, "MOVE_SLACK_OFF" ],
             [ 47, "MOVE_AMNESIA" ],
             [ 49, "MOVE_SCALD" ],

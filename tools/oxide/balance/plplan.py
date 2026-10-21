@@ -349,7 +349,10 @@ def merge_key(c):
     Sticky Web on a side, and Gravity's and Magic Room's turns, Copycat's
     last move and deep fog on the field, which the batches added to the
     battle and this key had left out, so positions that differed only by
-    them merged (Ian approved the fix)."""
+    them merged (Ian approved the fix); and since 2026-10-20 the Pokemon
+    states mon_key gained (Ingrain, Aqua Ring, a trap's holder, a lit
+    Flash Fire, Rollout's count, Defense Curl, Rage and Truant's loafing,
+    Ian approved)."""
     def side(s):
         key = (s.active, tuple(((m.hp * HP_BUCKETS + m.maxhp - 1) // m.maxhp,) + pl.mon_key(m)[1:]
                                for m in s.mons),

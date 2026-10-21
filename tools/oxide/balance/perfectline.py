@@ -316,10 +316,15 @@ def accuracy_hits(b, att, dfn, mv, first=True):
     if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or fs.no_guard(att, dfn, mv) or (dfn.rare and fs.lands_sure(att, dfn, mv)):
         return True
     acc = mv.acc
+    if dfn.ability == "Wonder Skin" and mv.cat == "Status":
+        acc = fs.wonder_skin(att, dfn, acc)      # half at most, before the stages (fightsim.wonder_skin)
+    weather = fs.weather_now(b)          # none while Cloud Nine or Air Lock is out (NO_CLOUD_NINE)
     if mv.effect in ("THUNDER", "HURRICANE"):               # Oxide: Hurricane as Thunder in weather
-        acc = 100 if b.weather == "Rain" else 50 if b.weather == "Sun" else acc
-    if mv.effect == "BLIZZARD" and b.weather == "Hail":
+        acc = 100 if weather == "Rain" else 50 if weather == "Sun" else acc
+    if mv.effect == "BLIZZARD" and weather == "Hail":
         return True
+    if mv.effect == "BLEAKWIND_STORM" and weather == "Rain":
+        return True          # it never misses in the rain (fightsim.HIT_FOE_STAGES)
     # The stages, with Unaware, Keen Eye and Sacred Sword's kind, Tangled
     # Feet and the Zoom Lens (fightsim.accuracy_scale).
     acc *= fs.accuracy_scale(att, dfn, mv, first)
@@ -331,9 +336,9 @@ def accuracy_hits(b, att, dfn, mv, first=True):
         acc *= 0.8
     if dfn.item in ("Bright Powder", "BrightPowder", "Lax Incense"):
         acc *= 0.9
-    if dfn.ability in ("Sand Veil",) and b.weather == "Sand" and not fs.mold(att, dfn):
+    if dfn.ability in ("Sand Veil",) and weather == "Sand" and not fs.mold(att, dfn):
         acc *= 0.8
-    if dfn.ability in ("Snow Cloak",) and b.weather == "Hail" and not fs.mold(att, dfn):
+    if dfn.ability in ("Snow Cloak",) and weather == "Hail" and not fs.mold(att, dfn):
         acc *= 0.8               # Mold Breaker gets past both (Battler_IgnorableAbility)
     if b.fog:
         acc *= fs.fog_cut(b)     # deep fog's six tenths (fightsim.fog_cut)
@@ -464,13 +469,24 @@ def _use_move(b, att, mv, dfn, first):
         status_move(b, att, mv, dfn, first)
         return
     before = dfn.hp
-    attack(b, att, mv, dfn, first)
+    if att.ability == "Analytic" and fs.moves_last(b, first):
+        # Its foe has acted this turn or switched in, every other Pokemon's
+        # action done (Battler_MovedThisTurn): 13/10 power (fightsim.ability_power).
+        b.analytic = att
+        try:
+            attack(b, att, mv, dfn, first)
+        finally:
+            b.analytic = None
+    else:
+        attack(b, att, mv, dfn, first)
     # A contact ability's chance hurts the player when the player's Pokemon
     # takes it, and helps it when the trainer's does (fightsim.hit_aftermath:
     # a move of several hits has had it hit by hit).
     fs.hit_aftermath(b, att, dfn, mv,
                      lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
                      lambda kind, n: b.dice.choice(kind, n))
+    if b.blown is att:
+        fs.mind_blown_cost(b, att)       # half its HP as the move ends, hit or miss (fightsim.mind_blown_cost)
     fs.destiny_bond(att, dfn)
     if dfn.grudge:
         fs.grudge(att, dfn, paid, mv)        # the knockout's move loses its PP (fightsim.grudge)
@@ -500,7 +516,8 @@ def rolled_hits(b, att, dfn, mv, trainer, first=True):
     (fs.multi_hit_odds), rolled by a run's dice and enumerated at its odds by
     the planner's; a rising move's hits (Fury Cutter, Triple Kick, Triple
     Axel) until its first miss, each later hit checking accuracy again unless
-    a Loaded Dice skips the check; two for the two-hit moves. In the strict
+    a Loaded Dice skips the check; two for the two-hit moves and three for
+    the three-hit ones (fightsim.THREE_HITS). In the strict
     search the trainer gets its most hits and the player its fewest."""
     odds = fs.multi_hit_odds(att, mv)
     if odds:
@@ -516,7 +533,7 @@ def rolled_hits(b, att, dfn, mv, trainer, first=True):
         while hits < fs.RISING_COUNT and (att.item == "Loaded Dice" or accuracy_hits(b, att, dfn, mv, first)):
             hits += 1
         return hits
-    return 2 if mv.effect in fs.TWO_HITS else 1
+    return 2 if mv.effect in fs.TWO_HITS else 3 if mv.effect in fs.THREE_HITS else 1
 
 
 def crit_hits(b, att, dfn, mv, hits, trainer):
@@ -587,6 +604,29 @@ def multi_hit(b, att, mv, dfn, first, hits, trainer):
     return dealt
 
 
+def beat_up(b, att, mv, dfn, first, trainer):
+    """Beat Up's hits (fightsim.beat_up_hits) on the battle's dice: each
+    hit's critical hit as crit_hits rolls them, and its damage roll, each
+    hit's own in a run but one shared by every hit when the dice enumerate
+    a turn (the planner's), grouped by the whole move's damage; the
+    trainer's top roll and the player's lowest in the strict search."""
+    shared = None
+    if b.dice.mode == "run":
+        grouped = getattr(b.dice, "roll_grouped", None)
+        if grouped:
+            members = fs.beat_up_party(b, att)
+            shared = grouped(lambda r: sum(fs.beat_up_damage(b, att, m, dfn, mv, False, r) for m in members), dfn.hp)
+
+    def roll_of(i, crit):
+        if b.dice.mode != "run":
+            return 15 if trainer else 0
+        return shared if shared is not None else b.dice.roll(trainer)
+
+    return fs.beat_up_hits(b, att, mv, dfn, first, lambda n, rate: crit_hits(b, att, dfn, mv, n, trainer), roll_of,
+                           lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
+                           lambda kind, n: b.dice.choice(kind, n))
+
+
 def crash(b, att, dfn, mv):
     """A Jump Kick, High Jump Kick or Supercell Slam that failed to hit, on
     an accuracy miss, a Protect or a target in the air: its user loses half
@@ -627,6 +667,8 @@ def attack(b, att, mv, dfn, first):
     spit = fs.spit_up_key(att) if mv.effect == "SPIT_UP" else None
     if mv.effect == "SPIT_UP" and spit is None:
         return                           # Spit Up with nothing stored (fightsim.spit_up_key)
+    if mv.effect == "MIND_BLOWN" and not fs.mind_blown(b, att):
+        return                           # a Damp Pokemon stops it, and nothing is paid (fightsim.mind_blown)
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
         return
     if mv.effect == fs.FUTURE_SIGHT:
@@ -681,8 +723,14 @@ def attack(b, att, mv, dfn, first):
         crash(b, att, dfn, mv)               # Magic Guard spares it (fightsim.crash_loss)
         fs.rollout_after(att, mv, False)
         return
+    if dfn.ability == "Queenly Majesty" and fs.majesty_blocked(att, dfn, mv):
+        return                               # a raised move into Queenly Majesty (fightsim.majesty_blocked)
     fs.rollout_after(att, mv, True)
     trainer = not player(att)
+    if mv.effect == "BEAT_UP":
+        dealt = beat_up(b, att, mv, dfn, first, trainer)
+        _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=True)
+        return
     hits = rolled_hits(b, att, dfn, mv, trainer, first)
     if mv.effect in fs.HIT_BY_HIT:
         dealt = multi_hit(b, att, mv, dfn, first, hits, trainer)
@@ -718,8 +766,8 @@ def attack(b, att, mv, dfn, first):
         # and stages, at the roll.
         roll = 85 + (b.dice.roll(trainer) if b.dice.mode == "run" else (15 if trainer else 0))
         dmg = struggle_damage(att, dfn, roll)
+    crit = False
     if dmg is None:
-        crit = False
         # The first battle (Barry on Route 201) has no critical hits on either
         # side: BtlCmd_CalcCrit sets the multiplier to 1 under
         # BATTLE_STATUS_FIRST_BATTLE (src/battle/battle_script.c).
@@ -729,8 +777,8 @@ def attack(b, att, mv, dfn, first):
             if att.item in ("Scope Lens", "Razor Claw"):
                 stage += 1
             rate = CRIT_RATE[min(stage, 4)]
-            if mv.sure:
-                crit = True          # Frost Breath's kind, forced (fightsim.sure_crit)
+            if mv.sure or fs.merciless(att, dfn) or fs.focused(att):
+                crit = True          # Frost Breath's kind, Merciless on poison and Laser Focus, forced (fightsim.sure_crit)
             else:
                 crit = b.dice.bad("crit", rate) if trainer else b.dice.good(rate, "crit")
         key = att.key
@@ -778,6 +826,10 @@ def attack(b, att, mv, dfn, first):
             dmg = int(dmg * fs.doubled_power(att, mv))
         if mv.effect == "HIT_BEFORE_SWITCH" and getattr(att, "pursuing", False):
             dmg = int(dmg * fs.doubled_power(att, mv))     # BtlCmd_TryPursuit's POWER_MULTI 20
+        if mv.effect == "DOUBLE_POWER_IF_FASTER" and fs.beak_doubles(b, dfn, first):
+            dmg = int(dmg * fs.doubled_power(att, mv))     # Bolt Beak and Fishious Rend (fightsim.beak_doubles)
+        if mv.effect == "FICKLE_BEAM" and fs.fickle_doubles(b):
+            dmg = int(dmg * fs.doubled_power(att, mv))     # three times in ten (fightsim.fickle_doubles)
         # A doubled power meets Technician after it is doubled (fs.doubled_power).
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
             dmg = int(dmg * fs.doubled_power(att, mv))
@@ -801,6 +853,10 @@ def attack(b, att, mv, dfn, first):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
         b.sub_hit = True         # broken or not, nothing of the hit reaches the Pokemon behind it
+        if mv.effect == "EAT_BERRY":
+            # but Bug Bite and Pluck eat its Berry through the Substitute
+            # (as fightsim.attack has it)
+            fs.pluck(b, att, dfn, lambda kind, n: b.dice.choice(kind, n))
     else:
         if mv.effect == "LEAVE_WITH_1_HP" and dmg >= dfn.hp:
             dmg = dfn.hp - 1     # False Swipe and Hold Back leave 1 HP, before Sturdy and the Sash
@@ -822,7 +878,7 @@ def attack(b, att, mv, dfn, first):
             dmg = dfn.hp - 1
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
-        b.last_dealt = dealt
+        b.last_dealt, b.hit_left = dealt, dfn.hp     # the HP before any Berry answers (fightsim.Battle.hit_left)
         if mv.effect == "INCINERATE" and dfn.alive():
             fs.incinerate(b, dfn, mv)    # its Berry burned before the target can eat it (fightsim.incinerate)
         elif mv.effect in fs.TAKES_FIRST and dealt > 0:
@@ -835,6 +891,8 @@ def attack(b, att, mv, dfn, first):
             fs.bide_store(dfn, dealt)        # a Bide user stores what it took (fightsim.bide_store)
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
+    if crit:
+        fs.anger_point(dfn)              # the hit's first answer, a Substitute's too (fightsim.anger_point)
     _after_attack(b, att, mv, dfn, first, dealt, trainer)
 
 
@@ -885,6 +943,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
             fs.change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         fs.spin(b, att, dfn, e)
+    if e == "CURE_PARTY_STATUS_HIT":
+        fs.sparkly_swirl(b, att)         # its party's status cured after any hit (fightsim.sparkly_swirl)
     if e in fs.LOSES_TYPE:
         fs.lose_type(att, fs.LOSES_TYPE[e])     # Burn Up and Double Shock, a Substitute's hit too (fightsim.lose_type)
     if e == "SWITCH_HIT":
@@ -898,6 +958,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     # Pokemon behind it nothing (fightsim._after_attack, b.sub_hit).
     if not dfn.alive() or b.sub_hit or fs.sub_blocks(att, dfn, mv):
         return
+    if e == "LEECH_SEED_HIT":
+        fs.sappy_seed(dfn)       # Sappy Seed seeds a target left standing (fightsim.sappy_seed)
     if e == "CLEAR_SMOG":
         fs.clear_smog(dfn)       # every stage of the target back to 0 (fightsim.clear_smog)
     if e == "DOUBLE_POWER_HEAL_SLEEP":
@@ -984,8 +1046,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
 
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
-    if dfn.magic_coat and fs.coat_bounces(b, att, mv, dfn):
-        b.reflecting = True              # Magic Coat turns it back on its user (fightsim.coat_bounces)
+    if (dfn.magic_coat or dfn.ability == "Magic Bounce") and fs.bounces(b, att, mv, dfn):
+        b.reflecting = True              # Magic Coat or Magic Bounce turns it back on its user (fightsim.bounces)
         try:
             status_move(b, dfn, mv, att, first)
         finally:
@@ -1024,6 +1086,10 @@ def status_move(b, att, mv, dfn, first):
             return               # a status move of the ability's type is taken whole (fightsim.absorb)
         if fs.soundproofed(att, dfn, mv):
             return               # Sing, Growl or Roar into Soundproof (fightsim.soundproofed)
+        if dfn.ability == "Queenly Majesty" and fs.majesty_blocked(att, dfn, mv):
+            return               # a raised move into Queenly Majesty (fightsim.majesty_blocked)
+        if att.ability == "Prankster" and fs.prankster_blocked(att, dfn, mv):
+            return               # a raised status move into a Dark type (fightsim.prankster_blocked)
     if e in fs.STATUS_OF:
         if fs.sub_blocks(att, dfn, mv):
             return
@@ -1094,11 +1160,23 @@ def status_move(b, att, mv, dfn, first):
         else:
             fs.change_stages(att, {"atk": 1, "def": 1, "spe": -1})
     elif e == "MAX_ATK_LOSE_HALF_MAX_HP":
-        if att.hp > att.maxhp // 2:
+        # subscript_belly_drum fails, at no cost, with Attack at +6 already or
+        # half its HP or less; else half its HP goes and Attack is set at +6
+        # directly. Until 2026-10-20 a Belly Drum at +6 still cost half its
+        # HP (Ian approved the fix on 2026-10-20).
+        if att.stages["atk"] < 6 and att.hp > att.maxhp // 2:
             fs.hurt(b, att, att.maxhp // 2)
             att.stages["atk"] = 6
     elif e == "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP":
         fs.clangorous_soul(b, att)       # a third of its HP for all five stats (fightsim.clangorous_soul)
+    elif e == "ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP":
+        fs.fillet_away(b, att)           # half its HP for Attack, Sp. Atk and Speed (fightsim.fillet_away)
+    elif e == "AUTOTOMIZE":
+        fs.autotomize(att)               # two stages of Speed and 100 kg lighter (fightsim.autotomize)
+    elif e == "LASER_FOCUS":
+        fs.laser_focus(att)              # its next turn's hits critical (fightsim.laser_focus)
+    elif e == "LUNAR_BLESSING":
+        fs.lunar_blessing(b, att)        # a quarter back and its status cured (fightsim.lunar_blessing)
     elif e == "REMOVE_ALL_PP_ON_DEFEAT":
         att.grudge = att.rare = True     # Grudge, until its user next acts (fightsim.grudge)
     elif e == "OCTOLOCK":
@@ -1342,6 +1420,8 @@ def clone_battle(b):
         c.unheld = True              # a Pokemon reads its item twin (fightsim.mark_unheld)
     if b.fog:
         c.fog = True                 # deep fog on the field (fightsim.fog_cut)
+    if b.cloudy:
+        c.cloudy = True              # a Cloud Nine or Air Lock holder in the fight (fightsim.weather_now)
     return c
 
 
@@ -1378,13 +1458,24 @@ def mon_key(m):
         key += ("stockpile", m.stockpile, m.stockpile_def, m.stockpile_spd)
     if m.belch:
         key += ("ate", m.ate_berry)      # Belch fails until its user has eaten a Berry (fightsim.fails_before)
+    if (m.ingrained or m.aqua_ring or m.trapped_by is not None or m.flash_fire or m.rollout or m.curled
+            or m.raging or m.loafing):
+        # The states batch 10 found the keys without (Ian approved adding
+        # them on 2026-10-20): Ingrain's and Aqua Ring's heals, the Pokemon a
+        # Block or Mean Look holds it for, a lit Flash Fire, Rollout's count,
+        # Defense Curl's doubling, Rage's rise and a Truant's turn to loaf.
+        # Kept out of the key while none is set, so a fight without them
+        # keys as before; every key reads them here (side_key and
+        # state_key, shape_key, ai_key and the planner's merge_key).
+        key += ("held", m.ingrained, m.aqua_ring, m.trapped_by, m.flash_fire, m.rollout, m.curled, m.raging,
+                m.loafing)
     if m.imprisoning or m.imprisoned:
         key += ("imprison", m.imprisoning, m.imprisoned, m.sealed)
     if m.rare:
         # The rarer states one of this stay's moves set (fightsim.Mon.rare).
         key += ("rare", m.throat_chop, m.minimized, m.charged, m.locked_on, m.lock_on_by, m.foresight, m.smacked, m.miracle_eye, m.water_sport, m.mud_sport, m.power_trick, m.bide, m.bide_damage,
                 m.transform_key, tuple(sorted(m.split.items())) if m.split else None, m.embargo, m.roomed, m.item_off,
-                m.grudge, m.octolocked, m.sky_holder, m.pirouette,
+                m.grudge, m.octolocked, m.sky_holder, m.pirouette, m.lightened, m.laser_focus,
                 tuple(x.name for x in m.moves) if m.mimicked is not None else None,
                 None if m.mirror is None else m.mirror.name)
     return key + _form(m) if m.formed else key
@@ -1723,8 +1814,10 @@ def _turn(c, pa, aa):
         pa = ("none", None)
     if pa[0] == "switch":
         fs.switch_in(c, c.p, pa[1])
+        c.p.cur().switched_turn = c.turn     # it came in by its side's choice (fightsim.beak_doubles)
     if aa[0] == "switch":
         fs.switch_in(c, c.b, aa[1])
+        c.b.cur().switched_turn = c.turn
     me, foe = c.p.cur(), c.b.cur()
     order = []
     if pa[0] == "move":

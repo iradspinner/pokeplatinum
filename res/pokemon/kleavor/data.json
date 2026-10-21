@@ -45,6 +45,10 @@
     "learnset": {
         "by_level": [
             [
+                0,
+                "MOVE_STONE_AXE"
+            ],
+            [
                 1,
                 "MOVE_ROCK_TOMB"
             ],

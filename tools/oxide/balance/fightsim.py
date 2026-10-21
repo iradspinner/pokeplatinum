@@ -123,7 +123,8 @@ class Move:
         self.protect = "CAN_PROTECT" in flags        # MOVE_FLAG_CAN_PROTECT: Protect stops it
         self.mirror = "CAN_MIRROR_MOVE" in flags     # MOVE_FLAG_CAN_MIRROR_MOVE: Mirror Move can copy it
         self.snatch = "CAN_SNATCH" in flags          # MOVE_FLAG_CAN_SNATCH: Snatch can take it
-        self.sure = self.effect == "ALWAYS_CRITICAL"  # Frost Breath's kind: its row is a critical hit (row_crit_mult)
+        # Frost Breath's kind and Surging Strikes: its row is a critical hit (row_crit_mult)
+        self.sure = self.effect in ("ALWAYS_CRITICAL", "HIT_THREE_TIMES_ALWAYS_CRITICAL")
         self.pp = rec.get("pp") or 10
 
     def damaging(self):
@@ -136,6 +137,27 @@ class Move:
 @functools.lru_cache(maxsize=None)
 def move(name):
     return Move(name)
+
+
+# The Plates whose type Judgment takes (effect script 268 sets the move's
+# type by the holder's HOLD_EFFECT_ARCEUS_*): the sixteen of Platinum. The
+# Pixie Plate, which element 7 added, is not in the script, so its
+# Judgment stays Normal in the battle.
+JUDGMENT_TYPE = {item: t for t, items in pool.TYPE_ITEMS.items() for item in items if item.endswith(" Plate")}
+
+
+@functools.lru_cache(maxsize=None)
+def judgment_move(mv, item):
+    """Judgment as its holder of `item`, a Plate, uses it: the same move at
+    the Plate's type (JUDGMENT_TYPE), as the battle types it, for the
+    simulator's own type reads (an immunity's reveal, Flash Fire, a thaw,
+    the resist Berries, Color Change) and the trainer's AI's, which types
+    it by the Plate too (TrainerAI_MoveType); the calculator's row has the
+    Plate's type already. Until 2026-10-20 those reads took it as Normal
+    (Ian approved the fix)."""
+    c = Move(mv.name)
+    c.type = JUDGMENT_TYPE[item]
+    return c
 
 
 # What each effect does beyond its damage. A status move whose effect is not
@@ -160,6 +182,10 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               # Until 2026-10-15 neither ever slept (Ian approved the fix).
               # Relic Song's turn of Meloetta between its forms is relic_song's.
               "SLEEP_HIT": "slp",
+              # Ice Burn and Freeze Shock's hit, once charged (TWO_TURN): a burn
+              # or a paralysis at the move's chance (30), as an indirect effect
+              # (MOVE_SUBSCRIPT_PTR_BURN, _PARALYZE), which Sheer Force leaves.
+              "CHARGE_TURN_BURN_HIT": "brn", "CHARGE_TURN_PARALYZE_HIT": "par",
               # Matcha Gotcha (effect script 348, subscript_burn_and_drain_health):
               # a burn at the move's chance (20) on a target left standing,
               # and the drain of DRAIN below either way. Until 2026-10-15 it
@@ -190,6 +216,10 @@ SELF_STAGES = {
     "QUIVER_DANCE": {"spa": 1, "spd": 1, "spe": 1}, "COIL": {"atk": 1, "def": 1, "acc": 1},
     "SHIFT_GEAR": {"atk": 1, "spe": 2}, "HONE_CLAWS": {"atk": 1, "acc": 1},
     "WORK_UP": {"atk": 1, "spa": 1}, "GROWTH": {"atk": 1, "spa": 1},
+    # Geomancy's second turn (effect script 318, despite the effect's name):
+    # Sp. Atk, Sp. Def and Speed two stages each, through the stat-stage
+    # subscript, its charge turn in TWO_TURN.
+    "CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2": {"spa": 2, "spd": 2, "spe": 2},
 }
 FOE_STAGES = {
     "ATK_DOWN": {"atk": -1}, "ATK_DOWN_2": {"atk": -2}, "DEF_DOWN": {"def": -1},
@@ -222,6 +252,12 @@ HIT_FOE_STAGES = {
     # 2026-10-15 the hit landed and the drop never came (Ian approved the
     # fix).
     "LOWER_SP_DEF_2_HIT": {"spd": -2},
+    # Bleakwind Storm (effect script 356): each target's Speed falls a stage
+    # at the move's chance (30), an indirect effect Sheer Force strips; it
+    # never misses in the rain (BattleControllerPlayer_CheckMoveHitOverrides,
+    # unless Cloud Nine or Air Lock is out: accuracy_hits). Until 2026-10-20
+    # the hit landed with neither (Ian approved the fix).
+    "BLEAKWIND_STORM": {"spe": -1},
 }
 HIT_SELF_STAGES = {  # (stages, certain)
     "DEF_SPD_DOWN_HIT": ({"def": -1, "spd": -1}, True),
@@ -248,6 +284,13 @@ HIT_SELF_STAGES = {  # (stages, certain)
     # effect is not on sSheerForceEffects. Until 2026-10-15 the Defense never
     # fell (Ian approved the fix).
     "USER_DEF_DOWN_HIT": ({"def": -1}, True),
+    # Esper Wing (effect script 368): the user's Speed rises a stage at the
+    # move's chance (100), an indirect effect on the user, so a knockout's
+    # or a Substitute's hit raises it too; Sheer Force leaves it, as the
+    # effect is not on sSheerForceEffects. Its critical stage comes from the
+    # effect's name (HIGH_CRITICAL). Until 2026-10-20 the Speed never rose
+    # (Ian approved the fix).
+    "HIGH_CRITICAL_RAISE_SPEED_HIT": ({"spe": 1}, False),
 }
 RECOIL = {"RECOIL_THIRD": 1 / 3, "RECOIL_QUARTER": 1 / 4, "RECOIL_HALF": 1 / 2,
           "RECOIL_BURN_HIT": 1 / 3, "RECOIL_PARALYZE_HIT": 1 / 3,
@@ -291,7 +334,17 @@ DRAIN = {"RECOVER_HALF_DAMAGE_DEALT": 1 / 2, "RECOVER_DAMAGE_SLEEP": 1 / 2,
          "RECOVER_HALF_DAMAGE_DEALT_BURN_HIT": 1 / 2}
 TWO_TURN = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE", "CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH",
             "CHARGE_TURN_DEF_UP", "SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN",
-            "CHARGE_TURN_SP_ATK_UP", "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS"}  # Meteor Beam, Electro Shot
+            "CHARGE_TURN_SP_ATK_UP", "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS",  # Meteor Beam, Electro Shot
+            # Geomancy (effect script 318): a turn absorbing power, or none
+            # with a Power Herb, and then two stages each of Sp. Atk, Sp. Def
+            # and Speed (SELF_STAGES). Until 2026-10-20 it did nothing (Ian
+            # approved the fix).
+            "CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2",
+            # Ice Burn and Freeze Shock (effect scripts 364 and 363): a turn
+            # charging, or none with a Power Herb, then the hit and its burn
+            # or paralysis (HIT_STATUS). Until 2026-10-20 each hit every turn
+            # with no status (Ian approved the fix).
+            "CHARGE_TURN_BURN_HIT", "CHARGE_TURN_PARALYZE_HIT"}
 INVULNERABLE = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE"}
 SELF_KO = {"HALVE_DEFENSE", "EXPLOSION", "FAINT_AND_ATK_SP_ATK_DOWN_2"}
 FUTURE_SIGHT = "HIT_IN_3_TURNS"                 # Future Sight and Doom Desire
@@ -556,6 +609,24 @@ class Mon:
     # `aria`; under the rare flag, and back to Aria as it leaves.
     pirouette = False
     aria = None
+    # Autotomize (ReduceWeight): how many times this stay has taken 100 kg
+    # off its weight, which comes back from its species as it next comes
+    # in; under the rare flag (autotomize, weight_now).
+    lightened = 0
+    # The turn this Pokemon came in by its side's own choice to switch, for
+    # Bolt Beak and Fishious Rend (beak_doubles); set by the turn as it
+    # switches, None before.
+    switched_turn = None
+    # Laser Focus (MOVE_EFFECT_LASER_FOCUS): its count, 2 when used, one
+    # off at each turn's end, so its next turn's moves land critical while
+    # it stands at 1 or more (laser_focus); under the rare flag, cleared as
+    # it leaves.
+    laser_focus = 0
+    # Soul Heart (soul_heart): how many other Pokemon of the battle were
+    # down when it was last looked at, set as it comes in, so each later
+    # faint counts once; kept only in a fight with a Soul Heart holder
+    # (st["soul_heart"]).
+    soul_seen = 0
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -569,6 +640,11 @@ class Mon:
         self.ability = info.get("ability") or rec.get("ability")
         self.item = info.get("item") or rec.get("item")
         self.moves = [move(m) for m in moves][:4]
+        if self.item in JUDGMENT_TYPE:
+            # Judgment hits with its Plate's type (effect script 268), which
+            # every type read of the battle and of the trainer's AI then
+            # sees (judgment_move).
+            self.moves = [judgment_move(m, self.item) if m.effect == "JUDGEMENT" else m for m in self.moves]
         self.pp = {m.name: m.pp for m in self.moves}
         # Whether it knows a move whose rule reads its own history, for the
         # keys that must tell such histories apart (perfectline.mon_key and
@@ -625,6 +701,8 @@ class Mon:
             self.grudge = False          # Grudge goes with moveEffectsMask
             self.octolocked = False      # and Octolock with oxideFlags
             self.sky_holder = None       # and a Sky Drop's hold
+            self.lightened = 0           # and its weight comes back from its species (autotomize)
+            self.laser_focus = 0         # and Laser Focus goes with moveEffectsMask
             if self.pirouette:
                 # Meloetta leaves the field as Aria (TryRestoreStatusOnSwitch
                 # writes the form back to its party record).
@@ -840,6 +918,24 @@ class Battle:
     # move or an ability, clears it, and so does Defog. Left on the class
     # while there is none.
     fog = False
+    # Whether a Pokemon in this fight has Cloud Nine or Air Lock, a twin's
+    # included (st["cloud_nine"]), so the reads of the weather that look for
+    # one (weather_now, row_speed) look only then; kept by the battle's
+    # copies.
+    cloudy = False
+    # The Analytic holder whose move is running while every other Pokemon
+    # on the field has acted this turn (Battler_MovedThisTurn for each):
+    # its power is 13/10 (ability_power). Set by _use_move around the
+    # attack, None otherwise.
+    analytic = None
+    # The Mind Blown user whose effect script ran in the move being worked
+    # out (SELF_TURN_FLAG_MIND_BLOWN), which pays its half as the move ends
+    # (mind_blown_cost); None otherwise.
+    blown = None
+    # The HP the last hit to land left its target with, set as the hit takes
+    # it and before any Berry answers it, so the target's on-hit ability
+    # reads the HP the engine's does (Berserk, hit_ability).
+    hit_left = None
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -851,6 +947,8 @@ class Battle:
             self.sporty = True
         if st.get("fog"):
             self.fog = True
+        if st.get("cloud_nine"):
+            self.cloudy = True
         self.turn = 0
         self.ai_flags = ai_flags
         self.log = []
@@ -891,6 +989,8 @@ class Battle:
                 tk = att.transform_key
                 if (self.weather, tk, dk) in rows or (None, tk, dk) in rows:
                     ak = tk
+        if att.ability == "Mold Breaker" and dfn.ability in METALS:
+            dk = metal_raw_key(self, att, dfn, mv, ak) or dk     # the target's own weight (metal_raw_key)
         # A type or ability another move or ability changed (form_key) reads
         # the changed Pokemon's twin: the pair of twins when both are
         # changed, else the one change against the other's rows, as far as
@@ -988,7 +1088,14 @@ class Battle:
             twin = item_key(self, mon)
             if twin and ((self.weather, twin) in speed or (None, twin) in speed):
                 key = twin
-        return int(speed.get((self.weather, key)) or speed.get((None, key)) or 1)
+        weather = self.weather
+        if self.cloudy and weather is not None and weather_ignored(self):
+            # Swift Swim, Chlorophyll and Sand Rush do not count while Cloud
+            # Nine or Air Lock is out (BattleSystem_CompareBattlerSpeed's
+            # NO_CLOUD_NINE): the Speed with no weather, the calculator's
+            # own figure where no row has it.
+            return int(speed.get((None, key)) or (self.st["info"].get(key) or {}).get("speed") or 1)
+        return int(speed.get((weather, key)) or speed.get((None, key)) or 1)
 
     def faster(self, a, b):
         """Whether a moves before b at equal priority; ties at random."""
@@ -1062,10 +1169,15 @@ class Battle:
         if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or no_guard(att, dfn, mv) or (dfn.rare and lands_sure(att, dfn, mv)):
             return True
         acc = mv.acc
+        if dfn.ability == "Wonder Skin" and mv.cat == "Status":
+            acc = wonder_skin(att, dfn, acc)
+        weather = weather_now(self)          # none under Cloud Nine or Air Lock
         if mv.effect in ("THUNDER", "HURRICANE"):           # Oxide: Hurricane as Thunder in weather
-            acc = 100 if self.weather == "Rain" else 50 if self.weather == "Sun" else acc
-        if mv.effect == "BLIZZARD" and self.weather == "Hail":
+            acc = 100 if weather == "Rain" else 50 if weather == "Sun" else acc
+        if mv.effect == "BLIZZARD" and weather == "Hail":
             return True
+        if mv.effect == "BLEAKWIND_STORM" and weather == "Rain":
+            return True      # it never misses in the rain (HIT_FOE_STAGES)
         acc *= accuracy_scale(att, dfn, mv, first)
         if att.ability == "Compound Eyes":
             acc *= 1.3
@@ -1078,6 +1190,15 @@ class Battle:
         if self.gravity:
             acc = acc * 10 / 6           # Gravity's ten sixths, after everything else
         return self.rng.random() * 100 < acc
+
+
+def wonder_skin(att, dfn, acc):
+    """A status move's accuracy against a Wonder Skin holder
+    (BattleControllerPlayer_CheckMoveHitAccuracy, before the stages): 50 at
+    most, unless att's Mold Breaker gets past it; a move that cannot miss
+    never comes here. Until 2026-10-20 it did nothing (Ian approved the
+    fix)."""
+    return min(acc, 50) if not mold(att, dfn) else acc
 
 
 def stage_mult(s):
@@ -1130,7 +1251,7 @@ def foresee_target(dfn):
 def foresight_key(b, mon, mv, att):
     """The key of the rows an identified Ghost meets a Normal or Fighting
     move on (prepare's foresight_twin), or None."""
-    if not identified(mon, move_type_used(att.ability, mv, att.ivs, att.item, b.weather)):
+    if not identified(mon, move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b))):
         return None
     return (b.st.get("foresight_twin") or {}).get(mon.key)
 
@@ -1158,7 +1279,7 @@ def miracle_eye(dfn):
 def miracle_key(b, mon, mv, att):
     """The key of the rows a Miracle Eye target of the Dark type meets a
     Psychic move on (prepare's miracle_twin), or None."""
-    if not mon.miracle_eye or not eyed(mon, move_type_used(att.ability, mv, att.ivs, att.item, b.weather)):
+    if not mon.miracle_eye or not eyed(mon, move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b))):
         return None
     return (b.st.get("miracle_twin") or {}).get(mon.key)
 
@@ -1201,7 +1322,7 @@ def gravity_start(b):
 def ground_key(b, mon, mv, att):
     """The key of the rows a grounded Flying or Levitate Pokemon meets a
     Ground move on (prepare's ground_twin), or None."""
-    if not grounded(b, mon) or move_type_used(att.ability, mv, att.ivs, att.item, b.weather) != "Ground":
+    if not grounded(b, mon) or move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b)) != "Ground":
         return None
     return (b.st.get("ground_twin") or {}).get(mon.key)
 
@@ -1341,9 +1462,18 @@ def can_status(b, target, status):
 
 # Oxide's Water Bubble keeps burns off as Water Veil does (subscript_burn,
 # Ability_ForbidsStatus); until 2026-10-14 the simulator let them through
+# (Ian approved the fix). Oxide's Sweet Veil keeps sleep off its holder as
+# Insomnia does (subscript_fall_asleep and subscript_yawn, past a Mold
+# Breaker's move; in a double battle its partner too, left to the double
+# battles' own batch); until 2026-10-20 it did nothing in the battle (Ian
+# approved the fix). Oxide's Pastel Veil keeps poison and bad poison off
+# its holder as Immunity does (subscript_poison, subscript_badly_poison,
+# Toxic Spikes' included; its partner's in a double battle left to their
+# own batch); until 2026-10-20 the poison landed, and only its cure ran
 # (Ian approved the fix).
-STATUS_ABILITIES = {"slp": {"Insomnia", "Vital Spirit"}, "par": {"Limber"}, "brn": {"Water Veil", "Water Bubble"},
-                    "psn": {"Immunity"}, "tox": {"Immunity"}, "frz": {"Magma Armor"}}
+STATUS_ABILITIES = {"slp": {"Insomnia", "Vital Spirit", "Sweet Veil"}, "par": {"Limber"},
+                    "brn": {"Water Veil", "Water Bubble"},
+                    "psn": {"Immunity", "Pastel Veil"}, "tox": {"Immunity", "Pastel Veil"}, "frz": {"Magma Armor"}}
 # The abilities announced as their holder comes in (each message tags the
 # ability, so BattleAI_SetAbility records it).
 ENTRY_ANNOUNCED = {"Intimidate", "Pressure", "Mold Breaker", "Drizzle", "Drought", "Sand Stream",
@@ -1760,7 +1890,9 @@ class FormFight:
         return [move(m) for m in self.move_names.get(k, ())]
 
     def contact(self, k):
-        return any(mv.contact and mv.damaging() for mv in self.moves(k))
+        """Whether k has a damaging move that makes contact (makes_contact:
+        none for a Long Reach holder)."""
+        return self.ability(k) != "Long Reach" and any(mv.contact and mv.damaging() for mv in self.moves(k))
 
     def hit_types(self, k):
         """The types k's damaging moves can hit with: Weather Ball in each of
@@ -2002,7 +2134,24 @@ def entry_abilities(b, mons, intimidate=True, trace_now=True):
         intimidate_foes(b, mons)
         for new in mons:
             download(b, new)
+    for new in mons:
+        if new.ability == "Screen Cleaner" and new.alive():
+            screen_cleaner(b, new)       # Oxide's abilities' step, after Download
     forecast(b)                          # the check's form step comes after these
+
+
+def screen_cleaner(b, mon):
+    """Screen Cleaner (SWITCH_IN_CHECK_STATE_OXIDE_ABILITIES, once as its
+    holder comes in): Reflect, Light Screen and Aurora Veil end on both
+    sides; with none up it says nothing. Until 2026-10-20 it did nothing
+    (Ian approved the fix)."""
+    sides = (b.p, b.b)
+    if any(any(sd.screens.values()) or sd.aurora_veil for sd in sides):
+        for sd in sides:
+            sd.screens = dict.fromkeys(sd.screens, 0)
+            if sd.aurora_veil:
+                sd.aurora_veil = 0
+        reveal(mon)
 
 
 def download(b, mon):
@@ -2072,6 +2221,30 @@ def raise_own(mon, stat, stages):
     return True
 
 
+def ability_stages(holder, mon, stat, stages):
+    """A stat an ability changes (AbilityStatChange, which Weak Armor, Water
+    Compaction, Gooey, Moody and the other abilities' subscripts call): mon's
+    stage moves by `stages`, held within -6 and +6, made directly, so Simple
+    does not double it, Contrary does not turn it, and Mist and Mirror Armor
+    do not stop it. Nothing happens to a Pokemon with no HP or a stage
+    already at the limit, and a drop that another Pokemon's ability makes is
+    kept off by Clear Body, White Smoke or a Clear Amulet, in silence. The
+    message names the holder's ability. Whether the stage moved."""
+    if not mon.alive():
+        return False
+    now = max(-6, min(6, mon.stages[stat] + stages))
+    if now == mon.stages[stat]:
+        return False
+    if stages < 0 and mon is not holder and (mon.ability in ("Clear Body", "White Smoke")
+                                             or mon.item == "Clear Amulet"):
+        return False
+    mon.stages[stat] = now
+    if stages > 0:
+        mon.stat_raised = True
+    reveal(holder)
+    return True
+
+
 def lower_stats(b, src, mon, changes, intimidate=False):
     """src's move or ability lowering mon's stats from the other side, one
     stat at a time in the order given, as each of the subscripts' calls to
@@ -2088,6 +2261,13 @@ def lower_stats(b, src, mon, changes, intimidate=False):
     fell = []
     for stat, v in changes.items():
         if v >= 0:
+            change_stages(mon, {stat: v})
+            continue
+        if mon.ability == "Contrary" and not mold(src, mon):
+            # Contrary turns the drop into a rise before anything that
+            # stops a drop is asked (BtlCmd_ChangeStatStage), so Mist, the
+            # blockers and Mirror Armor play no part and Defiant has none
+            # to answer.
             change_stages(mon, {stat: v})
             continue
         if (src is not None and src is not mon and src.side != mon.side and src.alive()
@@ -2145,6 +2325,13 @@ def stat_drop_blocked(b, mon, changes, src=None, intimidate=False):
     side = b.p if mon.side == "p" else b.b
     if getattr(side, "mist", 0) and (src is None or src.ability != "Infiltrator"):
         return True
+    if mon.ability == "Flower Veil" and "Grass" in mon.types and not mold(src, mon):
+        # Oxide's Flower Veil keeps the other side from lowering a Grass-type
+        # holder's stats, after Mist; its message names no ability. Its
+        # shield over a Grass-type partner in a double battle is left to the
+        # double battles' own batch. Until 2026-10-20 it did nothing (Ian
+        # approved the fix).
+        return True
     if mon.item == "Clear Amulet":
         return True
     # A Mold Breaker src gets past the abilities (AbilityBlocksSpecificStatReduction
@@ -2184,7 +2371,8 @@ def leaf_guarded(b, target):
     """Leaf Guard keeps every major status off its holder in sun, unless a
     Mold Breaker's move gives it. The engine knows it; the AI does not, so
     this is not part of can_status."""
-    return target.ability == "Leaf Guard" and b.weather == "Sun" and not status_ability_ignored(b, target)
+    return (target.ability == "Leaf Guard" and b.weather == "Sun" and not status_ability_ignored(b, target)
+            and not weather_ignored(b))
 
 
 def give_status(b, target, status):
@@ -2204,10 +2392,19 @@ def give_status(b, target, status):
     return True
 
 
+# How BtlCmd_ChangeStatStage scales a change by its target's ability:
+# Simple doubles it (Generation 5), and Contrary turns it round, from any
+# source, a rise into a fall and a fall into a rise.
+CHANGE_MULT = {"Simple": 2, "Contrary": -1}
+
+
 def change_stages(mon, changes, simple=True):
-    # Simple doubles every change to its own stages; a drop Mirror Armor
-    # turns back keeps the size it had (simple False).
-    mult = 2 if simple and getattr(mon, "ability", None) == "Simple" else 1
+    # Simple doubles every change to its own stages and Contrary turns it
+    # round (CHANGE_MULT), as BtlCmd_ChangeStatStage makes a move's, an
+    # item's and Intimidate's changes; a drop Mirror Armor turns back keeps
+    # the size it had, and one a Mold Breaker makes meets neither (simple
+    # False). Contrary did nothing until 2026-10-20 (Ian approved the fix).
+    mult = CHANGE_MULT.get(getattr(mon, "ability", None), 1) if simple else 1
     for k, v in changes.items():
         before = mon.stages[k]
         mon.stages[k] = max(-6, min(6, mon.stages[k] + v * mult))
@@ -2227,13 +2424,21 @@ ROLLOUT = "DOUBLE_POWER_EACH_TURN_LOCK_INTO"   # Rollout and Ice Ball
 # and 296): Double Kick, Dual Wingbeat and the other HIT_TWICE moves,
 # Twineedle and Double Iron Bash.
 TWO_HITS = frozenset({"HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE_AND_FLINCH"})
+# The moves of three hits at their listed power, one accuracy check for
+# the three (SetMultiHit 3, SYSCTL_MULTI_HIT_MOVE): Triple Dive (effect
+# script 299) and Surging Strikes (366), whose calculator rows add up the
+# three, Surging Strikes' each critical (Move.sure: BattleSystem_CalcCrit
+# makes every one of its hits critical, unless Battle Armor, Shell Armor or
+# Lucky Chant keeps it off). Until 2026-10-20 each landed as one hit holding
+# the row's three (Ian approved the fixes).
+THREE_HITS = frozenset({"HIT_THREE_TIMES_FIXED_POWER", "HIT_THREE_TIMES_ALWAYS_CRITICAL"})
 # Every effect whose hits the engine lands one at a time and the calculator's
-# row adds up (SetMultiHit in effect scripts 29, 44, 77, 296, 298 and 416):
-# the two to five hit moves, the two-hit moves and the three rising ones.
-# Triple Dive, Surging Strikes, Population Bomb and Beat Up are left out, as
-# neither side can have them today.
+# row adds up (SetMultiHit in effect scripts 29, 44, 77, 296, 298, 299 and
+# 416): the two to five hit moves, the two-hit and three-hit moves and the
+# three rising ones. Population Bomb is left out, as neither side can have
+# it today; Beat Up lands its own (beat_up_hits).
 HIT_BY_HIT = frozenset({"MULTI_HIT", "HIT_TWICE", "POISON_MULTI_HIT", "HIT_TWICE_AND_FLINCH",
-                        "HIT_THREE_TIMES_RISING_10", "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20"})
+                        "HIT_THREE_TIMES_RISING_10", "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20"}) | THREE_HITS
 # The secondary effect each of the two-hit kin rolls once a hit (effect
 # scripts 77 and 296 set it for every hit): Twineedle's poison and Double
 # Iron Bash's flinch, at the move's chance.
@@ -2265,7 +2470,7 @@ def hit_weights(att, mv, hits):
     if mv.effect in RISING:
         powers = rising_powers(mv)
         return powers[:hits], sum(powers)
-    total = row_hits(att, mv) if mv.effect == "MULTI_HIT" else 2
+    total = row_hits(att, mv) if mv.effect == "MULTI_HIT" or mv.effect in THREE_HITS else 2
     return [1] * hits, total
 
 
@@ -2308,6 +2513,8 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
         if sub_blocks(att, dfn, mv):
             dfn.sub = max(0, dfn.sub - dmg)
             sub_hit = b.sub_hit = True   # and the move's own effects after the hits (_after_attack)
+            if crits[i]:
+                anger_point(dfn)         # the hit's critical message comes all the same
             continue
         enduring = getattr(dfn, "enduring", False)
         on_sturdy = False
@@ -2327,7 +2534,10 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
                 held = True
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
+        b.hit_left = dfn.hp
         total += dealt
+        if crits[i]:
+            anger_point(dfn)             # the hit's first answer (MULTI_HIT_CRITICAL)
         dfn.hit_this_turn = (mv.cat, dealt)
         if dfn.bide:
             bide_store(dfn, dealt)       # a Bide user stores what it took
@@ -2355,6 +2565,18 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
     if held and dfn.item == "Focus Sash":
         consume(dfn)
     return total
+
+
+def anger_point(mon):
+    """Anger Point (subscript_critical_hit, run as the critical hit's message
+    is, the hit's first answer): a critical hit on a standing holder, one
+    its Substitute took included, sets its Attack at +6 directly, so
+    Contrary and Simple play no part, unless it is there already. Until
+    2026-10-20 it did nothing (Ian approved the fix)."""
+    if mon.ability == "Anger Point" and mon.alive() and mon.stages["atk"] < 6:
+        mon.stages["atk"] = 6
+        mon.stat_raised = True
+        reveal(mon)
 
 
 def rollout_mult(att, mv):
@@ -2457,6 +2679,60 @@ def weight_power(blob, att, dfn):
         return max(1, w)
     ratio = weight(dfn, False) * 10000 // weight(att, True)
     return 120 if ratio <= 2000 else 100 if ratio <= 2500 else 80 if ratio <= 3334 else 60 if ratio <= 5000 else 40
+
+
+METALS = ("Heavy Metal", "Light Metal")
+# The moves whose rows read the target's weight from its job: Low Kick and
+# Grass Knot (BtlCmd_CalcWeightBasedPower) and Heavy Slam (the calculator
+# works its power out; Heat Crash has power rows of its own, weight_power).
+WEIGHT_MOVES = frozenset({"Low Kick", "Grass Knot", "Heavy Slam"})
+
+
+def metal_weight(blob, rec):
+    """The calculator's job for a Heavy Metal or Light Metal holder, its own
+    or a twin's (Battler_Weight): its species record, its own where it has
+    one (a twin's types and stats), at twice its weight or half of it, in
+    whole tenths of a kilogram and never below 0.1 kg, so the rows' Low
+    Kick, Grass Knot and Heavy Slam read the weight the engine does, on
+    either side of the move. A Mold Breaker attacker gets past a target's
+    in the engine, which the rows do not follow. Until 2026-10-20 both
+    abilities did nothing in the rows (Ian approved the fix)."""
+    poks = blob["poks"].get(rec.get("species")) or {}
+    own = dict(rec.get("species_data") or {})
+    if not own:
+        if not poks.get("bs"):
+            return rec
+        own = {"bs": dict(poks["bs"]), "types": [t for t in poks.get("types") or [] if t]}
+    kg = own.get("weightkg", poks.get("weightkg"))
+    if kg is None:
+        return rec
+    w = int(round(kg * 10))
+    w = w * 2 if rec.get("ability") == "Heavy Metal" else w // 2
+    own["weightkg"] = max(1, w) / 10
+    return dict(rec, species_data=own)
+
+
+def metal_raw_key(b, att, dfn, mv, ak):
+    """The twin of a Heavy Metal or Light Metal target at its own weight
+    ("<key>#mw", prepare's metal_raw) for a Mold Breaker attacker's Low
+    Kick, Grass Knot or Heavy Slam, which reads past the target's ability
+    (Battler_Weight); None where there is no such row. Battle.row asks only
+    for a Mold Breaker attacker and a target with one of the two."""
+    t = (b.st.get("metal_raw") or {}).get(dfn.key) if mv is not None and mv.name in WEIGHT_MOVES else None
+    if t is None:
+        return None
+    rows = b.st["rows"]
+    return t if (b.weather, ak, t) in rows or (None, ak, t) in rows else None
+
+
+def power_row_keys(name, knows, takes):
+    """The keys whose rows need a move's power rows (Magnitude's, Present's
+    or Heat Crash's, made per power since each power is set as the move
+    runs): those that know the move (knows, each key's moves) and those
+    that can borrow it (takes, each borrower's moves it may take: prepare's
+    all_hits for a Pokemon with Copycat, Me First, Mimic, Mirror Move or
+    Sketch), in knows' order."""
+    return [k for k in knows if name in knows[k] or name in takes.get(k, ())]
 
 
 def friendship_power(species):
@@ -3044,7 +3320,7 @@ def berry_check(mon, b=None):
         # stat-stage subscript (so Simple doubles it); with none that can,
         # the Berry stays uneaten. Until 2026-10-14 it did nothing (Ian
         # approved the fix).
-        room = [s for s in ("atk", "def", "spa", "spd", "spe") if mon.stages[s] < 6]
+        room = [s for s in ("atk", "def", "spa", "spd", "spe") if item_can_raise(mon, s)]
         if room:
             dice = getattr(b, "dice", None) if b is not None else None
             pick = (dice.choice("starf", len(room)) if dice is not None
@@ -3057,6 +3333,13 @@ def berry_check(mon, b=None):
     elif mon.item in ("Oran Berry", "Berry Juice") and mon.hp * 2 <= mon.maxhp:
         heal(mon, 10 if mon.item == "Oran Berry" else 20)
         consume(mon)
+
+
+def item_can_raise(mon, stat):
+    """Whether an item's raise would change mon's stat (Battler_ItemCanRaiseStat):
+    one below +6, or for a Contrary holder, which the raise lowers
+    (change_stages), one above -6."""
+    return mon.stages[stat] > -6 if mon.ability == "Contrary" else mon.stages[stat] < 6
 
 
 def binding_band(b, mon):
@@ -3338,12 +3621,45 @@ def move_end(b):
     (BattleControllerPlayer_MoveEnd), beyond Neutralizing Gas's step: a Trace
     holder still waiting for a foe it can copy traces now (trace), and its
     new ability's entry steps follow; then Castform takes the weather's form
-    (forecast)."""
+    (forecast). A move's knockouts come first, each faint subscript's Soul
+    Heart with them (soul_heart)."""
+    if b.st.get("soul_heart"):
+        soul_heart(b)
     if any(m.ability == "Trace" and not m.traced for m in b.p.on_field() + b.b.on_field()):
         traced = trace(b)
         if traced:
             entry_abilities(b, traced, trace_now=False)
     forecast(b)
+
+
+def fainted_others(b, mon):
+    """How many Pokemon of the battle but mon are down."""
+    return sum(1 for side in (b.p, b.b) for m in side.mons if m is not mon and not m.alive())
+
+
+def soul_heart(b):
+    """Soul Heart (BtlCmd_TrySoulHeart, run from subscript_faint_mon): each
+    time another Pokemon faints, a standing holder on the field gains a
+    stage of Sp. Atk through the stat-stage subscript (change_stages, so
+    Simple doubles it and Contrary turns it), nothing at +6; the message
+    names the ability. The faint subscripts run as a move ends, as the
+    hazards finish with a newcomer and as the turn ends, so it is looked at
+    there; each Pokemon on the field keeps the count of the others down
+    (Mon.soul_seen), so each faint counts once and one that gains the
+    ability later counts only the faints after. With two holders on the
+    field the engine raises only the faster, which a double battle alone
+    could show and which is not followed. Until 2026-10-20 it did nothing
+    (Ian approved the fix)."""
+    for m in b.p.on_field() + b.b.on_field():
+        if not m.alive():
+            continue
+        down = fainted_others(b, m)
+        if m.ability == "Soul Heart":
+            for _ in range(down - m.soul_seen):
+                if m.stages["spa"] < 6:
+                    change_stages(m, {"spa": 1})
+                    reveal(m)
+        m.soul_seen = down
 
 
 # Castform's type in each weather (BattleSystem_TriggerFormChange).
@@ -3487,8 +3803,18 @@ def _use_move(b, att, mv, dfn, first, targets=None):
     pick = lambda kind, n: b.rng.randrange(n)               # noqa: E731
     if targets is None:
         before = dfn.hp
-        attack(b, att, mv, dfn, first)
+        if att.ability == "Analytic" and moves_last(b, first):
+            # Its foe has acted this turn, or switched in.
+            b.analytic = att
+            try:
+                attack(b, att, mv, dfn, first)
+            finally:
+                b.analytic = None
+        else:
+            attack(b, att, mv, dfn, first)
         hit_aftermath(b, att, dfn, mv, chance, pick)
+        if b.blown is att:
+            mind_blown_cost(b, att)
         destiny_bond(att, dfn)
         if dfn.grudge:
             grudge(att, dfn, paid, mv)
@@ -3503,6 +3829,8 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         attack(b, att, mv, t, t not in b.moved)
         hit_aftermath(b, att, t, mv, chance, pick)
     b.spread = False
+    if b.blown is att:
+        mind_blown_cost(b, att)          # once, after every target (mind_blown_cost)
     for t in targets:
         destiny_bond(att, t)
         if t.grudge:
@@ -3518,6 +3846,33 @@ def confusion_damage(mon, rng):
     d = mon.stats.get("def", 50) * stage_mult(mon.stages["def"])
     base = ((2 * mon.level // 5 + 2) * 40 * a / d) // 50 + 2
     return int(base * rng.randint(85, 100) / 100)
+
+
+def mind_blown(b, att):
+    """Mind Blown's effect script (408): a Damp Pokemon anywhere on the
+    field, its user included, stops the move before it starts, unless the
+    user has Mold Breaker, and nothing is paid (False); else the script
+    marks its user (SELF_TURN_FLAG_MIND_BLOWN, Battle.blown), which then
+    pays as the move ends, whether it hit, missed or met Protect or an
+    immunity (mind_blown_cost). A move with no target never runs its
+    script, so attack() comes here only with one."""
+    if att.ability != "Mold Breaker" and any(
+            m.ability == "Damp" and m.alive() for m in b.p.on_field() + b.b.on_field()):
+        return False
+    b.blown = att
+    return True
+
+
+def mind_blown_cost(b, att):
+    """Mind Blown's cost (BattleControllerPlayer_FaintAfterSelfdestruct,
+    subscript_recoil_half_max_hp): once the move is over, once whatever its
+    targets, a user still standing loses half its maximum HP, rounded up;
+    Magic Guard spares it and Rock Head does not, as it is a cost rather
+    than recoil. Until 2026-10-20 the move cost nothing (Ian approved the
+    fix)."""
+    b.blown = None
+    if att.alive() and att.ability != "Magic Guard":
+        hurt(b, att, (att.maxhp + 1) // 2)
 
 
 def explode_first(b, att):
@@ -3562,6 +3917,8 @@ def attack(b, att, mv, dfn, first):
     if att is not dfn and att.side == dfn.side and dfn.ability == "Telepathy" and mv.power and not mold(att, dfn):
         reveal(dfn)
         return
+    if mv.effect == "MIND_BLOWN" and not mind_blown(b, att):
+        return                   # a Damp Pokemon stops it, and nothing is paid (mind_blown)
     if mv.effect in SELF_KO and not explode_first(b, att):
         return
     if mv.effect == FUTURE_SIGHT:
@@ -3610,6 +3967,8 @@ def attack(b, att, mv, dfn, first):
         _crash(b, att, dfn, mv)          # Magic Guard spares it (crash_loss)
         rollout_after(att, mv, False)
         return
+    if dfn.ability == "Queenly Majesty" and majesty_blocked(att, dfn, mv):
+        return                           # a raised move into Queenly Majesty (majesty_blocked)
     rollout_after(att, mv, True)
     # The hits this use makes: a two to five hit move's roll, or Fury
     # Cutter's run until a miss (a Loaded Dice skips the later checks).
@@ -3622,6 +3981,14 @@ def attack(b, att, mv, dfn, first):
             hits += 1
     elif mv.effect in TWO_HITS:
         hits = 2
+    elif mv.effect in THREE_HITS:
+        hits = 3
+    if mv.effect == "BEAT_UP":
+        # Each eligible party member's own hit, on this battle's dice (beat_up_hits).
+        dealt = beat_up_hits(b, att, mv, dfn, first, lambda n, rate: [b.rng.random() < rate for _ in range(n)],
+                             lambda i, crit: b.rng.randrange(16),
+                             lambda kind, p, victim: b.rng.random() < p, lambda kind, n: b.rng.randrange(n))
+        return _after_attack(b, att, mv, dfn, first, dealt)
     if mv.effect in HIT_BY_HIT:
         dealt = _attack_hits(b, att, mv, dfn, first, hits)
         if dealt is None:
@@ -3643,10 +4010,11 @@ def attack(b, att, mv, dfn, first):
         if not hit or (want and hit[0] != want) or effectiveness(b.st["chart"], mv.type, chart_types(dfn, mv)) == 0:
             return
         dmg = int(hit[1] * (1.5 if mv.effect == "METAL_BURST" else 2))
+    crit = False
     if dmg is None:
         stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                   mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
-        crit = ((mv.sure or b.rng.random() < CRIT_RATE[min(stage, 4)])
+        crit = ((mv.sure or merciless(att, dfn) or focused(att) or b.rng.random() < CRIT_RATE[min(stage, 4)])
                 and not crit_proof(att, dfn, b) and not b.st.get("first_battle"))
         if spit is not None:
             key, att.key = att.key, spit
@@ -3682,6 +4050,10 @@ def attack(b, att, mv, dfn, first):
             # BtlCmd_CalcPaybackPower: twice the power once the target has
             # acted this turn (moved, switched or used an item).
             dmg = int(dmg * doubled_power(att, mv))
+        if mv.effect == "DOUBLE_POWER_IF_FASTER" and beak_doubles(b, dfn, first):
+            dmg = int(dmg * doubled_power(att, mv))     # Bolt Beak and Fishious Rend (beak_doubles)
+        if mv.effect == "FICKLE_BEAM" and fickle_doubles(b):
+            dmg = int(dmg * doubled_power(att, mv))     # three times in ten (fickle_doubles)
         # A doubled power meets Technician after it is doubled (doubled_power).
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
             dmg = int(dmg * doubled_power(att, mv))
@@ -3706,6 +4078,13 @@ def attack(b, att, mv, dfn, first):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
         b.sub_hit = True         # broken or not, nothing of the hit reaches the Pokemon behind it
+        if mv.effect == "EAT_BERRY":
+            # Bug Bite and Pluck eat the Berry of the Pokemon behind it all
+            # the same: their effect script's indirect effect
+            # (MOVE_SUBSCRIPT_PTR_PLUCK, subscript_pluck and TryPluck) asks
+            # nothing of a Substitute. Until 2026-10-20 the Substitute kept
+            # the Berry (Ian approved the fix on 2026-10-20).
+            pluck(b, att, dfn, lambda kind, n: b.rng.randrange(n))
     else:
         if mv.effect == "LEAVE_WITH_1_HP" and dmg >= dfn.hp:
             # False Swipe and Hold Back (effect script 101): a hit that would
@@ -3727,7 +4106,7 @@ def attack(b, att, mv, dfn, first):
             dmg = dfn.hp - 1
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
-        b.last_dealt = dealt
+        b.last_dealt, b.hit_left = dealt, dfn.hp
         if mv.effect in TAKES_FIRST and dealt > 0:
             take_first(b, att, dfn, mv, lambda kind, n: b.rng.randrange(n))     # Knock Off's and Bug Bite's (take_first)
         dfn.hit_this_turn = (mv.cat, dealt)
@@ -3735,6 +4114,8 @@ def attack(b, att, mv, dfn, first):
             bide_store(dfn, dealt)       # a Bide user stores what it took
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
+    if crit:
+        anger_point(dfn)
     _after_attack(b, att, mv, dfn, first, dealt)
 
 
@@ -3819,6 +4200,19 @@ def drag_out(b, att, dfn, pick):
     bench = side.bench()
     if bench:
         switch_in(b, side, side.mons.index(bench[pick("roar", len(bench))]))
+
+
+def drag_coming(b, att, dfn, mv):
+    """Whether this hit of Dragon Tail or Circle Throw will drag dfn out once
+    its ability and items have answered it (the engine's HitWillDragTarget,
+    which Pickpocket asks): hit_aftermath's and drag_out's own conditions,
+    read before the drag runs."""
+    if mv.effect != "FORCE_SWITCH_HIT" or getattr(b, "last_dealt", 0) <= 0 or b.sub_hit or getattr(b, "doubles", False):
+        return False
+    if not att.alive() or not dfn.alive() or getattr(dfn, "ingrained", False) \
+            or (dfn.ability == "Suction Cups" and not mold(att, dfn)):
+        return False
+    return bool((b.p if dfn.side == "p" else b.b).bench())
 
 
 @functools.lru_cache(maxsize=None)
@@ -3997,14 +4391,59 @@ def lucky_chant(side):
         side.lucky_chant = 5
 
 
+def lunar_blessing(b, att):
+    """Lunar Blessing and Jungle Healing (effect script 415,
+    subscript_lunar_blessing): the move fails when its user, and in a
+    double battle its partner on the field, have full HP and no status;
+    otherwise each of them below full HP regains a quarter of its maximum
+    HP, rounded up, and each with a status is cured of it and of
+    Nightmare. Heal Block stops it before it runs (move_heal_blocked).
+    Until 2026-10-20 it did nothing (Ian approved the fix)."""
+    mons = [att]
+    ally = ally_of(b, att) if getattr(b, "doubles", False) else None
+    if ally is not None:
+        mons.append(ally)
+    if all(m.hp == m.maxhp and not m.status for m in mons):
+        return
+    for m in mons:
+        if m.hp < m.maxhp:
+            heal(m, (m.maxhp + 3) // 4)
+        if m.status:
+            m.status, m.nightmare = None, False
+
+
+def laser_focus(att):
+    """Laser Focus (effect script 399, subscript_laser_focus): its user's
+    count is set to 2 (MOVE_EFFECT_LASER_FOCUS_1), one off at each turn's
+    end (MON_COND_CHECK_STATE_LOCK_ON, as Lock-On's), so every hit it
+    makes on the next turn is critical (focused) unless crit_proof or the
+    first battle keeps it off; gone as it leaves, and not handed on by
+    Baton Pass (MOVE_EFFECT_BATON_PASSED leaves it out). Until 2026-10-20
+    it did nothing (Ian approved the fix)."""
+    att.laser_focus, att.rare = 2, True
+
+
+def focused(att):
+    """Whether Laser Focus makes att's hits critical now (laser_focus)."""
+    return att.rare and att.laser_focus > 0
+
+
+def merciless(att, dfn):
+    """Merciless (BattleSystem_CalcCriticalMulti): every hit its holder lands
+    on a poisoned or badly poisoned target is critical, unless crit_proof or
+    the first battle keeps it off, as for an always-critical move. Until
+    2026-10-20 it did nothing (Ian approved the fix)."""
+    return att.ability == "Merciless" and dfn.status in ("psn", "tox")
+
+
 def crit_rate(b, att, dfn, mv):
     """The chance a hit of mv lands critical: Oxide's rate at the attacker's
     stage, 0 against Battle Armor or Shell Armor (unless Mold Breaker), on
     a side under Lucky Chant and in the first battle (BtlCmd_CalcCrit)."""
     if crit_proof(att, dfn, b) or b.st.get("first_battle"):
         return 0.0
-    if mv.sure:
-        return 1.0                       # forced (sure_crit)
+    if mv.sure or merciless(att, dfn) or focused(att):
+        return 1.0                       # forced (sure_crit, merciless, laser_focus)
     stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                                                mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
     if att.item in ("Scope Lens", "Razor Claw"):
@@ -4038,6 +4477,62 @@ def _attack_hits(b, att, mv, dfn, first, hits):
     b.hits_landed = True
     dealt = land_hits(b, att, dfn, mv, first, hits, hit_damage, crits,
                       lambda kind, p, victim: b.rng.random() < p, lambda kind, n: b.rng.randrange(n))
+    b.last_dealt = dealt
+    return dealt
+
+
+def beat_up_party(b, att):
+    """The members whose hits Beat Up lands, in party order (BtlCmd_BeatUp,
+    BeatUpEligibleMon): its user, whatever its state, and every other
+    member of its party with HP and no status."""
+    side = b.p if att.side == "p" else b.b
+    return [m for m in side.mons if m is att or (m.alive() and not m.status)]
+
+
+def base_stat(b, mon, stat):
+    """A Pokemon's species' base stat ("at", "df" and so on), as
+    SpeciesData_GetFormValue gives it: its record's own species data
+    where it has one (a twin's form), else its species'."""
+    rec = b.st["pokemon"].get(mon.key) or {}
+    bs = (rec.get("species_data") or {}).get("bs") or (calc.blob()["poks"].get(rec.get("species") or mon.species)
+                                                       or {}).get("bs") or {}
+    return bs.get(stat) or 1
+
+
+def beat_up_damage(b, att, member, dfn, mv, crit, roll):
+    """One member's Beat Up hit (BtlCmd_BeatUp): its species' base Attack
+    times the move's power times its level's factor (level times 2 over
+    5, plus 2), over the target's species' base Defense, over 50, plus 2,
+    in whole numbers; a critical hit's multiplier (ApplyCriticalMul: 3/2,
+    a Sniper user's 9/4); then the damage roll, roll 0 to 15 for 85 to 100
+    percent (BattleSystem_CalcDamageVariance), at least 1. It skips the
+    damage routine and the type chart (SYSCTL_IGNORE_IMMUNITIES), so no
+    same-type bonus, type, stage, item or ability reaches it."""
+    dmg = (base_stat(b, member, "at") * mv.power * (member.level * 2 // 5 + 2)
+           // base_stat(b, dfn, "df") // 50 + 2)
+    if crit:
+        dmg = dmg * 9 // 4 if att.ability == "Sniper" else dmg * 3 // 2
+    return max(1, dmg * (85 + roll) // 100)
+
+
+def beat_up_hits(b, att, mv, dfn, first, crits_of, roll_of, chance, pick):
+    """Beat Up (effect script 154, BtlCmd_BeatUp): one hit for each member
+    beat_up_party gives, in party order, each with its own critical hit
+    (CalcCrit runs again each hit: crits_of(hits, rate)) and damage roll
+    (roll_of(i, crit)), landed hit by hit as a move of several hits is
+    (land_hits): a Substitute takes them, Sturdy and a Focus Sash hold
+    the first at full HP, and the loop stops once a Pokemon faints. It
+    meets no type chart, so a Ghost type is hit, Wonder Guard does
+    nothing and no resist Berry halves it. The HP taken from dfn. Until
+    2026-10-20 it was one hit from its user's row (Ian approved the fix)."""
+    members = beat_up_party(b, att)
+    crits = crits_of(len(members), crit_rate(b, att, dfn, mv))
+
+    def hit_damage(i, crit):
+        return beat_up_damage(b, att, members[i], dfn, mv, crit, roll_of(i, crit))
+
+    b.hits_landed = True
+    dealt = land_hits(b, att, dfn, mv, first, len(members), hit_damage, crits, chance, pick)
     b.last_dealt = dealt
     return dealt
 
@@ -4078,6 +4573,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
             change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         spin(b, att, dfn, e)
+    if e == "CURE_PARTY_STATUS_HIT":
+        sparkly_swirl(b, att)            # after any hit, a Substitute's or a knockout's too (sparkly_swirl)
     if e in LOSES_TYPE:
         lose_type(att, LOSES_TYPE[e])    # Burn Up and Double Shock: after the hit, a Substitute's too
     if e == "SWITCH_HIT":
@@ -4098,6 +4595,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     # fix).
     if not dfn.alive() or b.sub_hit or sub_blocks(att, dfn, mv):
         return
+    if e == "LEECH_SEED_HIT":
+        sappy_seed(dfn)              # a target left standing, no Substitute in the way (sappy_seed)
     if e == "CLEAR_SMOG":
         clear_smog(dfn)              # every stage of a target the hit itself reached back to 0
     if e == "INCINERATE":
@@ -4277,6 +4776,30 @@ def throat_chop(att, dfn, stripped):
     dfn.throat_chop, dfn.rare = 2, True
 
 
+def majesty_blocked(att, dfn, mv):
+    """A move of raised priority (move_priority: Prankster's and Gale Wings'
+    raises count) aimed at a foe with Queenly Majesty fails, unless a Mold
+    Breaker gets past it (BattleControllerPlayer_PriorityBlock, after the
+    immunity abilities; in a double battle the holder's partner is shielded
+    too, which is left to the double battles' own batch). The message
+    names the ability. Until 2026-10-20 the move landed (Ian approved the
+    fix)."""
+    if dfn is att or dfn.side == att.side or mold(att, dfn) or move_priority(att, mv) <= 0:
+        return False
+    reveal(dfn)
+    return True
+
+
+def prankster_blocked(att, dfn, mv):
+    """A status move Prankster raised, aimed at a Dark-type foe, fails
+    (BattleControllerPlayer_PriorityBlock, after the immunity abilities),
+    unless it aims at the foe's side (Spikes and the like); the AI's
+    Basic_CheckPrankster already kept such moves from being chosen. Until
+    2026-10-20 the move landed (Ian approved the fix)."""
+    return (dfn is not att and dfn.side != att.side and mv.cat == "Status" and mv.range != "OPPONENT_SIDE"
+            and move_priority(att, mv) > mv.pri and "Dark" in dfn.types)
+
+
 def soundproofed(att, dfn, mv):
     """Whether Soundproof stops att's sound move at dfn
     (BattleSystem_TriggerImmunityAbility over sSoundMoves, which
@@ -4449,6 +4972,23 @@ def coat_bounces(b, att, mv, dfn):
     return True
 
 
+def bounces(b, att, mv, dfn):
+    """Whether a move is turned back on its user (BattleControllerPlayer_MoveStolen):
+    by Magic Coat used this turn (coat_bounces), or else by Magic Bounce,
+    every turn and with no move, unless a Mold Breaker gets past it or its
+    holder is out of reach in the air or underground; the message names
+    the ability. Pressure on the bounce is not followed. Until 2026-10-20
+    Magic Bounce did nothing (Ian approved the fix)."""
+    coat = dfn.magic_coat
+    if not coat and (mold(att, dfn) or (dfn.charging is not None and dfn.charging.effect in INVULNERABLE)):
+        return False
+    if not coat_bounces(b, att, mv, dfn):
+        return False
+    if not coat:
+        reveal(dfn)                      # Magic Bounce's own message
+    return True
+
+
 def teeter_dance_others(b, att, mv, dfn, first):
     """Teeter Dance (effect script 199, the confusion subscript on each
     target) in a double battle, where its range (ALL_ADJACENT) reaches every
@@ -4500,7 +5040,7 @@ def sport_half(b, att, dfn, mv):
     field are the hit's own); the trainer's AI's figure meets it too, as the
     engine's estimate runs the same routine. Looked at only in a fight where
     a Pokemon knows one of the moves (Battle.sporty)."""
-    kind = move_type_used(att.ability, mv, att.ivs, att.item, b.weather)
+    kind = move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b))
     if kind == "Fire":
         mark = "water_sport"
     elif kind == "Electric":
@@ -4810,13 +5350,25 @@ def magic_room_ends(b):
             unlock_item(m)
 
 
-def knock_off(dfn):
-    """Knock Off's hit (BtlCmd_TryKnockOff): the target's item is gone, and
-    its party slot is marked (knocked_off)."""
+def knock_off(att, dfn):
+    """Knock Off's hit (subscript_knock_off, BtlCmd_TryKnockOff): the
+    target's item is gone, and its party slot is marked (knocked_off),
+    unless the target has Multitype (its record's, BATTLEMON_ABILITY, so
+    gas or Gastro Acid does not hide it) or holds a Griseous Orb, or its
+    Sticky Hold keeps the item, which a Mold Breaker attacker gets past,
+    the message naming the ability. A Quick Claw or Custap Berry that
+    went off this turn also keeps it in the engine (BATTLEMON_QUICK_CLAW,
+    BATTLEMON_CUSTAP_BERRY), which is not followed. Until 2026-10-20
+    Sticky Hold, Multitype and the Orb kept nothing (Ian approved the
+    fix)."""
     if dfn.item_off is not None:
-        return raw_item_op((dfn,), lambda: knock_off(dfn))
-    if dfn.item:
-        dfn.item, dfn.knocked_off = None, True
+        return raw_item_op((dfn,), lambda: knock_off(att, dfn))
+    if not dfn.item or raw_ability(dfn) == "Multitype" or dfn.item == "Griseous Orb":
+        return
+    if dfn.ability == "Sticky Hold" and not mold(att, dfn):
+        reveal(dfn)
+        return
+    dfn.item, dfn.knocked_off = None, True
 
 
 def steal_item(att, dfn):
@@ -4866,8 +5418,9 @@ def swap_items(att, dfn, mv):
 
 def pluck(b, att, dfn, pick):
     """Bug Bite and Pluck (effect script 224, subscript_pluck, BtlCmd_TryPluck
-    and BattleSystem_PluckBerry) once their hit has struck the target itself,
-    a knockout included: the user eats the target's Berry and takes its
+    and BattleSystem_PluckBerry) once their hit has landed, on the target or
+    on its Substitute, a knockout included: the user eats the target's Berry
+    and takes its
     effect (eat_berry). The target's Sticky Hold keeps it (named; Mold
     Breaker gets past it); any other item stays where it is. The Berry is
     gone from the target and kept for its Recycle (RemoveItem), and the user
@@ -4963,10 +5516,10 @@ def eat_berry(mon, berry, pick):
         if mon.status in CURE_BERRY[berry]:
             mon.status, mon.sleep, mon.toxic = None, 0, 0
     elif berry in PINCH_BERRIES:
-        if mon.stages[PINCH_BERRIES[berry]] < 6:
+        if item_can_raise(mon, PINCH_BERRIES[berry]):
             change_stages(mon, {PINCH_BERRIES[berry]: 1})
     elif berry == "Starf Berry":
-        room = [s for s in ("atk", "def", "spa", "spd", "spe") if mon.stages[s] < 6]
+        room = [s for s in ("atk", "def", "spa", "spd", "spe") if item_can_raise(mon, s)]
         if room:
             change_stages(mon, {room[pick("starf", len(room))]: 2})
     elif berry == "Lansat Berry":
@@ -5050,19 +5603,53 @@ def contact_ability(b, att, dfn, mv, dealt, chance, pick):
     stands, Static, Poison Point, Flame Body, Effect Spore and Cute Charm at
     3 in 10, a status only on an attacker with none, and Rough Skin and
     Oxide's Iron Barbs an eighth of the attacker's HP. When none of those
-    acted, Oxide's Poison Touch poisons the target 3 times in 10 (battle_lib,
-    after the switch). `chance(kind, p, victim)` and `pick(kind, n)` are the
-    battle's dice."""
+    acted, Oxide's Poison Touch poisons the target 3 times in 10, after a
+    contact move, and Magician takes its item (battle_lib, after the
+    switch). Contact is Battler_MoveMakesContact's (makes_contact).
+    `chance(kind, p, victim)` and `pick(kind, n)` are the battle's dice."""
     if dealt <= 0:
         return
-    if not (dfn.ability and hit_ability(b, att, dfn, mv, chance)) and mv.contact:
-        if not (att.alive() and dfn.ability and _struck_back(b, att, dfn, chance, pick)):
-            if att.ability == "Poison Touch" and dfn.alive() and not dfn.status and chance("status", 0.3, dfn):
-                b.status_src = att
-                if give_status(b, dfn, "psn"):
-                    reveal(att)
-    if mv.contact:
+    contact = makes_contact(att, mv)
+    acted = bool(dfn.ability and hit_ability(b, att, dfn, mv, chance, dealt))
+    if not acted and contact:
+        acted = bool(att.alive() and dfn.ability and _struck_back(b, att, dfn, chance, pick, mv))
+        if not acted and att.ability == "Poison Touch" and dfn.alive() and not dfn.status \
+                and chance("status", 0.3, dfn):
+            acted = True
+            b.status_src = att
+            if give_status(b, dfn, "psn"):
+                reveal(att)
+    if not acted and att.ability == "Magician":
+        magician(b, att, dfn)
+    if contact:
         sticky_barb(att, dfn)
+
+
+def magician(b, att, dfn):
+    """Magician (BattleSystem_TriggerAbilityOnHit after its switch,
+    subscript_magician): when the target's own on-hit ability did nothing,
+    a damaging move that did damage, by a standing user holding nothing, to
+    a target holding an item, takes the item by Thief's checks
+    (TryStealItem, steal_item): never for a trainer's Pokemon outside the
+    Battle Frontier, and Sticky Hold keeps it in silence. A trainer's
+    Pokemon robbed of its item reads its item twin (mark_unheld). Until
+    2026-10-20 it did nothing (Ian approved the fix)."""
+    if not att.alive() or att is dfn or att.item or att.item_off is not None \
+            or not (dfn.item or dfn.item_off is not None):
+        return
+    if dfn.ability == "Sticky Hold" and not mold(att, dfn):
+        return
+    steal_item(att, dfn)
+    mark_unheld(b, dfn)
+
+
+def makes_contact(att, mv):
+    """Whether att's move makes contact (Battler_MoveMakesContact): a move
+    with the contact flag, unless its user has Long Reach, which every
+    contact answer asks (the on-hit abilities, Sticky Barb, Spiky Shield
+    and its kin, Mummy and Wandering Spirit). Until 2026-10-20 Long Reach
+    did nothing (Ian approved the fix)."""
+    return mv.contact and att.ability != "Long Reach"
 
 
 def sticky_barb(att, dfn):
@@ -5084,11 +5671,11 @@ def hit_type(b, mv):
     """The type a move hits with as the battle records it: Weather Ball's
     from the weather, every other move's its own."""
     if mv.name == "Weather Ball":
-        return {"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
+        return {"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(weather_now(b), mv.type)
     return mv.type
 
 
-def hit_ability(b, att, dfn, mv, chance):
+def hit_ability(b, att, dfn, mv, chance, dealt=0):
     """The defender's on-hit abilities that any damaging hit sets off,
     contact or not (BattleSystem_TriggerAbilityOnHit's switch); whether one
     acted. Cursed Body: three times in ten the attacker's move, if it has
@@ -5103,6 +5690,52 @@ def hit_ability(b, att, dfn, mv, chance):
     if a in HIT_RAISE:
         types, stat = HIT_RAISE[a]
         return dfn.alive() and hit_type(b, mv) in types and raise_own(dfn, stat, 1)
+    if a == "Weak Armor":
+        # subscript_weak_armor: a physical hit that did damage to its holder,
+        # still standing, takes its Defense down a stage and then its Speed
+        # up two (ability_stages), the Speed rising though the Defense is at
+        # -6 already. Until 2026-10-20 it did nothing (Ian approved the fix).
+        if not dfn.alive() or mv.cat != "Physical":
+            return False
+        ability_stages(dfn, dfn, "def", -1)
+        ability_stages(dfn, dfn, "spe", 2)
+        return True
+    if a == "Water Compaction":
+        # subscript_water_compaction: a Water hit that did damage, by the
+        # type the battle records it with (Normalize's Normal, Weather
+        # Ball's, Liquid Voice's Water: move_type_used), raises its holder's
+        # Defense two stages while it stands. Until 2026-10-20 it did
+        # nothing (Ian approved the fix).
+        if not dfn.alive() or move_type_used(att.ability, mv, att.ivs, att.item or att.recycle,
+                                             weather_now(b)) != "Water":
+            return False
+        ability_stages(dfn, dfn, "def", 2)
+        return True
+    if a == "Toxic Debris":
+        # A physical hit that did damage lays a layer of Toxic Spikes on its
+        # holder's other side, two at most, whether or not the holder still
+        # stands (BattleSystem_TriggerAbilityOnHit, subscript_toxic_debris).
+        # Until 2026-10-20 it did nothing (Ian approved the fix).
+        side = b.b if dfn.side == "p" else b.p
+        if mv.cat != "Physical" or side.hazards["tspikes"] >= 2:
+            return False
+        side.hazards["tspikes"] += 1
+        reveal(dfn)
+        return True
+    if a == "Berserk":
+        # BattleSystem_TriggerAbilityOnHit, subscript_berserk: a hit that
+        # did damage and took its standing holder from above half its
+        # maximum HP to half or less, by HP read before any Berry answers
+        # the hit (Battle.hit_left), and not one Sheer Force boosted, raises
+        # its Sp. Atk a stage by AbilityStatChange (ability_stages); the
+        # ability has answered even at +6. Until 2026-10-20 it did nothing
+        # (Ian approved the fix).
+        left = b.hit_left if b.hit_left is not None else dfn.hp
+        half = dfn.maxhp // 2
+        if not dealt or not left or left > half or left + dealt <= half or sheer_force_active(att, mv):
+            return False
+        ability_stages(dfn, dfn, "spa", 1)
+        return True
     if a == "Cursed Body":
         if (att.alive() and att is not dfn and att.disabled is None and mv.power
                 and any(m.name == mv.name for m in att.moves) and att.pp.get(mv.name, 0) > 0
@@ -5125,7 +5758,7 @@ def color_change(b, att, dfn, mv):
     names the ability. Its rows then come from its twin of that type
     (form_key) until it leaves. Whether it acted. Until 2026-10-14 Color
     Change did nothing (Ian approved the fix)."""
-    t = move_type_used(att.ability, mv, att.ivs, att.item or att.recycle, b.weather)
+    t = move_type_used(att.ability, mv, att.ivs, att.item or att.recycle, weather_now(b))
     if (not dfn.alive() or not mv.power or mv.effect == "STRUGGLE" or sheer_force_active(att, mv)
             or t in dfn.types):
         return False
@@ -5210,8 +5843,33 @@ def _spirit_swapped(ff):
                 yield k, None, ab, (f, None, "Wandering Spirit")
 
 
-def _struck_back(b, att, dfn, chance, pick):
-    """The defender's on-hit ability; whether it acted."""
+def pickpocket(b, att, dfn, mv):
+    """Pickpocket (BattleSystem_TriggerAbilityOnHit, subscript_pickpocket):
+    a contact move that did damage to its standing holder, which holds
+    nothing, from a user that holds an item, not one Sheer Force boosted,
+    and not a Dragon Tail or Circle Throw about to drag the holder out
+    (drag_coming, Ian's ruling of 2026-10-15). TryPickpocket then lets the
+    item go to the holder unless the holder's own item was knocked off this
+    battle, either has Multitype, the item is a Griseous Orb or the user
+    has Sticky Hold; the message names neither ability. Unlike Thief a
+    trainer's holder takes the item too. A trainer's Pokemon that loses
+    its item reads its item twin (mark_unheld). Whether the ability ran.
+    Until 2026-10-20 it did nothing (Ian approved the fix)."""
+    if att.item_off is not None or dfn.item_off is not None:
+        return raw_item_op((att, dfn), lambda: pickpocket(b, att, dfn, mv))
+    if (not dfn.alive() or dfn.item or not att.item or att is dfn or sheer_force_active(att, mv)
+            or drag_coming(b, att, dfn, mv)):
+        return False
+    if not (dfn.knocked_off or "Multitype" in (att.ability, dfn.ability) or att.item == "Griseous Orb"
+            or att.ability == "Sticky Hold"):
+        dfn.item, att.item = att.item, None
+        mark_unheld(b, att)
+    return True
+
+
+def _struck_back(b, att, dfn, chance, pick, mv):
+    """The defender's on-hit ability that a contact move of att's, mv, sets
+    off; whether it acted."""
     a = dfn.ability
     b.status_src = dfn           # a status the ability gives comes from dfn (Synchronize)
     if a == "Mummy":
@@ -5239,6 +5897,19 @@ def _struck_back(b, att, dfn, chance, pick):
                 reveal(dfn)
             return True
         return False
+    if a == "Gooey":
+        # subscript_gooey: a contact move that did damage lowers its user's
+        # Speed a stage while it is above -6, by ability_stages (Clear Body,
+        # White Smoke and a Clear Amulet keep it; Mist and Mirror Armor do
+        # not), and TryDefiant answers the drop. Until 2026-10-20 it did
+        # nothing (Ian approved the fix).
+        if att.stages["spe"] <= -6:
+            return False
+        if ability_stages(dfn, att, "spe", -1) and att.ability in DEFIANT_STAT:
+            raise_own(att, DEFIANT_STAT[att.ability], 2)
+        return True
+    if a == "Pickpocket":
+        return pickpocket(b, att, dfn, mv)
     if att.status:
         return False
     if a == "Effect Spore":
@@ -5309,6 +5980,9 @@ ROW_NEUTRAL_ITEMS = frozenset({"White Herb", "Clear Amulet"})
 # The moves of a foe that take a trainer's item away, and the trainer's own
 # move that spends it.
 TAKES_ITEM = frozenset({"REMOVE_HELD_ITEM", "STEAL_HELD_ITEM", "SWITCH_HELD_ITEMS"})
+# The abilities that take a foe's item (pickpocket, magician), for the same
+# twins.
+TAKING_ABILITIES = frozenset({"Pickpocket", "Magician"})
 
 
 def _compact(name):
@@ -5437,7 +6111,7 @@ def take_first(b, att, dfn, mv, pick):
     if mv.effect == "EAT_BERRY":
         pluck(b, att, dfn, pick)
     elif dfn.alive():
-        knock_off(dfn)
+        knock_off(att, dfn)
         mark_unheld(b, dfn)
 
 
@@ -5446,8 +6120,8 @@ def resist_berry(b, dfn, mv):
     move's type, against a super-effective hit (any Normal move for the
     Chilan Berry)."""
     berry = _row_item(b, dfn)
-    if mv.cat == "Status" or mv.effect == FUTURE_SIGHT or RESIST_BERRY.get(berry) != mv.type:
-        return None                  # Future Sight never meets the type chart, nor a resist berry
+    if mv.cat == "Status" or mv.effect in (FUTURE_SIGHT, "BEAT_UP") or RESIST_BERRY.get(berry) != mv.type:
+        return None                  # Future Sight and Beat Up never meet the type chart, nor a resist berry
     if berry != "Chilan Berry" and effectiveness(b.st["chart"], mv.type, chart_types(dfn, mv)) <= 1:
         return None
     return berry
@@ -5567,6 +6241,63 @@ def spin(b, att, dfn, e):
         change_stages(att, {"spe": 1})
 
 
+def sparkly_swirl(b, att):
+    """Sparkly Swirl (effect script 314): once its hit lands, a Substitute's
+    or a knockout's too (an indirect effect run ON_HIT, which Sheer Force
+    does not strip), subscript_heal_bell's TryPartyStatusRefresh runs as for
+    any move but Heal Bell: its user's status and Nightmare are gone, and so
+    are those of its partner on the field, and every Pokemon in its party is
+    cured (BtlIOCmd_RefreshPartyStatus), Soundproof or not. Until 2026-10-20
+    it was a plain hit (Ian approved the fix)."""
+    side = b.p if att.side == "p" else b.b
+    field = side.on_field()
+    for m in side.mons:
+        if m in field or getattr(m, "owner", None) == getattr(att, "owner", None):
+            m.status = None
+    for m in field:
+        m.nightmare = False
+
+
+# Fickle Beam's roll (effect script 349): Random 9, 0 gives 0 to 9, and
+# above 6 the power doubles, so three times in ten.
+FICKLE_ODDS = {True: 3, False: 7}
+
+
+def fickle_doubles(b):
+    """Whether this Fickle Beam goes all out at twice its power (effect
+    script 349's POWER_MULTI 20), on the battle's dice: a run's draw or the
+    planner's weighted event; where no dice can weigh it, the likelier,
+    not. Until 2026-10-20 it never doubled (Ian approved the fix)."""
+    pick = getattr(getattr(b, "dice", None), "pick_weighted", None)
+    if pick is not None:
+        return pick(list(FICKLE_ODDS), list(FICKLE_ODDS.values()))
+    rng = getattr(b, "rng", None)
+    return rng.random() < 0.3 if rng is not None else False
+
+
+def beak_doubles(b, dfn, first):
+    """Whether Bolt Beak and Fishious Rend double their power
+    (BtlCmd_CalcBoltBeakPower, effect script 382): while the target's
+    action this turn is still to come (`first`), or when its side chose
+    this turn to switch it in, which the engine counts as not having acted
+    (Generation 8's rule; Mon.switched_turn). The rows are made at the
+    listed power, which the trainer's AI reckons with too. Until 2026-10-20
+    they never doubled (Ian approved the fix)."""
+    return first or dfn.switched_turn == b.turn
+
+
+def sappy_seed(dfn):
+    """Sappy Seed (effect script 310): its hit's indirect effect
+    (MOVE_SIDE_EFFECT_CHECK_HP) runs subscript_leech_seed_start on a target
+    left standing: nothing behind a Substitute, one hit this move included
+    (CheckSubstitute, past an Infiltrator), on a Grass type or on one
+    seeded already; else the target is seeded, as by Leech Seed. Neither
+    Sheer Force nor Shield Dust stops it. Until 2026-10-20 it was a plain
+    hit (Ian approved the fix)."""
+    if "Grass" not in dfn.types:
+        dfn.seeded = True
+
+
 def technician(att, power):
     """A move's power after Technician, which BattleSystem_CalcMoveDamage
     applies once the power is worked out and its multipliers are in (a
@@ -5622,6 +6353,9 @@ def marvel_scale(att, dfn, mv):
     return 1.0
 
 
+# The moves whose power reads weights (weight_move_power), which an
+# Autotomize changes as the fight runs.
+WEIGHT_EFFECTS = frozenset({"INCREASE_POWER_WITH_WEIGHT", "HEAVY_SLAM"})
 # The effects and the moves whose power state_mult sets from the battle's
 # state, each looked for once.
 STATE_POWER_EFFECTS = frozenset({"INCREASE_POWER_WITH_LESS_HP", "DECREASE_POWER_WITH_LESS_USER_HP",
@@ -5642,6 +6376,13 @@ def state_mult(b, att, dfn, mv):
     if PINCH_ABILITY.get(att.ability) == mv.type and att.hp * 3 <= att.maxhp:
         m *= 1.5
     m *= marvel_scale(att, dfn, mv)
+    if dfn.ability == "Multiscale" and dfn.hp == dfn.maxhp and not mold(att, dfn):
+        # BattleSystem_CalcMoveDamage halves the damage a Multiscale holder
+        # takes at full HP, unless a Mold Breaker gets past it; the
+        # calculator's Generation 4 path has no Multiscale. Each hit of a
+        # move of several reads the HP it meets. Until 2026-10-20 it did
+        # nothing (Ian approved the fix).
+        m *= 0.5
     m *= plus_minus(b, att, mv)
     berry = resist_berry(b, dfn, mv)
     if berry and not berry_works(b, dfn, berry):
@@ -5722,6 +6463,12 @@ def state_mult(b, att, dfn, mv):
             # 2026-10-14 it hit at full power whatever the target's HP (Ian
             # approved the fix).
             m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
+    if (att.rare or dfn.rare) and (att.lightened or dfn.lightened) and mv.effect in WEIGHT_EFFECTS:
+        # An Autotomize on either side: the power at the weights now, over
+        # the rows' at the species' own (weight_move_power).
+        m *= power_ratio(att, weight_move_power(b, att, dfn, mv, False), weight_move_power(b, att, dfn, mv, True))
+    if att.ability in POWER_ABILITIES:
+        m *= ability_power(b, att, mv)       # Analytic's 13/10, Flare Boost's half again (ability_power)
     if b.sporty:
         m *= sport_half(b, att, dfn, mv)     # Water Sport on the field halves a Fire move's power
     if b.split:
@@ -5731,7 +6478,7 @@ def state_mult(b, att, dfn, mv):
         # is in force (since 2026-10-15, when Gravity began to run).
         m *= power_ratio(att, mv.power, mv.power * 15 // 10)
     if att.rare:
-        if att.charged and move_type_used(att.ability, mv, att.ivs, att.item, b.weather) == "Electric":
+        if att.charged and move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b)) == "Electric":
             # Charge: BattleSystem_CalcMoveDamage doubles an Electric move's
             # power while MOVE_EFFECT_CHARGE stands, after POWER_MULTI and
             # before Technician; the trainer's AI reckons it the same way.
@@ -5746,6 +6493,30 @@ def state_mult(b, att, dfn, mv):
         # Technician is judged; Magnitude, whose power is rolled, doubles.
         m *= power_ratio(att, mv.power, reach * mv.power) if mv.power > 1 else reach
     return m
+
+
+# The abilities whose power the battle's state sets (ability_power).
+POWER_ABILITIES = frozenset({"Analytic", "Flare Boost", "Toxic Boost"})
+
+
+def ability_power(b, att, mv):
+    """A power multiplier BattleSystem_CalcMoveDamage gives by an ability and
+    the battle's state, after Technician, which the rows lack. Analytic:
+    13/10 when every other Pokemon on the field has acted this turn, as
+    the battle notes while such a holder's move runs (Battle.analytic,
+    set by _use_move), Future Sight and Doom Desire apart, whose damage is
+    worked out as they are used. Flare Boost: half again for a special
+    move while its holder is burned. Until 2026-10-20 neither did anything
+    (Ian approved the fix). Toxic Boost: half again for a physical move
+    while its holder is poisoned or badly poisoned; until 2026-10-20 it did
+    nothing either (Ian approved the fix)."""
+    if att.ability == "Analytic":
+        return 1.3 if b.analytic is att and mv.effect != FUTURE_SIGHT else 1.0
+    if att.ability == "Flare Boost":
+        return 1.5 if att.status == "brn" and mv.cat == "Special" else 1.0
+    if att.ability == "Toxic Boost":
+        return 1.5 if att.status in ("psn", "tox") and mv.cat == "Physical" else 1.0
+    return 1.0
 
 
 # Trump Card's power by the PP its slot has left once the use is paid
@@ -5973,6 +6744,12 @@ def weather_ignored(b):
     return any(m.alive() and m.ability in ("Cloud Nine", "Air Lock") for m in b.p.on_field() + b.b.on_field())
 
 
+def weather_now(b):
+    """The weather as its effects read it: none while Cloud Nine or Air Lock
+    is out (NO_CLOUD_NINE), in a fight with either (Battle.cloudy)."""
+    return None if b.cloudy and b.weather is not None and weather_ignored(b) else b.weather
+
+
 def fog_cut(b):
     """Deep fog's cut to a move's accuracy (BattleControllerPlayer_CheckMoveHitAccuracy,
     under FIELD_CONDITION_DEEP_FOG and NO_CLOUD_NINE): six tenths, after the
@@ -5989,7 +6766,7 @@ def charge_skipped(b, att, mv):
     Shot in rain unless Cloud Nine or Air Lock is out, raising Sp. Atk
     (subscript_sp_atk_up_rain_skip); else a Power Herb, spent, raising the
     move's charge stage (subscript_power_herb_skull_bash and _meteor_beam)."""
-    if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun":
+    if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun" and not weather_ignored(b):
         return True
     if mv.effect == "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS" and b.weather == "Rain" and not weather_ignored(b):
         change_stages(att, CHARGE_STAGES[mv.effect])
@@ -6148,9 +6925,14 @@ def multi_hit_odds(att, mv):
 def row_hits(att, mv):
     """The hits a calculator row adds up for this move (calc_headless.js
     rolls(), move.js): a two to five hit move at its lowest plus one, or its
-    most with Skill Link or a Grip Claw; Double Kick's kind at two; else one."""
+    most with Skill Link or a Grip Claw; Double Kick's kind at two; Triple
+    Dive's at three (THREE_HITS), so the trainer's AI, which divides its
+    row by this, rates it on one hit, as TrainerAI_ExpectedHitsDamage
+    leaves it; else one."""
     if mv.effect == "MULTI_HIT":
         return 5 if att.ability == "Skill Link" or att.item == "Grip Claw" else 3
+    if mv.effect in THREE_HITS:
+        return 3             # Triple Dive's kind (calc's multihit 3)
     return 2 if mv.effect == "HIT_TWICE" else 1
 
 
@@ -6354,7 +7136,7 @@ def protected(b, att, mv, dfn):
         return b.guarded and mv.protect and guard_stops(b, att, mv, dfn)
     rollout_after(att, mv, False)
     guard = dfn.last.name if dfn.last is not None else None
-    if mv.contact and att.alive():
+    if makes_contact(att, mv) and att.alive():
         if guard == "Spiky Shield" and att.ability != "Magic Guard":
             hurt(b, att, max(1, att.maxhp // 8))
         elif guard == "Baneful Bunker" and not att.status:
@@ -6891,8 +7673,8 @@ def weather_move_fails(b, e):
 
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
-    if dfn.magic_coat and coat_bounces(b, att, mv, dfn):
-        b.reflecting = True              # Magic Coat turns it back on its user (coat_bounces)
+    if (dfn.magic_coat or dfn.ability == "Magic Bounce") and bounces(b, att, mv, dfn):
+        b.reflecting = True              # Magic Coat or Magic Bounce turns it back on its user (bounces)
         try:
             status_move(b, dfn, mv, att, first)
         finally:
@@ -6932,6 +7714,10 @@ def status_move(b, att, mv, dfn, first):
             return               # Thunder Wave into Volt Absorb, Spore into Sap Sipper: taken whole
         if soundproofed(att, dfn, mv):
             return               # Sing, Growl or Roar into Soundproof
+        if dfn.ability == "Queenly Majesty" and majesty_blocked(att, dfn, mv):
+            return               # a raised move into Queenly Majesty (majesty_blocked)
+        if att.ability == "Prankster" and prankster_blocked(att, dfn, mv):
+            return               # a raised status move into a Dark type (prankster_blocked)
     if e in STATUS_OF:
         if sub_blocks(att, dfn, mv):
             return
@@ -6995,11 +7781,23 @@ def status_move(b, att, mv, dfn, first):
         else:
             change_stages(att, {"atk": 1, "def": 1, "spe": -1})
     elif e == "MAX_ATK_LOSE_HALF_MAX_HP":
-        if att.hp > att.maxhp // 2:
+        # subscript_belly_drum fails, at no cost, with Attack at +6 already or
+        # half its HP or less; else half its HP goes and Attack is set at +6
+        # directly. Until 2026-10-20 a Belly Drum at +6 still cost half its
+        # HP (Ian approved the fix on 2026-10-20).
+        if att.stages["atk"] < 6 and att.hp > att.maxhp // 2:
             hurt(b, att, att.maxhp // 2)
             att.stages["atk"] = 6
     elif e == "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP":
         clangorous_soul(b, att)
+    elif e == "ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP":
+        fillet_away(b, att)
+    elif e == "AUTOTOMIZE":
+        autotomize(att)
+    elif e == "LASER_FOCUS":
+        laser_focus(att)
+    elif e == "LUNAR_BLESSING":
+        lunar_blessing(b, att)
     elif e == "REMOVE_ALL_PP_ON_DEFEAT":
         att.grudge = att.rare = True     # Grudge, until its user next acts (grudge)
     elif e == "OCTOLOCK":
@@ -7241,6 +8039,73 @@ def clangorous_soul(b, att):
     change_stages(att, dict.fromkeys(ALL_FIVE, 1))
 
 
+def fillet_away(b, att):
+    """Fillet Away (effect script 303,
+    subscript_atk_sp_atk_speed_up_2_lose_half_max_hp): it fails with
+    Attack, Sp. Atk and Speed all at +6, or with its user at half its
+    maximum HP or less (BattleSystem_Divide's half); otherwise the user
+    loses that half, as Belly Drum's is lost (hurt, which checks a pinch
+    Berry), and the three rise two stages each through the stat-stage
+    subscript (change_stages). Until 2026-10-20 it did nothing (Ian
+    approved the fix)."""
+    half = engine_divide(att.maxhp, 2)
+    if all(att.stages[k] >= 6 for k in ("atk", "spa", "spe")) or att.hp <= half:
+        return
+    hurt(b, att, half)
+    change_stages(att, {"atk": 2, "spa": 2, "spe": 2})
+
+
+def autotomize(att):
+    """Autotomize (effect script 281, subscript_autotomize): it fails with
+    its user's Speed at +6; otherwise the Speed rises two stages through
+    the stat-stage subscript (change_stages) and ReduceWeight takes 100 kg
+    off the user's weight, to 0.1 kg at least, until it leaves
+    (Mon.lightened, which Low Kick, Grass Knot, Heavy Slam and Heat Crash
+    read through weight_now). Until 2026-10-20 it did nothing (Ian
+    approved the fix)."""
+    if att.stages["spe"] >= 6:
+        return
+    change_stages(att, {"spe": 2})
+    att.lightened += 1
+    att.rare = True
+
+
+# The weight moves' powers by the target's weight in tenths of a kilogram
+# (sWeightToPower): the first bound the weight does not pass, else 120.
+WEIGHT_TO_POWER = ((100, 20), (250, 40), (500, 60), (1000, 80), (2000, 100))
+
+
+def weight_now(b, att, mon, lightened):
+    """mon's weight in tenths of a kilogram as Battler_Weight(att, mon)
+    reads it: its species' weight, less 100 kg for each Autotomize when
+    `lightened` (ReduceWeight, to 1 at least), then doubled by Heavy Metal
+    or halved by Light Metal unless att's Mold Breaker gets past mon's,
+    and never below 1."""
+    rec = b.st["pokemon"].get(mon.key) or {}
+    poks = calc.blob()["poks"].get(rec.get("species") or mon.species) or {}
+    w = int(round((poks.get("weightkg") or 0) * 10))
+    for _ in range(mon.lightened if lightened else 0):
+        w = w - 1000 if w > 1000 else 1
+    if mon is att or not mold(att, mon):
+        if mon.ability == "Heavy Metal":
+            w *= 2
+        elif mon.ability == "Light Metal":
+            w //= 2
+    return max(1, w)
+
+
+def weight_move_power(b, att, dfn, mv, lightened):
+    """A weight move's power: Low Kick's and Grass Knot's by the target's
+    weight (BtlCmd_CalcWeightBasedPower), Heavy Slam's and Heat Crash's by
+    the target's share of the user's (BtlCmd_CalcHeavySlamPower), with
+    the weights now (`lightened`) or as the rows have them."""
+    if mv.effect == "HEAVY_SLAM":
+        ratio = weight_now(b, att, dfn, lightened) * 10000 // weight_now(b, att, att, lightened)
+        return 120 if ratio <= 2000 else 100 if ratio <= 2500 else 80 if ratio <= 3334 else 60 if ratio <= 5000 else 40
+    w = weight_now(b, att, dfn, lightened)
+    return next((p for bound, p in WEIGHT_TO_POWER if bound >= w), 120)
+
+
 def healing_wish(b, att, lunar=False):
     """Healing Wish (effect script 220, subscript_healing_wish) and, with
     lunar, Lunar Dance (effect script 270, subscript_lunar_dance): it fails
@@ -7452,6 +8317,8 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
     new.turns_in = -1 if getattr(b, "mid_turn", False) else 0
     new.toxic = 0                # Toxic's count starts again on a switch
     seal_newcomer(b, side, new)
+    if b.st.get("soul_heart"):
+        new.soul_seen = fainted_others(b, new)     # Soul Heart counts the faints from here on (soul_heart)
     if passed is not None:
         suppressed = passed.pop("suppressed")
         for k, v in passed.items():
@@ -7487,6 +8354,8 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
             give_status(b, new, "psn" if side.hazards["tspikes"] == 1 else "tox")
     if side.web and new.alive() and web_grounded(b, new):
         web_catch(new)               # Sticky Web last, past Magic Guard (subscript_hazards_check)
+    if b.st.get("soul_heart"):
+        soul_heart(b)                # a newcomer the hazards knocked out (soul_heart)
     if gas and gas_update(b):
         return                   # the gas wore off: the whole field's entry abilities went off, the newcomer's with them
     entry_abilities(b, [new], intimidate=not lead, trace_now=not lead)
@@ -7494,6 +8363,8 @@ def switch_in(b, side, index, slot=0, lead=False, passed=None):
 
 def end_of_turn(b):
     _end_of_turn(b)
+    if b.st.get("soul_heart"):
+        soul_heart(b)                # the turn's end's knockouts (soul_heart)
     b.mid_turn = False
     if b.st.get("gas"):
         # A holder that fell at the turn's end takes its gas with it now; the
@@ -7523,6 +8394,39 @@ def coin(b, kind="tie"):
     or its own rng for a battle fightsim plays alone."""
     dice = getattr(b, "dice", None)
     return dice.choice(kind, 2) == 1 if dice is not None else b.rng.random() < 0.5
+
+
+def pick_one(b, kind, n):
+    """One of n outcomes, at even odds, through the battle's dice (so the
+    planner enumerates it), or its own rng for a battle fightsim plays
+    alone."""
+    if n <= 1:
+        return 0
+    dice = getattr(b, "dice", None)
+    return dice.choice(kind, n) if dice is not None else b.rng.randrange(n)
+
+
+# The five stats Moody draws from, in the engine's order (BATTLE_STAT_ATTACK
+# to BATTLE_STAT_SP_DEFENSE).
+MOODY_STATS = ("atk", "def", "spe", "spa", "spd")
+
+
+def moody(b, m):
+    """Moody (BattleSystem_TriggerTurnEndAbility, subscript_moody): at each
+    turn's end one of the five stats other than accuracy and evasion that
+    is below +6, drawn at random, rises two stages, and then one of the
+    other four above -6, drawn at random, falls one, each made by
+    ability_stages, so Simple and Contrary play no part; with no stat to
+    draw, that change is left out. Until 2026-10-20 it did nothing (Ian
+    approved the fix)."""
+    room = [s for s in MOODY_STATS if m.stages[s] < 6]
+    up = room[pick_one(b, "moody", len(room))] if room else None
+    room = [s for s in MOODY_STATS if s != up and m.stages[s] > -6]
+    down = room[pick_one(b, "moody", len(room))] if room else None
+    if up is not None:
+        ability_stages(m, m, up, 2)
+    if down is not None:
+        ability_stages(m, m, down, -1)
 
 
 def end_order(b):
@@ -7604,13 +8508,19 @@ def _end_of_turn(b):
             # flag), and only the move's own flag clears now, so the
             # field is left clear rather than returning to the map's.
             b.weather = None
-    if b.weather in ("Sand", "Hail"):
+    if b.weather in ("Sand", "Hail") and not weather_ignored(b):
+        # BtlCmd_EndOfTurnWeatherEffect acts only under NO_CLOUD_NINE: with
+        # Cloud Nine or Air Lock out no Pokemon is bitten, nor healed by Ice
+        # Body (until 2026-10-20 the bite came all the same, Ian approved
+        # the fix).
         safe = {"Sand": {"Rock", "Ground", "Steel"}, "Hail": {"Ice"}}[b.weather]
         # The abilities the weather's bite passes over (BtlCmd_EndOfTurnWeatherEffect):
         # Sand Veil, and Oxide's Sand Rush and Sand Force, in sand; Snow
-        # Cloak in hail. Sand Rush and Sand Force were bitten until
-        # 2026-10-14 (Ian approved the fix).
-        shield = {"Sand": ("Sand Veil", "Sand Rush", "Sand Force"), "Hail": ("Snow Cloak",)}[b.weather]
+        # Cloak in hail; Oxide's Overcoat in both. Sand Rush and Sand Force
+        # were bitten until 2026-10-14, Overcoat until 2026-10-20 (Ian
+        # approved the fixes).
+        shield = {"Sand": ("Sand Veil", "Sand Rush", "Sand Force", "Overcoat"),
+                  "Hail": ("Snow Cloak", "Overcoat")}[b.weather]
         for m in order:
             if b.weather == "Hail" and m.ability == "Ice Body":
                 # BtlCmd_EndOfTurnWeatherEffect: Ice Body heals a sixteenth in
@@ -7712,6 +8622,8 @@ def _end_of_turn_mon(b, side, m):
     # turn's end but the one it came in on.
     if m.ability == "Speed Boost" and m.turns_in > 0:
         change_stages(m, {"spe": 1})
+    elif m.ability == "Moody":
+        moody(b, m)
     # Shed Skin (the same step): a status is cured one time in three
     # (Oxide's Generation 5 odds), the message naming the ability. Until
     # 2026-10-14 it did nothing (Ian approved the fix).
@@ -7844,6 +8756,8 @@ def _end_of_turn_mon(b, side, m):
                 m.lock_on_by = None
         if m.throat_chop:
             m.throat_chop -= 1       # MON_COND_CHECK_STATE_LOCK_ON lowers Throat Chop's count, silently
+        if m.laser_focus:
+            m.laser_focus -= 1       # and Laser Focus's (laser_focus)
         if m.charged:
             m.charged -= 1           # MON_COND_CHECK_STATE_CHARGE: at 0 the mark is gone
     if m.taunt:
@@ -8229,8 +9143,10 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
         # Switches first.
         if pa[0] == "switch":
             switch_in(b, b.p, pa[1])
+            b.p.cur().switched_turn = b.turn     # it came in by its side's choice (beak_doubles)
         if ba[0] == "switch":
             switch_in(b, b.b, ba[1])
+            b.b.cur().switched_turn = b.turn
         me, foe = b.p.cur(), b.b.cur()
         order = []
         if pa[0] == "move":
@@ -8915,32 +9831,36 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     # ("<key>#m<power>") carrying that power, against every foe it can meet,
     # on either side. Until 2026-10-15 only the player's and a partner's
     # Pokemon had these keys, so a trainer's Magnitude found no row and
-    # never dealt damage (Ian approved the fix).
-    for k in list(pkeys) + list(qkeys) + list(bkeys):
-        if "Magnitude" in moves.get(k, ()):
-            foes = pkeys + qkeys if k in bkeys else bkeys
-            for p in MAGNITUDE_POWERS:
-                dk = f"{k}#m{p}"
-                pokemon[dk] = dict(pokemon[k], move_data={"Magnitude": {
-                    "type": "Ground", "category": "Physical", "basePower": p}})
-                for w in weathers:
-                    for d in foes:
-                        pairs.append([dk, d, ["Magnitude"], w])
+    # never dealt damage (Ian approved the fix). A Pokemon that can borrow
+    # the move (Copycat, Me First, Mimic, Mirror Move, Sketch) gets them too,
+    # as it does Present's and Heat Crash's (power_row_keys); until
+    # 2026-10-20 a borrowed one dealt nothing (Ian approved the fix).
+    takes = {k: all_hits(k) for k in list(pkeys) + list(qkeys) + list(bkeys)
+             if any(move(m).effect in BORROWS for m in moves[k])}
+    knows = {k: moves.get(k, ()) for k in list(pkeys) + list(qkeys) + list(bkeys)}
+    for k in power_row_keys("Magnitude", knows, takes):
+        foes = pkeys + qkeys if k in bkeys else bkeys
+        for p in MAGNITUDE_POWERS:
+            dk = f"{k}#m{p}"
+            pokemon[dk] = dict(pokemon[k], move_data={"Magnitude": {
+                "type": "Ground", "category": "Physical", "basePower": p}})
+            for w in weathers:
+                for d in foes:
+                    pairs.append([dk, d, ["Magnitude"], w])
     # Present's power is rolled when it is used (present_roll), so the
     # calculator is asked once per power, each as its own attacker key
     # ("<key>#pr<power>") carrying that power, against every foe it can
     # meet, on either side; the calculator gives Present itself no row.
-    for k in list(pkeys) + list(qkeys) + list(bkeys):
-        if "Present" in moves.get(k, ()):
-            foes = pkeys + qkeys if k in bkeys else bkeys
-            for p in PRESENT_ODDS:
-                if p:
-                    dk = f"{k}#pr{p}"
-                    pokemon[dk] = dict(pokemon[k], move_data={"Present": {
-                        "type": "Normal", "category": "Physical", "basePower": p}})
-                    for w in weathers:
-                        for d in foes:
-                            pairs.append([dk, d, ["Present"], w])
+    for k in power_row_keys("Present", knows, takes):
+        foes = pkeys + qkeys if k in bkeys else bkeys
+        for p in PRESENT_ODDS:
+            if p:
+                dk = f"{k}#pr{p}"
+                pokemon[dk] = dict(pokemon[k], move_data={"Present": {
+                    "type": "Normal", "category": "Physical", "basePower": p}})
+                for w in weathers:
+                    for d in foes:
+                        pairs.append([dk, d, ["Present"], w])
     # Heat Crash's power is set by the two Pokemon's weights (weight_power), as
     # Heavy Slam's is, which the calculator works out for Heavy Slam alone:
     # it gives Heat Crash no power, so no row ("damage is not a number").
@@ -8949,16 +9869,15 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     # that give that power, on either side (Battle.heat_crash_rolls). Until
     # 2026-10-15 Heat Crash never dealt damage (Ian approved the fix).
     heat_crash = {}
-    for k in list(pkeys) + list(qkeys) + list(bkeys):
-        if "Heat Crash" in moves.get(k, ()):
-            for d in (pkeys + qkeys if k in bkeys else bkeys):
-                power = weight_power(blob, pokemon[k], pokemon[d])
-                heat_crash[(k, d)] = power
-                dk = f"{k}#hc{power}"
-                pokemon.setdefault(dk, dict(pokemon[k], move_data={"Heat Crash": {
-                    "type": "Fire", "category": "Physical", "basePower": power}}))
-                for w in weathers:
-                    pairs.append([dk, d, ["Heat Crash"], w])
+    for k in power_row_keys("Heat Crash", knows, takes):
+        for d in (pkeys + qkeys if k in bkeys else bkeys):
+            power = weight_power(blob, pokemon[k], pokemon[d])
+            heat_crash[(k, d)] = power
+            dk = f"{k}#hc{power}"
+            pokemon.setdefault(dk, dict(pokemon[k], move_data={"Heat Crash": {
+                "type": "Fire", "category": "Physical", "basePower": power}}))
+            for w in weathers:
+                pairs.append([dk, d, ["Heat Crash"], w])
     # Spit Up's power is 100 for each stockpile it spends (spit_up_key), so the
     # calculator is asked once per count, each as its own attacker key
     # ("<key>#su<power>") carrying that power, against every foe it can meet,
@@ -9281,12 +10200,13 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                     if got:
                         pairs.append([d, t, got, w])
     # A trainer's held item that the fight can take away (the player's or a
-    # partner's Knock Off, Thief, Covet, Trick or Switcheroo, or the
-    # Pokemon's own Fling) and that its rows read (row_item): a twin with no
-    # item ("<key>#ni"), rowed both ways in every weather against every foe,
-    # which the battle reads once the item is gone (mark_unheld).
+    # partner's Knock Off, Thief, Covet, Trick or Switcheroo, Pickpocket or
+    # Magician, or the Pokemon's own Fling) and that its rows read (row_item): a twin with
+    # no item ("<key>#ni"), rowed both ways in every weather against every
+    # foe, which the battle reads once the item is gone (mark_unheld).
     item_twin = {}
-    takers = any(move(m).effect in TAKES_ITEM for k in pkeys + qkeys for m in moves[k])
+    takers = any(move(m).effect in TAKES_ITEM for k in pkeys + qkeys for m in moves[k]) \
+        or any(pokemon[k].get("ability") in TAKING_ABILITIES for k in pkeys + qkeys)
     for k in bkeys:
         if not row_item(pokemon[k].get("item")):
             continue
@@ -9331,6 +10251,26 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     form_twin = form_twins(FormFight(pokemon, moves, blob, pkeys, qkeys, bkeys, weathers, camo), pairs,
                            all_hits, spread,
                            doubles or bool(partners), gas_twin)
+    # A Mold Breaker attacker reads a Heavy Metal or Light Metal target's
+    # own weight (Battler_Weight asks Battler_IgnorableAbility), where the
+    # target's rows carry the weight its ability gives it (metal_weight). So
+    # each such target of a Mold Breaker foe that knows Low Kick, Grass Knot
+    # or Heavy Slam gets a twin at its own weight ("<key>#mw"), rowed for
+    # those moves alone, which Battle.row reads for them (metal_raw_key).
+    # Heat Crash's power rows have the target's own weight already
+    # (weight_power). Until 2026-10-20 a Mold Breaker's weight move read the
+    # changed weight (Ian approved the fix).
+    metal_raw = {}
+    for d in pkeys + qkeys + bkeys:
+        if pokemon[d].get("ability") not in METALS:
+            continue
+        for a in (pkeys + qkeys if d in bkeys else bkeys):
+            mvs = [m for m in all_hits(a) if m in WEIGHT_MOVES] if pokemon[a].get("ability") == "Mold Breaker" else []
+            if mvs:
+                t = metal_raw.setdefault(d, f"{d}#mw")
+                pokemon.setdefault(t, dict(pokemon[d]))
+                for w in weathers:
+                    pairs.append([a, t, mvs, w])
     # The calculator is told to leave off the abilities the battle applies
     # itself as it runs (CALC_ABILITY_OFF), so their effect is counted once,
     # and each Pokemon's gender as the battle has it (calc_gender: "M", "F",
@@ -9344,6 +10284,10 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     for k, p in pokemon.items():
         job = dict(p, ability_on=False) if p.get("ability") in CALC_ABILITY_OFF else dict(p)
         job["calc_gender"] = _gender_of(p) or "N"
+        if p.get("ability") in METALS and not k.endswith("#mw"):
+            # the weight Heavy Metal or Light Metal gives it; a Mold
+            # Breaker's twin of it keeps its own (metal_raw)
+            job = metal_weight(blob, job)
         jobs[k] = job
     out = calc.run_node(calc.blob_path(), {"pokemon": jobs, "pairs": pairs})
     rows, speed = {}, {}
@@ -9367,10 +10311,12 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "ai_twin": ai_twin, "gas": bool(holders), "gas_twin": gas_twin, "roost_twin": roost_twin,
             "foresight_twin": foresight_twin, "ground_twin": ground_twin, "miracle_twin": miracle_twin,
             "trick_twin": trick_twin, "item_twin": item_twin, "meloetta_twin": meloetta_twin,
+            "cloud_nine": any(p.get("ability") in ("Cloud Nine", "Air Lock") for p in pokemon.values()),
             "copycat": any(move(m).effect == "USE_LAST_USED_MOVE" for mv in moves.values() for m in mv),
             "water_sport": any(move(m).effect == "HALVE_FIRE_DAMAGE" for mv in moves.values() for m in mv),
             "mud_sport": any(move(m).effect == "HALVE_ELECTRIC_DAMAGE" for mv in moves.values() for m in mv),
-            "heat_crash": heat_crash,
+            "heat_crash": heat_crash, "metal_raw": metal_raw,
+            "soul_heart": any(p.get("ability") == "Soul Heart" for p in pokemon.values()),
             "protean_twin": protean_twin, "form_twin": form_twin, "camouflage": camo, "terrain": terrain,
             "fog": bool(fog)}
 
