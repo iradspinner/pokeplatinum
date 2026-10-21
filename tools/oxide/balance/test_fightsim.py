@@ -9123,6 +9123,39 @@ def check_booster_retyped(results):
                     out == want, f"(with the item, without) {out}"))
 
 
+@b16
+def check_trainer_fling_rows(results):
+    """A trainer's Fling of the item its rows read deals its damage (Ian
+    approved the fix on 2026-10-21; Fling's script spends the item before
+    the hit, but RemoveItem comes after CalcDamage): the Fling of a held
+    Thick Club, whose twin with no item rows Fling at nothing, is read from
+    the trainer's own row, 30; its Tackle afterwards reads the twin's row,
+    15 against its own 20, as before; and a Fling of an item the battle
+    handed it reads its own row too, at its own item's power, as Ian
+    accepted on 2026-10-15 for a Fling after the player's Trick. Until
+    2026-10-21 both Flings read the twin and dealt nothing."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("own item", "handed item"):
+        b, p, foe = battle(["Splash"], ["Fling", "Tackle"], {("b", "Fling"): [30] * 16, ("b", "Tackle"): [20] * 16},
+                           hp=200)
+        b.st["pokemon"]["b0.0"]["item"] = "Thick Club"
+        b.st["pokemon"]["b0.0#ni"] = dict(b.st["pokemon"]["b0.0"], item=None)
+        b.st["item_twin"] = {"b0.0": "b0.0#ni"}
+        b.st["rows"][(None, "b0.0#ni", "p0")] = {"moves": {"Fling": {"rolls": [0] * 16}, "Tackle": {"rolls": [15] * 16}}}
+        foe.item = "Thick Club" if case == "own item" else "Hard Stone"
+        fs.mark_unheld(b, foe)
+        b.dice, b.rng = sure12(), random.Random(1)
+        b.st["first_battle"] = True          # no critical hit, so each hit is its row's
+        pl.attack(b, foe, fs.move("Fling"), p, True)
+        flung = 200 - p.hp
+        pl.attack(b, foe, fs.move("Tackle"), p, False)
+        out[case] = (flung, 200 - p.hp - flung, foe.item)
+    want = {"own item": (30, 15, None), "handed item": (30, 15, None)}
+    results.append(("a trainer's Fling of the item its rows read deals its damage", out == want,
+                    f"(the Fling's damage, the Tackle's after, the item left) {out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

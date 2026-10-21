@@ -1142,7 +1142,14 @@ class Battle:
             # A trainer's Pokemon whose item the battle took reads its item
             # twin (mark_unheld), where nothing else has changed its key; a
             # pair prepare() did not row with the twin keeps its own rows.
-            ua = item_key(self, att) if att.unheld and ak == att.key else None
+            # Its Fling reads its own rows, made with its own item: the item
+            # is spent before the hit (Fling's script), but its damage is
+            # worked out from the item still held (RemoveItem comes after
+            # CalcDamage). An item the player's Trick gave it flings at its
+            # own item's power, as Ian accepted on 2026-10-15. Until
+            # 2026-10-21 it read the twin, which holds nothing, so the Fling
+            # dealt nothing (Ian approved the fix on 2026-10-21).
+            ua = item_key(self, att) if att.unheld and ak == att.key and not flinging(mv) else None
             ud = item_key(self, dfn) if dfn.unheld and dk == dfn.key else None
             if ua or ud:
                 a, d = ua or ak, ud or dk
@@ -6453,6 +6460,13 @@ def row_item(item):
 def item_key(b, mon):
     """The key of mon's item twin (prepare's item_twin), or None."""
     return (b.st.get("item_twin") or {}).get(mon.key)
+
+
+def flinging(mv):
+    """Whether mv is Fling, whose hit a trainer's Pokemon reads from its own
+    rows, made with its own item, even once the throw has spent the item
+    (Battle.row): a Fling with nothing to throw fails before its hit."""
+    return mv is not None and mv.name == "Fling"
 
 
 def mark_unheld(b, *mons):

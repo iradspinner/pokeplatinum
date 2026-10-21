@@ -7031,6 +7031,26 @@ def booster_retyped_checks():
              f"(Swift's damage and its row's top roll, Moonblast's the same) {out}")]
 
 
+@b16
+def trainer_fling_checks():
+    """A trainer's Fling of the item its rows read, in the readings' battle
+    on the calculator's real rows (Ian approved the fix on 2026-10-21), as
+    Collector Jamal's Delibird has it: a trainer's Delibird holding a Thick
+    Club, which its rows read, so it has an item twin with none, flings it
+    at the player's Bibarel for the top roll of its own row's Fling, the
+    Club's 90 power, and is left with nothing."""
+    b, deli, bib = b8_battle([("Delibird", 30, "Vital Spirit", ["Fling", "Ice Shard"], "Thick Club")],
+                             [("Bibarel", 30, "Simple", ["Tackle"])])
+    twin = fs.item_key(b, deli)
+    top = (b.rolls(deli, bib, fs.move("Fling")) or [None])[-1]
+    hp = bib.hp
+    pl.attack(b, deli, fs.move("Fling"), bib, True)
+    ok = twin is not None and top and hp - bib.hp == top and deli.item is None
+    return [("the readings' trainer's Fling of its held item deals its row's damage", ok,
+             f"Delibird's item twin {twin}, its Fling's top roll {top}, Bibarel's HP {hp} to {bib.hp}, "
+             f"Delibird's item {deli.item}")]
+
+
 def main():
     results = []
 
