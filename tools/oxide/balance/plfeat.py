@@ -59,13 +59,25 @@ def type_id(t):
 
 # ---- the per-fight tables ----------------------------------------------------------------------------
 
-def _expected(rec, mv):
+class _Holder:
+    """A prepared Pokemon's ability and item, as fightsim.expected_hit_scale
+    reads them, from its st["info"] record."""
+    __slots__ = ("ability", "item")
+
+    def __init__(self, info):
+        self.ability, self.item = (info or {}).get("ability"), (info or {}).get("item")
+
+
+def _expected(rec, mv, info=None):
     """A move's expected damage a turn from a calculator row's entry: the
-    middle roll times its accuracy, a two-turn move at half."""
+    middle roll times its accuracy, a two-turn move at half. `info`: its
+    user's st["info"] record, for the hits a Population Bomb's row adds up
+    (fightsim.row_hits)."""
     if rec is None or "error" in rec or not rec.get("rolls"):
         return 0.0
     rolls = rec["rolls"]
-    d = rolls[len(rolls) // 2] * fs.expected_hit_scale(mv)     # Fury Cutter's later hits
+    who = _Holder(info) if mv.effect == fs.TEN_HITS else None
+    d = rolls[len(rolls) // 2] * fs.expected_hit_scale(mv, who)     # Fury Cutter's later hits, Population Bomb's
     acc = 1.0 if mv.acc == 0 else min(1.0, mv.acc / 100)
     if mv.effect in fs.TWO_TURN or mv.effect == "RECHARGE_AFTER":
         d /= 2
@@ -97,7 +109,7 @@ class Fight:
                     if row:
                         for mv in self.moves[a]:
                             if mv.damaging():
-                                best = max(best, _expected(row["moves"].get(mv.name), mv))
+                                best = max(best, _expected(row["moves"].get(mv.name), mv, st["info"].get(a)))
                     d[(a, t)] = best / st["info"][t]["hp"]
             self.dmg[w] = d
             self.speed[w] = {k: st["speed"].get((w, k)) or st["speed"].get((None, k)) or 1

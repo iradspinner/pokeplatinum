@@ -32,7 +32,16 @@ CALC_WEATHER = {"Rain": "Rain", "Sun": "Sun", "Sand": "Sand", "Hail": "Hail"}
 @functools.lru_cache(maxsize=None)
 def blob():
     """The calculator's data (species, moves, type chart), as the encounter
-    tool's server hands it to the calculator's page; built once a process."""
+    tool's server hands it to the calculator's page; built once a process.
+
+    The engine's effect decides whether a move's hits are always critical:
+    every move whose effect is not one of calc_export.ALWAYS_CRIT_EFFECTS
+    comes marked as not (willCrit false), so Zippy Zap, which the
+    calculator knows as Let's Go's always critical move, is the plain hit
+    of Oxide's effect script 316. Until 2026-10-20 Zippy Zap's rows were
+    critical hits (Ian approved the fix); since the same day the export
+    marks them, for the OxiDex's calculator page as for the runner, where
+    this function did it for the runner alone."""
     return calc_export.build()
 
 

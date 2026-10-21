@@ -629,6 +629,24 @@ def check_calculator(results):
                     and moves["Attack Order"]["basePower"] == 120
                     and moves["Dragon Breath"]["type"] == "Dragon"
                     and "basePower" not in moves["Grass Knot"], f"{len(moves)} moves"))
+    # The engine's effect decides whether a move always lands a critical hit
+    # (effect scripts 282 and 366): every other move is marked as not, so the
+    # calculator's own Zippy Zap, Let's Go's always critical move, is the
+    # plain hit of Oxide's effect script 316, and the page's loader takes
+    # the mark from the blob (Ian approved the fix on 2026-10-20; until then
+    # only the fight simulator's copy of the blob had it).
+    init_js = open(os.path.join(root, "tools", "oxide", "encounters", "calc", "js", "initialize.js"),
+                   encoding="utf-8").read()
+    params = re.search(r"var optional_move_params = \[([^\]]*)\]", init_js)
+    always = [n for n in ("Frost Breath", "Storm Throw", "Wicked Blow", "Flower Trick", "Surging Strikes")
+              if n in moves]
+    results.append(("Zippy Zap is no always critical move in the export, as Oxide's engine has it, "
+                    "and the page's loader takes the mark",
+                    moves.get("Zippy Zap", {}).get("willCrit") is False
+                    and len(always) == 5 and not any("willCrit" in moves[n] for n in always)
+                    and bool(params) and '"willCrit"' in params.group(1)
+                    and "Object.assign(targetMove, source)" in init_js,
+                    f"Zippy Zap {moves.get('Zippy Zap')}; always critical {always}"))
     # The D4 and D5 QA (2026-09-22), finding 5: each Z-move is a physical and
     # a special twin in Oxide and one entry in the calculator, and the special
     # used to replace the physical. Every move now has an entry of its own.
@@ -710,7 +728,9 @@ def check_calculator(results):
     # The picker: Oxide's species and the forms picked by hand, not every
     # species Showdown knows. Forms with a record carry Oxide's numbers
     # (Rotom's appliances are Electric/Fire here, Deoxys-Attack has Magic
-    # Guard); there is no Pixie Plate, so no Arceus-Fairy.
+    # Guard). Arceus has a form for every Plate, Fairy among them since
+    # element 7 gave the game its Pixie Plate (Ian approved the form on
+    # 2026-10-20; until then there was no Arceus-Fairy).
     from . import canon
     picker = set(blob["picker"])
     forms = calc_export.form_folders()
@@ -718,10 +738,16 @@ def check_calculator(results):
                     "forms, and nothing else",
                     picker == set(poks) and len(picker) == len(pokedex.species_list(root)) + len(forms)
                     and {"Rotom-Heat", "Giratina-Origin", "Shaymin-Sky", "Castform-Sunny",
-                         "Cherrim-Sunshine", "Arceus-Fire"} <= picker
-                    and not {"Arceus-Fairy", "Pikachu-Alola", "Burmy-Sandy"} & picker
+                         "Cherrim-Sunshine", "Arceus-Fire", "Arceus-Fairy"} <= picker
+                    and not {"Pikachu-Alola", "Burmy-Sandy"} & picker
                     and all(n in canon.table() for n in forms),
                     f"{len(picker)} names, {len(forms)} forms"))
+    arceus = poks.get("Arceus", {})
+    results.append(("an Arceus holding the Pixie Plate has its Fairy form, with Arceus's numbers",
+                    (poks.get("Arceus-Fairy") or {}).get("types") == ["Fairy"]
+                    and poks["Arceus-Fairy"]["bs"] == arceus.get("bs")
+                    and forms.get("Arceus-Fairy") == ("SPECIES_ARCEUS", "fairy"),
+                    str(poks.get("Arceus-Fairy"))[:120]))
     results.append(("a form with its own record carries Oxide's numbers for it",
                     poks["Rotom-Heat"]["types"] == ["Electric", "Fire"]
                     and poks["Rotom-Heat"]["bs"]["sp"] == 91
@@ -851,6 +877,11 @@ def check_calc_mechanics(results):
         # single 80.
         "cutter": ("Scyther", "Swarm", "Snorlax", "", "Fury Cutter"),
         "scissor": ("Scyther", "Swarm", "Snorlax", "", "X-Scissor"),
+        # Zippy Zap is a plain hit in Oxide (effect script 316): into a Swift
+        # Swim Kabuto it rolls as into a Battle Armor one, which no critical
+        # hit reaches (Ian approved the fix on 2026-10-20).
+        "zippy": ("Pikachu", "Static", "Kabuto", "Swift Swim", "Zippy Zap"),
+        "zippyarmor": ("Pikachu", "Static", "Kabuto", "Battle Armor", "Zippy Zap"),
     }
     # The target's own stages: Foul Play reads them, and Sacred Sword,
     # Darkest Lariat and Brick Break meet a Bastiodon at +6 Defense.
@@ -981,6 +1012,9 @@ def check_calc_mechanics(results):
                     f"Frost Breath {rolls['armor'][-1]} to {rolls['crit'][-1]}, "
                     f"Crunch {rolls['order'][0]} to {rolls['order'][-1]}, "
                     f"Cross Chop {rolls['order2'][0]} to {rolls['order2'][-1]}"))
+    results.append(("Zippy Zap rolls as a plain hit in the calculator, as Oxide's engine has it",
+                    rolls["zippy"] == rolls["zippyarmor"],
+                    f"into Swift Swim {rolls['zippy'][-1]}, into Battle Armor {rolls['zippyarmor'][-1]}"))
     # The staples rulings (2026-09-26) that change damage.
     geodude = out["pokemon"]["dsturdy"]["hp"]
     results.append(("the staples rulings: Normalize's fifth, Lightning Rod and Storm "

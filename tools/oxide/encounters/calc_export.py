@@ -57,6 +57,10 @@ MULTIHIT = {"MULTI_HIT": [2, 5], "HIT_TWICE": 2, "POISON_MULTI_HIT": 2,
 # count: the move takes Oxide's count over the calculator's own (Fury
 # Cutter, three hits since the move reworks of 2026-10-06).
 MULTIHIT_OVER_KNOWN = {"HIT_THREE_TIMES_RISING_10"}
+# The effects whose every hit Oxide's engine makes critical (effect scripts
+# 282 and 366). Every other move goes to the calculator marked as no always
+# critical move (move_entry's willCrit).
+ALWAYS_CRIT_EFFECTS = frozenset({"ALWAYS_CRITICAL", "HIT_THREE_TIMES_ALWAYS_CRITICAL"})
 
 
 def clean(name):
@@ -152,8 +156,9 @@ def move_keys(root=None):
 # the twelve forms with a record of their own, whose numbers are Oxide's
 # (Rotom's appliances are Electric/Fire and so on here, and Deoxys-Attack has
 # Magic Guard); Castform's and Cherrim's weather forms; and Arceus under each
-# plate but Fairy, since the game has no Pixie Plate. Left out: the forms that
-# only change a sprite (Burmy's cloaks, the East Sea Shellos and Gastrodon, the
+# plate, Fairy among them since element 7 gave the game its Pixie Plate (until
+# 2026-10-20 Arceus had no Fairy form here). Left out: the forms that only
+# change a sprite (Burmy's cloaks, the East Sea Shellos and Gastrodon, the
 # Unown letters), whose numbers are the base species'.
 FORM_RECORDS = {
     ("SPECIES_DEOXYS", "attack"): "Deoxys-Attack",
@@ -178,7 +183,7 @@ TYPE_FORMS = {
     "Cherrim-Sunshine": ("SPECIES_CHERRIM", None),
 }
 TYPE_FORMS.update({f"Arceus-{t.title()}": ("SPECIES_ARCEUS", [t]) for t in (
-    "BUG", "DARK", "DRAGON", "ELECTRIC", "FIGHTING", "FIRE", "FLYING", "GHOST",
+    "BUG", "DARK", "DRAGON", "ELECTRIC", "FAIRY", "FIGHTING", "FIRE", "FLYING", "GHOST",
     "GRASS", "GROUND", "ICE", "POISON", "PSYCHIC", "ROCK", "STEEL", "WATER")})
 
 
@@ -274,6 +279,17 @@ def move_entry(rec, known):
             out["makesContact"] = True
         if rec["effect_chance"]:
             out["secondaries"] = True
+    if rec["effect"] not in ALWAYS_CRIT_EFFECTS:
+        # The engine's effect decides whether every hit is critical. A known
+        # move keeps the calculator's own mark otherwise, and its Zippy Zap
+        # is Let's Go's, which always lands critical, where Oxide's (effect
+        # script 316) is a plain hit. The page's loader takes the mark from
+        # the blob (loadMovesData's optional_move_params,
+        # applyExportedMoveData), and the fight simulator's runner reads the
+        # same blob. Until 2026-10-20 only the runner's copy had it
+        # (calc.blob), so the page showed Zippy Zap as a certain critical hit
+        # (Ian approved the fix).
+        out["willCrit"] = False
     return out
 
 

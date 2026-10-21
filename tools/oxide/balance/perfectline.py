@@ -310,21 +310,25 @@ def give_status(b, target, status):
 fs.give_status = give_status   # Yawn and Toxic Spikes inside fightsim reach this one
 
 
-def accuracy_hits(b, att, dfn, mv, first=True):
+def accuracy_hits(b, att, dfn, mv, first=True, later=False):
     """Whether the move lands, a miss bad luck for its user's side.
-    `first`: whether the target has yet to move this turn (the Zoom Lens)."""
-    if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or fs.no_guard(att, dfn, mv) or (dfn.rare and fs.lands_sure(att, dfn, mv)):
+    `first`: whether the target has yet to move this turn (the Zoom Lens).
+    `later`: a later hit of a rising move's or Population Bomb's, whose
+    check skips the hit overrides, No Guard and Lock-On (fightsim.RISING,
+    fightsim.TEN_HITS)."""
+    if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or (
+            not later and (fs.no_guard(att, dfn, mv) or (dfn.rare and fs.lands_sure(att, dfn, mv)))):
         return True
     acc = mv.acc
     if dfn.ability == "Wonder Skin" and mv.cat == "Status":
         acc = fs.wonder_skin(att, dfn, acc)      # half at most, before the stages (fightsim.wonder_skin)
     weather = fs.weather_now(b)          # none while Cloud Nine or Air Lock is out (NO_CLOUD_NINE)
-    if mv.effect in ("THUNDER", "HURRICANE"):               # Oxide: Hurricane as Thunder in weather
-        acc = 100 if weather == "Rain" else 50 if weather == "Sun" else acc
+    if weather == "Rain" and mv.effect in fs.RAIN_SURE:
+        return True          # never a miss in the rain, past every stage (fightsim.RAIN_SURE)
+    if mv.effect in ("THUNDER", "HURRICANE") and weather == "Sun":
+        acc = 50             # Oxide: Hurricane as Thunder in the sun
     if mv.effect == "BLIZZARD" and weather == "Hail":
         return True
-    if mv.effect == "BLEAKWIND_STORM" and weather == "Rain":
-        return True          # it never misses in the rain (fightsim.HIT_FOE_STAGES)
     # The stages, with Unaware, Keen Eye and Sacred Sword's kind, Tangled
     # Feet and the Zoom Lens (fightsim.accuracy_scale).
     acc *= fs.accuracy_scale(att, dfn, mv, first)
@@ -495,10 +499,12 @@ def _use_move(b, att, mv, dfn, first):
         fs.relic_song(b, att, mv, b.last_dealt > 0)     # Meloetta's form (fightsim.relic_song)
 
 
-def struggle_damage(att, dfn, roll):
-    """Struggle: 50 power, physical, typeless, no modifiers, at the roll."""
+def struggle_damage(att, dfn, roll, room=False):
+    """Struggle: 50 power, physical, typeless, no modifiers, at the roll;
+    under Wonder Room (`room`) it meets the target's Sp. Def with its
+    Defense stages (fightsim.room_mult)."""
     a = att.stats.get("atk", 50) * fs.stage_mult(att.stages["atk"])
-    d = dfn.stats.get("def", 50) * fs.stage_mult(dfn.stages["def"])
+    d = dfn.stats.get("spd" if room else "def", 50) * fs.stage_mult(dfn.stages["def"])
     base = ((2 * att.level // 5 + 2) * 50 * a / d) // 50 + 2
     return int(base * roll / 100)
 
@@ -516,7 +522,10 @@ def rolled_hits(b, att, dfn, mv, trainer, first=True):
     (fs.multi_hit_odds), rolled by a run's dice and enumerated at its odds by
     the planner's; a rising move's hits (Fury Cutter, Triple Kick, Triple
     Axel) until its first miss, each later hit checking accuracy again unless
-    a Loaded Dice skips the check; two for the two-hit moves and three for
+    a Loaded Dice skips the check, and skipping the hit overrides, so No
+    Guard and Lock-On land only the first (fightsim.RISING); Population
+    Bomb's up to ten the same way (fightsim.TEN_HITS); two for the two-hit
+    moves and three for
     the three-hit ones (fightsim.THREE_HITS). In the strict
     search the trainer gets its most hits and the player its fewest."""
     odds = fs.multi_hit_odds(att, mv)
@@ -530,7 +539,16 @@ def rolled_hits(b, att, dfn, mv, trainer, first=True):
         return pick(counts, weights)
     if mv.effect in fs.RISING:
         hits = 1
-        while hits < fs.RISING_COUNT and (att.item == "Loaded Dice" or accuracy_hits(b, att, dfn, mv, first)):
+        while hits < fs.RISING_COUNT and (att.item == "Loaded Dice"
+                                          or accuracy_hits(b, att, dfn, mv, first, later=True)):
+            hits += 1
+        return hits
+    if mv.effect == fs.TEN_HITS:
+        # Population Bomb's ten, until the first miss of a later check that
+        # skips the hit overrides (fightsim.TEN_HITS); a Loaded Dice's are
+        # its odds above.
+        hits = 1
+        while hits < 10 and accuracy_hits(b, att, dfn, mv, first, later=True):
             hits += 1
         return hits
     return 2 if mv.effect in fs.TWO_HITS else 3 if mv.effect in fs.THREE_HITS else 1
@@ -765,7 +783,7 @@ def attack(b, att, mv, dfn, first):
         # returns early for MOVE_STRUGGLE): a 50-power physical hit on stats
         # and stages, at the roll.
         roll = 85 + (b.dice.roll(trainer) if b.dice.mode == "run" else (15 if trainer else 0))
-        dmg = struggle_damage(att, dfn, roll)
+        dmg = struggle_damage(att, dfn, roll, b.wonder_room)
     crit = False
     if dmg is None:
         # The first battle (Barry on Route 201) has no critical hits on either
@@ -909,6 +927,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         fs.hurt(b, att, max(1, att.maxhp // 4))
     if e in fs.RECOIL and att.ability not in fs.RECOIL_PROOF:     # Rock Head and Magic Guard
         fs.hurt(b, att, max(1, int(dealt * fs.RECOIL[e])))
+    if e in fs.ANY_HIT:
+        fs.any_hit(b, att, dfn, mv)      # Chloroblast's cost, Freezy Frost's reset, screens, hazards (fightsim.any_hit)
     if e in fs.DRAIN:
         # Big Root raises what a draining move restores by 30%; Heal Block on
         # the user stops the heal, not the damage, and the target's Liquid
@@ -939,7 +959,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     stripped = fs.sheer_force_strips(att, mv)
     if e in fs.HIT_SELF_STAGES and not (stripped and not fs.HIT_SELF_STAGES[e][1]):
         ch, certain = fs.HIT_SELF_STAGES[e]
-        if certain or secondary("statup", (mv.chance or 10) / 100):
+        # Its chance, doubled for Serene Grace (fightsim.self_raise_chance).
+        if certain or secondary("statup", min(100, fs.self_raise_chance(att, mv)) / 100):
             fs.change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         fs.spin(b, att, dfn, e)
@@ -958,6 +979,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     # Pokemon behind it nothing (fightsim._after_attack, b.sub_hit).
     if not dfn.alive() or b.sub_hit or fs.sub_blocks(att, dfn, mv):
         return
+    if e == "PREVENT_ESCAPE_BOTH_HIT":
+        fs.jaw_lock(att, dfn)    # Jaw Lock holds both, each by the other (fightsim.jaw_lock)
     if e == "LEECH_SEED_HIT":
         fs.sappy_seed(dfn)       # Sappy Seed seeds a target left standing (fightsim.sappy_seed)
     if e == "CLEAR_SMOG":
@@ -990,6 +1013,9 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         return b.dice.lands_on_player(kind, chance / 100) if trainer else b.dice.good(chance / 100, kind)
     if e in fs.HIT_STATUS and chance and status_lands("status"):
         fs.give_status_by_move(b, att, dfn, mv, fs.HIT_STATUS[e])
+    if e in fs.STATUS_PICK and chance and status_lands("status"):
+        # Dire Claw's one status of three, drawn evenly (fightsim.STATUS_PICK)
+        fs.give_status_by_move(b, att, dfn, mv, fs.STATUS_PICK[e][b.dice.choice("status pick", 3)])
     # Burning Jealousy burns only a target one of whose stats rose this turn.
     if e == "BURN_HIT_IF_STATS_ROSE" and getattr(dfn, "stat_raised", False) and chance and status_lands("status"):
         fs.give_status_by_move(b, att, dfn, mv, "brn")
@@ -1124,7 +1150,10 @@ def status_move(b, att, mv, dfn, first):
     elif e == "STOCKPILE":
         fs.stockpile(att)                # its count, up to three (fightsim.stockpile)
     elif e in fs.SELF_STAGES:
-        fs.change_stages(att, fs.SELF_STAGES[e])
+        if e == "TAKE_HEART":
+            fs.take_heart(att)           # the two stages, then its status cured (fightsim.take_heart)
+        else:
+            fs.change_stages(att, fs.SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
         if e == "EVA_UP_2_MINIMIZE":
@@ -1137,6 +1166,8 @@ def status_move(b, att, mv, dfn, first):
     elif e in fs.FOE_STAGES:
         if not fs.sub_blocks(att, dfn, mv):
             fs.lower_stats(b, att, dfn, fs.FOE_STAGES[e])     # stat by stat (fightsim.lower_stats)
+    elif e == "SPICY_EXTRACT":
+        fs.spicy_extract(b, att, dfn, mv)    # Attack up two, then Defense down two (fightsim.spicy_extract)
     elif e == "VENOM_DRENCH":
         if dfn.status in ("psn", "tox") and not fs.sub_blocks(att, dfn, mv):
             fs.lower_stats(b, att, dfn, fs.VENOM_DRENCH_STAGES)     # a poisoned target's three stats
@@ -1154,6 +1185,8 @@ def status_move(b, att, mv, dfn, first):
         fs.embargo(b, att, dfn, mv)      # five turns with its item held back (fightsim.embargo)
     elif e == "MAGIC_ROOM":
         fs.magic_room(b)                 # five turns with every item held back (fightsim.magic_room)
+    elif e == "WONDER_ROOM":
+        fs.wonder_room(b)                # five turns with the Defenses traded (fightsim.wonder_room)
     elif e == "CURSE":
         if "Ghost" in att.types:
             fs.ghost_curse(b, att, dfn, mv)      # it fails, at no cost, through a Substitute or on a cursed target
@@ -1264,8 +1297,7 @@ def status_move(b, att, mv, dfn, first):
             fs.hurt(b, att, att.maxhp // 4)
             att.sub = att.maxhp // 4
     elif e == "RESET_STAT_CHANGES":
-        for m in (att, dfn):
-            m.stages = dict.fromkeys(fs.STAGE_KEYS, 0)
+        fs.reset_all_stats(b)            # Haze: every stage on the field and Focus Energy (fightsim.reset_all_stats)
     elif e == "HEAL_STATUS":
         fs.refresh(att)                  # Refresh cures its user's own poison, burn or paralysis
     elif e == "SWAP_ATK_DEF":
@@ -1289,8 +1321,7 @@ def status_move(b, att, mv, dfn, first):
     elif e == "RANDOM_STAT_UP_2":
         fs.acupressure(att, lambda n: b.dice.choice("acupressure", n))     # two stages of a stat drawn evenly
     elif e == "CURE_PARTY_STATUS":
-        for m in own_side.mons:
-            m.status = None
+        fs.party_cure(b, att, mv)        # Heal Bell spares Soundproof, both end Nightmare (fightsim.party_cure)
     elif e == "PREVENT_STATUS":
         own_side.safeguard = 5
     elif e == "PREVENT_STAT_REDUCTION":
@@ -1414,6 +1445,8 @@ def clone_battle(b):
         c.split = True               # stats averaged in this battle (fightsim.share_stats)
     if b.magic_room:
         c.magic_room = b.magic_room  # Magic Room's turns (fightsim.magic_room)
+    if b.wonder_room:
+        c.wonder_room = b.wonder_room    # Wonder Room's turns (fightsim.wonder_room)
     if b.snatching:
         c.snatching = True           # a Snatch waits this turn (fightsim.snatch)
     if b.unheld:
@@ -1497,13 +1530,15 @@ def side_key(s):
 def _field_extra(b):
     """The field's states most fights never have, kept out of the keys
     while they are not there: Gravity's turns, in a fight with Copycat
-    the battle's last move, Magic Room's turns and deep fog (each checked
-    by the keys before calling)."""
+    the battle's last move, Magic Room's and Wonder Room's turns and deep
+    fog (each checked by the keys before calling)."""
     out = (("gravity", b.gravity),) if b.gravity else ()
     if b.last_move is not None:
         out += (("last move", b.last_move.name),)
     if b.magic_room:
         out += (("magic room", b.magic_room),)
+    if b.wonder_room:
+        out += (("wonder room", b.wonder_room),)
     if b.fog:
         out += (("fog",),)
     return out
@@ -1512,7 +1547,8 @@ def _field_extra(b):
 def state_key(b):
     key = (side_key(b.p), side_key(b.b), b.weather, b.weather_turns, b.trick_room,
            round(b.luck_spent, 6), getattr(b, "declined", frozenset()))
-    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room or b.fog else key
+    rare = b.gravity or b.last_move is not None or b.magic_room or b.fog or b.wonder_room
+    return key + _field_extra(b) if rare else key
 
 
 def shape_key(b):
@@ -1527,7 +1563,8 @@ def shape_key(b):
             key += (("aurora veil", sd.aurora_veil),)     # as side_key keeps it, since 2026-10-15
         return key
     key = (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room, getattr(b, "declined", frozenset()))
-    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room or b.fog else key
+    rare = b.gravity or b.last_move is not None or b.magic_room or b.fog or b.wonder_room
+    return key + _field_extra(b) if rare else key
 
 
 def vector(b):
@@ -1579,7 +1616,7 @@ def ai_key(b):
             b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick,
             b.p.future_sight, b.b.future_sight, getattr(b.p, "mist", 0) > 0, getattr(b.b, "mist", 0) > 0) \
         + (_ai_field(b) if b.gravity or b.p.lucky_chant or b.b.lucky_chant or b.p.web or b.b.web or b.fog
-           or b.p.aurora_veil or b.b.aurora_veil else ())
+           or b.p.aurora_veil or b.b.aurora_veil or b.wonder_room else ())
 
 
 def _ai_field(b):
@@ -1590,14 +1627,17 @@ def _ai_field(b):
     Basic_CheckDefog, Expert_Defog, Expert_RapidSpin), deep fog
     (Basic_CheckDefog) and, since 2026-10-15, Aurora Veil on either side
     (Basic_CheckAuroraVeil, Expert_AuroraVeil, Expert_Defog), which batch 8
-    gave the battle and this key had left out."""
+    gave the battle and this key had left out; and since 2026-10-20 Wonder
+    Room, whose swap the AI's damage estimate reads (TrainerAI_CalcDamage
+    passes the field's conditions)."""
     if not (b.p.lucky_chant or b.b.lucky_chant or b.gravity or b.p.web or b.b.web or b.fog
-            or b.p.aurora_veil or b.b.aurora_veil):
+            or b.p.aurora_veil or b.b.aurora_veil or b.wonder_room):
         return ()
     return (("field", b.p.lucky_chant > 0, b.b.lucky_chant > 0, b.gravity > 0, b.p.web, b.b.web)
             + (("fog",) if b.fog else ())
             + (("aurora veil", b.p.aurora_veil > 0, b.b.aurora_veil > 0) if b.p.aurora_veil or b.b.aurora_veil
-               else ()),)
+               else ())
+            + (("wonder room",) if b.wonder_room else ()),)
 
 
 _AI_CACHE = {}
@@ -2110,7 +2150,7 @@ def make_battle(st, team, boss_keys, flags, lead):
     # hand-played line's items, plstep3).
     held = st["held"] if "held" in st else fs.assign_items(st, team) if "split" in st else {}
     for m in pm:
-        m.item = held.get(m.key)
+        fs.hold(st, m, held.get(m.key))      # a Plate types its Judgment (fightsim.hold)
     bm = [fs.Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], "b") for k in boss_keys]
     b = fs.Battle(st, fs.Side(pm, "p"), fs.Side(bm, "b"), None, weather=st.get("base_weather"),
                   trick_room=st.get("trick_room", False), ai_flags=flags)

@@ -176,10 +176,14 @@ read, so they are written here too. Each is a standing instruction.
   reported, not optimised. A boss is read
   over a spread of rolled boxes, so that its answers do not narrow to one
   Pokemon. A box offers each pre-evolution held back as well as evolved on
-  time wherever holding it back reaches a strong move sooner (a delay by the
-  learnset rules), so the team search can weigh a Starly kept for Brave Bird
-  by Maylene's split (Ian, 2026-10-15); this comes in before the readings
-  resume. So that a hold's cost counts, each box seed is one run through
+  time wherever holding it back reaches a move sooner than its evolution
+  does, or one its evolution never gets, so the team search can weigh a
+  Starly kept for Brave Bird by Maylene's split (Ian, 2026-10-15). Which
+  holds count depends on the Pokemon and the move, never a power threshold
+  (Ian, 2026-10-21: Fletchling held for Will-O-Wisp before Gardenia, Popplio
+  for Flip Turn before Byron, Venonat to 37 for Zen Headbutt before Maylene),
+  so status moves, pivots and coverage count, and the team search judges
+  which matter in each fight. This comes in before the readings resume. So that a hold's cost counts, each box seed is one run through
   the game, every fight's box that run's catches by its split, each area
   rolled once at the run's first visit among the options open then, so
   boxes keep today's sizes and nobody waits for Surf or a rod; and a
@@ -189,9 +193,13 @@ read, so they are written here too. Each is a standing instruction.
   seed's fights read in play order. A hold that would weaken an earlier
   fight on purpose is listed in the reading, not modelled, since testing
   it means reading that fight again (Ian, 2026-10-15). To measure what
-  holds change, a box where the matchup screen puts a held-back version
-  in a top six is read a second time without holds, and the reading
-  reports both (Ian, 2026-10-15). Ties between equal AI picks break at random. Every fight is
+  holds change, a box whose chosen six uses a held-back version is read a
+  second time without holds, and the reading reports both (Ian, 2026-10-15;
+  the trigger narrowed on 2026-10-21 from the screen's top sixes, which
+  held versions filled from Barry 3 on). A catch's versions share one slot
+  in the team search (Ian, 2026-10-21): the on-time version and each held
+  one compete for one place in a six, so the screen counts sixes of catches
+  and holds do not multiply them. Ties between equal AI picks break at random. Every fight is
   simulated at the game's real odds, with no luck budget (Ian, 2026-10-02):
   the three numbers are then
   true frequencies with bad luck inside them, and the planner's caution

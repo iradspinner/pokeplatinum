@@ -7161,8 +7161,8 @@ def check_judgment(results):
     """Judgment (approved 2026-10-14; effect script 268): its holder's Plate
     sets its type, which the battle's own reads meet: a Flame Plate's Fire
     Judgment that a Flash Fire target takes lights it, a plain one does
-    not; the Pixie Plate, which the script does not list, leaves it
-    Normal."""
+    not; the Pixie Plate, which the script lists since bb4b3021b, makes it
+    Fairy (check_pixie_plate)."""
     out = {}
     for item in ("Flame Plate", None, "Pixie Plate"):
         b, p, foe = battle(["Judgment"], ["Tackle"], {("p", "Judgment"): [0] * 16})
@@ -7171,7 +7171,7 @@ def check_judgment(results):
         b.rng, foe.ability, foe.types = FixedDice(0.999), "Flash Fire", ["Fire"]
         fs.attack(b, user, user.moves[0], foe, True)
         out[item] = (user.moves[0].type, foe.flash_fire)
-    want = {"Flame Plate": ("Fire", True), None: ("Normal", False), "Pixie Plate": ("Normal", False)}
+    want = {"Flame Plate": ("Fire", True), None: ("Normal", False), "Pixie Plate": ("Fairy", False)}
     results.append(("Judgment takes its Plate's type", out == want, str(out)))
 
 
@@ -7298,6 +7298,812 @@ def check_mind_blown(results):
     results.append(("Mind Blown costs half its user's HP once the move is over", out == want, str(out)))
 
 
+# ---- batch 13: the last moves out of everyone's reach, and Ian's additions of 2026-10-20 ----
+
+# The batch's checks, run after batch 12's in main.
+B13 = []
+
+
+def b13(fn):
+    B13.append(fn)
+    return fn
+
+
+@b13
+def check_jaw_lock(results):
+    """Jaw Lock (approved 2026-10-14; effect script 352, subscript_jaw_lock):
+    a hit on the target itself holds the target and its user, each by the
+    other, in both battles; a user held already holds only the target, and
+    a target held already holds only the user; a Substitute's hit and a
+    knockout hold neither."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("hit", "user held", "target held", "Substitute", "knockout", "fightsim"):
+        b, p, foe = b11_battle(["Jaw Lock"], ["Tackle"], {("p", "Jaw Lock"): [20] * 16})
+        if case == "user held":
+            p.trapped_by = "x9"
+        if case == "target held":
+            foe.trapped_by = "x9"
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "fightsim":
+            b.rng = FixedDice(0.5)
+            fs.attack(b, p, fs.move("Jaw Lock"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Jaw Lock"), foe, True)
+        out[case] = (p.trapped_by, foe.trapped_by)
+    want = {"hit": ("b0.0", "p0"), "user held": ("x9", "p0"), "target held": ("b0.0", "x9"),
+            "Substitute": (None, None), "knockout": (None, None), "fightsim": ("b0.0", "p0")}
+    results.append(("Jaw Lock holds its target and its user, each by the other", out == want, str(out)))
+
+
+def lucky13(pick=0):
+    """Dice for batch 13's checks in the readings' battle: every chance
+    lands that is above nothing (the player's own added effects and its
+    critical hits included), no miss, at the top damage roll, and every
+    pick among n is `pick`."""
+    from . import perfectline as pl
+
+    class Lucky(pl.RunDice):
+        def bad(self, kind, p):
+            return False
+
+        def good(self, p, kind=None):
+            return p > 0
+
+        def lands_on_player(self, kind, p):
+            return p > 0
+
+        def roll(self, top):
+            return 15
+
+        def choice(self, kind, n):
+            return pick
+    return Lucky(random.Random(1), True)
+
+
+@b13
+def check_diamond_storm(results):
+    """Diamond Storm (approved 2026-10-14; effect script 317): its user's
+    Defense rises two stages when the move's chance (50) lands, after a hit
+    on a Substitute and a knockout too, in both battles; when the chance
+    does not land it stays."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("lands", "misses", "Substitute", "knockout", "fightsim"):
+        b, p, foe = b11_battle(["Diamond Storm"], ["Tackle"], {("p", "Diamond Storm"): [20] * 16})
+        b.dice = sure12() if case == "misses" else lucky13()
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move("Diamond Storm"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Diamond Storm"), foe, True)
+        out[case] = p.stages["def"]
+    want = {"lands": 2, "misses": 0, "Substitute": 2, "knockout": 2, "fightsim": 2}
+    results.append(("Diamond Storm raises its user's Defense two stages at its chance", out == want, str(out)))
+
+
+@b13
+def check_zippy_zap(results):
+    """Zippy Zap (approved 2026-10-14; effect script 316): its user's
+    evasion rises a stage at the move's chance (100), after a hit on a
+    Substitute and a knockout too, in both battles; and the runner's data
+    marks it as no always critical move (calc.blob), while Frost Breath
+    keeps the calculator's own mark."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("hit", "Substitute", "knockout", "fightsim"):
+        b, p, foe = b11_battle(["Zippy Zap"], ["Tackle"], {("p", "Zippy Zap"): [20] * 16})
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move("Zippy Zap"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Zippy Zap"), foe, True)
+        out[case] = p.stages["eva"]
+    moves = fs.calc.blob()["moves"]
+    out["willCrit"] = (moves["Zippy Zap"].get("willCrit"), moves["Frost Breath"].get("willCrit"))
+    want = {"hit": 1, "Substitute": 1, "knockout": 1, "fightsim": 1, "willCrit": (False, None)}
+    results.append(("Zippy Zap raises its user's evasion and is no critical hit", out == want, str(out)))
+
+
+def misses13():
+    """Dice for batch 13's checks in the readings' battle: the player's
+    every move misses, and no other chance lands but a certain one."""
+    from . import perfectline as pl
+
+    class Misses(pl.RunDice):
+        def bad(self, kind, p):
+            return kind == "miss" and p > 0
+
+        def good(self, p, kind=None):
+            return p >= 1
+
+        def roll(self, top):
+            return 15
+    return Misses(random.Random(1), True)
+
+
+@b13
+def check_chloroblast(results):
+    """Chloroblast (approved 2026-10-14; effect script 403,
+    subscript_recoil_half_max_hp): any hit, a Substitute's and a knockout's
+    too, costs its user half its maximum HP, rounded up, in both battles;
+    Magic Guard spares it and Rock Head does not; a miss costs nothing."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("hit", "Magic Guard", "Rock Head", "Substitute", "knockout", "miss", "fightsim"):
+        b, p, foe = b11_battle(["Chloroblast"], ["Tackle"], {("p", "Chloroblast"): [20] * 16}, hp=101)
+        b.dice = misses13() if case == "miss" else sure12()
+        if case in ("Magic Guard", "Rock Head"):
+            p.ability = case
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move("Chloroblast"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Chloroblast"), foe, True)
+        out[case] = p.hp
+    want = {"hit": 50, "Magic Guard": 101, "Rock Head": 50, "Substitute": 50, "knockout": 50, "miss": 101,
+            "fightsim": 50}
+    results.append(("Chloroblast costs its user half its HP after a hit", out == want, str(out)))
+
+
+@b13
+def check_freezy_frost(results):
+    """Freezy Frost (approved 2026-10-14; effect script 313,
+    subscript_reset_all_stat_stages): any hit, a Substitute's and a
+    knockout's too, puts every stage of both Pokemon back to 0 and ends a
+    Focus Energy, as Haze's command does, in both battles."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("hit", "Substitute", "knockout", "fightsim"):
+        b, p, foe = b11_battle(["Freezy Frost"], ["Tackle"], {("p", "Freezy Frost"): [20] * 16})
+        b.dice = sure12()
+        p.stages["spa"], p.crit_stage, foe.stages["spd"], foe.stages["eva"] = 2, 2, 1, -1
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move("Freezy Frost"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Freezy Frost"), foe, True)
+        out[case] = (p.stages["spa"], p.crit_stage, foe.stages["spd"], foe.stages["eva"])
+    want = dict.fromkeys(("hit", "Substitute", "knockout", "fightsim"), (0, 0, 0, 0))
+    results.append(("Freezy Frost resets every stage on the field after a hit", out == want, str(out)))
+
+
+@b13
+def check_rain_sure(results):
+    """Thunder, Hurricane and the three storms in the rain (Ian's addition
+    of 2026-10-20; BattleControllerPlayer_CheckMoveHitOverrides): each
+    never misses, past an accuracy stage of -6, in both battles; Thunder
+    misses so out of the rain, and in the rain while Cloud Nine is out;
+    a Tackle misses so in the rain."""
+    from . import perfectline as pl
+    out = {}
+    cases = [(name, "Rain", None) for name in ("Thunder", "Hurricane", "Bleakwind Storm", "Wildbolt Storm",
+                                                "Sandsear Storm", "Tackle")]
+    cases += [("Thunder", None, None), ("Thunder", "Rain", "Cloud Nine")]
+    for name, weather, ability in cases:
+        b, p, foe = b11_battle([name], ["Tackle"], {})
+        b.dice = misses13()
+        b.rng = FixedDice(0.999)
+        b.weather, p.stages["acc"] = weather, -6
+        if ability:
+            foe.ability, b.cloudy = ability, True
+        mv = fs.move(name)
+        out[(name, weather, ability)] = (pl.accuracy_hits(b, p, foe, mv), b.accuracy_hits(p, foe, mv))
+    want = {k: (True, True) for k in cases[:5]}
+    want.update({("Tackle", "Rain", None): (False, False), ("Thunder", None, None): (False, False),
+                 ("Thunder", "Rain", "Cloud Nine"): (False, False)})
+    results.append(("Thunder, Hurricane and the storms never miss in the rain", out == want, str(out)))
+
+
+def storm_status(name, status):
+    """[(label, ok, note)] for a storm's status at its chance: it lands
+    with the chance, in both battles, and not for a Sheer Force user, nor
+    through a Substitute, nor when the chance fails."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("lands", "misses", "Sheer Force", "Substitute", "fightsim"):
+        b, p, foe = b11_battle([name], ["Tackle"], {("p", name): [20] * 16})
+        b.dice = sure12() if case == "misses" else lucky13()
+        if case == "Sheer Force":
+            p.ability = "Sheer Force"
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move(name), foe, True)
+        else:
+            pl.attack(b, p, fs.move(name), foe, True)
+        out[case] = foe.status
+    want = {"lands": status, "misses": None, "Sheer Force": None, "Substitute": None, "fightsim": status}
+    return out == want, str(out)
+
+
+@b13
+def check_sandsear_storm(results):
+    """Sandsear Storm (approved 2026-10-14; effect script 358): a burn at
+    the move's chance (30), stripped by Sheer Force, kept off by a
+    Substitute."""
+    ok, note = storm_status("Sandsear Storm", "brn")
+    results.append(("Sandsear Storm burns at its chance", ok, note))
+
+
+@b13
+def check_wildbolt_storm(results):
+    """Wildbolt Storm (approved 2026-10-14; effect script 357): a paralysis
+    at the move's chance (30), stripped by Sheer Force, kept off by a
+    Substitute."""
+    ok, note = storm_status("Wildbolt Storm", "par")
+    results.append(("Wildbolt Storm paralyses at its chance", ok, note))
+
+
+@b13
+def check_screen_hits(results):
+    """Glitzy Glow and Baddy Bad (approved 2026-10-14; effect scripts 311
+    and 312): any hit, a Substitute's and a knockout's too, puts Light
+    Screen or Reflect up on the user's side for five turns, eight with a
+    Light Clay, in both battles; a screen already up keeps its turns."""
+    from . import perfectline as pl
+    out = {}
+    for name, case in (("Glitzy Glow", "hit"), ("Glitzy Glow", "Light Clay"), ("Glitzy Glow", "up"),
+                       ("Glitzy Glow", "Substitute"), ("Glitzy Glow", "knockout"), ("Glitzy Glow", "fightsim"),
+                       ("Baddy Bad", "hit"), ("Baddy Bad", "fightsim")):
+        b, p, foe = b11_battle([name], ["Tackle"], {("p", name): [20] * 16})
+        b.dice = sure12()
+        screen = "Light Screen" if name == "Glitzy Glow" else "Reflect"
+        if case == "Light Clay":
+            p.item = "Light Clay"
+        if case == "up":
+            b.p.screens[screen] = 3
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move(name), foe, True)
+        else:
+            pl.attack(b, p, fs.move(name), foe, True)
+        out[(name, case)] = (b.p.screens[screen], b.b.screens[screen])
+    want = {k: (5, 0) for k in out}
+    want.update({("Glitzy Glow", "Light Clay"): (8, 0), ("Glitzy Glow", "up"): (3, 0)})
+    results.append(("Glitzy Glow and Baddy Bad put up their user's screen", out == want, str(out)))
+
+
+@b13
+def check_hazard_hits(results):
+    """Stone Axe and Ceaseless Edge (approved 2026-10-14; effect scripts
+    353 and 354): any hit, a Substitute's and a knockout's too, lays
+    Stealth Rock or a layer of Spikes on the target's side, in both
+    battles and under Sheer Force too; the rocks go down once, the Spikes
+    up to three layers."""
+    from . import perfectline as pl
+    out = {}
+    for name, case in (("Stone Axe", "hit"), ("Stone Axe", "Substitute"), ("Stone Axe", "knockout"),
+                       ("Stone Axe", "Sheer Force"), ("Stone Axe", "fightsim"), ("Ceaseless Edge", "hit"),
+                       ("Ceaseless Edge", "full"), ("Ceaseless Edge", "fightsim")):
+        b, p, foe = b11_battle([name], ["Tackle"], {("p", name): [20] * 16})
+        b.dice = sure12()
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "Sheer Force":
+            p.ability = "Sheer Force"
+        if case == "full":
+            b.b.hazards["spikes"] = 3
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move(name), foe, True)
+        else:
+            pl.attack(b, p, fs.move(name), foe, True)
+        out[(name, case)] = (b.b.hazards["rocks"], b.b.hazards["spikes"], b.p.hazards["rocks"], b.p.hazards["spikes"])
+    want = {k: (1, 0, 0, 0) for k in out if k[0] == "Stone Axe"}
+    want.update({("Ceaseless Edge", "hit"): (0, 1, 0, 0), ("Ceaseless Edge", "full"): (0, 3, 0, 0),
+                 ("Ceaseless Edge", "fightsim"): (0, 1, 0, 0)})
+    results.append(("Stone Axe and Ceaseless Edge lay their hazard after a hit", out == want, str(out)))
+
+
+@b13
+def check_dire_claw(results):
+    """Dire Claw (approved 2026-10-14; effect script 350): at the move's
+    chance (30) it gives the one status its even pick of three names,
+    sleep, poison or paralysis, in both battles; a target immune to the
+    one picked (a Poison type to poison) takes none; a Substitute keeps it
+    off; and when the chance fails nothing comes."""
+    from . import perfectline as pl
+    out = {}
+    for case, pick, types in (("sleep", 0, ("Normal",)), ("poison", 1, ("Normal",)), ("paralysis", 2, ("Normal",)),
+                              ("poison into Poison", 1, ("Poison",)), ("Substitute", 2, ("Normal",)),
+                              ("misses", 0, ("Normal",)), ("fightsim", 0, ("Normal",))):
+        b, p, foe = b11_battle(["Dire Claw"], ["Tackle"], {("p", "Dire Claw"): [20] * 16}, b_types=types)
+        b.dice = sure12() if case == "misses" else lucky13(pick)
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move("Dire Claw"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Dire Claw"), foe, True)
+        out[case] = foe.status
+    want = {"sleep": "slp", "poison": "psn", "paralysis": "par", "poison into Poison": None, "Substitute": None,
+            "misses": None, "fightsim": "slp"}
+    results.append(("Dire Claw gives one status of three at its chance", out == want, str(out)))
+
+
+@b13
+def check_spicy_extract(results):
+    """Spicy Extract (approved 2026-10-14; effect script 302,
+    subscript_spicy_extract): the target's Attack rises two stages and its
+    Defense falls two, in both battles; a Substitute stops the fall alone;
+    Contrary swaps them, its fall stopped by a Substitute too; Mirror Armor
+    turns the fall on the user; Clear Body stops the fall; Simple doubles
+    both, unless the user has Mold Breaker."""
+    from . import perfectline as pl
+    out = {}
+    cases = (("plain", None, None, 0), ("Substitute", None, None, 50), ("Contrary", "Contrary", None, 0),
+             ("Contrary behind a Substitute", "Contrary", None, 50), ("Mirror Armor", "Mirror Armor", None, 0),
+             ("Clear Body", "Clear Body", None, 0), ("Simple", "Simple", None, 0),
+             ("Simple, Mold Breaker", "Simple", "Mold Breaker", 0), ("fightsim", None, None, 0))
+    for case, ability, mine, sub in cases:
+        b, p, foe = b11_battle(["Spicy Extract"], ["Tackle"], {})
+        b.dice = sure12()
+        foe.ability, p.ability, foe.sub = ability, mine, sub
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.status_move(b, p, fs.move("Spicy Extract"), foe, True)
+        else:
+            pl.status_move(b, p, fs.move("Spicy Extract"), foe, True)
+        out[case] = (foe.stages["atk"], foe.stages["def"], p.stages["def"])
+    want = {"plain": (2, -2, 0), "Substitute": (2, 0, 0), "Contrary": (-2, 2, 0),
+            "Contrary behind a Substitute": (0, 2, 0), "Mirror Armor": (2, 0, -2), "Clear Body": (2, 0, 0),
+            "Simple": (4, -4, 0), "Simple, Mold Breaker": (2, -2, 0), "fightsim": (2, -2, 0)}
+    results.append(("Spicy Extract raises the target's Attack and lowers its Defense", out == want, str(out)))
+
+
+@b13
+def check_take_heart(results):
+    """Take Heart (approved 2026-10-14; effect script 367,
+    subscript_take_heart): Sp. Atk and Sp. Def rise a stage each and the
+    user's status is cured, Toxic's count with it, in both battles; at +6
+    in both the stages stay, a Contrary holder's too, and the status is
+    cured all the same."""
+    from . import perfectline as pl
+    out = {}
+    for case, status, start, ability in (("burned", "brn", 0, None), ("badly poisoned", "tox", 0, None),
+                                         ("at +6", "par", 6, None), ("Contrary at +6", "par", 6, "Contrary"),
+                                         ("fightsim", "brn", 0, None)):
+        b, p, foe = b11_battle(["Take Heart"], ["Tackle"], {})
+        b.dice = sure12()
+        p.status, p.toxic, p.ability = status, 3 if status == "tox" else 0, ability
+        p.stages["spa"] = p.stages["spd"] = start
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.status_move(b, p, fs.move("Take Heart"), foe, True)
+        else:
+            pl.status_move(b, p, fs.move("Take Heart"), foe, True)
+        out[case] = (p.stages["spa"], p.stages["spd"], p.status, p.toxic)
+    want = {"burned": (1, 1, None, 0), "badly poisoned": (1, 1, None, 0), "at +6": (6, 6, None, 0),
+            "Contrary at +6": (6, 6, None, 0), "fightsim": (1, 1, None, 0)}
+    results.append(("Take Heart raises Sp. Atk and Sp. Def and cures its user's status", out == want, str(out)))
+
+
+def after_first13(pick=None):
+    """Dice for batch 13's checks in the readings' battle: the player's
+    first accuracy check lands and every later one misses; no other chance
+    lands but a certain one; a weighted pick takes `pick`."""
+    from . import perfectline as pl
+
+    class AfterFirst(pl.RunDice):
+        checks = 0
+
+        def bad(self, kind, p):
+            if kind != "miss" or p <= 0:
+                return False
+            self.checks += 1
+            return self.checks > 1
+
+        def good(self, p, kind=None):
+            return p >= 1
+
+        def roll(self, top):
+            return 15
+
+        def pick_weighted(self, items, weights):
+            return items[0] if pick is None else pick
+    return AfterFirst(random.Random(1), True)
+
+
+@b13
+def check_population_bomb(results):
+    """Population Bomb (approved 2026-10-14; effect script 297): up to ten
+    hits, each a share of the row's two, every later one checking accuracy
+    and the move stopping at the first miss, in both battles; a No Guard
+    user's later checks skip No Guard, so they miss too; a Loaded Dice
+    holder hits four to ten times with no later checks; the row counts two
+    hits, ten for a Skill Link or Grip Claw holder."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("every check lands", "later checks miss", "No Guard", "Loaded Dice", "fightsim"):
+        b, p, foe = b11_battle(["Population Bomb"], ["Tackle"], {("p", "Population Bomb"): [20] * 16}, hp=500)
+        b.dice = sure12() if case == "every check lands" else misses13() if case == "No Guard" else after_first13(4)
+        if case == "No Guard":
+            p.ability = "No Guard"       # its first hit lands by No Guard, its later checks consult the dice
+        if case == "Loaded Dice":
+            p.item = "Loaded Dice"
+        if case == "fightsim":
+            b.rng = FixedDice(0.5)       # every accuracy check passes, no critical hit
+            fs.attack(b, p, fs.move("Population Bomb"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Population Bomb"), foe, True)
+        out[case] = foe.maxhp - foe.hp
+    p.item, p.ability = None, "Skill Link"
+    out["row hits"] = (fs.row_hits(p, fs.move("Population Bomb")),)
+    p.ability = "Run Away"
+    out["row hits"] += (fs.row_hits(p, fs.move("Population Bomb")),)
+    want = {"every check lands": 100, "later checks miss": 10, "No Guard": 10, "Loaded Dice": 40, "fightsim": 100,
+            "row hits": (10, 2)}
+    results.append(("Population Bomb lands up to ten hits until a later check misses", out == want, str(out)))
+
+
+def self_drop(name):
+    """A hit's fall in its user's own stats, by case: after a hit, a
+    Substitute's and a knockout in the readings' battle, a hit in
+    fightsim's own, and a Contrary user's, whose stats rise instead."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("hit", "Substitute", "knockout", "fightsim", "Contrary"):
+        b, p, foe = b11_battle([name], ["Tackle"], {("p", name): [20] * 16})
+        b.dice = sure12()
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "Contrary":
+            p.ability = "Contrary"
+        if case == "fightsim":
+            b.rng = FixedDice(0.5)
+            fs.attack(b, p, fs.move(name), foe, True)
+        else:
+            pl.attack(b, p, fs.move(name), foe, True)
+        out[case] = tuple(p.stages[k] for k in ("def", "spd", "spe"))
+    return out
+
+
+@b13
+def check_hyperspace_fury(results):
+    """Hyperspace Fury (approved 2026-10-14; effect script 343): any hit,
+    a Substitute's and a knockout's too, lowers its user's Defense a stage,
+    in both battles, and raises it for a Contrary user."""
+    out = self_drop("Hyperspace Fury")
+    want = {"hit": (-1, 0, 0), "Substitute": (-1, 0, 0), "knockout": (-1, 0, 0), "fightsim": (-1, 0, 0),
+            "Contrary": (1, 0, 0)}
+    results.append(("Hyperspace Fury lowers its user's Defense after a hit", out == want, str(out)))
+
+
+@b13
+def check_v_create(results):
+    """V-create (approved 2026-10-14; effect script 291): any hit, a
+    Substitute's and a knockout's too, lowers its user's Defense, Sp. Def
+    and Speed a stage each, in both battles, and raises them for a Contrary
+    user."""
+    out = self_drop("V-create")
+    want = {"hit": (-1, -1, -1), "Substitute": (-1, -1, -1), "knockout": (-1, -1, -1), "fightsim": (-1, -1, -1),
+            "Contrary": (1, 1, 1)}
+    results.append(("V-create lowers its user's Defense, Sp. Def and Speed after a hit", out == want, str(out)))
+
+
+@b13
+def check_spin_out(results):
+    """Spin Out (approved 2026-10-14; effect script 355): any hit, a
+    Substitute's and a knockout's too, lowers its user's Speed two stages,
+    in both battles, and raises it for a Contrary user."""
+    out = self_drop("Spin Out")
+    want = {"hit": (0, 0, -2), "Substitute": (0, 0, -2), "knockout": (0, 0, -2), "fightsim": (0, 0, -2),
+            "Contrary": (0, 0, 2)}
+    results.append(("Spin Out lowers its user's Speed two stages after a hit", out == want, str(out)))
+
+
+@b13
+def check_wonder_room(results):
+    """Wonder Room (approved 2026-10-14; effect script 407): for five turns
+    the Defense and Sp. Def trade places in the damage, in both battles, so
+    a physical hit on a target of Defense 100 and Sp. Def 50 doubles and a
+    special one halves, Psyshock's kind follows the physical, and Body
+    Press takes its user's Sp. Def; a second use ends the room, and five
+    turn ends end it too."""
+    from . import perfectline as pl
+    names = ["Tackle", "Ember", "Psyshock", "Body Press"]
+    b, p, foe = battle(["Wonder Room"] + names, ["Tackle"], {("p", n): [40] * 16 for n in names}, hp=500)
+    b.rng = FixedDice(0.5)
+    foe.stats["spd"], p.stats["spd"] = 50, 200
+    out = {"outside": tuple(b.damage(p, foe, fs.move(n), roll=0) for n in names)}
+    pl.status_move(b, p, fs.move("Wonder Room"), foe, True)
+    out["inside"] = (getattr(b, "wonder_room", None),) + tuple(b.damage(p, foe, fs.move(n), roll=0) for n in names)
+    out["readings"] = tuple(pl.damage_of(b, p, foe, fs.move(n), False, True) for n in names)
+    pl.status_move(b, p, fs.move("Wonder Room"), foe, True)
+    out["used again"] = getattr(b, "wonder_room", None)
+    fs.status_move(b, p, fs.move("Wonder Room"), foe, True)
+    turns = []
+    for _ in range(5):
+        fs.end_of_turn(b)
+        turns.append(getattr(b, "wonder_room", None))
+    out["turn ends"] = tuple(turns)
+    want = {"outside": (40, 40, 40, 40), "inside": (5, 80, 20, 80, 160), "readings": (80, 20, 80, 160),
+            "used again": 0, "turn ends": (4, 3, 2, 1, 0)}
+    results.append(("Wonder Room trades the Defenses for five turns", out == want, str(out)))
+
+
+@b13
+def check_last_respects(results):
+    """Last Respects (Ian's addition of 2026-10-20;
+    BattleScript_ComputedMovePower): 50 power and 50 more for each fainted
+    member of its user's party, in both battles' damage and the trainer's
+    AI's view, which reads the same count; a fainted foe adds nothing."""
+    b, p, foe = battle(["Last Respects"], ["Last Respects"], {("p", "Last Respects"): [30] * 16,
+                                                            ("b", "Last Respects"): [30] * 16}, hp=500)
+    b.rng = FixedDice(0.5)
+    mv = fs.move("Last Respects")
+    out = {"none fainted": b.damage(p, foe, mv, roll=0)}
+    for i in (1, 2):
+        mate = fs.Mon(f"p{i}", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p")
+        mate.hp = 0
+        b.p.mons.append(mate)
+    gone = fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Tackle"], "b")
+    gone.hp = 0
+    b.b.mons.append(gone)
+    out["two of the player's fainted"] = (b.damage(p, foe, mv, roll=0), b.damage(p, foe, mv, ai_view=True))
+    out["one of the trainer's fainted"] = b.damage(foe, p, mv, roll=0)
+    want = {"none fainted": 30, "two of the player's fainted": (90, 90), "one of the trainer's fainted": 60}
+    results.append(("Last Respects gains 50 power for each fainted party member", out == want, str(out)))
+
+
+@b13
+def check_heal_bell(results):
+    """Heal Bell and Aromatherapy (Ian's addition of 2026-10-20; effect
+    script 102, subscript_heal_bell): Heal Bell cures its user's party but
+    a Soundproof member, unless the user has Mold Breaker, and never a
+    Soundproof user itself; Aromatherapy cures them all; the user on the
+    field loses Nightmare with its sleep; in both battles."""
+    from . import perfectline as pl
+    out = {}
+    for case, name, mine in (("Heal Bell", "Heal Bell", None), ("Mold Breaker", "Heal Bell", "Mold Breaker"),
+                             ("Soundproof user", "Heal Bell", "Soundproof"), ("Aromatherapy", "Aromatherapy", None),
+                             ("fightsim", "Heal Bell", None)):
+        b, p, foe = battle([name], ["Tackle"], {})
+        b.rng = FixedDice(0.5)
+        b.dice = sure12()
+        mates = []
+        for i, (ability, status) in enumerate((("Soundproof", "psn"), ("Run Away", "brn")), 1):
+            m = fs.Mon(f"p{i}", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p")
+            m.ability, m.status = ability, status
+            b.p.mons.append(m)
+            mates.append(m)
+        p.ability, p.status, p.sleep, p.nightmare = mine, "slp", 2, True
+        if case == "fightsim":
+            fs.status_move(b, p, fs.move(name), foe, True)
+        else:
+            pl.status_move(b, p, fs.move(name), foe, True)
+        out[case] = (p.status, p.nightmare, mates[0].status, mates[1].status)
+    want = {"Heal Bell": (None, False, "psn", None), "Mold Breaker": (None, False, None, None),
+            "Soundproof user": ("slp", True, "psn", None), "Aromatherapy": (None, False, None, None),
+            "fightsim": (None, False, "psn", None)}
+    results.append(("Heal Bell spares Soundproof and ends Nightmare", out == want, str(out)))
+
+
+@b13
+def check_pixie_plate(results):
+    """Judgment with a Pixie Plate (the engine's fix of 2026-10-20,
+    bb4b3021b; effect script 268's HOLD_EFFECT_ARCEUS_FAIRY branch): a
+    Fairy move for the battle's own type reads and for the trainer's AI's
+    (TrainerAI_MoveType); a Plate of Platinum's keeps its own type."""
+    from . import fightai
+    out = {}
+    for item in ("Pixie Plate", "Draco Plate"):
+        b, p, foe = battle(["Judgment"], ["Tackle"], {("p", "Judgment"): [10] * 16})
+        user = fs.Mon("p0", b.st["pokemon"]["p0"], dict(b.st["info"]["p0"], item=item), ["Judgment"], "p")
+        b.p.mons[0] = user
+        out[item] = (user.moves[0].type, fightai.move_type(b, user, user.moves[0]))
+    want = {"Pixie Plate": ("Fairy", "Fairy"), "Draco Plate": ("Dragon", "Dragon")}
+    results.append(("Judgment with a Pixie Plate is a Fairy move", out == want, str(out)))
+
+
+
+# ---- batch 14: Ian's follow-ups of 2026-10-20 to batch 13 ----
+
+# The batch's checks, run after batch 13's in main.
+B14 = []
+
+
+def b14(fn):
+    B14.append(fn)
+    return fn
+
+
+@b14
+def check_haze(results):
+    """Haze (Ian approved the fix on 2026-10-20; effect script 25,
+    subscript_reset_all_stat_stages, BtlCmd_ResetAllStatChanges): every
+    Pokemon on the field back to no stages and its Focus Energy gone, in
+    both battles, all four in a double battle; and the planner keeps the
+    player's Haze as an option while a Focus Energy is up with no stage to
+    reset (plplan.still_works)."""
+    from . import perfectline as pl
+    from . import plplan
+    out = {}
+    for case in ("perfectline", "fightsim"):
+        b, p, foe = b11_battle(["Haze"], ["Tackle"], {})
+        p.stages["atk"], p.crit_stage, foe.stages["def"], foe.stages["eva"], foe.crit_stage = -2, 2, 2, 1, 2
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.status_move(b, p, fs.move("Haze"), foe, True)
+        else:
+            pl.status_move(b, p, fs.move("Haze"), foe, True)
+        out[case] = (p.stages["atk"], p.crit_stage, foe.stages["def"], foe.stages["eva"], foe.crit_stage)
+    d = field({"p0": (("Normal",), ["Haze"]), "p1": (("Normal",), ["Tackle"]),
+               "b0.0": (("Normal",), ["Tackle"]), "b0.1": (("Normal",), ["Tackle"])}, {})
+    d.doubles, d.moved = True, set()
+    d.p.active, d.p.active2, d.b.active, d.b.active2 = 0, 1, 0, 1
+    d.rng = FixedDice(0.0)
+    p0, p1, f0, f1 = d.p.mons[0], d.p.mons[1], d.b.mons[0], d.b.mons[1]
+    p1.stages["spa"], f1.stages["spe"], f1.crit_stage = 1, -1, 2
+    fs.status_move(d, p0, fs.move("Haze"), f0, True)
+    out["doubles (ally's Sp. Atk, other foe's Speed, its Focus Energy)"] = (p1.stages["spa"], f1.stages["spe"],
+                                                                            f1.crit_stage)
+    b, p, foe = b11_battle(["Haze"], ["Tackle"], {})
+    foe.crit_stage = 2
+    out["the planner keeps it on a Focus Energy alone"] = plplan.still_works(b, p, foe, fs.move("Haze"))
+    want = {"perfectline": (0, 0, 0, 0, 0), "fightsim": (0, 0, 0, 0, 0),
+            "doubles (ally's Sp. Atk, other foe's Speed, its Focus Energy)": (0, 0, 0),
+            "the planner keeps it on a Focus Energy alone": True}
+    results.append(("Haze resets every stage on the field and ends Focus Energy", out == want, str(out)))
+
+
+def half_chance_dice():
+    """Readings' dice for batch 14's checks: as sure12 (the top roll, no
+    miss, no critical hit), and an added effect lands when its chance is 15
+    in 100 or more, so a 10 percent chance misses and the same chance
+    doubled lands."""
+    from . import perfectline as pl
+
+    class Half(pl.RunDice):
+        def bad(self, kind, p):
+            return False
+
+        def good(self, p, kind=None):
+            return p >= 1 or (kind not in (None, "crit") and p >= 0.15)
+
+        def roll(self, top):
+            return 15
+    return Half(random.Random(1), True)
+
+
+@b14
+def check_serene_grace_raise(results):
+    """Serene Grace doubles a hit's chance to raise its user's own stats
+    (Ian approved the fix on 2026-10-20; BattleSystem_TriggerSecondaryEffect
+    doubles every indirect effect's chance): Ancient Power's 10 percent
+    lands where 15 in 100 is needed with Serene Grace and not without, in
+    both battles; Charge Beam's 70 is certain with it."""
+    from . import perfectline as pl
+    out = {}
+    for ability in ("Serene Grace", "Hustle"):
+        for case in ("perfectline", "fightsim"):
+            b, p, foe = b11_battle(["Ancient Power", "Charge Beam"], ["Tackle"],
+                                   {("p", "Ancient Power"): [20] * 16, ("p", "Charge Beam"): [20] * 16})
+            p.ability = ability
+            b.dice = half_chance_dice()
+            if case == "fightsim":
+                b.rng = FixedDice(0.15)
+                fs.attack(b, p, fs.move("Ancient Power"), foe, True)
+            else:
+                pl.attack(b, p, fs.move("Ancient Power"), foe, True)
+            out[f"{ability}, {case}"] = p.stages["spe"]
+        b, p, foe = b11_battle(["Charge Beam"], ["Tackle"], {("p", "Charge Beam"): [20] * 16})
+        p.ability = ability
+        b.rng = FixedDice(0.99)
+        fs.attack(b, p, fs.move("Charge Beam"), foe, True)
+        out[f"{ability}, Charge Beam at a roll of 99"] = p.stages["spa"]
+    want = {"Serene Grace, perfectline": 1, "Serene Grace, fightsim": 1, "Hustle, perfectline": 0,
+            "Hustle, fightsim": 0, "Serene Grace, Charge Beam at a roll of 99": 1,
+            "Hustle, Charge Beam at a roll of 99": 0}
+    results.append(("Serene Grace doubles a hit's chance to raise its user's stats", out == want, str(out)))
+
+
+@b14
+def check_rising_overrides(results):
+    """The rising moves' later hits skip the hit overrides (Ian approved
+    the fix on 2026-10-20; SetMultiHit's SYSCTL_TRIPLE_KICK carries
+    SYSCTL_SKIP_ACCURACY_OVERRIDES, which BattleControllerPlayer_TryMove
+    reads on every hit after the first): No Guard on either side and the
+    user's Lock-On land the first hit of Triple Kick or Triple Axel, and
+    each later hit rolls its accuracy, in both battles, so where every roll
+    misses only the first lands; a Loaded Dice skips the later checks."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("No Guard user", "No Guard target", "Lock-On", "Loaded Dice", "Triple Axel", "fightsim"):
+        name = "Triple Axel" if case == "Triple Axel" else "Triple Kick"
+        row = 120 if name == "Triple Axel" else 90      # the row adds up the three hits' powers
+        b, p, foe = b11_battle([name], ["Tackle"], {("p", name): [row] * 16}, hp=500)
+        b.dice = misses13()              # every check the dice see misses
+        if case in ("No Guard user", "Loaded Dice", "Triple Axel", "fightsim"):
+            p.ability = "No Guard"
+        if case == "No Guard target":
+            foe.ability = "No Guard"
+        if case == "Lock-On":
+            foe.locked_on, foe.lock_on_by, foe.rare = 2, p.key, True
+        if case == "Loaded Dice":
+            p.item = "Loaded Dice"
+        if case == "fightsim":
+            b.rng = FixedDice(0.95)      # every accuracy roll at 95 misses Triple Kick's 90
+            fs.attack(b, p, fs.move(name), foe, True)
+        else:
+            pl.attack(b, p, fs.move(name), foe, True)
+        out[case] = foe.maxhp - foe.hp
+    want = {"No Guard user": 20, "No Guard target": 20, "Lock-On": 20, "Loaded Dice": 90, "Triple Axel": 20,
+            "fightsim": 20}
+    results.append(("No Guard and Lock-On land only a rising move's first hit", out == want, str(out)))
+
+
+@b14
+def check_plates(results):
+    """The player's Plates (Ian approved the fixes on 2026-10-20;
+    sTypeBoostingItems in battle_lib.c, effect script 268): a Pixie Plate
+    gives the player's Fairy moves their fifth, as the other Plates give
+    theirs; and a Plate makes the player's Judgment the Plate's type, for
+    the battle's and the AI's type reads and for its damage, which comes
+    from its twin rowed at that type with the Plate's fifth on top, in the
+    readings' battle as it starts (perfectline.make_battle, a state's own
+    items) and in fightsim's (hold); with no Plate it is Normal."""
+    from . import perfectline as pl
+    out = {}
+    for item in (None, "Pixie Plate", "Flame Plate"):
+        b, p, foe = battle(["Moonblast", "Ember"], ["Tackle"], {("p", "Moonblast"): [40] * 16, ("p", "Ember"): [40] * 16})
+        p.item = item
+        out[f"{item}: Moonblast, Ember"] = (b.damage(p, foe, fs.move("Moonblast"), roll=0),
+                                            b.damage(p, foe, fs.move("Ember"), roll=0))
+    b, _p, _foe = battle(["Judgment"], ["Tackle"], {("p", "Judgment"): [40] * 16})
+    st = b.st
+    st["pokemon"]["p0#jdFire"] = dict(st["pokemon"]["p0"])
+    st["rows"][(None, "p0#jdFire", "b0.0")] = {"moves": {"Judgment": {"rolls": [30] * 16}}}
+    for item in ("Flame Plate", None):
+        st["held"] = {"p0": item}
+        r = pl.make_battle(st, ["p0"], ["b0.0"], 7, 0)
+        me, foe = r.p.cur(), r.b.cur()
+        jm = next(m for m in me.moves if m.effect == "JUDGEMENT")
+        out[f"readings, {item}: type, damage"] = (jm.type, r.damage(me, foe, jm, roll=0))
+    del st["held"]
+    me = fs.Mon("p0", st["pokemon"]["p0"], st["info"]["p0"], st["moves"]["p0"], "p")
+    # fightsim's battles hand the item through hold; on code without it the
+    # item is set as it was before, so the check fails rather than stops.
+    getattr(fs, "hold", lambda st, m, item: setattr(m, "item", item))(st, me, "Flame Plate")
+    jm = next(m for m in me.moves if m.effect == "JUDGEMENT")
+    out["fightsim, Flame Plate: type, damage"] = (jm.type, b.damage(me, b.b.cur(), jm, roll=0))
+    want = {"None: Moonblast, Ember": (40, 40), "Pixie Plate: Moonblast, Ember": (48, 40),
+            "Flame Plate: Moonblast, Ember": (40, 48),
+            "readings, Flame Plate: type, damage": ("Fire", 36), "readings, None: type, damage": ("Normal", 40),
+            "fightsim, Flame Plate: type, damage": ("Fire", 36)}
+    results.append(("the player's Plates give their type's fifth, and Judgment takes the held Plate's type",
+                    out == want, str(out)))
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
@@ -7363,7 +8169,8 @@ def main():
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
-                  check_self_risk, check_sure, check_reward_items) + tuple(B11) + tuple(B12):
+                  check_self_risk, check_sure, check_reward_items) + tuple(B11) + tuple(B12) + tuple(B13) \
+            + tuple(B14):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

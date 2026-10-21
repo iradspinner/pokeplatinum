@@ -6451,6 +6451,461 @@ def mind_blown_checks():
     return [("the readings' Mind Blown costs half its user's HP", ok, f"(HP paid, hit) {out} of {bib.maxhp}")]
 
 
+# ---- batch 13: the last moves out of everyone's reach, and Ian's additions of 2026-10-20 ----
+
+# The batch's checks, run after batch 12's in main.
+B13 = []
+
+
+def b13(fn):
+    B13.append(fn)
+    return fn
+
+
+@b13
+def jaw_lock_checks():
+    """Jaw Lock in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Mightyena's hit on a trainer's
+    Geodude leaves both unable to switch, and once the trainer sends in its
+    Onix, the Mightyena is free again."""
+    b, geo, dog = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"]), ("Onix", 30, "Sturdy", ["Tackle"])],
+                            [("Mightyena", 30, "Intimidate", ["Jaw Lock"]), ("Bibarel", 30, "Unaware", ["Tackle"])])
+    pl.attack(b, dog, fs.move("Jaw Lock"), geo, True)
+    held = (geo.hp < geo.maxhp, fs.trapped(b, geo), fs.trapped(b, dog))
+    fs.switch_in(b, b.b, 1)
+    got = held + (fs.trapped(b, dog),)
+    return [("the readings' Jaw Lock holds both Pokemon until one leaves", got == (True, True, True, False),
+             f"(hit, Geodude held, Mightyena held, Mightyena held after Onix comes in) {got}")]
+
+
+@b13
+def diamond_storm_checks():
+    """Diamond Storm in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Garganacl's hit on a trainer's
+    Geodude raises its own Defense two stages when the chance lands."""
+    b, geo, salt = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                             [("Garganacl", 30, "Purifying Salt", ["Diamond Storm"])], Lucky8)
+    pl.attack(b, salt, fs.move("Diamond Storm"), geo, True)
+    got = (geo.hp < geo.maxhp, salt.stages["def"])
+    return [("the readings' Diamond Storm raises its user's Defense", got == (True, 2), f"(hit, Defense stage) {got}")]
+
+
+@b13
+def zippy_zap_checks():
+    """Zippy Zap in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Pikachu's row on a trainer's Swift
+    Swim Kabuto is the one on a Battle Armor Kabuto, which no critical hit
+    reaches, so it is no critical hit; and its hit raises its evasion."""
+    b, armour, swim = b8_battle([("Kabuto", 30, "Battle Armor", ["Tackle"]), ("Kabuto", 30, "Swift Swim", ["Tackle"])],
+                                [("Pikachu", 30, "Static", ["Zippy Zap"])])
+    pika = b.p.cur()
+    swim = b.b.mons[1]
+    mv = fs.move("Zippy Zap")
+    rows = (b.rolls(pika, armour, mv), b.rolls(pika, swim, mv))
+    pl.attack(b, pika, mv, armour, True)
+    got = (rows[0] == rows[1], pika.stages["eva"])
+    return [("the readings' Zippy Zap is no critical hit and raises its user's evasion", got == (True, 1),
+             f"(the rows alike, evasion stage) {got}; rows {rows[0][-1]} and {rows[1][-1]}")]
+
+
+@b13
+def chloroblast_checks():
+    """Chloroblast in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Venusaur's hit on a trainer's
+    Geodude costs it half its maximum HP, rounded up."""
+    b, geo, venu = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Venusaur", 30, "Overgrow", ["Chloroblast"])])
+    pl.attack(b, venu, fs.move("Chloroblast"), geo, True)
+    got = (geo.hp < geo.maxhp, venu.maxhp - venu.hp)
+    return [("the readings' Chloroblast costs its user half its HP", got == (True, (venu.maxhp + 1) // 2),
+             f"(hit, HP paid) {got} of {venu.maxhp}")]
+
+
+@b13
+def freezy_frost_checks():
+    """Freezy Frost in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Glaceon at +2 Sp. Atk hits a
+    trainer's Geodude at +2 Defense, and both are back at no stages."""
+    b, geo, glace = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Glaceon", 30, "Snow Cloak", ["Freezy Frost"])])
+    glace.stages["spa"], geo.stages["def"] = 2, 2
+    pl.attack(b, glace, fs.move("Freezy Frost"), geo, True)
+    got = (geo.hp < geo.maxhp, glace.stages["spa"], geo.stages["def"])
+    return [("the readings' Freezy Frost resets the stages on the field", got == (True, 0, 0),
+             f"(hit, Glaceon's Sp. Atk stage, Geodude's Defense stage) {got}")]
+
+
+@b13
+def rain_sure_checks():
+    """Thunder in the rain on the calculator's real rows (Ian's addition of
+    2026-10-20): a trainer's Pikachu at -6 accuracy, with every chance of
+    its miss landing for the player, still hits the player's Snorlax in the
+    rain, and misses out of it."""
+    from .test_fightai import battle
+
+    class TrainerMisses(Sure7):
+        def good(self, p, kind=None):
+            return p > 0 and kind is None        # the trainer's miss, the player's luck
+    out = {}
+    for weather in ("Rain", None):
+        b = battle([("Pikachu", 30, "Static", ["Thunder"])], [("Snorlax", 30, "Thick Fat", ["Tackle"])], weather=weather)
+        b.dice, b.rng = TrainerMisses(random.Random(1), True), random.Random(1)
+        b.weather = weather
+        pika, lax = b.b.cur(), b.p.cur()
+        pika.stages["acc"] = -6
+        hp = lax.hp
+        pl.attack(b, pika, fs.move("Thunder"), lax, True)
+        out[weather] = lax.hp < hp
+    return [("the readings' Thunder never misses in the rain", out == {"Rain": True, None: False},
+             f"(hit in the rain, hit out of it) {out}")]
+
+
+def storm_status_checks(name, user, status, word):
+    """A storm's status in the readings' battle on the calculator's real
+    rows: the player's hit on a trainer's Geodude gives it when the chance
+    lands, and a Sheer Force user's never does."""
+    out = {}
+    for ability in (user[1], "Sheer Force"):
+        b, geo, mon = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [(user[0], 30, ability, [name])], Lucky8)
+        pl.attack(b, mon, fs.move(name), geo, True)
+        out[ability] = (geo.hp < geo.maxhp, geo.status)
+    ok = out == {user[1]: (True, status), "Sheer Force": (True, None)}
+    return [(f"the readings' {name} {word} at its chance", ok, f"(hit, status) {out}")]
+
+
+@b13
+def sandsear_storm_checks():
+    """Sandsear Storm on real rows (approved 2026-10-14): the player's
+    Nidoking burns a trainer's Geodude when the chance lands."""
+    return storm_status_checks("Sandsear Storm", ("Nidoking", "Poison Point"), "brn", "burns")
+
+
+@b13
+def wildbolt_storm_checks():
+    """Wildbolt Storm on real rows (approved 2026-10-14): the player's
+    Raichu paralyses a trainer's Snorlax when the chance lands."""
+    out = {}
+    for ability in ("Static", "Sheer Force"):
+        b, lax, rai = b8_battle([("Snorlax", 30, "Thick Fat", ["Tackle"])], [("Raichu", 30, ability, ["Wildbolt Storm"])],
+                                Lucky8)
+        pl.attack(b, rai, fs.move("Wildbolt Storm"), lax, True)
+        out[ability] = (lax.hp < lax.maxhp, lax.status)
+    ok = out == {"Static": (True, "par"), "Sheer Force": (True, None)}
+    return [("the readings' Wildbolt Storm paralyses at its chance", ok, f"(hit, status) {out}")]
+
+
+@b13
+def screen_hit_checks():
+    """Glitzy Glow and Baddy Bad on real rows (approved 2026-10-14): the
+    player's Espeon's Glitzy Glow puts Light Screen up on its side, and its
+    Umbreon's Baddy Bad Reflect, each for five turns."""
+    out = {}
+    for user, name, screen in (("Espeon", "Glitzy Glow", "Light Screen"), ("Umbreon", "Baddy Bad", "Reflect")):
+        b, geo, mon = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [(user, 30, "Synchronize", [name])])
+        pl.attack(b, mon, fs.move(name), geo, True)
+        out[name] = (geo.hp < geo.maxhp, b.p.screens[screen])
+    ok = out == {"Glitzy Glow": (True, 5), "Baddy Bad": (True, 5)}
+    return [("the readings' Glitzy Glow and Baddy Bad put up their screens", ok, f"(hit, turns) {out}")]
+
+
+@b13
+def hazard_hit_checks():
+    """Stone Axe and Ceaseless Edge on real rows (approved 2026-10-14): the
+    player's Kleavor's Stone Axe lays Stealth Rock on the trainer's side,
+    and its Crawdaunt's Ceaseless Edge a layer of Spikes."""
+    out = {}
+    for user, ability, name in (("Kleavor", "Swarm", "Stone Axe"), ("Crawdaunt", "Hyper Cutter", "Ceaseless Edge")):
+        b, geo, mon = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [(user, 30, ability, [name])])
+        pl.attack(b, mon, fs.move(name), geo, True)
+        out[name] = (geo.hp < geo.maxhp, b.b.hazards["rocks"], b.b.hazards["spikes"])
+    ok = out == {"Stone Axe": (True, 1, 0), "Ceaseless Edge": (True, 0, 1)}
+    return [("the readings' Stone Axe and Ceaseless Edge lay their hazards", ok, f"(hit, rocks, Spikes) {out}")]
+
+
+@b13
+def dire_claw_checks():
+    """Dire Claw on real rows (approved 2026-10-14): the player's
+    Weavile's hit gives a trainer's Snorlax the status its pick of three
+    names when the chance lands: sleep, poison or paralysis."""
+    out = {}
+    for pick in range(3):
+        class Pick(Lucky8):
+            def choice(self, kind, n, _k=pick):
+                return _k
+        b, lax, wea = b8_battle([("Snorlax", 30, "Thick Fat", ["Tackle"])], [("Weavile", 30, "Pressure", ["Dire Claw"])],
+                                Pick)
+        pl.attack(b, wea, fs.move("Dire Claw"), lax, True)
+        out[pick] = (lax.hp < lax.maxhp, lax.status)
+    ok = out == {0: (True, "slp"), 1: (True, "psn"), 2: (True, "par")}
+    return [("the readings' Dire Claw gives the status it picks at its chance", ok, f"(hit, status) by pick {out}")]
+
+
+@b13
+def spicy_extract_checks():
+    """Spicy Extract on real rows (approved 2026-10-14): the player's
+    Bibarel raises a trainer's Geodude's Attack two stages and lowers its
+    Defense two."""
+    b, geo, bib = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Bibarel", 30, "Unaware", ["Spicy Extract"])])
+    pl.status_move(b, bib, fs.move("Spicy Extract"), geo, True)
+    got = (geo.stages["atk"], geo.stages["def"])
+    return [("the readings' Spicy Extract trades the target's Defense for Attack", got == (2, -2),
+             f"(Attack stage, Defense stage) {got}")]
+
+
+@b13
+def take_heart_checks():
+    """Take Heart on real rows (approved 2026-10-14): the player's burned
+    Cresselia raises its Sp. Atk and Sp. Def a stage each and is cured."""
+    b, geo, cres = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [("Cresselia", 30, "Levitate", ["Take Heart"])])
+    cres.status = "brn"
+    pl.status_move(b, cres, fs.move("Take Heart"), geo, True)
+    got = (cres.stages["spa"], cres.stages["spd"], cres.status)
+    return [("the readings' Take Heart raises its user's stats and cures it", got == (1, 1, None),
+             f"(Sp. Atk stage, Sp. Def stage, status) {got}")]
+
+
+@b13
+def population_bomb_checks():
+    """Population Bomb on real rows (approved 2026-10-14): a Skill Link
+    Minccino's row adds up ten hits, about five times a Cute Charm one's
+    two, yet with no miss each deals ten hits and the same damage to a
+    trainer's Snorlax, since Skill Link changes nothing in Oxide's engine."""
+    out = {}
+    for ability in ("Cute Charm", "Skill Link"):
+        b, lax, minc = b8_battle([("Snorlax", 50, "Thick Fat", ["Tackle"])],
+                                 [("Minccino", 50, ability, ["Population Bomb"])])
+        row = b.rolls(minc, lax, fs.move("Population Bomb"))[-1]
+        hp = lax.hp
+        pl.attack(b, minc, fs.move("Population Bomb"), lax, True)
+        out[ability] = (row, hp - lax.hp)
+    rows = out["Cute Charm"][0], out["Skill Link"][0]
+    ok = (abs(rows[1] - 5 * rows[0]) <= 5 and out["Cute Charm"][1] == out["Skill Link"][1]
+          and abs(out["Cute Charm"][1] - 5 * rows[0]) <= 5)
+    return [("the readings' Population Bomb lands ten hits whatever the row adds up", ok,
+             f"(top row, HP taken) by ability {out}")]
+
+
+def self_drop_checks(name, user, want):
+    """A hit's fall in its user's own stats on real rows: the player's
+    `user` hits a trainer's Geodude, and its Defense, Sp. Def and Speed
+    stages end as `want`."""
+    b, geo, mon = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [(user[0], 30, user[1], [name])])
+    pl.attack(b, mon, fs.move(name), geo, True)
+    got = (geo.hp < geo.maxhp,) + tuple(mon.stages[k] for k in ("def", "spd", "spe"))
+    return [(f"the readings' {name} lowers its user's own stats", got == (True,) + want,
+             f"(hit, Defense, Sp. Def, Speed) {got}")]
+
+
+@b13
+def hyperspace_fury_checks():
+    """Hyperspace Fury on real rows (approved 2026-10-14): the player's
+    Drapion's hit lowers its own Defense a stage."""
+    return self_drop_checks("Hyperspace Fury", ("Drapion", "Sniper"), (-1, 0, 0))
+
+
+@b13
+def v_create_checks():
+    """V-create on real rows (approved 2026-10-14): the player's
+    Infernape's hit lowers its own Defense, Sp. Def and Speed a stage
+    each."""
+    return self_drop_checks("V-create", ("Infernape", "Blaze"), (-1, -1, -1))
+
+
+@b13
+def spin_out_checks():
+    """Spin Out on real rows (approved 2026-10-14): the player's
+    Bronzong's hit lowers its own Speed two stages."""
+    return self_drop_checks("Spin Out", ("Bronzong", "Levitate"), (0, 0, -2))
+
+
+@b13
+def wonder_room_checks():
+    """Wonder Room on real rows (approved 2026-10-14): once the player's
+    Bronzong puts the room up, its Iron Head on a trainer's Onix, whose
+    Defense is far above its Sp. Def, does more, and its Flash Cannon less,
+    by the ratio of the two stats."""
+    b, onix, bron = b8_battle([("Onix", 30, "Sturdy", ["Tackle"])],
+                              [("Bronzong", 30, "Levitate", ["Wonder Room", "Iron Head", "Flash Cannon"])])
+    moves = (fs.move("Iron Head"), fs.move("Flash Cannon"))
+    before = tuple(pl.damage_of(b, bron, onix, m, False, True) for m in moves)
+    pl.status_move(b, bron, fs.move("Wonder Room"), onix, True)
+    after = tuple(pl.damage_of(b, bron, onix, m, False, True) for m in moves)
+    ratio = onix.stats["def"] / onix.stats["spd"]
+    turns = getattr(b, "wonder_room", None)
+    ok = (turns == 5 and abs(after[0] - before[0] * ratio) <= 2 and abs(after[1] - before[1] / ratio) <= 2
+          and after[0] > before[0] and after[1] < before[1])
+    return [("the readings' Wonder Room trades the Defenses", ok,
+             f"(Iron Head, Flash Cannon) {before} to {after}, Defense over Sp. Def {ratio:.2f}, turns {turns}")]
+
+
+@b13
+def last_respects_checks():
+    """Last Respects on real rows (Ian's addition of 2026-10-20): a
+    trainer's Dusknoir sent in with two of its party fainted hits the
+    player's Golem three times as hard as with none."""
+    b, dusk, golem = b8_battle([("Dusknoir", 50, "Pressure", ["Last Respects"]), ("Geodude", 50, "Sturdy", ["Tackle"]),
+                                ("Onix", 50, "Sturdy", ["Tackle"])], [("Golem", 50, "Rock Head", ["Tackle"])])
+    mv = fs.move("Last Respects")
+    before = pl.damage_of(b, dusk, golem, mv, False, True)
+    for m in b.b.mons[1:]:
+        m.hp = 0
+    after = pl.damage_of(b, dusk, golem, mv, False, True)
+    ok = abs(after - 3 * before) <= 3 and after > before
+    return [("the readings' Last Respects grows with its party's fainted", ok, f"top damage {before} to {after}")]
+
+
+@b13
+def heal_bell_checks():
+    """Heal Bell on real rows (Ian's addition of 2026-10-20): the player's
+    Chimecho cures its burned Bibarel and leaves its poisoned Voltorb,
+    whose Soundproof keeps the bell out."""
+    b, geo, chime = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                              [("Chimecho", 30, "Levitate", ["Heal Bell"]), ("Bibarel", 30, "Simple", ["Tackle"]),
+                               ("Voltorb", 30, "Soundproof", ["Tackle"])])
+    bib, volt = b.p.mons[1], b.p.mons[2]
+    bib.status, volt.status = "brn", "psn"
+    pl.status_move(b, chime, fs.move("Heal Bell"), geo, True)
+    got = (bib.status, volt.status, volt.ability)
+    return [("the readings' Heal Bell spares a Soundproof party member", got == (None, "psn", "Soundproof"),
+             f"(Bibarel's status, Voltorb's status, Voltorb's ability) {got}")]
+
+
+@b13
+def pixie_plate_checks():
+    """Judgment with a Pixie Plate on real rows (the engine's fix of
+    2026-10-20): a trainer's Arceus holding one has a Fairy Judgment, as
+    the calculator's row types it, and the player's Ponyta's Flash Fire,
+    which a Fire Judgment lights, stays unlit."""
+    b, arc, pon = b8_battle([("Arceus", 30, "Multitype", ["Judgment"], "Pixie Plate")],
+                            [("Ponyta", 30, "Flash Fire", ["Tackle"])])
+    pl.attack(b, arc, arc.moves[0], pon, True)
+    got = (arc.moves[0].type, pon.hp < pon.maxhp, pon.flash_fire)
+    return [("the readings' Judgment with a Pixie Plate is a Fairy move", got == ("Fairy", True, False),
+             f"(Judgment's type, Ponyta hit, lit) {got}")]
+
+
+
+# ---- batch 14: Ian's follow-ups of 2026-10-20 to batch 13 ----
+
+B14 = []
+
+
+def b14(fn):
+    B14.append(fn)
+    return fn
+
+
+@b14
+def haze_checks():
+    """Haze in the readings' battle on the calculator's real rows (Ian
+    approved the fix on 2026-10-20): a trainer's Goldeen's Haze puts the
+    player's Kingler, at +2 Attack under Focus Energy, back to no stages
+    and no Focus Energy, and the Goldeen's own -1 Speed too."""
+    b, gold, king = b8_battle([("Goldeen", 30, "Swift Swim", ["Haze"])],
+                              [("Kingler", 30, "Hyper Cutter", ["Focus Energy", "Crabhammer"])])
+    pl.use_move(b, king, fs.move("Focus Energy"), gold, True)
+    king.stages["atk"], gold.stages["spe"] = 2, -1
+    focused = king.crit_stage
+    pl.use_move(b, gold, fs.move("Haze"), king, True)
+    got = (focused, king.crit_stage, king.stages["atk"], gold.stages["spe"])
+    return [("the readings' Haze resets the stages on the field and ends Focus Energy", got == (2, 0, 0, 0),
+             f"(Focus Energy before, after, Kingler's Attack stage, Goldeen's Speed stage) {got}")]
+
+
+class Half14(Sure7):
+    """Batch 14's dice: as Sure7 (the top roll, no miss, no critical hit),
+    and an added effect lands when its chance is 15 in 100 or more, so a
+    10 percent chance misses and the same chance doubled lands."""
+    def good(self, p, kind=None):
+        return p >= 1 or (kind not in (None, "crit") and p >= 0.15)
+
+    def lands_on_player(self, kind, p):
+        return p >= 0.15
+
+
+@b14
+def serene_grace_raise_checks():
+    """Serene Grace and a hit that raises its user's stats in the readings'
+    battle on the calculator's real rows (Ian approved the fix on
+    2026-10-20): the player's Serene Grace Togetic's Ancient Power on a
+    trainer's Geodude raises its stats at twice the move's 10 percent, which
+    lands on dice that need 15, and a Super Luck Togetic's does not."""
+    out = {}
+    for ability in ("Serene Grace", "Super Luck"):
+        b, geo, tog = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                                [("Togetic", 30, ability, ["Ancient Power"])], Half14)
+        pl.attack(b, tog, fs.move("Ancient Power"), geo, True)
+        out[ability] = (geo.hp < geo.maxhp, tog.stages["spa"], tog.stages["spe"])
+    ok = out == {"Serene Grace": (True, 1, 1), "Super Luck": (True, 0, 0)}
+    return [("the readings' Serene Grace doubles Ancient Power's chance to raise its user's stats", ok,
+             f"(hit, Sp. Atk stage, Speed stage) {out}")]
+
+
+class Misses14(Sure7):
+    """Batch 14's dice for a miss: as Sure7 (the top roll, no critical
+    hit, only a certain chance lands), and every accuracy check of the
+    player's that the dice see misses."""
+    def bad(self, kind, p):
+        return kind == "miss" and p > 0
+
+
+@b14
+def rising_overrides_checks():
+    """A rising move's later hits under No Guard in the readings' battle on
+    the calculator's real rows (Ian approved the fix on 2026-10-20): the
+    player's No Guard Machamp's Triple Kick on a trainer's Snorlax lands its
+    first hit by No Guard, and where every later roll misses, that hit
+    alone (20 of the three hits' 90 power), well under the three that land
+    when no roll misses."""
+    out = {}
+    for case, dice in (("every roll lands", Sure7), ("every roll misses", Misses14)):
+        b, lax, champ = b8_battle([("Snorlax", 30, "Thick Fat", ["Tackle"])],
+                                  [("Machamp", 30, "No Guard", ["Triple Kick"])], dice)
+        pl.attack(b, champ, fs.move("Triple Kick"), lax, True)
+        out[case] = lax.maxhp - lax.hp
+    ok = 0 < out["every roll misses"] and 3 * out["every roll misses"] < out["every roll lands"]
+    return [("the readings' No Guard lands only a rising move's first hit", ok, f"damage {out}")]
+
+
+@b14
+def plate_checks():
+    """The player's Plates in the readings' battle on the calculator's real
+    rows (Ian approved the fixes on 2026-10-20), with Roark's real rows: an
+    Arceus that knows Judgment has a twin per Plate type, in that type's
+    form (Arceus-Water and, with calc_export's Fairy form, Arceus-Fairy);
+    held, a Splash Plate makes its Judgment a Water hit on Roark's lead,
+    which a Normal one is not, the twin's row with the Plate's fifth; a
+    Pixie Plate makes it Fairy; and a Clefable's Pixie Plate gives its
+    Moonblast the fifth."""
+    recs = [{"constant": c, "species": sp, "how": "test", "level": 40, "nature": "Hardy", "ivs": IV, "evs": EV,
+             "ability": ab, "moves": mv, "fill": False}
+            for c, sp, ab, mv in (("SPECIES_ARCEUS", "Arceus", "Multitype", ["Judgment"]),
+                                  ("SPECIES_CLEFABLE", "Clefable", "Magic Guard", ["Moonblast"]))]
+    prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
+    st, (boss, flags, _s) = prep["st"], prep["variants"][0]
+    twins = {t: (st["pokemon"].get(f"p0#jd{t}") or {}).get("species") for t in ("Water", "Fairy")}
+    out = {"twins": twins}
+    for item in (None, "Splash Plate", "Pixie Plate"):
+        st["held"] = {"p0": item, "p1": None}
+        b = pl.make_battle(st, ["p0", "p1"], list(boss), flags, 0)
+        arc, foe = b.p.cur(), b.b.cur()
+        jm = next(m for m in arc.moves if m.effect == "JUDGEMENT")
+        r = b.rolls(arc, foe, jm)
+        out[item] = (jm.type, b.damage(arc, foe, jm, roll=15), r[-1] if r else None)
+    plain, water, fairy = out[None], out["Splash Plate"], out["Pixie Plate"]
+    hits = {}
+    for item in (None, "Pixie Plate"):
+        st["held"] = {"p0": None, "p1": item}
+        b = pl.make_battle(st, ["p1", "p0"], list(boss), flags, 0)
+        hits[item] = b.damage(b.p.cur(), b.b.cur(), fs.move("Moonblast"), roll=15)
+    out["Moonblast"] = hits
+    ok = (twins == {"Water": "Arceus-Water", "Fairy": "Arceus-Fairy"}
+          and plain[0] == "Normal" and water[0] == "Water" and fairy[0] == "Fairy"
+          and water[1] == int(water[2] * 1.2) and water[1] > 2 * plain[1]
+          and fairy[1] == int(fairy[2] * 1.2)
+          and hits["Pixie Plate"] == int(hits[None] * 1.2))
+    del st["held"]
+    return [("the readings' player's Plates type Judgment and give their fifth", ok,
+             f"(Judgment's type, damage, its row's top roll) {out}")]
+
 def main():
     results = []
 
@@ -7037,6 +7492,10 @@ def main():
     for fn in B11:
         results += fn()
     for fn in B12:
+        results += fn()
+    for fn in B13:
+        results += fn()
+    for fn in B14:
         results += fn()
 
     width = max(len(r[0]) for r in results)
