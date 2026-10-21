@@ -55,6 +55,7 @@
             [ 44, "MOVE_MIRROR_SHOT" ],
             [ 50, "MOVE_DAZZLING_GLEAM" ],
             [ 51, "MOVE_LIGHT_SCREEN" ],
+            [ 52, "MOVE_THUNDERCLAP" ],
             [ 59, "MOVE_POWER_GEM" ],
             [ 61, "MOVE_VOLT_SWITCH" ],
             [ 66, "MOVE_CONFUSE_RAY" ],

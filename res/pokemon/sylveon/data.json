@@ -147,6 +147,10 @@
             [
                 68,
                 "MOVE_PSYCHIC"
+            ],
+            [
+                70,
+                "MOVE_SPARKLY_SWIRL"
             ]
         ],
         "by_tm": [

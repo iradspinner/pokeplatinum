@@ -55,6 +55,7 @@
             [ 50, "MOVE_FIRE_LASH" ],
             [ 57, "MOVE_SMOG" ],
             [ 64, "MOVE_SCARY_FACE" ],
+            [ 70, "MOVE_SIZZLY_SLIDE" ],
             [ 71, "MOVE_HEAT_WAVE" ],
             [ 78, "MOVE_LAVA_PLUME" ]
         ],

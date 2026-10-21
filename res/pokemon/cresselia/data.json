@@ -41,11 +41,13 @@
             [ 29, "MOVE_AURORA_BEAM" ],
             [ 38, "MOVE_FUTURE_SIGHT" ],
             [ 47, "MOVE_SLASH" ],
+            [ 49, "MOVE_ESPER_WING" ],
             [ 54, "MOVE_TAKE_HEART" ],
             [ 57, "MOVE_MOONLIGHT" ],
             [ 66, "MOVE_PSYCHO_CUT" ],
             [ 68, "MOVE_CONFUSE_RAY" ],
             [ 70, "MOVE_MOONBLAST" ],
+            [ 72, "MOVE_LUNAR_BLESSING" ],
             [ 75, "MOVE_PSYCHO_SHIFT" ],
             [ 77, "MOVE_SWAGGER" ]
         ],

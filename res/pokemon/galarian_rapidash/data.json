@@ -109,6 +109,10 @@
                 "MOVE_TAKE_DOWN"
             ],
             [
+                46,
+                "MOVE_SPIRIT_BREAK"
+            ],
+            [
                 48,
                 "MOVE_THROAT_CHOP"
             ],

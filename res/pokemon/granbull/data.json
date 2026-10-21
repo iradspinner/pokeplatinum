@@ -51,6 +51,7 @@
             [ 19, "MOVE_HEADBUTT" ],
             [ 27, "MOVE_BULLDOZE" ],
             [ 29, "MOVE_LOW_SWEEP" ],
+            [ 34, "MOVE_SPIRIT_BREAK" ],
             [ 43, "MOVE_TAKE_DOWN" ],
             [ 51, "MOVE_PAYBACK" ],
             [ 54, "MOVE_PSYCHIC_FANGS" ],

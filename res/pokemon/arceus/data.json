@@ -44,7 +44,8 @@
             [ 40, "MOVE_EXTREME_SPEED" ],
             [ 50, "MOVE_REFRESH" ],
             [ 60, "MOVE_FUTURE_SIGHT" ],
-            [ 70, "MOVE_RECOVER" ]
+            [ 70, "MOVE_RECOVER" ],
+            [ 75, "MOVE_JUDGMENT" ]
         ],
         "by_tm": [
             "TM01",

@@ -50,6 +50,7 @@
             [ 33, "MOVE_LEECH_SEED" ],
             [ 35, "MOVE_IRON_HEAD" ],
             [ 39, "MOVE_SYNTHESIS" ],
+            [ 40, "MOVE_DRUM_BEATING" ],
             [ 42, "MOVE_HEADLONG_RUSH" ],
             [ 45, "MOVE_CRUNCH" ],
             [ 47, "MOVE_HORN_LEECH" ],

@@ -108,7 +108,8 @@
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
             "MOVE_THUNDER_PUNCH",
-            "MOVE_DESTINY_BOND"
+            "MOVE_DESTINY_BOND",
+            "MOVE_MALIGNANT_CHAIN"
         ]
     },
     "evolutions": [

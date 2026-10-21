@@ -54,6 +54,7 @@
             [ 42, "MOVE_HEX" ],
             [ 49, "MOVE_DARK_PULSE" ],
             [ 51, "MOVE_CONFUSE_RAY" ],
+            [ 54, "MOVE_BITTER_MALICE" ],
             [ 56, "MOVE_ROCK_TOMB" ],
             [ 58, "MOVE_PSYSHOCK" ],
             [ 60, "MOVE_FIERY_WRATH" ],
