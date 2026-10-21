@@ -476,6 +476,15 @@ def _use_move(b, att, mv, dfn, first, targets=None):
         if thief is not None:
             status_move(b, thief, mv, att, first)     # a waiting Snatch user takes it (fightsim.snatched)
             return
+        if targets is not None:
+            # A double battle's status move aimed at both foes, or at every
+            # other Pokemon (Growl, Sweet Scent, Teeter Dance): it runs on
+            # each in turn, each through its own checks, as the engine's
+            # BattleControllerPlayer_LoopSpreadMoves sends the move back
+            # through BATTLE_CONTROL_BEFORE_MOVE for each.
+            for t in targets:
+                status_move(b, att, mv, t, t not in b.moved)
+            return
         status_move(b, att, mv, dfn, first)
         return
     if targets is not None:
@@ -1140,8 +1149,6 @@ def status_move(b, att, mv, dfn, first):
     foe_side = b.p if player(dfn) else b.b
     own_side = b.p if player(att) else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
-    if e == "CONFUSE_ALL" and b.doubles:
-        fs.teeter_dance_others(b, att, mv, dfn, first)     # Teeter Dance's other targets in a double battle
     if e == "FAINT_AND_ATK_SP_ATK_DOWN_2" and not fs.memento_faints(att, dfn):
         return                           # Memento faints its user before its checks, or with no target does nothing
     if targets_foe and dfn.alive():

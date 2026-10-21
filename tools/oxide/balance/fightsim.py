@@ -9827,8 +9827,10 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
             first = bool(tl) and tl[0] not in b.moved
             # No standing battler acts after this one (moves_last, for Protect).
             b.moving_last = not any(later[0].alive() for later in ordered[i + 1:])
+            # A damaging move goes to each Pokemon it hits, and so does a status
+            # move aimed at both foes or every other Pokemon (SPREAD).
             pl.use_move(b, mon, mv, tl[0] if tl else foe_of(b, mon), first,
-                        targets=tl if mv.damaging() else None)
+                        targets=tl if mv.damaging() or (mv.range in SPREAD and tl) else None)
             b.moved.add(mon)
         b.moving_last = None
         end_of_turn(b)

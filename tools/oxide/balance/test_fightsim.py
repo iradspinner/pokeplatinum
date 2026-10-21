@@ -8530,6 +8530,31 @@ def check_doubles_quick_claw(results):
     results.append(("doubles: Quick Claw and Custap Berry move their holder first", ok, f"{out}"))
 
 
+@b15
+def check_doubles_spread_status(results):
+    """A status move aimed at both foes reaches both (Ian approved the
+    double battles' part of batch 10 on 2026-10-15;
+    BattleControllerPlayer_LoopSpreadMoves sends Growl's kind back through
+    BATTLE_CONTROL_BEFORE_MOVE for each foe, each through its own Protect,
+    accuracy and blockers): Growl and Sweet Scent lower the foe that did not
+    protect and spare the one that did, and Poison Gas poisons both. Until
+    2026-10-21 run_doubles sent such a move to its first target alone."""
+    mons = {"p0": {"moves": ["Growl"]}, "p1": {"moves": ["Sweet Scent"]},
+            "b0.0": {"moves": ["Protect"]}, "b0.1": {"moves": ["Splash"]}}
+    b = doubles_turns(doubles_st(mons), ["p0", "p1"], ["b0.0", "b0.1"], {"b0.0": ("Protect", None)})
+    out = {k: (mon_of(b, k).stages["atk"], mon_of(b, k).stages["eva"]) for k in ("b0.0", "b0.1")}
+    poisoned = 0
+    for seed in range(40):
+        mons = {"p0": {"moves": ["Poison Gas"]}, "p1": {"moves": ["Splash"]},
+                "b0.0": {"moves": ["Splash"]}, "b0.1": {"moves": ["Splash"]}}
+        b = doubles_turns(doubles_st(mons), ["p0", "p1"], ["b0.0", "b0.1"], {}, seed=seed)
+        poisoned += sum(mon_of(b, k).status == "psn" for k in ("b0.0", "b0.1"))
+    out["Poison Gas poisons (of 80, 85 in 100 each)"] = poisoned
+    ok = out["b0.0"] == (0, 0) and out["b0.1"] == (-1, -1) and 58 <= poisoned <= 78
+    results.append(("doubles: a status move aimed at both foes reaches both", ok,
+                    f"(Attack, evasion) of the protected foe b0.0 and the other b0.1, and poisonings {out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
