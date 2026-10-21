@@ -8592,6 +8592,43 @@ def check_doubles_struggle(results):
                     f"(the user's HP, the foes hit in 40 battles) {out}"))
 
 
+@b15
+def check_doubles_pivots(results):
+    """U-turn's kind, Parting Shot and Baton Pass switch their user out in a
+    double battle (Ian approved the double-battle parts of batch 10 on
+    2026-10-15 and of batch 7 on 2026-10-14; subscript_attack_then_switch_out,
+    subscript_parting_shot, subscript_baton_pass): a trainer's Parting Shot
+    and Volt Switch and the player's U-turn and Baton Pass each bring a
+    Pokemon of the user's own party into the user's slot straight after the
+    move, Baton Pass handing its +2 Attack on. Until 2026-10-21 every user
+    stayed in."""
+    mons = {"p0": {"moves": ["U-turn"]}, "p1": {"moves": ["Baton Pass"]},
+            "p2": {"moves": ["Splash"]}, "p3": {"moves": ["Splash"]},
+            "b0.0": {"moves": ["Parting Shot"]}, "b0.1": {"moves": ["Volt Switch"]},
+            "b0.2": {"moves": ["Splash"]}, "b0.3": {"moves": ["Splash"]}}
+    rows = {("p0", d): {"U-turn": 10} for d in ("b0.0", "b0.1", "b0.2", "b0.3")}
+    rows.update({("b0.1", d): {"Volt Switch": 10} for d in ("p0", "p1", "p2", "p3")})
+    st = doubles_st(mons, rows, speeds={"b0.0": 300, "b0.1": 250, "p0": 200, "p1": 150})
+
+    def start(b):
+        mon_of(b, "p1").stages["atk"] = 2
+    b = doubles_turns(st, ["p0", "p1", "p2", "p3"], ["b0.0", "b0.1", "b0.2", "b0.3"],
+                      {"p0": ("U-turn", "b0.0"), "b0.0": ("Parting Shot", "p0"), "b0.1": ("Volt Switch", "p1")},
+                      start=start)
+    # The U-turn user's own replacement is p2 or p3; the Baton Pass, after
+    # it, may bring the U-turn user back, as the engine's party list allows.
+    out = {"the player's slots": [m.key for m in b.p.on_field()],
+           "the trainer's slots": sorted(m.key for m in b.b.on_field()),
+           "the Baton Pass receiver's Attack": b.p.mons[b.p.active2].stages["atk"]}
+    want = {"the player's slots": out["the player's slots"], "the trainer's slots": ["b0.2", "b0.3"],
+            "the Baton Pass receiver's Attack": 2}
+    slot0, slot1 = out["the player's slots"]
+    want["the player's slots"] = [slot0 if slot0 in ("p2", "p3") else "p2 or p3",
+                                  slot1 if slot1 != "p1" else "not p1"]
+    results.append(("doubles: U-turn, Volt Switch, Parting Shot and Baton Pass switch their user out", out == want,
+                    f"{out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

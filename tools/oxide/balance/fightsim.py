@@ -8634,15 +8634,17 @@ def baton_state(mon):
             "suppressed": getattr(mon, "suppressed", False)}
 
 
-def baton_pass(b, side, index):
+def baton_pass(b, side, index, slot=0):
     """Baton Pass's switch (effect script 127, subscript_baton_pass): its
     user leaves, as any switch does (Natural Cure and Regenerator on the
     way out), and the replacement comes in carrying baton_state, before the
     hazards and its own entry abilities; a foe that the user's Mean Look or
     Block held stays held by the replacement, and the user's binds and
     love end (BattleSystem_InitBattleMon). Until 2026-10-15 Baton Pass did
-    nothing and its user stayed in (Ian approved the fix)."""
-    switch_in(b, side, index, passed=baton_state(side.cur()))
+    nothing and its user stayed in (Ian approved the fix). `slot`: the
+    user's slot, 1 for a double battle's second."""
+    leaving = side.mons[side.active2] if slot == 1 else side.cur()
+    switch_in(b, side, index, slot=slot, passed=baton_state(leaving))
 
 
 def switch_in(b, side, index, slot=0, lead=False, passed=None):
@@ -9694,6 +9696,51 @@ def player_replacement_doubles(b, side, owner):
     return best[1] if best else None
 
 
+def doubles_replacement(b, side, mon):
+    """The party index that comes into mon's slot mid-turn in a double
+    battle, from mon's own trainer's party (BattleSystem_AnyReplacementMons:
+    a tag battle keeps each trainer's apart), picked as a knockout's is: by
+    the player's doubles rule for the player's own Pokemon, else by the
+    trainer's AI (BattleAI_PostKOSwitchIn, fightai.replacement). None when
+    no one waits on the bench."""
+    if not side.bench(owner=mon.owner):
+        return None
+    if side is b.p and mon.owner == "player":
+        idx = player_replacement_doubles(b, side, mon.owner)
+    else:
+        foes = foes_of(b, mon)
+        idx = fightai.replacement(b, side, foes[0] if foes else mon, owner=mon.owner)
+    if idx is None or not side.mons[idx].alive() or side.mons[idx] in side.on_field():
+        return None
+    return idx
+
+
+def doubles_switch_out(b, mon):
+    """U-turn's, Volt Switch's, Flip Turn's and Parting Shot's switch, and
+    Baton Pass's, in a double battle (subscript_attack_then_switch_out,
+    subscript_parting_shot, subscript_baton_pass), straight after the move:
+    no switch once the target's side has nothing left (CheckBlackOut), with
+    no one of the user's own party to send in (TryReplaceFaintedMon), or
+    when the user fell on the way; otherwise the replacement
+    (doubles_replacement) comes into the user's slot, carrying Baton Pass's
+    state for a Baton Pass (baton_pass). It does not act this turn. Until
+    2026-10-21 the user stayed in (Ian approved the double-battle part of
+    batch 10 on 2026-10-15, and of Parting Shot with batch 7's on 2026-10-14)."""
+    passing = mon.baton
+    mon.u_turn = mon.baton = False
+    side = b.p if mon.side == "p" else b.b
+    if not mon.alive() or not (b.b if mon.side == "p" else b.p).alive():
+        return
+    idx = doubles_replacement(b, side, mon)
+    if idx is None:
+        return
+    slot = slot_of(side, mon)
+    if passing:
+        baton_pass(b, side, idx, slot=slot)
+    else:
+        switch_in(b, side, idx, slot=slot)
+
+
 def struggles(b, mon):
     """Whether mon can only Struggle this turn in a double battle: it can
     choose (Battler_CanPickCommand: not locked into a move, charging or
@@ -9853,6 +9900,8 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
             pl.use_move(b, mon, mv, tl[0] if tl else foe_of(b, mon), first,
                         targets=tl if mv.damaging() or (mv.range in SPREAD and tl) else None)
             b.moved.add(mon)
+            if mon.u_turn or mon.baton:
+                doubles_switch_out(b, mon)
         b.moving_last = None
         end_of_turn(b)
         for mon in b.p.on_field() + b.b.on_field():
