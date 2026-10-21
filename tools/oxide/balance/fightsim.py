@@ -139,14 +139,25 @@ def move(name):
     return Move(name)
 
 
+# The type boosters, by the type whose moves each raises by a fifth (its
+# effectParam of 20 in sTypeBoostingItems, BattleSystem_CalcMoveDamage):
+# pool.TYPE_ITEMS' list, and Fairy's two, which element 7 added, the Fairy
+# Feather (HOLD_EFFECT_STRENGTHEN_FAIRY) and the Pixie Plate
+# (HOLD_EFFECT_ARCEUS_FAIRY). pool.TYPE_ITEMS has no Fairy entry, and until
+# 2026-10-21 the census of the player's items (player_items) and the
+# battle's fifth (BOOSTER_TYPE) read it alone, so no Fairy booster reached
+# a six and a Fairy Feather raised nothing (Ian approved the fix on
+# 2026-10-20). Each type's classic booster comes before its Plate, the
+# order the census takes them in.
+TYPE_BOOSTERS = dict(pool.TYPE_ITEMS, Fairy=["Fairy Feather", "Pixie Plate"])
+
 # The Plates whose type Judgment takes (effect script 268 sets the move's
 # type by the holder's HOLD_EFFECT_ARCEUS_*): the sixteen of Platinum, and
 # the Pixie Plate, which element 7 added and the script has made Fairy since
 # bb4b3021b (2026-10-20). Until then the script left a Pixie Plate's
 # Judgment Normal, and so did the simulator; it follows the fix (Ian
 # approved it on 2026-10-20).
-JUDGMENT_TYPE = dict({item: t for t, items in pool.TYPE_ITEMS.items() for item in items if item.endswith(" Plate")},
-                     **{"Pixie Plate": "Fairy"})
+JUDGMENT_TYPE = {item: t for t, items in TYPE_BOOSTERS.items() for item in items if item.endswith(" Plate")}
 
 
 @functools.lru_cache(maxsize=None)
@@ -9798,10 +9809,16 @@ def player_moves(rec, can_names, tiers, types):
 # other Plates raise theirs (sTypeBoostingItems in battle_lib.c, by
 # HOLD_EFFECT_ARCEUS_FAIRY), so a player's Pokemon holding one gets the
 # fifth too. Until 2026-10-20 its Fairy moves got nothing (Ian approved the
-# fix). pool.TYPE_ITEMS, which player_items' census reads, has no Fairy
-# entry, so the census hands no Fairy booster out: a Pixie Plate reaches a
-# player's Pokemon only through a state's own items.
-BOOSTER_TYPE = dict({it: t for t, items in pool.TYPE_ITEMS.items() for it in items}, **{"Pixie Plate": "Fairy"})
+# fix). The Fairy Feather (HOLD_EFFECT_STRENGTHEN_FAIRY) does the same, and
+# both are in the census (TYPE_BOOSTERS), which hands out one booster of
+# each type: the Fairy Feather from Fantina's split, Camper Anthony's
+# reward, and still the Feather once Volkner's split adds Beauty Nicola's
+# Pixie Plate, as each type's classic booster comes before its Plate. So a
+# Fairy type's Fairy attack takes it as any other type's same-type attack
+# takes its booster (assign_items). Until 2026-10-21 neither reached a six,
+# and a Fairy Feather held gave nothing (Ian approved the fix on
+# 2026-10-20).
+BOOSTER_TYPE = {it: t for t, items in TYPE_BOOSTERS.items() for it in items}
 
 
 def plate_key(key, item):
@@ -9858,7 +9875,7 @@ def player_items(split):
             finds[name(it)] += 1
     marts ={name(it) for s, _t, it in sp.marts() if upto(s)}
     boosters = {}
-    for t, items in pool.TYPE_ITEMS.items():
+    for t, items in TYPE_BOOSTERS.items():       # Fairy's two among them since 2026-10-21
         have = [i for i in items if finds.get(i) or i in marts]
         if have:
             boosters[t] = have[0]

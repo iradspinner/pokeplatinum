@@ -8104,6 +8104,46 @@ def check_plates(results):
     results.append(("the player's Plates give their type's fifth, and Judgment takes the held Plate's type",
                     out == want, str(out)))
 
+
+
+# ---- batch 14b: Ian's two fixes of 2026-10-20 after batch 14 ----
+
+# The batch's checks, run after batch 14's in main.
+B14B = []
+
+
+def b14b(fn):
+    B14B.append(fn)
+    return fn
+
+
+@b14b
+def check_fairy_boosters(results):
+    """The player's Fairy boosters (Ian approved the fix on 2026-10-20;
+    sTypeBoostingItems in BattleSystem_CalcMoveDamage, each item's
+    effectParam of 20): a Fairy Feather gives the player's Fairy moves
+    their fifth, as a Pixie Plate does, and a Silk Scarf gives them none;
+    the census of the player's items has a Fairy booster from Fantina's
+    split, Camper Anthony's Fairy Feather, still the Feather by Volkner's,
+    and none before; and the item rule hands it to a Fairy type's Fairy
+    attack there."""
+    out = {}
+    for item in ("Fairy Feather", "Pixie Plate", "Silk Scarf"):
+        b, p, foe = battle(["Moonblast", "Tackle"], ["Tackle"], {("p", "Moonblast"): [40] * 16, ("p", "Tackle"): [40] * 16})
+        p.item = item
+        out[item] = (b.damage(p, foe, fs.move("Moonblast"), roll=0), b.damage(p, foe, fs.move("Tackle"), roll=0))
+    out["census"] = {s: fs.player_items(s)["boosters"].get("Fairy") for s in ("Gardenia", "Fantina", "Volkner")}
+    stats = {"atk": 90, "def": 90, "spa": 90, "spd": 90, "spe": 90}
+    st = {"split": "Fantina", "moves": {"p0": ["Moonblast", "Tackle"], "p1": ["Tackle"]},
+          "info": {"p0": {"types": ["Fairy"], "stats": stats}, "p1": {"types": ["Normal"], "stats": stats}}}
+    out["handed"] = fs.assign_items(st, ["p0", "p1"]).get("p0")
+    want = {"Fairy Feather": (48, 40), "Pixie Plate": (48, 40), "Silk Scarf": (40, 48),
+            "census": {"Gardenia": None, "Fantina": "Fairy Feather", "Volkner": "Fairy Feather"},
+            "handed": "Fairy Feather"}
+    results.append(("the player's Fairy Feather and Pixie Plate are Fairy boosters, in the census from Fantina's split",
+                    out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
@@ -8170,7 +8210,7 @@ def main():
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
                   check_self_risk, check_sure, check_reward_items) + tuple(B11) + tuple(B12) + tuple(B13) \
-            + tuple(B14):
+            + tuple(B14) + tuple(B14B):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

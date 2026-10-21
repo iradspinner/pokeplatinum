@@ -6906,6 +6906,48 @@ def plate_checks():
     return [("the readings' player's Plates type Judgment and give their fifth", ok,
              f"(Judgment's type, damage, its row's top roll) {out}")]
 
+
+
+# ---- batch 14b: Ian's two fixes of 2026-10-20 after batch 14 ----
+
+B14B = []
+
+
+def b14b(fn):
+    B14B.append(fn)
+    return fn
+
+
+@b14b
+def fairy_booster_checks():
+    """The player's Fairy boosters in the readings' battle on the
+    calculator's real rows (Ian approved the fix on 2026-10-20), on
+    Fantina's: by the item rule, with Fantina's census, the player's
+    Clefable takes the Fairy Feather, which gives its Moonblast the fifth
+    over its row's top roll; with Gardenia's census, which has no Fairy
+    booster, it takes none, and the hit is the row's."""
+    recs = [{"constant": c, "species": sp, "how": "test", "level": 30, "nature": "Hardy", "ivs": IV, "evs": EV,
+             "ability": ab, "moves": mv, "fill": False}
+            for c, sp, ab, mv in (("SPECIES_CLEFABLE", "Clefable", "Magic Guard", ["Moonblast"]),
+                                  ("SPECIES_BIBAREL", "Bibarel", "Simple", ["Tackle"]))]
+    prep = plscore.prepare(plscore.parse_fight("fantina"), given_side=recs)
+    st, (boss, flags, _s) = prep["st"], prep["variants"][0]
+    out = {}
+    for split in ("Fantina", "Gardenia"):
+        st["item_stock"] = fs.player_items(split)
+        b = pl.make_battle(st, ["p0", "p1"], list(boss), flags, 0)
+        clef, foe = b.p.cur(), b.b.cur()
+        moon = fs.move("Moonblast")
+        r = b.rolls(clef, foe, moon)
+        out[split] = (clef.item, pl.damage_of(b, clef, foe, moon, False, True), r[-1] if r else None)
+    del st["item_stock"]
+    fan, gar = out["Fantina"], out["Gardenia"]
+    ok = (fan[0] == "Fairy Feather" and fan[2] and fan[1] == int(fan[2] * 1.2) and fan[1] > fan[2]
+          and gar[0] != "Fairy Feather" and gar[1] == gar[2])
+    return [("the readings' player's Fairy Feather is handed by Fantina's split and gives its fifth", ok,
+             f"(Clefable's item, Moonblast's damage, its row's top roll) {out}")]
+
+
 def main():
     results = []
 
@@ -7496,6 +7538,8 @@ def main():
     for fn in B13:
         results += fn()
     for fn in B14:
+        results += fn()
+    for fn in B14B:
         results += fn()
 
     width = max(len(r[0]) for r in results)
