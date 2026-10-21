@@ -6993,6 +6993,44 @@ def arceus_plate_checks():
              f"(types, its two hits, the foe's hit on it, and for the player's the same after a switch) {out}")]
 
 
+# ---- batch 16: the five gaps batches 14b and 15 found, approved by Ian on 2026-10-21 ----
+
+# The batch's checks, run after batch 14b's in main.
+B16 = []
+
+
+def b16(fn):
+    B16.append(fn)
+    return fn
+
+
+@b16
+def booster_retyped_checks():
+    """A booster's fifth by the type the move hits with, in the readings'
+    battle on the calculator's real rows (Ian approved the fix on
+    2026-10-21), on Fantina's: the player's Pixilate Sylveon holding the
+    Fairy Feather gives its Swift, which its row makes Fairy, the Feather's
+    fifth over the row's top roll, as it gives its Moonblast; holding a
+    Silk Scarf, its Swift takes nothing, and its Moonblast nothing either."""
+    recs = [{"constant": "SPECIES_SYLVEON", "species": "Sylveon", "how": "test", "level": 30, "nature": "Hardy",
+             "ivs": IV, "evs": EV, "ability": "Pixilate", "moves": ["Swift", "Moonblast"], "fill": False}]
+    prep = plscore.prepare(plscore.parse_fight("fantina"), given_side=recs)
+    st, (boss, flags, _s) = prep["st"], prep["variants"][0]
+    out = {}
+    for item in ("Fairy Feather", "Silk Scarf"):
+        st["held"] = {"p0": item}
+        b = pl.make_battle(st, ["p0"], list(boss), flags, 0)
+        syl, foe = b.p.cur(), b.b.cur()
+        out[item] = tuple((pl.damage_of(b, syl, foe, fs.move(name), False, True),
+                           (b.rolls(syl, foe, fs.move(name)) or [None])[-1]) for name in ("Swift", "Moonblast"))
+    del st["held"]
+    (fs_, fm), (ss, sm) = out["Fairy Feather"], out["Silk Scarf"]
+    ok = (all(top for _d, top in (fs_, fm, ss, sm)) and fs_[0] == int(fs_[1] * 1.2) > fs_[1]
+          and fm[0] == int(fm[1] * 1.2) and ss[0] == ss[1] and sm[0] == sm[1])
+    return [("the readings' Pixilate Swift takes the Fairy Feather's fifth", ok,
+             f"(Swift's damage and its row's top roll, Moonblast's the same) {out}")]
+
+
 def main():
     results = []
 
@@ -7585,6 +7623,8 @@ def main():
     for fn in B14:
         results += fn()
     for fn in B14B:
+        results += fn()
+    for fn in B16:
         results += fn()
 
     width = max(len(r[0]) for r in results)

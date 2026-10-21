@@ -9070,6 +9070,59 @@ def check_doubles_partner_booster(results):
     results.append(("doubles: a tag partner's type booster counts once", out == want, f"damage {out}"))
 
 
+# ---- batch 16: the five gaps batches 14b and 15 found, approved by Ian on 2026-10-21 ----
+
+# The batch's checks, run after batch 15's in main.
+B16 = []
+
+
+def b16(fn):
+    B16.append(fn)
+    return fn
+
+
+@b16
+def check_booster_retyped(results):
+    """A booster's fifth goes by the type the move hits with (Ian approved
+    the fix on 2026-10-21; BattleScript_CalcMoveDamage hands
+    BattleSystem_CalcMoveDamage battleCtx->moveType, which
+    sTypeBoostingItems matches): a Pixilate user's Swift takes the Fairy
+    Feather's fifth and none of the Silk Scarf's; Weather Ball takes Mystic
+    Water's in the rain and the Silk Scarf's in no weather; Hidden Power at
+    odd IVs, Dark, takes the Black Glasses'; a Liquid Voice user's Hyper
+    Voice takes Mystic Water's; a Normalize user's Ember takes the Silk
+    Scarf's and none of the Charcoal's; a plain Tackle still takes the Silk
+    Scarf's. Each pair is the hit with the item and without, on a row of
+    40. Until 2026-10-21 the check read the move's own type."""
+    odd = {k: 15 for k in ("hp", "at", "df", "sp", "sa", "sd")}
+    cases = {"Pixilate Swift, Fairy Feather": ("Swift", "Fairy Feather", "Pixilate", None, None),
+             "Pixilate Swift, Silk Scarf": ("Swift", "Silk Scarf", "Pixilate", None, None),
+             "Weather Ball in rain, Mystic Water": ("Weather Ball", "Mystic Water", None, "Rain", None),
+             "Weather Ball in no weather, Silk Scarf": ("Weather Ball", "Silk Scarf", None, None, None),
+             "Weather Ball in no weather, Mystic Water": ("Weather Ball", "Mystic Water", None, None, None),
+             "Hidden Power at odd IVs, Black Glasses": ("Hidden Power", "Black Glasses", None, None, odd),
+             "Liquid Voice Hyper Voice, Mystic Water": ("Hyper Voice", "Mystic Water", "Liquid Voice", None, None),
+             "Normalize Ember, Silk Scarf": ("Ember", "Silk Scarf", "Normalize", None, None),
+             "Normalize Ember, Charcoal": ("Ember", "Charcoal", "Normalize", None, None),
+             "Tackle, Silk Scarf": ("Tackle", "Silk Scarf", None, None, None)}
+    out = {}
+    for case, (name, item, ability, weather, ivs) in cases.items():
+        got = []
+        for held in (item, None):
+            b, p, foe = battle([name], ["Splash"], {("p", name): [40] * 16})
+            p.item, p.ability, b.weather = held, ability, weather
+            if ivs:
+                p.ivs = ivs
+            got.append(b.damage(p, foe, fs.move(name), roll=0))
+        out[case] = tuple(got)
+    want = {case: (48 if case in ("Pixilate Swift, Fairy Feather", "Weather Ball in rain, Mystic Water",
+                                  "Weather Ball in no weather, Silk Scarf", "Hidden Power at odd IVs, Black Glasses",
+                                  "Liquid Voice Hyper Voice, Mystic Water", "Normalize Ember, Silk Scarf",
+                                  "Tackle, Silk Scarf") else 40, 40) for case in cases}
+    results.append(("a booster's fifth goes by the type the move hits with (Pixilate, Weather Ball, Hidden Power)",
+                    out == want, f"(with the item, without) {out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
@@ -9136,7 +9189,7 @@ def main():
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
                   check_self_risk, check_sure, check_reward_items) + tuple(B11) + tuple(B12) + tuple(B13) \
-            + tuple(B14) + tuple(B14B) + tuple(B15):
+            + tuple(B14) + tuple(B14B) + tuple(B15) + tuple(B16):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

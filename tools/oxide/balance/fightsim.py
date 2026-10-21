@@ -1278,7 +1278,7 @@ class Battle:
             mult *= 2 / 3        # the calculator's row has Flash Fire always lit
         elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
             mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
-        if booster_fifth(att, mv):
+        if booster_fifth(self, att, mv):
             mult *= 1.2          # the player's rows are item-free; a booster adds its fifth here
         side = self.p if dfn.side == "p" else self.b
         screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
@@ -10377,8 +10377,14 @@ def player_moves(rec, can_names, tiers, types):
 # 2026-10-20).
 BOOSTER_TYPE = {it: t for t, items in TYPE_BOOSTERS.items() for it in items}
 
+# The abilities and moves whose type the battle sets as the move is used
+# (move_type_used), so a booster's fifth goes by that type and not by the
+# move's own; any other move keeps its own type, which is read at no cost.
+RETYPING_ABILITIES = frozenset({"Normalize", "Pixilate", "Liquid Voice"})
+RETYPED_MOVES = frozenset({"Weather Ball", "Hidden Power", "Natural Gift"})
 
-def booster_fifth(att, mv):
+
+def booster_fifth(b, att, mv):
     """Whether the battle adds a type booster's fifth to att's move
     (sTypeBoostingItems, BattleSystem_CalcMoveDamage): only for the player's
     own Pokemon, whose rows are made with no item (prepare, assign_items). A
@@ -10386,8 +10392,24 @@ def booster_fifth(att, mv):
     its trainer's record, its item in the row already, so its fifth is not
     added again. Until 2026-10-21 a partner's booster counted twice (Ian
     approved the fix on 2026-10-20 after batch 14; Barry's partner teams
-    hold no item today, so nothing read differently)."""
-    return att.side == "p" and att.key[0] != "q" and BOOSTER_TYPE.get(att.item) == mv.type
+    hold no item today, so nothing read differently).
+
+    The booster matches the type the move hits with, which
+    BattleScript_CalcMoveDamage hands the damage (battleCtx->moveType, or
+    Normal for a Normalize user): a Pixilate user's Normal move is Fairy and
+    takes the Fairy Feather, Weather Ball takes the booster of its weather's
+    type, Hidden Power that of its IVs' type, and a Liquid Voice user's
+    sound move Mystic Water (move_type_used). Until 2026-10-21 the check
+    read the move's own type, so a Pixilate Sylveon's Swift took nothing
+    from its Fairy Feather (Ian approved the fix on 2026-10-21)."""
+    if att.side != "p" or att.key[0] == "q":
+        return False
+    t = BOOSTER_TYPE.get(att.item)
+    if t is None:
+        return False
+    if att.ability in RETYPING_ABILITIES or mv.name in RETYPED_MOVES:
+        return move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b)) == t
+    return mv.type == t
 
 
 def plate_key(key, item):
