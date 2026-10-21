@@ -105,6 +105,10 @@
                 "MOVE_SOLAR_BEAM"
             ],
             [
+                50,
+                "MOVE_LIGHT_OF_RUIN"
+            ],
+            [
                 52,
                 "MOVE_MOONBLAST"
             ]
