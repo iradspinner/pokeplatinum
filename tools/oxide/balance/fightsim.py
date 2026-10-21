@@ -9609,17 +9609,19 @@ def ally_of(b, mon):
     return next((m for m in side.on_field() if m is not mon and m.alive()), None)
 
 
-def targets_of(b, att, mv, chosen):
+def targets_of(b, att, mv, chosen, randomize=False):
     """Who a move hits in a double battle: both foes, everyone beside the
-    user, a random foe, or the one chosen (the other foe when it is down)."""
+    user, a random foe, or the one chosen (the other foe when it is down).
+    `randomize`: the target is drawn as a random foe's, as BattleSystem_Defender
+    draws a Struggle's (FightCommand's randomizeTarget)."""
     foes = foes_of(b, att)
     if mv.range == "ADJACENT_OPPONENTS":
         return foes
     if mv.range == "ALL_ADJACENT":
         ally = ally_of(b, att)
         return foes + ([ally] if ally else [])
-    if mv.range == "RANDOM_OPPONENT":
-        return [b.rng.choice(foes)] if foes else []
+    if mv.range == "RANDOM_OPPONENT" or randomize:
+        return [foes[pick_one(b, "target", len(foes))]] if foes else []
     if chosen is not None and chosen in foes:
         return [chosen]
     if chosen is not None and (chosen is att or chosen is ally_of(b, att)):
@@ -9690,6 +9692,22 @@ def player_replacement_doubles(b, side, owner):
         if best is None or key > best[0]:
             best = (key, i)
     return best[1] if best else None
+
+
+def struggles(b, mon):
+    """Whether mon can only Struggle this turn in a double battle: it can
+    choose (Battler_CanPickCommand: not locked into a move, charging or
+    recharging) and every move it knows is ruled out
+    (BattleSystem_CheckInvalidMoves, fightai.invalid: no PP, Disable,
+    Torment, Taunt, Imprison, Gravity, Heal Block, Belch, Throat Chop, an
+    Assault Vest, Encore, a Choice lock), so the command input gives it
+    Struggle (BattleSystem_CheckStruggling), the player's side as the
+    trainer's. Until 2026-10-21 neither side ever struggled in a double
+    battle: a Pokemon out of PP used a move it could not (Ian approved the
+    double battles' path on 2026-10-14)."""
+    if mon.lock or mon.charging is not None or mon.recharge:
+        return False
+    return all(fightai.invalid(b, mon, m) for m in mon.moves)
 
 
 def doubles_quick(b):
@@ -9804,6 +9822,9 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
         for mon in b.p.on_field() + b.b.on_field():
             if not mon.alive():
                 continue
+            if struggles(b, mon):
+                acts.append((mon, move("Struggle"), None))
+                continue
             if mon.side == "p" and mon.owner == "player":
                 acts.append((mon,) + player_choice_doubles(b, mon)[1:])
             else:
@@ -9823,7 +9844,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
                 consume(mon)             # its Custap Berry, eaten as it acts (subscript_check_quick_claw)
             if t is not None and not t.alive():
                 t = None
-            tl = targets_of(b, mon, mv, t)
+            tl = targets_of(b, mon, mv, t, randomize=mv.effect == "STRUGGLE")
             first = bool(tl) and tl[0] not in b.moved
             # No standing battler acts after this one (moves_last, for Protect).
             b.moving_last = not any(later[0].alive() for later in ordered[i + 1:])

@@ -8255,14 +8255,19 @@ def doubles_turns(st, player, foes, choices, turns=1, seed=1, partner=(), flags=
     leaves out using its first move with no target named; a locked or
     charging Pokemon goes on as the battle's choosers have it. foes is the
     trainer's party, or a list of two parties for a tag battle. start(b),
-    if given, runs once as the first choice is asked for, the leads in.
+    if given, runs once the leads are in, before the first turn.
     The battle as the last turn left it."""
     seen = {}
     groups = foes if foes and isinstance(foes[0], (list, tuple)) else [foes]
+    real_open = fs.open_battle
+
+    def open_battle(b):
+        real_open(b)
+        seen["b"] = b
+        if start is not None:
+            start(b)
 
     def pick(b, me):
-        if "b" not in seen and start is not None:
-            start(b)
         seen["b"] = b
         if me.lock:
             return "move", me.lock[0], None
@@ -8277,13 +8282,14 @@ def doubles_turns(st, player, foes, choices, turns=1, seed=1, partner=(), flags=
         # The player's items are the sketch's own (a prepared state hands
         # them out through assign_items, which a sketch has no split for).
         real_hold(st_, mon, item if item is not None else st_["info"][mon.key].get("item"))
-    old = (fs.player_choice_doubles, fightai.choose_doubles, fs.MAX_TURNS, fs.hold)
-    fs.player_choice_doubles, fightai.choose_doubles, fs.MAX_TURNS, fs.hold = pick, pick, turns, hold
+    old = (fs.player_choice_doubles, fightai.choose_doubles, fs.MAX_TURNS, fs.hold, fs.open_battle)
+    (fs.player_choice_doubles, fightai.choose_doubles, fs.MAX_TURNS, fs.hold,
+     fs.open_battle) = pick, pick, turns, hold, open_battle
     try:
         fs.run_doubles(st, list(player), [list(g) for g in groups], random.Random(seed), [flags] * len(groups),
                        partner_keys=list(partner))
     finally:
-        fs.player_choice_doubles, fightai.choose_doubles, fs.MAX_TURNS, fs.hold = old
+        fs.player_choice_doubles, fightai.choose_doubles, fs.MAX_TURNS, fs.hold, fs.open_battle = old
     return seen["b"]
 
 
@@ -8553,6 +8559,37 @@ def check_doubles_spread_status(results):
     ok = out["b0.0"] == (0, 0) and out["b0.1"] == (-1, -1) and 58 <= poisoned <= 78
     results.append(("doubles: a status move aimed at both foes reaches both", ok,
                     f"(Attack, evasion) of the protected foe b0.0 and the other b0.1, and poisonings {out}"))
+
+
+@b15
+def check_doubles_struggle(results):
+    """Struggle in a double battle (BattleSystem_CheckStruggling; Ian
+    approved the double battles' path on 2026-10-14): a Pokemon whose every
+    move is ruled out (here, out of PP) Struggles, the player's as the
+    trainer's, at a foe drawn at random (FightCommand's randomizeTarget), and
+    pays a quarter of its maximum HP. Over 40 battles each: the user is at 75
+    every time, exactly one foe is hit, and each foe is hit some of the
+    time. Until 2026-10-21 run_doubles used the empty move, which did
+    nothing and cost nothing."""
+    out = {}
+    for user, foes in (("p0", ("b0.0", "b0.1")), ("b0.0", ("p0", "p1"))):
+        hp, hit = set(), collections.Counter()
+        for seed in range(40):
+            mons = {"p0": {"moves": ["Tackle"]}, "p1": {"moves": ["Splash"]},
+                    "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
+            choices = {k: ("Splash", None) for k in ("p1", "b0.1")}
+            choices.update({k: ("Tackle", foes[0]) for k in ("p0", "b0.0")})
+
+            def start(b, user=user):
+                mon_of(b, user).pp["Tackle"] = 0
+            b = doubles_turns(doubles_st(mons), ["p0", "p1"], ["b0.0", "b0.1"], choices, seed=seed, start=start)
+            hp.add(mon_of(b, user).hp)
+            hit[tuple(k for k in foes if mon_of(b, k).hp < 100)] += 1
+        out[user] = (sorted(hp), dict(hit))
+    ok = all(hp == [75] and set(hit) == {(f,) for f in foes} for (hp, hit), foes
+             in zip(out.values(), (("b0.0", "b0.1"), ("p0", "p1"))))
+    results.append(("doubles: a Pokemon with no move left Struggles at a random foe", ok,
+                    f"(the user's HP, the foes hit in 40 battles) {out}"))
 
 
 def main():
