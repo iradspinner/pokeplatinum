@@ -1615,13 +1615,13 @@ def can_status(b, target, status):
 # Ability_ForbidsStatus); until 2026-10-14 the simulator let them through
 # (Ian approved the fix). Oxide's Sweet Veil keeps sleep off its holder as
 # Insomnia does (subscript_fall_asleep and subscript_yawn, past a Mold
-# Breaker's move; in a double battle its partner too, left to the double
-# battles' own batch); until 2026-10-20 it did nothing in the battle (Ian
-# approved the fix). Oxide's Pastel Veil keeps poison and bad poison off
-# its holder as Immunity does (subscript_poison, subscript_badly_poison,
-# Toxic Spikes' included; its partner's in a double battle left to their
-# own batch); until 2026-10-20 the poison landed, and only its cure ran
-# (Ian approved the fix).
+# Breaker's move; in a double battle its partner too, through
+# PARTNER_STATUS_VEIL since 2026-10-21); until 2026-10-20 it did nothing in
+# the battle (Ian approved the fix). Oxide's Pastel Veil keeps poison and
+# bad poison off its holder as Immunity does (subscript_poison,
+# subscript_badly_poison, Toxic Spikes' included; its partner's in a double
+# battle through PARTNER_STATUS_VEIL since 2026-10-21); until 2026-10-20 the
+# poison landed, and only its cure ran (Ian approved the fix).
 STATUS_ABILITIES = {"slp": {"Insomnia", "Vital Spirit", "Sweet Veil"}, "par": {"Limber"},
                     "brn": {"Water Veil", "Water Bubble"},
                     "psn": {"Immunity", "Pastel Veil"}, "tox": {"Immunity", "Pastel Veil"}, "frz": {"Magma Armor"}}
@@ -3968,10 +3968,8 @@ def soul_heart(b):
     hazards finish with a newcomer and as the turn ends, so it is looked at
     there; each Pokemon on the field keeps the count of the others down
     (Mon.soul_seen), so each faint counts once and one that gains the
-    ability later counts only the faints after. With two holders on the
-    field the engine raises only the faster, which a double battle alone
-    could show and which is not followed. Until 2026-10-20 it did nothing
-    (Ian approved the fix). In a double battle each faint raises the first
+    ability later counts only the faints after. Until 2026-10-20 it did
+    nothing (Ian approved the fix). In a double battle each faint raises the first
     holder in speed order that is up and below +6 (BtlCmd_TrySoulHeart over
     monSpeedOrder, end_order here), so of two holders only the faster
     gains, the slower when the faster is at +6; the faints are counted for
@@ -5166,9 +5164,8 @@ def majesty_blocked(att, dfn, mv):
     raises count) aimed at a foe with Queenly Majesty fails, unless a Mold
     Breaker gets past it (BattleControllerPlayer_PriorityBlock, after the
     immunity abilities; in a double battle the holder's partner is shielded
-    too, which is left to the double battles' own batch). The message
-    names the ability. Until 2026-10-20 the move landed (Ian approved the
-    fix)."""
+    too, majesty_partner_blocked). The message names the ability. Until
+    2026-10-20 the move landed (Ian approved the fix)."""
     if dfn is att or dfn.side == att.side or mold(att, dfn) or move_priority(att, mv) <= 0:
         return False
     reveal(dfn)
@@ -5567,9 +5564,9 @@ def heal_pulse(att, dfn, mv):
     target under Heal Block or behind a Substitute an Infiltrator does not
     pass; otherwise the target gets back half its maximum HP, rounded up,
     or three quarters with its user's Mega Launcher, nothing at full HP
-    (subscript_recover_hp). In a single battle its target is the foe; the
-    heal of a double battle's ally is left to the double battles' own
-    fixes. Until 2026-10-15 it did nothing (Ian approved the fix)."""
+    (subscript_recover_hp). In a single battle its target is the foe; in a
+    double battle the one it is aimed at, an ally too (run_doubles). Until
+    2026-10-15 it did nothing (Ian approved the fix)."""
     if dfn.heal_block or sub_blocks(att, dfn, mv):
         return
     heal(dfn, 3 * ((dfn.maxhp + 3) // 4) if att.ability == "Mega Launcher" else (dfn.maxhp + 1) // 2)
