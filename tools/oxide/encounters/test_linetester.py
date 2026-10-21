@@ -86,10 +86,10 @@ def build_line(rng):
             break
         nid = play(line, nid, rng.choice(menu_actions(line, nid)), {}, rng.randrange(1 << 30), rng)
     # Two branches from the start set by hand, as Ian's Gardenia questions
-    # were: Nuzleaf confused at +2 Attack in front of Lumineon, and a
-    # paralysed Breloom, each played on for three turns.
-    for edits in ({"player": {"active": 2, "mons": {"2": {"confused": 4, "stages": {"atk": 2}}}},
-                   "trainer": {"active": 2}},
+    # were: Nuzleaf confused at +2 Attack, in front of Solrock, which it
+    # outspeeds and whose Zen Headbutt cannot touch it, so it acts while
+    # confused; and a paralysed Breloom; each played on for three turns.
+    for edits in ({"player": {"active": 2, "mons": {"2": {"confused": 4, "stages": {"atk": 2}}}}},
                   {"player": {"active": 4, "mons": {"4": {"status": "par"}}}}):
         nid = line.set_position(0, edits)["node"]
         for _t in range(3):
@@ -321,6 +321,41 @@ def check_pins(results, line):
                     "the turn's other checks still do", ok, "; ".join(report)))
 
 
+def check_hits_apart(results, line):
+    """Each hit of a move that hits several times rolls its own damage when
+    a turn is played, as the game does (Ian, 2026-10-21): over 600 plays of
+    Breloom's Bullet Seed into Cherrim, every hit that lands is a roll
+    check of its own, the hits' rolls differ as often as independent rolls
+    do, and each roll comes up at its odds. A pin on one hit holds that hit
+    alone; a pin on the move's rolls (its key ending "#*") holds every hit.
+    The overview keeps one roll a band, as turn_outcomes does (check 3)."""
+    nid = line.set_position(0, {"player": {"active": 4}, "trainer": {"active": 1}})["node"]
+    b = line.node(nid).b
+    action = ["move", "Bullet Seed"]
+    sig = "p4|Bullet Seed|move|roll:"
+    pins = {"replace|p#0": 0, "replace|p#1": 1}
+
+    def hit_rolls(extra, seed):
+        _c, p = lt.run_turn(b, action, dict(pins, **extra), seed)
+        return [ch["outcome"] for ch in p.checks if ch["key"].startswith(sig)]
+    runs = [hit_rolls({}, 70000 + s) for s in range(600)]
+    several = [r for r in runs if len(r) >= 2]
+    differ = sum(len(set(r)) > 1 for r in several)
+    counts = collections.Counter(x for r in runs for x in r)
+    n = sum(counts.values())
+    chi = sum((counts.get(i, 0) - n / 16) ** 2 / (n / 16) for i in range(16)) if n else 999
+    # Two independent rolls of 16 differ 15 times in 16; three or more, more often still.
+    ok = len(several) >= 400 and differ >= 0.85 * len(several) and chi <= 45
+    one = [hit_rolls({sig + "#1": 5}, 80000 + s) for s in range(200)]
+    held_one = all(r[1] == 5 for r in one if len(r) >= 2) and len({r[0] for r in one if r}) > 4
+    every = [hit_rolls({sig + "#*": 5}, 90000 + s) for s in range(200)]
+    held_all = all(set(r) == {5} for r in every if r) and sum(1 for r in every if len(r) >= 2) >= 100
+    results.append(("each hit of a move of several hits rolls its own damage in play, at its odds; a pin holds "
+                    "one hit, or every hit with #*", ok and held_one and held_all,
+                    f"{len(several)} of 600 plays with several hits, their rolls differing in {differ}; chi-square "
+                    f"{chi:.1f} over {n} rolls; one hit pinned held: {held_one}; every hit pinned held: {held_all}"))
+
+
 def check_labels(results, line):
     """Every check of every turn in the line names its Pokemon, and its
     move where it belongs to one; a check of the field says so."""
@@ -441,6 +476,7 @@ def main():
         check_overview(results, line)
         check_follow(results, line, rng)
         check_pins(results, line)
+        check_hits_apart(results, line)
         check_labels(results, line)
         check_pass_through(results, line)
         check_reload(results, line)

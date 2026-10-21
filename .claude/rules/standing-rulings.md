@@ -183,7 +183,10 @@ read, so they are written here too. Each is a standing instruction.
   (Ian, 2026-10-21: Fletchling held for Will-O-Wisp before Gardenia, Popplio
   for Flip Turn before Byron, Venonat to 37 for Zen Headbutt before Maylene),
   so status moves, pivots and coverage count, and the team search judges
-  which matter in each fight. This comes in before the readings resume. So that a hold's cost counts, each box seed is one run through
+  which matter in each fight. Since the screen weighs damage and speed alone,
+  each of the race's finalists is also played with every held version of
+  its members, and the simulator keeps whichever wins more (Ian,
+  2026-10-21, trying it "to see how it plays out"). This comes in before the readings resume. So that a hold's cost counts, each box seed is one run through
   the game, every fight's box that run's catches by its split, each area
   rolled once at the run's first visit among the options open then, so
   boxes keep today's sizes and nobody waits for Surf or a rod; and a

@@ -143,6 +143,27 @@ def _switch_pusher(orig):
     return wrapped
 
 
+# How deep the turn is inside a move of several hits (perfectline's
+# multi_hit and beat_up). There the tester's dice offer no roll_grouped, so
+# each hit asks for a roll of its own, as the game rolls each hit (Ian,
+# 2026-10-21); the planner's dice, which enumerate the overview, keep their
+# one roll a band, as turn_outcomes does.
+_MULTI = [0]
+
+
+def _multi_pusher(orig):
+    inner = _pusher(orig, "move", "amd")
+
+    def wrapped(*a, **kw):
+        _MULTI[0] += 1
+        try:
+            return inner(*a, **kw)
+        finally:
+            _MULTI[0] -= 1
+    wrapped.__wrapped__ = orig
+    return wrapped
+
+
 # The play in progress (Play), whose replacements Ian chooses; None while
 # the planner's own enumeration runs, which then picks as it always does.
 _PLAY = None
@@ -224,8 +245,8 @@ def install():
             (pl, "crash", lambda f: _pusher(f, "crash", "adm")),
             (pl, "rolled_hits", lambda f: _pusher(f, "hits", "adm")),
             (pl, "crit_hits", lambda f: _pusher(f, "crit", "adm")),
-            (pl, "multi_hit", lambda f: _pusher(f, "move", "amd")),
-            (pl, "beat_up", lambda f: _pusher(f, "move", "amd")),
+            (pl, "multi_hit", _multi_pusher),
+            (pl, "beat_up", _multi_pusher),
             (pl, "_after_attack", lambda f: _pusher(f, "effects", "amd")),
             (fs, "hit_aftermath", lambda f: _pusher(f, "aftermath", "adm")),
             (fs, "end_of_turn", lambda f: _phase_pusher(f, "end")),
@@ -415,6 +436,8 @@ class TesterDice:
         p = self.play
         key, _words = p.keys.key(method, kind)
         pin = p.pins.get(key)
+        if pin is None:
+            pin = p.pins.get(key.rsplit("#", 1)[0] + "#*")     # a pin on every check alike: each hit's roll
         how = None
         if isinstance(pin, int) and 0 <= pin < len(probs) and probs[pin] > 0:
             o, how = pin, "pinned"
@@ -424,7 +447,8 @@ class TesterDice:
             o, how = (_likeliest(probs), "likeliest") if p.likeliest else (_draw(p.draw, probs), "drawn")
         who, what, phase, _w = _subject(_frame())
         rec = {"key": key, "kind": kind or method, "method": method, "label": label, "who": who,
-               "options": list(options), "probs": list(probs), "outcome": o, "how": how}
+               "options": list(options), "probs": list(probs), "outcome": o, "how": how,
+               "multi": _MULTI[0] > 0}
         if extra:
             rec.update(extra)
         p.record(rec)
@@ -452,23 +476,38 @@ class TesterDice:
         return self._yes(p, "lands", kind)
 
     def roll(self, top):
+        """A roll asked for alone: each hit's of a move of several hits
+        (its damage the hit's share of the row), Struggle's, or any other."""
         frame = _frame()
-        _who, _what, _phase, words = _subject(frame)
+        who, what, phase, words = _subject(frame)
+        hit = self.play.keys.counts.get(f"{who}|{what}|{phase}|roll:", 0) if _MULTI[0] else None
         dmg = [None] * 16
         if frame is not None and frame[2] is not None and frame[1] is not None and frame[3] is not None:
             att, mv, dfn = frame[1], frame[2], frame[3]
+            b = self.play.battle
             try:
                 if mv.effect == "STRUGGLE":
-                    dmg = [pl.struggle_damage(att, dfn, 85 + r, self.play.battle.wonder_room) for r in range(16)]
+                    dmg = [pl.struggle_damage(att, dfn, 85 + r, b.wonder_room) for r in range(16)]
+                elif hit is not None:
+                    weights, whole = fs.hit_weights(att, mv, hit + 1)
+                    dmg = [pl.damage_of(b, att, dfn, mv, False, top=False, roll=r, share=(weights[hit], whole))
+                           for r in range(16)]
                 else:
-                    dmg = [self.play.battle.damage(att, dfn, mv, roll=r) for r in range(16)]
+                    dmg = [b.damage(att, dfn, mv, roll=r) for r in range(16)]
             except Exception:
                 dmg = [None] * 16
         info = _roll_info(frame, None, dmg, "roll")
+        what_roll = f"hit {hit + 1}'s damage roll" if hit is not None else "damage roll"
         return self._choose("roll", None, (1 / 16,) * 16, [f"roll {r + 1}" for r in range(16)],
-                            f"{words}: damage roll", {"rolls": info})
+                            f"{words}: {what_roll}", {"rolls": info})
 
-    def roll_grouped(self, damage, hp):
+    @property
+    def roll_grouped(self):
+        """Inside a move of several hits, none: perfectline then asks each
+        hit for its own roll (roll). Anywhere else the method below."""
+        return None if _MULTI[0] else self._roll_grouped
+
+    def _roll_grouped(self, damage, hp):
         dmg = [damage(r) for r in range(16)]
         groups = roll_groups(dmg, hp)
         if len(groups) == 1:
@@ -616,7 +655,8 @@ class LabelledEnumDice(plplan.EnumDice):
 
     def _note(self, method, kind, extra=None, event=True):
         key, words = self.keys.key(method, kind)
-        rec = {"key": key, "method": method, "kind": kind or method, "event": len(self.events) if event else None}
+        rec = {"key": key, "method": method, "kind": kind or method, "event": len(self.events) if event else None,
+               "multi": _MULTI[0] > 0}
         if extra:
             rec.update(extra)
         self.notes.append(rec)
@@ -823,6 +863,10 @@ def run_turn(parent, action, pins, seed, likeliest=False):
         c.dice = c.rng = None
     for key, pin in play.pins.items():
         if key.startswith("replace|") or key == "ai|choice#0" or key.startswith("quick|"):
+            continue
+        if key.endswith("#*"):
+            if not any(ch["key"].startswith(key[:-1]) for ch in play.checks):
+                play.dropped.append({"key": key, "label": key, "why": "no such check this turn"})
             continue
         if not any(ch["key"] == key for ch in play.checks) and not any(d["key"] == key for d in play.dropped):
             play.dropped.append({"key": key, "label": key, "why": "no such check this turn"})
@@ -1850,8 +1894,9 @@ class Line:
 class GuidedEnumDice(LabelledEnumDice):
     """The planner's dice run once along a played turn's checks: each event
     takes the outcome the turn's check of the same key took (a roll, the
-    band its exact roll lies in), so the turn lands on the merged position
-    of the overview outcome it fell into."""
+    band its exact roll lies in; for a move of several hits, whose hits
+    rolled apart, the band of their mean roll), so the turn lands on the
+    merged position of the overview outcome it fell into."""
 
     def __init__(self, by_key, rng, battle):
         super().__init__((), rng, battle)
@@ -1864,7 +1909,14 @@ class GuidedEnumDice(LabelledEnumDice):
             ch = self.by_key.get(rec["key"])
             if ch is not None:
                 if rec["method"] == "roll" and "groups" in (rec.get("rolls") or {}):
-                    o = next((g for g, rolls in enumerate(rec["rolls"]["groups"]) if ch["outcome"] in rolls), 0)
+                    played = ch["outcome"]
+                    if rec.get("multi"):
+                        # Each hit rolled its own; the overview's one roll for
+                        # all of them stands nearest their mean.
+                        sig = rec["key"].rsplit("#", 1)[0] + "#"
+                        hits = [c["outcome"] for k, c in self.by_key.items() if k.startswith(sig)]
+                        played = round(sum(hits) / len(hits))
+                    o = next((g for g, rolls in enumerate(rec["rolls"]["groups"]) if played in rolls), 0)
                 else:
                     o = ch["outcome"]
         if not 0 <= o < len(probs) or probs[o] <= 0:
@@ -1890,10 +1942,13 @@ def follow_pins(ln, mode, rolls, rng):
         if rec["method"] == "roll" and "groups" in (rec.get("rolls") or {}):
             band = rec["rolls"]["groups"][o]
             want = rolls.get(rec["key"])
+            # The band of a move of several hits is one roll for all its hits,
+            # as the overview takes it, so every hit is pinned to that roll.
+            target = rec["key"].rsplit("#", 1)[0] + "#*" if rec.get("multi") else rec["key"]
             if isinstance(want, int) and want in band:
-                pins[rec["key"]] = want
+                pins[target] = want
             elif mode == "draw":
-                pins[rec["key"]] = band[rng.randrange(len(band))]
+                pins[target] = band[rng.randrange(len(band))]
             else:
                 # The band's worst for Ian: his own hits at their lowest,
                 # the trainer's at their highest (the damage falls on the
@@ -1901,7 +1956,7 @@ def follow_pins(ln, mode, rolls, rng):
                 victim = rec["rolls"].get("victim")
                 dmg = rec["rolls"]["dmg"]
                 pick = max if victim == "p" else min
-                pins[rec["key"]] = pick(band, key=lambda r: (dmg[r], r))
+                pins[target] = pick(band, key=lambda r: (dmg[r], r))
         else:
             pins[rec["key"]] = o
     return pins
