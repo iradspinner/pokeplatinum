@@ -986,6 +986,16 @@ def damage_figure_and_engine():
     kan = b.b.cur()
     lk = ai.figure(b, kan, t, fs.move("Low Kick"))
     out.append(("figure: Low Kick (listed at power 1) gets a figure", lk is not None and lk > 0, f"{lk}"))
+    # Heavy Slam and Heat Crash costed by weight (Ian, 2026-10-21): a
+    # figure, so Prioritize Extremes no longer takes them for status moves.
+    hb = battle([("Snorlax", 40, "Thick Fat", ["Heavy Slam", "Heat Crash", "Body Slam"])],
+                [("Machamp", 40, "Guts", ["Cross Chop"])])
+    sno, cha = hb.b.cur(), hb.p.cur()
+    slam = {n: (ai.figure(hb, sno, cha, fs.move(n)), hb.damage(sno, cha, fs.move(n), ai_view=True))
+            for n in ("Heavy Slam", "Heat Crash")}
+    ext = [ai.flag_score(ai.EXTREMES, hb, sno, cha, fs.move(n), slam[n][0], None) for n in slam]
+    out.append(("figure: Heavy Slam and Heat Crash (listed at power 1) costed by weight; no Prioritize Extremes +2",
+                all(f is not None and f == d > 0 for f, d in slam.values()) and ext == [0, 0], f"{slam}, {ext}"))
     out.append(("move type: Hidden Power at odd IVs is Dark", ai.move_type(b, kan, fs.move("Hidden Power")) == "Dark",
                 ai.move_type(b, kan, fs.move("Hidden Power"))))
     _to(b, b.b, "Raichu")

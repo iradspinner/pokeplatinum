@@ -42,7 +42,7 @@ NO_CALC = {"HALVE_DEFENSE", "RECOVER_DAMAGE_SLEEP", "CHARGE_TURN_HIGH_CRIT",
 ALT_POWER = {"RANDOM_POWER_BASED_ON_IVS", "POWER_BASED_ON_LOW_SPEED", "NATURAL_GIFT", "JUDGEMENT",
              "40_DAMAGE_FLAT", "LEVEL_DAMAGE_FLAT", "RANDOM_DAMAGE_1_TO_150_LEVEL",
              "POWER_BASED_ON_FRIENDSHIP", "POWER_BASED_ON_LOW_FRIENDSHIP", "20_DAMAGE_FLAT",
-             "INCREASE_POWER_WITH_WEIGHT"}
+             "INCREASE_POWER_WITH_WEIGHT", "HEAVY_SLAM"}  # Heavy Slam and Heat Crash since 2026-10-21
 # sComputedPowerHits (Oxide, 67 to 71): listed at power 1, given a figure.
 COMPUTED_POWER_HITS = {"MOVE_ELECTRO_BALL", "MOVE_HARD_PRESS"}
 # The engine estimates one hit (BattleSystem_CalcMoveDamage), where the

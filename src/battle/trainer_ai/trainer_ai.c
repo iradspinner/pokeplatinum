@@ -59,6 +59,9 @@ static const u16 sAltPowerMoveEffects[] = {
     BATTLE_EFFECT_POWER_BASED_ON_LOW_FRIENDSHIP,
     BATTLE_EFFECT_20_DAMAGE_FLAT,
     BATTLE_EFFECT_INCREASE_POWER_WITH_WEIGHT,
+    // Oxide (Ian, 2026-10-21): Heavy Slam and Heat Crash, listed at power 1
+    // and costed by weight, as Low Kick is.
+    BATTLE_EFFECT_HEAVY_SLAM,
     0xFFFF
 };
 
@@ -3261,6 +3264,25 @@ static int TrainerAI_ComputedMovePower(BattleSystem *battleSys, BattleContext *b
 
     case MOVE_RAGE_FIST:
         return 50 + 50 * Battler_RageFistHits(battleSys, battleCtx, attacker);
+
+    case MOVE_HEAVY_SLAM:
+    case MOVE_HEAT_CRASH: {
+        // Oxide (Ian, 2026-10-21): BtlCmd_CalcHeavySlamPower's figure, the
+        // target's weight as a share of the user's picking 120 down to 40.
+        int attackerWeight = Battler_Weight(battleCtx, attacker, attacker);
+        u32 ratio = Battler_Weight(battleCtx, attacker, AI_CONTEXT.defender) * 10000 / attackerWeight;
+
+        if (ratio <= 2000) {
+            return 120;
+        } else if (ratio <= 2500) {
+            return 100;
+        } else if (ratio <= 3334) {
+            return 80;
+        } else if (ratio <= 5000) {
+            return 60;
+        }
+        return 40;
+    }
     }
 
     return 0;
