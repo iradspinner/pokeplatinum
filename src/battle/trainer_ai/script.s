@@ -2329,6 +2329,9 @@ Expert_Main:
     // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Jaw Lock traps
     // both battlers after its hit, as Thousand Waves traps its target.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ESCAPE_BOTH_HIT, Expert_BindingMove
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Stone Axe lays Stealth Rock
+    // after its hit; Stealth Rock's routine, trimmed, below it.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK_HIT, Expert_StoneAxe
     // Dragon Tail forces a switch, as Roar and Whirlwind do.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FORCE_SWITCH_HIT, Expert_ForceSwitch
     // Incinerate burns up the target's Berry, as Pluck takes it.
@@ -7167,6 +7170,30 @@ Expert_StealthRock_End:
     PopOrEnd 
     PopOrEnd 
     PopOrEnd 
+
+Expert_StoneAxe:
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read). Stone Axe lays Stealth Rock
+    // after its hit, so it takes Stealth Rock's routine, trimmed: Basic refuses the status
+    // move once rocks are up or against a last Pokemon, but not a hit, so this routine asks
+    // the same first and adds nothing when either holds.
+    //
+    // Otherwise, 50% chance to ignore all further score modifiers; then score +1, and if the
+    // attacker knows either Roar or Whirlwind, 75% chance of additional score +1.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_STEALTH_ROCK, Expert_StoneAxe_End
+    CountAlivePartyBattlers AI_BATTLER_DEFENDER
+    IfLoadedEqualTo 0, Expert_StoneAxe_End
+    IfRandomLessThan 128, Expert_StoneAxe_End
+    AddToMoveScore 1
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_ROAR, Expert_StoneAxe_TryScorePlus1
+    IfMoveKnown AI_BATTLER_ATTACKER, MOVE_WHIRLWIND, Expert_StoneAxe_TryScorePlus1
+    GoTo Expert_StoneAxe_End
+
+Expert_StoneAxe_TryScorePlus1:
+    IfRandomLessThan 64, Expert_StoneAxe_End
+    AddToMoveScore 1
+
+Expert_StoneAxe_End:
+    PopOrEnd
 
 Expert_RecoilMove:
     // If the opponent resists or is immune to the move, ignore all further score modifiers.

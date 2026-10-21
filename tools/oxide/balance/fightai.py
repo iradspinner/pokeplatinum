@@ -1912,6 +1912,16 @@ def x_hazards(c):
     return 1 + (1 if _knows(c.u, "MOVE_ROAR", "MOVE_WHIRLWIND") and c.roll(75) else 0)
 
 
+def x_stone_axe(c):
+    """Expert_StoneAxe (Oxide, Ian, 2026-10-21): Stealth Rock's routine for
+    the hit that lays rocks, which asks itself what Basic asks of the
+    status move: nothing once rocks are up on the foe's side or against
+    its last Pokemon, else as x_hazards."""
+    if c.foe.hazards["rocks"] or not c.foe.bench():
+        return 0
+    return x_hazards(c)
+
+
 def x_foresight(c):
     """Expert_Foresight (with the battle_edits fix): a Ghost foe, +2 at
     47.3%; a foe at +3 evasion, +2 at 68.75%; otherwise -2."""
@@ -2949,7 +2959,7 @@ EXPERT_ROUTINES = {
     "Expert_RecoilMove": x_recoil_move, "Expert_Hex": x_doubled, "Expert_Venoshock": x_doubled,
     "Expert_Acrobatics": x_doubled, "Expert_BoltBeak": x_doubled,
     "Expert_RapidSpin": x_rapid_spin, "Expert_SpeedUpOnHit": x_speed_up_on_hit,
-    "Expert_MortalSpin": x_mortal_spin, "Expert_SaltCure": x_salt_cure}
+    "Expert_MortalSpin": x_mortal_spin, "Expert_SaltCure": x_salt_cure, "Expert_StoneAxe": x_stone_axe}
 
 
 @functools.lru_cache(maxsize=None)
