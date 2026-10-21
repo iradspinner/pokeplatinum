@@ -562,6 +562,23 @@ def _spread_attack(b, att, mv, targets, paid):
         fs.relic_song(b, att, mv, any(t.hp < before[id(t)] for t in targets))    # once a use, whatever it hit
 
 
+def whirlwind_passes(b, att, dfn):
+    """Roar's and Whirlwind's level check, rolled once the target has
+    someone to send in (BattleScript_PickDraggedOutMon asks
+    BattleSystem_CanWhirlwind in a trainer battle, fightsim.whirlwind_odds):
+    a user of the target's level or higher always passes, with no roll; a
+    lower one fails at the engine's odds, which for the player is bad luck
+    and for the trainer good luck, as Protect's repeat has it. Until
+    2026-10-21 neither battle had the check, so Roar never failed on level
+    (Ian approved the fix on 2026-10-21)."""
+    if att.level >= dfn.level:
+        return True
+    p = fs.whirlwind_odds(att.level, dfn.level)
+    if player(att):
+        return not b.dice.bad("roarfail", 1 - p)
+    return b.dice.bad("roarworks", p)
+
+
 def struggle_damage(att, dfn, roll, room=False):
     """Struggle: 50 power, physical, typeless, no modifiers, at the roll;
     under Wonder Room (`room`) it meets the target's Sp. Def with its
@@ -1464,13 +1481,15 @@ def status_move(b, att, mv, dfn, first):
             # into the target's slot (fightsim.drag_pick). Until 2026-10-21
             # the one drawn took the first slot, whichever it hit (Ian
             # approved the fix on 2026-10-20).
-            if dfn.alive() and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False):
+            if dfn.alive() and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False) \
+                    and fs.drag_pick(b, dfn, lambda kind, n: 0) is not None and whirlwind_passes(b, att, dfn):
                 idx = fs.drag_pick(b, dfn, lambda kind, n: b.dice.choice(kind, n))
                 if idx is not None:
                     fs.switch_in(b, foe_side, idx, slot=fs.slot_of(foe_side, dfn))
             return
         bench = foe_side.bench()
-        if bench and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False):     # Suction Cups
+        if bench and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False) \
+                and whirlwind_passes(b, att, dfn):     # Suction Cups, Ingrain, the level check
             nxt = bench[b.dice.choice("roar", len(bench))]
             fs.switch_in(b, foe_side, foe_side.mons.index(nxt))
     elif e == "FAINT_AND_ATK_SP_ATK_DOWN_2":

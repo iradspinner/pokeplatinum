@@ -9156,6 +9156,72 @@ def check_trainer_fling_rows(results):
                     f"(the Fling's damage, the Tackle's after, the item left) {out}"))
 
 
+@b16
+def check_whirlwind_level(results):
+    """Roar's and Whirlwind's level check in a trainer battle (Ian approved
+    the fix on 2026-10-21; BattleScript_PickDraggedOutMon asks
+    BattleSystem_CanWhirlwind once the target has someone to send in): the
+    odds are 217 in 256 for a level 30 user on a level 50 target and
+    certain at equal levels; in the readings' battle, on dice where every
+    chance goes against the player, the player's level 30 Roar leaves the
+    level 50 target in and the trainer's level 30 Roar drags the player's
+    out, and on dice where every chance goes the player's way the reverse;
+    at equal levels both drag on either dice; at the game's odds the
+    player's lower Roar fails about 15 times in 100 (304 of 2000 expected);
+    and in a double battle (run_doubles) a level 30 Roar on a level 50 foe
+    fails at the same odds. Until 2026-10-21 none of these failed."""
+    from . import perfectline as pl
+
+    class Dice(pl.RunDice):
+        def __init__(self, against):
+            super().__init__(random.Random(1), True)
+            self.against = against
+
+        def bad(self, kind, p):
+            return self.against and p > 0
+
+        def good(self, p, kind=None):
+            return p >= 1 or (not self.against and p > 0)
+
+    def roar(user, levels, dice):
+        b, p, foe = battle(["Roar"], ["Roar"], {})
+        b.p.mons.append(fs.Mon("p1", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Roar"], "p"))
+        b.b.mons.append(fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Roar"], "b"))
+        p.level, foe.level = levels if user == "p" else levels[::-1]
+        b.dice, b.rng = dice, random.Random(1)
+        att, dfn = (p, foe) if user == "p" else (foe, p)
+        pl.status_move(b, att, fs.move("Roar"), dfn, True)
+        return (b.b if user == "p" else b.p).active
+
+    odds = getattr(fs, "whirlwind_odds", lambda a, d: 1.0)
+    out = {"odds": (odds(30, 50), odds(50, 50))}
+    for against in (True, False):
+        for user in ("p", "b"):
+            for levels in ((30, 50), (50, 50)):
+                out[("against the player" if against else "for the player", user, levels)] = roar(
+                    user, levels, Dice(against))
+    out["player's level 30 Roar fails (of 2000)"] = sum(
+        roar("p", (30, 50), pl.RunDice(random.Random(seed), True)) == 0 for seed in range(2000))
+
+    def doubles(seed):
+        mons = {"p0": {"moves": ["Roar"], "level": 30}, "p1": {"moves": ["Splash"]},
+                "b0.0": {"moves": ["Splash"], "level": 50}, "b0.1": {"moves": ["Splash"]},
+                "b0.2": {"moves": ["Splash"]}}
+        st = doubles_st(mons)
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1", "b0.2"], {"p0": ("Roar", "b0.0")}, seed=seed)
+        return mon_of(b, "b0.0") in b.b.on_field()
+    out["doubles: level 30 Roar fails (of 600)"] = sum(doubles(seed) for seed in range(600))
+    want_turn = {("against the player", "p", (30, 50)): 0, ("against the player", "b", (30, 50)): 1,
+                 ("for the player", "p", (30, 50)): 1, ("for the player", "b", (30, 50)): 0}
+    ok = (out["odds"] == (217 / 256, 1.0)
+          and all(out[k] == v for k, v in want_turn.items())
+          and all(out[(a, u, (50, 50))] == 1 for a in ("against the player", "for the player") for u in ("p", "b"))
+          and 230 <= out["player's level 30 Roar fails (of 2000)"] <= 380
+          and 60 <= out["doubles: level 30 Roar fails (of 600)"] <= 125)
+    results.append(("Roar and Whirlwind fail on level at the engine's odds (CanWhirlwind)", ok,
+                    "(the index now in for the target's side) " + str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

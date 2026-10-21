@@ -4568,7 +4568,9 @@ def drag_pick(b, dfn, pick):
     partner battle: a pair whose other slot has fainted with one Pokemon
     waiting fails. The one drawn is any of that party standing off the
     field, at even odds (pick(kind, n)). Roar's and Whirlwind's level check
-    (BattleSystem_CanWhirlwind) is not followed, in either battle."""
+    (BattleSystem_CanWhirlwind, whirlwind_odds) comes before the draw, in
+    the double battles as in the single ones (perfectline.whirlwind_passes);
+    until 2026-10-21 neither had it."""
     side = b.p if dfn.side == "p" else b.b
     owner = getattr(dfn, "owner", None)
     mine = [m for m in side.mons if getattr(m, "owner", None) == owner]
@@ -4580,6 +4582,20 @@ def drag_pick(b, dfn, pick):
     if not cands:
         return None
     return side.mons.index(cands[pick("roar", len(cands))])
+
+
+@functools.lru_cache(maxsize=None)
+def whirlwind_odds(user_level, target_level):
+    """The chance Roar or Whirlwind passes its level check in a trainer
+    battle (BattleScript_PickDraggedOutMon with checkLevel, once its target
+    has someone to send in, asks BattleSystem_CanWhirlwind): always when the
+    user is of the target's level or higher; otherwise a random byte r
+    passes when ((r * (user's level + target's level)) >> 8) + 1 is above a
+    quarter of the target's level, rounded down. Dragon Tail and Circle
+    Throw skip the check (BtlCmd_TryDragonTail)."""
+    if user_level >= target_level:
+        return 1.0
+    return sum(((r * (user_level + target_level)) >> 8) + 1 > target_level // 4 for r in range(256)) / 256
 
 
 def drag_coming(b, att, dfn, mv):
@@ -8580,7 +8596,8 @@ def status_move(b, att, mv, dfn, first):
         pain_split(b, att, dfn)
     elif e == "FORCE_SWITCH":
         bench = foe_side.bench()
-        if bench and not anchored(att, dfn) and not getattr(dfn, "ingrained", False):
+        if bench and not anchored(att, dfn) and not getattr(dfn, "ingrained", False) \
+                and (att.level >= dfn.level or b.rng.random() < whirlwind_odds(att.level, dfn.level)):
             nxt = b.rng.choice(bench)
             switch_in(b, foe_side, foe_side.mons.index(nxt))
     elif e == "FAINT_AND_ATK_SP_ATK_DOWN_2":

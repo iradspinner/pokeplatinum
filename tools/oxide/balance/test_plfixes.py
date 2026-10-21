@@ -7051,6 +7051,36 @@ def trainer_fling_checks():
              f"Delibird's item {deli.item}")]
 
 
+@b16
+def whirlwind_level_checks():
+    """Roar's level check in the readings' battle on the calculator's real
+    rows (Ian approved the fix on 2026-10-21; BattleSystem_CanWhirlwind), on
+    Roark's split with batch 7's sure dice, where no chance lands for the
+    trainer: a trainer's level 20 Growlithe's Roar leaves the player's level
+    30 Bibarel in, a level 30 Growlithe's drags it out for the Barboach,
+    and at the game's odds the level 20 Growlithe's fails 36 times in 256
+    (fightsim.whirlwind_odds), about 141 of 1000."""
+    out = {}
+    for lv in (20, 30):
+        b, gro, bib = b8_battle([("Growlithe", lv, "Intimidate", ["Roar"])],
+                                [("Bibarel", 30, "Simple", ["Tackle"]), ("Barboach", 30, "Oblivious", ["Water Gun"])])
+        pl.use_move(b, gro, fs.move("Roar"), bib, True)
+        out[f"level {lv}, sure dice"] = b.p.cur().species
+    fails = 0
+    for seed in range(1000):
+        b.p.active = 0
+        b.dice, b.rng = pl.RunDice(random.Random(seed), True), random.Random(seed)
+        gro.level = 20
+        pl.status_move(b, gro, fs.move("Roar"), b.p.cur(), True)
+        fails += b.p.active == 0
+    out["level 20 fails, game odds (of 1000)"] = fails
+    out["odds"] = getattr(fs, "whirlwind_odds", lambda a, d: 1.0)(20, 30)
+    ok = (out["level 20, sure dice"] == "Bibarel" and out["level 30, sure dice"] == "Barboach"
+          and out["odds"] == 220 / 256 and 105 <= fails <= 180)
+    return [("the readings' trainer's Roar of a lower level fails at the engine's odds", ok,
+             f"(the player's Pokemon now in) {out}")]
+
+
 def main():
     results = []
 
