@@ -1053,6 +1053,11 @@ class Battle:
     # Whether a side has a center of attention this turn (Side.follow_me),
     # so targets_of looks for one, and the next turn clears it, only then.
     following = False
+    # A double battle's order of moves for the turn, [(Pokemon, move,
+    # target)], and the place of the one acting now (run_doubles), which
+    # After You changes; None outside a double battle's turn.
+    queue = None
+    queue_pos = -1
     # A double battle's damaging move is hitting more than one target, so
     # each hit is at three quarters (Battle.damage, perfectline.damage_of);
     # set around the move by the spread loop.
@@ -9672,6 +9677,24 @@ def ally_of(b, mon):
     return next((m for m in side.on_field() if m is not mon and m.alive()), None)
 
 
+def after_you(b, att, dfn):
+    """After You (effect script 305, subscript_handle_after_you,
+    ChangeExecutionOrderPriority): in a double battle its target, yet to act
+    this turn, acts next, straight after the user, the Pokemon in between
+    each one place later (the turn's order, Battle.queue); it fails on a
+    target that has acted or is not in the order. In a single battle its
+    target, the foe, is next already or has acted, so it changes nothing.
+    Until 2026-10-21 it did nothing in a double battle (Ian approved the
+    double-battle part batch 7 left on 2026-10-14)."""
+    queue = b.queue
+    if not b.doubles or queue is None:
+        return
+    pos = next((i for i, a in enumerate(queue) if a[0] is dfn), None)
+    if pos is None or pos <= b.queue_pos or dfn in b.moved:
+        return
+    queue.insert(b.queue_pos + 1, queue.pop(pos))
+
+
 def follow_me(b, att, mv):
     """Follow Me, Rage Powder and Spotlight (effect script 172,
     BtlCmd_FollowMe): in a double battle the user's slot becomes its side's
@@ -10006,8 +10029,15 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
         for mon, mv, _t in acts:
             mon.chosen = mv
         b.mid_turn = True
-        ordered = doubles_order(b, acts)
-        for i, (mon, mv, t) in enumerate(ordered):
+        # The turn's order, held on the battle so that After You can move a
+        # Pokemon up in it as the turn runs (after_you).
+        b.queue = doubles_order(b, acts)
+        b.queue_pos = -1
+        while b.queue_pos + 1 < len(b.queue):
+            b.queue_pos += 1
+            i = b.queue_pos
+            ordered = b.queue
+            mon, mv, t = ordered[i]
             if not mon.alive() or mon not in (b.p if mon.side == "p" else b.b).on_field():
                 continue                 # fainted, or dragged out before its turn (forced_out)
             if mon.key in b.custap:
@@ -10032,6 +10062,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
             if mon.u_turn or mon.baton:
                 doubles_switch_out(b, mon)
         b.moving_last = None
+        b.queue = None
         end_of_turn(b)
         for mon in b.p.on_field() + b.b.on_field():
             if rollout_lock_ticks(mon):

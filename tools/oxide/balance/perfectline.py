@@ -1374,6 +1374,8 @@ def status_move(b, att, mv, dfn, first):
         fs.helping_hand(b, att)          # the partner's power by half this turn, a double battle's (fightsim.helping_hand)
     elif e == "MAKE_GLOBAL_TARGET":
         fs.follow_me(b, att, mv)         # Follow Me, Rage Powder, Spotlight: the center of attention (fightsim.follow_me)
+    elif e == "AFTER_YOU":
+        fs.after_you(b, att, dfn)        # its target acts next, in a double battle (fightsim.after_you)
     elif e == "HALVE_FIRE_DAMAGE":
         fs.water_sport(att)              # Fire moves at half power while it stands (fightsim.sport_half)
     elif e == "HALVE_ELECTRIC_DAMAGE":

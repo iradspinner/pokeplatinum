@@ -8782,6 +8782,32 @@ def check_doubles_follow_me(results):
                     f"(p0's HP, p1's HP) after a Tackle of 40 at p0 and a Hyper Voice of 60 at both {out}"))
 
 
+@b15
+def check_doubles_after_you(results):
+    """After You in a double battle (Ian approved the double-battle part
+    batch 7 left on 2026-10-14; effect script 305, subscript_handle_after_you,
+    ChangeExecutionOrderPriority): its target acts straight after the user.
+    The slowest foe, After You'd, knocks the player's second Pokemon out
+    before it can strike; the other foe's Tackle then finds that Pokemon down
+    and hits the user. An After You on a Pokemon that has acted changes
+    nothing. Until 2026-10-21 it did nothing."""
+    def battle(speeds):
+        mons = {"p0": {"moves": ["After You"]}, "p1": {"moves": ["Tackle"]},
+                "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Tackle"]}}
+        rows = {("b0.1", "p1"): {"Tackle": 100}, ("b0.0", "p1"): {"Tackle": 10}, ("b0.0", "p0"): {"Tackle": 10},
+                ("p1", "b0.1"): {"Tackle": 100}}
+        st = doubles_st(mons, rows, speeds=speeds)
+        st["first_battle"] = True
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": ("After You", "b0.1"), "p1": ("Tackle", "b0.1"),
+                                                             "b0.0": ("Tackle", "p1"), "b0.1": ("Tackle", "p1")})
+        return {k: mon_of(b, k).hp for k in ("p0", "p1", "b0.1")}
+    out = {"After You on the slowest": battle({"p0": 100, "b0.0": 80, "p1": 50, "b0.1": 10}),
+           "After You on one that has acted": battle({"b0.1": 200, "p0": 100, "b0.0": 80, "p1": 50})}
+    want = {"After You on the slowest": {"p0": 90, "p1": 0, "b0.1": 100},
+            "After You on one that has acted": {"p0": 90, "p1": 0, "b0.1": 100}}
+    results.append(("doubles: After You makes its target act next", out == want, f"HP {out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
