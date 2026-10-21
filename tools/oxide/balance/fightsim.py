@@ -7348,8 +7348,11 @@ def any_hit(b, att, dfn, mv):
 def reset_all_stats(b):
     """BtlCmd_ResetAllStatChanges: every Pokemon on the field, on both
     sides, back to no stat stages, and its Focus Energy gone (crit_stage,
-    VOLATILE_CONDITION_FOCUS_ENERGY here). Freezy Frost's hit runs it;
-    Haze's branch in status_move keeps its own older reset."""
+    VOLATILE_CONDITION_FOCUS_ENERGY here). Haze (effect script 25) and
+    Freezy Frost's hit (313) run it through subscript_reset_all_stat_stages.
+    Until 2026-10-20 Haze reset only its user and its target, the two
+    Pokemon of a single battle but not the four of a double, and left
+    Focus Energy (Ian approved the fix)."""
     for m in b.p.on_field() + b.b.on_field():
         m.stages = dict.fromkeys(STAGE_KEYS, 0)
         m.crit_stage = 0
@@ -8181,8 +8184,9 @@ def status_move(b, att, mv, dfn, first):
             hurt(b, att, att.maxhp // 4)
             att.sub = att.maxhp // 4
     elif e == "RESET_STAT_CHANGES":
-        for m in (att, dfn):
-            m.stages = dict.fromkeys(STAGE_KEYS, 0)
+        # Haze (effect script 25, subscript_reset_all_stat_stages): every
+        # Pokemon on the field, its Focus Energy too (reset_all_stats).
+        reset_all_stats(b)
     elif e == "HEAL_STATUS":
         refresh(att)
     elif e == "SWAP_ATK_DEF":

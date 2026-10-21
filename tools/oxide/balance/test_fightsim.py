@@ -7926,6 +7926,56 @@ def check_pixie_plate(results):
     results.append(("Judgment with a Pixie Plate is a Fairy move", out == want, str(out)))
 
 
+
+# ---- batch 14: Ian's follow-ups of 2026-10-20 to batch 13 ----
+
+# The batch's checks, run after batch 13's in main.
+B14 = []
+
+
+def b14(fn):
+    B14.append(fn)
+    return fn
+
+
+@b14
+def check_haze(results):
+    """Haze (Ian approved the fix on 2026-10-20; effect script 25,
+    subscript_reset_all_stat_stages, BtlCmd_ResetAllStatChanges): every
+    Pokemon on the field back to no stages and its Focus Energy gone, in
+    both battles, all four in a double battle; and the planner keeps the
+    player's Haze as an option while a Focus Energy is up with no stage to
+    reset (plplan.still_works)."""
+    from . import perfectline as pl
+    from . import plplan
+    out = {}
+    for case in ("perfectline", "fightsim"):
+        b, p, foe = b11_battle(["Haze"], ["Tackle"], {})
+        p.stages["atk"], p.crit_stage, foe.stages["def"], foe.stages["eva"], foe.crit_stage = -2, 2, 2, 1, 2
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.status_move(b, p, fs.move("Haze"), foe, True)
+        else:
+            pl.status_move(b, p, fs.move("Haze"), foe, True)
+        out[case] = (p.stages["atk"], p.crit_stage, foe.stages["def"], foe.stages["eva"], foe.crit_stage)
+    d = field({"p0": (("Normal",), ["Haze"]), "p1": (("Normal",), ["Tackle"]),
+               "b0.0": (("Normal",), ["Tackle"]), "b0.1": (("Normal",), ["Tackle"])}, {})
+    d.doubles, d.moved = True, set()
+    d.p.active, d.p.active2, d.b.active, d.b.active2 = 0, 1, 0, 1
+    d.rng = FixedDice(0.0)
+    p0, p1, f0, f1 = d.p.mons[0], d.p.mons[1], d.b.mons[0], d.b.mons[1]
+    p1.stages["spa"], f1.stages["spe"], f1.crit_stage = 1, -1, 2
+    fs.status_move(d, p0, fs.move("Haze"), f0, True)
+    out["doubles (ally's Sp. Atk, other foe's Speed, its Focus Energy)"] = (p1.stages["spa"], f1.stages["spe"],
+                                                                            f1.crit_stage)
+    b, p, foe = b11_battle(["Haze"], ["Tackle"], {})
+    foe.crit_stage = 2
+    out["the planner keeps it on a Focus Energy alone"] = plplan.still_works(b, p, foe, fs.move("Haze"))
+    want = {"perfectline": (0, 0, 0, 0, 0), "fightsim": (0, 0, 0, 0, 0),
+            "doubles (ally's Sp. Atk, other foe's Speed, its Focus Energy)": (0, 0, 0),
+            "the planner keeps it on a Focus Energy alone": True}
+    results.append(("Haze resets every stage on the field and ends Focus Energy", out == want, str(out)))
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
@@ -7991,7 +8041,8 @@ def main():
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
-                  check_self_risk, check_sure, check_reward_items) + tuple(B11) + tuple(B12) + tuple(B13):
+                  check_self_risk, check_sure, check_reward_items) + tuple(B11) + tuple(B12) + tuple(B13) \
+            + tuple(B14):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

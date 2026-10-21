@@ -616,8 +616,9 @@ def still_works(b, u, t, mv):
     item to take; Upper Hand while the target knows a priority move it has
     not shown; a raise of several stats while one of them can still rise,
     and a Speed raise or drop under Trick Room or against Speed Boost; Take
-    Heart with a status or a stat that can rise; Haze, Psych Up, Heart
-    Swap, Power Swap and Guard Swap where they change a stage; poison and
+    Heart with a status or a stat that can rise; Haze where it changes a
+    stage or ends a Focus Energy; Psych Up, Heart Swap, Power Swap and
+    Guard Swap where they change a stage; poison and
     a burn on a Magic Guard or Poison Heal holder, or a Hydration holder
     in rain, which still land; Swagger and Flatter on an Own Tempo or
     safeguarded target, which still raise its stat; a non-Ghost Curse while
@@ -668,7 +669,8 @@ def still_works(b, u, t, mv):
         # preference; every other -10 there is a block or a stage at -6.
         return k == "spe" and t.stages["spe"] > -6 and fightai._clear_body(b, u, t) == 0
     if e == "RESET_STAT_CHANGES":
-        return any(v for m in (u, t) for v in m.stages.values())
+        # Haze ends a Focus Energy too (fightsim.reset_all_stats).
+        return any(v for m in (u, t) for v in m.stages.values()) or bool(u.crit_stage or t.crit_stage)
     if e in ("COPY_STAT_CHANGES", "SWAP_STAT_CHANGES"):
         return _changes(u, t, fs.STAGE_KEYS) and not (e == "SWAP_STAT_CHANGES" and fs.sub_blocks(u, t, mv))
     if e == "SWAP_ATK_SP_ATK_STAT_CHANGES":

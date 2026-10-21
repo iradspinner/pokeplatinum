@@ -1292,8 +1292,7 @@ def status_move(b, att, mv, dfn, first):
             fs.hurt(b, att, att.maxhp // 4)
             att.sub = att.maxhp // 4
     elif e == "RESET_STAT_CHANGES":
-        for m in (att, dfn):
-            m.stages = dict.fromkeys(fs.STAGE_KEYS, 0)
+        fs.reset_all_stats(b)            # Haze: every stage on the field and Focus Energy (fightsim.reset_all_stats)
     elif e == "HEAL_STATUS":
         fs.refresh(att)                  # Refresh cures its user's own poison, burn or paralysis
     elif e == "SWAP_ATK_DEF":

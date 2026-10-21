@@ -6782,6 +6782,33 @@ def pixie_plate_checks():
              f"(Judgment's type, Ponyta hit, lit) {got}")]
 
 
+
+# ---- batch 14: Ian's follow-ups of 2026-10-20 to batch 13 ----
+
+B14 = []
+
+
+def b14(fn):
+    B14.append(fn)
+    return fn
+
+
+@b14
+def haze_checks():
+    """Haze in the readings' battle on the calculator's real rows (Ian
+    approved the fix on 2026-10-20): a trainer's Goldeen's Haze puts the
+    player's Kingler, at +2 Attack under Focus Energy, back to no stages
+    and no Focus Energy, and the Goldeen's own -1 Speed too."""
+    b, gold, king = b8_battle([("Goldeen", 30, "Swift Swim", ["Haze"])],
+                              [("Kingler", 30, "Hyper Cutter", ["Focus Energy", "Crabhammer"])])
+    pl.use_move(b, king, fs.move("Focus Energy"), gold, True)
+    king.stages["atk"], gold.stages["spe"] = 2, -1
+    focused = king.crit_stage
+    pl.use_move(b, gold, fs.move("Haze"), king, True)
+    got = (focused, king.crit_stage, king.stages["atk"], gold.stages["spe"])
+    return [("the readings' Haze resets the stages on the field and ends Focus Energy", got == (2, 0, 0, 0),
+             f"(Focus Energy before, after, Kingler's Attack stage, Goldeen's Speed stage) {got}")]
+
 def main():
     results = []
 
@@ -7370,6 +7397,8 @@ def main():
     for fn in B12:
         results += fn()
     for fn in B13:
+        results += fn()
+    for fn in B14:
         results += fn()
 
     width = max(len(r[0]) for r in results)
