@@ -13,7 +13,7 @@ The 165 are of 2026-10-07. After later learnset changes, among them the dead-mov
 | Evaluate Attack | Final Gambit | Accelerock | 05f668d029 |
 | Setup First Turn | Hone Claws, Coil, Cotton Guard, Autotomize, Noble Roar, Tearful Look, Aurora Veil | Play Nice, Baby-Doll Eyes, Eerie Impulse, Shelter | d7f78a8014 |
 | Risky | Final Gambit | Drill Run, Aqua Cutter | 7d4744b142 |
-| Prioritize Extremes | none: it has no list of its own | every status move, Heavy Slam, Final Gambit, Nature's Madness | none |
+| Prioritize Extremes | none: it has no list of its own | every status move, Final Gambit, Nature's Madness (Heavy Slam until 2026-10-21) | none |
 | Baton Pass | Quiver Dance, Shift Gear, Shell Smash, Geomancy, Clangorous Soul | none | c89b37dce0 |
 | Tag Strategy | none | the seven spread moves of 2026-09-27; Accelerock | none |
 | Check HP | 18 moves, listed below | Play Nice, Baby-Doll Eyes, Eerie Impulse, Shelter, Shore Up, Nature's Madness | a556685571 |
@@ -42,7 +42,7 @@ These were left unbuilt, as the job required, since each needs a test or a score
 - Smack Down and Thousand Arrows in double battles. Expert scores them as Gravity, but Tag Strategy's Gravity case penalises the AI's own floating side, which Smack Down does not ground.
 - The terrains and Snowscape. Neither is learnable today; Snowscape would need its own weather test in the Weather flag and Hail's rows in Tag Strategy, and the terrains are not in Oxide.
 - Expert's own coverage. Of the 27 learnable moves that `expert-new-moves.md` does not name (Round, Stored Power, the three Pledges, Drill Run, Razor Shell, Relic Song, Icicle Crash, Origin Pulse, First Impression, High Horsepower, Throat Chop, Clangorous Soul, Meteor Beam, Lash Out, Scorching Sands, Wave Crash, Headlong Rush, Axe Kick, Pounce, Trailblaze, Chilling Water, Aqua Cutter, Alluring Voice, Temper Flare and Psychic Noise), all but five reach Expert through a Platinum effect or an existing dispatch line. Relic Song, Throat Chop, Meteor Beam, Axe Kick and Psychic Noise are on new effects that Expert's dispatch does not name; whether they need a routine is an Expert question, outside this job.
-- Prioritize Extremes, two mismatches that sit in `trainer_ai.c`'s damage tables, which Basic, Expert and every flag share and which this pass left alone. Heavy Slam has power 1 and an effect on no table, so it gets the flag's +2, which Low Kick, its Platinum match, does not; and Meteor Beam is costed as an attack, so it misses the +2 that Skull Bash, its match, gets as a charge move.
+- Prioritize Extremes, two mismatches that sit in `trainer_ai.c`'s damage tables, which Basic, Expert and every flag share and which this pass left alone. Heavy Slam had power 1 and an effect on no table, so it got the flag's +2, which Low Kick, its Platinum match, does not (settled on 2026-10-21: its effect is on the alternative-power table now, the README's decision 7); and Meteor Beam is costed as an attack, so it misses the +2 that Skull Bash, its match, gets as a charge move.
 
 ## Evaluate Attack
 
@@ -87,7 +87,7 @@ The table of effects that get +2 (50%) on any turn.
 
 ## Prioritize Extremes
 
-The flag gives +2 (60.9%) to any move the damage comparison skips, and it reads no list in `script.s`: the comparison's own tables are in `trainer_ai.c` and shared with every flag. So no commit. A learnable new move gets the +2 when it is a status move, has power 1 and an effect outside the alternative-power table (Heavy Slam, Final Gambit, Nature's Madness), or has an effect on the no-damage-calculation table (Solar Blade, on SolarBeam's). Every other new attack is compared and gets nothing. Two of these disagree with their Platinum match, Heavy Slam and Meteor Beam, as the section for Ian says.
+The flag gives +2 (60.9%) to any move the damage comparison skips, and it reads no list in `script.s`: the comparison's own tables are in `trainer_ai.c` and shared with every flag. So no commit. A learnable new move gets the +2 when it is a status move, has power 1 and an effect outside the alternative-power table (Final Gambit, Nature's Madness, and Heavy Slam until 2026-10-21), or has an effect on the no-damage-calculation table (Solar Blade, on SolarBeam's). Every other new attack is compared and gets nothing. Two of these disagree with their Platinum match, Heavy Slam and Meteor Beam, as the section for Ian says.
 
 ## Baton Pass
 
@@ -160,7 +160,7 @@ The table of effects that get +2 (50%) on any turn.
 
 ## The re-read of 2026-10-21
 
-The 61 moves learnable since 2026-10-07 were read in each flag by the same rule: a move goes where the Platinum move it follows goes, and the move it follows is the one Expert's dispatch and [expert-new-moves.md](expert-new-moves.md) give it. Four are left out of a list their match is on, each one of the README's decisions for Ian of that day; every other move of the 61 gets from each flag what its Platinum match gets, by its effect or by a line an earlier pass wrote. Nothing in the code changed.
+The 61 moves learnable since 2026-10-07 were read in each flag by the same rule: a move goes where the Platinum move it follows goes, and the move it follows is the one Expert's dispatch and [expert-new-moves.md](expert-new-moves.md) give it. Four are left out of a list their match is on, each one of the README's decisions for Ian of that day; every other move of the 61 gets from each flag what its Platinum match gets, by its effect or by a line an earlier pass wrote. Nothing in the code changed then. Ian approved all four routings later that day, and `overseer-ai-fixes` made them (the README's table names each commit), so none of the four is left out any more.
 
 | Move | Follows | Left out of | What routing it would do | Decision |
 |---|---|---|---|---|
@@ -173,13 +173,13 @@ What each flag does with the rest of the 61, by inheritance:
 
 - Evaluate Attack scores every damaging move of the 61 by its estimate. Jet Punch gets Quick Attack's extra +2 for a kill, and Thunderclap gets Sucker Punch's handling: about 80% of -2, and no kill, since its effect is on the no-damage-calculation list.
 - Risky gives its +2 at 50% to Snipe Shot (high critical) and Thunderclap (Sucker Punch's effect). Storm Throw and Frost Breath, on the always-critical effect, get nothing, as Flower Trick does (judgment calls, above).
-- Prioritize Extremes gives its +2 to the four status moves above, to Thunderclap, which skips the damage comparison as Sucker Punch does, and to Heat Crash, which has no estimate at all (the README's decision 7). Hard Press has a computed power and is compared.
+- Prioritize Extremes gives its +2 to the four status moves above, to Thunderclap, which skips the damage comparison as Sucker Punch does, and, until decision 7 gave it an estimate on 2026-10-21, to Heat Crash. Hard Press has a computed power and is compared.
 - Baton Pass gives Lunar Blessing the generic +3 for a status move, as Recover gets.
 - Tag Strategy checks Parabolic Charge beside its partner as Discharge (2026-09-27) and gives Jet Punch Quick Attack's priority bonus. Glaciate and Precipice Blades reach only the foes, so they need no partner check.
 - Weather: none of the 61 sets weather.
-- Harassment, whose table lists Spikes and Leech Seed, gives nothing to Ceaseless Edge or Sappy Seed today, since Expert gives neither a match yet (decisions 9 and 11). Jaw Lock follows Mean Look and Stone Axe Stealth Rock, which Harassment does not list.
+- Harassment, whose table lists Spikes and Leech Seed, gives Ceaseless Edge Spikes' +2 at 50% since 2026-10-21 (decision 9), and nothing to Sappy Seed, which keeps no match (decision 11, Ian's answer). Jaw Lock follows Mean Look and Stone Axe Stealth Rock, which Harassment does not list.
 
-A routing fix here reaches the simulator with no edit, since `fightai.py` reads these tables and Baton Pass's named moves out of `script.s` (`script_table`, `script_jumps`).
+A routing fix here reaches the simulator with no edit, since `fightai.py` reads these tables and Baton Pass's named moves out of `script.s` (`script_table`, `script_jumps`); the fixes of 2026-10-21 to these flags needed none.
 
 ## Appendix: every learnable new move
 

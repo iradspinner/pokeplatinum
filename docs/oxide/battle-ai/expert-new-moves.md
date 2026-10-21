@@ -206,22 +206,22 @@ The 61 moves past 467 that became learnable after 2026-10-07, each read against 
 - Dragon Ascent: Close Combat's, by its own Platinum effect.
 - Drum Beating: Icy Wind's, named in the routine for attacks that lower Speed, by element 6.
 - Esper Wing: Rapid Spin's Speed part, routed by element 6.
-- Fillet Away: Dragon Dance's, routed by element 6. The other flags leave it out (decision 3).
+- Fillet Away: Dragon Dance's, routed by element 6. The other flags left it out until decision 3 (2026-10-21).
 - Frost Breath: Karate Chop's high critical routine, routed by element 6.
 - Glaciate: Icy Wind's, named by element 6.
 - Infernal Parade: Wake-Up Slap's shape (`Expert_Hex`), routed by element 6.
 - Kowtow Cleave: Swift's, by its own Platinum effect.
 - Light of Ruin: Head Smash's recoil routine, by its own Platinum effect; since the move reworks it is costed as an ordinary attack.
-- Lunar Blessing: Recover's, routed on 2026-09-30. Check HP leaves it out (decision 5).
+- Lunar Blessing: Recover's, routed on 2026-09-30. Check HP left it out until decision 5 (2026-10-21).
 - Parabolic Charge: Giga Drain's, by its own Platinum effect; Tag Strategy checks its partner as Discharge's.
-- Psychic Fangs: Brick Break's, by its own Platinum effect. Note: the routine's +1 sees Reflect and Light Screen, not the Aurora Veil the engine breaks too (decision 12).
+- Psychic Fangs: Brick Break's, by its own Platinum effect. The routine's +1 saw Reflect and Light Screen, not the Aurora Veil the engine breaks too, until decision 12 (2026-10-21).
 - Raging Bull: Brick Break's, as Psychic Fangs. Oxide has no Paldean Tauros, and no engine code changes its type.
 - Raging Fury: the recoil routine, by the move reworks' line.
 - Snipe Shot: the high critical routine, by its own Platinum effect.
 - Storm Throw: the high critical routine, routed by element 6.
-- Take Heart: Calm Mind's Sp. Def raise, routed by element 6. The other flags leave it out (decision 4).
+- Take Heart: Calm Mind's Sp. Def raise, routed by element 6. The other flags left it out until decision 4 (2026-10-21).
 - Thunderclap: Sucker Punch's, by its own Platinum effect.
-- Victory Dance: Dragon Dance's, routed by element 6. The other flags leave it out (decision 2).
+- Victory Dance: Dragon Dance's, routed by element 6. The other flags left it out until decision 2 (2026-10-21).
 
 ### Left with none, and rightly
 
@@ -239,7 +239,7 @@ The 61 moves past 467 that became learnable after 2026-10-07, each read against 
 - Leaf Tornado: none, as Platinum's Mud-Slap.
 - Lumina Crash: none, as Platinum's Seed Flare.
 - Malignant Chain: none, as Platinum's Poison Fang.
-- Mighty Cleave: none, a plain hit; it passes Protect because it lacks the CAN_PROTECT flag, which no routine reads for an attack.
+- Mighty Cleave: none, a plain hit; it passes Protect because it lacks the CAN_PROTECT flag, which no routine reads for an attack. Not a stub (Ian, 2026-10-21), which the OxiDex and the survey now say too.
 - Mystical Power: none, as Platinum's Charge Beam.
 - Night Daze: none, as Platinum's Mud-Slap.
 - Power Trip: none, a plain hit; its power from its user's boosts is in `TrainerAI_ComputedMovePower`.
@@ -252,13 +252,15 @@ The 61 moves past 467 that became learnable after 2026-10-07, each read against 
 - Spirit Break: none, as Platinum's Mist Ball.
 - Torch Song: none, as Platinum's Charge Beam; Basic's Soundproof list names it.
 
-### Routed rightly, costed wrongly (for Ian)
+### Routed rightly, costed wrongly until 2026-10-21
 
-- Dragon Darts, Tachyon Cutter, Twin Beam: none, as Platinum's Double Kick, which is right; but the damage estimate rates them on one hit of two (decision 1).
-- Triple Dive: none, as Platinum's Triple Kick; the estimate rates it on one hit of three (decision 1).
-- Heat Crash: none, as Heavy Slam and Platinum's Low Kick; but it has no damage estimate at all (decision 7).
+- Dragon Darts, Tachyon Cutter, Twin Beam: none, as Platinum's Double Kick, which is right; the damage estimate rated them on one hit of two until decision 1 counted both, for Double Kick and its kin too.
+- Triple Dive: none, as Platinum's Triple Kick; the estimate rated it on one hit of three until decision 1 counted all three.
+- Heat Crash: none, as Heavy Slam and Platinum's Low Kick; it had no damage estimate at all until decision 7 costed both by weight.
 
-### For Ian
+### For Ian, answered on 2026-10-21
+
+Ian took every recommendation below: the four partner moves keep no routine, and the other four have the routine named, at the commits the README's table gives.
 
 - Baddy Bad: none today; the nearest is Platinum's Reflect, whose routine takes -2 below half HP and would misjudge an 80 power attack. Recommended: none (decision 11).
 - Ceaseless Edge: none today; the nearest is Spikes, whose routine adds +1 at 50% without asking whether three layers are down. Recommended: a trimmed copy that adds nothing at three layers or against a last Pokemon (decision 9).
