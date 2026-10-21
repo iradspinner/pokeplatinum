@@ -364,8 +364,8 @@ def merge_key(c):
             key += (("lucky chant", s.lucky_chant, "web", s.web),)
         return key
     key = (side(c.p), side(c.b), c.weather, c.weather_turns, c.trick_room)
-    if c.gravity or c.last_move is not None or c.magic_room or c.fog:
-        key += pl._field_extra(c)            # Gravity, Copycat's last move, Magic Room, deep fog
+    if c.gravity or c.last_move is not None or c.magic_room or c.fog or c.wonder_room:
+        key += pl._field_extra(c)            # Gravity, Copycat's last move, Magic Room, Wonder Room, deep fog
     return key
 
 

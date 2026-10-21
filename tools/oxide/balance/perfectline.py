@@ -498,10 +498,12 @@ def _use_move(b, att, mv, dfn, first):
         fs.relic_song(b, att, mv, b.last_dealt > 0)     # Meloetta's form (fightsim.relic_song)
 
 
-def struggle_damage(att, dfn, roll):
-    """Struggle: 50 power, physical, typeless, no modifiers, at the roll."""
+def struggle_damage(att, dfn, roll, room=False):
+    """Struggle: 50 power, physical, typeless, no modifiers, at the roll;
+    under Wonder Room (`room`) it meets the target's Sp. Def with its
+    Defense stages (fightsim.room_mult)."""
     a = att.stats.get("atk", 50) * fs.stage_mult(att.stages["atk"])
-    d = dfn.stats.get("def", 50) * fs.stage_mult(dfn.stages["def"])
+    d = dfn.stats.get("spd" if room else "def", 50) * fs.stage_mult(dfn.stages["def"])
     base = ((2 * att.level // 5 + 2) * 50 * a / d) // 50 + 2
     return int(base * roll / 100)
 
@@ -777,7 +779,7 @@ def attack(b, att, mv, dfn, first):
         # returns early for MOVE_STRUGGLE): a 50-power physical hit on stats
         # and stages, at the roll.
         roll = 85 + (b.dice.roll(trainer) if b.dice.mode == "run" else (15 if trainer else 0))
-        dmg = struggle_damage(att, dfn, roll)
+        dmg = struggle_damage(att, dfn, roll, b.wonder_room)
     crit = False
     if dmg is None:
         # The first battle (Barry on Route 201) has no critical hits on either
@@ -1178,6 +1180,8 @@ def status_move(b, att, mv, dfn, first):
         fs.embargo(b, att, dfn, mv)      # five turns with its item held back (fightsim.embargo)
     elif e == "MAGIC_ROOM":
         fs.magic_room(b)                 # five turns with every item held back (fightsim.magic_room)
+    elif e == "WONDER_ROOM":
+        fs.wonder_room(b)                # five turns with the Defenses traded (fightsim.wonder_room)
     elif e == "CURSE":
         if "Ghost" in att.types:
             fs.ghost_curse(b, att, dfn, mv)      # it fails, at no cost, through a Substitute or on a cursed target
@@ -1438,6 +1442,8 @@ def clone_battle(b):
         c.split = True               # stats averaged in this battle (fightsim.share_stats)
     if b.magic_room:
         c.magic_room = b.magic_room  # Magic Room's turns (fightsim.magic_room)
+    if b.wonder_room:
+        c.wonder_room = b.wonder_room    # Wonder Room's turns (fightsim.wonder_room)
     if b.snatching:
         c.snatching = True           # a Snatch waits this turn (fightsim.snatch)
     if b.unheld:
@@ -1521,13 +1527,15 @@ def side_key(s):
 def _field_extra(b):
     """The field's states most fights never have, kept out of the keys
     while they are not there: Gravity's turns, in a fight with Copycat
-    the battle's last move, Magic Room's turns and deep fog (each checked
-    by the keys before calling)."""
+    the battle's last move, Magic Room's and Wonder Room's turns and deep
+    fog (each checked by the keys before calling)."""
     out = (("gravity", b.gravity),) if b.gravity else ()
     if b.last_move is not None:
         out += (("last move", b.last_move.name),)
     if b.magic_room:
         out += (("magic room", b.magic_room),)
+    if b.wonder_room:
+        out += (("wonder room", b.wonder_room),)
     if b.fog:
         out += (("fog",),)
     return out
@@ -1536,7 +1544,8 @@ def _field_extra(b):
 def state_key(b):
     key = (side_key(b.p), side_key(b.b), b.weather, b.weather_turns, b.trick_room,
            round(b.luck_spent, 6), getattr(b, "declined", frozenset()))
-    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room or b.fog else key
+    rare = b.gravity or b.last_move is not None or b.magic_room or b.fog or b.wonder_room
+    return key + _field_extra(b) if rare else key
 
 
 def shape_key(b):
@@ -1551,7 +1560,8 @@ def shape_key(b):
             key += (("aurora veil", sd.aurora_veil),)     # as side_key keeps it, since 2026-10-15
         return key
     key = (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room, getattr(b, "declined", frozenset()))
-    return key + _field_extra(b) if b.gravity or b.last_move is not None or b.magic_room or b.fog else key
+    rare = b.gravity or b.last_move is not None or b.magic_room or b.fog or b.wonder_room
+    return key + _field_extra(b) if rare else key
 
 
 def vector(b):
@@ -1603,7 +1613,7 @@ def ai_key(b):
             b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick,
             b.p.future_sight, b.b.future_sight, getattr(b.p, "mist", 0) > 0, getattr(b.b, "mist", 0) > 0) \
         + (_ai_field(b) if b.gravity or b.p.lucky_chant or b.b.lucky_chant or b.p.web or b.b.web or b.fog
-           or b.p.aurora_veil or b.b.aurora_veil else ())
+           or b.p.aurora_veil or b.b.aurora_veil or b.wonder_room else ())
 
 
 def _ai_field(b):
@@ -1614,14 +1624,17 @@ def _ai_field(b):
     Basic_CheckDefog, Expert_Defog, Expert_RapidSpin), deep fog
     (Basic_CheckDefog) and, since 2026-10-15, Aurora Veil on either side
     (Basic_CheckAuroraVeil, Expert_AuroraVeil, Expert_Defog), which batch 8
-    gave the battle and this key had left out."""
+    gave the battle and this key had left out; and since 2026-10-20 Wonder
+    Room, whose swap the AI's damage estimate reads (TrainerAI_CalcDamage
+    passes the field's conditions)."""
     if not (b.p.lucky_chant or b.b.lucky_chant or b.gravity or b.p.web or b.b.web or b.fog
-            or b.p.aurora_veil or b.b.aurora_veil):
+            or b.p.aurora_veil or b.b.aurora_veil or b.wonder_room):
         return ()
     return (("field", b.p.lucky_chant > 0, b.b.lucky_chant > 0, b.gravity > 0, b.p.web, b.b.web)
             + (("fog",) if b.fog else ())
             + (("aurora veil", b.p.aurora_veil > 0, b.b.aurora_veil > 0) if b.p.aurora_veil or b.b.aurora_veil
-               else ()),)
+               else ())
+            + (("wonder room",) if b.wonder_room else ()),)
 
 
 _AI_CACHE = {}

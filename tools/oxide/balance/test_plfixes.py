@@ -6716,6 +6716,26 @@ def spin_out_checks():
     return self_drop_checks("Spin Out", ("Bronzong", "Levitate"), (0, 0, -2))
 
 
+@b13
+def wonder_room_checks():
+    """Wonder Room on real rows (approved 2026-10-14): once the player's
+    Bronzong puts the room up, its Iron Head on a trainer's Onix, whose
+    Defense is far above its Sp. Def, does more, and its Flash Cannon less,
+    by the ratio of the two stats."""
+    b, onix, bron = b8_battle([("Onix", 30, "Sturdy", ["Tackle"])],
+                              [("Bronzong", 30, "Levitate", ["Wonder Room", "Iron Head", "Flash Cannon"])])
+    moves = (fs.move("Iron Head"), fs.move("Flash Cannon"))
+    before = tuple(pl.damage_of(b, bron, onix, m, False, True) for m in moves)
+    pl.status_move(b, bron, fs.move("Wonder Room"), onix, True)
+    after = tuple(pl.damage_of(b, bron, onix, m, False, True) for m in moves)
+    ratio = onix.stats["def"] / onix.stats["spd"]
+    turns = getattr(b, "wonder_room", None)
+    ok = (turns == 5 and abs(after[0] - before[0] * ratio) <= 2 and abs(after[1] - before[1] / ratio) <= 2
+          and after[0] > before[0] and after[1] < before[1])
+    return [("the readings' Wonder Room trades the Defenses", ok,
+             f"(Iron Head, Flash Cannon) {before} to {after}, Defense over Sp. Def {ratio:.2f}, turns {turns}")]
+
+
 def main():
     results = []
 

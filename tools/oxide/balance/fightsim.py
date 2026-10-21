@@ -936,6 +936,10 @@ class Battle:
     # Magic Room's turns left (magicRoomTurns): no held item on the field
     # works while they run (lock_item); left on the class while 0.
     magic_room = 0
+    # Wonder Room's turns left (FIELD_CONDITION_WONDER_ROOM): every
+    # Pokemon's Defense and Sp. Def trade places in the damage (room_mult);
+    # left on the class while 0.
+    wonder_room = 0
     # Whether Guard Split or Power Split has averaged a stat in this battle
     # (Mon.split), so the damage reads split_mult only then; kept by its
     # copies.
@@ -5458,6 +5462,37 @@ def magic_room(b):
         lock_item(m)
 
 
+def wonder_room(b):
+    """Wonder Room (effect script 407): five turns in which every Pokemon's
+    Defense and Sp. Def trade places in the damage (room_mult), counted down
+    straight after Trick Room at each turn's end
+    (SIDE_COND_CHECK_STATE_WONDER_ROOM); used while one runs, it ends it. A
+    boss's permanent room would make it fail, but the engine's list of them
+    (sPermanentWonderRoomTrainers) is empty. Until 2026-10-20 the move did
+    nothing (Ian approved the fix)."""
+    b.wonder_room = 0 if b.wonder_room else 5
+
+
+def room_mult(att, dfn, mv):
+    """Wonder Room's swap on a hit (BattleSystem_CalcMoveDamage under
+    FIELD_CONDITION_WONDER_ROOM, which the trainer's AI's estimate reads
+    too): only the stats trade, so a physical hit, or Psyshock's kind,
+    meets the target's Sp. Def with its Defense stages and modifiers, and a
+    special hit its Defense with the Sp. Def ones; Body Press, which hits
+    with its user's Defense, takes its user's Sp. Def the same way. The
+    rows are made outside the room, so the hit is scaled by the stats'
+    ratio, as split_mult scales Guard Split's (stats it averaged read as
+    averaged): the damage formula's whole-number steps and its added 2 are
+    not followed, so a hit can differ from the engine's by a point or a few
+    per cent."""
+    d = "def" if mv.cat == "Physical" or mv.const in AGAINST_DEFENSE else "spd"
+    other = "spd" if d == "def" else "def"
+    mult = max(1, raw_stat(dfn, d)) / max(1, raw_stat(dfn, other))
+    if mv.const == "MOVE_BODY_PRESS":
+        mult *= max(1, raw_stat(att, "spd")) / max(1, raw_stat(att, "def"))
+    return mult
+
+
 def magic_room_ends(b):
     b.magic_room = 0
     for m in b.p.on_field() + b.b.on_field():
@@ -6589,6 +6624,8 @@ def state_mult(b, att, dfn, mv):
         m *= sport_half(b, att, dfn, mv)     # Water Sport on the field halves a Fire move's power
     if b.split:
         m *= split_mult(att, dfn, mv)        # stats Guard Split or Power Split averaged (split_mult)
+    if b.wonder_room:
+        m *= room_mult(att, dfn, mv)         # the Defenses traded under Wonder Room (room_mult)
     if b.gravity and c == "MOVE_GRAV_APPLE":
         # BattleScript_ComputedMovePower: half as strong again while Gravity
         # is in force (since 2026-10-15, when Gravity began to run).
@@ -7995,6 +8032,8 @@ def status_move(b, att, mv, dfn, first):
         embargo(b, att, dfn, mv)
     elif e == "MAGIC_ROOM":
         magic_room(b)
+    elif e == "WONDER_ROOM":
+        wonder_room(b)
     elif e == "CURSE":
         if "Ghost" in att.types:
             ghost_curse(b, att, dfn, mv)
@@ -8798,6 +8837,8 @@ def _end_of_turn(b):
                     return
     if 0 < b.trick_room < 999:
         b.trick_room -= 1
+    if b.wonder_room:
+        b.wonder_room -= 1          # SIDE_COND_CHECK_STATE_WONDER_ROOM, after Trick Room
     if b.magic_room:
         b.magic_room -= 1           # SIDE_COND_CHECK_STATE_MAGIC_ROOM, after Trick Room
         if not b.magic_room:

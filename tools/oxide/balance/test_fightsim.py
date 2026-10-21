@@ -7822,6 +7822,36 @@ def check_spin_out(results):
     results.append(("Spin Out lowers its user's Speed two stages after a hit", out == want, str(out)))
 
 
+@b13
+def check_wonder_room(results):
+    """Wonder Room (approved 2026-10-14; effect script 407): for five turns
+    the Defense and Sp. Def trade places in the damage, in both battles, so
+    a physical hit on a target of Defense 100 and Sp. Def 50 doubles and a
+    special one halves, Psyshock's kind follows the physical, and Body
+    Press takes its user's Sp. Def; a second use ends the room, and five
+    turn ends end it too."""
+    from . import perfectline as pl
+    names = ["Tackle", "Ember", "Psyshock", "Body Press"]
+    b, p, foe = battle(["Wonder Room"] + names, ["Tackle"], {("p", n): [40] * 16 for n in names}, hp=500)
+    b.rng = FixedDice(0.5)
+    foe.stats["spd"], p.stats["spd"] = 50, 200
+    out = {"outside": tuple(b.damage(p, foe, fs.move(n), roll=0) for n in names)}
+    pl.status_move(b, p, fs.move("Wonder Room"), foe, True)
+    out["inside"] = (getattr(b, "wonder_room", None),) + tuple(b.damage(p, foe, fs.move(n), roll=0) for n in names)
+    out["readings"] = tuple(pl.damage_of(b, p, foe, fs.move(n), False, True) for n in names)
+    pl.status_move(b, p, fs.move("Wonder Room"), foe, True)
+    out["used again"] = getattr(b, "wonder_room", None)
+    fs.status_move(b, p, fs.move("Wonder Room"), foe, True)
+    turns = []
+    for _ in range(5):
+        fs.end_of_turn(b)
+        turns.append(getattr(b, "wonder_room", None))
+    out["turn ends"] = tuple(turns)
+    want = {"outside": (40, 40, 40, 40), "inside": (5, 80, 20, 80, 160), "readings": (80, 20, 80, 160),
+            "used again": 0, "turn ends": (4, 3, 2, 1, 0)}
+    results.append(("Wonder Room trades the Defenses for five turns", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
