@@ -8027,6 +8027,41 @@ def check_serene_grace_raise(results):
             "Hustle, Charge Beam at a roll of 99": 0}
     results.append(("Serene Grace doubles a hit's chance to raise its user's stats", out == want, str(out)))
 
+
+@b14
+def check_rising_overrides(results):
+    """The rising moves' later hits skip the hit overrides (Ian approved
+    the fix on 2026-10-20; SetMultiHit's SYSCTL_TRIPLE_KICK carries
+    SYSCTL_SKIP_ACCURACY_OVERRIDES, which BattleControllerPlayer_TryMove
+    reads on every hit after the first): No Guard on either side and the
+    user's Lock-On land the first hit of Triple Kick or Triple Axel, and
+    each later hit rolls its accuracy, in both battles, so where every roll
+    misses only the first lands; a Loaded Dice skips the later checks."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("No Guard user", "No Guard target", "Lock-On", "Loaded Dice", "Triple Axel", "fightsim"):
+        name = "Triple Axel" if case == "Triple Axel" else "Triple Kick"
+        row = 120 if name == "Triple Axel" else 90      # the row adds up the three hits' powers
+        b, p, foe = b11_battle([name], ["Tackle"], {("p", name): [row] * 16}, hp=500)
+        b.dice = misses13()              # every check the dice see misses
+        if case in ("No Guard user", "Loaded Dice", "Triple Axel", "fightsim"):
+            p.ability = "No Guard"
+        if case == "No Guard target":
+            foe.ability = "No Guard"
+        if case == "Lock-On":
+            foe.locked_on, foe.lock_on_by, foe.rare = 2, p.key, True
+        if case == "Loaded Dice":
+            p.item = "Loaded Dice"
+        if case == "fightsim":
+            b.rng = FixedDice(0.95)      # every accuracy roll at 95 misses Triple Kick's 90
+            fs.attack(b, p, fs.move(name), foe, True)
+        else:
+            pl.attack(b, p, fs.move(name), foe, True)
+        out[case] = foe.maxhp - foe.hp
+    want = {"No Guard user": 20, "No Guard target": 20, "Lock-On": 20, "Loaded Dice": 90, "Triple Axel": 20,
+            "fightsim": 20}
+    results.append(("No Guard and Lock-On land only a rising move's first hit", out == want, str(out)))
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

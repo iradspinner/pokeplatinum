@@ -313,8 +313,9 @@ fs.give_status = give_status   # Yawn and Toxic Spikes inside fightsim reach thi
 def accuracy_hits(b, att, dfn, mv, first=True, later=False):
     """Whether the move lands, a miss bad luck for its user's side.
     `first`: whether the target has yet to move this turn (the Zoom Lens).
-    `later`: a later hit of Population Bomb's, whose check skips the hit
-    overrides, No Guard and Lock-On (fightsim.TEN_HITS)."""
+    `later`: a later hit of a rising move's or Population Bomb's, whose
+    check skips the hit overrides, No Guard and Lock-On (fightsim.RISING,
+    fightsim.TEN_HITS)."""
     if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or (
             not later and (fs.no_guard(att, dfn, mv) or (dfn.rare and fs.lands_sure(att, dfn, mv)))):
         return True
@@ -521,8 +522,10 @@ def rolled_hits(b, att, dfn, mv, trainer, first=True):
     (fs.multi_hit_odds), rolled by a run's dice and enumerated at its odds by
     the planner's; a rising move's hits (Fury Cutter, Triple Kick, Triple
     Axel) until its first miss, each later hit checking accuracy again unless
-    a Loaded Dice skips the check; Population Bomb's up to ten the same way
-    (fightsim.TEN_HITS); two for the two-hit moves and three for
+    a Loaded Dice skips the check, and skipping the hit overrides, so No
+    Guard and Lock-On land only the first (fightsim.RISING); Population
+    Bomb's up to ten the same way (fightsim.TEN_HITS); two for the two-hit
+    moves and three for
     the three-hit ones (fightsim.THREE_HITS). In the strict
     search the trainer gets its most hits and the player its fewest."""
     odds = fs.multi_hit_odds(att, mv)
@@ -536,7 +539,8 @@ def rolled_hits(b, att, dfn, mv, trainer, first=True):
         return pick(counts, weights)
     if mv.effect in fs.RISING:
         hits = 1
-        while hits < fs.RISING_COUNT and (att.item == "Loaded Dice" or accuracy_hits(b, att, dfn, mv, first)):
+        while hits < fs.RISING_COUNT and (att.item == "Loaded Dice"
+                                          or accuracy_hits(b, att, dfn, mv, first, later=True)):
             hits += 1
         return hits
     if mv.effect == fs.TEN_HITS:

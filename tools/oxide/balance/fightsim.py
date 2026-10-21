@@ -366,12 +366,19 @@ MULTI_HIT_ODDS = ((2, 35), (3, 35), (4, 15), (5, 15))
 # Fury Cutter and Triple Kick: three hits rising by 10 from the listed power,
 # each checking accuracy and the move stopping at the first miss
 # (effect_script_0416). The calculator's row is all three hits added up
-# (its Oxide profile, since 2026-10-07).
+# (its Oxide profile, since 2026-10-07). Its SetMultiHit flags,
+# SYSCTL_TRIPLE_KICK, skip the hit overrides on every hit after the first
+# (SYSCTL_SKIP_ACCURACY_OVERRIDES in BattleControllerPlayer_TryMove), so
+# No Guard and Lock-On land only the first, and the later ones roll their
+# accuracy (accuracy_hits' `later`), as Population Bomb's do (TEN_HITS).
+# Until 2026-10-20 No Guard and Lock-On landed all three (Ian approved the
+# fix).
 RISING_HITS = "HIT_THREE_TIMES_RISING_10"
 RISING_COUNT = 3
-# Triple Axel (effect script 298) hits the same way at 20, 40 and 60: its
-# script adds 20 to a power that starts at 0 for every move, so its row
-# too is all three hits added up (the calculator's Oxide profile).
+# Triple Axel (effect script 298) hits the same way at 20, 40 and 60, with
+# the same flags: its script adds 20 to a power that starts at 0 for every
+# move, so its row too is all three hits added up (the calculator's Oxide
+# profile).
 AXEL_HITS = "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20"
 RISING = frozenset({RISING_HITS, AXEL_HITS})
 
@@ -1228,8 +1235,9 @@ class Battle:
     def accuracy_hits(self, att, dfn, mv, first=True, later=False):
         """Whether the move lands (BattleControllerPlayer_CheckMoveHitAccuracy
         and the hit overrides). `first`: whether the target has yet to move
-        this turn, for the Zoom Lens. `later`: a later hit of Population
-        Bomb's, whose check skips the overrides (TEN_HITS)."""
+        this turn, for the Zoom Lens. `later`: a later hit of a rising
+        move's or Population Bomb's, whose check skips the overrides, No
+        Guard and Lock-On among them (RISING, TEN_HITS)."""
         if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or (
                 not later and (no_guard(att, dfn, mv) or (dfn.rare and lands_sure(att, dfn, mv)))):
             return True
@@ -4103,7 +4111,8 @@ def attack(b, att, mv, dfn, first):
     if odds:
         hits = b.rng.choices([h for h, _w in odds], [w for _h, w in odds])[0]
     elif mv.effect in RISING:
-        while hits < RISING_COUNT and (att.item == "Loaded Dice" or b.accuracy_hits(att, dfn, mv, first)):
+        # A later hit's check skips the hit overrides, No Guard and Lock-On (RISING)
+        while hits < RISING_COUNT and (att.item == "Loaded Dice" or b.accuracy_hits(att, dfn, mv, first, later=True)):
             hits += 1
     elif mv.effect == TEN_HITS:
         # Population Bomb's later checks skip the hit overrides (TEN_HITS)

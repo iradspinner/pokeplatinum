@@ -6838,6 +6838,32 @@ def serene_grace_raise_checks():
     return [("the readings' Serene Grace doubles Ancient Power's chance to raise its user's stats", ok,
              f"(hit, Sp. Atk stage, Speed stage) {out}")]
 
+
+class Misses14(Sure7):
+    """Batch 14's dice for a miss: as Sure7 (the top roll, no critical
+    hit, only a certain chance lands), and every accuracy check of the
+    player's that the dice see misses."""
+    def bad(self, kind, p):
+        return kind == "miss" and p > 0
+
+
+@b14
+def rising_overrides_checks():
+    """A rising move's later hits under No Guard in the readings' battle on
+    the calculator's real rows (Ian approved the fix on 2026-10-20): the
+    player's No Guard Machamp's Triple Kick on a trainer's Snorlax lands its
+    first hit by No Guard, and where every later roll misses, that hit
+    alone (20 of the three hits' 90 power), well under the three that land
+    when no roll misses."""
+    out = {}
+    for case, dice in (("every roll lands", Sure7), ("every roll misses", Misses14)):
+        b, lax, champ = b8_battle([("Snorlax", 30, "Thick Fat", ["Tackle"])],
+                                  [("Machamp", 30, "No Guard", ["Triple Kick"])], dice)
+        pl.attack(b, champ, fs.move("Triple Kick"), lax, True)
+        out[case] = lax.maxhp - lax.hp
+    ok = 0 < out["every roll misses"] and 3 * out["every roll misses"] < out["every roll lands"]
+    return [("the readings' No Guard lands only a rising move's first hit", ok, f"damage {out}")]
+
 def main():
     results = []
 
