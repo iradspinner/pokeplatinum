@@ -4,7 +4,7 @@ This answers Ian's request of 2026-10-20 on `unused-moves.md`: "lets do the move
 
 ## Summary
 
-**Status (2026-10-21): Ian has answered every question below. Lumina Crash's home landed at 47d90c688. His answers to questions 3 to 6 are applied on `overseer-signature-moves-3`, each applied row marked below: 41 level-up homes and 7 egg lists. Torch Song's new home waits on his pick from three candidates (under Torch Song), and the late-boss carriers wait until those teams are settled.**
+**Status (2026-10-21): Ian has answered every question below. Lumina Crash's home landed at 47d90c688. His answers to questions 3 to 6 landed at 67254f1d2, each applied row marked below: 41 level-up homes and 7 egg lists. Torch Song goes to Magcargo at 63, his pick of the three candidates, on `overseer-signature-moves-4`. The late-boss carriers wait until those teams are settled.**
 
 **A correction first.** `unused-moves.md` named Glimmora as Lumina Crash's owner, and Ian approved it as a return on that basis. Lumina Crash is Espathra's (learned on evolving in Scarlet and Violet and in Legends Z-A). Oxide has no Flittle line, and no game gives the move to Glimmora. Ian's answer (2026-10-20): it goes to the Slowbro line at 40, the alternative below, and the Glimmora commit is dropped.
 
@@ -31,16 +31,16 @@ This answers Ian's request of 2026-10-20 on `unused-moves.md`: "lets do the move
 **What Ian decides.**
 1. Answered (Ian, 2026-10-20): Lumina Crash goes to Slowbro and Slowking at 40, not to Glimmora.
 2. Answered (Ian, 2026-10-20): Shell Trap on Turtonator waits for in-game check 82, on its own branch, as Upper Hand and Burning Jealousy wait for 81 and 83.
-3. Answered (Ian, 2026-10-21): the player homes go in as proposed, with four changes. Aqua Step goes to Golduck at 47. Torch Song does not go to Ninetales, a line too usable for it: it suits a slow Pokemon, or one of middling Sp. Atk, that would struggle to sweep with it, and its home is a question for Ian. Esper Wing goes to both Cresselia and Xatu, tentatively. Bitter Malice comes later than 46 on Spiritomb. The moves left without a home stay without one, the Pikachu moves among them.
+3. Answered (Ian, 2026-10-21): the player homes go in as proposed, with four changes. Aqua Step goes to Golduck at 47. Torch Song does not go to Ninetales, a line too usable for it: it suits a slow Pokemon, or one of middling Sp. Atk, that would struggle to sweep with it. Ian picked its home from three candidates the same day ("Late game magcargo sounds good"): Magcargo at 63, kept late because Shell Smash (48) and Torch Song together are a sweep. Esper Wing goes to both Cresselia and Xatu, tentatively. Bitter Malice comes later than 46 on Spiritomb. The moves left without a home stay without one, the Pikachu moves among them.
 4. Answered (Ian, 2026-10-21): the five egg lists go in as proposed.
 5. Answered (Ian, 2026-10-21): the legendary returns go in as proposed. The late-boss carriers wait until those teams' compositions are settled (the tracker's Scheduled list): they gave Ian ideas, but the teams are not locked in.
 6. Answered (Ian, 2026-10-21): in, all seven from Glitzy Glow to Sparkly Swirl, each on its own Eeveelution at a level in the last split or two (about 70 and up), since all are very strong. Sparkly Swirl's 85% is under the 90% bar for the player's moves; Ian's answer places it anyway.
 
-**Difficulty.** The earliest player home is at 34, in Maylene's split, so none touches Roark or Gardenia. A player home is material for the fights whose boxes field its line at or above its level; a trainer home, for its boss. Applied, the homes reach goal 3's three boxes this way. Granbull's Spirit Break is in all three from Barry 3 and Maylene on, so every boss from Maylene's split to Cynthia is marked. Torterra's Drum Beating (box 1) and Dubwool's Raging Bull (box 3) come in at Barry 4 and Wake; Absol's Kowtow Cleave and Floette's Light of Ruin at Byron's split; Seadra's and Octillery's Snipe Shot at Candice's; Cresselia's Esper Wing at Volkner; Glaceon's Freezy Frost and Sylveon's Sparkly Swirl at Barry 6 and the League; Cresselia's Lunar Blessing in the League. Every box keeps its Floette unevolved, since the boxes take no stone evolutions, so all three field Light of Ruin from 50, not only a Floette held back. No box fields the other lines at their levels, and the egg lists and trainer homes change no team.
+**Difficulty.** The earliest player home is at 34, in Maylene's split, so none touches Roark or Gardenia. A player home is material for the fights whose boxes field its line at or above its level; a trainer home, for its boss. Applied, the homes reach goal 3's three boxes this way. Granbull's Spirit Break is in all three from Barry 3 and Maylene on, so every boss from Maylene's split to Cynthia is marked. Torterra's Drum Beating (box 1) and Dubwool's Raging Bull (box 3) come in at Barry 4 and Wake; Absol's Kowtow Cleave and Floette's Light of Ruin at Byron's split; Seadra's and Octillery's Snipe Shot at Candice's; Cresselia's Esper Wing at Volkner; Glaceon's Freezy Frost and Sylveon's Sparkly Swirl at Barry 6 and the League; Cresselia's Lunar Blessing in the League; Magcargo's Torch Song (box 1) at Somnu 2 and the four fights at 65 in Cyrus 3's split, and every boss after. Every box keeps its Floette unevolved, since the boxes take no stone evolutions, so all three field Light of Ruin from 50, not only a Floette held back. No box fields the other lines at their levels, and the egg lists and trainer homes change no team.
 
 **Next steps and time.**
-- The approved homes and egg lists: applied on `overseer-signature-moves-3` (2026-10-21), for the Overseer to land.
-- Torch Song: Ian picks one of the three candidates under Torch Song, or none; a placement is a few minutes and a rebuild.
+- The approved homes and egg lists: landed at 67254f1d2 (2026-10-21).
+- Torch Song on Magcargo at 63: on `overseer-signature-moves-4`, for the Overseer to land.
 - Each team change Ian takes: that boss's question, then its reading, 1 to 2 hours of machine time.
 - Every move on this page now runs in the readings (below).
 
@@ -168,11 +168,11 @@ Special, 80, 100%, 10 PP; raises the user's Sp. Atk a stage every hit. Skeledirg
 |---|---|---|---|---|
 | Ninetales | 48, Byron | climbs | Not applied: Ian, 2026-10-21, finds Ninetales a line too usable for it. A Fire Stone Ninetales's own special Fire is Ember (1), then nothing until Mystical Fire (62); only a Vulpix evolved after 24 keeps Flamethrower. A wild Ninetales caught at 50 would know it. Fiery Dance (a boost half the time) and Mystical Power (a Psychic move at 90%) were approved with the same kind of boost on 2026-10-14; this one boosts on every hit and never misses, so on a flagged line it waits until Byron's split. Flint's Ninetales could carry it too | player |
 
-Ian's answer (2026-10-21): Torch Song suits a slow Pokemon, or one of middling Sp. Atk, that would struggle to sweep with it. Nothing is placed until he picks a home from these three, or none. Speed and Sp. Atk are Oxide's base stats; "climbs" is the generator's own ladder check at that level and split.
+Ian's answer (2026-10-21): Torch Song suits a slow Pokemon, or one of middling Sp. Atk, that would struggle to sweep with it. He picked Magcargo the same day, late in the game ("Late game magcargo sounds good"), so the move is applied at 63, not the 50 proposed below. 63 is free on its list, in the Galactic split, after Flamethrower (61) and before Energy Ball (64), and the generator reads it as a climb; it keeps the Shell Smash sweep out of Byron's, Candice's and HQ's splits. Turtonator and Flareon get nothing. Speed and Sp. Atk are Oxide's base stats; "climbs" is the generator's own ladder check at that level and split.
 
 | Candidate | Speed | Sp. Atk | First had | Level | On the special Fire ladder |
 |---|---|---|---|---|---|
-| Magcargo | 30 | 109 | as Slugma, wild on Route 210 at 21 in Maylene's split; it evolves at 30 | 50, Byron | climbs: the rung of its Lava Plume (80, at 40), below Flamethrower (90, at 61) |
+| Magcargo | 30 | 109 | as Slugma, wild on Route 210 at 21 in Maylene's split; it evolves at 30 | Applied at 63, Galactic (proposed 50, Byron) | climbs: the rung of its Lava Plume (80, at 40), below Flamethrower (90, at 61) |
 | Turtonator | 36 | 91 | wild on Route 211 at 28, in Byron's split | 48, Byron | climbs: a rung under its Flamethrower (90, at 38), ten points of power traded for a boost every hit |
 | Flareon | 65 | 95 (Attack 130) | Eevee at 20, with a Fire Stone from Maylene's split | 46, Byron | climbs: its first special Fire move after Fire Spin (36) and before Heat Wave (71), off its better stat |
 

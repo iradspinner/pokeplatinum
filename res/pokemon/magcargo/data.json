@@ -55,6 +55,7 @@
             [ 52, "MOVE_BODY_SLAM" ],
             [ 56, "MOVE_POWER_GEM" ],
             [ 61, "MOVE_FLAMETHROWER" ],
+            [ 63, "MOVE_TORCH_SONG" ],
             [ 64, "MOVE_ENERGY_BALL" ],
             [ 66, "MOVE_EARTH_POWER" ],
             [ 72, "MOVE_YAWN" ]
