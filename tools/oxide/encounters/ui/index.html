@@ -980,6 +980,73 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
 .afbedit textarea { width: 100%; box-sizing: border-box; font: inherit; font-size: 15.5px; }
 .afbedit .fbdeath { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 15px; }
 .afbedit .fbdeath input { flex: 1 1 160px; font-size: 15px; }
+/* The Battle tab (the line tester, docs/oxide/line-tester.md): the setup,
+   the saved lines and the tree on the left; the position in the middle; the
+   turn on the right, its menu, its chance checks and its outcomes. */
+#btmain { grid-template-columns: 370px minmax(600px, 1fr) 470px; }
+#btleft { padding: 14px; border-right: 1px solid var(--rule); background: var(--panel);
+  display: flex; flex-direction: column; gap: 12px; }
+#btmid { padding: 14px 18px 40px; display: flex; flex-direction: column; gap: 12px; font-size: 15.5px; }
+#btright { padding: 14px; border-left: 1px solid var(--rule); background: var(--panel);
+  display: flex; flex-direction: column; gap: 12px; font-size: 15px; }
+#btmain .card { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px;
+  padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+#btleft .card, #btright .card { background: var(--ground); }
+#btmain .card[hidden] { display: none; }
+#btmain h2 { margin: 0; font-size: 16px; padding: 0; border: 0; color: var(--ink); }
+#btmain h3 { margin: 6px 0 0; font-size: 14.5px; color: var(--dim); font-weight: 600; }
+#btmain p { margin: 0; }
+#btmain label { display: flex; flex-direction: column; gap: 3px; font-size: 14.5px; color: var(--dim); }
+#btmain label.inline { flex-direction: row; align-items: center; gap: 6px; }
+#btmain .row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+#btmain .btgo { background: var(--place-bg); border-color: var(--place-ink); color: var(--place-ink);
+  font-weight: 700; padding: 5px 14px; }
+#btmain .ico { overflow: hidden; flex: none; }
+.btsides { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btmon { display: grid; grid-template-columns: 64px 1fr; gap: 2px 10px; align-items: center; }
+.btmon .ico { width: 64px; height: 64px; grid-row: 1 / 4; }
+.btmon .ico img { width: 64px; height: 128px; }
+.btmon .nm { font-weight: 700; font-size: 17px; }
+.hpbar { height: 9px; border: 1px solid var(--rule); border-radius: 3px; background: var(--sunken);
+  overflow: hidden; }
+.hpbar span { display: block; height: 100%; background: var(--mass); }
+.hpbar span.low { background: var(--act); }
+.hpbar span.crit { background: var(--error); }
+.btbench { display: flex; flex-wrap: wrap; gap: 4px; font-size: 13.5px; }
+.btbench span { padding: 0 6px; border: 1px solid var(--rule); border-radius: 3px; white-space: nowrap; }
+.btbench .down { color: var(--faint); text-decoration: line-through; }
+#btmain table.grid td, #btmain table.grid th { font-size: 14px; padding: 2px 6px; }
+#btmain table.grid td.p { font-family: var(--mono); color: var(--mass); font-weight: 600; text-align: right; }
+#btmain details summary { cursor: pointer; color: var(--dim); font-size: 14px; }
+.btrolls { font: 13px/1.5 var(--mono); color: var(--dim); }
+.btmenu { display: flex; flex-wrap: wrap; gap: 6px; }
+.btmenu button.on { background: var(--place-bg); border-color: var(--place-ink); color: var(--place-ink);
+  font-weight: 700; }
+.btcheck { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; padding: 4px 0;
+  border-bottom: 1px solid var(--rule); font-size: 14px; align-items: center; }
+.btcheck select { max-width: 230px; font-size: 13.5px; }
+.btcheck.pinned .lbl { color: var(--place-ink); font-weight: 600; }
+.btcheck .how { grid-column: 1 / -1; font-size: 13px; color: var(--faint); }
+.btout { padding: 5px 0; border-bottom: 1px solid var(--rule); font-size: 14px; display: flex;
+  flex-direction: column; gap: 2px; }
+.btout .top { display: flex; gap: 8px; align-items: baseline; justify-content: space-between; }
+.btout .pc { font-family: var(--mono); color: var(--mass); font-weight: 600; }
+.btout .ev { color: var(--dim); }
+.btout.on { background: var(--place-bg); }
+.btpick { flex-direction: row !important; align-items: center; gap: 6px !important; color: var(--ink) !important; }
+.btset { border-top: 1px solid var(--rule); padding-top: 6px; display: flex; flex-direction: column; gap: 3px; }
+.btset select { font-size: 13.5px; }
+.btset .mvs { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.bttree { font-size: 13.5px; display: flex; flex-direction: column; }
+.bttree .n { padding: 1px 4px; cursor: pointer; border-radius: 3px; white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; }
+.bttree .n:hover { background: var(--sunken); }
+.bttree .n.on { background: var(--place-bg); color: var(--place-ink); font-weight: 600; }
+.bttree .n.won { box-shadow: inset 3px 0 0 var(--mass); }
+.bttree .n.lost { box-shadow: inset 3px 0 0 var(--error); }
+.btwarn { color: var(--warn); font-size: 14px; }
+.btedit { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 4px 10px; }
+.btedit input, .btedit select { width: 100%; font-size: 13.5px; }
 </style>
 </head>
 <body>
@@ -992,6 +1059,7 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <button data-view="moves">Moves</button>
     <button data-view="trainers">Trainers</button>
     <button data-view="calc">Calc</button>
+    <button data-view="battle" title="Play a line turn by turn against a trainer, on the readings' simulator and AI">Battle</button>
     <button data-view="sim">Box sim</button>
     <button data-view="alpha" title="Every zone in walking order, with what to check there in the alpha run">Alpha</button>
   </nav>
@@ -1107,6 +1175,16 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <span id="save-state">No save file set.</span>
   </div>
   <iframe id="calcframe" title="Damage calculator"></iframe>
+</main>
+<!-- The line tester (docs/oxide/line-tester.md, linetester.py): a party
+     against a trainer on the readings' own simulator and trainer AI, played
+     turn by turn, each chance check left to chance or pinned, every position
+     a node of a tree that saves under ~/oxide-lines/. -->
+<main id="btmain" hidden>
+  <section id="btleft"></section>
+  <section id="btmid"><p class="sub">Start a battle on the left, from a reading's box, or press Fight under
+    the calculator's party in the Calc tab.</p></section>
+  <section id="btright"></section>
 </main>
 <!-- The alpha checklist (alpha readiness step 17, alpha.py): every zone in
      walking order, split by split, with its trainers, items, rewards, wild
@@ -1845,11 +1923,14 @@ const here = () => VIEW === "tables" ? { view: VIEW, area: SEL, kind: SEL ? KIND
   : VIEW === "moves" ? { view: VIEW, move: MOVESEL }
   // A pair's key ("stem+stem") goes where a trainer's stem does; a stem never
   // holds a "+", so openTrainer can tell the two apart.
-  : VIEW === "trainers" ? { view: VIEW, trainer: TRPAIR ? TRPAIR.key : TRSEL } : { view: VIEW };
-const samePlace = (a, b) => !!a && !!b && ["view", "area", "kind", "species", "move", "trainer"]
+  : VIEW === "trainers" ? { view: VIEW, trainer: TRPAIR ? TRPAIR.key : TRSEL }
+  // The Battle tab's place is a line and a position in its tree.
+  : VIEW === "battle" ? { view: VIEW, line: BT.line || undefined, node: BT.line ? String(BT.node) : undefined }
+  : { view: VIEW };
+const samePlace = (a, b) => !!a && !!b && ["view", "area", "kind", "species", "move", "trainer", "line", "node"]
   .every(k => (a[k] || null) === (b[k] || null));
-const hashOf = p => "#" + [p.view, p.area || p.species || p.move || p.trainer,
-  p.area ? p.kind : null].filter(Boolean).join("/");
+const hashOf = p => "#" + [p.view, p.area || p.species || p.move || p.trainer || p.line,
+  p.area ? p.kind : p.line ? p.node : null].filter(Boolean).join("/");
 
 function parseHash() {
   const [view, key, kind] = decodeURIComponent(location.hash.slice(1)).split("/");
@@ -1858,6 +1939,7 @@ function parseHash() {
   if (view === "moves") return { view, move: key };
   if (view === "trainers") return { view, trainer: key };
   if (view === "calc" || view === "sim" || view === "alpha") return { view };
+  if (view === "battle") return { view, line: key, node: kind };
   return null;
 }
 
@@ -1883,6 +1965,7 @@ async function restore(p) {
     else if (p.view === "moves" && p.move) await openMove(p.move);
     else if (p.view === "tables" && p.area) await openTable(p.area, p.kind);
     else if (p.view === "trainers" && p.trainer) await openTrainer(p.trainer);
+    else if (p.view === "battle" && p.line) await openBattle(p.line, p.node);
     else await setView(p.view || "tables");
   } finally { RESTORING = false; }
   drawBack();
@@ -3133,12 +3216,551 @@ function drawTrainerRight() {
     <section class="card">${battleCard()}</section>`;
 }
 
+// ---- the battle (the line tester) ----------------------------------------
+// docs/oxide/line-tester.md. Ian's party against a trainer on the readings'
+// own simulator and trainer AI. Every number comes from the line tester's
+// worker (linetester.py) through /api/battle; the page works nothing out.
+// A position is a node of the line's tree; a turn is played from one with
+// Ian's action and any checks he pins, and lands on a new node.
+let BT = { line: null, node: 0, view: null, action: null, pins: {}, preview: null, outcomes: null,
+           follow: null, needs: null, fights: null, box: null, slug: null, seed: "1", six: [], moves: {},
+           items: {}, itemRule: true, branch: "", lines: null, busy: false };
+
+const bt = (op, args) => api("/api/battle", { method: "POST", headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(Object.assign({ op }, args || {})) });
+const btPct = p => p == null ? "" : (p * 100).toFixed(p >= 0.1 || p === 0 ? 0 : p >= 0.01 ? 1 : 2) + "%";
+const btSame = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
+async function battleShown() {
+  try {
+    if (!BT.fights) {
+      BT.fights = (await bt("fights")).fights;
+      if (!BT.slug && BT.fights.length) BT.slug = (BT.fights.find(f => f.slug === "gardenia") || BT.fights[0]).slug;
+    }
+    if (!BT.lines) BT.lines = (await bt("lines")).lines;
+  } catch (e) { toast(e.message, true); }
+  drawBattle();
+}
+
+// The calculator's Fight button (which hands over the new line's first
+// position), and a link or a reload with a line in it.
+async function openBattle(line, node, view) {
+  await setView("battle");
+  BT.busy = true; drawBattle();
+  try {
+    const out = view ? { view } : BT.line === line ? await bt("view", { line, node: Number(node || 0) })
+      : await bt("open", { line, node: Number(node || 0) });
+    BT.line = line;
+    btLand(out.view);
+    if (out.diffs && out.diffs.length)
+      toast(`Reloaded with ${out.diffs.length} difference${out.diffs.length > 1 ? "s" : ""}: ${out.diffs[0].why}`, true);
+    BT.lines = (await bt("lines")).lines;
+  } catch (e) { toast(e.message, true); }
+  BT.busy = false;
+  drawBattle();
+  remember();
+}
+
+// A new position on screen: its turn's choices start afresh.
+function btLand(view) {
+  BT.view = view; BT.node = view.node; BT.action = null; BT.pins = {}; BT.preview = null;
+  BT.outcomes = null; BT.follow = null; BT.needs = null;
+}
+
+function drawBattle() {
+  drawBtLeft(); drawBtMid(); drawBtRight();
+}
+
+function drawBtLeft() {
+  const fights = BT.fights || [];
+  const box = BT.box;
+  let h = `<div class="card"><h2>New battle</h2>
+    <p class="sub">From a reading's box, here, or from your calculator party: press Fight under it in the Calc
+      tab.</p>
+    <label>Fight <select id="btfight">${fights.map(f => `<option value="${esc(f.slug)}"${f.slug === BT.slug ? " selected" : ""}>${esc(f.name)}, ${esc(f.split)}'s split</option>`).join("")}</select></label>
+    <div class="row"><label class="inline">Box <select id="btseed">${["1", "2", "3"].map(s => `<option${s === BT.seed ? " selected" : ""}>${s}</option>`).join("")}</select></label>
+      <button id="btloadbox"${BT.busy ? " disabled" : ""}>Load the box</button></div>`;
+  if (box) h += btBoxPicker(box);
+  h += `</div>`;
+  h += `<div class="card"><h2>Lines</h2>`;
+  if (BT.line) h += `<div class="row"><input id="btname" value="${esc(BT.line)}" spellcheck="false" style="flex:1">
+      <button id="btrename" title="Rename this line's file">Rename</button></div>
+    <div class="row"><button id="bttranscript">Transcript</button>
+      <span class="sub">Saved after every change, in ~/oxide-lines/.</span></div>
+    <div class="row"><input id="btagain" placeholder="a branch, or empty for this tree" spellcheck="false"
+        value="${esc((BT.view && BT.view.branch) || "")}" style="flex:1">
+      <button id="btagaingo" title="The same party against this fight's trainer read from that branch, as a new line">Fight again</button></div>`;
+  const lines = (BT.lines || []).slice(0, 14);
+  h += lines.length ? lines.map(l => `<div class="row"><button class="linkish" data-openline="${esc(l.name)}"
+      title="${esc(l.label || l.fight)}, saved ${esc(l.saved || "")} at ${esc(l.commit || "?")}">${esc(l.name)}</button>
+      <span class="sub">${l.nodes} position${l.nodes === 1 ? "" : "s"}${l.name === BT.line ? ", open" : ""}</span></div>`).join("")
+    : `<p class="sub">No saved lines yet.</p>`;
+  h += `</div>`;
+  if (BT.view) h += btTreeCard(BT.view.tree);
+  $("#btleft").innerHTML = h;
+}
+
+function btBoxPicker(box) {
+  const members = box.members;
+  const by = Object.fromEntries(members.map(m => [m.label, m]));
+  let h = `<p class="sub">${esc(box.name)}, box ${box.seed}: level ${box.level}, ${members.length} members, against
+    ${esc(box.foes.join(", "))}.${box.reading ? ` The reading of ${esc(box.reading.when)} (run ${esc(box.reading.run)})
+    chose the six ticked.` : " No reading has chosen a six from this box yet."}</p>
+    <div class="bttree" style="max-height:220px;overflow-y:auto">${members.map(m => `<label class="btpick">
+      <input type="checkbox" data-pick="${esc(m.label)}"${BT.six.includes(m.label) ? " checked" : ""}>
+      ${icon(m.constant)} <span>${esc(m.label)}</span> <span class="sub">${esc(m.ability || "")}, ${esc(m.area || "")}</span></label>`).join("")}</div>`;
+  if (BT.six.length) {
+    h += `<label class="inline"><input type="checkbox" id="btitemrule"${BT.itemRule ? " checked" : ""}> Items by the scorer's own rule</label>`;
+    const stock = Object.entries(box.items || {});
+    BT.six.forEach((label, i) => {
+      const m = by[label];
+      if (!m) return;
+      const mv = BT.moves[label] || [];
+      h += `<div class="btset"><b>${i + 1}. ${esc(label)}${i === 0 ? " (leads)" : ""}</b>
+        <div class="mvs">${[0, 1, 2, 3].map(k => `<select data-mv="${esc(label)}" data-k="${k}"><option value="">-</option>${m.pool.map(p => `<option${mv[k] === p ? " selected" : ""}>${esc(p)}</option>`).join("")}</select>`).join("")}</div>
+        ${BT.itemRule ? "" : `<select data-item="${esc(label)}"><option value="">no item</option>${stock.map(([it, n]) => `<option value="${esc(it)}"${BT.items[label] === it ? " selected" : ""}>${esc(it)} (${n} held by the split)</option>`).join("")}</select>`}</div>`;
+    });
+    h += `<label>The trainer's file from another branch (empty: this tree)
+      <input id="btbranch" value="${esc(BT.branch)}" placeholder="for example balance-galactic" spellcheck="false"></label>
+      <div class="row"><button class="btgo" id="btstart"${BT.busy ? " disabled" : ""}>Fight</button>
+      <span class="sub">The first one in leads; the order is the order you tick them.</span></div>`;
+  }
+  return h;
+}
+
+function btTreeCard(tree) {
+  const kids = {};
+  tree.nodes.forEach(n => { if (n.parent != null) (kids[n.parent] = kids[n.parent] || []).push(n); });
+  const rows = [];
+  const walk = (n, depth) => {
+    const what = n.kind === "root" ? "Start" : n.kind === "set" ? "Set by hand"
+      : `T${n.turn}: ${n.action}${n.ai ? ` / ${n.ai}` : ""}`;
+    const ch = n.chance != null && n.kind === "turn" ? ` ${btPct(n.chance)}` + (n.path != null && n.path !== n.chance
+      ? `, path ${btPct(n.path)}` : "") : "";
+    rows.push(`<span class="n${n.id === BT.node ? " on" : ""}${n.finished ? " " + n.finished : ""}" data-node="${n.id}"
+      style="padding-left:${4 + depth * 12}px" title="${esc((n.summary || "") + (n.note ? " | note: " + n.note : ""))}">${esc(what)}${esc(ch)}
+      <span class="sub">${esc(n.me)} vs ${esc(n.foe)}${n.faints ? `, ${n.faints} down` : ""}</span></span>`);
+    (kids[n.id] || []).forEach(c => walk(c, depth + 1));
+  };
+  const root = tree.nodes.find(n => n.parent == null);
+  if (root) walk(root, 0);
+  const s = tree.summary;
+  const played = tree.nodes.some(n => n.kind === "turn");
+  return `<div class="card"><h2>The tree</h2>
+    <p class="sub">${played ? `Your latest choices cover ${btPct(s.covered)} of the chance; ${btPct(s.won_of_covered)} of
+      that ends in a win (${btPct(s.won)} of all). From the played leaves alone, each outcome of the overview once.`
+      : "No turn played yet."}</p>
+    <div class="bttree">${rows.join("")}</div></div>`;
+}
+
+function btMonCard(m, who) {
+  const share = m.maxhp ? m.hp / m.maxhp : 0;
+  const cls = share <= 0.2 ? "crit" : share <= 0.5 ? "low" : "";
+  const stages = Object.entries(m.stages || {}).map(([k, v]) => `${k} ${v > 0 ? "+" : ""}${v}`).join(", ");
+  return `<div class="btmon">${icon(m.constant)}
+    <div><span class="nm">${esc(m.species)}</span> <span class="sub">level ${m.level}, ${(m.types || []).map(t => typeChip(t.toUpperCase(), "mini", t)).join("")}</span></div>
+    <div><div class="hpbar"><span class="${cls}" style="width:${(100 * share).toFixed(1)}%"></span></div>
+      <span class="num">${m.hp}/${m.maxhp}</span> <span class="sub">${(100 * share).toFixed(1)}%</span>
+      ${m.status ? `<b>${esc(m.status_words || m.status)}</b>${m.status === "slp" ? ` (${m.sleep})` : ""}` : ""}</div>
+    <div class="sub">${esc(m.ability || "")}; ${esc(m.item || "no item")}; speed <b class="num">${m.speed ?? "-"}</b>
+      ${stages ? `; ${esc(stages)}` : ""}${m.volatile && m.volatile.length ? `; ${esc(m.volatile.join(", "))}` : ""}</div></div>`;
+}
+
+function btBench(side) {
+  return `<div class="btbench">${side.mons.filter(m => !m.active).map(m => `<span class="${m.alive ? "" : "down"}"
+    title="${esc(m.ability || "")}; ${esc(m.item || "no item")}">${esc(m.species)} ${m.hp}/${m.maxhp}${m.status ? " " + esc(m.status) : ""}</span>`).join("")}</div>`;
+}
+
+function btSideText(s) {
+  const bits = [];
+  Object.entries(s.screens || {}).forEach(([k, v]) => bits.push(`${k} ${v}`));
+  if (s.aurora_veil) bits.push(`Aurora Veil ${s.aurora_veil}`);
+  if (s.tailwind) bits.push(`Tailwind ${s.tailwind}`);
+  if (s.safeguard) bits.push(`Safeguard ${s.safeguard}`);
+  if (s.mist) bits.push(`Mist ${s.mist}`);
+  const hz = s.hazards || {};
+  if (hz.rocks) bits.push("Stealth Rock");
+  if (hz.spikes) bits.push(`Spikes x${hz.spikes}`);
+  if (hz.tspikes) bits.push(`Toxic Spikes x${hz.tspikes}`);
+  if (s.web) bits.push("Sticky Web");
+  return bits.join(", ") || "nothing";
+}
+
+function btDamageTable(rows, att, dfn) {
+  if (!rows.length) return `<p class="sub">No damaging move.</p>`;
+  return `<table class="grid"><thead><tr><th>${esc(att)}'s move</th><th class="num">Damage</th><th class="num">Share</th>
+    <th class="num">Critical</th><th class="num">KO now</th></tr></thead><tbody>${rows.map(r => {
+      const lo = r.rolls[0], hi = r.rolls[r.rolls.length - 1];
+      const clo = r.crit_rolls[0], chi = r.crit_rolls[r.crit_rolls.length - 1];
+      return `<tr><td>${esc(r.move)}${r.priority ? ` <span class="sub">(priority ${r.priority > 0 ? "+" : ""}${r.priority})</span>` : ""}
+        <details><summary>${r.rolls.length} rolls${r.note ? ", " + esc(r.note) : ""}</summary>
+        <div class="btrolls">${r.rolls.map((d, i) => `${d} (${r.pct[i]}%)`).join(" ")}<br>critical (${btPct(r.crit_rate)}): ${r.crit_rolls.map((d, i) => `${d} (${r.crit_pct[i]}%)`).join(" ")}</div></details></td>
+        <td class="num">${lo}-${hi}</td><td class="num">${r.pct[0]}-${r.pct[r.pct.length - 1]}%</td>
+        <td class="num">${clo}-${chi} <span class="sub">${btPct(r.crit_rate)}</span></td>
+        <td class="p">${btPct(r.ko_chance)}${r.holds ? `<br><span class="sub">holds at 1 HP</span>` : ""}</td></tr>`;
+    }).join("")}</tbody></table><p class="sub">KO now: from ${esc(dfn)}'s HP now, with the critical hit at its rate.</p>`;
+}
+
+function btAiCard(v) {
+  const ai = v.ai, sc = v.scores;
+  const quickCases = ai.by_quick.length > 1;
+  let h = `<div class="card"><h2>The trainer's choice</h2><table class="grid"><thead><tr><th>Choice</th><th class="num">Odds</th>
+    ${quickCases ? ai.by_quick.map(q => `<th class="num" title="Quick Claw rolls: ${esc(JSON.stringify(q.quick))}">${btPct(q.p)} case</th>`).join("") : ""}
+    </tr></thead><tbody>${ai.odds.map(([lab, p]) => `<tr><td>${esc(lab)}</td><td class="p">${btPct(p)}</td>
+      ${quickCases ? ai.by_quick.map(q => { const r = q.odds.find(x => x[0] === lab); return `<td class="num">${r ? btPct(r[1]) : "-"}</td>`; }).join("") : ""}</tr>`).join("")}</tbody></table>`;
+  if (quickCases) h += `<p class="sub">The odds are mixed over the turn's Quick Claw rolls, which the AI reads; each case's own odds beside them.</p>`;
+  if (sc.forced) h += `<p class="sub">It must use ${esc(sc.forced)}.</p>`;
+  else {
+    if (Object.keys(sc.switch || {}).length)
+      h += `<p class="sub">Its switch rules fire: ${Object.entries(sc.switch).map(([k, p]) => `${esc(k)} ${btPct(p)}`).join(", ")}.</p>`;
+    h += `<details><summary>Each move's score (the highest wins, ties at random)</summary><table class="grid"><tbody>${sc.slots.map(s => `<tr>
+      <td>${esc(s.move)}</td><td class="num">${s.figure ?? "-"}</td><td>${s.scores.map(([x, p]) => `${x}: ${btPct(p)}`).join(", ")}</td></tr>`).join("")}</tbody></table>
+      <p class="sub">The middle column is the AI's damage figure for the move, with no Quick Claw fired.</p></details>`;
+  }
+  return h + `</div>`;
+}
+
+function btEditCard(v) {
+  const statuses = [["", "healthy"], ["par", "paralysed"], ["slp", "asleep"], ["psn", "poisoned"], ["tox", "badly poisoned"],
+                    ["brn", "burned"], ["frz", "frozen"]];
+  const side = (s, name) => `<h3>${name === "player" ? "Yours" : "The trainer's"}</h3>
+    <div class="btedit"><label>In <select data-e="${name}.active">${s.mons.map((m, i) => `<option value="${i}"${m.active ? " selected" : ""}>${esc(m.species)}</option>`).join("")}</select></label>
+    ${s.mons.map((m, i) => `<label>${esc(m.species)} HP <input type="number" min="0" max="${m.maxhp}" value="${m.hp}" data-e="${name}.mons.${i}.hp"></label>
+      <label>its status <select data-e="${name}.mons.${i}.status">${statuses.map(([k, w]) => `<option value="${k}"${(m.status || "") === k ? " selected" : ""}>${w}</option>`).join("")}</select></label>`).join("")}
+    ${["atk", "def", "spa", "spd", "spe", "acc", "eva"].map(k => { const m = s.mons[s.active]; return `<label>${esc(m.species)} ${k} <input type="number" min="-6" max="6" value="${(m.stages || {})[k] || 0}" data-e="${name}.mons.${s.active}.stages.${k}"></label>`; }).join("")}
+    <label>${esc(s.mons[s.active].species)} item <input value="${esc(s.mons[s.active].item || "")}" data-e="${name}.mons.${s.active}.item"></label>
+    <label>Reflect turns <input type="number" min="0" value="${(s.screens || {}).Reflect || 0}" data-e="${name}.screens.Reflect"></label>
+    <label>Light Screen turns <input type="number" min="0" value="${(s.screens || {})["Light Screen"] || 0}" data-e="${name}.screens.Light Screen"></label>
+    <label>Tailwind turns <input type="number" min="0" value="${s.tailwind || 0}" data-e="${name}.tailwind"></label>
+    <label>Stealth Rock <input type="number" min="0" max="1" value="${(s.hazards || {}).rocks || 0}" data-e="${name}.hazards.rocks"></label>
+    <label>Spikes <input type="number" min="0" max="3" value="${(s.hazards || {}).spikes || 0}" data-e="${name}.hazards.spikes"></label>
+    <label>Toxic Spikes <input type="number" min="0" max="2" value="${(s.hazards || {}).tspikes || 0}" data-e="${name}.hazards.tspikes"></label></div>`;
+  const f = v.field;
+  return `<div class="card"><details><summary>Set this position by hand (a new position under this one)</summary>
+    ${side(v.player, "player")}${side(v.trainer, "trainer")}
+    <h3>The field</h3><div class="btedit">
+    <label>Weather <select data-e="field.weather">${["", "Sun", "Rain", "Sand", "Hail"].map(w => `<option value="${w}"${(f.weather || "") === w ? " selected" : ""}>${w || "none"}</option>`).join("")}</select></label>
+    <label>Its turns (0 lasts) <input type="number" min="0" value="${f.weather_turns || 0}" data-e="field.weather_turns"></label>
+    <label>Trick Room turns <input type="number" min="0" value="${f.trick_room || 0}" data-e="field.trick_room"></label></div>
+    <div class="row"><button id="btsetgo">Make this position</button></div></details></div>`;
+}
+
+function drawBtMid() {
+  const v = BT.view;
+  if (!v) {
+    $("#btmid").innerHTML = `<p class="sub">${BT.busy ? "Working: the first battle starts the simulator, about ten seconds." :
+      "Start a battle on the left, from a reading's box, or press Fight under the calculator's party in the Calc tab."}</p>`;
+    return;
+  }
+  const me = v.player.mons[v.player.active], foe = v.trainer.mons[v.trainer.active];
+  const f = v.field;
+  const fieldBits = [f.weather ? `${f.weather}${f.weather_turns ? ` (${f.weather_turns} turns left)` : " (lasting)"}` : "no weather",
+                     f.trick_room ? `Trick Room ${f.trick_room > 900 ? "lasting" : f.trick_room}` : "",
+                     f.gravity ? `Gravity ${f.gravity}` : "", f.magic_room ? `Magic Room ${f.magic_room}` : "",
+                     f.wonder_room ? `Wonder Room ${f.wonder_room}` : "", f.fog ? "deep fog" : ""].filter(Boolean);
+  const o = v.order || {};
+  let h = `<div class="card"><div class="row" style="justify-content:space-between"><h2>${esc(v.label)}</h2>
+      <span class="sub">${esc(v.line)}, position ${v.node}, turn ${f.turn + 1}${v.branch ? `, the trainer from ${esc(v.branch)}` : ""}</span></div>
+    ${v.finished ? `<p class="headline ${v.finished === "won" ? "good" : "bad"}">${v.finished === "won" ? "Won" : "Lost"}</p>` : ""}
+    <p class="sub">Field: ${esc(fieldBits.join(", "))}. Your side: ${esc(btSideText(v.player))}. Theirs: ${esc(btSideText(v.trainer))}.</p></div>
+    <div class="btsides"><div class="card"><h3>Yours</h3>${btMonCard(me)}${btBench(v.player)}</div>
+      <div class="card"><h3>The trainer's</h3>${btMonCard(foe)}${btBench(v.trainer)}</div></div>`;
+  if (!v.finished) {
+    h += `<div class="card"><h2>Speed and order</h2><p>${esc(me.species)} <b class="num">${o.mine}</b>, ${esc(foe.species)}
+      <b class="num">${o.theirs}</b>${o.trick_room ? " under Trick Room" : ""}: at equal priority, ${esc(o.first)}.</p>
+      ${(o.quick || []).map(q => `<p class="sub">${esc(q)}</p>`).join("")}
+      ${Object.keys(o.priority || {}).length ? `<p class="sub">Priority: ${Object.entries(o.priority).map(([k, p]) => `${esc(k)} ${p > 0 ? "+" : ""}${p}`).join(", ")}.</p>` : ""}</div>`;
+    h += btAiCard(v);
+    h += `<div class="card"><h2>Damage</h2>${btDamageTable(v.damage.mine, me.species, foe.species)}
+      ${btDamageTable(v.damage.theirs, foe.species, me.species)}</div>`;
+  }
+  const warns = (v.warnings.gaps || []).concat(v.warnings.rules || []);
+  if (warns.length) h += `<div class="card"><h2>Warnings</h2>${warns.map(w => `<p class="btwarn">${esc(w)}</p>`).join("")}
+    <p class="sub">Warnings only: nothing is blocked.</p></div>`;
+  if (!v.finished) h += btEditCard(v);
+  h += `<div class="card"><details><summary>The game did something else here</summary>
+    <p class="sub">Saves this position, the path to it and your note under ~/oxide-lines/mismatches/, for the Overseer.</p>
+    <textarea id="btnote" rows="3" style="width:100%" placeholder="What the game did"></textarea>
+    <div class="row"><button id="btmismatch">Save the note</button></div></details></div>`;
+  $("#btmid").innerHTML = h;
+}
+
+// One check's control: its options with their odds, chance by default.
+function btCheckRow(ch, pinnable) {
+  const pinned = Object.prototype.hasOwnProperty.call(BT.pins, ch.key);
+  const opt = (i) => {
+    let t = ch.options[i];
+    if (ch.probs) t += ` (${btPct(ch.probs[i])})`;
+    const r = ch.rolls;
+    if (r && r.dmg && r.dmg[i] != null) t += `: ${r.dmg[i]}` + (r.hp != null ? `, leaves ${Math.max(0, r.hp - r.dmg[i])}` : "");
+    return t;
+  };
+  const value = i => ch.kind === "ai" ? ch.options[i] : ch.values ? ch.values[i] : i;
+  let ctl = "";
+  if (pinnable && ch.options && ch.options.length > 1) {
+    ctl = `<select data-pin="${esc(ch.key)}" data-kind="${esc(ch.kind)}"><option value="">${ch.kind === "replacement" && ch.side === "p" ? "choose when it happens" : "left to chance"}</option>
+      ${ch.options.map((_o, i) => `<option value="${esc(String(value(i)))}"${pinned && String(BT.pins[ch.key]) === String(value(i)) ? " selected" : ""}>${esc(opt(i))}</option>`).join("")}</select>`;
+  } else ctl = `<span class="sub">${esc(opt(ch.outcome))}</span>`;
+  const how = pinnable ? (pinned ? "pinned" : ch.how === "likeliest" ? `left to chance; shown at its likeliest, ${esc(opt(ch.outcome))}` : esc(ch.how))
+    : `${esc(ch.how)}: ${esc(opt(ch.outcome))}`;
+  return `<div class="btcheck${pinned ? " pinned" : ""}"><span class="lbl">${esc(ch.label)}</span>${pinnable ? ctl : ""}<span class="how">${how}</span></div>`;
+}
+
+function btOutcomeRow(o) {
+  const hp = o.hp.map(x => `${esc(x.species)} ${x.lo === x.hi ? x.lo : `${x.lo}-${x.hi}`}/${x.maxhp}`).join(", ");
+  const following = BT.follow && BT.follow.index === o.index;
+  let h = `<div class="btout${following ? " on" : ""}"><div class="top"><span><span class="pc">${btPct(o.chance)}</span>
+    ${esc(o.ai)}${o.quick.length ? ", a Quick Claw fires" : ""}</span><button data-follow="${o.index}">Follow</button></div>
+    <span class="ev">${o.events.map(e => esc(e.text)).join("; ") || "no chance checks"}</span>
+    <span>${hp ? `After: ${hp}` : "No HP changes"}${o.faints.length ? `; <b>${esc(o.faints.join(", "))} faint${o.faints.length > 1 ? "" : "s"}</b>` : ""}${o.members > 1 ? ` <span class="sub">(${o.members} like positions merged)</span>` : ""}</span>`;
+  if (following) {
+    const bands = o.events.filter(e => e.band);
+    h += bands.map(e => `<label>${esc(e.text)}<select data-band="${esc(e.key)}"><option value="">the band's worst for you, or drawn (below)</option>
+      ${e.band.map((r, i) => `<option value="${r}"${BT.follow.rolls[e.key] === r ? " selected" : ""}>roll ${r + 1}: ${e.dmg[i]}${e.hp != null ? `, leaves ${Math.max(0, e.hp - e.dmg[i])}` : ""}</option>`).join("")}</select></label>`).join("");
+    h += `<div class="row"><button class="btgo" data-followgo="worst">Play it, worst for you</button>
+      <button data-followgo="draw">Play it, a roll drawn in each band</button></div>`;
+  }
+  return h + `</div>`;
+}
+
+function drawBtRight() {
+  const v = BT.view;
+  if (!v) { $("#btright").innerHTML = ""; return; }
+  let h = "";
+  if (v.kind === "turn" && v.checks.length) {
+    h += `<div class="card"><h2>The turn that led here</h2>${v.checks.map(ch => btCheckRow(ch, false)).join("")}
+      ${v.chance != null ? `<p class="sub">It fell in an outcome of ${btPct(v.chance)} in the overview${v.path_chance != null
+        && v.path_chance !== v.chance ? `; this position's chance along its path is ${btPct(v.path_chance)}` : ""}.</p>` : ""}
+      ${(v.dropped || []).map(d => `<p class="btwarn">Pin dropped: ${esc(d.label)} (${esc(d.why)}).</p>`).join("")}</div>`;
+  }
+  if (BT.needs) {
+    h += `<div class="card"><h2>Send in a Pokemon</h2><p>${esc(BT.needs.why)}: who comes in?</p>
+      <div class="btmenu">${BT.needs.options.map(o => `<button data-replace="${o.index}">${esc(o.species)}</button>`).join("")}</div></div>`;
+  }
+  if (v.finished) {
+    h += `<div class="card"><p>The battle is ${esc(v.finished)} at this position. Open another position in the tree to play on.</p></div>`;
+    $("#btright").innerHTML = h;
+    return;
+  }
+  const menu = v.menu;
+  const isOn = a => BT.action && btSame(BT.action, a);
+  h += `<div class="card"><h2>Your move</h2><div class="btmenu">${menu.moves.map(m => `<button data-act='${esc(JSON.stringify(["move", m.name]))}'
+      ${m.ok ? "" : "disabled"} class="${isOn(["move", m.name]) ? "on" : ""}" title="${esc(m.why || `${m.type || ""} ${m.cat || ""}`)}">${esc(m.name)}${m.maxpp ? ` <span class="sub">${m.pp}/${m.maxpp}</span>` : ""}</button>`).join("")}</div>
+    <div class="btmenu">${menu.switches.map(s => `<button data-act='${esc(JSON.stringify(["switch", s.index]))}' class="${isOn(["switch", s.index]) ? "on" : ""}">
+      to ${esc(s.species)} <span class="sub">${s.hp}/${s.maxhp}</span></button>`).join("")}${menu.trapped ? `<span class="sub">Trapped: no switch.</span>` : ""}</div></div>`;
+  if (BT.action && BT.preview) {
+    h += `<div class="card"><h2>Its chance checks</h2><p class="sub">In order, each left to chance unless you pin it. A pin
+      can change the checks after it, so the list is made again each time.</p>
+      ${BT.preview.checks.map(ch => btCheckRow(ch, true)).join("") || `<p class="sub">This turn makes no chance check.</p>`}
+      ${(BT.preview.dropped || []).map(d => `<p class="btwarn">Pin dropped: ${esc(d.label)} (${esc(d.why)}).</p>`).join("")}
+      <div class="row"><button class="btgo" id="btplay"${BT.busy ? " disabled" : ""}>Play</button>
+        <button id="btroll"${BT.busy ? " disabled" : ""} title="Play with nothing pinned">Roll</button>
+        <button id="btclear"${Object.keys(BT.pins).length ? "" : " disabled"}>Clear the pins</button></div></div>`;
+    h += `<div class="card"><h2>Every way it can go</h2>`;
+    if (!BT.outcomes) h += `<p class="sub">The planner's own enumeration of this turn: each line an outcome with its chance,
+      most likely first. Following one plays an exact roll inside its band.</p><div class="row"><button id="btoverview">Show the outcomes</button></div>`;
+    else h += `<p class="sub">${BT.outcomes.length} outcomes. Each damage band is played at an exact roll when you follow it.</p>`
+      + BT.outcomes.map(btOutcomeRow).join("");
+    h += `</div>`;
+  }
+  $("#btright").innerHTML = h;
+}
+
+async function btPreview() {
+  if (!BT.action) return;
+  try { BT.preview = await bt("checks", { line: BT.line, node: BT.node, action: BT.action, pins: BT.pins }); }
+  catch (e) { toast(e.message, true); }
+  drawBtRight();
+}
+
+// After a play: the new position, or a Pokemon still to choose.
+async function btAfterPlay(out) {
+  if (out.needs) {
+    BT.needs = Object.assign({}, out.needs, { pins: out.pins, seed: out.seed, action: BT.action,
+                                              followed: out.followed });
+    drawBtRight();
+    return;
+  }
+  btLand(out.view);
+  drawBattle();
+  remember();
+}
+
+async function btPlay(pins, seed) {
+  BT.busy = true; drawBtRight();
+  try { await btAfterPlay(await bt("play", { line: BT.line, node: BT.node, action: BT.action, pins, seed })); }
+  catch (e) { toast(e.message, true); }
+  BT.busy = false;
+  drawBtRight();
+}
+
+$("#btleft").addEventListener("change", async ev => {
+  const t = ev.target;
+  if (t.id === "btfight") { BT.slug = t.value; BT.box = null; BT.six = []; drawBtLeft(); }
+  else if (t.id === "btseed") { BT.seed = t.value; BT.box = null; BT.six = []; drawBtLeft(); }
+  else if (t.dataset.pick) {
+    const label = t.dataset.pick;
+    BT.six = t.checked ? BT.six.concat([label]).slice(0, 6) : BT.six.filter(x => x !== label);
+    if (t.checked && !BT.moves[label]) {
+      const m = BT.box.members.find(x => x.label === label);
+      BT.moves[label] = m ? m.pool.slice(-4) : [];
+    }
+    drawBtLeft();
+  } else if (t.id === "btitemrule") { BT.itemRule = t.checked; drawBtLeft(); }
+  else if (t.dataset.mv) {
+    const mv = BT.moves[t.dataset.mv] = (BT.moves[t.dataset.mv] || []).slice();
+    mv[Number(t.dataset.k)] = t.value;
+  } else if (t.dataset.item) BT.items[t.dataset.item] = t.value;
+  else if (t.id === "btbranch") BT.branch = t.value.trim();
+});
+
+$("#btleft").addEventListener("click", async ev => {
+  const t = ev.target.closest("button, .n");
+  if (!t) return;
+  if (t.id === "btloadbox") {
+    BT.busy = true; drawBtLeft();
+    try {
+      BT.box = await bt("box", { slug: BT.slug, seed: Number(BT.seed) });
+      const r = BT.box.reading;
+      BT.six = r ? r.six.slice(0, 6) : [];
+      BT.moves = {}; BT.items = {};
+      BT.box.members.forEach(m => { BT.moves[m.label] = (r && r.moves[m.label]) || m.pool.slice(-4); });
+    } catch (e) { toast(e.message, true); }
+    BT.busy = false; drawBtLeft();
+  } else if (t.id === "btstart") {
+    BT.busy = true; drawBattle();
+    try {
+      const items = BT.itemRule ? null : Object.fromEntries(BT.six.map(l => [l, BT.items[l] || null]));
+      const out = await bt("new", { source: "reading", slug: BT.slug, seed: Number(BT.seed), six: BT.six,
+        moves: Object.fromEntries(BT.six.map(l => [l, (BT.moves[l] || []).filter(Boolean)])), items,
+        branch: BT.branch || null });
+      BT.line = out.line;
+      btLand(out.view);
+      BT.lines = (await bt("lines")).lines;
+      remember();
+    } catch (e) { toast(e.message, true); }
+    BT.busy = false; drawBattle();
+  } else if (t.dataset.openline) {
+    await openBattle(t.dataset.openline, 0);
+  } else if (t.dataset.node != null) {
+    try {
+      btLand((await bt("view", { line: BT.line, node: Number(t.dataset.node) })).view);
+      drawBattle(); remember();
+    } catch (e) { toast(e.message, true); }
+  } else if (t.id === "btrename") {
+    const name = $("#btname").value.trim();
+    try {
+      const out = await bt("rename", { line: BT.line, name });
+      BT.line = out.line; BT.view.line = out.line;
+      BT.lines = (await bt("lines")).lines;
+      drawBattle(); remember();
+    } catch (e) { toast(e.message, true); }
+  } else if (t.id === "btagaingo") {
+    BT.busy = true; drawBattle();
+    try {
+      const out = await bt("again", { line: BT.line, branch: $("#btagain").value });
+      BT.line = out.line;
+      btLand(out.view);
+      BT.lines = (await bt("lines")).lines;
+      remember();
+    } catch (e) { toast(e.message, true); }
+    BT.busy = false; drawBattle();
+  } else if (t.id === "bttranscript") {
+    try {
+      const out = await bt("transcript", { line: BT.line });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([out.text], { type: "text/plain" }));
+      a.download = `${BT.line}.txt`;
+      a.click();
+    } catch (e) { toast(e.message, true); }
+  }
+});
+
+$("#btright").addEventListener("click", async ev => {
+  const t = ev.target.closest("button");
+  if (!t || t.disabled) return;
+  if (t.dataset.act) {
+    BT.action = JSON.parse(t.dataset.act); BT.pins = {}; BT.outcomes = null; BT.follow = null; BT.needs = null;
+    await btPreview();
+  } else if (t.id === "btplay") await btPlay(BT.pins, null);
+  else if (t.id === "btroll") await btPlay({}, null);
+  else if (t.id === "btclear") { BT.pins = {}; await btPreview(); }
+  else if (t.id === "btoverview") {
+    t.disabled = true;
+    try { BT.outcomes = (await bt("overview", { line: BT.line, node: BT.node, action: BT.action })).outcomes; }
+    catch (e) { toast(e.message, true); }
+    drawBtRight();
+  } else if (t.dataset.follow != null) {
+    const i = Number(t.dataset.follow);
+    BT.follow = BT.follow && BT.follow.index === i ? null : { index: i, rolls: {} };
+    drawBtRight();
+  } else if (t.dataset.followgo) {
+    BT.busy = true; drawBtRight();
+    try {
+      await btAfterPlay(await bt("follow", { line: BT.line, node: BT.node, action: BT.action, index: BT.follow.index,
+        mode: t.dataset.followgo, rolls: BT.follow.rolls }));
+    } catch (e) { toast(e.message, true); }
+    BT.busy = false; drawBtRight();
+  } else if (t.dataset.replace != null) {
+    const n = BT.needs;
+    const pins = Object.assign({}, n.pins, { [n.key]: Number(t.dataset.replace) });
+    BT.needs = null;
+    BT.busy = true; drawBtRight();
+    try {
+      await btAfterPlay(await bt("play", { line: BT.line, node: BT.node, action: n.action, pins, seed: n.seed,
+                                           followed: n.followed }));
+    }
+    catch (e) { toast(e.message, true); }
+    BT.busy = false; drawBtRight();
+  }
+});
+
+$("#btright").addEventListener("change", async ev => {
+  const t = ev.target;
+  if (t.dataset.pin) {
+    if (t.value === "") delete BT.pins[t.dataset.pin];
+    else BT.pins[t.dataset.pin] = t.dataset.kind === "ai" ? t.value : Number(t.value);
+    await btPreview();
+  } else if (t.dataset.band) {
+    if (t.value === "") delete BT.follow.rolls[t.dataset.band];
+    else BT.follow.rolls[t.dataset.band] = Number(t.value);
+  }
+});
+
+$("#btmid").addEventListener("click", async ev => {
+  const t = ev.target.closest("button");
+  if (!t) return;
+  if (t.id === "btsetgo") {
+    const edits = {};
+    document.querySelectorAll("#btmid [data-e]").forEach(el => {
+      const path = el.dataset.e.split(".");
+      let o = edits;
+      for (let i = 0; i < path.length - 1; i++) o = o[path[i]] = o[path[i]] || {};
+      const k = path[path.length - 1];
+      o[k] = el.type === "number" ? Number(el.value) : el.value;
+    });
+    try {
+      btLand((await bt("set", { line: BT.line, node: BT.node, edits })).view);
+      drawBattle(); remember();
+    } catch (e) { toast(e.message, true); }
+  } else if (t.id === "btmismatch") {
+    try {
+      const out = await bt("mismatch", { line: BT.line, node: BT.node, note: $("#btnote").value });
+      toast(`Saved: ${out.path}`);
+      btLand((await bt("view", { line: BT.line, node: BT.node })).view);
+      drawBattle();
+    } catch (e) { toast(e.message, true); }
+  }
+});
+
 async function setView(view) {
   VIEW = view;
   $("nav#views").querySelectorAll("button").forEach(b =>
     b.classList.toggle("on", b.dataset.view === view));
-  $("main:not(#dexmain):not(#movemain):not(#calcmain):not(#simmain):not(#trainmain):not(#alphamain)").hidden = view !== "tables";
+  $("main:not(#dexmain):not(#movemain):not(#calcmain):not(#simmain):not(#trainmain):not(#alphamain):not(#btmain)").hidden = view !== "tables";
   $("#simmain").hidden = view !== "sim";
+  $("#btmain").hidden = view !== "battle";
+  if (view === "battle") battleShown();
   $("#alphamain").hidden = view !== "alpha";
   if (view === "alpha" && !ALPHA) loadAlpha();
   $("#trainmain").hidden = view !== "trainers";
