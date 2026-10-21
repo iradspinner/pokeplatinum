@@ -1,6 +1,6 @@
 # The line tester
 
-A Battle tab for the OxiDex, planned on 2026-10-14 and not yet built. Ian sets up a party, presses Fight against a trainer's team, and plays his hand-made line turn by turn on the same simulator and trainer AI the readings use, seeing the AI's odds for every move and every way each turn can go. When it is built: the tracker's Scheduled list holds it, once every simulator fix has landed.
+A Battle tab for the OxiDex, planned on 2026-10-14; version 1 landed at 5b14152df on 2026-10-21. Ian sets up a party, presses Fight against a trainer's team, and plays his hand-made line turn by turn on the same simulator and trainer AI the readings use, seeing the AI's odds for every move and every way each turn can go. When it is built: the tracker's Scheduled list holds it, once every simulator fix has landed.
 
 ## Summary
 
@@ -26,7 +26,7 @@ Version 1 is done when these checks pass:
 1. The calc's Fight button opens a battle of its party against the trainer on the calc's right side (a headless browser test, then Ian once).
 2. The page's AI odds equal `plplan.ai_distribution`'s in every position of a test line, mixed over the turn's Quick Claw rolls (a test).
 3. The page's overview of a turn's outcomes equals the simulator's own enumeration, and following one continues from an exact roll inside its band (the one Ian picks, the band's worst for him, or one drawn at its odds), never from the band's stand-in (a test).
-4. Ian's Gardenia box 3 line, built by the snippet at the end, shows the speeds, damage ranges and AI odds the snippet prints on the same tree (the helper checks, then Ian looks).
+4. Ian's Gardenia box 3 line, built by the snippet at the end (from the catches of 2026-10-13, since box 3 lost Bounsweet and Seedot when each box became one run on 2026-10-15), shows the speeds, damage ranges and AI odds the snippet prints on the same tree (the helper checks, then Ian looks).
 5. The diff touches only the OxiDex, one new module and one new calc patch, and the simulator, AI and scorer files are unchanged (`git diff --stat`).
 6. A pinned check plays exactly as pinned and the rest are drawn at real odds: over many plays of one turn with nothing pinned, each check's outcomes come up at their odds, and with a crit, a roll or the AI's move pinned, that check never varies while the others still do (a test).
 
