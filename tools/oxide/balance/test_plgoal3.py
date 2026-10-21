@@ -289,6 +289,48 @@ def web_checks():
     return out
 
 
+def planned_checks():
+    """The planned-box sample (Ian, 2026-10-15): the option adds the planning
+    player's box to the four sample fights only, read in play order like a
+    seed; its catches keep the planner's waits; it reads as any box does,
+    and the summary shows it beside the random boxes, outside their pool."""
+    out = []
+    todo = g.jobs(None, ("boss",), g.SEEDS, True)
+    planned = [slug for slug, s in todo if s == g.PLANNED]
+    w = g.waits_on(("gardenia", g.PLANNED), todo)
+    out.append(("the option adds the planned box to Mars 1, Gardenia, Maylene and Wake, read in play order",
+                planned == list(g.PLANNED_FIGHTS) and ("mars_1", g.PLANNED) in w and ("gardenia", 1) in w
+                and not any(s == g.PLANNED for _x, s in g.jobs(None, ("boss",), g.SEEDS))
+                and g.box_dir("t", "wake", g.PLANNED).endswith("boxplanned"), f"{planned}; Gardenia waits on {w}"))
+    plan = g.planned("Gardenia")
+    waited = [c for c in plan[1:] if c.place is None]
+    by = {f["slug"]: f for f in g.fights()}
+    mars, gard = g.cut(plan, by["mars_1"]), g.cut(plan, by["gardenia"])
+    out.append(("the planned box keeps the planner's waits: a catch it came back for is made at its split's end",
+                plan[0].split is None and waited and all(c.split == "Gardenia" for c in waited)
+                and not set(waited) & set(mars) and set(waited) <= set(gard) and len(gard) == len(plan),
+                f"{len(plan)} catches, {len(waited)} waited for: {', '.join(c.area for c in waited)}"))
+    r, calls = stubbed_read("t", "mars_1", g.PLANNED, False)
+    out.append(("a planned box reads as any box does", r["seed"] == g.PLANNED and len(calls) == 1
+                and len(r["box"]) == len(mars) and r["chosen"], f"{len(r['box'])} members, starter {r['starter']}"))
+    with tempfile.TemporaryDirectory() as tmp:
+        keep, g.OUT = g.OUT, tmp
+        try:
+            for seed, res in ((1, dict(r, seed=1, real=dict(r["real"], won=0.5))), (g.PLANNED, r)):
+                os.makedirs(g.box_dir("t", "mars_1", seed))
+                with open(os.path.join(g.box_dir("t", "mars_1", seed), "result.json"), "w") as fh:
+                    json.dump(res, fh)
+            pooled = g.results("t")
+            table = g.planned_table("t", by)
+        finally:
+            g.OUT = keep
+    out.append(("the summary shows the planned box beside the random boxes, which alone are pooled",
+                [x["seed"] for x in pooled["mars_1"]] == [1]
+                and any(t.startswith("| Mars 1 |") and "| 90% |" in t and "| 50% |" in t for t in table),
+                table[-1] if table else "no table"))
+    return out
+
+
 def main():
     results = []
     rows = g.fights()
@@ -391,6 +433,7 @@ def main():
     results += holds_checks(by)
     results += paired_checks()
     results += web_checks()
+    results += planned_checks()
 
     got = {k: sorted(g.places(by[k])) for k in ("mars_1", "gardenia", "jupiter_1", "fantina", "candice")}
     # Mt. Coronet 1F North Room 1, off Route 211, is the first magnetic map.

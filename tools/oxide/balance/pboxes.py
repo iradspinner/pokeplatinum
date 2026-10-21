@@ -32,6 +32,26 @@ def planned_box(split, seed=0):
     return [m["stage"] for m in r["box"] if m.get("alive", True)]
 
 
+def planned_run(split, seed=0):
+    """[(species as caught, split caught in, area, waited)] of the same
+    best-play run as planned_box, in the order it makes its catches, the
+    starter first (its split None). `waited` marks a catch the planner came
+    back for once a later table opened (surf, a rod, the honey tree): the
+    simulator walks back to it at the end of that table's split. A member it
+    traded away is left out, as planned_box leaves it."""
+    ctx = context(split)
+    r = sim.run(split, seed=seed, ctx=ctx)
+    waited = {e["area"] for e in r["log"] if e.get("wait")}
+    gone = {(m["species"], m["area"]) for m in r["box"] if not m.get("alive", True)}
+    out = []
+    for e in r["log"]:
+        if not e.get("species") or e.get("death") or (e["species"], e["area"]) in gone:
+            continue
+        starter = e.get("choice") == "the starter"
+        out.append((e["species"], None if starter else e["split"], e["area"], not starter and e["area"] in waited))
+    return out
+
+
 def save_box(path, split):
     """[species constant] of the living Pokemon in a real save (the
     OxiDex's save reader; the graveyard boxes are left out, as the

@@ -57,6 +57,13 @@ result keeps both readings ("without_holds", Ian, 2026-10-15: to measure
 what holds change). An Ace Trainer's blind reading is offered no holds
 and chooses no six, so it records nothing for later fights.
 
+The planned-box sample (Ian, 2026-10-15): with --planned, Mars 1,
+Gardenia, Maylene and Wake are also read on a fourth box, the Box sim's
+planning player's (its best catches and its encounter waits, planned to
+each fight's own split as pboxes.planned_box plans it), under the same
+rules, its fights in play order like a seed's; the summary reports it
+beside the random boxes and the store leaves it out.
+
 The levels (Ian, 2026-10-07): a fight that closes its split at the split's
 cap, the Elite Four at their aces, every other boss at its own ace's level
 (the interim soft caps of 2026-10-02, extended to the later mini-bosses),
@@ -108,6 +115,10 @@ encounter_model.repo_root = lambda: data.ROOT
 
 OUT = os.path.expanduser("~/oxide-trials/goal3")
 SEEDS = (1, 2, 3)
+# The planned-box sample (Ian, 2026-10-15): a fourth box, the Box sim's
+# planning player's, read once on these fights beside the random boxes.
+PLANNED = "planned"
+PLANNED_FIGHTS = ("mars_1", "gardenia", "maylene", "wake")
 # An Ace Trainer's fights on each box, real and very unlucky: about 75 and
 # 25 over the boxes.
 BLIND = (75 // len(SEEDS), 25 // len(SEEDS))
@@ -343,9 +354,29 @@ def run_of(seed):
 def roll(split, seed):
     """[Catch] of box seed's run by the split's end: its catches from options
     open by then, the starter first. Every fight of the seed draws on the
-    one run (run_of)."""
+    one run (run_of); the planned box (PLANNED) on the planning player's
+    run to the split's end (planned)."""
+    if seed == PLANNED:
+        return planned(split)
     rank = pboxes.context(LAST)["rank"]
     return tuple(c for c in run_of(seed) if c.split is None or rank.get(c.split, 99) <= rank[split])
+
+
+@functools.lru_cache(maxsize=None)
+def planned(split):
+    """[Catch] of the Box sim's planning player's run to the split's end
+    (pboxes.planned_run: each area's best option and its waits for a later
+    table, the dupes clause, no deaths), the planned-box sample's box. It is
+    planned to the fight's own split, as pboxes.planned_box plans it: one
+    plan to the League waits for Super Rods until Candice's split at three
+    of Roark's areas, which would leave them out of every box before then.
+    So two splits' plans can catch differently, and rule B carries a hold
+    only where the same area gave the same Pokemon. A catch the planner waited for is made
+    at the end of the later table's split in the simulator's walk, so it has
+    no place there: cut takes it only from that split's closing fight on."""
+    by_name = {a["name"]: a for a in pboxes.context(split)["areas"]}
+    return tuple(Catch(sp, s, None if s is None or waited else area_place(by_name[name]), name)
+                 for sp, s, name, waited in pboxes.planned_run(split))
 
 
 def cut(caught, f):
@@ -672,13 +703,16 @@ def without_holds(run, slug, seed, s, model, procs, out_dir):
 
 # ---- the run ------------------------------------------------------------------------------------------------
 
-def jobs(only=None, kinds=("boss", "ace"), seeds=SEEDS):
+def jobs(only=None, kinds=("boss", "ace"), seeds=SEEDS, planned_sample=False):
     """(slug, seed) in run order: the fights in play order, each with its
-    boxes side by side."""
+    boxes side by side; with `planned_sample`, the planned box (PLANNED) of
+    each sample fight (PLANNED_FIGHTS) among them as one more box, which
+    reads in play order like a seed."""
     by = {f["slug"]: f for f in fights()}
     picked = [s for s in play_order() if (not only or s in only)
               and ("ace" if by[s]["kind"] == ACE else "boss") in kinds]
-    return [(slug, s) for slug in picked for s in seeds]
+    return [(slug, s) for slug in picked
+            for s in tuple(seeds) + ((PLANNED,) if planned_sample and slug in PLANNED_FIGHTS else ())]
 
 
 def waits_on(job, todo):
@@ -756,18 +790,42 @@ def run_all(run, todo, parallel, procs):
 
 # ---- pooling, the store and the summary ---------------------------------------------------------------------
 
-def results(run):
-    """{slug: [box results]} of a run, in fight order."""
+def results(run, seeds=SEEDS):
+    """{slug: [box results]} of a run, in fight order: the random boxes',
+    which the store pools (the planned box's are planned_results')."""
     out = {}
     for f in fights():
         rs = []
-        for s in SEEDS:
+        for s in seeds:
             path = os.path.join(box_dir(run, f["slug"], s), "result.json")
             if os.path.exists(path):
                 with open(path) as fh:
                     rs.append(json.load(fh))
         if rs:
             out[f["slug"]] = rs
+    return out
+
+
+def planned_results(run):
+    """{slug: the planned box's result} of a run's planned-box sample."""
+    return {slug: rs[0] for slug, rs in results(run, (PLANNED,)).items()}
+
+
+def planned_table(run, by_slug):
+    """The summary's table of the planned-box sample (Ian, 2026-10-15): each
+    sample fight read on the planning player's box beside its random boxes
+    pooled, which the sample stays out of."""
+    plan, res = planned_results(run), results(run)
+    if not plan:
+        return []
+    out = ["", "The planned-box sample: the Box sim's planning player's box (its best catches and its encounter "
+               "waits), beside the random boxes pooled.", "",
+           "| Fight | Planned box: members | Won | Faints | Clean | Random boxes: won | Faints |", "|---|---|---|---|---|---|---|"]
+    for slug, r in plan.items():
+        rand = pool_side([x["real"] for x in res[slug]]) if res.get(slug) else None
+        out.append(f"| {by_slug[slug]['name']} | {len(r['box'])} | {r['real']['won']:.0%} | {r['real']['faints']:.2f} | "
+                   f"{r['real']['clean']:.0%} | " + (f"{rand['won']:.0%} | {rand['faints']:.2f} |" if rand
+                                                     else "not read | |"))
     return out
 
 
@@ -839,7 +897,8 @@ def web_lines(rs):
             continue
         real, no = w["real"], w["without"]
         swap = ", ".join(f"{who} {mv or 'nothing'}" for who, mv in no["swapped"].items())
-        out.append(f"- Sticky Web in box {r['seed']}'s six ({', '.join(w['carried_by'])}): laid in {real['laid']} "
+        box = "the planned box" if r["seed"] == PLANNED else f"box {r['seed']}"
+        out.append(f"- Sticky Web in {box}'s six ({', '.join(w['carried_by'])}): laid in {real['laid']} "
                    f"of {real['fights']} fights at real odds, {real['won_laid']} of them won; {r['real']['won']:.0%} "
                    f"won with it, {no['won']:.0%} with {swap} in its place, so the wins "
                    f"{'lean' if w['leans'] else 'do not lean'} on it")
@@ -893,6 +952,7 @@ def summary(run, commit):
              "| Fight | Split | Level | Boxes | Won | Faints | Clean | Difficulty | Very unlucky won |",
              "|---|---|---|---|---|---|---|---|---|"]
     detail = []
+    plan = planned_results(run)
     for slug, rs in results(run).items():
         f = by_slug[slug]
         real, unl = pool_side([r["real"] for r in rs]), pool_side([r["unlucky"] for r in rs])
@@ -902,18 +962,23 @@ def summary(run, commit):
                      f"{unl['won']:.0%} |")
         if f["kind"] != ACE:
             detail.append(f"## {f['name']}")
-            for r in rs:
-                detail.append(f"- box {r['seed']} ({r['starter']}, {len(r['box'])} members, {r['trainer']}): "
+            # The planned box's line comes beside the random boxes', outside
+            # their pooled numbers.
+            for r in rs + ([plan[slug]] if slug in plan else []):
+                detail.append(f"- {'the planned box' if r['seed'] == PLANNED else 'box ' + str(r['seed'])} "
+                              f"({r['starter']}, {len(r['box'])} members, {r['trainer']}): "
                               f"{', '.join(r['winner'])}; {r['real']['won']:.0%} won, "
                               f"{r['real']['faints']:.2f} faints")
                 detail += box_notes(r)
             every = set.intersection(*({species_of(n) for n in r["winner"]} for r in rs)) if len(rs) > 1 else set()
             if every:
                 detail.append(f"- every box's winner took {', '.join(sorted(every))}")
-            detail += web_lines(rs)
+            detail += web_lines(rs + ([plan[slug]] if slug in plan else []))
             detail.append("")
-    lines += web_total(results(run))
-    lines += paired_table(results(run), by_slug)
+    every_box = {slug: rs + ([plan[slug]] if slug in plan else []) for slug, rs in results(run).items()}
+    lines += web_total(every_box)
+    lines += paired_table(every_box, by_slug)
+    lines += planned_table(run, by_slug)
     text = "\n".join(lines + [""] + detail)
     with open(os.path.join(OUT, run, "summary.md"), "w") as fh:
         fh.write(text + "\n")
@@ -947,6 +1012,11 @@ def dry(run, slug, seed, screen=False):
           + ("; the box would be read again without them" if inside else ""))
 
 
+def seed_of(text):
+    """A box seed from the command line: a number, or planned."""
+    return PLANNED if text == PLANNED else int(text)
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     p.add_argument("--run", required=True, help="the run's name: the commit read")
@@ -955,7 +1025,10 @@ def main(argv=None):
     p.add_argument("--boxes", default=",".join(map(str, SEEDS)), help="box seeds, comma-separated")
     p.add_argument("--parallel", type=int, default=2)
     p.add_argument("--procs", type=int, default=14, help="workers for each job")
-    p.add_argument("--one", nargs=2, metavar=("SLUG", "SEED"), help="read one box (what each job runs)")
+    p.add_argument("--planned", action="store_true",
+                   help="also read the planned-box sample: the planning player's box on " + ", ".join(PLANNED_FIGHTS))
+    p.add_argument("--one", nargs=2, metavar=("SLUG", "SEED"),
+                   help="read one box (what each job runs); SEED a box seed, or planned for the planned box")
     p.add_argument("--box", nargs=2, metavar=("SLUG", "SEED"),
                    help="print one box as its reading would build it, from the run's earlier results, and read "
                         "nothing")
@@ -965,9 +1038,9 @@ def main(argv=None):
     p.add_argument("--commit", help="the commit read, for the store's source (default: the run's name)")
     a = p.parse_args(argv)
     if a.one:
-        read_box(a.run, a.one[0], int(a.one[1]), a.procs)
+        read_box(a.run, a.one[0], seed_of(a.one[1]), a.procs)
     elif a.box:
-        dry(a.run, a.box[0], int(a.box[1]), a.screen)
+        dry(a.run, a.box[0], seed_of(a.box[1]), a.screen)
     elif a.list:
         by = {f["slug"]: f for f in fights()}
         for slug in play_order():
@@ -980,7 +1053,7 @@ def main(argv=None):
         print(summary(a.run, a.commit or a.run))
     else:
         seeds = tuple(int(s) for s in a.boxes.split(","))
-        todo = jobs(set(a.only.split(",")) if a.only else None, tuple(a.kinds.split(",")), seeds)
+        todo = jobs(set(a.only.split(",")) if a.only else None, tuple(a.kinds.split(",")), seeds, a.planned)
         run_all(a.run, todo, a.parallel, a.procs)
 
 
