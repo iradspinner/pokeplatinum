@@ -51,6 +51,12 @@ read, so they are written here too. Each is a standing instruction.
   helper may run at lower effort once he agrees to it for that job. The
   agent types in `.claude/agents` carry the settings: `big-review` at xhigh,
   and `lookup` on Haiku for read-only lookups (Ian's yes, 2026-10-21).
+  Every helper runs as one of those types, never the general-purpose one,
+  which inherits the Overseer's xhigh and was 82 percent of the usage (Ian,
+  2026-10-21): `worker` (Opus at high) for the engine, the trainer AI, the
+  simulator and scorer, and game data; `routine` (Sonnet at medium) for
+  mechanical, fully specified jobs, such as regenerating a file, spelled-out
+  doc edits and small tool fixes.
 - The cloud code review (`/code-review ultra`) is never built into a procedure;
   run it only when Ian asks for it.
 - Ian's user settings (`~/.claude/settings.json`) are his to edit. Hand him the

@@ -95,9 +95,12 @@ rulebook for any learnset, trainer, item or fight-scoring work),
 `.claude/commands/`, `/integrate` merges every track into `oxide` and runs the
 full verification gate, `/qa-pass <base>` reviews and re-checks a range of
 commits and writes up the findings, and `/docs-pass` audits the docs, skills and
-this file against the tree. In `.claude/agents/`, `big-review` runs a docs pass,
-a QA pass or a risky merge's review at xhigh effort, and `lookup` answers a
-read-only lookup on Haiku (Ian, 2026-10-21; the standing rulings).
+this file against the tree. In `.claude/agents/`, every helper's type: `big-review`
+runs a docs pass, a QA pass or a risky merge's review at xhigh effort,
+`worker` builds engine, AI, simulator, scorer and data changes on Opus at
+high, `routine` does mechanical, fully specified jobs on Sonnet at medium,
+and `lookup` answers a read-only lookup on Haiku (Ian, 2026-10-21; the
+standing rulings).
 
 A hook in `.claude/settings.json` refuses `git add -A` or `.`, launching an
 emulator, and committing a file that carries the scratch marker
