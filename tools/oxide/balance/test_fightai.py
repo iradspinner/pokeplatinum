@@ -563,6 +563,8 @@ FLAG_ROWS = [
      _t(u_moves=("Take Heart", "Baton Pass")), 5, 5),
     ("CheckHP, Take Heart at 20%, as Calm Mind", ai.CHECK_HP, "Take Heart", _t(u_hp=20), -2, 0),
     ("CheckHP, Take Heart, foe at 50%, as Calm Mind", ai.CHECK_HP, "Take Heart", _t(t_hp=50), -2, 0),
+    ("CheckHP, Lunar Blessing at full HP, as Recover", ai.CHECK_HP, "Lunar Blessing", None, -2, 0),
+    ("CheckHP, Jungle Healing at full HP, on Lunar Blessing's effect", ai.CHECK_HP, "Jungle Healing", None, -2, 0),
 ]
 
 

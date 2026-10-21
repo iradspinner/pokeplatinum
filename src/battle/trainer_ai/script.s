@@ -8893,6 +8893,9 @@ CheckHP_DiscourageAtHighHP:
     // Strength Sap and Life Dew as Recover.
     TableEntry BATTLE_EFFECT_STRENGTH_SAP
     TableEntry BATTLE_EFFECT_LIFE_DEW
+    // Oxide, change (Ian, 2026-10-21, the catch-up re-read): Lunar Blessing
+    // and Jungle Healing, on one effect, as Recover.
+    TableEntry BATTLE_EFFECT_LUNAR_BLESSING
     TableEntry TABLE_END
 
 CheckHP_DiscourageAtMediumHP:
