@@ -7852,6 +7852,30 @@ def check_wonder_room(results):
     results.append(("Wonder Room trades the Defenses for five turns", out == want, str(out)))
 
 
+@b13
+def check_last_respects(results):
+    """Last Respects (Ian's addition of 2026-10-20;
+    BattleScript_ComputedMovePower): 50 power and 50 more for each fainted
+    member of its user's party, in both battles' damage and the trainer's
+    AI's view, which reads the same count; a fainted foe adds nothing."""
+    b, p, foe = battle(["Last Respects"], ["Last Respects"], {("p", "Last Respects"): [30] * 16,
+                                                            ("b", "Last Respects"): [30] * 16}, hp=500)
+    b.rng = FixedDice(0.5)
+    mv = fs.move("Last Respects")
+    out = {"none fainted": b.damage(p, foe, mv, roll=0)}
+    for i in (1, 2):
+        mate = fs.Mon(f"p{i}", b.st["pokemon"]["p0"], b.st["info"]["p0"], ["Tackle"], "p")
+        mate.hp = 0
+        b.p.mons.append(mate)
+    gone = fs.Mon("b0.1", b.st["pokemon"]["b0.0"], b.st["info"]["b0.0"], ["Tackle"], "b")
+    gone.hp = 0
+    b.b.mons.append(gone)
+    out["two of the player's fainted"] = (b.damage(p, foe, mv, roll=0), b.damage(p, foe, mv, ai_view=True))
+    out["one of the trainer's fainted"] = b.damage(foe, p, mv, roll=0)
+    want = {"none fainted": 30, "two of the player's fainted": (90, 90), "one of the trainer's fainted": 60}
+    results.append(("Last Respects gains 50 power for each fainted party member", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

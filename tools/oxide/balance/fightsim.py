@@ -6449,6 +6449,16 @@ def sappy_seed(dfn):
         dfn.seeded = True
 
 
+def fainted_party(b, mon):
+    """How many of mon's party have fainted (Last Respects' count in
+    BattleScript_ComputedMovePower: the party members, eggs aside, at 0 HP):
+    its side's Pokemon of its own trainer, as a tag battle keeps each
+    trainer's party apart (Mon.owner)."""
+    side = b.p if mon.side == "p" else b.b
+    owner = getattr(mon, "owner", None)
+    return sum(1 for m in side.mons if not m.alive() and getattr(m, "owner", None) == owner)
+
+
 def technician(att, power):
     """A move's power after Technician, which BattleSystem_CalcMoveDamage
     applies once the power is worked out and its multipliers are in (a
@@ -6513,7 +6523,7 @@ STATE_POWER_EFFECTS = frozenset({"INCREASE_POWER_WITH_LESS_HP", "DECREASE_POWER_
                                  "POWER_BASED_ON_LOW_SPEED", "HIGHER_POWER_WHEN_LOW_PP",
                                  "INCREASE_POWER_WITH_MORE_HP", "INCREASE_POWER_WITH_MORE_STAT_UP"})
 STATE_POWER_MOVES = frozenset({"MOVE_PAYBACK", "MOVE_STORED_POWER", "MOVE_POWER_TRIP", "MOVE_ELECTRO_BALL",
-                               "MOVE_HARD_PRESS"})
+                               "MOVE_HARD_PRESS", "MOVE_LAST_RESPECTS"})
 
 
 def state_mult(b, att, dfn, mv):
@@ -6614,6 +6624,13 @@ def state_mult(b, att, dfn, mv):
             # 2026-10-14 it hit at full power whatever the target's HP (Ian
             # approved the fix).
             m *= power_ratio(att, 100, max(1, 100 * dfn.hp // dfn.maxhp))
+        elif c == "MOVE_LAST_RESPECTS":
+            # BattleScript_ComputedMovePower: 50, and 50 more for each Pokemon
+            # of its user's party that has fainted (fainted_party); the row is
+            # made at 50. The trainer's AI reckons it the same way
+            # (TrainerAI_ComputedMovePower). Until 2026-10-20 it hit at 50
+            # whatever had fainted (Ian approved the fix on 2026-10-20).
+            m *= power_ratio(att, 50, 50 + 50 * fainted_party(b, att))
     if (att.rare or dfn.rare) and (att.lightened or dfn.lightened) and mv.effect in WEIGHT_EFFECTS:
         # An Autotomize on either side: the power at the weights now, over
         # the rows' at the species' own (weight_move_power).

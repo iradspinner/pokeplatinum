@@ -6736,6 +6736,22 @@ def wonder_room_checks():
              f"(Iron Head, Flash Cannon) {before} to {after}, Defense over Sp. Def {ratio:.2f}, turns {turns}")]
 
 
+@b13
+def last_respects_checks():
+    """Last Respects on real rows (Ian's addition of 2026-10-20): a
+    trainer's Dusknoir sent in with two of its party fainted hits the
+    player's Golem three times as hard as with none."""
+    b, dusk, golem = b8_battle([("Dusknoir", 50, "Pressure", ["Last Respects"]), ("Geodude", 50, "Sturdy", ["Tackle"]),
+                                ("Onix", 50, "Sturdy", ["Tackle"])], [("Golem", 50, "Rock Head", ["Tackle"])])
+    mv = fs.move("Last Respects")
+    before = pl.damage_of(b, dusk, golem, mv, False, True)
+    for m in b.b.mons[1:]:
+        m.hp = 0
+    after = pl.damage_of(b, dusk, golem, mv, False, True)
+    ok = abs(after - 3 * before) <= 3 and after > before
+    return [("the readings' Last Respects grows with its party's fainted", ok, f"top damage {before} to {after}")]
+
+
 def main():
     results = []
 
