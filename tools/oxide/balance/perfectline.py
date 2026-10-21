@@ -812,7 +812,7 @@ def attack(b, att, mv, dfn, first):
         fs.rollout_after(att, mv, False)
         return
     if mv.effect == "POLLEN_PUFF" and dfn.side == att.side and dfn is not att:
-        fs.pollen_puff_heal(dfn)             # on its user's ally, a heal in place of the hit (fightsim.pollen_puff_heal)
+        fs.pollen_puff_heal(att, dfn)        # on its user's ally, a heal in place of the hit (fightsim.pollen_puff_heal)
         return
     if dfn.ability == "Queenly Majesty" and fs.majesty_blocked(att, dfn, mv):
         return                               # a raised move into Queenly Majesty (fightsim.majesty_blocked)

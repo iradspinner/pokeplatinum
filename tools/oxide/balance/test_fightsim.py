@@ -8818,8 +8818,9 @@ def check_doubles_pollen_puff(results):
     double-battle part batch 7 left on 2026-10-14; effect script 380's
     IfSameSide branch, subscript_pollen_puff_heal): aimed at the user's
     ally it heals half the ally's maximum HP, rounded up, instead of hitting
-    it, an ally at 30 of 101 coming back to 81; aimed at a foe it hits.
-    Until 2026-10-21 it hit the ally."""
+    it, an ally at 30 of 101 coming back to 81, while a Bulletproof or a
+    Telepathy ally takes nothing; aimed at a foe it hits. Until 2026-10-21
+    it hit the ally."""
     mons = {"p0": {"moves": ["Pollen Puff"]}, "p1": {"moves": ["Splash"], "hp": 101},
             "b0.0": {"moves": ["Splash"]}, "b0.1": {"moves": ["Splash"]}}
     rows = {("p0", "p1"): {"Pollen Puff": 40}, ("p0", "b0.0"): {"Pollen Puff": 40}}
@@ -8832,7 +8833,11 @@ def check_doubles_pollen_puff(results):
     ally = mon_of(b, "p1").hp
     b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": ("Pollen Puff", "b0.0")})
     out = {"the ally's HP": ally, "the foe's HP": mon_of(b, "b0.0").hp}
-    want = {"the ally's HP": 81, "the foe's HP": 60}
+    for ability in ("Bulletproof", "Telepathy"):
+        st["info"]["p1"]["ability"] = ability
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": ("Pollen Puff", "p1")}, start=start)
+        out[f"a {ability} ally's HP"] = mon_of(b, "p1").hp
+    want = {"the ally's HP": 81, "the foe's HP": 60, "a Bulletproof ally's HP": 30, "a Telepathy ally's HP": 30}
     results.append(("doubles: Pollen Puff heals an ally and hits a foe", out == want, f"{out}"))
 
 
