@@ -716,6 +716,11 @@ class Mon:
     # faint counts once; kept only in a fight with a Soul Heart holder
     # (st["soul_heart"]).
     soul_seen = 0
+    # Helping Hand (turnFlags.helpingHand): its partner's Helping Hand has
+    # raised its moves' power by half for the rest of the turn
+    # (helping_hand); a turn flag, cleared as the next double-battle turn
+    # starts. Left on the class while False.
+    helped = False
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -1036,6 +1041,9 @@ class Battle:
     hit_left = None
     # A double battle (run_doubles sets it); left on the class while False.
     doubles = False
+    # Whether a Helping Hand has helped a Pokemon this turn (Mon.helped), so
+    # the next turn clears the flag only then.
+    helping = False
     # A double battle's damaging move is hitting more than one target, so
     # each hit is at three quarters (Battle.damage, perfectline.damage_of);
     # set around the move by the spread loop.
@@ -4739,6 +4747,8 @@ def beat_up_damage(b, att, member, dfn, mv, crit, roll):
            // base_stat(b, dfn, "df") // 50 + 2)
     if crit:
         dmg = dmg * 9 // 4 if att.ability == "Sniper" else dmg * 3 // 2
+    if att.helped:
+        dmg = dmg * 15 // 10     # its partner's Helping Hand, before the roll (helping_hand)
     return max(1, dmg * (85 + roll) // 100)
 
 
@@ -6800,6 +6810,10 @@ def state_mult(b, att, dfn, mv):
             m *= power_ratio(att, mv.power, 2 * mv.power) if mv.power > 1 else 2
         if att.me_first:
             m *= 1.5             # a move Me First took, at half again its damage (me_first_move)
+    if att.helped:
+        # Helping Hand: BattleSystem_CalcMoveDamage raises the power by half
+        # (15/10) after a doubling and before Technician (helping_hand).
+        m *= power_ratio(att, mv.power, mv.power * 15 // 10) if mv.power > 1 else 1.5
     reach = reach_mult(mv, dfn)
     if reach > 1:
         # The effect scripts double the power (POWER_MULTI 20) before
@@ -9734,6 +9748,25 @@ def player_replacement_doubles(b, side, owner):
     return best[1] if best else None
 
 
+def helping_hand(b, att):
+    """Helping Hand (effect script 176, BtlCmd_TryHelpingHand): in a double
+    battle its user's partner, standing and yet to act this turn, has the
+    power of its moves raised by half for the rest of the turn (Mon.helped,
+    read by state_mult and beat_up_damage, as BattleSystem_CalcMoveDamage,
+    BtlCmd_BeatUp and Future Sight's damage read turnFlags.helpingHand). It
+    fails in a single battle, on a partner that has acted, fainted or is
+    helped already, and for a user its partner has helped. Until 2026-10-21
+    it did nothing in a double battle (Ian approved the fix on 2026-10-14
+    with the gaps list's BOOST_ALLY_POWER_BY_50_PERCENT row)."""
+    if not b.doubles:
+        return
+    ally = ally_of(b, att)
+    if ally is None or ally in b.moved or att.helped or ally.helped:
+        return
+    ally.helped = True
+    b.helping = True
+
+
 def doubles_replacement(b, side, mon):
     """The party index that comes into mon's slot mid-turn in a double
     battle, from mon's own trainer's party (BattleSystem_AnyReplacementMons:
@@ -9902,6 +9935,10 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
 
     while b.turn < MAX_TURNS and b.p.alive() and b.b.alive():
         b.moved = set()
+        if b.helping:
+            for m in b.p.mons + b.b.mons:
+                m.helped = False         # last turn's Helping Hand (a turn flag)
+            b.helping = False
         doubles_quick(b)
         acts = []
         for mon in b.p.on_field() + b.b.on_field():

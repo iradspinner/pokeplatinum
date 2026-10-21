@@ -8723,6 +8723,36 @@ def check_doubles_healing_wish(results):
                     f"(the slot's Pokemon, its HP, status, Tackle's PP; the user's HP) {out}"))
 
 
+@b15
+def check_doubles_helping_hand(results):
+    """Helping Hand in a double battle (Ian approved the fix on 2026-10-14;
+    effect script 176, BtlCmd_TryHelpingHand, BattleSystem_CalcMoveDamage's
+    15/10): the partner's move that turn has half again its power, a Tackle
+    of 40 taking 60, the trainer's side's as the player's; and of two
+    partners' Helping Hands the second fails, its user helped already. Until
+    2026-10-21 the move did nothing."""
+    out = {}
+    for helper, hitter, target in (("p1", "p0", "b0.0"), ("b0.1", "b0.0", "p0")):
+        mons = {"p0": {"moves": ["Tackle"]}, "p1": {"moves": ["Splash"]},
+                "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
+        mons[helper]["moves"] = ["Helping Hand"]
+        rows = {(hitter, target): {"Tackle": 40}}
+        st = doubles_st(mons, rows)
+        st["first_battle"] = True
+        choices = {k: ("Splash", None) for k in mons}
+        choices.update({helper: ("Helping Hand", None), hitter: ("Tackle", target)})
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], choices)
+        out[f"{helper}'s Helping Hand, {hitter}'s Tackle of 40"] = 100 - mon_of(b, target).hp
+    mons = {"p0": {"moves": ["Helping Hand"]}, "p1": {"moves": ["Helping Hand"]},
+            "b0.0": {"moves": ["Splash"]}, "b0.1": {"moves": ["Splash"]}}
+    b = doubles_turns(doubles_st(mons, speeds={"p0": 50, "p1": 100}), ["p0", "p1"], ["b0.0", "b0.1"], {})
+    out["two Helping Hands (helped: p0, p1)"] = (getattr(mon_of(b, "p0"), "helped", None),
+                                                 getattr(mon_of(b, "p1"), "helped", None))
+    want = {"p1's Helping Hand, p0's Tackle of 40": 60, "b0.1's Helping Hand, b0.0's Tackle of 40": 60,
+            "two Helping Hands (helped: p0, p1)": (True, False)}
+    results.append(("doubles: Helping Hand raises its partner's power by half", out == want, f"{out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
