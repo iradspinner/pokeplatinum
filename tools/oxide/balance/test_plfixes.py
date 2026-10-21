@@ -6451,6 +6451,33 @@ def mind_blown_checks():
     return [("the readings' Mind Blown costs half its user's HP", ok, f"(HP paid, hit) {out} of {bib.maxhp}")]
 
 
+# ---- batch 13: the last moves out of everyone's reach, and Ian's additions of 2026-10-20 ----
+
+# The batch's checks, run after batch 12's in main.
+B13 = []
+
+
+def b13(fn):
+    B13.append(fn)
+    return fn
+
+
+@b13
+def jaw_lock_checks():
+    """Jaw Lock in the readings' battle on the calculator's real rows
+    (approved 2026-10-14): the player's Mightyena's hit on a trainer's
+    Geodude leaves both unable to switch, and once the trainer sends in its
+    Onix, the Mightyena is free again."""
+    b, geo, dog = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"]), ("Onix", 30, "Sturdy", ["Tackle"])],
+                            [("Mightyena", 30, "Intimidate", ["Jaw Lock"]), ("Bibarel", 30, "Unaware", ["Tackle"])])
+    pl.attack(b, dog, fs.move("Jaw Lock"), geo, True)
+    held = (geo.hp < geo.maxhp, fs.trapped(b, geo), fs.trapped(b, dog))
+    fs.switch_in(b, b.b, 1)
+    got = held + (fs.trapped(b, dog),)
+    return [("the readings' Jaw Lock holds both Pokemon until one leaves", got == (True, True, True, False),
+             f"(hit, Geodude held, Mightyena held, Mightyena held after Onix comes in) {got}")]
+
+
 def main():
     results = []
 
@@ -7037,6 +7064,8 @@ def main():
     for fn in B11:
         results += fn()
     for fn in B12:
+        results += fn()
+    for fn in B13:
         results += fn()
 
     width = max(len(r[0]) for r in results)

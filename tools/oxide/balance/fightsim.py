@@ -4595,6 +4595,8 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     # fix).
     if not dfn.alive() or b.sub_hit or sub_blocks(att, dfn, mv):
         return
+    if e == "PREVENT_ESCAPE_BOTH_HIT":
+        jaw_lock(att, dfn)           # both held, each by the other (jaw_lock)
     if e == "LEECH_SEED_HIT":
         sappy_seed(dfn)              # a target left standing, no Substitute in the way (sappy_seed)
     if e == "CLEAR_SMOG":
@@ -7076,6 +7078,27 @@ def late_hit(b, att, dfn, mv, stripped, dealt):
     elif e == "PREVENT_ESCAPE_HIT":
         if not stripped and dealt > 0 and dfn.alive() and dfn.trapped_by is None:
             dfn.trapped_by = att.key
+
+
+def jaw_lock(att, dfn):
+    """Jaw Lock (effect script 352, subscript_jaw_lock, ON_HIT): once its
+    hit is in, the target and the user each hold the other as Mean Look
+    holds, until one of them leaves (trapped_by). The callers come here only
+    for a target left standing with no Substitute in the way, the one the
+    hit broke included (CheckSubstitute reads SELF_TURN_FLAG_SUBSTITUTE_HIT).
+    A Pokemon already held keeps its first holder: when the user is held
+    already only the target is held, and when the target is, only the user.
+    A chance-free effect off sSheerForceEffects, so Shield Dust and Sheer
+    Force leave it alone; a Ghost type or a Shed Shell holder held so can
+    still switch (untrappable). Until 2026-10-20 it was a plain hit (Ian
+    approved the fix)."""
+    if att.trapped_by is not None:
+        if dfn.trapped_by is None:
+            dfn.trapped_by = att.key
+    elif dfn.trapped_by is not None:
+        att.trapped_by = dfn.key
+    else:
+        att.trapped_by, dfn.trapped_by = dfn.key, att.key
 
 
 def grudge(att, dfn, paid, mv):

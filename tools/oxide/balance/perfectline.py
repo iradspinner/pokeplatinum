@@ -958,6 +958,8 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
     # Pokemon behind it nothing (fightsim._after_attack, b.sub_hit).
     if not dfn.alive() or b.sub_hit or fs.sub_blocks(att, dfn, mv):
         return
+    if e == "PREVENT_ESCAPE_BOTH_HIT":
+        fs.jaw_lock(att, dfn)    # Jaw Lock holds both, each by the other (fightsim.jaw_lock)
     if e == "LEECH_SEED_HIT":
         fs.sappy_seed(dfn)       # Sappy Seed seeds a target left standing (fightsim.sappy_seed)
     if e == "CLEAR_SMOG":

@@ -7298,6 +7298,47 @@ def check_mind_blown(results):
     results.append(("Mind Blown costs half its user's HP once the move is over", out == want, str(out)))
 
 
+# ---- batch 13: the last moves out of everyone's reach, and Ian's additions of 2026-10-20 ----
+
+# The batch's checks, run after batch 12's in main.
+B13 = []
+
+
+def b13(fn):
+    B13.append(fn)
+    return fn
+
+
+@b13
+def check_jaw_lock(results):
+    """Jaw Lock (approved 2026-10-14; effect script 352, subscript_jaw_lock):
+    a hit on the target itself holds the target and its user, each by the
+    other, in both battles; a user held already holds only the target, and
+    a target held already holds only the user; a Substitute's hit and a
+    knockout hold neither."""
+    from . import perfectline as pl
+    out = {}
+    for case in ("hit", "user held", "target held", "Substitute", "knockout", "fightsim"):
+        b, p, foe = b11_battle(["Jaw Lock"], ["Tackle"], {("p", "Jaw Lock"): [20] * 16})
+        if case == "user held":
+            p.trapped_by = "x9"
+        if case == "target held":
+            foe.trapped_by = "x9"
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "fightsim":
+            b.rng = FixedDice(0.5)
+            fs.attack(b, p, fs.move("Jaw Lock"), foe, True)
+        else:
+            pl.attack(b, p, fs.move("Jaw Lock"), foe, True)
+        out[case] = (p.trapped_by, foe.trapped_by)
+    want = {"hit": ("b0.0", "p0"), "user held": ("x9", "p0"), "target held": ("b0.0", "x9"),
+            "Substitute": (None, None), "knockout": (None, None), "fightsim": ("b0.0", "p0")}
+    results.append(("Jaw Lock holds its target and its user, each by the other", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
@@ -7363,7 +7404,7 @@ def main():
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
-                  check_self_risk, check_sure, check_reward_items) + tuple(B11) + tuple(B12):
+                  check_self_risk, check_sure, check_reward_items) + tuple(B11) + tuple(B12) + tuple(B13):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
