@@ -5292,6 +5292,9 @@ Expert_BrickBreak:
     // If the opponent's side of the field is under the effect of Reflect or Light Screen, score +1.
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_REFLECT, Expert_BrickBreak_ScorePlus1
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_LIGHT_SCREEN, Expert_BrickBreak_ScorePlus1
+    // Oxide (Ian, 2026-10-21, the catch-up re-read): the engine's BtlCmd_TryBreakScreens
+    // breaks Aurora Veil too, so it counts as a screen here.
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_AURORA_VEIL, Expert_BrickBreak_ScorePlus1
     GoTo Expert_BrickBreak_End
 
 Expert_BrickBreak_ScorePlus1:

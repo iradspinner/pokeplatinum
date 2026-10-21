@@ -2270,8 +2270,9 @@ def x_revenge(c):
 
 
 def x_brick_break(c):
-    """Expert_BrickBreak: +1 with Reflect or Light Screen on the foe's side."""
-    return 1 if c.foe.screens["Reflect"] or c.foe.screens["Light Screen"] else 0
+    """Expert_BrickBreak: +1 with Reflect or Light Screen on the foe's side,
+    or since 2026-10-21 (Ian) Aurora Veil, which the engine breaks too."""
+    return 1 if c.foe.screens["Reflect"] or c.foe.screens["Light Screen"] or c.foe.aurora_veil else 0
 
 
 def x_knock_off(c):
