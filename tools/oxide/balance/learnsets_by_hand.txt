@@ -160,3 +160,4 @@ SPECIES_GLACEON     Freezy Frost at 70, Eevee's partner move (Ian, 2026-10-21, o
 SPECIES_JOLTEON     Buzzy Buzz at 70, Eevee's partner move (Ian, 2026-10-21, on signature-moves.md)
 SPECIES_INFERNAPE   Raging Fury at 65, a signature move's home for trainers, the species not obtainable (Ian, 2026-10-21, on signature-moves.md)
 SPECIES_MAROWAK     Shadow Bone at 28, a signature move's home for trainers, the species not obtainable (Ian, 2026-10-21, on signature-moves.md)
+SPECIES_MAGCARGO    Torch Song at 63, a signature move's home, kept late after Shell Smash (48) (Ian, 2026-10-21, on signature-moves.md)
