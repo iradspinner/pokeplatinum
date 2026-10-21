@@ -196,7 +196,10 @@ read, so they are written here too. Each is a standing instruction.
   holds change, a box whose chosen six uses a held-back version is read a
   second time without holds, and the reading reports both (Ian, 2026-10-15;
   the trigger narrowed on 2026-10-21 from the screen's top sixes, which
-  held versions filled from Barry 3 on). Ties between equal AI picks break at random. Every fight is
+  held versions filled from Barry 3 on). A catch's versions share one slot
+  in the team search (Ian, 2026-10-21): the on-time version and each held
+  one compete for one place in a six, so the screen counts sixes of catches
+  and holds do not multiply them. Ties between equal AI picks break at random. Every fight is
   simulated at the game's real odds, with no luck budget (Ian, 2026-10-02):
   the three numbers are then
   true frequencies with bad luck inside them, and the planner's caution
