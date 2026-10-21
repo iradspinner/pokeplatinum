@@ -3,18 +3,18 @@ README's step 2), a first version.
 
 The perfect-line turn code plays one Pokemon a side, so a double battle is
 played by fightsim's own four-actor battle (run_doubles: targeting, spread
-moves, a tag battle's two opponents and Barry beside the player). A line
-here is the order the six are sent out in: the lead pair first, then the
-rest, which fightsim's doubles player follows when it replaces a knocked-out
-Pokemon. The search screens every lead pair and a few orders of the rest,
-confirms the best, and reports its clean-win rate, mean deaths and wipe
-chance, as the September singles search (plines.search, retired on
-2026-10-13) did.
+moves, a tag battle's two opponents and Barry beside the player), which
+plays each move through perfectline's use_move, attack and status_move, as
+the singles readings do (since 2026-10-21). A line here is the order the six
+are sent out in: the lead pair first, then the rest, which fightsim's
+doubles player follows when it replaces a knocked-out Pokemon. The search
+screens every lead pair and a few orders of the rest, confirms the best,
+and reports its clean-win rate, mean deaths and wipe chance, as the
+September singles search (plines.search, retired on 2026-10-13) did.
 
-The dice are fightsim's own, at the game's odds on both sides; the luck
-budget of the singles lines (every status chance against the player, one
-critical hit) is not applied in doubles yet, and a reading says so
-("dice": "game odds").
+The dice are perfectline's RunDice at the game's odds on both sides
+("real"); the stress test's doubled checks are not applied in doubles yet,
+and a reading says so ("dice": "game odds").
 """
 import itertools
 import random

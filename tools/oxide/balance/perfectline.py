@@ -263,8 +263,8 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
         mult *= 2 / 3        # the calculator's row has Flash Fire always lit (fightsim's Battle.damage)
     elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
         mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
-    if att.side == "p" and fs.BOOSTER_TYPE.get(att.item) == mv.type:
-        mult *= 1.2
+    if fs.booster_fifth(att, mv):
+        mult *= 1.2              # the player's own booster, its rows item-free (fightsim.booster_fifth)
     side = b.p if dfn.side == "p" else b.b
     screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
     # A screen halves neither a critical hit, nor Brick Break's kind, which
@@ -272,7 +272,11 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
     # as fightsim's Battle.damage has it.
     if (side.screens[screen] or side.aurora_veil) and not crit and mv.effect != "REMOVE_SCREENS" \
             and att.ability != "Infiltrator":
-        mult *= 0.5              # Aurora Veil halves both kinds, once with a screen (fightsim.aurora_veil)
+        # Aurora Veil halves both kinds, once with a screen (fightsim.aurora_veil);
+        # a double battle's screen takes a third, as Battle.damage has it.
+        mult *= 2 / 3 if b.doubles else 0.5
+    if b.spread:
+        mult *= 0.75             # a double battle's move that hits more than one (fightsim.Battle.spread)
     if mv.sure:
         mult *= fs.row_crit_mult(att, dfn, crit)    # the row's own critical hit (fightsim.row_crit_mult)
     elif crit:
@@ -295,6 +299,10 @@ def give_status(b, target, status):
         if target.alive() and not target.status and not fs.status_ability_ignored(b, target) \
                 and (target.ability in fs.STATUS_ABILITIES.get(status, ()) or fs.leaf_guarded(b, target)):
             fs.reveal(target)
+        elif b.doubles and target.alive() and not target.status:
+            veil = fs.veil_partner(b, target, status)
+            if veil is not None:
+                fs.reveal(veil)          # a partner's Sweet Veil or Pastel Veil (fightsim.veil_partner)
         return False
     target.status = status
     if status == "slp":
@@ -358,10 +366,12 @@ def accuracy_hits(b, att, dfn, mv, first=True, later=False):
 fs.DICE_ACCURACY = accuracy_hits   # a landing Future Sight checks its accuracy on these dice
 
 
-def use_move(b, att, mv, dfn, first):
+def use_move(b, att, mv, dfn, first, targets=None):
     """One move, then the switch-in check that ends it, where a Neutralizing
-    Gas whose holder fell wears off (fightsim.use_move)."""
-    _use_move(b, att, mv, dfn, first)
+    Gas whose holder fell wears off (fightsim.use_move). `targets`: in a
+    double battle, the Pokemon a damaging move hits, each in turn
+    (fightsim.run_doubles); None in a single battle, where dfn is the one."""
+    _use_move(b, att, mv, dfn, first, targets)
     if att.me_first:
         att.me_first = False             # Me First's half again lasts the move it took (fightsim.me_first_move)
     if b.st.get("gas"):
@@ -369,7 +379,7 @@ def use_move(b, att, mv, dfn, first):
     fs.move_end(b)          # a waiting Trace (fightsim.move_end)
 
 
-def _use_move(b, att, mv, dfn, first):
+def _use_move(b, att, mv, dfn, first, targets=None):
     if not att.alive():
         return
     att.acted_turn = b.turn          # its action this turn has begun (fightsim._use_move)
@@ -382,52 +392,52 @@ def _use_move(b, att, mv, dfn, first):
         if att.grudge:
             att.grudge = False       # and its Grudge (fightsim.grudge)
         if att.sky_holder is not None and fs.sky_held(b, att):
-            return fs.could_not_act(b, att, mv, dfn)     # held in the air by Sky Drop (fightsim.sky_held)
+            return fs.could_not_act(b, att, mv, dfn, targets)     # held in the air by Sky Drop (fightsim.sky_held)
     if att.recharge:
         att.recharge = False
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     if fs.loafs(att):
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     if att.status == "frz":
         # In the search the trainer thaws at once and the player stays
         # frozen (question 9); in a run both thaw at 1 in 5 a turn.
         if mv.effect == "THAW_AND_BURN_HIT" or b.dice.thaws(att):
             att.status = None
         else:
-            return fs.could_not_act(b, att, mv, dfn)
+            return fs.could_not_act(b, att, mv, dfn, targets)
     if att.status == "slp":
         if fs.sleep_tick(att):
             if mv.effect not in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):
-                return fs.could_not_act(b, att, mv, dfn)
+                return fs.could_not_act(b, att, mv, dfn, targets)
     if att.flinch:
         fs.flinched(att)                 # Steadfast answers it
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     if att.disabled is not None and mv.name == att.disabled:
         att.choice = None                # subscript_move_is_disabled lets go of a Choice item's lock
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     # Taunt, Imprison, Gravity, Heal Block and Throat Chop, in the engine's
     # order, before confusion, paralysis and love (fightsim._use_move).
     if att.taunt and mv.cat == "Status":
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     if mv.name in att.sealed:
         att.choice = None                # a foe's Imprison, as Disable (fightsim.disabled_out)
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     if ((att.rare or b.gravity) and fs.move_barred(b, att, mv)) or fs.move_heal_blocked(att, mv):
-        return fs.could_not_act(b, att, mv, dfn)     # Gravity's, Heal Block's or Throat Chop's (fightsim.move_barred)
+        return fs.could_not_act(b, att, mv, dfn, targets)     # Gravity's, Heal Block's or Throat Chop's (fightsim.move_barred)
     if att.confused:
         att.confused -= 1
         if att.confused and (b.dice.bad("confusion", 0.5) if player(att) else b.dice.good(0.5, "confusion")):
             fs.hurt(b, att, confusion_damage(att, b.dice.confusion_roll()))
-            return fs.could_not_act(b, att, mv, dfn)
+            return fs.could_not_act(b, att, mv, dfn, targets)
     if att.status == "par" and (b.dice.bad("paralysis", 0.25) if player(att) else b.dice.good(0.25, "paralysis")):
-        return fs.could_not_act(b, att, mv, dfn)
+        return fs.could_not_act(b, att, mv, dfn, targets)
     if att.infatuated and (b.dice.bad("love", 0.5) if player(att) else b.dice.good(0.5, "love")):
-        return fs.could_not_act(b, att, mv, dfn)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
+        return fs.could_not_act(b, att, mv, dfn, targets)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
     if fs.tormented_out(att, mv):
-        return fs.could_not_act(b, att, mv, dfn)
-    fs.mark_hit(b, mv, dfn, True)
+        return fs.could_not_act(b, att, mv, dfn, targets)
+    fs.mark_hit(b, mv, dfn, True, targets)
     prev = fs.note_move(b, mv)           # the move before this one, for Copycat (fightsim.note_move)
-    fs.spend_pp(b, att, mv, dfn)       # once a choice, and Pressure's (fightsim.spend_pp)
+    fs.spend_pp(b, att, mv, dfn, targets)     # once a choice, and Pressure's (fightsim.spend_pp)
     paid = mv                        # the slot that paid, whatever it calls (fightsim.grudge)
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP") and mv.const not in fs.KEEPS_PROTECT_RUN:
         att.protect_run = 0
@@ -443,15 +453,15 @@ def _use_move(b, att, mv, dfn, first):
         mv = fs.called_move(b, att, mv, prev, lambda kind, n: b.dice.choice(kind, n))
         if mv is None:
             return
-        fs.mark_hit(b, mv, dfn, True)
+        fs.mark_hit(b, mv, dfn, True, targets)
     if mv.effect == "USE_MOVE_FIRST":
         mv = fs.me_first_move(att, dfn, first)    # the target's chosen hit, at half again (fightsim.me_first_move)
         if mv is None:
             return
-        fs.mark_hit(b, mv, dfn, True)
+        fs.mark_hit(b, mv, dfn, True, targets)
     if mv.effect == "NATURE_POWER":
         mv = fs.move(fs.nature_power_move(b.st.get("terrain")))     # its terrain's move (fightsim.nature_power_move)
-        fs.mark_hit(b, mv, dfn, True)
+        fs.mark_hit(b, mv, dfn, True, targets)
     if mv.effect in ("FLY", "BOUNCE") and att.smacked:
         return                       # brought down by Smack Down, it cannot fly (fightsim.smack_down)
     if mv.effect == "SKY_DROP" and not fs.sky_drop(b, att, mv, dfn):
@@ -470,7 +480,19 @@ def _use_move(b, att, mv, dfn, first):
         if thief is not None:
             status_move(b, thief, mv, att, first)     # a waiting Snatch user takes it (fightsim.snatched)
             return
+        if targets is not None:
+            # A double battle's status move aimed at both foes, or at every
+            # other Pokemon (Growl, Sweet Scent, Teeter Dance): it runs on
+            # each in turn, each through its own checks, as the engine's
+            # BattleControllerPlayer_LoopSpreadMoves sends the move back
+            # through BATTLE_CONTROL_BEFORE_MOVE for each.
+            for t in targets:
+                status_move(b, att, mv, t, t not in b.moved)
+            return
         status_move(b, att, mv, dfn, first)
+        return
+    if targets is not None:
+        _spread_attack(b, att, mv, targets, paid)
         return
     before = dfn.hp
     if att.ability == "Analytic" and fs.moves_last(b, first):
@@ -497,6 +519,47 @@ def _use_move(b, att, mv, dfn, first):
     fs.knockout_boost(att, dfn, before)      # Moxie and Beast Boost
     if mv.const == "MOVE_RELIC_SONG":
         fs.relic_song(b, att, mv, b.last_dealt > 0)     # Meloetta's form (fightsim.relic_song)
+
+
+def _spread_attack(b, att, mv, targets, paid):
+    """A damaging move in a double battle (fightsim.run_doubles), on each
+    Pokemon it hits in turn, as fightsim._use_move's own loop ran it until
+    2026-10-21: a move that hits more than one is at three quarters on each
+    (Battle.spread, read by damage_of); each target's hit and its contact
+    ability's answer, then Mind Blown's cost once, then each target's
+    Destiny Bond, Grudge and Moxie, and Relic Song's form once a use.
+    `first` for each is whether that target has yet to act this turn.
+    Magnitude's power is rolled once for the whole use (BtlCmd_CalcMagnitudePower
+    keeps battleCtx->magnitude until the move ends), held in
+    Battle.spread_magnitude meanwhile."""
+    b.spread = len(targets) > 1
+    before = {id(t): t.hp for t in targets}
+    try:
+        for t in targets:
+            # Analytic: 13/10 power once every other Pokemon standing has acted
+            # this turn (Battler_MovedThisTurn for each), which run_doubles
+            # marks as moving_last (fightsim.moves_last, ability_power). Until
+            # 2026-10-21 a double battle's Analytic never counted (Ian approved
+            # the double-battle part batch 11 left on 2026-10-14).
+            b.analytic = att if att.ability == "Analytic" and fs.moves_last(b, t not in b.moved) else None
+            attack(b, att, mv, t, t not in b.moved)
+            b.analytic = None
+            fs.hit_aftermath(b, att, t, mv,
+                             lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
+                             lambda kind, n: b.dice.choice(kind, n))
+    finally:
+        b.spread = False
+        b.spread_magnitude = None
+        b.analytic = None
+    if b.blown is att:
+        fs.mind_blown_cost(b, att)       # once, after every target (fightsim.mind_blown_cost)
+    for t in targets:
+        fs.destiny_bond(att, t)
+        if t.grudge:
+            fs.grudge(att, t, paid, mv)
+        fs.knockout_boost(att, t, before[id(t)])
+    if mv.const == "MOVE_RELIC_SONG":
+        fs.relic_song(b, att, mv, any(t.hp < before[id(t)] for t in targets))    # once a use, whatever it hit
 
 
 def struggle_damage(att, dfn, roll, room=False):
@@ -685,6 +748,9 @@ def attack(b, att, mv, dfn, first):
     spit = fs.spit_up_key(att) if mv.effect == "SPIT_UP" else None
     if mv.effect == "SPIT_UP" and spit is None:
         return                           # Spit Up with nothing stored (fightsim.spit_up_key)
+    if att is not dfn and att.side == dfn.side and dfn.ability == "Telepathy" and mv.power and not fs.mold(att, dfn):
+        fs.reveal(dfn)
+        return                           # a partner's damaging move into Telepathy (fightsim.attack), a double battle's
     if mv.effect == "MIND_BLOWN" and not fs.mind_blown(b, att):
         return                           # a Damp Pokemon stops it, and nothing is paid (fightsim.mind_blown)
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
@@ -708,6 +774,10 @@ def attack(b, att, mv, dfn, first):
         crash(b, att, dfn, mv)
         fs.rollout_break(att, mv)
         return                   # No Guard reaches it there (fightsim.no_guard)
+    if b.doubles and fs.sky_out_of_reach(b, att, dfn, mv):
+        crash(b, att, dfn, mv)
+        fs.rollout_break(att, mv)
+        return                   # up in the air with a Sky Drop, in a double battle (fightsim.sky_airborne)
     if fs.protected(b, att, mv, dfn):
         crash(b, att, dfn, mv)
         fs.rollout_break(att, mv)
@@ -741,8 +811,13 @@ def attack(b, att, mv, dfn, first):
         crash(b, att, dfn, mv)               # Magic Guard spares it (fightsim.crash_loss)
         fs.rollout_after(att, mv, False)
         return
+    if mv.effect == "POLLEN_PUFF" and dfn.side == att.side and dfn is not att:
+        fs.pollen_puff_heal(att, dfn)        # on its user's ally, a heal in place of the hit (fightsim.pollen_puff_heal)
+        return
     if dfn.ability == "Queenly Majesty" and fs.majesty_blocked(att, dfn, mv):
         return                               # a raised move into Queenly Majesty (fightsim.majesty_blocked)
+    if b.doubles and fs.majesty_partner_blocked(b, att, dfn, mv):
+        return                               # or into its partner's, in a double battle
     fs.rollout_after(att, mv, True)
     trainer = not player(att)
     if mv.effect == "BEAT_UP":
@@ -808,7 +883,11 @@ def attack(b, att, mv, dfn, first):
             weights = [fs.MAGNITUDE_POWERS[p] for p in powers]
             rng = getattr(b, "rng", None)
             pick = getattr(b.dice, "pick_weighted", None)
-            p = pick(powers, weights) if pick else (rng.choices(powers, weights)[0] if rng is not None else 70)
+            p = b.spread_magnitude
+            if p is None:
+                p = pick(powers, weights) if pick else (rng.choices(powers, weights)[0] if rng is not None else 70)
+                if b.doubles:
+                    b.spread_magnitude = p   # one roll for every target of the use (_spread_attack)
             att.key = f"{key}#m{p}"
             b.last_magnitude = p
         if present is not None:
@@ -1096,7 +1175,8 @@ def status_move(b, att, mv, dfn, first):
     if targets_foe and dfn.alive():
         if fs.protected(b, att, mv, dfn):
             return
-        if fs.status_out_of_reach(att, dfn, mv):
+        if fs.status_out_of_reach(att, dfn, mv) or (b.doubles and mv.range not in fs.OWN_RANGES
+                                                    and fs.sky_out_of_reach(b, att, dfn, mv)):
             return               # a target on its hidden turn of Fly and the like (fightsim.status_out_of_reach)
         # Only Thunder Wave among the status moves meets the type chart
         # (BattleControllerPlayer_CheckTypeChart): it fails on a Ground type,
@@ -1114,6 +1194,8 @@ def status_move(b, att, mv, dfn, first):
             return               # Sing, Growl or Roar into Soundproof (fightsim.soundproofed)
         if dfn.ability == "Queenly Majesty" and fs.majesty_blocked(att, dfn, mv):
             return               # a raised move into Queenly Majesty (fightsim.majesty_blocked)
+        if b.doubles and fs.majesty_partner_blocked(b, att, dfn, mv):
+            return               # or into its partner's, in a double battle
         if att.ability == "Prankster" and fs.prankster_blocked(att, dfn, mv):
             return               # a raised status move into a Dark type (fightsim.prankster_blocked)
     if e in fs.STATUS_OF:
@@ -1229,7 +1311,7 @@ def status_move(b, att, mv, dfn, first):
     elif e == "HEAL_HALF_MORE_IN_SUN":
         fs.heal(att, fs.weather_heal(b, att, mv))     # Shore Up's sand, Cloud Nine (fightsim.weather_heal)
     elif e == "LIFE_DEW":
-        fs.life_dew(att)                 # a quarter back, rounded up, not under Heal Block (fightsim.life_dew)
+        fs.life_dew(att, b)              # a quarter back, rounded up, its ally's too, not under Heal Block (fightsim.life_dew)
     elif e == "STRENGTH_SAP":
         fs.strength_sap(b, att, dfn, mv)     # the target's Attack back as HP, then a stage off it (fightsim.strength_sap)
     elif e == "REST":
@@ -1312,6 +1394,14 @@ def status_move(b, att, mv, dfn, first):
         fs.heart_swap(att, dfn)          # every stage and Focus Energy exchanged (fightsim.heart_swap)
     elif e == "HEAL_TARGET":
         fs.heal_pulse(att, dfn, mv)      # half the target's HP back, the foe's in a single battle (fightsim.heal_pulse)
+    elif e == "BOOST_ALLY_POWER_BY_50_PERCENT":
+        fs.helping_hand(b, att)          # the partner's power by half this turn, a double battle's (fightsim.helping_hand)
+    elif e == "MAKE_GLOBAL_TARGET":
+        fs.follow_me(b, att, mv)         # Follow Me, Rage Powder, Spotlight: the center of attention (fightsim.follow_me)
+    elif e == "AFTER_YOU":
+        fs.after_you(b, att, dfn)        # its target acts next, in a double battle (fightsim.after_you)
+    elif e == "COACHING":
+        fs.coaching(b, att, dfn)         # its ally's Attack and Defense, in a double battle (fightsim.coaching)
     elif e == "HALVE_FIRE_DAMAGE":
         fs.water_sport(att)              # Fire moves at half power while it stands (fightsim.sport_half)
     elif e == "HALVE_ELECTRIC_DAMAGE":
@@ -1369,6 +1459,16 @@ def status_move(b, att, mv, dfn, first):
     elif e == "AVERAGE_HP":
         fs.pain_split(b, att, dfn)
     elif e == "FORCE_SWITCH":
+        if b.doubles:
+            # A double battle's draw, from the target's own trainer's party
+            # into the target's slot (fightsim.drag_pick). Until 2026-10-21
+            # the one drawn took the first slot, whichever it hit (Ian
+            # approved the fix on 2026-10-20).
+            if dfn.alive() and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False):
+                idx = fs.drag_pick(b, dfn, lambda kind, n: b.dice.choice(kind, n))
+                if idx is not None:
+                    fs.switch_in(b, foe_side, idx, slot=fs.slot_of(foe_side, dfn))
+            return
         bench = foe_side.bench()
         if bench and not fs.anchored(att, dfn) and not getattr(dfn, "ingrained", False):     # Suction Cups
             nxt = bench[b.dice.choice("roar", len(bench))]

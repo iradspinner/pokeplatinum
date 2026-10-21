@@ -716,6 +716,11 @@ class Mon:
     # faint counts once; kept only in a fight with a Soul Heart holder
     # (st["soul_heart"]).
     soul_seen = 0
+    # Helping Hand (turnFlags.helpingHand): its partner's Helping Hand has
+    # raised its moves' power by half for the rest of the turn
+    # (helping_hand); a turn flag, cleared as the next double-battle turn
+    # starts. Left on the class while False.
+    helped = False
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -932,6 +937,12 @@ class Side:
     # Crafty Shield's move constant, read by protected (guard_stops); gone
     # with the turn, and left on the class while there is none.
     guard = None
+    # Follow Me, Rage Powder or Spotlight this turn (sideConditions.followMe
+    # and followMeUser, a battler slot): the slot, 0 or 1, whose Pokemon
+    # draws the other side's single-target moves (follow_me, targets_of);
+    # cleared as the next double-battle turn starts, and left on the class
+    # while None.
+    follow_me = None
 
     def __init__(self, mons, name):
         self.mons, self.name = mons, name
@@ -1034,6 +1045,30 @@ class Battle:
     # it and before any Berry answers it, so the target's on-hit ability
     # reads the HP the engine's does (Berserk, hit_ability).
     hit_left = None
+    # A double battle (run_doubles sets it); left on the class while False.
+    doubles = False
+    # Whether a Helping Hand has helped a Pokemon this turn (Mon.helped), so
+    # the next turn clears the flag only then.
+    helping = False
+    # Whether a side has a center of attention this turn (Side.follow_me),
+    # so targets_of looks for one, and the next turn clears it, only then.
+    following = False
+    # A double battle's order of moves for the turn, [(Pokemon, move,
+    # target)], and the place of the one acting now (run_doubles), which
+    # After You changes; None outside a double battle's turn.
+    queue = None
+    queue_pos = -1
+    # How many of the battle's Pokemon were down when Soul Heart last looked,
+    # in a double battle (soul_heart); left on the class while 0.
+    soul_down = 0
+    # A double battle's damaging move is hitting more than one target, so
+    # each hit is at three quarters (Battle.damage, perfectline.damage_of);
+    # set around the move by the spread loop.
+    spread = False
+    # Magnitude's power for the use being worked out, in a double battle,
+    # where one roll serves every target (BtlCmd_CalcMagnitudePower keeps
+    # battleCtx->magnitude until the move ends); None between moves.
+    spread_magnitude = None
 
     def __init__(self, st, player, boss, rng, weather=None, trick_room=False, ai_flags=0):
         self.st, self.rng = st, rng
@@ -1243,7 +1278,7 @@ class Battle:
             mult *= 2 / 3        # the calculator's row has Flash Fire always lit
         elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
             mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
-        if att.side == "p" and BOOSTER_TYPE.get(att.item) == mv.type:
+        if booster_fifth(att, mv):
             mult *= 1.2          # the player's rows are item-free; a booster adds its fifth here
         side = self.p if dfn.side == "p" else self.b
         screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
@@ -1567,6 +1602,8 @@ def can_status(b, target, status):
         return False
     if status == "par" and "Electric" in t:
         return False
+    if b.doubles and status in PARTNER_STATUS_VEIL and veil_partner(b, target, status) is not None:
+        return False
     if status_ability_ignored(b, target):
         return True              # a Mold Breaker's move passes the abilities below
     if target.ability == "Purifying Salt":
@@ -1578,16 +1615,19 @@ def can_status(b, target, status):
 # Ability_ForbidsStatus); until 2026-10-14 the simulator let them through
 # (Ian approved the fix). Oxide's Sweet Veil keeps sleep off its holder as
 # Insomnia does (subscript_fall_asleep and subscript_yawn, past a Mold
-# Breaker's move; in a double battle its partner too, left to the double
-# battles' own batch); until 2026-10-20 it did nothing in the battle (Ian
-# approved the fix). Oxide's Pastel Veil keeps poison and bad poison off
-# its holder as Immunity does (subscript_poison, subscript_badly_poison,
-# Toxic Spikes' included; its partner's in a double battle left to their
-# own batch); until 2026-10-20 the poison landed, and only its cure ran
-# (Ian approved the fix).
+# Breaker's move; in a double battle its partner too, through
+# PARTNER_STATUS_VEIL since 2026-10-21); until 2026-10-20 it did nothing in
+# the battle (Ian approved the fix). Oxide's Pastel Veil keeps poison and
+# bad poison off its holder as Immunity does (subscript_poison,
+# subscript_badly_poison, Toxic Spikes' included; its partner's in a double
+# battle through PARTNER_STATUS_VEIL since 2026-10-21); until 2026-10-20 the
+# poison landed, and only its cure ran (Ian approved the fix).
 STATUS_ABILITIES = {"slp": {"Insomnia", "Vital Spirit", "Sweet Veil"}, "par": {"Limber"},
                     "brn": {"Water Veil", "Water Bubble"},
                     "psn": {"Immunity", "Pastel Veil"}, "tox": {"Immunity", "Pastel Veil"}, "frz": {"Magma Armor"}}
+# The abilities that keep a status off their holder's partner too, in a
+# double battle (can_status).
+PARTNER_STATUS_VEIL = {"slp": "Sweet Veil", "psn": "Pastel Veil", "tox": "Pastel Veil"}
 # The abilities announced as their holder comes in (each message tags the
 # ability, so BattleAI_SetAbility records it).
 ENTRY_ANNOUNCED = {"Intimidate", "Pressure", "Mold Breaker", "Drizzle", "Drought", "Sand Stream",
@@ -2251,7 +2291,31 @@ def entry_abilities(b, mons, intimidate=True, trace_now=True):
     for new in mons:
         if new.ability == "Screen Cleaner" and new.alive():
             screen_cleaner(b, new)       # Oxide's abilities' step, after Download
+        elif new.ability == "Hospitality" and new.alive() and b.doubles:
+            hospitality(b, new)
+        elif new.ability == "Pastel Veil" and new.alive() and b.doubles:
+            ally = ally_of(b, new)
+            if ally is not None and ally.status in ("psn", "tox"):
+                # BattleSystem_TriggerEffectOnSwitch's Oxide abilities,
+                # subscript_pastel_veil: a poisoned partner is cured as the
+                # holder comes in. Until 2026-10-21 it was not (Ian approved
+                # the double-battle part batch 11 left on 2026-10-14).
+                ally.status, ally.toxic = None, 0
+                reveal(new)
     forecast(b)                          # the check's form step comes after these
+
+
+def hospitality(b, mon):
+    """Hospitality (BattleSystem_TriggerEffectOnSwitch's Oxide abilities,
+    subscript_hospitality): as its holder comes in, in a double battle, its
+    standing partner below full HP gets back a quarter of its maximum HP
+    (BattleSystem_Divide). In a single battle it has no partner. Until
+    2026-10-21 it did nothing (Ian approved the double-battle part batch 11
+    left on 2026-10-14)."""
+    ally = ally_of(b, mon)
+    if ally is not None and ally.hp < ally.maxhp:
+        heal(ally, engine_divide(ally.maxhp, 4))
+        reveal(mon)
 
 
 def screen_cleaner(b, mon):
@@ -2441,11 +2505,17 @@ def stat_drop_blocked(b, mon, changes, src=None, intimidate=False):
         return True
     if mon.ability == "Flower Veil" and "Grass" in mon.types and not mold(src, mon):
         # Oxide's Flower Veil keeps the other side from lowering a Grass-type
-        # holder's stats, after Mist; its message names no ability. Its
-        # shield over a Grass-type partner in a double battle is left to the
-        # double battles' own batch. Until 2026-10-20 it did nothing (Ian
-        # approved the fix).
+        # holder's stats, after Mist; its message names no ability. Until
+        # 2026-10-20 it did nothing (Ian approved the fix).
         return True
+    if b.doubles and "Grass" in mon.types:
+        # And a Grass-type partner's, in a double battle (PartnerHasFlowerVeil:
+        # a standing partner, unless a Mold Breaker gets past it). Until
+        # 2026-10-21 the partner had no shield (Ian approved the
+        # double-battle part batch 11 left on 2026-10-14).
+        ally = ally_of(b, mon)
+        if ally is not None and ally.ability == "Flower Veil" and not mold(src, ally):
+            return True
     if mon.item == "Clear Amulet":
         return True
     # A Mold Breaker src gets past the abilities (AbilityBlocksSpecificStatReduction
@@ -2527,11 +2597,30 @@ def leaf_guarded(b, target):
             and not weather_ignored(b))
 
 
+def veil_partner(b, target, status):
+    """The standing partner whose Sweet Veil or Pastel Veil keeps this status
+    off target in a double battle (the status subscripts' CHECK_HAVE_ON_SIDE),
+    unless a Mold Breaker's move gets past the partner's ability
+    (CheckIgnorableAbility; Toxic Spikes' check is not ignorable, and its
+    status has no source), or None. Until 2026-10-21 neither shielded the
+    partner (Ian approved the double-battle parts batch 11 left on
+    2026-10-14)."""
+    ally = ally_of(b, target)
+    if ally is not None and ally.ability == PARTNER_STATUS_VEIL.get(status) \
+            and not mold(getattr(b, "status_src", None), ally):
+        return ally
+    return None
+
+
 def give_status(b, target, status):
     if not can_status(b, target, status) or leaf_guarded(b, target):
         if target.alive() and not target.status and not status_ability_ignored(b, target) \
                 and (target.ability in STATUS_ABILITIES.get(status, ()) or leaf_guarded(b, target)):
             reveal(target)
+        elif b.doubles and target.alive() and not target.status:
+            veil = veil_partner(b, target, status)
+            if veil is not None:
+                reveal(veil)         # the message names the partner's veil
         return False
     target.status = status
     if status == "slp":
@@ -3387,15 +3476,34 @@ def engine_divide(value, divisor):
     return 0 if value == 0 else max(1, value // divisor)
 
 
-def life_dew(att):
+def life_dew(att, b=None):
     """Life Dew (effect script 383, subscript_life_dew): it fails under Heal
     Block, which the script checks itself (the move is not on
     sMovesAffectedByHealBlock, so it can be chosen); otherwise its user gets
-    back a quarter of its maximum HP, rounded up, unless its HP is full. Its
-    heal of an ally in a double battle is left to the double battles' own
-    fixes. Until 2026-10-15 it did nothing (Ian approved the fix)."""
-    if not heal_blocked(att):
-        heal(att, (att.maxhp + 3) // 4)
+    back a quarter of its maximum HP, rounded up, unless its HP is full, and
+    in a double battle so does its standing ally, the ally's own Heal Block
+    unread. Until 2026-10-15 it did nothing (Ian approved the fix); until
+    2026-10-21 the ally got nothing (Ian approved the double-battle part
+    batch 7 left on 2026-10-14)."""
+    if heal_blocked(att):
+        return
+    heal(att, (att.maxhp + 3) // 4)
+    ally = ally_of(b, att) if b is not None and b.doubles else None
+    if ally is not None:
+        heal(ally, (ally.maxhp + 3) // 4)
+
+
+def coaching(b, att, dfn):
+    """Coaching (effect script 381, subscript_coaching): its target is the
+    user's ally (RANGE_ALLY), whose Attack and Defense rise a stage each
+    through the stat-stage subscript (change_stages: Simple and Contrary
+    count); with no ally the target is the user and the move fails, as it
+    does on a fainted ally. So it does nothing in a single battle. Until
+    2026-10-21 it did nothing in a double battle either (Ian approved the
+    double-battle part batch 8 left on 2026-10-14)."""
+    if not b.doubles or dfn is att or dfn.side != att.side or not dfn.alive():
+        return
+    change_stages(dfn, {"atk": 1, "def": 1})
 
 
 def strength_sap(b, att, dfn, mv):
@@ -3584,13 +3692,18 @@ def sky_drop(b, att, mv, dfn):
     The second turn drops the target: the move fails on one no longer held,
     does nothing to a Flying type, and otherwise hits. Until 2026-10-15 it
     hit on the turn it was used, nobody was held, and Flying types took it
-    (Ian approved the fix). Its double-battle part is left to the double
-    battles' own fixes."""
+    (Ian approved the fix). In a double battle it fails on an ally too
+    (TrySkyDrop), and while the hold lasts the user and the target are in
+    the air for every other Pokemon (sky_airborne), and the user's drop
+    goes to the Pokemon it holds (run_doubles); until 2026-10-21 it was a
+    plain hit there (Ian approved the double-battle part batch 8 left on
+    2026-10-14)."""
     if att.charging is None:
         weight = (calc.blob()["poks"].get(dfn.species) or {}).get("weightkg") or 0
         if (not dfn.alive() or dfn is att or (dfn.charging is not None and dfn.charging.effect in INVULNERABLE)
                 or dfn.protecting or dfn.sub or dfn.sky_holder is not None or weight >= 200
-                or getattr(b, "gravity", 0) or att.smacked):
+                or getattr(b, "gravity", 0) or att.smacked or dfn.side == att.side
+                or (b.doubles and sky_airborne(b, dfn))):
             return False
         att.charging = mv
         dfn.sky_holder, dfn.rare = att.key, True
@@ -3600,6 +3713,36 @@ def sky_drop(b, att, mv, dfn):
         return False
     dfn.sky_holder = None
     return "Flying" not in dfn.types
+
+
+def sky_airborne(b, mon):
+    """Whether, in a double battle, mon is up in the air with a Sky Drop:
+    its user charging it, or a Pokemon it holds (sky_held). TrySkyDrop and
+    the lift's script give both MOVE_EFFECT_AIRBORNE, as Fly gives its user,
+    so every other Pokemon's move meets them as it meets a Pokemon in the
+    air (sky_out_of_reach); a single battle has no other Pokemon to aim at
+    them."""
+    if mon.charging is not None and mon.charging.effect == "SKY_DROP":
+        return True
+    return mon.sky_holder is not None and sky_held(b, mon)
+
+
+def sky_out_of_reach(b, att, dfn, mv):
+    """Whether att's move cannot reach dfn up in the air with a Sky Drop
+    (sky_airborne), as BattleControllerPlayer_CheckMoveHitOverrides misses a
+    MOVE_EFFECT_AIRBORNE target: unless the move reaches the air (HIT_IN_AIR:
+    Gust, Twister, Thunder, Hurricane, Sky Uppercut, Smack Down) or No Guard
+    or Lock-On lands it (lands_sure)."""
+    if not sky_airborne(b, dfn):
+        return False
+    return not air_reach(mv) and not lands_sure(att, dfn, mv)
+
+
+def air_reach(mv):
+    """How a move strikes a Pokemon in the air: HIT_IN_AIR's 2 or 1, or 0;
+    Thousand Arrows shares Smack Down's effect but does not reach the air
+    (Oxide), as reach_mult has it."""
+    return HIT_IN_AIR.get(mv.effect, 0) if mv.name != "Thousand Arrows" else 0
 
 
 def heal(mon, amount):
@@ -3825,10 +3968,25 @@ def soul_heart(b):
     hazards finish with a newcomer and as the turn ends, so it is looked at
     there; each Pokemon on the field keeps the count of the others down
     (Mon.soul_seen), so each faint counts once and one that gains the
-    ability later counts only the faints after. With two holders on the
-    field the engine raises only the faster, which a double battle alone
-    could show and which is not followed. Until 2026-10-20 it did nothing
-    (Ian approved the fix)."""
+    ability later counts only the faints after. Until 2026-10-20 it did
+    nothing (Ian approved the fix). In a double battle each faint raises the first
+    holder in speed order that is up and below +6 (BtlCmd_TrySoulHeart over
+    monSpeedOrder, end_order here), so of two holders only the faster
+    gains, the slower when the faster is at +6; the faints are counted for
+    the battle (Battle.soul_down), so a holder that comes in counts only
+    those after. Until 2026-10-21 every holder gained (Ian approved the
+    double-battle part batch 12 left on 2026-10-20)."""
+    if b.doubles:
+        down = sum(1 for side in (b.p, b.b) for m in side.mons if not m.alive())
+        new, b.soul_down = down - b.soul_down, down
+        holders = [m for m in end_order(b) if m.alive() and m.ability == "Soul Heart"] if new > 0 else ()
+        for _ in range(new):
+            m = next((m for m in holders if m.stages["spa"] < 6), None)
+            if m is None:
+                break
+            change_stages(m, {"spa": 1})
+            reveal(m)
+        return
     for m in b.p.on_field() + b.b.on_field():
         if not m.alive():
             continue
@@ -4374,16 +4532,47 @@ def drag_out(b, att, dfn, pick):
     Ingrain roots it, the target is dragged out for a party member drawn at
     random (BtlCmd_TryDragonTail), which meets the hazards as it comes in;
     with no one left to send in, nothing happens. The hit has done its
-    damage, so none of these fails the move. In a double battle the drag is
-    left to the double battles' own fixes. Until 2026-10-15 the target
-    stayed in (Ian approved the fix)."""
-    if getattr(b, "doubles", False) or not att.alive() or not dfn.alive() or getattr(dfn, "ingrained", False) \
+    damage, so none of these fails the move. Until 2026-10-15 the target
+    stayed in (Ian approved the fix). In a double battle the one drawn
+    comes from the target's own trainer's party into the target's slot
+    (drag_pick); until 2026-10-21 the target stayed in there (Ian approved
+    the double-battle part of batch 7 on 2026-10-14)."""
+    if not att.alive() or not dfn.alive() or getattr(dfn, "ingrained", False) \
             or (dfn.ability == "Suction Cups" and not mold(att, dfn)):
         return
     side = b.p if dfn.side == "p" else b.b
+    if b.doubles:
+        idx = drag_pick(b, dfn, pick)
+        if idx is not None:
+            switch_in(b, side, idx, slot=slot_of(side, dfn))
+        return
     bench = side.bench()
     if bench:
         switch_in(b, side, side.mons.index(bench[pick("roar", len(bench))]))
+
+
+def drag_pick(b, dfn, pick):
+    """The party index BattleScript_PickDraggedOutMon draws to come in for
+    dfn in a double battle, or None. The party is dfn's own trainer's (a
+    tag battle's two trainers, or the player and a partner, each have their
+    own; one trainer's double battle has one), and the move fails unless it
+    has more Pokemon standing, those on the field included, than the
+    slots it fills, two for one trainer's pair and one each in a tag or
+    partner battle: a pair whose other slot has fainted with one Pokemon
+    waiting fails. The one drawn is any of that party standing off the
+    field, at even odds (pick(kind, n)). Roar's and Whirlwind's level check
+    (BattleSystem_CanWhirlwind) is not followed, in either battle."""
+    side = b.p if dfn.side == "p" else b.b
+    owner = getattr(dfn, "owner", None)
+    mine = [m for m in side.mons if getattr(m, "owner", None) == owner]
+    field = side.on_field()
+    slots = sum(1 for m in field if getattr(m, "owner", None) == owner)
+    if sum(m.alive() for m in mine) <= slots:
+        return None
+    cands = [m for m in mine if m.alive() and m not in field]
+    if not cands:
+        return None
+    return side.mons.index(cands[pick("roar", len(cands))])
 
 
 def drag_coming(b, att, dfn, mv):
@@ -4391,11 +4580,13 @@ def drag_coming(b, att, dfn, mv):
     its ability and items have answered it (the engine's HitWillDragTarget,
     which Pickpocket asks): hit_aftermath's and drag_out's own conditions,
     read before the drag runs."""
-    if mv.effect != "FORCE_SWITCH_HIT" or getattr(b, "last_dealt", 0) <= 0 or b.sub_hit or getattr(b, "doubles", False):
+    if mv.effect != "FORCE_SWITCH_HIT" or getattr(b, "last_dealt", 0) <= 0 or b.sub_hit:
         return False
     if not att.alive() or not dfn.alive() or getattr(dfn, "ingrained", False) \
             or (dfn.ability == "Suction Cups" and not mold(att, dfn)):
         return False
+    if b.doubles:
+        return drag_pick(b, dfn, lambda kind, n: 0) is not None
     return bool((b.p if dfn.side == "p" else b.b).bench())
 
 
@@ -4696,6 +4887,8 @@ def beat_up_damage(b, att, member, dfn, mv, crit, roll):
            // base_stat(b, dfn, "df") // 50 + 2)
     if crit:
         dmg = dmg * 9 // 4 if att.ability == "Sniper" else dmg * 3 // 2
+    if att.helped:
+        dmg = dmg * 15 // 10     # its partner's Helping Hand, before the roll (helping_hand)
     return max(1, dmg * (85 + roll) // 100)
 
 
@@ -4971,12 +5164,27 @@ def majesty_blocked(att, dfn, mv):
     raises count) aimed at a foe with Queenly Majesty fails, unless a Mold
     Breaker gets past it (BattleControllerPlayer_PriorityBlock, after the
     immunity abilities; in a double battle the holder's partner is shielded
-    too, which is left to the double battles' own batch). The message
-    names the ability. Until 2026-10-20 the move landed (Ian approved the
-    fix)."""
+    too, majesty_partner_blocked). The message names the ability. Until
+    2026-10-20 the move landed (Ian approved the fix)."""
     if dfn is att or dfn.side == att.side or mold(att, dfn) or move_priority(att, mv) <= 0:
         return False
     reveal(dfn)
+    return True
+
+
+def majesty_partner_blocked(b, att, dfn, mv):
+    """Queenly Majesty on the target's standing partner, in a double battle
+    (BattleControllerPlayer_PriorityBlock, after the target's own): a move
+    of raised priority aimed at a foe fails if that foe's partner has it,
+    unless a Mold Breaker gets past it; the message names the ability.
+    Until 2026-10-21 only the target's own shielded it (Ian approved the
+    double-battle part batch 11 left on 2026-10-14)."""
+    if dfn is att or dfn.side == att.side or move_priority(att, mv) <= 0:
+        return False
+    ally = ally_of(b, dfn)
+    if ally is None or ally.ability != "Queenly Majesty" or mold(att, ally):
+        return False
+    reveal(ally)
     return True
 
 
@@ -5356,9 +5564,9 @@ def heal_pulse(att, dfn, mv):
     target under Heal Block or behind a Substitute an Infiltrator does not
     pass; otherwise the target gets back half its maximum HP, rounded up,
     or three quarters with its user's Mega Launcher, nothing at full HP
-    (subscript_recover_hp). In a single battle its target is the foe; the
-    heal of a double battle's ally is left to the double battles' own
-    fixes. Until 2026-10-15 it did nothing (Ian approved the fix)."""
+    (subscript_recover_hp). In a single battle its target is the foe; in a
+    double battle the one it is aimed at, an ally too (run_doubles). Until
+    2026-10-15 it did nothing (Ian approved the fix)."""
     if dfn.heal_block or sub_blocks(att, dfn, mv):
         return
     heal(dfn, 3 * ((dfn.maxhp + 3) // 4) if att.ability == "Mega Launcher" else (dfn.maxhp + 1) // 2)
@@ -6602,6 +6810,27 @@ def plus_minus(b, att, mv):
     return 1.5 if ally is not None and ally.ability in ("Plus", "Minus") else 1.0
 
 
+def partner_power(b, att, dfn, mv):
+    """The partner abilities' factors on a double battle's hit
+    (BattleSystem_CalcMoveDamage): Battery, on the attacker's standing
+    partner, raises a special move's power by 13/10 after Technician (the
+    holder's own moves only beside a second holder: the count of holders on
+    its side must pass its own); Friend Guard, on the target's standing
+    partner, cuts the damage to three quarters, unless the attacker's Mold
+    Breaker gets past it. The calculator's rows have neither. Until
+    2026-10-21 neither did anything (Ian approved the double-battle parts
+    batch 11 left on 2026-10-14)."""
+    m = 1.0
+    if mv.cat == "Special":
+        ally = ally_of(b, att)
+        if ally is not None and ally.ability == "Battery":
+            m *= 1.3
+    guard = ally_of(b, dfn)
+    if guard is not None and guard.ability == "Friend Guard" and not mold(att, guard):
+        m *= 0.75
+    return m
+
+
 def marvel_scale(att, dfn, mv):
     """Marvel Scale's half again to its holder's Defense while it has a
     status (BattleSystem_CalcMoveDamage, which Mold Breaker gets past), for
@@ -6645,6 +6874,8 @@ def state_mult(b, att, dfn, mv):
         # nothing (Ian approved the fix).
         m *= 0.5
     m *= plus_minus(b, att, mv)
+    if b.doubles:
+        m *= partner_power(b, att, dfn, mv)      # Battery's 13/10 and Friend Guard's three quarters
     berry = resist_berry(b, dfn, mv)
     if berry and not berry_works(b, dfn, berry):
         m *= 2               # the row's halving gone with the Berry, or held off by Unnerve
@@ -6757,7 +6988,13 @@ def state_mult(b, att, dfn, mv):
             m *= power_ratio(att, mv.power, 2 * mv.power) if mv.power > 1 else 2
         if att.me_first:
             m *= 1.5             # a move Me First took, at half again its damage (me_first_move)
+    if att.helped:
+        # Helping Hand: BattleSystem_CalcMoveDamage raises the power by half
+        # (15/10) after a doubling and before Technician (helping_hand).
+        m *= power_ratio(att, mv.power, mv.power * 15 // 10) if mv.power > 1 else 1.5
     reach = reach_mult(mv, dfn)
+    if not reach and b.doubles and (dfn.rare or dfn.charging is not None) and sky_airborne(b, dfn):
+        reach = air_reach(mv)    # Gust and Twister double on a Sky Drop's pair in the air, as on a flier
     if reach > 1:
         # The effect scripts double the power (POWER_MULTI 20) before
         # Technician is judged; Magnitude, whose power is rolled, doubles.
@@ -8199,7 +8436,7 @@ def status_move(b, att, mv, dfn, first):
     elif e == "HEAL_HALF_MORE_IN_SUN":
         heal(att, weather_heal(b, att, mv))
     elif e == "LIFE_DEW":
-        life_dew(att)
+        life_dew(att, b)
     elif e == "STRENGTH_SAP":
         strength_sap(b, att, dfn, mv)
     elif e == "REST":
@@ -8490,30 +8727,35 @@ def healing_wish(b, att, lunar=False):
     lunar, Lunar Dance (effect script 270, subscript_lunar_dance): it fails
     when no party member can come in (TryReplaceFaintedMon); otherwise its
     user faints, and the turn sends in its replacement at once
-    (wish_comes_true). In a double battle the move is left to the double
-    battles' own fixes. Until 2026-10-15 both did nothing (Ian approved the
-    fixes)."""
+    (wish_comes_true). Until 2026-10-15 both did nothing (Ian approved the
+    fixes). In a double battle the party is the user's own trainer's
+    (BattleSystem_AnyReplacementMons keeps a tag battle's apart), and the
+    one sent in takes the user's slot; until 2026-10-21 both did nothing
+    there (Ian approved the double-battle parts of batches 7 and 8 on
+    2026-10-14)."""
     side = b.p if att.side == "p" else b.b
-    if getattr(b, "doubles", False) or not side.bench():
+    if not side.bench(owner=getattr(att, "owner", None) if b.doubles else None):
         return
     att.hp = 0
     att.wished = "lunar" if lunar else True
 
 
-def wish_comes_true(b, mon, choose):
+def wish_comes_true(b, mon, choose, slot=0, owner=None):
     """Healing Wish's and Lunar Dance's replacement (their subscripts,
     straight after the move): the party member choose(side) picks comes in
     and meets the hazards, and one left standing gets its HP back in full
     and its status cured, and after Lunar Dance every move's PP too; one the
-    hazards knock out is replaced in turn, the wish waiting for the next."""
+    hazards knock out is replaced in turn, the wish waiting for the next.
+    In a double battle the one sent in takes the user's slot (`slot`), from
+    its own trainer's party (`owner`)."""
     lunar = mon.wished == "lunar"
     mon.wished = False
     side = b.p if mon.side == "p" else b.b
-    while side.bench():
+    while side.bench(owner):
         idx = choose(side)
         if idx is None or not side.mons[idx].alive():
             return
-        switch_in(b, side, idx)
+        switch_in(b, side, idx, slot=slot)
         new = side.mons[idx]
         if new.alive():
             new.hp, new.status, new.sleep, new.toxic = new.maxhp, None, 0, 0
@@ -8624,15 +8866,17 @@ def baton_state(mon):
             "suppressed": getattr(mon, "suppressed", False)}
 
 
-def baton_pass(b, side, index):
+def baton_pass(b, side, index, slot=0):
     """Baton Pass's switch (effect script 127, subscript_baton_pass): its
     user leaves, as any switch does (Natural Cure and Regenerator on the
     way out), and the replacement comes in carrying baton_state, before the
     hazards and its own entry abilities; a foe that the user's Mean Look or
     Block held stays held by the replacement, and the user's binds and
     love end (BattleSystem_InitBattleMon). Until 2026-10-15 Baton Pass did
-    nothing and its user stayed in (Ian approved the fix)."""
-    switch_in(b, side, index, passed=baton_state(side.cur()))
+    nothing and its user stayed in (Ian approved the fix). `slot`: the
+    user's slot, 1 for a double battle's second."""
+    leaving = side.mons[side.active2] if slot == 1 else side.cur()
+    switch_in(b, side, index, slot=slot, passed=baton_state(leaving))
 
 
 def switch_in(b, side, index, slot=0, lead=False, passed=None):
@@ -8792,6 +9036,19 @@ def pick_one(b, kind, n):
 # The five stats Moody draws from, in the engine's order (BATTLE_STAT_ATTACK
 # to BATTLE_STAT_SP_DEFENSE).
 MOODY_STATS = ("atk", "def", "spe", "spa", "spd")
+
+
+def healer(b, m):
+    """Healer (BattleSystem_TriggerTurnEndAbility, subscript_healer): at each
+    turn's end, in a double battle, three times in ten its standing
+    partner's status is cured, and Nightmare with it; the message names the
+    ability. In a single battle it has no partner. Until 2026-10-21 it did
+    nothing (Ian approved the double-battle part batch 11 left on
+    2026-10-14)."""
+    ally = ally_of(b, m)
+    if m.alive() and ally is not None and ally.status and helps(b, ally, "healer", 0.3):
+        ally.status, ally.sleep, ally.toxic, ally.nightmare = None, 0, 0, False
+        reveal(m)
 
 
 def moody(b, m):
@@ -9015,6 +9272,8 @@ def _end_of_turn_mon(b, side, m):
     if m.ability == "Shed Skin" and m.status and helps(b, m, "shedskin", 1 / 3):
         m.status, m.sleep, m.toxic = None, 0, 0
         reveal(m)
+    if m.ability == "Healer" and b.doubles:
+        healer(b, m)
     # Harvest (the same function, battle_lib.c 4225): a berry it used up,
     # Natural Gift's included, grows back while it holds nothing, every turn
     # in sun that Cloud Nine and Air Lock leave alone, and on a coin flip
@@ -9599,17 +9858,98 @@ def ally_of(b, mon):
     return next((m for m in side.on_field() if m is not mon and m.alive()), None)
 
 
-def targets_of(b, att, mv, chosen):
+def pollen_puff_heal(att, dfn):
+    """Pollen Puff aimed at its user's ally (effect script 380's IfSameSide
+    branch, subscript_pollen_puff_heal): once the move has met the ally's
+    Protect, hidden turn and accuracy as a hit would, the ally gets back half
+    its maximum HP, rounded up, in place of any damage; nothing at full HP
+    (subscript_recover_hp), and Heal Block on the ally does not stop it. A
+    Telepathy ally takes nothing, as from any partner's move with power
+    (perfectline.attack), and a Bulletproof ally nothing either, as Pollen
+    Puff is on sBallAndBombMoves and the immunity abilities' check
+    (BattleSystem_TriggerImmunityAbility) runs past the script's
+    SYSCTL_IGNORE_IMMUNITIES, unless the user's Mold Breaker gets past it.
+    Until 2026-10-21 a double battle's Pollen Puff hit its user's ally (Ian
+    approved the double-battle part batch 7 left on 2026-10-14)."""
+    if dfn.ability == "Bulletproof" and not mold(att, dfn):
+        reveal(dfn)
+        return
+    if dfn.alive() and dfn.hp < dfn.maxhp:
+        heal(dfn, (dfn.maxhp + 1) // 2)
+
+
+def after_you(b, att, dfn):
+    """After You (effect script 305, subscript_handle_after_you,
+    ChangeExecutionOrderPriority): in a double battle its target, yet to act
+    this turn, acts next, straight after the user, the Pokemon in between
+    each one place later (the turn's order, Battle.queue); it fails on a
+    target that has acted or is not in the order. In a single battle its
+    target, the foe, is next already or has acted, so it changes nothing.
+    Until 2026-10-21 it did nothing in a double battle (Ian approved the
+    double-battle part batch 7 left on 2026-10-14)."""
+    queue = b.queue
+    if not b.doubles or queue is None:
+        return
+    pos = next((i for i, a in enumerate(queue) if a[0] is dfn), None)
+    if pos is None or pos <= b.queue_pos or dfn in b.moved:
+        return
+    queue.insert(b.queue_pos + 1, queue.pop(pos))
+
+
+def follow_me(b, att, mv):
+    """Follow Me, Rage Powder and Spotlight (effect script 172,
+    BtlCmd_FollowMe): in a double battle the user's slot becomes its side's
+    center of attention for the rest of the turn, so the other side's
+    single-target moves and its random-target ones go to the Pokemon in it
+    while that one stands (center, read by targets_of as BattleSystem_Defender
+    reads sideConditions.followMe). Oxide's Spotlight runs Follow Me's script
+    too, so it is its user, not its target, that draws the moves; its target
+    can stop it by protecting. In a single battle it changes nothing. Until
+    2026-10-21 it did nothing in a double battle (Ian approved the fix on
+    2026-10-14 with the gaps list's MAKE_GLOBAL_TARGET row)."""
+    if not b.doubles:
+        return
+    side = b.p if att.side == "p" else b.b
+    side.follow_me = slot_of(side, att)
+    b.following = True
+
+
+def center(b, att):
+    """The Pokemon at the center of attention on att's other side (follow_me),
+    standing in the slot its Follow Me was used from, or None."""
+    side = b.b if att.side == "p" else b.p
+    if side.follow_me is None:
+        return None
+    idx = side.active2 if side.follow_me == 1 else side.active
+    mon = side.mons[idx] if idx is not None else None
+    return mon if mon is not None and mon.alive() else None
+
+
+def targets_of(b, att, mv, chosen, randomize=False):
     """Who a move hits in a double battle: both foes, everyone beside the
-    user, a random foe, or the one chosen (the other foe when it is down)."""
+    user, a random foe, or the one chosen (the other foe when it is down).
+    `randomize`: the target is drawn as a random foe's, as BattleSystem_Defender
+    draws a Struggle's (FightCommand's randomizeTarget). A center of
+    attention on the other side (follow_me) draws a single-target or
+    random-target move, as BattleSystem_Defender sends them to
+    sideConditions.followMeUser."""
     foes = foes_of(b, att)
     if mv.range == "ADJACENT_OPPONENTS":
         return foes
     if mv.range == "ALL_ADJACENT":
         ally = ally_of(b, att)
         return foes + ([ally] if ally else [])
-    if mv.range == "RANDOM_OPPONENT":
-        return [b.rng.choice(foes)] if foes else []
+    if b.following and (mv.range in ("RANDOM_OPPONENT", "SINGLE_TARGET", "SINGLE_TARGET_ME_FIRST") or randomize):
+        mon = center(b, att)
+        if mon is not None:
+            return [mon]
+    if mv.range == "RANDOM_OPPONENT" or randomize:
+        return [foes[pick_one(b, "target", len(foes))]] if foes else []
+    if mv.range == "ALLY":
+        # Helping Hand's and Coaching's target is the user's partner whatever
+        # was chosen (BattleSystem_Defender), the user itself with none.
+        ally = ally_of(b, att)
+        return [ally] if ally is not None else [att]
     if chosen is not None and chosen in foes:
         return [chosen]
     if chosen is not None and (chosen is att or chosen is ally_of(b, att)):
@@ -9682,12 +10022,160 @@ def player_replacement_doubles(b, side, owner):
     return best[1] if best else None
 
 
+def helping_hand(b, att):
+    """Helping Hand (effect script 176, BtlCmd_TryHelpingHand): in a double
+    battle its user's partner, standing and yet to act this turn, has the
+    power of its moves raised by half for the rest of the turn (Mon.helped,
+    read by state_mult and beat_up_damage, as BattleSystem_CalcMoveDamage,
+    BtlCmd_BeatUp and Future Sight's damage read turnFlags.helpingHand). It
+    fails in a single battle, on a partner that has acted, fainted or is
+    helped already, and for a user its partner has helped. Until 2026-10-21
+    it did nothing in a double battle (Ian approved the fix on 2026-10-14
+    with the gaps list's BOOST_ALLY_POWER_BY_50_PERCENT row)."""
+    if not b.doubles:
+        return
+    ally = ally_of(b, att)
+    if ally is None or ally in b.moved or att.helped or ally.helped:
+        return
+    ally.helped = True
+    b.helping = True
+
+
+def doubles_replacement(b, side, mon):
+    """The party index that comes into mon's slot mid-turn in a double
+    battle, from mon's own trainer's party (BattleSystem_AnyReplacementMons:
+    a tag battle keeps each trainer's apart), picked as a knockout's is: by
+    the player's doubles rule for the player's own Pokemon, else by the
+    trainer's AI (BattleAI_PostKOSwitchIn, fightai.replacement). None when
+    no one waits on the bench."""
+    if not side.bench(owner=mon.owner):
+        return None
+    if side is b.p and mon.owner == "player":
+        idx = player_replacement_doubles(b, side, mon.owner)
+    else:
+        foes = foes_of(b, mon)
+        idx = fightai.replacement(b, side, foes[0] if foes else mon, owner=mon.owner)
+    if idx is None or not side.mons[idx].alive() or side.mons[idx] in side.on_field():
+        return None
+    return idx
+
+
+def doubles_switch_out(b, mon):
+    """U-turn's, Volt Switch's, Flip Turn's and Parting Shot's switch, and
+    Baton Pass's, in a double battle (subscript_attack_then_switch_out,
+    subscript_parting_shot, subscript_baton_pass), straight after the move:
+    no switch once the target's side has nothing left (CheckBlackOut), with
+    no one of the user's own party to send in (TryReplaceFaintedMon), or
+    when the user fell on the way; otherwise the replacement
+    (doubles_replacement) comes into the user's slot, carrying Baton Pass's
+    state for a Baton Pass (baton_pass). It does not act this turn. Until
+    2026-10-21 the user stayed in (Ian approved the double-battle part of
+    batch 10 on 2026-10-15, and of Parting Shot with batch 7's on 2026-10-14)."""
+    passing = mon.baton
+    mon.u_turn = mon.baton = False
+    side = b.p if mon.side == "p" else b.b
+    if not mon.alive() or not (b.b if mon.side == "p" else b.p).alive():
+        return
+    idx = doubles_replacement(b, side, mon)
+    if idx is None:
+        return
+    slot = slot_of(side, mon)
+    if passing:
+        baton_pass(b, side, idx, slot=slot)
+    else:
+        switch_in(b, side, idx, slot=slot)
+
+
+def struggles(b, mon):
+    """Whether mon can only Struggle this turn in a double battle: it can
+    choose (Battler_CanPickCommand: not locked into a move, charging or
+    recharging) and every move it knows is ruled out
+    (BattleSystem_CheckInvalidMoves, fightai.invalid: no PP, Disable,
+    Torment, Taunt, Imprison, Gravity, Heal Block, Belch, Throat Chop, an
+    Assault Vest, Encore, a Choice lock), so the command input gives it
+    Struggle (BattleSystem_CheckStruggling), the player's side as the
+    trainer's. Until 2026-10-21 neither side ever struggled in a double
+    battle: a Pokemon out of PP used a move it could not (Ian approved the
+    double battles' path on 2026-10-14)."""
+    if mon.lock or mon.charging is not None or mon.recharge:
+        return False
+    return all(fightai.invalid(b, mon, m) for m in mon.moves)
+
+
+def doubles_quick(b):
+    """Each Pokemon's Quick Claw for the turn, rolled before anyone chooses,
+    as in the single battles (perfectline.play_turn): the engine reads
+    speedRand, drawn for every battler before the turn (BattleContext_InitCounters,
+    then each turn's PRE_MOVE_ACTION_STATE_SPEED_RNG), against the claw's one
+    in five, and the trainer's AI reads it too (fightai._first_item). The
+    player's side rolls as its luck, the trainer's as the player's bad luck,
+    alike at the game's odds."""
+    b.quick = {m.key: m.item == "Quick Claw" and (b.dice.good(0.2, "quickclaw") if m.side == "p"
+                                                  else b.dice.bad("quickclaw", 0.2))
+               for m in b.p.on_field() + b.b.on_field() if m.alive()}
+    b.custap = set()
+
+
+def doubles_order(b, acts):
+    """The turn's moves in a double battle in the engine's order
+    (BattleControllerPlayer_CalcTurnOrder): an exchange sort over the four
+    on BattleSystem_CompareBattlerSpeed, so the higher priority goes first
+    (move_priority: Prankster and Gale Wings count); within a priority a
+    Quick Claw that fired this turn (doubles_quick) or a Custap Berry in its
+    pinch (custap_fires, a quarter of its HP, half with Gluttony, unless
+    Unnerve holds it) puts its holder first, and two such holders go by
+    Speed; then Speed, the slower first under Trick Room; a tie swaps on a
+    coin. A Custap Berry so found is eaten as its holder acts, whatever its
+    move's priority (CompareBattlerSpeed sets moveEffectsData.custapBerry,
+    which subscript_check_quick_claw reads), and is noted in b.custap. acts
+    is [(Pokemon, move, target)], returned in order. Until 2026-10-21 the
+    double battles went by priority and Speed alone, so neither item did
+    anything (Ian approved the double battles' path on 2026-10-14)."""
+    quick = {}
+    for mon, _mv, _t in acts:
+        q = bool(b.quick.get(mon.key))
+        if custap_fires(mon, b):
+            q = True
+            b.custap.add(mon.key)
+        quick[mon.key] = q
+
+    def after(x, y):
+        """Whether x goes after y: CompareBattlerSpeed's nonzero result."""
+        px, py = move_priority(x[0], x[1]), move_priority(y[0], y[1])
+        if px != py:
+            return px < py
+        sx, sy = b.speed(x[0]), b.speed(y[0])
+        qx, qy = quick[x[0].key], quick[y[0].key]
+        if qx != qy:
+            return qy
+        if b.trick_room and not (qx and qy):
+            return sx > sy or (sx == sy and b.rng.random() < 0.5)
+        return sx < sy or (sx == sy and b.rng.random() < 0.5)
+
+    order = list(acts)
+    for i in range(len(order) - 1):
+        for j in range(i + 1, len(order)):
+            if after(order[i], order[j]):
+                order[i], order[j] = order[j], order[i]
+    return order
+
+
 def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), partner_flags=0,
                 trick_room=False):
     """One double battle: (the player's Pokemon lost, whether the player won).
     boss_groups is one party (a doubles trainer fills both slots) or two
     (a tag battle, each opponent filling its own slot); partner_keys is a
-    partner's party (Barry), driven by its own flags beside the player."""
+    partner's party (Barry), driven by its own flags beside the player.
+
+    Every move is played through perfectline's use_move, attack and
+    status_move, on perfectline's dice at the game's odds (RunDice, "real"),
+    as the singles readings play them, so each branch they hold runs here
+    too: the Berries on a hit, Mean Look and Ingrain, Scope Lens, King's
+    Rock, Focus Band, Big Root, Struggle, Magnitude's rolled power and the
+    rest. Until 2026-10-21 the double battles ran fightsim's own attack and
+    status_move, which lacked them (Ian approved the double battles' path on
+    2026-10-14 with the gaps list, simulator-gaps.md's "Double battles")."""
+    from . import perfectline as pl      # imported here: perfectline imports this module
     pm = [Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], "p") for k in player_keys]
     held = assign_items(st, player_keys) if "split" in st else {}
     for m in pm:
@@ -9706,6 +10194,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
     b = Battle(st, Side(pm + part, "p"), Side(bm, "b"), rng, weather=st.get("base_weather"),
                trick_room=trick_room, ai_flags=boss_flags[0])
     b.doubles, b.moved = True, set()
+    b.dice = pl.RunDice(rng, luck="real")    # the game's odds on both sides, as pdoubles reports ("dice")
     flags_of = {g: boss_flags[min(g, len(boss_flags) - 1)] for g in range(len(boss_groups))}
     flags_of["partner"] = partner_flags
     # The leads.
@@ -9720,9 +10209,20 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
 
     while b.turn < MAX_TURNS and b.p.alive() and b.b.alive():
         b.moved = set()
+        if b.helping:
+            for m in b.p.mons + b.b.mons:
+                m.helped = False         # last turn's Helping Hand (a turn flag)
+            b.helping = False
+        if b.following:
+            b.p.follow_me = b.b.follow_me = None     # last turn's center of attention
+            b.following = False
+        doubles_quick(b)
         acts = []
         for mon in b.p.on_field() + b.b.on_field():
             if not mon.alive():
+                continue
+            if struggles(b, mon):
+                acts.append((mon, move("Struggle"), None))
                 continue
             if mon.side == "p" and mon.owner == "player":
                 acts.append((mon,) + player_choice_doubles(b, mon)[1:])
@@ -9735,23 +10235,44 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
         for mon, mv, _t in acts:
             mon.chosen = mv
         b.mid_turn = True
-        keyed = [(-move_priority(mon, mv), -b.speed(mon) if not b.trick_room else b.speed(mon), rng.random(),
-                  mon, mv, t)
-                 for mon, mv, t in acts]
-        ordered = sorted(keyed, key=lambda x: x[:3])
-        for i, (*_k, mon, mv, t) in enumerate(ordered):
-            if not mon.alive():
-                continue
+        # The turn's order, held on the battle so that After You can move a
+        # Pokemon up in it as the turn runs (after_you).
+        b.queue = doubles_order(b, acts)
+        b.queue_pos = -1
+        while b.queue_pos + 1 < len(b.queue):
+            b.queue_pos += 1
+            i = b.queue_pos
+            ordered = b.queue
+            mon, mv, t = ordered[i]
+            if not mon.alive() or mon not in (b.p if mon.side == "p" else b.b).on_field():
+                continue                 # fainted, or dragged out before its turn (forced_out)
+            if mon.key in b.custap:
+                consume(mon)             # its Custap Berry, eaten as it acts (subscript_check_quick_claw)
             if t is not None and not t.alive():
                 t = None
-            tl = targets_of(b, mon, mv, t)
+            if mv.effect == "SKY_DROP" and mon.charging is not None:
+                # Sky Drop's drop, aimed at the Pokemon its user holds (the
+                # target it lifted, which BattleSystem_Defender keeps).
+                t = next((m for m in foes_of(b, mon) if m.sky_holder == mon.key), t)
+            tl = targets_of(b, mon, mv, t, randomize=mv.effect == "STRUGGLE")
             first = bool(tl) and tl[0] not in b.moved
             # No standing battler acts after this one (moves_last, for Protect).
-            b.moving_last = not any(later[3].alive() for later in ordered[i + 1:])
-            use_move(b, mon, mv, tl[0] if tl else foe_of(b, mon), first,
-                     targets=tl if mv.damaging() else None)
+            b.moving_last = not any(later[0].alive() for later in ordered[i + 1:])
+            # A damaging move goes to each Pokemon it hits, and so does a status
+            # move aimed at both foes or every other Pokemon (SPREAD).
+            pl.use_move(b, mon, mv, tl[0] if tl else foe_of(b, mon), first,
+                        targets=tl if mv.damaging() or (mv.range in SPREAD and tl) else None)
             b.moved.add(mon)
+            if mon.wished:
+                # Healing Wish and Lunar Dance: the user's replacement now,
+                # into its slot (wish_comes_true).
+                side = b.p if mon.side == "p" else b.b
+                wish_comes_true(b, mon, lambda sd, mon=mon: doubles_replacement(b, sd, mon),
+                                slot=slot_of(side, mon), owner=mon.owner)
+            if mon.u_turn or mon.baton:
+                doubles_switch_out(b, mon)
         b.moving_last = None
+        b.queue = None
         end_of_turn(b)
         for mon in b.p.on_field() + b.b.on_field():
             if rollout_lock_ticks(mon):
@@ -9855,6 +10376,18 @@ def player_moves(rec, can_names, tiers, types):
 # and a Fairy Feather held gave nothing (Ian approved the fix on
 # 2026-10-20).
 BOOSTER_TYPE = {it: t for t, items in TYPE_BOOSTERS.items() for it in items}
+
+
+def booster_fifth(att, mv):
+    """Whether the battle adds a type booster's fifth to att's move
+    (sTypeBoostingItems, BattleSystem_CalcMoveDamage): only for the player's
+    own Pokemon, whose rows are made with no item (prepare, assign_items). A
+    tag battle's partner beside the player (keys q0.0 and on) is rowed from
+    its trainer's record, its item in the row already, so its fifth is not
+    added again. Until 2026-10-21 a partner's booster counted twice (Ian
+    approved the fix on 2026-10-20 after batch 14; Barry's partner teams
+    hold no item today, so nothing read differently)."""
+    return att.side == "p" and att.key[0] != "q" and BOOSTER_TYPE.get(att.item) == mv.type
 
 
 def plate_key(key, item):
