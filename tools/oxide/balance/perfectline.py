@@ -263,8 +263,8 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
         mult *= 2 / 3        # the calculator's row has Flash Fire always lit (fightsim's Battle.damage)
     elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
         mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
-    if att.side == "p" and fs.BOOSTER_TYPE.get(att.item) == mv.type:
-        mult *= 1.2
+    if fs.booster_fifth(att, mv):
+        mult *= 1.2              # the player's own booster, its rows item-free (fightsim.booster_fifth)
     side = b.p if dfn.side == "p" else b.b
     screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
     # A screen halves neither a critical hit, nor Brick Break's kind, which

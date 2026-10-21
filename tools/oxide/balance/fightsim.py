@@ -1278,7 +1278,7 @@ class Battle:
             mult *= 2 / 3        # the calculator's row has Flash Fire always lit
         elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
             mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
-        if att.side == "p" and BOOSTER_TYPE.get(att.item) == mv.type:
+        if booster_fifth(att, mv):
             mult *= 1.2          # the player's rows are item-free; a booster adds its fifth here
         side = self.p if dfn.side == "p" else self.b
         screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
@@ -10375,6 +10375,18 @@ def player_moves(rec, can_names, tiers, types):
 # and a Fairy Feather held gave nothing (Ian approved the fix on
 # 2026-10-20).
 BOOSTER_TYPE = {it: t for t, items in TYPE_BOOSTERS.items() for it in items}
+
+
+def booster_fifth(att, mv):
+    """Whether the battle adds a type booster's fifth to att's move
+    (sTypeBoostingItems, BattleSystem_CalcMoveDamage): only for the player's
+    own Pokemon, whose rows are made with no item (prepare, assign_items). A
+    tag battle's partner beside the player (keys q0.0 and on) is rowed from
+    its trainer's record, its item in the row already, so its fifth is not
+    added again. Until 2026-10-21 a partner's booster counted twice (Ian
+    approved the fix on 2026-10-20 after batch 14; Barry's partner teams
+    hold no item today, so nothing read differently)."""
+    return att.side == "p" and att.key[0] != "q" and BOOSTER_TYPE.get(att.item) == mv.type
 
 
 def plate_key(key, item):

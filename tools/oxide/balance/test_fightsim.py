@@ -8313,6 +8313,7 @@ def check_doubles_berries_on_hit(results):
                 "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Tackle"]}}
         rows = {("b0.0", "p0"): {"Tackle": hit}, ("b0.1", "p0"): {"Tackle": hit}}
         st = doubles_st(mons, rows, speeds={"p0": 10, "p1": 10, "b0.0": 100, "b0.1": 90})
+        st["first_battle"] = True        # no critical hit, so each hit is its row's
         b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"b0.0": ("Tackle", "p0"), "b0.1": ("Tackle", "p0")})
         holder = mon_of(b, "p0")
         out[item] = (holder.hp, holder.item)
@@ -8320,6 +8321,7 @@ def check_doubles_berries_on_hit(results):
             "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
     rows = {("b0.0", "p0"): {"Tackle": 80}, ("p0", "b0.1"): {"Tackle": 40}}
     st = doubles_st(mons, rows, speeds={"p0": 60, "p1": 10, "b0.0": 100, "b0.1": 50})
+    st["first_battle"] = True
     b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"b0.0": ("Tackle", "p0"), "p0": ("Tackle", "b0.1")})
     out["Liechi Berry"] = (mon_of(b, "p0").stages["atk"], mon_of(b, "b0.1").hp)
     want = {"Sitrus Berry": (15, None), "Oran Berry": (10, None), "Liechi Berry": (1, 40)}
@@ -8345,6 +8347,7 @@ def check_doubles_trap_moves(results):
     mons = {"p0": {"moves": ["Ingrain"], "hp": 160}, "p1": {"moves": ["Splash"]},
             "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
     st = doubles_st(mons, {("b0.0", "p0"): {"Tackle": 50}})
+    st["first_battle"] = True
     b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"b0.0": ("Tackle", "p0")})
     out["Ingrain"] = (mon_of(b, "p0").ingrained, mon_of(b, "p0").hp)
     want = {"Mean Look": ("p0", None), "Block": ("p0", None), "Spider Web": ("p0", None), "Ingrain": (True, 120)}
@@ -8419,6 +8422,7 @@ def check_doubles_big_root_struggle(results):
             "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Splash"]}}
     st = doubles_st(mons, {("p0", "b0.0"): {"Giga Drain": 40}, ("b0.0", "p0"): {"Tackle": 100}},
                     speeds={"b0.0": 200})
+    st["first_battle"] = True
     b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], {"p0": ("Giga Drain", "b0.0"), "b0.0": ("Tackle", "p0")})
     root = mon_of(b, "p0").hp
     mons = {"p0": {"moves": ["Struggle"]}, "p1": {"moves": ["Splash"]},
@@ -9038,6 +9042,27 @@ def check_doubles_soul_heart(results):
            "the faster at +6 already": battle(maxed)}
     want = {"a knockout (the faster's Sp. Atk, the slower's)": (1, 0), "the faster at +6 already": (6, 1)}
     results.append(("doubles: with two Soul Heart holders only the faster gains from a faint", out == want, f"{out}"))
+
+
+@b15
+def check_doubles_partner_booster(results):
+    """A tag partner's type booster counts once (Ian approved the fix on
+    2026-10-20 after batch 14; sTypeBoostingItems in
+    BattleSystem_CalcMoveDamage): the partner is rowed from its trainer's
+    record, Charcoal and all, so its Ember of a 48 row takes 48, while the
+    player's own Ember, rowed with no item at 40, takes 48 with its
+    Charcoal's fifth added. Until 2026-10-21 the partner's took 57."""
+    # The foes are Fire types, so no burn from Ember's chance changes their HP.
+    mons = {"p0": {"moves": ["Ember"], "item": "Charcoal"}, "q0.0": {"moves": ["Ember"], "item": "Charcoal"},
+            "b0.0": {"moves": ["Splash"], "types": ("Fire",)}, "b0.1": {"moves": ["Splash"], "types": ("Fire",)}}
+    rows = {("p0", "b0.0"): {"Ember": 40}, ("q0.0", "b0.1"): {"Ember": 48}}
+    st = doubles_st(mons, rows)
+    st["first_battle"] = True
+    b = doubles_turns(st, ["p0"], ["b0.0", "b0.1"], {"p0": ("Ember", "b0.0"), "q0.0": ("Ember", "b0.1")},
+                      partner=["q0.0"])
+    out = {"the player's Ember": 100 - mon_of(b, "b0.0").hp, "the partner's Ember": 100 - mon_of(b, "b0.1").hp}
+    want = {"the player's Ember": 48, "the partner's Ember": 48}
+    results.append(("doubles: a tag partner's type booster counts once", out == want, f"damage {out}"))
 
 
 def main():
