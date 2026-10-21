@@ -8753,6 +8753,35 @@ def check_doubles_helping_hand(results):
     results.append(("doubles: Helping Hand raises its partner's power by half", out == want, f"{out}"))
 
 
+@b15
+def check_doubles_follow_me(results):
+    """Follow Me, Rage Powder and Spotlight in a double battle (Ian approved
+    the fix on 2026-10-14; effect script 172, BtlCmd_FollowMe, and
+    BattleSystem_Defender's sideConditions.followMe): the user draws the
+    other side's single-target moves for the turn, a Tackle aimed at its
+    partner among them, while a move aimed at both foes still hits both.
+    Oxide's Spotlight runs Follow Me's script, so its user draws the moves,
+    unless its target protected. Until 2026-10-21 the moves did nothing."""
+    def battle(move, target=None, protect=False):
+        mons = {"p0": {"moves": ["Splash"]}, "p1": {"moves": [move]},
+                "b0.0": {"moves": ["Tackle"]}, "b0.1": {"moves": ["Protect" if protect else "Hyper Voice"]}}
+        rows = {("b0.0", "p0"): {"Tackle": 40}, ("b0.0", "p1"): {"Tackle": 40},
+                ("b0.1", "p0"): {"Hyper Voice": 60}, ("b0.1", "p1"): {"Hyper Voice": 60}}
+        st = doubles_st(mons, rows)
+        st["first_battle"] = True
+        choices = {"p1": (move, target), "b0.0": ("Tackle", "p0"),
+                   "b0.1": ("Protect", None) if protect else ("Hyper Voice", None)}
+        b = doubles_turns(st, ["p0", "p1"], ["b0.0", "b0.1"], choices)
+        return mon_of(b, "p0").hp, mon_of(b, "p1").hp
+    out = {"Follow Me": battle("Follow Me"), "Rage Powder": battle("Rage Powder"),
+           "Spotlight": battle("Spotlight", target="b0.1"),
+           "Spotlight on a protecting foe": battle("Spotlight", target="b0.1", protect=True)}
+    want = {"Follow Me": (55, 15), "Rage Powder": (55, 15), "Spotlight": (55, 15),
+            "Spotlight on a protecting foe": (60, 100)}
+    results.append(("doubles: Follow Me, Rage Powder and Spotlight draw the foes' single-target moves", out == want,
+                    f"(p0's HP, p1's HP) after a Tackle of 40 at p0 and a Hyper Voice of 60 at both {out}"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

@@ -1372,6 +1372,8 @@ def status_move(b, att, mv, dfn, first):
         fs.heal_pulse(att, dfn, mv)      # half the target's HP back, the foe's in a single battle (fightsim.heal_pulse)
     elif e == "BOOST_ALLY_POWER_BY_50_PERCENT":
         fs.helping_hand(b, att)          # the partner's power by half this turn, a double battle's (fightsim.helping_hand)
+    elif e == "MAKE_GLOBAL_TARGET":
+        fs.follow_me(b, att, mv)         # Follow Me, Rage Powder, Spotlight: the center of attention (fightsim.follow_me)
     elif e == "HALVE_FIRE_DAMAGE":
         fs.water_sport(att)              # Fire moves at half power while it stands (fightsim.sport_half)
     elif e == "HALVE_ELECTRIC_DAMAGE":

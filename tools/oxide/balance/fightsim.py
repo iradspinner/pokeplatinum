@@ -937,6 +937,12 @@ class Side:
     # Crafty Shield's move constant, read by protected (guard_stops); gone
     # with the turn, and left on the class while there is none.
     guard = None
+    # Follow Me, Rage Powder or Spotlight this turn (sideConditions.followMe
+    # and followMeUser, a battler slot): the slot, 0 or 1, whose Pokemon
+    # draws the other side's single-target moves (follow_me, targets_of);
+    # cleared as the next double-battle turn starts, and left on the class
+    # while None.
+    follow_me = None
 
     def __init__(self, mons, name):
         self.mons, self.name = mons, name
@@ -1044,6 +1050,9 @@ class Battle:
     # Whether a Helping Hand has helped a Pokemon this turn (Mon.helped), so
     # the next turn clears the flag only then.
     helping = False
+    # Whether a side has a center of attention this turn (Side.follow_me),
+    # so targets_of looks for one, and the next turn clears it, only then.
+    following = False
     # A double battle's damaging move is hitting more than one target, so
     # each hit is at three quarters (Battle.damage, perfectline.damage_of);
     # set around the move by the spread loop.
@@ -9663,17 +9672,53 @@ def ally_of(b, mon):
     return next((m for m in side.on_field() if m is not mon and m.alive()), None)
 
 
+def follow_me(b, att, mv):
+    """Follow Me, Rage Powder and Spotlight (effect script 172,
+    BtlCmd_FollowMe): in a double battle the user's slot becomes its side's
+    center of attention for the rest of the turn, so the other side's
+    single-target moves and its random-target ones go to the Pokemon in it
+    while that one stands (center, read by targets_of as BattleSystem_Defender
+    reads sideConditions.followMe). Oxide's Spotlight runs Follow Me's script
+    too, so it is its user, not its target, that draws the moves; its target
+    can stop it by protecting. In a single battle it changes nothing. Until
+    2026-10-21 it did nothing in a double battle (Ian approved the fix on
+    2026-10-14 with the gaps list's MAKE_GLOBAL_TARGET row)."""
+    if not b.doubles:
+        return
+    side = b.p if att.side == "p" else b.b
+    side.follow_me = slot_of(side, att)
+    b.following = True
+
+
+def center(b, att):
+    """The Pokemon at the center of attention on att's other side (follow_me),
+    standing in the slot its Follow Me was used from, or None."""
+    side = b.b if att.side == "p" else b.p
+    if side.follow_me is None:
+        return None
+    idx = side.active2 if side.follow_me == 1 else side.active
+    mon = side.mons[idx] if idx is not None else None
+    return mon if mon is not None and mon.alive() else None
+
+
 def targets_of(b, att, mv, chosen, randomize=False):
     """Who a move hits in a double battle: both foes, everyone beside the
     user, a random foe, or the one chosen (the other foe when it is down).
     `randomize`: the target is drawn as a random foe's, as BattleSystem_Defender
-    draws a Struggle's (FightCommand's randomizeTarget)."""
+    draws a Struggle's (FightCommand's randomizeTarget). A center of
+    attention on the other side (follow_me) draws a single-target or
+    random-target move, as BattleSystem_Defender sends them to
+    sideConditions.followMeUser."""
     foes = foes_of(b, att)
     if mv.range == "ADJACENT_OPPONENTS":
         return foes
     if mv.range == "ALL_ADJACENT":
         ally = ally_of(b, att)
         return foes + ([ally] if ally else [])
+    if b.following and (mv.range in ("RANDOM_OPPONENT", "SINGLE_TARGET", "SINGLE_TARGET_ME_FIRST") or randomize):
+        mon = center(b, att)
+        if mon is not None:
+            return [mon]
     if mv.range == "RANDOM_OPPONENT" or randomize:
         return [foes[pick_one(b, "target", len(foes))]] if foes else []
     if chosen is not None and chosen in foes:
@@ -9939,6 +9984,9 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
             for m in b.p.mons + b.b.mons:
                 m.helped = False         # last turn's Helping Hand (a turn flag)
             b.helping = False
+        if b.following:
+            b.p.follow_me = b.b.follow_me = None     # last turn's center of attention
+            b.following = False
         doubles_quick(b)
         acts = []
         for mon in b.p.on_field() + b.b.on_field():
