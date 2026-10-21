@@ -6948,6 +6948,51 @@ def fairy_booster_checks():
              f"(Clefable's item, Moonblast's damage, its row's top roll) {out}")]
 
 
+@b14b
+def arceus_plate_checks():
+    """An Arceus holding a Plate in the readings' battle on the
+    calculator's real rows (Ian approved the fix on 2026-10-20), on
+    Roark's split: a trainer's Arceus holding a Flame Plate is Fire, where
+    one holding a Charcoal, the same fifth to Fire moves, is Normal, so
+    its Flamethrower takes the same-type half more and its Extreme Speed
+    loses it, and the player's Barboach's Water Gun is twice as strong on
+    it; and the player's Arceus handed an Iron Plate is Steel, where with
+    nothing it is Normal, so its Flash Cannon takes the half more and the
+    Plate's fifth, its Extreme Speed loses the half, and the pinned
+    Roark's Nosepass's Rock Tomb is halved on it, the same after a
+    switch."""
+    out = {}
+    for item in ("Flame Plate", "Charcoal"):
+        b, arc, bar = b8_battle([("Arceus", 30, "Multitype", ["Flamethrower", "Extreme Speed"], item)],
+                                [("Barboach", 30, "Oblivious", ["Water Gun"])])
+        top = lambda a, d, name: (b.rolls(a, d, fs.move(name)) or [0])[-1]
+        out[item] = (list(arc.types), top(arc, bar, "Flamethrower"), top(arc, bar, "Extreme Speed"),
+                     top(bar, arc, "Water Gun"))
+    recs = [{"constant": "SPECIES_ARCEUS", "species": "Arceus", "how": "test", "level": 30, "nature": "Hardy",
+             "ivs": IV, "evs": EV, "ability": "Multitype", "moves": ["Extreme Speed", "Flash Cannon"], "fill": False}]
+    prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
+    st, (boss, flags, _s) = prep["st"], prep["variants"][0]
+    for item in ("Iron Plate", None):
+        st["held"] = {"p0": item}
+        b = pl.make_battle(st, ["p0"], list(boss), flags, 0)
+        arc, foe = b.p.cur(), b.b.cur()
+        hit = lambda a, d, name: pl.damage_of(b, a, d, fs.move(name), False, True)
+        rock = next(m for m in st["moves"][foe.key] if fs.move(m).damaging() and fs.move(m).type == "Rock")
+        got = (list(arc.types), hit(arc, foe, "Flash Cannon"), hit(arc, foe, "Extreme Speed"), hit(foe, arc, rock))
+        arc.reset_volatile()
+        out[f"player, {item}"] = got + ((list(arc.types), hit(arc, foe, "Flash Cannon")) == got[:2],)
+    del st["held"]
+    fp, ch = out["Flame Plate"], out["Charcoal"]
+    ip, no = out["player, Iron Plate"], out["player, None"]
+    near = lambda x, y, r: y and abs(x / y - r) < 0.08 * r
+    ok = (fp[0] == ["Fire"] and ch[0] == ["Normal"] and near(fp[1], ch[1], 1.5) and near(fp[2], ch[2], 1 / 1.5)
+          and near(fp[3], ch[3], 2.0)
+          and ip[0] == ["Steel"] and no[0] == ["Normal"] and near(ip[1], no[1], 1.8) and near(ip[2], no[2], 1 / 1.5)
+          and near(ip[3], no[3], 0.5) and ip[4] and no[4])
+    return [("the readings' Arceus holding a Plate is of the Plate's type in every row", ok,
+             f"(types, its two hits, the foe's hit on it, and for the player's the same after a switch) {out}")]
+
+
 def main():
     results = []
 

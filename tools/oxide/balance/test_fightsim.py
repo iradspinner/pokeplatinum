@@ -8144,6 +8144,68 @@ def check_fairy_boosters(results):
                     out == want, str(out)))
 
 
+@b14b
+def check_arceus_plates(results):
+    """An Arceus holding a Plate (Ian approved the fix on 2026-10-20;
+    Battler_MonType, Multitype): a trainer's record is rowed in its
+    Plate's form (plate_form), which another item, another ability or
+    another species leaves alone; a player's Arceus handed a Plate takes
+    the Plate's type and reads its twin in that form for its own moves and
+    as the target (form_key, through the battle's form_twin), the Plate's
+    fifth on top, keeps it through a switch and meets Stealth Rock as that
+    type; with no Plate it is Normal and reads its own rows; one that
+    flings its Plate is Normal again, a player's and a trainer's alike."""
+    plate_form = getattr(fs, "plate_form", lambda rec, poks: rec)
+    rec = {"species": "Arceus", "ability": "Multitype", "item": "Flame Plate"}
+    out = {"form": [plate_form(dict(rec, **x), {"Arceus-Fire": {}})["species"] for x in
+                    ({}, {"item": "Leftovers"}, {"ability": "Pressure"}, {"species": "Clefable"})]}
+    b, _p, foe = battle(["Tackle", "Ember"], ["Water Gun"], {("p", "Tackle"): [40] * 16, ("p", "Ember"): [40] * 16,
+                                                            ("b", "Water Gun"): [40] * 16})
+    st = b.st
+    st["pokemon"]["p0"] = {"species": "Arceus", "level": 50}
+    st["info"]["p0"]["ability"] = "Multitype"
+    st["pokemon"]["p0#jdFire"] = dict(st["pokemon"]["p0"], species="Arceus-Fire")
+    st["form_twin"] = {"p0": {"ability": None, "twins": {(("Fire",), None): "p0#jdFire"}}}
+    st["rows"][(None, "p0#jdFire", "b0.0")] = {"moves": {"Tackle": {"rolls": [27] * 16}, "Ember": {"rolls": [60] * 16}}}
+    st["rows"][(None, "b0.0", "p0#jdFire")] = {"moves": {"Water Gun": {"rolls": [80] * 16}}}
+    st["chart"]["Rock"]["Fire"] = 2.0
+    me = fs.Mon("p0", st["pokemon"]["p0"], st["info"]["p0"], st["moves"]["p0"], "p")
+    b.p.mons[0] = me
+
+    def read():
+        return (list(me.types), b.damage(me, foe, fs.move("Tackle"), roll=0), b.damage(me, foe, fs.move("Ember"), roll=0),
+                b.damage(foe, me, fs.move("Water Gun"), roll=0))
+    fs.hold(st, me, "Flame Plate")
+    out["Flame Plate"] = read()
+    me.reset_volatile()
+    out["after a switch"] = read()
+    b.p.hazards["rocks"] = 1
+    fs.switch_in(b, b.p, 0)
+    out["Stealth Rock"] = (me.maxhp - me.hp, list(me.types))
+    b.p.hazards["rocks"] = 0
+    fs.hold(st, me, None)
+    out["no Plate"] = read()
+    fs.hold(st, me, "Flame Plate")
+    fs.consume(me, eaten=False)
+    out["flung, the player's"] = read()[:2]
+    b2, _p2, _f2 = battle(["Tackle"], ["Judgment"], {})
+    st2 = b2.st
+    st2["pokemon"]["b0.0"] = {"species": "Arceus-Fire", "level": 50, "ability": "Multitype", "item": "Flame Plate"}
+    st2["info"]["b0.0"].update(types=["Fire"], ability="Multitype", item="Flame Plate")
+    st2["item_twin"] = {"b0.0": "b0.0#ni"}
+    arc = fs.Mon("b0.0", st2["pokemon"]["b0.0"], st2["info"]["b0.0"], ["Judgment"], "b")
+    b2.b.mons[0] = arc
+    fs.consume(arc, eaten=False)
+    fs.mark_unheld(b2, arc)
+    out["flung, a trainer's"] = (list(arc.types), arc.moves[0].type, arc.unheld)
+    want = {"form": ["Arceus-Fire", "Arceus", "Arceus", "Clefable"],
+            "Flame Plate": (["Fire"], 27, 72, 80), "after a switch": (["Fire"], 27, 72, 80),
+            "Stealth Rock": (25, ["Fire"]), "no Plate": (["Normal"], 40, 40, 40),
+            "flung, the player's": (["Normal"], 40), "flung, a trainer's": (["Normal"], "Normal", True)}
+    results.append(("an Arceus holding a Plate is of its type in every row, the player's and a trainer's",
+                    out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
