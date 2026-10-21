@@ -7584,6 +7584,40 @@ def check_screen_hits(results):
     results.append(("Glitzy Glow and Baddy Bad put up their user's screen", out == want, str(out)))
 
 
+@b13
+def check_hazard_hits(results):
+    """Stone Axe and Ceaseless Edge (approved 2026-10-14; effect scripts
+    353 and 354): any hit, a Substitute's and a knockout's too, lays
+    Stealth Rock or a layer of Spikes on the target's side, in both
+    battles and under Sheer Force too; the rocks go down once, the Spikes
+    up to three layers."""
+    from . import perfectline as pl
+    out = {}
+    for name, case in (("Stone Axe", "hit"), ("Stone Axe", "Substitute"), ("Stone Axe", "knockout"),
+                       ("Stone Axe", "Sheer Force"), ("Stone Axe", "fightsim"), ("Ceaseless Edge", "hit"),
+                       ("Ceaseless Edge", "full"), ("Ceaseless Edge", "fightsim")):
+        b, p, foe = b11_battle([name], ["Tackle"], {("p", name): [20] * 16})
+        b.dice = sure12()
+        if case == "Substitute":
+            foe.sub = 50
+        if case == "knockout":
+            foe.hp = 10
+        if case == "Sheer Force":
+            p.ability = "Sheer Force"
+        if case == "full":
+            b.b.hazards["spikes"] = 3
+        if case == "fightsim":
+            b.rng = FixedDice(0.0)
+            fs.attack(b, p, fs.move(name), foe, True)
+        else:
+            pl.attack(b, p, fs.move(name), foe, True)
+        out[(name, case)] = (b.b.hazards["rocks"], b.b.hazards["spikes"], b.p.hazards["rocks"], b.p.hazards["spikes"])
+    want = {k: (1, 0, 0, 0) for k in out if k[0] == "Stone Axe"}
+    want.update({("Ceaseless Edge", "hit"): (0, 1, 0, 0), ("Ceaseless Edge", "full"): (0, 3, 0, 0),
+                 ("Ceaseless Edge", "fightsim"): (0, 1, 0, 0)})
+    results.append(("Stone Axe and Ceaseless Edge lay their hazard after a hit", out == want, str(out)))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,

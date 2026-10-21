@@ -4582,7 +4582,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
     if e in RECOIL and att.ability not in RECOIL_PROOF:
         hurt(b, att, max(1, int(dealt * RECOIL[e])))
     if e in ANY_HIT:
-        any_hit(b, att, dfn, mv)         # Chloroblast's cost, Freezy Frost's reset, the screens (any_hit)
+        any_hit(b, att, dfn, mv)         # Chloroblast's cost, Freezy Frost's reset, screens, hazards (any_hit)
     # Draining (subscript_drain_half_damage_dealt, _three_quarters): Heal Block
     # on the user stops the heal, not the damage, and Liquid Ooze turns it
     # into damage (drain).
@@ -7118,7 +7118,8 @@ def late_hit(b, att, dfn, mv, stripped, dealt):
 
 # The hits whose own effect runs ON_HIT on any hit, a knockout's or a
 # Substitute's included, each looked at once by effect (any_hit).
-ANY_HIT = frozenset({"RECOIL_HALF_MAX_HP", "RESET_STAT_CHANGES_HIT", "SET_LIGHT_SCREEN_HIT", "SET_REFLECT_HIT"})
+ANY_HIT = frozenset({"RECOIL_HALF_MAX_HP", "RESET_STAT_CHANGES_HIT", "SET_LIGHT_SCREEN_HIT", "SET_REFLECT_HIT",
+                     "STEALTH_ROCK_HIT", "SET_SPIKES_HIT"})
 # The screen each screen-raising hit puts up on its user's side (any_hit).
 HIT_SCREENS = {"SET_LIGHT_SCREEN_HIT": "Light Screen", "SET_REFLECT_HIT": "Reflect"}
 
@@ -7145,7 +7146,15 @@ def any_hit(b, att, dfn, mv):
     status moves raise it (BtlCmd_TryLightScreen, BtlCmd_TryReflect); one
     already up stays as it is, and the move, which has done its damage, has
     not failed. Until 2026-10-20 no screen went up (Ian approved the
-    fixes)."""
+    fixes).
+
+    Stone Axe and Ceaseless Edge (effect scripts 353 and 354,
+    subscript_set_stealth_rock and subscript_set_spikes, ON_HIT): Stealth
+    Rock goes down on the target's side unless it is there already, and a
+    layer of Spikes, up to three (BtlCmd_TrySpikes). Both moves keep the
+    effect under Sheer Force, which strengthens them
+    (sSheerForceKeepEffectMoves; the calculator's row has the 1.3). Until
+    2026-10-20 neither laid anything (Ian approved the fixes)."""
     e = mv.effect
     if e == "RECOIL_HALF_MAX_HP":
         if att.ability != "Magic Guard":
@@ -7156,6 +7165,11 @@ def any_hit(b, att, dfn, mv):
         side = b.p if att.side == "p" else b.b
         if not side.screens[HIT_SCREENS[e]]:
             side.screens[HIT_SCREENS[e]] = 8 if att.item == "Light Clay" else 5
+    elif e == "STEALTH_ROCK_HIT":
+        (b.p if dfn.side == "p" else b.b).hazards["rocks"] = 1
+    elif e == "SET_SPIKES_HIT":
+        side = b.p if dfn.side == "p" else b.b
+        side.hazards["spikes"] = min(3, side.hazards["spikes"] + 1)
 
 
 def reset_all_stats(b):

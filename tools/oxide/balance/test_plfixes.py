@@ -6606,6 +6606,20 @@ def screen_hit_checks():
     return [("the readings' Glitzy Glow and Baddy Bad put up their screens", ok, f"(hit, turns) {out}")]
 
 
+@b13
+def hazard_hit_checks():
+    """Stone Axe and Ceaseless Edge on real rows (approved 2026-10-14): the
+    player's Kleavor's Stone Axe lays Stealth Rock on the trainer's side,
+    and its Crawdaunt's Ceaseless Edge a layer of Spikes."""
+    out = {}
+    for user, ability, name in (("Kleavor", "Swarm", "Stone Axe"), ("Crawdaunt", "Hyper Cutter", "Ceaseless Edge")):
+        b, geo, mon = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])], [(user, 30, ability, [name])])
+        pl.attack(b, mon, fs.move(name), geo, True)
+        out[name] = (geo.hp < geo.maxhp, b.b.hazards["rocks"], b.b.hazards["spikes"])
+    ok = out == {"Stone Axe": (True, 1, 0), "Ceaseless Edge": (True, 0, 1)}
+    return [("the readings' Stone Axe and Ceaseless Edge lay their hazards", ok, f"(hit, rocks, Spikes) {out}")]
+
+
 def main():
     results = []
 
