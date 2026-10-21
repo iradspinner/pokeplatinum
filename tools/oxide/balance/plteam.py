@@ -185,6 +185,125 @@ def record(sp, level, nature, ability, ivs, moves, label=None, **extra):
                  "label": label or species_name(sp)}, **extra)
 
 
+# ---- held-back versions (Ian, 2026-10-15) ----------------------------------------------------------
+#
+# A box offers each pre-evolution held back as well as evolved on time
+# wherever holding it back reaches a strong move sooner: a delay by the
+# learnset rules (the balance plan's "Delays" and the balance-rules skill).
+# A strong move is a damaging one of 85 or more a turn (learnstudy.STRONG,
+# by the strength model with its downside, as fightsim.play_strength reckons
+# it without the same-type bonus). A wait counts only from HOLD_MIN levels
+# past the level the stage could evolve at: within four levels it counts as
+# no wait. Ian's example: only a Starly held back, never a caught Staravia,
+# has Brave Bird by Maylene's split.
+
+HOLD_MIN = 5
+# The evolutions a hold can delay (chain's): by level alone, or by level with
+# the member's personality, gender or stats.
+HELD_KINDS = {"EVO_LEVEL"} | set(_LEVEL_IF)
+
+
+def strong(name):
+    """Whether a move is strong for a delay: damaging, 85 or more a turn."""
+    from .learnstudy import STRONG
+    return fs.play_strength(name, ()) >= STRONG
+
+
+def _level_evolves(stage, target):
+    """Whether this stage evolves into `target` by a kind a hold delays."""
+    return any(e[-1] == target and e[0] in HELD_KINDS and isinstance(e[1], int)
+               for e in mon_data(stage).get("evolutions") or [])
+
+
+def holds_open(sp, caught, cap, base=None, places=(), gender=None, coin=None):
+    """[(holds, gained, wait)]: each way to keep one stage of this member back
+    longer than `base` keeps it that brings a strong move by `cap` which the
+    member under `base` lacks. The stage must evolve by level under base, at
+    some level E, and learn the move by its own list at HOLD_MIN or more
+    levels past E. `holds` is base with that stage held to the move's level,
+    from which it evolves on as soon as it can; `gained` names the strong
+    moves it brings that base lacks, `wait` the levels it is held past E.
+    Shortest wait first. Rule A, which earlier fights' choices rule a hold
+    out, is the caller's (plgoal3.box)."""
+    base = dict(base or {})
+    path = chain(sp, caught, cap, base, places=places, gender=gender, coin=coin)
+    have = set(move_pool(sp, caught, cap, base, places=places, gender=gender, coin=coin)[1])
+    names = move_names()
+    out = []
+    for k in range(len(path) - 1):
+        stage, (nxt, at) = path[k][0], path[k + 1]
+        if not _level_evolves(stage, nxt):
+            continue
+        for lv in sorted({l for l, mv in mon_data(stage)["learnset"]["by_level"]
+                          if at + HOLD_MIN <= l <= cap and mv in names and strong(names[mv])}):
+            held = dict(base, **{stage: lv})
+            got = move_pool(sp, caught, cap, held, places=places, gender=gender, coin=coin)[1]
+            gained = sorted(n for n in set(got) - have if strong(n))
+            if gained:
+                out.append((held, gained, lv - at))
+    out.sort(key=lambda t: t[2])
+    return out
+
+
+def hold_label(rec_species, holds):
+    """A member's name with the holds its line carries, for the logs and the
+    reports: "Staraptor (Starly held to 37)"."""
+    if not holds:
+        return rec_species
+    return f"{rec_species} (" + ", ".join(f"{species_name(s)} held to {l}" for s, l in sorted(holds.items(),
+                                                                                         key=lambda t: t[1])) + ")"
+
+
+def member_name(rec):
+    """The name the team search logs a member by: its species, or for a line
+    that carries a hold its label, so that a held-back version and the same
+    catch evolved on time are told apart."""
+    return (rec.get("label") or rec["species"]) if rec.get("hold") else rec["species"]
+
+
+def groups_of(st, keys):
+    """{key: the catch it is a version of}: a held-back version and the same
+    catch evolved on time share one (the record's "catch"), so that no six
+    takes both; a member without one is its own."""
+    return {k: st["pokemon"][k].get("catch") or k for k in keys}
+
+
+def six_count(keys, size, group=None):
+    """How many different teams of `size` the box makes when no team takes
+    two versions of one catch: math.comb(len(keys), size) when every member
+    is its own catch."""
+    if group is None:
+        return math.comb(len(keys), size)
+    mult = {}
+    for k in keys:
+        mult[group[k]] = mult.get(group[k], 0) + 1
+    e = [1] + [0] * size           # elementary symmetric sums of the versions per catch
+    for m in mult.values():
+        for j in range(size, 0, -1):
+            e[j] += e[j - 1] * m
+    return e[size]
+
+
+def valid_six(six, group):
+    """Whether a team takes at most one version of each catch."""
+    return group is None or len({group[k] for k in six}) == len(six)
+
+
+def take(ranked, size, group, chosen=()):
+    """The first members of `ranked`, after `chosen`, up to `size` in all,
+    skipping any whose catch is already taken (ranked[:size] when every
+    member is its own catch)."""
+    out, seen = list(chosen), {group[k] if group else k for k in chosen}
+    for k in ranked:
+        if len(out) >= size:
+            break
+        g = group[k] if group else k
+        if k not in out and g not in seen:
+            out.append(k)
+            seen.add(g)
+    return out
+
+
 # ---- 1. the screen ---------------------------------------------------------------------------------------
 
 def prepare(fight_key, records, item_stock, variant=0):
@@ -390,40 +509,94 @@ def blind_pool(st, keys, split, cap=None, leave_out=()):
     return [k for k in keys if k in kept]
 
 
-def score_sixes(M, size=6, depth=0.3, hole=2.0):
+def score_sixes(M, size=6, depth=0.3, hole=2.0, groups=None, keep=None):
     """Every six of the box scored at once: per enemy, its best answer's
     margin and a little for a second answer, less a penalty for each enemy
-    no member answers. [(score, member indices)], best first."""
+    no member answers. [(score, member indices)], best first, ties in the
+    order the sixes are drawn up.
+
+    `groups` (one entry per row of M) names the catch each member is a
+    version of: a six never takes two versions of one catch (a held-back
+    pre-evolution beside the same catch evolved on time). With `keep`, only
+    the best `keep` come back, exactly the first `keep` of the whole list:
+    the sixes are drawn up and scored a block at a time and only the best of
+    each block are held, so a box of fifty or more fits in memory (every six
+    of a 51-member box held at once took 5.3 GB, the best 100,000 take 0.2).
+    With groups, a six is as many members as the box has catches, at most
+    `size`."""
     n = M.shape[0]
-    combos = np.array(list(itertools.combinations(range(n), min(size, n))))
-    out = []
-    for lo in range(0, len(combos), 50000):
-        c = combos[lo:lo + 50000]
+    size = min(size, n if groups is None else len(set(groups)))
+    g = None
+    if groups is not None:
+        ids = {}
+        g = np.array([ids.setdefault(x, len(ids)) for x in groups])
+    it = itertools.combinations(range(n), size)
+    Ss, Cs, Is = [], [], []          # the blocks held so far: scores, sixes, the order they were drawn in
+    held, drawn = 0, 0
+    while True:
+        block = list(itertools.islice(it, 50000))
+        if not block:
+            break
+        c = np.array(block)
+        idx = np.arange(drawn, drawn + len(c))
+        drawn += len(c)
+        if g is not None and size > 1:
+            gs = np.sort(g[c], axis=1)
+            ok = (gs[:, 1:] != gs[:, :-1]).all(axis=1)
+            c, idx = c[ok], idx[ok]
+            if not len(c):
+                continue
         m = M[c]                                     # sixes x members x enemies
         top = np.sort(m, axis=1)
         best, second = top[:, -1, :], top[:, -2, :] if m.shape[1] > 1 else np.zeros_like(top[:, -1, :])
         s = (np.clip(best, -3, 3) + depth * np.clip(second, 0, 3)).sum(1) - hole * (best <= 0).sum(1)
-        out += list(zip(s.tolist(), [tuple(x) for x in c.tolist()]))
-    out.sort(key=lambda t: -t[0])
-    return out
+        Ss.append(s), Cs.append(c), Is.append(idx)
+        held += len(s)
+        if keep is not None and held > 2 * keep:
+            # Hold the best `keep`, with every six tied with the last of them,
+            # so that the final order over what is held is the whole list's.
+            S, C, I = np.concatenate(Ss), np.concatenate(Cs), np.concatenate(Is)
+            bar = np.partition(S, len(S) - keep)[len(S) - keep]
+            ok = S >= bar
+            Ss, Cs, Is = [S[ok]], [C[ok]], [I[ok]]
+            held = int(ok.sum())
+    if not Ss:
+        return []
+    S, C, I = np.concatenate(Ss), np.concatenate(Cs), np.concatenate(Is)
+    order = np.lexsort((I, -S))
+    if keep is not None:
+        order = order[:keep]
+    return [(float(S[j]), tuple(C[j].tolist())) for j in order]
+
+
+# The sixes the screen holds while it looks for its top ones (score_sixes'
+# `keep`); it looks again over every six in the rare case these run out.
+SCREEN_KEEP = 100000
 
 
 def screen(st, keys, boss_keys, top=20, apart=2):
     """The screen: each member's moves for this fight (set into the state,
     so every later fight uses them) and the top sixes, each differing from
-    every one kept before it in at least `apart` members. Returns (sixes as
-    key lists, their scores, the margin table, each member's moves)."""
+    every one kept before it in at least `apart` members and none taking two
+    versions of one catch (groups_of). Returns (sixes as key lists, their
+    scores, the margin table, each member's moves)."""
     mine, theirs, speed = matchups(st, keys, boss_keys)
     moves = {k: pick_moves(st, k, boss_keys, mine) for k in keys}
     for k in keys:
         st["moves"][k] = moves[k]
         st["pokemon"][k] = dict(st["pokemon"][k], moves=moves[k])
     M = margins(st, keys, boss_keys, moves, mine, theirs, speed)
-    kept = []
-    for s, idx in score_sixes(M):
-        if all(len(set(idx) - set(j)) >= apart for _s, j in kept):
-            kept.append((s, idx))
-        if len(kept) >= top:
+    group = groups_of(st, keys)
+    groups = [group[k] for k in keys]
+    for keep in (SCREEN_KEEP, None):
+        kept = []
+        scored = score_sixes(M, groups=groups, keep=keep)
+        for s, idx in scored:
+            if all(len(set(idx) - set(j)) >= apart for _s, j in kept):
+                kept.append((s, idx))
+            if len(kept) >= top:
+                break
+        if len(kept) >= top or keep is None or len(scored) < keep:
             break
     return [[keys[i] for i in idx] for _s, idx in kept], [s for s, _i in kept], M, moves
 
@@ -490,23 +663,32 @@ _LEADS = {}
 
 
 def _fight_job(args):
-    team, seed, cfg, luck = args
+    team, seed, cfg, luck, used = args
     j = _JOB
     lk = (tuple(team), json.dumps(cfg, sort_keys=True))
     if lk not in _LEADS:
         _LEADS[lk] = plplan.Planner(0, **cfg).lead(j["st"], list(team), j["boss_keys"], j["flags"])[0]
-    r = plplan.play(j["st"], list(team), j["boss_keys"], j["flags"], _LEADS[lk], seed, cfg, luck)
-    return tuple(team), r["won"], r["deaths"], r["clean"], [tuple(x) for x in r["faints"]], r["seconds"]
+    turns = [] if used else None
+    r = plplan.play(j["st"], list(team), j["boss_keys"], j["flags"], _LEADS[lk], seed, cfg, luck, record=turns)
+    # With `used`, the moves the player chose in the fight, switches left
+    # out, for the reading's report of what its wins lean on.
+    chose = sorted({t["chose"] for t in turns if not str(t["chose"]).startswith("switch to ")}) if used else None
+    return tuple(team), r["won"], r["deaths"], r["clean"], [tuple(x) for x in r["faints"]], r["seconds"], chose
 
 
 class Tally:
-    """Every fight read for each six, and the race's score from them."""
+    """Every fight read for each six, and the race's score from them; where
+    the reading asked for them, the moves the player chose in each fight
+    (`chose`, in the order of `rows`)."""
 
     def __init__(self):
         self.rows = {}
+        self.chose = {}
 
-    def add(self, team, won, deaths, clean, faints):
+    def add(self, team, won, deaths, clean, faints, chose=None):
         self.rows.setdefault(tuple(team), []).append((won, deaths, clean, faints))
+        if chose is not None:
+            self.chose.setdefault(tuple(team), []).append(chose)
 
     def score(self, team):
         r = self.rows.get(tuple(team), [])
@@ -521,8 +703,9 @@ class Tally:
                 "clean": sum(c for _w, _d, c, _f in r) / n}
 
 
-def read(st, boss_keys, flags, teams, fights, cfg, luck="real", seed0=0, procs=None, tally=None):
-    """Each team read on `fights` more fights; the tally."""
+def read(st, boss_keys, flags, teams, fights, cfg, luck="real", seed0=0, procs=None, tally=None, used=False):
+    """Each team read on `fights` more fights; the tally. With `used`, the
+    tally keeps the moves the player chose in each fight."""
     _JOB.update(st=st, boss_keys=boss_keys, flags=flags)
     tally = tally or Tally()
     jobs = []
@@ -530,26 +713,29 @@ def read(st, boss_keys, flags, teams, fights, cfg, luck="real", seed0=0, procs=N
         # Each team's seeds follow from its members (a checksum, the same in
         # every process) and the fights it has had, so a reading repeats.
         start = seed0 * 1_000_003 + zlib.crc32(",".join(t).encode()) + len(tally.rows.get(tuple(t), []))
-        jobs += [(tuple(t), start + i, cfg, luck) for i in range(fights)]
+        jobs += [(tuple(t), start + i, cfg, luck, used) for i in range(fights)]
     with plplan.fork_pool(procs or plplan.pool_size()) as pool_:
-        for team, won, deaths, clean, faints, _s in pool_.imap_unordered(_fight_job, jobs, chunksize=1):
-            tally.add(team, won, deaths, clean, faints)
+        for team, won, deaths, clean, faints, _s, chose in pool_.imap_unordered(_fight_job, jobs, chunksize=1):
+            tally.add(team, won, deaths, clean, faints, chose)
     return tally
 
 
-def round_size(keys, per_round):
+def round_size(keys, per_round, group=None):
     """(team size, sixes a race round draws). A small box holds fewer
     different sixes than a round draws (seven members make seven): a round
     then takes them all, where it used to draw for ever (Lucas and Dawn 1,
-    goal 3, 2026-10-07); a box under six fields all it has."""
-    size = min(6, len(keys))
-    return size, min(per_round, math.comb(len(keys), size))
+    goal 3, 2026-10-07); a box under six fields all it has. With `group`
+    (groups_of), versions of one catch count once."""
+    catches = len(set(group[k] for k in keys)) if group else len(keys)
+    size = min(6, catches)
+    return size, min(per_round, six_count(keys, size, group))
 
 
-def spread_room(keys, top):
+def spread_room(keys, top, group=None):
     """How many sixes drawn at random the labels can add beside the screen's
     `top` ones: five, or as many as the box has left."""
-    return min(5, math.comb(len(keys), 6) - len(top)) if len(keys) > 6 else 0
+    catches = len(set(group[k] for k in keys)) if group else len(keys)
+    return min(5, six_count(keys, 6, group) - len(top)) if catches > 6 else 0
 
 
 def race(st, keys, boss_keys, flags, screened, cfg, rounds=5, per_round=16, fights=4, elite=4, rate=0.3,
@@ -559,12 +745,14 @@ def race(st, keys, boss_keys, flags, screened, cfg, rounds=5, per_round=16, figh
     in the screen's sixes; each round draws `per_round` sixes by weight
     (the screen's best always among the first round's), reads each on
     `fights` fights, and moves the weights toward the members of the
-    `elite` best sixes so far."""
+    `elite` best sixes so far. A six never takes two versions of one catch
+    (groups_of): drawing one takes its other versions out of the draw."""
     rng = random.Random(seed)
     counts = {k: 1.0 + sum(k in s for s in screened) for k in keys}
     w = {k: c / sum(counts.values()) for k, c in counts.items()}
     tally = Tally()
-    size, per_round = round_size(keys, per_round)
+    group = groups_of(st, keys)
+    size, per_round = round_size(keys, per_round, group)
     for r in range(rounds):
         teams = [tuple(s) for s in screened[:per_round // 2]] if r == 0 else []
         while len(teams) < per_round:
@@ -573,7 +761,7 @@ def race(st, keys, boss_keys, flags, screened, cfg, rounds=5, per_round=16, figh
             for _ in range(size):
                 pick = rng.choices(pool_, weights=[w[k] for k in pool_])[0]
                 six.append(pick)
-                pool_.remove(pick)
+                pool_ = [k for k in pool_ if group[k] != group[pick]]
             t = tuple(sorted(six, key=keys.index))
             if t not in teams:
                 teams.append(t)
@@ -590,10 +778,15 @@ def race(st, keys, boss_keys, flags, screened, cfg, rounds=5, per_round=16, figh
     return cands, tally, w
 
 
-def full_reading(st, boss_keys, flags, team, cfg, real=75, unlucky=25, procs=None, seed=9):
-    """The reading Ian rules: 75 fights at real odds and 25 very unlucky."""
-    a = read(st, boss_keys, flags, [team], real, cfg, "real", seed0=seed * 31337, procs=procs)
-    b = read(st, boss_keys, flags, [team], unlucky, cfg, "unlucky", seed0=seed * 31337 + 1, procs=procs)
+def full_reading(st, boss_keys, flags, team, cfg, real=75, unlucky=25, procs=None, seed=9, tallies=None):
+    """The reading Ian rules: 75 fights at real odds and 25 very unlucky.
+    With `tallies` (a list), its two tallies are added to it, each keeping
+    the moves the player chose in every fight."""
+    used = tallies is not None
+    a = read(st, boss_keys, flags, [team], real, cfg, "real", seed0=seed * 31337, procs=procs, used=used)
+    b = read(st, boss_keys, flags, [team], unlucky, cfg, "unlucky", seed0=seed * 31337 + 1, procs=procs, used=used)
+    if used:
+        tallies.extend([a, b])
     return a.numbers(team), b.numbers(team), a.rows[tuple(team)]
 
 
@@ -636,8 +829,9 @@ def improve(st, keys, boss_keys, flags, M, best, po, check=25, procs=None, round
     were among the box's worst, and two sixes built this way won every
     fight with 2.8 faints against the winner's 96% and 4.2. Returns the
     best six (a tuple of keys)."""
-    names = {k: st["pokemon"][k]["species"] for k in keys}
+    names = {k: member_name(st["pokemon"][k]) for k in keys}
     foes = [st["pokemon"][k]["species"] for k in boss_keys]
+    group = groups_of(st, keys)
     for r in range(rounds):
         lost = dict(losing_enemies(po.rows[tuple(best)]))
         if not lost:
@@ -646,9 +840,11 @@ def improve(st, keys, boss_keys, flags, M, best, po, check=25, procs=None, round
         answer = {k: sum(weight[j] * M[i][j] for j in range(len(foes))) for i, k in enumerate(keys)}
         ranked = sorted(keys, key=lambda k: -answer[k])
         weakest = sorted(best, key=lambda k: answer[k])[:2]
-        incoming = [k for k in ranked if k not in best][:2]
-        cands = [tuple(sorted(ranked[:6], key=keys.index)),
-                 tuple(sorted([k for k in best if k not in weakest] + incoming, key=keys.index))]
+        # Neither candidate takes two versions of one catch (take).
+        stay = [k for k in best if k not in weakest]
+        incoming = take([k for k in ranked if k not in best], len(stay) + 2, group, stay)[len(stay):]
+        cands = [tuple(sorted(take(ranked, 6, group), key=keys.index)),
+                 tuple(sorted(stay + incoming, key=keys.index))]
         cands = [c for c in dict.fromkeys(cands) if c not in po.rows]
         if not cands:
             break
@@ -698,7 +894,10 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
     # `prepared`: a fight already made (st, keys, boss_keys, flags), as plstudy
     # makes one from a trainer file outside res/.
     st, keys, boss_keys, flags = prepared or prepare(key, recs, stock, variant)
-    names = {k: st["pokemon"][k]["species"] for k in keys}
+    # A held-back version goes by its label ("Staraptor (Starly held to
+    # 37)"), so that it and the same catch evolved on time are told apart.
+    names = {k: member_name(st["pokemon"][k]) for k in keys}
+    group = groups_of(st, keys)
     foes = [f"{st['pokemon'][k]['species']} {st['pokemon'][k]['level']}" for k in boss_keys]
     log(f"== {fight}: {', '.join(foes)}; box of {len(keys)}: {', '.join(names[k] for k in keys)}; "
         f"items {stock}; prepared in {time.time() - t0:.0f} s")
@@ -709,7 +908,7 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
     mine = [k for k in keys if names[k] in ours] if ours else None
     rank = None
     if mine:
-        all_scores = score_sixes(M)
+        all_scores = score_sixes(M, groups=[group[k] for k in keys])
         rank = next((i for i, (_s, idx) in enumerate(all_scores) if {keys[j] for j in idx} == set(mine)), None)
         log(f"our six ({', '.join(names[k] for k in mine)}): screen rank {rank} of {len(all_scores)}")
     log("moves picked: " + "; ".join(f"{names[k]} {', '.join(moves[k])}" for k in keys))
@@ -723,10 +922,10 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
         t1 = time.time()
         rng = random.Random(fight)
         spread = []
-        room = spread_room(keys, sixes[:5])
+        room = spread_room(keys, sixes[:5], group)
         while len(spread) < room:
             s = sorted(rng.sample(keys, 6), key=keys.index)
-            if s not in sixes[:5] and s not in spread:
+            if valid_six(s, group) and s not in sixes[:5] and s not in spread:
                 spread.append(s)
         lab_dir = os.path.join(out_dir, "labels")
         metas = label(st, sixes[:5] + spread, boss_keys, flags, f"team:{fight}", lab_dir, procs=procs)
