@@ -1192,12 +1192,43 @@ def check_trainer_sets(results):
                     f"{origin['ability']}, {origin_hidden['ability']}"))
 
 
+def check_fight_button(results):
+    """Patch 22 (the line tester, 2026-10-21): the Fight button under the
+    calculator's party sends the party's "My Box" sets and the right side's
+    trainer, by the id its set carries, to /api/battle, and has the OxiDex
+    page open the battle in its Battle tab. Its server side is
+    test_linetester's; the click itself was checked in headless Chrome."""
+    from . import calc_trainers as ct
+    root = model.repo_root()
+    calc_dir = os.path.join(root, "tools", "oxide", "encounters", "calc")
+    page = open(os.path.join(calc_dir, "index.html"), encoding="utf-8").read()
+    js = open(os.path.join(calc_dir, "js", "oxide", "fight_button.js"), encoding="utf-8").read()
+    vendored = open(os.path.join(calc_dir, "VENDORED.md"), encoding="utf-8").read()
+    oxidex = open(os.path.join(root, "tools", "oxide", "encounters", "ui", "index.html"), encoding="utf-8").read()
+    server_src = open(os.path.join(root, "tools", "oxide", "encounters", "server.py"), encoding="utf-8").read()
+    tag = 'src="./js/oxide/fight_button.js"'
+    results.append(("the Fight button's script loads last, after the save bridge",
+                    tag in page and page.index(tag) > page.index('src="./js/oxide/save_sync.js"')
+                    and page.rindex("<script") == page.index("<script " + tag), ""))
+    results.append(("the Fight button sends the party's My Box sets and the right side's trainer id to "
+                    "/api/battle and opens the OxiDex's Battle tab",
+                    all(s in js for s in ("currentParty", '["My Box"]', "#p2 .set-selector", "tr_id",
+                                          '"/api/battle"', 'op: "new", source: "calc"', "ivs: s.ivs", "evs: s.evs",
+                                          "window.parent.openBattle", "#battle/"))
+                    and "async function openBattle(line, node, view)" in oxidex
+                    and 'parts == ["api", "battle"]' in server_src
+                    and "22. **`js/oxide/fight_button.js`" in vendored, ""))
+    sets = ct.build_trainer(root, "leader_gardenia")
+    results.append(("every set of a trainer carries the trainer's id, which the Fight button sends",
+                    bool(sets) and len({e["tr_id"] for _sp, e in sets}) == 1, f"{len(sets)} sets"))
+
+
 def main():
     results = []
     for check in (check_species, check_delta, check_chart, check_moves_and_sprites,
                   check_captures, check_endpoints, check_canon, check_page,
                   check_weather_flag, check_qa_findings, check_moves_view, check_calculator,
-                  check_calc_mechanics, check_trainer_sets):
+                  check_calc_mechanics, check_trainer_sets, check_fight_button):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

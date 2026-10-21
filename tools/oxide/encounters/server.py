@@ -25,7 +25,9 @@ import json
 import os
 import re
 import socketserver
+import subprocess
 import sys
+import tempfile
 import threading
 import urllib.parse
 import zlib
@@ -815,6 +817,63 @@ def move_detail(move):
     return out
 
 
+class LineTester:
+    """The Battle tab's worker (linetester.py), started on the first request
+    and kept running: the simulator keeps state in its modules, and the
+    tester wraps a few of its functions, so it runs in a process of its own
+    rather than in this server's threads. One request at a time, one JSON
+    line each way; its own messages go to a log in the temporary folder. It
+    stops with the server, when its input closes."""
+
+    def __init__(self):
+        self.proc = None
+        self.lock = threading.Lock()
+        self.log = os.path.join(tempfile.gettempdir(), "oxidex-linetester.log")
+
+    def start(self):
+        root = model.repo_root()
+        env = dict(os.environ, PYTHONPATH=root)
+        with open(self.log, "a") as log:
+            self.proc = subprocess.Popen(
+                [sys.executable, "-m", "tools.oxide.encounters.linetester", "--serve"],
+                stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=log, cwd=root, env=env,
+                text=True, bufsize=1)
+
+    def restart(self):
+        """Stop the worker, so the next request starts one that reads the
+        game's files afresh (the simulator keeps what it has read)."""
+        with self.lock:
+            if self.proc is not None and self.proc.poll() is None:
+                self.proc.stdin.close()
+                try:
+                    self.proc.wait(timeout=10)
+                except subprocess.TimeoutExpired:
+                    self.proc.terminate()
+            self.proc = None
+        return {"restarted": True}
+
+    def ask(self, req):
+        if req.get("op") == "restart":
+            return self.restart()
+        with self.lock:
+            for _attempt in range(2):
+                if self.proc is None or self.proc.poll() is not None:
+                    self.start()
+                try:
+                    self.proc.stdin.write(json.dumps(req) + "\n")
+                    self.proc.stdin.flush()
+                    answer = self.proc.stdout.readline()
+                except (BrokenPipeError, OSError):
+                    answer = ""
+                if answer:
+                    return json.loads(answer)
+                self.proc = None
+            return {"error": f"the line tester's worker stopped; its log is {self.log}"}
+
+
+LINETESTER = LineTester()
+
+
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=UI, **kw)
@@ -1189,6 +1248,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 savewatch.WATCHER.set_path(str(body.get("path") or ""))
                 savewatch.WATCHER.check()
                 return self._send(savewatch.WATCHER.snapshot())
+
+            # The Battle tab (docs/oxide/line-tester.md): every request goes
+            # to the line tester's worker as it is, and its answer comes back.
+            if parts == ["api", "battle"]:
+                out = LINETESTER.ask(body)
+                return self._send(out, 400 if "error" in out else 200)
 
             if parts[:3] == ["api", "saves", "commit"]:
                 try:
