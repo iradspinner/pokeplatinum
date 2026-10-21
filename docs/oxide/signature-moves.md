@@ -4,7 +4,7 @@ This answers Ian's request of 2026-10-20 on `unused-moves.md`: "lets do the move
 
 ## Summary
 
-**Status (2026-10-20): Ian answered questions 1 and 2 and approved Stone Axe as an evolution move; Lumina Crash's home is applied on `overseer-signature-moves-2`. The rest is a proposal.**
+**Status (2026-10-21): Ian has answered every question below. Lumina Crash's home landed at 47d90c688; his answers to questions 3 to 6 are applied after the usage reset, Torch Song's new home waits on his pick, and the late-boss carriers wait until those teams are settled.**
 
 **A correction first.** `unused-moves.md` named Glimmora as Lumina Crash's owner, and Ian approved it as a return on that basis. Lumina Crash is Espathra's (learned on evolving in Scarlet and Violet and in Legends Z-A). Oxide has no Flittle line, and no game gives the move to Glimmora. Ian's answer (2026-10-20): it goes to the Slowbro line at 40, the alternative below, and the Glimmora commit is dropped.
 
@@ -31,10 +31,10 @@ This answers Ian's request of 2026-10-20 on `unused-moves.md`: "lets do the move
 **What Ian decides.**
 1. Answered (Ian, 2026-10-20): Lumina Crash goes to Slowbro and Slowking at 40, not to Glimmora.
 2. Answered (Ian, 2026-10-20): Shell Trap on Turtonator waits for in-game check 82, on its own branch, as Upper Hand and Burning Jealousy wait for 81 and 83.
-3. The player homes, all or by move. The speed and priority ones want the closest look: Aqua Step (Golduck 47, or Feraligatr 46), Esper Wing, Drum Beating, Jet Punch and Thunderclap.
-4. The five egg lists of the trainer palette.
-5. The legendary returns, and which late-boss carriers to ask about. Each carrier changes a team Ian has seen, so each is a question about that fight.
-6. Eevee's partner moves: in or out.
+3. Answered (Ian, 2026-10-21): the player homes go in as proposed, with four changes. Aqua Step goes to Golduck at 47. Torch Song does not go to Ninetales, a line too usable for it: it suits a slow Pokemon, or one of middling Sp. Atk, that would struggle to sweep with it, and its home is a question for Ian. Esper Wing goes to both Cresselia and Xatu, tentatively. Bitter Malice comes later than 46 on Spiritomb. The moves left without a home stay without one, the Pikachu moves among them.
+4. Answered (Ian, 2026-10-21): the five egg lists go in as proposed.
+5. Answered (Ian, 2026-10-21): the legendary returns go in as proposed. The late-boss carriers wait until those teams' compositions are settled (the tracker's Scheduled list): they gave Ian ideas, but the teams are not locked in.
+6. Answered (Ian, 2026-10-21): in, all seven from Glitzy Glow to Sparkly Swirl, each on its own Eeveelution at a level in the last split or two (about 70 and up), since all are very strong. Sparkly Swirl's 85% is under the 90% bar for the player's moves; Ian's answer places it anyway.
 
 **Difficulty.** The earliest player home is at 34, in Maylene's split, so none touches Roark or Gardenia. A player home is material for the fights whose boxes field its line at or above its level; a trainer home, for its boss.
 
