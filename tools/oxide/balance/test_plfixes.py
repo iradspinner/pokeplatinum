@@ -3798,12 +3798,15 @@ def copycat_checks():
 
 def fling_checks():
     """Fling in the readings' battle on the calculator's real rows (approved
-    2026-10-14): the player's Bibarel throws its Hard Stone (handed to the
-    player by Roark's split) at a trainer's Machop from its twin's row at
-    100 power, where its own item-free row read nothing; the Machop throws
-    a Sitrus Berry, which the Bibarel eats, healing a quarter of its HP."""
+    2026-10-14): the player's Bibarel throws its Hard Stone at a trainer's
+    Machop from its twin's row at 100 power, where its own item-free row
+    read nothing; the Machop throws a Sitrus Berry, which the Bibarel eats,
+    healing a quarter of its HP. The battle is in Galactic's split, the
+    first whose census holds a Hard Stone (Rock Peak Ruins' ball) since the
+    census stopped counting the unused Oreburgh house's (2026-10-22)."""
     from .test_fightai import battle
-    b = battle([("Machop", 30, "Guts", ["Fling"], "Sitrus Berry")], [("Bibarel", 30, "Simple", ["Fling"], "Hard Stone")])
+    b = battle([("Machop", 30, "Guts", ["Fling"], "Sitrus Berry")], [("Bibarel", 30, "Simple", ["Fling"], "Hard Stone")],
+               split="Galactic")
     b.dice, b.rng = pl.RunDice(random.Random(1), True), random.Random(1)
     b.dice.one_crit = False
     mac, bib = b.b.cur(), b.p.cur()

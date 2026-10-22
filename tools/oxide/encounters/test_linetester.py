@@ -37,16 +37,26 @@ SIX = [("SPECIES_TSAREENA", ["Razor Leaf", "Rapid Spin", "Double Kick", "Taunt"]
        ("SPECIES_CORVISQUIRE", ["Dual Wingbeat", "Drill Peck", "Steel Wing", "Taunt"])]
 
 
+# The six's held items, pinned so the seeded test line does not move when
+# the item census does. They are the scorer's own items for Gardenia's split
+# before 2026-10-22, when the census stopped counting the unused Oreburgh
+# house's Hard Stone: with the census's new items the line no longer
+# reached a paralysis or a confusion roll, which the label check needs. The
+# test is of the line tester, so an item the census no longer gives there
+# does no harm.
+HELD = ["Miracle Seed", "Hard Stone", None, "Sitrus Berry", "Sitrus Berry", "Sitrus Berry"]
+
+
 def setup():
     """Ian's six at the reading's rules: level 26, Hardy, IVs of 15, the
-    first ability, the scorer's own items."""
+    first ability, and the held items above."""
     blob = fs.calc.blob()["poks"]
     recs = []
     for const, moves in SIX:
         name = plteam.species_name(const)
         recs.append(plteam.record(const, 26, "Hardy", blob[name]["abilities"]["0"], 15, moves))
     return {"source": "records", "fight": "gardenia", "variant": 0, "records": recs,
-            "moves": [m for _c, m in SIX], "held": None, "lead": 0, "level": 26, "label": "test line"}
+            "moves": [m for _c, m in SIX], "held": list(HELD), "lead": 0, "level": 26, "label": "test line"}
 
 
 def menu_actions(line, nid):
