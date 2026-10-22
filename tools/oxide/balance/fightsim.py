@@ -1069,6 +1069,10 @@ class Battle:
     hit_left = None
     # A double battle (run_doubles sets it); left on the class while False.
     doubles = False
+    # Whether the move being worked out landed its hits one at a time
+    # (land_hits), which attack() sets for every move; False on the class,
+    # as a read with no move worked out yet found it (hit_aftermath).
+    hits_landed = False
     # Whether a Helping Hand has helped a Pokemon this turn (Mon.helped), so
     # the next turn clears the flag only then.
     helping = False
@@ -3629,7 +3633,9 @@ def berry_works(b, mon, berry):
 
 
 def berry_check(mon, b=None):
-    if not mon.alive() or not mon.item or unnerved(b, mon):
+    # An item none of the branches below eats leaves nothing to do, so
+    # Unnerve, which needs a look at the foes, is looked for only after.
+    if not mon.alive() or not mon.item or mon.item not in BERRY_CHECK_ITEMS or unnerved(b, mon):
         return
     # Gluttony eats a pinch berry at half its HP, not a quarter.
     if mon.item in PINCH_BERRIES and mon.hp * (2 if mon.ability == "Gluttony" else 4) <= mon.maxhp:
@@ -3655,6 +3661,10 @@ def berry_check(mon, b=None):
     elif mon.item in ("Oran Berry", "Berry Juice") and mon.hp * 2 <= mon.maxhp:
         heal(mon, 10 if mon.item == "Oran Berry" else 20)
         consume(mon)
+
+
+# The items berry_check eats, each in one of its branches.
+BERRY_CHECK_ITEMS = frozenset(PINCH_BERRIES) | {"Starf Berry", "Sitrus Berry", "Oran Berry", "Berry Juice"}
 
 
 def item_can_raise(mon, stat):
@@ -3924,12 +3934,13 @@ def pp_cost(b, att, mv, dfn, targets=None):
     other. A Spikes or Toxic Spikes that fails at its last layer skips the
     Pressure (BtlCmd_TrySpikes and TryToxicSpikes set skipPressureCheck).
     Until 2026-10-14 every move cost one (Ian approved the fix)."""
-    foes = [m for m in (b.b if att.side == "p" else b.p).on_field() if m.alive()]
     if mv.effect == "SET_SPIKES" or mv.effect == "TOXIC_SPIKES":
         side = b.b if att.side == "p" else b.p
         if side.hazards["spikes" if mv.effect == "SET_SPIKES" else "tspikes"] >= (3 if mv.effect == "SET_SPIKES" else 2):
             return 1
     if mv.name in ("Imprison", "Snatch") or mv.range in PRESSURE_ALL:
+        # Only this case counts every standing foe, so only it lists them.
+        foes = [m for m in (b.b if att.side == "p" else b.p).on_field() if m.alive()]
         return 1 + sum(m.ability == "Pressure" for m in foes)
     if mv.range in PRESSURE_NONE or mv.range in PRESSURE_NO_TARGET:
         return 1
@@ -3982,11 +3993,18 @@ def move_end(b):
     Heart with them (soul_heart)."""
     if b.st.get("soul_heart"):
         soul_heart(b)
-    if any(m.ability == "Trace" and not m.traced for m in b.p.on_field() + b.b.on_field()):
-        traced = trace(b)
-        if traced:
-            entry_abilities(b, traced, trace_now=False)
-    forecast(b)
+    # The Pokemon on the field, listed once for Trace's look and for
+    # Forecast, since this runs after every move; listed again for Forecast
+    # only if a Trace went off, as its entry steps follow.
+    field = b.p.on_field() + b.b.on_field()
+    for m in field:
+        if m.ability == "Trace" and not m.traced:
+            traced = trace(b)
+            if traced:
+                entry_abilities(b, traced, trace_now=False)
+                field = None
+            break
+    forecast(b, field)
 
 
 def fainted_others(b, mon):
@@ -4038,7 +4056,7 @@ def soul_heart(b):
 FORECAST_TYPE = {"Sun": "Fire", "Rain": "Water", "Hail": "Ice"}
 
 
-def forecast(b):
+def forecast(b, field=None):
     """Castform's form check (BattleSystem_TriggerFormChange, in the
     switch-in check and after every move): a Castform standing with Forecast
     takes the weather's type alone, Fire in sun, Water in rain, Ice in hail,
@@ -4049,7 +4067,7 @@ def forecast(b):
     weather (checkForecast). A Castform that has lost Forecast keeps the form
     it has, and leaving brings its own type back. Until 2026-10-14 it stayed
     Normal in every weather (Ian approved the fix)."""
-    for m in b.p.on_field() + b.b.on_field():
+    for m in b.p.on_field() + b.b.on_field() if field is None else field:     # field: move_end's list
         if m.species != "Castform" or not m.alive() or m.ability != "Forecast":
             continue
         want = "Normal" if weather_ignored(b) else FORECAST_TYPE.get(b.weather, "Normal")
@@ -6075,6 +6093,9 @@ def infatuate(src, target, mold=False):
 # The abilities that strike back at a contact move (battle_lib's on-hit
 # ability switch), each at three in ten but Rough Skin.
 CONTACT_STATUS = {"Static": "par", "Poison Point": "psn", "Flame Body": "brn"}
+# Every ability _struck_back has a branch for; any other returns False at once.
+STRUCK_BACK = frozenset(CONTACT_STATUS) | {"Mummy", "Wandering Spirit", "Aftermath", "Rough Skin", "Iron Barbs",
+                                           "Cute Charm", "Gooey", "Pickpocket", "Effect Spore"}
 
 
 def contact_ability(b, att, dfn, mv, dealt, chance, pick):
@@ -6147,6 +6168,9 @@ def sticky_barb(att, dfn):
 # The abilities a hit of these types raises a stat of (subscript_justified,
 # subscript_rattled, by CurrentMoveType).
 HIT_RAISE = {"Justified": ({"Dark"}, "atk"), "Rattled": ({"Bug", "Ghost", "Dark"}, "spe")}
+# Every ability hit_ability has a branch for; any other returns False at once.
+HIT_ABILITIES = frozenset(HIT_RAISE) | {"Weak Armor", "Water Compaction", "Toxic Debris", "Berserk",
+                                        "Cursed Body", "Color Change"}
 
 
 def hit_type(b, mv):
@@ -6169,6 +6193,8 @@ def hit_ability(b, att, dfn, mv, chance, dealt=0):
     raised directly (raise_own). Until 2026-10-14 none of the three did
     anything (Ian approved the fix)."""
     a = dfn.ability
+    if a not in HIT_ABILITIES:
+        return False                 # none of the branches below names it
     if a in HIT_RAISE:
         types, stat = HIT_RAISE[a]
         return dfn.alive() and hit_type(b, mv) in types and raise_own(dfn, stat, 1)
@@ -6354,6 +6380,8 @@ def _struck_back(b, att, dfn, chance, pick, mv):
     off; whether it acted."""
     a = dfn.ability
     b.status_src = dfn           # a status the ability gives comes from dfn (Synchronize)
+    if a not in STRUCK_BACK:
+        return False                 # none of the branches below names it
     if a == "Mummy":
         return mummy(b, att, dfn)
     if a == "Wandering Spirit":
@@ -7157,7 +7185,7 @@ def hit_aftermath(b, att, dfn, mv, chance, pick):
     on-hit ability for a move of one hit, then Dragon Tail's drag
     (drag_out); for one of several, whose hits land_hits took one at a time
     with their own aftermath, only the Shell Bell on their total."""
-    if getattr(b, "hits_landed", False):
+    if b.hits_landed:
         shell_bell(att, b.last_dealt)
         return
     after_hit(b, att, dfn, mv, b.last_dealt)
@@ -7257,14 +7285,19 @@ def commit_move(att, mv):
     Last Resort fails: until every other move it knows has been used since
     it came in."""
     att.raging = mv.effect == "RAISE_ATK_WHEN_HIT"
-    others = {m.name for m in att.moves if m.name != mv.name}
-    fails = mv.effect == "FAIL_IF_NOT_USED_ALL_OTHER_MOVES" and (not others or not others <= att.used_moves)
+    fails = False
+    if mv.effect == "FAIL_IF_NOT_USED_ALL_OTHER_MOVES":
+        # The other moves are gathered only for Last Resort, the one move
+        # whose use reads them.
+        others = {m.name for m in att.moves if m.name != mv.name}
+        fails = not others or not others <= att.used_moves
     # BattleSystem_UpdateLastResort's count, which the trainer's AI reads
     # (Expert_LastResort): each move other than Last Resort the first time it
     # is used since its user came in, four at most.
     if mv.effect != "FAIL_IF_NOT_USED_ALL_OTHER_MOVES" and mv.name not in att.used_moves and att.last_resort_count < 4:
         att.last_resort_count += 1
-    att.used_moves = att.used_moves | {mv.name}
+    if mv.name not in att.used_moves:
+        att.used_moves = att.used_moves | {mv.name}    # a move already in the record leaves it as it is
     if att.ability == "Truant":
         att.loafing = True
     return fails
