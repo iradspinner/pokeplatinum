@@ -2,6 +2,12 @@
 
 The drafts of Mars 1, Moira 1, Jupiter 1, Argo 1 and Cyrus 1 (branch `overseer-galactic-teams`, written on 2026-10-13) were checked on 2026-10-21 against today's simulator, move data and learnsets. Nothing failed. Every simulator gap the drafts met or were bent around is fixed, none of their 75 moves changed in power, accuracy, PP, effect or flags, no species on them changed its abilities, and today's scorer builds all five fights with every species, ability, item and move resolved. Three choices on the drafts were made only because the simulator did not run something, and all three can go back to the designer's first choice. No team was changed; the questions below are Ian's.
 
+## Ian's answers (2026-10-21)
+
+Mars 1: yes to both, so Torracat takes Parting Shot back and the second reading runs with his three dials and that one change. Moira 1: read as drafted. Jupiter 1: Galarian Weezing keeps Strange Steam and Lanturn keeps Discharge; the 94 percent target is a soft guide, so the team is read as it stands and judged from the reading. Those three fights are read in one run (`galactic-1-08907c695`, branch `overseer-galactic-1`) once Somnu 1's reading ends.
+
+Argo 1 and Cyrus 1 stay as drafted for now (question 9, Honchkrow's Moxie, waits with Cyrus 1). Ian loves Argo's theming, but two sets are far likelier than others to wipe a whole party: Argo's White Herb Shell Smash user and Cyrus 1's Salamence with Intimidate, a Yache Berry and Dragon Dance. He is not ruling the ideas out; when those fights are read, each reading reports how often that member sweeps the player's six, so he can judge them on the numbers.
+
 ## Questions for Ian, in play order
 
 Mars 1 (Valley Windworks, with your three dials):
