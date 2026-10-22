@@ -739,6 +739,11 @@ class Mon:
     last_resort_count = 0
     ate_berry = False
     belch = False
+    # Likewise for the trainer's AI, which reads these for every move it
+    # scores (fightai.ability_of, check_ability, invalid).
+    suppressed = False
+    revealed = None
+    tormented = False
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side

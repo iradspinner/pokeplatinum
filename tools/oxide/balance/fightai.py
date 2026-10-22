@@ -168,13 +168,16 @@ def ability_of(b, u, mon):
     (mon.revealed), else the real one if it traps, else a fresh coin between
     its species' two regular slots. Each call is its own flip, as each
     command is."""
-    if getattr(mon, "suppressed", False) or gas_hidden(b, mon):
+    # gas_hidden's own first test, an ability the gas holds, is made here,
+    # and the call only for an Ability Shield's holder, its one other case,
+    # since this runs for nearly every move the AI scores.
+    if mon.suppressed or mon.gas_stash is not None or (mon.item == "Ability Shield" and gas_hidden(b, mon)):
         return None
     # Its own side reads the real ability; so does the player, whose plan
     # knows the trainer's Pokemon (the guess is the trainer AI's alone).
     if mon.side == u.side or u.side == "p":
         return mon.ability
-    if getattr(mon, "revealed", None):
+    if mon.revealed:
         return mon.revealed
     if mon.ability in TRAP_ABILITIES:
         return mon.ability
@@ -188,11 +191,11 @@ def check_ability(b, u, mon, name):
     """AICmd_CheckBattlerAbility (1262 to 1317): "have", "not" or "unknown".
     An unannounced foe whose species has two slots is unknown when either is
     the ability asked about, and read as its first slot otherwise. No flip."""
-    if getattr(mon, "suppressed", False) or gas_hidden(b, mon):
-        ab = None
+    if mon.suppressed or mon.gas_stash is not None or (mon.item == "Ability Shield" and gas_hidden(b, mon)):
+        ab = None                    # as ability_of reads it
     elif mon.side == u.side or u.side == "p":
         ab = mon.ability
-    elif getattr(mon, "revealed", None):
+    elif mon.revealed:
         ab = mon.revealed
     elif mon.ability in TRAP_ABILITIES:
         ab = mon.ability
@@ -411,25 +414,27 @@ def invalid(b, u, mv):
     (battle_lib.c 2394 to 2485)."""
     if u.pp.get(mv.name, 1) <= 0:
         return True
-    if mv.name == getattr(u, "disabled", None):
+    # Each state read directly: fightsim.Mon and Battle keep every one on
+    # the class with the value a getattr default here once gave.
+    if mv.name == u.disabled:
         return True
-    if getattr(u, "tormented", False) and u.last is not None and u.last.name == mv.name:
+    if u.tormented and u.last is not None and u.last.name == mv.name:
         return True
     if u.taunt and mv.power == 0:
         return True
-    if mv.name in getattr(u, "sealed", ()):                   # the foe's Imprison (fightsim.imprison)
+    if mv.name in u.sealed:                                   # the foe's Imprison (fightsim.imprison)
         return True
-    if getattr(b, "gravity", 0) and mv.const in GRAVITY_FAILS:
+    if b.gravity and mv.const in GRAVITY_FAILS:
         return True
-    if fs.move_heal_blocked(u, mv):                           # Move_HealBlocked, the engine's own list
+    if u.heal_block and fs.move_heal_blocked(u, mv):          # Move_HealBlocked, the engine's own list
         return True
-    if mv.const == "MOVE_BELCH" and not getattr(u, "ate_berry", False):
+    if mv.const == "MOVE_BELCH" and not u.ate_berry:
         return True
-    if getattr(u, "throat_chop", 0) and mv.const in SOUND_MOVES:
+    if u.throat_chop and mv.const in SOUND_MOVES:
         return True
     if u.item == "Assault Vest" and mv.cat == "Status" and mv.const != "MOVE_ME_FIRST":
         return True
-    enc = getattr(u, "encore", None)
+    enc = u.encore
     if enc is not None and mv.name != enc:
         return True
     if u.choice and (u.item or "").startswith("Choice") and mv.name != u.choice \
