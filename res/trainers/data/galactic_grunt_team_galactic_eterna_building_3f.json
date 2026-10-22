@@ -16,7 +16,7 @@
             "level": 25,
             "item": "ITEM_OCCA_BERRY",
             "moves": [
-                "MOVE_ICY_WIND",
+                "MOVE_BLIZZARD",
                 "MOVE_LEECH_SEED",
                 "MOVE_MAGICAL_LEAF",
                 "MOVE_ICE_SHARD"
@@ -35,7 +35,7 @@
             "moves": [
                 "MOVE_FUTURE_SIGHT",
                 "MOVE_NIGHT_SHADE",
-                "MOVE_WISH",
+                "MOVE_AIR_SLASH",
                 "MOVE_CONFUSE_RAY"
             ],
             "iv_scale": 255,
