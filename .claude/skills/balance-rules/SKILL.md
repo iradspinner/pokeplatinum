@@ -7,7 +7,9 @@ description: Ian's rulebook for Platinum Oxide's balance passes, in one place th
 
 The balance track's methods live in `docs/oxide/balance-plan.md` (its open work in the tracker since 2026-10-13),
 and the rules every session follows live in
-`.claude/rules/standing-rulings.md`. This skill gathers what a balance pass
+`.claude/rules/standing-rulings.md`, whose four longest rulings (the
+scorer, the move reworks, level-up lists and trainer design) are in full in
+`docs/oxide/rulings-detail.md` since 2026-10-22. This skill gathers what a balance pass
 needs from both, plus Ian's rulings that until 2026-09-27 lived only in the
 Overseer's local memory. When this skill and the balance plan disagree, the
 later dated ruling wins; say which in the report.
