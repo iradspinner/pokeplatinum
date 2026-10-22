@@ -343,7 +343,7 @@ def run_of(seed):
             continue
         first = min(rank.get(o.split, 99) for o in opts)
         opt = rng.choice([o for o in opts if rank.get(o.split, 99) == first])
-        sp = pboxes.sim._roll(opt, box, rng, drawn)
+        sp = pboxes.roll(area, opt, box, rng, drawn)
         if sp is None:
             continue
         if opt.kind == "legendary":
