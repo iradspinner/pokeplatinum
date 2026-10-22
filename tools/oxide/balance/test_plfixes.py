@@ -8,7 +8,10 @@ The checks use Roark's team as it stood before his redesign of 2026-10-12
 saved in test_plfixes_roark.json, and Gardenia's as it stood before Ian's
 six of 2026-10-13 (Breloom with Stun Spore, Ludicolo, a Natural Cure
 Roserade), saved in test_plfixes_gardenia.json, so a later team for either
-leaves them standing.
+leaves them standing. Mars 1's and Jupiter 1's comb teams (Mars's Bronzor
+with Hypnosis, Jupiter's female Delcatty), which two checks lean on, are
+saved the same way in test_plfixes_mars.json and test_plfixes_jupiter.json,
+since Ian's redesigns of 2026-10-22 replace both.
 """
 import collections
 import functools
@@ -33,7 +36,9 @@ def _fixture(name):
 # Each saved team, by its trainer file's stem. The names are written out so
 # the gate's scope tool sees which files this test reads.
 PINNED = {"leader_roark": _fixture("test_plfixes_roark.json"),
-          "leader_gardenia": _fixture("test_plfixes_gardenia.json")}
+          "leader_gardenia": _fixture("test_plfixes_gardenia.json"),
+          "commander_mars_valley_windworks": _fixture("test_plfixes_mars.json"),
+          "commander_jupiter_team_galactic_eterna_building": _fixture("test_plfixes_jupiter.json")}
 ROARK = PINNED["leader_roark"]
 _live_trainers = data.oxide_trainers
 _live_genders = plscore.with_genders
