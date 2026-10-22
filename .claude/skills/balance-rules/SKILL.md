@@ -176,7 +176,10 @@ is listed for Ian.
   Lucas and Dawn 2 at 30). Targets (Ian, 2026-10-04): an ordinary trainer,
   read blind from a random six of the box's stronger half, won cleanly 80 to
   85 percent of the time; a gauntlet section 60 percent or more; no boss
-  above 95 percent won, spiking with the boss's importance, the hardest
+  above 95 percent won (the Galactic officers excepted: close to 100 is fine
+  while their death rate is not trivial, and none reads harder than its
+  commander, Hesperid likely excepted; Ian, 2026-10-21, perhaps shifting
+  later in the game), spiking with the boss's importance, the hardest
   topping out near the easiest of Kaizo's bosses on Oxide's box (about 80
   percent won). The numbers are ordinal, and Oxide is not meant to be beaten
   on a first run. Two soft guides for reading a fight (Ian, 2026-10-13): box

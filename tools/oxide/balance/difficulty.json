@@ -260,19 +260,19 @@
    {
     "label": "Gardenia",
     "team": "oxide",
-    "source": "goal 2",
+    "source": "goal 3 on 6ca410c8e: 3 rolled boxes (seeds 1, 2, 3), the team search's winner on each",
     "trainer": "TRAINER_LEADER_GARDENIA",
-    "won": 0.9733,
-    "clean": 0.44,
-    "faints": 1.0667,
-    "fights": 75,
+    "won": 0.8933,
+    "clean": 0.0711,
+    "faints": 2.5778,
+    "fights": 225,
     "unlucky": {
-     "won": 0.88,
-     "clean": 0.24,
-     "faints": 2.0,
-     "fights": 25
+     "won": 0.8,
+     "clean": 0.1067,
+     "faints": 3.0933,
+     "fights": 75
     },
-    "date": "2026-10-03",
+    "date": "2026-10-21",
     "stale": null
    },
    {
@@ -336,19 +336,19 @@
    {
     "label": "Roark",
     "team": "oxide",
-    "source": "goal 2",
+    "source": "goal 3 on 89a1100b3: 3 rolled boxes (seeds 1, 2, 3), the team search's winner on each",
     "trainer": "TRAINER_LEADER_ROARK",
-    "won": 1.0,
-    "clean": 0.9467,
-    "faints": 0.0533,
-    "fights": 75,
+    "won": 0.8578,
+    "clean": 0.0978,
+    "faints": 2.5511,
+    "fights": 225,
     "unlucky": {
-     "won": 1.0,
-     "clean": 0.84,
-     "faints": 0.16,
-     "fights": 25
+     "won": 0.8133,
+     "clean": 0.0933,
+     "faints": 2.8267,
+     "fights": 75
     },
-    "date": "2026-10-03",
+    "date": "2026-10-21",
     "stale": null
    },
    {
