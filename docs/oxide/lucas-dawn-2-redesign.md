@@ -1,6 +1,6 @@
-# Lucas and Dawn 2's redesign: the evidence, the diagnosis and the candidates
+# Lucas and Dawn 2's redesign: the evidence, the diagnosis, the candidates and the sets
 
-Ian asked on 2026-10-21 for Lucas and Dawn 2 (Route 207, Fantina's split, the next story fight after Jupiter 1) to be redesigned in Roark's and Gardenia's checked stages. This page holds stages 1 and 2, the evidence and the diagnosis, which Ian checked the same day, and stage 3, the candidates and three team shapes (the last section). No team has changed, and no full set is written here: that is stage 4, after Ian picks a shape.
+Ian asked on 2026-10-21 for Lucas and Dawn 2 (Route 207, Fantina's split, the next story fight after Jupiter 1) to be redesigned in Roark's and Gardenia's checked stages. This page holds stages 1 and 2, the evidence and the diagnosis, which Ian checked the same day, stage 3, the candidates and three team shapes, with the shape Ian picked from them, and stage 4, the sets (the last section). The sets are written into the six trainer files on this branch for study, not for landing.
 
 ## Ian's answers (2026-10-21)
 
@@ -334,3 +334,70 @@ This shape reads most as an earlier step of the pair's later team, and the web i
 Shape 1. Forretress is the only lead that does all three jobs at once: hazards for the chip a non-lead Lopunny needs, Steel for Carbink and Rock for the Flying types, and the bulk to stand in front of the Ground lead and hit it back four times over. Gastrodon covers Forretress's one real weakness, Fire, including the Scorbunny player's own starter, and turns the Water attacks of the Ground leads, Kingler and Bibarel into healing. Its known gaps are Hariyama, and the Taunt and Rapid Spin users of box 2; stage 4 can close the first with the ace's and Pachirisu's sets. If Ian wants the link to Lucas and Dawn 3 more than the Water and Fire cover, Nidoqueen can take Gastrodon's place behind Forretress.
 
 The levels fit the mini-boss rule in every shape: the ace at 30, three under Fantina's cap of 33, and the rest at 28 to 29. Forretress at 29 sits two levels under Pineco's evolution at 31 and Gastrodon one under Shellos's at 30, within Ian's "not egregiously early".
+
+### Ian's shape (2026-10-21)
+
+Ian built his own shape from these candidates, with no Forretress: Umbreon leads; Scyther, with Pursuit and Flying moves to punish Fighting and Bug leads; then Lopunny with its set unchanged, Pachirisu, Gastrodon in the open slot, and the rival's starter as the ace by version. His reasons: Scyther is immune to the Ground moves aimed at Pachirisu and at two of the three starters, so it switches in on them and adds power; and with Scyther's Flying moves on the team, a Fighting type no longer baits out Lopunny for its Bounce.
+
+## Stage 4: the sets
+
+Every move is in its species' trainer palette at its level (the Kaizo study's checker over this branch, with the pre-TM-pass TM lists), and every borrowed attack is at 90 power or under. No item or nature repeats within a version. Dawn's and Lucas's files of a version are identical but for the trainer's name and class and the Pokemon's genders, as before, so both players meet the same Speeds. All IVs are the highest (iv_scale 255). Speeds are at each member's level; damage figures are the scorer's calculator against goal 3's box Pokemon at 30, as a share of the defender's HP, lowest roll to highest.
+
+### The six
+
+| Slot | Member | Level | Ability | Item | Nature | Moves | Speed |
+|---|---|---|---|---|---|---|---|
+| Lead | Umbreon | 29 | Inner Focus (hidden) | Light Clay | Timid | Yawn, Toxic, Reflect, Payback | 56 |
+| 2 | Scyther | 29 | Technician | Eviolite | Adamant | Wing Attack, Pursuit, Steel Wing, Brick Break | 74 |
+| 3 | Lopunny | 29 | Scrappy | Lum Berry | Jolly | Jump Kick, Quick Attack, Bounce, Fake Out | 81 |
+| 4 | Pachirisu | 28 | Adaptability | Sitrus Berry | Hasty | Spark, Seed Bomb, Charm, Bite | 72 |
+| 5 | Gastrodon | 29 | Dry Skin | Leftovers | Modest | Earth Power, Brine, Ice Beam, Stealth Rock | 36 |
+| Ace, Turtwig version (799, 802) | Prinplup | 30 | Torrent | Mystic Water | Mild | Brine, Ice Beam, Grass Knot, Yawn | 44 |
+| Ace, Scorbunny version (793, 800) | Grotle | 30 | Shell Armor | Miracle Seed | Brave | Seed Bomb, Rock Blast, Bulldoze, Curse | 31 |
+| Ace, Piplup version (794, 801) | Monferno | 30 | Blaze | Charcoal | Naive | Blaze Kick, Mach Punch, Zen Headbutt, Rock Slide | 68 |
+
+Against the boxes' speed lines (Liepard 79; Alolan Ninetales and Tentacruel 69; Golbat, Orbeetle and Ponyta 63; Kingler 54; Bibarel 52; Whiscash 45; Hariyama, Donphan and Carbink 39): Lopunny and Scyther outspeed every catch but Liepard, which only Lopunny beats. Pachirisu sits over the 69 tier, Monferno over Golbat and under the 69 tier, and Umbreon over Kingler and Bibarel. Prinplup sits one point under Whiscash, Gastrodon three under the 39 tier, and Grotle moves before only Quagsire (30).
+
+### Each member, and its bait test
+
+**Umbreon, the lead.** Its job is to wear the six down and cover the members behind it. Toxic and Yawn chip and force switches, and Reflect, eight turns with Light Clay, halves the physical hits of every answer the screens always take (Kingler, Hariyama, Donphan, Bibarel, Golbat) while Scyther, Lopunny and the ace come in. Inner Focus ignores the Fake Out the player's Hariyama, Liepard or Lombre would open with. Timid puts it at 56, over Bibarel (52) and Kingler (54), so its first status move lands before Bibarel's Taunt. Payback is there so a Taunt does not leave it with nothing; it does little (about a tenth of Hariyama's HP).
+*Bait test:* the player leads a Fighting type (Hariyama's Arm Thrust takes 52 to 70 percent unscreened; Breloom's Mach Punch 47 to 54). Umbreon flinches to nothing, sets Reflect or Yawn, and when it falls to the Fighting type the replacement rule sends Scyther, whose Flying type hits Fighting twice, rather than Lopunny.
+
+**Scyther.** Technician raises every move of 60 power or under by half: Wing Attack becomes 90 with the same-type bonus on top, more than X-Scissor's 80, and Pursuit 60 before it doubles on a switching foe. Wing Attack takes Hariyama 88 to 103 percent, knocks out Breloom and Tsareena, and takes Golbat 57 to 67 percent. Steel Wing is there for Carbink (76 to 92 percent) and Alolan Ninetales (a knockout). Brick Break is there for the Rock Blast users (Probopass 56 to 66 percent, Onix 36 to 44, Graveler 43 to 53) and Bibarel (62 to 75). Eviolite applies, since Scyther still evolves.
+*The Rock weakness:* every one of the screen's top 20 sixes on every box carries a Rock move: Probopass's Rock Blast on box 1, Bibarel's Smack Down and Donphan's Rollout on box 2, Carbink's Rock Tomb and Smack Down on box 3. No catch has Stealth Rock. A Rock Blast from Probopass, Onix or Graveler takes 84 to 108 of Scyther's 88 HP; Rock Tomb, Smack Down and Ancient Power take 41 to 59 percent, Donphan's first Rollout 32 to 41. Scyther moves first against all of them (74 against 33 to 52), and the replacement rule never sends it into Probopass, Onix or Graveler, where it has no super-effective move. The risk that remains is the AI's immunity switch: Probopass's Bulldoze can draw Scyther in, and the Rock Blast that follows knocks it out.
+*Bait test:* the player holds a Rock Blast user back and brings it in on Scyther. Scyther Brick Breaks it first, but needs two hits to Probopass's one.
+
+**Lopunny.** Unchanged. With Scyther behind Umbreon, a Fighting type no longer draws it out after a faint, so it arrives on the Normal, Rock, Steel, Ice and Dark types its Jump Kick hits, with Fake Out on every entry.
+*Bait test:* the player keeps Golbat (four times resistant to Jump Kick) or Carbink ready. Pachirisu's Spark answers Golbat (67 to 81 percent), Scyther's Steel Wing answers Carbink.
+
+**Pachirisu.** Swift becomes Seed Bomb, the Oran Berry a Sitrus Berry, and its nature is fixed at Hasty (72, over the 69 tier). Scyther now takes the Ground moves aimed at Pachirisu only when Pachirisu has nothing super-effective on the attacker, which is how the AI's switch rule reads it; with Seed Bomb, Pachirisu stays in and answers the Ground lead itself, which was the diagnosis's main fault in its old set. Seed Bomb takes Quagsire 60 to 71 percent and Whiscash 62 to 76; Donphan, with its Defense of 130, only 22 to 26.
+*Bait test:* the player sends Quagsire into it (Mud Bomb takes 45 to 55 percent). Pachirisu Seed Bombs it, and Spark still answers the Flying types and Kingler (48 to 58 percent).
+
+**Gastrodon.** Dry Skin heals it off the Water attacks of the Ground leads, Kingler and Bibarel, and the AI's absorb rule brings it in on a Water hit one time in two. Earth Power takes Probopass 84 to 98 percent and Carbink 65 to 76; Brine finishes a weakened foe; Ice Beam answers the Grass types and the Flying ones; Stealth Rock is the team's one hazard, which the AI picked 91 to 112 times in each probe of 150 fights.
+*Bait test:* the player brings Grass (box 2's Tsareena takes 54 to 64 percent with Magical Leaf; Breloom, Leavanny, Cherrim, the Turtwig player's Grotle). Ice Beam hits back 51 to 62 percent on Tsareena, but Grass stays its weak point.
+
+**Prinplup, the Turtwig version's ace, against box 1.** Modest's old physical moves go. Grass Knot answers the two Water walls that blank its Water moves: Quagsire 82 to 97 percent, Kingler 58 to 70. Ice Beam takes Golbat 54 to 65 and the player's Grotle. Brine is its Water hit, and doubles on a foe under half.
+*Bait test:* the player sends Probopass in; Brine takes only 28 to 36 percent, so Gastrodon's Earth Power and Scyther's Brick Break are the team's answer there.
+
+**Grotle, the Scorbunny version's ace, against box 2.** A physical set for its nature: Seed Bomb knocks out Bibarel and takes Donphan 59 to 71 percent; Rock Blast covers its own weak points, taking the player's Raboot 80 to 94 percent and Golbat 67 to 81; Bulldoze and Curse fit its low Speed.
+*Bait test:* the player leads Raboot or Golbat into it. Rock Blast hits back hard, but Grotle moves last, so it takes the first hit.
+
+**Monferno, the Piplup version's ace, against box 3.** Zen Headbutt takes Hariyama 42 to 49 percent and Machoke 43 to 51; Blaze Kick knocks out Breloom; Mach Punch is priority; Rock Slide covers Golbat and the Bug types. It has nothing for Carbink (Mach Punch 12 to 16 percent) or the Water types.
+*Bait test:* the player's own Prinplup, Whiscash or Goldeen. Monferno has no answer, and Carbink walls it; Scyther's Steel Wing and Gastrodon's Earth Power carry Carbink for this version.
+
+### The five-minute check
+
+The scorer builds each version (`tr:793`, `tr:794`, `tr:799`) with every species, ability, item and move resolved, Light Clay and Eviolite included. The legality checker passes all six files; its one note is Gastrodon at 29, one level under Shellos's evolution at 30.
+
+The AI-picks probe ran once per version against its greedy middle-split six, and once more against a six built from each version's own box answers (box 1's Probopass, Kingler, Quagsire, Golbat, Cherrim and Alolan Ninetales against the Turtwig version, and so on), 150 rough fights each. Its win and faint numbers mean nothing. Every move on every member was picked in at least one run.
+
+| Member | Moves, by how often the AI picked them (box-answers probe for the version that meets them) | Note |
+|---|---|---|
+| Umbreon | Payback 141 to 390, Yawn 105 to 237, Reflect 136 to 144, Toxic 30 to 78 | Payback is its most picked move though it hits for little, and Toxic its least |
+| Scyther | Wing Attack 359 to 601, Steel Wing 14 to 184, Brick Break 33 to 126, Pursuit 15 to 67 | Steel Wing comes alive against box 3's Carbink; Hariyama's Knock Off took its Eviolite 25 times there |
+| Lopunny | Bounce 35 to 152, Jump Kick 25 to 60, Quick Attack 15 to 65, Fake Out 11 to 33 | Bounce is its most picked move in every run |
+| Pachirisu | Spark 170 to 345, Seed Bomb 58 to 208, Charm 33 to 67, Bite 17 to 34 | |
+| Gastrodon | Earth Power 184 to 249, Brine 94 to 168, Ice Beam 104 to 151, Stealth Rock 91 to 112 | |
+| Prinplup | Brine 113, Grass Knot 105, Yawn 97, Ice Beam 48 | Grass Knot was picked 6 to 25 times against the middle-split six, which has no Quagsire or Kingler |
+| Grotle | Seed Bomb 121, Bulldoze 55, Rock Blast 54, Curse 54 | |
+| Monferno | Zen Headbutt 41, Blaze Kick 27, Mach Punch 20, Rock Slide 0 | Rock Slide went unpicked against box 3's answers, which have no Flying or Bug type; against the middle-split six it was picked 29 to 36 times |
