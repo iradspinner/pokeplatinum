@@ -24,6 +24,20 @@ read, so they are written here too. Each is a standing instruction.
   "Difficulty: material, <fights>". The rule exists because Roark's split
   was re-read more than 65 times before the alpha, and the full scorer costs
   60 to 75 hours a pass.
+- Teams are designed by judgement with cheap checks, and the scorer only
+  spot-checks (Ian, 2026-10-22: "the difference between a 94% WR and a 91%
+  is honestly too low to be worth the time"). Tried first on Mars 1's dials
+  and Jupiter 1, then the default for every fight after if it goes well.
+  A team change is checked by the speed tiers against the boxes' likely
+  answers, the matchup screen, and the probe that the trainer AI uses each
+  move, with Ian's judgement deciding; the scorer reads a fight only when
+  Ian names it or a fight looks clearly off, plus the milestone reading
+  before alpha 1. A scorer gap is fixed only when it would change a
+  decision, and the alpha playtest is the real measure of difficulty. The
+  reason: a boss reading takes two and a half to four hours, iterating
+  every boss through it is not workable, and each new modelling gap (the
+  Flame Plate, the four moves carried between fights) put earlier numbers
+  in doubt.
 - Never launch an emulator. Ian runs melonDS on Windows and drives it; a local
   session attaches to it over the GDB stub (`debug-live` skill). A cloud
   session cannot reach it at all, so in-game checks are written into the

@@ -182,7 +182,10 @@ is listed for Ian.
   later in the game), spiking with the boss's importance, the hardest
   topping out near the easiest of Kaizo's bosses on Oxide's box (about 80
   percent won). The numbers are ordinal, and Oxide is not meant to be beaten
-  on a first run. Two soft guides for reading a fight (Ian, 2026-10-13): box
+  on a first run. Since 2026-10-22 teams are tuned by judgement with cheap
+  checks (speed tiers, the matchup screen, damage numbers, the AI-picks
+  probe), and the scorer only spot-checks fights Ian names or that look
+  clearly off, plus the milestone reading before alpha 1 (standing rulings). Two soft guides for reading a fight (Ian, 2026-10-13): box
   3 of the first reading of his six-member Gardenia (27 percent won) is the
   barometer for "unsolvably hard", and only the Cyrus fights, the Elite Four
   with Cynthia, and perhaps a Galactic double may read as hard as that whole
