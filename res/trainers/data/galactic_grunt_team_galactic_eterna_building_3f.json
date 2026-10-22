@@ -62,6 +62,23 @@
             "gender": null
         },
         {
+            "species": "SPECIES_LUNATONE",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_EARTH_POWER",
+                "MOVE_ICY_WIND"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
             "species": "SPECIES_KADABRA",
             "form": 0,
             "level": 26,
