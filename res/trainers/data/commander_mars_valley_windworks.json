@@ -17,7 +17,7 @@
             "moves": [
                 "MOVE_THUNDER_WAVE",
                 "MOVE_TAUNT",
-                "MOVE_DARK_PULSE",
+                "MOVE_FAINT_ATTACK",
                 "MOVE_U_TURN"
             ],
             "iv_scale": 255,
@@ -50,7 +50,7 @@
             "item": "ITEM_MIRACLE_SEED",
             "moves": [
                 "MOVE_SEED_BOMB",
-                "MOVE_PLAY_ROUGH",
+                "MOVE_AERIAL_ACE",
                 "MOVE_BITE",
                 "MOVE_QUICK_ATTACK"
             ],
