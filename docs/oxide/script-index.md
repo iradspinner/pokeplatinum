@@ -1140,7 +1140,7 @@ Variables:
 Trainer battles:
 
 - TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_2 (Grunt, level 18, 3 Pokemon), sees the player. Vanilla. `events_valley_windworks_building.json:72`
-- TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_3 (Officer Somnu, level 19, 4 Pokemon), sees the player. Vanilla. `events_valley_windworks_building.json:89`
+- TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_3 (Officer Somnu, level 18, 4 Pokemon), sees the player. Vanilla. `events_valley_windworks_building.json:89`
 - StartTrainerBattle: against TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS (Mars, level 19, 5 Pokemon), by name. Vanilla. `scripts_valley_windworks_building.s:86`
 
 Flags:
@@ -8142,7 +8142,7 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_3F (Officer Moira, level 26, 4 Pokemon), sees the player. Vanilla. `events_team_galactic_eterna_building_3f.json:34`
+- TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_3F (Officer Moira, level 26, 5 Pokemon), sees the player. Vanilla. `events_team_galactic_eterna_building_3f.json:34`
 - TRAINER_SCIENTIST_TRAVON (Travon, level 25, 3 Pokemon), sees the player. Vanilla. `events_team_galactic_eterna_building_3f.json:49`
 
 Item balls:
@@ -8159,7 +8159,7 @@ Flags:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING (Jupiter, level 27, 5 Pokemon), by name. Vanilla. `scripts_team_galactic_eterna_building_4f.s:30`
+- StartTrainerBattle: against TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING (Jupiter, level 27, 6 Pokemon), by name. Vanilla. `scripts_team_galactic_eterna_building_4f.s:30`
 
 Item balls:
 
