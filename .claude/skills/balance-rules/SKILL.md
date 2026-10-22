@@ -7,7 +7,9 @@ description: Ian's rulebook for Platinum Oxide's balance passes, in one place th
 
 The balance track's methods live in `docs/oxide/balance-plan.md` (its open work in the tracker since 2026-10-13),
 and the rules every session follows live in
-`.claude/rules/standing-rulings.md`. This skill gathers what a balance pass
+`.claude/rules/standing-rulings.md`, whose four longest rulings (the
+scorer, the move reworks, level-up lists and trainer design) are in full in
+`docs/oxide/rulings-detail.md` since 2026-10-22. This skill gathers what a balance pass
 needs from both, plus Ian's rulings that until 2026-09-27 lived only in the
 Overseer's local memory. When this skill and the balance plan disagree, the
 later dated ruling wins; say which in the report.
@@ -182,7 +184,10 @@ is listed for Ian.
   later in the game), spiking with the boss's importance, the hardest
   topping out near the easiest of Kaizo's bosses on Oxide's box (about 80
   percent won). The numbers are ordinal, and Oxide is not meant to be beaten
-  on a first run. Two soft guides for reading a fight (Ian, 2026-10-13): box
+  on a first run. Since 2026-10-22 teams are tuned by judgement with cheap
+  checks (speed tiers, the matchup screen, damage numbers, the AI-picks
+  probe), and the scorer only spot-checks fights Ian names or that look
+  clearly off, plus the milestone reading before alpha 1 (standing rulings). Two soft guides for reading a fight (Ian, 2026-10-13): box
   3 of the first reading of his six-member Gardenia (27 percent won) is the
   barometer for "unsolvably hard", and only the Cyrus fights, the Elite Four
   with Cynthia, and perhaps a Galactic double may read as hard as that whole
