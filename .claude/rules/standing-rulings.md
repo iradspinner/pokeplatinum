@@ -27,7 +27,11 @@ read, so they are written here too. Each is a standing instruction.
 - Teams are designed by judgement with cheap checks, and the scorer only
   spot-checks (Ian, 2026-10-22: "the difference between a 94% WR and a 91%
   is honestly too low to be worth the time"). Tried first on Mars 1's dials
-  and Jupiter 1, then the default for every fight after if it goes well.
+  and on Jupiter 1, whose sealed cheap-check prediction matched its reading
+  on two boxes of three and missed the third by ten points on the hard side;
+  Ian called it "good data and close enough" the same day, so it is the
+  default for every fight. The checks underrate status and stall teams in
+  long fights, so those get a margin, or a spot check when a box looks thin.
   A team change is checked by the speed tiers against the boxes' likely
   answers, the matchup screen, and the probe that the trainer AI uses each
   move, with Ian's judgement deciding; the scorer reads a fight only when

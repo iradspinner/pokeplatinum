@@ -629,6 +629,16 @@ with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "trainers_com
           encoding="utf-8") as _f:
     for _stem in (line.strip() for line in _f if line.strip() and not line.startswith("#")):
         TRAINERS_DIVERGED.setdefault(_stem, {})["party"] = _COMBED
+# The named Galactic fights Ian redesigned back to his themes (2026-10-13 to
+# 2026-10-22, the tracker's Galactic teams entry): their teams and AI flags
+# are his, so the base ROM's are not carried back over them. The comb's
+# reason above, where a stem has it, is replaced by this one.
+_GALACTIC = ("Ian's redesign of the named Galactic fights, back to his themes "
+             "(2026-10-13 to 2026-10-22)")
+for _stem in ("galactic_grunt_valley_windworks_3", "commander_mars_valley_windworks",
+              "galactic_grunt_team_galactic_eterna_building_3f",
+              "commander_jupiter_team_galactic_eterna_building"):
+    TRAINERS_DIVERGED.setdefault(_stem, {}).update({"party": _GALACTIC, "ai_flags": _GALACTIC})
 # Trainers edited in the encounter tool's team builder (encounter build plan
 # item 28) are listed in trainers_diverged.json beside this file, which the
 # builder writes on every save, so a save never edits this code. The same
