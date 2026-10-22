@@ -23,13 +23,33 @@ def context(split):
     return sim.context(split)
 
 
+# Catches no box the scorer builds may take, as (capture area, species
+# rolled there). Ian, 2026-10-21: the Veilstone City northeast house's level
+# 25 Elekid, the game's only Elekid, waits on his decision about that gift
+# and the Elekid line, so until then no reading's box holds it (nor the
+# Electabuzz or Electivire it would become). The game still gives it; only
+# the scorer's boxes pass it by. Temporary: remove the entry once Ian
+# decides the gift's future.
+HELD_BACK = frozenset({("Veilstone City", "SPECIES_ELEKID")})
+
+
+def roll(area, option, box, rng, drawn=()):
+    """The species a run catches at this area with this option (the box
+    simulator's own roll), or None where HELD_BACK leaves the catch out. The
+    roll is made either way, so a seed's later areas roll what they rolled
+    before the exclusion and the rest of each box stays as it was."""
+    sp = sim._roll(option, box, rng, drawn)
+    return None if (area["name"], sp) in HELD_BACK else sp
+
+
 def planned_box(split, seed=0):
     """[species constant] of the box the encounter tool expects by the
     split's end: the simulator's best-play run (each area's best option,
     the dupes clause, no deaths), at the stage each reaches by the cap."""
     ctx = context(split)
     r = sim.run(split, seed=seed, ctx=ctx)
-    return [m["stage"] for m in r["box"] if m.get("alive", True)]
+    return [m["stage"] for m in r["box"]
+            if m.get("alive", True) and (m["area"], m["species"]) not in HELD_BACK]
 
 
 def planned_run(split, seed=0):
@@ -38,14 +58,17 @@ def planned_run(split, seed=0):
     starter first (its split None). `waited` marks a catch the planner came
     back for once a later table opened (surf, a rod, the honey tree): the
     simulator walks back to it at the end of that table's split. A member it
-    traded away is left out, as planned_box leaves it."""
+    traded away is left out, as planned_box leaves it, and so is a HELD_BACK
+    catch. The planner still plays the held-back area as before, so its
+    other choices and rolls are unchanged."""
     ctx = context(split)
     r = sim.run(split, seed=seed, ctx=ctx)
     waited = {e["area"] for e in r["log"] if e.get("wait")}
     gone = {(m["species"], m["area"]) for m in r["box"] if not m.get("alive", True)}
     out = []
     for e in r["log"]:
-        if not e.get("species") or e.get("death") or (e["species"], e["area"]) in gone:
+        if not e.get("species") or e.get("death") or (e["species"], e["area"]) in gone \
+                or (e["area"], e["species"]) in HELD_BACK:
             continue
         starter = e.get("choice") == "the starter"
         out.append((e["species"], None if starter else e["split"], e["area"], not starter and e["area"] in waited))
@@ -130,7 +153,7 @@ def random_box(split, rng):
         if not opts:
             continue
         opt = rng.choice(opts)
-        sp = sim._roll(opt, box, rng, drawn)
+        sp = roll(area, opt, box, rng, drawn)
         if sp is None:
             continue
         if opt.kind == "legendary":

@@ -242,6 +242,19 @@ def holds_open(sp, caught, cap, base=None, places=(), gender=None, coin=None):
     return out
 
 
+def hold_moves(base, holds, gained):
+    """The moves a hold is for, of those it brings (`gained`): the ones its
+    held stage learns at the level it is held to, the stage being the one
+    `holds` keeps back past `base`. The play-off puts them in first
+    (with_gain), since the hold exists for them (Ian, 2026-10-21)."""
+    names = move_names()
+    at = set()
+    for stage, lv in holds.items():
+        if (base or {}).get(stage) != lv:
+            at |= {names[mv] for l, mv in mon_data(stage)["learnset"]["by_level"] if l == lv and mv in names}
+    return [m for m in gained if m in at]
+
+
 def hold_label(rec_species, holds):
     """A member's name with the holds its line carries, for the logs and the
     reports: "Staraptor (Starly held to 37)"."""
@@ -265,10 +278,15 @@ class Slots:
     holds do not multiply the sixes. Each six takes, for each of its
     catches, the version that gives that six the best score by the screen's
     own reckoning (score_rows over the margin table M), and the race, the
-    loop and the readings see those versions. A version no better than
-    another of its catch against every enemy is never taken, since it can
-    raise no six's score (the score never falls as a margin rises); of
+    loop and the readings see those versions. A held version no better
+    than another of its catch against every enemy is never taken, since it
+    can raise no six's score (the score never falls as a margin rises); of
     versions equal against every enemy, the first in box order is taken.
+    The version on time (the line as it stands, not held) is never dropped
+    and comes first, so where a held version is better against one enemy
+    but a six scores the same with either, the six takes the version on
+    time (Ian, 2026-10-21): a held version taken for nothing would set off
+    the paired reading and commit the seed's later fights to its hold.
     A member without a catch is a slot of its own, so a box without held
     versions is searched exactly as before."""
 
@@ -285,7 +303,9 @@ class Slots:
             self.versions[s].append(k)
             self.slot_of[k] = s
         self.multi = any(len(v) > 1 for v in self.versions.values())
-        self.cands = {s: self._undominated(v) for s, v in self.versions.items()}
+        self.on_time = {s: next((k for k in v if not st["pokemon"][k].get("held")), v[0])
+                        for s, v in self.versions.items()}
+        self.cands = {s: self._undominated(v, self.on_time[s]) for s, v in self.versions.items()}
         self._best = {}
 
     @classmethod
@@ -298,12 +318,17 @@ class Slots:
         mine, theirs, speed = matchups(st, keys, boss_keys)
         return cls(st, keys, margins(st, keys, boss_keys, {k: st["moves"][k] for k in keys}, mine, theirs, speed))
 
-    def _undominated(self, vs):
+    def _undominated(self, vs, on_time):
+        """The versions a six may take: the one on time first, then each held
+        version that no other version of the catch matches or beats against
+        every enemy."""
         if len(vs) == 1 or self.M is None:
             return list(vs)
         R = self.M[[self.pos[k] for k in vs]]
-        return [k for i, k in enumerate(vs)
-                if not any(j != i and (R[j] >= R[i]).all() and ((R[j] > R[i]).any() or j < i) for j in range(len(vs)))]
+        kept = [k for i, k in enumerate(vs)
+                if k == on_time or not any(j != i and (R[j] >= R[i]).all() and ((R[j] > R[i]).any() or j < i)
+                                           for j in range(len(vs)))]
+        return [on_time] + [k for k in kept if k != on_time]
 
     def upper(self):
         """Each slot's margins at the best of its versions against each enemy:
@@ -813,18 +838,38 @@ def play_jobs(st, boss_keys, flags, jobs, procs=None, tally=None):
 
 # ---- 3b. the play-off -----------------------------------------------------------------------------
 
-def with_gain(st, k):
-    """The four moves a held version plays the play-off with: the moves its
-    hold brings ("gained") that the screen's picks leave out, put in place
-    of its last picks, its first two picks always kept. The screen's
-    margins count hits only, so its picks can leave out the very move the
-    hold exists for (Will-O-Wisp on a Fletchling held to 25)."""
-    picks = list(st["moves"][k])
-    extra = [m for m in st["pokemon"][k].get("gained") or () if m not in picks]
+def with_gain(st, k, picks=None):
+    """The four moves a held version plays the play-off with, from the
+    screen's picks (`picks`, else its moves now). The screen's margins
+    count hits only, so its picks can leave out the very move the hold
+    exists for (Will-O-Wisp on a Fletchling held to 25). The move the hold
+    is for (the record's "hold_for", learned at the hold's level) goes in
+    first, then the hold's other moves ("gained"), each in place of a pick
+    from the last back; the first two picks are always kept, and so is a
+    pick the hold itself brought (Ian, 2026-10-21: Sharpedo held as
+    Carvanha to 38 lost Take Down, its hold's move, to Agility, and Liepard
+    held as Purrloin to 36 played two gained moves by name and not Sucker
+    Punch). Should no other place be left, the hold's own move takes the
+    last place past the first two that holds another gained move."""
+    picks = list(st["moves"][k] if picks is None else picks)
+    rec = st["pokemon"][k]
+    gained = list(rec.get("gained") or ())
+    why = list(rec.get("hold_for") or ())
+    extra = [m for m in why if m not in picks] + [m for m in gained if m not in picks and m not in why]
     if not extra:
         return picks
-    kept = max(2, min(len(picks), 4) - len(extra))
-    return picks[:kept] + extra[:4 - kept]
+    out = picks[:4]
+    while len(out) < 4 and extra:
+        out.append(extra.pop(0))
+    free = [i for i in range(len(out) - 1, 1, -1) if out[i] not in gained]
+    for i, m in zip(free, extra):
+        out[i] = m
+    for m in why:
+        if m not in out:
+            spare = [i for i in range(len(out) - 1, 1, -1) if out[i] not in why]
+            if spare:
+                out[spare[0]] = m
+    return out
 
 
 def playoff(st, boss_keys, flags, finalists, tally, cfg, slots, procs=None, log=print):
@@ -835,9 +880,18 @@ def playoff(st, boss_keys, flags, finalists, tally, cfg, slots, procs=None, log=
     same fights the race read it on (tally.fights, the race's own luck and
     planner), every held version included, those the screen dropped as
     dominated among them, since they are the point; a held version plays
-    with the moves its hold brings (with_gain), and keeps them from then on.
-    A swap is kept where it scores better than the finalist by the race's
-    own tally (Tally.score); of several winning swaps of one member, the
+    with the moves its hold brings (with_gain), built from the screen's
+    picks every time, so a version tried for two finalists plays the same
+    four. A version a kept six takes keeps that four; after each finalist
+    every other version goes back to the screen's picks, so that the loop
+    and the readings, which choose by the screen's margins for those picks,
+    never meet a four the play-off left behind (Ian, 2026-10-21).
+    A swap is kept where it scores better than the finalist by more than
+    the race's tolerance (WIN_TOL) on the race's own tally (Tally.score),
+    since one fight in about 30 moves a score three or four points and the
+    best of several swaps would otherwise often win on luck (Ian,
+    2026-10-21: the margin alone, with no confirmation read, to keep the
+    readings fast); of several winning swaps of one member, the
     best. Where more than one member's swap wins, their combination is
     played once more on the same fights and kept if it scores at least as
     well as the best single swap, else that swap is. Returns (the finalists
@@ -847,6 +901,17 @@ def playoff(st, boss_keys, flags, finalists, tally, cfg, slots, procs=None, log=
     sl = slots
     pos = sl.pos
     name = lambda t: [member_name(st["pokemon"][k]) for k in t]
+    # Every version's moves and record as the screen left them, to build the
+    # play-off's fours from and to put back where a version is not kept.
+    screen = {k: (list(st["moves"][k]), st["pokemon"][k]) for vs in sl.versions.values() for k in vs
+              if k in st["moves"]}
+
+    def restore(kept):
+        for k, (four, rec) in screen.items():
+            if k not in kept:
+                st["moves"][k] = list(four)
+                st["pokemon"][k] = rec
+
     out, record = [], []
     for fin in map(tuple, finalists):
         fights = tally.fights.get(fin, [])
@@ -858,16 +923,16 @@ def playoff(st, boss_keys, flags, finalists, tally, cfg, slots, procs=None, log=
             continue
         for _i, _k, v, _t in swaps:
             if st["pokemon"][v].get("held"):
-                four = with_gain(st, v)
+                four = with_gain(st, v, screen[v][0])
                 st["moves"][v] = four
-                st["pokemon"][v] = dict(st["pokemon"][v], moves=four)
+                st["pokemon"][v] = dict(screen[v][1], moves=four)
         played = play_jobs(st, boss_keys, flags, [(t, seed, cfg, luck, False) for _i, _k, _v, t in swaps
                                                   for seed, luck in fights], procs)
         base = tally.score(fin)
         best = {}
         for i, _k, v, t in swaps:
             sc = played.score(t)
-            if sc > base and sc > best.get(i, (float("-inf"),))[0]:
+            if sc > base + WIN_TOL + 1e-9 and sc > best.get(i, (float("-inf"),))[0]:
                 best[i] = (sc, v, t)
         rec = {"six": name(fin), "score": round(base, 3), "fights": len(fights),
                "swaps": [{"out": member_name(st["pokemon"][k]), "in": member_name(st["pokemon"][v]),
@@ -887,9 +952,10 @@ def playoff(st, boss_keys, flags, finalists, tally, cfg, slots, procs=None, log=
             rec["combined"] = {"six": name(combo), "score": round(played.score(combo), 3), "kept": holds}
         rec["kept"] = name(kept)
         log(f"  play-off on {', '.join(rec['six'])} ({base:.2f} on {len(fights)}): {len(swaps)} swaps; "
-            + (f"kept {', '.join(rec['kept'])}" if kept != fin else "no swap scored better"))
+            + (f"kept {', '.join(rec['kept'])}" if kept != fin else "no swap led by more than the tolerance"))
         out.append(kept)
         record.append(rec)
+        restore({k for t in out for k in t})
     return list(dict.fromkeys(out)), record
 
 

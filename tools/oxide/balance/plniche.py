@@ -120,7 +120,7 @@ def roll(split, seed):
         if not opts:
             continue
         opt = rng.choice(opts)
-        sp = pboxes.sim._roll(opt, box, rng, drawn)
+        sp = pboxes.roll(area, opt, box, rng, drawn)
         if sp is None:
             continue
         if opt.kind == "legendary":
