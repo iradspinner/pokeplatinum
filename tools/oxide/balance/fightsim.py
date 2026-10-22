@@ -721,6 +721,24 @@ class Mon:
     # (helping_hand); a turn flag, cleared as the next double-battle turn
     # starts. Left on the class while False.
     helped = False
+    # Every Pokemon made by __init__ sets these in its own record (here and
+    # in reset_volatile). The same values stand on the class as well, so the
+    # search's keys (perfectline.mon_key, _ai_mon) can read them directly
+    # rather than through getattr with a default, which costs more; a read
+    # gives the value getattr's default gave on a record without them.
+    heal_block = 0
+    salted = False
+    disabled = None
+    disabled_turns = 0
+    nightmare = False
+    encore = None
+    encore_turns = 0
+    protean_type = None
+    protean_used = False
+    last_resort = False
+    last_resort_count = 0
+    ate_berry = False
+    belch = False
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -943,6 +961,10 @@ class Side:
     # cleared as the next double-battle turn starts, and left on the class
     # while None.
     follow_me = None
+    # Set by __init__ on every side; on the class too, so the search's keys
+    # and copies read them directly (perfectline.side_key, clone_side).
+    wish = 0
+    mist = 0
 
     def __init__(self, mons, name):
         self.mons, self.name = mons, name
