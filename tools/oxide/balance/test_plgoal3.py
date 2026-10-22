@@ -675,6 +675,71 @@ def playoff_fix_checks():
     return out
 
 
+def playoff_gap_checks():
+    """The play-off's gap of 2026-10-21 (Ian: "Fix it now"), on a made-up box
+    with the fights stubbed. Finalist 1 keeps a swap to p1, a held version
+    whose hold brings Leer, so p1 keeps the play-off's four. Finalist 2
+    carries p1 as a member, and the race read it with p1 on the screen's
+    four. Every swap of finalist 2 must play p1 with that same four, or it
+    is compared against a baseline that played other moves. The stub makes
+    Leer worth seven fights in 30, so that a swap of finalist 2 playing p1
+    with Leer leads its baseline by Leer alone, and today is kept for it."""
+    out = []
+    ks = [f"p{i}" for i in range(10)]
+    catch = {"p1": "p0", "p9": "p8"}
+    held = {"p1": (["Cut", "Pound", "Tackle", "Scratch"], ["Leer"], ["Leer"]),
+            "p9": (["Cut", "Pound", "Tackle", "Scratch"], ["Bite"], ["Bite"])}
+    st = {"pokemon": {}, "moves": {}}
+    for k in ks:
+        picks, gained, why = held.get(k, (["Cut", "Pound", "Tackle", "Scratch"], [], []))
+        st["pokemon"][k] = {"species": f"Mon{k}", "catch": catch.get(k, k), "held": k in held, "gained": gained,
+                            "hold": {"X": 30} if k in held else {}, "label": f"Mon{k} (held)" if k in held else None,
+                            "moves": list(picks)}
+        if why:
+            st["pokemon"][k]["hold_for"] = why
+        st["moves"][k] = list(picks)
+    screen = {k: list(v) for k, v in st["moves"].items()}
+    sl = pt.Slots(st, ks)
+    fin1 = ("p0", "p2", "p3", "p4", "p5", "p6")
+    fin2 = ("p1", "p4", "p5", "p6", "p7", "p8")
+    # p1's moves in every fight of a six that carries it: the race's and each swap's.
+    p1_moves = {}
+
+    def play_jobs(st_, bk_, fl_, jobs, procs=None, tally=None):
+        t = tally or pt.Tally()
+        for team, seed, _cfg, luck, _used in jobs:
+            leer = "p1" in team and "Leer" in st_["moves"]["p1"]
+            if "p1" in team:
+                p1_moves.setdefault(team, list(st_["moves"]["p1"]))
+            t.add(team, seed < (22 if leer else 15), 1, False, [], fight=(seed, luck))
+        return t
+
+    keep = pt.play_jobs
+    pt.play_jobs = play_jobs
+    try:
+        # The race, played by the same stub on the screen's fours.
+        race = pt.play_jobs(st, [], {}, [(fin, seed, {}, "real", False) for fin in (fin1, fin2) for seed in range(30)])
+        baseline = p1_moves[fin2]
+        after, rec = pt.playoff(st, [], {}, [fin1, fin2], race, {}, sl, log=lambda *_a: None)
+    finally:
+        pt.play_jobs = keep
+    gain = pt.with_gain(st, "p1", screen["p1"])
+    # Finalist 2's swaps that keep p1: the sixes with p7, which finalist 1 lacks.
+    swaps2 = {t: m for t, m in p1_moves.items() if t != fin2 and "p7" in t}
+    out.append(("finalist 1 keeps its swap to the held p1, which keeps the play-off's four",
+                after[0] == tuple(sorted(("p1",) + fin1[1:], key=ks.index)) and st["moves"]["p1"] == gain,
+                f"{after[0]}; p1 plays {st['moves']['p1']}"))
+    out.append(("every swap of finalist 2 plays p1 with the four its race baseline played",
+                swaps2 and all(m == baseline for m in swaps2.values()),
+                f"baseline {baseline}; swaps {sorted(swaps2.items())}"))
+    out.append(("no swap of finalist 2 is kept for the moves its baseline lacked",
+                fin2 in after and len(after) == 2, f"{after}; swap scores {rec[1]['swaps'] if len(rec) > 1 else rec}"))
+    kept = {k for t in after for k in t}
+    left = {k: st["moves"][k] for k in ks if k not in kept and st["moves"][k] != screen[k]}
+    out.append(("after it every version outside a kept six has the screen's four", not left, str(left)))
+    return out
+
+
 def on_time_checks():
     """The screen's fix 4 (Ian, 2026-10-21): the on-time version of a catch is
     never dropped as dominated, so where a held version is better against
@@ -823,6 +888,7 @@ def main():
     results += playoff_checks()
     results += hold_move_checks()
     results += playoff_fix_checks()
+    results += playoff_gap_checks()
     results += on_time_checks()
 
     got = {k: sorted(g.places(by[k])) for k in ("mars_1", "gardenia", "jupiter_1", "fantina", "candice")}
