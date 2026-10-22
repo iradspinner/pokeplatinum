@@ -67,7 +67,10 @@ def check_trainers(results, data, root):
 
 
 def check_items(results, data, root):
-    pickups = bsplits.pickups()
+    # The census's pickups and gifts the player can have: not those on a
+    # map no usable warp leads into, nor a gift it gives no split.
+    pickups = {k: v for k, v in bsplits.pickups().items() if v[0][4] != "closed map"}
+    census_gifts = [g for g in bsplits.gifts() if g[0] is not None]
     got = _all(data, "pickups")
     tree = [r for _s, _z, r in got if r["item"]]
     results.append(("every ball and hidden item shows once, with a flag for the save",
@@ -84,7 +87,7 @@ def check_items(results, data, root):
                     f"{dict(counted)} against {dict(by_kind)}"))
     gifts = [r for _s, _z, r in _all(data, "gifts") if r["item"]]
     results.append(("every item an NPC script gives shows once",
-                    len(gifts) == len(bsplits.gifts()), f"{len(gifts)} of {len(bsplits.gifts())}"))
+                    len(gifts) == len(census_gifts), f"{len(gifts)} of {len(census_gifts)}"))
 
 
 def check_rewards(results, data, root):

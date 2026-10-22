@@ -350,27 +350,19 @@ _ITEM_VAR = {"VAR_0x8004", "32772"}
 
 @functools.lru_cache(maxsize=None)
 def gifts():
-    """Every item an NPC script gives: (split, map, item constant)."""
-    out = []
-    for header, fields in headers().items():
-        scripts = fields.get("scriptsArchiveID")
-        path = os.path.join(data.ROOT, "res", "field", "scripts", f"{scripts}.s") if scripts else None
-        if not path or not os.path.exists(path):
-            continue
-        split, last = map_split(header)[0], None
-        for line in _script(scripts).split("\n"):
-            m = _SET_ITEM.match(line)
-            if m:
-                last = m.group(1)
-                continue
-            m = _ADD_ITEM.match(line)
-            token = (last if m.group(1) in _ITEM_VAR else m.group(1)) if m else \
-                (last if _GIVE.match(line) else None)
-            if token and (token.startswith("ITEM_") or token.isdigit()):
-                item = _item(token)
-                if item.startswith("ITEM_") and item != "ITEM_NONE":
-                    out.append((split, header, item))
-    return sorted(set(out))
+    """Every item an NPC script gives: (split, map, item constant), each in
+    the split the player can first get it in (gates.py, 2026-10-22): its
+    map's, or later where the giving object is hidden until a script shows
+    it or the script checks a flag, a variable, a badge or an item first.
+    A post-game gift is "Post"; one on a map no usable warp leads into, or
+    on a line no path reaches, has no split, so no count takes it. Before
+    this every gift took its map's split, and Oreburgh Mine B1F's Hiker,
+    hidden until the post-game Arceus event, gave Roark's split a Flame
+    Plate."""
+    from . import gates
+    out = {(gates.gift_split(header, stem, i), header, item)
+           for header, stem, i, item in gates.raw_gifts()}
+    return sorted(out, key=lambda r: (SPLITS.index(r[0]) if r[0] in SPLITS else len(SPLITS), r[1], r[2]))
 
 
 # The overworld weathers a battle starts in (battle_lib.c, the field
@@ -782,7 +774,9 @@ def item_reach():
     narrow bridges from the split the bike is had in. "unreached" is an item
     the flood reaches with nothing in hand (a fenced pen, a cave's upper
     level it cannot see the way to); it has no split, so no count takes it,
-    and test_b1 names each one.
+    and test_b1 names each one. "closed map" is an item on a map no usable
+    warp leads into (gates.reachable_map, the decomp's UNUSED_ maps), also
+    with no split.
 
     An item on several maps under one pickup flag is one item: a lake and
     its drained or low-water variant, two Old Chateau rooms, a hidden item on
@@ -810,6 +804,7 @@ def _item_copies(stages):
     item ball and hidden item, reached through `stages` (_stages). A ball's
     key is its hidden flag, a hidden item's its script (the flag follows
     from it)."""
+    from . import gates
     visible = {int(n): _item(tok) for n, tok in
                _VISIBLE.findall(_script("scripts_visible_items"))}
     # A hidden item's bg event script is 8000 plus its obtained-flag's offset
@@ -827,17 +822,22 @@ def _item_copies(stages):
             continue
         with open(path, encoding="utf-8") as f:
             ev = json.load(f)
+        # A ball's split waits for its object to be shown and a hidden
+        # item's for its map to be enterable (gates.ball_split): the
+        # decomp's UNUSED_ upper floors have only dead warps in.
         split = map_split(header)[0]
         found = []
         for obj in ev.get("object_events", []):
             script = obj.get("script")
             if isinstance(script, int) and VISIBLE_ITEM_SCRIPT <= script < HIDDEN_ITEM_SCRIPT:
                 key = obj.get("hidden_flag") or (header, script, obj["x"], obj["z"])
-                found.append((key, visible.get(script - VISIBLE_ITEM_SCRIPT), "ball", obj["x"], obj["z"]))
+                found.append((key, visible.get(script - VISIBLE_ITEM_SCRIPT), "ball", obj["x"], obj["z"],
+                              gates.ball_split(header, obj.get("hidden_flag"))))
         for bg in ev.get("bg_events", []):
             script = bg.get("script")
             if bg.get("type") == BG_HIDDEN_ITEM and isinstance(script, int):
-                found.append((script, hidden.get(script - HIDDEN_ITEM_SCRIPT), "hidden", bg["x"], bg["z"]))
+                found.append((script, hidden.get(script - HIDDEN_ITEM_SCRIPT), "hidden", bg["x"], bg["z"],
+                              gates.ball_split(header, None)))
         if not found:
             continue
         blocked = {(o["x"], o["z"]): OBSTACLES[o.get("graphics_id")] for o in ev.get("object_events", [])
@@ -847,8 +847,11 @@ def _item_copies(stages):
         starts = {(w["x"], w["z"]) for w in ev.get("warp_events", [])}
         starts |= {(x + dx, z + dz) for x, z in script_arrivals().get(header, ())
                    for dx, dz in ((0, 0), (1, 0), (-1, 0), (0, 1), (0, -1))}
-        reach = _reach(header, starts, blocked, {(x, z) for _k, _i, _h, x, z in found}, stages)
-        for key, item, how, x, z in found:
+        reach = _reach(header, starts, blocked, {(x, z) for _k, _i, _h, x, z, _s in found}, stages)
+        for key, item, how, x, z, split in found:
+            if split is None and not gates.reachable_map(header):
+                out.append((key, (None, header, item, how, "closed map")))
+                continue
             i, moves = reach[(x, z)]
             at, needs = None, "unreached"
             if i == 0:
