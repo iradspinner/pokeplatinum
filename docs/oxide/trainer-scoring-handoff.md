@@ -68,9 +68,12 @@ Overseer, and the later rulings named in each bullet):
   and the result keeps both readings.
 - The play-off (Ian, 2026-10-21): after the race, each finalist is also
   played with every held version of its members, one swap at a time on
-  the race's own fights, and keeps a swap that scores better
-  (`plteam.playoff`), since the screen weighs damage and speed alone and
-  never picks a hold for a status move or a pivot.
+  the race's own fights, and keeps a swap that scores better by more than
+  the race's five-point tolerance (`plteam.playoff`), since the screen
+  weighs damage and speed alone and never picks a hold for a status move
+  or a pivot. A held version plays with the move its hold is for, and
+  where a held version and its catch on time score the same in a six,
+  the screen takes the one on time (Ian's fixes of 2026-10-21).
 - Levels: a split-closing boss at the split's cap, the Elite Four at their
   aces, and every other boss at its own ace (goal 2's soft caps, now also
   Barry 3 to 6, Cyrus 1 and 2, Saturn 1 and 2, Mars 2, Lucas and Dawn 3 and

@@ -512,11 +512,17 @@ def playoff_checks():
 
     keep = getattr(pt, "play_jobs", None)
     pt.play_jobs = play_jobs
+    screen_four = {k: list(st["moves"][k]) for k in keys}
+    left = None
     try:
         race = pt.Tally()
         for i in range(10):
             race.add(fin, i < 5, 1, False, [], fight=(100 + i, "real"))
         finalists, record = pt.playoff(st, bk, fl, [fin], race, {}, sl, log=lambda *_a: None)
+        # Fix 3 (Ian, 2026-10-21): a version the play-off tried and did not
+        # keep goes back to the screen's four.
+        left = {pt.member_name(st["pokemon"][k]): st["moves"][k] for k in keys
+                if k not in finalists[0] and st["moves"][k] != screen_four[k]}
         names = [pt.member_name(st["pokemon"][k]) for k in finalists[0]]
         none = pt.playoff(st, bk, fl, [fin], race, {}, pt.Slots({"pokemon": {k: dict(st["pokemon"][k], catch=k)
                                                                               for k in keys}}, keys, M),
@@ -537,6 +543,132 @@ def playoff_checks():
                 and "Luxio" in names and record and record[0].get("combined"), str(names)))
     out.append(("a box without held versions plays no swap", none == [fin] and len(played) == len(tried) * 10,
                 str(none)))
+    out.append(("on Gardenia's box 1 every version the play-off did not keep has the screen's four again",
+                left == {}, str(left)))
+    return out
+
+
+def hold_move_checks():
+    """The play-off's fix 1 (Ian, 2026-10-21): the box records which move each
+    hold is for, the one its held stage learns at the hold's level, and the
+    play-off's four put that move in, then the hold's other moves, never over
+    the first two picks or a pick the hold itself brought. On Maylene's box 1
+    the screen's picks for Sharpedo (Carvanha held to 38) already carry Take
+    Down, which the old four overwrote with Agility; on her box 2 Liepard
+    (Purrloin held to 36) gains three moves and the old four took the first
+    two by name, leaving out Sucker Punch."""
+    out = []
+    for seed, label, move in ((1, "Sharpedo (Carvanha held to 38)", "Take Down"),
+                              (2, "Liepard (Purrloin held to 36)", "Sucker Punch")):
+        s = g.setup("t", "maylene", seed)
+        st, keys, bk, _fl = g.fight_state(s["key"], s["built"]["records"], s["stock"], s["v"], "maylene")
+        pt.screen(st, keys, bk)
+        k = next(k for k in keys if pt.member_name(st["pokemon"][k]) == label)
+        picks = list(st["moves"][k])
+        four = pt.with_gain(st, k)
+        brought = [m for m in picks[2:] if m in st["pokemon"][k]["gained"]]
+        out.append((f"the play-off plays {label} with {move}, the move its hold is for",
+                    st["pokemon"][k].get("hold_for") == [move] and move in four and four[:2] == picks[:2]
+                    and all(m in four for m in brought),
+                    f"for {st['pokemon'][k].get('hold_for')}; picks {picks}; plays {four}"))
+    return out
+
+
+def playoff_fix_checks():
+    """The play-off's fixes 2 and 3 (Ian, 2026-10-21), on a made-up box with
+    the fights stubbed. Two finalists share a catch whose held version gains
+    three moves. A swap leading its finalist by one fight in 30 (3.3 points,
+    under the race's tolerance) is luck and not kept; one leading by 5 fights
+    in 30 is kept. After the play-off every version outside a kept six has
+    the screen's four again, and the version tried for both finalists plays
+    the same four both times."""
+    out = []
+    ks = [f"p{i}" for i in range(10)]
+    catch = {"p1": "p0", "p3": "p2", "p9": "p8"}
+    held = {"p1": (["Cut", "Pound", "Tackle", "Scratch"], ["Bite", "Growl", "Leer"], ["Leer"]),
+            "p3": (["Cut", "Pound", "Tackle", "Scratch"], ["Bite"], ["Bite"]),
+            "p9": (["Cut", "Pound", "Tackle", "Scratch"], ["Bite"], ["Bite"])}
+    st = {"pokemon": {}, "moves": {}}
+    for k in ks:
+        picks, gained, why = held.get(k, (["Cut", "Pound", "Tackle", "Scratch"], [], []))
+        st["pokemon"][k] = {"species": f"Mon{k}", "catch": catch.get(k, k), "held": k in held, "gained": gained,
+                            "hold": {"X": 30} if k in held else {}, "label": f"Mon{k} (held)" if k in held else None,
+                            "moves": list(picks)}
+        if why:
+            st["pokemon"][k]["hold_for"] = why
+        st["moves"][k] = list(picks)
+    screen = {k: list(v) for k, v in st["moves"].items()}
+    sl = pt.Slots(st, ks)
+    fin1 = ("p0", "p2", "p4", "p5", "p6", "p7")
+    fin2 = ("p0", "p4", "p5", "p6", "p7", "p8")
+    played = {}
+
+    def play_jobs(st_, bk_, fl_, jobs, procs=None, tally=None):
+        t = tally or pt.Tally()
+        for team, seed, _cfg, luck, _used in jobs:
+            if "p1" in team:
+                played.setdefault(team, list(st_["moves"]["p1"]))
+            wins = 16 if "p3" in team else 20 if "p9" in team else 15
+            t.add(team, seed < wins, 1, False, [], fight=(seed, luck))
+        return t
+
+    race = pt.Tally()
+    for fin in (fin1, fin2):
+        for seed in range(30):
+            race.add(fin, seed < 15, 1, False, [], fight=(seed, "real"))
+    keep = pt.play_jobs
+    pt.play_jobs = play_jobs
+    try:
+        after, _rec = pt.playoff(st, [], {}, [fin1, fin2], race, {}, sl, log=lambda *_a: None)
+    finally:
+        pt.play_jobs = keep
+    out.append(("a swap leading its finalist by 3.3 points, under the tolerance, is not kept",
+                fin1 in after and not any("p3" in t for t in after), str(after)))
+    out.append(("a swap leading its finalist by more than the tolerance is kept",
+                any("p9" in t for t in after), str(after)))
+    kept = {k for t in after for k in t}
+    left = {k: st["moves"][k] for k in ks if k not in kept and st["moves"][k] != screen[k]}
+    out.append(("after the play-off every version outside a kept six has the screen's four", not left, str(left)))
+    fours = list(played.values())
+    out.append(("a version tried for two finalists plays the same four both times",
+                len(fours) == 2 and fours[0] == fours[1] and "Leer" in fours[0], str(fours)))
+    return out
+
+
+def on_time_checks():
+    """The screen's fix 4 (Ian, 2026-10-21): the on-time version of a catch is
+    never dropped as dominated, so where a held version is better against
+    one enemy only and another member already answers it, the six scores
+    the same either way and takes the version on time; where the held
+    version raises the six's score, it is taken. On Wake's box 2 no top six
+    takes a held version whose catch on time scores the same in its place
+    (Cinderace held as Raboot to 44 was in 12 such sixes)."""
+    out = []
+    ks = [f"q{i}" for i in range(7)]
+    small = {"pokemon": {k: {"catch": "A" if k in ("q0", "q1") else k, "held": k == "q1", "species": "Bidoof"}
+                         for k in ks}}
+    rest = [[0.0, 3.0], [0.5, 0.5], [0.5, 0.5], [0.5, 0.5], [0.5, 0.5]]
+    tie = pt.Slots(small, ks, np.array([[2.0, 0.0], [2.0, 0.5]] + rest))
+    gain = pt.Slots(small, ks, np.array([[2.0, 0.0], [2.0, 1.0]] + rest))
+    six = ["q0", "q2", "q3", "q4", "q5", "q6"]
+    out.append(("a held version equal in the six gives way to the catch on time, a better one is taken",
+                "q0" in tie.team(six) and "q1" in gain.team(six), f"tie {tie.team(six)}; gain {gain.team(six)}"))
+
+    s = g.setup("t", "wake", 2)
+    st, keys, bk, _fl = g.fight_state(s["key"], s["built"]["records"], s["stock"], s["v"], "wake")
+    sixes, scores, M, _mv = pt.screen(st, keys, bk)
+    sl = pt.Slots(st, keys, M)
+    on_time = {sl.slot_of[k]: next(v for v in sl.versions[sl.slot_of[k]] if not st["pokemon"][v]["held"])
+               for k in keys}
+    equal = []
+    for t, sc in zip(sixes, scores):
+        for k in t:
+            if st["pokemon"][k]["held"]:
+                alt = [on_time[sl.slot_of[k]] if x == k else x for x in t]
+                if float(pt.score_rows(M[[sl.pos[x] for x in alt]])) >= sc - 1e-9:
+                    equal.append(pt.member_name(st["pokemon"][k]))
+    out.append(("Wake's box 2: no top six takes a held version its catch on time equals",
+                not equal, f"{len(equal)} such: {sorted(set(equal))}"))
     return out
 
 
@@ -646,6 +778,9 @@ def main():
     results += web_checks()
     results += planned_checks()
     results += playoff_checks()
+    results += hold_move_checks()
+    results += playoff_fix_checks()
+    results += on_time_checks()
 
     got = {k: sorted(g.places(by[k])) for k in ("mars_1", "gardenia", "jupiter_1", "fantina", "candice")}
     # Mt. Coronet 1F North Room 1, off Route 211, is the first magnetic map.
