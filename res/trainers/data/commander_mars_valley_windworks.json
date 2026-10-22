@@ -55,7 +55,7 @@
                 "MOVE_QUICK_ATTACK"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_GENTLE",
             "ball_seal": 0,
             "ability": 3,
             "gender": null
