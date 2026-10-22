@@ -882,10 +882,15 @@ def playoff(st, boss_keys, flags, finalists, tally, cfg, slots, procs=None, log=
     dominated among them, since they are the point; a held version plays
     with the moves its hold brings (with_gain), built from the screen's
     picks every time, so a version tried for two finalists plays the same
-    four. A version a kept six takes keeps that four; after each finalist
-    every other version goes back to the screen's picks, so that the loop
-    and the readings, which choose by the screen's margins for those picks,
-    never meet a four the play-off left behind (Ian, 2026-10-21).
+    four. A version a kept six takes keeps that four; every other version
+    goes back to the screen's picks, so that the loop and the readings,
+    which choose by the screen's margins for those picks, never meet a four
+    the play-off left behind (Ian, 2026-10-21). Each finalist's play-off
+    starts with every version on the screen's picks, so a member that an
+    earlier finalist's kept swap gave its hold's four plays its swaps with
+    the four the race read it with, the four its baseline played (Ian,
+    2026-10-21, "Fix it now"); the kept fours go back on once every
+    finalist is played.
     A swap is kept where it scores better than the finalist by more than
     the race's tolerance (WIN_TOL) on the race's own tally (Tally.score),
     since one fight in about 30 moves a score three or four points and the
@@ -906,14 +911,28 @@ def playoff(st, boss_keys, flags, finalists, tally, cfg, slots, procs=None, log=
     screen = {k: (list(st["moves"][k]), st["pokemon"][k]) for vs in sl.versions.values() for k in vs
               if k in st["moves"]}
 
-    def restore(kept):
+    def restore():
         for k, (four, rec) in screen.items():
-            if k not in kept:
-                st["moves"][k] = list(four)
-                st["pokemon"][k] = rec
+            st["moves"][k] = list(four)
+            st["pokemon"][k] = rec
 
+    def give_gain(vs):
+        # A held version's play-off four, built from the screen's picks.
+        for v in vs:
+            if st["pokemon"][v].get("held"):
+                four = with_gain(st, v, screen[v][0])
+                st["moves"][v] = four
+                st["pokemon"][v] = dict(screen[v][1], moves=four)
+
+    # The held versions a kept six took by a swap: these keep the play-off's
+    # four once every finalist is played. A version a kept six carried from
+    # the race keeps the screen's four, which is what it was raced with.
+    gained = set()
     out, record = [], []
     for fin in map(tuple, finalists):
+        # Every version back on the screen's picks, so this finalist's
+        # members play its swaps as the race read them.
+        restore()
         fights = tally.fights.get(fin, [])
         swaps = [(i, k, v, tuple(sorted(fin[:i] + (v,) + fin[i + 1:], key=pos.get)))
                  for i, k in enumerate(fin) for v in sl.versions[sl.slot_of[k]] if v != k]
@@ -921,11 +940,7 @@ def playoff(st, boss_keys, flags, finalists, tally, cfg, slots, procs=None, log=
             out.append(fin)
             record.append({"six": name(fin), "swaps": [], "kept": name(fin)})
             continue
-        for _i, _k, v, _t in swaps:
-            if st["pokemon"][v].get("held"):
-                four = with_gain(st, v, screen[v][0])
-                st["moves"][v] = four
-                st["pokemon"][v] = dict(screen[v][1], moves=four)
+        give_gain(v for _i, _k, v, _t in swaps)
         played = play_jobs(st, boss_keys, flags, [(t, seed, cfg, luck, False) for _i, _k, _v, t in swaps
                                                   for seed, luck in fights], procs)
         base = tally.score(fin)
@@ -955,7 +970,9 @@ def playoff(st, boss_keys, flags, finalists, tally, cfg, slots, procs=None, log=
             + (f"kept {', '.join(rec['kept'])}" if kept != fin else "no swap led by more than the tolerance"))
         out.append(kept)
         record.append(rec)
-        restore({k for t in out for k in t})
+        gained |= set(kept) - set(fin)
+    restore()
+    give_gain(gained)
     return list(dict.fromkeys(out)), record
 
 
