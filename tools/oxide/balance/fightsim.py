@@ -721,6 +721,29 @@ class Mon:
     # (helping_hand); a turn flag, cleared as the next double-battle turn
     # starts. Left on the class while False.
     helped = False
+    # Every Pokemon made by __init__ sets these in its own record (here and
+    # in reset_volatile). The same values stand on the class as well, so the
+    # search's keys (perfectline.mon_key, _ai_mon) can read them directly
+    # rather than through getattr with a default, which costs more; a read
+    # gives the value getattr's default gave on a record without them.
+    heal_block = 0
+    salted = False
+    disabled = None
+    disabled_turns = 0
+    nightmare = False
+    encore = None
+    encore_turns = 0
+    protean_type = None
+    protean_used = False
+    last_resort = False
+    last_resort_count = 0
+    ate_berry = False
+    belch = False
+    # Likewise for the trainer's AI, which reads these for every move it
+    # scores (fightai.ability_of, check_ability, invalid).
+    suppressed = False
+    revealed = None
+    tormented = False
 
     def __init__(self, key, rec, info, moves, side):
         self.key, self.side = key, side
@@ -943,6 +966,10 @@ class Side:
     # cleared as the next double-battle turn starts, and left on the class
     # while None.
     follow_me = None
+    # Set by __init__ on every side; on the class too, so the search's keys
+    # and copies read them directly (perfectline.side_key, clone_side).
+    wish = 0
+    mist = 0
 
     def __init__(self, mons, name):
         self.mons, self.name = mons, name
@@ -1047,6 +1074,10 @@ class Battle:
     hit_left = None
     # A double battle (run_doubles sets it); left on the class while False.
     doubles = False
+    # Whether the move being worked out landed its hits one at a time
+    # (land_hits), which attack() sets for every move; False on the class,
+    # as a read with no move worked out yet found it (hit_aftermath).
+    hits_landed = False
     # Whether a Helping Hand has helped a Pokemon this turn (Mon.helped), so
     # the next turn clears the flag only then.
     helping = False
@@ -1285,22 +1316,28 @@ class Battle:
             mult *= 2 / 3        # the calculator's row has Flash Fire always lit
         elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
             mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
-        if booster_fifth(self, att, mv):
-            mult *= 1.2          # the player's rows are item-free; a booster adds its fifth here
+        if att.side == "p" and booster_fifth(self, att, mv):
+            # The player's rows are item-free; a booster adds its fifth here.
+            # booster_fifth is False for any Pokemon not on the player's
+            # side, so the side is looked at first and the call made only
+            # for the player's, as this runs for every damage figure.
+            mult *= 1.2
         side = self.p if dfn.side == "p" else self.b
         screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
         if (side.screens[screen] or side.aurora_veil) and not crit and mv.effect != "REMOVE_SCREENS" \
                 and att.ability != "Infiltrator":     # Aurora Veil halves both, once with a screen
-            mult *= 2 / 3 if getattr(self, "doubles", False) else 0.5
-        if getattr(self, "spread", False):
+            mult *= 2 / 3 if self.doubles else 0.5
+        if self.spread:
             mult *= 0.75
         if sure:
             mult *= row_crit_mult(att, dfn, crit)     # the row's own critical hit (row_crit_mult)
         elif crit:
             mult *= CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
-        if not ai_view:
+        if not ai_view and mv.effect == ROLLOUT:
             # TrainerAI_CalcDamage has no Rollout case: the AI costs it at
-            # its listed power, with no Defense Curl and no run count.
+            # its listed power, with no Defense Curl and no run count. Any
+            # other move's factor is 1 (rollout_mult), so it is applied only
+            # for Rollout and Ice Ball.
             mult *= rollout_mult(att, mv)
         return max(1, int(base * mult))
 
@@ -3601,7 +3638,9 @@ def berry_works(b, mon, berry):
 
 
 def berry_check(mon, b=None):
-    if not mon.alive() or not mon.item or unnerved(b, mon):
+    # An item none of the branches below eats leaves nothing to do, so
+    # Unnerve, which needs a look at the foes, is looked for only after.
+    if not mon.alive() or not mon.item or mon.item not in BERRY_CHECK_ITEMS or unnerved(b, mon):
         return
     # Gluttony eats a pinch berry at half its HP, not a quarter.
     if mon.item in PINCH_BERRIES and mon.hp * (2 if mon.ability == "Gluttony" else 4) <= mon.maxhp:
@@ -3627,6 +3666,10 @@ def berry_check(mon, b=None):
     elif mon.item in ("Oran Berry", "Berry Juice") and mon.hp * 2 <= mon.maxhp:
         heal(mon, 10 if mon.item == "Oran Berry" else 20)
         consume(mon)
+
+
+# The items berry_check eats, each in one of its branches.
+BERRY_CHECK_ITEMS = frozenset(PINCH_BERRIES) | {"Starf Berry", "Sitrus Berry", "Oran Berry", "Berry Juice"}
 
 
 def item_can_raise(mon, stat):
@@ -3896,12 +3939,13 @@ def pp_cost(b, att, mv, dfn, targets=None):
     other. A Spikes or Toxic Spikes that fails at its last layer skips the
     Pressure (BtlCmd_TrySpikes and TryToxicSpikes set skipPressureCheck).
     Until 2026-10-14 every move cost one (Ian approved the fix)."""
-    foes = [m for m in (b.b if att.side == "p" else b.p).on_field() if m.alive()]
     if mv.effect == "SET_SPIKES" or mv.effect == "TOXIC_SPIKES":
         side = b.b if att.side == "p" else b.p
         if side.hazards["spikes" if mv.effect == "SET_SPIKES" else "tspikes"] >= (3 if mv.effect == "SET_SPIKES" else 2):
             return 1
     if mv.name in ("Imprison", "Snatch") or mv.range in PRESSURE_ALL:
+        # Only this case counts every standing foe, so only it lists them.
+        foes = [m for m in (b.b if att.side == "p" else b.p).on_field() if m.alive()]
         return 1 + sum(m.ability == "Pressure" for m in foes)
     if mv.range in PRESSURE_NONE or mv.range in PRESSURE_NO_TARGET:
         return 1
@@ -3954,11 +3998,18 @@ def move_end(b):
     Heart with them (soul_heart)."""
     if b.st.get("soul_heart"):
         soul_heart(b)
-    if any(m.ability == "Trace" and not m.traced for m in b.p.on_field() + b.b.on_field()):
-        traced = trace(b)
-        if traced:
-            entry_abilities(b, traced, trace_now=False)
-    forecast(b)
+    # The Pokemon on the field, listed once for Trace's look and for
+    # Forecast, since this runs after every move; listed again for Forecast
+    # only if a Trace went off, as its entry steps follow.
+    field = b.p.on_field() + b.b.on_field()
+    for m in field:
+        if m.ability == "Trace" and not m.traced:
+            traced = trace(b)
+            if traced:
+                entry_abilities(b, traced, trace_now=False)
+                field = None
+            break
+    forecast(b, field)
 
 
 def fainted_others(b, mon):
@@ -4010,7 +4061,7 @@ def soul_heart(b):
 FORECAST_TYPE = {"Sun": "Fire", "Rain": "Water", "Hail": "Ice"}
 
 
-def forecast(b):
+def forecast(b, field=None):
     """Castform's form check (BattleSystem_TriggerFormChange, in the
     switch-in check and after every move): a Castform standing with Forecast
     takes the weather's type alone, Fire in sun, Water in rain, Ice in hail,
@@ -4021,7 +4072,7 @@ def forecast(b):
     weather (checkForecast). A Castform that has lost Forecast keeps the form
     it has, and leaving brings its own type back. Until 2026-10-14 it stayed
     Normal in every weather (Ian approved the fix)."""
-    for m in b.p.on_field() + b.b.on_field():
+    for m in b.p.on_field() + b.b.on_field() if field is None else field:     # field: move_end's list
         if m.species != "Castform" or not m.alive() or m.ability != "Forecast":
             continue
         want = "Normal" if weather_ignored(b) else FORECAST_TYPE.get(b.weather, "Normal")
@@ -6047,6 +6098,9 @@ def infatuate(src, target, mold=False):
 # The abilities that strike back at a contact move (battle_lib's on-hit
 # ability switch), each at three in ten but Rough Skin.
 CONTACT_STATUS = {"Static": "par", "Poison Point": "psn", "Flame Body": "brn"}
+# Every ability _struck_back has a branch for; any other returns False at once.
+STRUCK_BACK = frozenset(CONTACT_STATUS) | {"Mummy", "Wandering Spirit", "Aftermath", "Rough Skin", "Iron Barbs",
+                                           "Cute Charm", "Gooey", "Pickpocket", "Effect Spore"}
 
 
 def contact_ability(b, att, dfn, mv, dealt, chance, pick):
@@ -6119,6 +6173,9 @@ def sticky_barb(att, dfn):
 # The abilities a hit of these types raises a stat of (subscript_justified,
 # subscript_rattled, by CurrentMoveType).
 HIT_RAISE = {"Justified": ({"Dark"}, "atk"), "Rattled": ({"Bug", "Ghost", "Dark"}, "spe")}
+# Every ability hit_ability has a branch for; any other returns False at once.
+HIT_ABILITIES = frozenset(HIT_RAISE) | {"Weak Armor", "Water Compaction", "Toxic Debris", "Berserk",
+                                        "Cursed Body", "Color Change"}
 
 
 def hit_type(b, mv):
@@ -6141,6 +6198,8 @@ def hit_ability(b, att, dfn, mv, chance, dealt=0):
     raised directly (raise_own). Until 2026-10-14 none of the three did
     anything (Ian approved the fix)."""
     a = dfn.ability
+    if a not in HIT_ABILITIES:
+        return False                 # none of the branches below names it
     if a in HIT_RAISE:
         types, stat = HIT_RAISE[a]
         return dfn.alive() and hit_type(b, mv) in types and raise_own(dfn, stat, 1)
@@ -6326,6 +6385,8 @@ def _struck_back(b, att, dfn, chance, pick, mv):
     off; whether it acted."""
     a = dfn.ability
     b.status_src = dfn           # a status the ability gives comes from dfn (Synchronize)
+    if a not in STRUCK_BACK:
+        return False                 # none of the branches below names it
     if a == "Mummy":
         return mummy(b, att, dfn)
     if a == "Wandering Spirit":
@@ -6411,8 +6472,10 @@ def flail_power(mon):
 
 def _row_item(b, mon):
     """The item mon's calculator rows were made with (the player's rows are
-    item-free)."""
-    return (b.st["pokemon"].get(mon.key.split("#")[0]) or {}).get("item")
+    item-free). A key with no "#" is its own record's, so it is split only
+    when it has one."""
+    k = mon.key
+    return (b.st["pokemon"].get(k.split("#")[0] if "#" in k else k) or {}).get("item")
 
 
 # ---- a trainer's held item gone from its rows (batch 10, approved 2026-10-15) ----
@@ -6582,9 +6645,11 @@ def resist_berry(b, dfn, mv):
     """The resist berry dfn's rows halve this move by, if any: one of the
     move's type, against a super-effective hit (any Normal move for the
     Chilan Berry)."""
-    berry = _row_item(b, dfn)
-    if mv.cat == "Status" or mv.effect in (FUTURE_SIGHT, "BEAT_UP") or RESIST_BERRY.get(berry) != mv.type:
+    if mv.cat == "Status" or mv.effect in (FUTURE_SIGHT, "BEAT_UP"):
         return None                  # Future Sight and Beat Up never meet the type chart, nor a resist berry
+    berry = _row_item(b, dfn)        # looked up only for a move that can meet one
+    if RESIST_BERRY.get(berry) != mv.type:
+        return None
     if berry != "Chilan Berry" and effectiveness(b.st["chart"], mv.type, chart_types(dfn, mv)) <= 1:
         return None
     return berry
@@ -6827,6 +6892,9 @@ def doubled_power(att, mv):
 AGAINST_DEFENSE = frozenset({"MOVE_PSYSHOCK", "MOVE_PSYSTRIKE", "MOVE_SECRET_SWORD"})
 
 
+PLUS_MINUS = ("Plus", "Minus")
+
+
 def plus_minus(b, att, mv):
     """Plus and Minus (BattleSystem_CalcMoveDamage, Generation 5's rule): half
     again to the holder's Sp. Atk for a special move while a partner on its
@@ -6834,7 +6902,7 @@ def plus_minus(b, att, mv):
     keeps both out of the calculator's rows (CALC_ABILITY_OFF), which raised
     every special move of a holder alone. Until 2026-10-14 the rows' boost
     stood in every battle (Ian approved the fix)."""
-    if att.ability not in ("Plus", "Minus") or mv.cat != "Special" or not getattr(b, "doubles", False):
+    if att.ability not in PLUS_MINUS or mv.cat != "Special" or not getattr(b, "doubles", False):
         return 1.0
     ally = ally_of(b, att)
     return 1.5 if ally is not None and ally.ability in ("Plus", "Minus") else 1.0
@@ -6895,7 +6963,8 @@ def state_mult(b, att, dfn, mv):
     m = 1.0
     if PINCH_ABILITY.get(att.ability) == mv.type and att.hp * 3 <= att.maxhp:
         m *= 1.5
-    m *= marvel_scale(att, dfn, mv)
+    if dfn.ability == "Marvel Scale":
+        m *= marvel_scale(att, dfn, mv)      # 1 for any other ability, so looked at only for this one
     if dfn.ability == "Multiscale" and dfn.hp == dfn.maxhp and not mold(att, dfn):
         # BattleSystem_CalcMoveDamage halves the damage a Multiscale holder
         # takes at full HP, unless a Mold Breaker gets past it; the
@@ -6903,7 +6972,8 @@ def state_mult(b, att, dfn, mv):
         # move of several reads the HP it meets. Until 2026-10-20 it did
         # nothing (Ian approved the fix).
         m *= 0.5
-    m *= plus_minus(b, att, mv)
+    if att.ability in PLUS_MINUS:
+        m *= plus_minus(b, att, mv)          # 1 for any other ability
     if b.doubles:
         m *= partner_power(b, att, dfn, mv)      # Battery's 13/10 and Friend Guard's three quarters
     berry = resist_berry(b, dfn, mv)
@@ -7022,7 +7092,7 @@ def state_mult(b, att, dfn, mv):
         # Helping Hand: BattleSystem_CalcMoveDamage raises the power by half
         # (15/10) after a doubling and before Technician (helping_hand).
         m *= power_ratio(att, mv.power, mv.power * 15 // 10) if mv.power > 1 else 1.5
-    reach = reach_mult(mv, dfn)
+    reach = reach_mult(mv, dfn) if dfn.charging is not None else 0     # 0 for a target not mid-move
     if not reach and b.doubles and (dfn.rare or dfn.charging is not None) and sky_airborne(b, dfn):
         reach = air_reach(mv)    # Gust and Twister double on a Sky Drop's pair in the air, as on a flier
     if reach > 1:
@@ -7120,7 +7190,7 @@ def hit_aftermath(b, att, dfn, mv, chance, pick):
     on-hit ability for a move of one hit, then Dragon Tail's drag
     (drag_out); for one of several, whose hits land_hits took one at a time
     with their own aftermath, only the Shell Bell on their total."""
-    if getattr(b, "hits_landed", False):
+    if b.hits_landed:
         shell_bell(att, b.last_dealt)
         return
     after_hit(b, att, dfn, mv, b.last_dealt)
@@ -7220,14 +7290,19 @@ def commit_move(att, mv):
     Last Resort fails: until every other move it knows has been used since
     it came in."""
     att.raging = mv.effect == "RAISE_ATK_WHEN_HIT"
-    others = {m.name for m in att.moves if m.name != mv.name}
-    fails = mv.effect == "FAIL_IF_NOT_USED_ALL_OTHER_MOVES" and (not others or not others <= att.used_moves)
+    fails = False
+    if mv.effect == "FAIL_IF_NOT_USED_ALL_OTHER_MOVES":
+        # The other moves are gathered only for Last Resort, the one move
+        # whose use reads them.
+        others = {m.name for m in att.moves if m.name != mv.name}
+        fails = not others or not others <= att.used_moves
     # BattleSystem_UpdateLastResort's count, which the trainer's AI reads
     # (Expert_LastResort): each move other than Last Resort the first time it
     # is used since its user came in, four at most.
     if mv.effect != "FAIL_IF_NOT_USED_ALL_OTHER_MOVES" and mv.name not in att.used_moves and att.last_resort_count < 4:
         att.last_resort_count += 1
-    att.used_moves = att.used_moves | {mv.name}
+    if mv.name not in att.used_moves:
+        att.used_moves = att.used_moves | {mv.name}    # a move already in the record leaves it as it is
     if att.ability == "Truant":
         att.loafing = True
     return fails

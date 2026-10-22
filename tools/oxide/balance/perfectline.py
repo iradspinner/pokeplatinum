@@ -263,8 +263,10 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
         mult *= 2 / 3        # the calculator's row has Flash Fire always lit (fightsim's Battle.damage)
     elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
         mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
-    if fs.booster_fifth(b, att, mv):
-        mult *= 1.2              # the player's own booster, its rows item-free (fightsim.booster_fifth)
+    if att.side == "p" and fs.booster_fifth(b, att, mv):
+        # The player's own booster, its rows item-free (fightsim.booster_fifth,
+        # False off the player's side, so asked only on it).
+        mult *= 1.2
     side = b.p if dfn.side == "p" else b.b
     screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
     # A screen halves neither a critical hit, nor Brick Break's kind, which
@@ -281,7 +283,8 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
         mult *= fs.row_crit_mult(att, dfn, crit)    # the row's own critical hit (fightsim.row_crit_mult)
     elif crit:
         mult *= CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
-    mult *= fs.rollout_mult(att, mv)
+    if mv.effect == fs.ROLLOUT:
+        mult *= fs.rollout_mult(att, mv)     # 1 for any move but Rollout and Ice Ball
     return max(1, int(base * mult))
 
 
@@ -1526,8 +1529,8 @@ def clone_side(s):
     c.mons = [clone_mon(m) for m in s.mons]
     c.name, c.active, c.active2 = s.name, s.active, s.active2
     c.screens = dict(s.screens)
-    c.tailwind, c.safeguard, c.wish = s.tailwind, s.safeguard, getattr(s, "wish", 0)
-    c.mist = getattr(s, "mist", 0)
+    c.tailwind, c.safeguard, c.wish = s.tailwind, s.safeguard, s.wish
+    c.mist = s.mist
     if s.lucky_chant:
         c.lucky_chant = s.lucky_chant    # left on the class while 0 (fightsim.Side)
     if s.aurora_veil:
@@ -1593,19 +1596,25 @@ def _form(m):
 
 
 def mon_key(m):
+    # The states read directly, and the names of the charging move, the last
+    # hit and the last move written out in place of _name, since this runs
+    # for every Pokemon of every key the search makes; fightsim.Mon keeps
+    # each on its class with the default a getattr here once gave.
+    charging, hit_by, last = m.charging, m.last_hit_by, m.last
     key = (m.hp, m.status, m.sleep, m.toxic, tuple(m.stages.values()), m.confused, m.flinch,
-           m.seeded, m.yawn, m.protect_run, m.sub, _name(m.charging), m.recharge,
+           m.seeded, m.yawn, m.protect_run, m.sub, None if charging is None else charging.name, m.recharge,
            (m.lock[0].name, m.lock[1]) if m.lock else None, m.choice, m.taunt,
-           None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
+           None if last is None else last.cat, min(m.turns_in, 2), None if hit_by is None else hit_by.name,
            m.crit_stage, m.bound, m.cursed, m.perish, m.item or ("knocked off" if m.knocked_off else None),
            tuple(sorted(m.pp.items())),
-           m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
-           m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False),
-           getattr(m, "disabled", None), getattr(m, "disabled_turns", 0), getattr(m, "nightmare", False),
-           getattr(m, "encore", None), getattr(m, "encore_turns", 0),
-           getattr(m, "protean_type", None), getattr(m, "protean_used", False),
+           m.enduring, m.protecting, m.ability, m.magnet_rise,
+           (None if last is None else last.name) if m.tormented else None,
+           m.destiny_bond, m.infatuated, m.recycle, m.heal_block, m.salted,
+           m.disabled, m.disabled_turns, m.nightmare,
+           m.encore, m.encore_turns,
+           m.protean_type, m.protean_used,
            # Last Resort works, and the AI rates it, by the moves used since it came in.
-           getattr(m, "last_resort_count", 0) if getattr(m, "last_resort", False) else None)
+           m.last_resort_count if m.last_resort else None)
     if m.stockpile:
         key += ("stockpile", m.stockpile, m.stockpile_def, m.stockpile_spd)
     if m.belch:
@@ -1635,8 +1644,8 @@ def mon_key(m):
 
 def side_key(s):
     key = (s.active, tuple(mon_key(m) for m in s.mons), tuple(s.screens.values()), s.tailwind,
-           tuple(s.hazards.values()), s.safeguard, getattr(s, "wish", 0), s.future, s.future_sight,
-           getattr(s, "mist", 0))
+           tuple(s.hazards.values()), s.safeguard, s.wish, s.future, s.future_sight,
+           s.mist)
     # Lucky Chant's turns and Sticky Web, kept out of the key while there
     # are none, so the keys of a fight without them stay as they were.
     if s.lucky_chant or s.web:
@@ -1712,7 +1721,7 @@ def _ai_mon(m):
     return (m.key, None if m.last is None else m.last.name, max(-1, min(m.turns_in, 4)),
             tuple(x.name for x in m.shown), m.revealed, m.trapped_by is not None, m.ingrained,
             m.last_hit_type, m.hp <= m.maxhp // 4, m.hp <= m.maxhp // 2, m.aqua_ring, m.flash_fire,
-            getattr(m, "ate_berry", False) if getattr(m, "belch", False) else None)
+            m.ate_berry if m.belch else None)
 
 
 def ai_key(b):
@@ -1733,7 +1742,7 @@ def ai_key(b):
             b.p.active, b.b.active, tuple(b.p.screens.values()), tuple(b.b.screens.values()),
             b.p.tailwind, b.b.tailwind, tuple(b.p.hazards.values()), tuple(b.b.hazards.values()),
             b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick,
-            b.p.future_sight, b.b.future_sight, getattr(b.p, "mist", 0) > 0, getattr(b.b, "mist", 0) > 0) \
+            b.p.future_sight, b.b.future_sight, b.p.mist > 0, b.b.mist > 0) \
         + (_ai_field(b) if b.gravity or b.p.lucky_chant or b.b.lucky_chant or b.p.web or b.b.web or b.fog
            or b.p.aurora_veil or b.b.aurora_veil or b.wonder_room else ())
 
