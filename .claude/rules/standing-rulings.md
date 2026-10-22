@@ -244,7 +244,11 @@ read, so they are written here too. Each is a standing instruction.
   from the stronger half of the box, never one held below the cap (Ian,
   2026-10-04). Targets (Ian, 2026-10-04): an ordinary trainer is won cleanly
   80 to 85 percent of the time (replacing the provisional 70 to 80); no boss
-  reads above 95 percent won; a boss's difficulty spikes or drops with how
+  reads above 95 percent won, save the Galactic officers, whose fights may
+  read close to 100 percent won so long as their death rate is not trivial,
+  and which read no harder than their commander, Hesperid likely excepted
+  (Ian, 2026-10-21, adding that this may shift later in the game); a boss's
+  difficulty spikes or drops with how
   important it is, and Oxide's hardest bosses top out around the easiest of
   Kaizo's read on the same box (about 80 percent won). The numbers order
   fights rather than measure them absolutely, and Oxide is not meant to be
