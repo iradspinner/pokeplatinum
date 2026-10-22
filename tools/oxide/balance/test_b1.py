@@ -232,7 +232,7 @@ def check_items_and_marts(results):
     from . import splits
     items = splits.item_reach()
     loose = [(h, i) for sp, h, i, _how, needs in items
-             if (not sp and needs != "unreached") or not i or not i.startswith("ITEM_")]
+             if (not sp and needs not in ("unreached", "closed map")) or not i or not i.startswith("ITEM_")]
     results.append(("every item ball and hidden item resolves", not loose,
                     f"{len(items)} items" + (f"; loose: {loose[:3]}" if loose else "")))
     marts = splits.marts()
@@ -360,6 +360,42 @@ def check_item_reach(results):
                     f"{len(rows)} items from {sum(len(m) for _r, m in keys.values())} map copies"))
 
 
+# Gifts the census placed by their map's split though the game gates them
+# (gates.py, 2026-10-22): (map, item, the split the gift counts from, or
+# None for none, and why). The Flame Plate's Hiker was found in the boxes at
+# least three times before the cause was fixed.
+GATED_GIFTS = [
+    ("OREBURGH_MINE_B1F", "ITEM_FLAME_PLATE", "Post", "Hiker hidden until the Arceus event"),
+    ("IRON_ISLAND_HOUSE", "ITEM_METAL_COAT", "Post", "Byron shown once the National Dex is had"),
+    ("ETERNA_CITY_SOUTH_HOUSE", "ITEM_UPGRADE", "Post", "Prof. Oak, after the roaming birds"),
+    ("ROUTE_210_SOUTH", "ITEM_OLD_CHARM", "Wake", "Cynthia asks for the SecretPotion"),
+    ("CYCLE_SHOP", "ITEM_BICYCLE", "Fantina", "after Team Galactic leaves Eterna"),
+    ("UNUSED_OREBURGH_CITY_NORTHWEST_HOUSE_3F", "ITEM_HARD_STONE", None, "only dead warps lead in"),
+    ("UNUSED_JUBILIFE_CITY_CONDOMINIUMS_4F", "ITEM_FOCUS_BAND", None, "only dead warps lead in"),
+]
+
+
+def check_gated_gifts(results):
+    """A gift counts only from the split the player can get it in: the
+    gated gifts above at their splits, and the Flame Plate in no split
+    before Stark Mountain's hidden one (the Battle Zone, Galactic's split),
+    so no box before it holds one."""
+    from . import pool, splits
+    got = {}
+    for sp, h, item in splits.gifts():
+        got.setdefault((h, item), set()).add(sp)
+    wrong = [(h, item, want, sorted(map(str, got.get((h, item), ())))) for h, item, want, _why in GATED_GIFTS
+             if got.get((h, item)) != {want}]
+    results.append(("a gated gift counts from the split its gate opens", not wrong,
+                    str(wrong) if wrong else f"{len(GATED_GIFTS)} anchors"))
+    stark = [r[0] for r in splits.items() if r[2] == "ITEM_FLAME_PLATE" and r[1] == "STARK_MOUNTAIN_ROOM_2"]
+    by_split = pool.items_by_split()
+    early = [s for s in pool.SPLITS if "Flame Plate" in by_split[s]]
+    ok = stark == ["Galactic"] and early and early[0] == "Galactic"
+    results.append(("the Flame Plate is in no box before Stark Mountain's", ok,
+                    f"Stark Mountain {stark}; first held in {early[0] if early else None}"))
+
+
 def check_testkit(results):
     """The test kit adds nothing to the census, since only `make testkit`
     builds it. The filter keeps what a normal build keeps, #else branches
@@ -410,7 +446,7 @@ def main():
                   check_league_after_volkner, check_roark, check_megas_folded,
                   check_milestones_resolve,
                   check_split_map, check_items_and_marts, check_tm_sources,
-                  check_weather, check_item_reach, check_testkit):
+                  check_weather, check_item_reach, check_gated_gifts, check_testkit):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

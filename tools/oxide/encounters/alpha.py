@@ -505,6 +505,8 @@ def build(root=None):
     flags = bsplits.flag_values()
     for key, (row, maps) in bsplits.pickups().items():
         split, header, item, how, needs = row
+        if needs == "closed map":
+            continue   # on a map no usable warp leads into: nothing to pick up
         if how == "hidden":
             flag = flags["HIDDEN_ITEM_FLAGS_START"] + key - HIDDEN_ITEM_SCRIPT
             flag_name = None
@@ -516,8 +518,11 @@ def build(root=None):
             "map": "MAP_HEADER_" + header,
             "flag": flag, "flag_name": flag_name, "placed": None})
 
-    # Items NPC scripts give.
+    # Items NPC scripts give. A gift the census gives no split cannot be
+    # had (a closed map, or a line no path reaches; splits.gifts).
     for split, header, item in bsplits.gifts():
+        if split is None:
+            continue
         put(split, zone_of(header), "gifts", {"item": item, "label": tree_label(item),
                                               "map": "MAP_HEADER_" + header, "placed": None})
 
