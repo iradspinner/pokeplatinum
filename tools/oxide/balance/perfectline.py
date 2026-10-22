@@ -263,8 +263,10 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
         mult *= 2 / 3        # the calculator's row has Flash Fire always lit (fightsim's Battle.damage)
     elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
         mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
-    if fs.booster_fifth(b, att, mv):
-        mult *= 1.2              # the player's own booster, its rows item-free (fightsim.booster_fifth)
+    if att.side == "p" and fs.booster_fifth(b, att, mv):
+        # The player's own booster, its rows item-free (fightsim.booster_fifth,
+        # False off the player's side, so asked only on it).
+        mult *= 1.2
     side = b.p if dfn.side == "p" else b.b
     screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
     # A screen halves neither a critical hit, nor Brick Break's kind, which
@@ -281,7 +283,8 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
         mult *= fs.row_crit_mult(att, dfn, crit)    # the row's own critical hit (fightsim.row_crit_mult)
     elif crit:
         mult *= CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
-    mult *= fs.rollout_mult(att, mv)
+    if mv.effect == fs.ROLLOUT:
+        mult *= fs.rollout_mult(att, mv)     # 1 for any move but Rollout and Ice Ball
     return max(1, int(base * mult))
 
 

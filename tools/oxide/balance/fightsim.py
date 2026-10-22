@@ -1307,22 +1307,28 @@ class Battle:
             mult *= 2 / 3        # the calculator's row has Flash Fire always lit
         elif att.gas_stash == "Flash Fire" and att.flash_fire and mv.type == "Fire":
             mult *= 1.5          # lit, it burns on under the gas (BATTLEMON_FLASH_FIRE); the twin's row lacks it
-        if booster_fifth(self, att, mv):
-            mult *= 1.2          # the player's rows are item-free; a booster adds its fifth here
+        if att.side == "p" and booster_fifth(self, att, mv):
+            # The player's rows are item-free; a booster adds its fifth here.
+            # booster_fifth is False for any Pokemon not on the player's
+            # side, so the side is looked at first and the call made only
+            # for the player's, as this runs for every damage figure.
+            mult *= 1.2
         side = self.p if dfn.side == "p" else self.b
         screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
         if (side.screens[screen] or side.aurora_veil) and not crit and mv.effect != "REMOVE_SCREENS" \
                 and att.ability != "Infiltrator":     # Aurora Veil halves both, once with a screen
-            mult *= 2 / 3 if getattr(self, "doubles", False) else 0.5
-        if getattr(self, "spread", False):
+            mult *= 2 / 3 if self.doubles else 0.5
+        if self.spread:
             mult *= 0.75
         if sure:
             mult *= row_crit_mult(att, dfn, crit)     # the row's own critical hit (row_crit_mult)
         elif crit:
             mult *= CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
-        if not ai_view:
+        if not ai_view and mv.effect == ROLLOUT:
             # TrainerAI_CalcDamage has no Rollout case: the AI costs it at
-            # its listed power, with no Defense Curl and no run count.
+            # its listed power, with no Defense Curl and no run count. Any
+            # other move's factor is 1 (rollout_mult), so it is applied only
+            # for Rollout and Ice Ball.
             mult *= rollout_mult(att, mv)
         return max(1, int(base * mult))
 
@@ -6433,8 +6439,10 @@ def flail_power(mon):
 
 def _row_item(b, mon):
     """The item mon's calculator rows were made with (the player's rows are
-    item-free)."""
-    return (b.st["pokemon"].get(mon.key.split("#")[0]) or {}).get("item")
+    item-free). A key with no "#" is its own record's, so it is split only
+    when it has one."""
+    k = mon.key
+    return (b.st["pokemon"].get(k.split("#")[0] if "#" in k else k) or {}).get("item")
 
 
 # ---- a trainer's held item gone from its rows (batch 10, approved 2026-10-15) ----
@@ -6604,9 +6612,11 @@ def resist_berry(b, dfn, mv):
     """The resist berry dfn's rows halve this move by, if any: one of the
     move's type, against a super-effective hit (any Normal move for the
     Chilan Berry)."""
-    berry = _row_item(b, dfn)
-    if mv.cat == "Status" or mv.effect in (FUTURE_SIGHT, "BEAT_UP") or RESIST_BERRY.get(berry) != mv.type:
+    if mv.cat == "Status" or mv.effect in (FUTURE_SIGHT, "BEAT_UP"):
         return None                  # Future Sight and Beat Up never meet the type chart, nor a resist berry
+    berry = _row_item(b, dfn)        # looked up only for a move that can meet one
+    if RESIST_BERRY.get(berry) != mv.type:
+        return None
     if berry != "Chilan Berry" and effectiveness(b.st["chart"], mv.type, chart_types(dfn, mv)) <= 1:
         return None
     return berry
@@ -6849,6 +6859,9 @@ def doubled_power(att, mv):
 AGAINST_DEFENSE = frozenset({"MOVE_PSYSHOCK", "MOVE_PSYSTRIKE", "MOVE_SECRET_SWORD"})
 
 
+PLUS_MINUS = ("Plus", "Minus")
+
+
 def plus_minus(b, att, mv):
     """Plus and Minus (BattleSystem_CalcMoveDamage, Generation 5's rule): half
     again to the holder's Sp. Atk for a special move while a partner on its
@@ -6856,7 +6869,7 @@ def plus_minus(b, att, mv):
     keeps both out of the calculator's rows (CALC_ABILITY_OFF), which raised
     every special move of a holder alone. Until 2026-10-14 the rows' boost
     stood in every battle (Ian approved the fix)."""
-    if att.ability not in ("Plus", "Minus") or mv.cat != "Special" or not getattr(b, "doubles", False):
+    if att.ability not in PLUS_MINUS or mv.cat != "Special" or not getattr(b, "doubles", False):
         return 1.0
     ally = ally_of(b, att)
     return 1.5 if ally is not None and ally.ability in ("Plus", "Minus") else 1.0
@@ -6917,7 +6930,8 @@ def state_mult(b, att, dfn, mv):
     m = 1.0
     if PINCH_ABILITY.get(att.ability) == mv.type and att.hp * 3 <= att.maxhp:
         m *= 1.5
-    m *= marvel_scale(att, dfn, mv)
+    if dfn.ability == "Marvel Scale":
+        m *= marvel_scale(att, dfn, mv)      # 1 for any other ability, so looked at only for this one
     if dfn.ability == "Multiscale" and dfn.hp == dfn.maxhp and not mold(att, dfn):
         # BattleSystem_CalcMoveDamage halves the damage a Multiscale holder
         # takes at full HP, unless a Mold Breaker gets past it; the
@@ -6925,7 +6939,8 @@ def state_mult(b, att, dfn, mv):
         # move of several reads the HP it meets. Until 2026-10-20 it did
         # nothing (Ian approved the fix).
         m *= 0.5
-    m *= plus_minus(b, att, mv)
+    if att.ability in PLUS_MINUS:
+        m *= plus_minus(b, att, mv)          # 1 for any other ability
     if b.doubles:
         m *= partner_power(b, att, dfn, mv)      # Battery's 13/10 and Friend Guard's three quarters
     berry = resist_berry(b, dfn, mv)
@@ -7044,7 +7059,7 @@ def state_mult(b, att, dfn, mv):
         # Helping Hand: BattleSystem_CalcMoveDamage raises the power by half
         # (15/10) after a doubling and before Technician (helping_hand).
         m *= power_ratio(att, mv.power, mv.power * 15 // 10) if mv.power > 1 else 1.5
-    reach = reach_mult(mv, dfn)
+    reach = reach_mult(mv, dfn) if dfn.charging is not None else 0     # 0 for a target not mid-move
     if not reach and b.doubles and (dfn.rare or dfn.charging is not None) and sky_airborne(b, dfn):
         reach = air_reach(mv)    # Gust and Twister double on a Sky Drop's pair in the air, as on a flier
     if reach > 1:
