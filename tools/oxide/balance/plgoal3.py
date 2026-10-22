@@ -343,7 +343,7 @@ def run_of(seed):
             continue
         first = min(rank.get(o.split, 99) for o in opts)
         opt = rng.choice([o for o in opts if rank.get(o.split, 99) == first])
-        sp = pboxes.sim._roll(opt, box, rng, drawn)
+        sp = pboxes.roll(area, opt, box, rng, drawn)
         if sp is None:
             continue
         if opt.kind == "legendary":
@@ -446,7 +446,10 @@ def box(caught, f, lvl, seed, hist=None, holds=True):
     Every record carries its catch (its area; versions of one catch share
     it, and plteam's search never takes two in one six), its holds, whether
     it is a held-back version offered beside the line as it stands ("held"),
-    and its path of evolutions at this level ("path", what rule A compares)."""
+    the moves its hold brings ("gained") and of those the moves the hold is
+    for, learned at the hold's level ("hold_for", which the play-off puts
+    in first), and its path of evolutions at this level ("path", what rule
+    A compares)."""
     hist = hist or {}
     blob = fs.calc.blob()["poks"]
     reached = sorted(places(f))
@@ -469,7 +472,8 @@ def box(caught, f, lvl, seed, hist=None, holds=True):
             return plteam.record(final, lvl, "Hardy", ability, 15, pool_, label=plteam.hold_label(name, hold),
                                  gender=gender, line=plniche.line_of(c.species), caught=c.species,
                                  caught_level=caught_level, area=c.area, catch=c.area, hold=dict(hold),
-                                 held=held, gained=list(gained), path=path(hold))
+                                 held=held, gained=list(gained), hold_for=plteam.hold_moves(base, hold, gained),
+                                 path=path(hold))
 
         uses = [u for u in hist.get(c.area, []) if u["caught"] == c.species]
         base = dict(uses[-1]["hold"]) if uses else {}
