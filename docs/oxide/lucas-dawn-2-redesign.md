@@ -339,6 +339,10 @@ The levels fit the mini-boss rule in every shape: the ace at 30, three under Fan
 
 Ian built his own shape from these candidates, with no Forretress: Umbreon leads; Scyther, with Pursuit and Flying moves to punish Fighting and Bug leads; then Lopunny with its set unchanged, Pachirisu, Gastrodon in the open slot, and the rival's starter as the ace by version. His reasons: Scyther is immune to the Ground moves aimed at Pachirisu and at two of the three starters, so it switches in on them and adds power; and with Scyther's Flying moves on the team, a Fighting type no longer baits out Lopunny for its Bounce.
 
+## Ian's last answers (2026-10-22)
+
+Ian approved the stage 4 sets with Seed Bomb on Pachirisu. On the AI flags, the probe showed Setup First Turn and Harassment doubling Umbreon's Yawn but halving its Toxic, whose effect is on neither flag's list, and moving Pachirisu from Seed Bomb to Charm; Ian kept the flags off and swapped Umbreon's Toxic for Confuse Ray, which Umbreon learns at 29, and called the fight good. No reading was run: the cheap checks are the default for every fight since 2026-10-22 (the standing rulings).
+
 ## Stage 4: the sets
 
 Every move is in its species' trainer palette at its level (the Kaizo study's checker over this branch, with the pre-TM-pass TM lists), and every borrowed attack is at 90 power or under. No item or nature repeats within a version. Dawn's and Lucas's files of a version are identical but for the trainer's name and class and the Pokemon's genders, as before, so both players meet the same Speeds. All IVs are the highest (iv_scale 255). Speeds are at each member's level; damage figures are the scorer's calculator against goal 3's box Pokemon at 30, as a share of the defender's HP, lowest roll to highest.

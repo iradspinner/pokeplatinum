@@ -16,7 +16,7 @@
             "item": "ITEM_LIGHT_CLAY",
             "moves": [
                 "MOVE_YAWN",
-                "MOVE_TOXIC",
+                "MOVE_CONFUSE_RAY",
                 "MOVE_REFLECT",
                 "MOVE_PAYBACK"
             ],
