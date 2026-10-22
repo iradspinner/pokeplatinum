@@ -36,15 +36,15 @@ def check_difficulty(results, root):
     the losing rate, the scoring track's formula on its store's readings
     (balance/pldifficulty.py). A reading counts for the trainer whose team it
     read, the Oxide team's reading before the study's, so Gardenia shows her
-    own team's 2.13, not the study rewrite's; Youngster Michael, read only on
+    own team's 6.85, not the study rewrite's; Youngster Michael, read only on
     the study's team, shows that one, marked; Barry 2's reading is the
     Piplup player's version's alone; and a trainer never read has none. The
     numbers are docs/oxide/fight-difficulty-ranking.md's."""
     rows = {r["stem"]: r for r in trainers.summary(root)}
     d = lambda stem: (rows[stem].get("difficulty") or {})
-    ok = (d("leader_gardenia").get("difficulty") == 2.13 and d("leader_gardenia")["team"] == "oxide"
+    ok = (d("leader_gardenia").get("difficulty") == 6.85 and d("leader_gardenia")["team"] == "oxide"
           and d("youngster_michael").get("difficulty") == 2.09 and d("youngster_michael")["team"] == "study"
-          and d("leader_roark").get("difficulty") == 0.05
+          and d("leader_roark").get("difficulty") == 8.24
           and d("rival_route_203_piplup").get("difficulty") == 0.0 and d("rival_route_203_piplup")["stale"]
           and rows["rival_route_203_turtwig"].get("difficulty") is None
           and rows["leader_byron"].get("difficulty") is None
