@@ -532,6 +532,9 @@ def _odds(b, u, t):
 def _build(b, u, t):
     saved = b.rng
     b.rng = None             # any draw not made through chance() fails loudly
+    # The battle stands still while the odds are worked out, so the AI's
+    # type-effect reads are kept for this one position (fightai.EFF_MEMO).
+    memo_saved, fightai.EFF_MEMO = fightai.EFF_MEMO, {}
     try:
         side = fightai._side(b, u)
         dist = collections.defaultdict(float)
@@ -559,6 +562,7 @@ def _build(b, u, t):
                         dist[("move", u.moves[i].name)] += stay * p
     finally:
         b.rng = saved
+        fightai.EFF_MEMO = memo_saved
     return tuple(sorted(dist.items(), key=lambda x: -x[1]))
 
 

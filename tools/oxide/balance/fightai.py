@@ -1029,7 +1029,30 @@ def evaluate_attack(b, u, t, mv, f, best):
 IMMUNE, QUARTER, HALF, DOUBLE, QUADRUPLE = 0, 10, 20, 80, 160
 
 
+# While the planner works out the AI's exact choice odds at one position
+# (plplan._build), nothing in the battle changes: its rolls are scripted and
+# no draw is made. The many runs of the scoring that enumeration makes ask
+# script_eff the same questions again and again, so for that work each
+# answer is kept in this dict, which _build sets and clears, by the battle,
+# the attacker, the target and the move (each held in the entry, so that no
+# id is reused while it lives). None at any other time, when every call
+# works its answer out.
+EFF_MEMO = None
+
+
 def script_eff(b, u, t, mv):
+    """_script_eff, from EFF_MEMO while one is set."""
+    memo = EFF_MEMO
+    if memo is None:
+        return _script_eff(b, u, t, mv)
+    k = (id(b), id(u), id(t), id(mv))
+    got = memo.get(k)
+    if got is None or got[0] is not b or got[1] is not u or got[2] is not t or got[3] is not mv:
+        got = memo[k] = (b, u, t, mv, _script_eff(b, u, t, mv))
+    return got[4]
+
+
+def _script_eff(b, u, t, mv):
     """The number AICmd_IfMoveEffectivenessEquals compares for u's move into
     t: BattleSystem_ApplyTypeChart from a base of 40 at the move's battle
     type (STAB, the chart type by type, Filter and Solid Rock, Expert Belt,
