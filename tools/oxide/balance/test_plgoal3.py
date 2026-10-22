@@ -351,6 +351,46 @@ def web_checks():
     return out
 
 
+ELEKID_LINE = {"SPECIES_ELEKID", "SPECIES_ELECTABUZZ", "SPECIES_ELECTIVIRE"}
+
+
+def held_back_checks(by):
+    """The Veilstone Elekid stays out of every box (Ian, 2026-10-21, until he
+    decides the gift's future): no random seed's box and no planned box at
+    the fights after Veilstone holds the Elekid line, and leaving it out
+    changes nothing else in the box."""
+    out, found = [], []
+    for slug in ("maylene", "wake", "byron"):
+        f = by[slug]
+        for s in g.SEEDS + ((g.PLANNED,) if slug in g.PLANNED_FIGHTS else ()):
+            box = g.cut(g.roll(f["split"], s), f)
+            found += [f"{slug} seed {s}: {c.species}" for c in box if c.species in ELEKID_LINE]
+    out.append(("no box at Maylene, Wake or Byron offers the Veilstone Elekid or its evolutions",
+                not found, "; ".join(found[:4]) or "seeds 1 to 3, and the planned box at Maylene and Wake"))
+    for slug in ("byron", "maylene"):
+        f = by[slug]
+        with_it, without = {}, {}
+        for s in g.SEEDS + (g.PLANNED,):
+            without[s] = [(c.area, c.species) for c in g.cut(g.roll(f["split"], s), f)]
+        keep = getattr(g.pboxes, "HELD_BACK", frozenset())
+        caches = (g.run_of, g.roll, g.planned)
+        try:
+            g.pboxes.HELD_BACK = frozenset()
+            for c in caches:
+                c.cache_clear()
+            for s in g.SEEDS + (g.PLANNED,):
+                with_it[s] = [(c.area, c.species) for c in g.cut(g.roll(f["split"], s), f)]
+        finally:
+            g.pboxes.HELD_BACK = keep
+            for c in caches:
+                c.cache_clear()
+        only = all([x for x in with_it[s] if x not in keep] == without[s] for s in with_it)
+        dropped = all(any(x in keep for x in with_it[s]) for s in with_it)
+        out.append((f"leaving the Elekid out of {f['name']}'s boxes changes nothing else",
+                    only and dropped, f"{len(without[1])} catches in seed 1's box, the Elekid gone from each"))
+    return out
+
+
 def planned_checks():
     """The planned-box sample (Ian, 2026-10-15): the option adds the planning
     player's box to the four sample fights only, read in play order like a
@@ -632,9 +672,11 @@ def main():
     results.append(("Gardenia's and Maylene's seed 1 agree on every area Gardenia's box has",
                     agree == len(gard) and set(gard) <= set(may), f"{agree} of {len(gard)}"))
     # The box sizes over 20 seeds hold the Overseer's measure of 2026-10-15
-    # (boxsizes.py's first-visit mode), the per-split rolls' sizes.
+    # (boxsizes.py's first-visit mode), the per-split rolls' sizes, less the
+    # Veilstone Elekid from Maylene's split on (held out since 2026-10-21;
+    # held_back_checks).
     want = {"roark": 17.0, "mars_1": 21.0, "gardenia": 25.0, "jupiter_1": 27.0, "fantina": 34.0,
-            "maylene": 41.0, "wake": 51.0}
+            "maylene": 40.0, "wake": 50.0}
     got = {k: round(sum(len(g.cut(g.roll(by[k]["split"], s), by[k])) for s in range(1, 21)) / 20, 1)
            for k in want}
     results.append(("one run per seed keeps the box sizes over 20 seeds", got == want, str(got)))
@@ -645,6 +687,7 @@ def main():
     results += paired_checks()
     results += web_checks()
     results += planned_checks()
+    results += held_back_checks(by)
     results += playoff_checks()
 
     got = {k: sorted(g.places(by[k])) for k in ("mars_1", "gardenia", "jupiter_1", "fantina", "candice")}
