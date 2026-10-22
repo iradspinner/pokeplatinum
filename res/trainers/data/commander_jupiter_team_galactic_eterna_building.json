@@ -6,89 +6,112 @@
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT",
-        "AI_FLAG_SETUP_FIRST_TURN"
+        "AI_FLAG_SETUP_FIRST_TURN",
+        "AI_FLAG_HARRASSMENT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DELCATTY",
+            "species": "SPECIES_PELIPPER",
             "form": 0,
             "level": 26,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_FAKE_OUT",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_FURY_SWIPES",
-                "MOVE_CHARM"
+                "MOVE_TAILWIND",
+                "MOVE_KNOCK_OFF",
+                "MOVE_WATER_PULSE",
+                "MOVE_ROOST"
             ],
-            "iv_scale": 240,
+            "iv_scale": 255,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         },
         {
-            "species": "SPECIES_SABLEYE",
+            "species": "SPECIES_EMOLGA",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_LIGHT_CLAY",
+            "moves": [
+                "MOVE_NUZZLE",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_U_TURN",
+                "MOVE_THUNDERBOLT"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LANTURN",
             "form": 0,
             "level": 26,
             "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_SHADOW_SNEAK",
-                "MOVE_ASTONISH",
-                "MOVE_PAYBACK",
-                "MOVE_KNOCK_OFF"
+                "MOVE_DISCHARGE",
+                "MOVE_BRINE",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 240,
+            "iv_scale": 255,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
         },
         {
             "species": "SPECIES_TANGELA",
             "form": 0,
             "level": 26,
-            "item": "ITEM_PECHA_BERRY",
+            "item": "ITEM_EVIOLITE",
             "moves": [
                 "MOVE_LEECH_SEED",
-                "MOVE_MEGA_DRAIN",
-                "MOVE_BULLET_SEED",
-                "MOVE_SLEEP_POWDER"
+                "MOVE_SLEEP_POWDER",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_ANCIENT_POWER"
             ],
-            "iv_scale": 240,
+            "iv_scale": 255,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 3,
+            "gender": null
         },
         {
-            "species": "SPECIES_GOLBAT",
+            "species": "SPECIES_GALARIAN_WEEZING",
             "form": 0,
             "level": 26,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_TOXIC",
-                "MOVE_AERIAL_ACE",
-                "MOVE_BITE",
-                "MOVE_SUPERSONIC"
+                "MOVE_WILL_O_WISP",
+                "MOVE_PAIN_SPLIT",
+                "MOVE_STRANGE_STEAM",
+                "MOVE_TOXIC_SPIKES"
             ],
-            "iv_scale": 240,
+            "iv_scale": 255,
+            "nature": "NATURE_SASSY",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 2,
+            "gender": null
         },
         {
             "species": "SPECIES_SKUNTANK",
             "form": 0,
             "level": 27,
-            "item": "ITEM_SITRUS_BERRY",
+            "item": "ITEM_BLACKGLASSES",
             "moves": [
-                "MOVE_SLASH",
                 "MOVE_POISON_JAB",
-                "MOVE_TOXIC",
-                "MOVE_SCREECH"
+                "MOVE_CRUNCH",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_TAUNT"
             ],
-            "iv_scale": 240,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
         }
     ],
     "messages": [
