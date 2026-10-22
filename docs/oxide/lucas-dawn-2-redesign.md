@@ -1,6 +1,17 @@
-# Lucas and Dawn 2's redesign: the evidence and the diagnosis
+# Lucas and Dawn 2's redesign: the evidence, the diagnosis and the candidates
 
-Ian asked on 2026-10-21 for Lucas and Dawn 2 (Route 207, Fantina's split, the next story fight after Jupiter 1) to be redesigned in Roark's and Gardenia's checked stages. This page holds stages 1 and 2, the evidence and the diagnosis. No team has changed, and no candidate or set is picked here: those are stages 3 and 4, after Ian checks this.
+Ian asked on 2026-10-21 for Lucas and Dawn 2 (Route 207, Fantina's split, the next story fight after Jupiter 1) to be redesigned in Roark's and Gardenia's checked stages. This page holds stages 1 and 2, the evidence and the diagnosis, which Ian checked the same day, and stage 3, the candidates and three team shapes (the last section). No team has changed, and no full set is written here: that is stage 4, after Ian picks a shape.
+
+## Ian's answers (2026-10-21)
+
+1. The shape and the diagnosis match how he would plan the fight.
+2. The six files share one core; only the rival's starter changes by version.
+3. Umbreon stays, consistent with Lucas and Dawn 3.
+4. Lopunny moves off the lead, and the team grows to six.
+5. The target is about 90 to 94 percent won.
+6. No baseline reading of today's files.
+
+So the six are a lead, Lopunny (its set as it is), Pachirisu (kept, with a fixed nature; its set may change), Umbreon at about 29, one open slot, and the rival's starter line as the ace at 30.
 
 ## Summary
 
@@ -245,3 +256,81 @@ The replacement rule also decides when Lopunny arrives: the AI sends it when its
 Lopunny is the best set on the team. Scrappy lets Jump Kick and its Normal moves hit Ghosts, so no Ghost walls it. Jump Kick at 100 power hits the Normal, Rock, Steel and Ice walls the player brings. Fake Out and Quick Attack give it two priority moves to break a Sash or finish a weakened Pokemon. Bounce hits the Fighting types that would otherwise trade with it (Hariyama, Breloom, Machoke, Tsareena, Pawmo). Jolly puts it over every catch, and the Lum Berry clears the first status the player aims at it (Probopass's Thunder Wave, Bibarel's Yawn, Bronzor's Hypnosis).
 
 Pachirisu's Spark under Adaptability is a 65-power move with double the usual same-type bonus. It hits the Flying types that wall Lopunny and the Water types (Kingler, Bibarel, Goldeen, Tentacruel, Masquerain, the player's Prinplup) that answer the aces. Charm, at three PP, takes two stages from a physical wall's Attack (Kingler, Hariyama, Donphan, Breloom). Bite reaches Orbeetle and Bronzor, and Swift never misses. Its faults are a missing nature, which in Dawn's Piplup file drops it under Golbat's Speed, a weak berry, and nothing for a Ground type.
+
+## Stage 3: the candidates
+
+Drawn from the whole Pokedex, any stage, with no filter by player access, evolution level or stats total. Every tool named below is in the species' trainer palette at 29 (level-up moves to 29, egg moves, and TM and tutor moves, the pre-TM-pass ones included), and every borrowed attack is at 90 power or under. Speeds are at 29 with top IVs, for a neutral nature and for a Speed-raising one. Set aside: the Kanto elemental trio and the Eeveelutions other than Umbreon; Ice and Psychic Pokemon after Moira 1 (Slowbro, though Lucas and Dawn 3 has it, and Bronzong, Cloyster and Froslass); Tangela, Jupiter's line, which Jupiter 1 fields one fight earlier; Lileep and Cradily (Roark's core), the Roselia line (Gardenia's), Clefable (Tyche's), Gligar (on two Route 207 trainers already) and Lickitung (a second Normal type beside Lopunny with nothing for Carbink). Before Route 207 the candidates' lines appear only as two Pinecos, a Ludicolo and a Mawile in Gardenia's split, a Shellos in Roark's and a Nidorina in the Eterna building.
+
+The speed lines that matter, from the boxes: Liepard 79; Alolan Ninetales and Tentacruel 69; Golbat, Orbeetle and Ponyta 63; Kingler 54; Bibarel 52; Whiscash 45; Hariyama, Donphan and Carbink 39. Taunt is on Bibarel (52, every box), Corvisquire (55) and Raboot (65), and Rapid Spin on box 2's Donphan and Tsareena, so a slow hazard lead can be stopped or undone on box 2.
+
+### The shared core
+
+| Member | Level | Role | Speed | What stage 4 must settle |
+|---|---|---|---|---|
+| Lopunny | 29 | The threat, off the lead: Fake Out on every entry, Quick Attack to finish, Jump Kick and Bounce | 81 (Jolly) | Nothing: its set stays |
+| Pachirisu | 28 | Spark on the Flying types that wall Lopunny and the Water types that answer the aces; Charm on a physical wall | 66 neutral, 72 with a Speed-raising nature | A fixed nature: a Speed-raising one puts it over the 69 tier. Seed Bomb is in its palette and would give it a hit on the Ground lead that walls it |
+| Umbreon | 29 | The bulky Dark pivot of Lucas and Dawn 3: Wish, Yawn, Toxic, Taunt, Reflect and Light Screen are in its palette | 51 neutral, 56 raised | Its Speed: at 51 it sits under Bibarel (52) and Kingler (54); raised, it is over both. Foul Play is not in its palette at 29 |
+| Ace (the rival's starter) | 30 | Changes by version | Grotle 35, Prinplup 44, Monferno 62 (68 with Naive) | Yes, its sets need work (below) |
+
+The aces' sets need work. Each set fights its nature today (an Adamant Grotle with Giga Drain, a Modest Prinplup with Metal Claw and Peck), and with a shared core each ace should fill the gap the core leaves on the box that meets it. Grotle meets box 2, where a physical Grass move (Seed Bomb is in its palette) hits both Donphan and Bibarel. Prinplup meets box 1, where its special Water moves hit Probopass and Quagsire's Water Absorb walls them. Monferno meets box 3, where nothing it carries today hits Hariyama or Carbink super-effectively; Dig (Ground, on Carbink) and Aerial Ace (on Hariyama) are in its palette. Monferno at 62 sits one point under Golbat, and its Naive nature puts it at 68, just over.
+
+### Lead candidates
+
+The lead's three jobs, from the diagnosis: wear the player's six down, weaken Lopunny's checks (Carbink, Probopass and the Flying types), and hold up against the Ground lead that walls Pachirisu.
+
+| Candidate | Typing and ability | Tools at 29 | Hits hard | Against the Ground lead | Speed | Weak to |
+|---|---|---|---|---|---|---|
+| Forretress | Bug and Steel, Heatproof | Stealth Rock, Spikes, Toxic Spikes, Rapid Spin, Reflect, Light Screen, Thunder Wave | Carbink (Steel, four times); Quagsire and Whiscash (Giga Drain, four times); Flying (Rock Slide) | Holds: Water and Ground land neutral on 140 Defense | 37, 40 | Fire (twice, through Heatproof); Taunt |
+| Gastrodon | Water and Ground, Dry Skin | Stealth Rock, Yawn, Toxic | Probopass (Earth Power, four times); Carbink, Donphan and the Fire types (Surf) | Holds fully: Dry Skin heals it off their Water moves | 36, 39 | Grass (four times) |
+| Araquanid | Water and Bug, Water Bubble (Water Absorb hidden) | Sticky Web, Reflect, Soak, Aqua Ring | Carbink, Probopass and Donphan (Water, doubled by Water Bubble); Quagsire and Whiscash (Giga Drain) | Holds: resists Water and Ground | 38, 41 | Flying, Rock and Electric: Lopunny's checks hit it hard |
+| Skarmory | Steel and Flying, Filter | Stealth Rock, Spikes, Roar, Whirlwind, Roost, Taunt | Carbink (Steel); Flying (Rock Slide) | Holds (immune to Ground) but cannot hurt them | 54, 59: over Bibarel's Taunt | Electric, Fire |
+| Klefki | Steel and Fairy, Prankster | Spikes, Reflect, Light Screen and Thunder Wave, all at priority | Carbink (Steel); Hariyama (Fairy) | Fails: Ground hits it twice | 57, 62 | Ground, Fire |
+| Ferroseed, with Eviolite | Grass and Steel, Iron Barbs | Stealth Rock, Thunder Wave, Gyro Ball | Carbink (Steel); Quagsire and Whiscash (Grass) | Holds: resists Water | 19 | Fire (four times), Fighting (Hariyama) |
+
+### Open-slot candidates
+
+The open slot answers what the player brings (the Ground types, Kingler, Hariyama, Carbink, Bibarel, Donphan, Probopass) and gives the core the coverage it lacks: Grass in two versions, anything for Carbink, and more for Hariyama than Lopunny's Bounce.
+
+| Candidate | Typing and ability | What it answers | Speed | Weak to |
+|---|---|---|---|---|
+| Gastrodon | Water and Ground, Dry Skin | Every Water attack the boxes' cores carry (Quagsire, Whiscash, Kingler, Bibarel) heals it; Earth Power on Probopass and Carbink; Surf on the Fire types; immune to Electric | 36, 39 | Grass |
+| Mawile | Steel and Fairy, Intimidate (both regular slots) | Intimidate on entry cuts the Attack of Kingler, Hariyama, Donphan, Bibarel and Golbat, every physical answer the screens always take; Iron Head on Carbink (four times); Play Rough on Hariyama; Sucker Punch; resists Grass and Flying | 42, 46 | Ground, Fire |
+| Nidoqueen | Poison and Ground, Sheer Force (hidden) | Lucas and Dawn 3's first member, so the pair's later team grows from here; Toxic Spikes, Stealth Rock and Roar; Earth Power on Probopass and Carbink; resists Fighting, Rock and Fairy; immune to Electric | 58, 63 (63 ties Golbat) | Water, Ground, Ice, Psychic |
+| Ludicolo | Water and Grass, Own Tempo or Swift Swim | Grass on Quagsire and Whiscash (four times), Kingler, Bibarel, Donphan and Carbink; resists Water and Ground | 54, 59 | Flying and Poison (Golbat), Bug |
+
+### Three team shapes
+
+Each shape is a lead and an open slot around the shared core. "Bait" is how a planning player would play around the member.
+
+**Shape 1, hazards and a sponge (recommended).**
+
+| Member | Role, and why it beats what the player brings | How a planning player baits it | Speed against the boxes | Likely weak point |
+|---|---|---|---|---|
+| Forretress (lead) | Stealth Rock and Spikes chip every switch, a quarter to a half of a Flying type's HP on each entry; Steel takes Carbink, Giga Drain the Water and Ground leads, Rock Slide the Flying types; takes the Ground lead's hits on 140 Defense | Lead a Fire type (Raboot, the Scorbunny player's own starter, Ponyta, Fletchinder), Taunt it first, or spin the hazards (Donphan on box 2) | 37, under the 39 tier (Hariyama, Donphan, Carbink); 40 with a Speed nature, over it | Fire, and Taunt from Bibarel, Corvisquire or Raboot, all faster |
+| Gastrodon (open slot) | Dry Skin turns the Water attacks most of the player's answers carry into healing; Earth Power and Surf on Probopass, Carbink, Donphan and the Fire types that beat Forretress; Yawn forces switches over the hazards | Bring Grass (Tsareena, Breloom, Leavanny, Cherrim; Donphan's Trailblaze; the Turtwig player's Grotle) | 36 or 39: moves before only Probopass and Quagsire | Grass, which Forretress resists four times over |
+
+The pair covers each other: Forretress takes Grass, Gastrodon takes Fire and Water. The open gap is Hariyama, which only Lopunny's Bounce and Pachirisu's Charm answer.
+
+**Shape 2, a sponge and Intimidate.**
+
+| Member | Role, and why it beats what the player brings | How a planning player baits it | Speed against the boxes | Likely weak point |
+|---|---|---|---|---|
+| Gastrodon (lead) | Stealth Rock and Yawn wear the six down; Dry Skin holds the Ground lead completely; Earth Power and Surf on Probopass and Carbink; Rock Tomb on the Flying types | Lead Grass (Tsareena is in 12 of box 2's top 20, Breloom in 13 of box 3's), or Taunt it | 36 or 39 | Grass; a weaker hand against the Flying types than Forretress's |
+| Mawile (open slot) | Intimidate on every physical answer the screens take, Iron Head on Carbink, Play Rough on Hariyama, Sucker Punch to finish; resists Grass and Flying, Gastrodon's weak points | Ground moves (the Ground leads, Donphan) and Fire | 42, over the 39 tier; 46 with a Speed nature, over Whiscash (45) | Ground, which Gastrodon takes |
+
+This shape answers Hariyama and Kingler best, through Intimidate, and its lead is the surest against the Ground lead. Its lead does less of the second job: nothing on it hits a Flying type super-effectively but Rock Tomb.
+
+**Shape 3, the web and the step to Lucas and Dawn 3.**
+
+| Member | Role, and why it beats what the player brings | How a planning player baits it | Speed against the boxes | Likely weak point |
+|---|---|---|---|---|
+| Araquanid (lead) | Sticky Web takes a Speed stage from every switch-in: Kingler drops from 54 to 36, Bibarel from 52 to 35 and Golbat from 63 to 42, so Umbreon, Pachirisu, the ace and Nidoqueen all move first; Water Bubble doubles its Water moves on Carbink, Probopass and Donphan; resists the Ground lead, Kingler and Hariyama | Lead a Flying type (Golbat, Staravia, Corvisquire) or a Rock move (Carbink, Probopass, Bibarel's Smack Down) | 38 or 41, around the 39 tier | It loses to the Pokemon it should weaken, and the web does no damage |
+| Nidoqueen (open slot) | Lucas and Dawn 3's first member; Toxic Spikes and Roar drag the six over the web; Earth Power on Probopass and Carbink; resists Hariyama's Fighting and the Rock moves that hit Araquanid | Water from any Ground lead, Kingler or Bibarel; Ice from Donphan and Whiscash | 58, over Kingler and Bibarel; 63 ties Golbat | Water, which Araquanid takes |
+
+This shape reads most as an earlier step of the pair's later team, and the web is the strongest speed control of the three. Its lead fails the second job: Lopunny's checks are the Pokemon that beat it.
+
+### Recommendation
+
+Shape 1. Forretress is the only lead that does all three jobs at once: hazards for the chip a non-lead Lopunny needs, Steel for Carbink and Rock for the Flying types, and the bulk to stand in front of the Ground lead and hit it back four times over. Gastrodon covers Forretress's one real weakness, Fire, including the Scorbunny player's own starter, and turns the Water attacks of the Ground leads, Kingler and Bibarel into healing. Its known gaps are Hariyama, and the Taunt and Rapid Spin users of box 2; stage 4 can close the first with the ace's and Pachirisu's sets. If Ian wants the link to Lucas and Dawn 3 more than the Water and Fire cover, Nidoqueen can take Gastrodon's place behind Forretress.
+
+The levels fit the mini-boss rule in every shape: the ace at 30, three under Fantina's cap of 33, and the rest at 28 to 29. Forretress at 29 sits two levels under Pineco's evolution at 31 and Gastrodon one under Shellos's at 30, within Ian's "not egregiously early".
