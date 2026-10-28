@@ -115,29 +115,28 @@ See `docs/oxide/setup-fork-and-wsl2.md`. `make` for a checked build of the
 unmodified tree; `make rom` for an unchecked rebuild after edits. Output:
 `build/pokeplatinum.us.nds`.
 
-Builds run on this machine with no job limit, and a local ROM matches
-GitHub's build of the same commit byte for byte. Run any heavy or parallel
+Builds run on this machine with no job limit, and a local ROM matched
+GitHub's build of the same commit byte for byte for as long as that build
+ran. Run any heavy or parallel
 job under `tools/oxide/capped`, which stops it at a memory cap rather than
 let it run WSL out of memory (the design doc's findings log has both
 histories: the degraded CPU of 2026-09-22 and the WSL crash of 2026-10-02).
 
 Hand Ian a ROM built here from a pushed commit as soon as the local gate
 passes (Ian, 2026-10-06: waiting for GitHub's SHA-1 was a guard against the
-old CPU, and comes back only if a build looks wrong), copied into
+old CPU; GitHub's build is retired, so a build that looks wrong is rebuilt
+clean here), copied into
 `~/oxide-playtest` as
 `pokeplatinum-oxide-<commit>.nds` (the test kit, from `make testkit` on the
 same tree, as `pokeplatinum-oxide-testkit-<commit>.nds`), the names his saves
 follow.
-**No GitHub Actions in the private repos, for good** (Ian, 2026-10-01): every
-ROM is built here, the private ROM builder and `fetch-rom` are retired, and
-Ian's melonDS fork is built on his PC with MSYS2
-(`C:\Users\Ian\src\build-melonds.sh`, since 2026-10-06). The public repo's build on each push to `oxide` is free and
-stays on.
-
-GitHub builds every push to `oxide` on its own machines
-(`.github/workflows/oxide-rom.yml`) and prints the ROM's SHA-1 in the run's
-summary, for comparing by hand if a build ever looks wrong; the gate no
-longer compares it (Ian, 2026-10-13). This public repo never uploads the ROM.
+**No GitHub Actions, for good** (Ian, 2026-10-01 for the private repos and
+2026-10-28 for this one): every ROM is built here, the private ROM builder
+and `fetch-rom` are retired, and Ian's melonDS fork is built on his PC with
+MSYS2 (`C:\Users\Ian\src\build-melonds.sh`, since 2026-10-06). This public
+repo's ROM build stopped when the account's free Actions ran out on
+2026-10-07, and Ian retired it on 2026-10-28 ("local builds are enough"):
+its workflow is disabled on GitHub and deleted here.
 
 ## Cloud sessions
 

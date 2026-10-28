@@ -4,7 +4,7 @@
 # Paste this file's contents into the environment's setup script at
 # claude.ai/code. It runs as root on the environment's Ubuntu 24.04 image,
 # before any session starts, and the result is cached for about a week. It
-# installs what GitHub's ROM workflow installs (.github/workflows/oxide-rom.yml)
+# installs what GitHub's ROM workflow installed (oxide-rom.yml, retired 2026-10-28)
 # plus the two Python packages the tools in tools/oxide/ import. The compiler
 # (Metroskrew) and meson are fetched by the first `make rom` into the repo
 # itself, from github.com; the meson subprojects also come from github.com and

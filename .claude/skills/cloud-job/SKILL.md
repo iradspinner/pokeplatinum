@@ -44,11 +44,13 @@ Two jobs can run at once when they touch different files. Two that both edit
 Setup: read CLAUDE.md, `docs/oxide/design-doc.md` and `docs/oxide/tracker.md`;
 run `git fetch --depth=1 origin main:main` before the encounter tests; the
 first `make rom` fetches the compiler. Build `origin/oxide` once before
-changing anything and note its SHA-1: it should match GitHub's build of the
-same commit, which shows the VM's toolchain is sound. If it does not, move
-`build/` aside and build clean once more before looking for a cause: a VM's
-first build has differed from GitHub's in untouched library code and matched
-on the second (findings log, 2026-09-27).
+changing anything and note its SHA-1: it should match the SHA-1 the
+Overseer's landing printed for that commit, which the cloud prompt carries
+(GitHub's build is retired, 2026-10-28), and a match shows the VM's
+toolchain is sound. If it does not, move `build/` aside and build clean
+once more before looking for a cause: a VM's first build has differed in
+untouched library code and matched on the second (findings log,
+2026-09-27).
 
 Rules that bite:
 
