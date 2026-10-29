@@ -159,6 +159,14 @@ DIVERGED["events_solaceon_town_north_house"] = (
 DIVERGED["events_survival_area_south_house"] = (
     "the second Utility Stop's greeter and three vendors removed; the Black Belt stays "
     "where the base ROM moved him (2026-10-07)")
+# Ian asked on 2026-10-29 for about a dozen mandatory fights in each of
+# Fantina's and Maylene's splits, so trainers the player could walk around
+# were moved or re-aimed onto the story path (docs/oxide/mandatory-fights.md
+# lists each one); regenerating would put them back where they can be skipped.
+_why = "trainers moved onto the story path to make them mandatory (Ian, 2026-10-29)"
+for _m in ("route_207", "route_208", "route_209", "route_210_south", "route_215"):
+    DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
+                                if f"events_{_m}" in DIVERGED else _why)
 
 
 def render(record, existing, index):

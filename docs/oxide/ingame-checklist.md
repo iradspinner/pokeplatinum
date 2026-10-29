@@ -561,6 +561,20 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   revives nothing. Ride down Cycling Road into its south gate, come back, and
   he offers to revive it as before (level 20, the next time you talk to him).
 
+- [ ] **Mandatory fights, Fantina's split** (`overseer-mandatory-fights`,
+  Ian, 2026-10-29; `docs/oxide/mandatory-fights.md`). Walk the story path
+  without dodging anyone. Each trainer below should see you and walk up
+  before you can pass, and after the battle the way on is still open with the
+  trainer standing where it was:
+  - Hiker Kevin, Route 207, at the east edge of the way in from Cycling
+    Road; he looks west across it.
+  - Battle Girl Helen, Route 207, at the foot of the passage up from the
+    lower loop, looking north; she should be fought before Lucas or Dawn's
+    scene at the Mt. Coronet entrance, and that scene plays as before (they
+    walk in from the west and leave the same way).
+  - Aroma Lady Hannah, Route 208, in the grass just east of where the
+    mountain path opens into the flower field; she looks west at the opening.
+
 ## 4. The ordinary ROM, mid-game
 
 - [ ] **Solaceon's north house** (2026-10-07, `main-tm-items`): only the old
@@ -782,6 +796,32 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   them..." with the Melody Pokemon category. With the emulator's bridge
   running, the Overseer can check the received Meloetta field by field from
   the box export.
+
+- [ ] **Mandatory fights, Maylene's split** (`overseer-mandatory-fights`,
+  Ian, 2026-10-29; `docs/oxide/mandatory-fights.md`). Walk the story path
+  from Hearthome to Veilstone without dodging anyone. Each trainer below
+  should see you and walk up before you can pass, and after the battle the
+  way on is still open with the trainer standing where it was:
+  - Breeder Albert, Route 209, just south of the three-row strip east of the
+    grass; he looks north. Taking the ledge out of the grass should land you
+    in his sight too. The fisherman's pier beside him is still reachable.
+  - Poke Kid Danielle, Route 209, at the east edge of the strip that climbs
+    to the bridge, looking west.
+  - Cowgirl Shelley, Route 209, at the west end of the row where the walk
+    north and the bike slope come out, looking east. Ride up the slope once:
+    you should come off it and be seen, not bump into her.
+  - Rancher Marco, Route 210 South, at the west edge of the corridor in from
+    Solaceon, looking east.
+  - Belle and Pa Ava and Matt, Route 210 South, side by side where the
+    meadow meets the bike slope and the grass column, looking west. Both
+    come for a double battle, whichever of them sees you.
+  - Black Belt Gregory, Route 215, at the corner where the path leaves the
+    grass and turns east, looking east.
+  - Black Belt Nathaniel, Route 215, at the top of the column the path
+    crosses before the ledges towards Veilstone, looking south.
+  - Ruin Maniac Calvin, Route 215, was not moved: note whether you could
+    walk round him beside the raised walkway, which decides whether his TM22
+    is behind a mandatory fight.
 
 ## 5. The ordinary ROM, after the League
 
