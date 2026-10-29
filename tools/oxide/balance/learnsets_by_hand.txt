@@ -86,7 +86,7 @@ SPECIES_LUNATONE    Twin Beam at 35 and Mist Ball at 59, stranded moves' homes (
 SPECIES_LUVDISC     Heart Stamp at 20, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_LUXRAY      Psychic Fangs at 58, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_MACHOP      Power-Up Punch at 18, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
-SPECIES_MAGNEMITE   Rising Voltage at 28 and Tachyon Cutter at 35, stranded moves' homes (Ian, 2026-10-14, on stranded-moves.md)
+SPECIES_MAGNEMITE   Rising Voltage at 28 and Tachyon Cutter at 35, stranded moves' homes (Ian, 2026-10-14, on stranded-moves.md); Screech, Mirror Shot and Psych Up on its egg list, for Twins Emma and Lil's Magneton (Ian, 2026-10-29)
 SPECIES_MAGNETON    Rising Voltage at 28 and Tachyon Cutter at 35, stranded moves' homes (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_MAGNEZONE   Rising Voltage at 28 and Tachyon Cutter at 35, stranded moves' homes (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_MANAPHY     Take Heart at 72, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)

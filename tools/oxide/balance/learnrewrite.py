@@ -114,7 +114,9 @@ IAN_EGG_MOVES = {
     # signature move of a species Oxide lacks, on the egg list of the first
     # stage of the line that suits it, so trainers carry it legally.
     "SPECIES_CORPHISH": [("MOVE_CEASELESS_EDGE", "Ian, 2026-10-21, on signature-moves.md: Hisuian Samurott's, "
-                                                "for trainers' Crawdaunt, its types and a slicing claw")],
+                                                "for trainers' Crawdaunt, its types and a slicing claw"),
+                         ("MOVE_DRAGON_DANCE", "Ian, 2026-10-29: Youngster Oliver's Crawdaunt, an off-list "
+                                               "move on an ordinary team")],
     "SPECIES_SNEASEL": [("MOVE_DIRE_CLAW", "Ian, 2026-10-21, on signature-moves.md: Sneasler's, for trainers' "
                                           "Weavile")],
     "SPECIES_QWILFISH": [("MOVE_BARB_BARRAGE", "Ian, 2026-10-21, on signature-moves.md: Overqwil's, and "
@@ -149,7 +151,29 @@ IAN_EGG_MOVES = {
                           ("MOVE_BUG_BITE", "Ian, 2026-10-29: Maylene's Heracross")],
     "SPECIES_JANGMO_O": [("MOVE_DRAGON_DANCE", "Ian, 2026-10-29: Maylene's Hakamo-o"),
                          ("MOVE_FOCUS_PUNCH", "Ian, 2026-10-29: Maylene's Hakamo-o")],
-    "SPECIES_CACNEA": [("MOVE_FLING", "Ian, 2026-10-29: Maylene's Cacturne")],
+    "SPECIES_CACNEA": [("MOVE_FLING", "Ian, 2026-10-29: Maylene's Cacturne"),
+                       ("MOVE_COTTON_SPORE", "Ian, 2026-10-29: Twins Emma and Lil's Cacturne"),
+                       ("MOVE_NASTY_PLOT", "Ian, 2026-10-29: Twins Emma and Lil's Cacturne")],
+    # The ordinary teams of Fantina's and Maylene's splits (Ian, 2026-10-29:
+    # an off-list move on a team goes on an egg list, without asking): moves
+    # the split pass's teams and the teams it left alone carry that no list
+    # gives at their levels. Sunny Day, Protect, Sandstorm and Psych Up were
+    # TMs before the TM pass and stay legal for trainers that way; they are
+    # here so the OxiDex's list, which reads only today's TMs, agrees.
+    "SPECIES_AZURILL": [("MOVE_AQUA_JET", "Ian, 2026-10-29: Poke Kid Danielle's Azumarill, Pokefan Rebekah's "
+                                          "Marill")],
+    "SPECIES_EXEGGCUTE": [("MOVE_SUNNY_DAY", "Ian, 2026-10-29: Belle and Pa Beth and Bob's Exeggutor")],
+    "SPECIES_TORCHIC": [("MOVE_PROTECT", "Ian, 2026-10-29: Breeder Kahlil's Blaziken")],
+    "SPECIES_CROAGUNK": [("MOVE_LOW_KICK", "Ian, 2026-10-29: Black Belt Nathaniel's Croagunk")],
+    "SPECIES_MAGNEMITE": [("MOVE_SCREECH", "Ian, 2026-10-29: Twins Emma and Lil's Magneton"),
+                          ("MOVE_MIRROR_SHOT", "Ian, 2026-10-29: Twins Emma and Lil's Magneton"),
+                          ("MOVE_PSYCH_UP", "Ian, 2026-10-29: Twins Emma and Lil's Magneton")],
+    "SPECIES_TRAPINCH": [("MOVE_MUD_SHOT", "Ian, 2026-10-29: Twins Emma and Lil's Vibrava"),
+                         ("MOVE_SANDSTORM", "Ian, 2026-10-29: Twins Emma and Lil's Vibrava"),
+                         ("MOVE_ANCIENT_POWER", "Ian, 2026-10-29: Twins Emma and Lil's Vibrava")],
+    "SPECIES_SHUCKLE": [("MOVE_BUG_BITE", "Ian, 2026-10-29: Twins Emma and Lil's Shuckle")],
+    "SPECIES_CLEFFA": [("MOVE_MOONBLAST", "Ian, 2026-10-29: Game Corner challenger Rocco's Clefable")],
+    "SPECIES_PORYGON": [("MOVE_TRI_ATTACK", "Ian, 2026-10-29: Game Corner challenger Rocco's Porygon2")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

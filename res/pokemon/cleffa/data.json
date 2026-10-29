@@ -102,7 +102,8 @@
             "MOVE_SUBSTITUTE",
             "MOVE_FAKE_TEARS",
             "MOVE_COVET",
-            "MOVE_HEALING_WISH"
+            "MOVE_HEALING_WISH",
+            "MOVE_MOONBLAST"
         ]
     },
     "evolutions": [
