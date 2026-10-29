@@ -2,6 +2,19 @@
 
 Ian built a six-member team for Fantina (Hearthome Gym, Fantina's split, cap 33) in the OxiDex on 2026-10-29 and asked for it to be the team to riff off, with an analysis in the style of the last few fights. This page holds stages 1 and 2 of the redesign, the evidence and the diagnosis, for Ian to check. It judges his six as they stand and proposes no new team: candidates and sets are stages 3 and 4. His six is on branch `overseer-fantina` (5a991974dc) for study only; nothing here lands.
 
+## Ian's answers (2026-10-29)
+
+Ian read stages 1 and 2 the same day and answered, relayed by the Overseer:
+
+- Question 2: Competitive stays on Gothitelle.
+- Question 5: the off-list moves are made legal through the egg lists, the trainers' palette, which the player never reaches (1c0d086362): Confuse Ray and Body Press on Yamask's, Pain Split on a new Rotom list, Spirit Shackle and Pursuit on Rowlet's, Nasty Plot on Misdreavus's.
+- Question 6: the natures are his on purpose. Gothitelle is named Calm; the other five keep the natures the game rolls (Quirky, Relaxed, Mild, Naughty, Bashful).
+- Question 7: Runerigus's Amnesia becomes Iron Defense.
+- He added Harassment to Fantina's AI flags.
+- He is not after a full redesign. He asked for the best replacements for the fight's weakest point, which he and the diagnosis both name as the Runerigus lead, judged by one rule of his: a lead may be countered outright by a Pokemon or a whole type, so long as the counter draws in a member that beats it and has a setup move, since the player then has to switch out while that member sets up. "The lead: three candidates", after stage 2, answers that.
+
+His second save is the file at 1c0d086362. Stage 2 below reads his first, so its points on Amnesia, the natures and the off-list moves are settled by these answers.
+
 ## Summary
 
 **Outcome.** Ian's six holds together as a fight: a Ghost gym of burns, confusion and special setup, with Unburden speed on Drifblim and Levitate on the two fastest members, and the trainer AI picked every move on every member in the probe. Four things fail as it stands:
@@ -284,3 +297,65 @@ Spirit Shackle is the team's one trapping move, within the rule that trapping is
 **Gothitelle.** The pivot for Dark and Ghost moves, and the one target for the player's Normal and Fighting moves. Its Bug weakness makes it Leavanny's free knockout, and it is nine levels under its evolution with a nature that works against it.
 
 **Mismagius, the ace.** The fastest member with the strongest setup. Bastiodon and Probopass are the screen's only clean answers to it, and only until it has set up or they are burned. Its Nasty Plot is off-list, and a Timid nature would clear the two catches still faster than it.
+
+## The lead: three candidates
+
+Ian asked for the best replacements for the Runerigus lead, judged by his rule that a lead may be countered outright if the counter draws in a member that beats it and has a setup move. Four Ghost leads were checked against his Runerigus with Iron Defense, on the file at 1c0d086362 with Harassment on. One of them, Sableye, failed. The finding first: by Ian's rule, his Runerigus is the best lead of the five, and no replacement beats it at that job. The three candidates below are what to reach for if he wants a different fight.
+
+### How they were checked
+
+Each candidate replaced Runerigus in memory only, with the other five members as in the file; `res/` was not written. Two scratch scripts in `/home/ian/.claude/jobs/382760ce/tmp/fantina/` ran on goal 3's boxes 1 to 3. `lead.py` reruns the matchup screen, the Speeds, the damage rows both ways, and the AI-picks probe (two runs of 150 rough fights a box, as in stage 2). `repl.py` finds what each of the lead's counters draws in. It sets the lead fainted with the counter on the field and calls the simulator's own copy of the engine's replacement rule, `fightai.replacement` (BattleAI_PostKOSwitchIn), rather than reasoning from types. It then reads the screen's margin of the counter against the member drawn. A counter here is a catch the screen gives a win over the lead one-on-one, plus every Ghost, Fire and Taunt catch in the box. Every candidate set passes the Kaizo study's legality checker with the pre-TM-pass lists, and no item or nature repeats.
+
+| Lead | Level | Item | Ability | Nature | Speed | Moves |
+|---|---|---|---|---|---|---|
+| Runerigus (Ian's) | 31 | Leftovers | Wandering Spirit | *Quirky* | 32 | Iron Defense, Will-O-Wisp, Confuse Ray, Body Press |
+| Haunter | 31 | Focus Sash | Levitate | Timid | 90 | Shadow Ball, Focus Blast, Will-O-Wisp, Destiny Bond |
+| Dusknoir | 33 | Leftovers | Levitate | Adamant | 44 | Earthquake, Will-O-Wisp, Shadow Sneak, Ice Punch |
+| Ceruledge | 31 | Leftovers | Flash Fire | Jolly | 72 | Brick Break, Shadow Claw, Flame Charge, Will-O-Wisp |
+| Sableye (set aside) | 31 | Leftovers | Prankster | Impish | 44 | Will-O-Wisp, Drain Punch, Knock Off, Taunt |
+
+Haunter is the line's own stage at 31 (Gastly evolves at 25, Haunter at 40). Its Destiny Bond is the fight's one forced trade, which Fantina is the first boss allowed, and a Focus Sash may go on the lead that carries it (Ian, 2026-10-06). Dusknoir at 33 sits four levels under Dusclops's evolution at 37, as Decidueye does under Dartrix's, and it needs a Reaper Cloth past that. Ceruledge comes from Charcadet with a Dusk Stone, at any level.
+
+### What the cheap checks show
+
+| Lead | The player's best six by the screen, boxes 1, 2, 3 (lower is harder) | Catches that beat the lead one-on-one, per box | Body Press or its stand-in on Bastiodon; on Probopass | Its first move, by the AI, in each run of 150 | The player's Pokemon knocked out while it was in (rough sign) |
+|---|---|---|---|---|---|
+| Runerigus | 16.8, 14.55, 12.8 | 18, 20, 20 | Body Press 51 to 63; 57 to 69% | Will-O-Wisp 43 to 65, Confuse Ray 44 to 54, Iron Defense 36 to 54, Body Press 0 to 1 | 184 to 333 |
+| Haunter | 14.85, 12.3, 9.55 | 5, 5, 5 | Focus Blast 75 to 90; 69 to 84% | Will-O-Wisp 115 to 138, Shadow Ball 8 to 21, Focus Blast 3 to 21 | 134 to 174 |
+| Dusknoir | 10.4, 8.15, 6.4 | none | Earthquake 60 to 72; 66 to 81% | Will-O-Wisp 90 to 139, Ice Punch 2 to 41, Earthquake 3 to 37 | 221 to 402 |
+| Ceruledge | 14.55, 12.45, 10.55 | 9, 8, 10 | Brick Break 42 to 51; 51 to 60% | Will-O-Wisp 97 to 123, Flame Charge 13 to 37, Brick Break and Shadow Claw 4 to 13 each | 120 to 165 |
+| Sableye | 16.65, 14.55, 12.5 | 8, 8, 9 | Drain Punch 36 to 45; 42 to 51% | Will-O-Wisp 88 to 134, Taunt 10 to 48, Drain Punch 3 to 42 | 41 to 98 |
+
+With Harassment on, Runerigus's first move is still a status move in 149 or 150 fights of every 150, but it now spreads across its three status moves. Iron Defense comes up against every kind of lead, most often Alolan Ninetales (13 and 21 of the 25 fights it leads in on box 2), and each use powers Body Press, where Amnesia had powered nothing. Every move of every candidate was picked in every run, except Sableye's Knock Off, which the AI never chose, and that is one reason it is set aside. The other is that it made the fewest knockouts of the five.
+
+### What the counters draw in
+
+The member the AI sends after the lead faints depends on the counter and on the other five, which are the same for every lead. So the same counter nearly always draws the same member, and a lead is judged by which catches counter it. Over the three boxes, `fightai.replacement` gives:
+
+| The lead's counter | Member drawn in | Does it beat the counter (screen margin) | Setup |
+|---|---|---|---|
+| The Grass and Bug catches: Leavanny (every box), Breloom, Roselia, Leafeon, Cherrim, Tsareena, Vikavolt, Mothim, Orbeetle, Masquerain, Dustox, Heracross | Drifblim | Yes, by 0.5 to 6.5 (Leavanny 6.5) | Calm Mind |
+| Hariyama, Granbull | Drifblim | Yes, by 0.5 | Calm Mind |
+| Rotom (boxes 2, 3) | Mismagius | Yes, by 0.5 | Nasty Plot |
+| Torterra, Bronzong; Alolan Ninetales | Drifblim | No: the catch wins by 0.5; by 2.5 | Calm Mind |
+| The Water catches (Seaking, Kingler, Tentacruel, Lumineon, Brionne, Prinplup), Golbat, Vullaby, Togetic, Liepard; the Taunt users Bibarel and Corvisquire; Fletchinder | Rotom | Yes, by 0.5 to 6.5 | none |
+| Whiscash, Quagsire, Donphan, Sylveon, Carbink, Onix, Graveler; Bastiodon's Taunt | Decidueye | Yes, by 0.5 to 7.5 | none |
+| Haunter (box 1); Salazzle (box 3) | Gothitelle | Yes, by 2.5; by 1.5 | none |
+| Raboot and Ponyta (box 2), Probopass's Taunt, Luxray (box 1, every version) | Decidueye | No: the catch wins by 0.5 | none |
+
+Each lead's counters, read against that table:
+
+- **Runerigus**: its 18 to 20 counters a box are mostly the Grass, Bug and Fairy types, and those are what draw Drifblim's Calm Mind. Leavanny, the catch the screen takes most against this team, beats Runerigus and draws Drifblim, which beats it by the widest margin on the table. Over the three boxes (counting the held Luxrays and Vikavolt as entries of their own), 22 of its counters draw a setup member that beats them, 31 a member that beats them without setup, and 8 a member that loses.
+- **Haunter**: its five counters a box are Luxray, Alolan Ninetales, Torterra, Tentacruel, Vullaby, Masquerain, Hariyama, Vikavolt and Bronzong. Six of its fifteen counters over the three boxes draw a member that loses (Luxray draws Decidueye; Ninetales, Torterra and Bronzong draw Drifblim), so its counters fit Ian's rule worst. Its Destiny Bond often takes the counter with it. The AI also switches it out 15 to 88 times a run.
+- **Dusknoir**: no catch beats it one-on-one, so the rule never comes into play. It lowers the player's best screen score by 6 points or more on every box, the largest change of any candidate, and it made the most knockouts.
+- **Ceruledge**: its 8 to 10 counters a box are the Water, Ground and Rock catches, and they draw Rotom or Decidueye, which beat them with no setup. Only Hariyama draws a setup member.
+
+### The three candidates
+
+1. **Haunter** (Focus Sash, Timid; Shadow Ball, Focus Blast, Will-O-Wisp, Destiny Bond). It answers "slow and known": at 90 it outspeeds every catch in every box, so it burns or hits before any Taunt. Focus Blast takes Bastiodon 75 to 90 percent and Probopass 69 to 84, more than Body Press does. It carries the fight's one trade behind its Sash. It costs the rule's fit, since its counters draw losers, and it repeats the Haunters on two of the gym's trainers.
+2. **Dusknoir** (Leftovers, Adamant; Earthquake, Will-O-Wisp, Shadow Sneak, Ice Punch). It answers every lead the diagnosis named: Earthquake for the Steel walls and the Fire leads (Raboot 92 to 110 percent, Salazzle knocked out), Ice Punch for Staravia (102 to 122) and Leavanny, and Shadow Sneak for the Ghosts. It moves the fight the most, likely too far for the 85 to 90 target, and it sits two stages early.
+3. **Ceruledge** (Leftovers, Jolly; Brick Break, Shadow Claw, Flame Charge, Will-O-Wisp). It is the middle choice: 72 Speed, immune to the Fire leads' moves through Flash Fire and to burns, and Flame Charge knocks out Leavanny (160 to 192 percent). Brick Break is weaker on the Steel walls than Body Press (42 to 60 percent), and its counters draw no setup.
+
+### Recommendation
+
+Keep Runerigus with Iron Defense. By Ian's rule it is the best lead of the five. Its counters are the Grass and Bug types that draw Drifblim's Calm Mind, Leavanny first among them. Iron Defense now gives it a setup move that feeds Body Press, and Harassment spreads its first turn across its three status moves. Its remaining holes are the counters that draw a member that loses: the Fire leads Raboot and Ponyta, Probopass's Taunt, and the box 1 Luxray, all of which draw Decidueye, and Alolan Ninetales, which draws Drifblim. Those are set changes on the other members, not reasons to change the lead. If Ian wants a different fight rather than this one tightened, Haunter is the pick, and Dusknoir only if he wants Fantina to read clearly harder.
