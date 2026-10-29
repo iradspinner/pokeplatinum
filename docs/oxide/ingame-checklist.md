@@ -17,8 +17,8 @@ an agent to launch an emulator.
 
 - [ ] Build the ordinary ROM and the test kit ROM of the current, pushed
   `oxide` here (`make rom` and `make testkit`) and copy both into
-  `~/oxide-playtest`; GitHub's SHA-1 is compared by hand only if a build
-  looks wrong (Ian, 2026-10-13).
+  `~/oxide-playtest`; a build that looks wrong is rebuilt clean here
+  (GitHub's build is retired, 2026-10-28).
 - [ ] **Start a new game.** An old save reads every ability as NONE by design
   (element 2 moved the field) and is no valid test bed.
 - [ ] **The base ROM's visual overhaul** (`carry-over`, merged), compared

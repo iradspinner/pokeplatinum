@@ -158,8 +158,8 @@ read, so they are written here too. Each is a standing instruction.
   narrowings for alpha 1's rewrite are in `docs/oxide/rulings-detail.md`.
 - Local builds are trusted (2026-09-29): a ROM goes to Ian as soon as the
   local gate passes. Matching GitHub's SHA-1 first was a guard against the
-  degraded CPU and is no longer required (Ian, 2026-10-06); it comes back
-  only if a build ever looks wrong.
+  degraded CPU and is no longer required (Ian, 2026-10-06); GitHub's build
+  is retired (2026-10-28), so a build that looks wrong is rebuilt clean here.
 - How the fight scorer reads a fight (Ian, from 2026-09-30): its job is to
   order every fight by difficulty, and close enough is good enough while the
   order is broadly right. A fight is judged on its win rate, its average
@@ -213,8 +213,10 @@ read, so they are written here too. Each is a standing instruction.
   `melonDS-oxide`), for good (Ian, 2026-10-01, ending the pause of
   2026-09-29). Every ROM is built locally and landed with `merge-branch.sh`;
   the private ROM builder and `fetch-rom` are retired; the melonDS fork is
-  built on Ian's PC with MSYS2 (since 2026-10-06). The public repo's build on a push to
-  `oxide` is free and stays on, and gives the SHA-1 to compare with.
+  built on Ian's PC with MSYS2 (since 2026-10-06). The public repo's ROM
+  build is retired too (Ian, 2026-10-28: "local builds are enough"), after
+  the account's free Actions ran out on 2026-10-07; its workflow is
+  disabled on GitHub and deleted from the repo.
 - An instruction to act on a later day, or once something happens (Ian,
   2026-10-01), lives only in the tracker's Scheduled list, with why it exists
   and what would make it unneeded; other docs point at it. Before acting on
