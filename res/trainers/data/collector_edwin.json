@@ -10,18 +10,54 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MUNCHLAX",
+            "species": "SPECIES_KANGASKHAN",
             "form": 0,
-            "level": 32,
-            "item": "ITEM_CHESTO_BERRY",
+            "level": 35,
+            "item": "ITEM_SILK_SCARF",
             "moves": [
-                "MOVE_HEADBUTT",
-                "MOVE_ICE_PUNCH",
-                "MOVE_REST",
-                "MOVE_ZEN_HEADBUTT"
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_CRUNCH",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_DRAIN_PUNCH"
             ],
-            "iv_scale": 227,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_SNORLAX",
+            "form": 0,
+            "level": 36,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_CURSE",
+                "MOVE_BODY_SLAM",
+                "MOVE_STOMPING_TANTRUM",
+                "MOVE_REST"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_LAPRAS",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_MYSTIC_WATER",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM",
+                "MOVE_THUNDERBOLT",
+                "MOVE_SING"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "male"
         }
     ],
     "messages": [

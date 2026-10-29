@@ -13,18 +13,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SUDOWOODO",
+            "species": "SPECIES_TOGETIC",
             "form": 0,
-            "level": 33,
+            "level": 35,
+            "item": "ITEM_SCOPE_LENS",
+            "moves": [
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_AIR_CUTTER",
+                "MOVE_AURA_SPHERE",
+                "MOVE_WISH"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_MARILL",
+            "form": 0,
+            "level": 35,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_WOOD_HAMMER",
-                "MOVE_LOW_KICK",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_ROCK_TOMB"
+                "MOVE_AQUA_TAIL",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_AQUA_JET",
+                "MOVE_KNOCK_OFF"
             ],
-            "iv_scale": 200,
-            "ball_seal": 6
+            "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_SUDOWOODO",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_HARD_STONE",
+            "moves": [
+                "MOVE_WOOD_HAMMER",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_STOMPING_TANTRUM"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
         }
     ],
     "messages": [

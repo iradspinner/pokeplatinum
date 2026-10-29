@@ -10,18 +10,70 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_AMPHAROS",
+            "form": 0,
+            "level": 35,
+            "item": "ITEM_MAGNET",
+            "moves": [
+                "MOVE_DISCHARGE",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_RAPIDASH",
+            "form": 0,
+            "level": 36,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_FLAME_CHARGE",
+                "MOVE_WILD_CHARGE",
+                "MOVE_MEGAHORN",
+                "MOVE_POISON_JAB"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_LICKILICKY",
+            "form": 0,
+            "level": 35,
+            "item": "ITEM_ASSAULT_VEST",
+            "moves": [
+                "MOVE_BODY_SLAM",
+                "MOVE_KNOCK_OFF",
+                "MOVE_ICE_BEAM",
+                "MOVE_THUNDERBOLT"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
             "species": "SPECIES_MILTANK",
             "form": 0,
-            "level": 30,
-            "item": null,
+            "level": 37,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_BIDE",
-                "MOVE_MILK_DRINK",
+                "MOVE_CURSE",
                 "MOVE_BODY_SLAM",
-                "MOVE_ZEN_HEADBUTT"
+                "MOVE_MILK_DRINK",
+                "MOVE_PLAY_ROUGH"
             ],
-            "iv_scale": 232,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

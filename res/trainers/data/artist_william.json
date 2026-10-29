@@ -13,14 +13,32 @@
             "species": "SPECIES_MIME_JR",
             "form": 0,
             "level": 30,
-            "item": "ITEM_NONE",
+            "item": "ITEM_LIGHT_CLAY",
             "moves": [
-                "MOVE_PSYBEAM",
                 "MOVE_REFLECT",
                 "MOVE_LIGHT_SCREEN",
-                "MOVE_ENCORE"
+                "MOVE_ENCORE",
+                "MOVE_DAZZLING_GLEAM"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_FLOETTE",
+            "form": 0,
+            "level": 31,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_PSYCHIC",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -29,17 +47,17 @@
             "species": "SPECIES_KECLEON",
             "form": 0,
             "level": 32,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
-                "MOVE_SLASH",
                 "MOVE_SHADOW_CLAW",
-                "MOVE_THIEF",
-                "MOVE_ANCIENT_POWER"
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_SUCKER_PUNCH"
             ],
             "iv_scale": 220,
             "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": "male"
         }
     ],
