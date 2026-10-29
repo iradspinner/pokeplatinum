@@ -261,7 +261,10 @@ read, so they are written here too. Each is a standing instruction.
   (none before Fantina) and an ordinary trainer none. Every enemy Pokemon
   holds its own item and has its own nature, with no repeats in a team
   (2026-10-12). Trainers may use TM and tutor moves freely, and from Cyrus
-  3's split on any move. Boss levels spike by importance: leaders, rivals,
+  3's split on any move. A move on a team Ian builds that its species
+  cannot have at that level goes on the line's first-stage egg list
+  without asking him, and a level-up list never moves for it
+  (2026-10-29). Boss levels spike by importance: leaders, rivals,
   Cyrus and the League keep their aces at the cap, officers and the other
   mini-bosses sit 2 to 4 under it, and the Elite Four's aces run from 72 to
   78. The named Galactic fights are mostly anything goes, so long as each is

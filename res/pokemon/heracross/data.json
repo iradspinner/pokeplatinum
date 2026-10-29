@@ -101,7 +101,9 @@
             "MOVE_FALSE_SWIPE",
             "MOVE_REVENGE",
             "MOVE_PURSUIT",
-            "MOVE_DOUBLE_EDGE"
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_CLOSE_COMBAT",
+            "MOVE_BUG_BITE"
         ]
     },
     "evolutions": [  ],
