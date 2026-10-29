@@ -2136,7 +2136,7 @@ Trainer battles:
 - TRAINER_BLACK_BELT_KYLE (Kyle, level 31, 3 Pokemon), sees the player. Vanilla. `events_route_208.json:78`
 - TRAINER_FISHERMAN_CODY (Cody, level 44, 2 Pokemon), sees the player. Vanilla. `events_route_208.json:95`
 - TRAINER_AROMA_LADY_HANNAH (Hannah, level 31, 4 Pokemon), sees the player. Vanilla. `events_route_208.json:110`
-- TRAINER_ARTIST_WILLIAM (William, level 32, 2 Pokemon), sees the player. Vanilla. `events_route_208.json:127`
+- TRAINER_ARTIST_WILLIAM (William, level 32, 3 Pokemon), sees the player. Vanilla. `events_route_208.json:127`
 
 Items given:
 
@@ -2248,15 +2248,15 @@ Static and legendary battles:
 
 Trainer battles:
 
-- TRAINER_BREEDER_ALBERT (Albert, level 26, 4 Pokemon), sees the player. Vanilla. `events_route_209.json:75`
-- TRAINER_BREEDER_JENNIFER (Jennifer, level 26, 4 Pokemon), sees the player. Vanilla. `events_route_209.json:90`
-- TRAINER_COWGIRL_SHELLEY (Shelley, level 30, 1 Pokemon), sees the player. Vanilla. `events_route_209.json:105`
-- TRAINER_JOGGER_RICHARD (Richard, level 30, 1 Pokemon), sees the player. Vanilla. `events_route_209.json:120`
-- TRAINER_JOGGER_RAUL (Raul, level 31, 1 Pokemon), sees the player. Vanilla. `events_route_209.json:135`
-- TRAINER_POKE_KID_DANIELLE (Danielle, level 30, 1 Pokemon), sees the player. Vanilla. `events_route_209.json:150`
+- TRAINER_BREEDER_ALBERT (Albert, level 37, 4 Pokemon), sees the player. Vanilla. `events_route_209.json:75`
+- TRAINER_BREEDER_JENNIFER (Jennifer, level 37, 4 Pokemon), sees the player. Vanilla. `events_route_209.json:90`
+- TRAINER_COWGIRL_SHELLEY (Shelley, level 37, 4 Pokemon), sees the player. Vanilla. `events_route_209.json:105`
+- TRAINER_JOGGER_RICHARD (Richard, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_209.json:120`
+- TRAINER_JOGGER_RAUL (Raul, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_209.json:135`
+- TRAINER_POKE_KID_DANIELLE (Danielle, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_209.json:150`
 - TRAINER_TWINS_EMMA_AND_LIL (Emma & Lil, level 31, 6 Pokemon), sees the player. Vanilla. `events_route_209.json:165`
-- TRAINER_YOUNG_COUPLE_TY_AND_SUE (Ty & Sue, level 31, 2 Pokemon), sees the player, double battle. Vanilla. `events_route_209.json:180`
-- TRAINER_YOUNG_COUPLE_TY_AND_SUE (Ty & Sue, level 31, 2 Pokemon), sees the player. Vanilla. `events_route_209.json:196`
+- TRAINER_YOUNG_COUPLE_TY_AND_SUE (Ty & Sue, level 36, 4 Pokemon), sees the player, double battle. Vanilla. `events_route_209.json:180`
+- TRAINER_YOUNG_COUPLE_TY_AND_SUE (Ty & Sue, level 36, 4 Pokemon), sees the player. Vanilla. `events_route_209.json:196`
 - TRAINER_TWINS_EMMA_AND_LIL (Emma & Lil, level 31, 6 Pokemon), sees the player, double battle. Vanilla. `events_route_209.json:406`
 
 Items given:
@@ -2390,7 +2390,7 @@ Scripts nothing reaches: script 4 `PokemonDayCare_Entry3` (line 40).
 Trainer battles:
 
 - TRAINER_POKEFAN_LEONARD (Leonard, level 31, 3 Pokemon), sees the player. Vanilla. `events_route_209_lost_tower_3f.json:25`
-- TRAINER_ROUGHNECK_KIRBY (Kirby, level 33, 1 Pokemon), sees the player. Vanilla. `events_route_209_lost_tower_3f.json:40`
+- TRAINER_ROUGHNECK_KIRBY (Kirby, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_209_lost_tower_3f.json:40`
 
 Item balls:
 
@@ -2406,11 +2406,11 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_POKEFAN_REBEKAH (Rebekah, level 33, 1 Pokemon), sees the player. Vanilla. `events_route_209_lost_tower_4f.json:34`
-- TRAINER_YOUNG_COUPLE_MIKE_AND_NAT (Mike & Nat, level 33, 2 Pokemon), sees the player. Vanilla. `events_route_209_lost_tower_4f.json:49`
-- TRAINER_YOUNG_COUPLE_MIKE_AND_NAT (Mike & Nat, level 33, 2 Pokemon), sees the player, double battle. Vanilla. `events_route_209_lost_tower_4f.json:64`
-- TRAINER_BELLE_AND_PA_BETH_AND_BOB (Beth & Bob, level 33, 2 Pokemon), sees the player. Vanilla. `events_route_209_lost_tower_4f.json:80`
-- TRAINER_BELLE_AND_PA_BETH_AND_BOB (Beth & Bob, level 33, 2 Pokemon), sees the player, double battle. Vanilla. `events_route_209_lost_tower_4f.json:95`
+- TRAINER_POKEFAN_REBEKAH (Rebekah, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_209_lost_tower_4f.json:34`
+- TRAINER_YOUNG_COUPLE_MIKE_AND_NAT (Mike & Nat, level 37, 4 Pokemon), sees the player. Vanilla. `events_route_209_lost_tower_4f.json:49`
+- TRAINER_YOUNG_COUPLE_MIKE_AND_NAT (Mike & Nat, level 37, 4 Pokemon), sees the player, double battle. Vanilla. `events_route_209_lost_tower_4f.json:64`
+- TRAINER_BELLE_AND_PA_BETH_AND_BOB (Beth & Bob, level 36, 3 Pokemon), sees the player. Vanilla. `events_route_209_lost_tower_4f.json:80`
+- TRAINER_BELLE_AND_PA_BETH_AND_BOB (Beth & Bob, level 36, 3 Pokemon), sees the player, double battle. Vanilla. `events_route_209_lost_tower_4f.json:95`
 
 Item balls:
 
@@ -2665,8 +2665,8 @@ Trainer battles:
 
 - TRAINER_BLACK_BELT_COLBY (Colby, level 33, 3 Pokemon), sees the player. Vanilla. `events_veilstone_city_gym.json:81`
 - TRAINER_BLACK_BELT_DARREN (Darren, level 35, 3 Pokemon), sees the player. Vanilla. `events_veilstone_city_gym.json:96`
-- TRAINER_BLACK_BELT_JEFFERY (Jeffery, level 36, 1 Pokemon), sees the player. Vanilla. `events_veilstone_city_gym.json:111`
-- TRAINER_BLACK_BELT_RAFAEL (Rafael, level 26, 2 Pokemon), sees the player. Vanilla. `events_veilstone_city_gym.json:126`
+- TRAINER_BLACK_BELT_JEFFERY (Jeffery, level 38, 3 Pokemon), sees the player. Vanilla. `events_veilstone_city_gym.json:111`
+- TRAINER_BLACK_BELT_RAFAEL (Rafael, level 38, 3 Pokemon), sees the player. Vanilla. `events_veilstone_city_gym.json:126`
 - StartTrainerBattle: against TRAINER_LEADER_MAYLENE (Maylene, level 39, 6 Pokemon), by number. Vanilla. `scripts_veilstone_city_gym.s:37`
 - StartTrainerBattle: against TRAINER_LEADER_MAYLENE_REMATCH (Maylene, level 85, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_veilstone_city_gym.s:151`
 
@@ -2823,15 +2823,15 @@ Trainer battles:
 
 - TRAINER_NINJA_BOY_FABIAN (Fabian, level 41, 1 Pokemon), sees the player. Vanilla. `events_route_210_south.json:51`
 - TRAINER_NINJA_BOY_BRENNAN (Brennan, level 41, 1 Pokemon), sees the player. Vanilla. `events_route_210_south.json:66`
-- TRAINER_TWINS_TERI_AND_TIA (Teri & Tia, level 32, 2 Pokemon), sees the player, double battle. Vanilla. `events_route_210_south.json:81`
-- TRAINER_TWINS_TERI_AND_TIA (Teri & Tia, level 32, 2 Pokemon), sees the player. Vanilla. `events_route_210_south.json:97`
+- TRAINER_TWINS_TERI_AND_TIA (Teri & Tia, level 36, 4 Pokemon), sees the player, double battle. Vanilla. `events_route_210_south.json:81`
+- TRAINER_TWINS_TERI_AND_TIA (Teri & Tia, level 36, 4 Pokemon), sees the player. Vanilla. `events_route_210_south.json:97`
 - TRAINER_NINJA_BOY_BRUCE (Bruce, level 41, 1 Pokemon), sees the player. Vanilla. `events_route_210_south.json:112`
-- TRAINER_JOGGER_WYATT (Wyatt, level 33, 1 Pokemon), sees the player. Vanilla. `events_route_210_south.json:127`
-- TRAINER_BREEDER_KAHLIL (Kahlil, level 31, 2 Pokemon), sees the player. Vanilla. `events_route_210_south.json:142`
-- TRAINER_BREEDER_AMBER (Amber, level 31, 2 Pokemon), sees the player. Vanilla. `events_route_210_south.json:157`
-- TRAINER_BELLE_AND_PA_AVA_AND_MATT (Ava & Matt, level 33, 2 Pokemon), sees the player, double battle. Vanilla. `events_route_210_south.json:172`
-- TRAINER_BELLE_AND_PA_AVA_AND_MATT (Ava & Matt, level 33, 2 Pokemon), sees the player. Vanilla. `events_route_210_south.json:188`
-- TRAINER_RANCHER_MARCO (Marco, level 33, 1 Pokemon), sees the player. Vanilla. `events_route_210_south.json:414`
+- TRAINER_JOGGER_WYATT (Wyatt, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:127`
+- TRAINER_BREEDER_KAHLIL (Kahlil, level 37, 4 Pokemon), sees the player. Vanilla. `events_route_210_south.json:142`
+- TRAINER_BREEDER_AMBER (Amber, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:157`
+- TRAINER_BELLE_AND_PA_AVA_AND_MATT (Ava & Matt, level 37, 4 Pokemon), sees the player, double battle. Vanilla. `events_route_210_south.json:172`
+- TRAINER_BELLE_AND_PA_AVA_AND_MATT (Ava & Matt, level 37, 4 Pokemon), sees the player. Vanilla. `events_route_210_south.json:188`
+- TRAINER_RANCHER_MARCO (Marco, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:414`
 
 Items given:
 
@@ -2878,14 +2878,14 @@ Scripts nothing reaches: script 2 `Route210South_Entry1` (line 29), script 8 `Ro
 
 Trainer battles:
 
-- TRAINER_BLACK_BELT_DEREK (Derek, level 34, 1 Pokemon), sees the player. Vanilla. `events_route_215.json:35`
+- TRAINER_BLACK_BELT_DEREK (Derek, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_215.json:35`
 - TRAINER_BLACK_BELT_GREGORY (Gregory, level 34, 3 Pokemon), sees the player. Vanilla. `events_route_215.json:50`
 - TRAINER_BLACK_BELT_NATHANIEL (Nathaniel, level 34, 3 Pokemon), sees the player. Vanilla. `events_route_215.json:65`
-- TRAINER_JOGGER_SCOTT (Scott, level 34, 1 Pokemon), sees the player. Vanilla. `events_route_215.json:80`
-- TRAINER_RUIN_MANIAC_CALVIN (Calvin, level 33, 2 Pokemon), sees the player. Vanilla. `events_route_215.json:95`
+- TRAINER_JOGGER_SCOTT (Scott, level 38, 3 Pokemon), sees the player. Vanilla. `events_route_215.json:80`
+- TRAINER_RUIN_MANIAC_CALVIN (Calvin, level 37, 4 Pokemon), sees the player. Vanilla. `events_route_215.json:95`
 - TRAINER_ACE_TRAINER_DENNIS (Dennis, level 38, 4 Pokemon), sees the player. Vanilla. `events_route_215.json:110`
 - TRAINER_ACE_TRAINER_MAYA (Maya, level 38, 4 Pokemon), sees the player. Vanilla. `events_route_215.json:125`
-- TRAINER_JOGGER_CRAIG (Craig, level 34, 2 Pokemon), sees the player. Vanilla. `events_route_215.json:140`
+- TRAINER_JOGGER_CRAIG (Craig, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_215.json:140`
 
 Items given:
 
@@ -7076,9 +7076,9 @@ Gone from vanilla: StartTrainerBattle: against one of 14, TRAINER_LEADER_CANDICE
 
 Trainer battles:
 
-- TRAINER_COLLECTOR_FERNANDO (Fernando, level 32, 1 Pokemon), sees the player. Vanilla. `events_cafe.json:40`
-- TRAINER_COLLECTOR_EDWIN (Edwin, level 32, 1 Pokemon), sees the player. Vanilla. `events_cafe.json:55`
-- TRAINER_WAITRESS_KATI (Kati, level 33, 1 Pokemon), sees the player. Vanilla. `events_cafe.json:70`
+- TRAINER_COLLECTOR_FERNANDO (Fernando, level 37, 3 Pokemon), sees the player. Vanilla. `events_cafe.json:40`
+- TRAINER_COLLECTOR_EDWIN (Edwin, level 37, 3 Pokemon), sees the player. Vanilla. `events_cafe.json:55`
+- TRAINER_WAITRESS_KATI (Kati, level 37, 3 Pokemon), sees the player. Vanilla. `events_cafe.json:70`
 
 Items given:
 
