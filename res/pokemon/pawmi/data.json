@@ -106,7 +106,10 @@
             "TM73"
         ],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_VOLT_SWITCH"
+        ]
     },
     "evolutions": [
         [

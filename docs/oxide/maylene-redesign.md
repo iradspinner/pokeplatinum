@@ -2,6 +2,10 @@
 
 Ian built Maylene's six (Veilstone Gym, Maylene's split, cap 39) in the OxiDex on 2026-10-29 and asked for two things only: anything that invalidates the fight, and the weakest crux with the top replacement picks for it. His natures are his choice and are not argued here. The six is on branch `overseer-maylene` (0d358a4505) for study only; nothing here lands.
 
+## Ian's answers (2026-10-29)
+
+Hakamo-o keeps his set (question 1), so Toxicroak and the Bulk Up set are not taken. Cacturne takes its hidden ability, Water Absorb (question 4). Every move his six carries that no list gives at its level goes on the egg list of its line's first stage, and he ruled that this is done from now on without asking him, never by moving a level-up entry, since that would change what the player gets (question 2). So Pawmi's list takes Sucker Punch and Volt Switch, Heracross's Close Combat and Bug Bite (Close Combat stays its level 37 move for the player, which answers question 3), Jangmo-o's Dragon Dance and Focus Punch, and Cacnea's Fling, which is legal as a TM cut in the TM pass but which the OxiDex's list reads as off-list. Question 5 falls away with Toxicroak.
+
 ## Summary
 
 **Outcome.** Nothing breaks the fight in the simulator, and every item and every move does what Ian meant there (the engine side was checked only in the item data; nothing was tried in game): the Flame Orb burns Heracross for Guts and Facade, the Iron Ball halves Cacturne's Speed to 25 for Revenge and Payback and is then flung at 130 power (Cacturne is at 51 afterwards), and Pawmot's Volt Switch hands the field to Lucario. Two things fail as the file stands. Five moves on three members are on no Oxide list for their species before Cyrus 3's split. And Cacturne's Sand Veil does nothing, since nothing in this fight sets a sandstorm.

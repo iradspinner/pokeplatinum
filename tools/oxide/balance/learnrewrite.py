@@ -138,6 +138,18 @@ IAN_EGG_MOVES = {
                                                "only at 40"),
                        ("MOVE_PURSUIT", "Ian, 2026-10-29: Fantina's Decidueye")],
     "SPECIES_MISDREAVUS": [("MOVE_NASTY_PLOT", "Ian, 2026-10-29: Fantina's Mismagius")],
+    # Maylene's six (Ian, 2026-10-29: a move a team of his carries that no
+    # list gives at its level goes on the egg list, without asking; level-up
+    # lists never move for it). Close Combat is Heracross's level 37 move,
+    # one past Maylene's 36; Fling is legal as a TM cut in the TM pass, but
+    # the OxiDex's list reads only today's TMs.
+    "SPECIES_PAWMI": [("MOVE_SUCKER_PUNCH", "Ian, 2026-10-29: Maylene's Pawmot"),
+                      ("MOVE_VOLT_SWITCH", "Ian, 2026-10-29: Maylene's Pawmot")],
+    "SPECIES_HERACROSS": [("MOVE_CLOSE_COMBAT", "Ian, 2026-10-29: Maylene's Heracross at 36"),
+                          ("MOVE_BUG_BITE", "Ian, 2026-10-29: Maylene's Heracross")],
+    "SPECIES_JANGMO_O": [("MOVE_DRAGON_DANCE", "Ian, 2026-10-29: Maylene's Hakamo-o"),
+                         ("MOVE_FOCUS_PUNCH", "Ian, 2026-10-29: Maylene's Hakamo-o")],
+    "SPECIES_CACNEA": [("MOVE_FLING", "Ian, 2026-10-29: Maylene's Cacturne")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
