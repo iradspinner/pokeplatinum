@@ -443,14 +443,21 @@ def warm():
 
 def choices(root):
     """What the editor offers: every species, move, item and nature by name.
-    A move also carries its type, which colours its box in the editor."""
+    A move also carries its type, which colours its box in the editor, and
+    its numbers and description, and each ability its description, for the
+    hover text over a move or an ability (Ian, 2026-10-29)."""
     moves = pokedex.moves(root)
     tidy = lambda c, p: c[len(p):].replace("_", " ").title()
     e = enums(root)
+    offered = [c for c, r in moves.items()
+               if c != "MOVE_NONE" and "(Special)" not in (r.get("name") or "")]
     return {
-        "moves": sorted(([c, r.get("name") or c, r.get("type") or ""] for c, r in moves.items()
-                         if c != "MOVE_NONE" and "(Special)" not in (r.get("name") or "")),
+        "moves": sorted(([c, moves[c].get("name") or c, moves[c].get("type") or ""] for c in offered),
                         key=lambda x: x[1]),
+        "move_info": {c: {k: moves[c].get(k) for k in ("type", "class", "power", "accuracy", "pp",
+                                                       "priority", "effect_chance", "description")}
+                      for c in offered},
+        "abilities": pokedex.ability_descriptions(root),
         "items": sorted(([c, tidy(c, "ITEM_")] for c in e["items"] if c != "ITEM_NONE"),
                         key=lambda x: x[1]),
         "natures": [[c, tidy(c, "NATURE_")] for c in e["natures"]],

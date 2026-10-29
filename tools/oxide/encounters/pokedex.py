@@ -397,6 +397,29 @@ def weather_abilities(root, species):
     return [a for a in (rec or {}).get("abilities", []) if a in WEATHER_ABILITIES]
 
 
+def ability_descriptions(root):
+    """{STENCH: "The stench helps keep wild Pokemon away."} for every ability,
+    from the game's own text bank, whose message n describes ability id n in
+    the generated list. The two-line box's line break becomes a space."""
+    names = os.path.join(root, "generated", "abilities.txt")
+    bank = os.path.join(root, "res", "text", "ability_descriptions.json")
+    return _ability_descriptions(root, _mtime(names), _mtime(bank))
+
+
+@functools.lru_cache(maxsize=4)
+def _ability_descriptions(root, *stamps):
+    consts = _lines(root, os.path.join("generated", "abilities.txt"))
+    with open(os.path.join(root, "res", "text", "ability_descriptions.json"), encoding="utf-8") as f:
+        messages = json.load(f)["messages"]
+    out = {}
+    for const, msg in zip(consts, messages):
+        text = msg.get("en_US") or ""
+        text = " ".join(l.strip() for l in ([text] if isinstance(text, str) else text) if l.strip())
+        if const != "ABILITY_NONE" and text and text != "-":
+            out[_strip(const, "ABILITY_")] = text
+    return out
+
+
 def vanilla_moves(root, ref="main"):
     """{MOVE_X: record} for every move a git ref has, read in one git call.
 
