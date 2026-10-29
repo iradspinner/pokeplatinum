@@ -2517,6 +2517,30 @@ const moveStyle = c => {
   const t = TRTYPE.get(c);
   return t ? ` style="--t: var(--type-${t.toLowerCase()})"` : "";
 };
+// A move constant's numbers and description, for its hover text.
+let TRMOVE = new Map();
+const MOVEKIND = { PHYSICAL: "physical", SPECIAL: "special", STATUS: "status" };
+// The hover text over a move (Ian, 2026-10-29): its type and kind, its
+// numbers, then the game's own description. A power of 1 is one the battle
+// works out (Low Kick, Return), and an attack with accuracy 0 never misses;
+// a status move with accuracy 0 acts on its user or the field, so it shows none.
+function moveTip(c) {
+  const m = TRMOVE.get(c);
+  if (!m) return "";
+  const attack = m.class !== "STATUS", nums = [];
+  if (attack) nums.push(m.power === 1 ? "power varies" : `power ${m.power}`);
+  if (m.accuracy) nums.push(`accuracy ${m.accuracy}`);
+  else if (attack) nums.push("never misses");
+  nums.push(`${m.pp} PP`);
+  if (m.priority) nums.push(`priority ${m.priority > 0 ? "+" : ""}${m.priority}`);
+  if (m.effect_chance > 0 && m.effect_chance < 100) nums.push(`${m.effect_chance}% effect chance`);
+  const line = nums.join(", ");
+  return [`${tidy(m.type)}, ${MOVEKIND[m.class] || tidy(m.class)}`,
+          line[0].toUpperCase() + line.slice(1), m.description].filter(Boolean).join("\n");
+}
+// The hover text over an ability: its name and the game's own description.
+const abilityTip = a => a ? `${titled(a)}: ${(TRAINERS.choices.abilities || {})[a]
+  || "the game has no description for it"}` : "";
 let TREDIT = null, TRDIRTY = false, TRFINDINGS = [], TRFOCUS = null, TRSEQ = 0, TRTIMER = null;
 // Constant to name and name to constant, for the species, move and item boxes.
 const TRNAMES = { species: new Map(), moves: new Map(), items: new Map() };
@@ -2559,6 +2583,7 @@ async function loadTrainers() {
     $("#dl-" + kind).innerHTML = pairs.map(([, n]) => `<option value="${esc(n)}">`).join("");
   }
   TRTYPE = new Map(TRAINERS.choices.moves.map(([c, , t]) => [c, t]));
+  TRMOVE = new Map(Object.entries(TRAINERS.choices.move_info || {}));
 }
 
 // Play order is by split, then by the team's highest level.
@@ -2923,7 +2948,8 @@ function drawMoveLists() {
   const row = e => `<div class="mrow${e.move ? "" : " gone"}${known.has(e.move) ? " known" : ""}"
       data-move="${pickable && e.move ? e.move : ""}"${e.move ? "" : ' title="Oxide has no such move"'}>
       <span class="nm${e.type ? " typed" : ""}"${e.type
-        ? ` style="--t: var(--type-${e.type.toLowerCase()})" title="${esc(tidy(e.type))}"` : ""}>${esc(e.name)}</span>
+        ? ` style="--t: var(--type-${e.type.toLowerCase()})" title="${esc(moveTip(e.move) || tidy(e.type))}"`
+        : ""}>${esc(e.name)}</span>
       <span class="how">${esc(e.how)}${e.from ? ", as " + esc(e.from) : ""}</span></div>`;
   const col = (title, sub, list, none) => `<div class="mcol"><h3>${esc(title)}</h3>
       <p class="sub">${esc(sub || "")}</p>${list.length ? list.map(row).join("")
@@ -2979,15 +3005,38 @@ function sheetColumn(f, i) {
   const over = TRDETAIL.cap && f.level > TRDETAIL.cap;
   const ab = (m && m.file.species === f.species && m.abilities) || {};
   const abName = a => a ? titled(a) : "none";
-  const abilities = [[0, b && !f.ability ? b.ability : `either (${abName(ab["1"])} or ${abName(ab["2"] || ab["1"])})`],
-    [1, abName(ab["1"])], [2, abName(ab["2"])], [3, `${abName(ab.hidden)} (hidden)`]];
-  const sel = (k, opts, val, label, rolled) => `<select class="ed${rolled ? " rolled" : ""}" id="${id(k)}"
+  // Each ability carries its description as hover text (Ian, 2026-10-29). The
+  // rolled choice describes the ability the game gave, or both it chooses from.
+  const rolledAs = b && !f.ability && [ab["1"], ab["2"]].find(a => a && titled(a) === b.ability);
+  const either = rolledAs ? abilityTip(rolledAs)
+    : [ab["1"], ab["2"] !== ab["1"] && ab["2"]].filter(Boolean).map(abilityTip).join("\n");
+  const abilities = [[0, b && !f.ability ? b.ability : `either (${abName(ab["1"])} or ${abName(ab["2"] || ab["1"])})`, either],
+    [1, abName(ab["1"]), abilityTip(ab["1"])], [2, abName(ab["2"]), abilityTip(ab["2"])],
+    [3, `${abName(ab.hidden)} (hidden)`, abilityTip(ab.hidden)]];
+  // A choice's third field, when it has one, is its hover text, shown on the
+  // box for the choice made and on each choice in the open list.
+  const sel = (k, opts, val, label, rolled) => {
+    const chosen = opts.find(([v]) => String(v) === String(val));
+    const tip = chosen && chosen[2] ? "\n" + chosen[2] : "";
+    return `<select class="ed${rolled ? " rolled" : ""}" id="${id(k)}"
       data-i="${i}" data-k="${k}" aria-label="${esc(label)}" title="${esc(label)}${rolled
-      ? ", rolled by the game; choose one to name it" : ""}">${opts.map(([v, l]) => `<option value="${
-      esc(v)}"${String(v) === String(val) ? " selected" : ""}>${esc(l)}</option>`).join("")}</select>`;
-  const natures = [["", b && !f.nature ? b.nature : "rolled"]].concat(TRAINERS.choices.natures);
+      ? ", rolled by the game; choose one to name it" : ""}${esc(tip)}">${opts.map(([v, l, t]) => `<option value="${
+      esc(v)}"${String(v) === String(val) ? " selected" : ""}${t ? ` title="${esc(t)}"` : ""}>${esc(l)}</option>`).join("")}</select>`;
+  };
+  // A rolled nature reads like a named one, its raised and lowered stats beside it.
+  const rolledNature = b && !f.nature && (TRAINERS.choices.natures.find(([, l]) =>
+    l.split(" (")[0] === b.nature) || [, b.nature])[1];
+  const natures = [["", rolledNature || "rolled"]].concat(TRAINERS.choices.natures);
   const num = (k, lo, hi) => `<input type="number" class="ed num sm" id="${id(k)}" data-i="${i}"
       data-k="${k}" min="${lo}" max="${hi}" value="${f[k] || 0}">`;
+  // A form the game gives a name to is chosen by name ("1: Heat"), and the
+  // sprite is the form's own where it has one (Ian, 2026-10-29).
+  const formNames = (TRAINERS.choices.form_names || {})[f.species];
+  const formBox = formNames && formNames.length > 1
+    ? sel("form", formNames.map((n, j) => [j, `${j}: ${n}`]), f.form || 0, "Form")
+    : num("form", 0, (TRAINERS.choices.forms[f.species] || 1) - 1);
+  const formSprite = m && m.file.species === f.species && (m.file.form || 0) === (f.form || 0)
+    && m.form_folder ? `?form=${encodeURIComponent(m.form_folder)}` : "";
   const errs = TRFINDINGS.some(x => x.member === i && x.severity === "error");
   const typeCell = t => t
     ? `<div class="cell t" style="--t: var(--type-${t.toLowerCase()})">${esc(tidy(t))}</div>`
@@ -2998,20 +3047,22 @@ function sheetColumn(f, i) {
     return `<div class="cell mvcell${t ? " t" : ""}"${t ? ` style="--t: var(--type-${t.toLowerCase()})"` : ""}>
       <input class="ed mv${stab ? " stab" : ""}" id="${id("mv" + j)}" data-i="${i}" data-k="moves"
         data-slot="${j}" list="dl-moves" placeholder="no move" aria-label="${who}'s move ${j + 1}"
-        value="${esc(nameOf("moves", c))}"></div>`;
+        value="${esc(nameOf("moves", c))}"${c ? ` title="${esc(moveTip(c))}"` : ""}></div>`;
   };
+  const defaultTip = name => ["The level-up default: this trainer lists no moves",
+                              moveTip(constOf("moves", name || ""))].filter(Boolean).join("\n\n");
   const moves = hasMoves ? [0, 1, 2, 3].map(moveCell).join("")
-    : [0, 1, 2, 3].map(j => `<div class="cell deflt" title="The level-up default: this trainer lists no moves">${
+    : [0, 1, 2, 3].map(j => `<div class="cell deflt" title="${esc(defaultTip(b && b.moves[j]))}">${
         esc((b && b.moves[j]) || "")}</div>`).join("");
   const key = `${SHEETSIDE === null ? "s" : SHEETSIDE}-${i}`;
   return `<div class="col${TRPANE === "moves" && i === TRMEMBER ? " on" : ""}" data-i="${i}">
     <div class="cell sprcell">
-      <span class="big"><img src="/api/sprite/${folderOf(f.species)}/male_front" alt=""
+      <span class="big"><img src="/api/sprite/${folderOf(f.species)}/male_front${formSprite}" alt=""
         onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.src.replace('male_front','female_front')}"></span>
       <details class="colmenu" data-key="${key}">
         <summary title="Form, IV scale, gender, move lists and more" aria-label="More for ${who}">&middot;&middot;&middot;</summary>
         <div class="pop">
-          <label>Form ${num("form", 0, (TRAINERS.choices.forms[f.species] || 1) - 1)}</label>
+          <label>Form ${formBox}</label>
           <label>IV scale ${num("iv_scale", 0, 255)} <span class="sub">${m && b ? "IVs " + m.iv : ""}</span></label>
           <label>Gender ${sel("gender", [["", "either"], ["male", "male"], ["female", "female"]], f.gender || "", "Gender")}</label>
           <p class="sub">${b ? `In battle: ${esc(b.ability)}, ${esc(b.nature)}${f.nature ? " (named)" : ""},

@@ -905,15 +905,23 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
-    def _sprite(self, folder, kind):
+    def _sprite(self, folder, kind, form=None):
         """A species' sprite straight out of res/. The PNGs are indexed colour
         with their own palette, so a browser draws them as they are; a front or
-        back sheet is two frames side by side, which the page crops."""
+        back sheet is two frames side by side, which the page crops. `form`
+        names a form folder (heat for Rotom Heat), whose front and back sheets
+        are forms/<form>/front.png and back.png, for either gender; a form
+        without that sheet falls back to the species' own."""
         kind = kind.replace(".png", "")
         if kind not in pokedex.SPRITES or "/" in folder or ".." in folder:
             return self._send({"error": "no such sprite"}, 404)
         path = os.path.join(model.repo_root(), "res", "pokemon", folder,
                             kind + ".png")
+        side = kind.split("_")[-1]
+        if form and re.fullmatch(r"[a-z0-9_]+", form) and side in ("front", "back"):
+            own = os.path.join(model.repo_root(), "res", "pokemon", folder, "forms", form,
+                               side + ".png")
+            path = own if os.path.isfile(own) else path
         try:
             with open(path, "rb") as f:
                 body = _transparent_background(f.read())
@@ -1120,7 +1128,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 out = move_detail(parts[2])
                 return self._send(out, 404 if "error" in out else 200)
             if parts[1] == "sprite":
-                return self._sprite(parts[2], parts[3] if len(parts) > 3 else "icon")
+                return self._sprite(parts[2], parts[3] if len(parts) > 3 else "icon",
+                                    (q.get("form") or [None])[0])
             if parts[1] == "trainer-sprite":
                 return self._trainer_sprite(parts[2])
             if parts[1] == "simulate":

@@ -224,7 +224,13 @@ level-up, TM and tutor alike, and the one-hit KO moves leave every
 moveset or become other moves (Ian, 2026-10-06). Teams
 are judged against Oxide's box, not Kaizo's. Ian plans a boss by baiting
 matchups in the order he wants, so the main tax on him is moveset overlap
-and coverage, then switching or staying in by fight.
+and coverage, then switching or staying in by fight. A lead may be wholly
+countered by one Pokemon, or by a whole type, when that answer draws in a
+member that beats it and carries a setup move: a plan built on that answer
+is untenable, since its switch out hands the setup member a free turn of
+Swords Dance or Calm Mind (Ian, 2026-10-29, on Fantina's Runerigus). So a
+lead, or any member, is judged by what its counters draw in after it, not
+by how many counters it has.
 From Gardenia's redesign (Ian, 2026-10-13): a conditional move such as
 Solar Beam may always be considered for a boss, with his okay when it
 comes early (he kept it off his own sun team because its Drought sun

@@ -129,6 +129,28 @@ def check_move_lists(results, root):
     results.append(("Oxide's own list stops at the member's level",
                     level_up and max(int(e["how"].split()[1].split(",")[0]) for e in level_up) <= 40
                     and max(own) > 40, f"learns up to {max(own)}"))
+    # The lists' order (Ian, 2026-10-29): by level, then by TM number, then
+    # tutor and egg; a canon move learned by TM and by level sits with the
+    # level-ups, and canon TMs, which carry no number, go by name.
+    goth = learnsets.lists(root, "SPECIES_GOTHITELLE", 0, 32)
+    hows = [e["how"] for e in goth["oxide"]]
+    levels = [int(h.split()[1].rstrip(",")) for h in hows if h.startswith("Level")]
+    tms = [int(h.split()[1]) for h in hows if h.startswith("TM ")]
+    last_level = max(i for i, h in enumerate(hows) if h.startswith("Level"))
+    first_tm = min(i for i, h in enumerate(hows) if h.startswith("TM "))
+    gen9 = goth["latest"]["moves"]
+    by_tm = [e["name"] for e in gen9 if e["how"] == "TM"]
+    charm = next(i for i, e in enumerate(gen9) if e["name"] == "Charm")
+    results.append(("the move lists go by level, then TM number, then tutor and egg; a canon move "
+                    "also learned by level sits at its level (Gothitelle at 32)",
+                    levels == sorted(levels) and tms == sorted(tms) and len(tms) > 5
+                    and last_level < first_tm
+                    and gen9[charm]["how"].endswith("Level 16")
+                    and charm < min(i for i, e in enumerate(gen9) if e["how"] == "TM")
+                    and by_tm == sorted(by_tm)
+                    and max(i for i, e in enumerate(gen9) if e["how"].startswith("TM"))
+                    < min(i for i, e in enumerate(gen9) if e["how"] == "Egg"),
+                    f"TMs in order {tms[:6]}"))
     # Level-0 evolution moves (2026-09-28). No species has one yet, so a
     # stand-in: Politoed's learnset with Bounce taught on evolving, and a move
     # it already learns by level also taught on evolving.
@@ -164,6 +186,59 @@ def check_move_lists(results, root):
                     "(Faint Attack, Hi Jump Kick)",
                     ids.get("feintattack") == ids.get("faintattack") is not None
                     and ids.get("highjumpkick") is not None, ""))
+
+
+def check_editor_details(results, root):
+    """Ian's asks of 2026-10-29 for the team editor: hover text over a move
+    or an ability, natures with their stats, forms by name and shown as the
+    game builds them, and a packer that cannot fall behind the game's names."""
+    c = trainers.choices(root)
+    psybeam, natures = c["move_info"]["MOVE_PSYBEAM"], dict(c["natures"])
+    results.append(("the editor gets each move's numbers and description and each ability's "
+                    "description, for the hover text",
+                    psybeam["power"] == 65 and psybeam["pp"] == 20 and "confused" in psybeam["description"]
+                    and c["abilities"]["CUTE_CHARM"].startswith("Contact with the Pok")
+                    and "MOVE_NONE" not in c["move_info"], ""))
+    results.append(("each nature names the stats it raises and lowers",
+                    natures["NATURE_ADAMANT"] == "Adamant (+Atk, -SpA)"
+                    and natures["NATURE_TIMID"] == "Timid (+Spe, -Atk)"
+                    and natures["NATURE_CALM"] == "Calm (+SpD, -Atk)"
+                    and natures["NATURE_HARDY"] == "Hardy (neutral)",
+                    natures["NATURE_ADAMANT"]))
+    fantina = json.loads(json.dumps(trainers.load(root, "leader_fantina")))
+    party = fantina["party"]
+    party[0] = dict(party[0], species="SPECIES_ROTOM", form=1, ability=1)
+    heat = trainers.detail(root, "leader_fantina", fantina)["members"][0]
+    party[0]["form"] = 0
+    base = trainers.detail(root, "leader_fantina", fantina)["members"][0]
+    results.append(("a form is named in the editor and shown with its own types and stats "
+                    "(Rotom Heat is Electric and Fire)",
+                    c["form_names"]["SPECIES_ROTOM"] == ["Base", "Heat", "Wash", "Frost", "Fan", "Mow"]
+                    and heat["types"] == ["ELECTRIC", "FIRE"] and heat["form_folder"] == "heat"
+                    and base["types"] == ["ELECTRIC", "GHOST"] and base["form_folder"] is None,
+                    f"{heat['types']} against {base['types']}"))
+    # The packer is brought up to date before every pack, and its colour codes
+    # never reach the page (the stale packer of 2026-10-29).
+    import tempfile
+    calls, real_run = [], trainers.subprocess.run
+
+    class Done:
+        returncode, stdout, stderr = 1, "", "\x1b[1;31merror:\x1b[0m no such target"
+    try:
+        with tempfile.TemporaryDirectory() as scratch:
+            os.makedirs(os.path.join(scratch, "build"))
+            open(os.path.join(scratch, "build", "build.ninja"), "w").close()
+            trainers.subprocess.run = lambda cmd, **kw: calls.append(cmd) or Done()
+            message = trainers.refresh_packer(scratch)
+    except AttributeError as exc:
+        message = str(exc)
+    finally:
+        trainers.subprocess.run = real_run
+    results.append(("every pack first rebuilds the packer and its header with ninja, and a "
+                    "failure's message carries no colour codes",
+                    calls and calls[0][0] == "ninja" and "tools/dataproc/trainerproc" in calls[0]
+                    and "generated/trainers.h" in calls[0] and "\x1b" not in message
+                    and "no such target" in message, message))
 
 
 def check_lint(results, root):
@@ -550,9 +625,22 @@ def check_routes(results):
         missing = get(port, "/api/trainer/no_such_trainer")
         lists = get(port, "/api/trainer-moves?species=SPECIES_NOSEPASS&level=15")
         bad = get(port, "/api/trainer-moves?species=SPECIES_NOPE")
+        sprites = {}
+        for form in ("", "?form=heat", "?form=nope"):
+            conn = http.client.HTTPConnection("127.0.0.1", port, timeout=60)
+            conn.request("GET", "/api/sprite/rotom/male_front" + form)
+            resp = conn.getresponse()
+            sprites[form] = (resp.status, resp.read())
+            conn.close()
     finally:
         httpd.shutdown()
         httpd.server_close()
+    results.append(("a form's sprite is its own sheet, and an unknown form falls back to the "
+                    "species' (Rotom Heat)",
+                    all(s == 200 for s, _ in sprites.values())
+                    and sprites["?form=heat"][1] != sprites[""][1]
+                    and sprites["?form=nope"][1] == sprites[""][1],
+                    " ".join(str(s) for s, _ in sprites.values())))
     results.append(("/api/trainers lists them in split order's terms, and /api/trainer/<stem> "
                     "is one team; an unknown stem is a 404",
                     listing[0] == 200 and listing[1]["splits"][0] == "Roark"
@@ -573,6 +661,7 @@ def main():
     check_read(results, root)
     check_difficulty(results, root)
     check_move_lists(results, root)
+    check_editor_details(results, root)
     check_lint(results, root)
     check_style(results, root)
     check_save(results, root)
