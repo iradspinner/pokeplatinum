@@ -10,32 +10,55 @@
     "double_battle": true,
     "party": [
         {
-            "species": "SPECIES_GROWLITHE",
+            "species": "SPECIES_EXEGGUTOR",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 35,
+            "item": "ITEM_HEAT_ROCK",
             "moves": [
-                "MOVE_ROAR",
-                "MOVE_CRUNCH",
-                "MOVE_FIRE_FANG",
-                "MOVE_MORNING_SUN"
+                "MOVE_SUNNY_DAY",
+                "MOVE_ENERGY_BALL",
+                "MOVE_PSYCHIC",
+                "MOVE_SLEEP_POWDER"
             ],
-            "iv_scale": 208,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         },
         {
-            "species": "SPECIES_PONYTA",
+            "species": "SPECIES_NINETALES",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_CHARCOAL",
             "moves": [
-                "MOVE_HEADBUTT",
-                "MOVE_FLAME_WHEEL",
-                "MOVE_BOUNCE",
-                "MOVE_HYPNOSIS"
+                "MOVE_INCINERATE",
+                "MOVE_FLAMETHROWER",
+                "MOVE_ENERGY_BALL",
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 189,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_ARCANINE",
+            "form": 0,
+            "level": 36,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_FIRE_FANG",
+                "MOVE_WILD_CHARGE",
+                "MOVE_CRUNCH",
+                "MOVE_HELPING_HAND"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
         }
     ],
     "messages": [

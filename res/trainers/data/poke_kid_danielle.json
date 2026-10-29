@@ -10,18 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CLEFABLE",
+            "species": "SPECIES_CLEFAIRY",
             "form": 0,
-            "level": 30,
-            "item": null,
+            "level": 35,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_SING",
-                "MOVE_DOUBLE_SLAP",
-                "MOVE_MINIMIZE",
-                "MOVE_METRONOME"
+                "MOVE_ALLURING_VOICE",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_WISH",
+                "MOVE_ICY_WIND"
             ],
-            "iv_scale": 203,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_AZUMARILL",
+            "form": 0,
+            "level": 35,
+            "item": "ITEM_MYSTIC_WATER",
+            "moves": [
+                "MOVE_AQUA_TAIL",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_AQUA_JET",
+                "MOVE_DOUBLE_EDGE"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_PIKACHU",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_LIGHT_BALL",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_SURF",
+                "MOVE_GRASS_KNOT",
+                "MOVE_NASTY_PLOT"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

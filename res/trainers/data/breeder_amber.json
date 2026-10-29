@@ -10,32 +10,53 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_HAPPINY",
+            "species": "SPECIES_KANGASKHAN",
             "form": 0,
-            "level": 31,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_SHELL_BELL",
             "moves": [
-                "MOVE_COUNTER",
-                "MOVE_COPYCAT",
-                "MOVE_METRONOME",
-                "MOVE_SWEET_KISS"
+                "MOVE_FAKE_OUT",
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_CRUNCH",
+                "MOVE_SUCKER_PUNCH"
             ],
-            "iv_scale": 208,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 2
         },
         {
-            "species": "SPECIES_TOGEPI",
+            "species": "SPECIES_CHANSEY",
             "form": 0,
-            "level": 31,
-            "item": null,
+            "level": 35,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_YAWN",
-                "MOVE_EXTRASENSORY",
-                "MOVE_MIRROR_MOVE",
-                "MOVE_METRONOME"
+                "MOVE_SOFTBOILED",
+                "MOVE_TOXIC",
+                "MOVE_CHILLING_WATER",
+                "MOVE_DAZZLING_GLEAM"
             ],
-            "iv_scale": 255,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_CLEFABLE",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_CALM_MIND",
+                "MOVE_ALLURING_VOICE",
+                "MOVE_FLAMETHROWER",
+                "MOVE_MOONLIGHT"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

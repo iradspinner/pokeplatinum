@@ -10,18 +10,54 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_NOCTOWL",
+            "form": 0,
+            "level": 36,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_AIR_SLASH",
+                "MOVE_MOONBLAST",
+                "MOVE_HYPNOSIS",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
+        },
+        {
             "species": "SPECIES_TAUROS",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 37,
+            "item": "ITEM_HARD_STONE",
             "moves": [
-                "MOVE_PURSUIT",
-                "MOVE_REST",
-                "MOVE_HEADBUTT",
-                "MOVE_ZEN_HEADBUTT"
+                "MOVE_RAGING_BULL",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_IRON_HEAD",
+                "MOVE_STOMPING_TANTRUM"
             ],
-            "iv_scale": 197,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_GIRAFARIG",
+            "form": 0,
+            "level": 35,
+            "item": "ITEM_TWISTEDSPOON",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT",
+                "MOVE_SHADOW_BALL",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "male"
         }
     ],
     "messages": [

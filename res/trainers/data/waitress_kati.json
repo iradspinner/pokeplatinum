@@ -10,18 +10,53 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ABSOL",
+            "species": "SPECIES_CHANSEY",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 35,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_SWORDS_DANCE",
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_SUPERPOWER"
+                "MOVE_SOFTBOILED",
+                "MOVE_CHILLING_WATER",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_TOXIC"
             ],
-            "iv_scale": 203,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_HITMONCHAN",
+            "form": 0,
+            "level": 36,
+            "item": "ITEM_PUNCHING_GLOVE",
+            "moves": [
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_MACH_PUNCH"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_MILTANK",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_BODY_SLAM",
+                "MOVE_MILK_DRINK",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

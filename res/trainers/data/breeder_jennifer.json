@@ -10,60 +10,70 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RIOLU",
+            "species": "SPECIES_JYNX",
             "form": 0,
-            "level": 26,
-            "item": null,
+            "level": 35,
+            "item": "ITEM_NEVERMELTICE",
             "moves": [
-                "MOVE_FORCE_PALM",
-                "MOVE_FEINT",
-                "MOVE_REVERSAL",
-                "MOVE_SCREECH"
+                "MOVE_FAKE_OUT",
+                "MOVE_ICE_BEAM",
+                "MOVE_PSYCHIC",
+                "MOVE_LOVELY_KISS"
             ],
-            "iv_scale": 209,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 3
         },
         {
-            "species": "SPECIES_SMOOCHUM",
+            "species": "SPECIES_CHANSEY",
             "form": 0,
-            "level": 26,
-            "item": null,
+            "level": 35,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_CONFUSION",
-                "MOVE_SING",
-                "MOVE_MEAN_LOOK",
-                "MOVE_FAKE_TEARS"
+                "MOVE_SOFTBOILED",
+                "MOVE_TOXIC",
+                "MOVE_CHILLING_WATER",
+                "MOVE_LIGHT_SCREEN"
             ],
-            "iv_scale": 198,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_CLEFFA",
+            "species": "SPECIES_FARFETCHD",
             "form": 0,
-            "level": 26,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_SING",
-                "MOVE_SWEET_KISS",
-                "MOVE_COPYCAT",
-                "MOVE_MAGICAL_LEAF"
+                "MOVE_NIGHT_SLASH",
+                "MOVE_AERIAL_ACE",
+                "MOVE_POISON_JAB",
+                "MOVE_KNOCK_OFF"
             ],
-            "iv_scale": 210,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "male"
         },
         {
-            "species": "SPECIES_EEVEE",
+            "species": "SPECIES_MAROWAK",
             "form": 0,
-            "level": 26,
-            "item": null,
+            "level": 37,
+            "item": "ITEM_THICK_CLUB",
             "moves": [
-                "MOVE_HEADBUTT",
-                "MOVE_DIG",
-                "MOVE_YAWN",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_BONEMERANG",
+                "MOVE_STOMPING_TANTRUM",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_KNOCK_OFF"
             ],
-            "iv_scale": 202,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [
