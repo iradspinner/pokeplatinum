@@ -90,11 +90,25 @@ def _entry(root, const, name, how, source=None):
             "power": (rec or {}).get("power"), "class": (rec or {}).get("class")}
 
 
-def _level_key(e):
-    if e["how"].startswith(ON_EVOLVING):
-        return (0, -1, e["name"])
-    m = re.match(r"Level (\d+)", e["how"])
-    return (0, int(m.group(1)), e["name"]) if m else (1, 0, e["name"])
+# The lists' order (Ian, 2026-10-29): evolution moves, then level-up moves by
+# level, then TMs by number with the HMs after them, then tutor, egg and the
+# rest, each kind by name. A move learned by level and another way too sorts
+# by its first level. The canon lists give a TM no number, so theirs are by name.
+KINDS = ("TM", "HM", "Tutor", "Egg")
+
+
+def _order_key(e):
+    how = e["how"]
+    if how.startswith(ON_EVOLVING):
+        return (0, -1, 0, e["name"])
+    level = re.search(r"Level (\d+)", how)
+    if level:
+        return (0, int(level.group(1)), 0, e["name"])
+    first = how.split(",")[0].strip()
+    machine = re.match(r"(TM|HM) ?(\d+)?$", first)
+    if machine:
+        return (1, KINDS.index(machine.group(1)), int(machine.group(2) or 0), e["name"])
+    return (1, KINDS.index(first) if first in KINDS else len(KINDS), 0, e["name"])
 
 
 def canon_list(root, species, form, which):
@@ -112,7 +126,7 @@ def canon_list(root, species, form, which):
         how = ", ".join(_how(c) for c in codes.split(","))
         out.append(_entry(root, ids.get(move), names.get(move, move), how,
                           names.get(source) or (source.title() if source else None)))
-    out.sort(key=_level_key)
+    out.sort(key=_order_key)
     if which == "gen4":
         return out, 4, "Diamond, Pearl, Platinum, HeartGold and SoulSilver"
     return out, rec["latest"]["gen"], rec["latest"]["games"]
@@ -173,7 +187,7 @@ def oxide_list(root, species, form, level):
         if first != species else learnset
     for move in first_ls.get("egg_moves") or []:
         add(move, "Egg", dex.display_name(first) if first != species else None)
-    out.sort(key=_level_key)
+    out.sort(key=_order_key)
     return out
 
 

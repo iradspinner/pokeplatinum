@@ -129,6 +129,28 @@ def check_move_lists(results, root):
     results.append(("Oxide's own list stops at the member's level",
                     level_up and max(int(e["how"].split()[1].split(",")[0]) for e in level_up) <= 40
                     and max(own) > 40, f"learns up to {max(own)}"))
+    # The lists' order (Ian, 2026-10-29): by level, then by TM number, then
+    # tutor and egg; a canon move learned by TM and by level sits with the
+    # level-ups, and canon TMs, which carry no number, go by name.
+    goth = learnsets.lists(root, "SPECIES_GOTHITELLE", 0, 32)
+    hows = [e["how"] for e in goth["oxide"]]
+    levels = [int(h.split()[1].rstrip(",")) for h in hows if h.startswith("Level")]
+    tms = [int(h.split()[1]) for h in hows if h.startswith("TM ")]
+    last_level = max(i for i, h in enumerate(hows) if h.startswith("Level"))
+    first_tm = min(i for i, h in enumerate(hows) if h.startswith("TM "))
+    gen9 = goth["latest"]["moves"]
+    by_tm = [e["name"] for e in gen9 if e["how"] == "TM"]
+    charm = next(i for i, e in enumerate(gen9) if e["name"] == "Charm")
+    results.append(("the move lists go by level, then TM number, then tutor and egg; a canon move "
+                    "also learned by level sits at its level (Gothitelle at 32)",
+                    levels == sorted(levels) and tms == sorted(tms) and len(tms) > 5
+                    and last_level < first_tm
+                    and gen9[charm]["how"].endswith("Level 16")
+                    and charm < min(i for i, e in enumerate(gen9) if e["how"] == "TM")
+                    and by_tm == sorted(by_tm)
+                    and max(i for i, e in enumerate(gen9) if e["how"].startswith("TM"))
+                    < min(i for i, e in enumerate(gen9) if e["how"] == "Egg"),
+                    f"TMs in order {tms[:6]}"))
     # Level-0 evolution moves (2026-09-28). No species has one yet, so a
     # stand-in: Politoed's learnset with Bounce taught on evolving, and a move
     # it already learns by level also taught on evolving.
