@@ -4,12 +4,12 @@ Ian asked on 2026-10-29 for about a dozen mandatory fights per split, 10 to 15, 
 
 ## Summary
 
-Both splits now have 12 non-boss mandatory fights by this count: Fantina's rose from 9 and Maylene's from 5. Bosses are counted apart and did not change: three in Fantina's split, two in Maylene's. Gym trainers are listed at the end for reference and are in neither number.
+Fantina's split now has 12 non-boss mandatory fights, up from 9, and Maylene's has 11, up from 4. Maylene's split has 12 mandatory trainers, but Ace Trainers Dennis and Maya fight the player together as one double battle, by eye contact (`tools/oxide/balance/pairs.py`), so they are one fight; the tables below list them as two rows. Bosses are counted apart and did not change: three in Fantina's split, two in Maylene's. Gym trainers are listed at the end for reference and are in neither number.
 
 | Split | Non-boss mandatory, before | After | Bosses |
 |---|---:|---:|---:|
 | Fantina (cap 33) | 9 | 12 | 3 |
-| Maylene (cap 39) | 5 | 12 | 2 |
+| Maylene (cap 39) | 4 | 11 | 2 |
 
 What Ian decides or does:
 
