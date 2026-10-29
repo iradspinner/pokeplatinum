@@ -205,7 +205,10 @@ is listed for Ian.
   none before Fantina, no overlevelled optional trainers, some doubles).
   Ordinary trainers carry 3 to 5 Pokemon (6 from Gardenia's split on is
   fine), with sizes varied and real lethality, and any trainer may use TM
-  and tutor moves (Ian, 2026-10-04).
+  and tutor moves (Ian, 2026-10-04). A move on a team Ian builds
+  that its species cannot have at that level goes on the line's
+  first-stage egg list without asking, and never by moving a level-up
+  entry (Ian, 2026-10-29; `learnrewrite.IAN_EGG_MOVES` records each).
 - **Gauntlets** hold the attrition: 2 to 5 mandatory trainers on the easier
   side of their split's average, counted without optional ones; bag items may
   heal between fights; bosses stay outside, with gauntlets leading up to

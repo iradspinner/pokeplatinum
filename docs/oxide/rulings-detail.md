@@ -218,7 +218,13 @@ from the TM list for the player's sake stays in the trainer palette of
 every species that learned it by TM before the TM pass, as egg moves do,
 and from Cyrus 3's split (Galactic) on a trainer's move need not be legal
 for the species at all: late teams are "basically no holds barred" (Ian,
-2026-10-07; the Overseer set the line at that split). Protect,
+2026-10-07; the Overseer set the line at that split). A move on a team Ian
+builds that its species cannot have at that level goes on the egg list of
+the line's first stage, without asking him, and a level-up list never
+moves for it, since that would change what the player gets (Ian,
+2026-10-29: "just add it to their egg moves instead of asking for
+permission"; "Don't shift move levels for what the player gets"). Each
+goes in `learnrewrite.IAN_EGG_MOVES` too, so a generator write keeps it. Protect,
 Detect, Double Team and every one-hit KO move leave every player-accessible list,
 level-up, TM and tutor alike, and the one-hit KO moves leave every
 moveset or become other moves (Ian, 2026-10-06). Teams
