@@ -23,6 +23,7 @@
                 "MOVE_BODY_PRESS"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_QUIRKY",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
@@ -39,6 +40,7 @@
                 "MOVE_WILL_O_WISP"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
@@ -55,6 +57,7 @@
                 "MOVE_PAIN_SPLIT"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -71,6 +74,7 @@
                 "MOVE_SEED_BOMB"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
@@ -104,6 +108,7 @@
                 "MOVE_FOUL_PLAY"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_BASHFUL",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
