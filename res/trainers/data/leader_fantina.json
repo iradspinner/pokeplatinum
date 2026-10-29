@@ -6,7 +6,8 @@
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT",
-        "AI_FLAG_SETUP_FIRST_TURN"
+        "AI_FLAG_SETUP_FIRST_TURN",
+        "AI_FLAG_HARRASSMENT"
     ],
     "double_battle": false,
     "party": [
@@ -16,7 +17,7 @@
             "level": 31,
             "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_AMNESIA",
+                "MOVE_IRON_DEFENSE",
                 "MOVE_WILL_O_WISP",
                 "MOVE_CONFUSE_RAY",
                 "MOVE_BODY_PRESS"
@@ -86,6 +87,7 @@
                 "MOVE_THUNDERBOLT"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 2,
             "gender": "female"

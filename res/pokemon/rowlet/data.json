@@ -129,7 +129,10 @@
             "TM88"
         ],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_SPIRIT_SHACKLE",
+            "MOVE_PURSUIT"
+        ]
     },
     "evolutions": [
         [
