@@ -266,7 +266,9 @@ read, so they are written here too. Each is a standing instruction.
   mini-bosses sit 2 to 4 under it, and the Elite Four's aces run from 72 to
   78. The named Galactic fights are mostly anything goes, so long as each is
   fun and thematic. Ian plans a boss by baiting matchups in the order he
-  wants. The full ruling (luck items, Focus Sash, Custap and enemy priority,
+  wants, and a lead may be wholly countered by a Pokemon or a type when
+  that answer draws in a member that beats it with a setup move, since
+  the player's switch then hands it a free turn (2026-10-29). The full ruling (luck items, Focus Sash, Custap and enemy priority,
   accuracy, conditional moves, members under their evolution level, the
   iv_scale) is in `docs/oxide/rulings-detail.md`; read it before designing a
   team.

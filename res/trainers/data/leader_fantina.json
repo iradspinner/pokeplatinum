@@ -6,24 +6,26 @@
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT",
-        "AI_FLAG_SETUP_FIRST_TURN"
+        "AI_FLAG_SETUP_FIRST_TURN",
+        "AI_FLAG_HARRASSMENT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_FROSLASS",
+            "species": "SPECIES_RUNERIGUS",
             "form": 0,
             "level": 31,
-            "item": "ITEM_FOCUS_SASH",
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_SPIKES",
-                "MOVE_ICY_WIND",
-                "MOVE_OMINOUS_WIND",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_IRON_DEFENSE",
+                "MOVE_WILL_O_WISP",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_BODY_PRESS"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_QUIRKY",
             "ball_seal": 0,
-            "ability": 3,
+            "ability": 1,
             "gender": "female"
         },
         {
@@ -38,6 +40,7 @@
                 "MOVE_WILL_O_WISP"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
@@ -51,57 +54,61 @@
                 "MOVE_OMINOUS_WIND",
                 "MOVE_SHOCK_WAVE",
                 "MOVE_SIGNAL_BEAM",
-                "MOVE_TRICK"
+                "MOVE_PAIN_SPLIT"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_DUSKULL",
+            "species": "SPECIES_DECIDUEYE",
             "form": 0,
             "level": 32,
-            "item": "ITEM_LEFTOVERS",
+            "item": "ITEM_LUM_BERRY",
             "moves": [
-                "MOVE_WILL_O_WISP",
+                "MOVE_SPIRIT_SHACKLE",
                 "MOVE_PURSUIT",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_DESTINY_BOND"
+                "MOVE_U_TURN",
+                "MOVE_SEED_BOMB"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
         },
         {
-            "species": "SPECIES_SABLEYE",
+            "species": "SPECIES_GOTHITELLE",
             "form": 0,
             "level": 32,
-            "item": "ITEM_LEFTOVERS",
+            "item": "ITEM_ASSAULT_VEST",
             "moves": [
-                "MOVE_SHADOW_SNEAK",
-                "MOVE_PAYBACK",
-                "MOVE_RECOVER",
-                "MOVE_FOCUS_PUNCH"
+                "MOVE_DARK_PULSE",
+                "MOVE_PSYSHOCK",
+                "MOVE_GRASS_KNOT",
+                "MOVE_THUNDERBOLT"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 2,
             "gender": "female"
         },
         {
             "species": "SPECIES_MISMAGIUS",
             "form": 0,
             "level": 33,
-            "item": "ITEM_EXPERT_BELT",
+            "item": "ITEM_SHELL_BELL",
             "moves": [
                 "MOVE_SHADOW_BALL",
-                "MOVE_PSYBEAM",
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_PAYBACK"
+                "MOVE_NASTY_PLOT",
+                "MOVE_DRAINING_KISS",
+                "MOVE_FOUL_PLAY"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_BASHFUL",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"

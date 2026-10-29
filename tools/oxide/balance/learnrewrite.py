@@ -129,6 +129,15 @@ IAN_EGG_MOVES = {
                                                  "Stantler's own in Legends: Arceus, for trainers")],
     "SPECIES_GROWLITHE": [("MOVE_RAGING_FURY", "Ian, 2026-10-21, on signature-moves.md: Hisuian Arcanine's, "
                                                "for trainers' Arcanine")],
+    # Fantina's six (Ian, 2026-10-29, on fantina-redesign.md: "legalise via
+    # egg lists"): the moves of his team that no list gave at its levels.
+    "SPECIES_YAMASK": [("MOVE_CONFUSE_RAY", "Ian, 2026-10-29: Fantina's Runerigus"),
+                       ("MOVE_BODY_PRESS", "Ian, 2026-10-29: Fantina's Runerigus")],
+    "SPECIES_ROTOM": [("MOVE_PAIN_SPLIT", "Ian, 2026-10-29: Fantina's Rotom")],
+    "SPECIES_ROWLET": [("MOVE_SPIRIT_SHACKLE", "Ian, 2026-10-29: Fantina's Decidueye, which learns it "
+                                               "only at 40"),
+                       ("MOVE_PURSUIT", "Ian, 2026-10-29: Fantina's Decidueye")],
+    "SPECIES_MISDREAVUS": [("MOVE_NASTY_PLOT", "Ian, 2026-10-29: Fantina's Mismagius")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

@@ -113,7 +113,7 @@ SPECIES_PRIMEAPE    Storm Throw at 42, a stranded move's home (Ian, 2026-10-14, 
 SPECIES_QUAGSIRE    Thousand Waves at 45, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_RAPIDASH    Fire Lash at 44, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_RIOLU       Power-Up Punch at 9, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
-SPECIES_ROTOM       Parabolic Charge at 38, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
+SPECIES_ROTOM       Parabolic Charge at 38, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md); Pain Split on its egg list, for Fantina's Rotom (Ian, 2026-10-29)
 SPECIES_SEAKING     Fillet Away at 46, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_SEALEO      Glaciate at 36, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_SHARPEDO    Triple Dive at 54, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
