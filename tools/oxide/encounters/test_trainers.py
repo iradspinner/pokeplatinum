@@ -263,6 +263,14 @@ def check_lint(results, root):
                     and with_member(form=3) and trainers.lint(root, lone)
                     and any("moves or none does" in f["message"] for f in trainers.lint(root, mixed)),
                     ""))
+    # A female-only species may be marked female, and a male-only one male
+    # (the lint once read FEMALE_ONLY as MALE_ONLY, 2026-10-29).
+    results.append(("the lint takes a single-gender species marked with its own gender, and "
+                    "refuses the other (Froslass, Tauros)",
+                    not with_member(species="SPECIES_FROSLASS", gender="female")
+                    and with_member(species="SPECIES_FROSLASS", gender="male")
+                    and not with_member(species="SPECIES_TAUROS", gender="male")
+                    and with_member(species="SPECIES_TAUROS", gender="female"), ""))
     results.append(("a Choice item is a warning, not an error (Ian, 2026-09-26)",
                     [f["severity"] for f in trainers.lint(root, choice)] == ["warn"], ""))
 
