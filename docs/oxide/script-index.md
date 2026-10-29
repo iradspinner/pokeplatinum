@@ -818,12 +818,12 @@ Trainer battles:
 - TRAINER_HIKER_JUSTIN (Justin, level 29, 4 Pokemon), sees the player. Vanilla. `events_route_207.json:96`
 - TRAINER_HIKER_KEVIN (Kevin, level 29, 5 Pokemon), sees the player. Vanilla. `events_route_207.json:111`
 - TRAINER_BATTLE_GIRL_HELEN (Helen, level 29, 4 Pokemon), sees the player. Vanilla. `events_route_207.json:126`
-- StartTrainerBattle: against TRAINER_DUMMY_799 (Dawn, level 30, 5 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:218`
-- StartTrainerBattle: against TRAINER_DUMMY_793 (Dawn, level 30, 5 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:224`
-- StartTrainerBattle: against TRAINER_DUMMY_794 (Dawn, level 30, 5 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:230`
-- StartTrainerBattle: against TRAINER_DUMMY_802 (Lucas, level 30, 5 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:236`
-- StartTrainerBattle: against TRAINER_DUMMY_800 (Lucas, level 30, 5 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:242`
-- StartTrainerBattle: against TRAINER_DUMMY_801 (Lucas, level 30, 5 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:248`
+- StartTrainerBattle: against TRAINER_DUMMY_799 (Dawn, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:218`
+- StartTrainerBattle: against TRAINER_DUMMY_793 (Dawn, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:224`
+- StartTrainerBattle: against TRAINER_DUMMY_794 (Dawn, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:230`
+- StartTrainerBattle: against TRAINER_DUMMY_802 (Lucas, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:236`
+- StartTrainerBattle: against TRAINER_DUMMY_800 (Lucas, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:242`
+- StartTrainerBattle: against TRAINER_DUMMY_801 (Lucas, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:248`
 
 Items given:
 

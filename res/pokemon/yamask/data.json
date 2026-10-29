@@ -119,7 +119,9 @@
         ],
         "by_tutor": [],
         "egg_moves": [
-            "MOVE_DESTINY_BOND"
+            "MOVE_DESTINY_BOND",
+            "MOVE_CONFUSE_RAY",
+            "MOVE_BODY_PRESS"
         ]
     },
     "evolutions": [
