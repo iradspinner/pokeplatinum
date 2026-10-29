@@ -3023,9 +3023,20 @@ function sheetColumn(f, i) {
       ? ", rolled by the game; choose one to name it" : ""}${esc(tip)}">${opts.map(([v, l, t]) => `<option value="${
       esc(v)}"${String(v) === String(val) ? " selected" : ""}${t ? ` title="${esc(t)}"` : ""}>${esc(l)}</option>`).join("")}</select>`;
   };
-  const natures = [["", b && !f.nature ? b.nature : "rolled"]].concat(TRAINERS.choices.natures);
+  // A rolled nature reads like a named one, its raised and lowered stats beside it.
+  const rolledNature = b && !f.nature && (TRAINERS.choices.natures.find(([, l]) =>
+    l.split(" (")[0] === b.nature) || [, b.nature])[1];
+  const natures = [["", rolledNature || "rolled"]].concat(TRAINERS.choices.natures);
   const num = (k, lo, hi) => `<input type="number" class="ed num sm" id="${id(k)}" data-i="${i}"
       data-k="${k}" min="${lo}" max="${hi}" value="${f[k] || 0}">`;
+  // A form the game gives a name to is chosen by name ("1: Heat"), and the
+  // sprite is the form's own where it has one (Ian, 2026-10-29).
+  const formNames = (TRAINERS.choices.form_names || {})[f.species];
+  const formBox = formNames && formNames.length > 1
+    ? sel("form", formNames.map((n, j) => [j, `${j}: ${n}`]), f.form || 0, "Form")
+    : num("form", 0, (TRAINERS.choices.forms[f.species] || 1) - 1);
+  const formSprite = m && m.file.species === f.species && (m.file.form || 0) === (f.form || 0)
+    && m.form_folder ? `?form=${encodeURIComponent(m.form_folder)}` : "";
   const errs = TRFINDINGS.some(x => x.member === i && x.severity === "error");
   const typeCell = t => t
     ? `<div class="cell t" style="--t: var(--type-${t.toLowerCase()})">${esc(tidy(t))}</div>`
@@ -3046,12 +3057,12 @@ function sheetColumn(f, i) {
   const key = `${SHEETSIDE === null ? "s" : SHEETSIDE}-${i}`;
   return `<div class="col${TRPANE === "moves" && i === TRMEMBER ? " on" : ""}" data-i="${i}">
     <div class="cell sprcell">
-      <span class="big"><img src="/api/sprite/${folderOf(f.species)}/male_front" alt=""
+      <span class="big"><img src="/api/sprite/${folderOf(f.species)}/male_front${formSprite}" alt=""
         onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.src.replace('male_front','female_front')}"></span>
       <details class="colmenu" data-key="${key}">
         <summary title="Form, IV scale, gender, move lists and more" aria-label="More for ${who}">&middot;&middot;&middot;</summary>
         <div class="pop">
-          <label>Form ${num("form", 0, (TRAINERS.choices.forms[f.species] || 1) - 1)}</label>
+          <label>Form ${formBox}</label>
           <label>IV scale ${num("iv_scale", 0, 255)} <span class="sub">${m && b ? "IVs " + m.iv : ""}</span></label>
           <label>Gender ${sel("gender", [["", "either"], ["male", "male"], ["female", "female"]], f.gender || "", "Gender")}</label>
           <p class="sub">${b ? `In battle: ${esc(b.ability)}, ${esc(b.nature)}${f.nature ? " (named)" : ""},

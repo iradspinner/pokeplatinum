@@ -387,12 +387,22 @@ def detail(root, stem, data=None):
     for m, (showdown, s) in zip(party, built):
         rec = pokedex.load(root, m["species"]) or {}
         file_moves = m.get("moves")
+        types, stats = rec.get("types") or [], rec.get("stats") or {}
+        # A form with a record of its own (Rotom's appliances, Deoxys, Giratina
+        # Origin) shows its own types, stats and sprite, as the game builds it;
+        # the base form's made a form change look ignored (Ian, 2026-10-29).
+        form_folder = calc_trainers.FORM_FOLDERS.get((m["species"], m.get("form") or 0))
+        if form_folder:
+            raw = calc_trainers._raw_species(root, m["species"], form_folder)
+            types = list(dict.fromkeys(t.replace("TYPE_", "") for t in raw.get("types") or []))
+            stats = raw.get("base_stats") or stats
         members.append({
             "file": m,
             "name": dex.display_name(m["species"]),
             "folder": rec.get("folder"),
-            "types": rec.get("types") or [],
-            "stats": rec.get("stats") or {},
+            "form_folder": form_folder,
+            "types": types,
+            "stats": stats,
             "abilities": _ability_options(root, m["species"], m.get("form")),
             "iv": m["iv_scale"] * calc_trainers.MAX_IV // calc_trainers.MAX_IV_SCALE,
             "built": {"nature": s["nature"], "ability": s["ability"], "gender": s["gender"],
@@ -460,10 +470,25 @@ def choices(root):
         "abilities": pokedex.ability_descriptions(root),
         "items": sorted(([c, tidy(c, "ITEM_")] for c in e["items"] if c != "ITEM_NONE"),
                         key=lambda x: x[1]),
-        "natures": [[c, tidy(c, "NATURE_")] for c in e["natures"]],
+        "natures": [[c, nature_label(n, tidy(c, "NATURE_"))] for n, c in enumerate(e["natures"])],
         "species": sorted(([c, dex.display_name(c)] for c in e["species"]), key=lambda x: x[1]),
         "forms": e["forms"],
+        "form_names": e["form_names"],
     }
+
+
+# A nature's id n raises stat n // 5 and lowers stat n % 5, in this order;
+# the five where the two are the same change nothing.
+NATURE_STATS = ("Atk", "Def", "Spe", "SpA", "SpD")
+
+
+def nature_label(n, name):
+    """"Adamant (+Atk, -SpA)", or "Hardy (neutral)", for the pick list (Ian,
+    2026-10-29)."""
+    up, down = divmod(n, 5)
+    if up == down:
+        return f"{name} (neutral)"
+    return f"{name} (+{NATURE_STATS[up]}, -{NATURE_STATS[down]})"
 
 
 def ai_flags(root, chosen=()):
@@ -484,11 +509,20 @@ def enums(root):
         with open(os.path.join(root, "generated", name + ".txt"), encoding="utf-8") as f:
             return [l.strip() for l in f if l.strip()]
     with open(os.path.join(root, "include", "constants", "forms.h"), encoding="utf-8") as f:
-        forms = {"SPECIES_" + name: int(n) for name, n in
-                 re.findall(r"#define (\w+)_FORM_COUNT\s+(\d+)", f.read())}
+        text = f.read()
+    forms = {"SPECIES_" + name: int(n) for name, n in
+             re.findall(r"#define (\w+)_FORM_COUNT\s+(\d+)", text)}
+    # Each form's name where forms.h gives one ("Heat" for ROTOM_FORM_HEAT),
+    # else its number, for the editor's form list.
+    named = {}
+    for name, form, n in re.findall(r"^#define ([A-Z0-9]+)_FORM_(\w+)\s+(\d+)\s*$", text, re.M):
+        if form != "COUNT":
+            named[("SPECIES_" + name, int(n))] = form.replace("_", " ").title()
+    form_names = {sp: [named.get((sp, i), str(i)) for i in range(count)]
+                  for sp, count in forms.items()}
     return {"species": set(lines("species")) - {"SPECIES_NONE", "SPECIES_EGG"},
             "items": set(lines("items")), "natures": lines("natures")[:25],
-            "forms": forms}
+            "forms": forms, "form_names": form_names}
 
 
 def lint(root, data):
@@ -653,16 +687,42 @@ def edit_text(text, new):
     return text, changed
 
 
+def refresh_packer(root):
+    """Bring the checkout's packer and trainer header up to date, or say why
+    not. The packer compiles in the game's item, move, species and ability
+    names, so one built before a landing added names refuses every team that
+    uses them: the OxiDex's checkout kept a packer of 2026-09-27 that knew no
+    Eviolite, and every save failed on six other trainers' files (Ian,
+    2026-10-29). ninja does nothing when both are current. A checkout with
+    no build is left alone, and pack_check says it cannot pack."""
+    if not os.path.exists(os.path.join(root, "build", "build.ninja")):
+        return ""
+    try:
+        r = subprocess.run(["ninja", "-C", os.path.join(root, "build"),
+                            "/".join(PACKER[1:]), "generated/trainers.h"],
+                           capture_output=True, text=True, timeout=600)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        return f"the packer could not be rebuilt ({exc}); "
+    return "" if r.returncode == 0 else \
+        "the packer could not be rebuilt: " + _plain(r.stdout + r.stderr)[-1000:] + "; "
+
+
+def _plain(text):
+    """Terminal output without its colour codes, for the page's message."""
+    return re.sub(r"\x1b\[[0-9;]*m", "", text or "").strip()
+
+
 def pack_check(root, data_dir):
     """(ok, message): the real packer over the folder, into a scratch folder."""
+    rebuilt = refresh_packer(root)
     exe = os.path.join(root, *PACKER)
     header = os.path.join(root, "build", "generated", "trainers.h")
     if not (os.path.exists(exe) and os.path.exists(header)):
-        return None, "the packer is not built in this checkout, so the save was not packed"
+        return None, rebuilt + "the packer is not built in this checkout, so the save was not packed"
     with tempfile.TemporaryDirectory() as out:
         r = subprocess.run([exe, "-M", os.path.join(out, "trainers.d"), "-o", out, header, data_dir],
                            capture_output=True, text=True, timeout=180)
-    message = (r.stderr or r.stdout).strip()[-2000:]
+    message = (rebuilt + _plain(r.stderr or r.stdout))[-2000:]
     # A packer built before its source last changed judges by the old rules
     # (it refused ability 3 on 2026-09-27 until rebuilt), so say so.
     source = os.path.join(root, "tools", "dataproc", "src", "trainerproc.c")
