@@ -598,9 +598,12 @@ def lint(root, data):
             add("error", i, f"gender {gender!r} is not male, female or null")
         elif gender and ratio.endswith("NO_GENDER"):
             add("error", i, "this species has no gender")
-        elif gender == "female" and ratio.endswith("MALE_ONLY"):
+        # The ratio is compared whole ("MALE_ONLY", the reader having dropped
+        # GENDER_RATIO_): "FEMALE_ONLY" also ends in "MALE_ONLY", which once
+        # refused a female-only species marked female.
+        elif gender == "female" and ratio == "MALE_ONLY":
             add("error", i, "this species is male only")
-        elif gender == "male" and ratio.endswith("FEMALE_ONLY"):
+        elif gender == "male" and ratio == "FEMALE_ONLY":
             add("error", i, "this species is female only")
     return out
 
