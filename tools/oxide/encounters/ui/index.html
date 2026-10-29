@@ -437,6 +437,9 @@ tr.got .spname { font-weight: 600; }
 .sheet .col { display: flex; flex-direction: column; border-right: 1px solid var(--sheet-line);
   min-width: 0; }
 .sheet .col.on { box-shadow: inset 0 0 0 2px var(--place-ink); }
+.sheet .big[draggable] { cursor: grab; }
+.sheet .col.dragging { opacity: .45; }
+.sheet .col.dropto { box-shadow: inset 0 0 0 3px var(--place-ink); background: color-mix(in srgb, var(--place-ink) 10%, transparent); }
 .sheet .cell { box-sizing: border-box; height: 33px; display: flex; align-items: center;
   justify-content: center; gap: 4px; border-top: 1px solid var(--sheet-line); padding: 0 4px;
   min-width: 0; font-size: 14.5px; }
@@ -3057,7 +3060,7 @@ function sheetColumn(f, i) {
   const key = `${SHEETSIDE === null ? "s" : SHEETSIDE}-${i}`;
   return `<div class="col${TRPANE === "moves" && i === TRMEMBER ? " on" : ""}" data-i="${i}">
     <div class="cell sprcell">
-      <span class="big"><img src="/api/sprite/${folderOf(f.species)}/male_front${formSprite}" alt=""
+      <span class="big" draggable="true" data-drag="${i}" title="Drag onto another Pokemon to swap their slots"><img src="/api/sprite/${folderOf(f.species)}/male_front${formSprite}" alt="" draggable="false"
         onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.src.replace('male_front','female_front')}"></span>
       <details class="colmenu" data-key="${key}">
         <summary title="Form, IV scale, gender, move lists and more" aria-label="More for ${who}">&middot;&middot;&middot;</summary>
@@ -3120,7 +3123,8 @@ const restoreMenus = keys => keys.forEach(k => {
 const TR_SAVEBAR = `<span class="grow"></span><span class="trsavebar" id="trsavebar"></span>`;
 const TR_TAIL = `<p class="sub">Click any cell to edit it in place: a level, a species, a
   nature, an ability, an item, a move. Bold moves share a type with their user. A Pokemon's form,
-  IV scale and gender, its move lists and its removal sit in its menu, the dots on its sprite.</p>
+  IV scale and gender, its move lists and its removal sit in its menu, the dots on its sprite.
+  Drag a Pokemon's sprite onto another's to swap their slots.</p>
   <div id="trmoves" class="card" hidden></div>
   <div class="trbottom" id="trbottom"></div>`;
 // Runs `fn` with side k's state loaded, then puts the active side back, so
@@ -4684,6 +4688,60 @@ $("#trainmid").addEventListener("focusin", ev => {
   TRFOCUS = { i: +box.dataset.i, slot: +box.dataset.slot };
   if (TRPANE !== "moves" || TRMEMBER !== TRFOCUS.i || !TRLISTS) showMoveLists(TRFOCUS.i, true);
 });
+// Dragging a Pokemon's sprite onto another's column swaps their slots (Ian,
+// 2026-10-29). A pair's two teams each keep their own members, so a drop on
+// the other team's sheet does nothing.
+let TRDRAG = null;
+const sheetSide = el => {
+  const s = el.closest("[data-side]");
+  return s ? +s.dataset.side : null;
+};
+const dropCol = ev => {
+  const col = TRDRAG && ev.target.closest(".col[data-i]");
+  return col && sheetSide(col) === TRDRAG.side ? col : null;
+};
+const clearDrag = () => document.querySelectorAll("#trainmid .col.dropto, #trainmid .col.dragging")
+  .forEach(el => el.classList.remove("dropto", "dragging"));
+$("#trainmid").addEventListener("dragstart", ev => {
+  const cell = ev.target.closest && ev.target.closest(".big[data-drag]");
+  if (!cell || !TREDIT) return;
+  sideOf(ev);
+  TRDRAG = { i: +cell.dataset.drag, side: sheetSide(cell) };
+  ev.dataTransfer.effectAllowed = "move";
+  ev.dataTransfer.setData("text/plain", String(TRDRAG.i));
+  cell.closest(".col").classList.add("dragging");
+});
+$("#trainmid").addEventListener("dragover", ev => {
+  const col = dropCol(ev);
+  if (!col) return;
+  ev.preventDefault();
+  ev.dataTransfer.dropEffect = "move";
+  document.querySelectorAll("#trainmid .col.dropto").forEach(el => el !== col && el.classList.remove("dropto"));
+  col.classList.add("dropto");
+});
+$("#trainmid").addEventListener("dragend", () => { TRDRAG = null; clearDrag(); });
+$("#trainmid").addEventListener("drop", ev => {
+  const col = dropCol(ev);
+  if (!col) return;
+  ev.preventDefault();
+  const a = TRDRAG.i, b = +col.dataset.i;
+  TRDRAG = null;
+  clearDrag();
+  if (a !== b) swapMembers(a, b);
+});
+// The two members trade places, their built view with them until the
+// preview answers, and the open move lists and move box follow their member.
+function swapMembers(a, b) {
+  const p = TREDIT.party;
+  [p[a], p[b]] = [p[b], p[a]];
+  const ms = TRDETAIL && TRDETAIL.members;
+  if (ms && ms[a] && ms[b]) [ms[a], ms[b]] = [ms[b], ms[a]];
+  const follow = i => i === a ? b : i === b ? a : i;
+  if (TRMEMBER !== null) TRMEMBER = follow(TRMEMBER);
+  if (TRFOCUS) TRFOCUS = { i: follow(TRFOCUS.i), slot: TRFOCUS.slot };
+  edited();
+  drawTrainer();
+}
 // A field is committed when it changes (Enter, or leaving the box). A name
 // that is not a species, move or item is refused and put back.
 $("#trainmid").addEventListener("change", ev => {

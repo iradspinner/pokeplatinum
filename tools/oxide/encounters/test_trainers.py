@@ -298,6 +298,33 @@ def check_style(results, root):
                     "those that write their AI flags on one line",
                     set(field_miss) == one_line,
                     f"{', '.join(field_miss[:4]) or 'none'} against {', '.join(sorted(one_line)) or 'none'}"))
+    # Two members swapped in the team builder (Ian, 2026-10-29) take their own
+    # fields along, a named nature on one and none on the other included, and
+    # swapping them back gives the file as it was.
+    def parties():
+        for f in sorted(os.listdir(folder)):
+            if f.endswith(".json"):
+                with open(os.path.join(folder, f), encoding="utf-8") as fh:
+                    yield f[:-5], json.load(fh)["party"]
+    stem = next(s for s, p in parties() if len(p) >= 2 and p[0]["species"] != p[1]["species"]
+                and not any("nature" in m for m in p[:2]))
+    with open(os.path.join(folder, stem + ".json"), encoding="utf-8") as fh:
+        text = fh.read()
+    named = json.loads(text)
+    named["party"][0]["nature"] = "NATURE_TIMID"
+    text1, _ = trainers.edit_text(text, named)
+    swapped = json.loads(text1)
+    swapped["party"][0], swapped["party"][1] = swapped["party"][1], swapped["party"][0]
+    try:
+        text2, changed = trainers.edit_text(text1, swapped)
+        back, _ = trainers.edit_text(text2, json.loads(text1))
+        ok = (changed == ["party: reordered"] and json.loads(text2) == swapped
+              and "nature" in json.loads(text2)["party"][1] and back == text1)
+        note = f"{stem}: {changed}"
+    except trainers.SaveRefused as exc:
+        ok, note = False, f"{stem}: {exc}"
+    results.append(("swapping two members writes the party in its new order, each member's own "
+                    "fields going with it, and swapping back restores the file", ok, note))
 
 
 def _save_case(root, folder):

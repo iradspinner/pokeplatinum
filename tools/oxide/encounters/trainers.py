@@ -663,10 +663,27 @@ def edit_text(text, new):
             text = _replace(text, [key], new.get(key))
             changed.append(key)
     old_party, new_party = old.get("party") or [], new.get("party") or []
+    order = lambda party: [m.get("species") for m in party]
+    moved = (len(old_party) == len(new_party) and order(old_party) != order(new_party)
+             and sorted(order(old_party)) == sorted(order(new_party)))
     if len(old_party) != len(new_party):
         vs, ve, indent = jsonstyle._find_key(text, ["party"])
         text = text[:vs] + dump_party(new_party, indent) + text[ve:]
         changed.append(f"party: {len(old_party)} to {len(new_party)} Pokemon")
+    elif moved:
+        # Members swapped in the team builder (Ian, 2026-10-29: drag a Pokemon
+        # onto another's slot) carry their own fields with them, so the party
+        # is written whole. Each member is still held to the file's rule that
+        # a field is set to null, not removed, against its own old entry.
+        left = list(old_party)
+        for i, nm in enumerate(new_party):
+            om = left.pop(next(j for j, m in enumerate(left) if m.get("species") == nm.get("species")))
+            for key in om:
+                if key not in nm:
+                    raise SaveRefused(f"party[{i}] drops {key}; a field is set to null, not removed")
+        vs, ve, indent = jsonstyle._find_key(text, ["party"])
+        text = text[:vs] + dump_party(new_party, indent) + text[ve:]
+        changed.append("party: reordered")
     else:
         for i, (om, nm) in enumerate(zip(old_party, new_party)):
             for key in [k for k in MEMBER_ORDER if k in nm] + [k for k in nm if k not in MEMBER_ORDER]:
