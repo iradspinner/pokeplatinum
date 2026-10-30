@@ -10,85 +10,72 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CUBONE",
-            "form": 0,
-            "level": 27,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_BONEMERANG",
-                "MOVE_HEADBUTT",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_FOCUS_ENERGY"
-            ],
-            "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_PHANPY",
             "form": 0,
-            "level": 27,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_RINDO_BERRY",
             "moves": [
-                "MOVE_ROLLOUT",
-                "MOVE_TAKE_DOWN",
+                "MOVE_STEALTH_ROCK",
+                "MOVE_SLAM",
                 "MOVE_ICE_SHARD",
+                "MOVE_SEED_BOMB"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_LAX",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CUBONE",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_THICK_CLUB",
+            "moves": [
+                "MOVE_BONEMERANG",
+                "MOVE_KNOCK_OFF",
+                "MOVE_IRON_HEAD",
                 "MOVE_FOCUS_ENERGY"
             ],
             "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_GEODUDE",
-            "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_ROCK_THROW",
-                "MOVE_MAGNITUDE",
-                "MOVE_ROLLOUT",
-                "MOVE_BLOCK"
-            ],
-            "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_ONIX",
-            "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_ROCK_SLIDE",
-                "MOVE_ROCK_TOMB",
-                "MOVE_IRON_HEAD",
-                "MOVE_SLAM"
-            ],
-            "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_GRAVELER",
-            "form": 0,
-            "level": 29,
-            "item": "ITEM_HARD_STONE",
-            "moves": [
-                "MOVE_ROCK_SLIDE",
-                "MOVE_MAGNITUDE",
-                "MOVE_ROLLOUT",
-                "MOVE_DEFENSE_CURL"
-            ],
-            "iv_scale": 220,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 2,
-            "gender": "male"
+            "gender": null
+        },
+        {
+            "species": "SPECIES_RHYHORN",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_QUICK_CLAW",
+            "moves": [
+                "MOVE_ROCK_BLAST",
+                "MOVE_STOMPING_TANTRUM",
+                "MOVE_BREAKING_SWIPE",
+                "MOVE_BITE"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_SERIOUS",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GLIMMET",
+            "form": 0,
+            "level": 27,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_VENOSHOCK",
+                "MOVE_ACID_SPRAY",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_MUD_SHOT"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

@@ -10,53 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GROTLE",
+            "species": "SPECIES_DARTRIX",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_MIRACLE_SEED",
             "moves": [
                 "MOVE_RAZOR_LEAF",
-                "MOVE_BITE",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_WITHDRAW"
+                "MOVE_PLUCK",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SYNTHESIS"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_SERIOUS",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
         },
         {
-            "species": "SPECIES_PRINPLUP",
+            "species": "SPECIES_BRIONNE",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_MYSTIC_WATER",
             "moves": [
-                "MOVE_BUBBLE_BEAM",
-                "MOVE_METAL_CLAW",
-                "MOVE_PECK",
-                "MOVE_SUPERSONIC"
+                "MOVE_WATER_PULSE",
+                "MOVE_ICY_WIND",
+                "MOVE_ENCORE",
+                "MOVE_SING"
             ],
             "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_MONFERNO",
-            "form": 0,
-            "level": 29,
-            "item": "ITEM_CHARCOAL",
-            "moves": [
-                "MOVE_FLAME_WHEEL",
-                "MOVE_MACH_PUNCH",
-                "MOVE_TAUNT",
-                "MOVE_FURY_SWIPES"
-            ],
-            "iv_scale": 220,
-            "nature": "NATURE_NAIVE",
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
+        },
+        {
+            "species": "SPECIES_TORRACAT",
+            "form": 0,
+            "level": 27,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_FIRE_FANG",
+                "MOVE_BITE",
+                "MOVE_DOUBLE_KICK",
+                "MOVE_PARTING_SHOT"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_DOCILE",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [

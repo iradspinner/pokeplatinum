@@ -10,53 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SKITTY",
+            "species": "SPECIES_GLAMEOW",
             "form": 0,
-            "level": 23,
-            "item": "ITEM_NONE",
+            "level": 22,
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
-                "MOVE_FURY_SWIPES",
-                "MOVE_BABY_DOLL_EYES",
-                "MOVE_SWIFT",
-                "MOVE_FAKE_TEARS"
+                "MOVE_FAKE_OUT",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_U_TURN",
+                "MOVE_TAUNT"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_STUNKY",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 22,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_FURY_SWIPES",
-                "MOVE_LEER",
-                "MOVE_SCREECH",
-                "MOVE_SLASH"
+                "MOVE_KNOCK_OFF",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_SMOG",
+                "MOVE_SCREECH"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_GLAMEOW",
+            "species": "SPECIES_LIEPARD",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 23,
+            "item": "ITEM_MENTAL_HERB",
             "moves": [
+                "MOVE_THUNDER_WAVE",
                 "MOVE_FAKE_OUT",
-                "MOVE_FURY_SWIPES",
-                "MOVE_HYPNOSIS",
-                "MOVE_FAINT_ATTACK"
+                "MOVE_FOUL_PLAY",
+                "MOVE_SNARL"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": [

@@ -10,69 +10,72 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PIDGEOTTO",
+            "species": "SPECIES_DODUO",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
-                "MOVE_AIR_SLASH",
+                "MOVE_PLUCK",
+                "MOVE_KNOCK_OFF",
                 "MOVE_QUICK_ATTACK",
-                "MOVE_STEEL_WING",
-                "MOVE_GUST"
+                "MOVE_AGILITY"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CORVISQUIRE",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_WACAN_BERRY",
+            "moves": [
+                "MOVE_DRILL_PECK",
+                "MOVE_STEEL_WING",
+                "MOVE_TAUNT",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_FLETCHINDER",
+            "form": 0,
+            "level": 27,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_FLAME_CHARGE",
+                "MOVE_AERIAL_ACE",
+                "MOVE_WILL_O_WISP",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_SWELLOW",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_AERIAL_ACE",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_ENDEAVOR",
-                "MOVE_GROWL"
-            ],
-            "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_DODUO",
-            "form": 0,
             "level": 27,
-            "item": "ITEM_NONE",
+            "item": "ITEM_TOXIC_ORB",
             "moves": [
-                "MOVE_SWIFT",
-                "MOVE_PURSUIT",
-                "MOVE_UPROAR",
-                "MOVE_QUICK_ATTACK"
-            ],
-            "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_STARAVIA",
-            "form": 0,
-            "level": 29,
-            "item": "ITEM_SHARP_BEAK",
-            "moves": [
-                "MOVE_AERIAL_ACE",
+                "MOVE_FACADE",
+                "MOVE_PLUCK",
                 "MOVE_QUICK_ATTACK",
-                "MOVE_STEEL_WING",
-                "MOVE_TAKE_DOWN"
+                "MOVE_U_TURN"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_HARDY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
         }
     ],
     "messages": [

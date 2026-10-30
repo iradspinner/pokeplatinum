@@ -12,31 +12,16 @@
         {
             "species": "SPECIES_HITMONTOP",
             "form": 0,
-            "level": 30,
-            "item": null,
+            "level": 28,
+            "item": "ITEM_WIDE_LENS",
             "moves": [
-                "MOVE_TRIPLE_KICK",
                 "MOVE_FAKE_OUT",
-                "MOVE_RAPID_SPIN",
-                "MOVE_ROLLING_KICK"
-            ],
-            "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_HITMONCHAN",
-            "form": 0,
-            "level": 30,
-            "item": null,
-            "moves": [
-                "MOVE_BULLET_PUNCH",
+                "MOVE_TRIPLE_KICK",
                 "MOVE_MACH_PUNCH",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_REVENGE"
+                "MOVE_SUCKER_PUNCH"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -44,18 +29,36 @@
         {
             "species": "SPECIES_MACHOKE",
             "form": 0,
-            "level": 31,
-            "item": null,
+            "level": 28,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_BRICK_BREAK",
-                "MOVE_REVENGE",
                 "MOVE_ROCK_SLIDE",
-                "MOVE_POISON_JAB"
+                "MOVE_KNOCK_OFF",
+                "MOVE_REVENGE",
+                "MOVE_BULLET_PUNCH"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_HAWLUCHA",
+            "form": 0,
+            "level": 29,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_FLYING_PRESS",
+                "MOVE_ENCORE",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_TAILWIND"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_HARDY",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": [

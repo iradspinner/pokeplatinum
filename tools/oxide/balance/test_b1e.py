@@ -24,7 +24,11 @@ from . import required as R
 # split, three in Fantina's and seven in Maylene's
 # (docs/oxide/mandatory-fights.md); 52 once Black Belt Derek and Twins Teri
 # and Tia joined them the same day, after Ian ruled that spinners are optional.
-TOTALS = {"required": 52, "avoidable": 119, "never reached": 12}
+# 64 once Roark's split gained five and Gardenia's seven the same day
+# (docs/oxide/mandatory-fights-early.md): twelve moved trainers, Hiker
+# Daniel too, since a required verdict on a map's second crossing in a split
+# now wins over an avoidable one on its first.
+TOTALS = {"required": 64, "avoidable": 107, "never reached": 12}
 
 
 def check_crossings_resolve(results):
@@ -70,13 +74,18 @@ def check_route_202(results):
 def check_ian_examples(results):
     """Ian's own reading of the base ROM (2026-09-25): Route 203's five,
     Route 206's nine and Route 218's four trainers can all be walked around,
-    and Route 202's three cannot. This is B1e's check against play."""
+    and Route 202's three cannot. This is B1e's check against play. Route
+    203's Sebastian and Madeline moved onto the story path on 2026-10-29
+    (docs/oxide/mandatory-fights-early.md), so the check holds for its other
+    three."""
+    moved = {"TRAINER_YOUNGSTER_SEBASTIAN", "TRAINER_LASS_MADELINE"}
+
     def verdicts(split, header):
         row = next(c for c in R.CROSSINGS if c[:2] == (split, header))
-        return [v for _t, v in R.crossing(*row)]
+        return [v for t, v in R.crossing(*row) if t["script"] not in moved]
     got = {h: verdicts(s, h) for s, h in (("Roark", "ROUTE_203"), ("Fantina", "ROUTE_206"),
                                           ("Byron", "ROUTE_218"))}
-    want = {"ROUTE_203": 5, "ROUTE_206": 9, "ROUTE_218": 4}
+    want = {"ROUTE_203": 3, "ROUTE_206": 9, "ROUTE_218": 4}
     ok = all(len(got[h]) == n and set(got[h]) == {"avoidable"} for h, n in want.items())
     results.append(("Ian's avoidable routes come out avoidable", ok,
                     ", ".join(f"{h} {len(v)} {sorted(set(v))}" for h, v in got.items())))

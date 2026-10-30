@@ -10,15 +10,15 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_FORRETRESS",
+            "species": "SPECIES_FERROTHORN",
             "form": 0,
             "level": 36,
             "item": "ITEM_ROCKY_HELMET",
             "moves": [
-                "MOVE_SPIKES",
+                "MOVE_STEALTH_ROCK",
                 "MOVE_GYRO_BALL",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_RAPID_SPIN"
+                "MOVE_CURSE",
+                "MOVE_THUNDER_WAVE"
             ],
             "iv_scale": 220,
             "nature": "NATURE_RELAXED",
@@ -27,14 +27,14 @@
             "gender": "male"
         },
         {
-            "species": "SPECIES_WEEZING",
+            "species": "SPECIES_GALARIAN_WEEZING",
             "form": 0,
             "level": 36,
             "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_SLUDGE_BOMB",
-                "MOVE_THUNDERBOLT",
                 "MOVE_WILL_O_WISP",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_DAZZLING_GLEAM",
                 "MOVE_PAIN_SPLIT"
             ],
             "iv_scale": 220,
@@ -45,16 +45,16 @@
         {
             "species": "SPECIES_JOLTEON",
             "form": 0,
-            "level": 38,
-            "item": "ITEM_MAGNET",
+            "level": 37,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
                 "MOVE_THUNDERBOLT",
-                "MOVE_PSYSHOCK",
                 "MOVE_SHADOW_BALL",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_PSYSHOCK",
+                "MOVE_ALLURING_VOICE"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"

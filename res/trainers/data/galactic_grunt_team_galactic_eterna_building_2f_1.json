@@ -10,53 +10,71 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MURKROW",
+            "species": "SPECIES_BRONZOR",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 22,
+            "item": "ITEM_OCCA_BERRY",
             "moves": [
-                "MOVE_WING_ATTACK",
-                "MOVE_PURSUIT",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_ASTONISH"
+                "MOVE_HYPNOSIS",
+                "MOVE_EXTRASENSORY",
+                "MOVE_ROCK_TOMB",
+                "MOVE_METAL_CLAW"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_BRONZOR",
+            "species": "SPECIES_MURKROW",
             "form": 0,
-            "level": 23,
-            "item": "ITEM_NONE",
+            "level": 22,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_CONFUSION",
-                "MOVE_IMPRISON",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_ROCK_TOMB"
+                "MOVE_WING_ATTACK",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_PURSUIT",
+                "MOVE_TAUNT"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_VULLABY",
+            "form": 0,
+            "level": 23,
+            "item": "ITEM_JABOCA_BERRY",
+            "moves": [
+                "MOVE_KNOCK_OFF",
+                "MOVE_PLUCK",
+                "MOVE_SNARL",
+                "MOVE_TAILWIND"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 2,
             "gender": null
         },
         {
             "species": "SPECIES_CROAGUNK",
             "form": 0,
             "level": 24,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
                 "MOVE_POISON_JAB",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_PURSUIT",
-                "MOVE_MUD_SLAP"
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_VACUUM_WAVE",
+                "MOVE_TAUNT"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_HARDY",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 1
         }
     ],
     "messages": [

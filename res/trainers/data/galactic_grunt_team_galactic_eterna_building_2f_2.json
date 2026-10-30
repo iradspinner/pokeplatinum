@@ -10,53 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GRIMER",
+            "species": "SPECIES_GLIMMET",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 23,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
-                "MOVE_TOXIC",
-                "MOVE_SLUDGE",
-                "MOVE_HARDEN",
-                "MOVE_MUD_SLAP"
+                "MOVE_STEALTH_ROCK",
+                "MOVE_VENOSHOCK",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_ACID_SPRAY"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_GLAMEOW",
+            "species": "SPECIES_GRIMER",
             "form": 0,
             "level": 23,
-            "item": "ITEM_NONE",
+            "item": "ITEM_SHUCA_BERRY",
             "moves": [
-                "MOVE_FURY_SWIPES",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_GROWL",
-                "MOVE_SCRATCH"
+                "MOVE_POISON_JAB",
+                "MOVE_MUD_BOMB",
+                "MOVE_SHADOW_SNEAK",
+                "MOVE_DISABLE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_NIDORINA",
             "form": 0,
             "level": 24,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_LUM_BERRY",
             "moves": [
+                "MOVE_POISON_JAB",
                 "MOVE_DOUBLE_KICK",
-                "MOVE_POISON_STING",
                 "MOVE_BITE",
-                "MOVE_FURY_SWIPES"
+                "MOVE_TOXIC_SPIKES"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         }
     ],
     "messages": [

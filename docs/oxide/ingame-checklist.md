@@ -565,6 +565,43 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   revives nothing. Ride down Cycling Road into its south gate, come back, and
   he offers to revive it as before (level 20, the next time you talk to him).
 
+- [ ] **Mandatory fights, Roark's split** (`overseer-mandatory-early`, Ian,
+  2026-10-29; `docs/oxide/mandatory-fights-early.md`). Walk the story path
+  without dodging anyone. Each trainer below should see you and walk up
+  before you can pass, and after the battle the way on is still open with the
+  trainer standing where it was:
+  - Youngster Sebastian, Route 203, one step north of where he stood, looking
+    south across the path a few steps west of the turn north to Oreburgh
+    Gate.
+  - Lass Madeline, Route 203, in the grass at the west edge of the passage
+    north to Oreburgh Gate, looking east across it; Lass Kaitlin still
+    wanders below her and should not join her battle.
+  - Picnicker Diana, Oreburgh Gate 1F, one step north of where she stood,
+    looking south down the column every way east crosses.
+  - Camper Curtis, Oreburgh Gate 1F, one step east of where he stood, looking
+    north; he and Diana are fought one at a time.
+  - Worker Mason, Oreburgh Mine B2F, beside the Machop at the foot of the
+    shaft down from B1F, looking west along the row the way on crosses.
+    Roark's scene further in plays as before (he walks off east after the
+    talk).
+- [ ] **Mandatory fights, Gardenia's split** (`overseer-mandatory-early`,
+  Ian, 2026-10-29; `docs/oxide/mandatory-fights-early.md`). As above, one
+  trainer at a time:
+  - Lass Samantha, Route 204 South, at the west edge of the narrow stretch
+    south of the Ravaged Path, looking east across it.
+  - Twins Liv and Liz, Route 204 North, side by side at the west edge of the
+    path north into Floaroma, looking east; they fight as their usual double.
+  - Psychics Kody and Rachael, Eterna Forest, facing each other across the
+    passage north towards the exit, with Cheryl along; one double with her as
+    your partner, as before.
+  - Fisherman Joseph, Route 205 South, on the bank beside the south end of
+    the bridge to Eterna Forest, looking west across its foot. He is no
+    longer on Route 205 North's piers.
+  - Fisherman Andrew, Route 205 South, on the bank beside the north end of
+    the same bridge, looking east across its top, fought after the Valley
+    Windworks once the grunts there are gone. Before the Windworks, stepping
+    onto the bridge still has the grunts push you back with no battle from
+    Andrew. He is no longer on Route 205 North's piers either.
 - [ ] **Mandatory fights, Fantina's split** (`overseer-mandatory-fights`,
   Ian, 2026-10-29; `docs/oxide/mandatory-fights.md`). Walk the story path
   without dodging anyone. Each trainer below should see you and walk up

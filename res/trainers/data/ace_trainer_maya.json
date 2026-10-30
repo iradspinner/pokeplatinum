@@ -12,16 +12,16 @@
         {
             "species": "SPECIES_ROSERADE",
             "form": 0,
-            "level": 37,
+            "level": 36,
             "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_TOXIC_SPIKES",
+                "MOVE_WEATHER_BALL",
                 "MOVE_SLUDGE_BOMB",
                 "MOVE_GIGA_DRAIN",
-                "MOVE_LEECH_SEED"
+                "MOVE_SLEEP_POWDER"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
@@ -29,15 +29,16 @@
         {
             "species": "SPECIES_GASTRODON",
             "form": 0,
-            "level": 37,
-            "item": "ITEM_NONE",
+            "level": 36,
+            "item": "ITEM_RINDO_BERRY",
             "moves": [
                 "MOVE_EARTH_POWER",
                 "MOVE_SURF",
-                "MOVE_SLUDGE_BOMB",
-                "MOVE_BODY_SLAM"
+                "MOVE_ICE_BEAM",
+                "MOVE_YAWN"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -45,17 +46,18 @@
         {
             "species": "SPECIES_GARDEVOIR",
             "form": 0,
-            "level": 38,
-            "item": "ITEM_NONE",
+            "level": 37,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
+                "MOVE_DAZZLING_GLEAM",
                 "MOVE_PSYCHIC",
-                "MOVE_THUNDERBOLT",
-                "MOVE_ENERGY_BALL",
-                "MOVE_WISH"
+                "MOVE_SHADOW_BALL",
+                "MOVE_WILL_O_WISP"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
-            "ability": 2,
+            "ability": 1,
             "gender": "female"
         }
     ],

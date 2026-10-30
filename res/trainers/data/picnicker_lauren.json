@@ -10,53 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PACHIRISU",
+            "species": "SPECIES_EMOLGA",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_MAGNET",
             "moves": [
-                "MOVE_SPARK",
-                "MOVE_COVET",
-                "MOVE_CHARM",
-                "MOVE_ENDURE"
+                "MOVE_NUZZLE",
+                "MOVE_U_TURN",
+                "MOVE_SHOCK_WAVE",
+                "MOVE_TAUNT"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
         },
         {
-            "species": "SPECIES_EMOLGA",
+            "species": "SPECIES_FLAAFFY",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_ACROBATICS",
-                "MOVE_SPARK",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_CHARGE"
+                "MOVE_CHARGE_BEAM",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_CONFUSE_RAY"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_GENTLE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_MARILL",
             "form": 0,
-            "level": 29,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 27,
+            "item": "ITEM_RINDO_BERRY",
             "moves": [
-                "MOVE_AQUA_TAIL",
-                "MOVE_ROLLOUT",
-                "MOVE_CHARM",
-                "MOVE_HELPING_HAND"
+                "MOVE_AQUA_JET",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_KNOCK_OFF",
+                "MOVE_ICE_PUNCH"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": "female"
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

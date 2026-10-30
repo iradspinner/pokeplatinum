@@ -10,69 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RIOLU",
-            "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_FORCE_PALM",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_COUNTER",
-                "MOVE_SWIFT"
-            ],
-            "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_MAKUHITA",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_COBA_BERRY",
             "moves": [
                 "MOVE_FAKE_OUT",
                 "MOVE_KNOCK_OFF",
-                "MOVE_SMELLING_SALT",
-                "MOVE_VITAL_THROW"
+                "MOVE_BULLET_PUNCH",
+                "MOVE_DRAIN_PUNCH"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_CAREFUL",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_MEDITITE",
             "form": 0,
-            "level": 29,
-            "item": "ITEM_NONE",
+            "level": 27,
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
-                "MOVE_PSYCHO_CUT",
                 "MOVE_DRAIN_PUNCH",
+                "MOVE_ZEN_HEADBUTT",
                 "MOVE_BULLET_PUNCH",
-                "MOVE_FORCE_PALM"
+                "MOVE_ICE_PUNCH"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_PAWMO",
             "form": 0,
-            "level": 29,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 28,
+            "item": "ITEM_SHELL_BELL",
             "moves": [
-                "MOVE_VITAL_THROW",
-                "MOVE_REVENGE",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_BRICK_BREAK"
+                "MOVE_NUZZLE",
+                "MOVE_POWER_UP_PUNCH",
+                "MOVE_SPARK",
+                "MOVE_SUCKER_PUNCH"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [

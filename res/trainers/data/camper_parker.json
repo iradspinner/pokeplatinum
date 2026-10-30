@@ -12,34 +12,52 @@
         {
             "species": "SPECIES_BUIZEL",
             "form": 0,
-            "level": 27,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_MYSTIC_WATER",
             "moves": [
-                "MOVE_CHILLING_WATER",
-                "MOVE_SWIFT",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_AQUA_JET"
+                "MOVE_AQUA_JET",
+                "MOVE_ICE_PUNCH",
+                "MOVE_BRICK_BREAK",
+                "MOVE_PURSUIT"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_LUXIO",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 26,
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
                 "MOVE_SPARK",
+                "MOVE_ICE_FANG",
                 "MOVE_BITE",
-                "MOVE_ROAR",
-                "MOVE_CHARGE"
+                "MOVE_THUNDER_WAVE"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_DOCILE",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
+        },
+        {
+            "species": "SPECIES_ARAQUANID",
+            "form": 0,
+            "level": 27,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_BUG_BITE",
+                "MOVE_BITE",
+                "MOVE_AQUA_RING"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

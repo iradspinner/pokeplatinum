@@ -11865,10 +11865,12 @@
      {"event": "object_events", "file": "events_route_205_south", "how": "sees the player", "line": 87, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_HIKER_NICHOLAS", "value": 19, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_205_south", "how": "sees the player", "line": 104, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BATTLE_GIRL_KELSEY", "value": 20, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_205_south", "how": "sees the player", "line": 346, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_PICNICKER_KARINA", "value": 456, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_205_south", "how": "sees the player", "line": 363, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_CAMPER_ZACKARY", "value": 377, "when": ""}]}]}
+     {"event": "object_events", "file": "events_route_205_south", "how": "sees the player", "line": 363, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_CAMPER_ZACKARY", "value": 377, "when": ""}]}]},
+     {"commit": "74d0a38e9", "event": "object_events", "file": "events_route_205_south", "how": "sees the player", "line": 530, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_ANDREW", "value": 22, "when": ""}]}], "source": "Oxide"},
+     {"commit": "74d0a38e9", "event": "object_events", "file": "events_route_205_south", "how": "sees the player", "line": 547, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_JOSEPH", "value": 23, "when": ""}]}], "source": "Oxide"}
     ],
     "vars": [
-     {"at": ["events_route_205_south:553", "events_route_205_south:563"], "name": "VAR_VALLEY_WINDWORKS_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16521},
+     {"at": ["events_route_205_south:587", "events_route_205_south:597"], "name": "VAR_VALLEY_WINDWORKS_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16521},
      {"at": ["scripts_route_205_south:131"], "name": "VAR_VALLEY_WINDWORKS_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16521}
     ]
    },
@@ -11888,23 +11890,26 @@
   {
    "entries": {
     "flags": [
-     {"at": ["events_route_205_north:196"], "daily": false, "flag": 65, "name": "FLAG_UNK_0x0041", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_205_north:112"], "daily": false, "flag": 1037, "name": "FLAG_OBTAINED_ROUTE_205_NORTH_GUARD_SPEC", "op": "hides", "origin": "vanilla", "reached": true}
+     {"at": ["events_route_205_north:166"], "daily": false, "flag": 65, "name": "FLAG_UNK_0x0041", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_205_north:82"], "daily": false, "flag": 1037, "name": "FLAG_OBTAINED_ROUTE_205_NORTH_GUARD_SPEC", "op": "hides", "origin": "vanilla", "reached": true}
     ],
     "hidden_items": [
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_route_205_north", "flag": 880, "flag_name": "FLAG_OBTAINED_HIDDEN_ROUTE_205_NORTH_SUPER_POTION", "item": "ITEM_SUPER_POTION", "item_id": 26, "line": 4, "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_205_north", "flag": 1037, "flag_name": "FLAG_OBTAINED_ROUTE_205_NORTH_GUARD_SPEC", "item": "ITEM_GUARD_SPEC", "item_id": 55, "line": 113, "origin": "vanilla", "reached": true}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_205_north", "flag": 1037, "flag_name": "FLAG_OBTAINED_ROUTE_205_NORTH_GUARD_SPEC", "item": "ITEM_GUARD_SPEC", "item_id": 55, "line": 83, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
-     {"event": "object_events", "file": "events_route_205_north", "how": "sees the player", "line": 19, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_ANDREW", "value": 22, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_205_north", "how": "sees the player", "line": 34, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_JOSEPH", "value": 23, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_205_north", "how": "sees the player", "line": 49, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_ZACHARY", "value": 24, "when": ""}]}]}
+     {"event": "object_events", "file": "events_route_205_north", "how": "sees the player", "line": 19, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_ZACHARY", "value": 24, "when": ""}]}]}
     ]
    },
    "events": "events_route_205_north",
-   "gone_from_vanilla": {},
+   "gone_from_vanilla": {
+    "trainers": [
+     {"event": "object_events", "file": "events_route_205_north", "how": "sees the player", "line": 19, "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_ANDREW", "value": 22, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_205_north", "how": "sees the player", "line": 34, "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_JOSEPH", "value": 23, "when": ""}]}]}
+    ]
+   },
    "header": "MAP_HEADER_ROUTE_205_NORTH",
    "init": "scripts_init_route_205_north",
    "location": "Route 205",
@@ -19293,11 +19298,11 @@
    "vanilla": 4
   },
   "trainers": {
-   "Oxide": 7,
+   "Oxide": 9,
    "base ROM": 72,
-   "gone": 8,
+   "gone": 10,
    "total": 592,
-   "vanilla": 513
+   "vanilla": 511
   },
   "vars": {
    "Oxide": 12,

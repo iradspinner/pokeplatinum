@@ -10,53 +10,53 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_KANGASKHAN",
+            "species": "SPECIES_LAPRAS",
             "form": 0,
             "level": 35,
-            "item": "ITEM_SILK_SCARF",
+            "item": "ITEM_CHOPLE_BERRY",
             "moves": [
-                "MOVE_DOUBLE_EDGE",
-                "MOVE_CRUNCH",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_DRAIN_PUNCH"
+                "MOVE_SING",
+                "MOVE_ICE_BEAM",
+                "MOVE_THUNDERBOLT",
+                "MOVE_PSYCHIC_NOISE"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
-            "ability": 2
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_TURTONATOR",
+            "form": 0,
+            "level": 35,
+            "item": "ITEM_ROCKY_HELMET",
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_BODY_PRESS",
+                "MOVE_IRON_DEFENSE"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_SNORLAX",
             "form": 0,
             "level": 36,
-            "item": "ITEM_LEFTOVERS",
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_CURSE",
+                "MOVE_BELLY_DRUM",
                 "MOVE_BODY_SLAM",
-                "MOVE_STOMPING_TANTRUM",
-                "MOVE_REST"
+                "MOVE_EARTHQUAKE",
+                "MOVE_ZEN_HEADBUTT"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_CAREFUL",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 2,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_LAPRAS",
-            "form": 0,
-            "level": 37,
-            "item": "ITEM_MYSTIC_WATER",
-            "moves": [
-                "MOVE_SURF",
-                "MOVE_ICE_BEAM",
-                "MOVE_THUNDERBOLT",
-                "MOVE_SING"
-            ],
-            "iv_scale": 220,
-            "nature": "NATURE_MODEST",
-            "ball_seal": 0,
-            "ability": 3,
             "gender": "male"
         }
     ],

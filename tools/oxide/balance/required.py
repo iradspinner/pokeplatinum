@@ -364,12 +364,23 @@ def report():
 def first_crossings():
     """{trainer constant: (split, header, verdict)} at the first crossing
     that reaches each trainer. This is also the split the player first
-    meets it in, which is how B1e re-places the filler B1d put too early."""
+    meets it in, which is how B1e re-places the filler B1d put too early.
+
+    A map the story crosses twice in one split (Route 205 South, to the
+    Valley Windworks and back to Eterna Forest) can read a trainer
+    avoidable on the first crossing and required on the second; the
+    trainer is then required in that split, since the player must pass it
+    before the split ends (2026-10-29, the fishermen at the Windworks
+    bridge)."""
     rows, _left = report()
     first = {}
     for split, header, const, tr_id, verdict, notes in rows:
-        if verdict != "not reached":
-            first.setdefault(const, (split, header, verdict))
+        if verdict == "not reached":
+            continue
+        if const not in first:
+            first[const] = (split, header, verdict)
+        elif first[const][0] == split and verdict == "required":
+            first[const] = (split, header, verdict)
     return first
 
 

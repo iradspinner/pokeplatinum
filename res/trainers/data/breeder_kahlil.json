@@ -13,69 +13,49 @@
             "species": "SPECIES_HITMONTOP",
             "form": 0,
             "level": 35,
-            "item": "ITEM_BLACK_BELT",
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
                 "MOVE_FAKE_OUT",
-                "MOVE_TRIPLE_AXEL",
                 "MOVE_ROLLING_KICK",
+                "MOVE_TRIPLE_AXEL",
                 "MOVE_SUCKER_PUNCH"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_CAREFUL",
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 1
         },
         {
-            "species": "SPECIES_BRELOOM",
+            "species": "SPECIES_TSAREENA",
             "form": 0,
-            "level": 36,
-            "item": "ITEM_SAFETY_GOGGLES",
+            "level": 35,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
-                "MOVE_MACH_PUNCH",
-                "MOVE_BULLET_SEED",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_STUN_SPORE"
+                "MOVE_TROP_KICK",
+                "MOVE_LOW_SWEEP",
+                "MOVE_KNOCK_OFF",
+                "MOVE_TAUNT"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_STARAPTOR",
-            "form": 0,
-            "level": 36,
-            "item": "ITEM_SHARP_BEAK",
-            "moves": [
-                "MOVE_DUAL_WINGBEAT",
-                "MOVE_CLOSE_COMBAT",
-                "MOVE_U_TURN",
-                "MOVE_QUICK_ATTACK"
-            ],
-            "iv_scale": 220,
-            "nature": "NATURE_ADAMANT",
-            "ball_seal": 0,
-            "ability": 3,
-            "gender": "male"
+            "ability": 2
         },
         {
             "species": "SPECIES_BLAZIKEN",
             "form": 0,
-            "level": 37,
-            "item": "ITEM_CHARCOAL",
+            "level": 36,
+            "item": "ITEM_FOCUS_BAND",
             "moves": [
+                "MOVE_PROTECT",
                 "MOVE_BLAZE_KICK",
-                "MOVE_BRICK_BREAK",
-                "MOVE_KNOCK_OFF",
-                "MOVE_PROTECT"
+                "MOVE_SUPERPOWER",
+                "MOVE_STONE_EDGE"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_HASTY",
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 3,
-            "gender": "male"
+            "ability": 3
         }
     ],
     "messages": [

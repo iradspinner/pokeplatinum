@@ -12,48 +12,48 @@
         {
             "species": "SPECIES_JYNX",
             "form": 0,
-            "level": 35,
-            "item": "ITEM_NEVERMELTICE",
+            "level": 33,
+            "item": "ITEM_ICICLE_PLATE",
             "moves": [
                 "MOVE_FAKE_OUT",
+                "MOVE_LOVELY_KISS",
                 "MOVE_ICE_BEAM",
-                "MOVE_PSYCHIC",
-                "MOVE_LOVELY_KISS"
+                "MOVE_PSYCHIC"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
             "ability": 3
         },
         {
-            "species": "SPECIES_CHANSEY",
+            "species": "SPECIES_ALOMOMOLA",
             "form": 0,
-            "level": 35,
-            "item": "ITEM_EVIOLITE",
+            "level": 33,
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
-                "MOVE_SOFTBOILED",
-                "MOVE_TOXIC",
-                "MOVE_CHILLING_WATER",
-                "MOVE_LIGHT_SCREEN"
+                "MOVE_WATERFALL",
+                "MOVE_WAKE_UP_SLAP",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_AQUA_RING"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_CALM",
+            "nature": "NATURE_DOCILE",
             "ball_seal": 0,
             "ability": 1
         },
         {
             "species": "SPECIES_FARFETCHD",
             "form": 0,
-            "level": 36,
+            "level": 33,
             "item": "ITEM_SCOPE_LENS",
             "moves": [
+                "MOVE_SWORDS_DANCE",
                 "MOVE_NIGHT_SLASH",
                 "MOVE_AERIAL_ACE",
-                "MOVE_POISON_JAB",
-                "MOVE_KNOCK_OFF"
+                "MOVE_POISON_JAB"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 3,
             "gender": "male"
@@ -61,13 +61,13 @@
         {
             "species": "SPECIES_MAROWAK",
             "form": 0,
-            "level": 37,
+            "level": 34,
             "item": "ITEM_THICK_CLUB",
             "moves": [
                 "MOVE_BONEMERANG",
-                "MOVE_STOMPING_TANTRUM",
+                "MOVE_SHADOW_BONE",
                 "MOVE_ROCK_SLIDE",
-                "MOVE_KNOCK_OFF"
+                "MOVE_FIRE_PUNCH"
             ],
             "iv_scale": 220,
             "nature": "NATURE_BRAVE",

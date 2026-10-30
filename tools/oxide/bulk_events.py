@@ -167,6 +167,15 @@ _why = "trainers moved onto the story path to make them mandatory (Ian, 2026-10-
 for _m in ("route_207", "route_208", "route_209", "route_210_south", "route_215"):
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
                                 if f"events_{_m}" in DIVERGED else _why)
+# The same day Ian asked for 8 in Roark's split and 12 or more in Gardenia's
+# (docs/oxide/mandatory-fights-early.md). Fishermen Andrew and Joseph left
+# Route 205 North's piers for the banks at both ends of Route 205 South's
+# bridge, so the one map loses them and the other gains them.
+_why = "trainers moved onto the story path to make them mandatory (Ian, 2026-10-29)"
+for _m in ("route_203", "oreburgh_gate_1f", "oreburgh_mine_b2f", "route_204_south",
+           "route_204_north", "eterna_forest", "route_205_south", "route_205_north"):
+    DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; then " + _why
+                                if f"events_{_m}" in DIVERGED else _why)
 
 
 def render(record, existing, index):

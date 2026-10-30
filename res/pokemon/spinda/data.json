@@ -104,7 +104,8 @@
             "MOVE_SMELLING_SALT",
             "MOVE_FAKE_OUT",
             "MOVE_ROLE_PLAY",
-            "MOVE_PSYCHO_CUT"
+            "MOVE_PSYCHO_CUT",
+            "MOVE_TEETER_DANCE"
         ]
     },
     "evolutions": [  ],

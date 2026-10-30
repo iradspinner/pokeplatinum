@@ -272,7 +272,12 @@ trainers the player fights alone together, by eye contact or script, field
 six Pokemon between them at most, never eight against the player's six,
 barring Ian's explicit permission (Ian, 2026-10-29, on Ace Trainers Dennis
 and Maya); a moved trainer must not make a new pair. A double where a
-partner fights beside the player is a different case. Ordinary trainers favour
+partner fights beside the player is a different case. Early in the game two
+trainers a script fights back to back with no healing also field six between
+them (Floaroma Meadow's grunts, three each); later, two separate fours in a
+row are fine (Ian, 2026-10-29). A twins or couple double that starts only when
+the player has two Pokemon able to fight still counts as mandatory (Ian, the
+same day). Ordinary trainers favour
 variety over the optimal: neutral or less common natures more often, items
 that are not the textbook pick, and sets a player has not met a thousand
 times (Ian, 2026-10-29: "If every special set for an enemy is modest or

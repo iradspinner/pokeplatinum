@@ -10,52 +10,53 @@
         {
             "species": "SPECIES_RIOLU",
             "form": 0,
-            "level": 28,
+            "level": 26,
             "item": "ITEM_LIECHI_BERRY",
             "moves": [
-                "MOVE_REVERSAL",
                 "MOVE_ENDURE",
-                "MOVE_FORCE_PALM",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_REVERSAL",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_BONE_RUSH"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
         },
         {
-            "species": "SPECIES_MONFERNO",
+            "species": "SPECIES_MIENFOO",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_BLACK_BELT",
             "moves": [
-                "MOVE_FLAME_WHEEL",
-                "MOVE_MACH_PUNCH",
-                "MOVE_TAUNT",
-                "MOVE_FURY_SWIPES"
+                "MOVE_FAKE_OUT",
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_U_TURN",
+                "MOVE_KNOCK_OFF"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_SERIOUS",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         },
         {
             "species": "SPECIES_PRIMEAPE",
             "form": 0,
-            "level": 29,
+            "level": 27,
             "item": "ITEM_SALAC_BERRY",
             "moves": [
-                "MOVE_REVERSAL",
                 "MOVE_ENDURE",
-                "MOVE_KARATE_CHOP",
+                "MOVE_REVERSAL",
+                "MOVE_ASSURANCE",
                 "MOVE_ROCK_SLIDE"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [
