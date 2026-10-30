@@ -11,52 +11,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BRELOOM",
+            "species": "SPECIES_HAWLUCHA",
             "form": 0,
             "level": 35,
-            "item": "ITEM_COBA_BERRY",
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_MACH_PUNCH",
-                "MOVE_BULLET_SEED",
-                "MOVE_STUN_SPORE",
-                "MOVE_SKY_UPPERCUT"
+                "MOVE_FLYING_PRESS",
+                "MOVE_STONE_EDGE",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_ENCORE"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_ADAMANT",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_GALLADE",
-            "form": 0,
-            "level": 36,
-            "item": "ITEM_SCOPE_LENS",
-            "moves": [
-                "MOVE_PSYCHO_CUT",
-                "MOVE_DRAIN_PUNCH",
-                "MOVE_LEAF_BLADE",
-                "MOVE_TRIPLE_AXEL"
-            ],
-            "iv_scale": 220,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
             "ability": 2,
             "gender": "male"
         },
         {
-            "species": "SPECIES_TOXICROAK",
+            "species": "SPECIES_GALLADE",
             "form": 0,
-            "level": 37,
-            "item": "ITEM_BLACK_SLUDGE",
+            "level": 35,
+            "item": "ITEM_KASIB_BERRY",
             "moves": [
-                "MOVE_POISON_JAB",
+                "MOVE_PSYCHO_CUT",
                 "MOVE_DRAIN_PUNCH",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_BULLET_PUNCH"
+                "MOVE_SHADOW_SNEAK",
+                "MOVE_KNOCK_OFF"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_HASTY",
+            "nature": "NATURE_HARDY",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_TOXICROAK",
+            "form": 0,
+            "level": 36,
+            "item": "ITEM_PAYAPA_BERRY",
+            "moves": [
+                "MOVE_POISON_JAB",
+                "MOVE_CROSS_CHOP",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_BULK_UP"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"

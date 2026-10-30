@@ -11,46 +11,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MACHOP",
+            "species": "SPECIES_GRAPPLOCT",
             "form": 0,
-            "level": 34,
-            "item": null,
+            "level": 35,
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
-                "MOVE_BULLET_PUNCH",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_LOW_KICK",
-                "MOVE_WAKE_UP_SLAP"
+                "MOVE_CIRCLE_THROW",
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_BULK_UP"
             ],
-            "iv_scale": 240,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3
         },
         {
-            "species": "SPECIES_BRELOOM",
+            "species": "SPECIES_MACHOKE",
             "form": 0,
-            "level": 34,
-            "item": null,
+            "level": 35,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_MACH_PUNCH",
-                "MOVE_SEED_BOMB",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_SKY_UPPERCUT"
+                "MOVE_DYNAMIC_PUNCH",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_POISON_JAB",
+                "MOVE_BULLET_PUNCH"
             ],
-            "iv_scale": 191,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 2
         },
         {
             "species": "SPECIES_HITMONCHAN",
             "form": 0,
-            "level": 34,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_PUNCHING_GLOVE",
             "moves": [
                 "MOVE_MACH_PUNCH",
                 "MOVE_THUNDER_PUNCH",
-                "MOVE_ICE_PUNCH",
-                "MOVE_FIRE_PUNCH"
+                "MOVE_FIRE_PUNCH",
+                "MOVE_SKY_UPPERCUT"
             ],
-            "iv_scale": 199,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 2
         }
     ],
     "messages": [

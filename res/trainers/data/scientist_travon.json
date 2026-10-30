@@ -12,53 +12,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_VOLTORB",
-            "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_SPARK",
-                "MOVE_SONIC_BOOM",
-                "MOVE_SCREECH",
-                "MOVE_ROLLOUT"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_PORYGON",
             "form": 0,
             "level": 24,
-            "item": "ITEM_NONE",
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_PSYBEAM",
+                "MOVE_TRI_ATTACK",
                 "MOVE_SIGNAL_BEAM",
-                "MOVE_CONVERSION",
+                "MOVE_CHARGE_BEAM",
                 "MOVE_RECOVER"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         },
         {
-            "species": "SPECIES_KADABRA",
+            "species": "SPECIES_CHARJABUG",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_TWISTEDSPOON",
+            "level": 24,
+            "item": "ITEM_ASSAULT_VEST",
             "moves": [
-                "MOVE_PSYBEAM",
-                "MOVE_SIGNAL_BEAM",
-                "MOVE_DISABLE",
-                "MOVE_REFLECT"
+                "MOVE_BUG_BITE",
+                "MOVE_SPARK",
+                "MOVE_BITE",
+                "MOVE_MUD_SLAP"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_CAREFUL",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": "male"
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_KLEFKI",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_LIGHT_CLAY",
+            "moves": [
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_DRAINING_KISS"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

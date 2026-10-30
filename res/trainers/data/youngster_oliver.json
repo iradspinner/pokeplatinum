@@ -12,44 +12,50 @@
         {
             "species": "SPECIES_MOTHIM",
             "form": 0,
-            "level": 31,
-            "item": null,
+            "level": 33,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_OMINOUS_WIND",
-                "MOVE_PSYCHIC",
+                "MOVE_AIR_CUTTER",
                 "MOVE_SIGNAL_BEAM",
-                "MOVE_POISON_POWDER"
+                "MOVE_PSYCHIC",
+                "MOVE_ROOST"
             ],
-            "iv_scale": 168,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_TOUCANNON",
+            "form": 0,
+            "level": 33,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_DRILL_PECK",
+                "MOVE_ROCK_BLAST",
+                "MOVE_BULLET_SEED",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2
         },
         {
             "species": "SPECIES_CRAWDAUNT",
             "form": 0,
-            "level": 30,
-            "item": null,
+            "level": 34,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
-                "MOVE_WATERFALL",
                 "MOVE_DRAGON_DANCE",
-                "MOVE_KNOCK_OFF",
-                "MOVE_BRICK_BREAK"
+                "MOVE_WATERFALL",
+                "MOVE_CEASELESS_EDGE",
+                "MOVE_SUPERPOWER"
             ],
-            "iv_scale": 197,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_CHATOT",
-            "form": 0,
-            "level": 31,
-            "item": null,
-            "moves": [
-                "MOVE_AIR_CUTTER",
-                "MOVE_CHATTER",
-                "MOVE_ROOST",
-                "MOVE_MIMIC"
-            ],
-            "iv_scale": 207,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

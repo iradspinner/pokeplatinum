@@ -10,36 +10,54 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BAGON",
+            "species": "SPECIES_JANGMO_O",
             "form": 0,
-            "level": 27,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_YACHE_BERRY",
             "moves": [
-                "MOVE_HEADBUTT",
-                "MOVE_EMBER",
-                "MOVE_DRAGON_RAGE",
-                "MOVE_FOCUS_ENERGY"
+                "MOVE_DRAGON_CLAW",
+                "MOVE_BRICK_BREAK",
+                "MOVE_BULK_UP",
+                "MOVE_DRAGON_TAIL"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GOOMY",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_ASSAULT_VEST",
+            "moves": [
+                "MOVE_DRAGON_BREATH",
+                "MOVE_WATER_PULSE",
+                "MOVE_THUNDERBOLT",
+                "MOVE_SLUDGE_BOMB"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_GIBLE",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 27,
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
                 "MOVE_DRAGON_CLAW",
-                "MOVE_SAND_TOMB",
-                "MOVE_TAKE_DOWN",
-                "MOVE_SLASH"
+                "MOVE_DIG",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_BITE"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_HARDY",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 1
         }
     ],
     "messages": [

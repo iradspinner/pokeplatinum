@@ -219,8 +219,11 @@ def alpha_state():
             who = savefile.player(data) or {}
         except savefile.SaveError:
             who = {}
+        # The party members over the level cap in force, which the Alpha
+        # tab's bar names, since the game shows nothing (soft caps, 2026-10-29).
         out["save"] = {"path": path, "badges": progress.get("badges"),
                        "split": (progress.get("split") or {}).get("name"),
+                       "over_cap": savefile.over_cap(save) if save else [],
                        "starter": who.get("starter"), "gender": who.get("gender"),
                        "rom": (alphanotes.ROM_NAME.search(os.path.basename(path or "")) or [None, None])[1]}
     return out

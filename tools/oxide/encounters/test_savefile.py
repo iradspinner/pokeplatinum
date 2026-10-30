@@ -188,6 +188,25 @@ def main():
                     and S._vars_layout()["splits"][7] == "HQ"
                     and S._vars_layout()["splits"][12] == "Post",
                     f"{pr['badges']} badges, {pr['split']}"))
+    # The caps are soft since 2026-10-29: a Pokemon may level past the cap in
+    # force, and the OxiDex flags it. Fantina's split (2) has a cap of 33, so
+    # a level 34 Chimchar is over it and a level 33 one, at it, is not.
+    exp_at = S._tables()["exp"]["medium_slow"]
+    capped = make_save([record(0x12345678, chimchar, [move_id("MOVE_SCRATCH")], ability_id("ABILITY_BLAZE"),
+                               exp=exp_at[34], party_level=34),
+                        record(0x23456789, chimchar, [move_id("MOVE_SCRATCH")], ability_id("ABILITY_BLAZE"),
+                               exp=exp_at[33], party_level=33)],
+                       {}, split=2, box_size=BOX_SIZE_30)
+    cs = S.parse(capped, "capped")
+    over = S.over_cap(cs) if hasattr(S, "over_cap") else None
+    lines = S.summary(cs)["party"]
+    results.append(("a party member above the cap in force is flagged with the cap named, "
+                    "and one at the cap is not",
+                    cs["progress"]["split"]["cap"] == 33
+                    and over == [{"slot": "party 1", "name": "Chimchar", "level": 34, "cap": 33}]
+                    and lines[0].endswith("(over the cap of 33)") and "over the cap" not in lines[1]
+                    and S.summary(cs).get("over_cap") == over,
+                    f"{over}; {lines}"))
     vanilla_sized = S.KNOWN_LAYOUTS.get((0xCF2C, 0x121E4), "")
     results.append(("a save with no valid normal block is refused, not guessed at",
                     _refuses(bytes(0x80000)) and "2026-09-21" in vanilla_sized, ""))

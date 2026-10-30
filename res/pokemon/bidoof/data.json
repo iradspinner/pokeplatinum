@@ -96,7 +96,8 @@
             "MOVE_DEFENSE_CURL",
             "MOVE_ROLLOUT",
             "MOVE_ODOR_SLEUTH",
-            "MOVE_AQUA_TAIL"
+            "MOVE_AQUA_TAIL",
+            "MOVE_REST"
         ]
     },
     "evolutions": [

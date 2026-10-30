@@ -139,12 +139,15 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   learn and confirm the right move at the right level (a wrong widening would
   be wrong for all 667 learnsets). A Rotom in a form, or a Giratina holding the
   Griseous Orb, shows its form's stats.
-- [ ] **Element 8, the level caps** (the Level caps menu, `docs/oxide/test-kit.md`
-  has the detail): at a new game's cap of 16, Rare Candies stop at Lv. 16 and
-  the next one has no effect and is kept; a Lv. 50 Pokemon wins with no Exp.
-  message; a Pokemon one level under the cap stops at it however much it
-  earns, and is still at it after a trip into the PC; a higher split lets it
-  grow again.
+- [ ] **Soft level caps** (2026-10-29; the Level caps menu,
+  `docs/oxide/test-kit.md` has the detail): at a new game's cap of 16, a
+  Pokemon at Lv. 16 wins a battle, gets the Exp. message, gains a level to
+  17, and keeps levelling from later battles; it is still at its new level
+  after a trip into the PC. A Rare Candy on a Pokemon at Lv. 16 lifts it to
+  17 and is used up, and more candies keep working. After saving, the
+  OxiDex's save bar and the Alpha tab's bar name it as over the cap of 16,
+  and a party member at Lv. 16 exactly is not named. The game itself shows
+  nothing.
 - [ ] **Protect in a row** (Modern rules, `cloud/element6-changes`): King's
   Shield used every turn works the first time, then about one time in two, then
   one in four, with "But it failed!"; Spiky Shield the same. Before the fix
@@ -416,7 +419,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Pokémon's Hidden Power is the" a type "type, with" a number "power."
   Before the fix the first printed the Pokemon Center nurse's greeting and
   the second "OK, I'll take your Pokémon for a few seconds."
-- [ ] Rare Candy chaining works, up to the level cap (16 before Roark).
+- [ ] Rare Candy chaining works, past the level cap too (soft since
+  2026-10-29).
 - [ ] With Scorbunny as the starter (fixed 2026-09-27, `fix-rival-starter`):
   Barry leads with Piplup on Route 201 and at every later fight, and Dawn or
   Lucas uses the Turtwig line. With Turtwig, Barry has the Chimchar line; with
@@ -457,9 +461,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   the sun, and Lumineon (Chlorophyll) moves before anything in the box. Each
   member holds a different resist berry, and a two-hit move into one (Golbat's
   Dual Wingbeat into Breloom's Coba Berry) is weakened on its first hit only.
-- [ ] Level caps: before Roark nothing passes Lv. 16, from battle or candy;
-  after beating him the badge message plays as before and Lv. 26 is the new
-  ceiling. The Day Care man's level and price stop at the cap too.
+- [ ] Level caps: after beating Roark the badge message plays as before and
+  the OxiDex's save bar reads Gardenia's split, cap 26. The caps are soft
+  (2026-10-29), so nothing in battle or from a candy stops at them.
 - [ ] The options menu reads UNLOCK FPS, with OFF and BATTLE only
   (`main-60fps`), and its description says "Unlock the frame rate in battle,
   so / battles run at twice the speed." A save made with ALWAYS shows BATTLE,
@@ -561,6 +565,43 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   revives nothing. Ride down Cycling Road into its south gate, come back, and
   he offers to revive it as before (level 20, the next time you talk to him).
 
+- [ ] **Mandatory fights, Roark's split** (`overseer-mandatory-early`, Ian,
+  2026-10-29; `docs/oxide/mandatory-fights-early.md`). Walk the story path
+  without dodging anyone. Each trainer below should see you and walk up
+  before you can pass, and after the battle the way on is still open with the
+  trainer standing where it was:
+  - Youngster Sebastian, Route 203, one step north of where he stood, looking
+    south across the path a few steps west of the turn north to Oreburgh
+    Gate.
+  - Lass Madeline, Route 203, in the grass at the west edge of the passage
+    north to Oreburgh Gate, looking east across it; Lass Kaitlin still
+    wanders below her and should not join her battle.
+  - Picnicker Diana, Oreburgh Gate 1F, one step north of where she stood,
+    looking south down the column every way east crosses.
+  - Camper Curtis, Oreburgh Gate 1F, one step east of where he stood, looking
+    north; he and Diana are fought one at a time.
+  - Worker Mason, Oreburgh Mine B2F, beside the Machop at the foot of the
+    shaft down from B1F, looking west along the row the way on crosses.
+    Roark's scene further in plays as before (he walks off east after the
+    talk).
+- [ ] **Mandatory fights, Gardenia's split** (`overseer-mandatory-early`,
+  Ian, 2026-10-29; `docs/oxide/mandatory-fights-early.md`). As above, one
+  trainer at a time:
+  - Lass Samantha, Route 204 South, at the west edge of the narrow stretch
+    south of the Ravaged Path, looking east across it.
+  - Twins Liv and Liz, Route 204 North, side by side at the west edge of the
+    path north into Floaroma, looking east; they fight as their usual double.
+  - Psychics Kody and Rachael, Eterna Forest, facing each other across the
+    passage north towards the exit, with Cheryl along; one double with her as
+    your partner, as before.
+  - Fisherman Joseph, Route 205 South, on the bank beside the south end of
+    the bridge to Eterna Forest, looking west across its foot. He is no
+    longer on Route 205 North's piers.
+  - Fisherman Andrew, Route 205 South, on the bank beside the north end of
+    the same bridge, looking east across its top, fought after the Valley
+    Windworks once the grunts there are gone. Before the Windworks, stepping
+    onto the bridge still has the grunts push you back with no battle from
+    Andrew. He is no longer on Route 205 North's piers either.
 - [ ] **Mandatory fights, Fantina's split** (`overseer-mandatory-fights`,
   Ian, 2026-10-29; `docs/oxide/mandatory-fights.md`). Walk the story path
   without dodging anyone. Each trainer below should see you and walk up
@@ -844,8 +885,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 
 On a save with the National Dex and the game beaten:
 
-- [ ] No level cap is left after beating Cynthia: a Pokemon at 78 gains Exp.
-  and takes Rare Candies again.
+- [ ] No level cap is left after beating Cynthia: the OxiDex's save bar reads
+  the Post split and flags no party member, at any level.
 - [ ] The Hall of Fame keeps its entry through a reload (`main-30-boxes`
   moved it from flash sectors 32 to 34 to 45 to 47): after the League, save,
   turn off, load, and the PC's Hall of Fame viewer shows the team.

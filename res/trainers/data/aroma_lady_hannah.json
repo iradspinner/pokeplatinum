@@ -11,68 +11,72 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SUNFLORA",
-            "form": 0,
-            "level": 30,
-            "item": null,
-            "moves": [
-                "MOVE_SUNNY_DAY",
-                "MOVE_MEGA_DRAIN",
-                "MOVE_INGRAIN",
-                "MOVE_LEECH_SEED"
-            ],
-            "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_ROSELIA",
             "form": 0,
-            "level": 30,
-            "item": null,
+            "level": 29,
+            "item": "ITEM_BIG_ROOT",
             "moves": [
-                "MOVE_GIGA_DRAIN",
-                "MOVE_POISON_STING",
                 "MOVE_SLEEP_POWDER",
-                "MOVE_SYNTHESIS"
+                "MOVE_GIGA_DRAIN",
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_EXTRASENSORY"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_CHERRIM",
             "form": 0,
-            "level": 30,
-            "item": null,
+            "level": 29,
+            "item": "ITEM_MIRACLE_SEED",
             "moves": [
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_HELPING_HAND",
+                "MOVE_ENERGY_BALL",
                 "MOVE_LEECH_SEED",
-                "MOVE_TACKLE"
+                "MOVE_STUN_SPORE",
+                "MOVE_DRAINING_KISS"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_LAX",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_JUMPLUFF",
+            "species": "SPECIES_LEAVANNY",
             "form": 0,
-            "level": 31,
-            "item": null,
+            "level": 29,
+            "item": "ITEM_CHARTI_BERRY",
             "moves": [
-                "MOVE_U_TURN",
-                "MOVE_SEED_BOMB",
-                "MOVE_LEECH_SEED",
+                "MOVE_STICKY_WEB",
+                "MOVE_X_SCISSOR",
+                "MOVE_RAZOR_LEAF",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SINISTCHA",
+            "form": 0,
+            "level": 30,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_MATCHA_GOTCHA",
+                "MOVE_HEX",
+                "MOVE_STRENGTH_SAP",
                 "MOVE_STUN_SPORE"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_BASHFUL",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [

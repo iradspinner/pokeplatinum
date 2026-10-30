@@ -12,51 +12,53 @@
         {
             "species": "SPECIES_KOFFING",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_SMOG",
-                "MOVE_ASSURANCE",
-                "MOVE_TOXIC",
-                "MOVE_SCREECH"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_ZUBAT",
-            "form": 0,
             "level": 23,
-            "item": "ITEM_NONE",
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
-                "MOVE_LEECH_LIFE",
-                "MOVE_BITE",
-                "MOVE_SUPERSONIC",
-                "MOVE_ASTONISH"
+                "MOVE_TOXIC",
+                "MOVE_WILL_O_WISP",
+                "MOVE_SMOG",
+                "MOVE_PAIN_SPLIT"
             ],
             "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_STUNKY",
-            "form": 0,
-            "level": 24,
-            "item": "ITEM_ORAN_BERRY",
-            "moves": [
-                "MOVE_LEER",
-                "MOVE_FURY_SWIPES",
-                "MOVE_PURSUIT",
-                "MOVE_SLASH"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SALANDIT",
+            "form": 0,
+            "level": 23,
+            "item": "ITEM_POISON_BARB",
+            "moves": [
+                "MOVE_FLAME_BURST",
+                "MOVE_SMOG",
+                "MOVE_VENOM_DRENCH",
+                "MOVE_TAUNT"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAREANIE",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_EVIOLITE",
+            "moves": [
+                "MOVE_VENOSHOCK",
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_BITE",
+                "MOVE_WATER_PULSE"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

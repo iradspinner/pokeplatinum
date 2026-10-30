@@ -26,22 +26,6 @@
             "gender": null
         },
         {
-            "species": "SPECIES_POOCHYENA",
-            "form": 0,
-            "level": 17,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_BITE",
-                "MOVE_HOWL",
-                "MOVE_TACKLE",
-                "MOVE_SUCKER_PUNCH"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_STUNKY",
             "form": 0,
             "level": 18,

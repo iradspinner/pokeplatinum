@@ -12,67 +12,70 @@
         {
             "species": "SPECIES_SABLEYE",
             "form": 0,
-            "level": 30,
+            "level": 29,
             "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_KNOCK_OFF",
-                "MOVE_SHADOW_CLAW",
                 "MOVE_WILL_O_WISP",
-                "MOVE_FAKE_OUT"
+                "MOVE_RECOVER",
+                "MOVE_KNOCK_OFF",
+                "MOVE_FOUL_PLAY"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_IMPISH",
+            "nature": "NATURE_CAREFUL",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 3,
+            "gender": null
         },
         {
             "species": "SPECIES_MISDREAVUS",
             "form": 0,
             "level": 29,
-            "item": "ITEM_NONE",
+            "item": "ITEM_COLBUR_BERRY",
             "moves": [
+                "MOVE_THUNDER_WAVE",
+                "MOVE_HEX",
                 "MOVE_PSYBEAM",
-                "MOVE_OMINOUS_WIND",
-                "MOVE_PAIN_SPLIT",
-                "MOVE_ASTONISH"
+                "MOVE_PAIN_SPLIT"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_QUIRKY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_DUSKULL",
             "form": 0,
-            "level": 30,
-            "item": "ITEM_NONE",
+            "level": 29,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_WILL_O_WISP",
-                "MOVE_PURSUIT",
+                "MOVE_PAIN_SPLIT",
                 "MOVE_NIGHT_SHADE",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_TAUNT",
+                "MOVE_SHADOW_SNEAK"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_BANETTE",
             "form": 0,
             "level": 30,
-            "item": "ITEM_NONE",
+            "item": "ITEM_SPELL_TAG",
             "moves": [
                 "MOVE_SHADOW_CLAW",
-                "MOVE_KNOCK_OFF",
                 "MOVE_SUCKER_PUNCH",
+                "MOVE_SHADOW_SNEAK",
                 "MOVE_SCREECH"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": "male"
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [

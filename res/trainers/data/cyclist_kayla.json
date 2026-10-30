@@ -10,52 +10,54 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_VOLTORB",
+            "species": "SPECIES_FERROSEED",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 27,
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
-                "MOVE_SPARK",
-                "MOVE_SONIC_BOOM",
-                "MOVE_SCREECH",
-                "MOVE_ROLLOUT"
+                "MOVE_GYRO_BALL",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_STEALTH_ROCK",
+                "MOVE_BULLET_SEED"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_SASSY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_BRONZOR",
+            "species": "SPECIES_TOGEDEMARU",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 27,
+            "item": "ITEM_METAL_COAT",
             "moves": [
-                "MOVE_CONFUSION",
-                "MOVE_HYPNOSIS",
-                "MOVE_ROCK_TOMB",
-                "MOVE_IMPRISON"
+                "MOVE_NUZZLE",
+                "MOVE_SMART_STRIKE",
+                "MOVE_FAKE_OUT",
+                "MOVE_U_TURN"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         },
         {
             "species": "SPECIES_MAGNEMITE",
             "form": 0,
-            "level": 29,
-            "item": "ITEM_MAGNET",
+            "level": 28,
+            "item": "ITEM_AIR_BALLOON",
             "moves": [
                 "MOVE_THUNDERBOLT",
                 "MOVE_FLASH_CANNON",
-                "MOVE_SONIC_BOOM",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_MAGNET_RISE"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": null
         }
     ],

@@ -114,7 +114,8 @@
             "MOVE_REVENGE",
             "MOVE_SMELLING_SALT",
             "MOVE_CLOSE_COMBAT",
-            "MOVE_FINAL_GAMBIT"
+            "MOVE_FINAL_GAMBIT",
+            "MOVE_ENDURE"
         ]
     },
     "evolutions": [

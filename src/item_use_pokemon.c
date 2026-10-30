@@ -174,10 +174,10 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapID 
         }
     }
 
-    // Platinum Oxide: a Rare Candy has no effect at the level cap, as in
-    // hg-engine (CapRareCandies). With no cap in force this is level 100.
+    // Platinum Oxide: a Rare Candy works up to level 100 as in vanilla, since
+    // the level caps are soft (2026-10-29). Element 8 stopped it at the cap.
     if (Item_Get(item, ITEM_PARAM_LEVEL_UP)) {
-        if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) < Pokemon_GetLevelCapLevel(mon)) {
+        if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) < MAX_POKEMON_LEVEL) {
             Heap_Free(item);
             return TRUE;
         }
@@ -297,7 +297,7 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
     vApplyLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
     if (Item_Get(item, ITEM_PARAM_LEVEL_UP)) {
-        if (vApplyLevel < Pokemon_GetLevelCapLevel(mon)) {
+        if (vApplyLevel < MAX_POKEMON_LEVEL) {
             Pokemon_IncreaseValue(mon, MON_DATA_EXPERIENCE, Pokemon_GetExpToNextLevel(mon));
             Pokemon_CalcLevelAndStats(mon);
 

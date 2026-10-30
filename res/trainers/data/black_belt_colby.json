@@ -11,46 +11,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_TYROGUE",
+            "species": "SPECIES_PAWMO",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 35,
+            "item": "ITEM_EVIOLITE",
+            "moves": [
+                "MOVE_NUZZLE",
+                "MOVE_POWER_UP_PUNCH",
+                "MOVE_WILD_CHARGE",
+                "MOVE_SUCKER_PUNCH"
+            ],
+            "iv_scale": 240,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_RIOLU",
+            "form": 0,
+            "level": 35,
+            "item": "ITEM_FOCUS_BAND",
             "moves": [
                 "MOVE_HI_JUMP_KICK",
-                "MOVE_MACH_PUNCH",
                 "MOVE_BULLET_PUNCH",
-                "MOVE_FAKE_OUT"
+                "MOVE_CRUNCH",
+                "MOVE_ICE_PUNCH"
             ],
-            "iv_scale": 183,
-            "ball_seal": 0
+            "iv_scale": 240,
+            "nature": "NATURE_SERIOUS",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_MEDITITE",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_WIDE_LENS",
             "moves": [
-                "MOVE_SUPERPOWER",
+                "MOVE_AXE_KICK",
+                "MOVE_ZEN_HEADBUTT",
                 "MOVE_FIRE_PUNCH",
-                "MOVE_ICE_PUNCH",
-                "MOVE_NONE"
+                "MOVE_THUNDER_PUNCH"
             ],
-            "iv_scale": 229,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_HITMONCHAN",
-            "form": 0,
-            "level": 33,
-            "item": null,
-            "moves": [
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_ICE_PUNCH",
-                "MOVE_MACH_PUNCH",
-                "MOVE_BULLET_PUNCH"
-            ],
-            "iv_scale": 189,
-            "ball_seal": 0
+            "iv_scale": 240,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

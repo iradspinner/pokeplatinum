@@ -1,4 +1,10 @@
 {
+  "ace_trainer_allen": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "ace_trainer_catherine": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
   "ace_trainer_dana": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
@@ -11,7 +17,13 @@
   "ace_trainer_maya": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "aroma_lady_hannah": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
   "artist_william": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "battle_girl_helen": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "battle_girl_kelsey": {
@@ -23,10 +35,25 @@
   "belle_and_pa_beth_and_bob": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "black_belt_colby": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "black_belt_darren": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
   "black_belt_derek": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "black_belt_gregory": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
   "black_belt_jeffery": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "black_belt_kyle": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "black_belt_nathaniel": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "black_belt_rafael": {
@@ -47,16 +74,49 @@
   "camper_anthony": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "camper_diego": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "camper_parker": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
   "collector_edwin": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "collector_fernando": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "collector_terry": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
   "commander_saturn_galactic_hq": {
     "party": "edited in the encounter tool's team builder, 2026-09-27"
   },
   "cowgirl_shelley": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "cyclist_axel": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "cyclist_james": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "cyclist_john": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "cyclist_kayla": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "cyclist_megan": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "cyclist_nicole": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "cyclist_rachel": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "cyclist_ryan": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "dawn_veilstone_city_chimchar": {
@@ -66,6 +126,12 @@
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "dawn_veilstone_city_turtwig": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "galactic_grunt_floaroma_meadow_1": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "galactic_grunt_floaroma_meadow_2": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "galactic_grunt_lake_verity_3": {
@@ -81,6 +147,18 @@
   "galactic_grunt_spear_pillar_2": {
     "name": "Ian renamed the Veilstone and Spear Pillar grunts Officers Tyche and Hermes, 2026-10-29"
   },
+  "galactic_grunt_team_galactic_eterna_building_1f_1": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "galactic_grunt_team_galactic_eterna_building_1f_2": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "galactic_grunt_team_galactic_eterna_building_2f_1": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "galactic_grunt_team_galactic_eterna_building_2f_2": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
   "galactic_grunt_veilstone_city_1": {
     "party": "edited in the OxiDex team builder, 2026-10-29",
     "name": "Ian renamed the Veilstone and Spear Pillar grunts Officers Tyche and Hermes, 2026-10-29",
@@ -90,6 +168,30 @@
   "galactic_grunt_veilstone_city_2": {
     "name": "Ian renamed the Veilstone and Spear Pillar grunts Officers Tyche and Hermes, 2026-10-29",
     "ai_flags": "edited in the OxiDex team builder, 2026-10-29",
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "game_corner_challenger": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "hiker_jonathan": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "hiker_justin": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "hiker_kevin": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "hiker_lorenzo": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "hiker_reginald": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "hiker_robert": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "hiker_theodore": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "jogger_craig": {
@@ -105,6 +207,12 @@
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "jogger_wyatt": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "lass_cassidy": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "lass_molly": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "leader_fantina": {
@@ -124,7 +232,16 @@
   "lucas_veilstone_city_turtwig": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "picnicker_ana": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
   "picnicker_karina": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "picnicker_lauren": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "picnicker_tori": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "poke_kid_danielle": {
@@ -139,10 +256,34 @@
   "rancher_marco": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "rival_route_209_chimchar": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "rival_route_209_piplup": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "rival_route_209_turtwig": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
   "roughneck_kirby": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "ruin_maniac_calvin": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "ruin_maniac_gerald": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "ruin_maniac_karl": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "school_kid_chance": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "school_kid_mackenzie": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "scientist_travon": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "twins_emma_and_lil": {
@@ -158,6 +299,18 @@
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "young_couple_ty_and_sue": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "youngster_austin": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "youngster_donny": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "youngster_oliver": {
+    "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "youngster_wayne": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   }
 }

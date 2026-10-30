@@ -14,48 +14,50 @@
         {
             "species": "SPECIES_NINCADA",
             "form": 0,
-            "level": 30,
-            "item": "ITEM_NONE",
+            "level": 29,
+            "item": "ITEM_SOFT_SAND",
             "moves": [
-                "MOVE_FURY_SWIPES",
-                "MOVE_LEECH_LIFE",
-                "MOVE_MUD_SLAP",
-                "MOVE_HARDEN"
+                "MOVE_X_SCISSOR",
+                "MOVE_DIG",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_MUD_SLAP"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_LAX",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_NINJASK",
             "form": 0,
-            "level": 31,
-            "item": "ITEM_NONE",
+            "level": 30,
+            "item": "ITEM_FOCUS_BAND",
             "moves": [
+                "MOVE_SWORDS_DANCE",
                 "MOVE_X_SCISSOR",
                 "MOVE_AERIAL_ACE",
-                "MOVE_LEECH_LIFE",
-                "MOVE_SWORDS_DANCE"
+                "MOVE_NIGHT_SLASH"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_SHEDINJA",
             "form": 0,
-            "level": 32,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 31,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
+                "MOVE_WILL_O_WISP",
                 "MOVE_SHADOW_CLAW",
                 "MOVE_X_SCISSOR",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_AERIAL_ACE"
+                "MOVE_CONFUSE_RAY"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null

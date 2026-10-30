@@ -13,67 +13,53 @@
         {
             "species": "SPECIES_DIGLETT",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_SOFT_SAND",
             "moves": [
-                "MOVE_MAGNITUDE",
-                "MOVE_MUD_SLAP",
+                "MOVE_STOMPING_TANTRUM",
                 "MOVE_SUCKER_PUNCH",
-                "MOVE_DIG"
-            ],
-            "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_NOSEPASS",
-            "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
-            "moves": [
                 "MOVE_ROCK_SLIDE",
-                "MOVE_BLOCK",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_SHOCK_WAVE"
+                "MOVE_STEALTH_ROCK"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_SANDSHREW",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 27,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_ROCK_SLIDE",
-                "MOVE_POISON_STING",
                 "MOVE_RAPID_SPIN",
-                "MOVE_NIGHT_SLASH"
+                "MOVE_KNOCK_OFF",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_CRUSH_CLAW"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_GLIGAR",
+            "species": "SPECIES_HIPPOPOTAS",
             "form": 0,
-            "level": 29,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 28,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
+                "MOVE_YAWN",
+                "MOVE_SLACK_OFF",
                 "MOVE_DIG",
-                "MOVE_AERIAL_ACE",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_KNOCK_OFF"
+                "MOVE_BITE"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
         }
     ],
     "messages": [

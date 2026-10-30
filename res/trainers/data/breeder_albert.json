@@ -11,67 +11,67 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MR_MIME",
+            "species": "SPECIES_GALARIAN_MR_MIME",
             "form": 0,
-            "level": 35,
+            "level": 32,
             "item": "ITEM_LIGHT_CLAY",
             "moves": [
                 "MOVE_REFLECT",
                 "MOVE_LIGHT_SCREEN",
-                "MOVE_DAZZLING_GLEAM",
-                "MOVE_PSYBEAM"
+                "MOVE_ICY_WIND",
+                "MOVE_ENCORE"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_SERIOUS",
             "ball_seal": 0,
             "ability": 1
         },
         {
-            "species": "SPECIES_QUAGSIRE",
-            "form": 0,
-            "level": 35,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_EARTHQUAKE",
-                "MOVE_WATERFALL",
-                "MOVE_YAWN",
-                "MOVE_TOXIC"
-            ],
-            "iv_scale": 220,
-            "nature": "NATURE_RELAXED",
-            "ball_seal": 0,
-            "ability": 2
-        },
-        {
             "species": "SPECIES_BIBAREL",
             "form": 0,
-            "level": 36,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 32,
+            "item": "ITEM_CHESTO_BERRY",
             "moves": [
                 "MOVE_CURSE",
                 "MOVE_HYPER_FANG",
-                "MOVE_AQUA_TAIL",
-                "MOVE_AQUA_JET"
+                "MOVE_WATERFALL",
+                "MOVE_REST"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_CLODSIRE",
+            "form": 0,
+            "level": 32,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_POISON_JAB",
+                "MOVE_TOXIC",
+                "MOVE_YAWN"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_SASSY",
+            "ball_seal": 0,
+            "ability": 3,
             "gender": "male"
         },
         {
-            "species": "SPECIES_SLOWBRO",
+            "species": "SPECIES_ARAQUANID",
             "form": 0,
-            "level": 37,
-            "item": "ITEM_MYSTIC_WATER",
+            "level": 33,
+            "item": "ITEM_RINDO_BERRY",
             "moves": [
-                "MOVE_PSYCHIC",
-                "MOVE_SURF",
-                "MOVE_ICE_BEAM",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_WATERFALL",
+                "MOVE_X_SCISSOR",
+                "MOVE_STICKY_WEB",
+                "MOVE_AQUA_RING"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
             "ability": 1
         }

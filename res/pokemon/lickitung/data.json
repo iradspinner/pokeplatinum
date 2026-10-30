@@ -109,7 +109,8 @@
             "MOVE_SNORE",
             "MOVE_SUBSTITUTE",
             "MOVE_AMNESIA",
-            "MOVE_HAMMER_ARM"
+            "MOVE_HAMMER_ARM",
+            "MOVE_SWORDS_DANCE"
         ]
     },
     "evolutions": [

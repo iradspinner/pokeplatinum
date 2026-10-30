@@ -11,36 +11,54 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_NOSEPASS",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_CHOPLE_BERRY",
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_ROCK_BLAST",
+                "MOVE_MUD_SHOT"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
             "species": "SPECIES_ONIX",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 26,
+            "item": "ITEM_PASSHO_BERRY",
             "moves": [
-                "MOVE_ROCK_SLIDE",
+                "MOVE_CURSE",
                 "MOVE_ROCK_TOMB",
-                "MOVE_SLAM",
+                "MOVE_BULLDOZE",
                 "MOVE_IRON_HEAD"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": "male"
+            "ability": 3,
+            "gender": null
         },
         {
-            "species": "SPECIES_GEODUDE",
+            "species": "SPECIES_CARBINK",
             "form": 0,
             "level": 27,
-            "item": "ITEM_NONE",
+            "item": "ITEM_LIGHT_CLAY",
             "moves": [
-                "MOVE_ROCK_THROW",
-                "MOVE_MAGNITUDE",
-                "MOVE_ROLLOUT",
-                "MOVE_BLOCK"
+                "MOVE_REFLECT",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_DRAINING_KISS",
+                "MOVE_ROCK_POLISH"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_SASSY",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 3
         }
     ],
     "messages": [
