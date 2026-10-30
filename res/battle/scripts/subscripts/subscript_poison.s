@@ -37,12 +37,20 @@ _065:
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_POISON, _243
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_TOXIC, _243
     // Oxide: a poison its holder inflicts with a move reaches Poison and
-    // Steel types when the holder has Corrosion.
+    // Steel types when the holder has Corrosion. Baneful Bunker's poison
+    // (the only poison of this subscript's move-effect type, from
+    // subscript_missed) is the defender's doing, so the defender's Corrosion
+    // counts there, as in hg-engine and the later games.
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_DIRECT, _corrosion_1_check
+    CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_MOVE_EFFECT, _corrosion_1_bunker
     CompareVarToValue OPCODE_NEQ, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _corrosion_1_types
 
 _corrosion_1_check:
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_CORROSION, _corrosion_1_done
+    GoTo _corrosion_1_types
+
+_corrosion_1_bunker:
+    CheckAbility CHECK_HAVE, BTLSCR_DEFENDER, ABILITY_CORROSION, _corrosion_1_done
 
 _corrosion_1_types:
     CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_TYPE_1, TYPE_POISON, _266

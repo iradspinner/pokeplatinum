@@ -291,6 +291,24 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   its Leftovers. Before the change "The wild WOBBUFFET stole MEW's
   Leftovers!" came first. Take the set again and use Tackle: Wobbuffet
   steals the Leftovers, since no drag follows.
+- [ ] **Silk Trap's Speed drop** (set 89 on the move-set menu's fourth
+  page, `overseer-engine-gaps`; Ian, 2026-10-29). Against the wild Rattata,
+  which knows Tackle and Tail Whip, switch Mew in on the first turn, then
+  alternate Silk Trap and Splash. When a Tackle meets the trap, "MEW
+  protected itself!" is followed by "The wild RATTATA's Speed fell!"; when
+  a Tail Whip meets it, "MEW's Defense fell!" as if Mew had not protected.
+  Before the change it was a plain Protect, and both moves were stopped.
+- [ ] **Obstruct's Defense drop** (set 90, as set 89). A Tackle into it
+  brings "MEW protected itself!" and then "The wild RATTATA's Defense
+  harshly fell!", and Mew's next Tackle does clearly more; a Tail Whip gets
+  through. Before the change it was a plain Protect.
+- [ ] **Corrosion through Baneful Bunker** (set 91, `overseer-engine-gaps`).
+  Switch the set's Salazzle in on the first turn against the wild Skarmory,
+  which knows only Steel Wing, then alternate Baneful Bunker and Splash.
+  When Steel Wing meets the bunker, "SALAZZLE protected itself!" is
+  followed by "The wild SKARMORY was poisoned!" and the poison icon. Before
+  the change the Steel type was not poisoned. Toxic poisons Skarmory too, as
+  the Corrosion entry of the Abilities menu already shows.
 - [ ] **Judgment with the Pixie Plate** (the "Pixie Plate" entry on the
   "Element 7 items" menu, `overseer-signature-moves-2`; Ian, 2026-10-20).
   The first Arceus holds the plate and is pink. Its Judgment on the wild
