@@ -246,9 +246,9 @@ Variables:
 Trainer battles:
 
 - TRAINER_GALACTIC_GRUNT_LAKE_VERITY_1 (Grunt, level 50, 1 Pokemon), sees the player. Vanilla. `events_lake_verity.json:10`
-- TRAINER_GALACTIC_GRUNT_LAKE_VERITY_3 (Officer Somnu, level 54, 4 Pokemon), sees the player. Vanilla. `events_lake_verity.json:25`
+- TRAINER_GALACTIC_GRUNT_LAKE_VERITY_3 (Officer Somnu, level 54, 3 Pokemon), sees the player. Vanilla. `events_lake_verity.json:25`
 - TRAINER_GALACTIC_GRUNT_LAKE_VERITY_2 (Grunt, level 50, 1 Pokemon), sees the player. Vanilla. `events_lake_verity.json:40`
-- TRAINER_GALACTIC_GRUNT_LAKE_VERITY_4 (Officer Moira, level 54, 4 Pokemon), sees the player. Vanilla. `events_lake_verity.json:55`
+- TRAINER_GALACTIC_GRUNT_LAKE_VERITY_4 (Officer Moira, level 54, 3 Pokemon), sees the player. Vanilla. `events_lake_verity.json:55`
 - StartTrainerBattle: against TRAINER_COMMANDER_MARS_LAKE_VERITY (Mars, level 53, 6 Pokemon), by name. Vanilla. `scripts_lake_verity.s:200`
 
 Item balls:
@@ -1107,8 +1107,8 @@ Trainer battles:
 - TRAINER_CAMPER_JACOB (Jacob, level 25, 4 Pokemon), sees the player. Vanilla. `events_route_205_south.json:53`
 - TRAINER_PICNICKER_SIENA (Siena, level 25, 5 Pokemon), sees the player. Vanilla. `events_route_205_south.json:70`
 - TRAINER_HIKER_NICHOLAS (Nicholas, level 25, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:87`
-- TRAINER_BATTLE_GIRL_KELSEY (Kelsey, level 25, 5 Pokemon), sees the player. Vanilla. `events_route_205_south.json:104`
-- TRAINER_PICNICKER_KARINA (Karina, level 25, 4 Pokemon), sees the player. Vanilla. `events_route_205_south.json:346`
+- TRAINER_BATTLE_GIRL_KELSEY (Kelsey, level 25, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:104`
+- TRAINER_PICNICKER_KARINA (Karina, level 25, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:346`
 - TRAINER_CAMPER_ZACKARY (Zackary, level 25, 4 Pokemon), sees the player. Vanilla. `events_route_205_south.json:363`
 
 Item balls:
@@ -5038,8 +5038,8 @@ Flags:
 Trainer battles:
 
 - TRAINER_RANGER_DESHAWN (Deshawn, level 56, 3 Pokemon), sees the player. Vanilla. `events_route_229.json:230`
-- TRAINER_ACE_TRAINER_FELIX (Felix, level 64, 6 Pokemon), sees the player. Vanilla. `events_route_229.json:247`
-- TRAINER_ACE_TRAINER_DANA (Dana, level 64, 6 Pokemon), sees the player. Vanilla. `events_route_229.json:264`
+- TRAINER_ACE_TRAINER_FELIX (Felix, level 64, 3 Pokemon), sees the player. Vanilla. `events_route_229.json:247`
+- TRAINER_ACE_TRAINER_DANA (Dana, level 64, 3 Pokemon), sees the player. Vanilla. `events_route_229.json:264`
 - TRAINER_ACE_TRAINER_SANDRA (Sandra, level 64, 6 Pokemon), sees the player. Vanilla. `events_route_229.json:281`
 
 Items given:

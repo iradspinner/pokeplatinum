@@ -55,6 +55,7 @@
                 "MOVE_TEETER_DANCE"
             ],
             "iv_scale": 153,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
             "gender": null

@@ -10,40 +10,6 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MIGHTYENA",
-            "form": 0,
-            "level": 62,
-            "item": "ITEM_SITRUS_BERRY",
-            "moves": [
-                "MOVE_CRUNCH",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_ICE_FANG",
-                "MOVE_THUNDER_FANG"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
-        },
-        {
-            "species": "SPECIES_ROSERADE",
-            "form": 0,
-            "level": 62,
-            "item": "ITEM_FOCUS_SASH",
-            "moves": [
-                "MOVE_SPIKES",
-                "MOVE_SLUDGE_BOMB",
-                "MOVE_ENERGY_BALL",
-                "MOVE_SHADOW_BALL"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_TIMID",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
-        },
-        {
             "species": "SPECIES_ESPEON",
             "form": 0,
             "level": 62,
@@ -56,23 +22,6 @@
             ],
             "iv_scale": 255,
             "nature": "NATURE_TIMID",
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": "female"
-        },
-        {
-            "species": "SPECIES_MILOTIC",
-            "form": 0,
-            "level": 63,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_SURF",
-                "MOVE_ICE_BEAM",
-                "MOVE_RECOVER",
-                "MOVE_TOXIC"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_BOLD",
             "ball_seal": 0,
             "ability": 0,
             "gender": "female"

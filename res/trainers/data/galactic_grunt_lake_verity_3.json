@@ -30,23 +30,6 @@
             "gender": "female"
         },
         {
-            "species": "SPECIES_FORRETRESS",
-            "form": 0,
-            "level": 53,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_TOXIC_SPIKES",
-                "MOVE_GYRO_BALL",
-                "MOVE_PAYBACK",
-                "MOVE_RAPID_SPIN"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_RELAXED",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
-        },
-        {
             "species": "SPECIES_SKUNTANK",
             "form": 0,
             "level": 53,
