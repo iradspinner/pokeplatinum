@@ -236,7 +236,11 @@ member that beats it and carries a setup move: a plan built on that answer
 is untenable, since its switch out hands the setup member a free turn of
 Swords Dance or Calm Mind (Ian, 2026-10-29, on Fantina's Runerigus). So a
 lead, or any member, is judged by what its counters draw in after it, not
-by how many counters it has.
+by how many counters it has. A trainer who turns, spins or walks (a
+spinner) counts as optional, not mandatory, however its sight line falls,
+and spinners are allowed to be harder than other ordinary trainers (Ian,
+2026-10-29, on the mandatory fights of Fantina's and Maylene's splits,
+which count 10 to 15 non-boss fights a split, gym trainers apart).
 From Gardenia's redesign (Ian, 2026-10-13): a conditional move such as
 Solar Beam may always be considered for a boss, with his okay when it
 comes early (he kept it off his own sun team because its Drought sun

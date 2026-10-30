@@ -4,6 +4,10 @@ Ian asked on 2026-10-29 for a pass over the ordinary trainers of Fantina's
 split (cap 33) and Maylene's (cap 39), so that none is ridiculously trivial.
 This page is that pass, on the branch `overseer-split-teams`.
 
+## Ian's answers (2026-10-29)
+
+The 26 teams in Maylene's split that start from the Kaizo comb's drafts stand, so the comb's Maylene split lands with this pass. Ruin Maniac Calvin stays where he is, his TM22 behind him. A trainer who turns, spins or walks (a spinner) counts as optional, not mandatory, and such trainers are allowed to be harder than normal; the mandatory fights page is recounted that way. Twins Emma and Lil keep the movesets Ian built and each member gets an item (44c964ab2): Eviolite Magneton, Smooth Rock Vibrava, Big Root Cacturne, Leftovers Shuckle, White Herb Ninetales and Sitrus Berry Omastar. Their natures are still rolled, and two repeat (Vibrava and Cacturne are both Bold), against the rule of 2026-10-12; that commit's message says otherwise, wrongly, and the fix is Ian's call, since the team is his. The Wayward Cave pairs count as tag fights, so each pair is one fight and passes the bar as read below.
+
 ## Summary
 
 **Outcome.** 82 trainers were checked, 43 in Fantina's split (two of them
