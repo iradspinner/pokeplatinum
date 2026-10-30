@@ -22,8 +22,9 @@ from . import required as R
 # three more in Wake's (Routes 214 and 215). 50 since 2026-10-29, when ten
 # trainers moved onto the story path for Ian's dozen mandatory fights a
 # split, three in Fantina's and seven in Maylene's
-# (docs/oxide/mandatory-fights.md).
-TOTALS = {"required": 50, "avoidable": 121, "never reached": 12}
+# (docs/oxide/mandatory-fights.md); 52 once Black Belt Derek and Twins Teri
+# and Tia joined them the same day, after Ian ruled that spinners are optional.
+TOTALS = {"required": 52, "avoidable": 119, "never reached": 12}
 
 
 def check_crossings_resolve(results):

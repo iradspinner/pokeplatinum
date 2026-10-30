@@ -568,10 +568,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   trainer standing where it was:
   - Hiker Kevin, Route 207, at the east edge of the way in from Cycling
     Road; he looks west across it.
-  - Battle Girl Helen, Route 207, at the foot of the passage up from the
-    lower loop, looking north; she should be fought before Lucas or Dawn's
-    scene at the Mt. Coronet entrance, and that scene plays as before (they
-    walk in from the west and leave the same way).
+  - Battle Girl Helen, Route 207, a few steps west of the Mt. Coronet
+    entrance, looking south down the column every way to it crosses; she
+    should be fought alone (Hiker Justin should not join her) and before
+    Lucas or Dawn's scene at the entrance, and that scene plays as before
+    (they walk in from the west and leave the same way).
   - Aroma Lady Hannah, Route 208, in the grass just east of where the
     mountain path opens into the flower field; she looks west at the opening.
 
@@ -812,6 +813,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
     you should come off it and be seen, not bump into her.
   - Rancher Marco, Route 210 South, at the west edge of the corridor in from
     Solaceon, looking east.
+  - Twins Teri and Tia, Route 210 South, two rows north of Marco at the same
+    edge, looking east; one double battle, whichever of them sees you.
   - Belle and Pa Ava and Matt, Route 210 South, side by side where the
     meadow meets the bike slope and the grass column, looking west. Both
     come for a double battle, whichever of them sees you.
@@ -819,9 +822,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
     grass and turns east, looking east.
   - Black Belt Nathaniel, Route 215, at the top of the column the path
     crosses before the ledges towards Veilstone, looking south.
-  - Ruin Maniac Calvin, Route 215, was not moved: note whether you could
-    walk round him beside the raised walkway, which decides whether his TM22
-    is behind a mandatory fight.
+  - Black Belt Derek, Route 215, at the east edge of the three-wide column
+    the path turns down after the raised walkway, looking west. Jogger
+    Craig should not join him in one battle.
 
 ## 5. The ordinary ROM, after the League
 
