@@ -240,7 +240,12 @@ by how many counters it has. A trainer who turns, spins or walks (a
 spinner) counts as optional, not mandatory, however its sight line falls,
 and spinners are allowed to be harder than other ordinary trainers (Ian,
 2026-10-29, on the mandatory fights of Fantina's and Maylene's splits,
-which count 10 to 15 non-boss fights a split, gym trainers apart).
+which count 10 to 15 non-boss fights a split, gym trainers apart). Two
+trainers the player fights alone together, by eye contact or script, field
+six Pokemon between them at most, never eight against the player's six,
+barring Ian's explicit permission (Ian, 2026-10-29, on Ace Trainers Dennis
+and Maya); a moved trainer must not make a new pair. A double where a
+partner fights beside the player is a different case.
 From Gardenia's redesign (Ian, 2026-10-13): a conditional move such as
 Solar Beam may always be considered for a boss, with his okay when it
 comes early (he kept it off his own sun team because its Drought sun

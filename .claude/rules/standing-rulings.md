@@ -274,7 +274,9 @@ read, so they are written here too. Each is a standing instruction.
   the player's switch then hands it a free turn (2026-10-29). A split
   carries 10 to 15 mandatory non-boss fights, gym trainers not counted,
   and a trainer who turns, spins or walks counts as optional and may be
-  harder than normal (2026-10-29). The full ruling (luck items, Focus Sash, Custap and enemy priority,
+  harder than normal (2026-10-29). Two trainers the player fights alone
+  together field six Pokemon between them at most, barring Ian's
+  explicit permission (2026-10-29). The full ruling (luck items, Focus Sash, Custap and enemy priority,
   accuracy, conditional moves, members under their evolution level, the
   iv_scale) is in `docs/oxide/rulings-detail.md`; read it before designing a
   team.
