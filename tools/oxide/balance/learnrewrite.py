@@ -174,6 +174,15 @@ IAN_EGG_MOVES = {
     "SPECIES_SHUCKLE": [("MOVE_BUG_BITE", "Ian, 2026-10-29: Twins Emma and Lil's Shuckle")],
     "SPECIES_CLEFFA": [("MOVE_MOONBLAST", "Ian, 2026-10-29: Game Corner challenger Rocco's Clefable")],
     "SPECIES_PORYGON": [("MOVE_TRI_ATTACK", "Ian, 2026-10-29: Game Corner challenger Rocco's Porygon2")],
+    # The level climb of Fantina's and Maylene's splits (Ian, 2026-10-29): the
+    # moves its teams carry that the OxiDex's list does not give at their
+    # levels. Endure, Swords Dance and Rest were TMs before the TM pass.
+    "SPECIES_MANKEY": [("MOVE_ENDURE", "Ian, 2026-10-29: Cyclist Ryan's Primeape")],
+    "SPECIES_SPINDA": [("MOVE_TEETER_DANCE", "Ian, 2026-10-29: Belle and Pa Ava and Matt's Spinda, which "
+                                             "learns it at 37")],
+    "SPECIES_MACHOP": [("MOVE_DYNAMIC_PUNCH", "Ian, 2026-10-29: Black Belt Gregory's Machoke")],
+    "SPECIES_LICKITUNG": [("MOVE_SWORDS_DANCE", "Ian, 2026-10-29: Black Belt Rafael's Lickilicky")],
+    "SPECIES_BIDOOF": [("MOVE_REST", "Ian, 2026-10-29: Breeder Albert's Bibarel")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
