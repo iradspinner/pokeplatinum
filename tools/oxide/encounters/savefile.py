@@ -540,13 +540,32 @@ def packed(data):
     return header + party + boxes
 
 
+def over_cap(save):
+    """The party members above the level cap in force, each with that cap.
+    The caps are soft since 2026-10-29: the game lets a Pokemon level past
+    one and shows nothing, and the player's honour boxes it until a later
+    cap catches up, so the OxiDex is where it is flagged. A Pokemon at the
+    cap is fine (Ian). A save whose split is not read (an older layout) has
+    no cap, so nothing is flagged."""
+    cap = ((save.get("progress") or {}).get("split") or {}).get("cap")
+    if cap is None:
+        return []
+    return [{"slot": m["slot"], "name": m["name"], "level": m.get("level"), "cap": cap}
+            for m in save["party"] if not m["is_egg"] and (m.get("level") or 0) > cap]
+
+
 def summary(save):
-    """What the OxiDex's save bar shows: the trainer, the party in words, how
-    many are boxed, and the build signs."""
+    """What the OxiDex's save bar shows: the trainer, the party in words (a
+    member over the level cap says so), how many are boxed, the build signs,
+    and the over-cap members on their own for the page to name."""
+    over = over_cap(save)
+    flagged = {m["slot"]: m["cap"] for m in over}
+    party = [describe(m) + (f" (over the cap of {flagged[m['slot']]})" if m["slot"] in flagged else "")
+             for m in save["party"]]
     return {"trainer_id": save["trainer_id"], "secret_id": save["secret_id"],
-            "party": [describe(m) for m in save["party"]], "party_count": len(save["party"]),
+            "party": party, "party_count": len(save["party"]),
             "boxed": len(save["boxes"]), "box_count": save["box_count"], "era": save["era"],
-            "progress": save["progress"]}
+            "progress": save["progress"], "over_cap": over}
 
 
 def build_era(save):

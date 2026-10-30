@@ -70,10 +70,10 @@ destination; that is the kit's nature, not a defect.
 
 ## The level caps
 
-Element 8 holds each Pokemon at the level cap of the player's split. The
-kit's own Pokemon are mostly Lv. 50, above a new game's cap of 16, so they
-gain no Exp. and refuse Rare Candies until "Level caps" moves the split on;
-"No cap" puts back the vanilla rules. The Level caps menu, after "Which
+Since 2026-10-29 the caps are soft: the engine stops nothing at them, and a
+Pokemon gains Exp. and takes Rare Candies up to Lv. 100 in any split. The
+cap in force still moves with the split, and the OxiDex reads it from the
+save to flag a party member above it. The Level caps menu, after "Which
 split?", lists Roark 16, Gardenia 26, Fantina 33, Maylene 39, Wake 44,
 Byron 53, Candice 56, Galactic HQ 60, Galactic 65, Volkner 68, Barry 71,
 League 78 and No cap, and sets the split outright, which the game's own `RaiseLevelCap`
@@ -81,16 +81,16 @@ never does downwards.
 
 With the cap at 16, what to look for:
 
-- Klefki, Lv. 5, takes Rare Candies up to Lv. 16, and the next one "won't
-  have any effect" and is not used up.
-- A Lv. 50 Pokemon beats a wild Chansey with no Exp. message at all, and its
-  effort values still rise (the summary's stats move at its next level).
-- A Pokemon one level under the cap stops at the cap however much Exp. it
-  earns. Take Klefki to Lv. 15, lead with it against the wild Chansey,
-  switch to a Lv. 50 Mew and win: Klefki's message still names the whole
-  gain, but it grows to Lv. 16 only, its Exp. bar sits at the start of the
-  level, and it is still Lv. 16 after a trip into the PC and back.
-- Raising the cap to Gardenia's 26 lets the same Pokemon gain Exp. again.
+- Klefki, Lv. 5, takes Rare Candies past Lv. 16, to 17 and on, each one
+  used up as in vanilla.
+- A Pokemon at the cap or above it gains Exp. from a battle with the usual
+  message: a Lv. 50 Pokemon that beats a wild Chansey shows "gained ... Exp.
+  Points!" and its bar fills.
+- Take Klefki to Lv. 16, lead with it against the wild Chansey, switch to a
+  Lv. 50 Mew and win: Klefki grows past Lv. 16, and is still at its new
+  level after a trip into the PC and back.
+- The OxiDex's save bar, after a save, names Klefki as over the cap of 16;
+  a party member at Lv. 16 exactly is not named.
 
 ## The move sets
 
