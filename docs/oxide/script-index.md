@@ -818,12 +818,12 @@ Trainer battles:
 - TRAINER_HIKER_JUSTIN (Justin, level 28, 3 Pokemon), sees the player. Vanilla. `events_route_207.json:96`
 - TRAINER_HIKER_KEVIN (Kevin, level 27, 4 Pokemon), sees the player. Vanilla. `events_route_207.json:111`
 - TRAINER_BATTLE_GIRL_HELEN (Helen, level 28, 3 Pokemon), sees the player. Vanilla. `events_route_207.json:126`
-- StartTrainerBattle: against TRAINER_DUMMY_799 (Dawn, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:218`
-- StartTrainerBattle: against TRAINER_DUMMY_793 (Dawn, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:224`
-- StartTrainerBattle: against TRAINER_DUMMY_794 (Dawn, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:230`
-- StartTrainerBattle: against TRAINER_DUMMY_802 (Lucas, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:236`
-- StartTrainerBattle: against TRAINER_DUMMY_800 (Lucas, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:242`
-- StartTrainerBattle: against TRAINER_DUMMY_801 (Lucas, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:248`
+- StartTrainerBattle: against TRAINER_DUMMY_799 (Dawn, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:218`
+- StartTrainerBattle: against TRAINER_DUMMY_793 (Dawn, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:224`
+- StartTrainerBattle: against TRAINER_DUMMY_794 (Dawn, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:230`
+- StartTrainerBattle: against TRAINER_DUMMY_802 (Lucas, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:236`
+- StartTrainerBattle: against TRAINER_DUMMY_800 (Lucas, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:242`
+- StartTrainerBattle: against TRAINER_DUMMY_801 (Lucas, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:248`
 
 Items given:
 
@@ -1143,7 +1143,7 @@ Trainer battles:
 
 - TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_2 (Grunt, level 18, 3 Pokemon), sees the player. Vanilla. `events_valley_windworks_building.json:72`
 - TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_3 (Officer Somnu, level 18, 4 Pokemon), sees the player. Vanilla. `events_valley_windworks_building.json:89`
-- StartTrainerBattle: against TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS (Mars, level 19, 5 Pokemon), by name. Vanilla. `scripts_valley_windworks_building.s:86`
+- StartTrainerBattle: against TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS (Mars, level 20, 5 Pokemon), by name. Vanilla. `scripts_valley_windworks_building.s:86`
 
 Flags:
 
@@ -8161,7 +8161,7 @@ Flags:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING (Jupiter, level 27, 6 Pokemon), by name. Vanilla. `scripts_team_galactic_eterna_building_4f.s:30`
+- StartTrainerBattle: against TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING (Jupiter, level 29, 6 Pokemon), by name. Vanilla. `scripts_team_galactic_eterna_building_4f.s:30`
 
 Item balls:
 
