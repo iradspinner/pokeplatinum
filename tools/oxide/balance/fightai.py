@@ -2313,11 +2313,14 @@ def x_brick_break(c):
 
 
 def x_knock_off(c):
-    """Expert_KnockOff: after the user's first turn out, against a foe at
-    30% HP or more, +1 at 29.7%."""
-    if c.ht < 30 or c.u.turns_in == 0:
+    """Expert_KnockOff: against a foe at 30% HP or more that holds an item
+    (LoadHeldItem reads the real one), +1 at 66% (IfRandomLessThan 87 skips
+    it). Ian's change of play, 2026-10-29: "Drop the first-turn rule and
+    make it a chance to fire with an item (66%)"; until then it skipped the
+    user's first turn out and fired at 29.7%."""
+    if c.ht < 30 or not c.t.item:
         return 0
-    return 1 if c.roll(29.7) else 0
+    return 1 if c.roll((256 - 87) / 2.56) else 0
 
 
 def x_endeavor(c):

@@ -5319,12 +5319,16 @@ Expert_BrickBreak_End:
     PopOrEnd 
 
 Expert_KnockOff:
-    // If the opponent's HP >= 30% and it is not the attacker's first turn in battle, 29.7% chance of
-    // score +1.
+    // If the opponent's HP >= 30% and it holds an item, 66% chance of score +1.
+    // Oxide, change (Ian, 2026-10-29): "Drop the first-turn rule and make it a
+    // chance to fire with an item (66%)". Vanilla skipped the attacker's first
+    // turn in battle and gave the +1 at 29.7% (IfRandomLessThan 180). Basic
+    // already scores -10 into a target with no item; the test is made here too
+    // so the routine stands on its own.
     IfHPPercentLessThan AI_BATTLER_DEFENDER, 30, Expert_KnockOff_End
-    LoadIsFirstTurnInBattle AI_BATTLER_ATTACKER
-    IfLoadedGreaterThan FALSE, Expert_KnockOff_End
-    IfRandomLessThan 180, Expert_KnockOff_End
+    LoadHeldItem AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ITEM_NONE, Expert_KnockOff_End
+    IfRandomLessThan 87, Expert_KnockOff_End
     AddToMoveScore 1
 
 Expert_KnockOff_End:

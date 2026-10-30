@@ -328,6 +328,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   trainer's Salandit or Salazzle with Toxic meets a Steel or Poison type of
   yours, it should use Toxic on it, and the poison icon follows. Before the
   change it never chose Toxic there.
+- [ ] **Knock Off on the first turn out** (normal play,
+  `overseer-protect-ai`; Ian, 2026-10-29). A trainer's Pokemon with Knock
+  Off now favours it from its first turn in battle, against a Pokemon of
+  yours that holds an item and has 30% HP or more, about two times in three
+  where nothing stronger competes (Ace Trainer Allen's Sableye in Hearthome's gym
+  is an early one). Before the change it never had the bonus on its first
+  turn, and only about one time in three afterwards. Against a Pokemon
+  holding nothing it still avoids Knock Off.
 - [ ] **Judgment with the Pixie Plate** (the "Pixie Plate" entry on the
   "Element 7 items" menu, `overseer-signature-moves-2`; Ian, 2026-10-20).
   The first Arceus holds the plate and is pink. Its Judgment on the wild

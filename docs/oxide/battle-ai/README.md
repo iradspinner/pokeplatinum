@@ -339,6 +339,8 @@ Corrosion. The engine has let a Corrosion holder's poison reach Poison and Steel
 
 King's Shield and Burning Bulwark now let status moves through in the engine, as Silk Trap and Obstruct have since 2026-10-30 (`BattleControllerPlayer_CheckMoveHitOverrides`). The AI scores all four as Protect and reads no target's Protect when it scores a status move, so nothing in the AI changes. Silk Trap's and Obstruct's AI is left as it is, by Ian's ruling.
 
+Knock Off. Ian, the same day: "Drop the first-turn rule and make it a chance to fire with an item (66%, completely arbitrarily; makes it less than 50% chance of knock off if another move does more)". `Expert_KnockOff` still gives nothing into a target below 30% HP, no longer skips the attacker's first turn in battle, gives nothing into a target that holds no item (Basic's `Basic_CheckCanRemoveItem` already scores that -10; the test is made here too so the routine reads true on its own), and gives its +1 at 169 in 256, about 66%, where vanilla gave it at 76 in 256 (29.7%). Where another move does more, Evaluate Attack takes a point off Knock Off; the +1 then brings it level two times in three, and a tie is broken at random, so other things equal Knock Off is chosen about a third of the time there, under half, as Ian meant. `fightai.x_knock_off` mirrors it. 87 party members of trainers with the Expert flag know Knock Off on 2026-10-30.
+
 ## The parts
 
 | File | Covers |
