@@ -812,7 +812,7 @@ Gone from vanilla: ITEM_HM06 x1.
 
 Trainer battles:
 
-- TRAINER_CAMPER_ANTHONY (Anthony, level 29, 4 Pokemon), sees the player. Vanilla. `events_route_207.json:51`
+- TRAINER_CAMPER_ANTHONY (Anthony, level 29, 3 Pokemon), sees the player. Vanilla. `events_route_207.json:51`
 - TRAINER_PICNICKER_LAUREN (Lauren, level 29, 3 Pokemon), sees the player. Vanilla. `events_route_207.json:66`
 - TRAINER_YOUNGSTER_AUSTIN (Austin, level 29, 3 Pokemon), sees the player. Vanilla. `events_route_207.json:81`
 - TRAINER_HIKER_JUSTIN (Justin, level 29, 4 Pokemon), sees the player. Vanilla. `events_route_207.json:96`
@@ -2883,8 +2883,8 @@ Trainer battles:
 - TRAINER_BLACK_BELT_NATHANIEL (Nathaniel, level 34, 3 Pokemon), sees the player. Vanilla. `events_route_215.json:65`
 - TRAINER_JOGGER_SCOTT (Scott, level 38, 3 Pokemon), sees the player. Vanilla. `events_route_215.json:80`
 - TRAINER_RUIN_MANIAC_CALVIN (Calvin, level 37, 4 Pokemon), sees the player. Vanilla. `events_route_215.json:95`
-- TRAINER_ACE_TRAINER_DENNIS (Dennis, level 38, 4 Pokemon), sees the player. Vanilla. `events_route_215.json:110`
-- TRAINER_ACE_TRAINER_MAYA (Maya, level 38, 4 Pokemon), sees the player. Vanilla. `events_route_215.json:125`
+- TRAINER_ACE_TRAINER_DENNIS (Dennis, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_215.json:110`
+- TRAINER_ACE_TRAINER_MAYA (Maya, level 38, 3 Pokemon), sees the player. Vanilla. `events_route_215.json:125`
 - TRAINER_JOGGER_CRAIG (Craig, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_215.json:140`
 
 Items given:
