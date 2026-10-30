@@ -35,7 +35,7 @@
                 "MOVE_BULK_UP",
                 "MOVE_DRAIN_PUNCH",
                 "MOVE_RAGE_FIST",
-                "MOVE_STONE_EDGE"
+                "MOVE_ICE_PUNCH"
             ],
             "iv_scale": 255,
             "nature": "NATURE_IMPISH",
