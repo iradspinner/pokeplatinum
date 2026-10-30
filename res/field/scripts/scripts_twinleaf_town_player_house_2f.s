@@ -891,6 +891,9 @@ TestKit_MoveSets4:
     AddListMenuEntry TestKit_Text_MenuSet86, 4
     AddListMenuEntry TestKit_Text_MenuSet87, 5
     AddListMenuEntry TestKit_Text_MenuSet88, 6
+    AddListMenuEntry TestKit_Text_MenuSet89, 7
+    AddListMenuEntry TestKit_Text_MenuSet90, 8
+    AddListMenuEntry TestKit_Text_MenuSet91, 9
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet82
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet83
@@ -899,6 +902,9 @@ TestKit_MoveSets4:
     GoToIfEq VAR_0x8004, 4, TestKit_MoveSet86
     GoToIfEq VAR_0x8004, 5, TestKit_MoveSet87
     GoToIfEq VAR_0x8004, 6, TestKit_MoveSet88
+    GoToIfEq VAR_0x8004, 7, TestKit_MoveSet89
+    GoToIfEq VAR_0x8004, 8, TestKit_MoveSet90
+    GoToIfEq VAR_0x8004, 9, TestKit_MoveSet91
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -2085,6 +2091,60 @@ TestKit_MoveSet88:
     SetVar VAR_0x8008, MOVE_TACKLE
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GivePokemonWithItem
+
+/* Set 89: Silk Trap (Ian, 2026-10-29: "Fix before alpha 1"): it stops a
+   damaging move and lowers the Speed of an attacker that made contact with
+   it by a stage, and a status move gets through it. Against a wild Rattata
+   that knows Tackle and Tail Whip, picking one at random: a Tackle into the
+   trap brings "MEW protected itself!" and then "The wild RATTATA's Speed
+   fell!"; a Tail Whip brings "MEW's Defense fell!" as if Mew had not
+   protected. Used two turns running it can fail, as Protect can, so use
+   Splash between. Before the change it was a plain Protect. */
+TestKit_MoveSet89:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_TAIL_WHIP
+    SetVar VAR_0x8006, MOVE_SILK_TRAP
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 90: Obstruct (Ian, 2026-10-29): as set 89, with the attacker's
+   Defense falling two stages, "The wild RATTATA's Defense harshly fell!",
+   and a Tail Whip getting through. Before the change it was a plain
+   Protect. */
+TestKit_MoveSet90:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_TAIL_WHIP
+    SetVar VAR_0x8006, MOVE_OBSTRUCT
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 91: Corrosion on Baneful Bunker (2026-10-30): the bunker's poison is
+   its user's doing, so a Salazzle with Corrosion poisons a Steel type that
+   makes contact with it. Against a wild Skarmory that knows only Steel
+   Wing, a contact move: "SALAZZLE protected itself!" and then "The wild
+   SKARMORY was poisoned!". Before the change Skarmory was not poisoned,
+   and nothing was said. Salazzle's Toxic poisons it too, as the Corrosion
+   entry of the abilities menu shows. */
+TestKit_MoveSet91:
+    SetVar VAR_0x8000, SPECIES_SKARMORY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_STEEL_WING
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_SALAZZLE
+    SetVar VAR_0x800B, ABILITY_CORROSION
+    SetVar VAR_0x8006, MOVE_BANEFUL_BUNKER
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TOXIC
+    GoTo TestKit_GivePokemonWithMoves
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
    a menu has been answered), for an entry that needs a held item. */
