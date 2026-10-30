@@ -10,69 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PONYTA",
+            "species": "SPECIES_HOUNDOUR",
             "form": 0,
-            "level": 27,
-            "item": "ITEM_NONE",
+            "level": 25,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
-                "MOVE_FLAME_WHEEL",
-                "MOVE_STOMP",
-                "MOVE_FIRE_SPIN",
-                "MOVE_DOUBLE_KICK"
+                "MOVE_NASTY_PLOT",
+                "MOVE_FLAMETHROWER",
+                "MOVE_SNARL",
+                "MOVE_SUCKER_PUNCH"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         },
         {
-            "species": "SPECIES_HOUNDOUR",
+            "species": "SPECIES_BRAIXEN",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_FIRE_FANG",
-                "MOVE_BITE",
-                "MOVE_SMOG",
-                "MOVE_ROAR"
+                "MOVE_MYSTICAL_FIRE",
+                "MOVE_PSYBEAM",
+                "MOVE_WILL_O_WISP",
+                "MOVE_LIGHT_SCREEN"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_GROWLITHE",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
-                "MOVE_FIRE_FANG",
-                "MOVE_BITE",
+                "MOVE_FLAME_WHEEL",
                 "MOVE_CRUNCH",
+                "MOVE_PLAY_ROUGH",
                 "MOVE_ROAR"
             ],
             "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_VULPIX",
-            "form": 0,
-            "level": 29,
-            "item": "ITEM_CHARCOAL",
-            "moves": [
-                "MOVE_FLAMETHROWER",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_WILL_O_WISP"
-            ],
-            "iv_scale": 220,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
         }
     ],
     "messages": [

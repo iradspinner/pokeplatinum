@@ -10,37 +10,54 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_AIPOM",
+            "species": "SPECIES_KRICKETUNE",
             "form": 0,
-            "level": 27,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_SILVERPOWDER",
             "moves": [
-                "MOVE_FURY_SWIPES",
-                "MOVE_SWIFT",
-                "MOVE_COVET",
-                "MOVE_SCREECH"
+                "MOVE_BUG_BITE",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SING",
+                "MOVE_TAUNT"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CLOBBOPUS",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_ROCK_SMASH",
+                "MOVE_BODY_SLAM",
+                "MOVE_BULK_UP",
+                "MOVE_PAYBACK"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_AMBIPOM",
             "form": 0,
-            "level": 28,
+            "level": 27,
             "item": "ITEM_SILK_SCARF",
             "moves": [
                 "MOVE_FAKE_OUT",
-                "MOVE_COVET",
                 "MOVE_SWIFT",
+                "MOVE_KARATE_CHOP",
                 "MOVE_U_TURN"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 1
         }
     ],
     "messages": [

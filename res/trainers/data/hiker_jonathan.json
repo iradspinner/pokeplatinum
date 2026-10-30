@@ -12,66 +12,70 @@
         {
             "species": "SPECIES_NIDORINA",
             "form": 0,
-            "level": 31,
-            "item": null,
+            "level": 28,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
+                "MOVE_TOXIC_SPIKES",
                 "MOVE_POISON_JAB",
-                "MOVE_DOUBLE_KICK",
                 "MOVE_BITE",
-                "MOVE_TOXIC"
+                "MOVE_DOUBLE_KICK"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_SASSY",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_GLIGAR",
-            "form": 0,
-            "level": 31,
-            "item": null,
-            "moves": [
-                "MOVE_POISON_JAB",
-                "MOVE_AERIAL_ACE",
-                "MOVE_DIG",
-                "MOVE_KNOCK_OFF"
-            ],
-            "iv_scale": 220,
-            "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_NIDORINO",
             "form": 0,
-            "level": 31,
-            "item": null,
+            "level": 28,
+            "item": "ITEM_POISON_BARB",
             "moves": [
                 "MOVE_POISON_JAB",
-                "MOVE_DOUBLE_KICK",
-                "MOVE_HORN_ATTACK",
+                "MOVE_BULLDOZE",
+                "MOVE_ROCK_BLAST",
                 "MOVE_SUCKER_PUNCH"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CLODSIRE",
+            "form": 0,
+            "level": 29,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_SPIKES",
+                "MOVE_YAWN",
+                "MOVE_POISON_JAB",
+                "MOVE_BULLDOZE"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_DUGTRIO",
             "form": 0,
-            "level": 31,
-            "item": null,
+            "level": 29,
+            "item": "ITEM_RAZOR_CLAW",
             "moves": [
-                "MOVE_DIG",
+                "MOVE_STOMPING_TANTRUM",
+                "MOVE_NIGHT_SLASH",
                 "MOVE_SUCKER_PUNCH",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_NIGHT_SLASH"
+                "MOVE_ROCK_SLIDE"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [
