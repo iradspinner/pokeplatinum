@@ -22,9 +22,10 @@ later dated ruling wins; say which in the report.
   starter's level 5 moves, a TM's location, a line of dialogue) stales
   nothing and sets off no rescore or re-read; a material one names the
   fights it moves, and only those are marked for reading. Scores never block
-  a landing: the gate reports stale scores and passes. Full readings happen
-  only at milestones (once before alpha 1, then once after each round of
-  alpha changes); between them the scorer reads only the fights Ian names,
+  a landing: the gate reports stale scores and passes. No full reading is planned (Ian, 2026-10-29, dropping the
+  milestone reading before alpha 1): the scorer reads only the fights Ian
+  names, chiefly as a backup when a fight feels too hard in his testing,
+  to show whether he is missing a line,
   and the simulator is frozen except for fixes he approves. The first scoring
   system's cheap estimate is retired (Ian, 2026-10-13): the scorer is the one
   measure of a fight. A problem Ian
@@ -193,7 +194,8 @@ full ruling is in `docs/oxide/rulings-detail.md`.
   on a first run. Since 2026-10-22 teams are tuned by judgement with cheap
   checks (speed tiers, the matchup screen, damage numbers, the AI-picks
   probe), and the scorer only spot-checks fights Ian names or that look
-  clearly off, plus the milestone reading before alpha 1 (standing rulings). Two soft guides for reading a fight (Ian, 2026-10-13): box
+  clearly off; the milestone reading before alpha 1 was dropped (Ian,
+  2026-10-29; standing rulings). Two soft guides for reading a fight (Ian, 2026-10-13): box
   3 of the first reading of his six-member Gardenia (27 percent won) is the
   barometer for "unsolvably hard", and only the Cyrus fights, the Elite Four
   with Cynthia, and perhaps a Galactic double may read as hard as that whole
