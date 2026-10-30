@@ -29,7 +29,7 @@
         {
             "species": "SPECIES_TORRACAT",
             "form": 0,
-            "level": 18,
+            "level": 19,
             "item": "ITEM_EVIOLITE",
             "moves": [
                 "MOVE_FLAME_WHEEL",
@@ -80,7 +80,7 @@
         {
             "species": "SPECIES_PURUGLY",
             "form": 0,
-            "level": 19,
+            "level": 20,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_FAKE_OUT",

@@ -82,7 +82,7 @@
          "trainers": ["TRAINER_RIVAL_ROUTE_203_PIPLUP", "TRAINER_RIVAL_ROUTE_203_TURTWIG", "TRAINER_RIVAL_ROUTE_203_CHIMCHAR"]},
         {"key": "roark", "label": "Roark", "split": "Roark", "sheet_ace": 16,
          "trainers": ["TRAINER_LEADER_ROARK"]},
-        {"key": "mars_1", "label": "Mars 1", "split": "Gardenia", "sheet_ace": 19,
+        {"key": "mars_1", "label": "Mars 1", "split": "Gardenia", "sheet_ace": 20,
          "trainers": ["TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS"]},
         {"key": "gardenia", "label": "Gardenia", "split": "Gardenia", "sheet_ace": 26,
          "trainers": ["TRAINER_LEADER_GARDENIA"]},
