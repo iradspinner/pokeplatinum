@@ -14,7 +14,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 1 | 1 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 592 | 513 | 72 | 7 | 0 | 8 |
+| Trainer battles | 592 | 511 | 72 | 9 | 0 | 10 |
 | Items given | 212 | 102 | 31 | 79 | 0 | 34 |
 | Item balls | 333 | 260 | 62 | 11 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
@@ -1110,6 +1110,8 @@ Trainer battles:
 - TRAINER_BATTLE_GIRL_KELSEY (Kelsey, level 25, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:104`
 - TRAINER_PICNICKER_KARINA (Karina, level 25, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:346`
 - TRAINER_CAMPER_ZACKARY (Zackary, level 25, 4 Pokemon), sees the player. Vanilla. `events_route_205_south.json:363`
+- TRAINER_FISHERMAN_ANDREW (Andrew, level 24, 6 Pokemon), sees the player. Added by Oxide (74d0a38e9). `events_route_205_south.json:530`
+- TRAINER_FISHERMAN_JOSEPH (Joseph, level 25, 3 Pokemon), sees the player. Added by Oxide (74d0a38e9). `events_route_205_south.json:547`
 
 Item balls:
 
@@ -1196,13 +1198,11 @@ Could not read: 1 raw data lines.
 
 Trainer battles:
 
-- TRAINER_FISHERMAN_ANDREW (Andrew, level 24, 6 Pokemon), sees the player. Vanilla. `events_route_205_north.json:19`
-- TRAINER_FISHERMAN_JOSEPH (Joseph, level 25, 3 Pokemon), sees the player. Vanilla. `events_route_205_north.json:34`
-- TRAINER_FISHERMAN_ZACHARY (Zachary, level 25, 4 Pokemon), sees the player. Vanilla. `events_route_205_north.json:49`
+- TRAINER_FISHERMAN_ZACHARY (Zachary, level 25, 4 Pokemon), sees the player. Vanilla. `events_route_205_north.json:19`
 
 Item balls:
 
-- ITEM_GUARD_SPEC x1, one time, flag FLAG_OBTAINED_ROUTE_205_NORTH_GUARD_SPEC. Vanilla. `events_route_205_north.json:113`
+- ITEM_GUARD_SPEC x1, one time, flag FLAG_OBTAINED_ROUTE_205_NORTH_GUARD_SPEC. Vanilla. `events_route_205_north.json:83`
 
 Hidden items:
 
@@ -1211,6 +1211,8 @@ Hidden items:
 Flags:
 
 - Hide an object: FLAG_UNK_0x0041, FLAG_OBTAINED_ROUTE_205_NORTH_GUARD_SPEC.
+
+Gone from vanilla: TRAINER_FISHERMAN_ANDREW (Andrew, level 24, 6 Pokemon), sees the player; TRAINER_FISHERMAN_JOSEPH (Joseph, level 25, 3 Pokemon), sees the player.
 
 ### Eterna Forest
 
