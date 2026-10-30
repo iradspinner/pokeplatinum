@@ -14,7 +14,7 @@
         {
             "species": "SPECIES_MAGNETON",
             "form": 0,
-            "level": 29,
+            "level": 31,
             "item": "ITEM_EVIOLITE",
             "moves": [
                 "MOVE_SCREECH",
@@ -23,6 +23,7 @@
                 "MOVE_PSYCH_UP"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -30,7 +31,7 @@
         {
             "species": "SPECIES_VIBRAVA",
             "form": 0,
-            "level": 29,
+            "level": 31,
             "item": "ITEM_SMOOTH_ROCK",
             "moves": [
                 "MOVE_MUD_SHOT",
@@ -39,6 +40,7 @@
                 "MOVE_ANCIENT_POWER"
             ],
             "iv_scale": 213,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
             "ability": 2,
             "gender": null
@@ -46,7 +48,7 @@
         {
             "species": "SPECIES_CACTURNE",
             "form": 0,
-            "level": 31,
+            "level": 33,
             "item": "ITEM_BIG_ROOT",
             "moves": [
                 "MOVE_GIGA_DRAIN",
@@ -63,7 +65,7 @@
         {
             "species": "SPECIES_SHUCKLE",
             "form": 0,
-            "level": 31,
+            "level": 33,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_ENCORE",
@@ -72,6 +74,7 @@
                 "MOVE_SAND_TOMB"
             ],
             "iv_scale": 169,
+            "nature": "NATURE_HARDY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -79,7 +82,7 @@
         {
             "species": "SPECIES_NINETALES",
             "form": 0,
-            "level": 29,
+            "level": 31,
             "item": "ITEM_WHITE_HERB",
             "moves": [
                 "MOVE_PSYCH_UP",
@@ -88,6 +91,7 @@
                 "MOVE_WILL_O_WISP"
             ],
             "iv_scale": 189,
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -95,7 +99,7 @@
         {
             "species": "SPECIES_OMASTAR",
             "form": 0,
-            "level": 31,
+            "level": 33,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_BRINE",
@@ -104,6 +108,7 @@
                 "MOVE_ANCIENT_POWER"
             ],
             "iv_scale": 158,
+            "nature": "NATURE_DOCILE",
             "ball_seal": 0,
             "ability": 2,
             "gender": null

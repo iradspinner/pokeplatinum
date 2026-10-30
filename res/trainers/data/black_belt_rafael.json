@@ -9,54 +9,54 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_TOXICROAK",
-            "form": 0,
-            "level": 37,
-            "item": "ITEM_BLACK_SLUDGE",
-            "moves": [
-                "MOVE_FAKE_OUT",
-                "MOVE_POISON_JAB",
-                "MOVE_DRAIN_PUNCH",
-                "MOVE_SUCKER_PUNCH"
-            ],
-            "iv_scale": 240,
-            "nature": "NATURE_ADAMANT",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
             "species": "SPECIES_CACTURNE",
             "form": 0,
-            "level": 37,
+            "level": 36,
             "item": "ITEM_OCCA_BERRY",
             "moves": [
-                "MOVE_REVENGE",
-                "MOVE_SEED_BOMB",
+                "MOVE_SPIKES",
                 "MOVE_SUCKER_PUNCH",
-                "MOVE_SPIKES"
+                "MOVE_SEED_BOMB",
+                "MOVE_DRAIN_PUNCH"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_BRAVE",
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
             "ability": 3,
             "gender": "male"
         },
         {
-            "species": "SPECIES_LICKILICKY",
+            "species": "SPECIES_URSARING",
             "form": 0,
-            "level": 38,
+            "level": 36,
             "item": "ITEM_FLAME_ORB",
             "moves": [
                 "MOVE_FACADE",
-                "MOVE_STOMPING_TANTRUM",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_BRICK_BREAK"
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_CRUNCH",
+                "MOVE_STONE_EDGE"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_CAREFUL",
+            "nature": "NATURE_QUIRKY",
             "ball_seal": 0,
-            "ability": 2,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_LICKILICKY",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_TOXIC_ORB",
+            "moves": [
+                "MOVE_SWORDS_DANCE",
+                "MOVE_BODY_SLAM",
+                "MOVE_KNOCK_OFF",
+                "MOVE_HAMMER_ARM"
+            ],
+            "iv_scale": 240,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1,
             "gender": "male"
         }
     ],

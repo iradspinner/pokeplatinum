@@ -13,44 +13,50 @@
         {
             "species": "SPECIES_CROAGUNK",
             "form": 0,
-            "level": 34,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_EVIOLITE",
             "moves": [
                 "MOVE_POISON_JAB",
-                "MOVE_BULLET_PUNCH",
-                "MOVE_LOW_KICK",
-                "MOVE_SUCKER_PUNCH"
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_TAUNT"
             ],
-            "iv_scale": 30,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_MEDITITE",
-            "form": 0,
-            "level": 34,
-            "item": null,
-            "moves": [
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_PSYCHO_CUT",
-                "MOVE_FIRE_PUNCH",
-                "MOVE_HI_JUMP_KICK"
-            ],
-            "iv_scale": 253,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
             "species": "SPECIES_HITMONLEE",
             "form": 0,
-            "level": 34,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_COBA_BERRY",
             "moves": [
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_BULLET_PUNCH",
                 "MOVE_HI_JUMP_KICK",
-                "MOVE_FAKE_OUT"
+                "MOVE_STONE_EDGE",
+                "MOVE_POISON_JAB",
+                "MOVE_MACH_PUNCH"
             ],
-            "iv_scale": 198,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_MIENSHAO",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_KNOCK_OFF",
+                "MOVE_TRIPLE_AXEL"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_HARDY",
+            "ball_seal": 0,
+            "ability": 2
         }
     ],
     "messages": [

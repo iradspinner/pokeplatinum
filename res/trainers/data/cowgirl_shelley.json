@@ -12,47 +12,13 @@
         {
             "species": "SPECIES_AMPHAROS",
             "form": 0,
-            "level": 35,
-            "item": "ITEM_MAGNET",
+            "level": 33,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_DISCHARGE",
+                "MOVE_THUNDERBOLT",
                 "MOVE_DRAGON_PULSE",
-                "MOVE_DAZZLING_GLEAM",
-                "MOVE_THUNDER_WAVE"
-            ],
-            "iv_scale": 220,
-            "nature": "NATURE_MODEST",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
-        },
-        {
-            "species": "SPECIES_RAPIDASH",
-            "form": 0,
-            "level": 36,
-            "item": "ITEM_CHARCOAL",
-            "moves": [
-                "MOVE_FLAME_CHARGE",
-                "MOVE_WILD_CHARGE",
-                "MOVE_MEGAHORN",
-                "MOVE_POISON_JAB"
-            ],
-            "iv_scale": 220,
-            "nature": "NATURE_JOLLY",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
-        },
-        {
-            "species": "SPECIES_LICKILICKY",
-            "form": 0,
-            "level": 35,
-            "item": "ITEM_ASSAULT_VEST",
-            "moves": [
-                "MOVE_BODY_SLAM",
-                "MOVE_KNOCK_OFF",
-                "MOVE_ICE_BEAM",
-                "MOVE_THUNDERBOLT"
+                "MOVE_COTTON_SPORE",
+                "MOVE_LIGHT_SCREEN"
             ],
             "iv_scale": 220,
             "nature": "NATURE_QUIET",
@@ -60,15 +26,31 @@
             "ability": 1
         },
         {
-            "species": "SPECIES_MILTANK",
+            "species": "SPECIES_GALARIAN_RAPIDASH",
             "form": 0,
-            "level": 37,
+            "level": 33,
+            "item": "ITEM_WIDE_LENS",
+            "moves": [
+                "MOVE_PLAY_ROUGH",
+                "MOVE_FLAME_CHARGE",
+                "MOVE_PSYCHO_CUT",
+                "MOVE_MEGAHORN"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_DUBWOOL",
+            "form": 0,
+            "level": 34,
             "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_CURSE",
-                "MOVE_BODY_SLAM",
-                "MOVE_MILK_DRINK",
-                "MOVE_PLAY_ROUGH"
+                "MOVE_TAKE_DOWN",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_WILD_CHARGE",
+                "MOVE_THUNDER_WAVE"
             ],
             "iv_scale": 220,
             "nature": "NATURE_IMPISH",

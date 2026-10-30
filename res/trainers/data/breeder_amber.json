@@ -17,11 +17,11 @@
             "moves": [
                 "MOVE_FAKE_OUT",
                 "MOVE_DOUBLE_EDGE",
-                "MOVE_CRUNCH",
+                "MOVE_DRAIN_PUNCH",
                 "MOVE_SUCKER_PUNCH"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
             "ability": 2
         },
@@ -33,29 +33,29 @@
             "moves": [
                 "MOVE_SOFTBOILED",
                 "MOVE_TOXIC",
-                "MOVE_CHILLING_WATER",
-                "MOVE_DAZZLING_GLEAM"
+                "MOVE_THUNDER_WAVE",
+                "MOVE_ICE_BEAM"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_CALM",
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
             "ability": 1
         },
         {
             "species": "SPECIES_CLEFABLE",
             "form": 0,
-            "level": 37,
+            "level": 35,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_CALM_MIND",
-                "MOVE_ALLURING_VOICE",
+                "MOVE_MOONBLAST",
                 "MOVE_FLAMETHROWER",
-                "MOVE_MOONLIGHT"
+                "MOVE_WISH"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_BOLD",
+            "nature": "NATURE_GENTLE",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": "female"
         }
     ],
