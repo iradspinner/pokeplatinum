@@ -30,7 +30,7 @@
             "species": "SPECIES_SLOWBRO",
             "form": 0,
             "level": 40,
-            "item": "ITEM_SITRUS_BERRY",
+            "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_FOCUS_BLAST",
                 "MOVE_CALM_MIND",
