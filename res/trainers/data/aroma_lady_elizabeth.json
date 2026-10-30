@@ -10,53 +10,54 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SUNFLORA",
-            "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_SUNNY_DAY",
-                "MOVE_MEGA_DRAIN",
-                "MOVE_BULLET_SEED",
-                "MOVE_INGRAIN"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_GLOOM",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 19,
+            "item": "ITEM_HEAT_ROCK",
             "moves": [
+                "MOVE_SUNNY_DAY",
                 "MOVE_SLEEP_POWDER",
                 "MOVE_ACID",
-                "MOVE_MEGA_DRAIN",
-                "MOVE_SYNTHESIS"
+                "MOVE_GIGA_DRAIN"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_VULPIX",
+            "species": "SPECIES_FOMANTIS",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_CHARCOAL",
+            "level": 19,
+            "item": "ITEM_MIRACLE_SEED",
             "moves": [
-                "MOVE_FLAMETHROWER",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_WILL_O_WISP"
+                "MOVE_RAZOR_LEAF",
+                "MOVE_X_SCISSOR",
+                "MOVE_LEAFAGE"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SUNFLORA",
+            "form": 0,
+            "level": 20,
+            "item": "ITEM_BIG_ROOT",
+            "moves": [
+                "MOVE_MEGA_DRAIN",
+                "MOVE_LEECH_SEED",
+                "MOVE_SYNTHESIS",
+                "MOVE_GROWTH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

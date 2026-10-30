@@ -12,50 +12,53 @@
         {
             "species": "SPECIES_KOFFING",
             "form": 0,
-            "level": 16,
-            "item": "ITEM_NONE",
+            "level": 17,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
                 "MOVE_SMOG",
-                "MOVE_TACKLE",
-                "MOVE_SCREECH",
-                "MOVE_SCARY_FACE"
+                "MOVE_WILL_O_WISP",
+                "MOVE_ASSURANCE",
+                "MOVE_SHOCK_WAVE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_GRIMER",
+            "species": "SPECIES_GLIMMET",
             "form": 0,
-            "level": 16,
-            "item": "ITEM_NONE",
+            "level": 17,
+            "item": "ITEM_AGUAV_BERRY",
             "moves": [
-                "MOVE_POUND",
-                "MOVE_MUD_SLAP",
-                "MOVE_HARDEN",
-                "MOVE_DISABLE"
+                "MOVE_STEALTH_ROCK",
+                "MOVE_ACID_SPRAY",
+                "MOVE_SMACK_DOWN",
+                "MOVE_HARDEN"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_GULPIN",
             "form": 0,
             "level": 18,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_FIGY_BERRY",
             "moves": [
                 "MOVE_YAWN",
                 "MOVE_SLUDGE",
-                "MOVE_POUND",
-                "MOVE_AMNESIA"
+                "MOVE_AMNESIA",
+                "MOVE_WATER_PULSE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
         }
     ],
     "messages": [

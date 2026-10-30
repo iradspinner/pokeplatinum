@@ -9,53 +9,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_EXEGGCUTE",
+            "species": "SPECIES_DOTTLER",
             "form": 0,
-            "level": 23,
-            "item": "ITEM_NONE",
+            "level": 21,
+            "item": "ITEM_LIGHT_CLAY",
             "moves": [
-                "MOVE_BULLET_SEED",
-                "MOVE_ANCIENT_POWER",
-                "MOVE_LEECH_SEED",
-                "MOVE_HYPNOSIS"
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_STRUGGLE_BUG",
+                "MOVE_CONFUSION"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_SASSY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         },
         {
             "species": "SPECIES_NATU",
             "form": 0,
-            "level": 23,
-            "item": "ITEM_NONE",
+            "level": 21,
+            "item": "ITEM_STICKY_BARB",
             "moves": [
                 "MOVE_NIGHT_SHADE",
-                "MOVE_PECK",
-                "MOVE_FAINT_ATTACK",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_PLUCK",
                 "MOVE_CONFUSE_RAY"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_KIRLIA",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 22,
+            "item": "ITEM_PIXIE_PLATE",
             "moves": [
+                "MOVE_CALM_MIND",
+                "MOVE_DRAINING_KISS",
                 "MOVE_CONFUSION",
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_SHADOW_SNEAK",
-                "MOVE_CALM_MIND"
+                "MOVE_SHADOW_SNEAK"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_GENTLE",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         }
     ],
     "messages": [

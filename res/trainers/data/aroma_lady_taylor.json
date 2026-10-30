@@ -10,68 +10,71 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CHERUBI",
-            "form": 0,
-            "level": 16,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_LEECH_SEED",
-                "MOVE_RAZOR_LEAF",
-                "MOVE_TACKLE",
-                "MOVE_SYNTHESIS"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_BELLSPROUT",
             "form": 0,
-            "level": 17,
-            "item": "ITEM_NONE",
+            "level": 16,
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
-                "MOVE_VINE_WHIP",
-                "MOVE_BULLET_SEED",
+                "MOVE_SLEEP_POWDER",
                 "MOVE_MAGICAL_LEAF",
+                "MOVE_SUCKER_PUNCH",
                 "MOVE_GROWTH"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_ODDISH",
+            "species": "SPECIES_SMOLIV",
             "form": 0,
-            "level": 17,
-            "item": "ITEM_NONE",
+            "level": 16,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_ACID",
+                "MOVE_MEGA_DRAIN",
                 "MOVE_RAZOR_LEAF",
-                "MOVE_BULLET_SEED",
-                "MOVE_POISON_POWDER"
+                "MOVE_CHARM",
+                "MOVE_FLAIL"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CHERUBI",
+            "form": 0,
+            "level": 16,
+            "item": "ITEM_BIG_ROOT",
+            "moves": [
+                "MOVE_LEECH_SEED",
+                "MOVE_DRAINING_KISS",
+                "MOVE_ROCK_TOMB"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_TANGELA",
             "form": 0,
-            "level": 18,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 17,
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
-                "MOVE_SLEEP_POWDER",
-                "MOVE_GIGA_DRAIN",
+                "MOVE_MEGA_DRAIN",
+                "MOVE_POISON_POWDER",
                 "MOVE_ANCIENT_POWER",
-                "MOVE_LEECH_SEED"
+                "MOVE_AMNESIA"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": "female"
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [

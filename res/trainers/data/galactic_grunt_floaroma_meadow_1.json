@@ -11,53 +11,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MURKROW",
-            "form": 0,
-            "level": 18,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_PECK",
-                "MOVE_ASTONISH",
-                "MOVE_PURSUIT",
-                "MOVE_CONFUSE_RAY"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_CROAGUNK",
-            "form": 0,
-            "level": 17,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_POISON_STING",
-                "MOVE_BRICK_BREAK",
-                "MOVE_MUD_SLAP",
-                "MOVE_ASTONISH"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_EKANS",
             "form": 0,
-            "level": 18,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 17,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
                 "MOVE_GLARE",
                 "MOVE_BITE",
                 "MOVE_POISON_STING",
-                "MOVE_ROCK_TOMB"
+                "MOVE_DISABLE"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MURKROW",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_SCOPE_LENS",
+            "moves": [
+                "MOVE_WING_ATTACK",
+                "MOVE_PURSUIT",
+                "MOVE_TAUNT",
+                "MOVE_OMINOUS_WIND"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SALANDIT",
+            "form": 0,
+            "level": 18,
+            "item": "ITEM_SHUCA_BERRY",
+            "moves": [
+                "MOVE_FLAME_BURST",
+                "MOVE_SMOG",
+                "MOVE_VENOM_DRENCH",
+                "MOVE_TAUNT"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [
