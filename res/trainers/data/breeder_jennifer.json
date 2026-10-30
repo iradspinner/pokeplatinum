@@ -45,7 +45,7 @@
             "species": "SPECIES_FARFETCHD",
             "form": 0,
             "level": 33,
-            "item": "ITEM_STICK",
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
                 "MOVE_SWORDS_DANCE",
                 "MOVE_NIGHT_SLASH",
