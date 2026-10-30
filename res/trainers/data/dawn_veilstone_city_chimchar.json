@@ -27,20 +27,20 @@
             "gender": "female"
         },
         {
-            "species": "SPECIES_SCIZOR",
+            "species": "SPECIES_SCYTHER",
             "form": 0,
             "level": 40,
-            "item": "ITEM_METAL_COAT",
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_BULLET_PUNCH",
-                "MOVE_X_SCISSOR",
+                "MOVE_WING_ATTACK",
+                "MOVE_PURSUIT",
                 "MOVE_KNOCK_OFF",
                 "MOVE_BRICK_BREAK"
             ],
             "iv_scale": 255,
             "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 2,
             "gender": "female"
         },
         {
@@ -50,7 +50,7 @@
             "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_FAKE_OUT",
-                "MOVE_DRAIN_PUNCH",
+                "MOVE_JUMP_KICK",
                 "MOVE_ICE_PUNCH",
                 "MOVE_DIZZY_PUNCH"
             ],

@@ -96,7 +96,8 @@
             "MOVE_NASTY_PLOT",
             "MOVE_HYPNOSIS",
             "MOVE_ZEN_HEADBUTT",
-            "MOVE_BRAVE_BIRD"
+            "MOVE_BRAVE_BIRD",
+            "MOVE_PROTECT"
         ]
     },
     "evolutions": [

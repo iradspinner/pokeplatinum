@@ -122,7 +122,9 @@ IAN_EGG_MOVES = {
     "SPECIES_QWILFISH": [("MOVE_BARB_BARRAGE", "Ian, 2026-10-21, on signature-moves.md: Overqwil's, and "
                                                "Qwilfish's egg move in Scarlet and Violet, for trainers")],
     "SPECIES_GASTLY": [("MOVE_MALIGNANT_CHAIN", "Ian, 2026-10-21, on signature-moves.md: Pecharunt's, for "
-                                                "trainers' Gengar, which has its types")],
+                                                "trainers' Gengar, which has its types"),
+                       ("MOVE_PROTECT", "Ian, 2026-10-29: Officer Tyche's Haunter at Veilstone, a TM before "
+                                        "the TM pass, here so the OxiDex agrees")],
     "SPECIES_DUSKULL": [("MOVE_LAST_RESPECTS", "Ian, 2026-10-21, on signature-moves.md: Houndstone's, for "
                                                "trainers' Dusknoir, which guides spirits")],
     # Two more of the page's homes for trainers: lines the player cannot
@@ -174,6 +176,16 @@ IAN_EGG_MOVES = {
     "SPECIES_SHUCKLE": [("MOVE_BUG_BITE", "Ian, 2026-10-29: Twins Emma and Lil's Shuckle")],
     "SPECIES_CLEFFA": [("MOVE_MOONBLAST", "Ian, 2026-10-29: Game Corner challenger Rocco's Clefable")],
     "SPECIES_PORYGON": [("MOVE_TRI_ATTACK", "Ian, 2026-10-29: Game Corner challenger Rocco's Porygon2")],
+    # Protect's later cousins for Officers Tyche and Hermes at Veilstone (Ian,
+    # 2026-10-29, on tyche-hermes-1.md: approved through the egg-list rule).
+    "SPECIES_POOCHYENA": [("MOVE_OBSTRUCT", "Ian, 2026-10-29: Officer Hermes's Mightyena at Veilstone")],
+    "SPECIES_SPINARAK": [("MOVE_SILK_TRAP", "Ian, 2026-10-29: Officer Tyche's Ariados at Veilstone")],
+    # Their Protect, a TM before the TM pass and so already legal for these
+    # trainers, here so the OxiDex agrees.
+    **{sp: [("MOVE_PROTECT", f"Ian, 2026-10-29: Officer {who}'s {mon} at Veilstone")]
+       for sp, who, mon in (("SPECIES_ZUBAT", "Tyche", "Golbat"), ("SPECIES_MURKROW", "Tyche", "Murkrow"),
+                            ("SPECIES_SEVIPER", "Hermes", "Seviper"), ("SPECIES_CARVANHA", "Hermes", "Sharpedo"),
+                            ("SPECIES_DIGLETT", "Hermes", "Dugtrio"))},
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

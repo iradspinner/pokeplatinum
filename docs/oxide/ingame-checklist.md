@@ -584,6 +584,20 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   shards, are gone. The Survival Area's south house likewise holds only the
   Black Belt, who gives TM25 (Thunder) once; its Utility Stop greeter and
   vendors are gone too.
+- [ ] **The Veilstone tag battle, Officers Tyche and Hermes** (`overseer-tyche-hermes-1`,
+  `tyche-hermes-1.md`), after Maylene's badge, with the party at or under the
+  honour cap of 41. The north warehouse grunt is a female grunt; the scene's
+  lines read "Tyche:" and "Hermes:", and Hermes says "And make ourselves
+  scarce." Lucas or Dawn (the counterpart of the other gender) brings six,
+  led by Umbreon, with Scyther and the starter line yours beats at 41. The
+  officers bring five each: Tyche's Golbat, Murkrow, Ariados, Weezing and
+  Haunter, Hermes's Electrode, Mightyena, Seviper, Sharpedo and Dugtrio.
+  Note how often Tyche's side protects (Ariados's Silk Trap and Mightyena's
+  Obstruct should read as protecting itself), whether Hermes's Pokemon use
+  Earthquake or Bulldoze while Golbat, Murkrow, Weezing or Haunter stand
+  beside them and hold back beside Ariados, whether Dugtrio's Arena Trap
+  stops a switch, and how many of your Pokemon faint. Afterwards, Tyche at
+  Spear Pillar says "The toughest of all the officers!" when beaten.
 - [ ] **Pastel Veil and Unnerve** (`main-element5-gaps`), whenever they come
   up, since the kit cannot run a double battle or give a foe an item. A
   Galarian Rapidash (Pastel Veil) sent in during a double battle beside a

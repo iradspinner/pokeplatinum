@@ -91,7 +91,8 @@
             "MOVE_PURSUIT",
             "MOVE_SIGNAL_BEAM",
             "MOVE_TOXIC_SPIKES",
-            "MOVE_POISON_JAB"
+            "MOVE_POISON_JAB",
+            "MOVE_SILK_TRAP"
         ]
     },
     "evolutions": [

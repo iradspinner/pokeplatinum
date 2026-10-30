@@ -75,7 +75,8 @@
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "galactic_grunt_spear_pillar_1": {
-    "name": "Ian renamed the Veilstone and Spear Pillar grunts Officers Tyche and Hermes, 2026-10-29"
+    "name": "Ian renamed the Veilstone and Spear Pillar grunts Officers Tyche and Hermes, 2026-10-29",
+    "messages": "Tyche's defeat line calls her an officer, not a grunt (Ian, 2026-10-29)"
   },
   "galactic_grunt_spear_pillar_2": {
     "name": "Ian renamed the Veilstone and Spear Pillar grunts Officers Tyche and Hermes, 2026-10-29"
@@ -83,10 +84,13 @@
   "galactic_grunt_veilstone_city_1": {
     "party": "edited in the OxiDex team builder, 2026-10-29",
     "name": "Ian renamed the Veilstone and Spear Pillar grunts Officers Tyche and Hermes, 2026-10-29",
-    "class": "Officer Tyche is a female grunt (Ian, 2026-10-29)"
+    "class": "Officer Tyche is a female grunt (Ian, 2026-10-29)",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-29"
   },
   "galactic_grunt_veilstone_city_2": {
-    "name": "Ian renamed the Veilstone and Spear Pillar grunts Officers Tyche and Hermes, 2026-10-29"
+    "name": "Ian renamed the Veilstone and Spear Pillar grunts Officers Tyche and Hermes, 2026-10-29",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-29",
+    "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "jogger_craig": {
     "party": "edited in the OxiDex team builder, 2026-10-29"

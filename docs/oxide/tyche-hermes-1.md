@@ -1,8 +1,30 @@
-# Tyche and Hermes 1: the Veilstone tag battle, stage 1
+# Tyche and Hermes 1: the Veilstone tag battle
 
-Ian asked on 2026-10-29 for the two Veilstone warehouse grunts to become Officers Tyche and Hermes, for Lucas and Dawn to bring six Pokemon built on their Route 207 team, and for a 10 against 12 fight at officer difficulty: Protect used heavily, no Self-Destruct or Explosion, and classic villain-team Pokemon. This page is stage 1 of the redesign, on the branch `overseer-tyche-hermes-1`. Nothing lands from it.
+Ian asked on 2026-10-29 for the two Veilstone warehouse grunts to become Officers Tyche and Hermes, for Lucas and Dawn to bring six Pokemon built on their Route 207 team, and for a 10 against 12 fight at officer difficulty: Protect used heavily, no Self-Destruct or Explosion, and classic villain-team Pokemon. This page holds stage 1 (the rename, the split, the partner's six and three shapes) and stage 2 (Ian's answers and the sets), on the branch `overseer-tyche-hermes-1`. Nothing lands from it until the Overseer lands the branch.
 
-## Summary
+## Summary of stage 2
+
+**Outcome.** The ten sets are in the two Veilstone files, built on Ian's pick, shape A made faster and frailer: Tyche's Golbat, Murkrow, Weezing and Haunter, with an Ariados using Silk Trap, and Hermes's Electrode and Sharpedo, with a Mightyena using Obstruct, a Seviper and Giovanni's Dugtrio as the ace. The partner has Scyther with its Eviolite again and Lopunny keeps Jump Kick. The scene's text names the officers. The lint, the packer and both legality checks pass on every changed team. The AI-picks probe was not run, because the simulator reads only single battles; no reading of a tag double is possible.
+
+Three findings change what stage 1 said. Oxide's Nidoking has no Poison Point (its abilities are Mold Breaker and Sheer Force), so it could not be softened as Ian asked, and a Mold Breaker Earthquake would hit Tyche's Levitating Pokemon; Dugtrio took the ace's place. No classic villain Pokemon in Oxide is fast, frail and immune to Ground without repeating a line already on the team, so Tyche's fifth, Ariados, is the one member Hermes's Earthquake hits. And in the engine Obstruct and Silk Trap run as a plain Protect, without their stat drop on contact, while Spiky Shield, Baneful Bunker and Burning Bulwark run in full; stage 1 had that partly the wrong way round.
+
+**What Ian decides**, one line each:
+
+1. Dugtrio's Arena Trap stops the player's grounded Pokemon from switching while it stands, the rare trapping the trainer rules allow. Keep it, or take Sand Veil, which does nothing without sand?
+2. Ariados as Tyche's fifth, though Earthquake hits it, or a Ground-immune pick that breaks a rule: Gyarados (bulky, and one of Cyrus's canon five), Bronzong back (slow), or a second stage of a line already there (Crobat, Honchkrow or Gengar)?
+3. The text changes below: read before landing.
+
+**Next steps.** An in-game check of the fight, now on the checklist: about twenty minutes of Ian's play, from a save before Maylene's badge or from the test kit. The scorer cannot read it.
+
+## Ian's answers (2026-10-29)
+
+1. Shape A, "but speedier and frailer; I like the golbat murkrow weezing haunter electrode & sharpedo". The other four slots are faster, frailer picks in the same idea, classic villain-team Pokemon, no Self-Destruct or Explosion; a Nidoking, if it stays, is softened to Poison Point and a Soft Sand ("Soften it").
+2. Protect's later cousins are approved through the egg-list rule: Silk Trap on Ariados, Spiky Shield on Cacturne, Burning Bulwark on Camerupt, Obstruct on the Mightyena line, used where they fit.
+3. The partner has Scyther with its Eviolite, as on Route 207; Umbreon leads; Lopunny keeps Jump Kick ("Keep Jump Kick").
+4. Change the text now: the speaker labels, "run like the grunts we are", and Tyche's Spear Pillar defeat line.
+5. Goal 3's count: first "leave it failing", then the same day "Let's just fix this now", with his approval of the scorer data change: both Tyche and Hermes fights become story fights in `fights.json` marked as doubles, as Somnu and Moira's is.
+
+## Summary of stage 1
 
 **Outcome.** One test fails on the branch: since the rename, goal 3's fight list counts the four officer files as single fights, and `test_plgoal3` reads 43 bosses where it expects 39 (question 7 has the fix). The rename, the split and the partner's six are in the files on the branch. The Veilstone grunts are Officer Tyche (female grunt class, and the north warehouse object now wears the female grunt's sprite) and Officer Hermes; the Spear Pillar pair carry the same names. The OxiDex and the balance tools place both officers and all six partner files in Wake's split, where the partner files had no split at all before. Each partner file holds six Pokemon at 39 to 41: Ian's Route 207 core grown on (Umbreon, Scizor, Lopunny, Pachirisu, Gastrodon) and the rival's starter at 41. Tyche's and Hermes's teams are untouched: three shapes for them are below, as proposals.
 
@@ -72,7 +94,7 @@ The Route 207 core stays, with the Flareon and Jolteon of today's Veilstone file
 
 ## Three shapes for Tyche and Hermes
 
-Every shape has five Pokemon a side, each ace at 41 and the rest at 39 or 40, no repeated item or nature within a trainer, and no Self-Destruct or Explosion. The officers would take Spear Pillar's AI flags (Basic, Evaluate Attack, Expert, Risky, Check HP; the doubles strategy comes from the engine). Every move but the four marked in shape C is legal now, Protect through the TM lists of before the TM pass. Engine notes: Baneful Bunker and Spiky Shield run as a plain Protect (the poison or damage on contact is missing), and every Protect cousin shares Protect's effect, so the AI treats them all as Protect.
+Every shape has five Pokemon a side, each ace at 41 and the rest at 39 or 40, no repeated item or nature within a trainer, and no Self-Destruct or Explosion. The officers would take Spear Pillar's AI flags (Basic, Evaluate Attack, Expert, Risky, Check HP; the doubles strategy comes from the engine). Every move but the four marked in shape C is legal now, Protect through the TM lists of before the TM pass. Engine notes, corrected in stage 2: Spiky Shield, Baneful Bunker and Burning Bulwark run in full, their damage, poison and burn on contact included (the move-pool survey's notes that they are plain Protects are out of date), while Obstruct, Silk Trap and King's Shield run as a plain Protect, their stat drop on contact missing. Every Protect cousin shares Protect's effect, so the AI treats them all as Protect.
 
 ### Shape A: the quake beside the shield (recommended)
 
@@ -175,4 +197,103 @@ A carries Ian's theme most clearly: Spear Pillar's fight is Protect while the pa
 5. **The partner's lead.** Umbreon sets Reflect for both sides on turn 1; Lopunny leads with Fake Out, the usual doubles opener, which also takes the turn Sharpedo would spend on its Protect.
 6. **The text.** The speaker labels and two lines (the scene's text above); changing them is a separate commit.
 7. **Goal 3's list.** `goal3_fights.py` in `~/oxide-trials/scorer-stage2` takes a trainer named "Galactic Officer" as a named Galactic fight and finds tag battles only through the partner flag, which the Veilstone script does not use. Since the rename it lists both Veilstone officers (Wake's split) and both Spear Pillar ones (Galactic) as single fights, so the milestone reading would read each alone, and `test_plgoal3` fails its count (43 bosses, 41 Ace Trainers, against 39 and 41). The repo's own pattern is the Somnu and Moira double: a story fight in `tools/oxide/balance/fights.json` marked `"tag": true`, which goal 3 drops as a double. Two such entries (Tyche and Hermes 1 in Wake's split with the six partner files, 2 in Galactic's) would also need the reference hacks' empty seats and `test_b1`'s name and under-cap lists. This branch does neither, since both reach past stage 1.
-8. **Protect's cousins.** Silk Trap (Ariados, a spider), Spiky Shield (Cacturne, a cactus), Obstruct (Mightyena) and Burning Bulwark (Camerupt) all run in Oxide's engine except Spiky Shield, which runs as a plain Protect. None of these Pokemon learns them today; each would go on its line's egg list.
+8. **Protect's cousins.** Silk Trap (Ariados, a spider), Spiky Shield (Cacturne, a cactus), Obstruct (Mightyena) and Burning Bulwark (Camerupt) all run in Oxide's engine. Stage 2 found that Obstruct and Silk Trap run as a plain Protect, without their stat drop on contact, and that Spiky Shield runs in full; stage 1 had the two the wrong way round. None of these Pokemon learns them today; each would go on its line's egg list.
+
+## Stage 2: the sets
+
+Both officers take Spear Pillar's AI flags (Basic, Evaluate Attack, Expert, Risky, Tag Strategy, Check HP) and the highest IVs (iv_scale 255). Each ace is at the honour cap of 41 and the rest at 39 or 40; no item or nature repeats within a trainer, and the natures lean away from the textbook pick. Speed is each member's own at its level.
+
+### Officer Tyche, the shield
+
+| Member | Level | Ability | Item | Nature | Moves | Speed | Villain team |
+|---|---|---|---|---|---|---|---|
+| Golbat | 40 | Inner Focus | Eviolite | Impish | Protect, Toxic, Poison Fang, Taunt | 89 | the Zubat line, the grunts' staple of Rocket, Magma, Aqua and Galactic |
+| Murkrow | 39 | Prankster (hidden) | Sitrus Berry | Calm | Protect, Thunder Wave, Foul Play, Taunt | 88 | Rocket's Ariana in HeartGold |
+| Ariados | 39 | Intimidate | Mental Herb | Lax | Silk Trap, Toxic Spikes, Sucker Punch, Poison Jab | 71 | Guzma, Team Skull |
+| Weezing | 40 | Levitate | Rocky Helmet | Relaxed | Protect, Will-O-Wisp, Sludge Bomb, Pain Split | 58 | Rocket |
+| Haunter (ace) | 41 | Levitate | Focus Sash | Rash | Protect, Will-O-Wisp, Shadow Ball, Sludge Bomb | 107 | none; it grows into Spear Pillar's Gengar |
+
+### Officer Hermes, the quake
+
+| Member | Level | Ability | Item | Nature | Moves | Speed | Villain team |
+|---|---|---|---|---|---|---|---|
+| Electrode | 39 | Soundproof | Light Clay | Modest | Light Screen, Thunder Wave, Thunderbolt, Taunt | 126 | Rocket's Mahogany hideout; Hermes's Spear Pillar Electrode |
+| Mightyena | 39 | Intimidate | Chople Berry | Lonely | Obstruct, Throat Chop, Bulldoze, Ice Fang | 71 | Magma and Aqua |
+| Seviper | 40 | Infiltrator (hidden) | Poison Barb | Hasty | Protect, Earthquake, Poison Fang, Glare | 106 | Jessie of the anime's Team Rocket |
+| Sharpedo | 40 | Speed Boost (hidden) | Mystic Water | Naughty | Protect, Crunch, Waterfall, Earthquake | 93, then 139 | Aqua: Archie, Shelly and Matt |
+| Dugtrio (ace) | 41 | Arena Trap | Soft Sand | Naive | Earthquake, Rock Slide, Sucker Punch, Protect | 127 | Giovanni's gym |
+
+**How the sides work together.** Four of Tyche's five are immune to Ground (Golbat and Murkrow fly, Weezing and Haunter levitate), and the engine's doubles strategy scores an Earthquake or a Bulldoze +2 beside such a partner, so Dugtrio, Seviper and Sharpedo quake and Mightyena bulldozes while Tyche protects; Protect scores +2 in any double. Beside Ariados, which Earthquake hits, the AI marks Earthquake -3, and Dugtrio's Rock Slide, which hits only the foes, carries the turn. Every member but Electrode has a Protect, and Mightyena's Obstruct and Ariados's Silk Trap act as plain Protects in the engine. Speed control: Electrode's Thunder Wave and Light Screen, Murkrow's Prankster Thunder Wave, Seviper's Glare, and Sharpedo's Speed Boost after a Protect. Dugtrio's Arena Trap holds the player's grounded Pokemon in while it stands (question 1).
+
+**Why these four.** Nidoking could not stay softened: Oxide's has Mold Breaker or Sheer Force and no Poison Point, and the AI's own routine knows Mold Breaker carries Earthquake through Levitate. Dugtrio is Giovanni's, the fastest quake in Oxide's villain pool, and folds to one good hit. Seviper and Mightyena are fast or frail Earthquake and Bulldoze users from the classic teams, Mightyena with Ian's Obstruct. For Tyche's fifth no classic villain Pokemon is fast, frail and immune to Ground without repeating a line (question 2), so Ariados brings Silk Trap and Toxic Spikes instead.
+
+### The cheap checks
+
+The answers are goal 3's three boxes as in stage 1 (Maylene's reading, `plgoal3 --box maylene <seed> --screen`, seeds 1 to 3), raised to the honour cap of 41: Hardy, IVs of 15, first ability, no item. Damage is the scorer's calculator, lowest roll to highest as a share of HP, spread moves at three quarters. The partner is the six below at its own levels.
+
+Speeds against the boxes' tiers: Dugtrio (127) and Electrode (126) outspeed everything. Haunter (107) ties Lopunny and box 3's Salazzle and sits under the player's Crobat (117). Seviper (106) is over Staraptor (97) and Delphox (96). Sharpedo starts at 93, a tie with Tentacruel and Alolan Ninetales, and passes everything after one Speed Boost. Golbat and Murkrow (89 and 88) sit over Heracross (80); Ariados and Mightyena (71) over Breloom (68); Weezing (58) over Granbull and Togetic.
+
+| The officers' best hit | Damage |
+|---|---|
+| Seviper's Poison Fang on Togetic, Breloom, Alolan Ninetales | 125 to 149, 126 to 149, 111 to 134 |
+| Haunter's Sludge Bomb on Togetic, Granbull, Breloom | 106 to 125, 131 to 157, 160 to 192 |
+| Dugtrio's Earthquake on Tentacruel, Delphox | 105 to 125, 100 to 119 |
+| Dugtrio's Earthquake on the partner's Pachirisu, Infernape | 122 to 144, 89 to 105 |
+| Sharpedo's Waterfall on Delphox | 134 to 159 |
+| Electrode's Thunderbolt on Staraptor, Crobat | 105 to 124, 71 to 86 |
+| Mightyena's Throat Chop on Delphox | 88 to 107 |
+| Golbat's Poison Fang on Togetic | 82 to 100 |
+
+| The player's and partner's best hit | Damage |
+|---|---|
+| on Dugtrio: Alolan Ninetales's Triple Axel, Breloom's Bullet Seed, Tentacruel's Scald | 183 to 217, 163 to 196, 104 to 124 |
+| on Dugtrio: the partner's Empoleon, Torterra, Scyther | 222 to 263, 293 to 348, 91 to 108 |
+| on Sharpedo: Heracross's Close Combat, Granbull's Spirit Break | 215 to 256, 132 to 158 |
+| on Seviper: Delphox's Psyshock, the partner's Gastrodon's Earth Power | 112 to 132, 107 to 127 |
+| on Haunter: Delphox's Psyshock, Dusclops's Shadow Punch, the partner's Umbreon's Foul Play | 104 to 125, 102 to 120, 66 to 80 |
+| on Murkrow: Granbull's Spirit Break, Alolan Ninetales's Triple Axel, the partner's Scyther's Wing Attack | 146 to 174, 183 to 221, 93 to 109 |
+| on Golbat: Alolan Ninetales's Triple Axel, Delphox's Psyshock | 70 to 87, 54 to 64 |
+| on Weezing: Delphox's Psyshock, the best of the rest (Tentacruel's Psybeam) | 58 to 68, 37 to 44 |
+
+The read: Hermes's side now hits as hard as shape A did and dies faster. Seviper and Haunter one-shot Togetic and Breloom, and Dugtrio's first Earthquake can take one of the player's Pokemon and the partner's Pachirisu at once before it falls to nearly any hit. Tyche's Golbat and Weezing remain the slow part of the fight. Against the officer band (close to 100 percent won, deaths not trivial), I expect the fight to be won nearly always with a faint or two, most of them on the first turns, when Dugtrio, Electrode and Seviper move first. That is judgement from these checks; nothing reads the double.
+
+### The partner's changes
+
+| Slot | Member | Level | Ability | Item | Nature | Moves | Speed |
+|---|---|---|---|---|---|---|---|
+| 2 | Scyther | 40 | Technician | Eviolite | Adamant | Wing Attack, Pursuit, Knock Off, Brick Break | 101 |
+| 3 | Lopunny | 39 | Scrappy | Lum Berry | Jolly | Fake Out, Jump Kick, Ice Punch, Dizzy Punch | 107 |
+
+Scyther keeps Ian's Route 207 set but for Steel Wing, which became Knock Off for Tyche's Ghost and Dark members (68 to 80 on Haunter). Umbreon still leads; the rest of the six is as in stage 1.
+
+### The egg lists
+
+Each first stage takes the move on its egg list, in its file's style, with an entry in `learnrewrite.IAN_EGG_MOVES`; none of these species has a hand-set line in `learnsets_by_hand.txt`.
+
+| First stage | Move | For |
+|---|---|---|
+| Poochyena | Obstruct | Hermes's Mightyena (Ian's approval) |
+| Spinarak | Silk Trap | Tyche's Ariados (Ian's approval) |
+| Zubat, Murkrow, Gastly | Protect | Tyche's Golbat, Murkrow, Haunter |
+| Seviper, Carvanha, Diglett | Protect | Hermes's Seviper, Sharpedo, Dugtrio |
+
+Protect was a TM before the TM pass and so already legal for these trainers; it goes on the egg lists so the OxiDex's list agrees, as the level climb's egg-list commit of today did. Koffing's line is left out: it is one of the learnset generator's five held-out lines, which its source may not name (`test_learnrewrite`), so Weezing's Protect stays legal through the pre-TM-pass TM alone and the OxiDex's list flags it. Spiky Shield on Cacturne and Burning Bulwark on Camerupt are not added, since neither species is in the ten.
+
+### The text
+
+| Where | Old | New |
+|---|---|---|
+| Veilstone, messages 11, 12, 14 and 16 | "Grunt 1: ..." | "Tyche: ..." |
+| Veilstone, messages 13, 15 and 18 | "Grunt 2: ..." | "Hermes: ..." |
+| Veilstone, message 18 | "And run like the grunts we are." | "And make ourselves scarce." |
+| Spear Pillar, Tyche's defeat line | "The toughest of all the grunts!" / "That was me..." | "The toughest of all the officers!" / "That was me..." |
+
+Every new line is shorter than the longest line already in its box ("I should have kept my head down and", 35 characters, in the same kind of message). The message ids do not move, so no script changes. The Veilstone bank is registered in the base ROM importer's `TEXT_BANKS_SKIPPED` and Tyche's defeat message in `trainers_diverged.json`, so neither import carries the old lines back.
+
+### The five-minute check
+
+- The lint and the packer pass on all ten changed teams (the team builder's save runs both, and a pack of the whole folder passes).
+- Legality: the Kaizo study's checker with the pre-TM-pass lists finds nothing off in the eight Veilstone files, and the OxiDex's own list (`learnsets.oxide_list`) finds only Weezing's Protect off once the egg lists above are in; that Protect is legal through the pre-TM-pass TM.
+- No item or nature repeats within any of the eight files. (The Spear Pillar files set no natures, as before this branch.)
+- Not run: the AI-picks probe, and any reading. The simulator, its AI probe and goal 3 read single battles only.
+- To check in the game: the fight is on `ingame-checklist.md`, section 4.
