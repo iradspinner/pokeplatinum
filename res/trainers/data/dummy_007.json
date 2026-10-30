@@ -1,21 +1,80 @@
 {
-    "name": "Angelica",
-    "class": "TRAINER_CLASS_PICNICKER",
+    "name": "Dahlia",
+    "class": "TRAINER_CLASS_ARCADE_STAR",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_SETUP_FIRST_TURN",
+        "AI_FLAG_RISKY",
+        "AI_FLAG_PRIORITIZE_EXTREMES",
+        "AI_FLAG_CHECK_HP"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_LUDICOLO",
             "form": 0,
-            "level": 5,
+            "level": 40,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TOGEKISS",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": null,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAPIDASH",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": null,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CLOYSTER",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": null,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LOPUNNY",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": null,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GALARIAN_WEEZING",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": null,
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],
-    "messages": []
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "You are good, you!\n",
+                "My Pokémon, they have enjoyed it, too!\n"
+            ]
+        }
+    ]
 }
