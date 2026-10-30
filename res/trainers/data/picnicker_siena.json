@@ -11,85 +11,72 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PLUSLE",
-            "form": 0,
-            "level": 23,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_SPARK",
-                "MOVE_HELPING_HAND",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_THUNDER_WAVE"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_LINOONE",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 20,
+            "item": "ITEM_IRON_BALL",
             "moves": [
+                "MOVE_SWITCHEROO",
                 "MOVE_HEADBUTT",
                 "MOVE_PURSUIT",
-                "MOVE_TAIL_WHIP",
-                "MOVE_GROWL"
+                "MOVE_TAIL_WHIP"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_ELECTRIKE",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 20,
+            "item": "ITEM_MAGNET",
             "moves": [
-                "MOVE_SPARK",
+                "MOVE_DISCHARGE",
+                "MOVE_THUNDER_WAVE",
                 "MOVE_QUICK_ATTACK",
-                "MOVE_HOWL",
-                "MOVE_SIGNAL_BEAM"
+                "MOVE_FIRE_FANG"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_PACHIRISU",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 21,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_SPARK",
                 "MOVE_BITE",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_CHARM"
+                "MOVE_CHARM",
+                "MOVE_ENDURE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_LUXIO",
+            "species": "SPECIES_PAWMO",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_MAGNET",
+            "level": 21,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
                 "MOVE_SPARK",
+                "MOVE_POWER_UP_PUNCH",
                 "MOVE_BITE",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_LEER"
+                "MOVE_BULK_UP"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         }
     ],
     "messages": [

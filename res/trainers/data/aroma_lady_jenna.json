@@ -11,65 +11,69 @@
         {
             "species": "SPECIES_GLOOM",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 22,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_SUNNY_DAY",
+                "MOVE_STUN_SPORE",
                 "MOVE_GIGA_DRAIN",
                 "MOVE_ACID",
-                "MOVE_SLEEP_POWDER"
+                "MOVE_SYNTHESIS"
             ],
             "iv_scale": 230,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
-        },
-        {
-            "species": "SPECIES_EXEGGUTOR",
-            "form": 0,
-            "level": 25,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_SEED_BOMB",
-                "MOVE_CONFUSION",
-                "MOVE_ANCIENT_POWER",
-                "MOVE_LEECH_SEED"
-            ],
-            "iv_scale": 230,
-            "ball_seal": 0,
-            "ability": 0,
             "gender": null
         },
         {
             "species": "SPECIES_WEEPINBELL",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 22,
+            "item": "ITEM_SALAC_BERRY",
             "moves": [
-                "MOVE_VINE_WHIP",
-                "MOVE_ACID",
-                "MOVE_BULLET_SEED",
-                "MOVE_SUCKER_PUNCH"
+                "MOVE_SWORDS_DANCE",
+                "MOVE_LEECH_LIFE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_KNOCK_OFF"
             ],
             "iv_scale": 230,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
         },
         {
-            "species": "SPECIES_NUZLEAF",
+            "species": "SPECIES_CACNEA",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_NONE",
+            "level": 22,
+            "item": "ITEM_BIG_ROOT",
             "moves": [
-                "MOVE_FAKE_OUT",
-                "MOVE_RAZOR_LEAF",
-                "MOVE_ROCK_TOMB",
-                "MOVE_PAYBACK"
+                "MOVE_LEECH_SEED",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_PIN_MISSILE",
+                "MOVE_GROWTH"
             ],
             "iv_scale": 230,
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CARNIVINE",
+            "form": 0,
+            "level": 23,
+            "item": "ITEM_COBA_BERRY",
+            "moves": [
+                "MOVE_SEED_BOMB",
+                "MOVE_BITE",
+                "MOVE_SLEEP_POWDER",
+                "MOVE_SYNTHESIS"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         }
     ],

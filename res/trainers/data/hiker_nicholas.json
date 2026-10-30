@@ -12,51 +12,53 @@
         {
             "species": "SPECIES_CUBONE",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_NONE",
+            "level": 20,
+            "item": "ITEM_SOFT_SAND",
             "moves": [
-                "MOVE_BONEMERANG",
+                "MOVE_STOMPING_TANTRUM",
                 "MOVE_HEADBUTT",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_LEER"
+                "MOVE_IRON_HEAD",
+                "MOVE_SWORDS_DANCE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DWEBBLE",
+            "form": 0,
+            "level": 20,
+            "item": "ITEM_LOADED_DICE",
+            "moves": [
+                "MOVE_ROCK_BLAST",
+                "MOVE_STRUGGLE_BUG",
+                "MOVE_SLASH",
+                "MOVE_ROCK_POLISH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_RHYHORN",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_NONE",
+            "level": 21,
+            "item": "ITEM_RINDO_BERRY",
             "moves": [
                 "MOVE_HORN_ATTACK",
-                "MOVE_STOMP",
-                "MOVE_ROCK_SLIDE",
+                "MOVE_ROCK_TOMB",
+                "MOVE_BITE",
                 "MOVE_SCARY_FACE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_LAX",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
-        },
-        {
-            "species": "SPECIES_GRAVELER",
-            "form": 0,
-            "level": 25,
-            "item": "ITEM_ORAN_BERRY",
-            "moves": [
-                "MOVE_ROCK_SLIDE",
-                "MOVE_MAGNITUDE",
-                "MOVE_ROLLOUT",
-                "MOVE_DEFENSE_CURL"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_ADAMANT",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
         }
     ],
     "messages": [

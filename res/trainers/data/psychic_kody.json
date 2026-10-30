@@ -9,51 +9,54 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SLOWPOKE",
+            "species": "SPECIES_GALARIAN_MR_MIME",
             "form": 0,
-            "level": 24,
-            "item": null,
+            "level": 21,
+            "item": "ITEM_MENTAL_HERB",
             "moves": [
-                "MOVE_YAWN",
+                "MOVE_TRICK_ROOM",
+                "MOVE_ICY_WIND",
                 "MOVE_CONFUSION",
-                "MOVE_WATER_PULSE",
-                "MOVE_TACKLE"
+                "MOVE_ENCORE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SLOWPOKE",
+            "form": 0,
+            "level": 21,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_CONFUSION",
+                "MOVE_CURSE",
+                "MOVE_YAWN"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_DROWZEE",
             "form": 0,
-            "level": 23,
-            "item": null,
+            "level": 22,
+            "item": "ITEM_KINGS_ROCK",
             "moves": [
-                "MOVE_CONFUSION",
+                "MOVE_HYPNOSIS",
                 "MOVE_HEADBUTT",
-                "MOVE_DISABLE",
-                "MOVE_POISON_GAS"
+                "MOVE_PSYCHO_CUT",
+                "MOVE_MEDITATE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_SPOINK",
-            "form": 0,
-            "level": 23,
-            "item": null,
-            "moves": [
-                "MOVE_PSYBEAM",
-                "MOVE_ICY_WIND",
-                "MOVE_PAYBACK",
-                "MOVE_MAGIC_COAT"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         }
     ],

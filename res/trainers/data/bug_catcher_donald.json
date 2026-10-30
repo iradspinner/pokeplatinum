@@ -12,50 +12,53 @@
         {
             "species": "SPECIES_PINECO",
             "form": 0,
-            "level": 23,
-            "item": "ITEM_NONE",
+            "level": 21,
+            "item": "ITEM_EVIOLITE",
             "moves": [
+                "MOVE_TOXIC_SPIKES",
                 "MOVE_BUG_BITE",
                 "MOVE_RAPID_SPIN",
-                "MOVE_TAKE_DOWN",
-                "MOVE_PROTECT"
+                "MOVE_PAYBACK"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_SKORUPI",
+            "species": "SPECIES_CHARJABUG",
             "form": 0,
-            "level": 23,
-            "item": "ITEM_NONE",
+            "level": 21,
+            "item": "ITEM_RAZOR_CLAW",
             "moves": [
-                "MOVE_KNOCK_OFF",
-                "MOVE_BITE",
-                "MOVE_POISON_STING",
-                "MOVE_SCREECH"
+                "MOVE_SPARK",
+                "MOVE_BUG_BITE",
+                "MOVE_IRON_DEFENSE",
+                "MOVE_MUD_SLAP"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_VESPIQUEN",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 22,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_POWER_GEM",
-                "MOVE_FURY_CUTTER",
-                "MOVE_POISON_STING",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_BUG_BITE",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_ROOST"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_SASSY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         }
     ],
     "messages": [

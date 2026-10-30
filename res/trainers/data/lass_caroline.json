@@ -10,53 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_HOPPIP",
+            "species": "SPECIES_SKIPLOOM",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 22,
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
-                "MOVE_BULLET_SEED",
+                "MOVE_SLEEP_POWDER",
                 "MOVE_LEECH_SEED",
-                "MOVE_STUN_SPORE",
-                "MOVE_SYNTHESIS"
+                "MOVE_BULLET_SEED",
+                "MOVE_ENCORE"
             ],
             "iv_scale": 230,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         },
         {
-            "species": "SPECIES_SKIPLOOM",
+            "species": "SPECIES_STEENEE",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 22,
+            "item": "ITEM_LIECHI_BERRY",
             "moves": [
-                "MOVE_SLEEP_POWDER",
-                "MOVE_BULLET_SEED",
-                "MOVE_LEECH_SEED",
-                "MOVE_TACKLE"
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_TRIPLE_AXEL",
+                "MOVE_RAPID_SPIN",
+                "MOVE_TAUNT"
             ],
             "iv_scale": 230,
+            "nature": "NATURE_HARDY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         },
         {
-            "species": "SPECIES_BRELOOM",
+            "species": "SPECIES_SERVINE",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_NONE",
+            "level": 23,
+            "item": "ITEM_BIG_ROOT",
             "moves": [
-                "MOVE_MACH_PUNCH",
-                "MOVE_ROCK_TOMB",
-                "MOVE_BULLET_SEED",
-                "MOVE_HEADBUTT"
+                "MOVE_CALM_MIND",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_BREAKING_SWIPE",
+                "MOVE_TAUNT"
             ],
             "iv_scale": 230,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         }
     ],
     "messages": [
