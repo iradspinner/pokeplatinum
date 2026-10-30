@@ -1,6 +1,6 @@
 {
-    "name": "Grunt",
-    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
+    "name": "Officer Tyche",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",

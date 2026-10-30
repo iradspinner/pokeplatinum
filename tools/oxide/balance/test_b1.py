@@ -225,6 +225,22 @@ def check_split_map(results):
                     f"{placed} placed" + (f"; stray: {stray[:5]}" if stray else "")))
 
 
+def check_split_overrides(results):
+    """The Veilstone tag battle is fought after Maylene's badge, so its two
+    officers and the six partner files (one per player gender and starter)
+    are Wake's, not the map's Maylene (Ian, 2026-10-29). The partners start
+    through a variable, so without the override no map places them at all."""
+    from . import splits
+    stems = ["galactic_grunt_veilstone_city_1", "galactic_grunt_veilstone_city_2"] + [
+        f"{who}_veilstone_city_{starter}" for who in ("lucas", "dawn")
+        for starter in ("turtwig", "chimchar", "piplup")]
+    by_stem = {t["stem"]: tr for tr, t in data.oxide_trainers().items()}
+    got = {stem: splits.trainer_split(by_stem[stem]) for stem in stems}
+    wrong = {stem: split for stem, split in got.items() if split != "Wake"}
+    results.append(("the Veilstone tag battle sits in Wake's split", not wrong,
+                    f"{len(stems)} trainers" + (f"; wrong: {wrong}" if wrong else "")))
+
+
 def check_items_and_marts(results):
     """Every item ball and hidden item names an item and has a split, and
     every mart table has its city's split. Two anchors: Poke Balls are on
@@ -445,7 +461,7 @@ def main():
                   check_fights_resolve, check_sheet_levels,
                   check_league_after_volkner, check_roark, check_megas_folded,
                   check_milestones_resolve,
-                  check_split_map, check_items_and_marts, check_tm_sources,
+                  check_split_map, check_split_overrides, check_items_and_marts, check_tm_sources,
                   check_weather, check_item_reach, check_gated_gifts, check_testkit):
         check(results)
     width = max(len(label) for label, _, _ in results)

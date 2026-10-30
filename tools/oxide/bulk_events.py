@@ -167,6 +167,12 @@ _why = "trainers moved onto the story path to make them mandatory (Ian, 2026-10-
 for _m in ("route_207", "route_208", "route_209", "route_210_south", "route_215"):
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
                                 if f"events_{_m}" in DIVERGED else _why)
+# The two warehouse grunts of the Veilstone tag battle are Officers Tyche and
+# Hermes (Ian, 2026-10-29), so the north one, Tyche, wears the female grunt's
+# sprite; regenerating would dress her as a male grunt again.
+DIVERGED["events_veilstone_city"] += (
+    "; then the north warehouse grunt, Officer Tyche, given the female grunt's sprite "
+    "(Ian, 2026-10-29)")
 
 
 def render(record, existing, index):
