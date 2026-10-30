@@ -6,66 +6,105 @@
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT",
-        "AI_FLAG_SETUP_FIRST_TURN",
-        "AI_FLAG_RISKY",
-        "AI_FLAG_PRIORITIZE_EXTREMES",
-        "AI_FLAG_CHECK_HP"
+        "AI_FLAG_BATON_PASS"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_LUDICOLO",
+            "species": "SPECIES_CLOYSTER",
             "form": 0,
             "level": 40,
-            "item": null,
-            "moves": null,
+            "item": "ITEM_KINGS_ROCK",
+            "moves": [
+                "MOVE_ICICLE_SPEAR",
+                "MOVE_ROCK_BLAST",
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_RAZOR_SHELL"
+            ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 2
         },
         {
-            "species": "SPECIES_TOGEKISS",
+            "species": "SPECIES_SLOWBRO",
             "form": 0,
             "level": 40,
-            "item": null,
-            "moves": null,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_FOCUS_BLAST",
+                "MOVE_CALM_MIND",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_PSYSHOCK"
+            ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 2
         },
         {
             "species": "SPECIES_RAPIDASH",
             "form": 0,
             "level": 40,
-            "item": null,
-            "moves": null,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_BATON_PASS"
+            ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_CLOYSTER",
+            "species": "SPECIES_TOGEKISS",
             "form": 0,
             "level": 40,
-            "item": null,
-            "moves": null,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_BATON_PASS",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_OMINOUS_WIND",
+                "MOVE_SILVER_WIND"
+            ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 2
         },
         {
-            "species": "SPECIES_LOPUNNY",
+            "species": "SPECIES_LEAFEON",
             "form": 0,
             "level": 40,
-            "item": null,
-            "moves": null,
+            "item": "ITEM_STARF_BERRY",
+            "moves": [
+                "MOVE_TRAILBLAZE",
+                "MOVE_BATON_PASS",
+                "MOVE_SUBSTITUTE",
+                "MOVE_GIGA_IMPACT"
+            ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_GALARIAN_WEEZING",
+            "species": "SPECIES_LOPUNNY_M",
             "form": 0,
             "level": 40,
-            "item": null,
-            "moves": null,
+            "item": "ITEM_ASSAULT_VEST",
+            "moves": [
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_DIZZY_PUNCH",
+                "MOVE_TRIPLE_AXEL",
+                "MOVE_FAKE_OUT"
+            ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [
