@@ -69,7 +69,9 @@ play-out planner runs at budget 64, and finalists whose win rates lie
 within 5 points count as equal before faints decide (Ian, 2026-10-03).
 An ordinary trainer is read blind: each simulated fight draws a random six
 from the stronger half of the box, never one held below the cap (Ian,
-2026-10-04). Targets (Ian, 2026-10-04): an ordinary trainer is won cleanly
+2026-10-04; under the soft caps of 2026-10-29 the box for a mid-split
+ordinary fight follows the line described below, once Ian approves the
+method). Targets (Ian, 2026-10-04): an ordinary trainer is won cleanly
 80 to 85 percent of the time (replacing the provisional 70 to 80); no boss
 reads above 95 percent won, save the Galactic officers, whose fights may
 read close to 100 percent won so long as their death rate is not trivial,
@@ -109,6 +111,31 @@ under: Saturn 1 and Mars 2 at 53, Saturn 2 at 57, Lucas and Dawn 3 at 68), and t
 78 (Aaron 72, Bertha 73, Flint 74, Lucian 75, Cynthia 78) under the
 engine's single League cap of 78. A mid-split boss is read with the
 player's box at its ace's level, extending the interim soft caps. Cyrus 3 is today's team raised to the cap's levels.
+Since the soft caps below, a mini-boss with an honour cap of its own keeps its
+ace at that cap.
+Soft level caps (Ian, 2026-10-29). The caps no longer stop experience: battle
+experience and Rare Candies take a Pokemon past the cap, and the player's honour
+keeps it out of fights. A Pokemon at or below the cap in force when a fight
+starts may finish that fight; after it, one over the cap is boxed until its
+level is at or below a later cap. One that goes over inside a gauntlet section
+sits out the rest of the section, since the Pocket PC refuses there. The Day
+Care is never used in a nuzlocke and is not considered. The OxiDex flags
+over-cap party members from the live save; the game shows nothing. Mini-bosses
+get honour caps of their own, at least Barry 2, Mars 1, Jupiter 1, Lucas and
+Dawn 2 and Cyrus 1 (Byron's split), with more Galactic bosses later, and a
+mini-boss's ace sits at its own cap, as a leader's does. Ordinary trainers'
+levels climb in play order through a split, never reaching the cap in force
+and very rarely one under it, with harder movesets at lower levels than before:
+more interesting building choices over raw stat checks. The climb is applied
+split by split as each split's trainers are worked, from Fantina's and
+Maylene's, then Gardenia's; Roark's split is left out, since low levels make
+it a weird split in any case (Ian, 2026-10-29). For a mid-split ordinary fight the player's levels follow the line
+a player rides who spends the split's trainer experience as late as they can:
+the cap less the experience still to come in the split, not the sum of what
+came before (Ian: "subtracting the trainer xp from your maximum and riding
+that line"); the scorer and the cheap checks change to that once Ian approves
+the method. Bosses are still read with the box at the cap, since the player
+can candy up right before one. The engine change comes before alpha 1.
 Across
 the spread of boxes it reports which encounters its sixes always take and
 which they never take, since both mark encounter balance to work on (Ian,

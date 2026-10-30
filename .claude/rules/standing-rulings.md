@@ -280,6 +280,18 @@ read, so they are written here too. Each is a standing instruction.
   accuracy, conditional moves, members under their evolution level, the
   iv_scale) is in `docs/oxide/rulings-detail.md`; read it before designing a
   team.
+- Level caps are soft (Ian, 2026-10-29): experience and Rare Candies pass
+  the cap, and the player's honour keeps an over-cap Pokemon out of fights
+  (it may finish the fight it went over in, then is boxed until a later cap
+  covers it; inside a gauntlet section it sits out the rest). The OxiDex
+  flags over-cap party members; the game shows nothing; the Day Care is not
+  considered. Mini-bosses get honour caps of their own, their aces at those
+  caps. Ordinary trainers climb in level through a split, never reaching
+  the cap and very rarely one under it, with harder sets at lower levels,
+  split by split as each is worked; a mid-split ordinary fight's box rides
+  the line of the cap less the split's experience still to come, once Ian
+  approves the scorer's method. The full ruling is in
+  `docs/oxide/rulings-detail.md`.
 - Reports to Ian are one page (Ian, 2026-10-06). Any report, reading,
   study result or plan that comes to him starts with a one-page summary: the
   outcome, the action items (what he decides or does), the next steps, and

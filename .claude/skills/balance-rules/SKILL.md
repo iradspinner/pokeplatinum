@@ -70,6 +70,12 @@ battle keeps its Beacon Badge gate, so it sits in Barry's split. Nothing is
 placed past 78; a Kaizo level past its League keeps its translated place and
 is listed for Ian.
 
+The caps are soft since 2026-10-29: experience passes them and the player's
+honour keeps an over-cap Pokemon out of fights; mini-bosses get honour caps
+with their aces at them; ordinary trainers climb through a split, never at
+the cap and very rarely one under it, with harder sets at lower levels. The
+full ruling is in `docs/oxide/rulings-detail.md`.
+
 ## Learnsets
 
 - **What a move is worth** is what the Pokemon knows at capture (the last four
