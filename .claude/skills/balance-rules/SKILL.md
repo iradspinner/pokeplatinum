@@ -215,6 +215,10 @@ full ruling is in `docs/oxide/rulings-detail.md`.
   that its species cannot have at that level goes on the line's
   first-stage egg list without asking, and never by moving a level-up
   entry (Ian, 2026-10-29; `learnrewrite.IAN_EGG_MOVES` records each).
+  Ordinary trainers favour variety over the optimal: neutral or less common
+  natures more often and items that are not the textbook pick, since a set
+  the player has met a thousand times is boring even when hard (Ian,
+  2026-10-29).
 - **Gauntlets** hold the attrition: 2 to 5 mandatory trainers on the easier
   side of their split's average, counted without optional ones; bag items may
   heal between fights; bosses stay outside, with gauntlets leading up to

@@ -272,7 +272,13 @@ trainers the player fights alone together, by eye contact or script, field
 six Pokemon between them at most, never eight against the player's six,
 barring Ian's explicit permission (Ian, 2026-10-29, on Ace Trainers Dennis
 and Maya); a moved trainer must not make a new pair. A double where a
-partner fights beside the player is a different case.
+partner fights beside the player is a different case. Ordinary trainers favour
+variety over the optimal: neutral or less common natures more often, items
+that are not the textbook pick, and sets a player has not met a thousand
+times (Ian, 2026-10-29: "If every special set for an enemy is modest or
+timid, then it honestly is just kind of boring"; "if you've seen this
+pokemon with this set and this nature before 1000 times, even if it is
+hard it is still boring"). Gym leaders and bosses Ian reviews himself.
 From Gardenia's redesign (Ian, 2026-10-13): a conditional move such as
 Solar Beam may always be considered for a boss, with his okay when it
 comes early (he kept it off his own sun team because its Drought sun
