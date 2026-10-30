@@ -108,11 +108,13 @@ def check_fights_resolve(results):
 # Lucas or Dawn on Route 202, the first two fights, are left out, and so is
 # the Fight Area's Flint and Volkner tag (ace 69, cap 71), kept as drafted:
 # the scorer cannot read a tag battle, and Ian may raise it in the alpha.
+# Under the soft caps (Ian, 2026-10-29) a mini-boss with an honour cap of its
+# own keeps its ace at that cap: Barry 3's is 36, "for fully evolved starters".
 AT_CAP = ("roark", "gardenia", "fantina", "maylene", "wake", "byron", "candice", "volkner",
-          "barry_3", "barry_4", "barry_5", "barry_6", "cyrus_1", "cyrus_2", "cyrus_3")
+          "barry_4", "barry_5", "barry_6", "cyrus_1", "cyrus_2", "cyrus_3")
 UNDER_CAP = ("saturn_1", "mars_2", "somnu_moira", "saturn_2", "mars_jupiter", "lucas_dawn_3")
 FIXED_ACES = {"aaron": 72, "bertha": 73, "flint": 74, "lucian": 75, "cynthia": 78,
-              "barry_2": 11, "mars_1": 19, "jupiter_1": 27, "lucas_dawn_2": 30}
+              "barry_2": 11, "mars_1": 19, "jupiter_1": 27, "lucas_dawn_2": 30, "barry_3": 36}
 MINI_BOSS_UNDER = range(2, 5)
 
 
