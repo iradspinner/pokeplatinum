@@ -4,7 +4,7 @@ Ian asked on 2026-10-29 for the two Veilstone warehouse grunts to become Officer
 
 ## Summary of stage 2
 
-**Outcome.** The ten sets are in the two Veilstone files, built on Ian's pick, shape A made faster and frailer: Tyche's Golbat, Murkrow, Weezing and Haunter, with an Ariados using Silk Trap, and Hermes's Electrode and Sharpedo, with a Mightyena using Obstruct, a Seviper and Giovanni's Dugtrio as the ace. The partner has Scyther with its Eviolite again and Lopunny keeps Jump Kick. The scene's text names the officers. The lint, the packer and both legality checks pass on every changed team. The AI-picks probe was not run, because the simulator reads only single battles; no reading of a tag double is possible.
+**Outcome.** The ten sets are in the two Veilstone files, built on Ian's pick, shape A made faster and frailer: Tyche's Golbat, Murkrow, Weezing and Haunter, with an Ariados using Silk Trap, and Hermes's Electrode and Sharpedo, with a Mightyena using Obstruct, a Seviper and Giovanni's Dugtrio as the ace. The partner has Scyther with its Eviolite again and Lopunny keeps Jump Kick. The scene's text names the officers. The lint, the packer and both legality checks pass on every changed team. The AI-picks probe was not run, because the simulator reads only single battles; no reading of a tag double is possible. Goal 3's count is fixed the repo's own way, in its own commit: both Tyche and Hermes fights are story fights in `fights.json` marked as doubles, as Somnu and Moira's is, so goal 3 reads 39 bosses again and leaves both out as doubles (`test_plgoal3` 72 of 72).
 
 Three findings change what stage 1 said. Oxide's Nidoking has no Poison Point (its abilities are Mold Breaker and Sheer Force), so it could not be softened as Ian asked, and a Mold Breaker Earthquake would hit Tyche's Levitating Pokemon; Dugtrio took the ace's place. No classic villain Pokemon in Oxide is fast, frail and immune to Ground without repeating a line already on the team, so Tyche's fifth, Ariados, is the one member Hermes's Earthquake hits. And in the engine Obstruct and Silk Trap run as a plain Protect, without their stat drop on contact, while Spiky Shield, Baneful Bunker and Burning Bulwark run in full; stage 1 had that partly the wrong way round.
 
@@ -26,7 +26,7 @@ Three findings change what stage 1 said. Oxide's Nidoking has no Poison Point (i
 
 ## Summary of stage 1
 
-**Outcome.** One test fails on the branch: since the rename, goal 3's fight list counts the four officer files as single fights, and `test_plgoal3` reads 43 bosses where it expects 39 (question 7 has the fix). The rename, the split and the partner's six are in the files on the branch. The Veilstone grunts are Officer Tyche (female grunt class, and the north warehouse object now wears the female grunt's sprite) and Officer Hermes; the Spear Pillar pair carry the same names. The OxiDex and the balance tools place both officers and all six partner files in Wake's split, where the partner files had no split at all before. Each partner file holds six Pokemon at 39 to 41: Ian's Route 207 core grown on (Umbreon, Scizor, Lopunny, Pachirisu, Gastrodon) and the rival's starter at 41. Tyche's and Hermes's teams are untouched: three shapes for them are below, as proposals.
+**Outcome.** One test failed on the branch at stage 1 (fixed in stage 2): since the rename, goal 3's fight list counts the four officer files as single fights, and `test_plgoal3` reads 43 bosses where it expects 39 (question 7 has the fix). The rename, the split and the partner's six are in the files on the branch. The Veilstone grunts are Officer Tyche (female grunt class, and the north warehouse object now wears the female grunt's sprite) and Officer Hermes; the Spear Pillar pair carry the same names. The OxiDex and the balance tools place both officers and all six partner files in Wake's split, where the partner files had no split at all before. Each partner file holds six Pokemon at 39 to 41: Ian's Route 207 core grown on (Umbreon, Scizor, Lopunny, Pachirisu, Gastrodon) and the rival's starter at 41. Tyche's and Hermes's teams are untouched: three shapes for them are below, as proposals.
 
 **Recommendation.** Shape A, "the quake beside the shield". Hermes brings Ground and Rock attackers whose Earthquakes and Rock Slides hit everything on the field, and Tyche brings five Protect users that Earthquake cannot touch (Flying or Levitate). It is Spear Pillar's "Protect beside Explosion" at a lower level, with Earthquake in Explosion's place, and Oxide's trainer AI already plays it: it scores Earthquake up beside a partner immune to it, and scores Protect up in every double. Every member is legal today and nine of the ten are classic villain-team Pokemon.
 
@@ -297,3 +297,15 @@ Every new line is shorter than the longest line already in its box ("I should ha
 - No item or nature repeats within any of the eight files. (The Spear Pillar files set no natures, as before this branch.)
 - Not run: the AI-picks probe, and any reading. The simulator, its AI probe and goal 3 read single battles only.
 - To check in the game: the fight is on `ingame-checklist.md`, section 4.
+
+### Goal 3's count
+
+Ian's ruling of 2026-10-29 ("Let's just fix this now", approving the scorer data change): both fights are story fights in `tools/oxide/balance/fights.json`, marked `"tag": true` as Somnu and Moira's double is. Tyche and Hermes 1 is in Wake's split with the six Veilstone partner files as its partners; Tyche and Hermes 2 is in Galactic's split with no partner, since the Spear Pillar script starts that double with both opponents and no partner flag. Each reference hack seats neither (their slots hold vanilla's plain grunts), `test_b1` takes "Tyche" or "Hermes" as the fights' names and holds Tyche and Hermes 1's ace at the honour cap of 41, and Spear Pillar's levels are left out of that check, as drafted. Nothing outside the repo changed.
+
+| Suite | Result |
+|---|---|
+| `test_plgoal3` | 72 of 72; goal 3 reads 80 single battles, 39 bosses and 41 Ace Trainers |
+| `test_b1` | 47 of 47; 35 story fights resolve in Oxide, 28 in each Platinum hack; 31 boss aces keep the boss-level ruling |
+| `test_b3` | 12 of 12 |
+| `test_trainers` | 44 of 44 |
+| `test_b1e`, `test_difficulty`, `test_linetester` | 8 of 8, 3 of 3, 11 of 11 |
