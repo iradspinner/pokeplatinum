@@ -574,7 +574,10 @@ u16 SystemVars_GetWiFiFrontierCleared(VarsFlags *varsFlags)
 }
 
 // Platinum Oxide: the level cap of each split, indexed by VAR_LEVEL_CAP_SPLIT.
-// These are Ian's hard caps as the balance track keeps them in
+// The caps are soft since 2026-10-29: nothing in the engine stops a level or
+// experience at them, and the player's honour keeps a Pokemon over the cap
+// out of fights. The OxiDex reads them, and the battle recorder stores the
+// split. These are Ian's caps as the balance track keeps them in
 // tools/oxide/balance/fights.json ("caps"); the level-cap design may move any
 // of them, and the two must be changed together. After the Champion there is
 // no cap below the game's own.
@@ -619,8 +622,9 @@ u8 SystemVars_GetLevelCap(VarsFlags *varsFlags)
     return sLevelCaps[split];
 }
 
-// The cap in force now, for code that has no save data at hand (the battle's
-// experience, the level-up check, the Rare Candy and the Day Care).
+// The cap in force now, for code that has no save data at hand. Only the
+// Day Care reads it since the caps went soft, and the Day Care is left as
+// element 8 made it (Ian, 2026-10-29: it is never used in a nuzlocke).
 u8 LevelCap_Get(void)
 {
     return SystemVars_GetLevelCap(SaveData_GetVarsFlags(SaveData_Ptr()));
