@@ -1,8 +1,10 @@
-# Barry's pool, and three shapes for Barry 3
+# Barry's pool, and Barry 3's sets
 
-Ian, 2026-10-29: "given we fight him so many times, having him take from a pool of 9-12 pokemon that gets progressively harder as the game goes on seems fair to me", matched neither exactly backwards nor forwards ("there's only so early in a game you can fairly fight a turtonator"), and the pool outlined before Barry 3's sets are made. On Barry 3 he named three faults (the "optimalness" of the Staraptor and Snorlax sets, an Empoleon set that "thinks that it is still a special attacker", an Ambipom that "can almost-literally never use last resort") and a team shape "very reminiscent of that Hyper-Offense" he wants to get away from. This page is a proposal only: no trainer file changed. Part 1 is the pool, refined on Ian's answers below; part 2 is Barry 3's evidence, diagnosis and the three shapes of the first draft, which wait until the pool is settled.
+Ian, 2026-10-29: "given we fight him so many times, having him take from a pool of 9-12 pokemon that gets progressively harder as the game goes on seems fair to me", matched neither exactly backwards nor forwards ("there's only so early in a game you can fairly fight a turtonator"), and the pool outlined before Barry 3's sets are made. On Barry 3 he named three faults (the "optimalness" of the Staraptor and Snorlax sets, an Empoleon set that "thinks that it is still a special attacker", an Ambipom that "can almost-literally never use last resort") and a team shape "very reminiscent of that Hyper-Offense" he wants to get away from. Part 1 is the pool, refined on Ian's answers below. Part 2 is Barry 3: the sets of shape C, which Ian picked, written into the three Route 209 files on this branch, then the first draft's evidence, diagnosis and three shapes as the record.
 
-## Ian's answers (2026-10-29)
+## Ian's answers
+
+On the first draft (2026-10-29):
 
 1. Twelve slots for each starter version, as drafted.
 2. Turtonator joins in Barry 3 too, not only from Barry 4, and Barry 3 brings six.
@@ -12,64 +14,72 @@ Ian, 2026-10-29: "given we fight him so many times, having him take from a pool 
 
 Wake's new team, in Ian's OxiDex and not yet committed, is Clodsire, Ludicolo, Jellicent, Gyarados, Goodra and Floatzel. No line of the refined pool is on it.
 
+On the refined pool (2026-10-29):
+
+1. Quiver Dance goes on Larvesta's egg list, the trainers' palette (done on this branch, with its entry in `learnrewrite.IAN_EGG_MOVES`; Larvesta has no hand-set line in `learnsets_by_hand.txt`, so nothing changes there).
+2. Two Fire types from Spear Pillar on: fine.
+3. Stakataka is held to Spear Pillar, so Barry 5 takes another pool member: Snorlax (below).
+4. Barry 3's third shared slot is Snorlax, and Snorlax does not return in Barry 6; both tentative.
+5. Barry 3 takes shape C, bait and setup.
+6. The Fight Area partner comes down to the cap of 71 (done: the ace at 71, the other five at 70, sets untouched).
+
 ## Summary
 
-**Outcome.** The refined pool is twelve slots for each player: Barry's Sinnoh starter, two starters from other regions that cover the elements his own lacks (Ian's Barry 4 pattern), and nine shared lines. Seven of a player's twelve lines end in a Generation 5 or later Pokemon. Both element partners now join at Barry 3, so from Barry 3 on every version carries one Fire, one Water and one Grass member, and Barry 3, 4 and 5 each bring six. The late pool is stronger: Stakataka enters at Barry 5, Volcarona and Dragonite at Spear Pillar. Volcarona cannot come earlier, since Larvesta evolves at 59 and is too weak to be a threat before then. Florges does read weak beside them, but it plays only in the two partner fights, where its support moves help the player, so it holds its place there. Barry 3's shape is for the next round.
+**Outcome.** Barry 3's three files now carry shape C (the sets are in part 2): six members in every version, the ace at 36, one at 35 and four at 34, every item and nature its own, every move legal at its level. The trainer lint, the packer, the legality check, test_b1, test_trainers and test_m8 all pass. The AI plays the setup: in 100 rough fights a six, Snorlax's Curse is picked 136 to 190 times, Serperior's Calm Mind 71 to 148, Empoleon's Agility 79 to 94, Infernape's Nasty Plot 38 to 61, Primeape's Bulk Up 33 to 51, Turtonator's Iron Defense 36 to 56 and Torterra's Rock Polish 18 to 24. The bait works only in part. When a Rock or Steel wall stops Staraptor, the AI keeps attacking rather than U-turning (U-turn 0 to 43 picks), so the hand-off comes when Staraptor faints. Once Primeape comes in on a Rock or Steel wall, it attacks first more often than it boosts.
 
 **The twelve.**
 
 | Slot | Line | Fights | Role | Why Barry |
 |---|---|---|---|---|
 | 1 | His starter: Turtwig, Chimchar or Piplup line | all | the ace | canon: the starter strong against the player's |
-| 2 | First element partner: Greninja or Serperior line | Barry 3 on | Water or Grass cover, special damage, Spikes or screens | Ian's Barry 4: Barry took the other regions' starters too, as vanilla Barry carried the two elements his starter lacked |
+| 2 | First element partner: Greninja or Serperior line | Barry 3 on | Water or Grass cover, special damage | Ian's Barry 4: Barry took the other regions' starters too, as vanilla Barry carried the two elements his starter lacked |
 | 3 | Second element partner: Serperior line or Turtonator | Barry 3 on | the third element | as above |
-| 4 | Starly line | Barry 2 to 6 | Intimidate pivot, phazing or Tailwind | his first catch, in every vanilla Barry fight |
-| 5 | Munchlax line | Barry 2, 3, 4 | the slow anchor: Yawn, Body Slam, Curse | canon; the one patient Pokemon on an impatient trainer's team |
-| 6 | Shinx line | Barry 2, 4 | fast physical Electric and Dark, Roar | Ian's pick for Barry 4 |
+| 4 | Starly line | Barry 2, 3, 4, 5, 6 | Intimidate lead and pivot, Tailwind | his first catch, in every vanilla Barry fight |
+| 5 | Munchlax line | Barry 2, 3, 4, 5 | the slow anchor: Curse, Body Slam, Yawn | canon; the one patient Pokemon on an impatient trainer's team |
+| 6 | Shinx line | Barry 2, 4 | fast physical Electric and Dark | Ian's pick for Barry 4 |
 | 7 | Togedemaru | Fight Area | Fake Out, Nuzzle, U-turn; Lightning Rod draws Volkner's Electric moves away from the player | a spiky ball that rolls into things, as Barry runs into the player |
-| 8 | Larvesta line (Volcarona) | Spear Pillar, Barry 6 | the special Fire and Bug threat, Calm Mind by TM | Ian's pick |
-| 9 | Mankey line (Primeape, Annihilape) | Barry 3, 5 | Stealth Rock and Taunt early, a Bulk Up attacker later | always angry, Barry's temper |
+| 8 | Larvesta line (Volcarona) | Spear Pillar, Barry 6 | special Fire and Bug with Quiver Dance | Ian's pick |
+| 9 | Mankey line (Primeape, Annihilape) | Barry 3, 5 | Bulk Up attacker | always angry, Barry's temper |
 | 10 | Dratini line | Spear Pillar, Barry 6 | the late power member | Palmer, Barry's father, carries a Dragonite; so did the base ROM's late Barry |
-| 11 | Stakataka | Barry 5, Fight Area | Rock and Steel wall, Beast Boost; Trick Room, Stealth Rock and Iron Defense in its palette | Ian's pick |
-| 12 | Flabebe line (Florges) | Spear Pillar, Fight Area | Wish, Helping Hand, Aromatherapy: a partner's support | takes the place of canon Barry's Roserade, the flower on his vanilla team |
+| 11 | Stakataka | Spear Pillar, Fight Area | Rock and Steel wall, Beast Boost; Trick Room, Stealth Rock and Iron Defense in its palette | Ian's pick |
+| 12 | Flabebe line (Florges) | Fight Area | Wish, Helping Hand, Aromatherapy: a partner's support | takes the place of canon Barry's Roserade, the flower on his vanilla team |
 
 Which partners each player meets, both from Barry 3:
 
 | Player's starter (file suffix) | Barry's starter | Partners |
 |---|---|---|
-| Turtwig (`_turtwig`) | Infernape | Greninja, Serperior |
+| Turtwig (`_turtwig`) | Infernape | Serperior, Greninja |
 | Scorbunny (`_chimchar`) | Empoleon | Serperior, Turtonator |
 | Piplup (`_piplup`) | Torterra | Greninja, Turtonator |
 
-**The pool against the fights.** Each column is the six he brings, at the stage the line can be at that level. Barry 4 is Ian's six; Barry 3's column is the pool's draw, not a shape, which waits.
+**The pool against the fights.** Each column is the six he brings, at the stage the line can be at that level. Barry 3 is in the files on this branch; Barry 4 is Ian's six.
 
-| Slot | Barry 1 (5) | Barry 2 (cap 11) | Barry 3 (36) | Barry 4 (44) | Barry 5 (Byron's split) | Spear Pillar (partner, 59) | Fight Area (partner, 75) | Barry 6 (71) |
+| Slot | Barry 1 (5) | Barry 2 (cap 11) | Barry 3 (36) | Barry 4 (44) | Barry 5 (Byron's split) | Spear Pillar (partner, 59) | Fight Area (partner, 71) | Barry 6 (71) |
 |---|---|---|---|---|---|---|---|---|
-| Starter | first stage | first stage | final | final | final | final | final | final |
-| First partner | | | Greninja or Serperior 35 | final | final | final | final | final |
-| Second partner | | | Serperior 35 or Turtonator | final | final | final | final | final |
-| Starly line | | Starly | Staraptor | Staraptor | Staraptor | | | Staraptor |
-| Munchlax line | | Munchlax | Snorlax 35 | Snorlax | | | | |
+| Starter | first stage | first stage | final, 36 | final | final | final | final | final |
+| First partner | | | Serperior 35, or Greninja 35 for a Piplup player | final | final | final | final | final |
+| Second partner | | | Greninja 34, or Turtonator 34 | final | final | final | final | final |
+| Starly line | | Starly | Staraptor 34 | Staraptor | Staraptor | | | Staraptor |
+| Munchlax line | | Munchlax | Snorlax 34 | Snorlax | Snorlax | | | |
 | Shinx line | | Shinx | | Luxray | | | | |
 | Togedemaru | | | | | | | Togedemaru | |
 | Larvesta line | | | | | | Volcarona 59 | | Volcarona |
-| Mankey line | | | Primeape | | Annihilape or Primeape | | | |
+| Mankey line | | | Primeape 34 | | Annihilape or Primeape | | | |
 | Dratini line | | | | | | Dragonite | | Dragonite |
-| Stakataka | | | | | Stakataka | | Stakataka | |
-| Flabebe line | | | | | | Florges | Florges | |
+| Stakataka | | | | | | Stakataka | Stakataka | |
+| Flabebe line | | | | | | | Florges | |
 
-The pool grows harder by entry: Barry 2 is four first stages; Barry 3 is mid-power (base stat totals of 505 for Primeape, 485 for Turtonator, about 530 for the other starters' finals); Barry 5 brings Annihilape (535) and Stakataka (570); Volcarona (550) and Dragonite (600) arrive at Spear Pillar and stay for Barry 6. Barry 1 keeps his lone starter and does not count for deaths.
+Barry 5 takes Snorlax in Stakataka's place. It is the strongest pool line open there that no nearby boss uses: Luxray rests for Mars 2, Volcarona is not fair before 59, Dragonite would still be a Dragonair, and Togedemaru (a base stat total of 465 against Snorlax's 540) is weaker. And since Snorlax sits out Barry 6, Barry 5 is its last fight. Spear Pillar takes Stakataka in Florges's place, so Florges now plays only at the Fight Area. The pool still grows harder by entry: Barry 2 is four first stages, Barry 3 is mid-power (505 for Primeape, 485 for Turtonator, about 530 for the starters' finals), Barry 5 brings Annihilape (535), and Volcarona (550), Stakataka (570) and Dragonite (600) arrive at Spear Pillar. Barry 1 keeps his lone starter and does not count for deaths.
 
 **What Ian decides.**
 
-1. Volcarona has no Quiver Dance in Oxide, only Calm Mind by TM: add Quiver Dance to Larvesta's egg list, the trainers' palette, or leave it?
-2. From Spear Pillar on every version carries two Fire types (Volcarona beside Infernape or Turtonator): fine?
-3. Stakataka shares Bastiodon's Rock and Steel typing one fight before Byron: first at Barry 5, or hold it to Spear Pillar?
-4. Barry 3's shared three: Staraptor, Snorlax and Primeape with Luxray resting, or Luxray in for Snorlax (Munchlax evolves at 36, one over Snorlax's 35)?
-5. Barry 6: Staraptor, Dragonite and Volcarona with Snorlax resting, or Snorlax in for one of them?
-6. The Fight Area partner sits at 74 and 75, over the Barry split's cap of 71: bring it to 71?
+1. Primeape's most-picked move is Stone Edge, which the AI fires at the Fairy and Flying answers, so it boosts in only about half the fights. Keep it, or swap it for a move that leaves Bulk Up the better pick (Taunt or Ice Punch, both in its palette)?
+2. The AI does not U-turn out of a Rock or Steel wall, so the bait hands off on a faint. Accept that, or give Staraptor a reason to pivot (dropping Steel Wing leaves Double-Edge as its pick into those walls, so that alone would not do it)?
+3. Setup First Turn on Barry's AI: tried, it raises Bulk Up only to 36 to 57 picks and mainly doubles Tailwind (71 to 83). I left it off.
+4. Empoleon's Knock Off was never picked: swap it for Drill Peck (on Piplup's egg list) or Icy Wind?
+5. The Fight Area files' Shiftry carries Swords Dance and Low Kick, which no list gives it. That was already so at 74 and is allowed from Cyrus 3's split on, so I left it.
 
-**Next steps.** Ian answers in a line each. Then Barry 3's shape from the refined pool, with screens and the probe, as the next round: an hour or two. Barry 2's swap: minutes. Barry 5, the two partner fights and Barry 6 from the pool: an hour or two each, after Ian's Barry 4 lands.
+**Next steps.** Ian checks the sets in his OxiDex and answers in a line each; any swap is minutes. Barry 2's Shinx swap and Barry 5, the two partner fights and Barry 6 from the pool: an hour or two each, after Ian's Barry 4 lands. The in-game check for Barry 3 is in `ingame-checklist.md`. A spot-check reading only if he names one: two and a half to four hours.
 
 ## Part 1: the pool
 
@@ -78,8 +88,6 @@ The pool grows harder by entry: Barry 2 is four first stages; Barry 3 is mid-pow
 The scripts pick Barry's file by the player's starter. The suffix names the starter Platinum had in that seat, so `_chimchar` is the Scorbunny player's file (Scorbunny took Chimchar's place in the briefcase, and Barry keeps the Chimchar line for a Turtwig player; `lucas-dawn-2-redesign.md`, "Which starter meets which team"). Barry takes the starter strong against the player's: Infernape for a Turtwig player, Empoleon for a Scorbunny player, Torterra for a Piplup player.
 
 Ian's Barry 4 (his OxiDex, not committed and not final) is Staraptor, Snorlax, Luxray and the starter in every version, with two of Serperior, Greninja and Turtonator: the two whose types the starter lacks. So every version carries one Fire, one Water and one Grass member, which is vanilla Platinum's pattern (Barry carried two of Floatzel, Rapidash and Roserade beside his starter) with other regions' Pokemon in place of the canon three. The pool keeps that: slots 1 to 3 change by version, slots 4 to 12 are shared.
-
-At Barry 3 the partners are a level under their evolutions where they have one (Greninja and Serperior at 35; Frogadier and Servine evolve at 36). Turtonator has no evolution, so it is legal at any level, and Ian has put it in Barry 3 as well.
 
 ### The fights, and the bosses around them
 
@@ -90,12 +98,12 @@ The fights in play order (`tools/oxide/balance/fights.json`), with the boss figh
 | Barry 2 (Route 203, Roark's split) | Lucas and Dawn 1, Roark | Buizel's line (Floatzel is Wake's ace later) |
 | Barry 3 (Route 209 gate, Maylene's split) | Fantina, Lucas and Dawn 2, Maylene, Tyche and Hermes 1 | Floatzel (Wake), Heracross (Maylene, Aaron), Decidueye (Fantina), Scyther and Lopunny (Lucas and Dawn) |
 | Barry 4 (Pastoria, Wake's split) | Tyche and Hermes 1, Wake (Ian's new six, with Goodra) | Goodra (Wake), as Ian ruled; Ian's six as it is |
-| Barry 5 (Canalave, Byron's split) | Cyrus 1, Argo 1, Byron; Mars 2 just after | Luxray rested (Mars 2 carries one); Salamence, Gyarados, Bronzong, Metagross are the bosses' |
+| Barry 5 (Canalave, Byron's split) | Cyrus 1, Argo 1, Byron; Mars 2 just after | Luxray rested (Mars 2 carries one); Stakataka held back (Ian); Salamence, Gyarados, Bronzong, Metagross are the bosses' |
 | Spear Pillar, beside the player | Tyche and Hermes 2, Mars and Jupiter, Cyrus 3 | Luxray rested (Mars carries one in the same battle); Shiftry out (Tyche and Hermes 2 field one in the double before) |
 | Fight Area, beside the player | Volkner and Flint, the foes | Luxray rested (Volkner's), Ninetales out (Flint's in the League) |
 | Barry 6 (League gate, Barry's split) | Volkner, Lucas and Dawn 3, the Elite Four | Ninetales (Flint), Heracross (Aaron), Roserade (Cynthia) |
 
-No boss file on `oxide` or Wake's new six carries Volcarona, Larvesta or Stakataka. Stakataka's typing is that of Byron's Bastiodon, a type, not a line (question 3). Mars's cat theme takes the Litten and Sprigatito lines (Mars 1 fields Torracat and Floragato), so neither is a candidate partner. The starter slot is the one exception to the rule: the Turtwig player's Barry keeps Infernape, which Flint also carries at the Fight Area and in the League, as in vanilla.
+No boss file on `oxide` or Wake's new six carries Volcarona, Larvesta or Stakataka. Mars's cat theme takes the Litten and Sprigatito lines (Mars 1 fields Torracat and Floragato), so neither is a candidate partner. The starter slot is the one exception to the rule: the Turtwig player's Barry keeps Infernape, which Flint also carries at the Fight Area and in the League, as in vanilla.
 
 Today's late Barry fields Ambipom, Floatzel, Heracross, Ninetales, Shiftry and Starmie; all six leave the pool, the first four for the reasons above or Ian's own Barry 4 choices, Starmie for room (Greninja holds the Water seat).
 
@@ -105,30 +113,122 @@ Every stage in the pool table is one a trainer can have at that fight's level. T
 
 | Member | Level | Evolves at |
 |---|---|---|
-| Snorlax, Barry 3 | 35 | Munchlax at 36 |
-| Greninja, Serperior, Barry 3 | 35 | Frogadier, Servine at 36 |
+| Snorlax, Barry 3 | 34 | Munchlax at 36 |
+| Serperior, Barry 3 | 35 | Servine at 36 |
+| Greninja, Barry 3 | 34 (Turtwig player), 35 (Piplup player) | Frogadier at 36 |
 | Annihilape, Barry 5 | Barry 5's level, not set yet (its file's ace is 53) | Primeape at 50 |
 | Volcarona, Spear Pillar | 59 | Larvesta at 59 |
 
-Volcarona is fair from 59, its evolution level, which is where Spear Pillar's partner sits; the Fight Area (74 and 75) and Barry 6 (71) are well past it. Larvesta would be the only stage open at Barry 5, and with a base stat total of 360 it would be the weakest member of a late fight, against Ian's wish to scale the threats, so the line enters at Spear Pillar and Barry 5's slot goes to Staraptor. Stakataka has no evolution and is legal at any level; it enters at Barry 5. Florges evolves from Floette with a Shiny Stone, so it has no level bar. If Barry 5's honour cap lands under 50, Annihilape is Primeape there.
+Volcarona is fair from 59, its evolution level, which is where Spear Pillar's partner sits; the Fight Area and Barry 6 (both 71) are well past it. Larvesta would be the only stage open at Barry 5, and with a base stat total of 360 it would be the weakest member of a late fight, against Ian's wish to scale the threats. Stakataka and Florges have no level bar (Florges comes from Floette with a Shiny Stone). If Barry 5's honour cap lands under 50, Annihilape is Primeape there.
 
-What their palettes give them, by the OxiDex's own list: Volcarona at 59 has Mystical Fire, Fire Spin, U-turn and Screech by level and Calm Mind, Flamethrower, Fire Blast, Giga Drain, Psychic, Will-O-Wisp and Light Screen by TM, but no Quiver Dance anywhere (question 1). Stakataka at 50 has Iron Defense, Autotomize, Rock Blast, Block and Wide Guard by level and Trick Room, Stealth Rock, Gyro Ball, Stone Edge, Earthquake, Meteor Beam and both screens by TM. With 13 base Speed, a Trick Room Stakataka is the clearest new threat in the pool.
+What the late lines' palettes give them, by the OxiDex's own list: Volcarona at 59 has Mystical Fire, Fire Spin, U-turn and Screech by level, Calm Mind, Flamethrower, Fire Blast, Giga Drain, Psychic, Will-O-Wisp and Light Screen by TM, and now Quiver Dance through Larvesta's egg list. Stakataka has Iron Defense, Autotomize, Rock Blast, Block and Wide Guard by level and Trick Room, Stealth Rock, Gyro Ball, Stone Edge, Earthquake, Meteor Beam and both screens by TM. With 13 base Speed, a Trick Room Stakataka is the clearest new threat in the pool.
 
 ### Florges beside the stronger pool
 
-Florges is the one support line left. Its base stats in Oxide (78, 65, 68, 112, 154, 75) make it a special wall with a middling attack, and it has no Moonblast until 57. Next to Volcarona, Stakataka and Dragonite it would read weak in a fight Barry fights against the player. It is placed only in the two fights where he fights beside the player, where Wish, Helping Hand and Aromatherapy help the player and its bulk keeps a partner alive. If Ian wants every slot a threat, Florges is the one to swap, for a line he names.
+Florges is the one support line left. Its base stats in Oxide (78, 65, 68, 112, 154, 75) make it a special wall with a middling attack, and it has no Moonblast until 57. Next to Volcarona, Stakataka and Dragonite it would read weak in a fight against the player, so it plays only at the Fight Area, beside the player, where Wish, Helping Hand and Aromatherapy help the player and its bulk keeps a partner alive. If Ian wants every slot a threat, Florges is the one to swap, for a line he names.
 
 ### The later fights, in a sentence each
 
-Barry 5 is the first fight of the late pool: the three elements, Staraptor, Annihilape and Stakataka. At Spear Pillar, Barry fights beside the player against Mars and Jupiter with Dragonite, Volcarona and Florges. At the Fight Area his Togedemaru's Lightning Rod draws Volkner's Electric moves away from the player (the game redirects them in doubles; the simulator does not, as `simulator-gaps.md` lists), and Stakataka and Florges take the physical and special sides. Barry 6 is the three elements, Staraptor, Dragonite and Volcarona, with Snorlax, Annihilape and Stakataka as the swap-ins.
+Barry 5 is the first fight of the late pool: the three elements, Staraptor, Snorlax and Annihilape. At Spear Pillar, Barry fights beside the player against Mars and Jupiter with Dragonite, Volcarona and Stakataka. At the Fight Area his Togedemaru's Lightning Rod draws Volkner's Electric moves away from the player (the game redirects them in doubles; the simulator does not, as `simulator-gaps.md` lists), and Stakataka and Florges take the physical and special sides. Barry 6 is the three elements, Staraptor, Dragonite and Volcarona, with Annihilape and Stakataka as the swap-ins. Today's Fight Area files keep their old sets at the new levels until that fight's turn comes.
 
 The post-game Survival Area rematches (Battleground files at 65 and 85, from the base ROM) are outside the road to the alpha; the late pool can fill them later, and the 85 sits past the game's 78.
 
 ## Part 2: Barry 3
 
-### How the refined pool changes the three shapes
+### The sets (shape C, on this branch)
 
-The shapes below are the first draft's, made with one element partner per version and with Frosmoth in the pool. Ian has paused them until the pool is settled. Two things in the refined pool change all three. First, Barry 3 now carries both partners in every version (Turtonator joins for the Scorbunny and Piplup players), so each shape keeps three shared members instead of four. Second, Frosmoth has left the pool and Volcarona cannot stand in at 34, so shapes A and C lose their Quiver Dance member. The shared lines open at Barry 3 are Staraptor, Snorlax, Luxray and Primeape, with Togedemaru too if Ian wants it back there. Shape B fits the change best: it keeps Primeape's Stealth Rock lead, Staraptor's Whirlwind and Snorlax's Yawn or Luxray's Roar, and Turtonator's Body Press, Rapid Spin and Will-O-Wisp suit its slow plan. The next round redraws the shapes from this.
+Ian picked shape C: Staraptor leads, and the Rock and Steel walls that stop it draw in a Fighting or Ground member with a setup move behind it. Every member holds its own item and has its own nature, with no repeats in a version, and most of the natures are not the textbook one for the set. iv_scale 255, AI flags Basic, Evaluate Attack and Expert (unchanged). Speed is as the scorer builds the files.
+
+The three shared members, the same in every version:
+
+| Member | Level | Ability | Item | Nature | Speed | Moves | Role |
+|---|---|---|---|---|---|---|---|
+| Staraptor (lead) | 34 | Intimidate | Charti Berry | Hasty | 94 | Double-Edge, Steel Wing, U-turn, Tailwind | the bait: Intimidate on the physical box, Steel Wing for the Fairy and Ice answers, Tailwind for the slow setup members; the Charti Berry takes the edge off the first Rock hit |
+| Primeape | 34 | Defiant | Liechi Berry | Impish | 80 | Bulk Up, Drain Punch, Rage Fist, Stone Edge | the Rock and Steel walls' answer: Drain Punch takes 58 to 69% of Bastiodon and 74 to 89% of Probopass before a boost; Defiant punishes Granbull's Intimidate |
+| Snorlax | 34 | Immunity | Chesto Berry | Relaxed | 31 | Curse, Body Slam, Yawn, Rest | the slow win condition: Curse, Body Slam's paralysis, Yawn to force switches, one quick Rest; Immunity shrugs off Glimmora's Toxic Debris and Tentacruel's Toxic Spikes |
+
+By version:
+
+| Version | Member | Level | Ability | Item | Nature | Speed | Moves |
+|---|---|---|---|---|---|---|---|
+| Turtwig player (`_turtwig`) | Serperior | 35 | Overgrow | Big Root | Calm | 94 | Calm Mind, Giga Drain, Dragon Pulse, Reflect |
+| | Greninja | 34 | Torrent | Expert Belt | Rash | 98 | Taunt, Surf, Dark Pulse, Ice Beam |
+| | Infernape (ace) | 36 | Blaze | Wise Glasses | Mild | 93 | Nasty Plot, Flamethrower, Vacuum Wave, Grass Knot |
+| Scorbunny player (`_chimchar`) | Serperior | 35 | Overgrow | Big Root | Calm | 94 | Calm Mind, Giga Drain, Dragon Pulse, Reflect |
+| | Turtonator | 34 | Shell Armor | Shuca Berry | Bold | 40 | Iron Defense, Body Press, Flamethrower, Will-O-Wisp |
+| | Empoleon (ace) | 36 | Torrent | Sitrus Berry | Naughty | 59 | Agility, Aqua Tail, Earthquake, Knock Off |
+| Piplup player (`_piplup`) | Greninja | 35 | Torrent | Expert Belt | Rash | 101 | Taunt, Surf, Dark Pulse, Ice Beam |
+| | Turtonator | 34 | Shell Armor | Shuca Berry | Bold | 40 | Iron Defense, Body Press, Flamethrower, Will-O-Wisp |
+| | Torterra (ace) | 36 | Shell Armor | Yache Berry | Careful | 56 | Rock Polish, Wood Hammer, Earthquake, Crunch |
+
+What each fixes of Ian's three faults. Empoleon plays as Oxide makes it: Attack 111 against Sp. Atk 86, so a physical Agility set on a Naughty nature. Last Resort and Ambipom are gone. Staraptor and Snorlax carry neither the old sets nor their textbook natures: no Brave Bird, Close Combat or Roost on Staraptor, which is there to be walled, and Snorlax is a Curse and Rest sleeper with Immunity rather than Thick Fat and Earthquake.
+
+Each version has four setup members (Primeape, Snorlax, one partner or the second partner, and the ace), which is what shape C asks. Only Greninja and Staraptor carry no boost, and the team's fast members are Staraptor (94), Serperior (94), Greninja (98 to 101) and Infernape (93). Ambipom (102), Floatzel (93) and Infernape (102) were the old team's.
+
+Legality: every move is on its species' Oxide list at its level (the Kaizo study's checker, run over this branch's `res/`, and the OxiDex's list agree). Torterra's Crunch is on Turtwig's egg list, put there for Barry 3 on 2026-10-29 (its hand-set line), and Double-Edge is Starly's egg move. The checker's only notes are three members under their evolution level: Serperior at 35, Greninja at 34 and 35, Snorlax at 34, against 36 each.
+
+### The cheap checks on the sets
+
+The matchup screen on goal 3's three boxes (at 36), the screen's score per Barry member (lower is harder for the player), and the most-taken catches:
+
+| Box | Score per member | Taken most |
+|---|---|---|
+| 1 (Turtwig player) | 2.97 | Sylveon 20, Tentacruel 16, Bastiodon 16, Probopass 14, Togetic 10 |
+| 2 (Scorbunny player) | 3.27 | Tsareena 18, Primarina 17, Bastiodon 15, Rotom 14 |
+| 3 (Piplup player) | 2.38 | Vikavolt 18, Hariyama 16, Bastiodon 15, Rotom 14, Granbull 10 |
+
+For comparison, today's five on `oxide` read 1.61, 1.27 and 1.90, and the first draft's shape C 2.99, 2.98 and 2.56. The screen counts damage and Speed only, so a setup team reads easier on it than it plays. This fight is the case the standing rulings give a margin or a spot check.
+
+Damage, the calculator's lowest to highest roll as a share of the target's HP (Barry's members as the files have them; the player's catches at 36, Hardy, IVs of 15):
+
+| Attacker | Move | Target | Damage |
+|---|---|---|---|
+| Staraptor | Double-Edge | Sylveon | 66 to 79% |
+| Staraptor | Steel Wing | Bastiodon | 13 to 16% |
+| Primeape | Drain Punch | Probopass | 74 to 89% |
+| Primeape | Stone Edge | Togetic | 75 to 90% |
+| Greninja 35 | Dark Pulse | Rotom | 99 to 118% |
+| Greninja 35 | Surf | Bastiodon | 53 to 66% |
+| Turtonator | Flamethrower | Vikavolt | 79 to 96% |
+| Infernape | Vacuum Wave | Bastiodon | 44 to 58% |
+| Empoleon | Earthquake | Bastiodon | 61 to 74% |
+| Empoleon | Knock Off | Rotom | 55 to 67% |
+| Torterra | Earthquake | Bastiodon | 85 to 102% |
+| Torterra | Earthquake | Tentacruel | 127 to 150% |
+| Bastiodon | Take Down | Staraptor | 21 to 25% |
+| Rotom | Shock Wave | Staraptor | 77 to 93% |
+| Togetic | Dazzling Gleam | Primeape | 57 to 69% |
+| Tentacruel | Poison Jab | Serperior | 52 to 63% |
+
+So Bastiodon and Probopass stop Staraptor by walling it (Steel Wing 13 to 16%), not by knocking it out; Rotom is the one that beats it outright.
+
+The AI-picks probe on all three boxes (a greedy player, 100 rough fights a six, against the screen's best six and its six most taken; win numbers mean nothing). Every move on every member was picked except Empoleon's Knock Off, which the AI also skipped in the first draft's probes. Setup picks per 100 fights:
+
+| Member | Setup move | Picks |
+|---|---|---|
+| Snorlax | Curse | 136 to 190 |
+| Serperior | Calm Mind | 71 to 148 |
+| Empoleon | Agility | 79 to 94 |
+| Infernape | Nasty Plot | 38 to 61 |
+| Turtonator | Iron Defense | 36 to 56 |
+| Primeape | Bulk Up | 33 to 51 |
+| Torterra | Rock Polish | 18 to 24 |
+| Staraptor | Tailwind | 25 to 42 |
+
+Whether the bait plays as intended, from what each member did first on coming in:
+
+- Staraptor attacks the wall in front of it. U-turn was picked 0 to 43 times a six, mostly against Vikavolt and Bronzong, so the hand-off to the member behind comes on a faint.
+- On box 1, Primeape came in on Probopass 23 times in one six and 18 in the other. It opened with Drain Punch 17 and 18 times, and with Bulk Up 6 times and none. The Infernape version sends Infernape into Bastiodon instead (Vacuum Wave 19 to 20 times, Nasty Plot 3 to 10), since its Fighting and Fire types read as the harder hit.
+- On box 3, Primeape came in on Bastiodon 18 times in the best six: Bulk Up 10, Drain Punch 8.
+- On box 2, Bastiodon draws Empoleon's Earthquake (19 to 21 times), and Primeape mostly meets Rotom (Rage Fist 6 to 13, Bulk Up 5 to 12).
+- Primeape's most-picked move overall is Stone Edge (73 to 154), at the Fairy, Bug and Flying answers.
+- The other setup members boost on entry far more readily. Serperior opened with Calm Mind 26 to 36 times against Tentacruel or Primarina, Snorlax with Curse 5 to 16, and Empoleon with Agility 16 to 29 against Rotom.
+
+So the fight is setup-heavy as Ian asked, and the AI plays it, but the specific bait (Staraptor walled, Primeape boosting on the wall) happens in a minority of fights. Questions 1 and 2 of the summary are the two levers.
+
+### The first draft's shapes and the refined pool
+
+The shapes below are the first draft's, made with one element partner per version and with Frosmoth in the pool; shape C above is what came of them. Two things in the refined pool changed all three: Barry 3 carries both partners in every version, so each shape keeps three shared members instead of four, and Frosmoth left the pool, so shapes A and C lost their Quiver Dance member, whose place in the written shape C goes to the second partner and to Snorlax's Curse.
 
 ### The evidence
 

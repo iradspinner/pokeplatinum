@@ -625,6 +625,16 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   shards, are gone. The Survival Area's south house likewise holds only the
   Black Belt, who gives TM25 (Thunder) once; its Utility Stop greeter and
   vendors are gone too.
+- [ ] **Barry 3 at the Route 209 gate** (`overseer-barry-pool`, `barry-pool.md`,
+  "The sets"), after Fantina, with the party at or under the honour cap of
+  36. Barry brings six, led by Staraptor at 34 (Primeape, Snorlax and the
+  partners at 34 and 35, his starter's final at 36): with a Turtwig, Infernape
+  beside Serperior and Greninja; with Scorbunny, Empoleon beside Serperior and
+  Turtonator; with Piplup, Torterra beside Greninja and Turtonator. Note
+  whether Staraptor's Intimidate shows on entry, whether Primeape uses Bulk Up
+  when it comes in on a Rock or Steel Pokemon of yours, whether Snorlax's
+  Curse and Rest (with its Chesto Berry) and the ace's setup move come up, and
+  how many of your Pokemon faint.
 - [ ] **The Veilstone tag battle, Officers Tyche and Hermes** (`overseer-tyche-hermes-1`,
   `tyche-hermes-1.md`), after Maylene's badge, with the party at or under the
   honour cap of 41. The north warehouse grunt is a female grunt; the scene's

@@ -107,7 +107,8 @@ def check_fights_resolve(results):
 # the engine's single League cap of 78. The first three splits' mini-bosses
 # keep the interim soft caps the rulebook gives them. Barry on Route 201 and
 # Lucas or Dawn on Route 202, the first two fights, are left out, and so is
-# the Fight Area's Flint and Volkner tag (ace 69, cap 71), kept as drafted:
+# the Fight Area's Flint and Volkner tag (their aces 69, cap 71; Barry beside
+# the player came down to the cap, his ace at 71, on 2026-10-29), kept as drafted:
 # the scorer cannot read a tag battle, and Ian may raise it in the alpha.
 # Under the soft caps (Ian, 2026-10-29) a mini-boss with an honour cap of its
 # own keeps its ace at that cap: Barry 3's is 36, "for fully evolved starters".

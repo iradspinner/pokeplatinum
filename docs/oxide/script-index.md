@@ -2303,9 +2303,9 @@ Could not read: 1 raw data lines.
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_PIPLUP (Barry, level 36, 5 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:37`
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_TURTWIG (Barry, level 36, 5 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:42`
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_CHIMCHAR (Barry, level 36, 5 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:47`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_PIPLUP (Barry, level 36, 6 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:37`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_TURTWIG (Barry, level 36, 6 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:42`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_CHIMCHAR (Barry, level 36, 6 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:47`
 
 Flags:
 
@@ -7201,7 +7201,7 @@ Gone from vanilla: variable VAR_ETERNA_CITY_BLOCK_EXITS_STATE (set).
 
 Trainer battles:
 
-- StartTagBattle: partner TRAINER_RIVAL_FIGHT_AREA_TURTWIG (Barry, level 75, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG, TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR (Barry, level 75, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY, TRAINER_RIVAL_FIGHT_AREA_PIPLUP (Barry, level 75, 6 Pokemon) otherwise, through a variable; against TRAINER_LEADER_VOLKNER_FIGHT_AREA (Volkner, level 69, 4 Pokemon), by number; and TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA (Flint, level 69, 4 Pokemon), by number. Vanilla. `scripts_fight_area.s:400`
+- StartTagBattle: partner TRAINER_RIVAL_FIGHT_AREA_TURTWIG (Barry, level 71, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG, TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR (Barry, level 71, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY, TRAINER_RIVAL_FIGHT_AREA_PIPLUP (Barry, level 71, 6 Pokemon) otherwise, through a variable; against TRAINER_LEADER_VOLKNER_FIGHT_AREA (Volkner, level 69, 4 Pokemon), by number; and TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA (Flint, level 69, 4 Pokemon), by number. Vanilla. `scripts_fight_area.s:400`
 
 Items given:
 
