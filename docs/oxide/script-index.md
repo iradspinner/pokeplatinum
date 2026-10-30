@@ -2303,9 +2303,9 @@ Could not read: 1 raw data lines.
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_PIPLUP (Barry, level 39, 5 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:37`
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_TURTWIG (Barry, level 39, 5 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:42`
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_CHIMCHAR (Barry, level 39, 5 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:47`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_PIPLUP (Barry, level 36, 5 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:37`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_TURTWIG (Barry, level 36, 5 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:42`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_CHIMCHAR (Barry, level 36, 5 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:47`
 
 Flags:
 
@@ -7275,8 +7275,8 @@ Scripts nothing reaches: script 1 `FightAreaPokecenterB1F_Dummy1` (line 7).
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_1 (Grunt, level 18, 4 Pokemon), by name. Vanilla. `scripts_floaroma_meadow.s:22`
-- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_2 (Grunt, level 18, 4 Pokemon), by name. Vanilla. `scripts_floaroma_meadow.s:26`
+- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_1 (Grunt, level 18, 3 Pokemon), by name. Vanilla. `scripts_floaroma_meadow.s:22`
+- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_2 (Grunt, level 18, 3 Pokemon), by name. Vanilla. `scripts_floaroma_meadow.s:26`
 
 Items given:
 
