@@ -4053,6 +4053,65 @@ def check_burning_bulwark(results):
                     f"(stopped, the attacker's status) {got}"))
 
 
+def check_silk_trap_obstruct(results):
+    """Silk Trap and Obstruct (Oxide's engine since 2026-10-30,
+    BattleControllerPlayer_CheckMoveHitOverrides and subscript_missed; Ian,
+    2026-10-29: "Fix before alpha 1"): each stops a damaging move and lets a
+    status move through, where Protect stops both; a contact move they stop
+    loses its user a stage of Speed (Silk Trap) or two of Defense
+    (Obstruct), and a move without contact loses nothing. The drop is the
+    protecting battler's: Clear Body keeps it, Mirror Armor turns it back,
+    Defiant answers it with two stages of Attack, and nothing happens at -6
+    or behind the attacker's own Substitute."""
+    def into(move="Tackle", guard="Silk Trap", ability=None, spe=0, sub=0):
+        b, p, foe = battle([move], [guard], {("p", move): [10] * 16})
+        b.st["first_battle"] = True
+        foe.protecting, foe.last = True, fs.move(guard)
+        p.ability, p.sub = ability, sub
+        p.stages["spe"] = spe
+        mv = fs.move(move)
+        if mv.cat == "Status":
+            fs.status_move(b, p, mv, foe, True)
+        else:
+            fs.attack(b, p, mv, foe, True)
+        return (100 - foe.hp, p.stages["spe"], p.stages["def"], p.stages["atk"], foe.stages["def"], foe.stages["atk"])
+    got = {"Tackle into Silk Trap": into(), "Ember into Silk Trap": into("Ember"),
+           "Growl into Silk Trap": into("Growl"), "Tackle into Obstruct": into(guard="Obstruct"),
+           "Ember into Obstruct": into("Ember", guard="Obstruct"), "Growl into Obstruct": into("Growl", guard="Obstruct"),
+           "Growl into Protect": into("Growl", guard="Protect"), "Tackle into Protect": into(guard="Protect"),
+           "Clear Body into Obstruct": into(guard="Obstruct", ability="Clear Body"),
+           "Mirror Armor into Obstruct": into(guard="Obstruct", ability="Mirror Armor"),
+           "Defiant into Obstruct": into(guard="Obstruct", ability="Defiant"),
+           "Speed at -6 into Silk Trap": into(spe=-6), "a Substitute into Silk Trap": into(sub=25)}
+    want = {"Tackle into Silk Trap": (0, -1, 0, 0, 0, 0), "Ember into Silk Trap": (0, 0, 0, 0, 0, 0),
+            "Growl into Silk Trap": (0, 0, 0, 0, 0, -1), "Tackle into Obstruct": (0, 0, -2, 0, 0, 0),
+            "Ember into Obstruct": (0, 0, 0, 0, 0, 0), "Growl into Obstruct": (0, 0, 0, 0, 0, -1),
+            "Growl into Protect": (0, 0, 0, 0, 0, 0), "Tackle into Protect": (0, 0, 0, 0, 0, 0),
+            "Clear Body into Obstruct": (0, 0, 0, 0, 0, 0), "Mirror Armor into Obstruct": (0, 0, 0, 0, -2, 0),
+            "Defiant into Obstruct": (0, 0, -2, 2, 0, 0), "Speed at -6 into Silk Trap": (0, -6, 0, 0, 0, 0),
+            "a Substitute into Silk Trap": (0, 0, 0, 0, 0, 0)}
+    results.append(("Silk Trap and Obstruct stop damaging moves only and lower a contact attacker's stat",
+                    got == want, f"(damage, the user's Speed, Defense and Attack, the target's Defense and Attack) "
+                    f"{ {k: v for k, v in got.items() if v != want[k]} or 'as wanted'}"))
+
+
+def check_corrosion_bunker(results):
+    """Corrosion on a Baneful Bunker user (Oxide's engine since 2026-10-30,
+    subscript_poison): the bunker's poison is its user's doing, so a
+    Corrosion holder's bunker poisons a Steel-type attacker that makes
+    contact, as in hg-engine and the later games; without Corrosion the
+    Steel type is not poisoned."""
+    def into(ability):
+        b, p, foe = battle(["Tackle"], ["Baneful Bunker"], {("p", "Tackle"): [10] * 16}, p_types=("Steel",))
+        b.st["first_battle"] = True
+        foe.protecting, foe.last, foe.ability = True, fs.move("Baneful Bunker"), ability
+        fs.attack(b, p, fs.move("Tackle"), foe, True)
+        return p.status
+    got = {"Corrosion": into("Corrosion"), "no Corrosion": into(None)}
+    want = {"Corrosion": "psn", "no Corrosion": None}
+    results.append(("A Corrosion holder's Baneful Bunker poisons a Steel type", got == want, f"{got}"))
+
+
 def check_refresh(results):
     """Refresh (approved 2026-10-14; effect script 193,
     subscript_recover_psn_prz_brn): it cures its user's own poison, burn or
@@ -9351,7 +9410,7 @@ def main():
                   check_sticky_barb, check_payback, check_leech_seed_sap,
                   check_ghost_untrapped, check_soundproof_status, check_item_flinch_blocked,
                   check_black_sludge, check_water_bubble, check_eerie_spell,
-                  check_burning_bulwark,
+                  check_burning_bulwark, check_silk_trap_obstruct, check_corrosion_bunker,
                   check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
                   check_trainer_frustration, check_secret_power, check_snore,
                   check_raise_speed_hit, check_trump_card,

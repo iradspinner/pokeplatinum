@@ -3360,7 +3360,14 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
 
     int sideGuard = BattleControllerPlayer_SideGuardAgainst(battleSys, battleCtx, attacker, defender, move); // Oxide
 
-    if ((battleCtx->turnFlags[defender].protecting || sideGuard != MOVE_NONE)
+    // Oxide: Obstruct and Silk Trap stop only damaging moves, so a status
+    // move gets through them, as in the later games (hg-engine's
+    // CheckProtectedBySelf). Every other Protect-type move stops both.
+    BOOL selfProtected = battleCtx->turnFlags[defender].protecting
+        && ((battleCtx->moveProtect[defender] != MOVE_OBSTRUCT && battleCtx->moveProtect[defender] != MOVE_SILK_TRAP)
+            || MOVE_DATA(move).class != CLASS_STATUS);
+
+    if ((selfProtected || sideGuard != MOVE_NONE)
         && (MOVE_DATA(move).flags & MOVE_FLAG_CAN_PROTECT)
         && (move != MOVE_CURSE || Move_IsGhostCurse(battleCtx, move, attacker) == TRUE) // Ghost-Curse can be Protected
         && (Move_IsMultiTurn(battleCtx, move) == FALSE || (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN))) {
@@ -3369,19 +3376,22 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
 
         // Oxide: the missed subscript names a side guard; MOVE_NONE there
         // means the defender's own Protect or Detect.
-        battleCtx->msgMoveTemp = battleCtx->turnFlags[defender].protecting ? MOVE_NONE : sideGuard;
+        battleCtx->msgMoveTemp = selfProtected ? MOVE_NONE : sideGuard;
 
         // Oxide: Spiky Shield hurts an attacker that made contact with it,
-        // Baneful Bunker poisons it and Burning Bulwark burns it, as in
+        // Baneful Bunker poisons it, Burning Bulwark burns it, Silk Trap
+        // lowers its Speed a stage and Obstruct its Defense two, as in
         // hg-engine (BtlCmd_checkprotectcontactmoves); the missed subscript
         // does it once it has said the defender protected itself. The
         // accuracy roll came first, and a miss it rolled would stop the
         // poison or the burn, though the shield stopped the move before any
         // roll in the later games, so the miss is cleared here.
-        if (battleCtx->turnFlags[defender].protecting
+        if (selfProtected
             && (battleCtx->moveProtect[defender] == MOVE_SPIKY_SHIELD
                 || battleCtx->moveProtect[defender] == MOVE_BANEFUL_BUNKER
-                || battleCtx->moveProtect[defender] == MOVE_BURNING_BULWARK)
+                || battleCtx->moveProtect[defender] == MOVE_BURNING_BULWARK
+                || battleCtx->moveProtect[defender] == MOVE_SILK_TRAP
+                || battleCtx->moveProtect[defender] == MOVE_OBSTRUCT)
             && Battler_MoveMakesContact(battleCtx, attacker, move)) {
             battleCtx->msgMoveTemp = battleCtx->moveProtect[defender];
             battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
