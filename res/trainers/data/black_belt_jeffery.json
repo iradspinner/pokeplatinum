@@ -18,47 +18,47 @@
             "moves": [
                 "MOVE_MACH_PUNCH",
                 "MOVE_BULLET_SEED",
-                "MOVE_STUN_SPORE",
-                "MOVE_ROCK_SLIDE"
+                "MOVE_ROCK_TOMB",
+                "MOVE_STUN_SPORE"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"
         },
         {
-            "species": "SPECIES_MIENSHAO",
+            "species": "SPECIES_HAKAMO_O",
             "form": 0,
             "level": 37,
-            "item": "ITEM_EXPERT_BELT",
+            "item": "ITEM_EVIOLITE",
             "moves": [
+                "MOVE_BULK_UP",
+                "MOVE_DRAGON_CLAW",
                 "MOVE_DRAIN_PUNCH",
-                "MOVE_TRIPLE_AXEL",
-                "MOVE_KNOCK_OFF",
-                "MOVE_FAKE_OUT"
+                "MOVE_ROCK_SLIDE"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_HASTY",
+            "nature": "NATURE_CAREFUL",
             "ball_seal": 0,
-            "ability": 2,
+            "ability": 1,
             "gender": "male"
         },
         {
             "species": "SPECIES_HERACROSS",
             "form": 0,
             "level": 38,
-            "item": "ITEM_SILVERPOWDER",
+            "item": "ITEM_LOADED_DICE",
             "moves": [
-                "MOVE_CLOSE_COMBAT",
                 "MOVE_PIN_MISSILE",
+                "MOVE_CLOSE_COMBAT",
                 "MOVE_KNOCK_OFF",
-                "MOVE_ROCK_SLIDE"
+                "MOVE_STONE_EDGE"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": "male"
         }
     ],

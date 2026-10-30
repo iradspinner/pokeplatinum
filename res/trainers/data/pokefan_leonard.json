@@ -13,49 +13,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PLUSLE",
+            "species": "SPECIES_RAICHU",
             "form": 0,
-            "level": 31,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 33,
+            "item": "ITEM_SHUCA_BERRY",
             "moves": [
-                "MOVE_FAKE_TEARS",
-                "MOVE_ALLURING_VOICE",
+                "MOVE_FAKE_OUT",
                 "MOVE_THUNDERBOLT",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_SURF",
+                "MOVE_ENCORE"
             ],
-            "iv_scale": 199,
-            "nature": "NATURE_CALM",
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_QUIRKY",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_MINUN",
+            "species": "SPECIES_EMOLGA",
             "form": 0,
-            "level": 31,
-            "item": "ITEM_MAGNET",
+            "level": 33,
+            "item": "ITEM_YACHE_BERRY",
             "moves": [
-                "MOVE_CHARM",
-                "MOVE_ALLURING_VOICE",
+                "MOVE_NUZZLE",
+                "MOVE_ACROBATICS",
                 "MOVE_THUNDERBOLT",
-                "MOVE_FAKE_TEARS"
+                "MOVE_U_TURN"
             ],
-            "iv_scale": 198,
-            "nature": "NATURE_TIMID",
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 3
         },
         {
-            "species": "SPECIES_PIKACHU",
+            "species": "SPECIES_TOGEDEMARU",
             "form": 0,
-            "level": 31,
-            "item": "ITEM_QUICK_CLAW",
+            "level": 34,
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
-                "MOVE_QUICK_ATTACK",
-                "MOVE_SLAM",
-                "MOVE_THUNDERBOLT",
-                "MOVE_KNOCK_OFF"
+                "MOVE_ZING_ZAP",
+                "MOVE_SMART_STRIKE",
+                "MOVE_SUPER_FANG",
+                "MOVE_REFLECT"
             ],
-            "iv_scale": 208,
-            "nature": "NATURE_HASTY",
-            "ball_seal": 7
+            "iv_scale": 220,
+            "nature": "NATURE_DOCILE",
+            "ball_seal": 7,
+            "ability": 1
         }
     ],
     "messages": [

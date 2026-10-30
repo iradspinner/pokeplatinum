@@ -10,52 +10,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DUGTRIO",
+            "species": "SPECIES_CINDERACE",
             "form": 0,
-            "level": 35,
-            "item": "ITEM_SOFT_SAND",
+            "level": 36,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_STEALTH_ROCK",
-                "MOVE_STOMPING_TANTRUM",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_ROCK_SLIDE"
+                "MOVE_BLAZE_KICK",
+                "MOVE_JUMP_KICK",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_U_TURN"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": "male"
         },
         {
             "species": "SPECIES_PACHIRISU",
             "form": 0,
             "level": 36,
-            "item": "ITEM_SITRUS_BERRY",
+            "item": "ITEM_CELL_BATTERY",
             "moves": [
-                "MOVE_DISCHARGE",
+                "MOVE_THUNDERBOLT",
                 "MOVE_SUPER_FANG",
-                "MOVE_U_TURN",
-                "MOVE_ELECTROWEB"
+                "MOVE_THUNDER_WAVE",
+                "MOVE_GRASS_KNOT"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_BOLD",
+            "nature": "NATURE_SERIOUS",
             "ball_seal": 0,
-            "ability": 3,
+            "ability": 1,
             "gender": "male"
         },
         {
             "species": "SPECIES_LUXRAY",
             "form": 0,
             "level": 37,
-            "item": "ITEM_MAGNET",
+            "item": "ITEM_SHELL_BELL",
             "moves": [
                 "MOVE_WILD_CHARGE",
                 "MOVE_CRUNCH",
-                "MOVE_ICE_FANG",
-                "MOVE_FIRE_FANG"
+                "MOVE_SUPERPOWER",
+                "MOVE_ICE_FANG"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
             "ability": 2,
             "gender": "male"

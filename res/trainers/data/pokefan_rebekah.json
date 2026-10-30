@@ -15,33 +15,33 @@
         {
             "species": "SPECIES_TOGETIC",
             "form": 0,
-            "level": 35,
+            "level": 34,
             "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_DAZZLING_GLEAM",
                 "MOVE_AIR_CUTTER",
-                "MOVE_AURA_SPHERE",
-                "MOVE_WISH"
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_ROOST"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
             "ability": 3,
             "gender": "female"
         },
         {
-            "species": "SPECIES_MARILL",
+            "species": "SPECIES_MAGMAR",
             "form": 0,
-            "level": 35,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 34,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_AQUA_TAIL",
-                "MOVE_PLAY_ROUGH",
-                "MOVE_AQUA_JET",
-                "MOVE_KNOCK_OFF"
+                "MOVE_FLAMETHROWER",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_CROSS_CHOP",
+                "MOVE_WILL_O_WISP"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
@@ -49,16 +49,16 @@
         {
             "species": "SPECIES_SUDOWOODO",
             "form": 0,
-            "level": 37,
-            "item": "ITEM_HARD_STONE",
+            "level": 35,
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
                 "MOVE_WOOD_HAMMER",
-                "MOVE_ROCK_SLIDE",
+                "MOVE_STONE_EDGE",
                 "MOVE_SUCKER_PUNCH",
-                "MOVE_STOMPING_TANTRUM"
+                "MOVE_EARTHQUAKE"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_BRAVE",
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
             "ability": 2,
             "gender": "female"
