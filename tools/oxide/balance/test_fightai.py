@@ -367,7 +367,15 @@ EXPERT_ROWS = [
     ("BrickBreak, Psychic Fangs into Aurora Veil", "Psychic Fangs", lambda b, u, t: setattr(b.p, "aurora_veil", 5),
      1, 1),
     ("BrickBreak, no screen", "Raging Bull", None, 0, 0),
-    ("KnockOff, second turn out", "Knock Off", _t(u_turns_in=1), 1, 0),
+    # Knock Off (Ian, 2026-10-29: "Drop the first-turn rule and make it a
+    # chance to fire with an item (66%)"): +1 at 169/256 into a target that
+    # holds an item and has 30% HP or more, on the first turn out too.
+    ("KnockOff, first turn out, the foe holds an item", "Knock Off", _t(u_turns_in=0, t_item="Leftovers"), 1, 0),
+    ("KnockOff, second turn out, the foe holds an item", "Knock Off", _t(u_turns_in=1, t_item="Leftovers"), 1, 0),
+    ("KnockOff, the foe holds nothing", "Knock Off", _t(u_turns_in=1, t_item=None), 0, 0),
+    ("KnockOff, the foe at 29% holding an item", "Knock Off", _t(u_turns_in=1, t_item="Leftovers", t_hp=29), 0, 0),
+    ("KnockOff, a roll of 65 in 100 fires it", "Knock Off", _t(u_turns_in=1, t_item="Leftovers"), Dice(0.65), 1),
+    ("KnockOff, a roll of 67 in 100 does not", "Knock Off", _t(u_turns_in=1, t_item="Leftovers"), Dice(0.67), 0),
     ("Endeavor, faster at 40%", "Endeavor", _t(u_hp=40), 1, 1),
     ("Endeavor, faster at 41%", "Endeavor", _t(u_hp=41), -1, -1),
     ("WaterSpout, Eruption faster at 50%", "Eruption", _t(u_hp=50, t_types=["Normal"]), -1, -1),
@@ -884,6 +892,28 @@ BASIC_ROWS = [
     ("CheckCanRecoverHP: Recover at full HP", "Gengar", "Zigzagoon", "Recover", None, -8, -8),
     ("CheckCannotPoison: Toxic into Clefable (Magic Guard)", "Gengar", "Clefable", "Toxic", None, -10, -10),
     ("CheckCannotPoison: Toxic into Snorlax (Immunity or Thick Fat)", "Gengar", "Snorlax", "Toxic", None, -10, 0),
+    # Corrosion (Ian, 2026-10-29: "Fix the Corrosion AI scoring"): its
+    # holder's poison reaches Poison and Steel types, so the type checks of
+    # Basic_CheckCannotPoison, Basic_FlingPoison and Basic_PsychoShift_Poison
+    # give way to it; the target's abilities still count, and Gastro Acid
+    # takes it away.
+    ("CheckCannotPoison: Toxic into Bronzong (Steel)", "Gengar", "Bronzong", "Toxic", None, -10, -10),
+    ("CheckCannotPoison: Toxic into Muk (Poison)", "Gengar", "Muk", "Toxic", None, -10, -10),
+    ("CheckCannotPoison: a Corrosion holder's Toxic into Bronzong", "Gengar", "Bronzong", "Toxic",
+     _t(u_ability="Corrosion"), 0, 0),
+    ("CheckCannotPoison: a Corrosion holder's Toxic into Muk", "Gengar", "Muk", "Toxic",
+     _t(u_ability="Corrosion"), 0, 0),
+    ("CheckCannotPoison: a Corrosion holder's Toxic into Clefable (Magic Guard)", "Gengar", "Clefable", "Toxic",
+     _t(u_ability="Corrosion"), -10, -10),
+    ("CheckCannotPoison: a Corrosion holder under Gastro Acid, Toxic into Bronzong", "Gengar", "Bronzong", "Toxic",
+     _t(u_ability="Corrosion", u_suppressed=True), -10, -10),
+    ("CheckFling: a Toxic Orb into Bronzong (Steel)", "Gengar", "Bronzong", "Fling", _t(u_item="Toxic Orb"), -5, -5),
+    ("CheckFling: a Corrosion holder's Toxic Orb into Bronzong", "Gengar", "Bronzong", "Fling",
+     _t(u_item="Toxic Orb", u_ability="Corrosion"), 0, 0),
+    ("CheckCanPsychoShift: poison into Bronzong (Steel)", "Gengar", "Bronzong", "Psycho Shift",
+     _t(u_status="psn"), -10, -10),
+    ("CheckCanPsychoShift: a Corrosion holder's poison into Bronzong", "Gengar", "Bronzong", "Psycho Shift",
+     _t(u_status="psn", u_ability="Corrosion"), 0, 0),
     ("CheckAlreadyUnderLightScreen", "Gengar", "Zigzagoon", "Light Screen",
      lambda b, u, t: b.b.screens.update({"Light Screen": 5}), -8, -8),
     ("CheckOHKOWouldFail: Sheer Cold into a higher level", "Gengar", "Zigzagoon", "Sheer Cold", _t(u_level=30),

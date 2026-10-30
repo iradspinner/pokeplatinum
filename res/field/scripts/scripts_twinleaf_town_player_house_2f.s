@@ -894,6 +894,8 @@ TestKit_MoveSets4:
     AddListMenuEntry TestKit_Text_MenuSet89, 7
     AddListMenuEntry TestKit_Text_MenuSet90, 8
     AddListMenuEntry TestKit_Text_MenuSet91, 9
+    AddListMenuEntry TestKit_Text_MenuSet92, 10
+    AddListMenuEntry TestKit_Text_MenuSet93, 11
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet82
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet83
@@ -905,6 +907,8 @@ TestKit_MoveSets4:
     GoToIfEq VAR_0x8004, 7, TestKit_MoveSet89
     GoToIfEq VAR_0x8004, 8, TestKit_MoveSet90
     GoToIfEq VAR_0x8004, 9, TestKit_MoveSet91
+    GoToIfEq VAR_0x8004, 10, TestKit_MoveSet92
+    GoToIfEq VAR_0x8004, 11, TestKit_MoveSet93
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -2145,6 +2149,39 @@ TestKit_MoveSet91:
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_TOXIC
     GoTo TestKit_GivePokemonWithMoves
+
+/* Set 92: King's Shield lets a status move through (Ian, 2026-10-29: "fix
+   king's shield and burning bulwark to let through status moves"). Against
+   a wild Rattata that knows Tackle and Tail Whip, picking one at random: a
+   Tackle brings "MEW protected itself!"; a Tail Whip brings "MEW's Defense
+   fell!" as if Mew had not protected. Used two turns running it can fail,
+   as Protect can, so use Splash between. Before the change it stopped the
+   Tail Whip too. */
+TestKit_MoveSet92:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_TAIL_WHIP
+    SetVar VAR_0x8006, MOVE_KINGS_SHIELD
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 93: Burning Bulwark lets a status move through (Ian, 2026-10-29), as
+   set 92: a Tackle brings "MEW protected itself!" and then "The wild
+   RATTATA was burned!", and a Tail Whip gets through. Before the change it
+   stopped the Tail Whip too. */
+TestKit_MoveSet93:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_TAIL_WHIP
+    SetVar VAR_0x8006, MOVE_BURNING_BULWARK
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
    a menu has been answered), for an entry that needs a held item. */

@@ -192,6 +192,8 @@ jumps to `TestKit_GiveMew`, or sets a species in `VAR_0x800A` and jumps to
 | 89 | Silk Trap, Recover, Splash, Tackle | Silk Trap's Speed drop (Ian, 2026-10-29); starts a battle with a wild Rattata that knows Tackle and Tail Whip and picks one at random. When a Tackle meets the trap, "MEW protected itself!" and then "The wild RATTATA's Speed fell!"; a Tail Whip, a status move, gets through it ("MEW's Defense fell!"). Used two turns running it can fail, as Protect can, so use Splash between. Clear Body, White Smoke, Mist and a Clear Amulet keep the drop, Mirror Armor turns it back on Mew, Defiant answers it, and an attacker behind its own Substitute keeps its stat (this set shows none of those). Before the change it was a plain Protect |
 | 90 | Obstruct, Recover, Splash, Tackle | Obstruct's Defense drop (Ian, 2026-10-29); as set 89, with "The wild RATTATA's Defense harshly fell!" after a Tackle, and a Tail Whip getting through. Before the change it was a plain Protect |
 | 91 | Baneful Bunker, Recover, Splash, Toxic, on a Salazzle with Corrosion | Corrosion on the bunker's poison (2026-10-30); starts a battle with a wild Skarmory that knows only Steel Wing, a contact move. Switch Salazzle in on the first turn; when Steel Wing meets the bunker, "SALAZZLE protected itself!" and then "The wild SKARMORY was poisoned!". Before the change the Steel type was not poisoned |
+| 92 | King's Shield, Recover, Splash, Tackle | King's Shield lets status moves through (Ian, 2026-10-29); starts a battle with a wild Rattata that knows Tackle and Tail Whip and picks one at random. A Tackle brings "MEW protected itself!"; a Tail Whip, a status move, gets through ("MEW's Defense fell!"). Used two turns running it can fail, as Protect can, so use Splash between. Before the change it stopped the Tail Whip too |
+| 93 | Burning Bulwark, Recover, Splash, Tackle | Burning Bulwark lets status moves through (Ian, 2026-10-29); as set 92, with "The wild RATTATA was burned!" after a Tackle meets it, and a Tail Whip getting through. Before the change it stopped the Tail Whip too |
 
 **When a batch of effect scripts lands, add its sets in the same commit**: a
 `TestKit_MoveSetN` block, an `AddListMenuEntry` line in `TestKit_MoveSets2`, and
@@ -201,7 +203,7 @@ second: a field menu holds 28 entries (`FIELD_MENU_ENTRIES_MAX`), and a
 29th is written past the end of the menu's arrays. Sets 28 to 31 were
 added that way on 2026-09-25 and moved to the second page on 2026-09-26.
 The second page ends the same way at set 54, the third (`TestKit_MoveSets3`,
-set 55 on, 2026-09-27) at set 81, and sets 82 to 91 are on the fourth,
+set 55 on, 2026-09-27) at set 81, and sets 82 to 93 are on the fourth,
 `TestKit_MoveSets4` (2026-10-07: the third had grown to 30 entries, and
 opening it corrupted memory). The kit build now refuses any list menu of
 more than 28 entries (`tools/oxide/testkit_merge.py`).
