@@ -12,49 +12,52 @@
         {
             "species": "SPECIES_YANMA",
             "form": 0,
-            "level": 23,
-            "item": null,
+            "level": 21,
+            "item": "ITEM_WIDE_LENS",
             "moves": [
-                "MOVE_QUICK_ATTACK",
+                "MOVE_AIR_CUTTER",
+                "MOVE_SILVER_WIND",
                 "MOVE_SONIC_BOOM",
-                "MOVE_ENDURE",
-                "MOVE_SCREECH"
+                "MOVE_FORESIGHT"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_DUSTOX",
             "form": 0,
-            "level": 23,
-            "item": null,
+            "level": 21,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_CONFUSION",
-                "MOVE_GUST",
-                "MOVE_POISON_STING",
-                "MOVE_PROTECT"
+                "MOVE_TOXIC",
+                "MOVE_MOONLIGHT",
+                "MOVE_PSYBEAM",
+                "MOVE_WHIRLWIND"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_NINJASK",
+            "species": "SPECIES_SWADLOON",
             "form": 0,
-            "level": 24,
-            "item": null,
+            "level": 22,
+            "item": "ITEM_ABSORB_BULB",
             "moves": [
-                "MOVE_LEECH_LIFE",
-                "MOVE_FURY_CUTTER",
-                "MOVE_AERIAL_ACE",
-                "MOVE_SWORDS_DANCE"
+                "MOVE_RAZOR_LEAF",
+                "MOVE_BUG_BITE",
+                "MOVE_GRASS_WHISTLE",
+                "MOVE_IRON_DEFENSE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         }
     ],

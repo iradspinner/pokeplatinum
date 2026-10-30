@@ -12,47 +12,50 @@
         {
             "species": "SPECIES_SABLEYE",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_NONE",
+            "level": 22,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_SHADOW_CLAW",
-                "MOVE_KNOCK_OFF",
                 "MOVE_FAKE_OUT",
-                "MOVE_ASTONISH"
+                "MOVE_NIGHT_SHADE",
+                "MOVE_WILL_O_WISP",
+                "MOVE_RECOVER"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_CAREFUL",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CARBINK",
+            "form": 0,
+            "level": 22,
+            "item": "ITEM_MENTAL_HERB",
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_SMACK_DOWN",
+                "MOVE_DRAINING_KISS",
+                "MOVE_REFLECT"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_MAWILE",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 23,
+            "item": "ITEM_OCCA_BERRY",
             "moves": [
+                "MOVE_IRON_HEAD",
                 "MOVE_BITE",
-                "MOVE_VICE_GRIP",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_FAKE_TEARS"
+                "MOVE_FAKE_TEARS",
+                "MOVE_SWORDS_DANCE"
             ],
             "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_BRONZOR",
-            "form": 0,
-            "level": 25,
-            "item": "ITEM_ORAN_BERRY",
-            "moves": [
-                "MOVE_CONFUSION",
-                "MOVE_ROCK_TOMB",
-                "MOVE_EXTRASENSORY",
-                "MOVE_CONFUSE_RAY"
-            ],
-            "iv_scale": 200,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
             "ability": 1,
             "gender": null

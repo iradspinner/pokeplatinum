@@ -12,51 +12,53 @@
         {
             "species": "SPECIES_MAKUHITA",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 21,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_FAKE_OUT",
+                "MOVE_BELLY_DRUM",
                 "MOVE_ARM_THRUST",
-                "MOVE_VITAL_THROW",
-                "MOVE_KNOCK_OFF"
+                "MOVE_BULLET_PUNCH"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_CAREFUL",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_RIOLU",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 21,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
-                "MOVE_QUICK_ATTACK",
                 "MOVE_FORCE_PALM",
-                "MOVE_COUNTER",
-                "MOVE_ENDURE"
+                "MOVE_QUICK_ATTACK",
+                "MOVE_BITE",
+                "MOVE_COUNTER"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_MEDITITE",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_BLACK_BELT",
+            "level": 21,
+            "item": "ITEM_PUNCHING_GLOVE",
             "moves": [
                 "MOVE_BULLET_PUNCH",
+                "MOVE_KARATE_CHOP",
                 "MOVE_PSYCHO_CUT",
-                "MOVE_BRICK_BREAK",
-                "MOVE_FORESIGHT"
+                "MOVE_BULK_UP"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_GENTLE",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         }
     ],
     "messages": [
