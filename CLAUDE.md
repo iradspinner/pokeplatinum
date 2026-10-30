@@ -195,8 +195,7 @@ byte-exact vanilla Rev 1 build (built once from `main`) is pinned at
 of the merged tree, the gate on that ROM, and a push only on a pass. The gate
 runs only the checks the landing can reach (`tools/oxide/gate_scope.py` works
 them out from the code; a change to the game's data, the engine or the gate
-runs them all), and `--full` runs every check, as before step 15's reading and
-the alpha ROM (Ian, 2026-10-13). `tools/oxide/sync-docs.sh` mirrors
+runs them all), and `--full` runs every check, as before the alpha ROM (Ian, 2026-10-13). `tools/oxide/sync-docs.sh` mirrors
 `docs/oxide/` to the project folder, and a file it has no mapping for goes to
 `notes/` with a warning. The full restart check-list, with what a clean gate
 looks like, is `docs/oxide/restart-checks.md`.

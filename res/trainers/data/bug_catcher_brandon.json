@@ -10,84 +10,70 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_COMBEE",
+            "species": "SPECIES_GRUBBIN",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_NONE",
+            "level": 16,
+            "item": "ITEM_FOCUS_BAND",
             "moves": [
-                "MOVE_GUST",
+                "MOVE_STICKY_WEB",
                 "MOVE_BUG_BITE",
-                "MOVE_AIR_CUTTER"
+                "MOVE_MUD_SLAP",
+                "MOVE_BITE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_NINCADA",
+            "species": "SPECIES_SEWADDLE",
             "form": 0,
             "level": 16,
-            "item": "ITEM_NONE",
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_FURY_SWIPES",
-                "MOVE_LEECH_LIFE",
-                "MOVE_HARDEN",
-                "MOVE_MUD_SLAP"
+                "MOVE_RAZOR_LEAF",
+                "MOVE_POUNCE",
+                "MOVE_IRON_DEFENSE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_CAREFUL",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_KRICKETUNE",
             "form": 0,
             "level": 16,
-            "item": "ITEM_NONE",
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
-                "MOVE_FURY_CUTTER",
-                "MOVE_LEECH_LIFE",
-                "MOVE_GROWL",
-                "MOVE_AERIAL_ACE"
+                "MOVE_BUG_BITE",
+                "MOVE_KARATE_CHOP",
+                "MOVE_SCREECH"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_DUSTOX",
-            "form": 0,
-            "level": 17,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_CONFUSION",
-                "MOVE_GUST",
-                "MOVE_POISON_STING",
-                "MOVE_PROTECT"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         },
         {
             "species": "SPECIES_BEAUTIFLY",
             "form": 0,
-            "level": 18,
-            "item": "ITEM_SILVERPOWDER",
+            "level": 17,
+            "item": "ITEM_CHARTI_BERRY",
             "moves": [
-                "MOVE_SILVER_WIND",
-                "MOVE_GIGA_DRAIN",
+                "MOVE_GUST",
+                "MOVE_MEGA_DRAIN",
                 "MOVE_STUN_SPORE",
-                "MOVE_GUST"
+                "MOVE_SILVER_WIND"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
         }
     ],
     "messages": [

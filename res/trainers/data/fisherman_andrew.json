@@ -8,97 +8,89 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGIKARP",
-            "form": 0,
-            "level": 20,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_TACKLE"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_GOLDEEN",
             "form": 0,
-            "level": 22,
-            "item": "ITEM_NONE",
+            "level": 19,
+            "item": "ITEM_MYSTIC_WATER",
             "moves": [
+                "MOVE_AQUA_JET",
                 "MOVE_HORN_ATTACK",
-                "MOVE_WATER_PULSE",
-                "MOVE_HAZE",
-                "MOVE_PECK"
+                "MOVE_SCALD",
+                "MOVE_KNOCK_OFF"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_REMORAID",
             "form": 0,
-            "level": 22,
-            "item": "ITEM_NONE",
+            "level": 19,
+            "item": "ITEM_WIDE_LENS",
             "moves": [
-                "MOVE_WATER_GUN",
-                "MOVE_PSYBEAM",
+                "MOVE_BUBBLE_BEAM",
                 "MOVE_AURORA_BEAM",
-                "MOVE_BUBBLE_BEAM"
+                "MOVE_PSYBEAM",
+                "MOVE_ROCK_BLAST"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_FEEBAS",
+            "species": "SPECIES_FRILLISH",
             "form": 0,
-            "level": 22,
-            "item": "ITEM_NONE",
+            "level": 19,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
-                "MOVE_TACKLE",
                 "MOVE_WATER_PULSE",
-                "MOVE_MIRROR_COAT",
-                "MOVE_DRAGON_BREATH"
+                "MOVE_NIGHT_SHADE",
+                "MOVE_WILL_O_WISP",
+                "MOVE_OMINOUS_WIND"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAREANIE",
+            "form": 0,
+            "level": 19,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_TOXIC",
+                "MOVE_BITE",
+                "MOVE_VENOSHOCK",
+                "MOVE_IRON_DEFENSE"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_QWILFISH",
             "form": 0,
-            "level": 23,
-            "item": "ITEM_NONE",
+            "level": 20,
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
+                "MOVE_SPIKES",
+                "MOVE_BARB_BARRAGE",
                 "MOVE_BUBBLE_BEAM",
-                "MOVE_POISON_STING",
-                "MOVE_ROLLOUT",
-                "MOVE_HARDEN"
+                "MOVE_TAUNT"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
-        },
-        {
-            "species": "SPECIES_GYARADOS",
-            "form": 0,
-            "level": 24,
-            "item": "ITEM_ORAN_BERRY",
-            "moves": [
-                "MOVE_BITE",
-                "MOVE_WATER_PULSE",
-                "MOVE_DRAGON_RAGE",
-                "MOVE_ICY_WIND"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
         }
     ],
     "messages": [
