@@ -725,6 +725,7 @@ table.facts td { padding: 1px 0; }
 #savebar input { flex: 1 1 360px; min-width: 0; font-family: var(--mono); font-size: 14px; }
 #save-state { color: var(--dim); }
 #save-state.bad { color: var(--error); }
+#save-state.over:not(.bad), .overcap { color: var(--warn); }
 /* The Box sim as Ian approved it (2026-09-29, the redesign's Box sim board,
    with his note): the settings in a rail, then the run: the box's numbers in
    one slim strip, the next zone to catch in and the zones saved for later
@@ -1261,6 +1262,12 @@ async function api(path, opts) {
 // The Sync bridge (savewatch.py): the OxiDex watches the save file named here
 // and the calculator's Sync, and its own polling, read the party and boxes
 // from it. The file is only ever read; the path is kept outside the repository.
+// The party members above the level cap in force, in one sentence: the caps
+// are soft (2026-10-29) and the game shows nothing, so the save bar and the
+// Alpha tab's bar say it. At the cap is fine; only above it is named.
+const overCapText = over => !(over || []).length ? ""
+  : `Over the cap of ${over[0].cap}: ${over.map(m => `${m.name} (Lv ${m.level})`).join(", ")}.`;
+
 function drawSaveBar(s) {
   const input = $("#save-path"), state = $("#save-state");
   if (document.activeElement !== input) input.value = s.path || "";
@@ -1274,9 +1281,12 @@ function drawSaveBar(s) {
       + `(cap ${split.cap}); ` : "";
     text = `${where}${s.save.party_count} in the party, ${s.save.boxed} in the boxes; saved ${when}, `
       + `watched by ${s.mode}.` + (off ? ` ${off} sign${off > 1 ? "s" : ""} it is not this build's.` : "");
+    const over = overCapText(s.save.over_cap);
+    if (over) text += " " + over;
   } else if (s.path) text = "Waiting for the file.";
   state.textContent = text;
   state.classList.toggle("bad", !!(s.path && s.error) || !!(s.save && s.save.era.mismatches.length));
+  state.classList.toggle("over", !!(s.save && (s.save.over_cap || []).length));
   state.title = s.save ? s.save.party.concat(s.save.era.signs, s.save.era.mismatches).join("\n") : "";
 }
 
@@ -2224,9 +2234,10 @@ function drawAlphaBar() {
     : sv ? `From your save${sv.rom ? ` (ROM ${sv.rom})` : ""}: ${plural(sv.badges || 0, "badge")}${
         sv.split ? `, ${sv.split}'s split` : ""}.`
     : "No save is watched, so nothing ticks itself; set one in the Calc tab's save bar.";
+  const over = sv ? overCapText(sv.over_cap) : "";
   const run = `${plural(n, "note")} this run${fb.started ? `, started ${fb.started}` : ""}${
     fb.from === "export" ? " (read back from the export)" : ""}.`;
-  bar.innerHTML = `<span>${esc(save)} ${esc(run)}</span>
+  bar.innerHTML = `<span>${esc(save)}${over ? ` <b class="overcap">${esc(over)}</b>` : ""} ${esc(run)}</span>
     <button id="alpha-export" title="Write the notes to docs/oxide/encounters/alpha-notes.json and .md, which Commit my edits commits">Export notes</button>
     <button id="alpha-newrun" title="Set this run's notes aside and start empty">New run</button>`;
 }
