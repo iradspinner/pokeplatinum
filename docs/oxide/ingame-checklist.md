@@ -309,6 +309,25 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   followed by "The wild SKARMORY was poisoned!" and the poison icon. Before
   the change the Steel type was not poisoned. Toxic poisons Skarmory too, as
   the Corrosion entry of the Abilities menu already shows.
+- [ ] **King's Shield lets status moves through** (set 92 on the move-set
+  menu's fourth page, `overseer-protect-ai`; Ian, 2026-10-29). Against the
+  wild Rattata, which knows Tackle and Tail Whip, switch Mew in on the first
+  turn, then alternate King's Shield and Splash. A Tackle into the shield
+  brings "MEW protected itself!"; a Tail Whip brings "MEW's Defense fell!"
+  as if Mew had not protected. Before the change both were stopped.
+- [ ] **Burning Bulwark lets status moves through** (set 93, as set 92). A
+  Tackle brings "MEW protected itself!" and then "The wild RATTATA was
+  burned!"; a Tail Whip gets through ("MEW's Defense fell!"). Before the
+  change the Tail Whip was stopped too.
+- [ ] **A Corrosion holder uses Toxic on a Steel type** (normal play,
+  `overseer-protect-ai`; Ian, 2026-10-29). The trainer AI no longer refuses
+  a Corrosion holder's Toxic, Poison Powder and the like, a flung Toxic Orb
+  or Poison Barb, or Psycho Shift's poison into a Poison or Steel type. The
+  kit cannot show it, since a wild Pokemon picks its moves at random, and on
+  2026-10-30 no trainer's Corrosion holder knows such a move. When a
+  trainer's Salandit or Salazzle with Toxic meets a Steel or Poison type of
+  yours, it should use Toxic on it, and the poison icon follows. Before the
+  change it never chose Toxic there.
 - [ ] **Judgment with the Pixie Plate** (the "Pixie Plate" entry on the
   "Element 7 items" menu, `overseer-signature-moves-2`; Ian, 2026-10-20).
   The first Arceus holds the plate and is pink. Its Judgment on the wild

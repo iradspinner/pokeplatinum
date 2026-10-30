@@ -7837,6 +7837,11 @@ KEEPS_PROTECT_RUN = frozenset({"MOVE_WIDE_GUARD", "MOVE_QUICK_GUARD"})
 # attacker's stat (subscript_missed): the stat and the stages.
 GUARD_DROPS = {"Obstruct": ("def", -2), "Silk Trap": ("spe", -1)}
 
+# The protecting moves that stop only damaging moves, so a status move gets
+# through them (BattleControllerPlayer_CheckMoveHitOverrides, hg-engine's
+# CheckProtectedBySelf).
+STATUS_PASSES = frozenset({"King's Shield", "Obstruct", "Silk Trap", "Burning Bulwark"})
+
 
 def protected(b, att, mv, dfn):
     """Whether dfn's Protect stops att's move, as
@@ -7859,11 +7864,13 @@ def protected(b, att, mv, dfn):
     (lower_stats: the blockers, Mirror Armor and Defiant answer it), unless
     the stat is at -6 already or the user is behind its own Substitute
     (subscript_missed); until then both ran as a plain Protect (Ian approved
-    the fix, 2026-10-29). King's Shield still only protects, stopping status
-    moves too, as the engine has it. Until 2026-10-14 Protect stopped every
-    move but Feint (Ian approved the fix)."""
+    the fix, 2026-10-29). King's Shield and Burning Bulwark let status moves
+    through as well since 2026-10-30 (STATUS_PASSES; Ian approved the fix,
+    2026-10-29), and King's Shield still does nothing more than protect.
+    Until 2026-10-14 Protect stopped every move but Feint (Ian approved the
+    fix)."""
     guard = dfn.last.name if dfn.last is not None else None
-    if not dfn.protecting or not mv.protect or (guard in GUARD_DROPS and mv.cat == "Status"):
+    if not dfn.protecting or not mv.protect or (guard in STATUS_PASSES and mv.cat == "Status"):
         return b.guarded and mv.protect and guard_stops(b, att, mv, dfn)
     rollout_after(att, mv, False)
     if makes_contact(att, mv) and att.alive():

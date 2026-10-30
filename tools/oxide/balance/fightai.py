@@ -648,7 +648,10 @@ def _basic_effect(b, u, t, mv):
     if e == "LUNAR_BLESSING":
         return 0 if u.status else (-8 if hu == 100 else 0)
     if e in ("STATUS_POISON", "STATUS_BADLY_POISON"):              # Basic_CheckCannotPoison
-        if {"Steel", "Poison"} & set(t.types):
+        # Its type check gives way to the user's own Corrosion, as read by
+        # LoadBattlerAbility (none under Gastro Acid or Neutralizing Gas):
+        # Ian's change of play, 2026-10-29.
+        if {"Steel", "Poison"} & set(t.types) and ability_of(b, u, u) != "Corrosion":
             return -10
         ab = ability_of(b, u, t)
         if ab in ("Immunity", "Magic Guard", "Poison Heal") or (ab == "Leaf Guard" and b.weather == "Sun"):
@@ -937,7 +940,11 @@ def _basic_fling(b, u, t, mv):
     foe_guard = (b.p if t.side == "p" else b.b).safeguard
     own_guard = (b.p if u.side == "p" else b.b).safeguard
     if hold in ("HOLD_EFFECT_PSN_USER", "HOLD_EFFECT_STRENGTHEN_POISON"):
-        if not (foe_guard or t.status or u.ability == "Poison Heal" or {"Poison", "Steel"} & set(t.types)
+        # The target's types give way to the user's Corrosion (Ian's change
+        # of play, 2026-10-29). Its own Poison and Steel types below do not,
+        # since its own orb poisons it as an item, not through a move.
+        if not (foe_guard or t.status or u.ability == "Poison Heal"
+                or ({"Poison", "Steel"} & set(t.types) and ability_of(b, u, u) != "Corrosion")
                 or ability_of(b, u, t) in ("Immunity", "Poison Heal", "Magic Guard")):
             return 0
         if own_guard or u.status or {"Poison", "Steel"} & set(u.types) or \
@@ -962,7 +969,9 @@ def _basic_psycho_shift(b, u, t):
     if not u.status or t.status or (b.p if t.side == "p" else b.b).safeguard:
         return -10
     if u.status in ("psn", "tox"):
-        if u.ability == "Poison Heal" or {"Poison", "Steel"} & set(t.types):
+        # The target's types give way to the user's Corrosion (Ian's change
+        # of play, 2026-10-29).
+        if u.ability == "Poison Heal" or ({"Poison", "Steel"} & set(t.types) and ability_of(b, u, u) != "Corrosion"):
             return -10
         return -10 if ability_of(b, u, t) in ("Immunity", "Poison Heal", "Magic Guard") else 0
     if u.status == "brn":

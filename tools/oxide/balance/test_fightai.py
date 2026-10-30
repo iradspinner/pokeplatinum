@@ -884,6 +884,28 @@ BASIC_ROWS = [
     ("CheckCanRecoverHP: Recover at full HP", "Gengar", "Zigzagoon", "Recover", None, -8, -8),
     ("CheckCannotPoison: Toxic into Clefable (Magic Guard)", "Gengar", "Clefable", "Toxic", None, -10, -10),
     ("CheckCannotPoison: Toxic into Snorlax (Immunity or Thick Fat)", "Gengar", "Snorlax", "Toxic", None, -10, 0),
+    # Corrosion (Ian, 2026-10-29: "Fix the Corrosion AI scoring"): its
+    # holder's poison reaches Poison and Steel types, so the type checks of
+    # Basic_CheckCannotPoison, Basic_FlingPoison and Basic_PsychoShift_Poison
+    # give way to it; the target's abilities still count, and Gastro Acid
+    # takes it away.
+    ("CheckCannotPoison: Toxic into Bronzong (Steel)", "Gengar", "Bronzong", "Toxic", None, -10, -10),
+    ("CheckCannotPoison: Toxic into Muk (Poison)", "Gengar", "Muk", "Toxic", None, -10, -10),
+    ("CheckCannotPoison: a Corrosion holder's Toxic into Bronzong", "Gengar", "Bronzong", "Toxic",
+     _t(u_ability="Corrosion"), 0, 0),
+    ("CheckCannotPoison: a Corrosion holder's Toxic into Muk", "Gengar", "Muk", "Toxic",
+     _t(u_ability="Corrosion"), 0, 0),
+    ("CheckCannotPoison: a Corrosion holder's Toxic into Clefable (Magic Guard)", "Gengar", "Clefable", "Toxic",
+     _t(u_ability="Corrosion"), -10, -10),
+    ("CheckCannotPoison: a Corrosion holder under Gastro Acid, Toxic into Bronzong", "Gengar", "Bronzong", "Toxic",
+     _t(u_ability="Corrosion", u_suppressed=True), -10, -10),
+    ("CheckFling: a Toxic Orb into Bronzong (Steel)", "Gengar", "Bronzong", "Fling", _t(u_item="Toxic Orb"), -5, -5),
+    ("CheckFling: a Corrosion holder's Toxic Orb into Bronzong", "Gengar", "Bronzong", "Fling",
+     _t(u_item="Toxic Orb", u_ability="Corrosion"), 0, 0),
+    ("CheckCanPsychoShift: poison into Bronzong (Steel)", "Gengar", "Bronzong", "Psycho Shift",
+     _t(u_status="psn"), -10, -10),
+    ("CheckCanPsychoShift: a Corrosion holder's poison into Bronzong", "Gengar", "Bronzong", "Psycho Shift",
+     _t(u_status="psn", u_ability="Corrosion"), 0, 0),
     ("CheckAlreadyUnderLightScreen", "Gengar", "Zigzagoon", "Light Screen",
      lambda b, u, t: b.b.screens.update({"Light Screen": 5}), -8, -8),
     ("CheckOHKOWouldFail: Sheer Cold into a higher level", "Gengar", "Zigzagoon", "Sheer Cold", _t(u_level=30),

@@ -3360,11 +3360,15 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
 
     int sideGuard = BattleControllerPlayer_SideGuardAgainst(battleSys, battleCtx, attacker, defender, move); // Oxide
 
-    // Oxide: Obstruct and Silk Trap stop only damaging moves, so a status
-    // move gets through them, as in the later games (hg-engine's
-    // CheckProtectedBySelf). Every other Protect-type move stops both.
+    // Oxide: King's Shield, Obstruct, Silk Trap and Burning Bulwark stop
+    // only damaging moves, so a status move gets through them, as in the
+    // later games (hg-engine's CheckProtectedBySelf). Protect, Detect,
+    // Spiky Shield and Baneful Bunker stop both.
     BOOL selfProtected = battleCtx->turnFlags[defender].protecting
-        && ((battleCtx->moveProtect[defender] != MOVE_OBSTRUCT && battleCtx->moveProtect[defender] != MOVE_SILK_TRAP)
+        && ((battleCtx->moveProtect[defender] != MOVE_KINGS_SHIELD
+                && battleCtx->moveProtect[defender] != MOVE_OBSTRUCT
+                && battleCtx->moveProtect[defender] != MOVE_SILK_TRAP
+                && battleCtx->moveProtect[defender] != MOVE_BURNING_BULWARK)
             || MOVE_DATA(move).class != CLASS_STATUS);
 
     if ((selfProtected || sideGuard != MOVE_NONE)

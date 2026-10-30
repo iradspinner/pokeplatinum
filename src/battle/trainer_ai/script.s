@@ -813,6 +813,10 @@ Basic_CheckUpperHand_Terminate:
 
 Basic_CheckCannotPoison:
     // If the target is immune to the usual effects of Poison for any reason, score -10.
+    // Oxide, change (Ian, 2026-10-29): a Corrosion holder's poison reaches
+    // Poison and Steel types (subscript_poison), so its type check gives way.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_CORROSION, Basic_CheckCannotPoison_Ability
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
     IfLoadedEqualTo TYPE_STEEL, ScoreMinus10
     IfLoadedEqualTo TYPE_POISON, ScoreMinus10
@@ -820,6 +824,7 @@ Basic_CheckCannotPoison:
     IfLoadedEqualTo TYPE_STEEL, ScoreMinus10
     IfLoadedEqualTo TYPE_POISON, ScoreMinus10
 
+Basic_CheckCannotPoison_Ability:
     // Check for immunity by ability
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_IMMUNITY, ScoreMinus10
@@ -1633,12 +1638,17 @@ Basic_FlingPoison:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, Basic_FlingPoison_AttackerChecks
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_POISON_HEAL, Basic_FlingPoison_AttackerChecks
+    // Oxide, change (Ian, 2026-10-29): a flung Toxic Orb or Poison Barb is
+    // the Corrosion holder's own poison, so the target's types give way.
+    IfLoadedEqualTo ABILITY_CORROSION, Basic_FlingPoison_DefenderAbility
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
     IfLoadedEqualTo TYPE_POISON, Basic_FlingPoison_AttackerChecks
     IfLoadedEqualTo TYPE_STEEL, Basic_FlingPoison_AttackerChecks
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_POISON, Basic_FlingPoison_AttackerChecks
     IfLoadedEqualTo TYPE_STEEL, Basic_FlingPoison_AttackerChecks
+
+Basic_FlingPoison_DefenderAbility:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_IMMUNITY, Basic_FlingPoison_AttackerChecks
     IfLoadedEqualTo ABILITY_POISON_HEAL, Basic_FlingPoison_AttackerChecks
@@ -1732,12 +1742,17 @@ Basic_PsychoShift_Poison:
     IfLoadedEqualTo ABILITY_POISON_HEAL, ScoreMinus10
 
     // If the target is immune to the effects of poison for any reason, score -10.
+    // Oxide, change (Ian, 2026-10-29): the poison Psycho Shift passes on is
+    // its user's doing, so a Corrosion holder's skips the type check.
+    IfLoadedEqualTo ABILITY_CORROSION, Basic_PsychoShift_PoisonAbility
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
     IfLoadedEqualTo TYPE_POISON, ScoreMinus10
     IfLoadedEqualTo TYPE_STEEL, ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_POISON, ScoreMinus10
     IfLoadedEqualTo TYPE_STEEL, ScoreMinus10
+
+Basic_PsychoShift_PoisonAbility:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_IMMUNITY, ScoreMinus10
     IfLoadedEqualTo ABILITY_POISON_HEAL, ScoreMinus10

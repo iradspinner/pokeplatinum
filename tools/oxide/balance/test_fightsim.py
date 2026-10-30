@@ -4030,8 +4030,8 @@ def check_burning_bulwark(results):
     a contact move it stops burns its user, unless the user is a Fire type,
     is behind its own Substitute or under Safeguard, already has a status,
     or has Water Veil, Water Bubble, Purifying Salt, or Leaf Guard in sun; a
-    move without contact is only stopped, and a status move is stopped
-    too."""
+    move without contact is only stopped, and a status move gets through
+    it (since 2026-10-30, check_status_through_guards)."""
     def into(move="Tackle", types=("Normal",), ability=None, status=None, sub=0, safeguard=False, weather=None):
         b, p, foe = battle([move], ["Burning Bulwark"], {("p", move): [10] * 16}, p_types=types)
         b.weather = weather
@@ -4045,7 +4045,7 @@ def check_burning_bulwark(results):
            "Water Bubble": into(ability="Water Bubble"), "Purifying Salt": into(ability="Purifying Salt"),
            "Leaf Guard in sun": into(ability="Leaf Guard", weather="Sun"), "Leaf Guard": into(ability="Leaf Guard"),
            "its own Substitute": into(sub=25), "Safeguard": into(safeguard=True), "paralysed": into(status="par")}
-    want = {"Tackle": (True, "brn"), "Water Gun": (True, None), "Growl": (True, None), "a Fire type": (True, None),
+    want = {"Tackle": (True, "brn"), "Water Gun": (True, None), "Growl": (False, None), "a Fire type": (True, None),
             "Water Veil": (True, None), "Water Bubble": (True, None), "Purifying Salt": (True, None),
             "Leaf Guard in sun": (True, None), "Leaf Guard": (True, "brn"), "its own Substitute": (True, None),
             "Safeguard": (True, None), "paralysed": (True, "par")}
@@ -4092,6 +4092,40 @@ def check_silk_trap_obstruct(results):
             "a Substitute into Silk Trap": (0, 0, 0, 0, 0, 0)}
     results.append(("Silk Trap and Obstruct stop damaging moves only and lower a contact attacker's stat",
                     got == want, f"(damage, the user's Speed, Defense and Attack, the target's Defense and Attack) "
+                    f"{ {k: v for k, v in got.items() if v != want[k]} or 'as wanted'}"))
+
+
+def check_status_through_guards(results):
+    """King's Shield and Burning Bulwark let status moves through (Oxide's
+    engine since 2026-10-30, BattleControllerPlayer_CheckMoveHitOverrides;
+    Ian, 2026-10-29: "fix king's shield and burning bulwark to let through
+    status moves"), as Obstruct and Silk Trap do and as hg-engine's
+    CheckProtectedBySelf has it; Protect, Detect, Spiky Shield and Baneful
+    Bunker still stop them. Every one of them stops a damaging move. A
+    Growl that gets through lowers the protecting battler's Attack."""
+    def into(guard, move):
+        b, p, foe = battle([move], [guard], {("p", move): [10] * 16})
+        b.st["first_battle"] = True
+        foe.protecting, foe.last = True, fs.move(guard)
+        mv = fs.move(move)
+        stopped = fs.protected(b, p, mv, foe)
+        b, p, foe = battle([move], [guard], {("p", move): [10] * 16})
+        b.st["first_battle"] = True
+        foe.protecting, foe.last = True, fs.move(guard)
+        if mv.cat == "Status":
+            fs.status_move(b, p, mv, foe, True)
+        else:
+            fs.attack(b, p, mv, foe, True)
+        return stopped, 100 - foe.hp, foe.stages["atk"]
+    guards = ("King's Shield", "Burning Bulwark", "Obstruct", "Silk Trap",
+              "Protect", "Detect", "Spiky Shield", "Baneful Bunker")
+    passes = ("King's Shield", "Burning Bulwark", "Obstruct", "Silk Trap")
+    got = {(g, m): into(g, m) for g in guards for m in ("Growl", "Tackle")}
+    want = {(g, m): ((False, 0, -1) if g in passes and m == "Growl" else (True, 0, 0))
+            for g in guards for m in ("Growl", "Tackle")}
+    results.append(("King's Shield, Burning Bulwark, Obstruct and Silk Trap let status moves through; "
+                    "Protect, Detect, Spiky Shield and Baneful Bunker do not", got == want,
+                    f"(stopped, damage, the target's Attack) "
                     f"{ {k: v for k, v in got.items() if v != want[k]} or 'as wanted'}"))
 
 
@@ -9410,7 +9444,8 @@ def main():
                   check_sticky_barb, check_payback, check_leech_seed_sap,
                   check_ghost_untrapped, check_soundproof_status, check_item_flinch_blocked,
                   check_black_sludge, check_water_bubble, check_eerie_spell,
-                  check_burning_bulwark, check_silk_trap_obstruct, check_corrosion_bunker,
+                  check_burning_bulwark, check_silk_trap_obstruct, check_status_through_guards,
+                  check_corrosion_bunker,
                   check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
                   check_trainer_frustration, check_secret_power, check_snore,
                   check_raise_speed_hit, check_trump_card,
