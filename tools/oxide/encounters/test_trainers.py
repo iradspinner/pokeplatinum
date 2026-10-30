@@ -529,7 +529,10 @@ def check_pairs(results, root):
                     f"{len(rows)} rows for {len(entries)} pairs"
                     + (f"; no file for {', '.join(unmatched[:4])}" if unmatched else "")))
     find = lambda *names: next((r for r in rows if all(n in r["label"] for n in names)), None)
-    tyche, somnu, maya = find("Tyche", "Hermes"), find("Somnu", "Moira"), find("Maya", "Dennis")
+    # Officers Tyche and Hermes are met twice since Ian named the Veilstone
+    # pair after them (2026-10-29), so the Spear Pillar row is found by its file.
+    tyche = next((r for r in rows if "galactic_grunt_spear_pillar_1" in r["stems"]), None)
+    somnu, maya = find("Somnu", "Moira"), find("Maya", "Dennis")
     results.append(("Ian's three pairs are one row each: Tyche and Hermes (scripted), Somnu and "
                     "Moira (eye contact, Candice's split), Maya and Dennis (Maylene's split)",
                     tyche and tyche["how"] == "scripted" and somnu and somnu["how"] == "eye contact"

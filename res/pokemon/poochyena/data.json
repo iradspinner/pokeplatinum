@@ -91,7 +91,8 @@
             "MOVE_ICE_FANG",
             "MOVE_FIRE_FANG",
             "MOVE_THUNDER_FANG",
-            "MOVE_ME_FIRST"
+            "MOVE_ME_FIRST",
+            "MOVE_OBSTRUCT"
         ]
     },
     "evolutions": [

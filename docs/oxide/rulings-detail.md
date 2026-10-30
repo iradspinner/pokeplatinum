@@ -123,7 +123,11 @@ Care is never used in a nuzlocke and is not considered. The OxiDex flags
 over-cap party members from the live save; the game shows nothing. Mini-bosses
 get honour caps of their own, at least Barry 2, Mars 1, Jupiter 1, Lucas and
 Dawn 2 and Cyrus 1 (Byron's split), with more Galactic bosses later, and a
-mini-boss's ace sits at its own cap, as a leader's does. Ordinary trainers'
+mini-boss's ace sits at its own cap, as a leader's does. The caps Ian has
+set: Mars 1 20, Jupiter 1 29, Lucas and Dawn 2 31, Barry 3 36, and Tyche
+and Hermes at Veilstone 41. A mini-boss's team takes Mars 1's shape: the
+ace at the cap, one member right below it, the rest two or three below
+(Ian, 2026-10-29). Ordinary trainers'
 levels climb in play order through a split, never reaching the cap in force
 and very rarely one under it, with harder movesets at lower levels than before:
 more interesting building choices over raw stat checks. The climb is applied

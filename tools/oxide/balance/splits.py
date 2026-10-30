@@ -326,11 +326,34 @@ def _shared_mentions():
     return out
 
 
+# Trainers whose fight comes later than any map that battles them says, by
+# constant. The Veilstone tag battle beside Lucas or Dawn starts only after
+# Maylene's badge, so it is played in Wake's split; its two grunts are
+# Officers Tyche and Hermes, with an honour cap of 41 (Ian, 2026-10-29).
+# The partner is picked through a variable by the player's gender and
+# starter, so no map places its six files without this.
+TRAINER_SPLITS = {
+    **{c: "Wake" for c in ("TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1",
+                           "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2")},
+    **{f"TRAINER_{who}_VEILSTONE_CITY_{starter}": "Wake"
+       for who in ("LUCAS", "DAWN") for starter in ("TURTWIG", "CHIMCHAR", "PIPLUP")},
+}
+
+
+@functools.lru_cache(maxsize=None)
+def _split_overrides():
+    """TRAINER_SPLITS by trainer id."""
+    return {_trainer_ids()[c]: s for c, s in TRAINER_SPLITS.items() if c in _trainer_ids()}
+
+
 def trainer_split(tr_id):
-    """The earliest split among the maps that battle a trainer, or, for a
-    trainer no map battles directly, among the maps whose scripts name it.
-    The fallback is only a fallback because a town's script often checks
-    whether some gym leader is beaten, which must not move the leader."""
+    """The split TRAINER_SPLITS gives the trainer, else the earliest split
+    among the maps that battle it, or, for a trainer no map battles
+    directly, among the maps whose scripts name it. The fallback is only a
+    fallback because a town's script often checks whether some gym leader
+    is beaten, which must not move the leader."""
+    if tr_id in _split_overrides():
+        return _split_overrides()[tr_id]
     for maps in (trainer_maps().get(tr_id, ()), trainer_mentions().get(tr_id, ())):
         placed = [map_split(h)[0] for h in maps]
         placed = [s for s in placed if s]

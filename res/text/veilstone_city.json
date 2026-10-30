@@ -115,7 +115,7 @@
     {
       "id": "VeilstoneCity_Text_ThisIsGalacticsWarehouse",
       "en_US": [
-        "Grunt 1: Hey, you!\n",
+        "Tyche: Hey, you!\n",
         "Yeah, you!\r",
         "This is Team Galactic’s warehouse!\n",
         "It ain’t no playground for kids!\r"
@@ -124,7 +124,7 @@
     {
       "id": "VeilstoneCity_Text_ThisIsGalacticsWarehouse2",
       "en_US": [
-        "Grunt 1: Hey, you!\n",
+        "Tyche: Hey, you!\n",
         "Yeah, you!\r",
         "This is Team Galactic’s warehouse!\n",
         "It ain’t no playground for kids!"
@@ -133,7 +133,7 @@
     {
       "id": "VeilstoneCity_Text_ThisIsTheAwesomeWarehouse",
       "en_US": [
-        "Grunt 2: This is the awesome Team\n",
+        "Hermes: This is the awesome Team\n",
         "Galactic’s awesome warehouse!\r",
         "A little kid like you should be playing\n",
         "at the Pokémon Gym.\r",
@@ -144,7 +144,7 @@
     {
       "id": "VeilstoneCity_Text_YouveBroughtYourBuddy",
       "en_US": [
-        "Grunt 1: What? Now you’ve brought\n",
+        "Tyche: What? Now you’ve brought\n",
         "your buddy along so you can get your\f",
         "Pokédex back?\r",
         "We’ll be just as happy to send both\n",
@@ -154,7 +154,7 @@
     {
       "id": "VeilstoneCity_Text_WellTakeYouOn",
       "en_US": [
-        "Grunt 2: You’re trying to get the\n",
+        "Hermes: You’re trying to get the\n",
         "Pokédex back from us?\r",
         "Not when we, Team Galactic, can make\n",
         "so much better use of it!\r",
@@ -166,7 +166,7 @@
     {
       "id": "VeilstoneCity_Text_AwwThatStinks",
       "en_US": [
-        "Grunt 1: Aww, that stinks!\n",
+        "Tyche: Aww, that stinks!\n",
         "Our Pokémon are chumps!\r",
         "We should get new ones from\n",
         "headquarters.\r",
@@ -187,11 +187,11 @@
     {
       "id": "VeilstoneCity_Text_WeWillRunLikeGrunts",
       "en_US": [
-        "Grunt 2: Those things we had in\n",
+        "Hermes: Those things we had in\n",
         "the warehouse’ve already been moved\f",
         "to Pastoria City anyway...\r",
         "So, we’ll say “You’ll get yours!”\n",
-        "And run like the grunts we are.\r"
+        "And make ourselves scarce.\r"
       ]
     },
     {

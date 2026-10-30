@@ -1471,6 +1471,12 @@ for _i in (56, 61, 67, 85, 87, 98, 109, 133, 143, 144, 162, 165, 178, 257, 276, 
     _why = "a gift the reward table changed (2026-10-07), and its lines name the new item"
     TEXT_BANKS_SKIPPED[_i] = (TEXT_BANKS_SKIPPED[_i] + "; then " + _why
                               if _i in TEXT_BANKS_SKIPPED else _why)
+# The Veilstone warehouse grunts are Officers Tyche and Hermes (Ian,
+# 2026-10-29), so the scene's speaker labels name them, and Hermes no longer
+# runs "like the grunts we are".
+_why = "the warehouse grunts' lines name Officers Tyche and Hermes (Ian, 2026-10-29)"
+TEXT_BANKS_SKIPPED[143] = (TEXT_BANKS_SKIPPED[143] + "; then " + _why
+                           if 143 in TEXT_BANKS_SKIPPED else _why)
 
 
 def text_bank_names():

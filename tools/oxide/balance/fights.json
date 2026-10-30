@@ -8,14 +8,14 @@
     },
     "overrides": {
         "vanilla": {
-            "_note": "Oxide's Lucas and Dawn fights live in slots vanilla leaves unused, so vanilla has no seat for them. Somnu and Moira are Oxide's officers in vanilla's Lake Verity grunt slots, compared with nothing.",
+            "_note": "Oxide's Lucas and Dawn fights live in slots vanilla leaves unused, so vanilla has no seat for them. Somnu and Moira are Oxide's officers in vanilla's Lake Verity grunt slots, compared with nothing, and so are Tyche and Hermes in the Veilstone and Spear Pillar grunt slots.",
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": []
         },
         "renegade": {
             "_note": "As vanilla: no Lucas and Dawn fights.",
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": []
         },
         "_comment": "Where a Platinum-based hack keeps a fight under a different trainer id than Platinum's, fight key to the ids it really uses. Found by comparing names and levels across the hacks' data (2026-09-22), not from their scripts.",
         "redux": {
@@ -23,20 +23,20 @@
             "cyrus_2": [409], "saturn_2": [403],
             "aaron": [791], "bertha": [787], "flint": [788], "lucian": [789], "cynthia": [790],
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": []
         },
         "redux_hc": {
             "_note": "Same data layout as redux.",
             "cyrus_2": [409], "saturn_2": [403],
             "aaron": [791], "bertha": [787], "flint": [788], "lucian": [789], "cynthia": [790],
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": []
         },
         "kaizo": {
             "_note": "Kaizo's League is at level 100 in Platinum's rematch slots, after an 84 Volkner; the first-fight slots hold vanilla's unchanged sets.",
             "aaron": [866], "bertha": [867], "flint": [868], "lucian": [869], "cynthia": [870],
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": []
         }
     },
     "milestones": {
@@ -82,11 +82,11 @@
          "trainers": ["TRAINER_RIVAL_ROUTE_203_PIPLUP", "TRAINER_RIVAL_ROUTE_203_TURTWIG", "TRAINER_RIVAL_ROUTE_203_CHIMCHAR"]},
         {"key": "roark", "label": "Roark", "split": "Roark", "sheet_ace": 16,
          "trainers": ["TRAINER_LEADER_ROARK"]},
-        {"key": "mars_1", "label": "Mars 1", "split": "Gardenia", "sheet_ace": 19,
+        {"key": "mars_1", "label": "Mars 1", "split": "Gardenia", "sheet_ace": 20,
          "trainers": ["TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS"]},
         {"key": "gardenia", "label": "Gardenia", "split": "Gardenia", "sheet_ace": 26,
          "trainers": ["TRAINER_LEADER_GARDENIA"]},
-        {"key": "jupiter_1", "label": "Jupiter 1", "split": "Fantina", "sheet_ace": 27,
+        {"key": "jupiter_1", "label": "Jupiter 1", "split": "Fantina", "sheet_ace": 29,
          "trainers": ["TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING"]},
         {"key": "lucas_dawn_2", "label": "Lucas and Dawn 2", "split": "Fantina", "sheet_ace": null,
          "note": "Ian's, on Route 207, met on the way from Eterna to Hearthome (its aces are 30); the route's own split is Roark's, for its lower part.",
@@ -97,6 +97,10 @@
          "trainers": ["TRAINER_RIVAL_ROUTE_209_PIPLUP", "TRAINER_RIVAL_ROUTE_209_TURTWIG", "TRAINER_RIVAL_ROUTE_209_CHIMCHAR"]},
         {"key": "maylene", "label": "Maylene", "split": "Maylene", "sheet_ace": 39,
          "trainers": ["TRAINER_LEADER_MAYLENE"]},
+        {"key": "tyche_hermes_1", "label": "Tyche and Hermes 1", "split": "Wake", "sheet_ace": null, "tag": true,
+         "note": "Officers Tyche and Hermes at the Veilstone warehouse, a tag battle beside Lucas or Dawn after Maylene's badge, so in Wake's split, with an honour cap of 41 and the aces at it (Ian, 2026-10-29). Made a story fight like Somnu and Moira's, so goal 3 counts it as one double (Ian, 2026-10-29: \"Let's just fix this now\").",
+         "trainers": ["TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1", "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2"],
+         "partners": ["TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG", "TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR", "TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP", "TRAINER_DAWN_VEILSTONE_CITY_TURTWIG", "TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR", "TRAINER_DAWN_VEILSTONE_CITY_PIPLUP"]},
         {"key": "barry_4", "label": "Barry 4", "split": "Wake", "sheet_ace": 42,
          "trainers": ["TRAINER_RIVAL_PASTORIA_CITY_PIPLUP", "TRAINER_RIVAL_PASTORIA_CITY_TURTWIG", "TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR"]},
         {"key": "wake", "label": "Wake", "split": "Wake", "sheet_ace": 44,
@@ -122,6 +126,9 @@
         {"key": "saturn_2", "label": "Saturn 2", "split": "HQ", "sheet_ace": 58, "trick_room": true,
          "note": "Ian's ruling of 2026-09-25: the fight opens in a Trick Room that lasts the whole battle and that no move can end, so the slower side moves first within each priority bracket.",
          "trainers": ["TRAINER_COMMANDER_SATURN_GALACTIC_HQ"]},
+        {"key": "tyche_hermes_2", "label": "Tyche and Hermes 2", "split": "Galactic", "sheet_ace": null, "tag": true,
+         "note": "Officers Tyche and Hermes at Spear Pillar, a double against both at once before Mars and Jupiter; the script starts it with both opponents and no partner. A story fight like Somnu and Moira's, so goal 3 counts it as one double (Ian, 2026-10-29).",
+         "trainers": ["TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_1", "TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_2"]},
         {"key": "mars_jupiter", "label": "Mars and Jupiter", "split": "Galactic", "sheet_ace": 59, "tag": true,
          "trainers": ["TRAINER_COMMANDER_MARS_SPEAR_PILLAR", "TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR"],
          "partners": ["TRAINER_RIVAL_SPEAR_PILLAR_PIPLUP", "TRAINER_RIVAL_SPEAR_PILLAR_TURTWIG", "TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR"]},

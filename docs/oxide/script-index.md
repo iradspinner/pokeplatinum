@@ -818,12 +818,12 @@ Trainer battles:
 - TRAINER_HIKER_JUSTIN (Justin, level 28, 3 Pokemon), sees the player. Vanilla. `events_route_207.json:96`
 - TRAINER_HIKER_KEVIN (Kevin, level 27, 4 Pokemon), sees the player. Vanilla. `events_route_207.json:111`
 - TRAINER_BATTLE_GIRL_HELEN (Helen, level 28, 3 Pokemon), sees the player. Vanilla. `events_route_207.json:126`
-- StartTrainerBattle: against TRAINER_DUMMY_799 (Dawn, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:218`
-- StartTrainerBattle: against TRAINER_DUMMY_793 (Dawn, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:224`
-- StartTrainerBattle: against TRAINER_DUMMY_794 (Dawn, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:230`
-- StartTrainerBattle: against TRAINER_DUMMY_802 (Lucas, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:236`
-- StartTrainerBattle: against TRAINER_DUMMY_800 (Lucas, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:242`
-- StartTrainerBattle: against TRAINER_DUMMY_801 (Lucas, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:248`
+- StartTrainerBattle: against TRAINER_DUMMY_799 (Dawn, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:218`
+- StartTrainerBattle: against TRAINER_DUMMY_793 (Dawn, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:224`
+- StartTrainerBattle: against TRAINER_DUMMY_794 (Dawn, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:230`
+- StartTrainerBattle: against TRAINER_DUMMY_802 (Lucas, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:236`
+- StartTrainerBattle: against TRAINER_DUMMY_800 (Lucas, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:242`
+- StartTrainerBattle: against TRAINER_DUMMY_801 (Lucas, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:248`
 
 Items given:
 
@@ -1143,7 +1143,7 @@ Trainer battles:
 
 - TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_2 (Grunt, level 18, 3 Pokemon), sees the player. Vanilla. `events_valley_windworks_building.json:72`
 - TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_3 (Officer Somnu, level 18, 4 Pokemon), sees the player. Vanilla. `events_valley_windworks_building.json:89`
-- StartTrainerBattle: against TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS (Mars, level 19, 5 Pokemon), by name. Vanilla. `scripts_valley_windworks_building.s:86`
+- StartTrainerBattle: against TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS (Mars, level 20, 5 Pokemon), by name. Vanilla. `scripts_valley_windworks_building.s:86`
 
 Flags:
 
@@ -2605,7 +2605,7 @@ Hidden items:
 Trainer battles:
 
 - StartTrainerBattle: against TRAINER_DUMMY_211 (Experiencia, level 49, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_veilstone_city.s:807`
-- StartTagBattle: partner TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG (Lucas, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR (Lucas, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP (Lucas, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1, TRAINER_DAWN_VEILSTONE_CITY_TURTWIG (Dawn, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR (Dawn, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_VEILSTONE_CITY_PIPLUP (Dawn, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0, through a variable; against TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1 (Grunt, level 35, 2 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2 (Grunt, level 35, 2 Pokemon), by number. Vanilla. `scripts_veilstone_city.s:860`
+- StartTagBattle: partner TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG (Lucas, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR (Lucas, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP (Lucas, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1, TRAINER_DAWN_VEILSTONE_CITY_TURTWIG (Dawn, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR (Dawn, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_VEILSTONE_CITY_PIPLUP (Dawn, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0, through a variable; against TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1 (Officer Tyche, level 41, 5 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2 (Officer Hermes, level 41, 5 Pokemon), by number. Vanilla. `scripts_veilstone_city.s:860`
 
 Items given:
 
@@ -6581,7 +6581,7 @@ Variables:
 Trainer battles:
 
 - StartTagBattle: partner TRAINER_RIVAL_SPEAR_PILLAR_TURTWIG (Barry, level 59, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG, TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR (Barry, level 59, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY, TRAINER_RIVAL_SPEAR_PILLAR_PIPLUP (Barry, level 59, 6 Pokemon) otherwise, through a variable; against TRAINER_COMMANDER_MARS_SPEAR_PILLAR (Mars, level 63, 5 Pokemon), by number; and TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR (Jupiter, level 63, 5 Pokemon), by number. Vanilla. `scripts_spear_pillar.s:72`
-- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_1 (Grunt Tyche, level 56, 3 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_2 (Grunt Hermes, level 56, 3 Pokemon), by number. Vanilla. `scripts_spear_pillar.s:266`
+- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_1 (Officer Tyche, level 56, 3 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_2 (Officer Hermes, level 56, 3 Pokemon), by number. Vanilla. `scripts_spear_pillar.s:266`
 
 Flags:
 
@@ -8161,7 +8161,7 @@ Flags:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING (Jupiter, level 27, 6 Pokemon), by name. Vanilla. `scripts_team_galactic_eterna_building_4f.s:30`
+- StartTrainerBattle: against TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING (Jupiter, level 29, 6 Pokemon), by name. Vanilla. `scripts_team_galactic_eterna_building_4f.s:30`
 
 Item balls:
 
