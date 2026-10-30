@@ -10,53 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_STARAVIA",
+            "species": "SPECIES_MINCCINO",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 25,
+            "item": "ITEM_KINGS_ROCK",
             "moves": [
-                "MOVE_AERIAL_ACE",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_ENDEAVOR",
-                "MOVE_STEEL_WING"
+                "MOVE_FURY_SWIPES",
+                "MOVE_BULLET_SEED",
+                "MOVE_ENCORE",
+                "MOVE_U_TURN"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_HARDY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_FURRET",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 25,
+            "item": "ITEM_SILK_SCARF",
             "moves": [
-                "MOVE_SLASH",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_FOLLOW_ME",
-                "MOVE_HELPING_HAND"
+                "MOVE_SLAM",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_COIL"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_LAX",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_LUXIO",
+            "species": "SPECIES_TRUMBEAK",
             "form": 0,
-            "level": 29,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 26,
+            "item": "ITEM_HARD_STONE",
             "moves": [
-                "MOVE_SPARK",
-                "MOVE_BITE",
-                "MOVE_ICE_FANG",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_ROCK_BLAST",
+                "MOVE_BULLET_SEED",
+                "MOVE_PLUCK",
+                "MOVE_ROOST"
             ],
             "iv_scale": 220,
             "nature": "NATURE_JOLLY",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": [

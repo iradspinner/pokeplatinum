@@ -11,36 +11,54 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BONSLY",
+            "species": "SPECIES_SUDOWOODO",
             "form": 0,
-            "level": 27,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_HARD_STONE",
             "moves": [
-                "MOVE_ROCK_THROW",
-                "MOVE_BLOCK",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_ROLLOUT"
+                "MOVE_WOOD_HAMMER",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_LOW_KICK"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         },
         {
-            "species": "SPECIES_PHANPY",
+            "species": "SPECIES_NACLI",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 26,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_ROLLOUT",
-                "MOVE_TAKE_DOWN",
-                "MOVE_ICE_SHARD",
-                "MOVE_FOCUS_ENERGY"
+                "MOVE_RECOVER",
+                "MOVE_IRON_DEFENSE",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_HEADBUTT"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_CAREFUL",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DONPHAN",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_QUICK_CLAW",
+            "moves": [
+                "MOVE_STOMPING_TANTRUM",
+                "MOVE_KNOCK_OFF",
+                "MOVE_ICE_SHARD",
+                "MOVE_RAPID_SPIN"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_DOCILE",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

@@ -10,36 +10,54 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_HOOTHOOT",
+            "species": "SPECIES_NATU",
             "form": 0,
-            "level": 27,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_PECK",
-                "MOVE_CONFUSION",
-                "MOVE_UPROAR",
-                "MOVE_REFLECT"
+                "MOVE_NIGHT_SHADE",
+                "MOVE_U_TURN",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_ROOST"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_QUIRKY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DOTTLER",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_LIGHT_CLAY",
+            "moves": [
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_PSYBEAM",
+                "MOVE_SNARL"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_NOCTOWL",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 27,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
-                "MOVE_UPROAR",
-                "MOVE_CONFUSION",
+                "MOVE_HYPNOSIS",
                 "MOVE_AIR_CUTTER",
-                "MOVE_REFLECT"
+                "MOVE_PSYBEAM",
+                "MOVE_SHADOW_BALL"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_BASHFUL",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
+            "ability": 2
         }
     ],
     "messages": [

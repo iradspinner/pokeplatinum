@@ -10,53 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_LARVITAR",
+            "species": "SPECIES_DWEBBLE",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_CUSTAP_BERRY",
             "moves": [
-                "MOVE_ROCK_SLIDE",
-                "MOVE_BITE",
-                "MOVE_DARK_PULSE",
-                "MOVE_SCREECH"
+                "MOVE_STEALTH_ROCK",
+                "MOVE_ROCK_TOMB",
+                "MOVE_BUG_BITE",
+                "MOVE_FAINT_ATTACK"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_ONIX",
+            "species": "SPECIES_LARVITAR",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_FLAME_ORB",
             "moves": [
+                "MOVE_FACADE",
                 "MOVE_ROCK_SLIDE",
-                "MOVE_IRON_HEAD",
-                "MOVE_SLAM",
-                "MOVE_ROCK_TOMB"
+                "MOVE_PAYBACK",
+                "MOVE_STOMPING_TANTRUM"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_GRAVELER",
             "form": 0,
-            "level": 29,
-            "item": "ITEM_HARD_STONE",
+            "level": 27,
+            "item": "ITEM_PASSHO_BERRY",
             "moves": [
-                "MOVE_ROCK_SLIDE",
-                "MOVE_MAGNITUDE",
-                "MOVE_ROLLOUT",
-                "MOVE_DEFENSE_CURL"
+                "MOVE_ROCK_POLISH",
+                "MOVE_ROCK_BLAST",
+                "MOVE_STOMPING_TANTRUM",
+                "MOVE_SUCKER_PUNCH"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
             "ability": 2,
-            "gender": "male"
+            "gender": null
         }
     ],
     "messages": [

@@ -10,53 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BUIZEL",
+            "species": "SPECIES_CROAGUNK",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 27,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_AQUA_JET",
-                "MOVE_CHILLING_WATER",
-                "MOVE_PURSUIT",
-                "MOVE_SWIFT"
+                "MOVE_FAKE_OUT",
+                "MOVE_POISON_JAB",
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_KNOCK_OFF"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_GLIGAR",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_NONE",
+            "level": 27,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_KNOCK_OFF",
-                "MOVE_QUICK_ATTACK",
+                "MOVE_DUAL_WINGBEAT",
+                "MOVE_ROCK_TOMB",
                 "MOVE_DIG",
-                "MOVE_FAINT_ATTACK"
+                "MOVE_U_TURN"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_DOCILE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
         },
         {
-            "species": "SPECIES_LUXIO",
+            "species": "SPECIES_FROGADIER",
             "form": 0,
-            "level": 29,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 28,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
-                "MOVE_SPARK",
-                "MOVE_BITE",
-                "MOVE_ICE_FANG",
-                "MOVE_ROAR"
+                "MOVE_WATER_PULSE",
+                "MOVE_ICY_WIND",
+                "MOVE_LOW_KICK",
+                "MOVE_FAINT_ATTACK"
             ],
             "iv_scale": 220,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [

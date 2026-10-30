@@ -10,53 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DUSKULL",
+            "species": "SPECIES_FRILLISH",
             "form": 0,
-            "level": 31,
-            "item": "ITEM_NONE",
+            "level": 29,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_WILL_O_WISP",
-                "MOVE_NIGHT_SHADE",
-                "MOVE_PURSUIT",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_HEX",
+                "MOVE_WATER_PULSE",
+                "MOVE_TAUNT"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         },
         {
             "species": "SPECIES_MISDREAVUS",
             "form": 0,
-            "level": 31,
-            "item": "ITEM_NONE",
+            "level": 29,
+            "item": "ITEM_COLBUR_BERRY",
             "moves": [
-                "MOVE_PSYBEAM",
+                "MOVE_THUNDER_WAVE",
                 "MOVE_SHADOW_BALL",
                 "MOVE_PAIN_SPLIT",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_PSYBEAM"
             ],
             "iv_scale": 240,
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_SHUPPET",
             "form": 0,
-            "level": 32,
-            "item": "ITEM_SPELL_TAG",
+            "level": 30,
+            "item": "ITEM_BLACKGLASSES",
             "moves": [
-                "MOVE_SHADOW_BALL",
                 "MOVE_KNOCK_OFF",
+                "MOVE_SHADOW_SNEAK",
                 "MOVE_SUCKER_PUNCH",
-                "MOVE_WILL_O_WISP"
+                "MOVE_SCREECH"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": "female"
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [

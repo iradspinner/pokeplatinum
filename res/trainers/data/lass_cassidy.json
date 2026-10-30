@@ -10,37 +10,54 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BUNEARY",
+            "species": "SPECIES_SNUBBULL",
             "form": 0,
-            "level": 27,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_KEBIA_BERRY",
             "moves": [
-                "MOVE_JUMP_KICK",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_ENDURE",
-                "MOVE_RETURN"
+                "MOVE_PLAY_ROUGH",
+                "MOVE_FIRE_FANG",
+                "MOVE_THUNDER_FANG",
+                "MOVE_BITE"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_LOPUNNY",
             "form": 0,
-            "level": 28,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 26,
+            "item": "ITEM_BLACK_BELT",
             "moves": [
-                "MOVE_JUMP_KICK",
                 "MOVE_FAKE_OUT",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_BOUNCE"
+                "MOVE_JUMP_KICK",
+                "MOVE_DOUBLE_HIT",
+                "MOVE_ENCORE"
             ],
             "iv_scale": 220,
             "nature": "NATURE_JOLLY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
+        },
+        {
+            "species": "SPECIES_TSAREENA",
+            "form": 0,
+            "level": 27,
+            "item": "ITEM_MIRACLE_SEED",
+            "moves": [
+                "MOVE_TROP_KICK",
+                "MOVE_TRIPLE_AXEL",
+                "MOVE_STOMP",
+                "MOVE_RAPID_SPIN"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_SERIOUS",
+            "ball_seal": 0,
+            "ability": 2
         }
     ],
     "messages": [
