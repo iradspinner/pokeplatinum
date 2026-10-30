@@ -28,23 +28,6 @@
             "gender": "female"
         },
         {
-            "species": "SPECIES_SLOWKING",
-            "form": 0,
-            "level": 53,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_SURF",
-                "MOVE_PSYCHIC",
-                "MOVE_ICE_BEAM",
-                "MOVE_NASTY_PLOT"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_MODEST",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
-        },
-        {
             "species": "SPECIES_MAMOSWINE",
             "form": 0,
             "level": 53,

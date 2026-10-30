@@ -95,7 +95,8 @@
             "MOVE_AGILITY",
             "MOVE_NIGHT_SLASH",
             "MOVE_LAST_RESORT",
-            "MOVE_FEINT"
+            "MOVE_FEINT",
+            "MOVE_PROTECT"
         ]
     },
     "evolutions": [

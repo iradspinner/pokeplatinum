@@ -70,6 +70,12 @@ battle keeps its Beacon Badge gate, so it sits in Barry's split. Nothing is
 placed past 78; a Kaizo level past its League keeps its translated place and
 is listed for Ian.
 
+The caps are soft since 2026-10-29: experience passes them and the player's
+honour keeps an over-cap Pokemon out of fights; mini-bosses get honour caps
+with their aces at them; ordinary trainers climb through a split, never at
+the cap and very rarely one under it, with harder sets at lower levels. The
+full ruling is in `docs/oxide/rulings-detail.md`.
+
 ## Learnsets
 
 - **What a move is worth** is what the Pokemon knows at capture (the last four
@@ -209,6 +215,10 @@ is listed for Ian.
   that its species cannot have at that level goes on the line's
   first-stage egg list without asking, and never by moving a level-up
   entry (Ian, 2026-10-29; `learnrewrite.IAN_EGG_MOVES` records each).
+  Ordinary trainers favour variety over the optimal: neutral or less common
+  natures more often and items that are not the textbook pick, since a set
+  the player has met a thousand times is boring even when hard (Ian,
+  2026-10-29).
 - **Gauntlets** hold the attrition: 2 to 5 mandatory trainers on the easier
   side of their split's average, counted without optional ones; bag items may
   heal between fights; bosses stay outside, with gauntlets leading up to

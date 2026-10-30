@@ -26,22 +26,6 @@
             "gender": null
         },
         {
-            "species": "SPECIES_GROTLE",
-            "form": 0,
-            "level": 25,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_RAZOR_LEAF",
-                "MOVE_BITE",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_WITHDRAW"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_MARSHTOMP",
             "form": 0,
             "level": 25,

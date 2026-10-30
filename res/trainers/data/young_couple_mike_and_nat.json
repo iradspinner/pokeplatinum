@@ -10,32 +10,71 @@
     "double_battle": true,
     "party": [
         {
-            "species": "SPECIES_MURKROW",
+            "species": "SPECIES_DONPHAN",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 37,
+            "item": "ITEM_SOFT_SAND",
             "moves": [
-                "MOVE_DRILL_PECK",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_WHIRLWIND",
-                "MOVE_TAUNT"
+                "MOVE_MAGNITUDE",
+                "MOVE_ICE_SHARD",
+                "MOVE_KNOCK_OFF",
+                "MOVE_ROCK_SLIDE"
             ],
-            "iv_scale": 199,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         },
         {
-            "species": "SPECIES_MISDREAVUS",
+            "species": "SPECIES_MISMAGIUS",
             "form": 0,
-            "level": 33,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_SPELL_TAG",
             "moves": [
-                "MOVE_MEAN_LOOK",
-                "MOVE_PSYCHIC",
-                "MOVE_PAIN_SPLIT",
-                "MOVE_SHADOW_BALL"
+                "MOVE_SHADOW_BALL",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_THUNDERBOLT",
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 201,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_HONCHKROW",
+            "form": 0,
+            "level": 36,
+            "item": "ITEM_BLACKGLASSES",
+            "moves": [
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_DRILL_PECK",
+                "MOVE_U_TURN",
+                "MOVE_ASSURANCE"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_BRONZONG",
+            "form": 0,
+            "level": 35,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_GYRO_BALL",
+                "MOVE_EXTRASENSORY",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_HYPNOSIS"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

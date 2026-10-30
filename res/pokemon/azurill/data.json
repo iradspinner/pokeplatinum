@@ -81,7 +81,8 @@
             "MOVE_REFRESH",
             "MOVE_SLAM",
             "MOVE_TICKLE",
-            "MOVE_FAKE_TEARS"
+            "MOVE_FAKE_TEARS",
+            "MOVE_AQUA_JET"
         ]
     },
     "evolutions": [

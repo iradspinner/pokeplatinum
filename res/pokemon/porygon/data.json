@@ -90,6 +90,9 @@
             "MOVE_LAST_RESORT",
             "MOVE_TRICK",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_TRI_ATTACK"
         ]
     },
     "evolutions": [

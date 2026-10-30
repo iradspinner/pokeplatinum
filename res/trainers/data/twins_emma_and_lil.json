@@ -15,7 +15,7 @@
             "species": "SPECIES_MAGNETON",
             "form": 0,
             "level": 29,
-            "item": null,
+            "item": "ITEM_EVIOLITE",
             "moves": [
                 "MOVE_SCREECH",
                 "MOVE_METAL_SOUND",
@@ -31,7 +31,7 @@
             "species": "SPECIES_VIBRAVA",
             "form": 0,
             "level": 29,
-            "item": null,
+            "item": "ITEM_SMOOTH_ROCK",
             "moves": [
                 "MOVE_MUD_SHOT",
                 "MOVE_SANDSTORM",
@@ -47,7 +47,7 @@
             "species": "SPECIES_CACTURNE",
             "form": 0,
             "level": 31,
-            "item": null,
+            "item": "ITEM_BIG_ROOT",
             "moves": [
                 "MOVE_GIGA_DRAIN",
                 "MOVE_COTTON_SPORE",
@@ -55,6 +55,7 @@
                 "MOVE_TEETER_DANCE"
             ],
             "iv_scale": 153,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -63,7 +64,7 @@
             "species": "SPECIES_SHUCKLE",
             "form": 0,
             "level": 31,
-            "item": null,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_ENCORE",
                 "MOVE_ANCIENT_POWER",
@@ -79,7 +80,7 @@
             "species": "SPECIES_NINETALES",
             "form": 0,
             "level": 29,
-            "item": null,
+            "item": "ITEM_WHITE_HERB",
             "moves": [
                 "MOVE_PSYCH_UP",
                 "MOVE_OVERHEAT",
@@ -95,7 +96,7 @@
             "species": "SPECIES_OMASTAR",
             "form": 0,
             "level": 31,
-            "item": null,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_BRINE",
                 "MOVE_ICY_WIND",

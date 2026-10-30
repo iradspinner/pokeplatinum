@@ -10,18 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_WIGGLYTUFF",
+            "species": "SPECIES_SKUNTANK",
             "form": 0,
-            "level": 33,
-            "item": "ITEM_NONE",
+            "level": 35,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_SING",
-                "MOVE_PSYCHIC",
-                "MOVE_REST",
-                "MOVE_SNORE"
+                "MOVE_POISON_JAB",
+                "MOVE_CRUNCH",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_TOXIC"
             ],
-            "iv_scale": 209,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_HOUNDOOM",
+            "form": 0,
+            "level": 36,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_DARK_PULSE",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_NEVERMELTICE",
+            "moves": [
+                "MOVE_NIGHT_SLASH",
+                "MOVE_ICE_SHARD",
+                "MOVE_TRIPLE_AXEL",
+                "MOVE_TAUNT"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
         }
     ],
     "messages": [

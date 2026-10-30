@@ -17,7 +17,7 @@
             "moves": [
                 "MOVE_SLUDGE_BOMB",
                 "MOVE_SHADOW_BALL",
-                "MOVE_DESTINY_BOND",
+                "MOVE_ICE_BEAM",
                 "MOVE_TOXIC"
             ],
             "iv_scale": 222,

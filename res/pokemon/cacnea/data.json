@@ -98,7 +98,9 @@
             "MOVE_MAGICAL_LEAF",
             "MOVE_SEED_BOMB",
             "MOVE_DESTINY_BOND",
-            "MOVE_FLING"
+            "MOVE_FLING",
+            "MOVE_COTTON_SPORE",
+            "MOVE_NASTY_PLOT"
         ]
     },
     "evolutions": [

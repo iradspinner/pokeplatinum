@@ -10,18 +10,54 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_FARFETCHD",
+            "species": "SPECIES_FORRETRESS",
             "form": 0,
-            "level": 34,
-            "item": null,
+            "level": 36,
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
-                "MOVE_LEAF_BLADE",
-                "MOVE_AERIAL_ACE",
-                "MOVE_POISON_JAB",
-                "MOVE_NIGHT_SLASH"
+                "MOVE_SPIKES",
+                "MOVE_GYRO_BALL",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_RAPID_SPIN"
             ],
-            "iv_scale": 134,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_WEEZING",
+            "form": 0,
+            "level": 36,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_THUNDERBOLT",
+                "MOVE_WILL_O_WISP",
+                "MOVE_PAIN_SPLIT"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_JOLTEON",
+            "form": 0,
+            "level": 38,
+            "item": "ITEM_MAGNET",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_PSYSHOCK",
+                "MOVE_SHADOW_BALL",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

@@ -19,8 +19,12 @@ from . import required as R
 # maps, the table or the model shows up here. 36 required on 2026-09-23; 40
 # since Test.nds became the base ROM (2026-09-25), whose moved trainers make
 # one more required in Gardenia's split (the Valley Windworks building) and
-# three more in Wake's (Routes 214 and 215).
-TOTALS = {"required": 40, "avoidable": 131, "never reached": 12}
+# three more in Wake's (Routes 214 and 215). 50 since 2026-10-29, when ten
+# trainers moved onto the story path for Ian's dozen mandatory fights a
+# split, three in Fantina's and seven in Maylene's
+# (docs/oxide/mandatory-fights.md); 52 once Black Belt Derek and Twins Teri
+# and Tia joined them the same day, after Ian ruled that spinners are optional.
+TOTALS = {"required": 52, "avoidable": 119, "never reached": 12}
 
 
 def check_crossings_resolve(results):
