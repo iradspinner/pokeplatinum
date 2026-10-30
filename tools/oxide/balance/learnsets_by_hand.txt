@@ -3,9 +3,9 @@
 # holds it. A reported problem is fixed as data (Ian, 2026-10-07: "Each
 # change is judged for its effect on difficulty, by judgement"). One species
 # a line, then why.
-SPECIES_TURTWIG     Tackle and Withdraw at 5, as a starter knows (Ian's QA, 2026-10-07)
+SPECIES_TURTWIG     Tackle and Withdraw at 5, as a starter knows (Ian's QA, 2026-10-07); Crunch on its egg list, for Barry 3's Torterra (Ian, 2026-10-29)
 SPECIES_SCORBUNNY   Tackle and Growl at 5, Ember 7 and Flame Charge 9 after (Ian's QA, 2026-10-07)
-SPECIES_PIPLUP      Pound and Growl at 5, Scary Face after it (Ian's QA, 2026-10-07)
+SPECIES_PIPLUP      Pound and Growl at 5, Scary Face after it (Ian's QA, 2026-10-07); Drill Peck on its egg list, for Barry 3's Empoleon (Ian, 2026-10-29)
 SPECIES_LILEEP      a Grass rung before Giga Drain: Mega Drain 13, Giga Drain 27 (Ian, 2026-10-12, on Roark's Lileep)
 SPECIES_NACLI       canon's Harden 1 and Rock Polish 13; egg list Curse, Ancient Power, Power Gem, Recover beside Explosion (Ian, 2026-10-12)
 SPECIES_NACLSTACK   Salt Cure learned on evolving (level 0), Rock Polish 13 as Nacli (Ian, 2026-10-12)

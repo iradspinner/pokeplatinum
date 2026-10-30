@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_AMBIPOM",
             "form": 0,
-            "level": 37,
+            "level": 34,
             "item": "ITEM_SILK_SCARF",
             "moves": [
                 "MOVE_FAKE_OUT",
@@ -29,7 +29,7 @@
         {
             "species": "SPECIES_STARAPTOR",
             "form": 0,
-            "level": 38,
+            "level": 35,
             "item": "ITEM_SHARP_BEAK",
             "moves": [
                 "MOVE_BRAVE_BIRD",
@@ -46,7 +46,7 @@
         {
             "species": "SPECIES_FLOATZEL",
             "form": 0,
-            "level": 37,
+            "level": 34,
             "item": "ITEM_MYSTIC_WATER",
             "moves": [
                 "MOVE_WATERFALL",
@@ -63,7 +63,7 @@
         {
             "species": "SPECIES_SNORLAX",
             "form": 0,
-            "level": 38,
+            "level": 35,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_BODY_SLAM",
@@ -80,7 +80,7 @@
         {
             "species": "SPECIES_TORTERRA",
             "form": 0,
-            "level": 39,
+            "level": 36,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_WOOD_HAMMER",

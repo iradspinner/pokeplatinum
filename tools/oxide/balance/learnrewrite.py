@@ -183,6 +183,11 @@ IAN_EGG_MOVES = {
     "SPECIES_MACHOP": [("MOVE_DYNAMIC_PUNCH", "Ian, 2026-10-29: Black Belt Gregory's Machoke")],
     "SPECIES_LICKITUNG": [("MOVE_SWORDS_DANCE", "Ian, 2026-10-29: Black Belt Rafael's Lickilicky")],
     "SPECIES_BIDOOF": [("MOVE_REST", "Ian, 2026-10-29: Breeder Albert's Bibarel")],
+    # Barry 3 at his honour cap of 36 (Ian, 2026-10-29): moves his three versions
+    # carry that their members' lists give only above their new levels.
+    "SPECIES_STARLY": [("MOVE_BRAVE_BIRD", "Ian, 2026-10-29: Barry 3's Staraptor at 35")],
+    "SPECIES_PIPLUP": [("MOVE_DRILL_PECK", "Ian, 2026-10-29: Barry 3's Empoleon at 36")],
+    "SPECIES_TURTWIG": [("MOVE_CRUNCH", "Ian, 2026-10-29: Barry 3's Torterra at 36")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

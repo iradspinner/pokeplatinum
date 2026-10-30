@@ -84,7 +84,8 @@
             "MOVE_ASTONISH",
             "MOVE_SAND_ATTACK",
             "MOVE_FORESIGHT",
-            "MOVE_DOUBLE_EDGE"
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_BRAVE_BIRD"
         ]
     },
     "evolutions": [
