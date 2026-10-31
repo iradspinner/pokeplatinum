@@ -41,14 +41,16 @@ Ian's answers (2026-10-31), as applied:
 What Ian decides:
 
 1. PI Carlos still carries TM72 as his reward, and he is now a mandatory fight. Rewards belong to optional fights (the standing rulings). Should TM72 move to an optional trainer, or stay with Carlos?
-2. Ian's kept sets carry moves their species cannot have, listed under "The rules Ian's kept sets break". Under his ruling of 2026-10-29 they go on the first stage's egg list without asking. The Overseer can add them at the landing, as for Maylene's split.
+2. Krystal's levels: a top of 39 (now) or 42, which would put her Glalie and Blaziken nearer their evolutions.
+
+His kept sets' off-list moves are now on their lines' egg lists, under his ruling of 2026-10-29 (below), so every move on his five teams is legal.
 
 Next steps:
 
 | Step | Who | Time |
 |---|---|---|
 | Ian answers the two questions | Ian | 5 minutes |
-| The egg-list additions for his kept moves, and TM72 if it moves | the Overseer | 20 minutes |
+| Krystal's levels and TM72, if either moves | a helper | 15 minutes |
 | Land the branch with `merge-branch.sh`, then run `sync-docs.sh` on oxide | the Overseer | 30 minutes |
 | Play the checklist item "Mandatory fights, Wake's split" in `docs/oxide/ingame-checklist.md` | Ian | 25 minutes with the test kit's warps |
 
@@ -261,7 +263,23 @@ These are listed for Ian and not fixed. Every illegal move here was illegal at t
   - Glalie at 34 and Blaziken at 33 sit under the levels they evolve at (42 and 36). Glalie is eight under, which the rulings would call egregious.
   - Her team carries two sleep moves (Glalie's Sing, Jumpluff's Sleep Powder).
 
-Under Ian's ruling of 2026-10-29, a move on his team that its species cannot have goes on the egg list of the line's first stage, and also in `learnrewrite.IAN_EGG_MOVES`. The Overseer adds them at the landing. The first stages concerned are Cyndaquil, Remoraid, Corsola, Aerodactyl, Eevee, Drifloon, Beldum, Snorunt, Torchic, Dratini and Rotom (for Overheat and Sunny Day on the plain form's list).
+Under Ian's ruling of 2026-10-29, a move on his team that its species cannot have goes on the egg list of the line's first stage, never by moving a level-up entry. All sixteen are now there:
+
+| First stage | Moves | For |
+|---|---|---|
+| Cyndaquil | Eruption | Douglas's Typhlosion |
+| Remoraid | Water Spout | Douglas's Octillery |
+| Corsola | Defense Curl | Bryan's Corsola |
+| Aerodactyl | Tailwind | Bryan's Aerodactyl |
+| Eevee | Leaf Blade | Bryan's Leafeon |
+| Drifloon | Selfdestruct | Ronald's Drifblim |
+| Beldum | Meteor Mash, Dynamic Punch, Gravity (a new egg list) | Krystal's Metang |
+| Snorunt | Sing, Weather Ball | Krystal's Glalie |
+| Torchic | Dynamic Punch, Flare Blitz, Brave Bird | Krystal's Blaziken |
+| Dratini | Extreme Speed | Krystal's Dragonair |
+| Rotom | Overheat, Sunny Day | Krystal's Heat Rotom, which shares plain Rotom's lists |
+
+Each is in `learnrewrite.IAN_EGG_MOVES` too, so a generator write keeps it, except Eevee's, which is in `learnsets_by_hand.txt` because Eevee's line is held out of the generator. The illegal-move entries in the list above are therefore settled, and the rest of each kept set's breaks stand.
 
 If Ian wants Glalie and Blaziken nearer their evolutions, Krystal at a top of 42 (each member three lower than his base ROM, not five) would put Glalie at 37 and Blaziken at 36.
 
