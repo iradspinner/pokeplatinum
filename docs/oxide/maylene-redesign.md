@@ -117,6 +117,8 @@ Where the screen's bias bites: it counts only a clean one-on-one from full HP wi
 
 ## Hakamo-o's slot, against Flying types (2026-10-31)
 
+**Ian's answer (2026-10-31).** Hakamo-o keeps the slot, on a set of his own made after reading this study: Drain Punch, Dragon Dance, Rock Slide and Outrage, with Bulletproof in place of Overcoat, still Eviolite and Lax at 38. Rock Slide gives it the answer to Togetic and the Flying attackers that the picks below brought, and Drain Punch keeps the Eviolite holder healthy. Every move is legal (Dragon Dance through Jangmo-o's egg list of 2026-10-29), and the OxiDex lists no finding. The picks below stand as the record of what was weighed.
+
 Ian asked on 2026-10-31 for Hakamo-o's slot to go to something that patches the team's weakness to Flying types and adds a little bulk, but not much, since the team is frail on purpose. It need not be a Fighting type, so long as it carries a Fighting move or fits the theme. The other five stay as they are. Every number here was made on `origin/oxide` at ad7ea90c4, with Water Absorb on Cacturne, by cheap checks only. Nothing in `res/` changed.
 
 ### Summary
