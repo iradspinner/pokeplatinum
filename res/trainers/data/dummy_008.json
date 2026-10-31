@@ -1,21 +1,122 @@
 {
-    "name": "Angelica",
-    "class": "TRAINER_CLASS_PICNICKER",
+    "name": "Darach",
+    "class": "TRAINER_CLASS_CASTLE_VALET",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_RISKY",
+        "AI_FLAG_PRIORITIZE_EXTREMES",
+        "AI_FLAG_CHECK_HP"
     ],
-    "double_battle": false,
+    "double_battle": true,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_GALARIAN_RAPIDASH",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 44,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_HEAL_PULSE",
+                "MOVE_FIRE_LASH",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_HIGH_HORSEPOWER"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_CORVIKNIGHT",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_ROOST",
+                "MOVE_TAILWIND",
+                "MOVE_IRON_HEAD"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_SINISTCHA",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_BIG_ROOT",
+            "moves": [
+                "MOVE_MATCHA_GOTCHA",
+                "MOVE_STRENGTH_SAP",
+                "MOVE_SHADOW_BALL",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_ARMAROUGE",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_ASSAULT_VEST",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_ENERGY_BALL",
+                "MOVE_INCINERATE",
+                "MOVE_SCORCHING_SANDS"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_GALARIAN_ARTICUNO",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_MIND_PLATE",
+            "moves": [
+                "MOVE_FREEZING_GLARE",
+                "MOVE_HYPNOSIS",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_SHADOW_BALL"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_ENTEI",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_SHUCA_BERRY",
+            "moves": [
+                "MOVE_SACRED_FIRE",
+                "MOVE_CRUNCH",
+                "MOVE_EXTREME_SPEED",
+                "MOVE_BULLDOZE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_HARDY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
-    "messages": []
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My Pokémon can’t be faulted with\n",
+                "anything.\r",
+                "Your brilliance carried the day.\n"
+            ]
+        }
+    ]
 }

@@ -107,7 +107,8 @@
         ],
         "by_tutor": [],
         "egg_moves": [
-            "MOVE_MEMENTO"
+            "MOVE_MEMENTO",
+            "MOVE_PROTECT"
         ]
     },
     "evolutions": [

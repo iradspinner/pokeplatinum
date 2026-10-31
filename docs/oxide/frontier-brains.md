@@ -29,7 +29,7 @@ Levels are placeholders until Ian sets them.
 | Palmer | Dragonite, Heatran, Cresselia, Milotic, Rhyperior, Xurkitree |
 | Thorton | Bronzong, Magnezone, Toxapex, Dhelmise, Turtonator, Guzzlord |
 | Dahlia | Cloyster, Slowbro, Rapidash, Togekiss, Leafeon, Lopunny, all at 40 (Ian's six, 2026-10-31, `dahlia-check.md`; free slot `dummy_007`) |
-| Darach (double) | Incineroar, Entei, Grapploct (Darach's three), Galarian Articuno, Gallade, Gothitelle (Caitlin's three) |
+| Darach (double) | Galarian Rapidash, Corviknight, Sinistcha, Armarouge, Galarian Articuno, Entei, all at 44 (Ian's six, 2026-10-31, `darach-check.md`; free slot `dummy_008`), at about Wake's difficulty |
 | Argenta | Skarmory, Annihilape, Dubwool, Whiscash, Meowscarada, Pheromosa |
 
 Galarian Articuno replaces Sigilyph, which is not in the game (Ian,

@@ -84,6 +84,12 @@
             "MOVE_SNORE",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_SACRED_FIRE",
+            "MOVE_CRUNCH",
+            "MOVE_EXTREME_SPEED",
+            "MOVE_BULLDOZE"
         ]
     },
     "evolutions": [  ],

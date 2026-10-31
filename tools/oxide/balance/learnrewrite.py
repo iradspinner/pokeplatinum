@@ -218,7 +218,8 @@ IAN_EGG_MOVES = {
     "SPECIES_SLOWPOKE": [("MOVE_PSYSHOCK", "Ian, 2026-10-31: Dahlia's Slowbro")],
     "SPECIES_PONYTA": [("MOVE_FLARE_BLITZ", "Ian, 2026-10-31: Dahlia's Rapidash at 40"),
                        ("MOVE_SWORDS_DANCE", "Ian, 2026-10-31: Dahlia's Rapidash"),
-                       ("MOVE_BATON_PASS", "Ian, 2026-10-31: Dahlia's Rapidash")],
+                       ("MOVE_BATON_PASS", "Ian, 2026-10-31: Dahlia's Rapidash"),
+                       ("MOVE_HIGH_HORSEPOWER", "Ian, 2026-10-31: Darach's Galarian Rapidash")],
     "SPECIES_BUNEARY": [("MOVE_HI_JUMP_KICK", "Ian, 2026-10-31: Dahlia's Lopunny M at 40")],
     "SPECIES_LOPUNNY_M": [("MOVE_HI_JUMP_KICK", "Ian, 2026-10-31: Dahlia's Lopunny M at 40, which the "
                                                 "OxiDex reads as its own first stage")],
@@ -244,6 +245,23 @@ IAN_EGG_MOVES = {
     # Read against plain Rotom's lists, which Krystal's Heat Rotom shares.
     "SPECIES_ROTOM": [("MOVE_OVERHEAT", "Ian, 2026-10-31: Krystal's Heat Rotom"),
                       ("MOVE_SUNNY_DAY", "Ian, 2026-10-31: Krystal's Heat Rotom")],
+    # Darach and Caitlin's first draft (Ian, 2026-10-31), every member at 44:
+    # the moves the six carries that no list gives at that level. Roost is
+    # Corviknight's level 65 move and Freezing Glare Galarian Articuno's
+    # level 45 one. Galarian Rapidash's High Horsepower is with Ponyta's
+    # above, since Ponyta is its first stage. Protect goes on an egg list
+    # only, which the player never reaches (Ian, 2026-10-06: Protect leaves
+    # every list the player can use). Entei and Galarian Articuno are first
+    # stages of their own.
+    "SPECIES_ROOKIDEE": [("MOVE_ROOST", "Ian, 2026-10-31: Darach's Corviknight at 44"),
+                         ("MOVE_TAILWIND", "Ian, 2026-10-31: Darach's Corviknight")],
+    "SPECIES_SINISTEA": [("MOVE_PROTECT", "Ian, 2026-10-31: Darach's Sinistcha")],
+    "SPECIES_CHARCADET": [("MOVE_SCORCHING_SANDS", "Ian, 2026-10-31: Darach's Armarouge")],
+    "SPECIES_GALARIAN_ARTICUNO": [("MOVE_FREEZING_GLARE", "Ian, 2026-10-31: Darach's Galarian Articuno at 44")],
+    "SPECIES_ENTEI": [("MOVE_SACRED_FIRE", "Ian, 2026-10-31: Darach's Entei"),
+                      ("MOVE_CRUNCH", "Ian, 2026-10-31: Darach's Entei"),
+                      ("MOVE_EXTREME_SPEED", "Ian, 2026-10-31: Darach's Entei"),
+                      ("MOVE_BULLDOZE", "Ian, 2026-10-31: Darach's Entei")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

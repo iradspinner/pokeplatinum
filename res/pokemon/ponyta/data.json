@@ -92,7 +92,8 @@
             "MOVE_HEALING_WISH",
             "MOVE_FLARE_BLITZ",
             "MOVE_SWORDS_DANCE",
-            "MOVE_BATON_PASS"
+            "MOVE_BATON_PASS",
+            "MOVE_HIGH_HORSEPOWER"
         ]
     },
     "evolutions": [
