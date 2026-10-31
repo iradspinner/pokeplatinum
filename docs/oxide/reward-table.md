@@ -506,7 +506,7 @@ The sections of the gauntlet proposal (balance plan, "The gauntlets, reworked on
 | The Galactic HQ | 3F | HQ | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt |  |
 | The Galactic HQ | B2F | HQ | Galactic Grunt, Galactic Grunt |  |
 | Mt. Coronet | 1F's tunnel | Galactic | Galactic Grunt, Galactic Grunt, Galactic Grunt |  |
-| Mt. Coronet | 3F, 4F and Somnu on 5F | Galactic | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Officer Somnu |  |
+| Mt. Coronet | 3F and 4F | Galactic | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt |  |
 | Victory Road | 1F, the half nearer the entrance | Barry | Psychic Bryce, Bird Keeper Hana, Ace Trainer Mariah |  |
 | Victory Road | 1F, the far half | Barry | Black Belt Miles, Dragon Tamer Clinton, Veteran Edgar |  |
 

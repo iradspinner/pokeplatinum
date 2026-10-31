@@ -4,6 +4,8 @@ Ian asked on 2026-10-31 for a check of the story route through the whole game be
 
 ## Summary
 
+Ian answered the questions on 2026-10-31. The last section, "Ian's answers and the rechecks (2026-10-31)", records what was built from them and two rechecks that correct this page: the Regi ruins open only once the Distortion World is done, and Spring Path, Sendoff Spring and Turnback Cave are walled off until then.
+
 What was checked. Every split from Roark's to the League was walked with a whole-world tile model built on `required.Field`: every map joined by its warps and edges, the field moves each split allows, and a hand table of the story's gates (the coord events that turn the player back, and the flag-hidden people and objects that stand in a passage, each with the point its flag clears). The same walk was run on vanilla's event data from `main`, so each early reach is labelled as vanilla's or as the base ROM's and Oxide's. Each split's mandatory fights were counted with `required.py`, `pairs.py`, the script index and the gauntlet doc. Every map's events, script and text bank were diffed between `~/roms/base.nds` and `~/roms/vanilla.nds`, and each difference on or beside the route was looked up in the docs.
 
 What could not be checked. Nothing was seen in game. The model reads bridges flat and does not see scripts that move warps (`SetWarpEventPos`), so the Regi ruins and the Maniac caves needed reading by hand. Gyms with moving parts and the multi-floor dungeons (Galactic HQ, Mt. Coronet, Victory Road, Iron Island) are not modelled, so their counts come from the gauntlet doc's walk. The base ROM's item balls, its 752 changed text lines and its 125 changed wild tables were counted per map but not traced one by one.
@@ -322,3 +324,47 @@ The base-ROM diff decoded every events file, script file and text bank in both R
 The world walk joined every header through its warps, with the overworld as one field. An object on a warp tile blocks the warp. The gate table holds the cycling road's two gates, Valor Lakefront's Route 222 coord event and Veilstone's warehouse coord event. It also holds about two dozen flag-hidden blockers, each opening at the split its flag clears: the Route 209, 212 and 218 blockades, Valor Lakefront's cameramen and collector, the warehouse guards, the HQ doors and bollards, and Mt. Coronet's north-room grunts and cave painting, among others. Each blocker came from a frontier search: for every flag-hidden object beside the strict reach, the walk was rerun without it to see what it opens.
 
 The scratch scripts are in `/home/ian/.claude/jobs/382760ce/tmp/story-route/` (`mapdiff_all.py`, `digest.py`, `worldreach.py`, `frontier.py`). The counts used `required.py` on the branch's tree, `pairs.py`, `trainer-roles.tsv` for the officers' names, and direct sight checks on Mt. Coronet 5F and 6F.
+
+## Ian's answers and the rechecks (2026-10-31)
+
+Built on the branch `overseer-route-fixes`, from `origin/oxide` at d1a5c1b150f. Nothing here was seen in game; each change has an in-game check in `ingame-checklist.md`.
+
+### What was built
+
+Iron Island is back on the story path (question 2). Barry at Canalave's library door waited for HM04 or a Pokemon knowing Strength, which vanilla's Riley gave on the island. The base ROM moved HM04 to Fantina and Oxide put Strength on the Mine Badge, so nothing sent the player there. Barry now waits until Riley's section on Iron Island B2F is done (his state 2, set once the grunts beside him are beaten, egg taken or not), and keeps vanilla's pointer: "Aww, you haven't gone to Iron Island, have you? You've got to toughen up there first, like I told you!" The gap is Oxide's own, so it is not a vanilla fix. The field model finds Canalave's library door unreachable while Barry stands at (37,719), and the gym and the sailor to the island reachable, so the split runs Byron, Iron Island, then the library. Riley's tag battle and the island's other unavoidable trainers now join Candice's split's count, which this page has not recounted.
+
+Named officers are out of the gauntlets (questions 10 and 11). Section 8 on Mt. Coronet now ends on arrival at 5F, so Officers Somnu and Moira are met with healing allowed, nine rows past the arrival. Section 2 is not changed yet, for the reason under "Waiting on Ian".
+
+The Lucky Egg on Route 207 is gone (question 12), with the hand menu before it; the Dowsing Machine stays. Vanilla's Vs. Seeker is not restored: Oxide's Vs. Seeker item is the Pocket PC, already given in Sandgem with the one flag anything reads.
+
+`required.py` holds a boulder that cannot be pushed as a wall (question 14). The game moves a boulder one tile the way it is pushed, from the tile behind it on foot, unless the tile beyond has the collision bit, a wall on that side, or an object; water does not stop it. Seven of the game's 56 boulders become walls, among them Lake Verity's at (53,45) and Route 215's two. No count moved, and the earlier reading of Lake Verity was wrong twice. Its boulder at (46,45) can be pushed west onto the lake from (47,45). And grunts 3 and 4 read avoidable because Surf takes the player round them along the lake's west edge, from (44,45) to the shore at (48,43), boulders or not. So the pair is avoidable in the model whichever way the boulders go, unless a height step the model does not read stops the surf.
+
+### The Regi ruins (question 8, rechecked)
+
+The base ROM's entrances check `FLAG_GALACTIC_LEFT_LAKE_VALOR`, which is misnamed. It is set in one place only: Cynthia's scene at Sendoff Spring, which plays as the player comes out of the Distortion World (`scripts_sendoff_spring.s`, line 46). It is the flag that refills Lake Valor, not the explosion of Byron's split. So all three Regis open in Volkner's split, not in Candice's and Galactic's as read above.
+
+| Regi | Ruin's door | How the player gets there |
+|---|---|---|
+| Regice | Iceberg Ruins, (15,16) in Mt. Coronet 1F North Room 2 | the room between B1F and Route 216's west end, on the walk to Snowpoint |
+| Registeel | Iron Ruins, (14,1) on Iron Island B3F | through the island's inside from B2F, by Canalave's ferry |
+| Regirock | Rock Peak Ruins, (785,340) on Route 228 | the Battle Zone ferry from Snowpoint, which sails after Galactic HQ |
+
+Each door's script needs that flag, a Wailord and a Relicanth in the party. Without all three, the script moves the ruin's warp aside and the door leads to a small room with an item instead (NeverMeltIce, Metal Coat, Hard Stone). Inside, every ruin runs the same chain. The state resets on entry unless the Regi was fought; the seven dots each light in turn; the last one makes "something change in the air"; then touching the statue starts the battle at level 30. A catch ends it for good, and a defeat or flight re-arms it on the next entry. Vanilla's chain also needed the Hall of Fame at the statue and at the last dot, and an event Regigigas (a fateful encounter) in the party at the door, which the base ROM took out.
+
+No Regi is in the Distortion World in either tree. Its maps from B1F down have no events, their scripts and text match vanilla, and none has a wild table. Ian's memory most likely comes from the ruins opening the moment the player leaves it. Regigigas stays post-game: Snowpoint Temple's guard needs the National Dex and the Hall of Fame, and B5F needs all three Regis in the party, as in vanilla.
+
+So question 8 narrows: the Regis are catchable from Volkner's split, given a Wailord and a Relicanth. `pokemon-sources.md` still calls them post-game.
+
+### Spring Path, Sendoff Spring and Turnback Cave (question 13, rechecked)
+
+All three are gated until the Distortion World ends, in vanilla as in Oxide. Until the player leaps into the portal in Giratina's room, which sets the hidden location Spring Path (as the Hall of Fame does too), every map load swaps Spring Path's four chunks of the overworld for land data 176, which is wall on every tile (`field_map_change.c`, `MapMatrix_RevealSpringPath`; the name is the wrong way round). Route 214's east edge meets rock. Sendoff Spring is reached only through Spring Path, from Turnback Cave, or by the Distortion World dropping the player there, and Turnback Cave only through Sendoff Spring. The tile model read the unpatched matrix, which is why it found them open.
+
+This changes the page's reading. Summary item 2 loses these three areas, and the Regi ruins move to Volkner's split. The notes under Wake's and HQ's splits are wrong: nothing opens there. Question 13 is answered by the game itself; the encounter tool's Barry's split and post-game placing is close, and Volkner's split would be exact.
+
+### Waiting on Ian
+
+Section 2, the Eterna building's 3F, holds Scientist Travon and Officer Moira, both on 3F. Without Moira it would hold Travon alone, under the 2 to 5, and a section holds a whole map, so no bound falls between them. Travon also sees nothing (a wall stands at his side), so a player may skip him and meet Moira inside the lock. Three ways out:
+
+1. Drop section 2. Travon and Moira become ordinary fights with healing. Section 1 keeps its four grunts, but it lists 3F for the dead-end pocket off 2F's east stairs, so it needs a small code change to end on arrival at 3F's main side. This is the recommended one.
+2. Keep section 2 with Travon alone. He stands by the entrance, and beating him lifts the lock before Moira, but the section breaks the 2 to 5 and a player who skips him still meets her locked.
+3. Fold Travon into section 1 (five trainers). Moira is then met unlocked only if all five were beaten, so this does not meet the ruling.

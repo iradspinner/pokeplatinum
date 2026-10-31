@@ -45,15 +45,15 @@
       ]
     },
     {
-      "id": "CanalaveCity_Text_DidntGetHMStrength",
+      "id": "CanalaveCity_Text_HaventGoneToIronIsland",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, you’re here!\n",
         "Finally!\r",
         "Oh, but what the...\r",
         "Aww, you haven’t gone to Iron Island,\n",
         "have you?\r",
-        "You didn’t get the HM Strength, did\n",
-        "you?\r",
+        "You’ve got to toughen up there first,\n",
+        "like I told you!\r",
         "Aww, sheesh! I’ll wait here for you!\n",
         "Hurry up and go already!"
       ]

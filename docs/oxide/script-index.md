@@ -15,11 +15,11 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
 | Trainer battles | 594 | 507 | 72 | 15 | 0 | 14 |
-| Items given | 213 | 102 | 31 | 80 | 0 | 34 |
+| Items given | 212 | 102 | 30 | 80 | 0 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
 | Flags | 3324 | 2964 | 214 | 146 | 0 | 105 |
-| Variables | 1121 | 1078 | 27 | 16 | 0 | 36 |
+| Variables | 1122 | 1078 | 27 | 17 | 0 | 36 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
 
@@ -824,10 +824,6 @@ Trainer battles:
 - StartTrainerBattle: against TRAINER_DUMMY_802 (Lucas, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:236`
 - StartTrainerBattle: against TRAINER_DUMMY_800 (Lucas, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:242`
 - StartTrainerBattle: against TRAINER_DUMMY_801 (Lucas, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:248`
-
-Items given:
-
-- ITEM_LUCKY_EGG x1. Added from the base ROM (81d02e28e). `scripts_route_207.s:289`
 
 Item balls:
 
@@ -3887,10 +3883,10 @@ Flags:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_TURTWIG (Barry, level 53, 6 Pokemon), by number. Vanilla. `scripts_canalave_city.s:643`
-- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR (Barry, level 53, 6 Pokemon), by number. Vanilla. `scripts_canalave_city.s:646`
-- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_PIPLUP (Barry, level 53, 6 Pokemon), by number. Vanilla. `scripts_canalave_city.s:649`
-- StartTrainerBattle: against TRAINER_DUMMY_213 (Experiencia, level 60, 2 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_canalave_city.s:676`
+- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_TURTWIG (Barry, level 53, 6 Pokemon), by number. Vanilla. `scripts_canalave_city.s:645`
+- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR (Barry, level 53, 6 Pokemon), by number. Vanilla. `scripts_canalave_city.s:648`
+- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_PIPLUP (Barry, level 53, 6 Pokemon), by number. Vanilla. `scripts_canalave_city.s:651`
+- StartTrainerBattle: against TRAINER_DUMMY_213 (Experiencia, level 60, 2 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_canalave_city.s:678`
 
 Item balls:
 
@@ -3910,7 +3906,7 @@ Flags:
 Variables:
 
 - Set: VAR_MAP_LOCAL_0x00, VAR_OBJ_GFX_ID_0, VAR_CANALAVE_CITY_STATE, VAR_CANALAVE_LIBRARY_STATE, VAR_DARKRAI_EVENT_STATE.
-- Checked: VAR_MAP_LOCAL_0x00, VAR_CANALAVE_CITY_STATE, VAR_DARKRAI_EVENT_STATE, VAR_LUNAR_WING_EVENT_STATE.
+- Checked: VAR_MAP_LOCAL_0x00, VAR_CANALAVE_CITY_STATE, VAR_IRON_ISLAND_B2F_LEFT_ROOM_FOLLOWER_RILEY_STATE (added, Oxide), VAR_DARKRAI_EVENT_STATE, VAR_LUNAR_WING_EVENT_STATE.
 
 Gone from vanilla: ITEM_TM89 x1, one time, flag FLAG_OBTAINED_CANALAVE_CITY_TM89.
 

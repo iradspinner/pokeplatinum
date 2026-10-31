@@ -2967,18 +2967,18 @@
    "entries": {
     "flags": [
      {"at": ["scripts_canalave_city:156", "scripts_canalave_city:164", "scripts_canalave_city:174", "scripts_canalave_city:182", "scripts_canalave_city:190", "scripts_canalave_city:199"], "daily": false, "flag": 168, "name": "FLAG_LAKE_VALOR_EXPLODED", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:377"], "daily": false, "flag": 300, "name": "FLAG_WOKE_UP_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:379"], "daily": false, "flag": 300, "name": "FLAG_WOKE_UP_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:259"], "daily": false, "flag": 307, "name": "FLAG_TALKED_TO_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:261"], "daily": false, "flag": 316, "name": "FLAG_TRAVELED_TO_NEWMOON_ISLAND", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:367"], "daily": false, "flag": 344, "name": "FLAG_CAUGHT_DARKRAI", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:369"], "daily": false, "flag": 2404, "name": "FLAG_GAME_COMPLETED", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:334"], "commit": "81d02e28e", "daily": false, "flag": 2688, "name": "FLAG_UNK_0x0A80", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_canalave_city:603"], "daily": false, "flag": 373, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:602"], "daily": false, "flag": 404, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:580"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:369"], "daily": false, "flag": 344, "name": "FLAG_CAUGHT_DARKRAI", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:371"], "daily": false, "flag": 2404, "name": "FLAG_GAME_COMPLETED", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:336"], "commit": "81d02e28e", "daily": false, "flag": 2688, "name": "FLAG_UNK_0x0A80", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_canalave_city:605"], "daily": false, "flag": 373, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:604"], "daily": false, "flag": 404, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:582"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:104"], "daily": false, "flag": 436, "name": "FLAG_HIDE_CANALAVE_CITY_SAILOR", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:386"], "daily": false, "flag": 576, "name": "FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:604"], "daily": false, "flag": 659, "name": "FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:388"], "daily": false, "flag": 576, "name": "FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:606"], "daily": false, "flag": 659, "name": "FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:191"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:221"], "daily": false, "flag": 435, "name": "FLAG_HIDE_CANALAVE_CITY_PROF_ROWAN", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:236"], "daily": false, "flag": 436, "name": "FLAG_HIDE_CANALAVE_CITY_SAILOR", "op": "hides", "origin": "vanilla", "reached": true},
@@ -2986,11 +2986,11 @@
      {"at": ["events_canalave_city:296"], "daily": false, "flag": 716, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_LIBRARY", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:251"], "daily": false, "flag": 1148, "name": "FLAG_OBTAINED_CANALAVE_CITY_TM89", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:311"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_canalave_city:665"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:399"], "daily": false, "flag": 435, "name": "FLAG_HIDE_CANALAVE_CITY_PROF_ROWAN", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:400"], "daily": false, "flag": 437, "name": "FLAG_HIDE_CANALAVE_CITY_COUNTERPART", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:667"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:401"], "daily": false, "flag": 435, "name": "FLAG_HIDE_CANALAVE_CITY_PROF_ROWAN", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:402"], "daily": false, "flag": 437, "name": "FLAG_HIDE_CANALAVE_CITY_COUNTERPART", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:37"], "daily": false, "flag": 445, "name": "FLAG_HIDE_CELESTIC_TOWN_CYNTHIA", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:556"], "commit": "81d02e28e", "daily": false, "flag": 2688, "name": "FLAG_UNK_0x0A80", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
+     {"at": ["scripts_canalave_city:558"], "commit": "81d02e28e", "daily": false, "flag": 2688, "name": "FLAG_UNK_0x0A80", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
     ],
     "hidden_items": [
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_canalave_city", "flag": 948, "flag_name": "FLAG_OBTAINED_HIDDEN_CANALAVE_CITY_BIG_PEARL", "item": "ITEM_BIG_PEARL", "item_id": 89, "line": 12, "origin": "vanilla", "reached": true}
@@ -2999,21 +2999,22 @@
      {"commit": "03a50f7fd", "count": 2, "daily": false, "event": "object_events", "file": "events_canalave_city", "flag": 1148, "flag_name": "FLAG_OBTAINED_CANALAVE_CITY_TM89", "item": "ITEM_TM80", "item_id": 407, "line": 252, "origin": "added", "reached": true, "replaces": "ITEM_TM89 x1, one time, flag FLAG_OBTAINED_CANALAVE_CITY_TM89", "source": "base ROM"}
     ],
     "trainers": [
-     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 643, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_TURTWIG", "value": 477, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 646, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR", "value": 478, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 649, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_PIPLUP", "value": 476, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 676, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_213", "value": 213, "when": ""}]}], "source": "base ROM"}
+     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 645, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_TURTWIG", "value": 477, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 648, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR", "value": 478, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 651, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_PIPLUP", "value": 476, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 678, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_213", "value": 213, "when": ""}]}], "source": "base ROM"}
     ],
     "vars": [
-     {"at": ["scripts_canalave_city:43", "scripts_canalave_city:45", "scripts_canalave_city:56", "scripts_canalave_city:58", "scripts_canalave_city:240", "scripts_canalave_city:311", "scripts_canalave_city:372", "scripts_canalave_city:375"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["events_canalave_city:414", "scripts_canalave_city:47", "scripts_canalave_city:49", "scripts_canalave_city:51", "scripts_canalave_city:53", "scripts_canalave_city:449", "scripts_init_canalave_city:10", "scripts_init_canalave_city:11"], "name": "VAR_CANALAVE_CITY_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16504},
+     {"at": ["scripts_canalave_city:43", "scripts_canalave_city:45", "scripts_canalave_city:56", "scripts_canalave_city:58", "scripts_canalave_city:240", "scripts_canalave_city:311", "scripts_canalave_city:374", "scripts_canalave_city:377"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
+     {"at": ["events_canalave_city:414", "scripts_canalave_city:47", "scripts_canalave_city:49", "scripts_canalave_city:51", "scripts_canalave_city:53", "scripts_canalave_city:451", "scripts_init_canalave_city:10", "scripts_init_canalave_city:11"], "name": "VAR_CANALAVE_CITY_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16504},
+     {"at": ["scripts_canalave_city:324"], "commit": "109c93169", "name": "VAR_IRON_ISLAND_B2F_LEFT_ROOM_FOLLOWER_RILEY_STATE", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16530},
      {"at": ["scripts_canalave_city:38", "scripts_canalave_city:40", "scripts_init_canalave_city:12"], "name": "VAR_DARKRAI_EVENT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16632},
      {"at": ["scripts_canalave_city:254"], "name": "VAR_LUNAR_WING_EVENT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16646},
-     {"at": ["scripts_canalave_city:55", "scripts_canalave_city:371", "scripts_canalave_city:374", "scripts_canalave_city:379", "scripts_canalave_city:576"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_canalave_city:404", "scripts_canalave_city:407"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
-     {"at": ["scripts_canalave_city:94", "scripts_canalave_city:401", "scripts_canalave_city:601", "scripts_canalave_city:661"], "name": "VAR_CANALAVE_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16504},
+     {"at": ["scripts_canalave_city:55", "scripts_canalave_city:373", "scripts_canalave_city:376", "scripts_canalave_city:381", "scripts_canalave_city:578"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
+     {"at": ["scripts_canalave_city:406", "scripts_canalave_city:409"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
+     {"at": ["scripts_canalave_city:94", "scripts_canalave_city:403", "scripts_canalave_city:603", "scripts_canalave_city:663"], "name": "VAR_CANALAVE_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16504},
      {"at": ["scripts_canalave_city:95"], "name": "VAR_CANALAVE_LIBRARY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16562},
-     {"at": ["scripts_canalave_city:306", "scripts_canalave_city:359"], "name": "VAR_DARKRAI_EVENT_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16632}
+     {"at": ["scripts_canalave_city:306", "scripts_canalave_city:361"], "name": "VAR_DARKRAI_EVENT_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16632}
     ]
    },
    "events": "events_canalave_city",
@@ -12071,9 +12072,6 @@
      {"count": 1, "daily": false, "event": "object_events", "file": "events_route_207", "flag": 1159, "flag_name": "FLAG_OBTAINED_ROUTE_207_SUPER_POTION", "item": "ITEM_SUPER_POTION", "item_id": 26, "line": 428, "origin": "vanilla", "reached": true},
      {"count": 1, "daily": false, "event": "object_events", "file": "events_route_207", "flag": 1335, "flag_name": "FLAG_OBTAINED_ROUTE_207_TIMER_BALL", "item": "ITEM_TIMER_BALL", "item_id": 10, "line": 443, "origin": "vanilla", "reached": true}
     ],
-    "items": [
-     {"command": "CallCommonScript", "commit": "81d02e28e", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_route_207", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_LUCKY_EGG", "value": 231, "when": ""}], "line": 289, "mode": "variable", "origin": "added", "reached": true, "source": "base ROM"}
-    ],
     "trainers": [
      {"event": "object_events", "file": "events_route_207", "how": "sees the player", "line": 51, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_CAMPER_ANTHONY", "value": 34, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_207", "how": "sees the player", "line": 66, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_PICNICKER_LAUREN", "value": 35, "when": ""}]}]},
@@ -12093,7 +12091,7 @@
      {"at": ["events_route_207:508"], "name": "VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16524},
      {"at": ["scripts_route_207:19"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["scripts_route_207:115", "scripts_route_207:118"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
-     {"at": ["scripts_route_207:302"], "name": "VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16524}
+     {"at": ["scripts_route_207:286"], "name": "VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16524}
     ]
    },
    "events": "events_route_207",
@@ -19300,9 +19298,9 @@
   },
   "items": {
    "Oxide": 80,
-   "base ROM": 31,
+   "base ROM": 30,
    "gone": 34,
-   "total": 213,
+   "total": 212,
    "vanilla": 102
   },
   "pokemon": {
@@ -19332,10 +19330,10 @@
    "vanilla": 507
   },
   "vars": {
-   "Oxide": 16,
+   "Oxide": 17,
    "base ROM": 27,
    "gone": 36,
-   "total": 1121,
+   "total": 1122,
    "vanilla": 1078
   }
  }

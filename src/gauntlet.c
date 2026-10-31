@@ -169,10 +169,13 @@ static const GauntletSection sGauntletSections[GAUNTLET_SECTION_COUNT] = {
             END_TRAINERS,
         },
     },
-    // 3F, the outside ledges, 4F and 5F, up to 6F. The north ledge's cave
-    // mouth into the tunnel leads back down to Route 211, so it is a way back.
+    // 3F, the outside ledges and 4F, up to 5F. The north ledge's cave mouth
+    // into the tunnel leads back down to Route 211, so it is a way back. 5F
+    // is left out, so the section closes on arrival there: Officers Somnu
+    // and Moira wait on 5F, and named officers stay outside every gauntlet
+    // (Ian, 2026-10-31), so the player may heal before them.
     [GAUNTLET_MT_CORONET_CLIMB] = {
-        .maps = { MAP_HEADER_MT_CORONET_3F, MAP_HEADER_MT_CORONET_2F, MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH, MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2, MAP_HEADER_MT_CORONET_OUTSIDE_NORTH, MAP_HEADER_MT_CORONET_4F_ROOM_3, MAP_HEADER_MT_CORONET_5F, END_MAPS },
+        .maps = { MAP_HEADER_MT_CORONET_3F, MAP_HEADER_MT_CORONET_2F, MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH, MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2, MAP_HEADER_MT_CORONET_OUTSIDE_NORTH, MAP_HEADER_MT_CORONET_4F_ROOM_3, END_MAPS },
         .waysIn = { { MAP_HEADER_MT_CORONET_3F, 0, ITEM_NONE }, END_WARPS },
         .waysBack = {
             { MAP_HEADER_MT_CORONET_3F, 0, ITEM_NONE },
@@ -184,7 +187,7 @@ static const GauntletSection sGauntletSections[GAUNTLET_SECTION_COUNT] = {
             { TRAINER_GALACTIC_GRUNT_MT_CORONET_3F_2, FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS },
             { TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_1, FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS },
             { TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_2, FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS },
-            { TRAINER_GALACTIC_GRUNT_MT_CORONET_5F_2, FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS },
+            END_TRAINERS,
         },
     },
     // Victory Road's 1F runs from the entrance to the exit on its own; 2F and

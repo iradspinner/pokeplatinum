@@ -1482,6 +1482,14 @@ TEXT_BANKS_SKIPPED[143] = (TEXT_BANKS_SKIPPED[143] + "; then " + _why
 # Capsule, so its bank loses the turn and Liam lines and gains the gift's.
 TEXT_BANKS_SKIPPED[490] = ("the maid knockout's lines: no turn target or Liam, Celeste every time, "
                            "and her Ability Capsule (Ian, 2026-10-31)")
+# Iron Island back on the story path (Ian, 2026-10-31): Barry at Canalave's
+# library door waits for Riley's section, not HM Strength, and his line says so.
+# Lucas or Dawn on Route 207 no longer gives the base ROM's Lucky Egg (Ian,
+# 2026-10-31), so the hand choice and the egg's lines go.
+TEXT_BANKS_SKIPPED[477] += ("; then the Lucky Egg's lines and the hand choice before it removed "
+                            "(Ian, 2026-10-31)")
+TEXT_BANKS_SKIPPED[54] = ("Barry at the library door sends the player to Iron Island rather than "
+                          "for HM Strength (Ian, 2026-10-31)")
 
 
 def text_bank_names():

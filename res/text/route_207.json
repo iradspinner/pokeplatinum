@@ -14,21 +14,15 @@
     },
     {
       "id": "Route207_Text_DawnYouWantTheVsSeeker",
-      "en_US": [
-        "Dawn: I see...\n",
-        "You want the lucky egg.\r",
-        "I’m impressed, {STRVAR_1 3, 0, 0}.\n",
-        "You know what’s important.\r"
-      ]
+      "en_US": ""
     },
     {
       "id": "Route207_Text_DawnHaveThisTooThen",
       "en_US": [
-        "Dawn: Use it to train.\r",
-        "Oh, {STRVAR_1 3, 0, 0}, do you also have\n",
+        "Dawn: Oh, {STRVAR_1 3, 0, 0}, do you have\n",
         "a Pokétch?\r",
         "Yup, you do.\n",
-        "You can have this too, then.\r",
+        "You can have this, then.\r",
         "You deserve it for all your hard\n",
         "work, {STRVAR_1 3, 0, 0}.\r"
       ]
@@ -60,21 +54,15 @@
     },
     {
       "id": "Route207_Text_LucasYouWantTheVsSeeker",
-      "en_US": [
-        "Lucas: Oh yeah.\n",
-        "You want the lucky egg.\r",
-        "Yup, {STRVAR_1 3, 0, 0}, you know what’s\n",
-        "important.\r"
-      ]
+      "en_US": ""
     },
     {
       "id": "Route207_Text_LucasHaveThisTooThen",
       "en_US": [
-        "Lucas: Use it to train\r",
-        "{STRVAR_1 3, 0, 0}, what about a Pokétch?\n",
-        "Do you have one?\r",
+        "Lucas: {STRVAR_1 3, 0, 0}, what about\n",
+        "a Pokétch? Do you have one?\r",
         "Yup, you do.\n",
-        "You can have this too, then.\r",
+        "You can have this, then.\r",
         "You deserve it for all of your\n",
         "effort, {STRVAR_1 3, 0, 0}.\r"
       ]
@@ -161,19 +149,14 @@
     },
     {
       "id": "Route207_Text_17",
-      "en_US": [
-        "Dawn: I’ve got something nice for you.\n",
-        "{STRVAR_1 3, 0, 0}, choose which hand\r",
-        "you want."
-      ]
+      "en_US": "Dawn: I’ve got something nice for you.\r"
     },
     {
       "id": "Route207_Text_18",
       "en_US": [
         "Lucas: Lately, I’ve been experimenting\n",
-        "with a couple of neat tools.\r",
-        "{STRVAR_1 3, 0, 0}, I’ll share with you.\n",
-        "Choose a hand!"
+        "with a neat tool.\r",
+        "{STRVAR_1 3, 0, 0}, I’ll share it with you.\r"
       ]
     },
     {

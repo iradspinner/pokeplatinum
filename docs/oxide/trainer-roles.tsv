@@ -312,15 +312,15 @@ HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3	Galactic Grunt	MAP_HEADER_GALACTIC_HQ
 HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_3F	LOCALID_GALACTIC_GRUNT_4	no	gauntlet	galactic_hq: 3F			2	2.8		multi-floor dungeon
 HQ	TRAINER_SCIENTIST_DARRIUS	Scientist Darrius	MAP_HEADER_GALACTIC_HQ_2F	LOCALID_SCIENTIST_DARRIUS	no	gauntlet	galactic_hq: 2F			1	2.3		multi-floor dungeon
 HQ	TRAINER_SCIENTIST_FREDRICK	Scientist Fredrick	MAP_HEADER_GALACTIC_HQ_1F	LOCALID_SCIENTIST_FREDRICK	no	gauntlet	galactic_hq: 1F			2	3.9		multi-floor dungeon
-Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_3F_1	Galactic Grunt	MAP_HEADER_MT_CORONET_3F	LOCALID_GALACTIC_GRUNT_1	no	gauntlet	mt_coronet: 3F, 4F and Somnu on 5F			1	2.3		multi-floor dungeon
-Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_1	Galactic Grunt	MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2	LOCALID__GALACTIC_GRUNT_1	no	gauntlet	mt_coronet: 3F, 4F and Somnu on 5F			2	3.1		multi-floor dungeon
-Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_2	Galactic Grunt	MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2	LOCALID__GALACTIC_GRUNT_2	no	gauntlet	mt_coronet: 3F, 4F and Somnu on 5F			2	2.7		multi-floor dungeon
+Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_3F_1	Galactic Grunt	MAP_HEADER_MT_CORONET_3F	LOCALID_GALACTIC_GRUNT_1	no	gauntlet	mt_coronet: 3F and 4F			1	2.3		multi-floor dungeon
+Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_1	Galactic Grunt	MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2	LOCALID__GALACTIC_GRUNT_1	no	gauntlet	mt_coronet: 3F and 4F			2	3.1		multi-floor dungeon
+Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_2	Galactic Grunt	MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2	LOCALID__GALACTIC_GRUNT_2	no	gauntlet	mt_coronet: 3F and 4F			2	2.7		multi-floor dungeon
 Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_1	Galactic Grunt	MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM	LOCALID_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_1	no	gauntlet	mt_coronet: 1F's tunnel			2	2.4		multi-floor dungeon
 Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_2	Galactic Grunt	MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM	LOCALID_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_2	no	gauntlet	mt_coronet: 1F's tunnel			1	2.3		multi-floor dungeon
 Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_5F_1	Galactic Officer Moira	MAP_HEADER_MT_CORONET_5F	LOCALID_GALACTIC_GRUNT_1	no	none				6	4.9		multi-floor dungeon
-Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_3F_2	Galactic Grunt	MAP_HEADER_MT_CORONET_3F	LOCALID_GALACTIC_GRUNT_2	no	gauntlet	mt_coronet: 3F, 4F and Somnu on 5F			1	2.3		multi-floor dungeon
+Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_3F_2	Galactic Grunt	MAP_HEADER_MT_CORONET_3F	LOCALID_GALACTIC_GRUNT_2	no	gauntlet	mt_coronet: 3F and 4F			1	2.3		multi-floor dungeon
 Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_3	Galactic Grunt	MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM	LOCALID_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_3	no	gauntlet	mt_coronet: 1F's tunnel			2	2.3		multi-floor dungeon
-Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_5F_2	Galactic Officer Somnu	MAP_HEADER_MT_CORONET_5F	LOCALID_GALACTIC_GRUNT_2	no	gauntlet	mt_coronet: 3F, 4F and Somnu on 5F			6	3.5		multi-floor dungeon
+Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_5F_2	Galactic Officer Somnu	MAP_HEADER_MT_CORONET_5F	LOCALID_GALACTIC_GRUNT_2	no	none				6	3.5		multi-floor dungeon
 Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_6F	Galactic Officer Hesperid	MAP_HEADER_MT_CORONET_6F	LOCALID_GALACTIC_GRUNT	no	none				6	7.8		multi-floor dungeon
 Galactic	TRAINER_BIRD_KEEPER_AUDREY	Bird Keeper Audrey	MAP_HEADER_ROUTE_225	LOCALID_BIRD_KEEPER_AUDREY	no	none				3	3.2		off the story path
 Galactic	TRAINER_BIRD_KEEPER_GENEVA	Bird Keeper Geneva	MAP_HEADER_ROUTE_226	LOCALID_BIRD_KEEPER_GENEVA	no	reward		ITEM_TM86	2	2	2.8	spare	off the story path
