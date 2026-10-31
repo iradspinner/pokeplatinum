@@ -13,47 +13,43 @@
             "species": "SPECIES_WOOLOO",
             "form": 0,
             "level": 7,
-            "item": "ITEM_SILK_SCARF",
-            "moves": [
-                "MOVE_THUNDER_WAVE",
-                "MOVE_DOUBLE_HIT",
-                "MOVE_TACKLE"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_DOCILE",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_BIDOOF",
-            "form": 0,
-            "level": 7,
-            "item": "ITEM_HARD_STONE",
-            "moves": [
-                "MOVE_DEFENSE_CURL",
-                "MOVE_ROLLOUT",
-                "MOVE_TACKLE"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_RELAXED",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_SPHEAL",
-            "form": 0,
-            "level": 8,
             "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_DEFENSE_CURL",
-                "MOVE_ROLLOUT",
-                "MOVE_POWDER_SNOW",
-                "MOVE_WATER_GUN"
+                "MOVE_TACKLE",
+                "MOVE_DOUBLE_HIT"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_SASSY",
+            "nature": "NATURE_BASHFUL",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BUDEW",
+            "form": 0,
+            "level": 7,
+            "item": "ITEM_PECHA_BERRY",
+            "moves": [
+                "MOVE_ACID",
+                "MOVE_RAZOR_LEAF"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_ROOKIDEE",
+            "form": 0,
+            "level": 8,
+            "item": "ITEM_PERSIM_BERRY",
+            "moves": [
+                "MOVE_PECK",
+                "MOVE_LEER"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
             "ability": 1,
             "gender": null

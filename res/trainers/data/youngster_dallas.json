@@ -10,54 +10,48 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_JOLTIK",
+            "species": "SPECIES_PAWMI",
             "form": 0,
             "level": 10,
-            "item": "ITEM_MAGNET",
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_THUNDER_WAVE",
-                "MOVE_CHARGE_BEAM",
-                "MOVE_FURY_CUTTER",
-                "MOVE_STRING_SHOT"
+                "MOVE_THUNDER_SHOCK",
+                "MOVE_CHARM"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_HASTY",
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 2,
             "gender": null
         },
         {
             "species": "SPECIES_MAREEP",
             "form": 0,
             "level": 10,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_PERSIM_BERRY",
             "moves": [
-                "MOVE_CHARGE_BEAM",
                 "MOVE_THUNDER_SHOCK",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_TACKLE"
+                "MOVE_SHOCK_WAVE"
             ],
             "iv_scale": 200,
             "nature": "NATURE_QUIET",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": null
         },
         {
-            "species": "SPECIES_PAWMI",
+            "species": "SPECIES_ELEKID",
             "form": 0,
             "level": 11,
-            "item": "ITEM_CHOPLE_BERRY",
+            "item": "ITEM_CHESTO_BERRY",
             "moves": [
-                "MOVE_SPARK",
-                "MOVE_BITE",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_CHARM"
+                "MOVE_THUNDER_SHOCK",
+                "MOVE_LEER"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_NAIVE",
+            "nature": "NATURE_HARDY",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": null
         }
     ],

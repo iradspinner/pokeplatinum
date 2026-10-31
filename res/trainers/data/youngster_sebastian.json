@@ -10,15 +10,29 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_MANKEY",
+            "form": 0,
+            "level": 11,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_ROCK_SMASH",
+                "MOVE_LOW_KICK",
+                "MOVE_LEER"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
             "species": "SPECIES_TYROGUE",
             "form": 0,
             "level": 11,
-            "item": "ITEM_PERSIM_BERRY",
+            "item": "ITEM_CHERI_BERRY",
             "moves": [
-                "MOVE_FAKE_OUT",
                 "MOVE_MACH_PUNCH",
-                "MOVE_RAPID_SPIN",
-                "MOVE_TACKLE"
+                "MOVE_ROCK_SMASH"
             ],
             "iv_scale": 200,
             "nature": "NATURE_HARDY",
@@ -27,52 +41,19 @@
             "gender": null
         },
         {
-            "species": "SPECIES_CLOBBOPUS",
-            "form": 0,
-            "level": 11,
-            "item": "ITEM_ORAN_BERRY",
-            "moves": [
-                "MOVE_ROCK_SMASH",
-                "MOVE_TAUNT",
-                "MOVE_LEER"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_IMPISH",
-            "ball_seal": 0,
-            "ability": 3,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_MANKEY",
-            "form": 0,
-            "level": 11,
-            "item": "ITEM_BLACK_BELT",
-            "moves": [
-                "MOVE_REVENGE",
-                "MOVE_FURY_SWIPES",
-                "MOVE_LEER",
-                "MOVE_COVET"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_NAUGHTY",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
             "species": "SPECIES_MAKUHITA",
             "form": 0,
             "level": 12,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_BULK_UP",
                 "MOVE_ARM_THRUST",
-                "MOVE_BULLET_PUNCH"
+                "MOVE_VITAL_THROW"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_BRAVE",
+            "nature": "NATURE_DOCILE",
             "ball_seal": 0,
-            "ability": 1
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [

@@ -10,37 +10,18 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GRUBBIN",
+            "species": "SPECIES_WEEDLE",
             "form": 0,
             "level": 7,
-            "item": "ITEM_PERSIM_BERRY",
+            "item": "ITEM_CHERI_BERRY",
             "moves": [
-                "MOVE_STICKY_WEB",
-                "MOVE_VICE_GRIP",
-                "MOVE_MUD_SLAP",
-                "MOVE_STRING_SHOT"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_BASHFUL",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_WURMPLE",
-            "form": 0,
-            "level": 7,
-            "item": "ITEM_POISON_BARB",
-            "moves": [
-                "MOVE_STUN_SPORE",
                 "MOVE_POISON_STING",
-                "MOVE_PIN_MISSILE",
-                "MOVE_TACKLE"
+                "MOVE_STRING_SHOT"
             ],
             "iv_scale": 200,
             "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": null
         },
         {
@@ -50,29 +31,28 @@
             "item": "ITEM_ORAN_BERRY",
             "moves": [
                 "MOVE_STRUGGLE_BUG",
-                "MOVE_KARATE_CHOP",
+                "MOVE_FURY_CUTTER",
                 "MOVE_GROWL"
             ],
             "iv_scale": 200,
             "nature": "NATURE_LAX",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_SEWADDLE",
             "form": 0,
             "level": 8,
-            "item": "ITEM_SILVERPOWDER",
+            "item": "ITEM_RAWST_BERRY",
             "moves": [
                 "MOVE_POUNCE",
-                "MOVE_TACKLE",
-                "MOVE_CHARM"
+                "MOVE_BUG_BITE"
             ],
             "iv_scale": 200,
             "nature": "NATURE_SASSY",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 2,
             "gender": null
         }
     ],

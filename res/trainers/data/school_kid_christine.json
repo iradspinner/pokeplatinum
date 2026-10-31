@@ -15,49 +15,44 @@
             "species": "SPECIES_NATU",
             "form": 0,
             "level": 8,
-            "item": "ITEM_SHARP_BEAK",
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
                 "MOVE_PECK",
-                "MOVE_NIGHT_SHADE",
-                "MOVE_CONFUSE_RAY",
                 "MOVE_LEER"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_HASTY",
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_GOTHITA",
+            "species": "SPECIES_WINGULL",
             "form": 0,
             "level": 8,
-            "item": "ITEM_TWISTEDSPOON",
+            "item": "ITEM_ASPEAR_BERRY",
             "moves": [
-                "MOVE_CONFUSION",
-                "MOVE_POUND",
-                "MOVE_TICKLE",
-                "MOVE_PLAY_NICE"
+                "MOVE_WATER_GUN",
+                "MOVE_GUST"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_QUIET",
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
-            "ability": 2,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_RALTS",
             "form": 0,
             "level": 9,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_PECHA_BERRY",
             "moves": [
                 "MOVE_CONFUSION",
                 "MOVE_DISARMING_VOICE",
-                "MOVE_CALM_MIND",
-                "MOVE_DISABLE"
+                "MOVE_GROWL"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_SERIOUS",
+            "nature": "NATURE_BASHFUL",
             "ball_seal": 0,
             "ability": 1,
             "gender": null

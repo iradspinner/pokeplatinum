@@ -10,32 +10,13 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_EKANS",
+            "species": "SPECIES_PONYTA",
             "form": 0,
             "level": 12,
-            "item": "ITEM_PECHA_BERRY",
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_GLARE",
-                "MOVE_BITE",
-                "MOVE_POISON_STING",
-                "MOVE_DISABLE"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_LAX",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_GROWLITHE",
-            "form": 0,
-            "level": 12,
-            "item": "ITEM_CHARCOAL",
-            "moves": [
-                "MOVE_WILL_O_WISP",
                 "MOVE_EMBER",
-                "MOVE_BITE",
-                "MOVE_LEER"
+                "MOVE_FLAME_WHEEL"
             ],
             "iv_scale": 200,
             "nature": "NATURE_GENTLE",
@@ -44,54 +25,33 @@
             "gender": null
         },
         {
-            "species": "SPECIES_SNUBBULL",
+            "species": "SPECIES_GROWLITHE",
             "form": 0,
             "level": 12,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_CHERI_BERRY",
             "moves": [
-                "MOVE_CHARM",
-                "MOVE_BITE",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_TACKLE"
+                "MOVE_EMBER",
+                "MOVE_LEER"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_BRAVE",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_LITTEN",
-            "form": 0,
-            "level": 13,
-            "item": "ITEM_RAWST_BERRY",
-            "moves": [
-                "MOVE_FLAME_WHEEL",
-                "MOVE_LICK",
-                "MOVE_SCARY_FACE",
-                "MOVE_SCRATCH"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_QUIRKY",
+            "nature": "NATURE_DOCILE",
             "ball_seal": 0,
             "ability": 3,
             "gender": null
         },
         {
-            "species": "SPECIES_MAWILE",
+            "species": "SPECIES_MAGBY",
             "form": 0,
             "level": 13,
-            "item": "ITEM_BLACKGLASSES",
+            "item": "ITEM_PERSIM_BERRY",
             "moves": [
-                "MOVE_BITE",
-                "MOVE_ASTONISH",
-                "MOVE_ROCK_TOMB",
-                "MOVE_FAKE_TEARS"
+                "MOVE_EMBER",
+                "MOVE_SCREECH"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_DOCILE",
+            "nature": "NATURE_QUIRKY",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": null
         }
     ],
