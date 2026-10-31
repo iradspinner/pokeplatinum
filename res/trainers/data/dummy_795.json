@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_METANG",
             "form": 0,
-            "level": 36,
+            "level": 39,
             "item": "ITEM_QUICK_CLAW",
             "moves": [
                 "MOVE_METEOR_MASH",
@@ -21,7 +21,7 @@
                 "MOVE_GRAVITY"
             ],
             "iv_scale": 227,
-            "nature": null,
+            "nature": "NATURE_BASHFUL",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -29,7 +29,7 @@
         {
             "species": "SPECIES_GLALIE",
             "form": 0,
-            "level": 34,
+            "level": 37,
             "item": "ITEM_ICICLE_PLATE",
             "moves": [
                 "MOVE_BLIZZARD",
@@ -38,6 +38,7 @@
                 "MOVE_WEATHER_BALL"
             ],
             "iv_scale": 253,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -45,7 +46,7 @@
         {
             "species": "SPECIES_JUMPLUFF",
             "form": 0,
-            "level": 37,
+            "level": 40,
             "item": "ITEM_YACHE_BERRY",
             "moves": [
                 "MOVE_U_TURN",
@@ -54,7 +55,7 @@
                 "MOVE_ENCORE"
             ],
             "iv_scale": 253,
-            "nature": null,
+            "nature": "NATURE_QUIRKY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -62,7 +63,7 @@
         {
             "species": "SPECIES_ROTOM",
             "form": 1,
-            "level": 35,
+            "level": 38,
             "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_THUNDER",
@@ -71,6 +72,7 @@
                 "MOVE_SUNNY_DAY"
             ],
             "iv_scale": 245,
+            "nature": "NATURE_GENTLE",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -78,7 +80,7 @@
         {
             "species": "SPECIES_BLAZIKEN",
             "form": 0,
-            "level": 33,
+            "level": 36,
             "item": "ITEM_LIECHI_BERRY",
             "moves": [
                 "MOVE_DYNAMIC_PUNCH",
@@ -87,7 +89,7 @@
                 "MOVE_BRAVE_BIRD"
             ],
             "iv_scale": 249,
-            "nature": null,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -95,7 +97,7 @@
         {
             "species": "SPECIES_DRAGONAIR",
             "form": 0,
-            "level": 39,
+            "level": 42,
             "item": "ITEM_DRACO_PLATE",
             "moves": [
                 "MOVE_EXTREME_SPEED",
@@ -104,6 +106,7 @@
                 "MOVE_DRAGON_RUSH"
             ],
             "iv_scale": 246,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
