@@ -142,6 +142,9 @@ IAN_EGG_MOVES = {
                                                "only at 40"),
                        ("MOVE_PURSUIT", "Ian, 2026-10-29: Fantina's Decidueye")],
     "SPECIES_MISDREAVUS": [("MOVE_NASTY_PLOT", "Ian, 2026-10-29: Fantina's Mismagius")],
+    # Barry's pool (Ian, 2026-10-29, on barry-pool.md): Volcarona has no Quiver
+    # Dance on any Oxide list, so it goes on Larvesta's, the trainers' palette.
+    "SPECIES_LARVESTA": [("MOVE_QUIVER_DANCE", "Ian, 2026-10-29: Barry's Volcarona, from Spear Pillar on")],
     # Maylene's six (Ian, 2026-10-29: a move a team of his carries that no
     # list gives at its level goes on the egg list, without asking; level-up
     # lists never move for it). Close Combat is Heracross's level 37 move,

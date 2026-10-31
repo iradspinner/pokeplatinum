@@ -670,6 +670,16 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   shards, are gone. The Survival Area's south house likewise holds only the
   Black Belt, who gives TM25 (Thunder) once; its Utility Stop greeter and
   vendors are gone too.
+- [ ] **Barry 3 at the Route 209 gate** (`overseer-barry-pool`, `barry-pool.md`,
+  "The sets"), after Fantina, with the party at or under the honour cap of
+  36. Barry brings six, led by Staraptor at 34 (Primeape, Snorlax and the
+  partners at 34 and 35, his starter's final at 36): with a Turtwig, Infernape
+  beside Serperior and Greninja; with Scorbunny, Empoleon beside Serperior and
+  Turtonator; with Piplup, Torterra beside Greninja and Turtonator. Note
+  whether Staraptor's Intimidate shows on entry, whether Primeape uses Bulk Up
+  when it comes in on a Rock or Steel Pokemon of yours, whether Snorlax's
+  Curse and Rest (with its Chesto Berry) and the ace's setup move come up, and
+  how many of your Pokemon faint.
 - [ ] **The Veilstone tag battle, Officers Tyche and Hermes** (`overseer-tyche-hermes-1`,
   `tyche-hermes-1.md`), after Maylene's badge, with the party at or under the
   honour cap of 41. The north warehouse grunt is a female grunt; the scene's
@@ -708,6 +718,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   badges", gives all eight badges and lands at a rocky wall two tiles from
   water with a waterfall, so Rock Climb, Surf, Waterfall both ways and the
   menu's FLY, SURF and DEFOG can be checked there first.
+- [ ] **Surf waits on Cyrus at Celestic Town** (Ian, 2026-10-31), in normal
+  play: with the Fen Badge but before Cyrus is beaten in Celestic's ruins,
+  facing water offers nothing, the party menu lists no SURF unless a
+  Pokemon knows it, and a Pokemon that knows Surf is refused with "can't be
+  used here". Straight after the win over Cyrus, all three work. The test
+  kit's "Route 208, all badges" marks Celestic's story done, so Surf works
+  there.
 - [ ] **(live)** The Weather flag's fix on Ace Trainer Shannon's first turn
   (Route 221, optional; a Weather-flag trainer whose Victreebel leads with
   Sunny Day and no weather ability, and keeps it in the comb's draft): break
@@ -799,6 +816,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] A Burmy in a Sandy or Trash cloak evolves into a Wormadam with Anticipation, not Snow Cloak.
 - [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
   Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.
+- [ ] The Lost Tower: stepping in from Route 209 shows "Lost Tower" in the indoor window, with no new window between
+  its floors; a Pokemon caught on any floor is met at Lost Tower; leaving it puts "Departed from Lost Tower" in the
+  journal; stepping back out shows "Route 209", and a catch on the route is still met at Route 209.
 - [ ] Fomantis evolves into Lurantis at level 34.
 - [ ] A Dusk Stone has no effect on Polteageist; on Sinistea a Dusk Stone
   makes Polteageist and a Leaf Stone makes Sinistcha. Galactic HQ B2F: the nine stone balls around the Galactic Key

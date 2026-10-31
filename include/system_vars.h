@@ -75,5 +75,6 @@ u16 SystemVars_GetLevelCapSplit(VarsFlags *varsFlags);
 void SystemVars_RaiseLevelCapSplit(VarsFlags *varsFlags, u16 split);
 u8 SystemVars_GetLevelCap(VarsFlags *varsFlags);
 u8 LevelCap_Get(void);
+BOOL SystemVars_CanSurf(VarsFlags *varsFlags);
 
 #endif // POKEPLATINUM_SYSTEM_VARS_H

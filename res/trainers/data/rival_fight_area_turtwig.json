@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_STARAPTOR",
             "form": 0,
-            "level": 74,
+            "level": 70,
             "item": null,
             "moves": [
                 "MOVE_CLOSE_COMBAT",
@@ -27,7 +27,7 @@
         {
             "species": "SPECIES_STARMIE",
             "form": 0,
-            "level": 74,
+            "level": 70,
             "item": null,
             "moves": [
                 "MOVE_HYDRO_PUMP",
@@ -41,7 +41,7 @@
         {
             "species": "SPECIES_DRAGONITE",
             "form": 0,
-            "level": 74,
+            "level": 70,
             "item": null,
             "moves": [
                 "MOVE_OUTRAGE",
@@ -55,7 +55,7 @@
         {
             "species": "SPECIES_SHIFTRY",
             "form": 0,
-            "level": 74,
+            "level": 70,
             "item": null,
             "moves": [
                 "MOVE_SWORDS_DANCE",
@@ -69,7 +69,7 @@
         {
             "species": "SPECIES_SNORLAX",
             "form": 0,
-            "level": 74,
+            "level": 70,
             "item": null,
             "moves": [
                 "MOVE_BODY_SLAM",
@@ -83,7 +83,7 @@
         {
             "species": "SPECIES_INFERNAPE",
             "form": 0,
-            "level": 75,
+            "level": 71,
             "item": null,
             "moves": [
                 "MOVE_FLARE_BLITZ",

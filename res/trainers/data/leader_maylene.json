@@ -85,15 +85,15 @@
             "level": 38,
             "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_COUNTER",
+                "MOVE_DRAIN_PUNCH",
                 "MOVE_DRAGON_DANCE",
-                "MOVE_FOCUS_PUNCH",
+                "MOVE_ROCK_SLIDE",
                 "MOVE_OUTRAGE"
             ],
             "iv_scale": 255,
             "nature": "NATURE_LAX",
             "ball_seal": 0,
-            "ability": 3,
+            "ability": 1,
             "gender": "female"
         },
         {

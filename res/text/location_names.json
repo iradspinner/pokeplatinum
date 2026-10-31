@@ -512,6 +512,10 @@
     {
       "id": "LocationNames_Text_IronworksHall",
       "en_US": "Ironworks Hall"
+    },
+    {
+      "id": "LocationNames_Text_LostTower",
+      "en_US": "Lost Tower"
     }
   ]
 }
