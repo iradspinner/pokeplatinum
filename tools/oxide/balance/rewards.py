@@ -794,10 +794,13 @@ VACATED = {"ITEM_TM70": "ITEM_SITRUS_BERRY", "ITEM_TM28": "ITEM_LUM_BERRY"}
 # trainer by pick_trainer's rule for its kind: {reward: (new trainer, note)}.
 # A reward belongs to an optional fight (the standing rulings). TM72: PI
 # Carlos, who held it, became a mandatory fight on Route 214 (Ian,
-# 2026-10-31), so it goes to the trainer pick_trainer names for a weak TM in
-# Wake's split, the strongest of its easier half: Policeman Caleb.
+# 2026-10-31), so it goes to the trainer pick_trainer's rule takes for a weak
+# TM in Wake's split, the strongest of its easier half on a map with room,
+# passing over Route 212's policemen, who battle only at night (their
+# OnTransition scripts): Lady Melissa. pick_trainer itself does not yet know
+# time of day, so it would name Policeman Caleb.
 REHOMED = {
-    "ITEM_TM72": ("TRAINER_POLICEMAN_CALEB", "Avalanche, weak; reading 2.4"),
+    "ITEM_TM72": ("TRAINER_LADY_MELISSA", "Avalanche, weak; reading 2.3"),
 }
 
 # Items the table never held, placed where Ian chose (2026-10-13). They

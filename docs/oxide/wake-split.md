@@ -14,7 +14,7 @@ The split holds 10 non-boss mandatory fights, up from 1, which meets Ian's 10 to
 
 33 ordinary teams were rebuilt. They climb from 39 on Route 214 to 42 in Pastoria's gym. The gym's last guard, Sailor Samson, is the one team at 43, and none is at 44. Before, nearly all were vanilla one- and two-Pokemon teams. 27 of the 124 rebuilt members are Oxide's later species, against none before. 16 teams carry 3 Pokemon, 9 carry 4 and 8 carry 5, the larger ones on the mandatory fights and the walking policemen. No member has an Adamant, Modest, Timid or Jolly nature. Two forced trades come in, once each, under Ian's ruling below.
 
-Ian's four Route 214 teams kept their sets and moved only in level, to the route's line of 39. Krystal has his base-ROM team back, topping at 42: in his words she is "meant to be a hard fight gating the encounter in ruin maniac cave/tunnel". PI Carlos's TM72, a reward on what is now a mandatory fight, moved to Policeman Caleb on Route 212 North.
+Ian's four Route 214 teams kept their sets and moved only in level, to the route's line of 39. Krystal has his base-ROM team back, topping at 42: in his words she is "meant to be a hard fight gating the encounter in ruin maniac cave/tunnel". PI Carlos's TM72, a reward on what is now a mandatory fight, moved to Lady Melissa on Route 212 North.
 
 Every changed team passed the trainer lint and the real packer. Every move on a rebuilt team is legal at its level, and no rebuilt team repeats an item or a nature. Ian's kept sets break some rules, listed below for him and not fixed.
 
@@ -97,13 +97,15 @@ Optional on the path:
 
 ### TM72 changes holder
 
-PI Carlos gave TM72 (Avalanche, a weak TM) as his reward. He is now a mandatory fight, and a reward belongs to an optional one, so Ian moved it (2026-10-31). The new holder is the one the reward tool's own rule picks: `rewards.pick_trainer` for a weak TM in Wake's split takes the strongest optional trainer of the split's easier half that holds no reward yet. That is Policeman Caleb on Route 212 North, three Pokemon topping at 41, met at night.
+PI Carlos gave TM72 (Avalanche, a weak TM) as his reward. He is now a mandatory fight, and a reward belongs to an optional one, so Ian moved it (2026-10-31). The new holder follows the reward tool's own rule. For a weak TM in Wake's split, `rewards.pick_trainer` takes the strongest optional trainer of the split's easier half that holds no reward yet, on a map holding fewer than two rewards. That rule names Policeman Caleb, but Route 212's policemen battle only at night (their maps' OnTransition scripts swap them for non-battling copies by day), so a player passing by day would miss the TM. The next trainer the rule takes that battles at any hour is Lady Melissa on Route 212 North. She has three Pokemon topping at 41, and is fought in one double beside Rich Boy Jason. Route 212 South already holds two rewards (Scientist Shaun's and Fisherman Josh's), so its trainers were not eligible.
+
+A note for later: `pick_trainer` does not yet know time of day. Its rule was left unchanged, and Melissa is set by hand in `REHOMED`.
 
 The steps:
 
-- `rewards.py` gains `REHOMED`, which moves TM72's row of the approved table to Caleb.
+- `rewards.py` gains `REHOMED`, which moves TM72's row of the approved table to Melissa.
 - `rewards.py write` rewrote the tables, and only TM72's rows were kept.
-- `place_rewards.py apply` moved the reward in `scripts_battles.s`. Caleb gives it under spare flag 0x03CD, and Carlos's 0x021F is free again.
+- `place_rewards.py apply` moved the reward in `scripts_battles.s`. Melissa gives it under spare flag 0x021F, the flag Carlos's reward used.
 - Checked: `rewards.py check` (0 failures), `test_place_rewards` (passed) and `place_rewards.py check` on the rebuilt ROM (168 rows, each found exactly once).
 
 The split holds no gauntlet section: `gauntlet.py` builds none here, and no stretch of the path is one-way.
@@ -166,11 +168,11 @@ Ordinary trainers climb in play order from 39 on Route 214 to 42 in the gym, wit
 | 24 | Scientist Stefano | Route 212 South | optional | 38 | 41 | 1 to 3 |
 | 25 | Ranger Allison | Route 212 South | optional, pair with Jeffrey | 39 | 41 | 2 to 3 |
 | 26 | Ranger Jeffrey | Route 212 South | optional, pair with Allison | 39 | 41 | 1 to 3 |
-| 27 | Policeman Caleb | Route 212 North | optional (night, walks; TM72 reward) | 35 | 41 | 2 to 3 |
+| 27 | Policeman Caleb | Route 212 North | optional (night, walks) | 35 | 41 | 2 to 3 |
 | 28 | Policeman Dylan | Route 212 North | optional (night, walks) | 36 | 41 | 2 to 5 |
 | 29 | Policeman Alex | Route 212 North | optional (night, walks) | 35 | 41 | 2 to 5 |
 | 30 | Rich Boy Jason | Route 212 North | optional, pair with Melissa | 37 | 41 | 1 to 3 |
-| 31 | Lady Melissa | Route 212 North | optional, pair with Jason | 37 | 41 | 1 to 3 |
+| 31 | Lady Melissa | Route 212 North | optional, pair with Jason (TM72 reward) | 37 | 41 | 1 to 3 |
 | 32 | Policeman Bobby | Route 212 North | optional (night) | 34 | 41 | 2 to 4 |
 | 33 | Tuber Jacky | Pastoria Gym | gym | 39 | 41 | 1 to 3 |
 | 34 | Tuber Caitlyn | Pastoria Gym | gym | 39 | 41 | 3 to 4 |

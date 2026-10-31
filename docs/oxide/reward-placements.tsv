@@ -80,7 +80,7 @@ ITEM_TM63	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes
 ITEM_TM73	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM35		4	Thunder Wave, strong; bought once, from 4 badges, giving 1
 ITEM_TM82	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM27		4	Bounce, utility; bought once, from 4 badges, giving 2
 ITEM_TM91	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM68		4	Flash Cannon, utility; bought once, from 4 badges, giving 2
-ITEM_TM72	1	trainer	Wake	MAP_HEADER_ROUTE_212_NORTH			TRAINER_POLICEMAN_CALEB		Avalanche, weak; reading 2.4
+ITEM_TM72	1	trainer	Wake	MAP_HEADER_ROUTE_212_NORTH			TRAINER_LADY_MELISSA		Avalanche, weak; reading 2.3
 ITEM_WEAKNESS_POLICY	1	trainer	Wake	MAP_HEADER_ROUTE_212_SOUTH			TRAINER_SCIENTIST_SHAUN		held item; reading 3.2
 ITEM_WIDE_LENS	1	trainer	Wake	MAP_HEADER_ROUTE_212_SOUTH			TRAINER_FISHERMAN_JOSH		held item; reading 3.4
 ITEM_COVERT_CLOAK	1	trainer	Wake	MAP_HEADER_ROUTE_213			TRAINER_FISHERMAN_KENNETH		held item; reading 3.2
