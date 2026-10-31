@@ -419,8 +419,11 @@ def build():
         method = "egg gift" if cmd == "GiveEgg" else "gift"
         note = GIFT_NOTES.get(mapname, "NPC gift")
         if cmd == "GiveEgg":
-            # item is the giver here; the met location is wherever it hatches
-            note += (f"; hatches at level {EGG_LEVEL} and counts where it hatches; "
+            # item is the giver here; the met location is wherever it hatches,
+            # but an egg Ian made a capture of its own counts where it is given
+            where = ("counts as " + EGG_OWN_CAPTURE[mapname] if mapname in EGG_OWN_CAPTURE
+                     else "counts where it hatches")
+            note += (f"; hatches at level {EGG_LEVEL} and {where}; "
                      f"giver {egg_giver(item)}")
         elif item and item not in ("0", "ITEM_NONE"):
             note += f"; holds {item}"
@@ -626,6 +629,13 @@ def build():
     return rows
 
 
+# Eggs that count as a capture of the place that gives them, not of the place
+# they hatch (Ian, 2026-10-31: the Manaphy egg is the Pokemon Mansion's, the
+# way Thorton's prize is Ironworks Hall's). scripted.json carries the same.
+EGG_OWN_CAPTURE = {
+    "pokemon_mansion": "the Pokemon Mansion's own capture, open only after Darach's win",
+}
+
 GIFT_NOTES = {
     "canalave_library_2f": "clown gift, one of seven rolled at random "
         "(GetRandom 7); once only (FLAG_RECEIVED_CANALAVE_LIBRARY_GIFT)",
@@ -655,9 +665,11 @@ GIFT_NOTES = {
     "pokemon_day_care": "the Day Care man hands it over on a yes/no prompt; "
         "once only (FLAG_RECEIVED_POKEMON_DAY_CARE_GIFT); shiny, perfect "
         "IVs and a neutral nature, through GiveDesignedPokemon",
-    "pokemon_mansion_office": "Egg from the Mansion's owner; once only "
+    "pokemon_mansion": "Egg from Darach straight after his and Caitlin's "
+        "double battle in the entrance hall (Ian, 2026-10-31), once only "
         "(FLAG_UNK_0x0A65), cleared again by the post-game Trades/Gifts "
-        "Reset; vanilla only ever gave this through Mystery Gift",
+        "Reset; the base ROM had the office maid offer it, and vanilla only "
+        "ever gave it through Mystery Gift",
     "sandgem_town_house": "pick one of three from a list menu; once only "
         "(FLAG_RECEIVED_SANDGEM_TOWN_HOUSE_GIFT)",
     "solaceon_town_northeast_house": "clown gift, one of three rolled at "

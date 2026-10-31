@@ -47,7 +47,7 @@ replace a slot:
 | 6, 7 | `daily_encounters` (Trophy Garden) or the Great Marsh daily | National Dex, or a running Safari Game |
 | 8, 9 | `ruby`..`leafgreen` | National Dex and that GBA cartridge in the slot |
 
-165 rows across 31 locations, generated 2026-09-30.
+165 rows across 31 locations, generated 2026-10-31.
 
 ## Rows by method
 
@@ -315,7 +315,7 @@ replace a slot:
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Manaphy | egg gift | 1 | Egg from the Mansion's owner; once only (FLAG_UNK_0x0A65), cleared again by the post-game Trades/Gifts Reset; vanilla only ever gave this through Mystery Gift; hatches at level 1 and counts where it hatches; giver Distant land | **base-ROM** | yes | `scripts_pokemon_mansion_office.s` |
+| Manaphy | egg gift | 1 | Egg from Darach straight after his and Caitlin's double battle in the entrance hall (Ian, 2026-10-31), once only (FLAG_UNK_0x0A65), cleared again by the post-game Trades/Gifts Reset; the base ROM had the office maid offer it, and vanilla only ever gave it through Mystery Gift; hatches at level 1 and counts as the Pokemon Mansion's own capture, open only after Darach's win; giver Distant land | **base-ROM** | yes | `scripts_pokemon_mansion.s` |
 
 ### Rock Peak Ruins
 

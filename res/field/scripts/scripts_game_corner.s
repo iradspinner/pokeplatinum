@@ -27,6 +27,7 @@
     ScriptEntry GameCorner_MaylenesDad
     ScriptEntry GameCorner_BgSignBonusRounds
     ScriptEntry GameCorner_Looker
+    ScriptEntry GameCorner_Dahlia
     ScriptEntryEnd
 
 GameCorner_SlotMachine_0:
@@ -306,6 +307,50 @@ GameCorner_Looker_PostStarkMountain:
 GameCorner_Looker_End:
     WaitButton
     CloseMessage
+    ReleaseAll
+    End
+
+@ Platinum Oxide (Ian, 2026-09-27 and 2026-10-31): Dahlia, the Arcade Star,
+@ an optional boss of Maylene's split. Beating her opens the prize counter
+@ next door (scripts_veilstone_city_prize_exchange.s); the slots stay open.
+@ Her fight opens in a permanent Wonder Room (battle_lib.c). She asks first,
+@ since a loss ends an Oxide run.
+GameCorner_Dahlia:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_DUMMY_007, GameCorner_Dahlia_Beaten
+    Message GameCorner_Text_DahliaIntro
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, GameCorner_Dahlia_Declined
+    Message GameCorner_Text_DahliaLetsPlay
+    CloseMessage
+    StartTrainerBattle TRAINER_DUMMY_007
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GameCorner_Dahlia_BlackOut
+    SetTrainerFlag TRAINER_DUMMY_007
+    Message GameCorner_Text_DahliaWin
+    GoTo GameCorner_Dahlia_End
+    End
+
+GameCorner_Dahlia_Declined:
+    Message GameCorner_Text_DahliaDeclined
+    GoTo GameCorner_Dahlia_End
+    End
+
+GameCorner_Dahlia_Beaten:
+    Message GameCorner_Text_DahliaBeaten
+    GoTo GameCorner_Dahlia_End
+    End
+
+GameCorner_Dahlia_End:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+GameCorner_Dahlia_BlackOut:
+    BlackOutFromBattle
     ReleaseAll
     End
 

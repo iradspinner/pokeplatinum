@@ -88,12 +88,13 @@ PokemonMansionOffice_Entry7:
     LockAll
     CheckFlag FLAG_UNK_0x0A65
     GoToIf 1, PokemonMansionOffice_0414
-    Message 23
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, PokemonMansionOffice_03D4
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, PokemonMansionOffice_03FE
+    @ Platinum Oxide (Ian, 2026-10-31): the maid no longer offers the egg.
+    @ Darach gives it straight after his win in the hall
+    @ (scripts_pokemon_mansion.s), under the same flag; she points there.
+    Message 27
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 PokemonMansionOffice_015D:
     ClearFlag FLAG_HIDE_POKEMON_MANSION_OFFICE_POLICEMAN
@@ -273,30 +274,6 @@ PokemonMansionOffice_03C8:
     ApplyMovement 1, PokemonMansionOffice_Movement_048C
     WaitMovement
     Return
-PokemonMansionOffice_03D4:
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, PokemonMansionOffice_0409
-    PlayFanfare SEQ_FANFA4_sseq
-    WaitFanfare
-    GiveEgg SPECIES_MANAPHY, 8
-    SetFlag FLAG_UNK_0x0A65
-    Message 25
-    WaitButton
-    CloseMessage
-    Return
-PokemonMansionOffice_03FE:
-    Message 24
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-PokemonMansionOffice_0409:
-    Message 26
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
 PokemonMansionOffice_0414:
     Message 25
     WaitButton
