@@ -947,6 +947,33 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   - Black Belt Derek, Route 215, at the east edge of the three-wide column
     the path turns down after the raised walkway, looking west. Jogger
     Craig should not join him in one battle.
+- [ ] **Mandatory fights, Wake's split** (`overseer-wake-split`, Ian,
+  2026-10-31; `docs/oxide/wake-split.md`). Walk from
+  Route 214 to Pastoria without dodging anyone. Each trainer below should see
+  you and walk up before you can pass, and after the battle the way on is
+  still open with the trainer standing where it was:
+  - Psychic Abigail, Route 214, where she stood below the gate, now looking
+    only west.
+  - Psychic Mitchell, Route 214, where he started his walk, now standing
+    still and looking south down the path.
+  - PI Carlos, Route 214, at the east edge of the narrows south of the berry
+    field, looking west. Beauty Devon's walking copy nearby should not join
+    his battle.
+  - Gentleman Jeremy, Valor Lakefront, at the west edge of the four-wide
+    path in from Route 214, looking east. He has left Route 212 North.
+  - Socialite Reina, Valor Lakefront, at the west edge of the six-wide stretch
+    above the hotel, looking east; Cynthia's and Barry's later scenes there
+    walk past her. She has left Route 212 North too.
+  - Beauty Cyndy, Route 213, at the west edge of the three-wide way down from
+    the hotel to the beach, looking east.
+  - Tuber Chelsea, Route 213, just north of the one-tile sand strip west of
+    the hotel's beach, looking south onto its entrance.
+  - Tuber Jared and Fisherman Travis, Route 213, at the two edges of the
+    two-row neck between the beach and the grass to Pastoria: Jared looks
+    east along the south row, Travis west along the north row. Two battles
+    one after the other, never one double. Travis has left Route 212 South's
+    bridge. After Fen Badge the Galactic grunt chase on Route 213 should
+    still run without bumping into either.
 
 ## 5. The ordinary ROM, after the League
 

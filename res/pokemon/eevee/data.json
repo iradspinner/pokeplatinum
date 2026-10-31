@@ -85,7 +85,8 @@
             "MOVE_FAKE_TEARS",
             "MOVE_COVET",
             "MOVE_BATON_PASS",
-            "MOVE_SUBSTITUTE"
+            "MOVE_SUBSTITUTE",
+            "MOVE_LEAF_BLADE"
         ]
     },
     "evolutions": [

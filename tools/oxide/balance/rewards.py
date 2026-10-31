@@ -790,6 +790,19 @@ REPRICED = {
 }
 VACATED = {"ITEM_TM70": "ITEM_SITRUS_BERRY", "ITEM_TM28": "ITEM_LUM_BERRY"}
 
+# Rewards whose trainer became a mandatory fight, moved to another optional
+# trainer by pick_trainer's rule for its kind: {reward: (new trainer, note)}.
+# A reward belongs to an optional fight (the standing rulings). TM72: PI
+# Carlos, who held it, became a mandatory fight on Route 214 (Ian,
+# 2026-10-31), so it goes to the trainer pick_trainer's rule takes for a weak
+# TM in Wake's split, the strongest of its easier half on a map with room,
+# passing over Route 212's policemen, who battle only at night (their
+# OnTransition scripts): Lady Melissa. pick_trainer itself does not yet know
+# time of day, so it would name Policeman Caleb.
+REHOMED = {
+    "ITEM_TM72": ("TRAINER_LADY_MELISSA", "Avalanche, weak; reading 2.3"),
+}
+
 # Items the table never held, placed where Ian chose (2026-10-13). They
 # were placed while the 46 spare flags of the day were all taken, so each
 # reuses a flag: a ball that held something else, or a trainer that already
@@ -832,9 +845,18 @@ def frozen_rows():
         rows[rows.index(old)] = other._replace(**{f: getattr(old, f) for f in place})
         rows[rows.index(other)] = old._replace(copies=str(copies), note=f"{why}; a TM place today ({other.replaces})",
                                                **{f: getattr(other, f) for f in place})
+    for it, (trainer_id, why) in REHOMED.items():
+        old = next(r for r in rows if r.reward == it and r.kind == "trainer")
+        h, _obj = trainer_objects()[_trainer_number(trainer_id)]
+        rows[rows.index(old)] = old._replace(map=header(h), trainer_id=trainer_id, note=why)
     rows += ADDED
     rows.sort(key=lambda r: (si(r.split), r.kind, r.map, r.reward))
     return rows
+
+
+def _trainer_number(constant):
+    """An Oxide trainer's id from its constant."""
+    return next(k for k, t in data.oxide_trainers().items() if t["constant"] == constant)
 
 
 def _key(st, c):

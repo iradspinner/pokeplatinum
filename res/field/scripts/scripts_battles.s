@@ -1220,9 +1220,9 @@ Battles_TrainerRewards:
     GoToIfEq VAR_0x8004, TRAINER_JOGGER_RAUL, Battles_TrainerReward_JoggerRaul
     GoToIfEq VAR_0x8004, TRAINER_JOGGER_SCOTT, Battles_TrainerReward_JoggerScott
     GoToIfEq VAR_0x8004, TRAINER_JOGGER_WYATT, Battles_TrainerReward_JoggerWyatt
+    GoToIfEq VAR_0x8004, TRAINER_LADY_MELISSA, Battles_TrainerReward_LadyMelissa
     GoToIfEq VAR_0x8004, TRAINER_PICNICKER_KARINA, Battles_TrainerReward_PicnickerKarina
     GoToIfEq VAR_0x8004, TRAINER_PICNICKER_LAUREN, Battles_TrainerReward_PicnickerLauren
-    GoToIfEq VAR_0x8004, TRAINER_PI_CARLOS, Battles_TrainerReward_PiCarlos
     GoToIfEq VAR_0x8004, TRAINER_RANGER_DESHAWN, Battles_TrainerReward_RangerDeshawn
     GoToIfEq VAR_0x8004, TRAINER_RUIN_MANIAC_CALVIN, Battles_TrainerReward_RuinManiacCalvin
     GoToIfEq VAR_0x8004, TRAINER_SCIENTIST_SHAUN, Battles_TrainerReward_ScientistShaun
@@ -1582,6 +1582,17 @@ Battles_TrainerReward_JoggerWyatt:
     CloseMessage
     Return
 
+@ TRAINER_LADY_MELISSA: ITEM_TM72 x1, under FLAG_UNUSED_0x021F
+Battles_TrainerReward_LadyMelissa:
+    GoToIfSet FLAG_UNUSED_0x021F, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM72
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x021F
+    CloseMessage
+    Return
+
 @ TRAINER_PICNICKER_KARINA: ITEM_TM57 x1, under FLAG_UNUSED_0x01CF
 Battles_TrainerReward_PicnickerKarina:
     GoToIfSet FLAG_UNUSED_0x01CF, Battles_TrainerRewardsDone
@@ -1601,17 +1612,6 @@ Battles_TrainerReward_PicnickerLauren:
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
     Common_GiveItemQuantity
     SetFlag FLAG_UNUSED_0x01D0
-    CloseMessage
-    Return
-
-@ TRAINER_PI_CARLOS: ITEM_TM72 x1, under FLAG_UNUSED_0x021F
-Battles_TrainerReward_PiCarlos:
-    GoToIfSet FLAG_UNUSED_0x021F, Battles_TrainerRewardsDone
-    SetVar VAR_0x8004, ITEM_TM72
-    SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
-    Common_GiveItemQuantity
-    SetFlag FLAG_UNUSED_0x021F
     CloseMessage
     Return
 

@@ -96,7 +96,10 @@
             "MOVE_NIGHT_SLASH",
             "MOVE_LAST_RESORT",
             "MOVE_FEINT",
-            "MOVE_PROTECT"
+            "MOVE_PROTECT",
+            "MOVE_DYNAMIC_PUNCH",
+            "MOVE_FLARE_BLITZ",
+            "MOVE_BRAVE_BIRD"
         ]
     },
     "evolutions": [

@@ -14,17 +14,50 @@
             "species": "SPECIES_BELLOSSOM",
             "form": 0,
             "level": 39,
-            "item": null,
+            "item": "ITEM_HEAT_ROCK",
             "moves": [
-                "MOVE_ENERGY_BALL",
-                "MOVE_STUN_SPORE",
                 "MOVE_SUNNY_DAY",
-                "MOVE_SYNTHESIS"
+                "MOVE_GIGA_DRAIN",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_MOONLIGHT"
             ],
             "iv_scale": 244,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
+        },
+        {
+            "species": "SPECIES_LEAVANNY",
+            "form": 0,
+            "level": 39,
+            "item": "ITEM_SILVERPOWDER",
+            "moves": [
+                "MOVE_LEAF_BLADE",
+                "MOVE_X_SCISSOR",
+                "MOVE_KNOCK_OFF",
+                "MOVE_POISON_JAB"
+            ],
+            "iv_scale": 244,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_VENUSAUR",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_SOLAR_BEAM",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_GROWTH",
+                "MOVE_LEECH_SEED"
+            ],
+            "iv_scale": 244,
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 2
         }
     ],
     "messages": [

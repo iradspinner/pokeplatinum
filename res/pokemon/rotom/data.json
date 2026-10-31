@@ -90,7 +90,9 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_PAIN_SPLIT"
+            "MOVE_PAIN_SPLIT",
+            "MOVE_OVERHEAT",
+            "MOVE_SUNNY_DAY"
         ]
     },
     "evolutions": [  ],

@@ -12,32 +12,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGNETON",
+            "species": "SPECIES_ROTOM",
             "form": 0,
-            "level": 37,
-            "item": null,
+            "level": 39,
+            "item": "ITEM_AIR_BALLOON",
             "moves": [
-                "MOVE_FLASH_CANNON",
                 "MOVE_THUNDERBOLT",
+                "MOVE_SHADOW_BALL",
+                "MOVE_WILL_O_WISP",
+                "MOVE_PAIN_SPLIT"
+            ],
+            "iv_scale": 232,
+            "nature": "NATURE_BASHFUL",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_ELECTIVIRE",
+            "form": 0,
+            "level": 39,
+            "item": "ITEM_MAGNET",
+            "moves": [
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_CROSS_CHOP",
+                "MOVE_ICE_PUNCH",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 232,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_PAWMOT",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_PUNCHING_GLOVE",
+            "moves": [
+                "MOVE_WILD_CHARGE",
+                "MOVE_ICE_PUNCH",
+                "MOVE_KNOCK_OFF",
+                "MOVE_BULK_UP"
+            ],
+            "iv_scale": 232,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_WEAKNESS_POLICY",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_FLASH_CANNON",
                 "MOVE_TRI_ATTACK",
                 "MOVE_THUNDER_WAVE"
             ],
             "iv_scale": 232,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_ELECTABUZZ",
-            "form": 0,
-            "level": 37,
-            "item": null,
-            "moves": [
-                "MOVE_LOW_KICK",
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_ICE_PUNCH"
-            ],
-            "iv_scale": 248,
-            "ball_seal": 0
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

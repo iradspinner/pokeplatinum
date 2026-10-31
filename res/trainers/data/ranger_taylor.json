@@ -12,20 +12,50 @@
         {
             "species": "SPECIES_CARNIVINE",
             "form": 0,
-            "level": 28,
-            "item": null,
-            "moves": null,
-            "iv_scale": 50,
-            "ball_seal": 0
+            "level": 39,
+            "item": "ITEM_BIG_ROOT",
+            "moves": [
+                "MOVE_SEED_BOMB",
+                "MOVE_CRUNCH",
+                "MOVE_SLEEP_POWDER",
+                "MOVE_LEECH_SEED"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_LUXIO",
+            "species": "SPECIES_DECIDUEYE",
             "form": 0,
-            "level": 30,
-            "item": null,
-            "moves": null,
-            "iv_scale": 50,
-            "ball_seal": 0
+            "level": 39,
+            "item": "ITEM_SPELL_TAG",
+            "moves": [
+                "MOVE_PHANTOM_FORCE",
+                "MOVE_SEED_BOMB",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_SYNTHESIS"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_LUXRAY",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_WILD_CHARGE",
+                "MOVE_CRUNCH",
+                "MOVE_ICE_FANG",
+                "MOVE_FIRE_FANG"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_HARDY",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [
