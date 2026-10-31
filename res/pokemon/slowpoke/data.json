@@ -114,7 +114,8 @@
             "MOVE_SNORE",
             "MOVE_ME_FIRST",
             "MOVE_BLOCK",
-            "MOVE_ZEN_HEADBUTT"
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_PSYSHOCK"
         ]
     },
     "evolutions": [

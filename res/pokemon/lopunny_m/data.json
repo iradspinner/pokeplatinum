@@ -123,7 +123,9 @@
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_HI_JUMP_KICK"
+        ]
     },
     "evolutions": [],
     "offspring": "SPECIES_BUNEARY",

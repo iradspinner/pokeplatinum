@@ -28,7 +28,7 @@ Levels are placeholders until Ian sets them.
 |---|---|
 | Palmer | Dragonite, Heatran, Cresselia, Milotic, Rhyperior, Xurkitree |
 | Thorton | Bronzong, Magnezone, Toxapex, Dhelmise, Turtonator, Guzzlord |
-| Dahlia | Ludicolo, Togekiss, Rapidash, Cloyster, Lopunny, Galarian Weezing |
+| Dahlia | Cloyster, Slowbro, Rapidash, Togekiss, Leafeon, Lopunny, all at 40 (Ian's six, 2026-10-31, `dahlia-check.md`; free slot `dummy_007`) |
 | Darach (double) | Incineroar, Entei, Grapploct (Darach's three), Galarian Articuno, Gallade, Gothitelle (Caitlin's three) |
 | Argenta | Skarmory, Annihilape, Dubwool, Whiscash, Meowscarada, Pheromosa |
 
