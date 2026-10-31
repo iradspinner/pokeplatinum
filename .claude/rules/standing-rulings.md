@@ -189,7 +189,8 @@ read, so they are written here too. Each is a standing instruction.
   not yet placed in a kind, and the Battle Zone's fights are not yet
   classed: Ian has no picture of its shape, so it is mapped for him when
   its split is worked. The mandatory count's 10 to 15 counts every
-  mandatory fight that is not a boss, mini-bosses included.
+  mandatory fight that is not a boss, mini-bosses included (Ian confirmed
+  it the same day).
 - A loss of any kind ends the whole run (Ian, 2026-09-28): there are no second
   attempts, at a boss or anywhere. The one exception is the first battle with
   Barry on Route 201 (Ian, 2026-10-02): it does not count for deaths or
@@ -271,7 +272,8 @@ read, so they are written here too. Each is a standing instruction.
 - Trainer design at about 6/10 of Platinum Kaizo (Ian, from 2026-09-29):
   bosses keep Kaizo's structure at reduced lethality; an ordinary trainer
   carries one idea, is genuinely dangerous, and has 3 to 5 Pokemon (6 from
-  Gardenia's split on), sizes varying. No one-hit KO move on any trainer;
+  Gardenia's split on; fewer on Route 202, the first route's early exception,
+  Ian, 2026-10-31), sizes varying. No one-hit KO move on any trainer;
   evasion and trapping are rare; a boss carries at most one forced trade
   (none before Fantina) and an ordinary trainer none, though from Wake's
   split on an ordinary trainer may occasionally carry Self-Destruct,
