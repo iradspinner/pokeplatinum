@@ -33,9 +33,9 @@ Route 202's order is the one `test_b1e` traces on the collision map (Tristan's c
 What Ian decides:
 
 1. The teams below, as a set: the simpler twelve before the mine and the first pass's four from the mine on.
-2. Whether Route 202's drop is the right size. Its three trainers came down two levels each, to 7 and 8, so that a player who reaches the route at 6 or 7 meets each a level or so above them, and the school's two sit at 9 under Barry 2's 11.
-3. Whether Darius at 15 stands. He is the split's one trainer one under its cap, as the last guard before the leader, the place Maylene's Jeffery and Wake's Samson hold in their gyms.
-4. Whether Route 202's three teams may go under three Pokemon, as an early exception to the rule of 3 to 5. They stay at three until he says so.
+2. Whether Route 202's three teams may go under three Pokemon, as an early exception to the rule of 3 to 5. They stay at three until he says so.
+
+Ian's answers of 2026-10-31, relayed by the Overseer: Route 202's tops of 7 and 8 stand, and Youngster Darius at 15 stands. Route 202's three trainers came down two levels each, so that a player who reaches the route at 6 or 7 meets each a level or so above them, and the school's two sit at 9 under Barry 2's 11. Darius is the split's one trainer one under its cap, as the last guard before the leader, the place Maylene's Jeffery and Wake's Samson hold in their gyms.
 
 Next steps: the Overseer lands the branch (one merge and the gate, about half an hour), then Ian plays the fights he wants to see. No scorer reading was run, and none is needed unless Ian names a fight.
 
