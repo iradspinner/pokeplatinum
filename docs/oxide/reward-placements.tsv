@@ -80,10 +80,10 @@ ITEM_TM63	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes
 ITEM_TM73	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM35		4	Thunder Wave, strong; bought once, from 4 badges, giving 1
 ITEM_TM82	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM27		4	Bounce, utility; bought once, from 4 badges, giving 2
 ITEM_TM91	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM68		4	Flash Cannon, utility; bought once, from 4 badges, giving 2
+ITEM_TM72	1	trainer	Wake	MAP_HEADER_ROUTE_212_NORTH			TRAINER_POLICEMAN_CALEB		Avalanche, weak; reading 2.4
 ITEM_WEAKNESS_POLICY	1	trainer	Wake	MAP_HEADER_ROUTE_212_SOUTH			TRAINER_SCIENTIST_SHAUN		held item; reading 3.2
 ITEM_WIDE_LENS	1	trainer	Wake	MAP_HEADER_ROUTE_212_SOUTH			TRAINER_FISHERMAN_JOSH		held item; reading 3.4
 ITEM_COVERT_CLOAK	1	trainer	Wake	MAP_HEADER_ROUTE_213			TRAINER_FISHERMAN_KENNETH		held item; reading 3.2
-ITEM_TM72	1	trainer	Wake	MAP_HEADER_ROUTE_214			TRAINER_PI_CARLOS		Avalanche, weak; reading 2.3
 ITEM_EJECT_BUTTON	1	trainer	Wake	MAP_HEADER_ROUTE_219			TRAINER_TUBER_TRENTON		held item; reading 2.9
 ITEM_RED_CARD	1	trainer	Wake	MAP_HEADER_ROUTE_219			TRAINER_TUBER_MARIEL		held item; reading 2.8
 ITEM_TM80	2	ball	Byron	MAP_HEADER_CANALAVE_CITY		ITEM_TM89			Rock Slide, utility; a TM place today (ITEM_TM89)
