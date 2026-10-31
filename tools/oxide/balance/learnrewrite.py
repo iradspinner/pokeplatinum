@@ -137,7 +137,10 @@ IAN_EGG_MOVES = {
     # egg lists"): the moves of his team that no list gave at its levels.
     "SPECIES_YAMASK": [("MOVE_CONFUSE_RAY", "Ian, 2026-10-29: Fantina's Runerigus"),
                        ("MOVE_BODY_PRESS", "Ian, 2026-10-29: Fantina's Runerigus")],
-    "SPECIES_ROTOM": [("MOVE_PAIN_SPLIT", "Ian, 2026-10-29: Fantina's Rotom")],
+    # Krystal's Heat Rotom shares plain Rotom's lists, so its moves are read here too.
+    "SPECIES_ROTOM": [("MOVE_PAIN_SPLIT", "Ian, 2026-10-29: Fantina's Rotom"),
+                      ("MOVE_OVERHEAT", "Ian, 2026-10-31: Krystal's Heat Rotom"),
+                      ("MOVE_SUNNY_DAY", "Ian, 2026-10-31: Krystal's Heat Rotom")],
     "SPECIES_ROWLET": [("MOVE_SPIRIT_SHACKLE", "Ian, 2026-10-29: Fantina's Decidueye, which learns it "
                                                "only at 40"),
                        ("MOVE_PURSUIT", "Ian, 2026-10-29: Fantina's Decidueye")],
@@ -168,7 +171,10 @@ IAN_EGG_MOVES = {
     "SPECIES_AZURILL": [("MOVE_AQUA_JET", "Ian, 2026-10-29: Poke Kid Danielle's Azumarill, Pokefan Rebekah's "
                                           "Marill")],
     "SPECIES_EXEGGCUTE": [("MOVE_SUNNY_DAY", "Ian, 2026-10-29: Belle and Pa Beth and Bob's Exeggutor")],
-    "SPECIES_TORCHIC": [("MOVE_PROTECT", "Ian, 2026-10-29: Breeder Kahlil's Blaziken")],
+    "SPECIES_TORCHIC": [("MOVE_PROTECT", "Ian, 2026-10-29: Breeder Kahlil's Blaziken"),
+                        ("MOVE_DYNAMIC_PUNCH", "Ian, 2026-10-31: Krystal's Blaziken"),
+                        ("MOVE_FLARE_BLITZ", "Ian, 2026-10-31: Krystal's Blaziken"),
+                        ("MOVE_BRAVE_BIRD", "Ian, 2026-10-31: Krystal's Blaziken")],
     "SPECIES_CROAGUNK": [("MOVE_LOW_KICK", "Ian, 2026-10-29: Black Belt Nathaniel's Croagunk")],
     "SPECIES_MAGNEMITE": [("MOVE_SCREECH", "Ian, 2026-10-29: Twins Emma and Lil's Magneton"),
                           ("MOVE_MIRROR_SHOT", "Ian, 2026-10-29: Twins Emma and Lil's Magneton"),
@@ -237,13 +243,7 @@ IAN_EGG_MOVES = {
                        ("MOVE_GRAVITY", "Ian, 2026-10-31: Krystal's Metang")],
     "SPECIES_SNORUNT": [("MOVE_SING", "Ian, 2026-10-31: Krystal's Glalie"),
                         ("MOVE_WEATHER_BALL", "Ian, 2026-10-31: Krystal's Glalie")],
-    "SPECIES_TORCHIC": [("MOVE_DYNAMIC_PUNCH", "Ian, 2026-10-31: Krystal's Blaziken"),
-                        ("MOVE_FLARE_BLITZ", "Ian, 2026-10-31: Krystal's Blaziken"),
-                        ("MOVE_BRAVE_BIRD", "Ian, 2026-10-31: Krystal's Blaziken")],
     "SPECIES_DRATINI": [("MOVE_EXTREME_SPEED", "Ian, 2026-10-31: Krystal's Dragonair")],
-    # Read against plain Rotom's lists, which Krystal's Heat Rotom shares.
-    "SPECIES_ROTOM": [("MOVE_OVERHEAT", "Ian, 2026-10-31: Krystal's Heat Rotom"),
-                      ("MOVE_SUNNY_DAY", "Ian, 2026-10-31: Krystal's Heat Rotom")],
     # Ian's Wake and Barry 4 (Ian, 2026-10-31, docs/oxide/wake-barry4-check.md):
     # the moves his four teams carry that no list gives at their levels.
     # Muddy Water is Clodsire's level 47 move, Toxic Spikes its 58, Glare
