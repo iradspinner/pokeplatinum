@@ -33,7 +33,10 @@ from . import required as R
 # moved there from Route 212 North (off the path), read required, as does
 # Fisherman Travis, moved from Route 212 South to Route 213's west neck.
 # Route 213's three turners were already read required and now look one way.
-TOTALS = {"required": 67, "avoidable": 107, "never reached": 12}
+# 68 once Ian approved three Route 214 changes the same day: PI Carlos, moved
+# to the narrows south of the berry field, turns from avoidable to required;
+# Psychics Abigail and Mitchell were read required and now look one way.
+TOTALS = {"required": 68, "avoidable": 106, "never reached": 12}
 
 
 def check_crossings_resolve(results):
