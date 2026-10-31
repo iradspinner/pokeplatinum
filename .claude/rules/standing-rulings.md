@@ -200,7 +200,9 @@ read, so they are written here too. Each is a standing instruction.
   Protect, Double Team, the four weather moves, Thief, Snatch, Skill Swap,
   Focus Punch, Substitute, Dream Eater, Swords Dance and Embargo; Toxic,
   Will-O-Wisp and status of Thunder Wave's reliability may be TMs only as
-  single copies. Since field moves work on the badge alone (2026-09-29), the
+  single copies. Since field moves work on the badge alone (2026-09-29;
+  Surf also waits on Cyrus beaten at Celestic Town, Ian, 2026-10-31, so the
+  water cannot skip Celestic's story), the
   HMs are single-use TMs too, less Cut and Rock Smash (the TM list of
   2026-10-06), and Fly, Strength, Defog and Rock Climb need buffs to earn a
   place. Egg move lists serve only as trainer teams' palette: a
