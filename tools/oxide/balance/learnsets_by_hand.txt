@@ -129,7 +129,7 @@ SPECIES_SUICUNE     Origin Pulse at 75, a stranded move's home (Ian, 2026-10-14,
 SPECIES_TOGEKISS    Oblivion Wing at 61, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_TORTERRA    Horn Leech at 47, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md); Drum Beating at 40, a signature move's home (Ian, 2026-10-21, on signature-moves.md)
 SPECIES_TROPIUS     Leaf Tornado at 26, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md); Apple Acid at 46, a signature move's home (Ian, 2026-10-21, on signature-moves.md)
-SPECIES_TURTONATOR  Heat Crash at 50, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
+SPECIES_TURTONATOR  Heat Crash at 50, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md); Shell Trap on its egg list, for Barry 4's Turtonator (Ian, 2026-10-31)
 SPECIES_TYRANITAR   Mighty Cleave at 61, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_VIKAVOLT    Rising Voltage at 38, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_VOLCARONA   Fiery Dance at 63, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)

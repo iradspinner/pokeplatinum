@@ -244,6 +244,25 @@ IAN_EGG_MOVES = {
     # Read against plain Rotom's lists, which Krystal's Heat Rotom shares.
     "SPECIES_ROTOM": [("MOVE_OVERHEAT", "Ian, 2026-10-31: Krystal's Heat Rotom"),
                       ("MOVE_SUNNY_DAY", "Ian, 2026-10-31: Krystal's Heat Rotom")],
+    # Ian's Wake and Barry 4 (Ian, 2026-10-31, docs/oxide/wake-barry4-check.md):
+    # the moves his four teams carry that no list gives at their levels.
+    # Muddy Water is Clodsire's level 47 move, Toxic Spikes its 58, Glare
+    # Serperior's 48, Scale Shot its 57 and Gunk Shot Greninja's 51. Rest was
+    # a TM before the TM pass. The OxiDex gives Gyarados M no earlier stage,
+    # as with Lopunny M, so Waterfall goes on its own egg list as well as
+    # Magikarp's; Gyarados's HM already gives it by the pre-TM-pass reading.
+    "SPECIES_WOOPER": [("MOVE_GUNK_SHOT", "Ian, 2026-10-31: Wake's Clodsire"),
+                       ("MOVE_MUDDY_WATER", "Ian, 2026-10-31: Wake's Clodsire at 41"),
+                       ("MOVE_TOXIC_SPIKES", "Ian, 2026-10-31: Wake's Clodsire at 41")],
+    "SPECIES_FRILLISH": [("MOVE_STRENGTH_SAP", "Ian, 2026-10-31: Wake's Jellicent")],
+    "SPECIES_MAGIKARP": [("MOVE_WATERFALL", "Ian, 2026-10-31: Wake's Gyarados M")],
+    "SPECIES_GYARADOS_M": [("MOVE_WATERFALL", "Ian, 2026-10-31: Wake's Gyarados M, which the OxiDex reads as "
+                                              "its own first stage")],
+    "SPECIES_GOOMY": [("MOVE_REST", "Ian, 2026-10-31: Wake's Goodra")],
+    "SPECIES_TURTONATOR": [("MOVE_SHELL_TRAP", "Ian, 2026-10-31: Barry 4's Turtonator")],
+    "SPECIES_SNIVY": [("MOVE_GLARE", "Ian, 2026-10-31: Barry 4's Serperior at 41 and 42"),
+                      ("MOVE_SCALE_SHOT", "Ian, 2026-10-31: Barry 4's Serperior at 41 and 42")],
+    "SPECIES_FROAKIE": [("MOVE_GUNK_SHOT", "Ian, 2026-10-31: Barry 4's Greninja at 42")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
