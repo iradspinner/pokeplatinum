@@ -38,7 +38,9 @@ from . import required as R
 # Psychics Abigail and Mitchell were read required and now look one way.
 # Unchanged when unpushable boulders became walls (2026-10-31): Lake
 # Verity's grunts 3 and 4 stay avoidable, since Surf takes the player round
-# them by the lake's west edge, boulders or not.
+# them by the lake's west edge, boulders or not. Unchanged again the same
+# day when Ian's recollection that the water there cannot be reached was
+# checked against the game's code, which allows it (check_lake_verity_surf).
 TOTALS = {"required": 68, "avoidable": 106, "never reached": 12}
 
 
@@ -262,6 +264,37 @@ def check_unpushable_boulders(results):
                     ", ".join(f"{k} {'wall' if v else 'gone'}" for k, v in got.items())))
 
 
+def check_lake_verity_surf(results):
+    """Lake Verity's grunts 3 and 4 read avoidable on Surf alone (2026-10-31).
+    Ian recalled that the water round them cannot be reached and that a
+    boulder cannot be pushed into water; the game's code allows both. Surf
+    is offered when the faced tile is surfable, unless the player stands on
+    a raised bridge (PlayerAvatar_CanUseSurf), and Oxide asks only for the
+    Fen Badge and Celestic's story (field_control.c); no collision bit,
+    tile side or height is read. The shore at (44,46) stands at height 16
+    and the water at 8, under the 20 that stops a step
+    (terrain_collision_manager.c, GetVerticalDirection), and the same holds
+    at the landing, (48,43). A boulder's push refuses only the collision
+    bit, a wall behaviour, a missing tile or an object (sub_02063E18). So
+    the verdicts stand: with Surf both grunts are avoidable, boulder or no
+    boulder, and without it both are required. If Ian wants the pair
+    mandatory, the map must change."""
+    def verdicts(field):
+        start, goal = field.ends("VERITY_LAKEFRONT"), field.ends("@LOCALID_MARS")
+        return {t["script"][-1]: "avoidable" if field.path(start, goal, frozenset(field.sight(t)))
+                else "required" for t in field.trainers if t["script"][-1] in "34"}
+    built = R.Field("LAKE_VERITY", "Candice")
+    held = R.Field("LAKE_VERITY", "Candice")
+    held.objects[(46, 45)] = {"graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER"}
+    dry = R.Field("LAKE_VERITY", "Candice")
+    dry.can = dry.can - {"surf"}
+    got = {"with Surf": verdicts(built), "boulder held": verdicts(held), "no Surf": verdicts(dry)}
+    ok = (set(got["with Surf"].values()) == {"avoidable"} and got["boulder held"] == got["with Surf"]
+          and set(got["no Surf"].values()) == {"required"} and len(got["no Surf"]) == 2)
+    results.append(("Lake Verity's grunts 3 and 4 hang on Surf alone", ok,
+                    "; ".join(f"{k} {sorted(set(v.values()))}" for k, v in got.items())))
+
+
 def check_totals(results):
     got = {"required": 0, "avoidable": 0}
     for c in R.summary().values():
@@ -275,8 +308,7 @@ def main():
     results = []
     for check in (check_crossings_resolve, check_sight_and_ledges, check_route_202, check_ian_examples,
                   check_gates, check_late_visits, check_gauntlet_sections, check_byron_order,
-                  check_unpushable_boulders,
-                  check_totals):
+                  check_unpushable_boulders, check_lake_verity_surf, check_totals):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
