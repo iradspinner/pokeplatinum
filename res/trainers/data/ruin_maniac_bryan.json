@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_HIPPOWDON",
             "form": 0,
-            "level": 36,
+            "level": 38,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_STEALTH_ROCK",
@@ -21,6 +21,7 @@
                 "MOVE_SAND_TOMB"
             ],
             "iv_scale": 248,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 3,
             "gender": null
@@ -28,7 +29,7 @@
         {
             "species": "SPECIES_CORSOLA",
             "form": 0,
-            "level": 37,
+            "level": 39,
             "item": "ITEM_ZOOM_LENS",
             "moves": [
                 "MOVE_TOXIC",
@@ -37,6 +38,7 @@
                 "MOVE_ROLLOUT"
             ],
             "iv_scale": 239,
+            "nature": "NATURE_SASSY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -44,7 +46,7 @@
         {
             "species": "SPECIES_STEELIX",
             "form": 0,
-            "level": 34,
+            "level": 36,
             "item": "ITEM_IRON_PLATE",
             "moves": [
                 "MOVE_IRON_TAIL",
@@ -53,6 +55,7 @@
                 "MOVE_SLAM"
             ],
             "iv_scale": 244,
+            "nature": "NATURE_CAREFUL",
             "ball_seal": 0,
             "ability": 2,
             "gender": null
@@ -60,7 +63,7 @@
         {
             "species": "SPECIES_AERODACTYL",
             "form": 0,
-            "level": 36,
+            "level": 38,
             "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_AERIAL_ACE",
@@ -69,6 +72,7 @@
                 "MOVE_TAILWIND"
             ],
             "iv_scale": 225,
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 2,
             "gender": null
@@ -76,7 +80,7 @@
         {
             "species": "SPECIES_LEAFEON",
             "form": 0,
-            "level": 36,
+            "level": 38,
             "item": "ITEM_SHELL_BELL",
             "moves": [
                 "MOVE_X_SCISSOR",
@@ -85,6 +89,7 @@
                 "MOVE_IRON_TAIL"
             ],
             "iv_scale": 220,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 1,
             "gender": null

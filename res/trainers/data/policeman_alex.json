@@ -10,32 +10,84 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PIDGEOTTO",
+            "species": "SPECIES_ELECTRODE",
             "form": 0,
-            "level": 35,
-            "item": null,
+            "level": 40,
+            "item": "ITEM_LIGHT_CLAY",
             "moves": [
-                "MOVE_WHIRLWIND",
-                "MOVE_AERIAL_ACE",
-                "MOVE_FEATHER_DANCE",
-                "MOVE_AGILITY"
+                "MOVE_THUNDERBOLT",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_EXPLOSION"
             ],
             "iv_scale": 249,
-            "ball_seal": 0
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_PIDGEOT",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_SHARP_BEAK",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_U_TURN",
+                "MOVE_ROOST",
+                "MOVE_HEAT_WAVE"
+            ],
+            "iv_scale": 249,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_CROBAT",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_CROSS_POISON",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_U_TURN",
+                "MOVE_TAUNT"
+            ],
+            "iv_scale": 249,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_TALONFLAME",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_AERIAL_ACE",
+                "MOVE_WILL_O_WISP",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 249,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 3
         },
         {
             "species": "SPECIES_NINETALES",
             "form": 0,
-            "level": 35,
-            "item": null,
+            "level": 41,
+            "item": "ITEM_WIDE_LENS",
             "moves": [
-                "MOVE_FLAMETHROWER",
-                "MOVE_HIDDEN_POWER",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_WILL_O_WISP"
+                "MOVE_FIRE_BLAST",
+                "MOVE_ALLURING_VOICE",
+                "MOVE_WILL_O_WISP",
+                "MOVE_NASTY_PLOT"
             ],
-            "iv_scale": 244,
-            "ball_seal": 0
+            "iv_scale": 249,
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

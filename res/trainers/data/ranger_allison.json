@@ -10,32 +10,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_KANGASKHAN",
-            "form": 0,
-            "level": 39,
-            "item": null,
-            "moves": [
-                "MOVE_DIZZY_PUNCH",
-                "MOVE_CRUNCH",
-                "MOVE_ENDURE",
-                "MOVE_OUTRAGE"
-            ],
-            "iv_scale": 206,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_LEAFEON",
             "form": 0,
-            "level": 39,
-            "item": null,
+            "level": 40,
+            "item": "ITEM_MIRACLE_SEED",
             "moves": [
-                "MOVE_RAZOR_LEAF",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_SYNTHESIS",
-                "MOVE_MAGICAL_LEAF"
+                "MOVE_SEED_BOMB",
+                "MOVE_X_SCISSOR",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_KNOCK_OFF"
             ],
-            "iv_scale": 249,
-            "ball_seal": 0
+            "iv_scale": 206,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_KANGASKHAN",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_SILK_SCARF",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 206,
+            "nature": "NATURE_HARDY",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_TANGROWTH",
+            "form": 0,
+            "level": 41,
+            "item": "ITEM_ROCKY_HELMET",
+            "moves": [
+                "MOVE_GIGA_DRAIN",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SLEEP_POWDER",
+                "MOVE_ANCIENT_POWER"
+            ],
+            "iv_scale": 206,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

@@ -10,46 +10,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_REMORAID",
+            "species": "SPECIES_OCTILLERY",
             "form": 0,
-            "level": 36,
-            "item": null,
+            "level": 40,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_AURORA_BEAM",
-                "MOVE_FLAMETHROWER",
-                "MOVE_WATER_PULSE",
-                "MOVE_SIGNAL_BEAM"
+                "MOVE_HYDRO_PUMP",
+                "MOVE_FIRE_BLAST",
+                "MOVE_ICE_BEAM",
+                "MOVE_FOCUS_ENERGY"
             ],
             "iv_scale": 230,
-            "ball_seal": 0
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 2
         },
         {
-            "species": "SPECIES_WAILMER",
+            "species": "SPECIES_LANTURN",
             "form": 0,
-            "level": 36,
-            "item": null,
+            "level": 40,
+            "item": "ITEM_SHUCA_BERRY",
             "moves": [
-                "MOVE_RAIN_DANCE",
-                "MOVE_ICE_BEAM",
+                "MOVE_DISCHARGE",
                 "MOVE_SURF",
-                "MOVE_WATER_SPOUT"
+                "MOVE_THUNDER_WAVE",
+                "MOVE_ICE_BEAM"
             ],
-            "iv_scale": 235,
-            "ball_seal": 0
+            "iv_scale": 230,
+            "nature": "NATURE_GENTLE",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_GYARADOS",
+            "species": "SPECIES_DHELMISE",
             "form": 0,
-            "level": 36,
-            "item": null,
+            "level": 41,
+            "item": "ITEM_SPELL_TAG",
             "moves": [
-                "MOVE_HEADBUTT",
-                "MOVE_DRAGON_DANCE",
-                "MOVE_ICE_FANG",
-                "MOVE_AQUA_TAIL"
+                "MOVE_POLTERGEIST",
+                "MOVE_LIQUIDATION",
+                "MOVE_EARTHQUAKE",
+                "MOVE_SYNTHESIS"
             ],
-            "iv_scale": 234,
-            "ball_seal": 0
+            "iv_scale": 230,
+            "nature": "NATURE_SASSY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

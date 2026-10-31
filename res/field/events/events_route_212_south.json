@@ -97,21 +97,6 @@
             "y": 0
         },
         {
-            "id": "LOCALID_FISHERMAN_TRAVIS",
-            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
-            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": "TRAINER_TYPE_NORMAL",
-            "hidden_flag": "0",
-            "script": "TRAINER_FISHERMAN_TRAVIS",
-            "initial_dir": 1,
-            "data": [],
-            "movement_range_x": 0,
-            "movement_range_z": 0,
-            "x": 499,
-            "z": 856,
-            "y": 0
-        },
-        {
             "id": "LOCALID_RANGER_TAYLOR",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",

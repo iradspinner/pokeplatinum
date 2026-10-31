@@ -82,7 +82,9 @@
             "MOVE_ROLLOUT",
             "MOVE_DISABLE",
             "MOVE_BIDE",
-            "MOVE_DESTINY_BOND"
+            "MOVE_DESTINY_BOND",
+            "MOVE_SING",
+            "MOVE_WEATHER_BALL"
         ]
     },
     "evolutions": [
