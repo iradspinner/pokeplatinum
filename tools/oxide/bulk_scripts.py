@@ -277,11 +277,17 @@ DIVERGED["scripts_pokemon_mansion"] = (
 # Two Frontier Brains placed (Ian, 2026-09-27 and 2026-10-31;
 # docs/oxide/frontier-brains.md). Dahlia, the Arcade Star, stands inside the
 # Game Corner and asks before her fight; the prize counter next door trades
-# only once she is beaten.
+# only once she is beaten. Darach and Caitlin hold the Pokemon Mansion's
+# entrance hall, a trigger across its aisle holding the player until they are
+# beaten, and Darach gives the Manaphy egg straight after the win, so the
+# office maid no longer offers it.
 for _stem, _why in (
         ("scripts_game_corner", "Dahlia, the Arcade Star, added inside the entrance"),
         ("scripts_veilstone_city_prize_exchange", "the prize counter trades only once Dahlia "
-                                                  "is beaten")):
+                                                  "is beaten"),
+        ("scripts_pokemon_mansion", "Darach and Caitlin's gate, double battle and Manaphy egg"),
+        ("scripts_pokemon_mansion_office", "the maid's yes-or-no Manaphy egg offer removed; "
+                                           "Darach gives the egg after his win")):
     _why += " (Ian, 2026-10-31; docs/oxide/frontier-brains.md)"
     DIVERGED[_stem] = DIVERGED[_stem] + "; " + _why if _stem in DIVERGED else _why
 

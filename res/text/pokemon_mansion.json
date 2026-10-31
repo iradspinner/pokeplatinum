@@ -207,6 +207,94 @@
         "The expensive-looking book Mr. Backlot\n",
         "has... It tugs at my attention."
       ]
+    },
+    {
+      "id": "PokemonMansion_Text_DarachIntro",
+      "en_US": [
+        "Darach: Hold, please!\r",
+        "I am Darach, valet to Lady Caitlin.\n",
+        "My lady is a guest of Mr. Backlot.\r",
+        "No one goes farther into the mansion\n",
+        "without first defeating us.\r",
+        "We battle together, two Pokémon at\n",
+        "a time. Will you accept our challenge?"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_DarachBegin",
+      "en_US": [
+        "Caitlin: Then show me a battle worth\n",
+        "staying awake for.\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_DarachWin",
+      "en_US": [
+        "Darach: Splendid. Lady Caitlin and I\n",
+        "yield. The mansion is open to you.\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_DarachEgg",
+      "en_US": [
+        "A maid found this Egg on the beach.\n",
+        "Mr. Backlot asked us to give it to\f",
+        "a Trainer of true strength.\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_PlayerReceivedEgg",
+      "en_US": "{STRVAR_1 3, 0, 0} received the Egg.\r"
+    },
+    {
+      "id": "PokemonMansion_Text_DarachCareForEgg",
+      "en_US": "Darach: Please care for it well."
+    },
+    {
+      "id": "PokemonMansion_Text_DarachPartyFull",
+      "en_US": [
+        "Darach: Your party is full. Come back\n",
+        "with room, and the Egg is yours."
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_DarachKeptEgg",
+      "en_US": "Darach: I have kept the Egg for you.\r"
+    },
+    {
+      "id": "PokemonMansion_Text_DarachNeedTwo",
+      "en_US": [
+        "Darach: Our battle needs at least two\n",
+        "Pokémon able to fight. Do return."
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_DarachDeclined",
+      "en_US": [
+        "Darach: Very well. We shall wait here\n",
+        "for you."
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_DarachBeaten",
+      "en_US": [
+        "Darach: Lady Caitlin enjoyed your\n",
+        "battle. Please, do visit again."
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_CaitlinBefore",
+      "en_US": [
+        "Caitlin: Darach decides who may pass.\n",
+        "I only watch... and battle."
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_CaitlinBeaten",
+      "en_US": [
+        "Caitlin: That battle was refreshing.\n",
+        "I may even stay awake a while."
+      ]
     }
   ]
 }
