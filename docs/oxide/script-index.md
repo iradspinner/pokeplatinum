@@ -2949,7 +2949,7 @@ Trainer battles:
 - TRAINER_BEAUTY_DEVON (Devon, level 39, 2 Pokemon), sees the player. Vanilla. `events_route_214.json:125`
 - TRAINER_PSYCHIC_MITCHELL (Mitchell, level 39, 4 Pokemon), sees the player. Vanilla. `events_route_214.json:140`
 - TRAINER_PSYCHIC_ABIGAIL (Abigail, level 39, 5 Pokemon), sees the player. Vanilla. `events_route_214.json:155`
-- TRAINER_DUMMY_795 (Krystal, level 43, 6 Pokemon), sees the player. Added from the base ROM (d3e44ec93). `events_route_214.json:501`
+- TRAINER_DUMMY_795 (Krystal, level 39, 6 Pokemon), sees the player. Added from the base ROM (d3e44ec93). `events_route_214.json:501`
 
 Item balls:
 
