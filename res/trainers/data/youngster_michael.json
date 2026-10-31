@@ -62,7 +62,7 @@
             "species": "SPECIES_ODDISH",
             "form": 0,
             "level": 14,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_CHERI_BERRY",
             "moves": [
                 "MOVE_GIGA_DRAIN",
                 "MOVE_ACID",

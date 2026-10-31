@@ -37,7 +37,7 @@
                 "MOVE_CHARM"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
