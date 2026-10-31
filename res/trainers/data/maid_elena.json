@@ -3,23 +3,27 @@
     "class": "TRAINER_CLASS_MAID",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CLEFAIRY",
+            "species": "SPECIES_TORKOAL",
             "form": 0,
-            "level": 31,
-            "item": null,
+            "level": 41,
+            "item": "ITEM_CHARCOAL",
             "moves": [
-                "MOVE_METRONOME",
-                "MOVE_SWAGGER",
-                "MOVE_METEOR_MASH",
-                "MOVE_ENDURE"
+                "MOVE_ERUPTION",
+                "MOVE_SOLAR_BEAM",
+                "MOVE_EARTH_POWER",
+                "MOVE_YAWN"
             ],
-            "iv_scale": 0,
-            "ball_seal": 0
+            "iv_scale": 224,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [
