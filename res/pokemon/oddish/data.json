@@ -80,7 +80,8 @@
             "MOVE_SYNTHESIS",
             "MOVE_CHARM",
             "MOVE_INGRAIN",
-            "MOVE_TICKLE"
+            "MOVE_TICKLE",
+            "MOVE_SUNNY_DAY"
         ]
     },
     "evolutions": [

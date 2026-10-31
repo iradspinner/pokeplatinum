@@ -10,53 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PRINPLUP",
+            "species": "SPECIES_MARSHTOMP",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_NONE",
+            "level": 21,
+            "item": "ITEM_RINDO_BERRY",
             "moves": [
-                "MOVE_BUBBLE_BEAM",
-                "MOVE_METAL_CLAW",
-                "MOVE_PECK",
-                "MOVE_GROWL"
+                "MOVE_BULLDOZE",
+                "MOVE_ROCK_BLAST",
+                "MOVE_WATER_PULSE",
+                "MOVE_MIRROR_COAT"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_MARSHTOMP",
+            "species": "SPECIES_BRIONNE",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_NONE",
+            "level": 21,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
-                "MOVE_MUD_BOMB",
-                "MOVE_ANCIENT_POWER",
-                "MOVE_WATER_GUN",
-                "MOVE_PROTECT"
+                "MOVE_CHILLING_WATER",
+                "MOVE_DISARMING_VOICE",
+                "MOVE_ICY_WIND",
+                "MOVE_LIFE_DEW"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_CROCONAW",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_MYSTIC_WATER",
+            "level": 21,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
+                "MOVE_DRAGON_DANCE",
+                "MOVE_WATERFALL",
                 "MOVE_ICE_FANG",
-                "MOVE_BITE",
-                "MOVE_WATER_GUN",
-                "MOVE_ANCIENT_POWER"
+                "MOVE_BITE"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_SERIOUS",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         }
     ],
     "messages": [

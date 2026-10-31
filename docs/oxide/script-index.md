@@ -433,7 +433,7 @@ Variables:
 
 Trainer battles:
 
-- StartTagBattle: partner TRAINER_LUCAS_JUBILIFE_CITY_CHIMCHAR (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_JUBILIFE_CITY_PIPLUP (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_JUBILIFE_CITY_TURTWIG (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerGender) == 1, TRAINER_DAWN_JUBILIFE_CITY_CHIMCHAR (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_JUBILIFE_CITY_PIPLUP (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_JUBILIFE_CITY_TURTWIG (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerGender) == 0, through a variable; against TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1 (Grunt, level 17, 3 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2 (Grunt, level 17, 3 Pokemon), by number. Vanilla. `scripts_jubilife_city.s:1026`
+- StartTagBattle: partner TRAINER_LUCAS_JUBILIFE_CITY_CHIMCHAR (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_JUBILIFE_CITY_PIPLUP (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_JUBILIFE_CITY_TURTWIG (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerGender) == 1, TRAINER_DAWN_JUBILIFE_CITY_CHIMCHAR (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_JUBILIFE_CITY_PIPLUP (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_JUBILIFE_CITY_TURTWIG (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerGender) == 0, through a variable; against TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1 (Grunt, level 16, 3 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2 (Grunt, level 16, 3 Pokemon), by number. Vanilla. `scripts_jubilife_city.s:1026`
 
 Items given:
 
@@ -818,12 +818,12 @@ Trainer battles:
 - TRAINER_HIKER_JUSTIN (Justin, level 28, 3 Pokemon), sees the player. Vanilla. `events_route_207.json:96`
 - TRAINER_HIKER_KEVIN (Kevin, level 27, 4 Pokemon), sees the player. Vanilla. `events_route_207.json:111`
 - TRAINER_BATTLE_GIRL_HELEN (Helen, level 28, 3 Pokemon), sees the player. Vanilla. `events_route_207.json:126`
-- StartTrainerBattle: against TRAINER_DUMMY_799 (Dawn, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:218`
-- StartTrainerBattle: against TRAINER_DUMMY_793 (Dawn, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:224`
-- StartTrainerBattle: against TRAINER_DUMMY_794 (Dawn, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:230`
-- StartTrainerBattle: against TRAINER_DUMMY_802 (Lucas, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:236`
-- StartTrainerBattle: against TRAINER_DUMMY_800 (Lucas, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:242`
-- StartTrainerBattle: against TRAINER_DUMMY_801 (Lucas, level 30, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:248`
+- StartTrainerBattle: against TRAINER_DUMMY_799 (Dawn, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:218`
+- StartTrainerBattle: against TRAINER_DUMMY_793 (Dawn, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:224`
+- StartTrainerBattle: against TRAINER_DUMMY_794 (Dawn, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:230`
+- StartTrainerBattle: against TRAINER_DUMMY_802 (Lucas, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:236`
+- StartTrainerBattle: against TRAINER_DUMMY_800 (Lucas, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:242`
+- StartTrainerBattle: against TRAINER_DUMMY_801 (Lucas, level 31, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:248`
 
 Items given:
 
@@ -916,9 +916,9 @@ Scripts nothing reaches: code at `OreburghMineB2F_Unused` (line 19), code at `Or
 
 Trainer battles:
 
-- TRAINER_LASS_SARAH (Sarah, level 17, 4 Pokemon), sees the player. Vanilla. `events_route_204_south.json:10`
-- TRAINER_LASS_SAMANTHA (Samantha, level 18, 4 Pokemon), sees the player. Vanilla. `events_route_204_south.json:27`
-- TRAINER_YOUNGSTER_TYLER (Tyler, level 18, 4 Pokemon), sees the player. Vanilla. `events_route_204_south.json:44`
+- TRAINER_LASS_SARAH (Sarah, level 17, 3 Pokemon), sees the player. Vanilla. `events_route_204_south.json:10`
+- TRAINER_LASS_SAMANTHA (Samantha, level 17, 4 Pokemon), sees the player. Vanilla. `events_route_204_south.json:27`
+- TRAINER_YOUNGSTER_TYLER (Tyler, level 17, 4 Pokemon), sees the player. Vanilla. `events_route_204_south.json:44`
 
 Item balls:
 
@@ -1001,8 +1001,8 @@ Gone from vanilla: ITEM_TM01 x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_
 
 Trainer battles:
 
-- TRAINER_BUG_CATCHER_BRANDON (Brandon, level 18, 5 Pokemon), sees the player. Vanilla. `events_route_204_north.json:10`
-- TRAINER_AROMA_LADY_TAYLOR (Taylor, level 18, 4 Pokemon), sees the player. Vanilla. `events_route_204_north.json:27`
+- TRAINER_BUG_CATCHER_BRANDON (Brandon, level 17, 4 Pokemon), sees the player. Vanilla. `events_route_204_north.json:10`
+- TRAINER_AROMA_LADY_TAYLOR (Taylor, level 17, 4 Pokemon), sees the player. Vanilla. `events_route_204_north.json:27`
 - TRAINER_TWINS_LIV_AND_LIZ (Liv & Liz, level 17, 3 Pokemon), sees the player. Vanilla. `events_route_204_north.json:44`
 - TRAINER_TWINS_LIV_AND_LIZ (Liv & Liz, level 17, 3 Pokemon), sees the player, double battle. Vanilla. `events_route_204_north.json:62`
 
@@ -1102,16 +1102,16 @@ Scripts nothing reaches: script 1 `FloaromaPokecenterB1F_Dummy1` (line 7).
 
 Trainer battles:
 
-- TRAINER_HIKER_DANIEL (Daniel, level 25, 4 Pokemon), sees the player. Vanilla. `events_route_205_south.json:19`
-- TRAINER_AROMA_LADY_ELIZABETH (Elizabeth, level 25, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:36`
-- TRAINER_CAMPER_JACOB (Jacob, level 25, 4 Pokemon), sees the player. Vanilla. `events_route_205_south.json:53`
-- TRAINER_PICNICKER_SIENA (Siena, level 25, 5 Pokemon), sees the player. Vanilla. `events_route_205_south.json:70`
-- TRAINER_HIKER_NICHOLAS (Nicholas, level 25, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:87`
-- TRAINER_BATTLE_GIRL_KELSEY (Kelsey, level 25, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:104`
-- TRAINER_PICNICKER_KARINA (Karina, level 25, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:346`
-- TRAINER_CAMPER_ZACKARY (Zackary, level 25, 4 Pokemon), sees the player. Vanilla. `events_route_205_south.json:363`
-- TRAINER_FISHERMAN_ANDREW (Andrew, level 24, 6 Pokemon), sees the player. Added by Oxide (74d0a38e9). `events_route_205_south.json:530`
-- TRAINER_FISHERMAN_JOSEPH (Joseph, level 25, 3 Pokemon), sees the player. Added by Oxide (74d0a38e9). `events_route_205_south.json:547`
+- TRAINER_HIKER_DANIEL (Daniel, level 20, 4 Pokemon), sees the player. Vanilla. `events_route_205_south.json:19`
+- TRAINER_AROMA_LADY_ELIZABETH (Elizabeth, level 20, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:36`
+- TRAINER_CAMPER_JACOB (Jacob, level 20, 4 Pokemon), sees the player. Vanilla. `events_route_205_south.json:53`
+- TRAINER_PICNICKER_SIENA (Siena, level 21, 4 Pokemon), sees the player. Vanilla. `events_route_205_south.json:70`
+- TRAINER_HIKER_NICHOLAS (Nicholas, level 21, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:87`
+- TRAINER_BATTLE_GIRL_KELSEY (Kelsey, level 21, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:104`
+- TRAINER_PICNICKER_KARINA (Karina, level 21, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:346`
+- TRAINER_CAMPER_ZACKARY (Zackary, level 21, 3 Pokemon), sees the player. Vanilla. `events_route_205_south.json:363`
+- TRAINER_FISHERMAN_ANDREW (Andrew, level 20, 5 Pokemon), sees the player. Added by Oxide (74d0a38e9). `events_route_205_south.json:530`
+- TRAINER_FISHERMAN_JOSEPH (Joseph, level 18, 3 Pokemon), sees the player. Added by Oxide (74d0a38e9). `events_route_205_south.json:547`
 
 Item balls:
 
@@ -1143,7 +1143,7 @@ Trainer battles:
 
 - TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_2 (Grunt, level 18, 3 Pokemon), sees the player. Vanilla. `events_valley_windworks_building.json:72`
 - TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_3 (Officer Somnu, level 18, 4 Pokemon), sees the player. Vanilla. `events_valley_windworks_building.json:89`
-- StartTrainerBattle: against TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS (Mars, level 19, 5 Pokemon), by name. Vanilla. `scripts_valley_windworks_building.s:86`
+- StartTrainerBattle: against TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS (Mars, level 20, 5 Pokemon), by name. Vanilla. `scripts_valley_windworks_building.s:86`
 
 Flags:
 
@@ -1198,7 +1198,7 @@ Could not read: 1 raw data lines.
 
 Trainer battles:
 
-- TRAINER_FISHERMAN_ZACHARY (Zachary, level 25, 4 Pokemon), sees the player. Vanilla. `events_route_205_north.json:19`
+- TRAINER_FISHERMAN_ZACHARY (Zachary, level 22, 4 Pokemon), sees the player. Vanilla. `events_route_205_north.json:19`
 
 Item balls:
 
@@ -1212,7 +1212,7 @@ Flags:
 
 - Hide an object: FLAG_UNK_0x0041, FLAG_OBTAINED_ROUTE_205_NORTH_GUARD_SPEC.
 
-Gone from vanilla: TRAINER_FISHERMAN_ANDREW (Andrew, level 24, 6 Pokemon), sees the player; TRAINER_FISHERMAN_JOSEPH (Joseph, level 25, 3 Pokemon), sees the player.
+Gone from vanilla: TRAINER_FISHERMAN_ANDREW (Andrew, level 20, 5 Pokemon), sees the player; TRAINER_FISHERMAN_JOSEPH (Joseph, level 18, 3 Pokemon), sees the player.
 
 ### Eterna Forest
 
@@ -1220,14 +1220,14 @@ Gone from vanilla: TRAINER_FISHERMAN_ANDREW (Andrew, level 24, 6 Pokemon), sees 
 
 Trainer battles:
 
-- TRAINER_BUG_CATCHER_JACK (Jack, level 24, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:49`
-- TRAINER_BUG_CATCHER_PHILLIP (Phillip, level 24, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:64`
-- TRAINER_PSYCHIC_KODY (Kody, level 24, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:79`
-- TRAINER_PSYCHIC_LINDSEY (Lindsey, level 24, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:94`
-- TRAINER_LASS_BRIANA (Briana, level 24, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:109`
-- TRAINER_BUG_CATCHER_DONALD (Donald, level 24, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:124`
-- TRAINER_PSYCHIC_ELIJAH (Elijah, level 24, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:229`
-- TRAINER_PSYCHIC_RACHAEL (Rachael, level 24, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:244`
+- TRAINER_BUG_CATCHER_JACK (Jack, level 22, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:49`
+- TRAINER_BUG_CATCHER_PHILLIP (Phillip, level 22, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:64`
+- TRAINER_PSYCHIC_KODY (Kody, level 22, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:79`
+- TRAINER_PSYCHIC_LINDSEY (Lindsey, level 22, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:94`
+- TRAINER_LASS_BRIANA (Briana, level 22, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:109`
+- TRAINER_BUG_CATCHER_DONALD (Donald, level 22, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:124`
+- TRAINER_PSYCHIC_ELIJAH (Elijah, level 22, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:229`
+- TRAINER_PSYCHIC_RACHAEL (Rachael, level 22, 3 Pokemon), sees the player. Vanilla. `events_eterna_forest.json:244`
 - StartTrainerBattle: against TRAINER_CHERYL_ETERNA_FOREST (Cheryl, level 20, 2 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_eterna_forest.s:250`
 
 Items given:
@@ -1366,9 +1366,9 @@ Gone from vanilla: ITEM_TM67 x1.
 Trainer battles:
 
 - StartTrainerBattle: against TRAINER_LEADER_GARDENIA (Gardenia, level 26, 6 Pokemon), by number. Vanilla. `scripts_eterna_city_gym.s:60`
-- StartTrainerBattle: against TRAINER_LASS_CAROLINE (Caroline, level 25, 3 Pokemon), by number. Vanilla. `scripts_eterna_city_gym.s:89`
-- StartTrainerBattle: against TRAINER_AROMA_LADY_JENNA (Jenna, level 25, 4 Pokemon), by number. Vanilla. `scripts_eterna_city_gym.s:111`
-- StartTrainerBattle: against TRAINER_AROMA_LADY_ANGELA (Angela, level 25, 4 Pokemon), by number. Vanilla. `scripts_eterna_city_gym.s:133`
+- StartTrainerBattle: against TRAINER_LASS_CAROLINE (Caroline, level 23, 3 Pokemon), by number. Vanilla. `scripts_eterna_city_gym.s:89`
+- StartTrainerBattle: against TRAINER_AROMA_LADY_JENNA (Jenna, level 23, 4 Pokemon), by number. Vanilla. `scripts_eterna_city_gym.s:111`
+- StartTrainerBattle: against TRAINER_AROMA_LADY_ANGELA (Angela, level 24, 4 Pokemon), by number. Vanilla. `scripts_eterna_city_gym.s:133`
 - StartTrainerBattle: against TRAINER_LEADER_GARDENIA_REMATCH (Gardenia, level 83, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_eterna_city_gym.s:180`
 
 Items given:
@@ -1487,9 +1487,9 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_BIRD_KEEPER_ALEXANDRA (Alexandra, level 25, 5 Pokemon), sees the player. Vanilla. `events_route_211_west.json:19`
-- TRAINER_HIKER_LOUIS (Louis, level 25, 3 Pokemon), sees the player. Vanilla. `events_route_211_west.json:36`
-- TRAINER_NINJA_BOY_ZACH (Zach, level 25, 4 Pokemon), sees the player. Vanilla. `events_route_211_west.json:53`
+- TRAINER_BIRD_KEEPER_ALEXANDRA (Alexandra, level 23, 4 Pokemon), sees the player. Vanilla. `events_route_211_west.json:19`
+- TRAINER_HIKER_LOUIS (Louis, level 23, 3 Pokemon), sees the player. Vanilla. `events_route_211_west.json:36`
+- TRAINER_NINJA_BOY_ZACH (Zach, level 22, 3 Pokemon), sees the player. Vanilla. `events_route_211_west.json:53`
 
 Item balls:
 
@@ -8161,7 +8161,7 @@ Flags:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING (Jupiter, level 27, 6 Pokemon), by name. Vanilla. `scripts_team_galactic_eterna_building_4f.s:30`
+- StartTrainerBattle: against TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING (Jupiter, level 29, 6 Pokemon), by name. Vanilla. `scripts_team_galactic_eterna_building_4f.s:30`
 
 Item balls:
 

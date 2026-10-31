@@ -118,7 +118,7 @@ UNDER_CAP = ("saturn_1", "mars_2", "somnu_moira", "saturn_2", "mars_jupiter", "l
 # Officers Tyche and Hermes at Veilstone keep their aces at their honour cap of
 # 41 (Ian, 2026-10-29); their Spear Pillar fight is left out, as drafted.
 FIXED_ACES = {"aaron": 72, "bertha": 73, "flint": 74, "lucian": 75, "cynthia": 78,
-              "barry_2": 11, "mars_1": 19, "jupiter_1": 27, "lucas_dawn_2": 30,
+              "barry_2": 11, "mars_1": 20, "jupiter_1": 29, "lucas_dawn_2": 31,
               "tyche_hermes_1": 41, "barry_3": 36}
 MINI_BOSS_UNDER = range(2, 5)
 

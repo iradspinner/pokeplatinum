@@ -29,11 +29,13 @@ _058:
 _063:
     // Oxide: a side guard names itself; the C leaves MOVE_NONE here when the
     // defender's own Protect stopped the move, or names the defender's
-    // Spiky Shield, Baneful Bunker or Burning Bulwark when the move made
-    // contact with it.
+    // Spiky Shield, Baneful Bunker, Burning Bulwark, Silk Trap or Obstruct
+    // when the move made contact with it.
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_SPIKY_SHIELD, _spiky_shield
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_BANEFUL_BUNKER, _baneful_bunker
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_BURNING_BULWARK, _burning_bulwark
+    CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_SILK_TRAP, _silk_trap
+    CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_OBSTRUCT, _obstruct
     CompareVarToValue OPCODE_NEQ, BTLVAR_MSG_MOVE_TEMP, MOVE_NONE, _side_guard
     // {0} protected itself!
     PrintMessage BattleStrings_Text_PokemonProtectedItself_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
@@ -86,6 +88,44 @@ _burning_bulwark:
     UpdateVarFromVar OPCODE_SET, BTLVAR_SIDE_EFFECT_MON, BTLVAR_ATTACKER
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_MOVE_EFFECT
     Call BATTLE_SUBSCRIPT_BURN
+    GoTo _179
+
+_silk_trap:
+    // {0} protected itself!
+    PrintMessage BattleStrings_Text_PokemonProtectedItself_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
+    Wait 
+    WaitButtonABTime 30
+    // Oxide: the attacker's Speed falls a stage, as in hg-engine; nothing
+    // happens once it is at -6.
+    CompareMonDataToValue OPCODE_EQU, BTLSCR_ATTACKER, BATTLEMON_SPEED_STAGE, 0, _179
+    UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_PARAM, MOVE_SUBSCRIPT_PTR_SPEED_DOWN_1_STAGE
+    GoTo _contact_stat_drop
+
+_obstruct:
+    // {0} protected itself!
+    PrintMessage BattleStrings_Text_PokemonProtectedItself_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
+    Wait 
+    WaitButtonABTime 30
+    // Oxide: the attacker's Defense falls two stages, as in hg-engine;
+    // nothing happens once it is at -6.
+    CompareMonDataToValue OPCODE_EQU, BTLSCR_ATTACKER, BATTLEMON_DEFENSE_STAGE, 0, _179
+    UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_PARAM, MOVE_SUBSCRIPT_PTR_DEFENSE_DOWN_2_STAGES
+
+_contact_stat_drop:
+    // Oxide: the drop is the protecting battler's doing, so it stands as the
+    // attacker while the stat subscript runs: Clear Body, White Smoke, Mist,
+    // a Clear Amulet and the other blockers stop it, Mirror Armor turns it
+    // back on the protecting battler, and Defiant and Competitive answer it.
+    // The real attacker is kept in BTLVAR_ATTACKER_TEMP and put back after.
+    // An attacker behind its own Substitute keeps its stat, since the stat
+    // subscript would stop the drop there with a stale message.
+    CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_SUBSTITUTE, _179
+    UpdateVarFromVar OPCODE_SET, BTLVAR_SIDE_EFFECT_MON, BTLVAR_ATTACKER
+    UpdateVarFromVar OPCODE_SET, BTLVAR_ATTACKER_TEMP, BTLVAR_ATTACKER
+    UpdateVarFromVar OPCODE_SET, BTLVAR_ATTACKER, BTLVAR_DEFENDER
+    UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_MOVE_EFFECT
+    Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE
+    UpdateVarFromVar OPCODE_SET, BTLVAR_ATTACKER, BTLVAR_ATTACKER_TEMP
     GoTo _179
 
 _side_guard:

@@ -46,7 +46,7 @@
         {
             "species": "SPECIES_LOPUNNY",
             "form": 0,
-            "level": 29,
+            "level": 30,
             "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_JUMP_KICK",
@@ -97,7 +97,7 @@
         {
             "species": "SPECIES_MONFERNO",
             "form": 0,
-            "level": 30,
+            "level": 31,
             "item": "ITEM_CHARCOAL",
             "moves": [
                 "MOVE_BLAZE_KICK",

@@ -9,53 +9,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SPOINK",
+            "species": "SPECIES_GOTHITA",
             "form": 0,
-            "level": 23,
-            "item": "ITEM_NONE",
+            "level": 21,
+            "item": "ITEM_COLBUR_BERRY",
             "moves": [
                 "MOVE_PSYBEAM",
-                "MOVE_ICY_WIND",
-                "MOVE_PAYBACK",
-                "MOVE_MAGIC_COAT"
+                "MOVE_FAKE_TEARS",
+                "MOVE_PLAY_NICE",
+                "MOVE_THUNDER_WAVE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_BASHFUL",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         },
         {
-            "species": "SPECIES_WYNAUT",
+            "species": "SPECIES_SPOINK",
             "form": 0,
-            "level": 23,
-            "item": "ITEM_NONE",
+            "level": 21,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_COUNTER",
-                "MOVE_MIRROR_COAT",
-                "MOVE_SAFEGUARD",
-                "MOVE_ENCORE"
+                "MOVE_PSYBEAM",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_MAGIC_COAT",
+                "MOVE_PSYCH_UP"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
-            "ability": 3,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_KADABRA",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 22,
+            "item": "ITEM_FOCUS_BAND",
             "moves": [
                 "MOVE_PSYBEAM",
-                "MOVE_CONFUSION",
-                "MOVE_DISABLE",
-                "MOVE_REFLECT"
+                "MOVE_CHARGE_BEAM",
+                "MOVE_CALM_MIND",
+                "MOVE_DISABLE"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": "male"
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [

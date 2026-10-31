@@ -12,50 +12,53 @@
         {
             "species": "SPECIES_GLAMEOW",
             "form": 0,
-            "level": 16,
-            "item": "ITEM_NONE",
+            "level": 15,
+            "item": "ITEM_SILK_SCARF",
             "moves": [
                 "MOVE_FAKE_OUT",
-                "MOVE_SCRATCH",
-                "MOVE_BITE",
-                "MOVE_HYPNOSIS"
+                "MOVE_HYPNOSIS",
+                "MOVE_FURY_SWIPES",
+                "MOVE_BITE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_BRONZOR",
             "form": 0,
-            "level": 16,
-            "item": "ITEM_NONE",
+            "level": 15,
+            "item": "ITEM_COLBUR_BERRY",
             "moves": [
                 "MOVE_CONFUSION",
-                "MOVE_ROCK_TOMB",
                 "MOVE_CONFUSE_RAY",
-                "MOVE_TACKLE"
+                "MOVE_ROCK_TOMB",
+                "MOVE_IMPRISON"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_SASSY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_MURKROW",
+            "species": "SPECIES_PURRLOIN",
             "form": 0,
-            "level": 17,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 16,
+            "item": "ITEM_BLACKGLASSES",
             "moves": [
-                "MOVE_WING_ATTACK",
-                "MOVE_FAINT_ATTACK",
+                "MOVE_THUNDER_WAVE",
                 "MOVE_PURSUIT",
-                "MOVE_ASTONISH"
+                "MOVE_FURY_SWIPES",
+                "MOVE_TAUNT"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_QUIRKY",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 2,
+            "gender": null
         }
     ],
     "messages": [

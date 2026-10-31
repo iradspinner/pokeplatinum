@@ -813,6 +813,10 @@ Basic_CheckUpperHand_Terminate:
 
 Basic_CheckCannotPoison:
     // If the target is immune to the usual effects of Poison for any reason, score -10.
+    // Oxide, change (Ian, 2026-10-29): a Corrosion holder's poison reaches
+    // Poison and Steel types (subscript_poison), so its type check gives way.
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_CORROSION, Basic_CheckCannotPoison_Ability
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
     IfLoadedEqualTo TYPE_STEEL, ScoreMinus10
     IfLoadedEqualTo TYPE_POISON, ScoreMinus10
@@ -820,6 +824,7 @@ Basic_CheckCannotPoison:
     IfLoadedEqualTo TYPE_STEEL, ScoreMinus10
     IfLoadedEqualTo TYPE_POISON, ScoreMinus10
 
+Basic_CheckCannotPoison_Ability:
     // Check for immunity by ability
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_IMMUNITY, ScoreMinus10
@@ -1633,12 +1638,17 @@ Basic_FlingPoison:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, Basic_FlingPoison_AttackerChecks
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_POISON_HEAL, Basic_FlingPoison_AttackerChecks
+    // Oxide, change (Ian, 2026-10-29): a flung Toxic Orb or Poison Barb is
+    // the Corrosion holder's own poison, so the target's types give way.
+    IfLoadedEqualTo ABILITY_CORROSION, Basic_FlingPoison_DefenderAbility
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
     IfLoadedEqualTo TYPE_POISON, Basic_FlingPoison_AttackerChecks
     IfLoadedEqualTo TYPE_STEEL, Basic_FlingPoison_AttackerChecks
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_POISON, Basic_FlingPoison_AttackerChecks
     IfLoadedEqualTo TYPE_STEEL, Basic_FlingPoison_AttackerChecks
+
+Basic_FlingPoison_DefenderAbility:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_IMMUNITY, Basic_FlingPoison_AttackerChecks
     IfLoadedEqualTo ABILITY_POISON_HEAL, Basic_FlingPoison_AttackerChecks
@@ -1732,12 +1742,17 @@ Basic_PsychoShift_Poison:
     IfLoadedEqualTo ABILITY_POISON_HEAL, ScoreMinus10
 
     // If the target is immune to the effects of poison for any reason, score -10.
+    // Oxide, change (Ian, 2026-10-29): the poison Psycho Shift passes on is
+    // its user's doing, so a Corrosion holder's skips the type check.
+    IfLoadedEqualTo ABILITY_CORROSION, Basic_PsychoShift_PoisonAbility
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
     IfLoadedEqualTo TYPE_POISON, ScoreMinus10
     IfLoadedEqualTo TYPE_STEEL, ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_POISON, ScoreMinus10
     IfLoadedEqualTo TYPE_STEEL, ScoreMinus10
+
+Basic_PsychoShift_PoisonAbility:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_IMMUNITY, ScoreMinus10
     IfLoadedEqualTo ABILITY_POISON_HEAL, ScoreMinus10
@@ -5304,12 +5319,16 @@ Expert_BrickBreak_End:
     PopOrEnd 
 
 Expert_KnockOff:
-    // If the opponent's HP >= 30% and it is not the attacker's first turn in battle, 29.7% chance of
-    // score +1.
+    // If the opponent's HP >= 30% and it holds an item, 66% chance of score +1.
+    // Oxide, change (Ian, 2026-10-29): "Drop the first-turn rule and make it a
+    // chance to fire with an item (66%)". Vanilla skipped the attacker's first
+    // turn in battle and gave the +1 at 29.7% (IfRandomLessThan 180). Basic
+    // already scores -10 into a target with no item; the test is made here too
+    // so the routine stands on its own.
     IfHPPercentLessThan AI_BATTLER_DEFENDER, 30, Expert_KnockOff_End
-    LoadIsFirstTurnInBattle AI_BATTLER_ATTACKER
-    IfLoadedGreaterThan FALSE, Expert_KnockOff_End
-    IfRandomLessThan 180, Expert_KnockOff_End
+    LoadHeldItem AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ITEM_NONE, Expert_KnockOff_End
+    IfRandomLessThan 87, Expert_KnockOff_End
     AddToMoveScore 1
 
 Expert_KnockOff_End:

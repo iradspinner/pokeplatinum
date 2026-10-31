@@ -82,7 +82,7 @@
         {
             "species": "SPECIES_GALARIAN_WEEZING",
             "form": 0,
-            "level": 26,
+            "level": 28,
             "item": "ITEM_BLACK_SLUDGE",
             "moves": [
                 "MOVE_WILL_O_WISP",
@@ -99,7 +99,7 @@
         {
             "species": "SPECIES_SKUNTANK",
             "form": 0,
-            "level": 27,
+            "level": 29,
             "item": "ITEM_BLACKGLASSES",
             "moves": [
                 "MOVE_POISON_JAB",

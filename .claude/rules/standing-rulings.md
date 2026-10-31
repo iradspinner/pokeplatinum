@@ -9,9 +9,10 @@ read, so they are written here too. Each is a standing instruction.
   starter's level 5 moves, a TM's location, a line of dialogue) stales
   nothing and sets off no rescore or re-read; a material one names the
   fights it moves, and only those are marked for reading. Scores never block
-  a landing: the gate reports stale scores and passes. Full readings happen
-  only at milestones (once before alpha 1, then once after each round of
-  alpha changes); between them the scorer reads only the fights Ian names,
+  a landing: the gate reports stale scores and passes. No full reading is planned (Ian, 2026-10-29, dropping the
+  milestone reading before alpha 1): the scorer reads only the fights Ian
+  names, chiefly as a backup when a fight feels too hard in his testing,
+  to show whether he is missing a line,
   and the simulator is frozen except for fixes he approves. The first scoring
   system's cheap estimate is retired (Ian, 2026-10-13): the scorer is the one
   measure of a fight. A problem Ian
@@ -35,8 +36,8 @@ read, so they are written here too. Each is a standing instruction.
   A team change is checked by the speed tiers against the boxes' likely
   answers, the matchup screen, and the probe that the trainer AI uses each
   move, with Ian's judgement deciding; the scorer reads a fight only when
-  Ian names it or a fight looks clearly off, plus the milestone reading
-  before alpha 1. A scorer gap is fixed only when it would change a
+  Ian names it or a fight looks clearly off (the milestone reading before
+  alpha 1 was dropped on 2026-10-29). A scorer gap is fixed only when it would change a
   decision, and the alpha playtest is the real measure of difficulty. The
   reason: a boss reading takes two and a half to four hours, iterating
   every boss through it is not workable, and each new modelling gap (the

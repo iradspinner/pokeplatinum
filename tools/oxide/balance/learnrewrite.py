@@ -203,6 +203,9 @@ IAN_EGG_MOVES = {
     "SPECIES_STARLY": [("MOVE_BRAVE_BIRD", "Ian, 2026-10-29: Barry 3's Staraptor at 35")],
     "SPECIES_PIPLUP": [("MOVE_DRILL_PECK", "Ian, 2026-10-29: Barry 3's Empoleon at 36")],
     "SPECIES_TURTWIG": [("MOVE_CRUNCH", "Ian, 2026-10-29: Barry 3's Torterra at 36")],
+    # The level climb of Gardenia's split (Ian, 2026-10-29); Sunny Day was a TM
+    # before the TM pass, so this is here so the OxiDex agrees.
+    "SPECIES_ODDISH": [("MOVE_SUNNY_DAY", "Ian, 2026-10-29: Aroma Lady Elizabeth's Gloom")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
