@@ -148,7 +148,8 @@ for _m, _why in (
     ("wayward_cave_1f", "its Revive ball holds the one Ice Stone (visible item script 7472; "
                         "Ian, 2026-10-13)"),
     ("pastoria_city", "an Ability Capsule ball at the end of the strip between the southwest "
-                      "ponds (visible item script 7473; Ian, 2026-10-13)"),
+                      "ponds (visible item script 7473; Ian, 2026-10-13), removed again when the "
+                      "Capsule became the Pokemon Mansion's knockout prize (Ian, 2026-10-31)"),
 ):
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
                                 if f"events_{_m}" in DIVERGED else _why)

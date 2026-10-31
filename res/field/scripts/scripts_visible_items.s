@@ -477,7 +477,6 @@
     ScriptEntry VisibleItems_Entry470
     ScriptEntry VisibleItems_Entry471
     ScriptEntry VisibleItems_Entry472
-    ScriptEntry VisibleItems_Entry473
     ScriptEntryEnd
 
 VisibleItems_Entry0:
@@ -2366,10 +2365,6 @@ VisibleItems_Entry471:
     GoTo VisibleItems_Entry468
 VisibleItems_Entry472:
     SetVarFromValue VAR_0x8008, ITEM_ICE_STONE
-    SetVarFromValue VAR_0x8009, 1
-    GoTo VisibleItems_Entry468
-VisibleItems_Entry473:
-    SetVarFromValue VAR_0x8008, ITEM_ABILITY_CAPSULE
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry468:
