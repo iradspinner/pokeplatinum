@@ -5,7 +5,7 @@ the placement tool applies the approved table in step 10.
 
 ## Summary
 
-**Outcome.** The TM list Ian approved on 2026-10-06 has 100 TMs: 66 of vanilla's 92 kept, the six HMs less Cut and Rock Smash as single-use TMs, and 28 new moves, their numbers fixed. 43 are strong (one copy), 46 utility (two copies) and 11 weak (one copy, each the reward for one optional trainer). This version carries Ian's answers of the same day: his four timing notes; an even spread across the splits by their length (62 TMs by the end of Byron's split, where the first draft had 73); and the Department Store's and the Game Corner's 28 TMs sold once each, unlocked by badge count in order of usefulness. Every TM and each of element 7's 24 held items has exactly one place, every vanilla TM ball, gift and shop TM is repointed, and the 46 reward trainers (one flag each, however many items they give) and 1 new ball take 47 of the 85 spare flags. The table's own check passes.
+**Outcome.** The TM list Ian approved on 2026-10-06 has 100 TMs: 66 of vanilla's 92 kept, the six HMs less Cut and Rock Smash as single-use TMs, and 28 new moves, their numbers fixed. 43 are strong (one copy), 46 utility (two copies) and 11 weak (one copy, each the reward for one optional trainer). This version carries Ian's answers of the same day: his four timing notes; an even spread across the splits by their length (62 TMs by the end of Byron's split, where the first draft had 73); and the Department Store's and the Game Corner's 28 TMs sold once each, unlocked by badge count in order of usefulness. Every TM and each of element 7's 24 held items has exactly one place, every vanilla TM ball, gift and shop TM is repointed, and the 46 reward trainers (one flag each, however many items they give) and 0 new balls take 46 of the 85 spare flags. The table's own check passes.
 
 **What can still move.** The move-rework cloud job changes the numbers of Hyper Beam, Giga Impact and the multi-hit moves, so their tiers, and with them their copies and places, are read on today's data. The numbers and moves stay as they are.
 
@@ -136,17 +136,17 @@ TMs by the split they first come in, against each split's share by its length (t
 
 | Split | Share | Now | First draft |
 |---|---|---|---|
-| Roark | 3.7 | 4 | 3 |
-| Gardenia | 9.1 | 8 | 13 |
-| Fantina | 10.3 | 10 | 14 |
-| Maylene | 9.1 | 9 | 17 |
-| Wake | 17.1 | 17 | 9 |
-| Byron | 14.3 | 14 | 17 |
+| Roark | 4.2 | 4 | 3 |
+| Gardenia | 8.7 | 8 | 13 |
+| Fantina | 10.4 | 10 | 14 |
+| Maylene | 8.7 | 9 | 17 |
+| Wake | 17.5 | 17 | 9 |
+| Byron | 14.4 | 14 | 17 |
 | Candice | 6.8 | 7 | 6 |
 | HQ | 2.8 | 2 | 8 |
-| Galactic | 15.7 | 17 | 5 |
+| Galactic | 15.3 | 17 | 5 |
 | Volkner | 4.7 | 4 | 3 |
-| Barry | 6.3 | 8 | 5 |
+| Barry | 6.4 | 8 | 5 |
 | League | 0.0 | 0 | 0 |
 
 Ian's timing notes (2026-10-06), each kept as judgement, not a rule:
