@@ -10,69 +10,70 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ZUBAT",
+            "species": "SPECIES_BUDEW",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_NONE",
+            "level": 10,
+            "item": "ITEM_POISON_BARB",
             "moves": [
-                "MOVE_LEECH_LIFE",
-                "MOVE_BITE",
-                "MOVE_ASTONISH",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_STUN_SPORE",
+                "MOVE_CLEAR_SMOG",
+                "MOVE_CONFUSION"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LOTAD",
+            "form": 0,
+            "level": 10,
+            "item": "ITEM_BIG_ROOT",
+            "moves": [
+                "MOVE_LEECH_SEED",
+                "MOVE_MEGA_DRAIN",
+                "MOVE_WATER_GUN",
+                "MOVE_ASTONISH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_DOCILE",
+            "ball_seal": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_PARAS",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 10,
+            "item": "ITEM_SILVERPOWDER",
             "moves": [
-                "MOVE_LEECH_LIFE",
-                "MOVE_METAL_CLAW",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_STUN_SPORE"
+                "MOVE_POISON_POWDER",
+                "MOVE_BUG_BITE",
+                "MOVE_METAL_CLAW"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 2,
             "gender": null
         },
         {
-            "species": "SPECIES_BUDEW",
+            "species": "SPECIES_SMOLIV",
             "form": 0,
-            "level": 14,
-            "item": "ITEM_NONE",
+            "level": 11,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
+                "MOVE_MEGA_DRAIN",
                 "MOVE_RAZOR_LEAF",
-                "MOVE_BULLET_SEED",
-                "MOVE_COTTON_SPORE",
-                "MOVE_SYNTHESIS"
+                "MOVE_CHARM",
+                "MOVE_TACKLE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_SERIOUS",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
-        },
-        {
-            "species": "SPECIES_ODDISH",
-            "form": 0,
-            "level": 14,
-            "item": "ITEM_CHERI_BERRY",
-            "moves": [
-                "MOVE_GIGA_DRAIN",
-                "MOVE_ACID",
-                "MOVE_POISON_POWDER",
-                "MOVE_BULLET_SEED"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
         }
     ],
     "messages": [

@@ -10,54 +10,53 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ZIGZAGOON",
+            "species": "SPECIES_ROOKIDEE",
             "form": 0,
-            "level": 9,
-            "item": "ITEM_NONE",
+            "level": 6,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_SECRET_POWER",
-                "MOVE_TACKLE",
-                "MOVE_TAIL_WHIP",
-                "MOVE_GROWL"
+                "MOVE_TAILWIND",
+                "MOVE_PECK",
+                "MOVE_LEER"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
         },
         {
             "species": "SPECIES_SENTRET",
             "form": 0,
-            "level": 9,
-            "item": "ITEM_NONE",
+            "level": 7,
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
-                "MOVE_QUICK_ATTACK",
                 "MOVE_SCRATCH",
-                "MOVE_DEFENSE_CURL",
-                "MOVE_CHARM"
+                "MOVE_QUICK_ATTACK",
+                "MOVE_BABY_DOLL_EYES",
+                "MOVE_DEFENSE_CURL"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_QUIRKY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_FLETCHLING",
+            "form": 0,
+            "level": 7,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_EMBER",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_TACKLE"
             ],
             "iv_scale": 200,
             "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
-        },
-        {
-            "species": "SPECIES_STARLY",
-            "form": 0,
-            "level": 9,
-            "item": "ITEM_ORAN_BERRY",
-            "moves": [
-                "MOVE_QUICK_ATTACK",
-                "MOVE_WING_ATTACK",
-                "MOVE_FEATHER_DANCE",
-                "MOVE_TACKLE"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_JOLLY",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
         }
     ],
     "messages": [

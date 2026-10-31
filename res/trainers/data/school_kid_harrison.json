@@ -12,53 +12,70 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SHROOMISH",
-            "form": 0,
-            "level": 9,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_STUN_SPORE",
-                "MOVE_BULLET_SEED",
-                "MOVE_TACKLE",
-                "MOVE_FAKE_TEARS"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_PICHU",
             "form": 0,
-            "level": 10,
-            "item": "ITEM_NONE",
+            "level": 8,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
+                "MOVE_FAKE_OUT",
                 "MOVE_THUNDER_SHOCK",
-                "MOVE_CHARM",
                 "MOVE_ENCORE",
                 "MOVE_TAIL_WHIP"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CLEFFA",
+            "form": 0,
+            "level": 8,
+            "item": "ITEM_PERSIM_BERRY",
+            "moves": [
+                "MOVE_SING",
+                "MOVE_ENCORE",
+                "MOVE_POUND",
+                "MOVE_CHARM"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 2,
             "gender": null
         },
         {
             "species": "SPECIES_ABRA",
             "form": 0,
-            "level": 10,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 8,
+            "item": "ITEM_MAGNET",
             "moves": [
                 "MOVE_CHARGE_BEAM",
                 "MOVE_THUNDER_WAVE",
-                "MOVE_ENCORE",
-                "MOVE_KNOCK_OFF"
+                "MOVE_ENCORE"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
             "ability": 2,
-            "gender": "male"
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SHROOMISH",
+            "form": 0,
+            "level": 9,
+            "item": "ITEM_MIRACLE_SEED",
+            "moves": [
+                "MOVE_STUN_SPORE",
+                "MOVE_MACH_PUNCH",
+                "MOVE_BULLET_SEED",
+                "MOVE_WORRY_SEED"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_LAX",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

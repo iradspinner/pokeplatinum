@@ -12,15 +12,16 @@
         {
             "species": "SPECIES_EKANS",
             "form": 0,
-            "level": 14,
-            "item": "ITEM_NONE",
+            "level": 12,
+            "item": "ITEM_PECHA_BERRY",
             "moves": [
+                "MOVE_GLARE",
                 "MOVE_BITE",
                 "MOVE_POISON_STING",
-                "MOVE_GLARE",
-                "MOVE_LEER"
+                "MOVE_DISABLE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_LAX",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -28,15 +29,16 @@
         {
             "species": "SPECIES_GROWLITHE",
             "form": 0,
-            "level": 14,
-            "item": "ITEM_NONE",
+            "level": 12,
+            "item": "ITEM_CHARCOAL",
             "moves": [
+                "MOVE_WILL_O_WISP",
                 "MOVE_EMBER",
                 "MOVE_BITE",
-                "MOVE_LEER",
-                "MOVE_WILL_O_WISP"
+                "MOVE_LEER"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_GENTLE",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -44,51 +46,53 @@
         {
             "species": "SPECIES_SNUBBULL",
             "form": 0,
-            "level": 14,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_BITE",
-                "MOVE_THUNDER_FANG",
-                "MOVE_CHARM",
-                "MOVE_SCARY_FACE"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_TAILLOW",
-            "form": 0,
-            "level": 13,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_WING_ATTACK",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_PECK",
-                "MOVE_GROWL"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_SPOINK",
-            "form": 0,
-            "level": 14,
+            "level": 12,
             "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_PSYBEAM",
-                "MOVE_SHOCK_WAVE",
-                "MOVE_ICY_WIND",
-                "MOVE_PAYBACK"
+                "MOVE_CHARM",
+                "MOVE_BITE",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_TACKLE"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LITTEN",
+            "form": 0,
+            "level": 13,
+            "item": "ITEM_RAWST_BERRY",
+            "moves": [
+                "MOVE_FLAME_WHEEL",
+                "MOVE_LICK",
+                "MOVE_SCARY_FACE",
+                "MOVE_SCRATCH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_QUIRKY",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAWILE",
+            "form": 0,
+            "level": 13,
+            "item": "ITEM_BLACKGLASSES",
+            "moves": [
+                "MOVE_BITE",
+                "MOVE_ASTONISH",
+                "MOVE_ROCK_TOMB",
+                "MOVE_FAKE_TEARS"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_DOCILE",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [
