@@ -3090,9 +3090,9 @@ Trainer battles:
 - TRAINER_TUBER_JARED (Jared, level 40, 4 Pokemon), sees the player. Vanilla. `events_route_213.json:176`
 - TRAINER_TUBER_CHELSEA (Chelsea, level 40, 4 Pokemon), sees the player. Vanilla. `events_route_213.json:193`
 - TRAINER_BEAUTY_CYNDY (Cyndy, level 40, 5 Pokemon), sees the player. Vanilla. `events_route_213.json:210`
-- TRAINER_FISHERMAN_KENNETH (Kenneth, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:227`
+- TRAINER_FISHERMAN_KENNETH (Kenneth, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:227`
 - TRAINER_SAILOR_PAUL (Paul, level 44, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:242`
-- TRAINER_FISHERMAN_TRAVIS (Travis, level 41, 4 Pokemon), sees the player. Added by Oxide (b8b54bb10). `events_route_213.json:644`
+- TRAINER_FISHERMAN_TRAVIS (Travis, level 40, 4 Pokemon), sees the player. Added by Oxide (b8b54bb10). `events_route_213.json:644`
 
 Item balls:
 
@@ -3424,12 +3424,12 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_RICH_BOY_JASON (Jason, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_north.json:27`
-- TRAINER_LADY_MELISSA (Melissa, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_north.json:44`
+- TRAINER_RICH_BOY_JASON (Jason, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_north.json:27`
+- TRAINER_LADY_MELISSA (Melissa, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_north.json:44`
 - TRAINER_POLICEMAN_BOBBY (Bobby, level 41, 4 Pokemon), sees the player. Vanilla. `events_route_212_north.json:61`
-- TRAINER_POLICEMAN_ALEX (Alex, level 41, 5 Pokemon), sees the player. Vanilla. `events_route_212_north.json:78`
-- TRAINER_POLICEMAN_DYLAN (Dylan, level 41, 5 Pokemon), sees the player. Vanilla. `events_route_212_north.json:95`
-- TRAINER_POLICEMAN_CALEB (Caleb, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_north.json:113`
+- TRAINER_POLICEMAN_ALEX (Alex, level 40, 5 Pokemon), sees the player. Vanilla. `events_route_212_north.json:78`
+- TRAINER_POLICEMAN_DYLAN (Dylan, level 40, 5 Pokemon), sees the player. Vanilla. `events_route_212_north.json:95`
+- TRAINER_POLICEMAN_CALEB (Caleb, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_north.json:113`
 
 Item balls:
 
@@ -3546,11 +3546,11 @@ Trainer battles:
 - TRAINER_FISHERMAN_JUAN (Juan, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:75`
 - TRAINER_FISHERMAN_JOSH (Josh, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:90`
 - TRAINER_RANGER_TAYLOR (Taylor, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:105`
-- TRAINER_RANGER_ALLISON (Allison, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:122`
-- TRAINER_RANGER_JEFFREY (Jeffrey, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:139`
-- TRAINER_POLICEMAN_DANNY (Danny, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:156`
-- TRAINER_SCIENTIST_STEFANO (Stefano, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:173`
-- TRAINER_COLLECTOR_DEAN (Dean, level 41, 5 Pokemon), sees the player. Vanilla. `events_route_212_south.json:190`
+- TRAINER_RANGER_ALLISON (Allison, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:122`
+- TRAINER_RANGER_JEFFREY (Jeffrey, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:139`
+- TRAINER_POLICEMAN_DANNY (Danny, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:156`
+- TRAINER_SCIENTIST_STEFANO (Stefano, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:173`
+- TRAINER_COLLECTOR_DEAN (Dean, level 40, 5 Pokemon), sees the player. Vanilla. `events_route_212_south.json:190`
 - TRAINER_SCIENTIST_SHAUN (Shaun, level 40, 4 Pokemon), sees the player. Vanilla. `events_route_212_south.json:547`
 - TRAINER_PARASOL_LADY_ALEXA (Alexa, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:564`
 - TRAINER_PARASOL_LADY_SABRINA (Sabrina, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:581`
@@ -3589,7 +3589,7 @@ Variables:
 - Set: VAR_MAP_LOCAL_0x00.
 - Checked: VAR_MAP_LOCAL_0x00.
 
-Gone from vanilla: TRAINER_FISHERMAN_TRAVIS (Travis, level 41, 4 Pokemon), sees the player; ITEM_TM84 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM84; ITEM_TM62 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM62; ITEM_TM06 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM06; ITEM_DAWN_STONE x1, one time, flag FLAG_OBTAINED_HIDDEN_ROUTE_212_SOUTH_DAWN_STONE.
+Gone from vanilla: TRAINER_FISHERMAN_TRAVIS (Travis, level 40, 4 Pokemon), sees the player; ITEM_TM84 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM84; ITEM_TM62 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM62; ITEM_TM06 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM06; ITEM_DAWN_STONE x1, one time, flag FLAG_OBTAINED_HIDDEN_ROUTE_212_SOUTH_DAWN_STONE.
 
 ## Byron's split
 
