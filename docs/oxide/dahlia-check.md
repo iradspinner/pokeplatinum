@@ -2,6 +2,10 @@
 
 Ian built a first draft of Dahlia, the Arcade Star, on 2026-10-31: an optional boss in Maylene's split whose fight opens in a permanent Wonder Room. He asked for two things only: anything that invalidates the fight, and the weakest crux with the top replacement picks for it. Her natures and her level of 40 are his choice and are not argued here. The six is in a spare slot (`dummy_007`) on branch `overseer-dahlia`, for study only. Her trainer is not yet on the engine's list of permanent Wonder Room fights, so every number below comes from a harness that holds the room on in memory.
 
+## Ian's answers (2026-10-31)
+
+Cloyster keeps his set (question 1), so neither Shell Smash pick is taken and Shellder's egg list is unchanged. The simulator gets no permanent Wonder Room (question 2): "this is probably one of the only fights using it in the game". Any later reading of her fight needs the in-memory harness this check used (`dahlia.py`), and the AI's `wonder_room_perm` flag stays unset in the simulator.
+
 ## Summary
 
 **Outcome.** Nothing breaks the fight. Every ability, item and move does what Ian meant, in the engine and in the simulator, and the permanent room swaps the stats as the later games do. Seven moves on four members were on no list at 40, and each is now on its line's first stage's egg list, by his ruling of 2026-10-29 (Part 1). Her difficulty matches his intent on five of six boxes. On Maylene's boxes she is far harder than Maylene herself. On Wake's boxes 2 and 3 she is about as hard as Wake, by the probe's rough fights. Wake's box 1 is the exception, where the probe's player beats her two times in three. The Baton Pass AI sets up on turn 1 and passes late and hurt. The receiver is whoever's types best fit the player's Pokemon in front, which turns out to be Lopunny M most often, a good outcome. The boxes' only answers to a pass are Taunt and Substitute breakers, and nearly every top six carries one.
