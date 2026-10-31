@@ -205,6 +205,13 @@ for _m, _why in (("game_corner", "Dahlia, the Arcade Star, added inside the entr
     _why += " (Ian, 2026-10-31)"
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
                                 if f"events_{_m}" in DIVERGED else _why)
+# Route 214's gate from Veilstone is closed until the Cobble Badge (Ian,
+# 2026-10-31; bulk_scripts.py says why): a policeman beside the corridor, and
+# a trigger across its mouth that runs only without the badge. The base ROM
+# leaves these events as vanilla's, so the dry run never reaches them.
+DIVERGED["events_route_214_gate_to_veilstone_city"] = (
+    "a policeman and the trigger across the corridor that turns the player back from "
+    "Route 214 until the Cobble Badge (Ian, 2026-10-31)")
 
 
 def render(record, existing, index):

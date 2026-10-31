@@ -19,7 +19,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
 | Flags | 3324 | 2964 | 214 | 146 | 0 | 105 |
-| Variables | 1119 | 1078 | 27 | 14 | 0 | 36 |
+| Variables | 1121 | 1078 | 27 | 16 | 0 | 36 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
 
@@ -2988,8 +2988,8 @@ Flags:
 
 Variables:
 
-- Set: VAR_MAP_LOCAL_0x00, VAR_RANDOM_INTERVIEW_QUESTION.
-- Checked: VAR_MAP_LOCAL_0x00.
+- Set: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01 (added, Oxide), VAR_RANDOM_INTERVIEW_QUESTION.
+- Checked: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01 (added, Oxide).
 
 ### Maniac Tunnel
 
