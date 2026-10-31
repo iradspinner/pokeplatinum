@@ -116,7 +116,10 @@
             "TM86"
         ],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_GLARE",
+            "MOVE_SCALE_SHOT"
+        ]
     },
     "evolutions": [
         [

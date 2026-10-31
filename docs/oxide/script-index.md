@@ -3139,9 +3139,9 @@ Gone from vanilla: ITEM_TM40 x1, one time, flag FLAG_OBTAINED_ROUTE_213_TM40; IT
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_RIVAL_PASTORIA_CITY_TURTWIG (Barry, level 44, 6 Pokemon), by number. Vanilla. `scripts_pastoria_city.s:490`
-- StartTrainerBattle: against TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR (Barry, level 44, 6 Pokemon), by number. Vanilla. `scripts_pastoria_city.s:493`
-- StartTrainerBattle: against TRAINER_RIVAL_PASTORIA_CITY_PIPLUP (Barry, level 44, 6 Pokemon), by number. Vanilla. `scripts_pastoria_city.s:496`
+- StartTrainerBattle: against TRAINER_RIVAL_PASTORIA_CITY_TURTWIG (Barry, level 42, 6 Pokemon), by number. Vanilla. `scripts_pastoria_city.s:490`
+- StartTrainerBattle: against TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR (Barry, level 42, 6 Pokemon), by number. Vanilla. `scripts_pastoria_city.s:493`
+- StartTrainerBattle: against TRAINER_RIVAL_PASTORIA_CITY_PIPLUP (Barry, level 42, 6 Pokemon), by number. Vanilla. `scripts_pastoria_city.s:496`
 - StartTrainerBattle: against TRAINER_DUMMY_212 (Experiencia, level 50, 2 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_pastoria_city.s:672`
 
 Item balls:

@@ -82,6 +82,20 @@ def check_held_out(results):
                     f"{len(lc.held_out())} lines checked" if not named else f"named: {named}"))
 
 
+def check_egg_keys(results):
+    """IAN_EGG_MOVES names each species once. A dict literal keeps only the
+    last of two equal keys, without a word, so a second entry for a line
+    drops the first one's moves (Torchic and Rotom, both 2026-10-31)."""
+    with open(os.path.join(data.ROOT, "tools", "oxide", "balance", "learnrewrite.py"), encoding="utf-8") as f:
+        source = f.read()
+    start = source.index("IAN_EGG_MOVES = {")
+    body = source[start:source.index("\n}\n", start)]
+    keys = re.findall(r'^\s+"(SPECIES_[A-Z0-9_]+)":', body, re.MULTILINE)
+    twice = sorted({k for k in keys if keys.count(k) > 1})
+    results.append(("IAN_EGG_MOVES names each species once", not twice,
+                    f"{len(keys)} species" if not twice else f"twice: {twice}"))
+
+
 def main():
     results = []
     d = lg.build()
@@ -90,6 +104,7 @@ def main():
     check_log(results, d)
     check_limits(results, d)
     check_held_out(results)
+    check_egg_keys(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
     for label, ok, note in results:

@@ -4335,7 +4335,7 @@ def attack(b, att, mv, dfn, first):
         return
     if mv.effect == "REMOVE_PROTECT" and not dfn.protecting:
         return                   # Feint and Hyperspace Hole fail on a target not protecting (BtlCmd_TryFeint)
-    if lifted(dfn, mv):
+    if lifted(dfn, mv) or balloon_floats(b, att, dfn, mv):
         return
     if mv.effect == "HIT_FIRST_IF_TARGET_ATTACKING":        # Sucker Punch
         nxt = getattr(dfn, "chosen", None)
@@ -5024,6 +5024,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         ch, certain = HIT_SELF_STAGES[e]
         if certain or b.rng.random() * 100 < self_raise_chance(att, mv):
             change_stages(att, ch)
+    scale_shot(att, mv)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         spin(b, att, dfn, e)
     if e == "CURE_PARTY_STATUS_HIT":
@@ -7190,6 +7191,7 @@ def hit_aftermath(b, att, dfn, mv, chance, pick):
     on-hit ability for a move of one hit, then Dragon Tail's drag
     (drag_out); for one of several, whose hits land_hits took one at a time
     with their own aftermath, only the Shell Bell on their total."""
+    air_balloon_burst(b, dfn)
     if b.hits_landed:
         shell_bell(att, b.last_dealt)
         return
@@ -8390,6 +8392,44 @@ def captivates(att, dfn):
         reveal(dfn)
         return False
     return bool(att.gender and dfn.gender and att.gender != dfn.gender)
+
+
+def balloon_floats(b, att, dfn, mv):
+    """Whether dfn's Air Balloon makes this Ground move fail on it
+    (BattleSystem_ApplyTypeChart's HOLD_EFFECT_AIR_BALLOON branch, Oxide's
+    element 7: "It doesn't affect..."): the move's type as the battle sets
+    it is Ground, and the holder is not rooted by Ingrain, brought down by
+    Smack Down or under Gravity, and the move is not Thousand Arrows. The
+    balloon stays until a hit bursts it (air_balloon_burst). Until
+    2026-10-31 the rows hit a holder at full, as the calculator knows no
+    balloon, and it never burst (Ian approved the fix)."""
+    return (dfn.item == "Air Balloon" and not dfn.ingrained and not dfn.smacked and not getattr(b, "gravity", 0)
+            and mv.name != "Thousand Arrows"
+            and move_type_used(att.ability, mv, att.ivs, att.item, weather_now(b)) == "Ground")
+
+
+def air_balloon_burst(b, dfn):
+    """An Air Balloon bursts once a damaging move has hit its holder and
+    left it standing (BattleSystem_TriggerHeldItemOnHit, at the move's
+    AFTER_MOVE_EFFECT_TRIGGER_ITEMS_ON_HIT, then subscript_air_balloon_pop's
+    RemoveItem): a hit on a Substitute does not reach it (Ian approved the
+    fix, 2026-10-31)."""
+    if dfn.item == "Air Balloon" and dfn.alive() and b.last_dealt > 0 and not b.sub_hit:
+        consume(dfn, eaten=False)
+        mark_unheld(b, dfn)
+
+
+def scale_shot(att, mv):
+    """Scale Shot, once its hits are in (subscript_hit_x_times, the Oxide
+    block after "Hit {0} time(s)!"): its user's Defense falls a stage and
+    its Speed rises a stage, each changed on its own through
+    BtlCmd_ChangeStatStage, so Contrary turns them round and Simple doubles
+    them (change_stages); a user the hits knocked out is left alone, and a
+    miss never gets here. Until 2026-10-31 neither stage moved (Ian
+    approved the fix)."""
+    if mv.const == "MOVE_SCALE_SHOT" and att.alive():
+        change_stages(att, {"def": -1})
+        change_stages(att, {"spe": 1})
 
 
 def lifted(dfn, mv):

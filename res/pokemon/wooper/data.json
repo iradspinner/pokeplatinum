@@ -100,7 +100,10 @@
             "MOVE_SPIT_UP",
             "MOVE_COUNTER",
             "MOVE_ENCORE",
-            "MOVE_DOUBLE_KICK"
+            "MOVE_DOUBLE_KICK",
+            "MOVE_GUNK_SHOT",
+            "MOVE_MUDDY_WATER",
+            "MOVE_TOXIC_SPIKES"
         ]
     },
     "evolutions": [
