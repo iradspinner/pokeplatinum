@@ -799,6 +799,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] A Burmy in a Sandy or Trash cloak evolves into a Wormadam with Anticipation, not Snow Cloak.
 - [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
   Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.
+- [ ] The Lost Tower: stepping in from Route 209 shows "Lost Tower" in the indoor window, with no new window between
+  its floors; a Pokemon caught on any floor is met at Lost Tower; leaving it puts "Departed from Lost Tower" in the
+  journal; stepping back out shows "Route 209", and a catch on the route is still met at Route 209.
 - [ ] Fomantis evolves into Lurantis at level 34.
 - [ ] A Dusk Stone has no effect on Polteageist; on Sinistea a Dusk Stone
   makes Polteageist and a Leaf Stone makes Sinistcha. Galactic HQ B2F: the nine stone balls around the Galactic Key
