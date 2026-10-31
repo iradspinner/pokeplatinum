@@ -899,7 +899,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   2026-10-31). In Veilstone, the prize counter's receptionist, in the
   building beside the Game Corner, refuses to trade and points to Dahlia.
   The slots and the coins clerk still work. Dahlia stands just inside the
-  Game Corner's door, to its upper right; she asks before the fight, and
+  Game Corner's door, to its upper right; she asks before the fight without
+  naming the Wonder Room (Ian, 2026-10-31: a surprise), and
   "No" leaves her standing. Her fight opens with Wonder Room already up
   and it never ends (the move Wonder Room fails). After the win the prize
   counter trades, its badge-gated TMs as before, and Dahlia has her
