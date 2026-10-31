@@ -107,7 +107,8 @@
             "MOVE_THUNDER_PUNCH",
             "MOVE_ICE_PUNCH",
             "MOVE_FIRE_PUNCH",
-            "MOVE_HEALING_WISH"
+            "MOVE_HEALING_WISH",
+            "MOVE_HI_JUMP_KICK"
         ]
     },
     "evolutions": [
