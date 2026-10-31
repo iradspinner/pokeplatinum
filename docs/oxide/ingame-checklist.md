@@ -43,15 +43,16 @@ real save at that point. The times are rough, for one try each.
 | 17 | Section 4, **Barry 3 at the Route 209 gate**, at or under 36 | A real save just after Fantina's badge | 15 min |
 | 18 | Section 4, **Mandatory fights, Maylene's split** (Route 210 South's way in among them) | The same save, Hearthome to Veilstone | 25 min |
 | 19 | Section 4, the Lost Tower's location names | Route 209, on the way | 3 min |
-| 20 | Section 4, Dahlia gates the Game Corner's prizes | The kit's Veilstone warp, or a real save after Maylene | 15 min |
-| 21 | Section 4, **The Veilstone tag battle, Officers Tyche and Hermes**, at or under 42 | A real save after Maylene's badge | 15 min |
-| 22 | Section 4, **Mandatory fights, Wake's split** | The same save, Route 214 to Pastoria | 25 min |
-| 23 | Section 4, Darach and Caitlin block the Pokemon Mansion, the egg on the win, the office's maid, the Trophy Garden | The kit's Pastoria warp, then Route 212 North | 20 min |
-| 24 | Section 4, Manaphy's Tail Glow | The egg from row 23, hatched | 10 min |
-| 25 | Section 4, The Pokemon Mansion's maid knockout | After row 23, in the mansion's hall | 20 min |
-| 26 | Section 4, Pastoria's Ability Capsule ball is gone | The kit's Pastoria warp | 2 min |
-| 27 | Section 4, **Surf waits on Cyrus at Celestic Town** | A real save with the Fen Badge, before Celestic | 5 min |
-| 28 | Section 2, **A Corrosion holder uses Toxic on a Steel type** | Whenever a trainer's Salandit or Salazzle with Toxic meets a Steel or Poison type; none does yet | as met |
+| 20 | Section 4, **Route 214's gate waits on the Cobble Badge** | The kit's Veilstone warp on a new kit game, then the all-badges warp, Fly home and Veilstone again; or real saves before and after Maylene | 5 min |
+| 21 | Section 4, Dahlia gates the Game Corner's prizes | The kit's Veilstone warp, or a real save after Maylene | 15 min |
+| 22 | Section 4, **The Veilstone tag battle, Officers Tyche and Hermes**, at or under 42 | A real save after Maylene's badge | 15 min |
+| 23 | Section 4, **Mandatory fights, Wake's split** | The same save, Route 214 to Pastoria | 25 min |
+| 24 | Section 4, Darach and Caitlin block the Pokemon Mansion, the egg on the win, the office's maid, the Trophy Garden | The kit's Pastoria warp, then Route 212 North | 20 min |
+| 25 | Section 4, Manaphy's Tail Glow | The egg from row 24, hatched | 10 min |
+| 26 | Section 4, The Pokemon Mansion's maid knockout | After row 24, in the mansion's hall | 20 min |
+| 27 | Section 4, Pastoria's Ability Capsule ball is gone | The kit's Pastoria warp | 2 min |
+| 28 | Section 4, **Surf waits on Cyrus at Celestic Town** | A real save with the Fen Badge, before Celestic | 5 min |
+| 29 | Section 2, **A Corrosion holder uses Toxic on a Steel type** | Whenever a trainer's Salandit or Salazzle with Toxic meets a Steel or Poison type; none does yet | as met |
 
 About six hours in all, half of it the four mandatory-fight walks and the
 mansion. The bosses with no item of their own (Mars 1, Jupiter 1, Lucas and
@@ -735,6 +736,18 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   when it comes in on a Rock or Steel Pokemon of yours, whether Snorlax's
   Curse and Rest (with its Chesto Berry) and the ace's setup move come up, and
   how many of your Pokemon faint.
+- [ ] **Route 214's gate waits on the Cobble Badge** (`overseer-route214-gate`,
+  Ian, 2026-10-31, a vanilla fix). In the gate south of Veilstone, a
+  policeman stands at the top of the corridor, beside it on the east. Before
+  Maylene's badge, stepping into the corridor makes him show a "!" and say
+  "Sorry, I can't let you through. The road ahead is badly chewed up. Only
+  Trainers with Veilstone's Gym Badge may go on to Route 214.", and the
+  player steps back north, on each of the corridor's three columns; talking
+  to him gives the same line. After the badge the corridor is open, nothing
+  stops the player, and he says "Ah, that's Veilstone's Gym Badge. Go on
+  through, and mind your step!" On the test kit: a new kit game's Veilstone
+  warp (no badges) for the first half; then "Route 208, all badges", Fly
+  back to Twinleaf, and the bedroom's Veilstone warp again for the second.
 - [ ] **The Veilstone tag battle, Officers Tyche and Hermes** (`overseer-tyche-hermes-1`,
   `tyche-hermes-1.md`), after Maylene's badge, with the party at or under the
   honour cap of 42, which runs to Barry 4 (their aces are at 41). The north warehouse grunt is a female grunt; the scene's
