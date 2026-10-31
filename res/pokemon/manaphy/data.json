@@ -34,7 +34,6 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TAIL_GLOW" ],
             [ 1, "MOVE_BUBBLE" ],
             [ 1, "MOVE_WATER_SPORT" ],
             [ 9, "MOVE_CHARM" ],
@@ -49,6 +48,7 @@
             [ 61, "MOVE_DIVE" ],
             [ 63, "MOVE_SCALD" ],
             [ 69, "MOVE_EARTH_POWER" ],
+            [ 70, "MOVE_TAIL_GLOW" ],
             [ 72, "MOVE_TAKE_HEART" ],
             [ 76, "MOVE_HEART_SWAP" ]
         ],

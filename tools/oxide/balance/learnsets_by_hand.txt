@@ -89,7 +89,7 @@ SPECIES_MACHOP      Power-Up Punch at 18, a stranded move's home (Ian, 2026-10-1
 SPECIES_MAGNEMITE   Rising Voltage at 28 and Tachyon Cutter at 35, stranded moves' homes (Ian, 2026-10-14, on stranded-moves.md); Screech, Mirror Shot and Psych Up on its egg list, for Twins Emma and Lil's Magneton (Ian, 2026-10-29)
 SPECIES_MAGNETON    Rising Voltage at 28 and Tachyon Cutter at 35, stranded moves' homes (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_MAGNEZONE   Rising Voltage at 28 and Tachyon Cutter at 35, stranded moves' homes (Ian, 2026-10-14, on stranded-moves.md)
-SPECIES_MANAPHY     Take Heart at 72, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
+SPECIES_MANAPHY     Take Heart at 72, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md); Tail Glow moved from level 1 to 70, so the Mansion's egg hatches without it (Ian, 2026-10-31)
 SPECIES_MANDIBUZZ   Power Trip at 38, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_MAWILE      Jaw Lock at 44, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
 SPECIES_MEDITITE    Heart Stamp at 27, a stranded move's home (Ian, 2026-10-14, on stranded-moves.md)
