@@ -315,12 +315,14 @@ CanalaveCity_Entry24:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    CheckItem ITEM_HM04, 1, VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
+    @ Platinum Oxide (Ian, 2026-10-31): Barry holds the library door until the
+    @ player has finished Iron Island with Riley. Vanilla held it until the
+    @ player had HM04 or a Pokemon knowing Strength, which Riley handed over
+    @ there; with Strength on the Mine Badge alone that no longer sent anyone
+    @ to the island. Riley's state reaches 2 once the grunts beside him are
+    @ beaten, whether or not the party had room for his egg.
+    CompareVarToValue VAR_IRON_ISLAND_B2F_LEFT_ROOM_FOLLOWER_RILEY_STATE, 2
     GoToIf 1, CanalaveCity_0820
-    FindPartySlotWithMove VAR_0x800C, MOVE_STRENGTH
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 5, CanalaveCity_0820
     BufferRivalName 0
     Message 3
     WaitButton
@@ -694,6 +696,10 @@ CanalaveCity_0A27:
     CloseMessage
     ReleaseAll
     End
+
+    @ Every movement block below is a whole number of words, so one alignment
+    @ here keeps them all 4-aligned after the edit above.
+    .balign 4, 0
 CanalaveCity_Movement_0A32:
     WalkFastSouth 1
     WalkFastWest 5

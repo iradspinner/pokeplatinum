@@ -793,6 +793,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   used here". Straight after the win over Cyrus, all three work. The test
   kit's "Route 208, all badges" marks Celestic's story done, so Surf works
   there.
+- [ ] **Barry holds the library until Iron Island** (`overseer-route-fixes`,
+  Ian, 2026-10-31). In Canalave, with Byron beaten but Iron Island not done,
+  Barry stands at the library door; talking to him gives "Aww, you haven't
+  gone to Iron Island, have you? You've got to toughen up there first, like
+  I told you!", and the door stays shut, whether or not the player holds
+  HM04 or a Pokemon knows Strength. After Riley's grunts on Iron Island B2F
+  are beaten (with his egg taken, or refused for a full party), Barry says
+  "Too slow!" and goes in, and the library's scene on 3F plays as before.
 - [ ] **(live)** The Weather flag's fix on Ace Trainer Shannon's first turn
   (Route 221, optional; a Weather-flag trainer whose Victreebel leads with
   Sunny Day and no weather ability, and keeps it in the comb's draft): break
