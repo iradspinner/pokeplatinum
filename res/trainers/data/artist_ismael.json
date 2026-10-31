@@ -8,52 +8,13 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_KECLEON",
+            "species": "SPECIES_SMEARGLE",
             "form": 0,
-            "level": 39,
-            "item": "ITEM_SITRUS_BERRY",
-            "moves": [
-                "MOVE_FAKE_OUT",
-                "MOVE_SHADOW_SNEAK",
-                "MOVE_KNOCK_OFF",
-                "MOVE_SUCKER_PUNCH"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_BRAVE",
-            "ball_seal": 0,
-            "ability": 3
-        },
-        {
-            "species": "SPECIES_MR_MIME",
-            "form": 0,
-            "level": 39,
-            "item": "ITEM_LIGHT_CLAY",
-            "moves": [
-                "MOVE_REFLECT",
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_PSYCHIC",
-                "MOVE_DAZZLING_GLEAM"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_CALM",
-            "ball_seal": 0,
-            "ability": 1
-        },
-        {
-            "species": "SPECIES_TOUCANNON",
-            "form": 0,
-            "level": 40,
-            "item": "ITEM_KINGS_ROCK",
-            "moves": [
-                "MOVE_ROCK_BLAST",
-                "MOVE_BULLET_SEED",
-                "MOVE_DRILL_PECK",
-                "MOVE_U_TURN"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_NAUGHTY",
-            "ball_seal": 0,
-            "ability": 2
+            "level": 28,
+            "item": null,
+            "moves": null,
+            "iv_scale": 0,
+            "ball_seal": 0
         }
     ],
     "messages": [

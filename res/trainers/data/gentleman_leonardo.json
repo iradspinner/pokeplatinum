@@ -10,52 +10,18 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ARCANINE",
+            "species": "SPECIES_CHATOT",
             "form": 0,
-            "level": 39,
-            "item": "ITEM_CHARCOAL",
+            "level": 27,
+            "item": null,
             "moves": [
-                "MOVE_FLARE_BLITZ",
-                "MOVE_EXTREME_SPEED",
-                "MOVE_WILD_CHARGE",
-                "MOVE_CRUNCH"
+                "MOVE_MIMIC",
+                "MOVE_SING",
+                "MOVE_FURY_ATTACK",
+                "MOVE_ROOST"
             ],
-            "iv_scale": 200,
-            "nature": "NATURE_HARDY",
-            "ball_seal": 0,
-            "ability": 1
-        },
-        {
-            "species": "SPECIES_BRONZONG",
-            "form": 0,
-            "level": 39,
-            "item": "ITEM_MENTAL_HERB",
-            "moves": [
-                "MOVE_TRICK_ROOM",
-                "MOVE_GYRO_BALL",
-                "MOVE_PSYCHIC",
-                "MOVE_HYPNOSIS"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_SASSY",
-            "ball_seal": 0,
-            "ability": 1
-        },
-        {
-            "species": "SPECIES_CORVIKNIGHT",
-            "form": 0,
-            "level": 40,
-            "item": "ITEM_ROCKY_HELMET",
-            "moves": [
-                "MOVE_DRILL_PECK",
-                "MOVE_STEEL_WING",
-                "MOVE_BULK_UP",
-                "MOVE_TAUNT"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_IMPISH",
-            "ball_seal": 0,
-            "ability": 3
+            "iv_scale": 0,
+            "ball_seal": 0
         }
     ],
     "messages": [

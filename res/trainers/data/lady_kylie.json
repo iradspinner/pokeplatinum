@@ -10,52 +10,22 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CLEFABLE",
+            "species": "SPECIES_CLEFFA",
             "form": 0,
-            "level": 40,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_FOLLOW_ME",
-                "MOVE_MOONBLAST",
-                "MOVE_HELPING_HAND",
-                "MOVE_THUNDER_WAVE"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_BOLD",
-            "ball_seal": 0,
-            "ability": 1
+            "level": 24,
+            "item": null,
+            "moves": null,
+            "iv_scale": 0,
+            "ball_seal": 0
         },
         {
-            "species": "SPECIES_WIGGLYTUFF",
+            "species": "SPECIES_CLEFAIRY",
             "form": 0,
-            "level": 39,
-            "item": "ITEM_QUICK_CLAW",
-            "moves": [
-                "MOVE_UPROAR",
-                "MOVE_DAZZLING_GLEAM",
-                "MOVE_FIRE_BLAST",
-                "MOVE_SING"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_QUIET",
-            "ball_seal": 0,
-            "ability": 3
-        },
-        {
-            "species": "SPECIES_CHANSEY",
-            "form": 0,
-            "level": 39,
-            "item": "ITEM_EVIOLITE",
-            "moves": [
-                "MOVE_HELPING_HAND",
-                "MOVE_SOFTBOILED",
-                "MOVE_HEAL_BELL",
-                "MOVE_ICE_BEAM"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_CALM",
-            "ball_seal": 0,
-            "ability": 1
+            "level": 26,
+            "item": null,
+            "moves": null,
+            "iv_scale": 0,
+            "ball_seal": 0
         }
     ],
     "messages": [

@@ -184,24 +184,24 @@ Wake	TRAINER_SCIENTIST_SHAUN	Scientist Shaun	MAP_HEADER_ROUTE_212_SOUTH	LOCALID_
 Wake	TRAINER_BEAUTY_DEVON	Beauty Devon	MAP_HEADER_ROUTE_214	LOCALID_COLLECTOR_BRADY	yes	none				2	2.3		required
 Wake	TRAINER_TUBER_JACKY	Tuber Jacky	MAP_HEADER_PASTORIA_CITY_GYM	LOCALID_TUBER_JACKY	no	none				3	2.3		gym with moving parts
 Wake	TRAINER_TUBER_CAITLYN	Tuber Caitlyn	MAP_HEADER_PASTORIA_CITY_GYM	LOCALID_TUBER_CAITLYN	no	none				4	4.2		gym with moving parts
-Wake	TRAINER_AROMA_LADY_ALISON	Aroma Lady Alison			no	none				3	2.3		not on a crossing
-Wake	TRAINER_ARTIST_ISMAEL	Artist Ismael			no	none				3	2.3		not on a crossing
+Wake	TRAINER_AROMA_LADY_ALISON	Aroma Lady Alison			no	none				1	2.3		not on a crossing
+Wake	TRAINER_ARTIST_ISMAEL	Artist Ismael			no	none				1	2.3		not on a crossing
 Wake	TRAINER_BREEDER_KAYLEE	Pkmn Breeder Kaylee			no	none				3	2.3		not on a crossing
-Wake	TRAINER_CAMERAMAN_DARRYL	Cameraman Darryl			no	none				3	2.3		not on a crossing
-Wake	TRAINER_COLLECTOR_EUGENE	Collector Eugene			no	none				3	2.3		not on a crossing
-Wake	TRAINER_POKEFAN_MEREDITH	Pokéfan Meredith			no	none				3	2.3		not on a crossing
-Wake	TRAINER_PI_KENDRICK	PI Kendrick			no	none				3	2.3		not on a crossing
-Wake	TRAINER_GENTLEMAN_LEONARDO	Gentleman Leonardo			no	none				3	2.3		not on a crossing
-Wake	TRAINER_SOCIALITE_REBECCA	Socialite Rebecca			no	none				3	2.3		not on a crossing
-Wake	TRAINER_LASS_BLYTHE	Lass Blythe			no	none				3	2.3		not on a crossing
-Wake	TRAINER_RICH_BOY_ROMAN	Rich Boy Roman			no	none				3	2.3		not on a crossing
-Wake	TRAINER_LADY_KYLIE	Lady Kylie			no	none				3	2.3		not on a crossing
-Wake	TRAINER_REPORTER_VALERIE	Reporter Valerie			no	none				3	2.3		not on a crossing
-Wake	TRAINER_SCHOOL_KID_ESTEBAN	School Kid Esteban			no	none				3	2.3		not on a crossing
-Wake	TRAINER_SCIENTIST_EMILIO	Scientist Emilio			no	none				3	2.3		not on a crossing
-Wake	TRAINER_BEAUTY_GABRIELLA	Beauty Gabriella			no	none				3	2.3		not on a crossing
-Wake	TRAINER_BEAUTY_HARLEY	Beauty Harley			no	none				3	2.3		not on a crossing
-Wake	TRAINER_VETERAN_EMANUEL	Veteran Emanuel			no	none				3	2.3		not on a crossing
+Wake	TRAINER_CAMERAMAN_DARRYL	Cameraman Darryl			no	none				2	2.3		not on a crossing
+Wake	TRAINER_COLLECTOR_EUGENE	Collector Eugene			no	none				1	2.3		not on a crossing
+Wake	TRAINER_POKEFAN_MEREDITH	Pokéfan Meredith			no	none				2	2.3		not on a crossing
+Wake	TRAINER_PI_KENDRICK	PI Kendrick			no	none				1	2.3		not on a crossing
+Wake	TRAINER_GENTLEMAN_LEONARDO	Gentleman Leonardo			no	none				1	2.3		not on a crossing
+Wake	TRAINER_SOCIALITE_REBECCA	Socialite Rebecca			no	none				1	2.3		not on a crossing
+Wake	TRAINER_LASS_BLYTHE	Lass Blythe			no	none				2	2.3		not on a crossing
+Wake	TRAINER_RICH_BOY_ROMAN	Rich Boy Roman			no	none				1	2.3		not on a crossing
+Wake	TRAINER_LADY_KYLIE	Lady Kylie			no	none				2	2.3		not on a crossing
+Wake	TRAINER_REPORTER_VALERIE	Reporter Valerie			no	none				1	2.3		not on a crossing
+Wake	TRAINER_SCHOOL_KID_ESTEBAN	School Kid Esteban			no	none				1	2.3		not on a crossing
+Wake	TRAINER_SCIENTIST_EMILIO	Scientist Emilio			no	none				1	2.3		not on a crossing
+Wake	TRAINER_BEAUTY_GABRIELLA	Beauty Gabriella			no	none				1	2.3		not on a crossing
+Wake	TRAINER_BEAUTY_HARLEY	Beauty Harley			no	none				1	2.3		not on a crossing
+Wake	TRAINER_VETERAN_EMANUEL	Veteran Emanuel			no	none				2	2.3		not on a crossing
 Wake	TRAINER_DUMMY_795	Ace Trainer Krystal	MAP_HEADER_ROUTE_214	LOCALID_OBJECT_31	no	none				6	6.3		avoidable
 Wake	TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT	Galactic Grunt			no	none				1	2.3		not on a crossing
 Wake	TRAINER_RICH_BOY_LIAM	Rich Boy Liam			no	none				1	2.3		not on a crossing

@@ -11332,8 +11332,8 @@
      {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_valor_lakefront", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_SECRETPOTION", "value": 464, "when": ""}], "line": 346, "mode": "variable", "origin": "vanilla", "reached": true}
     ],
     "trainers": [
-     {"commit": "uncommitted", "event": "object_events", "file": "events_valor_lakefront", "how": "sees the player", "line": 224, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GENTLEMAN_JEREMY", "value": 84, "when": ""}]}], "source": "Oxide"},
-     {"commit": "uncommitted", "event": "object_events", "file": "events_valor_lakefront", "how": "sees the player", "line": 241, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SOCIALITE_REINA", "value": 85, "when": ""}]}], "source": "Oxide"},
+     {"commit": "b8b54bb10", "event": "object_events", "file": "events_valor_lakefront", "how": "sees the player", "line": 224, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GENTLEMAN_JEREMY", "value": 84, "when": ""}]}], "source": "Oxide"},
+     {"commit": "b8b54bb10", "event": "object_events", "file": "events_valor_lakefront", "how": "sees the player", "line": 241, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SOCIALITE_REINA", "value": 85, "when": ""}]}], "source": "Oxide"},
      {"command": "StartTrainerBattle", "file": "scripts_valor_lakefront", "how": "StartTrainerBattle", "line": 88, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT", "value": 847, "when": ""}]}]}
     ],
     "vars": [
@@ -13080,7 +13080,7 @@
      {"event": "object_events", "file": "events_route_213", "how": "sees the player", "line": 210, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BEAUTY_CYNDY", "value": 346, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_213", "how": "sees the player", "line": 227, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_KENNETH", "value": 111, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_213", "how": "sees the player", "line": 242, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SAILOR_PAUL", "value": 110, "when": ""}]}]},
-     {"commit": "uncommitted", "event": "object_events", "file": "events_route_213", "how": "sees the player", "line": 644, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_TRAVIS", "value": 93, "when": ""}]}], "source": "Oxide"}
+     {"commit": "b8b54bb10", "event": "object_events", "file": "events_route_213", "how": "sees the player", "line": 644, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_TRAVIS", "value": 93, "when": ""}]}], "source": "Oxide"}
     ],
     "vars": [
      {"at": ["scripts_route_213:22"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},

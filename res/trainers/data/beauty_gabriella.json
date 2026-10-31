@@ -8,52 +8,13 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_LUMINEON",
+            "species": "SPECIES_FINNEON",
             "form": 0,
-            "level": 39,
-            "item": "ITEM_MYSTIC_WATER",
-            "moves": [
-                "MOVE_SURF",
-                "MOVE_ICE_BEAM",
-                "MOVE_U_TURN",
-                "MOVE_TAILWIND"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_HASTY",
-            "ball_seal": 0,
-            "ability": 1
-        },
-        {
-            "species": "SPECIES_JYNX",
-            "form": 0,
-            "level": 39,
-            "item": "ITEM_NEVERMELTICE",
-            "moves": [
-                "MOVE_BLIZZARD",
-                "MOVE_PSYCHIC",
-                "MOVE_LOVELY_KISS",
-                "MOVE_FAKE_OUT"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_MILD",
-            "ball_seal": 0,
-            "ability": 3
-        },
-        {
-            "species": "SPECIES_FROSLASS",
-            "form": 0,
-            "level": 40,
-            "item": "ITEM_SPELL_TAG",
-            "moves": [
-                "MOVE_SHADOW_BALL",
-                "MOVE_ICE_BEAM",
-                "MOVE_ICY_WIND",
-                "MOVE_WILL_O_WISP"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_RASH",
-            "ball_seal": 0,
-            "ability": 3
+            "level": 26,
+            "item": null,
+            "moves": null,
+            "iv_scale": 0,
+            "ball_seal": 0
         }
     ],
     "messages": [

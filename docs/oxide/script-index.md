@@ -3042,8 +3042,8 @@ Gone from vanilla: ITEM_TM28 x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_O
 
 Trainer battles:
 
-- TRAINER_GENTLEMAN_JEREMY (Jeremy, level 39, 3 Pokemon), sees the player. Added by Oxide (not yet committed). `events_valor_lakefront.json:224`
-- TRAINER_SOCIALITE_REINA (Reina, level 40, 4 Pokemon), sees the player. Added by Oxide (not yet committed). `events_valor_lakefront.json:241`
+- TRAINER_GENTLEMAN_JEREMY (Jeremy, level 39, 3 Pokemon), sees the player. Added by Oxide (b8b54bb10). `events_valor_lakefront.json:224`
+- TRAINER_SOCIALITE_REINA (Reina, level 40, 4 Pokemon), sees the player. Added by Oxide (b8b54bb10). `events_valor_lakefront.json:241`
 - StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT (Grunt, level 41, 1 Pokemon), by name. Vanilla. `scripts_valor_lakefront.s:88`
 
 Items given:
@@ -3092,7 +3092,7 @@ Trainer battles:
 - TRAINER_BEAUTY_CYNDY (Cyndy, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:210`
 - TRAINER_FISHERMAN_KENNETH (Kenneth, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:227`
 - TRAINER_SAILOR_PAUL (Paul, level 44, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:242`
-- TRAINER_FISHERMAN_TRAVIS (Travis, level 41, 3 Pokemon), sees the player. Added by Oxide (not yet committed). `events_route_213.json:644`
+- TRAINER_FISHERMAN_TRAVIS (Travis, level 41, 3 Pokemon), sees the player. Added by Oxide (b8b54bb10). `events_route_213.json:644`
 
 Item balls:
 
@@ -7962,24 +7962,24 @@ Variables:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_ARTIST_ISMAEL (Ismael, level 40, 3 Pokemon), by name; and TRAINER_BEAUTY_HARLEY (Harley, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:226`
-- StartTrainerBattle: against TRAINER_ARTIST_ISMAEL (Ismael, level 40, 3 Pokemon), by name; and TRAINER_BEAUTY_HARLEY (Harley, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:348`
-- StartTrainerBattle: against TRAINER_RICH_BOY_ROMAN (Roman, level 40, 3 Pokemon), by name; and TRAINER_LADY_KYLIE (Kylie, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:470`
-- StartTrainerBattle: against TRAINER_RICH_BOY_ROMAN (Roman, level 40, 3 Pokemon), by name; and TRAINER_LADY_KYLIE (Kylie, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:592`
-- StartTrainerBattle: against TRAINER_GENTLEMAN_LEONARDO (Leonardo, level 40, 3 Pokemon), by name; and TRAINER_SOCIALITE_REBECCA (Rebecca, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:714`
-- StartTrainerBattle: against TRAINER_GENTLEMAN_LEONARDO (Leonardo, level 40, 3 Pokemon), by name; and TRAINER_SOCIALITE_REBECCA (Rebecca, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:836`
-- StartTrainerBattle: against TRAINER_COLLECTOR_EUGENE (Eugene, level 40, 3 Pokemon), by name; and TRAINER_AROMA_LADY_ALISON (Alison, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:958`
-- StartTrainerBattle: against TRAINER_COLLECTOR_EUGENE (Eugene, level 40, 3 Pokemon), by name; and TRAINER_AROMA_LADY_ALISON (Alison, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:1080`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_ESTEBAN (Esteban, level 40, 3 Pokemon), by name; and TRAINER_POKEFAN_MEREDITH (Meredith, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:1202`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_ESTEBAN (Esteban, level 40, 3 Pokemon), by name; and TRAINER_POKEFAN_MEREDITH (Meredith, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:1324`
-- StartTrainerBattle: against TRAINER_VETERAN_EMANUEL (Emanuel, level 40, 3 Pokemon), by name; and TRAINER_LASS_BLYTHE (Blythe, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:1446`
-- StartTrainerBattle: against TRAINER_VETERAN_EMANUEL (Emanuel, level 40, 3 Pokemon), by name; and TRAINER_LASS_BLYTHE (Blythe, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:1568`
-- StartTrainerBattle: against TRAINER_CAMERAMAN_DARRYL (Darryl, level 40, 3 Pokemon), by name; and TRAINER_REPORTER_VALERIE (Valerie, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:1690`
-- StartTrainerBattle: against TRAINER_CAMERAMAN_DARRYL (Darryl, level 40, 3 Pokemon), by name; and TRAINER_REPORTER_VALERIE (Valerie, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:1812`
-- StartTrainerBattle: against TRAINER_PI_KENDRICK (Kendrick, level 40, 3 Pokemon), by name; and TRAINER_BEAUTY_GABRIELLA (Gabriella, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:1934`
-- StartTrainerBattle: against TRAINER_PI_KENDRICK (Kendrick, level 40, 3 Pokemon), by name; and TRAINER_BEAUTY_GABRIELLA (Gabriella, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:2056`
-- StartTrainerBattle: against TRAINER_SCIENTIST_EMILIO (Emilio, level 40, 3 Pokemon), by name; and TRAINER_BREEDER_KAYLEE (Kaylee, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:2178`
-- StartTrainerBattle: against TRAINER_SCIENTIST_EMILIO (Emilio, level 40, 3 Pokemon), by name; and TRAINER_BREEDER_KAYLEE (Kaylee, level 40, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:2300`
+- StartTrainerBattle: against TRAINER_ARTIST_ISMAEL (Ismael, level 28, 1 Pokemon), by name; and TRAINER_BEAUTY_HARLEY (Harley, level 26, 1 Pokemon), by name. Vanilla. `scripts_restaurant.s:226`
+- StartTrainerBattle: against TRAINER_ARTIST_ISMAEL (Ismael, level 28, 1 Pokemon), by name; and TRAINER_BEAUTY_HARLEY (Harley, level 26, 1 Pokemon), by name. Vanilla. `scripts_restaurant.s:348`
+- StartTrainerBattle: against TRAINER_RICH_BOY_ROMAN (Roman, level 26, 1 Pokemon), by name; and TRAINER_LADY_KYLIE (Kylie, level 26, 2 Pokemon), by name. Vanilla. `scripts_restaurant.s:470`
+- StartTrainerBattle: against TRAINER_RICH_BOY_ROMAN (Roman, level 26, 1 Pokemon), by name; and TRAINER_LADY_KYLIE (Kylie, level 26, 2 Pokemon), by name. Vanilla. `scripts_restaurant.s:592`
+- StartTrainerBattle: against TRAINER_GENTLEMAN_LEONARDO (Leonardo, level 27, 1 Pokemon), by name; and TRAINER_SOCIALITE_REBECCA (Rebecca, level 27, 1 Pokemon), by name. Vanilla. `scripts_restaurant.s:714`
+- StartTrainerBattle: against TRAINER_GENTLEMAN_LEONARDO (Leonardo, level 27, 1 Pokemon), by name; and TRAINER_SOCIALITE_REBECCA (Rebecca, level 27, 1 Pokemon), by name. Vanilla. `scripts_restaurant.s:836`
+- StartTrainerBattle: against TRAINER_COLLECTOR_EUGENE (Eugene, level 28, 1 Pokemon), by name; and TRAINER_AROMA_LADY_ALISON (Alison, level 28, 1 Pokemon), by name. Vanilla. `scripts_restaurant.s:958`
+- StartTrainerBattle: against TRAINER_COLLECTOR_EUGENE (Eugene, level 28, 1 Pokemon), by name; and TRAINER_AROMA_LADY_ALISON (Alison, level 28, 1 Pokemon), by name. Vanilla. `scripts_restaurant.s:1080`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_ESTEBAN (Esteban, level 26, 1 Pokemon), by name; and TRAINER_POKEFAN_MEREDITH (Meredith, level 26, 2 Pokemon), by name. Vanilla. `scripts_restaurant.s:1202`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_ESTEBAN (Esteban, level 26, 1 Pokemon), by name; and TRAINER_POKEFAN_MEREDITH (Meredith, level 26, 2 Pokemon), by name. Vanilla. `scripts_restaurant.s:1324`
+- StartTrainerBattle: against TRAINER_VETERAN_EMANUEL (Emanuel, level 28, 2 Pokemon), by name; and TRAINER_LASS_BLYTHE (Blythe, level 25, 2 Pokemon), by name. Vanilla. `scripts_restaurant.s:1446`
+- StartTrainerBattle: against TRAINER_VETERAN_EMANUEL (Emanuel, level 28, 2 Pokemon), by name; and TRAINER_LASS_BLYTHE (Blythe, level 25, 2 Pokemon), by name. Vanilla. `scripts_restaurant.s:1568`
+- StartTrainerBattle: against TRAINER_CAMERAMAN_DARRYL (Darryl, level 26, 2 Pokemon), by name; and TRAINER_REPORTER_VALERIE (Valerie, level 26, 1 Pokemon), by name. Vanilla. `scripts_restaurant.s:1690`
+- StartTrainerBattle: against TRAINER_CAMERAMAN_DARRYL (Darryl, level 26, 2 Pokemon), by name; and TRAINER_REPORTER_VALERIE (Valerie, level 26, 1 Pokemon), by name. Vanilla. `scripts_restaurant.s:1812`
+- StartTrainerBattle: against TRAINER_PI_KENDRICK (Kendrick, level 31, 1 Pokemon), by name; and TRAINER_BEAUTY_GABRIELLA (Gabriella, level 26, 1 Pokemon), by name. Vanilla. `scripts_restaurant.s:1934`
+- StartTrainerBattle: against TRAINER_PI_KENDRICK (Kendrick, level 31, 1 Pokemon), by name; and TRAINER_BEAUTY_GABRIELLA (Gabriella, level 26, 1 Pokemon), by name. Vanilla. `scripts_restaurant.s:2056`
+- StartTrainerBattle: against TRAINER_SCIENTIST_EMILIO (Emilio, level 27, 1 Pokemon), by name; and TRAINER_BREEDER_KAYLEE (Kaylee, level 26, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:2178`
+- StartTrainerBattle: against TRAINER_SCIENTIST_EMILIO (Emilio, level 27, 1 Pokemon), by name; and TRAINER_BREEDER_KAYLEE (Kaylee, level 26, 3 Pokemon), by name. Vanilla. `scripts_restaurant.s:2300`
 
 Flags:
 
