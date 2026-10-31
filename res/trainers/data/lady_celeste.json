@@ -1,9 +1,7 @@
 {
     "name": "Celeste",
     "class": "TRAINER_CLASS_LADY",
-    "items": [
-        "ITEM_FULL_RESTORE"
-    ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -11,22 +9,6 @@
     ],
     "double_battle": false,
     "party": [
-        {
-            "species": "SPECIES_MILOTIC",
-            "form": 0,
-            "level": 42,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_SURF",
-                "MOVE_ICE_BEAM",
-                "MOVE_DRAGON_PULSE",
-                "MOVE_HAZE"
-            ],
-            "iv_scale": 232,
-            "nature": "NATURE_BOLD",
-            "ball_seal": 0,
-            "ability": 1
-        },
         {
             "species": "SPECIES_CLEFABLE",
             "form": 0,
@@ -42,6 +24,22 @@
             "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 3
+        },
+        {
+            "species": "SPECIES_MILOTIC",
+            "form": 0,
+            "level": 42,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_HAZE"
+            ],
+            "iv_scale": 232,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [
