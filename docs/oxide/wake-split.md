@@ -14,7 +14,7 @@ The split holds 10 non-boss mandatory fights, up from 1, which meets Ian's 10 to
 
 33 ordinary teams were rebuilt. They climb from 39 on Route 214 to 42 in Pastoria's gym. The gym's last guard, Sailor Samson, is the one team at 43, and none is at 44. Before, nearly all were vanilla one- and two-Pokemon teams. 27 of the 124 rebuilt members are Oxide's later species, against none before. 16 teams carry 3 Pokemon, 9 carry 4 and 8 carry 5, the larger ones on the mandatory fights and the walking policemen. No member has an Adamant, Modest, Timid or Jolly nature. Two forced trades come in, once each, under Ian's ruling below.
 
-Ian's four Route 214 teams kept their sets and moved only in level, to the route's line of 39. Krystal has his base-ROM team back, at the same line.
+Ian's four Route 214 teams kept their sets and moved only in level, to the route's line of 39. Krystal has his base-ROM team back, topping at 42: in his words she is "meant to be a hard fight gating the encounter in ruin maniac cave/tunnel". PI Carlos's TM72, a reward on what is now a mandatory fight, moved to Policeman Caleb on Route 212 North.
 
 Every changed team passed the trainer lint and the real packer. Every move on a rebuilt team is legal at its level, and no rebuilt team repeats an item or a nature. Ian's kept sets break some rules, listed below for him and not fixed.
 
@@ -29,7 +29,7 @@ Ian's answers (2026-10-31), as applied:
 
 1. Barry 4 stays in Wake's split at cap 44, since he is fought before the gym. The Valor Lakefront grunt alone moves to Byron's split.
 2. The three Route 214 changes are made.
-3. Krystal has his base-ROM team back, fitted to the route's line.
+3. Krystal has his base-ROM team back, topping at 42, two under each of his base ROM's levels.
 4. Devon, Douglas, Bryan and Ronald climbed by level only.
 5. Ronald keeps his team, Selfdestruct and Arena Trap included.
 6. Collector Jamal stays as he is.
@@ -38,19 +38,18 @@ Ian's answers (2026-10-31), as applied:
 9. The Mansion is left alone.
 10. Some teams grew to 5. From Wake's split on, an ordinary trainer may occasionally carry a forced trade (Self-Destruct, Explosion or Destiny Bond) or trapping. They are used rarely, never as a pattern.
 
-What Ian decides:
+Ian's later answers (2026-10-31), as applied:
 
-1. PI Carlos still carries TM72 as his reward, and he is now a mandatory fight. Rewards belong to optional fights (the standing rulings). Should TM72 move to an optional trainer, or stay with Carlos?
-2. Krystal's levels: a top of 39 (now) or 42, which would put her Glalie and Blaziken nearer their evolutions.
+- Krystal tops at 42.
+- TM72 moves from PI Carlos to an optional trainer of weak-to-medium strength nearby, placed by the reward tool's own rule (below).
+- His kept sets' off-list moves are on their lines' egg lists, under his ruling of 2026-10-29, so every move on his five teams is legal.
 
-His kept sets' off-list moves are now on their lines' egg lists, under his ruling of 2026-10-29 (below), so every move on his five teams is legal.
+Nothing waits on Ian from this page but the in-game checks.
 
 Next steps:
 
 | Step | Who | Time |
 |---|---|---|
-| Ian answers the two questions | Ian | 5 minutes |
-| Krystal's levels and TM72, if either moves | a helper | 15 minutes |
 | Land the branch with `merge-branch.sh`, then run `sync-docs.sh` on oxide | the Overseer | 30 minutes |
 | Play the checklist item "Mandatory fights, Wake's split" in `docs/oxide/ingame-checklist.md` | Ian | 25 minutes with the test kit's warps |
 
@@ -96,6 +95,17 @@ Optional on the path:
 - Ruin Maniacs Bryan and Ronald, Collector Jamal and Krystal stand on Route 214's west half, behind Ian's boulders, and are reached from the south.
 - Fisherman Kenneth stays where he was on Route 213. He carries the Covert Cloak, and a reward belongs to an optional fight.
 
+### TM72 changes holder
+
+PI Carlos gave TM72 (Avalanche, a weak TM) as his reward. He is now a mandatory fight, and a reward belongs to an optional one, so Ian moved it (2026-10-31). The new holder is the one the reward tool's own rule picks: `rewards.pick_trainer` for a weak TM in Wake's split takes the strongest optional trainer of the split's easier half that holds no reward yet. That is Policeman Caleb on Route 212 North, three Pokemon topping at 41, met at night.
+
+The steps:
+
+- `rewards.py` gains `REHOMED`, which moves TM72's row of the approved table to Caleb.
+- `rewards.py write` rewrote the tables, and only TM72's rows were kept.
+- `place_rewards.py apply` moved the reward in `scripts_battles.s`. Caleb gives it under spare flag 0x03CD, and Carlos's 0x021F is free again.
+- Checked: `rewards.py check` (0 failures), `test_place_rewards` (passed) and `place_rewards.py check` on the rebuilt ROM (168 rows, each found exactly once).
+
 The split holds no gauntlet section: `gauntlet.py` builds none here, and no stretch of the path is one-way.
 
 ### The trainers moved
@@ -134,10 +144,10 @@ Ordinary trainers climb in play order from 39 on Route 214 to 42 in the gym, wit
 | 2 | Collector Douglas | Route 214 | mandatory, double with Devon (Ian's) | 37 | 39 | 3 |
 | 3 | Psychic Abigail | Route 214 | mandatory (now looks one way) | 34 | 39 | 3 to 5 |
 | 4 | Psychic Mitchell | Route 214 | mandatory (now stands still) | 34 | 39 | 2 to 4 |
-| 5 | PI Carlos | Route 214 (moved) | mandatory (TM72 reward) | 36 | 39 | 1 to 4 |
+| 5 | PI Carlos | Route 214 (moved) | mandatory | 36 | 39 | 1 to 4 |
 | 6 | Ruin Maniac Bryan | Route 214, west half | optional (Ian's) | 37 | 39 | 5 |
 | 7 | Ruin Maniac Ronald | Route 214, west half | optional (Ian's) | 39 | 39 | 5 |
-| 8 | Krystal | Route 214, west half | optional (Ian's) | 43 | 39 | 6 |
+| 8 | Krystal | Route 214, west half | optional, the gate to the Maniac caves (Ian's) | 43 | 42 | 6 |
 | 9 | Gentleman Jeremy | Valor Lakefront (moved) | mandatory | 37 | 39 | 1 to 5 |
 | 10 | Socialite Reina | Valor Lakefront (moved) | mandatory | 37 | 40 | 1 to 5 |
 | 11 | Beauty Cyndy | Route 213 | mandatory (now looks one way) | 37 | 40 | 1 to 5 |
@@ -156,7 +166,7 @@ Ordinary trainers climb in play order from 39 on Route 214 to 42 in the gym, wit
 | 24 | Scientist Stefano | Route 212 South | optional | 38 | 41 | 1 to 3 |
 | 25 | Ranger Allison | Route 212 South | optional, pair with Jeffrey | 39 | 41 | 2 to 3 |
 | 26 | Ranger Jeffrey | Route 212 South | optional, pair with Allison | 39 | 41 | 1 to 3 |
-| 27 | Policeman Caleb | Route 212 North | optional (night, walks) | 35 | 41 | 2 to 3 |
+| 27 | Policeman Caleb | Route 212 North | optional (night, walks; TM72 reward) | 35 | 41 | 2 to 3 |
 | 28 | Policeman Dylan | Route 212 North | optional (night, walks) | 36 | 41 | 2 to 5 |
 | 29 | Policeman Alex | Route 212 North | optional (night, walks) | 35 | 41 | 2 to 5 |
 | 30 | Rich Boy Jason | Route 212 North | optional, pair with Melissa | 37 | 41 | 1 to 3 |
@@ -235,7 +245,7 @@ His blockages are carried over from his base ROM (d3e44ec93) and untouched:
 
 ### His teams, by level only
 
-Each member moved by the same step, so each team keeps its shape and tops out at the route's line of 39. A member that named no nature would have its nature re-rolled by the level change, since the game rolls an unnamed one from the level. So Devon's, Douglas's and Bryan's members are pinned by name to the nature they had. Krystal's natures are left to the game's roll, as Ian asked.
+Each member moved by the same step, so each team keeps its shape. Devon, Douglas, Bryan and Ronald top out at the route's line of 39; Krystal tops at 42, as Ian chose, since she gates the Maniac caves. A member that named no nature would have its nature re-rolled by the level change, since the game rolls an unnamed one from the level. So Devon's, Douglas's, Bryan's and Krystal's members are each pinned by name to the nature they rolled before the climb. Ronald did not move and names none.
 
 | Trainer | Team after the climb | Old top | New top |
 |---|---|---:|---:|
@@ -243,9 +253,11 @@ Each member moved by the same step, so each team keeps its shape and tops out at
 | Collector Douglas | Banette 38, Typhlosion 37, Octillery 39 | 37 | 39 |
 | Ruin Maniac Bryan | Hippowdon 38, Corsola 39, Steelix 36, Aerodactyl 38, Leafeon 38 | 37 | 39 |
 | Ruin Maniac Ronald | Feraligatr 35, Drifblim 35, Dugtrio 36, Chimecho 39, Ursaring 36 (unchanged) | 39 | 39 |
-| Krystal (`dummy_795`) | Metang 36, Glalie 34, Jumpluff 37, Heat Rotom 35, Blaziken 33, Dragonair 39 | 43 (the comb's draft; 44 in his base ROM) | 39 |
+| Krystal (`dummy_795`) | Metang 39, Glalie 37, Jumpluff 40, Heat Rotom 38, Blaziken 36, Dragonair 42 | 43 (the comb's draft; 44 in his base ROM) | 42 |
 
-Krystal's party and AI flags are the version at d3e44ec932f, before the comb's a725942be8b: Quick Claw Metang, Icicle Plate Glalie, Yache Berry Jumpluff, Life Orb Heat Rotom, Liechi Berry Blaziken and Draco Plate Dragonair, each with his moves. Her levels fell five each, from Dragonair 44 to 39. Her rolled natures are Bashful, Lonely, Quirky, Gentle, Modest and Naive.
+Krystal's party and AI flags are the version at d3e44ec932f, before the comb's a725942be8b: Quick Claw Metang, Icicle Plate Glalie, Yache Berry Jumpluff, Life Orb Heat Rotom, Liechi Berry Blaziken and Draco Plate Dragonair, each with his moves. Her levels are two under his base ROM's each, Dragonair from 44 to 42, off the cap. Her natures are pinned to what she rolls today: Bashful, Lonely, Quirky, Gentle, Modest and Naive.
+
+Ian's words, that she is "meant to be a hard fight gating the encounter in ruin maniac cave/tunnel", hold on the map. The Maniac caves' one warp, at (713, 670), opens only from (714, 670), which is reached only across (715, 670), the one tile Krystal sees. required.py's field model finds the warp reachable from Route 214's gate, and unreachable when her sight is avoided. This holds in Wake's, Byron's and Candice's splits, so also after Strength opens the boulders.
 
 ### The rules Ian's kept sets break
 
@@ -260,7 +272,7 @@ These are listed for Ian and not fixed. Every illegal move here was illegal at t
 - **Ronald:** Drifblim's Selfdestruct (a forced trade, kept on Ian's word and on no list of Drifblim's) and Dugtrio's Arena Trap (trapping, kept).
 - **Krystal:**
   - Ten moves are on no list of their species: Metang's Meteor Mash, Dynamic Punch and Gravity; Glalie's Sing and Weather Ball; Rotom's Overheat and Sunny Day (read against plain Rotom's lists, so a Heat Rotom may well have Overheat); Blaziken's Dynamic Punch, Flare Blitz and Brave Bird; and Dragonair's Extreme Speed.
-  - Glalie at 34 and Blaziken at 33 sit under the levels they evolve at (42 and 36). Glalie is eight under, which the rulings would call egregious.
+  - Glalie at 37 sits five under the level it evolves at (42), which his base ROM had at three under. Blaziken is at its level, 36.
   - Her team carries two sleep moves (Glalie's Sing, Jumpluff's Sleep Powder).
 
 Under Ian's ruling of 2026-10-29, a move on his team that its species cannot have goes on the egg list of the line's first stage, never by moving a level-up entry. All sixteen are now there:
@@ -280,8 +292,6 @@ Under Ian's ruling of 2026-10-29, a move on his team that its species cannot hav
 | Rotom | Overheat, Sunny Day | Krystal's Heat Rotom, which shares plain Rotom's lists |
 
 Each is in `learnrewrite.IAN_EGG_MOVES` too, so a generator write keeps it, except Eevee's, which is in `learnsets_by_hand.txt` because Eevee's line is held out of the generator. The illegal-move entries in the list above are therefore settled, and the rest of each kept set's breaks stand.
-
-If Ian wants Glalie and Blaziken nearer their evolutions, Krystal at a top of 42 (each member three lower than his base ROM, not five) would put Glalie at 37 and Blaziken at 36.
 
 ## How the numbers were made
 
