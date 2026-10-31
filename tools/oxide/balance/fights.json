@@ -102,6 +102,7 @@
          "trainers": ["TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1", "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2"],
          "partners": ["TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG", "TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR", "TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP", "TRAINER_DAWN_VEILSTONE_CITY_TURTWIG", "TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR", "TRAINER_DAWN_VEILSTONE_CITY_PIPLUP"]},
         {"key": "barry_4", "label": "Barry 4", "split": "Wake", "sheet_ace": 42,
+         "note": "Barry in Pastoria City, before Wake's gym, with an honour cap of 42 and his ace at it (Ian, 2026-10-31: \"it will be an intermediate split of 42\").",
          "trainers": ["TRAINER_RIVAL_PASTORIA_CITY_PIPLUP", "TRAINER_RIVAL_PASTORIA_CITY_TURTWIG", "TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR"]},
         {"key": "wake", "label": "Wake", "split": "Wake", "sheet_ace": 44,
          "trainers": ["TRAINER_LEADER_WAKE"]},
