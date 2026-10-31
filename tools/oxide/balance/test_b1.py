@@ -115,8 +115,9 @@ def check_fights_resolve(results):
 AT_CAP = ("roark", "gardenia", "fantina", "maylene", "wake", "byron", "candice", "volkner",
           "barry_5", "barry_6", "cyrus_1", "cyrus_2", "cyrus_3")
 UNDER_CAP = ("saturn_1", "mars_2", "somnu_moira", "saturn_2", "mars_jupiter", "lucas_dawn_3")
-# Officers Tyche and Hermes at Veilstone keep their aces at their honour cap of
-# 41 (Ian, 2026-10-29); their Spear Pillar fight is left out, as drafted.
+# Officers Tyche and Hermes at Veilstone keep their aces at 41 (Ian,
+# 2026-10-29), under the honour cap of 42 that runs to Barry 4 (Ian, 2026-10-31:
+# no cap of their own); their Spear Pillar fight is left out, as drafted.
 # Barry 4 in Pastoria keeps his ace at his honour cap of 42 (Ian, 2026-10-31).
 FIXED_ACES = {"aaron": 72, "bertha": 73, "flint": 74, "lucian": 75, "cynthia": 78,
               "barry_2": 11, "mars_1": 20, "jupiter_1": 29, "lucas_dawn_2": 31,

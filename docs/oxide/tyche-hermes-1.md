@@ -2,6 +2,8 @@
 
 Ian asked on 2026-10-29 for the two Veilstone warehouse grunts to become Officers Tyche and Hermes, for Lucas and Dawn to bring six Pokemon built on their Route 207 team, and for a 10 against 12 fight at officer difficulty: Protect used heavily, no Self-Destruct or Explosion, and classic villain-team Pokemon. This page holds stage 1 (the rename, the split, the partner's six and three shapes) and stage 2 (Ian's answers and the sets), on the branch `overseer-tyche-hermes-1`. Nothing lands from it until the Overseer lands the branch.
 
+Ian, 2026-10-31: this fight has no honour cap of its own. The cap in force is 42, Barry 4's, which runs from Maylene's badge to Barry 4 in Pastoria; the aces stay at 41. Where this page says "the honour cap of 41", read the aces' level of 41 under a cap of 42.
+
 ## Summary of stage 2
 
 **Outcome.** The ten sets are in the two Veilstone files, built on Ian's pick, shape A made faster and frailer: Tyche's Golbat, Murkrow, Weezing and Haunter, with an Ariados using Silk Trap, and Hermes's Electrode and Sharpedo, with a Mightyena using Obstruct, a Seviper and Giovanni's Dugtrio as the ace. The partner has Scyther with its Eviolite again and Lopunny keeps Jump Kick. The scene's text names the officers. The lint, the packer and both legality checks pass on every changed team. The AI-picks probe was not run, because the simulator reads only single battles; no reading of a tag double is possible. Goal 3's count is fixed the repo's own way, in its own commit: both Tyche and Hermes fights are story fights in `fights.json` marked as doubles, as Somnu and Moira's is, so goal 3 reads 39 bosses again and leaves both out as doubles (`test_plgoal3` 72 of 72).

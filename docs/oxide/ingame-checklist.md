@@ -682,7 +682,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   how many of your Pokemon faint.
 - [ ] **The Veilstone tag battle, Officers Tyche and Hermes** (`overseer-tyche-hermes-1`,
   `tyche-hermes-1.md`), after Maylene's badge, with the party at or under the
-  honour cap of 41. The north warehouse grunt is a female grunt; the scene's
+  honour cap of 42, which runs to Barry 4 (their aces are at 41). The north warehouse grunt is a female grunt; the scene's
   lines read "Tyche:" and "Hermes:", and Hermes says "And make ourselves
   scarce." Lucas or Dawn (the counterpart of the other gender) brings six,
   led by Umbreon, with Scyther and the starter line yours beats at 41. The
