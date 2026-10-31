@@ -480,8 +480,20 @@ def marts():
     counter sells once from a badge count comes in that count's split."""
     out = _marts()
     sold = sold_once()
-    return [(BADGE_SPLIT[sold[it]] if it in sold and table in SOLD_ONCE_COUNTERS else split, table, it)
-            for split, table, it in out]
+    # The prize counter also trades only once Dahlia is beaten (gates.py
+    # reads that check from its receptionist's script), so its TMs count
+    # from the later of their badge's split and hers.
+    from . import gates
+    dahlia = gates.prize_counter_split()
+
+    def placed(split, table, it):
+        if it not in sold or table not in SOLD_ONCE_COUNTERS:
+            return split
+        badge_split = BADGE_SPLIT[sold[it]]
+        if table != "GameCornerPrizes" or badge_split not in SPLITS:
+            return badge_split
+        return SPLITS[max(SPLITS.index(badge_split), dahlia)]
+    return [(placed(split, table, it), table, it) for split, table, it in out]
 
 
 def _marts():

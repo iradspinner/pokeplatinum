@@ -425,6 +425,30 @@ def check_gated_gifts(results):
                     f"Stark Mountain {stark}; first held in {early[0] if early else None}"))
 
 
+def check_prize_counter_dahlia(results):
+    """The Game Corner prize counter opens only once Dahlia is beaten, and
+    Ian ruled (2026-10-31) that her win counts from Wake's split. Its TMs
+    therefore count from the later of their badge's split and Wake's: a TM
+    unlocked at two badges is moved up to Wake, one at five keeps Byron's.
+    No real prize TM unlocks below four badges today, so the test feeds the
+    census a table with an early one."""
+    from . import gates, splits
+    wake = splits.SPLITS.index("Wake")
+    real = splits.sold_once
+    splits.sold_once = lambda: {"ITEM_TM24": 2, "ITEM_TM49": 5}
+    try:
+        placed = {it: sp for sp, t, it in splits.marts.__wrapped__() if t == "GameCornerPrizes"}
+    finally:
+        splits.sold_once = real
+    reads = gates.requirement_split(("defeated", "TRAINER_DUMMY_007")) == wake
+    ok = reads and gates.prize_counter_split() == wake \
+        and placed.get("ITEM_TM24") == "Wake" and placed.get("ITEM_TM49") == "Byron"
+    results.append(("the prize counter's TMs count from Dahlia's win, Wake's split", ok,
+                    f"win read at {splits.SPLITS[gates.requirement_split(('defeated', 'TRAINER_DUMMY_007'))]}; "
+                    f"counter at {splits.SPLITS[gates.prize_counter_split()]}; "
+                    f"two-badge TM at {placed.get('ITEM_TM24')}, five-badge TM at {placed.get('ITEM_TM49')}"))
+
+
 def check_testkit(results):
     """The test kit adds nothing to the census, since only `make testkit`
     builds it. The filter keeps what a normal build keeps, #else branches
@@ -475,7 +499,7 @@ def main():
                   check_league_after_volkner, check_roark, check_megas_folded,
                   check_milestones_resolve,
                   check_split_map, check_split_overrides, check_items_and_marts, check_tm_sources,
-                  check_weather, check_item_reach, check_gated_gifts, check_testkit):
+                  check_weather, check_item_reach, check_gated_gifts, check_prize_counter_dahlia, check_testkit):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
