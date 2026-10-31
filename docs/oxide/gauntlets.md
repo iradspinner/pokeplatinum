@@ -14,10 +14,13 @@ Named Galactic officers stay outside every gauntlet, so the player can heal
 before each of them (Ian, 2026-10-31: "No, they should not be in gauntlets,
 apologies if that is countermanding a previous statement but it would be too
 hard to manage the difficulty"). Section 8 now ends on arrival at Mt. Coronet
-5F, before Officers Somnu and Moira. Section 2 still holds Officer Moira on the
-Eterna building's 3F, because without her it would hold Scientist Travon alone,
-under the 2 to 5; how to take her out waits on Ian (`story-route.md`, "Ian's
-answers and the rechecks").
+5F, before Officers Somnu and Moira. Section 2, the Eterna building's 3F, is
+gone (Ian, 2026-10-31, approving `story-route.md`'s proposal): without Officer
+Moira it would have held Scientist Travon alone, under the 2 to 5. Section 1
+now ends on arrival at 3F's main side, so Travon and Moira are both fought
+with healing allowed. The stairs arrive at (2,3), outside both sight lines:
+Travon looks east along row 9 from (3,9), and Moira north from (16,5). Section 2's number stays unused, so the later sections
+keep theirs.
 
 This file records how the gauntlets are built and why each map and warp is in
 its section. The code is `src/gauntlet.c`; the in-game checks are in
@@ -38,7 +41,10 @@ the Sendoff Spring scene plays), and a section must never wait on a trainer
 the player cannot reach. The section stays open while the player is on one of
 its maps. Those include the dead-end pockets a detour reaches, so that
 stepping into a side room does not close it. Arriving on any other map closes
-it. That covers the way forward, a scripted warp and a whiteout alike.
+it. That covers the way forward, a scripted warp and a whiteout alike. Where
+the way forward leads onto a map that also holds one of the section's
+pockets, arriving through that warp closes the section too (`sGauntletExits`
+in the code); the Eterna building's 3F is the one case.
 
 While a section is open:
 
@@ -77,8 +83,8 @@ modelled, which matters only on Victory Road 2F.
 
 | # | Section | Trainers | Way in | Ways back, refused | Way forward | Lock also holds on |
 |---|---|---|---|---|---|---|
-| 1 | Eterna building 1F and 2F | the 1F grunts, the 2F grunts | the front door from Eterna City | the front door | 2F's stairs to 3F's main side | 3F's dead-end pocket, Rotom's room |
-| 2 | Eterna building 3F | Travon, the 3F grunt | the stairs from 2F's main side | those stairs | the stairs to Jupiter on 4F | |
+| 1 | Eterna building 1F and 2F | the 1F grunts, the 2F grunts | the front door from Eterna City | the front door | 2F's stairs to 3F's main side, which close it on arrival | 3F's dead-end pocket, Rotom's room |
+| 2 | none since 2026-10-31 (it was the Eterna building's 3F, with Travon and Officer Moira) | | | | | |
 | 3 | Galactic HQ B2F | the two B2F grunts | from the Veilstone warehouse | back to the warehouse | on to B1F | |
 | 4 | Galactic HQ 1F | the 1F grunt, Fredrick | from B1F | back to B1F, and the lobby's two front doors | the panels and stairs to 2F | |
 | 5 | Galactic HQ 2F | the four 2F trainers | the stairs from 1F's panel room | those stairs | the stairs to 3F | Fredrick's pocket on 1F, and B2F's dead end past it |

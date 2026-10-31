@@ -500,7 +500,6 @@ The sections of the gauntlet proposal (balance plan, "The gauntlets, reworked on
 | Area | Section | Split | Trainers | Reading |
 |---|---|---|---|---|
 | Team Galactic's Eterna building | 1F and 2F | Fantina | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt |  |
-| Team Galactic's Eterna building | 3F | Fantina | Scientist Travon, Galactic Officer Moira |  |
 | The Galactic HQ | 1F | HQ | Galactic Grunt, Scientist Fredrick |  |
 | The Galactic HQ | 2F | HQ | Galactic Grunt, Galactic Grunt, Galactic Grunt, Scientist Darrius |  |
 | The Galactic HQ | 3F | HQ | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt |  |

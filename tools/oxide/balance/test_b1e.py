@@ -147,11 +147,13 @@ def check_late_visits(results):
 
 
 def check_gauntlet_sections(results):
-    """The sections keep Ian's rulings: 2 to 5 trainers each, the built ten
+    """The sections keep Ian's rulings: 2 to 5 trainers each, the built nine
     (src/gauntlet.c), Victory Road 1F halved as the code lists it with its
     2F and B1F detours left out, and Mt. Coronet's bosses and hard officers
     out. Moved here from test_b6 when the first scoring system retired
-    (2026-10-13)."""
+    (2026-10-13). Ten until the Eterna building's 3F, with Officer Moira,
+    left the gauntlets (Ian, 2026-10-31), and neither of its trainers may
+    sit in a section."""
     from . import gauntlet
     sizes = {(area, s[0]): len(gauntlet.section_trainers(area, s))
              for area, sections in gauntlet.SECTIONS.items() for s in sections}
@@ -160,7 +162,10 @@ def check_gauntlet_sections(results):
     names = {tr: t["constant"] for tr, t in data.oxide_trainers().items()}
     vr = [{names[tr] for tr in gauntlet.section_trainers("victory_road", s)}
           for s in gauntlet.SECTIONS["victory_road"]]
-    ok = (len(sizes) == 10 and all(2 <= n <= 5 for n in sizes.values()) and not coronet & {520, 526, 834}
+    eterna = {names[tr] for s in gauntlet.SECTIONS["galactic_eterna"]
+              for tr in gauntlet.section_trainers("galactic_eterna", s)}
+    ok = (len(sizes) == 9 and all(2 <= n <= 5 for n in sizes.values()) and not coronet & {520, 526, 834}
+          and not eterna & {"TRAINER_SCIENTIST_TRAVON", "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_3F"}
           and vr == [{"TRAINER_PSYCHIC_BRYCE", "TRAINER_BIRD_KEEPER_HANA", "TRAINER_ACE_TRAINER_MARIAH"},
                      {"TRAINER_BLACK_BELT_MILES", "TRAINER_DRAGON_TAMER_CLINTON", "TRAINER_VETERAN_EDGAR"}])
     results.append(("gauntlet sections hold 2 to 5 trainers, bosses left out", ok,

@@ -36,7 +36,7 @@ real save at that point. The times are rough, for one try each.
 | 10 | Section 3, **Mandatory fights, Gardenia's split** | The kit's Jubilife warp, then north | 20 min |
 | 11 | Section 3, Gardenia's new team | A real save at Eterna's gym | 10 min |
 | 12 | Section 4, Level caps through the story (Gardenia to Wake) | Each badge of the run, then the save bar | 1 min a badge |
-| 13 | Section 2, **Gauntlets**, the Eterna Galactic building's sections | The kit's Eterna City gauntlet warp | 15 min |
+| 13 | Section 2, **Gauntlets**, the Eterna Galactic building's section, which now ends on 3F's main side | The kit's Eterna City gauntlet warp | 15 min |
 | 14 | Section 3, **Mandatory fights, Fantina's split** | A save with the bike, Route 206 south to 207 and 208 | 15 min |
 | 15 | Section 3, Wayward Cave 1F's Ice Stone (Diego and Tori's pair) | A save with the bike, Route 206's cave | 10 min |
 | 16 | Section 2, **Knock Off on the first turn out** (Ace Trainer Allen's Sableye) | A real save in Hearthome's gym | 5 min |
@@ -431,8 +431,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   "There’s no turning back now! / Press on, or beat the Trainers here.", after
   which a staircase or warp panel stepped onto walks the player back off it.
   Then, one per entry:
-  - Eterna: go up to 3F and beat Travon and the grunt. The Pocket PC works on
-    3F again, and the stairs down no longer refuse.
+  - Eterna: with a 1F or 2F grunt still unbeaten, take 2F's east stairs
+    into 3F's small dead-end room: the Pocket PC still refuses there. Then
+    take 2F's other stairs up to 3F's main side: since 2026-10-31
+    (`overseer-byron-prep`) the section ends on arrival, so the Pocket PC
+    works at once, before Scientist Travon and Officer Moira, and the stairs
+    back down no longer refuse.
   - Galactic HQ: the warehouse's stairs lead into B2F. Leave the Galactic Key
     on B2F at first, and climb through 1F and 2F to 3F: its stairs back down
     let you go. Then fetch the key and come back: the same stairs refuse.

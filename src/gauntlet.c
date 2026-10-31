@@ -78,6 +78,9 @@ typedef struct GauntletSection {
 // rulings"), placed on the maps as they are walked. Ian's case-by-case
 // ruling on the trainers above their split's average edits the trainer lists.
 static const GauntletSection sGauntletSections[GAUNTLET_SECTION_COUNT] = {
+    // 3F stays among the maps for the dead-end pocket off 2F's east stairs,
+    // so a detour there keeps the lock. Arriving on 3F's main side is the way
+    // forward and closes the section (sGauntletExits below).
     [GAUNTLET_ETERNA_BUILDING_1F_2F] = {
         .maps = { MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F, MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_2F, MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F, MAP_HEADER_ROTOMS_ROOM, END_MAPS },
         .waysIn = { { MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F, 0, ITEM_NONE }, END_WARPS },
@@ -90,15 +93,16 @@ static const GauntletSection sGauntletSections[GAUNTLET_SECTION_COUNT] = {
             END_TRAINERS,
         },
     },
+    // Retired (Ian, 2026-10-31): 3F holds Officer Moira, and named officers
+    // stay outside every gauntlet, so Scientist Travon and Moira are fought
+    // with healing allowed. The entry stays, empty, so that the later
+    // sections keep their numbers in VAR_GAUNTLET_SECTION; with no maps and
+    // no trainers it never opens.
     [GAUNTLET_ETERNA_BUILDING_3F] = {
-        .maps = { MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F, END_MAPS },
-        .waysIn = { { MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F, 2, ITEM_NONE }, END_WARPS },
-        .waysBack = { { MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F, 2, ITEM_NONE }, END_WARPS },
-        .trainers = {
-            { TRAINER_SCIENTIST_TRAVON, FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS },
-            { TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_3F, FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS },
-            END_TRAINERS,
-        },
+        .maps = { END_MAPS },
+        .waysIn = { END_WARPS },
+        .waysBack = { END_WARPS },
+        .trainers = { END_TRAINERS },
     },
     // The warehouse leads into B2F, so the HQ is walked B2F, B1F, 1F, 2F, 3F.
     [GAUNTLET_GALACTIC_HQ_B2F] = {
@@ -245,6 +249,20 @@ static const GauntletLine sGauntletLines[] = {
     { MAP_HEADER_VICTORY_ROAD_1F, 13, 27, 13, 26, DIR_NORTH, GAUNTLET_VICTORY_ROAD_FAR },
 };
 
+// Arrivals that close a section although they land on one of its maps: the
+// way forward leads onto a map that also holds one of the section's
+// dead-end pockets.
+typedef struct GauntletExit {
+    u16 mapHeaderID;
+    u16 warpIndex;
+    u16 section;
+} GauntletExit;
+
+static const GauntletExit sGauntletExits[] = {
+    // The stairs up from 2F's main side, onto 3F's main side.
+    { MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F, 2, GAUNTLET_ETERNA_BUILDING_1F_2F },
+};
+
 static u16 *GetSectionVar(FieldSystem *fieldSystem)
 {
     return VarsFlags_GetVarAddress(SaveData_GetVarsFlags(fieldSystem->saveData), VAR_GAUNTLET_SECTION);
@@ -329,6 +347,16 @@ void Gauntlet_OnMapChange(FieldSystem *fieldSystem, BOOL noWarp)
         for (u16 id = GAUNTLET_NONE + 1; id < GAUNTLET_SECTION_COUNT; id++) {
             if (FindWarp(sGauntletSections[id].waysIn, location->mapHeaderID, location->warpId) != NULL) {
                 OpenSection(fieldSystem, id);
+                return;
+            }
+        }
+
+        for (int i = 0; i < NELEMS(sGauntletExits); i++) {
+            const GauntletExit *wayOut = &sGauntletExits[i];
+
+            if (wayOut->mapHeaderID == location->mapHeaderID && wayOut->warpIndex == location->warpId
+                && *sectionVar == wayOut->section) {
+                *sectionVar = GAUNTLET_NONE;
                 return;
             }
         }
