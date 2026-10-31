@@ -6,7 +6,6 @@
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT",
-        "AI_FLAG_SETUP_FIRST_TURN",
         "AI_FLAG_RISKY",
         "AI_FLAG_PRIORITIZE_EXTREMES",
         "AI_FLAG_CHECK_HP"
@@ -14,88 +13,100 @@
     "double_battle": true,
     "party": [
         {
-            "species": "SPECIES_INCINEROAR",
+            "species": "SPECIES_GALARIAN_RAPIDASH",
             "form": 0,
             "level": 44,
-            "item": "ITEM_NONE",
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_BLAZE_KICK",
-                "MOVE_DARKEST_LARIAT",
-                "MOVE_FLAMETHROWER",
-                "MOVE_THROAT_CHOP"
+                "MOVE_HEAL_PULSE",
+                "MOVE_FIRE_LASH",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_HIGH_HORSEPOWER"
             ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2
         },
         {
-            "species": "SPECIES_ENTEI",
+            "species": "SPECIES_CORVIKNIGHT",
             "form": 0,
             "level": 44,
-            "item": "ITEM_NONE",
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_FIRE_SPIN",
-                "MOVE_STOMP",
-                "MOVE_FLAMETHROWER",
-                "MOVE_SWAGGER"
+                "MOVE_BRAVE_BIRD",
+                "MOVE_ROOST",
+                "MOVE_TAILWIND",
+                "MOVE_IRON_HEAD"
             ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 3
         },
         {
-            "species": "SPECIES_GRAPPLOCT",
+            "species": "SPECIES_SINISTCHA",
             "form": 0,
             "level": 44,
-            "item": "ITEM_NONE",
+            "item": "ITEM_BIG_ROOT",
             "moves": [
-                "MOVE_BULK_UP",
-                "MOVE_CIRCLE_THROW",
-                "MOVE_TAUNT",
-                "MOVE_REVERSAL"
+                "MOVE_MATCHA_GOTCHA",
+                "MOVE_STRENGTH_SAP",
+                "MOVE_SHADOW_BALL",
+                "MOVE_PROTECT"
             ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_ARMAROUGE",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_ASSAULT_VEST",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_ENERGY_BALL",
+                "MOVE_INCINERATE",
+                "MOVE_SCORCHING_SANDS"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 2
         },
         {
             "species": "SPECIES_GALARIAN_ARTICUNO",
             "form": 0,
             "level": 44,
-            "item": "ITEM_NONE",
+            "item": "ITEM_MIND_PLATE",
             "moves": [
+                "MOVE_FREEZING_GLARE",
+                "MOVE_HYPNOSIS",
                 "MOVE_ANCIENT_POWER",
-                "MOVE_TAILWIND",
-                "MOVE_PSYCHO_CUT",
-                "MOVE_RECOVER"
+                "MOVE_SHADOW_BALL"
             ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_GALLADE",
+            "species": "SPECIES_ENTEI",
             "form": 0,
             "level": 44,
-            "item": "ITEM_NONE",
+            "item": "ITEM_SHUCA_BERRY",
             "moves": [
-                "MOVE_SWORDS_DANCE",
-                "MOVE_PSYCHO_CUT",
-                "MOVE_HELPING_HAND",
-                "MOVE_NIGHT_SLASH"
+                "MOVE_SACRED_FIRE",
+                "MOVE_CRUNCH",
+                "MOVE_EXTREME_SPEED",
+                "MOVE_BULLDOZE"
             ],
             "iv_scale": 255,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_GOTHITELLE",
-            "form": 0,
-            "level": 44,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_FLATTER",
-                "MOVE_PSYCHIC",
-                "MOVE_SHADOW_BALL",
-                "MOVE_FUTURE_SIGHT"
-            ],
-            "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_HARDY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [
