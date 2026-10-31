@@ -14,7 +14,7 @@
         {
             "species": "SPECIES_PRIMARINA",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_SPLASH_PLATE",
             "moves": [
                 "MOVE_SPARKLING_ARIA",
@@ -30,7 +30,7 @@
         {
             "species": "SPECIES_GARDEVOIR",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_SHUCA_BERRY",
             "moves": [
                 "MOVE_PSYCHIC",
@@ -46,7 +46,7 @@
         {
             "species": "SPECIES_SCEPTILE",
             "form": 0,
-            "level": 41,
+            "level": 40,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_LEAF_BLADE",

@@ -18,7 +18,7 @@
                 "MOVE_TACKLE",
                 "MOVE_SHOCK_WAVE",
                 "MOVE_BABY_DOLL_EYES",
-                "MOVE_BABY_DOLL_EYES"
+                "MOVE_NONE"
             ],
             "iv_scale": 200,
             "ball_seal": 0,

@@ -13,6 +13,61 @@ Checks marked **(live)** need a local agent attached to melonDS over the GDB stu
 (the `debug-live` skill). Ian drives; the agent reads memory. Nothing here asks
 an agent to launch an emulator.
 
+## The first five splits, in play order (compiled 2026-10-31)
+
+Every unticked check below that the work on Roark's to Wake's splits added
+or depends on, in the order a run meets it, so one session can play them
+together. Each row points to the item that holds the full wording; tick the
+item there, not here. The kit's warps and sets are in `docs/oxide/test-kit.md`.
+A warp ahead of the story can meet story scripts, so the boss rows want a
+real save at that point. The times are rough, for one try each.
+
+| # | Check (section, item) | Quickest way there | Time |
+|---:|---|---|---:|
+| 1 | Section 2, **Soft level caps** | Test kit, Level caps menu | 10 min |
+| 2 | Section 2, **Silk Trap's Speed drop** and **Obstruct's Defense drop** | Test kit, move sets 89 and 90 | 5 min |
+| 3 | Section 2, **Corrosion through Baneful Bunker** | Test kit, move set 91 | 3 min |
+| 4 | Section 2, **King's Shield lets status moves through** and **Burning Bulwark lets status moves through** | Test kit, move sets 92 and 93 | 5 min |
+| 5 | Section 3, Rare Candy chaining past the level cap | Test kit's Items menu, or the first candy of a run | 3 min |
+| 6 | Section 3, **Mandatory fights, Roark's split** | A new game, or the kit's Sandgem warp | 20 min |
+| 7 | Section 3, Roark's new team | A real save at Roark's gym | 10 min |
+| 8 | Section 3, Level caps: after beating Roark | The same save, then the OxiDex's save bar | 2 min |
+| 9 | Below, the OxiDex's honour caps (new) | Real saves before and after Mars 1, then the OxiDex | 10 min |
+| 10 | Section 3, **Mandatory fights, Gardenia's split** | The kit's Jubilife warp, then north | 20 min |
+| 11 | Section 3, Gardenia's new team | A real save at Eterna's gym | 10 min |
+| 12 | Section 4, Level caps through the story (Gardenia to Wake) | Each badge of the run, then the save bar | 1 min a badge |
+| 13 | Section 2, **Gauntlets**, the Eterna Galactic building's sections | The kit's Eterna City gauntlet warp | 15 min |
+| 14 | Section 3, **Mandatory fights, Fantina's split** | A save with the bike, Route 206 south to 207 and 208 | 15 min |
+| 15 | Section 3, Wayward Cave 1F's Ice Stone (Diego and Tori's pair) | A save with the bike, Route 206's cave | 10 min |
+| 16 | Section 2, **Knock Off on the first turn out** (Ace Trainer Allen's Sableye) | A real save in Hearthome's gym | 5 min |
+| 17 | Section 4, **Barry 3 at the Route 209 gate**, at or under 36 | A real save just after Fantina's badge | 15 min |
+| 18 | Section 4, **Mandatory fights, Maylene's split** (Route 210 South's way in among them) | The same save, Hearthome to Veilstone | 25 min |
+| 19 | Section 4, the Lost Tower's location names | Route 209, on the way | 3 min |
+| 20 | Section 4, Dahlia gates the Game Corner's prizes | The kit's Veilstone warp, or a real save after Maylene | 15 min |
+| 21 | Section 4, **The Veilstone tag battle, Officers Tyche and Hermes**, at or under 42 | A real save after Maylene's badge | 15 min |
+| 22 | Section 4, **Mandatory fights, Wake's split** | The same save, Route 214 to Pastoria | 25 min |
+| 23 | Section 4, Darach and Caitlin block the Pokemon Mansion, the egg on the win, the office's maid, the Trophy Garden | The kit's Pastoria warp, then Route 212 North | 20 min |
+| 24 | Section 4, Manaphy's Tail Glow | The egg from row 23, hatched | 10 min |
+| 25 | Section 4, The Pokemon Mansion's maid knockout | After row 23, in the mansion's hall | 20 min |
+| 26 | Section 4, Pastoria's Ability Capsule ball is gone | The kit's Pastoria warp | 2 min |
+| 27 | Section 4, **Surf waits on Cyrus at Celestic Town** | A real save with the Fen Badge, before Celestic | 5 min |
+| 28 | Section 2, **A Corrosion holder uses Toxic on a Steel type** | Whenever a trainer's Salandit or Salazzle with Toxic meets a Steel or Poison type; none does yet | as met |
+
+About six hours in all, half of it the four mandatory-fight walks and the
+mansion. The bosses with no item of their own (Mars 1, Jupiter 1, Lucas and
+Dawn 2, Fantina, Maylene, Barry 4 and Wake) are met in the run itself; note
+how many of your Pokemon faint in each.
+
+- [ ] **The OxiDex's honour caps** (2026-10-31, `overseer-cleanup-five`).
+  With a save in Gardenia's split before Mars 1 at the Valley Windworks,
+  and a party member above Lv. 20, the OxiDex's save bar and the Alpha
+  tab's bar read "Over Mars 1's honour cap of 20" and name it; at Lv. 20
+  exactly it is not named. After beating Mars 1 and saving, the same
+  member is named only above Lv. 26, Gardenia's cap. The same holds for
+  Barry 2 (11, before Route 203's battle), Jupiter 1 (29), Lucas and Dawn 2
+  (31, after Jupiter 1), Barry 3 (36) and Barry 4 (42, from Maylene's badge
+  to Pastoria). The game itself shows nothing.
+
 ## 1. The ROMs and the save
 
 - [ ] Build the ordinary ROM and the test kit ROM of the current, pushed

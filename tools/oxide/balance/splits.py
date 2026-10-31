@@ -333,6 +333,11 @@ def _shared_mentions():
 # The partner is picked through a variable by the player's gender and
 # starter, so no map places its six files without this.
 TRAINER_SPLITS = {
+    # Jubilife's two grunts, fought beside Lucas or Dawn, appear only once
+    # Roark is beaten (his gym's script clears FLAG_HIDE_JUBILIFE_GALACTIC_GRUNTS),
+    # so they belong to Gardenia's split, though Jubilife's map is Roark's.
+    **{c: "Gardenia" for c in ("TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1",
+                               "TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2")},
     **{c: "Wake" for c in ("TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1",
                            "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2")},
     **{f"TRAINER_{who}_VEILSTONE_CITY_{starter}": "Wake"

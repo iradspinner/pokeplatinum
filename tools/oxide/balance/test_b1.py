@@ -119,9 +119,12 @@ UNDER_CAP = ("saturn_1", "mars_2", "somnu_moira", "saturn_2", "mars_jupiter", "l
 # 2026-10-29), under the honour cap of 42 that runs to Barry 4 (Ian, 2026-10-31:
 # no cap of their own); their Spear Pillar fight is left out, as drafted.
 # Barry 4 in Pastoria keeps his ace at his honour cap of 42 (Ian, 2026-10-31).
+# The mini-bosses' honour caps (Barry 2 11, Mars 1 20, Jupiter 1 29, Lucas
+# and Dawn 2 31, Barry 3 36, Barry 4 42) are read from fights.json's
+# honour_cap, the one table the OxiDex's over-cap flag reads too.
 FIXED_ACES = {"aaron": 72, "bertha": 73, "flint": 74, "lucian": 75, "cynthia": 78,
-              "barry_2": 11, "mars_1": 20, "jupiter_1": 29, "lucas_dawn_2": 31,
-              "tyche_hermes_1": 41, "barry_3": 36, "barry_4": 42}
+              "tyche_hermes_1": 41,
+              **{f["key"]: f["honour_cap"] for f in data.fights()["fights"] if "honour_cap" in f}}
 MINI_BOSS_UNDER = range(2, 5)
 
 

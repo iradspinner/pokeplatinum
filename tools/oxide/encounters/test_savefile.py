@@ -11,12 +11,14 @@ working copy is on this machine (~/roms/oxide-save-2026-09-21.sav, never the
 original), and that check is skipped where it is not, as on a cloud session.
 """
 import hashlib
+import json
 import os
 import struct
 import subprocess
 import sys
 import tempfile
 
+from . import model
 from . import savefile as S
 
 # The normal block this build writes: 0xD01C until element 7 widened the Bag
@@ -190,23 +192,76 @@ def main():
                     f"{pr['badges']} badges, {pr['split']}"))
     # The caps are soft since 2026-10-29: a Pokemon may level past the cap in
     # force, and the OxiDex flags it. Fantina's split (2) has a cap of 33, so
-    # a level 34 Chimchar is over it and a level 33 one, at it, is not.
+    # a level 34 Chimchar is over it and a level 33 one, at it, is not. The
+    # save shows both of the split's mini-bosses won (Jupiter 1's flag, Lucas
+    # and Dawn 2's variable), so the split's own cap is the one in force.
     exp_at = S._tables()["exp"]["medium_slow"]
-    capped = make_save([record(0x12345678, chimchar, [move_id("MOVE_SCRATCH")], ability_id("ABILITY_BLAZE"),
-                               exp=exp_at[34], party_level=34),
-                        record(0x23456789, chimchar, [move_id("MOVE_SCRATCH")], ability_id("ABILITY_BLAZE"),
-                               exp=exp_at[33], party_level=33)],
-                       {}, split=2, box_size=BOX_SIZE_30)
+    lay = S._vars_layout()
+
+    def chimchars(*levels):
+        return [record(0x12345678 + i, chimchar, [move_id("MOVE_SCRATCH")], ability_id("ABILITY_BLAZE"),
+                       exp=exp_at[lv], party_level=lv) for i, lv in enumerate(levels)]
+    jupiter_won = [lay["values"]["FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING"]]
+    lucas_dawn_won = {"VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE": 1}
+    capped = make_save(chimchars(34, 33), {}, split=2, box_size=BOX_SIZE_30,
+                       flags=jupiter_won, variables=lucas_dawn_won)
     cs = S.parse(capped, "capped")
     over = S.over_cap(cs) if hasattr(S, "over_cap") else None
     lines = S.summary(cs)["party"]
     results.append(("a party member above the cap in force is flagged with the cap named, "
                     "and one at the cap is not",
                     cs["progress"]["split"]["cap"] == 33
-                    and over == [{"slot": "party 1", "name": "Chimchar", "level": 34, "cap": 33}]
+                    and over == [{"slot": "party 1", "name": "Chimchar", "level": 34, "cap": 33,
+                                  "fight": None}]
                     and lines[0].endswith("(over the cap of 33)") and "over the cap" not in lines[1]
                     and S.summary(cs).get("over_cap") == over,
                     f"{over}; {lines}"))
+    # Mini-bosses' honour caps (Ian, 2026-10-29 and 2026-10-31), read from
+    # fights.json: before Jupiter 1 is won Fantina's split flags above 29;
+    # after it, above Lucas and Dawn 2's 31; in Wake's split, above Barry 4's
+    # 42 until Pastoria's state shows him beaten, then above Wake's 44.
+    def flagged(save):
+        return [(m["level"], m["cap"], m["fight"]) for m in S.over_cap(S.parse(save, "honour"))]
+    before_jupiter = make_save(chimchars(30, 29), {}, split=2, box_size=BOX_SIZE_30)
+    hs = S.parse(before_jupiter, "honour")
+    after_jupiter = make_save(chimchars(32, 31), {}, split=2, box_size=BOX_SIZE_30, flags=jupiter_won)
+    wake_before = make_save(chimchars(43, 42), {}, split=4, box_size=BOX_SIZE_30)
+    wake_after = make_save(chimchars(43, 42), {}, split=4, box_size=BOX_SIZE_30,
+                           variables={"VAR_PASTORIA_CITY_STATE": 2})
+    honour = {f["key"]: f["cap"] for f in S.honour_caps()} if hasattr(S, "honour_caps") else {}
+    results.append(("a mini-boss's honour cap is in force until its win shows in the save: "
+                    "Jupiter 1's 29, then Lucas and Dawn 2's 31, Barry 4's 42 before Wake's 44",
+                    honour == {"barry_2": 11, "mars_1": 20, "jupiter_1": 29, "lucas_dawn_2": 31,
+                               "barry_3": 36, "barry_4": 42}
+                    and flagged(before_jupiter) == [(30, 29, "Jupiter 1")]
+                    and S.summary(hs)["party"][0].endswith("(over Jupiter 1's honour cap of 29)")
+                    and flagged(after_jupiter) == [(32, 31, "Lucas and Dawn 2")]
+                    and flagged(wake_before) == [(43, 42, "Barry 4")]
+                    and flagged(wake_after) == [],
+                    f"{honour}; {flagged(before_jupiter) if honour else ''}"))
+    # Each fight's win marker is one its own battle script sets, so a save
+    # that shows it has won the fight.
+    import re
+    scripts = os.path.join(os.path.dirname(__file__), "..", "..", "..", "res", "field", "scripts")
+    texts = {n: open(os.path.join(scripts, n), encoding="utf-8").read() for n in os.listdir(scripts)
+             if n.endswith(".s")}
+    from . import calc_trainers
+    ids = calc_trainers._tables(model.repo_root())["ids"]
+    unset = []
+    for f in S.honour_caps() if hasattr(S, "honour_caps") else []:
+        trainers_ = next(x["trainers"] for x in json.load(open(os.path.join(
+            os.path.dirname(__file__), "..", "balance", "fights.json")))["fights"] if x["key"] == f["key"])
+        m = f["beaten"]
+        want = (rf"SetFlag {m['flag']}\b" if "flag" in m
+                else rf"SetVar(?:FromValue)? {m['var']}, {m['at_least']}\b")
+        home = [n for n, t in texts.items() if re.search(want, t)]
+        battles = [n for n, t in texts.items()
+                   if any(re.search(rf"StartTrainerBattle {c}\b", t) for c in trainers_)
+                   or any(re.search(rf"StartTrainerBattle {ids.get(c)}, ", t) for c in trainers_)]
+        if not home or not set(home) & set(battles):
+            unset.append(f"{f['key']}: set in {home}, fought in {battles}")
+    results.append(("each honour-capped fight's win marker is set by the script that fights it",
+                    hasattr(S, "honour_caps") and not unset, "; ".join(unset)))
     vanilla_sized = S.KNOWN_LAYOUTS.get((0xCF2C, 0x121E4), "")
     results.append(("a save with no valid normal block is refused, not guessed at",
                     _refuses(bytes(0x80000)) and "2026-09-21" in vanilla_sized, ""))

@@ -86,7 +86,7 @@
                 "MOVE_SCREECH"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"

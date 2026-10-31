@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_ELECTRODE",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_LIGHT_CLAY",
             "moves": [
                 "MOVE_THUNDERBOLT",
@@ -28,7 +28,7 @@
         {
             "species": "SPECIES_PIDGEOT",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_SHARP_BEAK",
             "moves": [
                 "MOVE_BRAVE_BIRD",
@@ -44,7 +44,7 @@
         {
             "species": "SPECIES_CROBAT",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_BLACK_SLUDGE",
             "moves": [
                 "MOVE_CROSS_POISON",
@@ -60,7 +60,7 @@
         {
             "species": "SPECIES_TALONFLAME",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_CHARCOAL",
             "moves": [
                 "MOVE_FLAMETHROWER",
@@ -76,7 +76,7 @@
         {
             "species": "SPECIES_NINETALES",
             "form": 0,
-            "level": 41,
+            "level": 40,
             "item": "ITEM_WIDE_LENS",
             "moves": [
                 "MOVE_FIRE_BLAST",

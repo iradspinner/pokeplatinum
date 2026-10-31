@@ -132,8 +132,9 @@ levels climb in play order through a split, never reaching the cap in force
 and very rarely one under it, with harder movesets at lower levels than before:
 more interesting building choices over raw stat checks. The climb is applied
 split by split as each split's trainers are worked, from Fantina's and
-Maylene's, then Gardenia's; Roark's split is left out, since low levels make
-it a weird split in any case (Ian, 2026-10-29). For a mid-split ordinary fight the player's levels follow the line
+Maylene's, then Gardenia's; Roark's split was left out at first, since low
+levels make it a weird split in any case (Ian, 2026-10-29), and then given the
+same pass (Ian, 2026-10-31), its 8 mandatory fights kept. For a mid-split ordinary fight the player's levels follow the line
 a player rides who spends the split's trainer experience as late as they can:
 the cap less the experience still to come in the split, not the sum of what
 came before (Ian: "subtracting the trainer xp from your maximum and riding

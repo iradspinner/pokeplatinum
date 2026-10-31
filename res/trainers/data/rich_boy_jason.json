@@ -14,7 +14,7 @@
         {
             "species": "SPECIES_DELPHOX",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_WISE_GLASSES",
             "moves": [
                 "MOVE_MYSTICAL_FIRE",
@@ -30,7 +30,7 @@
         {
             "species": "SPECIES_SERPERIOR",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_ENERGY_BALL",
@@ -46,7 +46,7 @@
         {
             "species": "SPECIES_FERALIGATR",
             "form": 0,
-            "level": 41,
+            "level": 40,
             "item": "ITEM_MYSTIC_WATER",
             "moves": [
                 "MOVE_WATERFALL",
