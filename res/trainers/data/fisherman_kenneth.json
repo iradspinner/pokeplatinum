@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_OCTILLERY",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_SCOPE_LENS",
             "moves": [
                 "MOVE_HYDRO_PUMP",
@@ -28,7 +28,7 @@
         {
             "species": "SPECIES_LANTURN",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_SHUCA_BERRY",
             "moves": [
                 "MOVE_DISCHARGE",
@@ -44,7 +44,7 @@
         {
             "species": "SPECIES_DHELMISE",
             "form": 0,
-            "level": 41,
+            "level": 40,
             "item": "ITEM_SPELL_TAG",
             "moves": [
                 "MOVE_POLTERGEIST",

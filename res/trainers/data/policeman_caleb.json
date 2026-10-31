@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_SANDSLASH",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_SOFT_SAND",
             "moves": [
                 "MOVE_EARTHQUAKE",
@@ -28,7 +28,7 @@
         {
             "species": "SPECIES_SKUNTANK",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_SHUCA_BERRY",
             "moves": [
                 "MOVE_POISON_JAB",
@@ -44,7 +44,7 @@
         {
             "species": "SPECIES_HONCHKROW",
             "form": 0,
-            "level": 41,
+            "level": 40,
             "item": "ITEM_RAZOR_CLAW",
             "moves": [
                 "MOVE_DRILL_PECK",

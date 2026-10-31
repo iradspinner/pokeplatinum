@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_URSARING",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_FLAME_ORB",
             "moves": [
                 "MOVE_FACADE",
@@ -28,7 +28,7 @@
         {
             "species": "SPECIES_DONPHAN",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_EARTHQUAKE",
@@ -44,7 +44,7 @@
         {
             "species": "SPECIES_TAUROS",
             "form": 0,
-            "level": 41,
+            "level": 40,
             "item": "ITEM_EXPERT_BELT",
             "moves": [
                 "MOVE_ZEN_HEADBUTT",

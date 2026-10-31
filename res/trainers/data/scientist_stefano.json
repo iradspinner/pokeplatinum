@@ -14,7 +14,7 @@
         {
             "species": "SPECIES_GLIMMORA",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_POWER_GEM",
@@ -30,7 +30,7 @@
         {
             "species": "SPECIES_SWALOT",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_SLUDGE_BOMB",
@@ -46,7 +46,7 @@
         {
             "species": "SPECIES_MUK",
             "form": 0,
-            "level": 41,
+            "level": 40,
             "item": "ITEM_BLACK_SLUDGE",
             "moves": [
                 "MOVE_POISON_JAB",

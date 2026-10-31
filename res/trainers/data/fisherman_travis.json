@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_QWILFISH",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_BLACK_SLUDGE",
             "moves": [
                 "MOVE_SPIKES",
@@ -29,7 +29,7 @@
         {
             "species": "SPECIES_WAILORD",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_SHELL_BELL",
             "moves": [
                 "MOVE_WATER_SPOUT",
@@ -46,7 +46,7 @@
         {
             "species": "SPECIES_WHISCASH",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_SOFT_SAND",
             "moves": [
                 "MOVE_EARTHQUAKE",
@@ -62,7 +62,7 @@
         {
             "species": "SPECIES_LAPRAS",
             "form": 0,
-            "level": 41,
+            "level": 40,
             "item": "ITEM_KINGS_ROCK",
             "moves": [
                 "MOVE_SURF",

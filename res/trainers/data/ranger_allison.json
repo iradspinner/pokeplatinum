@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_LEAFEON",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_MIRACLE_SEED",
             "moves": [
                 "MOVE_SEED_BOMB",
@@ -28,7 +28,7 @@
         {
             "species": "SPECIES_KANGASKHAN",
             "form": 0,
-            "level": 40,
+            "level": 39,
             "item": "ITEM_SILK_SCARF",
             "moves": [
                 "MOVE_FAKE_OUT",
@@ -44,7 +44,7 @@
         {
             "species": "SPECIES_TANGROWTH",
             "form": 0,
-            "level": 41,
+            "level": 40,
             "item": "ITEM_ROCKY_HELMET",
             "moves": [
                 "MOVE_GIGA_DRAIN",
