@@ -230,9 +230,9 @@ Bond), none before Fantina, and an ordinary trainer carries none. From
 Wake's split on the limit loosens (Ian, 2026-10-31: "the 'not allowed'
 for selfdestruct and trapping can be loosened, at this point in the game
 they are occasionally acceptable"): an ordinary trainer may now and then
-carry Self-Destruct or Explosion, or a trap, as one trainer's idea and
-never as a pattern. Destiny Bond was not named and stays off ordinary
-trainers. Custap
+carry Self-Destruct, Explosion or Destiny Bond ("Destiny bond can also
+be used", the same day), or a trap, as one trainer's idea and never as a
+pattern. Custap
 Berry and enemy priority are fair tools beside a trade: the player plays
 around Custap with their own priority, and enemy priority is part of
 planning (Ian, 2026-10-06, dropping the earlier "never made certain by

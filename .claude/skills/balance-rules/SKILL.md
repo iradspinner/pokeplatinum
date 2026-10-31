@@ -210,8 +210,8 @@ full ruling is in `docs/oxide/rulings-detail.md`.
 - **Trainer design sits at about 6/10 of Platinum Kaizo** (2026-09-29):
   `.claude/rules/standing-rulings.md` has the whole ruling (no one-hit KO
   moves, rare evasion and trapping, at most one forced trade per boss and
-  none before Fantina, an occasional Self-Destruct, Explosion or trap on an
-  ordinary trainer from Wake's split on (2026-10-31), no overlevelled optional trainers, some doubles).
+  none before Fantina, an occasional Self-Destruct, Explosion, Destiny Bond
+  or trap on an ordinary trainer from Wake's split on (2026-10-31), no overlevelled optional trainers, some doubles).
   Ordinary trainers carry 3 to 5 Pokemon (6 from Gardenia's split on is
   fine), with sizes varied and real lethality, and any trainer may use TM
   and tutor moves (Ian, 2026-10-04). A move on a team Ian builds
