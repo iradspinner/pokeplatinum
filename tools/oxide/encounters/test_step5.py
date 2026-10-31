@@ -305,10 +305,16 @@ def check_scripted(results):
     # The starter's met location is its own since main-scripts (Rowan's
     # Briefcase, Ian 2026-09-27), so it shares no table and Route 201 is a
     # capture of its own.
-    results.append(("an egg has no capture area; the starter is Rowan's Briefcase, sharing "
+    # The Manaphy egg is the Pokemon Mansion's own capture since Darach gives
+    # it (Ian, 2026-10-31); every other egg counts where it hatches.
+    results.append(("an egg has no capture area but the Manaphy egg, the Pokemon Mansion's; "
+                    "the starter is Rowan's Briefcase, sharing "
                     "no table; the Eterna trade shares its place's table; no gift clown is "
                     "a source, and Sandgem Town has a table of its own",
-                    all(s["capture_area"] is None for s in sources if s["kind"] == "egg")
+                    all(s["capture_area"] is None for s in sources
+                        if s["kind"] == "egg" and s["id"] != "manaphy_egg")
+                    and by_id["manaphy_egg"]["capture_area"] == "Pokémon Mansion"
+                    and not by_id["manaphy_egg"]["shares_table"]
                     and by_id["starter"]["capture_area"] == "Rowan's Briefcase"
                     and not by_id["starter"]["shares_table"]
                     and by_id["eterna_trade"]["shares_table"]

@@ -4095,7 +4095,9 @@ function drawScripted() {
   const st = x => x.caught ? "got" : x.duped ? "gone" : (d.encounter || spent) ? "spent" : "";
   const how = { random: "one at random, even odds", choice: "the player's choice",
                 legendary_pool: "one drawn from the legendary pool" }[d.pick] || d.pick;
-  const where = d.kind === "egg" ? "Counts where it hatches: pick a place with no table and no gift."
+  // An egg counts where it hatches, unless Ian made it its giver's own
+  // capture (the Manaphy egg, the Pokemon Mansion's; 2026-10-31).
+  const where = d.kind === "egg" && !d.capture_area ? "Counts where it hatches: pick a place with no table and no gift."
     : d.shares_table ? `Shares ${d.location}'s one capture with its wild table.`
     : `${d.location} has no wild table, so this is its own capture.`;
   $("#mid").innerHTML = `

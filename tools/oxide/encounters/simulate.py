@@ -479,10 +479,16 @@ def start_from_save(save, encounters, target, root=None, ctx=None):
                 return a["name"]
         return near[0]["name"] if near else None
 
+    # A gift egg Ian made a capture of its own (the Manaphy egg, the Pokemon
+    # Mansion's; 2026-10-31) is known by the special place it was given at,
+    # whatever it hatched as.
+    egg_areas = {norm(src["egg_location"]): src.get("capture_area") or src["label"]
+                 for src in scripted.load(root) if src.get("egg_location")}
     for mon in (save.get("party") or []) + (save.get("boxes") or []):
         if not mon.get("species", "").startswith("SPECIES_"):
             continue
         place = mon.get("egg_location") or mon.get("met_location") or ""
+        place = egg_areas.get(norm(place), place)
         # The starter's place is its own met location, not a sim area.
         name = starter_place if norm(place) == norm(starter_place) else area_for(place, mon["species"])
         if name:

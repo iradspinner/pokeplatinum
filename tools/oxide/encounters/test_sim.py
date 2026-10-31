@@ -11,10 +11,13 @@ import collections
 import os
 import sys
 
+from . import alpha
 from . import dex
 from . import evolve
 from . import model
 from . import progression
+from . import savefile
+from . import scripted
 from . import simulate
 
 SEEDS = (1, 2, 3, 4, 5)
@@ -213,13 +216,42 @@ def check_stones(results):
                     f"Wurmple to {dex.display_name(wurmple)}"))
 
 
+def check_mansion_egg(results):
+    """Ian, 2026-10-31: the Manaphy egg is the Pokemon Mansion's own capture,
+    given by Darach after his win, not wherever it hatches. The save shows
+    it given at the special place 2008, Distant land."""
+    root = model.repo_root()
+    src = next(x for x in scripted.load(root) if x["id"] == "manaphy_egg")
+    world = simulate.world("Wake", root)
+    area = next((a for a in world if "manaphy_egg" in a["sources"]), None)
+    mansion_at = alpha.zone_order(root).get("Pokémon Mansion")
+    results.append(("the Manaphy egg is the Pokemon Mansion's own capture in Wake's split, "
+                    "after the Mansion's place (Darach's fight)",
+                    src["pool"] == ["SPECIES_MANAPHY"] and area is not None
+                    and area["name"] == "Pokémon Mansion" and area["split"] == "Wake"
+                    and mansion_at is not None and src["order"] > mansion_at,
+                    f"{area and area['name']} at {src['order']}, the Mansion at {mansion_at}"))
+    tables = savefile._tables()
+    shown = savefile._place(tables, 2008)
+    hatched = {"species": "SPECIES_MANAPHY", "name": "Manaphy", "met_location": "Route 213",
+               "egg_location": shown, "slot": "party 1"}
+    start = simulate.start_from_save({"party": [hatched], "boxes": [], "box_count": 30},
+                                     {}, "Wake", root)
+    results.append(("a hatched Manaphy from the egg spends the Mansion's capture, not where "
+                    "it hatched",
+                    shown == "Distant land" and start["members"][0]["area"] == "Pokémon Mansion"
+                    and "Pokémon Mansion" in start["used"] and not start["unmatched"],
+                    f"egg location {shown!r}, counted at {start['members'][0]['area']}"))
+
+
 def rank_of(split):
     return progression.split_index(model.load_sidecar()).get(split, 99)
 
 
 def main():
     results = []
-    for check in (check_runs, check_scarcity, check_areas, check_requests, check_stones):
+    for check in (check_runs, check_scarcity, check_areas, check_requests, check_stones,
+                  check_mansion_egg):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0
