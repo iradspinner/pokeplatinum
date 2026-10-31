@@ -12,44 +12,82 @@
         {
             "species": "SPECIES_TENTACRUEL",
             "form": 0,
-            "level": 39,
-            "item": null,
+            "level": 42,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_ICE_BEAM",
-                "MOVE_SURF",
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_SCALD",
                 "MOVE_SLUDGE_BOMB",
-                "MOVE_TOXIC_SPIKES"
+                "MOVE_RAPID_SPIN"
             ],
             "iv_scale": 253,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_KINGLER",
-            "form": 0,
-            "level": 39,
-            "item": null,
-            "moves": [
-                "MOVE_METAL_CLAW",
-                "MOVE_STOMP",
-                "MOVE_KNOCK_OFF",
-                "MOVE_GUILLOTINE"
-            ],
-            "iv_scale": 238,
-            "ball_seal": 0
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
             "species": "SPECIES_GOLDUCK",
             "form": 0,
-            "level": 39,
-            "item": null,
+            "level": 42,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
-                "MOVE_AQUA_JET",
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_CROSS_CHOP",
-                "MOVE_ICE_PUNCH"
+                "MOVE_SURF",
+                "MOVE_PSYCHIC",
+                "MOVE_ICE_BEAM",
+                "MOVE_FOCUS_BLAST"
             ],
-            "iv_scale": 217,
-            "ball_seal": 0
+            "iv_scale": 253,
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_KINGLER",
+            "form": 0,
+            "level": 42,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_CRABHAMMER",
+                "MOVE_KNOCK_OFF",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_AGILITY"
+            ],
+            "iv_scale": 253,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_JELLICENT",
+            "form": 0,
+            "level": 42,
+            "item": "ITEM_SPELL_TAG",
+            "moves": [
+                "MOVE_HEX",
+                "MOVE_SURF",
+                "MOVE_WILL_O_WISP",
+                "MOVE_PAIN_SPLIT"
+            ],
+            "iv_scale": 253,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_STARMIE",
+            "form": 0,
+            "level": 43,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_THUNDERBOLT",
+                "MOVE_ICE_BEAM",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 253,
+            "nature": "NATURE_SERIOUS",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

@@ -480,7 +480,7 @@ Each is optional (the census reads it as avoidable or off the story path) and gi
 | TM10 Hidden Power | Maylene | Jogger Wyatt | Route 210 South | 2.3 |
 | TM22 SolarBeam | Maylene | Ruin Maniac Calvin | Route 215 | 2.3 |
 | TM40 Aerial Ace | Maylene | Jogger Scott | Route 215 | 2.3 |
-| TM72 Avalanche | Wake | PI Carlos | Route 214 | 2.3 |
+| TM72 Avalanche | Wake | Lady Melissa | Route 212 North | 2.3 |
 | TM21 Frustration | Galactic | Ace Trainer Deanna | Route 225 | 3.2 |
 | TM27 Return | Galactic | Ace Trainer Quinn | Route 225 | 3.2 |
 | TM70 Outrage | Galactic | Ace Trainer Deanna | Route 225 | Outrage, strong since the rework (140, one turn, half as recoil): one copy, a second reward from Ace Trainer Deanna in Galactic's split, the first its power allows (Ian, 2026-10-07) |

@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_SPINDA",
             "form": 0,
-            "level": 38,
+            "level": 39,
             "item": "ITEM_QUICK_CLAW",
             "moves": [
                 "MOVE_TEETER_DANCE",
@@ -22,6 +22,7 @@
                 "MOVE_LAST_RESORT"
             ],
             "iv_scale": 253,
+            "nature": "NATURE_GENTLE",
             "ball_seal": 0,
             "ability": 2,
             "gender": null
@@ -29,7 +30,7 @@
         {
             "species": "SPECIES_CLEFABLE",
             "form": 0,
-            "level": 37,
+            "level": 38,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_FOLLOW_ME",
@@ -38,6 +39,7 @@
                 "MOVE_LAST_RESORT"
             ],
             "iv_scale": 173,
+            "nature": "NATURE_GENTLE",
             "ball_seal": 0,
             "ability": 1,
             "gender": null

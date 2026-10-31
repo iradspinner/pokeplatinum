@@ -10,32 +10,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SWELLOW",
+            "species": "SPECIES_RAICHU",
             "form": 0,
-            "level": 34,
-            "item": null,
+            "level": 40,
+            "item": "ITEM_MAGNET",
             "moves": [
-                "MOVE_QUICK_ATTACK",
-                "MOVE_AERIAL_ACE",
-                "MOVE_DOUBLE_TEAM",
-                "MOVE_ENDEAVOR"
+                "MOVE_THUNDERBOLT",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_GRASS_KNOT",
+                "MOVE_NASTY_PLOT"
             ],
             "iv_scale": 249,
-            "ball_seal": 0
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_ARCANINE",
+            "species": "SPECIES_MIGHTYENA",
             "form": 0,
-            "level": 34,
-            "item": null,
+            "level": 40,
+            "item": "ITEM_BLACKGLASSES",
             "moves": [
                 "MOVE_CRUNCH",
-                "MOVE_ROAR",
-                "MOVE_FIRE_FANG",
-                "MOVE_THUNDER_FANG"
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_FIRE_FANG"
             ],
-            "iv_scale": 238,
-            "ball_seal": 0
+            "iv_scale": 249,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_SWELLOW",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_FLAME_ORB",
+            "moves": [
+                "MOVE_FACADE",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_U_TURN",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "iv_scale": 249,
+            "nature": "NATURE_HARDY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_STARAPTOR",
+            "form": 0,
+            "level": 41,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "iv_scale": 249,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

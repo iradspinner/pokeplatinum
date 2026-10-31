@@ -14,7 +14,7 @@
         {
             "species": "SPECIES_BANETTE",
             "form": 0,
-            "level": 36,
+            "level": 38,
             "item": "ITEM_STICKY_BARB",
             "moves": [
                 "MOVE_CURSE",
@@ -23,6 +23,7 @@
                 "MOVE_SHADOW_SNEAK"
             ],
             "iv_scale": 201,
+            "nature": "NATURE_LAX",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -30,7 +31,7 @@
         {
             "species": "SPECIES_TYPHLOSION",
             "form": 0,
-            "level": 35,
+            "level": 37,
             "item": "ITEM_POWER_HERB",
             "moves": [
                 "MOVE_ERUPTION",
@@ -39,6 +40,7 @@
                 "MOVE_FOCUS_BLAST"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_BASHFUL",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -46,7 +48,7 @@
         {
             "species": "SPECIES_OCTILLERY",
             "form": 0,
-            "level": 37,
+            "level": 39,
             "item": "ITEM_SCOPE_LENS",
             "moves": [
                 "MOVE_WATER_SPOUT",
@@ -55,6 +57,7 @@
                 "MOVE_SIGNAL_BEAM"
             ],
             "iv_scale": 187,
+            "nature": "NATURE_TIMID",
             "ball_seal": 0,
             "ability": 2,
             "gender": null

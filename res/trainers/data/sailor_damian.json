@@ -12,30 +12,50 @@
         {
             "species": "SPECIES_PELIPPER",
             "form": 0,
-            "level": 39,
-            "item": null,
+            "level": 41,
+            "item": "ITEM_DAMP_ROCK",
             "moves": [
-                "MOVE_SURF",
-                "MOVE_SKY_ATTACK",
+                "MOVE_SCALD",
+                "MOVE_AIR_CUTTER",
                 "MOVE_ROOST",
-                "MOVE_RAIN_DANCE"
+                "MOVE_U_TURN"
             ],
             "iv_scale": 238,
-            "ball_seal": 0
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 3
         },
         {
-            "species": "SPECIES_CLOYSTER",
+            "species": "SPECIES_KABUTOPS",
             "form": 0,
-            "level": 39,
-            "item": null,
+            "level": 41,
+            "item": "ITEM_WHITE_HERB",
             "moves": [
-                "MOVE_ICICLE_SPEAR",
-                "MOVE_ROCK_BLAST",
-                "MOVE_POISON_JAB",
-                "MOVE_BRINE"
+                "MOVE_WATERFALL",
+                "MOVE_STONE_EDGE",
+                "MOVE_X_SCISSOR",
+                "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 251,
-            "ball_seal": 0
+            "iv_scale": 238,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_CRAWDAUNT",
+            "form": 0,
+            "level": 42,
+            "item": "ITEM_BLACKGLASSES",
+            "moves": [
+                "MOVE_CRABHAMMER",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SUPERPOWER",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 238,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [
