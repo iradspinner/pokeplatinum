@@ -16,8 +16,6 @@ Roark	TRAINER_SCHOOL_KID_HARRISON	School Kid Harrison			no	none				3	2.3		not on
 Roark	TRAINER_SCHOOL_KID_CHRISTINE	School Kid Christine			no	none				4	2.3		not on a crossing
 Roark	TRAINER_YOUNGSTER_DALLAS	Youngster Dallas	MAP_HEADER_ROUTE_203	LOCALID_YOUNGSTER_DALLAS	no	none				4	2.3		avoidable
 Roark	TRAINER_YOUNGSTER_SEBASTIAN	Youngster Sebastian	MAP_HEADER_ROUTE_203	LOCALID_YOUNGSTER_SEBASTIAN	yes	none				3	2.3		required
-Roark	TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1	Galactic Grunt			no	none				3	2.3		not on a crossing
-Roark	TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2	Galactic Grunt			no	none				3	2.3		not on a crossing
 Gardenia	TRAINER_YOUNGSTER_TYLER	Youngster Tyler	MAP_HEADER_ROUTE_204_SOUTH	LOCALID_YOUNGSTER_TYLER	no	none				4	2.3		avoidable
 Gardenia	TRAINER_LASS_SAMANTHA	Lass Samantha	MAP_HEADER_ROUTE_204_SOUTH	LOCALID_LASS_SAMANTHA	yes	none				4	2.3		required
 Gardenia	TRAINER_LASS_SARAH	Lass Sarah	MAP_HEADER_ROUTE_204_SOUTH	LOCALID_LASS_SARAH	yes	none				3	2.3		required
@@ -53,6 +51,8 @@ Gardenia	TRAINER_BEAUTY_LINDSAY	Beauty Lindsay			no	none				4	2.3		not on a cros
 Gardenia	TRAINER_CAMPER_ZACKARY	Camper Zackary	MAP_HEADER_ROUTE_205_SOUTH	LOCALID_CAMPER_ZACKARY	no	reward		ITEM_TM62	1	3	2.3	spare	avoidable
 Gardenia	TRAINER_PSYCHIC_KODY	Psychic Kody	MAP_HEADER_ETERNA_FOREST	LOCALID_PSYCHIC_KODY	yes	none				3	2.3		required
 Gardenia	TRAINER_PSYCHIC_RACHAEL	Psychic Rachael	MAP_HEADER_ETERNA_FOREST	LOCALID_PSYCHIC_RACHAEL	yes	none				3	2.3		required
+Gardenia	TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1	Galactic Grunt			no	none				3	2.3		not on a crossing
+Gardenia	TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2	Galactic Grunt			no	none				3	2.3		not on a crossing
 Gardenia	TRAINER_PICNICKER_KARINA	Picnicker Karina	MAP_HEADER_ROUTE_205_SOUTH	LOCALID_PICNICKER_KARINA	no	reward		ITEM_TM57	1	3	2.3	spare	avoidable
 Gardenia	TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_1	Galactic Grunt			no	none				3	2.3		not on a crossing
 Fantina	TRAINER_CYCLIST_AXEL	Cyclist Axel	MAP_HEADER_ROUTE_206	LOCALID_CYCLIST_AXEL	no	none				3	2.3		avoidable

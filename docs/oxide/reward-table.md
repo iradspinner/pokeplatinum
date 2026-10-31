@@ -136,8 +136,8 @@ TMs by the split they first come in, against each split's share by its length (t
 
 | Split | Share | Now | First draft |
 |---|---|---|---|
-| Roark | 4.2 | 4 | 3 |
-| Gardenia | 8.7 | 8 | 13 |
+| Roark | 3.8 | 4 | 3 |
+| Gardenia | 9.2 | 8 | 13 |
 | Fantina | 10.4 | 10 | 14 |
 | Maylene | 8.7 | 9 | 17 |
 | Wake | 17.5 | 17 | 9 |
