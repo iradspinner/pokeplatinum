@@ -133,7 +133,9 @@
             "TM89"
         ],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_FAINT_ATTACK"
+        ]
     },
     "evolutions": [
         [
