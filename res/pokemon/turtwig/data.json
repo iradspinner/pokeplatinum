@@ -95,7 +95,8 @@
             "MOVE_THRASH",
             "MOVE_AMNESIA",
             "MOVE_SUPERPOWER",
-            "MOVE_CRUNCH"
+            "MOVE_CRUNCH",
+            "MOVE_ABSORB"
         ]
     },
     "evolutions": [

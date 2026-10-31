@@ -110,6 +110,9 @@
   "camper_anthony": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "camper_curtis": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "camper_diego": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
@@ -367,8 +370,17 @@
   "lass_cassidy": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "lass_kaitlin": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "lass_madeline": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "lass_molly": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "lass_natalie": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "lass_samantha": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
@@ -383,6 +395,10 @@
   "leader_maylene": {
     "ai_flags": "edited in the OxiDex team builder, 2026-10-29",
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "leader_wake": {
+    "party": "edited in the OxiDex team builder, 2026-10-29",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-29"
   },
   "lucas_veilstone_city_chimchar": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
@@ -427,6 +443,9 @@
   },
   "picnicker_ana": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "picnicker_diana": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "picnicker_karina": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
@@ -506,6 +525,24 @@
   "rival_fight_area_turtwig": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
   },
+  "rival_pastoria_city_chimchar": {
+    "party": "edited in the OxiDex team builder, 2026-10-30"
+  },
+  "rival_pastoria_city_piplup": {
+    "party": "edited in the OxiDex team builder, 2026-10-30"
+  },
+  "rival_pastoria_city_turtwig": {
+    "party": "edited in the OxiDex team builder, 2026-10-30"
+  },
+  "rival_route_203_chimchar": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "rival_route_203_piplup": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "rival_route_203_turtwig": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "rival_route_209_chimchar": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
@@ -538,6 +575,12 @@
   },
   "school_kid_chance": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "school_kid_christine": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "school_kid_harrison": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "school_kid_mackenzie": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
@@ -578,6 +621,13 @@
   "waitress_kati": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "worker_colin": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "worker_mason": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "young_couple_mike_and_nat": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
@@ -587,29 +637,37 @@
   "youngster_austin": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "youngster_dallas": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "youngster_darius": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "youngster_donny": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "youngster_jonathon": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "youngster_logan": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "youngster_michael": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "youngster_oliver": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "youngster_sebastian": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "youngster_tristan": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "youngster_tyler": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
   },
   "youngster_wayne": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
-  },
-  "leader_wake": {
-    "party": "edited in the OxiDex team builder, 2026-10-29",
-    "ai_flags": "edited in the OxiDex team builder, 2026-10-29"
-  },
-  "rival_pastoria_city_chimchar": {
-    "party": "edited in the OxiDex team builder, 2026-10-30"
-  },
-  "rival_pastoria_city_piplup": {
-    "party": "edited in the OxiDex team builder, 2026-10-30"
-  },
-  "rival_pastoria_city_turtwig": {
-    "party": "edited in the OxiDex team builder, 2026-10-30"
   }
 }

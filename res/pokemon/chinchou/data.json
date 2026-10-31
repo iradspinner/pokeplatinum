@@ -103,7 +103,8 @@
             "MOVE_PSYBEAM",
             "MOVE_WHIRLPOOL",
             "MOVE_AGILITY",
-            "MOVE_MIST"
+            "MOVE_MIST",
+            "MOVE_DISCHARGE"
         ]
     },
     "evolutions": [

@@ -91,7 +91,8 @@
             "MOVE_GROWTH",
             "MOVE_DOUBLE_EDGE",
             "MOVE_MIST",
-            "MOVE_STOMP"
+            "MOVE_STOMP",
+            "MOVE_ICE_SHARD"
         ]
     },
     "evolutions": [

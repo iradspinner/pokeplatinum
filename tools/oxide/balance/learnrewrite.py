@@ -124,7 +124,9 @@ IAN_EGG_MOVES = {
     "SPECIES_GASTLY": [("MOVE_MALIGNANT_CHAIN", "Ian, 2026-10-21, on signature-moves.md: Pecharunt's, for "
                                                 "trainers' Gengar, which has its types"),
                        ("MOVE_PROTECT", "Ian, 2026-10-29: Officer Tyche's Haunter at Veilstone, a TM before "
-                                        "the TM pass, here so the OxiDex agrees")],
+                                        "the TM pass, here so the OxiDex agrees"),
+                       ("MOVE_NIGHTMARE", "Ian, 2026-10-31: Officer Somnu 1's Gastly at 17"),
+                       ("MOVE_SLUDGE", "Ian, 2026-10-31: Officer Somnu 1's Gastly at 17")],
     "SPECIES_DUSKULL": [("MOVE_LAST_RESPECTS", "Ian, 2026-10-21, on signature-moves.md: Houndstone's, for "
                                                "trainers' Dusknoir, which guides spirits")],
     # Two more of the page's homes for trainers: lines the player cannot
@@ -208,7 +210,8 @@ IAN_EGG_MOVES = {
     # carry that their members' lists give only above their new levels.
     "SPECIES_STARLY": [("MOVE_BRAVE_BIRD", "Ian, 2026-10-29: Barry 3's Staraptor at 35")],
     "SPECIES_PIPLUP": [("MOVE_DRILL_PECK", "Ian, 2026-10-29: Barry 3's Empoleon at 36")],
-    "SPECIES_TURTWIG": [("MOVE_CRUNCH", "Ian, 2026-10-29: Barry 3's Torterra at 36")],
+    "SPECIES_TURTWIG": [("MOVE_CRUNCH", "Ian, 2026-10-29: Barry 3's Torterra at 36"),
+                        ("MOVE_ABSORB", "Ian, 2026-10-31: Lucas and Dawn 1's Turtwig at 9")],
     # The level climb of Gardenia's split (Ian, 2026-10-29); Sunny Day was a TM
     # before the TM pass, so this is here so the OxiDex agrees.
     "SPECIES_ODDISH": [("MOVE_SUNNY_DAY", "Ian, 2026-10-29: Aroma Lady Elizabeth's Gloom")],
@@ -281,6 +284,35 @@ IAN_EGG_MOVES = {
                       ("MOVE_CRUNCH", "Ian, 2026-10-31: Darach's Entei"),
                       ("MOVE_EXTREME_SPEED", "Ian, 2026-10-31: Darach's Entei"),
                       ("MOVE_BULLDOZE", "Ian, 2026-10-31: Darach's Entei")],
+    # The cleanup of the first five splits (Ian, 2026-10-31, answering
+    # cleanup-five-splits.md's question 9): moves on the Galactic fights and
+    # two other teams that no list gives at their levels, built legal before
+    # the learnset rewrite and the move cuts moved them. Gastly's and
+    # Turtwig's are with their entries above. Jupiter 1's other member's two
+    # moves are on its line's egg list in the data only, since that line is
+    # one of the five held out (test_learnrewrite's check_held_out).
+    # Galarian Mr. Mime is a first stage of its own (Mime Jr. evolves into
+    # the plain form).
+    "SPECIES_PURRLOIN": [("MOVE_FAINT_ATTACK", "Ian, 2026-10-31: Mars 1's Liepard at 18")],
+    "SPECIES_LITTEN": [("MOVE_FLAME_WHEEL", "Ian, 2026-10-31: Mars 1's Torracat at 19")],
+    "SPECIES_MUNCHLAX": [("MOVE_YAWN", "Ian, 2026-10-31: Officer Somnu 1's Munchlax at 17"),
+                         ("MOVE_BODY_SLAM", "Ian, 2026-10-31: Officer Somnu 1's Munchlax at 17"),
+                         ("MOVE_CRUNCH", "Ian, 2026-10-31: Officer Somnu 1's Munchlax at 17")],
+    "SPECIES_CHINCHOU": [("MOVE_DISCHARGE", "Ian, 2026-10-31: Jupiter 1's Lanturn at 26, which learns it at 40")],
+    "SPECIES_SNOVER": [("MOVE_ICE_SHARD", "Ian, 2026-10-31: the Eterna building 3F grunt's Snover at 25, "
+                                          "which learns it at 26")],
+    "SPECIES_NATU": [("MOVE_FUTURE_SIGHT", "Ian, 2026-10-31: the Eterna building 3F grunt's Xatu at 25"),
+                     ("MOVE_AIR_SLASH", "Ian, 2026-10-31: the Eterna building 3F grunt's Xatu at 25")],
+    "SPECIES_GALARIAN_MR_MIME": [("MOVE_FREEZE_DRY", "Ian, 2026-10-31: the Eterna building 3F grunt's "
+                                                     "Galarian Mr. Mime at 25"),
+                                 ("MOVE_FUTURE_SIGHT", "Ian, 2026-10-31: the Eterna building 3F grunt's "
+                                                       "Galarian Mr. Mime at 25")],
+    "SPECIES_LUNATONE": [("MOVE_FUTURE_SIGHT", "Ian, 2026-10-31: the Eterna building 3F grunt's Lunatone at 25"),
+                         ("MOVE_ICY_WIND", "Ian, 2026-10-31: the Eterna building 3F grunt's Lunatone at 25")],
+    "SPECIES_ABRA": [("MOVE_FUTURE_SIGHT", "Ian, 2026-10-31: the Eterna building 3F grunt's Kadabra at 26, "
+                                           "which learns it at 42"),
+                     ("MOVE_ICY_WIND", "Ian, 2026-10-31: the Eterna building 3F grunt's Kadabra at 26")],
+    "SPECIES_HOOTHOOT": [("MOVE_TAILWIND", "Ian, 2026-10-31: Collector Jamal's Noctowl at 38")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

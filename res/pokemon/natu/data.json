@@ -106,7 +106,9 @@
             "MOVE_FEATHER_DANCE",
             "MOVE_REFRESH",
             "MOVE_ZEN_HEADBUTT",
-            "MOVE_SUCKER_PUNCH"
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_FUTURE_SIGHT",
+            "MOVE_AIR_SLASH"
         ]
     },
     "evolutions": [

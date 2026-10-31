@@ -10,69 +10,72 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_KABUTO",
+            "species": "SPECIES_OMANYTE",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 14,
+            "item": "ITEM_MYSTIC_WATER",
             "moves": [
-                "MOVE_GIGA_DRAIN",
-                "MOVE_MUD_SHOT",
-                "MOVE_AURORA_BEAM",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_SPIKES",
+                "MOVE_WATER_PULSE",
+                "MOVE_WITHDRAW",
+                "MOVE_BITE"
             ],
             "iv_scale": 230,
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
             "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_KABUTO",
+            "form": 0,
+            "level": 14,
+            "item": "ITEM_PASSHO_BERRY",
+            "moves": [
+                "MOVE_ROCK_POLISH",
+                "MOVE_ROCK_TOMB",
+                "MOVE_MUD_SHOT",
+                "MOVE_SCRATCH"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DWEBBLE",
+            "form": 0,
+            "level": 14,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_ROCK_BLAST",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_STRUGGLE_BUG",
+                "MOVE_IRON_DEFENSE"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_SERIOUS",
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_SHIELDON",
             "form": 0,
             "level": 15,
-            "item": "ITEM_NONE",
+            "item": "ITEM_CHOPLE_BERRY",
             "moves": [
+                "MOVE_IRON_DEFENSE",
                 "MOVE_HEADBUTT",
                 "MOVE_ROCK_TOMB",
-                "MOVE_PROTECT",
                 "MOVE_TAUNT"
             ],
             "iv_scale": 230,
+            "nature": "NATURE_SASSY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
-        },
-        {
-            "species": "SPECIES_ANORITH",
-            "form": 0,
-            "level": 14,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_ROCK_SLIDE",
-                "MOVE_KNOCK_OFF",
-                "MOVE_FURY_CUTTER",
-                "MOVE_SCREECH"
-            ],
-            "iv_scale": 230,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_CRANIDOS",
-            "form": 0,
-            "level": 15,
-            "item": "ITEM_PASSHO_BERRY",
-            "moves": [
-                "MOVE_HEADBUTT",
-                "MOVE_PURSUIT",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_LEER"
-            ],
-            "iv_scale": 230,
-            "nature": "NATURE_ADAMANT",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
         }
     ],
     "messages": [

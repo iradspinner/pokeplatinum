@@ -12,51 +12,47 @@
         {
             "species": "SPECIES_PSYDUCK",
             "form": 0,
-            "level": 14,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_WATER_PULSE",
-                "MOVE_PSYBEAM",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_DISABLE"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_WOOPER",
-            "form": 0,
-            "level": 14,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_MUD_SHOT",
-                "MOVE_WATER_GUN",
-                "MOVE_TAIL_WHIP",
-                "MOVE_DOUBLE_KICK"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_CHINCHOU",
-            "form": 0,
-            "level": 14,
+            "level": 11,
             "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_WATER_PULSE",
-                "MOVE_SHOCK_WAVE",
-                "MOVE_SUPERSONIC",
-                "MOVE_BUBBLE"
+                "MOVE_WATER_GUN",
+                "MOVE_SCREECH"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BUIZEL",
+            "form": 0,
+            "level": 11,
+            "item": "ITEM_PECHA_BERRY",
+            "moves": [
+                "MOVE_CHILLING_WATER",
+                "MOVE_WATER_PULSE"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BARBOACH",
+            "form": 0,
+            "level": 12,
+            "item": "ITEM_RAWST_BERRY",
+            "moves": [
+                "MOVE_WATER_GUN",
+                "MOVE_MUD_SLAP"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

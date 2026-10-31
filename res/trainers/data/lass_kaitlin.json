@@ -10,17 +10,16 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_EKANS",
+            "species": "SPECIES_PONYTA",
             "form": 0,
-            "level": 14,
-            "item": "ITEM_NONE",
+            "level": 12,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_BITE",
-                "MOVE_POISON_STING",
-                "MOVE_GLARE",
-                "MOVE_LEER"
+                "MOVE_EMBER",
+                "MOVE_FLAME_WHEEL"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_GENTLE",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -28,67 +27,32 @@
         {
             "species": "SPECIES_GROWLITHE",
             "form": 0,
-            "level": 14,
-            "item": "ITEM_NONE",
+            "level": 12,
+            "item": "ITEM_CHERI_BERRY",
             "moves": [
                 "MOVE_EMBER",
-                "MOVE_BITE",
-                "MOVE_LEER",
-                "MOVE_WILL_O_WISP"
+                "MOVE_LEER"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_DOCILE",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": null
         },
         {
-            "species": "SPECIES_SNUBBULL",
-            "form": 0,
-            "level": 14,
-            "item": "ITEM_NONE",
-            "moves": [
-                "MOVE_BITE",
-                "MOVE_THUNDER_FANG",
-                "MOVE_CHARM",
-                "MOVE_SCARY_FACE"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_TAILLOW",
+            "species": "SPECIES_MAGBY",
             "form": 0,
             "level": 13,
-            "item": "ITEM_NONE",
+            "item": "ITEM_PERSIM_BERRY",
             "moves": [
-                "MOVE_WING_ATTACK",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_PECK",
-                "MOVE_GROWL"
+                "MOVE_EMBER",
+                "MOVE_SCREECH"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_QUIRKY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
-        },
-        {
-            "species": "SPECIES_SPOINK",
-            "form": 0,
-            "level": 14,
-            "item": "ITEM_ORAN_BERRY",
-            "moves": [
-                "MOVE_PSYBEAM",
-                "MOVE_SHOCK_WAVE",
-                "MOVE_ICY_WIND",
-                "MOVE_PAYBACK"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_MODEST",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
         }
     ],
     "messages": [

@@ -31,7 +31,7 @@
             "species": "SPECIES_BUIZEL",
             "form": 0,
             "level": 10,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_CHERI_BERRY",
             "moves": [
                 "MOVE_CHILLING_WATER",
                 "MOVE_QUICK_ATTACK",
@@ -48,7 +48,7 @@
             "species": "SPECIES_MUNCHLAX",
             "form": 0,
             "level": 10,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_PECHA_BERRY",
             "moves": [
                 "MOVE_TACKLE",
                 "MOVE_LICK",

@@ -110,7 +110,9 @@
             "MOVE_THUNDER_PUNCH",
             "MOVE_DESTINY_BOND",
             "MOVE_MALIGNANT_CHAIN",
-            "MOVE_PROTECT"
+            "MOVE_PROTECT",
+            "MOVE_NIGHTMARE",
+            "MOVE_SLUDGE"
         ]
     },
     "evolutions": [

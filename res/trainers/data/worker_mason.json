@@ -12,84 +12,86 @@
         {
             "species": "SPECIES_DIGLETT",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_NONE",
+            "level": 13,
+            "item": "ITEM_SOFT_SAND",
             "moves": [
-                "MOVE_MAGNITUDE",
-                "MOVE_MUD_BOMB",
-                "MOVE_ASTONISH",
-                "MOVE_SUCKER_PUNCH"
+                "MOVE_STEALTH_ROCK",
+                "MOVE_MUD_SLAP",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_SCRATCH"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_GEODUDE",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_NONE",
+            "level": 13,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_ROLLOUT",
-                "MOVE_BLOCK",
                 "MOVE_ROCK_THROW",
-                "MOVE_ROCK_TOMB"
+                "MOVE_ROLLOUT",
+                "MOVE_MUD_SLAP",
+                "MOVE_ROCK_POLISH"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
             "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CHARCADET",
+            "form": 0,
+            "level": 13,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_WILL_O_WISP",
+                "MOVE_CLEAR_SMOG",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_SPITE"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_RHYHORN",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_NONE",
+            "level": 13,
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
                 "MOVE_HORN_ATTACK",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_STOMP",
+                "MOVE_ROCK_BLAST",
+                "MOVE_SCARY_FACE",
                 "MOVE_TAIL_WHIP"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 2,
             "gender": null
         },
         {
-            "species": "SPECIES_MAKUHITA",
-            "form": 0,
-            "level": 15,
-            "item": "ITEM_ORAN_BERRY",
-            "moves": [
-                "MOVE_ARM_THRUST",
-                "MOVE_VITAL_THROW",
-                "MOVE_ROCK_TOMB",
-                "MOVE_KNOCK_OFF"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_ADAMANT",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
             "species": "SPECIES_LARVITAR",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_NONE",
+            "level": 14,
+            "item": "ITEM_BLACKGLASSES",
             "moves": [
                 "MOVE_ROCK_SLIDE",
                 "MOVE_BITE",
-                "MOVE_LEER",
                 "MOVE_SCREECH"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_BRAVE",
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
         }
     ],
     "messages": [

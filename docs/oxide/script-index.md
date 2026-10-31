@@ -19,7 +19,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
 | Flags | 3324 | 2964 | 214 | 146 | 0 | 105 |
-| Variables | 1119 | 1078 | 27 | 14 | 0 | 36 |
+| Variables | 1121 | 1078 | 27 | 16 | 0 | 36 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
 
@@ -393,9 +393,9 @@ Scripts nothing reaches: script 4 `SandgemTownPokemonResearchLab_Entry3` (line 6
 
 Trainer battles:
 
-- TRAINER_YOUNGSTER_TRISTAN (Tristan, level 9, 3 Pokemon), sees the player. Vanilla. `events_route_202.json:19`
-- TRAINER_LASS_NATALIE (Natalie, level 10, 3 Pokemon), sees the player. Vanilla. `events_route_202.json:34`
-- TRAINER_YOUNGSTER_LOGAN (Logan, level 10, 4 Pokemon), sees the player. Vanilla. `events_route_202.json:49`
+- TRAINER_YOUNGSTER_TRISTAN (Tristan, level 7, 3 Pokemon), sees the player. Vanilla. `events_route_202.json:19`
+- TRAINER_LASS_NATALIE (Natalie, level 8, 3 Pokemon), sees the player. Vanilla. `events_route_202.json:34`
+- TRAINER_YOUNGSTER_LOGAN (Logan, level 8, 3 Pokemon), sees the player. Vanilla. `events_route_202.json:49`
 - StartTrainerBattle: against TRAINER_DUMMY_787 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:298`
 - StartTrainerBattle: against TRAINER_DUMMY_788 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:301`
 - StartTrainerBattle: against TRAINER_DUMMY_789 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:304`
@@ -585,11 +585,11 @@ Could not read: 2 commands with no name.
 
 Trainer battles:
 
-- TRAINER_YOUNGSTER_SEBASTIAN (Sebastian, level 15, 3 Pokemon), sees the player. Vanilla. `events_route_203.json:10`
-- TRAINER_YOUNGSTER_MICHAEL (Michael, level 15, 4 Pokemon), sees the player. Vanilla. `events_route_203.json:27`
-- TRAINER_LASS_KAITLIN (Kaitlin, level 14, 5 Pokemon), sees the player. Vanilla. `events_route_203.json:44`
-- TRAINER_YOUNGSTER_DALLAS (Dallas, level 15, 4 Pokemon), sees the player. Vanilla. `events_route_203.json:61`
-- TRAINER_LASS_MADELINE (Madeline, level 14, 3 Pokemon), sees the player. Vanilla. `events_route_203.json:78`
+- TRAINER_YOUNGSTER_SEBASTIAN (Sebastian, level 12, 3 Pokemon), sees the player. Vanilla. `events_route_203.json:10`
+- TRAINER_YOUNGSTER_MICHAEL (Michael, level 11, 3 Pokemon), sees the player. Vanilla. `events_route_203.json:27`
+- TRAINER_LASS_KAITLIN (Kaitlin, level 13, 3 Pokemon), sees the player. Vanilla. `events_route_203.json:44`
+- TRAINER_YOUNGSTER_DALLAS (Dallas, level 11, 3 Pokemon), sees the player. Vanilla. `events_route_203.json:61`
+- TRAINER_LASS_MADELINE (Madeline, level 12, 3 Pokemon), sees the player. Vanilla. `events_route_203.json:78`
 - StartTrainerBattle: against TRAINER_RIVAL_ROUTE_203_PIPLUP (Barry, level 11, 4 Pokemon), by name. Vanilla. `scripts_route_203.s:78`
 - StartTrainerBattle: against TRAINER_RIVAL_ROUTE_203_TURTWIG (Barry, level 11, 4 Pokemon), by name. Vanilla. `scripts_route_203.s:82`
 - StartTrainerBattle: against TRAINER_RIVAL_ROUTE_203_CHIMCHAR (Barry, level 11, 4 Pokemon), by name. Vanilla. `scripts_route_203.s:86`
@@ -666,7 +666,7 @@ Scripts nothing reaches: script 3 `OreburghCityEastHouse2F_Dummy3` (line 42).
 
 Trainer battles:
 
-- TRAINER_YOUNGSTER_JONATHON (Jonathon, level 15, 3 Pokemon), sees the player. Vanilla. `events_oreburgh_city_gym.json:57`
+- TRAINER_YOUNGSTER_JONATHON (Jonathon, level 14, 3 Pokemon), sees the player. Vanilla. `events_oreburgh_city_gym.json:57`
 - TRAINER_YOUNGSTER_DARIUS (Darius, level 15, 4 Pokemon), sees the player. Vanilla. `events_oreburgh_city_gym.json:72`
 - StartTrainerBattle: against TRAINER_LEADER_ROARK (Roark, level 16, 5 Pokemon), by number. Vanilla. `scripts_oreburgh_city_gym.s:28`
 - StartTrainerBattle: against TRAINER_LEADER_ROARK_REMATCH (Roark, level 82, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_oreburgh_city_gym.s:101`
@@ -785,8 +785,8 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_PICNICKER_DIANA (Diana, level 15, 4 Pokemon), sees the player. Vanilla. `events_oreburgh_gate_1f.json:10`
-- TRAINER_CAMPER_CURTIS (Curtis, level 14, 4 Pokemon), sees the player. Vanilla. `events_oreburgh_gate_1f.json:27`
+- TRAINER_PICNICKER_DIANA (Diana, level 13, 3 Pokemon), sees the player. Vanilla. `events_oreburgh_gate_1f.json:10`
+- TRAINER_CAMPER_CURTIS (Curtis, level 13, 3 Pokemon), sees the player. Vanilla. `events_oreburgh_gate_1f.json:27`
 
 Items given:
 
@@ -891,8 +891,8 @@ Variables:
 
 Trainer battles:
 
-- TRAINER_WORKER_COLIN (Colin, level 15, 4 Pokemon), sees the player. Vanilla. `events_oreburgh_mine_b2f.json:85`
-- TRAINER_WORKER_MASON (Mason, level 15, 5 Pokemon), sees the player. Vanilla. `events_oreburgh_mine_b2f.json:100`
+- TRAINER_WORKER_COLIN (Colin, level 14, 4 Pokemon), sees the player. Vanilla. `events_oreburgh_mine_b2f.json:85`
+- TRAINER_WORKER_MASON (Mason, level 14, 5 Pokemon), sees the player. Vanilla. `events_oreburgh_mine_b2f.json:100`
 
 Item balls:
 
@@ -2988,8 +2988,8 @@ Flags:
 
 Variables:
 
-- Set: VAR_MAP_LOCAL_0x00, VAR_RANDOM_INTERVIEW_QUESTION.
-- Checked: VAR_MAP_LOCAL_0x00.
+- Set: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01 (added, Oxide), VAR_RANDOM_INTERVIEW_QUESTION.
+- Checked: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01 (added, Oxide).
 
 ### Maniac Tunnel
 
@@ -8195,12 +8195,12 @@ Could not read: 2 commands with no name.
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 10, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:157`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 10, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:162`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 10, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:167`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 9, 4 Pokemon), by name. Vanilla. `scripts_trainers_school.s:251`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 9, 4 Pokemon), by name. Vanilla. `scripts_trainers_school.s:256`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 9, 4 Pokemon), by name. Vanilla. `scripts_trainers_school.s:261`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 9, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:157`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 9, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:162`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 9, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:167`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 9, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:251`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 9, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:256`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 9, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:261`
 
 Items given:
 

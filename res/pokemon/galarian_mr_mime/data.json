@@ -188,7 +188,10 @@
             "TM94"
         ],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_FREEZE_DRY",
+            "MOVE_FUTURE_SIGHT"
+        ]
     },
     "evolutions": [
         [

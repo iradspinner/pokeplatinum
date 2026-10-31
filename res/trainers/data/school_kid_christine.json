@@ -12,68 +12,50 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CHINGLING",
+            "species": "SPECIES_NATU",
             "form": 0,
-            "level": 9,
-            "item": "ITEM_NONE",
+            "level": 8,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_ASTONISH",
-                "MOVE_DISABLE",
-                "MOVE_GROWL",
-                "MOVE_WISH"
+                "MOVE_PECK",
+                "MOVE_LEER"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_NATU",
+            "species": "SPECIES_WINGULL",
             "form": 0,
-            "level": 9,
-            "item": "ITEM_NONE",
+            "level": 8,
+            "item": "ITEM_ASPEAR_BERRY",
             "moves": [
-                "MOVE_PECK",
-                "MOVE_NIGHT_SHADE",
-                "MOVE_LEER",
-                "MOVE_FAINT_ATTACK"
+                "MOVE_WATER_GUN",
+                "MOVE_GUST"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_RALTS",
             "form": 0,
             "level": 9,
-            "item": "ITEM_NONE",
+            "item": "ITEM_PECHA_BERRY",
             "moves": [
                 "MOVE_CONFUSION",
-                "MOVE_DISABLE",
-                "MOVE_GROWL",
-                "MOVE_SHADOW_SNEAK"
+                "MOVE_DISARMING_VOICE",
+                "MOVE_GROWL"
             ],
             "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_MEDITITE",
-            "form": 0,
-            "level": 9,
-            "item": "ITEM_ORAN_BERRY",
-            "moves": [
-                "MOVE_BULLET_PUNCH",
-                "MOVE_CONFUSION",
-                "MOVE_FORESIGHT",
-                "MOVE_SWIFT"
-            ],
-            "iv_scale": 200,
+            "nature": "NATURE_BASHFUL",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         }
     ],
     "messages": [
