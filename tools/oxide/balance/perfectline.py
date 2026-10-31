@@ -804,7 +804,7 @@ def attack(b, att, mv, dfn, first):
         return                   # only a move Protect can stop (fightsim.protected)
     if mv.effect == "REMOVE_PROTECT" and not dfn.protecting:
         return                   # Feint and Hyperspace Hole fail on a target not protecting (BtlCmd_TryFeint)
-    if fs.lifted(dfn, mv):
+    if fs.lifted(dfn, mv) or fs.balloon_floats(b, att, dfn, mv):
         return
     if mv.effect == "HIT_FIRST_IF_TARGET_ATTACKING":
         nxt = getattr(dfn, "chosen", None)

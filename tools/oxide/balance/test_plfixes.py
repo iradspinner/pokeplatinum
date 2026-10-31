@@ -5712,6 +5712,49 @@ def b8_battle(boss, player, dice=Sure7):
     return b, b.b.cur(), b.p.cur()
 
 
+
+def air_balloon_checks():
+    """The Air Balloon (approved by Ian, 2026-10-31, from wake-barry4-check.md):
+    while it floats, a Ground move does not affect its holder
+    (BattleSystem_ApplyTypeChart's HOLD_EFFECT_AIR_BALLOON branch), and the
+    first damaging hit that leaves the holder standing bursts it
+    (BattleSystem_TriggerHeldItemOnHit, subscript_air_balloon_pop), after
+    which Ground moves land and the player's move filter offers them again.
+    Gravity brings a floating holder down. Wake's Clodsire holds one; the
+    player's Quagsire answers with Earthquake. Until 2026-10-31 the rows hit
+    the balloon at full and the balloon never burst."""
+    out = []
+    for name, attack, use in (("readings", pl.attack, pl._use_move), ("fightsim", fs.attack, fs._use_move)):
+        b, clod, quag = b8_battle([("Clodsire", 41, "Water Absorb", ["Tackle"], "Air Balloon")],
+                                  [("Quagsire", 41, "Water Absorb", ["Earthquake", "Tackle"])])
+        clod.hp = clod.maxhp = 10 ** 6
+        floating = max(_hits(b, attack, quag, "Earthquake", clod, tries=5))
+        kept = clod.item
+        quag.moves, quag.pp = [fs.move("Earthquake"), fs.move("Tackle")], {"Earthquake": 9, "Tackle": 9}
+        offered_up = [a[1].name for a in pl.player_actions(b) if a[0] == "move"]
+        # The burst follows the whole move (its after-move items), so the hit
+        # goes through the move's use, not the bare attack.
+        b.rng, b.dice = random.Random(0), pl.RunDice(random.Random(0), True)
+        use(b, quag, fs.move("Tackle"), clod, True)
+        tackled = clod.maxhp - clod.hp
+        burst = clod.item
+        quag.moves, quag.pp = [fs.move("Earthquake"), fs.move("Tackle")], {"Earthquake": 9, "Tackle": 9}
+        offered_down = [a[1].name for a in pl.player_actions(b) if a[0] == "move"]
+        landed = max(_hits(b, attack, quag, "Earthquake", clod, tries=5))
+        out.append((f"the Air Balloon keeps Earthquake off its holder until a hit bursts it ({name})",
+                    floating == 0 and kept == "Air Balloon" and tackled > 0 and burst is None and landed > 0
+                    and "Earthquake" not in offered_up and "Earthquake" in offered_down,
+                    f"Earthquake {floating} floating, item {kept}; Tackle {tackled}, item {burst}; "
+                    f"Earthquake {landed} after; offered {offered_up} then {offered_down}"))
+    b, clod, quag = b8_battle([("Clodsire", 41, "Water Absorb", ["Tackle"], "Air Balloon")],
+                              [("Quagsire", 41, "Water Absorb", ["Earthquake"])])
+    clod.hp = clod.maxhp = 10 ** 6
+    b.gravity = 5
+    grounded = max(_hits(b, pl.attack, quag, "Earthquake", clod, tries=1))
+    out.append(("Gravity brings an Air Balloon's holder down to Earthquake", grounded > 0, f"Earthquake {grounded}"))
+    return out
+
+
 def relic_song_checks():
     """Relic Song in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Meloetta's hit puts a trainer's
@@ -7705,6 +7748,7 @@ def main():
     results += magic_room_checks()
     results += relic_song_checks()
     results += clanging_scales_checks()
+    results += air_balloon_checks()
     results += matcha_gotcha_checks()
     results += fell_stinger_checks()
     results += prevent_escape_hit_checks()
