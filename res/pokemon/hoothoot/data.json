@@ -100,7 +100,8 @@
             "MOVE_SKY_ATTACK",
             "MOVE_FEATHER_DANCE",
             "MOVE_AGILITY",
-            "MOVE_NIGHT_SHADE"
+            "MOVE_NIGHT_SHADE",
+            "MOVE_TAILWIND"
         ]
     },
     "evolutions": [

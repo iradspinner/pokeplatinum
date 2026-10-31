@@ -89,7 +89,9 @@
             "MOVE_CURSE",
             "MOVE_SELFDESTRUCT",
             "MOVE_EXPLOSION",
-            "MOVE_MEMENTO"
+            "MOVE_MEMENTO",
+            "MOVE_STRANGE_STEAM",
+            "MOVE_TOXIC_SPIKES"
         ]
     },
     "evolutions": [

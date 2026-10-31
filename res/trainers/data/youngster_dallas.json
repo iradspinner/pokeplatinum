@@ -10,69 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SHINX",
+            "species": "SPECIES_JOLTIK",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_NONE",
+            "level": 10,
+            "item": "ITEM_MAGNET",
             "moves": [
-                "MOVE_SPARK",
-                "MOVE_TACKLE",
-                "MOVE_SCARY_FACE",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_THUNDER_WAVE",
+                "MOVE_CHARGE_BEAM",
+                "MOVE_FURY_CUTTER",
+                "MOVE_STRING_SHOT"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_MAREEP",
             "form": 0,
-            "level": 14,
-            "item": "ITEM_NONE",
+            "level": 10,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
+                "MOVE_CHARGE_BEAM",
                 "MOVE_THUNDER_SHOCK",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_TACKLE",
-                "MOVE_SAND_ATTACK"
+                "MOVE_CONFUSE_RAY",
+                "MOVE_TACKLE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_PIKACHU",
+            "species": "SPECIES_PAWMI",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_NONE",
+            "level": 11,
+            "item": "ITEM_CHOPLE_BERRY",
             "moves": [
-                "MOVE_SHOCK_WAVE",
+                "MOVE_SPARK",
+                "MOVE_BITE",
                 "MOVE_QUICK_ATTACK",
-                "MOVE_BRICK_BREAK",
                 "MOVE_CHARM"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_ELEKID",
-            "form": 0,
-            "level": 15,
-            "item": "ITEM_ORAN_BERRY",
-            "moves": [
-                "MOVE_SHOCK_WAVE",
-                "MOVE_LOW_KICK",
-                "MOVE_BRICK_BREAK",
-                "MOVE_QUICK_ATTACK"
             ],
             "iv_scale": 200,
             "nature": "NATURE_NAIVE",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
         }
     ],
     "messages": [

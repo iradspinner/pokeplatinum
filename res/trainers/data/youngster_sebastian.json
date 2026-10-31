@@ -10,52 +10,69 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAKUHITA",
+            "species": "SPECIES_TYROGUE",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_NONE",
+            "level": 11,
+            "item": "ITEM_PERSIM_BERRY",
             "moves": [
-                "MOVE_ARM_THRUST",
-                "MOVE_VITAL_THROW",
-                "MOVE_ROCK_TOMB",
-                "MOVE_KNOCK_OFF"
+                "MOVE_FAKE_OUT",
+                "MOVE_MACH_PUNCH",
+                "MOVE_RAPID_SPIN",
+                "MOVE_TACKLE"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_HARDY",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CLOBBOPUS",
+            "form": 0,
+            "level": 11,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_ROCK_SMASH",
+                "MOVE_TAUNT",
+                "MOVE_LEER"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_MANKEY",
             "form": 0,
-            "level": 14,
-            "item": "ITEM_NONE",
+            "level": 11,
+            "item": "ITEM_BLACK_BELT",
             "moves": [
-                "MOVE_KARATE_CHOP",
-                "MOVE_COVET",
-                "MOVE_LOW_KICK",
-                "MOVE_LEER"
+                "MOVE_REVENGE",
+                "MOVE_FURY_SWIPES",
+                "MOVE_LEER",
+                "MOVE_COVET"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_MACHOP",
+            "species": "SPECIES_MAKUHITA",
             "form": 0,
-            "level": 14,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 12,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_KARATE_CHOP",
-                "MOVE_LOW_KICK",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_LEER"
+                "MOVE_BULK_UP",
+                "MOVE_ARM_THRUST",
+                "MOVE_BULLET_PUNCH"
             ],
             "iv_scale": 200,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 1
         }
     ],
     "messages": [
