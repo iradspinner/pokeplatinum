@@ -114,6 +114,15 @@
         "They have prizes I really want.\n",
         "But Coins, I have none!"
       ]
+    },
+    {
+      "id": "VeilstoneCityPrizeExchange_Text_BeatDahliaFirst",
+      "en_US": [
+        "I’m sorry, but prizes go only to\n",
+        "a Trainer who has beaten Dahlia.\r",
+        "She’s the Arcade Star, and she waits\n",
+        "inside the Game Corner next door."
+      ]
     }
   ]
 }

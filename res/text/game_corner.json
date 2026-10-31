@@ -253,6 +253,43 @@
     {
       "id": "GameCorner_Text_Dummy27",
       "garbage": 0
+    },
+    {
+      "id": "GameCorner_Text_DahliaIntro",
+      "en_US": [
+        "Hi! I am Dahlia, the Arcade Star!\r",
+        "The prize counter next door trades\n",
+        "only with a Trainer who beats me!\r",
+        "My battle opens in a Wonder Room.\n",
+        "Defense and Sp. Def trade places!\r",
+        "So! Will you play with me?"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_DahliaLetsPlay",
+      "en_US": "Wonderful! Let the game begin!\r"
+    },
+    {
+      "id": "GameCorner_Text_DahliaWin",
+      "en_US": [
+        "You are the real jackpot, you!\r",
+        "The prize counter next door, it will\n",
+        "trade with you now. Enjoy!"
+      ]
+    },
+    {
+      "id": "GameCorner_Text_DahliaDeclined",
+      "en_US": [
+        "No? Then the prizes, they wait too!\n",
+        "Come back when you feel lucky."
+      ]
+    },
+    {
+      "id": "GameCorner_Text_DahliaBeaten",
+      "en_US": [
+        "Ah, my champion of the arcade!\n",
+        "The prizes, they are yours to win."
+      ]
     }
   ]
 }

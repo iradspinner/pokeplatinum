@@ -12,6 +12,10 @@ VeilstoneCityPrizeExchange_Receptionist:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    @ Platinum Oxide (Ian, 2026-09-27): the prizes open only once the player
+    @ has beaten Dahlia, the Arcade Star, inside the Game Corner. The slots,
+    @ the coins clerk and the other two here are not gated.
+    GoToIfNotDefeated TRAINER_DUMMY_007, VeilstoneCityPrizeExchange_BeatDahliaFirst
     GetGameCornerPrizeCount VAR_MAP_LOCAL_0x01
     Message VeilstoneCityPrizeExchange_Text_ExchangeCoinsForPrizes
     ShowCoins 21, 1
@@ -51,6 +55,13 @@ VeilstoneCityPrizeExchange_DontBuyAPrize:
     WaitButton
     CloseMessage
     HideCoins
+    ReleaseAll
+    End
+
+VeilstoneCityPrizeExchange_BeatDahliaFirst:
+    Message VeilstoneCityPrizeExchange_Text_BeatDahliaFirst
+    WaitButton
+    CloseMessage
     ReleaseAll
     End
 

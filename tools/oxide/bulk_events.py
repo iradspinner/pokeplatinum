@@ -195,6 +195,14 @@ for _m in ("route_213", "valor_lakefront", "route_212_north", "route_212_south",
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; then " + _why
                                 if f"events_{_m}" in DIVERGED else _why)
 
+# Two Frontier Brains placed (Ian, 2026-10-31; docs/oxide/frontier-brains.md):
+# Dahlia inside the Game Corner's entrance.
+for _m, _why in (("game_corner", "Dahlia, the Arcade Star, added inside the entrance"),):
+    _why += " (Ian, 2026-10-31)"
+    DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
+                                if f"events_{_m}" in DIVERGED else _why)
+
+
 def render(record, existing, index):
     """One object event as the repo spells it, keeping the existing id."""
     out = {}
