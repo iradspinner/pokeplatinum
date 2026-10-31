@@ -347,6 +347,11 @@
   "jogger_wyatt": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "lady_celeste": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "items": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "lady_melissa": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
@@ -384,6 +389,26 @@
   },
   "lucas_veilstone_city_turtwig": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "maid_belinda": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "maid_clare": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "maid_elena": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "maid_emily": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "maid_sophie": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "ninja_boy_zach": {
     "party": "edited in the OxiDex team builder, 2026-10-30"

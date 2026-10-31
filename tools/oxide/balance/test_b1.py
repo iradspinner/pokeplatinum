@@ -202,6 +202,10 @@ UNPLACED_OK = re.compile(r"rematch|_\d+$|^rival_|^lucas_|^dawn_|^cheryl_|^mira_|
 # First-run trainers the base ROM itself took off the map: Test.nds (the base
 # ROM since 2026-09-25) puts Beauty Devon where Collector Brady stood.
 REMOVED_BY_BASE = {"collector_brady"}
+# First-run trainers Oxide took out of play: Rich Boy Liam, the maid
+# knockout's other closer, which ends with Lady Celeste every time (Ian,
+# 2026-10-31; docs/oxide/maid-knockout.md).
+REMOVED_BY_BASE |= {"rich_boy_liam"}
 
 
 def check_split_map(results):

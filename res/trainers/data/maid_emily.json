@@ -3,23 +3,27 @@
     "class": "TRAINER_CLASS_MAID",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CLEFAIRY",
+            "species": "SPECIES_CINCCINO",
             "form": 0,
-            "level": 29,
-            "item": null,
+            "level": 41,
+            "item": "ITEM_WIDE_LENS",
             "moves": [
-                "MOVE_METRONOME",
-                "MOVE_ENCORE",
-                "MOVE_METEOR_MASH",
-                "MOVE_ENDURE"
+                "MOVE_TAIL_SLAP",
+                "MOVE_ROCK_BLAST",
+                "MOVE_TRIPLE_AXEL",
+                "MOVE_TICKLE"
             ],
-            "iv_scale": 0,
-            "ball_seal": 0
+            "iv_scale": 224,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 2
         }
     ],
     "messages": [
