@@ -875,6 +875,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   item ball outside Stark Mountain gives a PP Up, and the man in Celestic
   Town's northwest house gives BlackGlasses from 4:00 to 19:59 and Wise
   Glasses at night, never a Choice Specs.
+- [ ] Manaphy's Tail Glow (Ian, 2026-10-31): the Pokemon Mansion's egg hatches
+  into a Manaphy that does not know Tail Glow; it learns it at level 70.
 - [ ] Pastoria's Ability Capsule (Ian, 2026-10-13): an item ball stands at
   the southern end of the one-tile strip between the two ponds in the city's
   southwest corner, and gives an Ability Capsule. Used on a Pokemon, it asks
