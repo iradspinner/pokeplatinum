@@ -10,31 +10,28 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BUDEW",
+            "species": "SPECIES_PARAS",
             "form": 0,
             "level": 10,
-            "item": "ITEM_POISON_BARB",
+            "item": "ITEM_PECHA_BERRY",
             "moves": [
-                "MOVE_STUN_SPORE",
-                "MOVE_CLEAR_SMOG",
-                "MOVE_CONFUSION"
+                "MOVE_BUG_BITE",
+                "MOVE_BULLET_SEED"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_MILD",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_LOTAD",
             "form": 0,
             "level": 10,
-            "item": "ITEM_BIG_ROOT",
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_LEECH_SEED",
-                "MOVE_MEGA_DRAIN",
                 "MOVE_WATER_GUN",
-                "MOVE_ASTONISH"
+                "MOVE_MEGA_DRAIN"
             ],
             "iv_scale": 200,
             "nature": "NATURE_DOCILE",
@@ -43,36 +40,19 @@
             "gender": null
         },
         {
-            "species": "SPECIES_PARAS",
-            "form": 0,
-            "level": 10,
-            "item": "ITEM_SILVERPOWDER",
-            "moves": [
-                "MOVE_POISON_POWDER",
-                "MOVE_BUG_BITE",
-                "MOVE_METAL_CLAW"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_BRAVE",
-            "ball_seal": 0,
-            "ability": 2,
-            "gender": null
-        },
-        {
             "species": "SPECIES_SMOLIV",
             "form": 0,
             "level": 11,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_CHERI_BERRY",
             "moves": [
-                "MOVE_MEGA_DRAIN",
                 "MOVE_RAZOR_LEAF",
-                "MOVE_CHARM",
-                "MOVE_TACKLE"
+                "MOVE_TACKLE",
+                "MOVE_CHARM"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_SERIOUS",
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
-            "ability": 3,
+            "ability": 1,
             "gender": null
         }
     ],

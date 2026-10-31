@@ -395,7 +395,7 @@ Trainer battles:
 
 - TRAINER_YOUNGSTER_TRISTAN (Tristan, level 7, 3 Pokemon), sees the player. Vanilla. `events_route_202.json:19`
 - TRAINER_LASS_NATALIE (Natalie, level 8, 3 Pokemon), sees the player. Vanilla. `events_route_202.json:34`
-- TRAINER_YOUNGSTER_LOGAN (Logan, level 8, 4 Pokemon), sees the player. Vanilla. `events_route_202.json:49`
+- TRAINER_YOUNGSTER_LOGAN (Logan, level 8, 3 Pokemon), sees the player. Vanilla. `events_route_202.json:49`
 - StartTrainerBattle: against TRAINER_DUMMY_787 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:298`
 - StartTrainerBattle: against TRAINER_DUMMY_788 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:301`
 - StartTrainerBattle: against TRAINER_DUMMY_789 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:304`
@@ -585,11 +585,11 @@ Could not read: 2 commands with no name.
 
 Trainer battles:
 
-- TRAINER_YOUNGSTER_SEBASTIAN (Sebastian, level 12, 4 Pokemon), sees the player. Vanilla. `events_route_203.json:10`
-- TRAINER_YOUNGSTER_MICHAEL (Michael, level 11, 4 Pokemon), sees the player. Vanilla. `events_route_203.json:27`
-- TRAINER_LASS_KAITLIN (Kaitlin, level 13, 5 Pokemon), sees the player. Vanilla. `events_route_203.json:44`
+- TRAINER_YOUNGSTER_SEBASTIAN (Sebastian, level 12, 3 Pokemon), sees the player. Vanilla. `events_route_203.json:10`
+- TRAINER_YOUNGSTER_MICHAEL (Michael, level 11, 3 Pokemon), sees the player. Vanilla. `events_route_203.json:27`
+- TRAINER_LASS_KAITLIN (Kaitlin, level 13, 3 Pokemon), sees the player. Vanilla. `events_route_203.json:44`
 - TRAINER_YOUNGSTER_DALLAS (Dallas, level 11, 3 Pokemon), sees the player. Vanilla. `events_route_203.json:61`
-- TRAINER_LASS_MADELINE (Madeline, level 12, 4 Pokemon), sees the player. Vanilla. `events_route_203.json:78`
+- TRAINER_LASS_MADELINE (Madeline, level 12, 3 Pokemon), sees the player. Vanilla. `events_route_203.json:78`
 - StartTrainerBattle: against TRAINER_RIVAL_ROUTE_203_PIPLUP (Barry, level 11, 4 Pokemon), by name. Vanilla. `scripts_route_203.s:78`
 - StartTrainerBattle: against TRAINER_RIVAL_ROUTE_203_TURTWIG (Barry, level 11, 4 Pokemon), by name. Vanilla. `scripts_route_203.s:82`
 - StartTrainerBattle: against TRAINER_RIVAL_ROUTE_203_CHIMCHAR (Barry, level 11, 4 Pokemon), by name. Vanilla. `scripts_route_203.s:86`
@@ -785,7 +785,7 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_PICNICKER_DIANA (Diana, level 13, 4 Pokemon), sees the player. Vanilla. `events_oreburgh_gate_1f.json:10`
+- TRAINER_PICNICKER_DIANA (Diana, level 13, 3 Pokemon), sees the player. Vanilla. `events_oreburgh_gate_1f.json:10`
 - TRAINER_CAMPER_CURTIS (Curtis, level 13, 3 Pokemon), sees the player. Vanilla. `events_oreburgh_gate_1f.json:27`
 
 Items given:
@@ -8195,9 +8195,9 @@ Could not read: 2 commands with no name.
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 9, 4 Pokemon), by name. Vanilla. `scripts_trainers_school.s:157`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 9, 4 Pokemon), by name. Vanilla. `scripts_trainers_school.s:162`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 9, 4 Pokemon), by name. Vanilla. `scripts_trainers_school.s:167`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 9, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:157`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 9, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:162`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 9, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:167`
 - StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 9, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:251`
 - StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 9, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:256`
 - StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 9, 3 Pokemon), by name. Vanilla. `scripts_trainers_school.s:261`

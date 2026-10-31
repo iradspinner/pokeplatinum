@@ -12,70 +12,50 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PICHU",
+            "species": "SPECIES_SURSKIT",
             "form": 0,
             "level": 8,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_PERSIM_BERRY",
             "moves": [
-                "MOVE_FAKE_OUT",
-                "MOVE_THUNDER_SHOCK",
-                "MOVE_ENCORE",
-                "MOVE_TAIL_WHIP"
+                "MOVE_BUBBLE",
+                "MOVE_STRUGGLE_BUG"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_NAIVE",
+            "nature": "NATURE_SERIOUS",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_CLEFFA",
+            "species": "SPECIES_MACHOP",
             "form": 0,
             "level": 8,
-            "item": "ITEM_PERSIM_BERRY",
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_SING",
-                "MOVE_ENCORE",
-                "MOVE_POUND",
-                "MOVE_CHARM"
+                "MOVE_ROCK_SMASH",
+                "MOVE_LOW_KICK",
+                "MOVE_LEER"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_CALM",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
-            "ability": 2,
+            "ability": 3,
             "gender": null
         },
         {
-            "species": "SPECIES_ABRA",
-            "form": 0,
-            "level": 8,
-            "item": "ITEM_MAGNET",
-            "moves": [
-                "MOVE_CHARGE_BEAM",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_ENCORE"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_RASH",
-            "ball_seal": 0,
-            "ability": 2,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_SHROOMISH",
+            "species": "SPECIES_HOUNDOUR",
             "form": 0,
             "level": 9,
-            "item": "ITEM_MIRACLE_SEED",
+            "item": "ITEM_CHESTO_BERRY",
             "moves": [
-                "MOVE_STUN_SPORE",
-                "MOVE_MACH_PUNCH",
-                "MOVE_BULLET_SEED",
-                "MOVE_WORRY_SEED"
+                "MOVE_EMBER",
+                "MOVE_PURSUIT"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_LAX",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 1
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

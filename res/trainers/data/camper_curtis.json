@@ -10,15 +10,13 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_NIDORAN_M",
+            "species": "SPECIES_ZUBAT",
             "form": 0,
-            "level": 13,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 12,
+            "item": "ITEM_PECHA_BERRY",
             "moves": [
-                "MOVE_DOUBLE_KICK",
                 "MOVE_POISON_STING",
-                "MOVE_PECK",
-                "MOVE_LEER"
+                "MOVE_DUAL_WINGBEAT"
             ],
             "iv_scale": 200,
             "nature": "NATURE_HARDY",
@@ -27,34 +25,31 @@
             "gender": null
         },
         {
-            "species": "SPECIES_GLIMMET",
+            "species": "SPECIES_GEODUDE",
             "form": 0,
             "level": 12,
-            "item": "ITEM_SHUCA_BERRY",
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_ACID_SPRAY",
-                "MOVE_ANCIENT_POWER",
-                "MOVE_ROCK_THROW"
+                "MOVE_ROCK_THROW",
+                "MOVE_MUD_SLAP"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_QUIET",
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_QWILFISH",
+            "species": "SPECIES_PHANPY",
             "form": 0,
             "level": 13,
-            "item": "ITEM_MYSTIC_WATER",
+            "item": "ITEM_CHESTO_BERRY",
             "moves": [
-                "MOVE_SPIKES",
-                "MOVE_POISON_STING",
-                "MOVE_WATER_GUN",
-                "MOVE_HARDEN"
+                "MOVE_MUD_SHOT",
+                "MOVE_CHARM"
             ],
             "iv_scale": 200,
-            "nature": "NATURE_IMPISH",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
