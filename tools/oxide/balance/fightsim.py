@@ -7833,6 +7833,16 @@ PROTECT_RUN_CAP = 3
 KEEPS_PROTECT_RUN = frozenset({"MOVE_WIDE_GUARD", "MOVE_QUICK_GUARD"})
 
 
+# The protecting moves that stop only damaging moves and lower a contact
+# attacker's stat (subscript_missed): the stat and the stages.
+GUARD_DROPS = {"Obstruct": ("def", -2), "Silk Trap": ("spe", -1)}
+
+# The protecting moves that stop only damaging moves, so a status move gets
+# through them (BattleControllerPlayer_CheckMoveHitOverrides, hg-engine's
+# CheckProtectedBySelf).
+STATUS_PASSES = frozenset({"King's Shield", "Obstruct", "Silk Trap", "Burning Bulwark"})
+
+
 def protected(b, att, mv, dfn):
     """Whether dfn's Protect stops att's move, as
     BattleControllerPlayer_CheckMoveHitOverrides decides: only a move flagged
@@ -7846,14 +7856,23 @@ def protected(b, att, mv, dfn):
     subscript stops it at a Fire type, a user behind its own Substitute or
     under Safeguard, and Water Veil, Water Bubble, Purifying Salt and Leaf
     Guard in sun, which give_status reads; the burned user is the attacker
-    there, so a Mold Breaker never gets past those). Oxide's other
-    protecting moves (King's Shield, Obstruct, Silk Trap) only protect.
+    there, so a Mold Breaker never gets past those). Since 2026-10-30
+    Obstruct and Silk Trap stop only damaging moves, a status move getting
+    through them (BattleControllerPlayer_CheckMoveHitOverrides), and a
+    contact move they stop loses its user two stages of Defense to Obstruct
+    and one of Speed to Silk Trap, made as the protecting battler's drop
+    (lower_stats: the blockers, Mirror Armor and Defiant answer it), unless
+    the stat is at -6 already or the user is behind its own Substitute
+    (subscript_missed); until then both ran as a plain Protect (Ian approved
+    the fix, 2026-10-29). King's Shield and Burning Bulwark let status moves
+    through as well since 2026-10-30 (STATUS_PASSES; Ian approved the fix,
+    2026-10-29), and King's Shield still does nothing more than protect.
     Until 2026-10-14 Protect stopped every move but Feint (Ian approved the
     fix)."""
-    if not dfn.protecting or not mv.protect:
+    guard = dfn.last.name if dfn.last is not None else None
+    if not dfn.protecting or not mv.protect or (guard in STATUS_PASSES and mv.cat == "Status"):
         return b.guarded and mv.protect and guard_stops(b, att, mv, dfn)
     rollout_after(att, mv, False)
-    guard = dfn.last.name if dfn.last is not None else None
     if makes_contact(att, mv) and att.alive():
         if guard == "Spiky Shield" and att.ability != "Magic Guard":
             hurt(b, att, max(1, att.maxhp // 8))
@@ -7863,6 +7882,10 @@ def protected(b, att, mv, dfn):
         elif guard == "Burning Bulwark" and not att.status:
             b.status_src = dfn               # Synchronize passes it back, as in the engine
             give_status(b, att, "brn")
+        elif guard in GUARD_DROPS and not att.sub:
+            stat, n = GUARD_DROPS[guard]
+            if att.stages[stat] > -6:
+                lower_stats(b, dfn, att, {stat: n})
     return True
 
 

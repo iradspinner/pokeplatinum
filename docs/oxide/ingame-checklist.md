@@ -291,6 +291,51 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   its Leftovers. Before the change "The wild WOBBUFFET stole MEW's
   Leftovers!" came first. Take the set again and use Tackle: Wobbuffet
   steals the Leftovers, since no drag follows.
+- [ ] **Silk Trap's Speed drop** (set 89 on the move-set menu's fourth
+  page, `overseer-engine-gaps`; Ian, 2026-10-29). Against the wild Rattata,
+  which knows Tackle and Tail Whip, switch Mew in on the first turn, then
+  alternate Silk Trap and Splash. When a Tackle meets the trap, "MEW
+  protected itself!" is followed by "The wild RATTATA's Speed fell!"; when
+  a Tail Whip meets it, "MEW's Defense fell!" as if Mew had not protected.
+  Before the change it was a plain Protect, and both moves were stopped.
+- [ ] **Obstruct's Defense drop** (set 90, as set 89). A Tackle into it
+  brings "MEW protected itself!" and then "The wild RATTATA's Defense
+  harshly fell!", and Mew's next Tackle does clearly more; a Tail Whip gets
+  through. Before the change it was a plain Protect.
+- [ ] **Corrosion through Baneful Bunker** (set 91, `overseer-engine-gaps`).
+  Switch the set's Salazzle in on the first turn against the wild Skarmory,
+  which knows only Steel Wing, then alternate Baneful Bunker and Splash.
+  When Steel Wing meets the bunker, "SALAZZLE protected itself!" is
+  followed by "The wild SKARMORY was poisoned!" and the poison icon. Before
+  the change the Steel type was not poisoned. Toxic poisons Skarmory too, as
+  the Corrosion entry of the Abilities menu already shows.
+- [ ] **King's Shield lets status moves through** (set 92 on the move-set
+  menu's fourth page, `overseer-protect-ai`; Ian, 2026-10-29). Against the
+  wild Rattata, which knows Tackle and Tail Whip, switch Mew in on the first
+  turn, then alternate King's Shield and Splash. A Tackle into the shield
+  brings "MEW protected itself!"; a Tail Whip brings "MEW's Defense fell!"
+  as if Mew had not protected. Before the change both were stopped.
+- [ ] **Burning Bulwark lets status moves through** (set 93, as set 92). A
+  Tackle brings "MEW protected itself!" and then "The wild RATTATA was
+  burned!"; a Tail Whip gets through ("MEW's Defense fell!"). Before the
+  change the Tail Whip was stopped too.
+- [ ] **A Corrosion holder uses Toxic on a Steel type** (normal play,
+  `overseer-protect-ai`; Ian, 2026-10-29). The trainer AI no longer refuses
+  a Corrosion holder's Toxic, Poison Powder and the like, a flung Toxic Orb
+  or Poison Barb, or Psycho Shift's poison into a Poison or Steel type. The
+  kit cannot show it, since a wild Pokemon picks its moves at random, and on
+  2026-10-30 no trainer's Corrosion holder knows such a move. When a
+  trainer's Salandit or Salazzle with Toxic meets a Steel or Poison type of
+  yours, it should use Toxic on it, and the poison icon follows. Before the
+  change it never chose Toxic there.
+- [ ] **Knock Off on the first turn out** (normal play,
+  `overseer-protect-ai`; Ian, 2026-10-29). A trainer's Pokemon with Knock
+  Off now favours it from its first turn in battle, against a Pokemon of
+  yours that holds an item and has 30% HP or more, about two times in three
+  where nothing stronger competes (Ace Trainer Allen's Sableye in Hearthome's gym
+  is an early one). Before the change it never had the bonus on its first
+  turn, and only about one time in three afterwards. Against a Pokemon
+  holding nothing it still avoids Knock Off.
 - [ ] **Judgment with the Pixie Plate** (the "Pixie Plate" entry on the
   "Element 7 items" menu, `overseer-signature-moves-2`; Ian, 2026-10-20).
   The first Arceus holds the plate and is pink. Its Judgment on the wild
