@@ -18,7 +18,7 @@
                 "MOVE_COUNTER",
                 "MOVE_MIRROR_COAT",
                 "MOVE_ENCORE",
-                "MOVE_SAFEGUARD"
+                "MOVE_DESTINY_BOND"
             ],
             "iv_scale": 249,
             "nature": "NATURE_RELAXED",
@@ -56,6 +56,22 @@
             "nature": "NATURE_SASSY",
             "ball_seal": 0,
             "ability": 3
+        },
+        {
+            "species": "SPECIES_BRONZONG",
+            "form": 0,
+            "level": 38,
+            "item": "ITEM_MENTAL_HERB",
+            "moves": [
+                "MOVE_TRICK_ROOM",
+                "MOVE_GYRO_BALL",
+                "MOVE_PSYCHIC",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 249,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 2
         },
         {
             "species": "SPECIES_GOTHITELLE",

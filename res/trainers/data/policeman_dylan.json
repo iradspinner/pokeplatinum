@@ -58,6 +58,22 @@
             "ability": 1
         },
         {
+            "species": "SPECIES_MANECTRIC",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_MAGNET",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_FLAMETHROWER",
+                "MOVE_OVERHEAT",
+                "MOVE_CHARGE_BEAM"
+            ],
+            "iv_scale": 229,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
             "species": "SPECIES_ARCANINE",
             "form": 0,
             "level": 41,

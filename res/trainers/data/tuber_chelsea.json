@@ -42,6 +42,22 @@
             "ability": 2
         },
         {
+            "species": "SPECIES_FLOATZEL",
+            "form": 0,
+            "level": 39,
+            "item": "ITEM_WIDE_LENS",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_ICE_FANG",
+                "MOVE_CRUNCH",
+                "MOVE_BULK_UP"
+            ],
+            "iv_scale": 253,
+            "nature": "NATURE_HARDY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
             "species": "SPECIES_AZUMARILL",
             "form": 0,
             "level": 40,

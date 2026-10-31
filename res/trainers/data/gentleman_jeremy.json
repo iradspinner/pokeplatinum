@@ -44,6 +44,38 @@
             "ability": 3
         },
         {
+            "species": "SPECIES_CINCCINO",
+            "form": 0,
+            "level": 38,
+            "item": "ITEM_WIDE_LENS",
+            "moves": [
+                "MOVE_TAIL_SLAP",
+                "MOVE_ROCK_BLAST",
+                "MOVE_U_TURN",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 243,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_CORVIKNIGHT",
+            "form": 0,
+            "level": 39,
+            "item": "ITEM_ROCKY_HELMET",
+            "moves": [
+                "MOVE_DRILL_PECK",
+                "MOVE_STEEL_WING",
+                "MOVE_BULK_UP",
+                "MOVE_TAUNT"
+            ],
+            "iv_scale": 243,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
             "species": "SPECIES_MR_RIME",
             "form": 0,
             "level": 39,

@@ -42,6 +42,22 @@
             "ability": 1
         },
         {
+            "species": "SPECIES_AMBIPOM",
+            "form": 0,
+            "level": 38,
+            "item": "ITEM_KINGS_ROCK",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_DOUBLE_HIT",
+                "MOVE_U_TURN",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 241,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
             "species": "SPECIES_TOGEKISS",
             "form": 0,
             "level": 39,

@@ -18,7 +18,7 @@
                 "MOVE_THUNDERBOLT",
                 "MOVE_LIGHT_SCREEN",
                 "MOVE_THUNDER_WAVE",
-                "MOVE_TAUNT"
+                "MOVE_EXPLOSION"
             ],
             "iv_scale": 249,
             "nature": "NATURE_HASTY",
@@ -40,6 +40,38 @@
             "nature": "NATURE_NAIVE",
             "ball_seal": 0,
             "ability": 1
+        },
+        {
+            "species": "SPECIES_CROBAT",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_CROSS_POISON",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_U_TURN",
+                "MOVE_TAUNT"
+            ],
+            "iv_scale": 249,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_TALONFLAME",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_AERIAL_ACE",
+                "MOVE_WILL_O_WISP",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 249,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 3
         },
         {
             "species": "SPECIES_NINETALES",

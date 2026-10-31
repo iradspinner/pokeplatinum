@@ -42,6 +42,38 @@
             "ability": 1
         },
         {
+            "species": "SPECIES_LIEPARD",
+            "form": 0,
+            "level": 39,
+            "item": "ITEM_MENTAL_HERB",
+            "moves": [
+                "MOVE_FOUL_PLAY",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_TAUNT",
+                "MOVE_SNARL"
+            ],
+            "iv_scale": 218,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_FLORGES",
+            "form": 0,
+            "level": 39,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_PSYCHIC",
+                "MOVE_WISH",
+                "MOVE_ENERGY_BALL"
+            ],
+            "iv_scale": 218,
+            "nature": "NATURE_BASHFUL",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
             "species": "SPECIES_SYLVEON",
             "form": 0,
             "level": 40,
