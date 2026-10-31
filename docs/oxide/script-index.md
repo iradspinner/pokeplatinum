@@ -14,11 +14,11 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 1 | 1 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 592 | 510 | 72 | 10 | 0 | 11 |
-| Items given | 213 | 102 | 31 | 80 | 0 | 34 |
+| Trainer battles | 592 | 507 | 72 | 10 | 3 | 14 |
+| Items given | 213 | 102 | 31 | 79 | 1 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
-| Flags | 3321 | 2967 | 215 | 139 | 0 | 102 |
+| Flags | 3318 | 2964 | 215 | 137 | 2 | 105 |
 | Variables | 1117 | 1078 | 27 | 12 | 0 | 36 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
@@ -2940,16 +2940,16 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_PI_CARLOS (Carlos, level 36, 1 Pokemon), sees the player. Vanilla. `events_route_214.json:35`
-- TRAINER_COLLECTOR_DOUGLAS (Douglas, level 37, 3 Pokemon), sees the player. Vanilla. `events_route_214.json:50`
-- TRAINER_BEAUTY_DEVON (Devon, level 38, 2 Pokemon), sees the player. Added from the base ROM (d3e44ec93). `events_route_214.json:65`
-- TRAINER_RUIN_MANIAC_BRYAN (Bryan, level 37, 5 Pokemon), sees the player. Vanilla. `events_route_214.json:80`
+- TRAINER_PI_CARLOS (Carlos, level 39, 4 Pokemon), sees the player. Vanilla. `events_route_214.json:35`
+- TRAINER_COLLECTOR_DOUGLAS (Douglas, level 39, 3 Pokemon), sees the player. Vanilla. `events_route_214.json:50`
+- TRAINER_BEAUTY_DEVON (Devon, level 39, 2 Pokemon), sees the player. Added from the base ROM (d3e44ec93). `events_route_214.json:65`
+- TRAINER_RUIN_MANIAC_BRYAN (Bryan, level 39, 5 Pokemon), sees the player. Vanilla. `events_route_214.json:80`
 - TRAINER_RUIN_MANIAC_RONALD (Ronald, level 39, 5 Pokemon), sees the player. Vanilla. `events_route_214.json:95`
 - TRAINER_COLLECTOR_JAMAL (Jamal, level 41, 4 Pokemon), sees the player. Vanilla. `events_route_214.json:110`
-- TRAINER_BEAUTY_DEVON (Devon, level 38, 2 Pokemon), sees the player. Vanilla. `events_route_214.json:125`
-- TRAINER_PSYCHIC_MITCHELL (Mitchell, level 34, 2 Pokemon), sees the player. Vanilla. `events_route_214.json:140`
-- TRAINER_PSYCHIC_ABIGAIL (Abigail, level 34, 3 Pokemon), sees the player. Vanilla. `events_route_214.json:155`
-- TRAINER_DUMMY_795 (Krystal, level 43, 6 Pokemon), sees the player. Added from the base ROM (d3e44ec93). `events_route_214.json:501`
+- TRAINER_BEAUTY_DEVON (Devon, level 39, 2 Pokemon), sees the player. Vanilla. `events_route_214.json:125`
+- TRAINER_PSYCHIC_MITCHELL (Mitchell, level 39, 4 Pokemon), sees the player. Vanilla. `events_route_214.json:140`
+- TRAINER_PSYCHIC_ABIGAIL (Abigail, level 39, 5 Pokemon), sees the player. Vanilla. `events_route_214.json:155`
+- TRAINER_DUMMY_795 (Krystal, level 42, 6 Pokemon), sees the player. Added from the base ROM (d3e44ec93). `events_route_214.json:501`
 
 Item balls:
 
@@ -3042,6 +3042,8 @@ Gone from vanilla: ITEM_TM28 x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_O
 
 Trainer battles:
 
+- TRAINER_GENTLEMAN_JEREMY (Jeremy, level 39, 5 Pokemon), sees the player. Added, origin unclear. `events_valor_lakefront.json:224`
+- TRAINER_SOCIALITE_REINA (Reina, level 40, 5 Pokemon), sees the player. Added, origin unclear. `events_valor_lakefront.json:241`
 - StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT (Grunt, level 41, 1 Pokemon), by name. Vanilla. `scripts_valor_lakefront.s:88`
 
 Items given:
@@ -3085,11 +3087,12 @@ Trainer battles:
 - TRAINER_SWIMMER_EVAN (Evan, level 44, 2 Pokemon), sees the player. Vanilla. `events_route_213.json:124`
 - TRAINER_SWIMMER_MARY (Mary, level 44, 2 Pokemon), sees the player. Vanilla. `events_route_213.json:141`
 - TRAINER_SWIMMER_HALEY (Haley, level 43, 2 Pokemon), sees the player. Vanilla. `events_route_213.json:158`
-- TRAINER_TUBER_JARED (Jared, level 36, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:176`
-- TRAINER_TUBER_CHELSEA (Chelsea, level 37, 1 Pokemon), sees the player. Vanilla. `events_route_213.json:193`
-- TRAINER_BEAUTY_CYNDY (Cyndy, level 37, 1 Pokemon), sees the player. Vanilla. `events_route_213.json:210`
-- TRAINER_FISHERMAN_KENNETH (Kenneth, level 36, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:227`
+- TRAINER_TUBER_JARED (Jared, level 40, 4 Pokemon), sees the player. Vanilla. `events_route_213.json:176`
+- TRAINER_TUBER_CHELSEA (Chelsea, level 40, 4 Pokemon), sees the player. Vanilla. `events_route_213.json:193`
+- TRAINER_BEAUTY_CYNDY (Cyndy, level 40, 5 Pokemon), sees the player. Vanilla. `events_route_213.json:210`
+- TRAINER_FISHERMAN_KENNETH (Kenneth, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:227`
 - TRAINER_SAILOR_PAUL (Paul, level 44, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:242`
+- TRAINER_FISHERMAN_TRAVIS (Travis, level 41, 4 Pokemon), sees the player. Added, origin unclear. `events_route_213.json:644`
 
 Item balls:
 
@@ -3178,12 +3181,12 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_TUBER_JACKY (Jacky, level 39, 1 Pokemon), sees the player. Vanilla. `events_pastoria_city_gym.json:57`
-- TRAINER_SAILOR_DAMIAN (Damian, level 39, 2 Pokemon), sees the player. Vanilla. `events_pastoria_city_gym.json:72`
-- TRAINER_TUBER_CAITLYN (Caitlyn, level 39, 3 Pokemon), sees the player. Vanilla. `events_pastoria_city_gym.json:87`
-- TRAINER_SAILOR_SAMSON (Samson, level 39, 3 Pokemon), sees the player. Vanilla. `events_pastoria_city_gym.json:102`
-- TRAINER_FISHERMAN_ERICK (Erick, level 39, 3 Pokemon), sees the player. Vanilla. `events_pastoria_city_gym.json:117`
-- TRAINER_FISHERMAN_WALTER (Walter, level 39, 1 Pokemon), sees the player. Vanilla. `events_pastoria_city_gym.json:132`
+- TRAINER_TUBER_JACKY (Jacky, level 41, 3 Pokemon), sees the player. Vanilla. `events_pastoria_city_gym.json:57`
+- TRAINER_SAILOR_DAMIAN (Damian, level 42, 3 Pokemon), sees the player. Vanilla. `events_pastoria_city_gym.json:72`
+- TRAINER_TUBER_CAITLYN (Caitlyn, level 41, 4 Pokemon), sees the player. Vanilla. `events_pastoria_city_gym.json:87`
+- TRAINER_SAILOR_SAMSON (Samson, level 43, 5 Pokemon), sees the player. Vanilla. `events_pastoria_city_gym.json:102`
+- TRAINER_FISHERMAN_ERICK (Erick, level 42, 4 Pokemon), sees the player. Vanilla. `events_pastoria_city_gym.json:117`
+- TRAINER_FISHERMAN_WALTER (Walter, level 42, 3 Pokemon), sees the player. Vanilla. `events_pastoria_city_gym.json:132`
 - StartTrainerBattle: against TRAINER_LEADER_WAKE (Wake, level 44, 6 Pokemon), by number. Vanilla. `scripts_pastoria_city_gym.s:58`
 - StartTrainerBattle: against TRAINER_LEADER_WAKE_REMATCH (Wake, level 86, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_pastoria_city_gym.s:149`
 
@@ -3447,22 +3450,20 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_RICH_BOY_JASON (Jason, level 37, 1 Pokemon), sees the player. Vanilla. `events_route_212_north.json:27`
-- TRAINER_LADY_MELISSA (Melissa, level 37, 1 Pokemon), sees the player. Vanilla. `events_route_212_north.json:44`
-- TRAINER_GENTLEMAN_JEREMY (Jeremy, level 37, 1 Pokemon), sees the player. Vanilla. `events_route_212_north.json:61`
-- TRAINER_SOCIALITE_REINA (Reina, level 37, 1 Pokemon), sees the player. Vanilla. `events_route_212_north.json:78`
-- TRAINER_POLICEMAN_BOBBY (Bobby, level 34, 2 Pokemon), sees the player. Vanilla. `events_route_212_north.json:95`
-- TRAINER_POLICEMAN_ALEX (Alex, level 35, 2 Pokemon), sees the player. Vanilla. `events_route_212_north.json:112`
-- TRAINER_POLICEMAN_DYLAN (Dylan, level 36, 2 Pokemon), sees the player. Vanilla. `events_route_212_north.json:129`
-- TRAINER_POLICEMAN_CALEB (Caleb, level 35, 2 Pokemon), sees the player. Vanilla. `events_route_212_north.json:147`
+- TRAINER_RICH_BOY_JASON (Jason, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_north.json:27`
+- TRAINER_LADY_MELISSA (Melissa, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_north.json:44`
+- TRAINER_POLICEMAN_BOBBY (Bobby, level 41, 4 Pokemon), sees the player. Vanilla. `events_route_212_north.json:61`
+- TRAINER_POLICEMAN_ALEX (Alex, level 41, 5 Pokemon), sees the player. Vanilla. `events_route_212_north.json:78`
+- TRAINER_POLICEMAN_DYLAN (Dylan, level 41, 5 Pokemon), sees the player. Vanilla. `events_route_212_north.json:95`
+- TRAINER_POLICEMAN_CALEB (Caleb, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_north.json:113`
 
 Item balls:
 
-- ITEM_ROSE_INCENSE x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_ROSE_INCENSE. Vanilla. `events_route_212_north.json:226`
-- ITEM_TM37 x2, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_TM11. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM11 x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_TM11. `events_route_212_north.json:241`
-- ITEM_ELIXIR x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_ELIXIR. Vanilla. `events_route_212_north.json:324`
-- ITEM_GREEN_SHARD x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_GREEN_SHARD. Vanilla. `events_route_212_north.json:483`
-- ITEM_IRON x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_IRON. Vanilla. `events_route_212_north.json:498`
+- ITEM_ROSE_INCENSE x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_ROSE_INCENSE. Vanilla. `events_route_212_north.json:192`
+- ITEM_TM37 x2, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_TM11. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM11 x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_TM11. `events_route_212_north.json:207`
+- ITEM_ELIXIR x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_ELIXIR. Vanilla. `events_route_212_north.json:290`
+- ITEM_GREEN_SHARD x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_GREEN_SHARD. Vanilla. `events_route_212_north.json:449`
+- ITEM_IRON x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_IRON. Vanilla. `events_route_212_north.json:464`
 
 Hidden items:
 
@@ -3480,7 +3481,7 @@ Variables:
 - Set: VAR_MAP_LOCAL_0x00.
 - Checked: VAR_MAP_LOCAL_0x00.
 
-Gone from vanilla: ITEM_TM11 x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_TM11.
+Gone from vanilla: TRAINER_GENTLEMAN_JEREMY (Jeremy, level 39, 5 Pokemon), sees the player; TRAINER_SOCIALITE_REINA (Reina, level 40, 5 Pokemon), sees the player; ITEM_TM11 x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_TM11.
 
 ### Route 212 South
 
@@ -3488,30 +3489,29 @@ Gone from vanilla: ITEM_TM11 x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_TM
 
 Trainer battles:
 
-- TRAINER_FISHERMAN_JUAN (Juan, level 36, 1 Pokemon), sees the player. Vanilla. `events_route_212_south.json:75`
-- TRAINER_FISHERMAN_JOSH (Josh, level 36, 2 Pokemon), sees the player. Vanilla. `events_route_212_south.json:90`
-- TRAINER_FISHERMAN_TRAVIS (Travis, level 38, 2 Pokemon), sees the player. Vanilla. `events_route_212_south.json:105`
-- TRAINER_RANGER_TAYLOR (Taylor, level 30, 2 Pokemon), sees the player. Vanilla. `events_route_212_south.json:120`
-- TRAINER_RANGER_ALLISON (Allison, level 39, 2 Pokemon), sees the player. Vanilla. `events_route_212_south.json:137`
-- TRAINER_RANGER_JEFFREY (Jeffrey, level 39, 1 Pokemon), sees the player. Vanilla. `events_route_212_south.json:154`
-- TRAINER_POLICEMAN_DANNY (Danny, level 37, 2 Pokemon), sees the player. Vanilla. `events_route_212_south.json:171`
-- TRAINER_SCIENTIST_STEFANO (Stefano, level 38, 1 Pokemon), sees the player. Vanilla. `events_route_212_south.json:188`
-- TRAINER_COLLECTOR_DEAN (Dean, level 37, 2 Pokemon), sees the player. Vanilla. `events_route_212_south.json:205`
-- TRAINER_SCIENTIST_SHAUN (Shaun, level 37, 2 Pokemon), sees the player. Vanilla. `events_route_212_south.json:562`
-- TRAINER_PARASOL_LADY_ALEXA (Alexa, level 39, 1 Pokemon), sees the player. Vanilla. `events_route_212_south.json:579`
-- TRAINER_PARASOL_LADY_SABRINA (Sabrina, level 39, 1 Pokemon), sees the player. Vanilla. `events_route_212_south.json:596`
+- TRAINER_FISHERMAN_JUAN (Juan, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:75`
+- TRAINER_FISHERMAN_JOSH (Josh, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:90`
+- TRAINER_RANGER_TAYLOR (Taylor, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:105`
+- TRAINER_RANGER_ALLISON (Allison, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:122`
+- TRAINER_RANGER_JEFFREY (Jeffrey, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:139`
+- TRAINER_POLICEMAN_DANNY (Danny, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:156`
+- TRAINER_SCIENTIST_STEFANO (Stefano, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:173`
+- TRAINER_COLLECTOR_DEAN (Dean, level 41, 5 Pokemon), sees the player. Vanilla. `events_route_212_south.json:190`
+- TRAINER_SCIENTIST_SHAUN (Shaun, level 40, 4 Pokemon), sees the player. Vanilla. `events_route_212_south.json:547`
+- TRAINER_PARASOL_LADY_ALEXA (Alexa, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:564`
+- TRAINER_PARASOL_LADY_SABRINA (Sabrina, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_212_south.json:581`
 
 Item balls:
 
-- ITEM_FULL_HEAL x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_FULL_HEAL. Vanilla. `events_route_212_south.json:389`
-- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM84. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM84 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM84. `events_route_212_south.json:404`
-- ITEM_TM78 x2, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM62. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM62 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM62. `events_route_212_south.json:419`
-- ITEM_ZINC x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_ZINC. Vanilla. `events_route_212_south.json:434`
-- ITEM_HYPER_POTION x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_HYPER_POTION. Vanilla. `events_route_212_south.json:449`
-- ITEM_TM89 x2, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM06. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM06 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM06. `events_route_212_south.json:464`
-- ITEM_REVIVE x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_REVIVE. Vanilla. `events_route_212_south.json:479`
-- ITEM_ELIXIR x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_ELIXIR. Vanilla. `events_route_212_south.json:738`
-- ITEM_BLUE_SHARD x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_BLUE_SHARD. Vanilla. `events_route_212_south.json:753`
+- ITEM_FULL_HEAL x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_FULL_HEAL. Vanilla. `events_route_212_south.json:374`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM84. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM84 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM84. `events_route_212_south.json:389`
+- ITEM_TM78 x2, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM62. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM62 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM62. `events_route_212_south.json:404`
+- ITEM_ZINC x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_ZINC. Vanilla. `events_route_212_south.json:419`
+- ITEM_HYPER_POTION x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_HYPER_POTION. Vanilla. `events_route_212_south.json:434`
+- ITEM_TM89 x2, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM06. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM06 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM06. `events_route_212_south.json:449`
+- ITEM_REVIVE x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_REVIVE. Vanilla. `events_route_212_south.json:464`
+- ITEM_ELIXIR x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_ELIXIR. Vanilla. `events_route_212_south.json:723`
+- ITEM_BLUE_SHARD x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_BLUE_SHARD. Vanilla. `events_route_212_south.json:738`
 
 Hidden items:
 
@@ -3535,7 +3535,7 @@ Variables:
 - Set: VAR_MAP_LOCAL_0x00.
 - Checked: VAR_MAP_LOCAL_0x00.
 
-Gone from vanilla: ITEM_TM84 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM84; ITEM_TM62 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM62; ITEM_TM06 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM06; ITEM_DAWN_STONE x1, one time, flag FLAG_OBTAINED_HIDDEN_ROUTE_212_SOUTH_DAWN_STONE.
+Gone from vanilla: TRAINER_FISHERMAN_TRAVIS (Travis, level 41, 4 Pokemon), sees the player; ITEM_TM84 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM84; ITEM_TM62 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM62; ITEM_TM06 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM06; ITEM_DAWN_STONE x1, one time, flag FLAG_OBTAINED_HIDDEN_ROUTE_212_SOUTH_DAWN_STONE.
 
 ## Byron's split
 
@@ -7897,29 +7897,29 @@ Variables:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_MAID_BELINDA (Belinda, level 40, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:99`
-- StartTrainerBattle: against TRAINER_MAID_SOPHIE (Sophie, level 40, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:110`
-- StartTrainerBattle: against TRAINER_MAID_EMILY (Emily, level 41, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:121`
-- StartTrainerBattle: against TRAINER_MAID_ELENA (Elena, level 41, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:132`
-- StartTrainerBattle: against TRAINER_MAID_CLARE (Clare, level 42, 2 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:149`
-- StartTrainerBattle: against TRAINER_LADY_CELESTE (Celeste, level 42, 2 Pokemon), by name. Added by Oxide (8eb934677). `scripts_pokemon_mansion.s:171`
+- StartTrainerBattle: against TRAINER_MAID_BELINDA (Belinda, level 40, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:90`
+- StartTrainerBattle: against TRAINER_MAID_SOPHIE (Sophie, level 40, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:101`
+- StartTrainerBattle: against TRAINER_MAID_EMILY (Emily, level 41, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:112`
+- StartTrainerBattle: against TRAINER_MAID_ELENA (Elena, level 41, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:123`
+- StartTrainerBattle: against TRAINER_MAID_CLARE (Clare, level 42, 2 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:140`
+- StartTrainerBattle: against TRAINER_LADY_CELESTE (Celeste, level 42, 2 Pokemon), by name. Added by Oxide (8eb934677). `scripts_pokemon_mansion.s:162`
 
 Items given:
 
-- ITEM_ABILITY_CAPSULE x1. Added by Oxide (8eb934677). `scripts_pokemon_mansion.s:207`
+- ITEM_ABILITY_CAPSULE x1. Added by Oxide (8eb934677). `scripts_pokemon_mansion.s:198`
 
 Flags:
 
-- Set: FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS, FLAG_UNUSED_0x03CC (added, Oxide), FLAG_DEFEATED_TRAINER_LADY_CELESTE, FLAG_FIRST_ARRIVAL_POKEMON_MANSION, FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET (daily).
-- Cleared: FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS, FLAG_DEFEATED_TRAINER_LADY_CELESTE.
-- Checked: FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE, FLAG_UNUSED_0x03CC (added, Oxide), FLAG_DEFEATED_TRAINER_LADY_CELESTE, FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET (daily).
+- Set: FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS, FLAG_UNUSED_0x03CC (added, Oxide), FLAG_DEFEATED_TRAINER_LADY_CELESTE, FLAG_FIRST_ARRIVAL_POKEMON_MANSION.
+- Cleared: FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS.
+- Checked: FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE, FLAG_UNUSED_0x03CC (added, Oxide), FLAG_DEFEATED_TRAINER_LADY_CELESTE.
 - Hide an object: FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS.
 
 Variables:
 
 - Set: VAR_OBJ_GFX_ID_0.
 
-Gone from vanilla: StartTrainerBattle: against TRAINER_RICH_BOY_LIAM (Liam, level 35, 1 Pokemon) if VAR_0x8006 (GetRandom) == 0, TRAINER_LADY_CELESTE (Celeste, level 42, 2 Pokemon) if VAR_0x8006 (GetRandom) == 1, set elsewhere if VAR_0x8005 (AddVar) == VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET; FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE unset; defeated TRAINER_LADY_CELESTE no, through a variable; flag FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM (clear); flag FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM (check); flag FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM (set); variable VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET (set); variable VAR_TOTAL_TURNS_LAST_BATTLE (set); variable VAR_TOTAL_TURNS_LAST_BATTLE (check); variable VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET (check).
+Gone from vanilla: StartTrainerBattle: against TRAINER_RICH_BOY_LIAM (Liam, level 35, 1 Pokemon) if VAR_0x8006 (GetRandom) == 0, TRAINER_LADY_CELESTE (Celeste, level 42, 2 Pokemon) if VAR_0x8006 (GetRandom) == 1, set elsewhere if VAR_0x8005 (AddVar) == VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET; FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE unset; defeated TRAINER_LADY_CELESTE no, through a variable; flag FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET (daily) (check); flag FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET (daily) (set); flag FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM (clear); flag FLAG_DEFEATED_TRAINER_LADY_CELESTE (clear); flag FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM (check); flag FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM (set); variable VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET (set); variable VAR_TOTAL_TURNS_LAST_BATTLE (set); variable VAR_TOTAL_TURNS_LAST_BATTLE (check); variable VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET (check).
 
 ### Pokemon Mansion Maids Room
 
@@ -8472,9 +8472,9 @@ Items given:
 - ITEM_SILK_SCARF x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1558`
 - ITEM_TM40 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1569`
 - ITEM_TM10 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1580`
-- ITEM_TM57 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1591`
-- ITEM_LOADED_DICE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1602`
-- ITEM_TM72 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1613`
+- ITEM_TM72 x1. Added, origin unclear. `scripts_battles.s:1591`
+- ITEM_TM57 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1602`
+- ITEM_LOADED_DICE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1613`
 - ITEM_TM60 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1624`
 - ITEM_TM22 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1635`
 - ITEM_WEAKNESS_POLICY x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1646`
@@ -8492,8 +8492,8 @@ Items given:
 
 Flags:
 
-- Set: FLAG_UNUSED_0x006F (added, Oxide), FLAG_UNUSED_0x0094 (added, Oxide), FLAG_UNUSED_0x0095 (added, Oxide), FLAG_UNUSED_0x0096 (added, Oxide), FLAG_UNUSED_0x00A4 (added, Oxide), FLAG_UNUSED_0x00AE (added, Oxide), FLAG_UNUSED_0x00D4 (added, Oxide), FLAG_UNUSED_0x00EC (added, Oxide), FLAG_UNUSED_0x0101 (added, Oxide), FLAG_UNUSED_0x0114 (added, Oxide), FLAG_UNUSED_0x0122 (added, Oxide), FLAG_UNUSED_0x015F (added, Oxide), FLAG_UNUSED_0x0163 (added, Oxide), FLAG_UNUSED_0x0167 (added, Oxide), FLAG_UNUSED_0x0168 (added, Oxide), FLAG_UNUSED_0x0169 (added, Oxide), FLAG_UNUSED_0x016A (added, Oxide), FLAG_UNUSED_0x016B (added, Oxide), FLAG_UNUSED_0x016C (added, Oxide), FLAG_UNUSED_0x016D (added, Oxide), FLAG_UNUSED_0x016E (added, Oxide), FLAG_UNUSED_0x016F (added, Oxide), FLAG_UNUSED_0x0170 (added, Oxide), FLAG_UNUSED_0x0171 (added, Oxide), FLAG_UNUSED_0x0187 (added, Oxide), FLAG_UNUSED_0x0193 (added, Oxide), FLAG_UNUSED_0x01C4 (added, Oxide), FLAG_UNUSED_0x01C6 (added, Oxide), FLAG_UNUSED_0x01CE (added, Oxide), FLAG_UNUSED_0x01CF (added, Oxide), FLAG_UNUSED_0x01D0 (added, Oxide), FLAG_UNUSED_0x021F (added, Oxide), FLAG_UNUSED_0x023E (added, Oxide), FLAG_UNUSED_0x02CD (added, Oxide), FLAG_UNUSED_0x02CE (added, Oxide), FLAG_UNUSED_0x02CF (added, Oxide), FLAG_UNUSED_0x02D0 (added, Oxide), FLAG_UNUSED_0x02D1 (added, Oxide), FLAG_UNUSED_0x02D2 (added, Oxide), FLAG_UNUSED_0x02D3 (added, Oxide), FLAG_UNUSED_0x02D4 (added, Oxide), FLAG_UNUSED_0x02D5 (added, Oxide), FLAG_UNUSED_0x02D6 (added, Oxide), FLAG_UNUSED_0x02D7 (added, Oxide), FLAG_UNUSED_0x02D8 (added, Oxide), FLAG_UNUSED_0x02D9 (added, Oxide).
-- Checked: FLAG_UNUSED_0x006F (added, Oxide), FLAG_UNUSED_0x0094 (added, Oxide), FLAG_UNUSED_0x0095 (added, Oxide), FLAG_UNUSED_0x0096 (added, Oxide), FLAG_UNUSED_0x00A4 (added, Oxide), FLAG_UNUSED_0x00AE (added, Oxide), FLAG_UNUSED_0x00D4 (added, Oxide), FLAG_UNUSED_0x00EC (added, Oxide), FLAG_UNUSED_0x0101 (added, Oxide), FLAG_UNUSED_0x0114 (added, Oxide), FLAG_UNUSED_0x0122 (added, Oxide), FLAG_UNUSED_0x015F (added, Oxide), FLAG_UNUSED_0x0163 (added, Oxide), FLAG_UNUSED_0x0167 (added, Oxide), FLAG_UNUSED_0x0168 (added, Oxide), FLAG_UNUSED_0x0169 (added, Oxide), FLAG_UNUSED_0x016A (added, Oxide), FLAG_UNUSED_0x016B (added, Oxide), FLAG_UNUSED_0x016C (added, Oxide), FLAG_UNUSED_0x016D (added, Oxide), FLAG_UNUSED_0x016E (added, Oxide), FLAG_UNUSED_0x016F (added, Oxide), FLAG_UNUSED_0x0170 (added, Oxide), FLAG_UNUSED_0x0171 (added, Oxide), FLAG_UNUSED_0x0187 (added, Oxide), FLAG_UNUSED_0x0193 (added, Oxide), FLAG_UNUSED_0x01C4 (added, Oxide), FLAG_UNUSED_0x01C6 (added, Oxide), FLAG_UNUSED_0x01CE (added, Oxide), FLAG_UNUSED_0x01CF (added, Oxide), FLAG_UNUSED_0x01D0 (added, Oxide), FLAG_UNUSED_0x021F (added, Oxide), FLAG_UNUSED_0x023E (added, Oxide), FLAG_UNUSED_0x02CD (added, Oxide), FLAG_UNUSED_0x02CE (added, Oxide), FLAG_UNUSED_0x02CF (added, Oxide), FLAG_UNUSED_0x02D0 (added, Oxide), FLAG_UNUSED_0x02D1 (added, Oxide), FLAG_UNUSED_0x02D2 (added, Oxide), FLAG_UNUSED_0x02D3 (added, Oxide), FLAG_UNUSED_0x02D4 (added, Oxide), FLAG_UNUSED_0x02D5 (added, Oxide), FLAG_UNUSED_0x02D6 (added, Oxide), FLAG_UNUSED_0x02D7 (added, Oxide), FLAG_UNUSED_0x02D8 (added, Oxide), FLAG_UNUSED_0x02D9 (added, Oxide).
+- Set: FLAG_UNUSED_0x006F (added, Oxide), FLAG_UNUSED_0x0094 (added, Oxide), FLAG_UNUSED_0x0095 (added, Oxide), FLAG_UNUSED_0x0096 (added, Oxide), FLAG_UNUSED_0x00A4 (added, Oxide), FLAG_UNUSED_0x00AE (added, Oxide), FLAG_UNUSED_0x00D4 (added, Oxide), FLAG_UNUSED_0x00EC (added, Oxide), FLAG_UNUSED_0x0101 (added, Oxide), FLAG_UNUSED_0x0114 (added, Oxide), FLAG_UNUSED_0x0122 (added, Oxide), FLAG_UNUSED_0x015F (added, Oxide), FLAG_UNUSED_0x0163 (added, Oxide), FLAG_UNUSED_0x0167 (added, Oxide), FLAG_UNUSED_0x0168 (added, Oxide), FLAG_UNUSED_0x0169 (added, Oxide), FLAG_UNUSED_0x016A (added, Oxide), FLAG_UNUSED_0x016B (added, Oxide), FLAG_UNUSED_0x016C (added, Oxide), FLAG_UNUSED_0x016D (added, Oxide), FLAG_UNUSED_0x016E (added, Oxide), FLAG_UNUSED_0x016F (added, Oxide), FLAG_UNUSED_0x0170 (added, Oxide), FLAG_UNUSED_0x0171 (added, Oxide), FLAG_UNUSED_0x0187 (added, Oxide), FLAG_UNUSED_0x0193 (added, Oxide), FLAG_UNUSED_0x01C4 (added, Oxide), FLAG_UNUSED_0x01C6 (added, Oxide), FLAG_UNUSED_0x01CE (added, Oxide), FLAG_UNUSED_0x01CF (added, Oxide), FLAG_UNUSED_0x01D0 (added, Oxide), FLAG_UNUSED_0x021F (added, unclear), FLAG_UNUSED_0x023E (added, Oxide), FLAG_UNUSED_0x02CD (added, Oxide), FLAG_UNUSED_0x02CE (added, Oxide), FLAG_UNUSED_0x02CF (added, Oxide), FLAG_UNUSED_0x02D0 (added, Oxide), FLAG_UNUSED_0x02D1 (added, Oxide), FLAG_UNUSED_0x02D2 (added, Oxide), FLAG_UNUSED_0x02D3 (added, Oxide), FLAG_UNUSED_0x02D4 (added, Oxide), FLAG_UNUSED_0x02D5 (added, Oxide), FLAG_UNUSED_0x02D6 (added, Oxide), FLAG_UNUSED_0x02D7 (added, Oxide), FLAG_UNUSED_0x02D8 (added, Oxide), FLAG_UNUSED_0x02D9 (added, Oxide).
+- Checked: FLAG_UNUSED_0x006F (added, Oxide), FLAG_UNUSED_0x0094 (added, Oxide), FLAG_UNUSED_0x0095 (added, Oxide), FLAG_UNUSED_0x0096 (added, Oxide), FLAG_UNUSED_0x00A4 (added, Oxide), FLAG_UNUSED_0x00AE (added, Oxide), FLAG_UNUSED_0x00D4 (added, Oxide), FLAG_UNUSED_0x00EC (added, Oxide), FLAG_UNUSED_0x0101 (added, Oxide), FLAG_UNUSED_0x0114 (added, Oxide), FLAG_UNUSED_0x0122 (added, Oxide), FLAG_UNUSED_0x015F (added, Oxide), FLAG_UNUSED_0x0163 (added, Oxide), FLAG_UNUSED_0x0167 (added, Oxide), FLAG_UNUSED_0x0168 (added, Oxide), FLAG_UNUSED_0x0169 (added, Oxide), FLAG_UNUSED_0x016A (added, Oxide), FLAG_UNUSED_0x016B (added, Oxide), FLAG_UNUSED_0x016C (added, Oxide), FLAG_UNUSED_0x016D (added, Oxide), FLAG_UNUSED_0x016E (added, Oxide), FLAG_UNUSED_0x016F (added, Oxide), FLAG_UNUSED_0x0170 (added, Oxide), FLAG_UNUSED_0x0171 (added, Oxide), FLAG_UNUSED_0x0187 (added, Oxide), FLAG_UNUSED_0x0193 (added, Oxide), FLAG_UNUSED_0x01C4 (added, Oxide), FLAG_UNUSED_0x01C6 (added, Oxide), FLAG_UNUSED_0x01CE (added, Oxide), FLAG_UNUSED_0x01CF (added, Oxide), FLAG_UNUSED_0x01D0 (added, Oxide), FLAG_UNUSED_0x021F (added, unclear), FLAG_UNUSED_0x023E (added, Oxide), FLAG_UNUSED_0x02CD (added, Oxide), FLAG_UNUSED_0x02CE (added, Oxide), FLAG_UNUSED_0x02CF (added, Oxide), FLAG_UNUSED_0x02D0 (added, Oxide), FLAG_UNUSED_0x02D1 (added, Oxide), FLAG_UNUSED_0x02D2 (added, Oxide), FLAG_UNUSED_0x02D3 (added, Oxide), FLAG_UNUSED_0x02D4 (added, Oxide), FLAG_UNUSED_0x02D5 (added, Oxide), FLAG_UNUSED_0x02D6 (added, Oxide), FLAG_UNUSED_0x02D7 (added, Oxide), FLAG_UNUSED_0x02D8 (added, Oxide), FLAG_UNUSED_0x02D9 (added, Oxide).
 
 ### scripts_berry_tree_interaction
 

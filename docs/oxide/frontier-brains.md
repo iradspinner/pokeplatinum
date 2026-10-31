@@ -40,6 +40,18 @@ Galarian Articuno replaces Sigilyph, which is not in the game (Ian,
 - Dahlia: her trainer added to `sPermanentWonderRoomTrainers` in
   `battle_lib.c`. Wonder Room and its permanent form are merged
   (`cloud/element4-wonder-room`), and the list is there, empty.
+- Darach and Caitlin (Ian, 2026-10-31): they stand in the Pokemon Mansion's
+  entrance hall and block the way in, so the office, the maids and the
+  Trophy Garden behind the mansion open only on beating them. The double is
+  the fight's only twist, with no field rule. Straight after the win Mr.
+  Backlot hands over the Manaphy egg, which replaces the office's yes-or-no
+  offer and counts as a capture of its own, the Mansion's, not wherever it
+  hatches. Manaphy's Tail Glow moved from level 1 to 70, so the egg hatches
+  without it. Backlot's daily Trophy Garden Pokemon stay out of the game's
+  design, behind the National Dex as in vanilla. The maids' five-maid
+  knockout may give the Ability Capsule as its prize once its fights are
+  designed. Needs: Ian's team, the gate script, the egg's handover and its
+  capture in the OxiDex.
 - Thorton: his trainer added to `sPermanentTrickRoomTrainers` in `battle_lib.c`,
   and the prize's scripted capture. Ironworks Hall, the location name that
   makes it a capture of its own, is merged (1902bd197).

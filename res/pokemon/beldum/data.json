@@ -48,6 +48,11 @@
             "MOVE_IRON_HEAD",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_IRON_DEFENSE"
+        ],
+        "egg_moves": [
+            "MOVE_METEOR_MASH",
+            "MOVE_DYNAMIC_PUNCH",
+            "MOVE_GRAVITY"
         ]
     },
     "evolutions": [

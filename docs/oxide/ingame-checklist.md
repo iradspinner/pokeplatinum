@@ -875,6 +875,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   item ball outside Stark Mountain gives a PP Up, and the man in Celestic
   Town's northwest house gives BlackGlasses from 4:00 to 19:59 and Wise
   Glasses at night, never a Choice Specs.
+- [ ] Manaphy's Tail Glow (Ian, 2026-10-31): the Pokemon Mansion's egg hatches
+  into a Manaphy that does not know Tail Glow; it learns it at level 70.
 - [ ] Pastoria's Ability Capsule ball is gone (Ian, 2026-10-31): the
   southern end of the one-tile strip between the two ponds in the city's
   southwest corner is empty. The game's one Ability Capsule is the Pokemon
@@ -882,16 +884,17 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] The Pokemon Mansion's maid knockout (Ian, 2026-10-31;
   `maid-knockout.md`), on Route 212 North. Darach's gate is not built yet,
   so the mansion is open as in vanilla. The maid at the west of the hall
-  explains the challenge with no turn target. The five maids (Belinda's
-  Araquanid, Sophie's Lurantis, Emily's Cinccino, Elena's Torkoal, Clare's
-  Klefki and Gothitelle) and then Lady Celeste (Milotic and Clefable)
-  battle back to back with no healing, and Celeste comes every time.
-  Straight after the first win over her, before she leaves, she gives an
+  explains the challenge with no turn target. The five maids each name
+  their household job as they come out (Belinda's Araquanid, Sophie's
+  Lurantis, Emily's Cinccino, Elena's Torkoal, Clare's Klefki and
+  Gothitelle), and then Lady Celeste leads with Clefable, Milotic behind.
+  All six battle back to back with no healing, and Celeste uses no bag
+  item. Straight after the win over her, before she leaves, she gives an
   Ability Capsule. Used on a Pokemon, it asks first, naming the other
-  regular ability. Talking to the maid again the same day asks you back
-  tomorrow. The next day the whole chain runs again, ends with Celeste,
-  and gives nothing. With a full Medicine pocket the Capsule is refused,
-  and talking to the maid that day hands it over.
+  regular ability. The maid then says the challenge is complete, and she
+  never offers it again, the next day included. With a full Medicine
+  pocket the Capsule is refused, and talking to the maid later hands it
+  over.
 - [ ] The Ability Patch (Ian, 2026-10-13): beating Ace Trainer Jose on
   Route 228 gives an Ability Patch and then TM64, straight after the win.
   With a full Bag, talking to him again gives what was refused.
@@ -958,6 +961,33 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   - Black Belt Derek, Route 215, at the east edge of the three-wide column
     the path turns down after the raised walkway, looking west. Jogger
     Craig should not join him in one battle.
+- [ ] **Mandatory fights, Wake's split** (`overseer-wake-split`, Ian,
+  2026-10-31; `docs/oxide/wake-split.md`). Walk from
+  Route 214 to Pastoria without dodging anyone. Each trainer below should see
+  you and walk up before you can pass, and after the battle the way on is
+  still open with the trainer standing where it was:
+  - Psychic Abigail, Route 214, where she stood below the gate, now looking
+    only west.
+  - Psychic Mitchell, Route 214, where he started his walk, now standing
+    still and looking south down the path.
+  - PI Carlos, Route 214, at the east edge of the narrows south of the berry
+    field, looking west. Beauty Devon's walking copy nearby should not join
+    his battle.
+  - Gentleman Jeremy, Valor Lakefront, at the west edge of the four-wide
+    path in from Route 214, looking east. He has left Route 212 North.
+  - Socialite Reina, Valor Lakefront, at the west edge of the six-wide stretch
+    above the hotel, looking east; Cynthia's and Barry's later scenes there
+    walk past her. She has left Route 212 North too.
+  - Beauty Cyndy, Route 213, at the west edge of the three-wide way down from
+    the hotel to the beach, looking east.
+  - Tuber Chelsea, Route 213, just north of the one-tile sand strip west of
+    the hotel's beach, looking south onto its entrance.
+  - Tuber Jared and Fisherman Travis, Route 213, at the two edges of the
+    two-row neck between the beach and the grass to Pastoria: Jared looks
+    east along the south row, Travis west along the north row. Two battles
+    one after the other, never one double. Travis has left Route 212 South's
+    bridge. After Fen Badge the Galactic grunt chase on Route 213 should
+    still run without bumping into either.
 
 ## 5. The ordinary ROM, after the League
 

@@ -222,6 +222,28 @@ IAN_EGG_MOVES = {
     "SPECIES_BUNEARY": [("MOVE_HI_JUMP_KICK", "Ian, 2026-10-31: Dahlia's Lopunny M at 40")],
     "SPECIES_LOPUNNY_M": [("MOVE_HI_JUMP_KICK", "Ian, 2026-10-31: Dahlia's Lopunny M at 40, which the "
                                                 "OxiDex reads as its own first stage")],
+    # Ian's own Route 214 teams (Ian, 2026-10-31, docs/oxide/wake-split.md):
+    # the moves his kept sets carry that no list gives at their levels, which
+    # were his before Oxide went past Generation 4. One of Ruin Maniac Bryan's
+    # moves is on its line's egg list in the data only, since that line is one
+    # of the five held out (test_learnrewrite's check_held_out).
+    "SPECIES_CYNDAQUIL": [("MOVE_ERUPTION", "Ian, 2026-10-31: Collector Douglas's Typhlosion")],
+    "SPECIES_REMORAID": [("MOVE_WATER_SPOUT", "Ian, 2026-10-31: Collector Douglas's Octillery")],
+    "SPECIES_CORSOLA": [("MOVE_DEFENSE_CURL", "Ian, 2026-10-31: Ruin Maniac Bryan's Corsola")],
+    "SPECIES_AERODACTYL": [("MOVE_TAILWIND", "Ian, 2026-10-31: Ruin Maniac Bryan's Aerodactyl")],
+    "SPECIES_DRIFLOON": [("MOVE_SELFDESTRUCT", "Ian, 2026-10-31: Ruin Maniac Ronald's Drifblim")],
+    "SPECIES_BELDUM": [("MOVE_METEOR_MASH", "Ian, 2026-10-31: Krystal's Metang"),
+                       ("MOVE_DYNAMIC_PUNCH", "Ian, 2026-10-31: Krystal's Metang"),
+                       ("MOVE_GRAVITY", "Ian, 2026-10-31: Krystal's Metang")],
+    "SPECIES_SNORUNT": [("MOVE_SING", "Ian, 2026-10-31: Krystal's Glalie"),
+                        ("MOVE_WEATHER_BALL", "Ian, 2026-10-31: Krystal's Glalie")],
+    "SPECIES_TORCHIC": [("MOVE_DYNAMIC_PUNCH", "Ian, 2026-10-31: Krystal's Blaziken"),
+                        ("MOVE_FLARE_BLITZ", "Ian, 2026-10-31: Krystal's Blaziken"),
+                        ("MOVE_BRAVE_BIRD", "Ian, 2026-10-31: Krystal's Blaziken")],
+    "SPECIES_DRATINI": [("MOVE_EXTREME_SPEED", "Ian, 2026-10-31: Krystal's Dragonair")],
+    # Read against plain Rotom's lists, which Krystal's Heat Rotom shares.
+    "SPECIES_ROTOM": [("MOVE_OVERHEAT", "Ian, 2026-10-31: Krystal's Heat Rotom"),
+                      ("MOVE_SUNNY_DAY", "Ian, 2026-10-31: Krystal's Heat Rotom")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

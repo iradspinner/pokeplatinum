@@ -28,7 +28,15 @@ from . import required as R
 # (docs/oxide/mandatory-fights-early.md): twelve moved trainers, Hiker
 # Daniel too, since a required verdict on a map's second crossing in a split
 # now wins over an avoidable one on its first.
-TOTALS = {"required": 64, "avoidable": 107, "never reached": 12}
+# 67 in Wake's split's pass (2026-10-31, docs/oxide/wake-split.md): Valor
+# Lakefront is now a crossing, and Gentleman Jeremy and Socialite Reina,
+# moved there from Route 212 North (off the path), read required, as does
+# Fisherman Travis, moved from Route 212 South to Route 213's west neck.
+# Route 213's three turners were already read required and now look one way.
+# 68 once Ian approved three Route 214 changes the same day: PI Carlos, moved
+# to the narrows south of the berry field, turns from avoidable to required;
+# Psychics Abigail and Mitchell were read required and now look one way.
+TOTALS = {"required": 68, "avoidable": 106, "never reached": 12}
 
 
 def check_crossings_resolve(results):
