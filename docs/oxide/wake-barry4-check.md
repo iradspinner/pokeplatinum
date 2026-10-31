@@ -2,6 +2,21 @@
 
 Ian built Wake's six and the three Pastoria Barry versions (Barry 4) in the OxiDex on 2026-10-31 and asked for the check Maylene's six had on 2026-10-29: anything that invalidates a fight, and the weakest crux in each with the top replacement picks for it. His natures are his choice; a repeat inside a team is reported. The teams are on branch `overseer-wake-barry4`. The only change this check makes to the game's data is the egg-list commit below. Every number comes from cheap checks; no scorer reading was run.
 
+## Ian's answers (2026-10-31)
+
+Wake keeps his six exactly as it is: Jellicent stays ("it can't read it correctly", meaning the simulator undervalues it), and so does Goodra at 40 (questions 1 and 2). In all three Barry 4 versions, Luxray takes the Hasty set of Howl, Crunch, Wild Charge and Ice Fang, which ends the Turtwig version's repeated Jolly (questions 3 and 4). Greninja, in the Piplup and Turtwig versions, swaps Mat Block for Feint Attack (question 7). Snorlax, Serperior's Contrary with Scale Shot, and Turtonator's Shell Trap stay (questions 5, 6 and 9). Barry 4 comes down a step (question 10): "it will be an intermediate split of 42", so his honour cap is 42, his ace starter drops two levels to it and every other member drops three. The cap is recorded where Tyche and Hermes's 41 is. He approved both simulator fixes (question 8: "Fix both"), the Air Balloon and Scale Shot's stat change, which are in `simulator-gaps.md`. Every move of the new Barry sets is on its species' list at its new level, so no egg list changed. The numbers in the sections after this one are the check's, from before these answers.
+
+The cheap checks were run once more on the teams as they now stand, with both simulator fixes in: the screen, the replacement trace and the probe, on the same boxes. Barry 4's box now stands at 42, his ace's level. Each cell is the player's wins in 150 rough fights against the best six and then the most-taken six, as in Part 3; one number means the two were the same six.
+
+| Fight | Box 1 | Box 2 | Box 3 | Screen's best-six score |
+|---|---|---|---|---|
+| Wake, before the fixes | 85, 60 | 33, 56 | 54, 64 | 16.30, 14.85, 14.15 |
+| Wake, with the fixes | 95, 67 | 28, 66 | 55, 67 | 16.30, 14.85, 14.15 |
+| Barry 4, Ian's first six at 44 | 53, 43 | 57, 53 | 66, 29 | 14.85, 15.25, 16.00 |
+| Barry 4 as answered, at 42 | 52, 80 | 71, 45 | 59 | 12.90, 16.70, 16.35 |
+
+The fixes work in the fights. Clodsire's balloon now bursts in 141 to 150 of 150 fights, and Wake reads a little easier for it. Every Scale Shot now moves Serperior's stages: +1 Defense and -1 Speed in 108 to 216 uses a run, with a handful at a limit already. Greninja used Feint Attack 14 to 31 times a run. Luxray's Hasty set knocked out 36 to 52 of the player's Pokemon on box 1 and 124 to 128 on boxes 2 and 3. Barry 4 at 42 reads about as hard as before on these checks; the screen's scores are against a box at 42 rather than 44, so they do not compare cell for cell.
+
 ## Summary
 
 **Outcome for Wake.** Nothing invalidates the fight. Pastoria Gym's map gives a permanent rain (the engine's overworld rain, which never ends), and every Wake check here ran in it. The rain is the fight. Floatzel's and Ludicolo's Swift Swim double their Speed to 258 and 150, so Floatzel outspeeds every catch the screen takes. Goodra's Thunder cannot miss, and its Weather Ball is a 100-power Water move. Hydration wakes Goodra at the end of the turn it Rests, so each Rest is a full heal with no sleep. Taken away for contrast, the rain is worth about 27 more wins in 150 rough fights to the player. Clodsire's Air Balloon is where the simulator is wrong: its damage rows ignore the balloon, and the balloon never bursts, so the Ground answers to Clodsire are misread both ways (question 8). Six of Wake's 24 moves were on no Oxide list at their levels; they are now on egg lists, as he ruled.
