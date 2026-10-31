@@ -96,7 +96,7 @@
             "species": "SPECIES_ENTEI",
             "form": 0,
             "level": 44,
-            "item": "ITEM_ABILITY_SHIELD",
+            "item": "ITEM_SHUCA_BERRY",
             "moves": [
                 "MOVE_SACRED_FIRE",
                 "MOVE_CRUNCH",
