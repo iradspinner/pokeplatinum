@@ -59,6 +59,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
+#include "system_vars.h"
 #include "text.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
@@ -1848,6 +1849,12 @@ static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8
 
                 if (TrainerInfo_HasBadge(trainerInfo, sBadgeFieldMoves[i].badge) == FALSE
                     || (listed & (1 << (fieldEffect - PARTY_MENU_STR_MOVE0)))) {
+                    continue;
+                }
+
+                // Surf waits on Cyrus at Celestic Town too (Ian, 2026-10-31).
+                if (sBadgeFieldMoves[i].fieldMove == FIELD_MOVE_SURF
+                    && SystemVars_CanSurf(SaveData_GetVarsFlags(application->partyMenu->fieldSystem->saveData)) == FALSE) {
                     continue;
                 }
 

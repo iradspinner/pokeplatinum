@@ -115,6 +115,9 @@ static const MapInfo sMapsInfo[] = {
     // Oxide: the Ironworks building's own name since 2026-09-27, so leaving it
     // is still written up as the Ironworks was
     { LocationNames_Text_IronworksHall,   FALSE },
+    // Oxide: the Lost Tower's own name since 2026-10-31 (it read Route 209
+    // before), so leaving it is written up as the Old Chateau's leaving is
+    { LocationNames_Text_LostTower,       FALSE },
 };
 
 static const GymInfo sGymsInfo[] = {

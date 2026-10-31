@@ -2303,9 +2303,9 @@ Could not read: 1 raw data lines.
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_PIPLUP (Barry, level 36, 5 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:37`
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_TURTWIG (Barry, level 36, 5 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:42`
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_CHIMCHAR (Barry, level 36, 5 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:47`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_PIPLUP (Barry, level 36, 6 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:37`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_TURTWIG (Barry, level 36, 6 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:42`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_CHIMCHAR (Barry, level 36, 6 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:47`
 
 Flags:
 
@@ -2318,7 +2318,7 @@ Variables:
 
 ### Route 209 Lost Tower 1F
 
-`MAP_HEADER_ROUTE_209_LOST_TOWER_1F`: scripts `scripts_route_209_lost_tower_1f`, events `events_route_209_lost_tower_1f`, init scripts `scripts_init_route_209_lost_tower_1f`. Location name Route 209. In Maylene's split, placed by its encounter table.
+`MAP_HEADER_ROUTE_209_LOST_TOWER_1F`: scripts `scripts_route_209_lost_tower_1f`, events `events_route_209_lost_tower_1f`, init scripts `scripts_init_route_209_lost_tower_1f`. Location name Lost Tower. In Maylene's split, placed by its encounter table.
 
 Flags:
 
@@ -2326,7 +2326,7 @@ Flags:
 
 ### Route 209 Lost Tower 2F
 
-`MAP_HEADER_ROUTE_209_LOST_TOWER_2F`: scripts `scripts_empty`, events `events_route_209_lost_tower_2f`. Location name Route 209. In Maylene's split, placed by its encounter table.
+`MAP_HEADER_ROUTE_209_LOST_TOWER_2F`: scripts `scripts_empty`, events `events_route_209_lost_tower_2f`. Location name Lost Tower. In Maylene's split, placed by its encounter table.
 
 Trainer battles:
 
@@ -2387,7 +2387,7 @@ Scripts nothing reaches: script 4 `PokemonDayCare_Entry3` (line 40).
 
 ### Route 209 Lost Tower 3F
 
-`MAP_HEADER_ROUTE_209_LOST_TOWER_3F`: scripts `scripts_empty`, events `events_route_209_lost_tower_3f`. Location name Route 209. In Maylene's split, placed by its encounter table.
+`MAP_HEADER_ROUTE_209_LOST_TOWER_3F`: scripts `scripts_empty`, events `events_route_209_lost_tower_3f`. Location name Lost Tower. In Maylene's split, placed by its encounter table.
 
 Trainer battles:
 
@@ -2404,7 +2404,7 @@ Flags:
 
 ### Route 209 Lost Tower 4F
 
-`MAP_HEADER_ROUTE_209_LOST_TOWER_4F`: scripts `scripts_empty`, events `events_route_209_lost_tower_4f`. Location name Route 209. In Maylene's split, placed by its encounter table.
+`MAP_HEADER_ROUTE_209_LOST_TOWER_4F`: scripts `scripts_empty`, events `events_route_209_lost_tower_4f`. Location name Lost Tower. In Maylene's split, placed by its encounter table.
 
 Trainer battles:
 
@@ -2430,7 +2430,7 @@ Gone from vanilla: ITEM_TM27 x1, one time, flag FLAG_OBTAINED_ROUTE_209_LOST_TOW
 
 ### Route 209 Lost Tower 5F
 
-`MAP_HEADER_ROUTE_209_LOST_TOWER_5F`: scripts `scripts_route_209_lost_tower_5f`, events `events_route_209_lost_tower_5f`, init scripts `scripts_init_route_209_lost_tower_5f`. Location name Route 209. In Maylene's split, placed by its encounter table.
+`MAP_HEADER_ROUTE_209_LOST_TOWER_5F`: scripts `scripts_route_209_lost_tower_5f`, events `events_route_209_lost_tower_5f`, init scripts `scripts_init_route_209_lost_tower_5f`. Location name Lost Tower. In Maylene's split, placed by its encounter table.
 
 Items given:
 
@@ -7201,7 +7201,7 @@ Gone from vanilla: variable VAR_ETERNA_CITY_BLOCK_EXITS_STATE (set).
 
 Trainer battles:
 
-- StartTagBattle: partner TRAINER_RIVAL_FIGHT_AREA_TURTWIG (Barry, level 75, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG, TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR (Barry, level 75, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY, TRAINER_RIVAL_FIGHT_AREA_PIPLUP (Barry, level 75, 6 Pokemon) otherwise, through a variable; against TRAINER_LEADER_VOLKNER_FIGHT_AREA (Volkner, level 69, 4 Pokemon), by number; and TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA (Flint, level 69, 4 Pokemon), by number. Vanilla. `scripts_fight_area.s:400`
+- StartTagBattle: partner TRAINER_RIVAL_FIGHT_AREA_TURTWIG (Barry, level 71, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG, TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR (Barry, level 71, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY, TRAINER_RIVAL_FIGHT_AREA_PIPLUP (Barry, level 71, 6 Pokemon) otherwise, through a variable; against TRAINER_LEADER_VOLKNER_FIGHT_AREA (Volkner, level 69, 4 Pokemon), by number; and TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA (Flint, level 69, 4 Pokemon), by number. Vanilla. `scripts_fight_area.s:400`
 
 Items given:
 

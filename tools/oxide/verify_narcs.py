@@ -422,6 +422,19 @@ MAP_HEADERS_DIVERGED = {
     "MAP_HEADER_FUEGO_IRONWORKS_BUILDING": (range(18, 19), "the building takes a location "
                                             "name of its own, Ironworks Hall, so it is a "
                                             "capture apart from the yard (Ian, 2026-09-27)"),
+    # Bytes 18 and 19 are mapLabelTextID and mapLabelWindowID: each floor of the
+    # Lost Tower reads "Lost Tower" in an indoor window, as the Old Chateau does,
+    # where vanilla gave it Route 209's name and sign.
+    "MAP_HEADER_ROUTE_209_LOST_TOWER_1F": (range(18, 20), "the Lost Tower takes a location "
+                                           "name of its own, a capture apart from Route 209 (Ian, 2026-10-31)"),
+    "MAP_HEADER_ROUTE_209_LOST_TOWER_2F": (range(18, 20), "the Lost Tower takes a location "
+                                           "name of its own, a capture apart from Route 209 (Ian, 2026-10-31)"),
+    "MAP_HEADER_ROUTE_209_LOST_TOWER_3F": (range(18, 20), "the Lost Tower takes a location "
+                                           "name of its own, a capture apart from Route 209 (Ian, 2026-10-31)"),
+    "MAP_HEADER_ROUTE_209_LOST_TOWER_4F": (range(18, 20), "the Lost Tower takes a location "
+                                           "name of its own, a capture apart from Route 209 (Ian, 2026-10-31)"),
+    "MAP_HEADER_ROUTE_209_LOST_TOWER_5F": (range(18, 20), "the Lost Tower takes a location "
+                                           "name of its own, a capture apart from Route 209 (Ian, 2026-10-31)"),
 }
 
 

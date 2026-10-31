@@ -2302,6 +2302,9 @@ TestKit_WarpRoute208:
     GiveBadge BADGE_ID_MINE
     GiveBadge BADGE_ID_ICICLE
     GiveBadge BADGE_ID_BEACON
+    @ Surf also waits on Cyrus beaten at Celestic Town (Ian, 2026-10-31,
+    @ SystemVars_CanSurf), so the set marks Celestic's story done.
+    SetVar VAR_CELESTIC_TOWN_STATE, 2
     CloseMessage
     Warp MAP_HEADER_ROUTE_208, 398, 719, DIR_WEST
     ReleaseAll
