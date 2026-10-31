@@ -51,7 +51,7 @@
      {"at": ["scripts_battles:1576"], "commit": "2f5fc736c", "daily": false, "flag": 462, "name": "FLAG_UNUSED_0x01CE", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1598"], "commit": "2f5fc736c", "daily": false, "flag": 463, "name": "FLAG_UNUSED_0x01CF", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1609"], "commit": "2f5fc736c", "daily": false, "flag": 464, "name": "FLAG_UNUSED_0x01D0", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_battles:1587"], "commit": null, "daily": false, "flag": 543, "name": "FLAG_UNUSED_0x021F", "op": "check", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_battles:1587"], "commit": "1ecd6aa1f", "daily": false, "flag": 543, "name": "FLAG_UNUSED_0x021F", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1620"], "commit": "2f5fc736c", "daily": false, "flag": 574, "name": "FLAG_UNUSED_0x023E", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1631"], "commit": "2f5fc736c", "daily": false, "flag": 717, "name": "FLAG_UNUSED_0x02CD", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1642"], "commit": "2f5fc736c", "daily": false, "flag": 718, "name": "FLAG_UNUSED_0x02CE", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
@@ -97,7 +97,7 @@
      {"at": ["scripts_battles:1581"], "commit": "2f5fc736c", "daily": false, "flag": 462, "name": "FLAG_UNUSED_0x01CE", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1603"], "commit": "2f5fc736c", "daily": false, "flag": 463, "name": "FLAG_UNUSED_0x01CF", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1614"], "commit": "2f5fc736c", "daily": false, "flag": 464, "name": "FLAG_UNUSED_0x01D0", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_battles:1592"], "commit": null, "daily": false, "flag": 543, "name": "FLAG_UNUSED_0x021F", "op": "set", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_battles:1592"], "commit": "1ecd6aa1f", "daily": false, "flag": 543, "name": "FLAG_UNUSED_0x021F", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1625"], "commit": "2f5fc736c", "daily": false, "flag": 574, "name": "FLAG_UNUSED_0x023E", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1636"], "commit": "2f5fc736c", "daily": false, "flag": 717, "name": "FLAG_UNUSED_0x02CD", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1647"], "commit": "2f5fc736c", "daily": false, "flag": 718, "name": "FLAG_UNUSED_0x02CE", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
@@ -146,7 +146,7 @@
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_SILK_SCARF", "value": 251, "when": ""}], "line": 1558, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM40", "value": 367, "when": ""}], "line": 1569, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM10", "value": 337, "when": ""}], "line": 1580, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
-     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM72", "value": 399, "when": ""}], "line": 1591, "mode": "variable", "origin": "added", "reached": true, "source": "unclear"},
+     {"command": "Common_GiveItemQuantity", "commit": "1ecd6aa1f", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM72", "value": 399, "when": ""}], "line": 1591, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM57", "value": 384, "when": ""}], "line": 1602, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_LOADED_DICE", "value": 128, "when": ""}], "line": 1613, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "2", "value": 2, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM60", "value": 387, "when": ""}], "line": 1624, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
@@ -11330,8 +11330,8 @@
      {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_valor_lakefront", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_SECRETPOTION", "value": 464, "when": ""}], "line": 346, "mode": "variable", "origin": "vanilla", "reached": true}
     ],
     "trainers": [
-     {"event": "object_events", "file": "events_valor_lakefront", "how": "sees the player", "line": 224, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GENTLEMAN_JEREMY", "value": 84, "when": ""}]}], "source": "unclear"},
-     {"event": "object_events", "file": "events_valor_lakefront", "how": "sees the player", "line": 241, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SOCIALITE_REINA", "value": 85, "when": ""}]}], "source": "unclear"},
+     {"commit": "b8b54bb10", "event": "object_events", "file": "events_valor_lakefront", "how": "sees the player", "line": 224, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GENTLEMAN_JEREMY", "value": 84, "when": ""}]}], "source": "Oxide"},
+     {"commit": "b8b54bb10", "event": "object_events", "file": "events_valor_lakefront", "how": "sees the player", "line": 241, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SOCIALITE_REINA", "value": 85, "when": ""}]}], "source": "Oxide"},
      {"command": "StartTrainerBattle", "file": "scripts_valor_lakefront", "how": "StartTrainerBattle", "line": 88, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT", "value": 847, "when": ""}]}]}
     ],
     "vars": [
@@ -13089,7 +13089,7 @@
      {"event": "object_events", "file": "events_route_213", "how": "sees the player", "line": 210, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BEAUTY_CYNDY", "value": 346, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_213", "how": "sees the player", "line": 227, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_KENNETH", "value": 111, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_213", "how": "sees the player", "line": 242, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SAILOR_PAUL", "value": 110, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_213", "how": "sees the player", "line": 644, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_TRAVIS", "value": 93, "when": ""}]}], "source": "unclear"}
+     {"commit": "b8b54bb10", "event": "object_events", "file": "events_route_213", "how": "sees the player", "line": 644, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_TRAVIS", "value": 93, "when": ""}]}], "source": "Oxide"}
     ],
     "vars": [
      {"at": ["scripts_route_213:22"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
@@ -19268,11 +19268,10 @@
    "vanilla": 1
   },
   "flags": {
-   "Oxide": 137,
+   "Oxide": 139,
    "base ROM": 215,
    "gone": 105,
    "total": 3318,
-   "unclear": 2,
    "vanilla": 2964
   },
   "hidden_items": {
@@ -19289,11 +19288,10 @@
    "vanilla": 260
   },
   "items": {
-   "Oxide": 79,
+   "Oxide": 80,
    "base ROM": 31,
    "gone": 34,
    "total": 213,
-   "unclear": 1,
    "vanilla": 102
   },
   "pokemon": {
@@ -19316,11 +19314,10 @@
    "vanilla": 4
   },
   "trainers": {
-   "Oxide": 10,
+   "Oxide": 13,
    "base ROM": 72,
    "gone": 14,
    "total": 592,
-   "unclear": 3,
    "vanilla": 507
   },
   "vars": {

@@ -14,11 +14,11 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 1 | 1 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 592 | 507 | 72 | 10 | 3 | 14 |
-| Items given | 213 | 102 | 31 | 79 | 1 | 34 |
+| Trainer battles | 592 | 507 | 72 | 13 | 0 | 14 |
+| Items given | 213 | 102 | 31 | 80 | 0 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
-| Flags | 3318 | 2964 | 215 | 137 | 2 | 105 |
+| Flags | 3318 | 2964 | 215 | 139 | 0 | 105 |
 | Variables | 1117 | 1078 | 27 | 12 | 0 | 36 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
@@ -3042,8 +3042,8 @@ Gone from vanilla: ITEM_TM28 x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_O
 
 Trainer battles:
 
-- TRAINER_GENTLEMAN_JEREMY (Jeremy, level 39, 5 Pokemon), sees the player. Added, origin unclear. `events_valor_lakefront.json:224`
-- TRAINER_SOCIALITE_REINA (Reina, level 40, 5 Pokemon), sees the player. Added, origin unclear. `events_valor_lakefront.json:241`
+- TRAINER_GENTLEMAN_JEREMY (Jeremy, level 39, 5 Pokemon), sees the player. Added by Oxide (b8b54bb10). `events_valor_lakefront.json:224`
+- TRAINER_SOCIALITE_REINA (Reina, level 40, 5 Pokemon), sees the player. Added by Oxide (b8b54bb10). `events_valor_lakefront.json:241`
 - StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT (Grunt, level 41, 1 Pokemon), by name. Vanilla. `scripts_valor_lakefront.s:88`
 
 Items given:
@@ -3092,7 +3092,7 @@ Trainer battles:
 - TRAINER_BEAUTY_CYNDY (Cyndy, level 40, 5 Pokemon), sees the player. Vanilla. `events_route_213.json:210`
 - TRAINER_FISHERMAN_KENNETH (Kenneth, level 41, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:227`
 - TRAINER_SAILOR_PAUL (Paul, level 44, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:242`
-- TRAINER_FISHERMAN_TRAVIS (Travis, level 41, 4 Pokemon), sees the player. Added, origin unclear. `events_route_213.json:644`
+- TRAINER_FISHERMAN_TRAVIS (Travis, level 41, 4 Pokemon), sees the player. Added by Oxide (b8b54bb10). `events_route_213.json:644`
 
 Item balls:
 
@@ -8472,7 +8472,7 @@ Items given:
 - ITEM_SILK_SCARF x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1558`
 - ITEM_TM40 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1569`
 - ITEM_TM10 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1580`
-- ITEM_TM72 x1. Added, origin unclear. `scripts_battles.s:1591`
+- ITEM_TM72 x1. Added by Oxide (1ecd6aa1f). `scripts_battles.s:1591`
 - ITEM_TM57 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1602`
 - ITEM_LOADED_DICE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1613`
 - ITEM_TM60 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1624`
@@ -8492,8 +8492,8 @@ Items given:
 
 Flags:
 
-- Set: FLAG_UNUSED_0x006F (added, Oxide), FLAG_UNUSED_0x0094 (added, Oxide), FLAG_UNUSED_0x0095 (added, Oxide), FLAG_UNUSED_0x0096 (added, Oxide), FLAG_UNUSED_0x00A4 (added, Oxide), FLAG_UNUSED_0x00AE (added, Oxide), FLAG_UNUSED_0x00D4 (added, Oxide), FLAG_UNUSED_0x00EC (added, Oxide), FLAG_UNUSED_0x0101 (added, Oxide), FLAG_UNUSED_0x0114 (added, Oxide), FLAG_UNUSED_0x0122 (added, Oxide), FLAG_UNUSED_0x015F (added, Oxide), FLAG_UNUSED_0x0163 (added, Oxide), FLAG_UNUSED_0x0167 (added, Oxide), FLAG_UNUSED_0x0168 (added, Oxide), FLAG_UNUSED_0x0169 (added, Oxide), FLAG_UNUSED_0x016A (added, Oxide), FLAG_UNUSED_0x016B (added, Oxide), FLAG_UNUSED_0x016C (added, Oxide), FLAG_UNUSED_0x016D (added, Oxide), FLAG_UNUSED_0x016E (added, Oxide), FLAG_UNUSED_0x016F (added, Oxide), FLAG_UNUSED_0x0170 (added, Oxide), FLAG_UNUSED_0x0171 (added, Oxide), FLAG_UNUSED_0x0187 (added, Oxide), FLAG_UNUSED_0x0193 (added, Oxide), FLAG_UNUSED_0x01C4 (added, Oxide), FLAG_UNUSED_0x01C6 (added, Oxide), FLAG_UNUSED_0x01CE (added, Oxide), FLAG_UNUSED_0x01CF (added, Oxide), FLAG_UNUSED_0x01D0 (added, Oxide), FLAG_UNUSED_0x021F (added, unclear), FLAG_UNUSED_0x023E (added, Oxide), FLAG_UNUSED_0x02CD (added, Oxide), FLAG_UNUSED_0x02CE (added, Oxide), FLAG_UNUSED_0x02CF (added, Oxide), FLAG_UNUSED_0x02D0 (added, Oxide), FLAG_UNUSED_0x02D1 (added, Oxide), FLAG_UNUSED_0x02D2 (added, Oxide), FLAG_UNUSED_0x02D3 (added, Oxide), FLAG_UNUSED_0x02D4 (added, Oxide), FLAG_UNUSED_0x02D5 (added, Oxide), FLAG_UNUSED_0x02D6 (added, Oxide), FLAG_UNUSED_0x02D7 (added, Oxide), FLAG_UNUSED_0x02D8 (added, Oxide), FLAG_UNUSED_0x02D9 (added, Oxide).
-- Checked: FLAG_UNUSED_0x006F (added, Oxide), FLAG_UNUSED_0x0094 (added, Oxide), FLAG_UNUSED_0x0095 (added, Oxide), FLAG_UNUSED_0x0096 (added, Oxide), FLAG_UNUSED_0x00A4 (added, Oxide), FLAG_UNUSED_0x00AE (added, Oxide), FLAG_UNUSED_0x00D4 (added, Oxide), FLAG_UNUSED_0x00EC (added, Oxide), FLAG_UNUSED_0x0101 (added, Oxide), FLAG_UNUSED_0x0114 (added, Oxide), FLAG_UNUSED_0x0122 (added, Oxide), FLAG_UNUSED_0x015F (added, Oxide), FLAG_UNUSED_0x0163 (added, Oxide), FLAG_UNUSED_0x0167 (added, Oxide), FLAG_UNUSED_0x0168 (added, Oxide), FLAG_UNUSED_0x0169 (added, Oxide), FLAG_UNUSED_0x016A (added, Oxide), FLAG_UNUSED_0x016B (added, Oxide), FLAG_UNUSED_0x016C (added, Oxide), FLAG_UNUSED_0x016D (added, Oxide), FLAG_UNUSED_0x016E (added, Oxide), FLAG_UNUSED_0x016F (added, Oxide), FLAG_UNUSED_0x0170 (added, Oxide), FLAG_UNUSED_0x0171 (added, Oxide), FLAG_UNUSED_0x0187 (added, Oxide), FLAG_UNUSED_0x0193 (added, Oxide), FLAG_UNUSED_0x01C4 (added, Oxide), FLAG_UNUSED_0x01C6 (added, Oxide), FLAG_UNUSED_0x01CE (added, Oxide), FLAG_UNUSED_0x01CF (added, Oxide), FLAG_UNUSED_0x01D0 (added, Oxide), FLAG_UNUSED_0x021F (added, unclear), FLAG_UNUSED_0x023E (added, Oxide), FLAG_UNUSED_0x02CD (added, Oxide), FLAG_UNUSED_0x02CE (added, Oxide), FLAG_UNUSED_0x02CF (added, Oxide), FLAG_UNUSED_0x02D0 (added, Oxide), FLAG_UNUSED_0x02D1 (added, Oxide), FLAG_UNUSED_0x02D2 (added, Oxide), FLAG_UNUSED_0x02D3 (added, Oxide), FLAG_UNUSED_0x02D4 (added, Oxide), FLAG_UNUSED_0x02D5 (added, Oxide), FLAG_UNUSED_0x02D6 (added, Oxide), FLAG_UNUSED_0x02D7 (added, Oxide), FLAG_UNUSED_0x02D8 (added, Oxide), FLAG_UNUSED_0x02D9 (added, Oxide).
+- Set: FLAG_UNUSED_0x006F (added, Oxide), FLAG_UNUSED_0x0094 (added, Oxide), FLAG_UNUSED_0x0095 (added, Oxide), FLAG_UNUSED_0x0096 (added, Oxide), FLAG_UNUSED_0x00A4 (added, Oxide), FLAG_UNUSED_0x00AE (added, Oxide), FLAG_UNUSED_0x00D4 (added, Oxide), FLAG_UNUSED_0x00EC (added, Oxide), FLAG_UNUSED_0x0101 (added, Oxide), FLAG_UNUSED_0x0114 (added, Oxide), FLAG_UNUSED_0x0122 (added, Oxide), FLAG_UNUSED_0x015F (added, Oxide), FLAG_UNUSED_0x0163 (added, Oxide), FLAG_UNUSED_0x0167 (added, Oxide), FLAG_UNUSED_0x0168 (added, Oxide), FLAG_UNUSED_0x0169 (added, Oxide), FLAG_UNUSED_0x016A (added, Oxide), FLAG_UNUSED_0x016B (added, Oxide), FLAG_UNUSED_0x016C (added, Oxide), FLAG_UNUSED_0x016D (added, Oxide), FLAG_UNUSED_0x016E (added, Oxide), FLAG_UNUSED_0x016F (added, Oxide), FLAG_UNUSED_0x0170 (added, Oxide), FLAG_UNUSED_0x0171 (added, Oxide), FLAG_UNUSED_0x0187 (added, Oxide), FLAG_UNUSED_0x0193 (added, Oxide), FLAG_UNUSED_0x01C4 (added, Oxide), FLAG_UNUSED_0x01C6 (added, Oxide), FLAG_UNUSED_0x01CE (added, Oxide), FLAG_UNUSED_0x01CF (added, Oxide), FLAG_UNUSED_0x01D0 (added, Oxide), FLAG_UNUSED_0x021F (added, Oxide), FLAG_UNUSED_0x023E (added, Oxide), FLAG_UNUSED_0x02CD (added, Oxide), FLAG_UNUSED_0x02CE (added, Oxide), FLAG_UNUSED_0x02CF (added, Oxide), FLAG_UNUSED_0x02D0 (added, Oxide), FLAG_UNUSED_0x02D1 (added, Oxide), FLAG_UNUSED_0x02D2 (added, Oxide), FLAG_UNUSED_0x02D3 (added, Oxide), FLAG_UNUSED_0x02D4 (added, Oxide), FLAG_UNUSED_0x02D5 (added, Oxide), FLAG_UNUSED_0x02D6 (added, Oxide), FLAG_UNUSED_0x02D7 (added, Oxide), FLAG_UNUSED_0x02D8 (added, Oxide), FLAG_UNUSED_0x02D9 (added, Oxide).
+- Checked: FLAG_UNUSED_0x006F (added, Oxide), FLAG_UNUSED_0x0094 (added, Oxide), FLAG_UNUSED_0x0095 (added, Oxide), FLAG_UNUSED_0x0096 (added, Oxide), FLAG_UNUSED_0x00A4 (added, Oxide), FLAG_UNUSED_0x00AE (added, Oxide), FLAG_UNUSED_0x00D4 (added, Oxide), FLAG_UNUSED_0x00EC (added, Oxide), FLAG_UNUSED_0x0101 (added, Oxide), FLAG_UNUSED_0x0114 (added, Oxide), FLAG_UNUSED_0x0122 (added, Oxide), FLAG_UNUSED_0x015F (added, Oxide), FLAG_UNUSED_0x0163 (added, Oxide), FLAG_UNUSED_0x0167 (added, Oxide), FLAG_UNUSED_0x0168 (added, Oxide), FLAG_UNUSED_0x0169 (added, Oxide), FLAG_UNUSED_0x016A (added, Oxide), FLAG_UNUSED_0x016B (added, Oxide), FLAG_UNUSED_0x016C (added, Oxide), FLAG_UNUSED_0x016D (added, Oxide), FLAG_UNUSED_0x016E (added, Oxide), FLAG_UNUSED_0x016F (added, Oxide), FLAG_UNUSED_0x0170 (added, Oxide), FLAG_UNUSED_0x0171 (added, Oxide), FLAG_UNUSED_0x0187 (added, Oxide), FLAG_UNUSED_0x0193 (added, Oxide), FLAG_UNUSED_0x01C4 (added, Oxide), FLAG_UNUSED_0x01C6 (added, Oxide), FLAG_UNUSED_0x01CE (added, Oxide), FLAG_UNUSED_0x01CF (added, Oxide), FLAG_UNUSED_0x01D0 (added, Oxide), FLAG_UNUSED_0x021F (added, Oxide), FLAG_UNUSED_0x023E (added, Oxide), FLAG_UNUSED_0x02CD (added, Oxide), FLAG_UNUSED_0x02CE (added, Oxide), FLAG_UNUSED_0x02CF (added, Oxide), FLAG_UNUSED_0x02D0 (added, Oxide), FLAG_UNUSED_0x02D1 (added, Oxide), FLAG_UNUSED_0x02D2 (added, Oxide), FLAG_UNUSED_0x02D3 (added, Oxide), FLAG_UNUSED_0x02D4 (added, Oxide), FLAG_UNUSED_0x02D5 (added, Oxide), FLAG_UNUSED_0x02D6 (added, Oxide), FLAG_UNUSED_0x02D7 (added, Oxide), FLAG_UNUSED_0x02D8 (added, Oxide), FLAG_UNUSED_0x02D9 (added, Oxide).
 
 ### scripts_berry_tree_interaction
 
