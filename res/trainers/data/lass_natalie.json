@@ -25,21 +25,6 @@
             "gender": null
         },
         {
-            "species": "SPECIES_BUDEW",
-            "form": 0,
-            "level": 7,
-            "item": "ITEM_PECHA_BERRY",
-            "moves": [
-                "MOVE_ACID",
-                "MOVE_RAZOR_LEAF"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_MILD",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
             "species": "SPECIES_ROOKIDEE",
             "form": 0,
             "level": 8,

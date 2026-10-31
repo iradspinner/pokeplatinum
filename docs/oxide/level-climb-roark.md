@@ -1,12 +1,12 @@
 # The level climb in Roark's split
 
-Ian answered the cleanup's questions on 2026-10-31 (`cleanup-five-splits.md`), and this page is what came of them, on the branches `overseer-roark-pass` and `overseer-roark-simpler`. Roark's split gets the pass the other four splits had, which reverses "Roark's split is left as it is" of 2026-10-29. Barry 2 and Beauty Devon lose their repeats, and fourteen off-list moves on the Galactic fights and two other teams go on egg lists. Ian then found the first pass's early teams too complicated (2026-10-31): "the player is mostly just dealing with early encounters at this point so keeping it relatively simpler for roark split is the move up until ~Mason or Colin". The twelve ordinary teams before Oreburgh Mine were rebuilt plain at the same levels; the section on the simpler early teams below has them.
+Ian answered the cleanup's questions on 2026-10-31 (`cleanup-five-splits.md`), and this page is what came of them, on the branches `overseer-roark-pass`, `overseer-roark-simpler` and `overseer-roark-202`. Roark's split gets the pass the other four splits had, which reverses "Roark's split is left as it is" of 2026-10-29. Barry 2 and Beauty Devon lose their repeats, and fourteen off-list moves on the Galactic fights and two other teams go on egg lists. Ian then found the first pass's early teams too complicated (2026-10-31): "the player is mostly just dealing with early encounters at this point so keeping it relatively simpler for roark split is the move up until ~Mason or Colin". The twelve ordinary teams before Oreburgh Mine were rebuilt plain at the same levels; the section on the simpler early teams below has them.
 
 ## Summary
 
 All 16 ordinary and gym teams of Roark's split were rebuilt, from Route 202 to the Oreburgh gym. Two caps are in force: Barry 2's honour cap of 11 on Route 202 and in the Trainers' School, then Roark's 16 from Route 203 on. The teams now climb from 7 to 15 in play order, where 8 of the 16 stood at 15 and Route 202 stood at 9 and 10, one under Barry 2's cap. Only Youngster Darius, the gym's last guard, is one under a cap, and none is at one.
 
-The twelve teams before the mine have three Pokemon each, familiar species from the early routes, same-type attacks with at most one stat-drop move, and a basic Berry each. The four from the mine on (Workers Mason and Colin, the gym's two) keep the first pass's sharper sets and sizes of 3 to 5. The 52 members are 50 species, 12 of them from after Platinum, where before one (Nacli) was. Every member holds its own item and names its own nature, where 44 of 60 held nothing and 47 named none, and none is Adamant, Jolly, Modest or Timid. No trainer moved, so the mandatory count stays at 8, as Ian said.
+The twelve teams before the mine have three Pokemon each (two on Route 202, Ian's early exception), familiar species from the early routes, same-type attacks with at most one stat-drop move, and a basic Berry each. The four from the mine on (Workers Mason and Colin, the gym's two) keep the first pass's sharper sets and sizes of 3 to 5. The 49 members are 47 species, 12 of them from after Platinum, where before one (Nacli) was. Every member holds its own item and names its own nature, where 44 of 60 held nothing and 47 named none, and none is Adamant, Jolly, Modest or Timid. No trainer moved, so the mandatory count stays at 8, as Ian said.
 
 | # | Trainer | Area | Kind | Cap in force | Old top | New top |
 |---:|---|---|---|---:|---:|---:|
@@ -33,11 +33,10 @@ Route 202's order is the one `test_b1e` traces on the collision map (Tristan's c
 What Ian decides:
 
 1. The teams below, as a set: the simpler twelve before the mine and the first pass's four from the mine on.
-2. Whether Route 202's three teams may go under three Pokemon, as an early exception to the rule of 3 to 5. They stay at three until he says so.
 
-Ian's answers of 2026-10-31, relayed by the Overseer: Route 202's tops of 7 and 8 stand, and Youngster Darius at 15 stands. Route 202's three trainers came down two levels each, so that a player who reaches the route at 6 or 7 meets each a level or so above them, and the school's two sit at 9 under Barry 2's 11. Darius is the split's one trainer one under its cap, as the last guard before the leader, the place Maylene's Jeffery and Wake's Samson hold in their gyms.
+Ian's answers of 2026-10-31, relayed by the Overseer: Route 202's three teams may go under three Pokemon, as an early exception to the rule of 3 to 5, so each now fields two; Route 202's tops of 7 and 8 stand, and Youngster Darius at 15 stands. Route 202's three trainers came down two levels each, so that a player who reaches the route at 6 or 7 meets each a level or so above them, and the school's two sit at 9 under Barry 2's 11. Darius is the split's one trainer one under its cap, as the last guard before the leader, the place Maylene's Jeffery and Wake's Samson hold in their gyms.
 
-Next steps: the Overseer lands the branch (one merge and the gate, about half an hour), then Ian plays the fights he wants to see. No scorer reading was run, and none is needed unless Ian names a fight.
+Nothing here is final: Ian judges every team in the OxiDex. Next steps: the Overseer lands the branch (one merge and the gate, about half an hour), then Ian plays the fights he wants to see. No scorer reading was run, and none is needed unless Ian names a fight.
 
 What is unverified:
 
@@ -86,13 +85,13 @@ Ian, on question 9: each move goes on its line's first-stage egg list, under his
 
 ## The simpler early teams
 
-Ian's feedback of 2026-10-31 on the first pass, relayed by the Overseer, set the shape: three Pokemon a team; species from what Routes 201 to 204, Oreburgh Gate and their waters hold; same-type attacks and at most one plain stat-drop move (Growl, Leer, Charm, Screech and the like), with no setup move, no status infliction and no combo; an ability that does nothing in these fights; and a basic Berry and a nature of its own for each member, none repeated in a team. Each line gives the team in the order it is sent out, each member with its ability, Berry, nature and moves. An asterisk marks a species from after Platinum.
+Ian's feedback of 2026-10-31 on the first pass, relayed by the Overseer, set the shape: three Pokemon a team, and two on Route 202 under his later answer; species from what Routes 201 to 204, Oreburgh Gate and their waters hold; same-type attacks and at most one plain stat-drop move (Growl, Leer, Charm, Screech and the like), with no setup move, no status infliction and no combo; an ability that does nothing in these fights; and a basic Berry and a nature of its own for each member, none repeated in a team. Each line gives the team in the order it is sent out, each member with its ability, Berry, nature and moves. An asterisk marks a species from after Platinum.
 
 | Trainer | Team |
 |---|---|
-| Tristan | Starly 6 (Keen Eye, Oran Berry, Hardy; Tackle, Quick Attack), Sentret 7 (Frisk, Cheri Berry, Quirky; Scratch, Quick Attack, Baby-Doll Eyes), Pikipek* 7 (Keen Eye, Pecha Berry, Docile; Peck, Echoed Voice) |
-| Natalie | Wooloo* 7 (Run Away, Oran Berry, Bashful; Tackle, Double Hit), Budew 7 (Natural Cure, Pecha Berry, Mild; Acid, Razor Leaf), Rookidee* 8 (Keen Eye, Persim Berry, Naive; Peck, Leer) |
-| Logan | Weedle 7 (Run Away, Cheri Berry, Naughty; Poison Sting, String Shot), Kricketot 7 (Run Away, Oran Berry, Lax; Struggle Bug, Fury Cutter, Growl), Sewaddle* 8 (Chlorophyll, Rawst Berry, Sassy; Pounce, Bug Bite) |
+| Tristan | Starly 6 (Keen Eye, Oran Berry, Hardy; Tackle, Quick Attack), Pikipek* 7 (Keen Eye, Pecha Berry, Docile; Peck, Echoed Voice) |
+| Natalie | Wooloo* 7 (Run Away, Oran Berry, Bashful; Tackle, Double Hit), Rookidee* 8 (Keen Eye, Persim Berry, Naive; Peck, Leer) |
+| Logan | Kricketot 7 (Run Away, Oran Berry, Lax; Struggle Bug, Fury Cutter, Growl), Sewaddle* 8 (Chlorophyll, Rawst Berry, Sassy; Pounce, Bug Bite) |
 | Harrison | Surskit 8 (Swift Swim, Persim Berry, Serious; Bubble, Struggle Bug), Machop 8 (Steadfast, Oran Berry, Brave; Rock Smash, Low Kick, Leer), Houndour 9 (Early Bird, Chesto Berry, Hasty; Ember, Pursuit) |
 | Christine | Natu 8 (Magic Guard, Oran Berry, Calm; Peck, Leer), Wingull 8 (Rain Dish, Aspear Berry, Relaxed; Water Gun, Gust), Ralts 9 (Synchronize, Pecha Berry, Bashful; Confusion, Disarming Voice, Growl) |
 | Michael | Paras 10 (Damp, Pecha Berry, Brave; Bug Bite, Bullet Seed), Lotad 10 (Own Tempo, Oran Berry, Docile; Water Gun, Mega Drain), Smoliv* 11 (Early Bird, Cheri Berry, Quiet; Razor Leaf, Tackle, Charm) |
@@ -102,6 +101,8 @@ Ian's feedback of 2026-10-31 on the first pass, relayed by the Overseer, set the
 | Kaitlin | Ponyta 12 (Run Away, Oran Berry, Gentle; Ember, Flame Wheel), Growlithe 12 (Justified, Cheri Berry, Docile; Ember, Leer), Magby 13 (Vital Spirit, Persim Berry, Quirky; Ember, Screech) |
 | Curtis | Zubat 12 (Inner Focus, Pecha Berry, Hardy; Poison Sting, Dual Wingbeat), Geodude 12 (Rock Head, Oran Berry, Impish; Rock Throw, Mud-Slap), Phanpy 13 (Pickup, Chesto Berry, Brave; Mud Shot, Charm) |
 | Diana | Fletchling* 12 (Big Pecks, Oran Berry, Naive; Tackle, Quick Attack), Buneary 12 (Limber, Cheri Berry, Serious; Pound, Double Hit, Baby-Doll Eyes), Glameow 13 (Keen Eye, Persim Berry, Lax; Scratch, Fury Swipes, Growl) |
+
+Route 202's three field two each since Ian's answer of 2026-10-31. Each kept the two members Route 202's own grass holds, at their levels: Tristan lost Sentret, Natalie Budew and Logan Weedle.
 
 The first pass's twelve (Tailwind, Simple Rollout, Encore locks, Intimidate chains, Technician and the like) are in this page's history on `overseer-roark-pass`.
 
@@ -131,7 +132,7 @@ Moves were kept to the rung the split sits on. Before Barry 2 no attack is stron
 | No one-hit KO, forced trade, trapping or evasion move; no trapping or evasion ability | none (Diglett takes Sand Force, not Arena Trap) |
 | No ordinary trainer at its cap; one under it | none at a cap; one under, Darius |
 | Pairs fought alone (`pairs.pairs()`) | none in the split |
-| The simpler twelve: three members, a basic Berry each, same-type attacks only, at most one stat-drop move, an ability from an inert list | all twelve |
+| The simpler twelve: three members (two on Route 202), a basic Berry each, same-type attacks only, at most one stat-drop move, an ability from an inert list | all twelve |
 | `test_trainers` | 44 of 44 |
 | `test_learnrewrite` and `test_learncheck` | 6 of 6 and 18 of 18 |
 | `rewards.py write`, then `rewards.py check` | six team sizes moved in the role table on the first pass and seven on the second, nothing else; 0 failures |
