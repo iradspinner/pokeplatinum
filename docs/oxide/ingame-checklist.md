@@ -718,6 +718,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   badges", gives all eight badges and lands at a rocky wall two tiles from
   water with a waterfall, so Rock Climb, Surf, Waterfall both ways and the
   menu's FLY, SURF and DEFOG can be checked there first.
+- [ ] **Surf waits on Cyrus at Celestic Town** (Ian, 2026-10-31), in normal
+  play: with the Fen Badge but before Cyrus is beaten in Celestic's ruins,
+  facing water offers nothing, the party menu lists no SURF unless a
+  Pokemon knows it, and a Pokemon that knows Surf is refused with "can't be
+  used here". Straight after the win over Cyrus, all three work. The test
+  kit's "Route 208, all badges" marks Celestic's story done, so Surf works
+  there.
 - [ ] **(live)** The Weather flag's fix on Ace Trainer Shannon's first turn
   (Route 221, optional; a Weather-flag trainer whose Victreebel leads with
   Sunny Day and no weather ability, and keeps it in the comb's draft): break

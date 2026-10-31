@@ -728,8 +728,10 @@ u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
         u32 distortionBehavior = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
 
         // Platinum Oxide: Surf needs only the Fen Badge, not a Pokemon that
-        // knows it (Ian, 2026-09-26, the staples survey's answer 10).
-        if (PlayerAvatar_CanUseSurf(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, BADGE_ID_FEN)) {
+        // knows it (Ian, 2026-09-26, the staples survey's answer 10), and
+        // Cyrus beaten at Celestic Town (Ian, 2026-10-31; SystemVars_CanSurf).
+        if (PlayerAvatar_CanUseSurf(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, BADGE_ID_FEN)
+            && SystemVars_CanSurf(SaveData_GetVarsFlags(fieldSystem->saveData))) {
             return SCRIPT_ID(FIELD_MOVES, 4);
         }
     }
