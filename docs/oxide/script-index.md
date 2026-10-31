@@ -393,9 +393,9 @@ Scripts nothing reaches: script 4 `SandgemTownPokemonResearchLab_Entry3` (line 6
 
 Trainer battles:
 
-- TRAINER_YOUNGSTER_TRISTAN (Tristan, level 7, 3 Pokemon), sees the player. Vanilla. `events_route_202.json:19`
-- TRAINER_LASS_NATALIE (Natalie, level 8, 3 Pokemon), sees the player. Vanilla. `events_route_202.json:34`
-- TRAINER_YOUNGSTER_LOGAN (Logan, level 8, 3 Pokemon), sees the player. Vanilla. `events_route_202.json:49`
+- TRAINER_YOUNGSTER_TRISTAN (Tristan, level 7, 2 Pokemon), sees the player. Vanilla. `events_route_202.json:19`
+- TRAINER_LASS_NATALIE (Natalie, level 8, 2 Pokemon), sees the player. Vanilla. `events_route_202.json:34`
+- TRAINER_YOUNGSTER_LOGAN (Logan, level 8, 2 Pokemon), sees the player. Vanilla. `events_route_202.json:49`
 - StartTrainerBattle: against TRAINER_DUMMY_787 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:298`
 - StartTrainerBattle: against TRAINER_DUMMY_788 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:301`
 - StartTrainerBattle: against TRAINER_DUMMY_789 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:304`

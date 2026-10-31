@@ -13280,9 +13280,9 @@
     ],
     "vars": [
      {"at": ["scripts_route_214_gate_to_veilstone_city:22", "scripts_route_214_gate_to_veilstone_city:24", "scripts_route_214_gate_to_veilstone_city:26", "scripts_route_214_gate_to_veilstone_city:28", "scripts_route_214_gate_to_veilstone_city:41"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["events_route_214_gate_to_veilstone_city:73", "scripts_route_214_gate_to_veilstone_city:59"], "commit": "uncommitted", "name": "VAR_MAP_LOCAL_0x01", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16385},
+     {"at": ["events_route_214_gate_to_veilstone_city:73", "scripts_route_214_gate_to_veilstone_city:59"], "commit": "72dee2ac6", "name": "VAR_MAP_LOCAL_0x01", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16385},
      {"at": ["scripts_route_214_gate_to_veilstone_city:21", "scripts_route_214_gate_to_veilstone_city:23", "scripts_route_214_gate_to_veilstone_city:25", "scripts_route_214_gate_to_veilstone_city:27", "scripts_route_214_gate_to_veilstone_city:40"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_route_214_gate_to_veilstone_city:19"], "commit": "uncommitted", "name": "VAR_MAP_LOCAL_0x01", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16385},
+     {"at": ["scripts_route_214_gate_to_veilstone_city:19"], "commit": "72dee2ac6", "name": "VAR_MAP_LOCAL_0x01", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16385},
      {"at": ["scripts_route_214_gate_to_veilstone_city:20"], "name": "VAR_RANDOM_INTERVIEW_QUESTION", "op": "set", "origin": "vanilla", "reached": true, "var": 16434}
     ]
    },
