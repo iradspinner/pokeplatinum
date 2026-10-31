@@ -207,5 +207,16 @@
             "dest_warp_id": 0
         }
     ],
-    "coord_events": [  ]
+    "coord_events": [
+        {
+            "script": 8,
+            "x": 6,
+            "z": 26,
+            "width": 13,
+            "length": 1,
+            "y": 0,
+            "value": 0,
+            "var": "VAR_MAP_LOCAL_0x00"
+        }
+    ]
 }

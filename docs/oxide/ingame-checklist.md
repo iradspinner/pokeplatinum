@@ -803,14 +803,22 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   used here". Straight after the win over Cyrus, all three work. The test
   kit's "Route 208, all badges" marks Celestic's story done, so Surf works
   there.
-- [ ] **Barry holds the library until Iron Island** (`overseer-route-fixes`,
-  Ian, 2026-10-31). In Canalave, with Byron beaten but Iron Island not done,
-  Barry stands at the library door; talking to him gives "Aww, you haven't
-  gone to Iron Island, have you? You've got to toughen up there first, like
-  I told you!", and the door stays shut, whether or not the player holds
-  HM04 or a Pokemon knows Strength. After Riley's grunts on Iron Island B2F
-  are beaten (with his egg taken, or refused for a full party), Barry says
-  "Too slow!" and goes in, and the library's scene on 3F plays as before.
+- [ ] **Iron Island before Byron's gym, and Barry at the library**
+  (`overseer-route-fixes`, then `overseer-byron-prep`, Ian, 2026-10-31). In
+  Canalave, before Iron Island, walk into the gym and take one step north
+  from the door: the Gym Guide shows "!" and says "Whoa, hold it right
+  there, champ-to-be! Byron only takes challengers who've proven themselves
+  on Iron Island. Ask the sailor at the harbor to take you there, then come
+  back!", and the player steps back south. Try it from each end of the row
+  inside the door too. The sailor at the harbor sails to Iron Island, Riley
+  meets the player outside, and the island can be walked down to B2F with
+  no badge check on the way. After Riley's tag battle on B2F is won (with
+  his egg taken, or refused for a full party), the gym lets the player
+  through. Then, with Byron beaten, Barry stands at the library door; he says
+  "Too slow!" and goes in, and the library's scene on 3F plays as before. His
+  other line ("Aww, you haven't gone to Iron Island, have you? You've got to
+  toughen up there first, like I told you!") should no longer be seen, since
+  the gym cannot be won before the island.
 - [ ] **(live)** The Weather flag's fix on Ace Trainer Shannon's first turn
   (Route 221, optional; a Weather-flag trainer whose Victreebel leads with
   Sunny Day and no weather ability, and keeps it in the comb's draft): break

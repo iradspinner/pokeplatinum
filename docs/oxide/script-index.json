@@ -3056,28 +3056,28 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_canalave_city_gym:141"], "daily": false, "flag": 146, "name": "FLAG_RECEIVED_BYRON_TM91", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:23"], "commit": "81d02e28e", "daily": false, "flag": 2393, "name": "FLAG_UNK_0x0959", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_canalave_city_gym:92", "scripts_canalave_city_gym:103"], "commit": "81d02e28e", "daily": false, "flag": 2670, "name": "FLAG_UNK_0x0A6E", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_canalave_city_gym:54"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:57"], "daily": false, "flag": 438, "name": "FLAG_HIDE_CANALAVE_LIBRARY_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:58"], "daily": false, "flag": 439, "name": "FLAG_HIDE_CANALAVE_LIBRARY_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:56"], "daily": false, "flag": 440, "name": "FLAG_HIDE_CANALAVE_LIBRARY_RIVAL", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:55"], "daily": false, "flag": 716, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_LIBRARY", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:161"], "daily": false, "flag": 146, "name": "FLAG_RECEIVED_BYRON_TM91", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:60"], "daily": false, "flag": 408, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:46"], "daily": false, "flag": 1592, "name": "FLAG_DEFEATED_TRAINER_BLACK_BELT_DAVID", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:47"], "daily": false, "flag": 1616, "name": "FLAG_DEFEATED_TRAINER_WORKER_JACKSON", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:48"], "daily": false, "flag": 1617, "name": "FLAG_DEFEATED_TRAINER_WORKER_GARY", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:49"], "daily": false, "flag": 1639, "name": "FLAG_DEFEATED_TRAINER_ACE_TRAINER_CESAR", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:50"], "daily": false, "flag": 1643, "name": "FLAG_DEFEATED_TRAINER_ACE_TRAINER_BREANNA", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:51"], "daily": false, "flag": 1674, "name": "FLAG_DEFEATED_TRAINER_BLACK_BELT_RICKY", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:52"], "daily": false, "flag": 1727, "name": "FLAG_DEFEATED_TRAINER_WORKER_GERARDO", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city_gym:138"], "commit": "81d02e28e", "daily": false, "flag": 2393, "name": "FLAG_UNK_0x0959", "op": "set", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_canalave_city_gym:217"], "commit": "81d02e28e", "daily": false, "flag": 2670, "name": "FLAG_UNK_0x0A6E", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
+     {"at": ["scripts_canalave_city_gym:156"], "daily": false, "flag": 146, "name": "FLAG_RECEIVED_BYRON_TM91", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:38"], "commit": "81d02e28e", "daily": false, "flag": 2393, "name": "FLAG_UNK_0x0959", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_canalave_city_gym:107", "scripts_canalave_city_gym:118"], "commit": "81d02e28e", "daily": false, "flag": 2670, "name": "FLAG_UNK_0x0A6E", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_canalave_city_gym:69"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:72"], "daily": false, "flag": 438, "name": "FLAG_HIDE_CANALAVE_LIBRARY_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:73"], "daily": false, "flag": 439, "name": "FLAG_HIDE_CANALAVE_LIBRARY_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:71"], "daily": false, "flag": 440, "name": "FLAG_HIDE_CANALAVE_LIBRARY_RIVAL", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:70"], "daily": false, "flag": 716, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_LIBRARY", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:176"], "daily": false, "flag": 146, "name": "FLAG_RECEIVED_BYRON_TM91", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:75"], "daily": false, "flag": 408, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:61"], "daily": false, "flag": 1592, "name": "FLAG_DEFEATED_TRAINER_BLACK_BELT_DAVID", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:62"], "daily": false, "flag": 1616, "name": "FLAG_DEFEATED_TRAINER_WORKER_JACKSON", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:63"], "daily": false, "flag": 1617, "name": "FLAG_DEFEATED_TRAINER_WORKER_GARY", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:64"], "daily": false, "flag": 1639, "name": "FLAG_DEFEATED_TRAINER_ACE_TRAINER_CESAR", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:65"], "daily": false, "flag": 1643, "name": "FLAG_DEFEATED_TRAINER_ACE_TRAINER_BREANNA", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:66"], "daily": false, "flag": 1674, "name": "FLAG_DEFEATED_TRAINER_BLACK_BELT_RICKY", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:67"], "daily": false, "flag": 1727, "name": "FLAG_DEFEATED_TRAINER_WORKER_GERARDO", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city_gym:153"], "commit": "81d02e28e", "daily": false, "flag": 2393, "name": "FLAG_UNK_0x0959", "op": "set", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_canalave_city_gym:232"], "commit": "81d02e28e", "daily": false, "flag": 2670, "name": "FLAG_UNK_0x0A6E", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
     ],
     "items": [
-     {"command": "CallCommonScript", "commit": "2f5fc736c", "count": [{"by": [], "name": "2", "value": 2, "when": ""}], "file": "scripts_canalave_city_gym", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM47", "value": 374, "when": ""}], "line": 160, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
+     {"command": "CallCommonScript", "commit": "2f5fc736c", "count": [{"by": [], "name": "2", "value": 2, "when": ""}], "file": "scripts_canalave_city_gym", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM47", "value": 374, "when": ""}], "line": 175, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_canalave_city_gym", "how": "sees the player", "line": 27, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BLACK_BELT_DAVID", "value": 232, "when": ""}]}]},
@@ -3087,12 +3087,15 @@
      {"event": "object_events", "file": "events_canalave_city_gym", "how": "sees the player", "line": 117, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_CESAR", "value": 279, "when": ""}]}]},
      {"event": "object_events", "file": "events_canalave_city_gym", "how": "sees the player", "line": 132, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_WORKER_GERARDO", "value": 367, "when": ""}]}]},
      {"event": "object_events", "file": "events_canalave_city_gym", "how": "sees the player", "line": 147, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_BREANNA", "value": 283, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_canalave_city_gym", "how": "StartTrainerBattle", "line": 34, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_LEADER_BYRON", "value": 250, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_canalave_city_gym", "how": "StartTrainerBattle", "line": 130, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_LEADER_BYRON_REMATCH", "value": 856, "when": ""}]}], "source": "base ROM"}
+     {"command": "StartTrainerBattle", "file": "scripts_canalave_city_gym", "how": "StartTrainerBattle", "line": 49, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_LEADER_BYRON", "value": 250, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_canalave_city_gym", "how": "StartTrainerBattle", "line": 145, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_LEADER_BYRON_REMATCH", "value": 856, "when": ""}]}], "source": "base ROM"}
     ],
     "vars": [
-     {"at": ["scripts_canalave_city_gym:156"], "commit": "81d02e28e", "name": "VAR_OBJ_GFX_ID_6", "op": "set", "origin": "added", "reached": true, "source": "base ROM", "var": 16422},
-     {"at": ["scripts_canalave_city_gym:59"], "name": "VAR_CANALAVE_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16504}
+     {"at": ["events_canalave_city_gym:219"], "commit": "uncommitted", "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16384},
+     {"at": ["scripts_canalave_city_gym:27"], "commit": "uncommitted", "name": "VAR_IRON_ISLAND_B2F_LEFT_ROOM_FOLLOWER_RILEY_STATE", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16530},
+     {"at": ["scripts_canalave_city_gym:26", "scripts_canalave_city_gym:31"], "commit": "uncommitted", "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16384},
+     {"at": ["scripts_canalave_city_gym:171"], "commit": "81d02e28e", "name": "VAR_OBJ_GFX_ID_6", "op": "set", "origin": "added", "reached": true, "source": "base ROM", "var": 16422},
+     {"at": ["scripts_canalave_city_gym:74"], "name": "VAR_CANALAVE_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16504}
     ]
    },
    "events": "events_canalave_city_gym",
@@ -19330,10 +19333,10 @@
    "vanilla": 507
   },
   "vars": {
-   "Oxide": 17,
+   "Oxide": 20,
    "base ROM": 27,
    "gone": 36,
-   "total": 1122,
+   "total": 1125,
    "vanilla": 1078
   }
  }

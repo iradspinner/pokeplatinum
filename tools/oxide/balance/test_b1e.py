@@ -167,6 +167,73 @@ def check_gauntlet_sections(results):
                     f"{len(sizes)} sections" if ok else f"{sizes}, Coronet {coronet}, 1F {vr}"))
 
 
+def _canalave_gym_floor():
+    """The open tiles of Canalave Gym's ground floor, from the collision map
+    the game reads there in place of the tiles' own bit
+    (src/overlay008/gym_features.c, sCanalaveGymCollisionMaps[0])."""
+    import os
+    import re
+    with open(os.path.join(data.ROOT, "src", "overlay008", "gym_features.c"), encoding="utf-8") as f:
+        src = f.read()
+    body = src[src.index("sCanalaveGymCollisionMaps"):]
+    body = body[body.index("=") + 1:body.index("};")]
+    floor = [int(v) for v in re.findall(r"\b[01]\b", body)][:32 * 32]
+    return {(x, z) for z in range(32) for x in range(32) if not floor[z * 32 + x]}
+
+
+def check_byron_order(results):
+    """Byron's split runs Canalave, Iron Island, the gym, then the library
+    (Ian, 2026-10-31). From Route 218's gate the player reaches the sailor to
+    Iron Island and the gym's door; the island is walked from the boat to
+    Riley's grunts on B2F; inside the gym, the trigger across the row past
+    the entrance (its coord event, which holds until Riley's tag battle is
+    won) leaves the player nowhere to go but out; and Barry at the library
+    door, who waits for the same battle, keeps the library shut."""
+    from . import world
+    canalave = R.Field("CANALAVE_CITY", "Byron")
+    start = canalave.ends("ROUTE_218_GATE_TO_CANALAVE_CITY")
+    gym_door = world.warps_to("CANALAVE_CITY", "CANALAVE_CITY_GYM")
+    library = world.warps_to("CANALAVE_CITY", "CANALAVE_LIBRARY_1F")
+    seen = canalave.reach(start)
+    got = {"sailor": bool(seen & canalave.ends("@LOCALID_SAILOR_ELDRITCH")),
+           "gym door": bool(seen & gym_door)}
+    barry = next(o for o in world.events("CANALAVE_CITY")["object_events"]
+                 if o["id"] == "LOCALID_RIVAL_LIBRARY")
+    canalave.objects[(barry["x"], barry["z"])] = barry
+    got["library past Barry"] = bool(canalave.reach(start) & library)
+
+    # The island, floor by floor, from the boat's landing beside its sailor.
+    walk = [("IRON_ISLAND", {(100, 502)}, world.warps_to("IRON_ISLAND", "IRON_ISLAND_1F")),
+            ("IRON_ISLAND_1F", world.warps_to("IRON_ISLAND_1F", "IRON_ISLAND"),
+             world.warps_to("IRON_ISLAND_1F", "IRON_ISLAND_B1F_RIGHT_ROOM")),
+            ("IRON_ISLAND_B1F_RIGHT_ROOM", world.warps_to("IRON_ISLAND_B1F_RIGHT_ROOM", "IRON_ISLAND_1F"),
+             world.warps_to("IRON_ISLAND_B1F_RIGHT_ROOM", "IRON_ISLAND_B2F_LEFT_ROOM")),
+            ("IRON_ISLAND_B2F_LEFT_ROOM",
+             world.warps_to("IRON_ISLAND_B2F_LEFT_ROOM", "IRON_ISLAND_B1F_RIGHT_ROOM"), {(21, 40), (21, 41)})]
+    got["island to Riley's grunts"] = all(R.Field(h, "Byron").path(a, b) for h, a, b in walk)
+
+    gym = next((c for c in world.events("CANALAVE_CITY_GYM")["coord_events"]
+                if c["var"] == "VAR_MAP_LOCAL_0x00"), {"x": 0, "z": 0, "width": 0})
+    trigger = {(gym["x"] + i, gym["z"]) for i in range(gym["width"])}
+    floor = _canalave_gym_floor()
+    entrance = {(w["x"], w["z"]) for w in world.events("CANALAVE_CITY_GYM")["warp_events"]}
+    inside, frontier = set(entrance), list(entrance)
+    while frontier:
+        x, z = frontier.pop()
+        for dx, dz in world.DIRS.values():
+            n = (x + dx, z + dz)
+            if n in floor and n not in trigger and n not in inside:
+                inside.add(n)
+                frontier.append(n)
+    # Past the row the entrance opens onto, two rows north of the door.
+    door_z = min(z for _x, z in entrance)
+    got["gym past the entrance row"] = any(z < door_z - 1 for _x, z in inside)
+    want = {"sailor": True, "gym door": True, "library past Barry": False,
+            "island to Riley's grunts": True, "gym past the entrance row": False}
+    results.append(("Byron's split runs the island, the gym, then the library", got == want,
+                    ", ".join(f"{k} {v}" for k, v in got.items())))
+
+
 def check_unpushable_boulders(results):
     """A Strength boulder the game cannot push stays a wall once Strength is
     held, and one it can push is taken as gone (2026-10-31). Lake Verity's
@@ -202,7 +269,8 @@ def check_totals(results):
 def main():
     results = []
     for check in (check_crossings_resolve, check_sight_and_ledges, check_route_202, check_ian_examples,
-                  check_gates, check_late_visits, check_gauntlet_sections, check_unpushable_boulders,
+                  check_gates, check_late_visits, check_gauntlet_sections, check_byron_order,
+                  check_unpushable_boulders,
                   check_totals):
         check(results)
     width = max(len(label) for label, _, _ in results)
