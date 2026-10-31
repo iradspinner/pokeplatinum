@@ -114,3 +114,110 @@ Every number comes from a run in the worktree at 0d358a4505. The scratch scripts
 - Legality comes from `oxide.py check 39`, with `OXIDE_OLD_RES` set to an export of 5c62989651's `res/`, and from `legal.py`, which uses the OxiDex's `learnsets.lists`. `palette.py` lists a species' legal moves at a level.
 
 Where the screen's bias bites: it counts only a clean one-on-one from full HP with no status move. So it reads picks 2 and 3 as identical. It never sees Counter. And it counts Focus Punch as a sure hit, which is why it rates Ian's Hakamo-o better against Ninetales-Alola (+1.5) than the fixed sets (+2.5), although Focus Punch took HP at most five times a run in play. It also counts no paralysis from Nuzzle and no confusion from Water Pulse. The probe's greedy player never uses a status move, which flatters Pawmot's Sucker Punch and hurts Focus Punch.
+
+## Hakamo-o's slot, against Flying types (2026-10-31)
+
+Ian asked on 2026-10-31 for Hakamo-o's slot to go to something that patches the team's weakness to Flying types and adds a little bulk, but not much, since the team is frail on purpose. It need not be a Fighting type, so long as it carries a Fighting move or fits the theme. The other five stay as they are. Every number here was made on `origin/oxide` at ad7ea90c4, with Water Absorb on Cacturne, by cheap checks only. Nothing in `res/` changed.
+
+### Summary
+
+**Outcome.** The worry is real but narrow. The only Flying catch the screen takes often is Togetic (14 to 16 of the top 20 sixes on every box), and it is taken for its Fairy moves against Hakamo-o, not for its Flying ones. The Flying attackers proper (Staraptor, Golbat, Talonflame) are in 0 to 7 of the 20, but each beats Heracross, and Staraptor also beats Medicham, Cacturne and Hakamo-o one on one. Any of the four picks below drops Togetic to 0 to 3 of the 20. Each also more than doubles what the slot knocks out, so the fight gets harder whichever is taken: Hakamo-o knocked out 15 to 60 of the player's Pokemon per 150 rough fights, and every pick knocks out 44 to 165.
+
+**My first pick is Garganacl** (level 38, Hard Stone, Adamant, Purifying Salt: Curse, Hammer Arm, Rock Slide, Salt Cure). It resists Flying and Normal, and its Rock Slide knocks out Staraptor, Golbat and Talonflame from full HP (122 to 146 percent on Staraptor) and nearly does Togetic (104 to 126). It is 10 percent bulkier than Eviolite Hakamo-o physically and 22 percent specially, with no Eviolite. Purifying Salt makes it immune to every major status, so Scald's burn and Will-O-Wisp cannot cripple it. Its Curse went off 128 to 164 times a run, against Dragon Dance's 11 to 39, so the team's setup now gets used. The Flying catches facing Pawmot or Medicham draw it in, and it beats all of them except Staraptor with Close Combat, which wins by half a point. Every move is legal with no egg-list edit. The theme is the sumo ring, where salt is thrown before a bout, with Hammer Arm as its Fighting move.
+
+**The other picks, in order.**
+
+1. Lairon with Eviolite (Lonely, Rock Head: Rock Polish, Iron Head, Rock Slide, Superpower). It is the only set that passes Ian's bait test for Pawmot: the Fairy answers, Ninetales-Alola and Granbull, draw Lairon in, and its Iron Head does 184 to 220 percent to Ninetales-Alola and 96 to 114 to Granbull, with Rock Polish behind it. It quarter-resists Flying and resists Fairy. The price is a fourfold weakness to Fighting and Ground: the player's Heracross (20 of 20 sixes on box 2) knocks it out with Close Combat, and so does Staraptor's. Its only Fighting move is Superpower, so the theme is thin. Its output swings the most, 44 to 165.
+2. Graveler with Eviolite (Naughty, Sturdy: Rock Polish, Hammer Arm, Rock Slide, Earthquake). It resists Flying, takes almost nothing from the Flying moves, and Pawmot's answer Tentacruel draws it in, which it beats only through Sturdy (Scald does 108 percent, capped at 1 HP) and then Earthquake. A Scald after any chip, or a burn, ends it.
+3. Sudowoodo (Passho Berry, Relaxed, Rock Head: Wood Hammer, Rock Slide, Drain Punch, Ice Punch). It resists Flying, but its bulk is Hakamo-o's own (1.00 and 1.02 times), and it carries no setup, so the team loses its only setup member.
+
+Electabuzz and Dusknoir were checked and are not picks. Electabuzz with Eviolite is 30 percent frailer physically, the replacement rule never sends it in, and it knocked out the most of any pick but Dusknoir (119 to 268). Dusknoir is far bulkier than asked (1.76 times Hakamo-o's special bulk): no catch in any top 20 beats it one on one, and it knocked out 207 to 283, more than Lucario.
+
+**What Ian decides.**
+
+1. Which set takes the slot: Garganacl, Lairon, Graveler, Sudowoodo, or Hakamo-o after all.
+2. Whether the rise in what the slot knocks out is acceptable. It is a material difficulty change for Maylene's fight whichever pick he takes, since the slot goes from the team's weakest member to its second or third strongest.
+3. For Garganacl, whether Curse is the setup he wants, or Iron Defense, its other legal setup move. Curse takes Garganacl's Speed down, which suits a member at 43 Speed that moves last anyway.
+
+**Next steps.** Ian answers in a line. A session then writes the chosen set into `leader_maylene.json` on a branch, reruns the legality check and the outcome probe on all three boxes (about 30 minutes), and lands it through the Overseer. A spot-check reading happens only if Ian names one, and takes two and a half to four hours.
+
+| Set | Legal | Bulk beside Hakamo-o (physical, special) | Worst Flying catch's damage on it | Its damage on that catch | Knocked out while in | Setup used, per run | What draws it in |
+|---|---|---|---|---|---|---|---|
+| Ian's: Hakamo-o 38, Eviolite, Lax, Overcoat; Counter, Dragon Dance, Focus Punch, Outrage | yes (Dragon Dance and Focus Punch on the egg lists) | 1.00, 1.00 | Togetic, Dazzling Gleam 112 to 136 | Focus Punch 15 to 18 | 15 to 60 | Dragon Dance 11 to 39 | Staraptor after Pawmot; Bronzong and Vikavolt after Medicham |
+| 1. Garganacl 38, Hard Stone, Adamant, Purifying Salt; Curse, Hammer Arm, Rock Slide, Salt Cure | yes | 1.10, 1.22 | Staraptor, Close Combat 64 to 76 | Rock Slide 122 to 146 | 124 to 151 | Curse 128 to 164 | Togetic, Golbat, Staraptor, Talonflame after Pawmot or Medicham; Delphox, Salazzle, Vikavolt on box 3 |
+| 2. Lairon 38, Eviolite, Lonely, Rock Head; Rock Polish, Iron Head, Rock Slide, Superpower | yes | 1.23, 0.91 | Staraptor, Close Combat 88 to 108 | Rock Slide 96 to 114 | 44 to 165 | Rock Polish 52 to 106 | Ninetales-Alola and Granbull after Pawmot or Medicham; Golbat, Togetic, Talonflame, Staraptor, Cinderace, Vikavolt |
+| 3. Graveler 38, Eviolite, Naughty, Sturdy; Rock Polish, Hammer Arm, Rock Slide, Earthquake | yes | 1.24, 1.03 | Togetic, Magical Leaf 60 to 72 | Rock Slide 86 to 104 | 93 to 149 | Rock Polish 62 to 100 | Tentacruel after Pawmot or Medicham; Talonflame, Staraptor, Cinderace, Delphox, Salazzle, Vikavolt |
+| 4. Sudowoodo 38, Passho Berry, Relaxed, Rock Head; Wood Hammer, Rock Slide, Drain Punch, Ice Punch | yes | 1.00, 1.02 | Staraptor, Close Combat 66 to 78 | Rock Slide 102 to 122 | 119 to 157 | none | Golbat, Staraptor, Talonflame, Togetic, Leavanny, Cinderace; Delphox and Salazzle on box 3 |
+| Not a pick: Electabuzz 38, Eviolite, Jolly, Static; Bulk Up, Thunder Punch, Cross Chop, Ice Punch | yes | 0.70, 1.41 | Staraptor, Take Down 55 to 66 | Thunder Punch 102 to 122 | 119 to 268 | Bulk Up 85 to 152 | nothing |
+| Not a pick: Dusknoir 38, Spell Tag, Hardy, Levitate; Shadow Punch, Ice Punch, Brick Break, Will-O-Wisp | yes | 1.17, 1.76 | Staraptor, Brave Bird 55 to 66 | Ice Punch 78 to 94 | 207 to 283 | none | Dusclops; Rotom, Cofagrigus, Bronzong, Delphox, Vikavolt |
+
+Damage is percent of the target's HP, lowest to highest roll, at no stat stages. "Knocked out while in" and "setup used" span the five or six probe runs of 150 fights each (two sixes a box, one where both are the same six). Lucario, for scale, knocked out 94 to 257 in the same runs.
+
+### The evidence
+
+Oxide's types match the count in the brief. Heracross (Bug and Fighting) takes four times from Flying; Medicham (Fighting and Psychic), Cacturne (Grass and Dark) and Hakamo-o (Dragon and Fighting) twice; Pawmot (Electric and Fighting) and Lucario (Fighting and Steel) take neutral damage.
+
+These are the Flying catches the screen's top 20 sixes take with Hakamo-o in the slot, and their margins on each of the six (positive means the catch wins one on one from full HP):
+
+| Catch | Box 1 | Box 2 | Box 3 | Pawmot | Heracross | Medicham | Cacturne | Hakamo-o | Lucario |
+|---|---|---|---|---|---|---|---|---|---|
+| Togetic (Fairy and Flying) | 14 | 15 | 16 | -0.5 | +1.5 | -0.5 | +1.5 | +3.0 | -2.5 |
+| Staraptor, Dual Wingbeat | 4 | 5 | not in box | -0.5 | +1.5 | +1.5 | +0.5 | +0.5 | -0.5 |
+| Staraptor held to 37, Brave Bird | 3 | 2 | not in box | -0.5 | +1.5 | +1.5 | +1.5 | +1.5 | -0.5 |
+| Golbat | 2 | 5 | 2 | -1.5 | +2.5 | -0.5 | +0.5 | -0.5 | -2.5 |
+| Talonflame | 2 | not in box | not in box | -1.5 | +2.5 | +0.5 | +0.5 | -1.5 | -0.5 |
+| Heracross with Aerial Ace | not in box | 15 | not in box | +0.5 | +0.5 | -0.5 | +2.5 | -0.5 | +0.5 |
+
+The Flying moves themselves, on the six:
+
+| Move | Pawmot | Heracross | Medicham | Cacturne | Hakamo-o | Lucario |
+|---|---|---|---|---|---|---|
+| Staraptor's Brave Bird | 88 to 104 | 412 to 492 | 186 to 222 | 168 to 198 | 96 to 114 | 93 to 109 |
+| Staraptor's Dual Wingbeat | 48 to 60 | 240 to 288 | 108 to 132 | 96 to 112 | 60 to 72 | 50 to 62 |
+| Golbat's Dual Wingbeat | 36 to 44 | 168 to 200 | 76 to 96 | 64 to 84 | 40 to 52 | 36 to 44 |
+| Talonflame's Aerial Ace | 26 to 32 | 124 to 148 | 56 to 68 | 50 to 62 | 30 to 36 | 28 to 34 |
+| Togetic's Air Cutter | 32 to 38 | 96 to 112 | 56 to 68 | 50 to 60 | 44 to 54 | 27 to 33 |
+
+Corvisquire and Vullaby are each in one six on box 3 and beat nobody but Heracross or Cacturne. A Staraptor with Brave Bird knocks out Heracross, Medicham and Cacturne from full HP, and Pawmot, Hakamo-o and Lucario on a high roll. Togetic's Air Cutter does little except to Heracross; Togetic is in the sixes for Dazzling Gleam, which does 112 to 136 percent to Hakamo-o. With any of the picks in the slot, the screen stops taking Togetic (0 to 3 of 20) and takes more Golbat and Staraptor instead, which the Rock types beat, the Close Combat Staraptor apart. The player's own Heracross, on box 2, goes from 15 to 20 of 20 sixes against the Rock types, by Close Combat.
+
+### The candidates
+
+The whole Pokedex was screened (`dexscreen.py`, below): every species Oxide has that can be fielded at 38, resists Flying or has a legal Rock, Electric or Ice move of 50 power or more, and has a legal Fighting move, with its bulk at 38 beside Eviolite Lax Hakamo-o's. Bulk is HP times Defence and HP times Special Defence, with the nature and the Eviolite.
+
+Most of the species the brief named are not in Oxide: Golett and Golurk, Eelektrik and Eelektross, Crabominable, Tyrunt and Tyrantrum, Boldore and Gigalith, Cufant and Copperajah, Stonjourner and Beartic. Of the rest:
+
+| Species | Why it is in or out |
+|---|---|
+| Garganacl | in: resists Flying, bulk 1.10 and 1.22 at a neutral nature, Hammer Arm and Rock Slide legal |
+| Lairon | in: quarter-resists Flying, resists Fairy, Eviolite bulk 1.37 and 0.90 at a neutral nature |
+| Graveler | in, an addition: resists Flying, Eviolite bulk 1.24 and 1.15, Hammer Arm and every punch legal |
+| Sudowoodo | in: resists Flying, bulk 0.91 and 1.01 at a neutral nature, the least bulk of the Rock types |
+| Electabuzz | tested: resists Flying, Eviolite bulk 0.69 and 1.41, Bulk Up and the elemental punches legal |
+| Dusknoir | tested, an addition and the nearest stand-in for Golurk's punches: bulk 1.17 and 1.76 |
+| Electivire | out: 0.55 physical bulk |
+| Ampharos | out: 0.66 physical bulk, though it would have kept the Dragon type |
+| Hawlucha | out: takes double from Flying, 0.61 physical bulk |
+| Aggron | out: Lairon evolves at 42 |
+| Bastiodon, Probopass, Bronzong, Steelix, Magneton | out: no legal Fighting move at 38, and the first three are already common catches in the box |
+| Corviknight | out: a Flying type itself, with only Revenge as a Fighting move |
+| Machoke, Primeape, Hitmonchan, Toxicroak, Mienshao | out: Fighting types, double weak to Flying, so they add to the problem |
+| Vigoroth, Lopunny, Piloswine | out: neutral to Flying and off the theme, or nearly so; Lopunny also takes the Eviolite through its Fist Plate evolution, which would be an accident |
+
+### The sets
+
+Each set is level 38 with an item and a nature no other member uses, and each was checked legal by both checkers (the Kaizo study's palette with the pre-TM-pass TMs, and the OxiDex's `learnsets.lists`). None needs an egg-list edit. None carries a one-hit KO move, an evasion move, a trapping move, a Choice item or a forced trade. Garganacl, Lairon and Graveler keep a setup move (Curse, Rock Polish, Rock Polish), and I checked that the simulator applies Curse's +1 Attack, +1 Defence and -1 Speed and Rock Polish's +2 Speed. Sudowoodo and Dusknoir have none. Garganacl's Hard Stone and Sudowoodo's Passho Berry stand where a Leftovers would have added more bulk than Ian wants.
+
+Under Ian's lead rule, Pawmot's answers (Bastiodon, Probopass, Garganacl, Ninetales-Alola, Granbull, and Tentacruel on boxes 1 and 2) still draw in Lucario with Garganacl, Graveler or Sudowoodo in the slot. With Lairon, Ninetales-Alola and Granbull draw in Lairon instead, which beats both and carries Rock Polish, so Pawmot meets the rule in full. With Graveler, Tentacruel draws in Graveler, which beats it narrowly. When Medicham leaves, its answers draw the same members as Pawmot's, except the Flying catches: with Hakamo-o they drew in Pawmot, and with the Rock types most of them draw in the slot instead (Togetic, Golbat and Staraptor draw Garganacl; Togetic, Golbat and Talonflame draw Lairon).
+
+### How the numbers were made
+
+The scripts and their outputs are in `/home/ian/.claude/jobs/382760ce/tmp/maylene-slot/`, copied from the 2026-10-29 folder, each with its own usage line; none writes to `res/`. They ran in the worktree `.claude/worktrees/maylene-slot` on branch `overseer-maylene-slot` at ad7ea90c4.
+
+- `swap.py CANDIDATE SCRIPT SEED` swaps a set into slot 4 in memory, as before. The new sets are in its `CANDS`.
+- `flying.py` lists every Flying-typed catch, or catch with a Flying move, in each box, with its top-20 count, margins and damage both ways.
+- `duel.py` gives damage both ways and the margin between the slot and the box's main catches.
+- `margins.py`, `outcome.py` and `replace.py` are the 2026-10-29 scripts. `replace2.py` is `replace.py` widened to every catch the top 20 take twice or more, so that the Flying catches show.
+- `dexscreen.py` is the whole-Pokedex screen; `legal_cands.py` is the OxiDex's legality check for each set; `cursecheck.py` checks the setup moves' stages.
+- `summarise.py` gathers the table's numbers from the outputs.
+
+The screen's biases from the 2026-10-29 study still hold: one-on-one from full HP, no status moves, and a greedy probe player who always attacks. Two matter here. The screen counts Graveler's Sturdy as a sure survival, which a careful player breaks with any chip first. And the greedy player never switches against Curse or Rock Polish, so the setup and knockout numbers for the picks run high against a real player.
