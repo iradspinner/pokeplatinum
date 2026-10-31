@@ -1265,8 +1265,11 @@ async function api(path, opts) {
 // The party members above the level cap in force, in one sentence: the caps
 // are soft (2026-10-29) and the game shows nothing, so the save bar and the
 // Alpha tab's bar say it. At the cap is fine; only above it is named.
+// Before a mini-boss with an honour cap of its own is won, its cap is the
+// one in force, and the sentence names the fight.
 const overCapText = over => !(over || []).length ? ""
-  : `Over the cap of ${over[0].cap}: ${over.map(m => `${m.name} (Lv ${m.level})`).join(", ")}.`;
+  : `Over ${over[0].fight ? `${over[0].fight}'s honour cap` : "the cap"} of ${over[0].cap}: `
+    + `${over.map(m => `${m.name} (Lv ${m.level})`).join(", ")}.`;
 
 function drawSaveBar(s) {
   const input = $("#save-path"), state = $("#save-state");

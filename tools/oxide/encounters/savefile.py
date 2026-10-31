@@ -328,7 +328,42 @@ def _progress(data, n0, current=True):
         i = struct.unpack_from("<H", data, n0 + lay["at"] + 2 * (var - lay["vars_start"]))[0]
         name = lay["splits"].get(i)
         out["split"] = {"index": i, "name": name, "cap": lay["caps"].get(name)} if name else {"index": i}
+        out["honour_cap"] = _honour_cap(data, n0, lay, name)
     return out
+
+
+def honour_caps():
+    """The mini-bosses' honour caps, from the balance track's fights.json
+    (Ian, 2026-10-29 and 2026-10-31): [{key, label, split, cap, beaten}] in
+    play order, beaten being what the fight's script sets on the win. The
+    same entries give test_b1 these fights' aces, so there is one table."""
+    path = os.path.join(model.repo_root(), "tools", "oxide", "balance", "fights.json")
+    with open(path, encoding="utf-8") as f:
+        fights = json.load(f)["fights"]
+    return [{"key": x["key"], "label": x["label"], "split": x["split"], "cap": x["honour_cap"],
+             "beaten": x["beaten"]} for x in fights if "honour_cap" in x]
+
+
+def _marker_set(data, n0, lay, marker):
+    """Whether a save's normal block shows a fight's win marker: a variable
+    at or above a value, or a flag set."""
+    base = n0 + lay["at"]
+    if "flag" in marker:
+        i = lay["values"][marker["flag"]]
+        return bool(data[base + 2 * lay["num_vars"] + i // 8] >> (i % 8) & 1)
+    v = struct.unpack_from("<H", data, base + 2 * (lay["values"][marker["var"]] - lay["vars_start"]))[0]
+    return v >= marker["at_least"]
+
+
+def _honour_cap(data, n0, lay, split):
+    """The honour cap in force, or None: the first mini-boss of the save's
+    split, in play order, whose win the save does not yet show. Its cap runs
+    from the split's start to that fight (Barry 4's 42 from Maylene's badge
+    to Pastoria), and once it is won the next one's, then the split's."""
+    for fight in honour_caps():
+        if fight["split"] == split and not _marker_set(data, n0, lay, fight["beaten"]):
+            return {"fight": fight["label"], "key": fight["key"], "cap": fight["cap"]}
+    return None
 
 
 def flag(data, name):
@@ -565,12 +600,26 @@ def over_cap(save):
     one and shows nothing, and the player's honour boxes it until a later
     cap catches up, so the OxiDex is where it is flagged. A Pokemon at the
     cap is fine (Ian). A save whose split is not read (an older layout) has
-    no cap, so nothing is flagged."""
-    cap = ((save.get("progress") or {}).get("split") or {}).get("cap")
+    no cap, so nothing is flagged. Before a mini-boss with an honour cap of
+    its own is won, that cap is the one in force, and each flagged member
+    names the fight ("fight" is None under the split's own cap)."""
+    progress = save.get("progress") or {}
+    cap = (progress.get("split") or {}).get("cap")
     if cap is None:
         return []
-    return [{"slot": m["slot"], "name": m["name"], "level": m.get("level"), "cap": cap}
+    honour, fight = progress.get("honour_cap"), None
+    if honour and honour["cap"] < cap:
+        cap, fight = honour["cap"], honour["fight"]
+    return [{"slot": m["slot"], "name": m["name"], "level": m.get("level"), "cap": cap, "fight": fight}
             for m in save["party"] if not m["is_egg"] and (m.get("level") or 0) > cap]
+
+
+def cap_words(member):
+    """How a flagged member's cap is named: "the cap of 33", or "Mars 1's
+    honour cap of 20"."""
+    if member.get("fight"):
+        return f"{member['fight']}'s honour cap of {member['cap']}"
+    return f"the cap of {member['cap']}"
 
 
 def summary(save):
@@ -578,8 +627,8 @@ def summary(save):
     member over the level cap says so), how many are boxed, the build signs,
     and the over-cap members on their own for the page to name."""
     over = over_cap(save)
-    flagged = {m["slot"]: m["cap"] for m in over}
-    party = [describe(m) + (f" (over the cap of {flagged[m['slot']]})" if m["slot"] in flagged else "")
+    flagged = {m["slot"]: cap_words(m) for m in over}
+    party = [describe(m) + (f" (over {flagged[m['slot']]})" if m["slot"] in flagged else "")
              for m in save["party"]]
     return {"trainer_id": save["trainer_id"], "secret_id": save["secret_id"],
             "party": party, "party_count": len(save["party"]),
