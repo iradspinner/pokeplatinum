@@ -882,8 +882,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   southwest corner is empty. The game's one Ability Capsule is the Pokemon
   Mansion knockout's prize (the next check).
 - [ ] The Pokemon Mansion's maid knockout (Ian, 2026-10-31;
-  `maid-knockout.md`), on Route 212 North. Darach's gate is not built yet,
-  so the mansion is open as in vanilla. The maid at the west of the hall
+  `maid-knockout.md`), on Route 212 North, behind Darach and Caitlin's
+  gate (the checks below), so beat them first. The maid at the west of the hall
   explains the challenge with no turn target. The five maids each name
   their household job as they come out (Belinda's Araquanid, Sophie's
   Lurantis, Emily's Cinccino, Elena's Torkoal, Clare's Klefki and
@@ -895,6 +895,30 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   never offers it again, the next day included. With a full Medicine
   pocket the Capsule is refused, and talking to the maid later hands it
   over.
+- [ ] Dahlia gates the Game Corner's prizes (Ian, 2026-09-27 and
+  2026-10-31). In Veilstone, the prize counter's receptionist, in the
+  building beside the Game Corner, refuses to trade and points to Dahlia.
+  The slots and the coins clerk still work. Dahlia stands just inside the
+  Game Corner's door, to its upper right; she asks before the fight, and
+  "No" leaves her standing. Her fight opens with Wonder Room already up
+  and it never ends (the move Wonder Room fails). After the win the prize
+  counter trades, its badge-gated TMs as before, and Dahlia has her
+  once-beaten line.
+- [ ] Darach and Caitlin block the Pokemon Mansion (Ian, 2026-10-31). On
+  Route 212 North, enter the mansion and walk up the aisle from the door.
+  Two steps in, where the aisle narrows, Darach notices you and asks. "No",
+  or fewer than two Pokemon able to fight, walks you back a step, and no
+  tile of the aisle lets you past. "Yes" starts a double battle against one
+  trainer, Darach's class with Caitlin beside him in his sprite.
+- [ ] The egg comes on the win: straight after it, Darach hands over the
+  Manaphy egg. With a full party he keeps it, and talking to him later
+  gives it. Once given, he and Caitlin have their once-beaten lines.
+- [ ] The office no longer offers the egg: the maid in Mr. Backlot's
+  office, before the win, says Darach keeps it for a Trainer who beats
+  him, with no yes or no; after you have the egg she hopes you care for it.
+- [ ] The Trophy Garden opens behind them: after the win the aisle is open,
+  and the office, the maids' rooms and the Trophy Garden at the back of the
+  hall can all be entered.
 - [ ] The Ability Patch (Ian, 2026-10-13): beating Ace Trainer Jose on
   Route 228 gives an Ability Patch and then TM64, straight after the win.
   With a full Bag, talking to him again gives what was refused.

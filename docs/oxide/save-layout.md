@@ -388,6 +388,16 @@ the variables were already in the save, and a save from before reads them
 as zero, nothing bought. The Game Corner challenger takes vanilla's unused
 trainer slot 6, so his defeated flag is that slot's, already in the save.
 
+## Darach's gate takes an unused variable (2026-10-31)
+
+Nothing moves. `VAR_POKEMON_MANSION_DARACH_STATE` is 1 once Darach and
+Caitlin are beaten, which turns off the trigger across the Pokemon
+Mansion's entrance aisle. It is vanilla's `VAR_UNUSED_0x411C`, which no
+script, vanilla, base ROM or Oxide, read or wrote, so an older save reads 0
+and meets the gate. The Manaphy egg keeps `FLAG_UNK_0x0A65`, the office's
+old received flag, and Dahlia's and Darach's wins are their free trainer
+slots' defeated flags, all already in the save.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:
