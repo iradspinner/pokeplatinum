@@ -20,9 +20,10 @@ from . import data, required, splits
 
 # Each section: its label, its maps in walking order, which part of a map
 # (None for all of it, or the trainer constants a half holds), and the
-# trainers left out of it. Mt. Coronet's officers are left out: Hesperid is
-# a fight Ian rated as a boss, and Moira and Argo read well above the
-# split's average; Somnu, at it, joins the floors below. The ten sections
+# trainers left out of it. Named Galactic officers stay outside every
+# gauntlet (Ian, 2026-10-31: "it would be too hard to manage the
+# difficulty"), so Mt. Coronet's climb ends on arrival at 5F, before Somnu
+# and Moira. The ten sections
 # are the built ones (src/gauntlet.c, main-gauntlets): Victory Road's 2F and
 # B1F are detours inside 1F's locks, not sections, so their eight trainers
 # are optional (Ian, 2026-09-29, restated 2026-10-07), and 1F's halves hold
@@ -37,8 +38,7 @@ SECTIONS = {
         ("3F", ["GALACTIC_HQ_3F"], None, ()), ("B2F", ["GALACTIC_HQ_B2F"], None, ())],
     "mt_coronet": [
         ("1F's tunnel", ["MT_CORONET_1F_TUNNEL_ROOM"], None, ()),
-        ("3F, 4F and Somnu on 5F", ["MT_CORONET_3F", "MT_CORONET_4F_ROOMS_1_AND_2",
-                                     "MT_CORONET_5F"], None, (520, 526, 834))],
+        ("3F and 4F", ["MT_CORONET_3F", "MT_CORONET_4F_ROOMS_1_AND_2"], None, ())],
     "victory_road": [
         ("1F, the half nearer the entrance", ["VICTORY_ROAD_1F"],
          ("TRAINER_PSYCHIC_BRYCE", "TRAINER_BIRD_KEEPER_HANA", "TRAINER_ACE_TRAINER_MARIAH"), ()),

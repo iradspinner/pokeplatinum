@@ -442,7 +442,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
     far end, out onto the north ledge, the Pocket PC works again.
   - Coronet 3F: up the stairs from 2F, then out onto the south ledge. Fly
     refuses there, although the ledge is outdoors. On the north ledge, the
-    cave mouth into the tunnel refuses.
+    cave mouth into the tunnel refuses. Since 2026-10-31
+    (`overseer-route-fixes`) the section ends at 5F: with a 3F or 4F grunt
+    still unbeaten, go up 4F's third room to 5F, and the Pocket PC works at
+    once, before Officers Somnu and Moira, who stand further south.
   - Victory Road: north from the League's gate. The gate refuses. Walk north
     through the one-tile corridor that passes under the long bridge west of
     the middle (x 13, z 26 to 27), then turn back south: the player is turned
