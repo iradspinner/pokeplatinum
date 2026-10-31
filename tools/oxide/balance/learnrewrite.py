@@ -206,6 +206,22 @@ IAN_EGG_MOVES = {
     # The level climb of Gardenia's split (Ian, 2026-10-29); Sunny Day was a TM
     # before the TM pass, so this is here so the OxiDex agrees.
     "SPECIES_ODDISH": [("MOVE_SUNNY_DAY", "Ian, 2026-10-29: Aroma Lady Elizabeth's Gloom")],
+    # Dahlia's first draft (Ian, 2026-10-31), every member at 40: the moves
+    # his six carries that no list gives at that level. Flare Blitz is
+    # Rapidash's level 56 move and High Jump Kick Lopunny M's level 60 one.
+    # Her fifth member's two moves are on its line's egg list in the data
+    # only: that line is one of the five held out, which this file may not
+    # name (test_learnrewrite's check_held_out).
+    # The OxiDex gives Lopunny M no earlier stage (learnsets.earlier_stages
+    # skips a parent whose name it starts with), so High Jump Kick goes on its
+    # own egg list as well as Buneary's.
+    "SPECIES_SLOWPOKE": [("MOVE_PSYSHOCK", "Ian, 2026-10-31: Dahlia's Slowbro")],
+    "SPECIES_PONYTA": [("MOVE_FLARE_BLITZ", "Ian, 2026-10-31: Dahlia's Rapidash at 40"),
+                       ("MOVE_SWORDS_DANCE", "Ian, 2026-10-31: Dahlia's Rapidash"),
+                       ("MOVE_BATON_PASS", "Ian, 2026-10-31: Dahlia's Rapidash")],
+    "SPECIES_BUNEARY": [("MOVE_HI_JUMP_KICK", "Ian, 2026-10-31: Dahlia's Lopunny M at 40")],
+    "SPECIES_LOPUNNY_M": [("MOVE_HI_JUMP_KICK", "Ian, 2026-10-31: Dahlia's Lopunny M at 40, which the "
+                                                "OxiDex reads as its own first stage")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

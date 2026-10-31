@@ -83,7 +83,9 @@
             "MOVE_WISH",
             "MOVE_YAWN",
             "MOVE_FAKE_TEARS",
-            "MOVE_COVET"
+            "MOVE_COVET",
+            "MOVE_BATON_PASS",
+            "MOVE_SUBSTITUTE"
         ]
     },
     "evolutions": [

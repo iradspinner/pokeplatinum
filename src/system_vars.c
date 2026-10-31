@@ -622,6 +622,16 @@ u8 SystemVars_GetLevelCap(VarsFlags *varsFlags)
     return sLevelCaps[split];
 }
 
+// Platinum Oxide: Surf works only once Cyrus is beaten in Celestic Town's
+// ruins (Ian, 2026-10-31). Vanilla's Surf came with the HM given there, so
+// on the Fen Badge alone the water opened straight after Wake, past
+// Celestic's story. The ruins' script sets the town's state to 1 on that
+// win, and to 2 later; it is 0 before and never goes back.
+BOOL SystemVars_CanSurf(VarsFlags *varsFlags)
+{
+    return TryGetVarValue(varsFlags, VAR_CELESTIC_TOWN_STATE) >= 1;
+}
+
 // The cap in force now, for code that has no save data at hand. Only the
 // Day Care reads it since the caps went soft, and the Day Care is left as
 // element 8 made it (Ian, 2026-10-29: it is never used in a nuzlocke).

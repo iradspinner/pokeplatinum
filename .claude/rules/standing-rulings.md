@@ -200,7 +200,9 @@ read, so they are written here too. Each is a standing instruction.
   Protect, Double Team, the four weather moves, Thief, Snatch, Skill Swap,
   Focus Punch, Substitute, Dream Eater, Swords Dance and Embargo; Toxic,
   Will-O-Wisp and status of Thunder Wave's reliability may be TMs only as
-  single copies. Since field moves work on the badge alone (2026-09-29), the
+  single copies. Since field moves work on the badge alone (2026-09-29;
+  Surf also waits on Cyrus beaten at Celestic Town, Ian, 2026-10-31, so the
+  water cannot skip Celestic's story), the
   HMs are single-use TMs too, less Cut and Rock Smash (the TM list of
   2026-10-06), and Fly, Strength, Defog and Rock Climb need buffs to earn a
   place. Egg move lists serve only as trainer teams' palette: a
@@ -259,7 +261,10 @@ read, so they are written here too. Each is a standing instruction.
   carries one idea, is genuinely dangerous, and has 3 to 5 Pokemon (6 from
   Gardenia's split on), sizes varying. No one-hit KO move on any trainer;
   evasion and trapping are rare; a boss carries at most one forced trade
-  (none before Fantina) and an ordinary trainer none. Every enemy Pokemon
+  (none before Fantina) and an ordinary trainer none, though from Wake's
+  split on an ordinary trainer may occasionally carry Self-Destruct,
+  Explosion or Destiny Bond, or trapping (Ian, 2026-10-31: "at this point
+  in the game they are occasionally acceptable"). Every enemy Pokemon
   holds its own item and has its own nature, with no repeats in a team
   (2026-10-12). Trainers may use TM and tutor moves freely, and from Cyrus
   3's split on any move. A move on a team Ian builds that its species
