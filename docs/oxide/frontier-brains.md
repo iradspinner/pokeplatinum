@@ -15,7 +15,7 @@ the fights are scripted once the teams are final.
 | Darach, Castle Valet | Wake (44) | The Pokemon Mansion on Route 212 | Access to the Mansion | A double battle as one trainer, Darach's own class (his sprite already shows Caitlin beside him) |
 | Thorton, Factory Head | Byron (53) | The heart of Fuego Ironworks, in the building now named "Ironworks Hall" (the name Ian approved) | The player picks one of the two starter lines they did not choose, fully evolved at level 40, a capture of its own | Opens in a permanent Trick Room (Saturn 2's mechanism) |
 | Argenta, Hall Matron (tentative spot) | Byron (53) | Pal Park, second floor | Items, which the balance track's item pass picks | Ordinary |
-| Palmer, Tower Tycoon (tentative spot) | Galactic (65) | The Resort Area's entrance | To be decided | Ordinary |
+| Palmer, Tower Tycoon (undecided, Ian 2026-10-31) | Galactic (65) or League (78) | The Battle Zone, or a Route 224 opened as the last optional boss before the Champion | Large rewards | Ordinary |
 
 Dahlia's, Darach's and Thorton's placements are settled; Argenta's and
 Palmer's are tentative.

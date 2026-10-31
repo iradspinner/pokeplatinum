@@ -256,15 +256,11 @@ Route207_043D:
     ReleaseAll
     End
 Route207_0447:
+    @ Platinum Oxide (Ian, 2026-10-31): the base ROM's Lucky Egg is dropped, and
+    @ with it the choose-a-hand menu that led to it. Vanilla gave the Vs. Seeker
+    @ here, but in Oxide that item is the Pocket PC, given in Sandgem Town.
     BufferPlayerName 0
     Message 17
-    InitGlobalTextListMenu 30, 13, 0, VAR_0x800C, 0
-    SetMenuXOriginSide 1
-    AddListMenuEntry 137, 0, 255
-    AddListMenuEntry 138, 1, 255
-    ShowListMenu
-    Message 1
-    Call Route207_04C3
     Message 2
     Call Route207_04D5
     Message 3
@@ -272,22 +268,10 @@ Route207_0447:
 Route207_0485:
     BufferPlayerName 0
     Message 18
-    InitGlobalTextListMenu 30, 13, 0, VAR_0x800C, 0
-    SetMenuXOriginSide 1
-    AddListMenuEntry 137, 0, 255
-    AddListMenuEntry 138, 1, 255
-    ShowListMenu
-    Message 5
-    Call Route207_04C3
     Message 6
     Call Route207_04D5
     Message 7
     GoTo Route207_04E6
-Route207_04C3:
-    SetVarFromValue VAR_0x8004, 231
-    SetVarFromValue VAR_0x8005, 1
-    CallCommonScript 2044
-    Return
 Route207_04D5:
     SetVarFromValue VAR_0x8004, 6
     CallCommonScript 2009
@@ -302,6 +286,10 @@ Route207_04E6:
     SetVarFromValue VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE, 1
     ReleaseAll
     End
+
+    @ Every movement block below is a whole number of words, so one alignment
+    @ here keeps them all 4-aligned after the edit above.
+    .balign 4, 0
 Route207_Movement_0504:
     WalkNormalEast 3
     EmoteExclamationMark 1

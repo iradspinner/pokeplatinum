@@ -442,7 +442,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
     far end, out onto the north ledge, the Pocket PC works again.
   - Coronet 3F: up the stairs from 2F, then out onto the south ledge. Fly
     refuses there, although the ledge is outdoors. On the north ledge, the
-    cave mouth into the tunnel refuses.
+    cave mouth into the tunnel refuses. Since 2026-10-31
+    (`overseer-route-fixes`) the section ends at 5F: with a 3F or 4F grunt
+    still unbeaten, go up 4F's third room to 5F, and the Pocket PC works at
+    once, before Officers Somnu and Moira, who stand further south.
   - Victory Road: north from the League's gate. The gate refuses. Walk north
     through the one-tile corridor that passes under the long bridge west of
     the middle (x 13, z 26 to 27), then turn back south: the player is turned
@@ -618,6 +621,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Route 207: after Mira is found in Wayward Cave, the woman who asked for
   her says thank you and gives no evolution stones; her first line no longer
   promises any.
+- [ ] **No Lucky Egg on Route 207** (`overseer-route-fixes`, Ian,
+  2026-10-31). After the battle with Lucas or Dawn at Mt. Coronet's mouth,
+  there is no "choose a hand" menu and no item: Dawn says "I've got
+  something nice for you." (Lucas: "...with a neat tool. I'll share it with
+  you."), then asks about the Pokétch and gives the Dowsing Machine app as
+  before, and the bag holds no Lucky Egg. The Pocket PC from Sandgem still
+  works.
 - [ ] Wayward Cave 1F's Ice Stone (Ian, 2026-10-13): in the far northwest,
   walking between Camper Diego and Picnicker Tori starts one battle against
   both, and the ball in the nook behind them gives an Ice Stone, not a
@@ -793,6 +803,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   used here". Straight after the win over Cyrus, all three work. The test
   kit's "Route 208, all badges" marks Celestic's story done, so Surf works
   there.
+- [ ] **Barry holds the library until Iron Island** (`overseer-route-fixes`,
+  Ian, 2026-10-31). In Canalave, with Byron beaten but Iron Island not done,
+  Barry stands at the library door; talking to him gives "Aww, you haven't
+  gone to Iron Island, have you? You've got to toughen up there first, like
+  I told you!", and the door stays shut, whether or not the player holds
+  HM04 or a Pokemon knows Strength. After Riley's grunts on Iron Island B2F
+  are beaten (with his egg taken, or refused for a full party), Barry says
+  "Too slow!" and goes in, and the library's scene on 3F plays as before.
 - [ ] **(live)** The Weather flag's fix on Ace Trainer Shannon's first turn
   (Route 221, optional; a Weather-flag trainer whose Victreebel leads with
   Sunny Day and no weather ability, and keeps it in the comb's draft): break
