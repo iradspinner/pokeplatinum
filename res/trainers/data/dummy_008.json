@@ -1,21 +1,111 @@
 {
-    "name": "Angelica",
-    "class": "TRAINER_CLASS_PICNICKER",
+    "name": "Darach",
+    "class": "TRAINER_CLASS_CASTLE_VALET",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_SETUP_FIRST_TURN",
+        "AI_FLAG_RISKY",
+        "AI_FLAG_PRIORITIZE_EXTREMES",
+        "AI_FLAG_CHECK_HP"
     ],
-    "double_battle": false,
+    "double_battle": true,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_INCINEROAR",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "level": 44,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_BLAZE_KICK",
+                "MOVE_DARKEST_LARIAT",
+                "MOVE_FLAMETHROWER",
+                "MOVE_THROAT_CHOP"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ENTEI",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FIRE_SPIN",
+                "MOVE_STOMP",
+                "MOVE_FLAMETHROWER",
+                "MOVE_SWAGGER"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GRAPPLOCT",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_BULK_UP",
+                "MOVE_CIRCLE_THROW",
+                "MOVE_TAUNT",
+                "MOVE_REVERSAL"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GALARIAN_ARTICUNO",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_ANCIENT_POWER",
+                "MOVE_TAILWIND",
+                "MOVE_PSYCHO_CUT",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GALLADE",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_SWORDS_DANCE",
+                "MOVE_PSYCHO_CUT",
+                "MOVE_HELPING_HAND",
+                "MOVE_NIGHT_SLASH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GOTHITELLE",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FLATTER",
+                "MOVE_PSYCHIC",
+                "MOVE_SHADOW_BALL",
+                "MOVE_FUTURE_SIGHT"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],
-    "messages": []
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "My Pokémon can’t be faulted with\n",
+                "anything.\r",
+                "Your brilliance carried the day.\n"
+            ]
+        }
+    ]
 }
