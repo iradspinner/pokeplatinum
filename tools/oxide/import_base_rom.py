@@ -1477,6 +1477,11 @@ for _i in (56, 61, 67, 85, 87, 98, 109, 133, 143, 144, 162, 165, 178, 257, 276, 
 _why = "the warehouse grunts' lines name Officers Tyche and Hermes (Ian, 2026-10-29)"
 TEXT_BANKS_SKIPPED[143] = (TEXT_BANKS_SKIPPED[143] + "; then " + _why
                            if 143 in TEXT_BANKS_SKIPPED else _why)
+# The Pokemon Mansion's knockout (Ian, 2026-10-31) has no turn target and no
+# Rich Boy Liam, ends with Lady Celeste every time and gives an Ability
+# Capsule, so its bank loses the turn and Liam lines and gains the gift's.
+TEXT_BANKS_SKIPPED[490] = ("the maid knockout's lines: no turn target or Liam, Celeste every time, "
+                           "and her Ability Capsule (Ian, 2026-10-31)")
 
 
 def text_bank_names():
