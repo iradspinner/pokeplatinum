@@ -875,10 +875,23 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   item ball outside Stark Mountain gives a PP Up, and the man in Celestic
   Town's northwest house gives BlackGlasses from 4:00 to 19:59 and Wise
   Glasses at night, never a Choice Specs.
-- [ ] Pastoria's Ability Capsule (Ian, 2026-10-13): an item ball stands at
-  the southern end of the one-tile strip between the two ponds in the city's
-  southwest corner, and gives an Ability Capsule. Used on a Pokemon, it asks
-  first, naming the other regular ability.
+- [ ] Pastoria's Ability Capsule ball is gone (Ian, 2026-10-31): the
+  southern end of the one-tile strip between the two ponds in the city's
+  southwest corner is empty. The game's one Ability Capsule is the Pokemon
+  Mansion knockout's prize (the next check).
+- [ ] The Pokemon Mansion's maid knockout (Ian, 2026-10-31;
+  `maid-knockout.md`), on Route 212 North. Darach's gate is not built yet,
+  so the mansion is open as in vanilla. The maid at the west of the hall
+  explains the challenge with no turn target. The five maids (Belinda's
+  Araquanid, Sophie's Lurantis, Emily's Cinccino, Elena's Torkoal, Clare's
+  Klefki and Gothitelle) and then Lady Celeste (Milotic and Clefable)
+  battle back to back with no healing, and Celeste comes every time.
+  Straight after the first win over her, before she leaves, she gives an
+  Ability Capsule. Used on a Pokemon, it asks first, naming the other
+  regular ability. Talking to the maid again the same day asks you back
+  tomorrow. The next day the whole chain runs again, ends with Celeste,
+  and gives nothing. With a full Medicine pocket the Capsule is refused,
+  and talking to the maid that day hands it over.
 - [ ] The Ability Patch (Ian, 2026-10-13): beating Ace Trainer Jose on
   Route 228 gives an Ability Patch and then TM64, straight after the win.
   With a full Bag, talking to him again gives what was refused.
