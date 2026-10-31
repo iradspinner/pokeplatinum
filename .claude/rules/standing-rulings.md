@@ -117,7 +117,9 @@ read, so they are written here too. Each is a standing instruction.
   that rely on route attrition belong in a gauntlet. A gauntlet is 2 to 5
   mandatory trainers on the easier side of average, counted without optional
   ones; bag items may heal between its fights (the danger is deaths
-  snowballing); bosses stay outside it, with gauntlets leading up to them; and
+  snowballing); bosses stay outside it, with gauntlets leading up to them, and
+  so do the named Galactic officers (Ian, 2026-10-31: "it would be too hard to
+  manage the difficulty"); and
   a majority of the game's trainers should be mandatory (Ian, 2026-09-27).
   How a gauntlet holds the player (Ian, 2026-09-29): only the way back is
   blocked, a one-way ledge at the entrance where the map allows, so the
@@ -178,6 +180,16 @@ read, so they are written here too. Each is a standing instruction.
   above). The full ruling, with the held-back versions, the box rules, the
   soft guides and the boss level rules, is in `docs/oxide/rulings-detail.md`;
   read it before running or changing the scorer.
+- Fights fall into three kinds (Ian, 2026-10-31). Bosses: the Frontier
+  Brains, the rivals (Lucas or Dawn, and Barry), the Galactic commanders,
+  Cyrus, the gym leaders, and the Elite Four and the Champion. Mini-bosses,
+  where difficulty is allowed to spike: Ace Trainers, solo or in a pair, the
+  named Galactic officers, and the gauntlet sections. Everything else is an
+  ordinary trainer. The partner fights of Riley, Mira, Buck and Marley are
+  not yet placed in a kind, and the Battle Zone's fights are not yet
+  classed: Ian has no picture of its shape, so it is mapped for him when
+  its split is worked. The mandatory count's 10 to 15 counts every
+  mandatory fight that is not a boss, mini-bosses included.
 - A loss of any kind ends the whole run (Ian, 2026-09-28): there are no second
   attempts, at a boss or anywhere. The one exception is the first battle with
   Barry on Route 201 (Ian, 2026-10-02): it does not count for deaths or
