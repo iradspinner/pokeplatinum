@@ -25,22 +25,6 @@
             "gender": null
         },
         {
-            "species": "SPECIES_SENTRET",
-            "form": 0,
-            "level": 7,
-            "item": "ITEM_CHERI_BERRY",
-            "moves": [
-                "MOVE_SCRATCH",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_BABY_DOLL_EYES"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_QUIRKY",
-            "ball_seal": 0,
-            "ability": 3,
-            "gender": null
-        },
-        {
             "species": "SPECIES_PIKIPEK",
             "form": 0,
             "level": 7,

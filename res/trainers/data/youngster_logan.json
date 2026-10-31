@@ -10,21 +10,6 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_WEEDLE",
-            "form": 0,
-            "level": 7,
-            "item": "ITEM_CHERI_BERRY",
-            "moves": [
-                "MOVE_POISON_STING",
-                "MOVE_STRING_SHOT"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_NAUGHTY",
-            "ball_seal": 0,
-            "ability": 3,
-            "gender": null
-        },
-        {
             "species": "SPECIES_KRICKETOT",
             "form": 0,
             "level": 7,
