@@ -384,6 +384,10 @@
     "ai_flags": "edited in the OxiDex team builder, 2026-10-29",
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "leader_wake": {
+    "party": "edited in the OxiDex team builder, 2026-10-29",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-29"
+  },
   "lucas_veilstone_city_chimchar": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
@@ -506,6 +510,24 @@
   "rival_fight_area_turtwig": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
   },
+  "rival_pastoria_city_chimchar": {
+    "party": "edited in the OxiDex team builder, 2026-10-30"
+  },
+  "rival_pastoria_city_piplup": {
+    "party": "edited in the OxiDex team builder, 2026-10-30"
+  },
+  "rival_pastoria_city_turtwig": {
+    "party": "edited in the OxiDex team builder, 2026-10-30"
+  },
+  "rival_route_203_chimchar": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "rival_route_203_piplup": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "rival_route_203_turtwig": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "rival_route_209_chimchar": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
@@ -598,18 +620,5 @@
   },
   "youngster_wayne": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
-  },
-  "leader_wake": {
-    "party": "edited in the OxiDex team builder, 2026-10-29",
-    "ai_flags": "edited in the OxiDex team builder, 2026-10-29"
-  },
-  "rival_pastoria_city_chimchar": {
-    "party": "edited in the OxiDex team builder, 2026-10-30"
-  },
-  "rival_pastoria_city_piplup": {
-    "party": "edited in the OxiDex team builder, 2026-10-30"
-  },
-  "rival_pastoria_city_turtwig": {
-    "party": "edited in the OxiDex team builder, 2026-10-30"
   }
 }
