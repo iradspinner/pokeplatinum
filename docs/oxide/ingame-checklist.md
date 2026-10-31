@@ -618,6 +618,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Route 207: after Mira is found in Wayward Cave, the woman who asked for
   her says thank you and gives no evolution stones; her first line no longer
   promises any.
+- [ ] **No Lucky Egg on Route 207** (`overseer-route-fixes`, Ian,
+  2026-10-31). After the battle with Lucas or Dawn at Mt. Coronet's mouth,
+  there is no "choose a hand" menu and no item: Dawn says "I've got
+  something nice for you." (Lucas: "...with a neat tool. I'll share it with
+  you."), then asks about the Pokétch and gives the Dowsing Machine app as
+  before, and the bag holds no Lucky Egg. The Pocket PC from Sandgem still
+  works.
 - [ ] Wayward Cave 1F's Ice Stone (Ian, 2026-10-13): in the far northwest,
   walking between Camper Diego and Picnicker Tori starts one battle against
   both, and the ball in the nook behind them gives an Ice Stone, not a
