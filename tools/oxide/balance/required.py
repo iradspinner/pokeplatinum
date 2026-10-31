@@ -24,6 +24,15 @@ What the game does, and where this reads it:
 - Objects block. Cut trees, breakable rocks and Strength boulders stop
   blocking once the split's field moves allow them. An object that a story
   flag hides is taken as gone, and one with no flag as always there.
+- A Strength boulder that cannot be pushed stays a wall with Strength too.
+  The game moves a boulder one tile the way the player pushes it, from
+  the tile behind it on foot, and refuses when the tile beyond it has the
+  collision bit, a wall on that side (the BLOCK_ behaviours), no map, or
+  any object on it (ov5_021DFB54.c's push check, through
+  map_object_move.c, sub_02063EBC). Nothing else decides it: no movement
+  type or map flag. Water does not stop it. A boulder with no such push
+  in any direction is held as a wall (Lake Verity's beside grunt 4, at
+  (53,45)); one that can be pushed once is taken as gone, as before.
 
 Limits, which the report names per map rather than hiding:
 
@@ -31,7 +40,12 @@ Limits, which the report names per map rather than hiding:
   seeing every direction it can face, from where it starts, so it may come
   out required when a well-timed player could slip past.
 - The field is read flat. Bridges (Route 206's Cycling Road over the path
-  below) are two levels in the game and one here.
+  below) are two levels in the game and one here, and a boulder's push is
+  not refused for a change of height, which the game also checks.
+- A boulder push is tested one boulder at a time, with every other object,
+  other boulders included, standing where it starts, and without asking
+  whether the player can reach the tile behind it. A Strength puzzle
+  (Victory Road 2F) is not solved.
 - Gyms with moving parts (every gym after Roark's), multi-floor dungeons
   and the Galactic HQ are not modelled, and nor are battles a script
   starts with no sight line.
@@ -68,6 +82,19 @@ BIKE = {"BIKE_BRIDGE_N_S", "BIKE_BRIDGE_E_W", "BIKE_BRIDGE_E_W_OVER_WATER",
         "BIKE_SLOPE_BOTTOM", "BIKE_RAMP_WESTWARD", "BIKE_RAMP_EASTWARD"}
 ROCK_CLIMB = {"ROCK_CLIMB_N_S": "NS", "ROCK_CLIMB_E_W": "EW"}
 JUMPS = {"JUMP_NORTH": "N", "JUMP_SOUTH": "S", "JUMP_WEST": "W", "JUMP_EAST": "E"}
+# The behaviours that stop a map object stepping onto a tile from a side
+# (map_tile_behavior.c, TileBehavior_BlocksMovementNorthward and the rest),
+# keyed by the way the object is moving.
+BLOCKS_ENTRY = {
+    "N": {"BLOCK_SOUTHWARD", "BLOCK_SOUTH_AND_EAST", "BLOCK_SOUTH_AND_WEST", "BLOCK_NORTH_AND_SOUTH"},
+    "S": {"BLOCK_NORTHWARD", "BLOCK_NORTH_AND_EAST", "BLOCK_NORTH_AND_WEST", "BLOCK_NORTH_AND_SOUTH"},
+    "W": {"BLOCK_EASTWARD", "BLOCK_NORTH_AND_EAST", "BLOCK_SOUTH_AND_EAST", "BLOCK_EAST_AND_WEST"},
+    "E": {"BLOCK_WESTWARD", "BLOCK_NORTH_AND_WEST", "BLOCK_SOUTH_AND_WEST", "BLOCK_EAST_AND_WEST"},
+}
+# And those that stop it leaving its own tile the same way.
+BLOCKS_EXIT = {
+    "N": BLOCKS_ENTRY["S"], "S": BLOCKS_ENTRY["N"], "W": BLOCKS_ENTRY["E"], "E": BLOCKS_ENTRY["W"],
+}
 BRIDGES = {"BRIDGE", "BRIDGE_START", "BRIDGE_OVER_WATER", "BRIDGE_OVER_SNOW",
            "BRIDGE_OVER_SAND"}
 OBSTACLES = {"OBJ_EVENT_GFX_CUT_TREE": "cut", "OBJ_EVENT_GFX_ROCK_SMASH": "rock_smash",
@@ -155,12 +182,15 @@ class Field:
         self.can = abilities(split)
         self.objects = {}      # tile -> object record, for everything that blocks
         self.trainers = []     # trainer object records
+        boulders = {}          # tile -> boulder, for the ones Strength may move
         for o in world.events(header)["object_events"]:
             xz = (o["x"], o["z"])
             gate = OBSTACLES.get(o["graphics_id"])
             if gate:
                 if gate not in self.can:
                     self.objects[xz] = o
+                elif gate == "strength":
+                    boulders[xz] = o
                 continue
             script = str(o["script"])
             if script.startswith("TRAINER_") and o.get("trainer_type") in SEEING_TYPES:
@@ -168,6 +198,31 @@ class Field:
                 self.objects[xz] = o
             elif self._blocks(o):
                 self.objects[xz] = o
+        # Decided once every other object is placed, since an object beyond
+        # a boulder is what most often holds it.
+        for xz, o in boulders.items():
+            if not self._pushable(xz, boulders):
+                self.objects[xz] = o
+
+    def _pushable(self, xz, boulders):
+        """Whether the boulder at xz can be pushed one tile in any direction:
+        the player stands behind it on foot, and the tile beyond takes it."""
+        stuck = set(self.objects) | (set(boulders) - {xz})
+        here = self.tiles.attr(xz)
+        for d, (dx, dz) in world.DIRS.items():
+            behind = (xz[0] - dx, xz[1] - dz)
+            beyond = (xz[0] + dx, xz[1] + dz)
+            attr_behind, attr_beyond = self.tiles.attr(behind), self.tiles.attr(beyond)
+            if attr_behind is None or attr_beyond is None or behind in stuck or beyond in stuck:
+                continue
+            # Pushing works only on foot, so not from water, a waterfall or
+            # a ledge, and not where the player could not stand.
+            if attr_behind[0] in WATER or attr_behind[0] == "WATERFALL" or not self.standable(behind):
+                continue
+            if attr_beyond[1] or attr_beyond[0] in BLOCKS_ENTRY[d] or (here and here[0] in BLOCKS_EXIT[d]):
+                continue
+            return True
+        return False
 
     def _blocks(self, o):
         """Whether a non-trainer object stands in the way in this split."""

@@ -36,6 +36,9 @@ from . import required as R
 # 68 once Ian approved three Route 214 changes the same day: PI Carlos, moved
 # to the narrows south of the berry field, turns from avoidable to required;
 # Psychics Abigail and Mitchell were read required and now look one way.
+# Unchanged when unpushable boulders became walls (2026-10-31): Lake
+# Verity's grunts 3 and 4 stay avoidable, since Surf takes the player round
+# them by the lake's west edge, boulders or not.
 TOTALS = {"required": 68, "avoidable": 106, "never reached": 12}
 
 
@@ -164,6 +167,29 @@ def check_gauntlet_sections(results):
                     f"{len(sizes)} sections" if ok else f"{sizes}, Coronet {coronet}, 1F {vr}"))
 
 
+def check_unpushable_boulders(results):
+    """A Strength boulder the game cannot push stays a wall once Strength is
+    held, and one it can push is taken as gone (2026-10-31). Lake Verity's
+    boulder beside grunt 4, at (53,45), has solid tiles to its east and
+    south and the grunt to its north, so no push moves it. The one beside
+    grunt 3, at (46,45), can be pushed west onto the lake from the grass at
+    (47,45), since water does not stop a boulder. Route 215's two, which
+    close Dennis and Maya's corridor, cannot be pushed either."""
+    verity = R.Field("LAKE_VERITY", "Candice")
+    route_215 = R.Field("ROUTE_215", "League")
+
+    def held(field, xz):
+        o = field.objects.get(xz)
+        return bool(o) and o["graphics_id"] == "OBJ_EVENT_GFX_STRENGTH_BOULDER"
+    got = {"Verity (53,45)": held(verity, (53, 45)), "Verity (46,45)": held(verity, (46, 45)),
+           "Route 215 (647,596)": held(route_215, (647, 596)),
+           "Route 215 (647,599)": held(route_215, (647, 599))}
+    want = {"Verity (53,45)": True, "Verity (46,45)": False,
+            "Route 215 (647,596)": True, "Route 215 (647,599)": True}
+    results.append(("a boulder that cannot be pushed stays a wall with Strength", got == want,
+                    ", ".join(f"{k} {'wall' if v else 'gone'}" for k, v in got.items())))
+
+
 def check_totals(results):
     got = {"required": 0, "avoidable": 0}
     for c in R.summary().values():
@@ -176,7 +202,8 @@ def check_totals(results):
 def main():
     results = []
     for check in (check_crossings_resolve, check_sight_and_ledges, check_route_202, check_ian_examples,
-                  check_gates, check_late_visits, check_gauntlet_sections, check_totals):
+                  check_gates, check_late_visits, check_gauntlet_sections, check_unpushable_boulders,
+                  check_totals):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
