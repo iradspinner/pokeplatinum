@@ -8,31 +8,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_AIPOM",
+            "species": "SPECIES_AMBIPOM",
             "form": 0,
-            "level": 26,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 39,
+            "item": "ITEM_SILK_SCARF",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_DOUBLE_HIT",
+                "MOVE_U_TURN",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_MARILL",
+            "species": "SPECIES_AZUMARILL",
             "form": 0,
-            "level": 26,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 39,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_AQUA_JET",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_WATERFALL",
+                "MOVE_SUPERPOWER"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_SWABLU",
+            "species": "SPECIES_ALTARIA",
             "form": 0,
-            "level": 26,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 40,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_DRAGON_PULSE",
+                "MOVE_AIR_CUTTER",
+                "MOVE_FLAMETHROWER",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_GENTLE",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

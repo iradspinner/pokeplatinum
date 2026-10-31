@@ -10,32 +10,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CLAMPERL",
+            "species": "SPECIES_SHARPEDO",
             "form": 0,
-            "level": 35,
-            "item": "ITEM_DEEPSEATOOTH",
+            "level": 39,
+            "item": "ITEM_FOCUS_BAND",
             "moves": [
-                "MOVE_BLIZZARD",
-                "MOVE_SURF",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_HIDDEN_POWER"
+                "MOVE_CRUNCH",
+                "MOVE_WATERFALL",
+                "MOVE_ICE_FANG",
+                "MOVE_POISON_JAB"
             ],
             "iv_scale": 248,
-            "ball_seal": 0
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 3
         },
         {
-            "species": "SPECIES_HUNTAIL",
+            "species": "SPECIES_KINGLER",
             "form": 0,
-            "level": 36,
-            "item": "ITEM_NONE",
+            "level": 40,
+            "item": "ITEM_WIDE_LENS",
             "moves": [
-                "MOVE_SCARY_FACE",
-                "MOVE_ICE_FANG",
-                "MOVE_AQUA_TAIL",
-                "MOVE_SUCKER_PUNCH"
+                "MOVE_BUBBLE_BEAM",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 244,
-            "ball_seal": 0
+            "iv_scale": 248,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_JELLICENT",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_HEX",
+                "MOVE_SURF",
+                "MOVE_WILL_O_WISP",
+                "MOVE_PAIN_SPLIT"
+            ],
+            "iv_scale": 248,
+            "nature": "NATURE_SASSY",
+            "ball_seal": 0,
+            "ability": 2
         }
     ],
     "messages": [

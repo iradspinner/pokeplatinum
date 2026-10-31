@@ -8,13 +8,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PSYDUCK",
+            "species": "SPECIES_GOLDUCK",
             "form": 0,
-            "level": 26,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 39,
+            "item": "ITEM_MYSTIC_WATER",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM",
+                "MOVE_PSYCHIC",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_FLORGES",
+            "form": 0,
+            "level": 39,
+            "item": "ITEM_PIXIE_PLATE",
+            "moves": [
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_PSYCHIC",
+                "MOVE_WISH",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_MASQUERAIN",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_WIDE_LENS",
+            "moves": [
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_AIR_CUTTER",
+                "MOVE_ICY_WIND",
+                "MOVE_STUN_SPORE"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

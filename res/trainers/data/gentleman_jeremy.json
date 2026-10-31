@@ -12,18 +12,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CHATOT",
+            "species": "SPECIES_PERSIAN",
             "form": 0,
-            "level": 37,
-            "item": null,
+            "level": 38,
+            "item": "ITEM_SILK_SCARF",
             "moves": [
-                "MOVE_TAUNT",
-                "MOVE_MIMIC",
-                "MOVE_ROOST",
-                "MOVE_UPROAR"
+                "MOVE_FAKE_OUT",
+                "MOVE_U_TURN",
+                "MOVE_BITE",
+                "MOVE_TAUNT"
             ],
             "iv_scale": 243,
-            "ball_seal": 22
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_CHATOT",
+            "form": 0,
+            "level": 38,
+            "item": "ITEM_SHARP_BEAK",
+            "moves": [
+                "MOVE_CHATTER",
+                "MOVE_UPROAR",
+                "MOVE_NASTY_PLOT",
+                "MOVE_HEAT_WAVE"
+            ],
+            "iv_scale": 243,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_MR_RIME",
+            "form": 0,
+            "level": 39,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_ICE_BEAM",
+                "MOVE_PSYCHIC",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_SLACK_OFF"
+            ],
+            "iv_scale": 243,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

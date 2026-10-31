@@ -12,11 +12,50 @@
         {
             "species": "SPECIES_PURUGLY",
             "form": 0,
-            "level": 27,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 39,
+            "item": "ITEM_SILK_SCARF",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_U_TURN",
+                "MOVE_SUCKER_PUNCH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_LIEPARD",
+            "form": 0,
+            "level": 39,
+            "item": "ITEM_MENTAL_HERB",
+            "moves": [
+                "MOVE_FOUL_PLAY",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_TAUNT",
+                "MOVE_SNARL"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_MEOWSCARADA",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_MIRACLE_SEED",
+            "moves": [
+                "MOVE_FLOWER_TRICK",
+                "MOVE_KNOCK_OFF",
+                "MOVE_U_TURN",
+                "MOVE_PLAY_ROUGH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

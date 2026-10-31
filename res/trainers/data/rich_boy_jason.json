@@ -12,18 +12,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_FERALIGATR",
+            "species": "SPECIES_DELPHOX",
             "form": 0,
-            "level": 37,
-            "item": null,
+            "level": 40,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
-                "MOVE_WATERFALL",
-                "MOVE_AQUA_JET",
-                "MOVE_CRUNCH",
-                "MOVE_ICE_PUNCH"
+                "MOVE_MYSTICAL_FIRE",
+                "MOVE_PSYSHOCK",
+                "MOVE_GRASS_KNOT",
+                "MOVE_WILL_O_WISP"
             ],
             "iv_scale": 226,
-            "ball_seal": 23
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_SERPERIOR",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_ENERGY_BALL",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_CALM_MIND",
+                "MOVE_TAUNT"
+            ],
+            "iv_scale": 226,
+            "nature": "NATURE_BASHFUL",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_FERALIGATR",
+            "form": 0,
+            "level": 41,
+            "item": "ITEM_MYSTIC_WATER",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_ICE_PUNCH",
+                "MOVE_CRUNCH",
+                "MOVE_DRAGON_DANCE"
+            ],
+            "iv_scale": 226,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

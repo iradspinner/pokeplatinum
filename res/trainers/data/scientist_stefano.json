@@ -12,18 +12,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MUK",
+            "species": "SPECIES_GLIMMORA",
             "form": 0,
-            "level": 38,
-            "item": null,
+            "level": 40,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_GUNK_SHOT",
-                "MOVE_SHADOW_PUNCH",
-                "MOVE_SHADOW_SNEAK",
-                "MOVE_ICE_PUNCH"
+                "MOVE_POWER_GEM",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_STEALTH_ROCK"
             ],
             "iv_scale": 250,
-            "ball_seal": 0
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_SWALOT",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_YAWN",
+                "MOVE_ENCORE",
+                "MOVE_ICE_BEAM"
+            ],
+            "iv_scale": 250,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_MUK",
+            "form": 0,
+            "level": 41,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_POISON_JAB",
+                "MOVE_SHADOW_SNEAK",
+                "MOVE_ICE_PUNCH",
+                "MOVE_CURSE"
+            ],
+            "iv_scale": 250,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

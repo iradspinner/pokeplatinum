@@ -13,17 +13,50 @@
             "species": "SPECIES_VILEPLUME",
             "form": 0,
             "level": 39,
-            "item": null,
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
                 "MOVE_GIGA_DRAIN",
                 "MOVE_SLUDGE_BOMB",
-                "MOVE_SLEEP_POWDER",
-                "MOVE_SUNNY_DAY"
+                "MOVE_STUN_SPORE",
+                "MOVE_MOONLIGHT"
             ],
             "iv_scale": 255,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
+        },
+        {
+            "species": "SPECIES_ROSERADE",
+            "form": 0,
+            "level": 39,
+            "item": "ITEM_POISON_BARB",
+            "moves": [
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_ENERGY_BALL",
+                "MOVE_SHADOW_BALL",
+                "MOVE_TOXIC_SPIKES"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_TOXAPEX",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_TOXIC",
+                "MOVE_RECOVER",
+                "MOVE_SURF",
+                "MOVE_BANEFUL_BUNKER"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

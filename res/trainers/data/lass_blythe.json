@@ -8,22 +8,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CHINGLING",
+            "species": "SPECIES_LOPUNNY",
             "form": 0,
-            "level": 25,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 39,
+            "item": "ITEM_SILK_SCARF",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_JUMP_KICK",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_BUNEARY",
+            "species": "SPECIES_CHIMECHO",
             "form": 0,
-            "level": 25,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 39,
+            "item": "ITEM_SHELL_BELL",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_HEAL_BELL",
+                "MOVE_HELPING_HAND"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_MAWILE",
+            "form": 0,
+            "level": 40,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_PLAY_ROUGH",
+                "MOVE_IRON_HEAD",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [
