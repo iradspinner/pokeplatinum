@@ -29,7 +29,10 @@ A gift's split is the latest of three things:
       split a script on a map sets (clears) it in.
    c. a story variable at some value: the earliest split a script on a
       map sets it to a value the branch takes.
-   d. an item in the Bag (CheckItem): the item's first split in the
+   d. a trainer beaten (GoToIfNotDefeated): the trainer's own split, the
+      earliest split its battle can be reached, which is its maps' split
+      unless TRAINER_WIN_OVERRIDES says the win counts later.
+   e. an item in the Bag (CheckItem): the item's first split in the
       ungated census; a badge (CheckBadgeAcquired): its gym's split, since
       the census counts what is held by a split's end.
    A script's split for a line is the best over every path from its
@@ -74,6 +77,15 @@ POST_GAME_COMMANDS = {"GetNationalDexEnabled": 0, "CheckGameCompleted": 0,
 
 # Each badge id's gym (CheckBadgeAcquired's operand is the id, 0 for Coal).
 BADGE_GYMS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice", "Volkner"]
+
+# A trainer whose win counts from a later split than the one its battle can
+# first be reached in: {trainer constant: split name}.
+TRAINER_WIN_OVERRIDES = {
+    # Dahlia, the Arcade Star, stands in Veilstone (Maylene's split), but
+    # Ian ruled on 2026-10-31 that she is realistically too hard until
+    # Wake's split, so the prize counter she gates counts from there.
+    "TRAINER_DUMMY_007": "Wake",
+}
 
 # The comparison codes GoToIf and CallIf take (scrcmd.inc): less, equal,
 # greater, less or equal, greater or equal, not equal; and each one's
@@ -206,6 +218,13 @@ class Script:
             elif cmd == "GoToIfBadgeAcquired" and len(args) >= 2:
                 made = {**made, _key("VAR_RESULT"): ("badge", _number(args[0]))}
                 op = self._branch(args[1], False, ("var", _key("VAR_RESULT"), 1), 1, made)
+            elif cmd in ("GoToIfNotDefeated", "CallIfNotDefeated") and len(args) >= 2:
+                # The jump is the not-beaten path and needs nothing; falling
+                # through means the trainer has been beaten.
+                op = ("branch", args[1], cmd.startswith("Call"), None,
+                      None if cmd.startswith("Call") else ("defeated", args[0]))
+            elif cmd in ("GoToIfDefeated", "CallIfDefeated") and len(args) >= 2:
+                op = ("branch", args[1], cmd.startswith("Call"), ("defeated", args[0]), None)
             elif re.match(r"(GoTo|Call)If", cmd) and args:
                 # Any other conditional jump (the Bag is full, not enough
                 # money): either way, with nothing required.
@@ -421,6 +440,8 @@ def requirement_split(req):
         # a badge check holds from the gym's own split.
         gym = BADGE_GYMS[req[1]] if 0 <= req[1] < len(BADGE_GYMS) else None
         return SPLITS.index(gym) if gym else 0
+    if kind == "defeated":
+        return _trainer_win_split(req[1])
     if kind == "item":
         first = _raw_item_first().get(req[1])
         return first if first is not None else 0
@@ -444,6 +465,35 @@ def requirement_split(req):
             [(stem, i) for stem, v, i in sites["setvar"].get(key, ()) if _sat(v, code, x)]))
         return 0 if found is None else found
     return 0
+
+
+def _trainer_win_split(constant):
+    """The earliest split index a trainer's win counts from: the override
+    if there is one, else the earliest map split that fields the trainer
+    (by sight or by a script that starts the battle). Unsure (a trainer no
+    map is found for) is no gate."""
+    if constant in TRAINER_WIN_OVERRIDES:
+        return SPLITS.index(TRAINER_WIN_OVERRIDES[constant])
+    tr_id = splits._trainer_id(constant)
+    found = []
+    for header in splits.trainer_maps().get(tr_id, ()) if tr_id else ():
+        sp = splits.map_split(header)[0]
+        if sp in SPLITS:
+            found.append(SPLITS.index(sp))
+    return min(found) if found else 0
+
+
+PRIZE_COUNTER_STEM = "scripts_veilstone_city_prize_exchange"
+
+
+def prize_counter_split():
+    """The split index the Game Corner prize counter opens in, by its
+    receptionist's script: the line that lists the prizes, past her check
+    that Dahlia is beaten. 0 if the line is not found (unsure, no gate)."""
+    sc = script(PRIZE_COUNTER_STEM)
+    i = next((n for n, line in enumerate(sc.lines) if line.strip().startswith("GetGameCornerPrizeCount")), None)
+    at = line_split(PRIZE_COUNTER_STEM, i) if i is not None else None
+    return at or 0
 
 
 @functools.lru_cache(maxsize=None)

@@ -177,6 +177,19 @@ def _decode(data, seed):
     return struct.pack(f"<{len(words)}H", *words)
 
 
+SPECIAL_MET_LOC_BASE = 2000
+
+
+def _place(t, loc):
+    """A met or egg location id as its name: an ordinary place, or one of the
+    special met locations from 2000 (SpecialMetLoc_GetId's first base)."""
+    if loc < len(t["places"]):
+        return t["places"][loc]
+    if 0 <= loc - SPECIAL_MET_LOC_BASE < len(t["special"]) and loc < 3000:
+        return t["special"][loc - SPECIAL_MET_LOC_BASE]
+    return f"#{loc}"
+
+
 @functools.lru_cache(maxsize=1)
 def _tables():
     """Today's id lists, and what the reader shows for each id."""
@@ -190,6 +203,12 @@ def _tables():
     moves = pokedex.moves(root)
     with open(os.path.join(root, "res", "text", "location_names.json"), encoding="utf-8") as f:
         places = [m.get("en_US") or "" for m in json.load(f)["messages"]]
+    # The special met locations a gift egg takes (SpecialMetLoc_GetId(1, giver),
+    # 2000 plus the giver's index), which the summary names from their own bank:
+    # 2008 is the "Distant land" of the Manaphy egg.
+    with open(os.path.join(root, "res", "text", "special_met_location_names.json"),
+              encoding="utf-8") as f:
+        special = [m.get("en_US") or "" for m in json.load(f)["messages"]]
     rates = {}
     with open(os.path.join(root, "res", "pokemon", ".shared", "exp_tables.csv"), encoding="utf-8") as f:
         for row in csv.DictReader(f):
@@ -200,7 +219,7 @@ def _tables():
     return {
         "species": ids("species"), "moves": ids("moves"), "abilities": ids("abilities"),
         "items": ids("items"), "move_names": {c: r["name"] for c, r in moves.items()},
-        "places": places, "exp": rates, "tidy": tidy,
+        "places": places, "special": special, "exp": rates, "tidy": tidy,
     }
 
 
@@ -445,7 +464,7 @@ def read_mon(raw, where):
         "met_location": t["places"][met] if met < len(t["places"]) else f"#{met}",
         # Where an egg came from (a gift or the Day Care), kept once it hatches;
         # 0 for a Pokemon that was never an egg.
-        "egg_location": (t["places"][egg] if egg < len(t["places"]) else f"#{egg}") if egg else None,
+        "egg_location": _place(t, egg) if egg else None,
         "met_level": d[0x1C] & 0x7F, "ball": d[0x1B],
     }
     if len(raw) >= PARTY_RECORD:

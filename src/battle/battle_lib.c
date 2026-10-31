@@ -4312,9 +4312,9 @@ static const u16 sPermanentTrickRoomTrainers[] = {
 };
 
 // Oxide (Ian, 2026-09-27): the same for Wonder Room, with
-// FIELD_CONDITION_WONDER_ROOM_PERM. Empty until the Frontier Brain fights
-// that use it exist.
+// FIELD_CONDITION_WONDER_ROOM_PERM.
 static const u16 sPermanentWonderRoomTrainers[] = {
+    TRAINER_DUMMY_007, // Dahlia, the Arcade Star, in the Veilstone Game Corner (Ian, 2026-10-31)
     TRAINER_NONE,
 };
 

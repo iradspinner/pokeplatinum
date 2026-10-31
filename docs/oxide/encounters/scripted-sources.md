@@ -216,6 +216,16 @@ and Riley's Riolu (Iron Island). `pokemon_sources.py` lists all three, at
 level 1 with the giver named; until 2026-09-25 it read `GiveEgg`'s second
 operand, the giver, as a level, which dropped Riley's egg and put Togepi at 11
 and Manaphy at 8.
+
+The Manaphy egg is the exception among the eggs since 2026-10-31. Darach
+gives it straight after his and Caitlin's double battle in the mansion's
+entrance hall, and Ian ruled it the Pokemon Mansion's own capture, not the
+place it hatches, the way Thorton's prize is Ironworks Hall's. The mansion
+has no wild table, so it is a place of its own, open only after that win:
+`scripted.json` orders the egg just after the mansion's place in walking
+order, so no box for a fight there holds it. The save shows the egg given at
+"Distant land", the special met location its giver names, and the OxiDex's
+save reader counts a Pokemon from there as the mansion's.
 Mesprit takes the name of the route it is caught on. Snowpoint City's trade
 wants a Snover.
 

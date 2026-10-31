@@ -235,6 +235,14 @@
         "Come back with room in your\n",
         "party."
       ]
+    },
+    {
+      "id": "PokemonMansionOffice_Text_DarachHasEgg",
+      "en_US": [
+        "I found a strange Egg on the beach.\r",
+        "Darach, the valet in the hall, keeps\n",
+        "it for a Trainer who can beat him."
+      ]
     }
   ]
 }

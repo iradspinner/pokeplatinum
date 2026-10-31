@@ -9,6 +9,9 @@
     ScriptEntry PokemonMansion_MaidWest
     ScriptEntry PokemonMansion_MaidFarEast
     ScriptEntry PokemonMansion_MaidEast
+    ScriptEntry PokemonMansion_Darach
+    ScriptEntry PokemonMansion_Caitlin
+    ScriptEntry PokemonMansion_DarachGate
     ScriptEntryEnd
 
 PokemonMansion_OnTransition:
@@ -311,4 +314,122 @@ PokemonMansion_MaidEast:
     NPCMessage PokemonMansion_Text_BookTugsAttention
     End
 
+@ Oxide (Ian, 2026-09-27 and 2026-10-31): Darach and Caitlin, an optional
+@ boss of Wake's split, stand at the top of the entrance hall's aisle. The
+@ trigger across the aisle (the events' coord event) holds the player until
+@ they are beaten, so the office, the maids and the Trophy Garden open only
+@ on the win. Their fight is a double battle as one trainer. Straight after
+@ the win Darach hands over the Manaphy egg, which the office maid offered
+@ in the base ROM; FLAG_UNK_0x0A65 stays its received flag, so a save that
+@ took the egg there gets no second one.
+PokemonMansion_DarachGate:
+    LockAll
+    ApplyMovement LOCALID_DARACH, PokemonMansion_Movement_DarachNotice
+    WaitMovement
+    SetVar VAR_0x8007, 1
+    GoTo PokemonMansion_DarachChallenge
+    End
+
+PokemonMansion_Darach:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_DUMMY_008, PokemonMansion_DarachBeaten
+    SetVar VAR_0x8007, 0
+    GoTo PokemonMansion_DarachChallenge
+    End
+
+@ VAR_0x8007 is 1 when the trigger started this, so a refusal walks the
+@ player back down the aisle, off the trigger.
+PokemonMansion_DarachChallenge:
+    Message PokemonMansion_Text_DarachIntro
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, PokemonMansion_DarachDeclined
+    CheckHasTwoAliveMons VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PokemonMansion_DarachNeedTwo
+    Message PokemonMansion_Text_DarachBegin
+    CloseMessage
+    StartTrainerBattle TRAINER_DUMMY_008
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PokemonMansion_BlackOut
+    SetTrainerFlag TRAINER_DUMMY_008
+    SetVar VAR_POKEMON_MANSION_DARACH_STATE, 1
+    Message PokemonMansion_Text_DarachWin
+    GoToIfSet FLAG_UNK_0x0A65, PokemonMansion_DarachEnd
+    Message PokemonMansion_Text_DarachEgg
+    GoTo PokemonMansion_DarachGiveEgg
+    End
+
+PokemonMansion_DarachNeedTwo:
+    Message PokemonMansion_Text_DarachNeedTwo
+    GoTo PokemonMansion_DarachSendBack
+    End
+
+PokemonMansion_DarachDeclined:
+    Message PokemonMansion_Text_DarachDeclined
+PokemonMansion_DarachSendBack:
+    WaitButton
+    CloseMessage
+    GoToIfEq VAR_0x8007, 0, PokemonMansion_DarachRelease
+    ApplyMovement LOCALID_PLAYER, PokemonMansion_Movement_PlayerStepBack
+    WaitMovement
+PokemonMansion_DarachRelease:
+    ReleaseAll
+    End
+
+@ Once beaten, Darach still holds the egg if a full party refused it.
+PokemonMansion_DarachBeaten:
+    GoToIfSet FLAG_UNK_0x0A65, PokemonMansion_DarachBeatenLine
+    Message PokemonMansion_Text_DarachKeptEgg
+    GoTo PokemonMansion_DarachGiveEgg
+    End
+
+PokemonMansion_DarachBeatenLine:
+    Message PokemonMansion_Text_DarachBeaten
+    GoTo PokemonMansion_DarachEnd
+    End
+
+PokemonMansion_DarachGiveEgg:
+    GetPartyCount VAR_RESULT
+    GoToIfEq VAR_RESULT, 6, PokemonMansion_DarachPartyFull
+    PlayFanfare SEQ_FANFA4_sseq
+    WaitFanfare
+    GiveEgg SPECIES_MANAPHY, 8
+    SetFlag FLAG_UNK_0x0A65
+    BufferPlayerName 0
+    Message PokemonMansion_Text_PlayerReceivedEgg
+    Message PokemonMansion_Text_DarachCareForEgg
+    GoTo PokemonMansion_DarachEnd
+    End
+
+PokemonMansion_DarachPartyFull:
+    Message PokemonMansion_Text_DarachPartyFull
+PokemonMansion_DarachEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PokemonMansion_Caitlin:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_DUMMY_008, PokemonMansion_CaitlinBeaten
+    Message PokemonMansion_Text_CaitlinBefore
+    GoTo PokemonMansion_DarachEnd
+    End
+
+PokemonMansion_CaitlinBeaten:
+    Message PokemonMansion_Text_CaitlinBeaten
+    GoTo PokemonMansion_DarachEnd
+    End
+
     .balign 4, 0
+PokemonMansion_Movement_DarachNotice:
+    EmoteExclamationMark
+    EndMovement
+
+    .balign 4, 0
+PokemonMansion_Movement_PlayerStepBack:
+    WalkNormalSouth
+    EndMovement

@@ -244,7 +244,7 @@ Also for Ian: the early cast rests on the widened starter-adjacent tier (`EARLY_
 | Latios | gate | non-wild |  |  |  |  | static twinleaf_town |  |  |  |
 | Lileep | gate | non-wild |  |  |  |  | fossil, mining_museum_fossil | fossil at Mining Museum |  |  |
 | Magearna | gate | pool |  |  |  | pool |  |  |  |  |
-| Manaphy | gate | non-wild |  |  |  |  | gift pokemon_mansion_office; egg, manaphy_egg | egg gift at Pokémon Mansion |  |  |
+| Manaphy | gate | non-wild |  |  |  |  | gift pokemon_mansion; egg, manaphy_egg | egg gift at Pokémon Mansion |  |  |
 | Meloetta | gate | non-wild |  |  |  |  | trade foppa_magikarp; trade, route_226_trade | in-game trade at Route 226 |  |  |
 | Mesprit | gate | pool |  |  |  | pool |  |  |  |  |
 | Moltres | gate | non-wild |  |  |  |  | roamer, eterna_city (Oak, post-League) | roamer at Eterna City |  |  |

@@ -37,21 +37,20 @@ Galarian Articuno replaces Sigilyph, which is not in the game (Ian,
 
 ## What each fight needs before it can be scripted
 
-- Dahlia: her trainer added to `sPermanentWonderRoomTrainers` in
-  `battle_lib.c`. Wonder Room and its permanent form are merged
-  (`cloud/element4-wonder-room`), and the list is there, empty.
-- Darach and Caitlin (Ian, 2026-10-31): they stand in the Pokemon Mansion's
-  entrance hall and block the way in, so the office, the maids and the
-  Trophy Garden behind the mansion open only on beating them. The double is
-  the fight's only twist, with no field rule. Straight after the win Mr.
-  Backlot hands over the Manaphy egg, which replaces the office's yes-or-no
-  offer and counts as a capture of its own, the Mansion's, not wherever it
-  hatches. Manaphy's Tail Glow moved from level 1 to 70, so the egg hatches
-  without it. Backlot's daily Trophy Garden Pokemon stay out of the game's
-  design, behind the National Dex as in vanilla. The maids' five-maid
-  knockout may give the Ability Capsule as its prize once its fights are
-  designed. Needs: Ian's team, the gate script, the egg's handover and its
-  capture in the OxiDex.
+- Dahlia: placed (`overseer-brains-placement`, 2026-10-31). She stands
+  inside the Game Corner's door and asks before her fight, which opens in
+  the permanent Wonder Room (`sPermanentWonderRoomTrainers`). The gate is
+  the prize counter next door, which trades only once she is beaten; the
+  slots, the coins clerk and Rocco stay open. Needs: Ian's in-game check.
+- Darach and Caitlin: placed (`overseer-brains-placement`, 2026-10-31).
+  They stand at the top of the entrance hall's aisle, and a trigger across
+  it holds the player until they are beaten, so the office, the maids and
+  the Trophy Garden open only on the win (the field model agrees). Darach,
+  not Mr. Backlot, hands over the Manaphy egg straight after the win, under
+  the office's old received flag, and the office maid no longer offers it.
+  The OxiDex counts the egg as the Mansion's own capture after the fight.
+  Manaphy's Tail Glow is at 70, and Backlot's daily Trophy Garden Pokemon
+  stay behind the National Dex. Needs: Ian's in-game check.
 - Thorton: his trainer added to `sPermanentTrickRoomTrainers` in `battle_lib.c`,
   and the prize's scripted capture. Ironworks Hall, the location name that
   makes it a capture of its own, is merged (1902bd197).

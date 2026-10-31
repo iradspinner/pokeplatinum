@@ -262,7 +262,7 @@ def scripted_detail(s, st):
         "simulate": s.get("simulate", True), "requires": s.get("requires"),
         "requires_label": dex.display_name(s["requires"]) if s.get("requires") else None,
         "location": _scripted_location(s), "shares_table": s["shares_table"],
-        "split": s["split"],
+        "capture_area": s.get("capture_area"), "split": s["split"],
         "encounter": st.encounters.get(s["key"]),
         "encounter_label": dex.display_name(st.encounters[s["key"]])
                            if s["key"] in st.encounters else None,

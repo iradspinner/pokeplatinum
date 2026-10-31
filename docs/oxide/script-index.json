@@ -5585,18 +5585,21 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_game_corner:296"], "daily": false, "flag": 214, "name": "FLAG_ARRESTED_CHARON_STARK_MOUNTAIN", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_game_corner:205"], "daily": false, "flag": 302, "name": "FLAG_RECEIVED_GAME_CORNER_20_COINS_OLD_MAN", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_game_corner:238"], "daily": false, "flag": 303, "name": "FLAG_RECEIVED_GAME_CORNER_50_COINS_FARMER", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_game_corner:297"], "daily": false, "flag": 214, "name": "FLAG_ARRESTED_CHARON_STARK_MOUNTAIN", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_game_corner:206"], "daily": false, "flag": 302, "name": "FLAG_RECEIVED_GAME_CORNER_20_COINS_OLD_MAN", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_game_corner:239"], "daily": false, "flag": 303, "name": "FLAG_RECEIVED_GAME_CORNER_50_COINS_FARMER", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_game_corner:322"], "commit": "36da16866", "daily": false, "flag": 1367, "name": "FLAG_DEFEATED_TRAINER_DUMMY_007", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["events_game_corner:234"], "daily": false, "flag": 419, "name": "FLAG_HIDE_GAME_CORNER_LOOKER", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_game_corner:207"], "daily": false, "flag": 302, "name": "FLAG_RECEIVED_GAME_CORNER_20_COINS_OLD_MAN", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_game_corner:240"], "daily": false, "flag": 303, "name": "FLAG_RECEIVED_GAME_CORNER_50_COINS_FARMER", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_game_corner:208"], "daily": false, "flag": 302, "name": "FLAG_RECEIVED_GAME_CORNER_20_COINS_OLD_MAN", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_game_corner:241"], "daily": false, "flag": 303, "name": "FLAG_RECEIVED_GAME_CORNER_50_COINS_FARMER", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_game_corner:331"], "commit": "36da16866", "daily": false, "flag": 1367, "name": "FLAG_DEFEATED_TRAINER_DUMMY_007", "op": "set", "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "trainers": [
-     {"commit": "483932033", "event": "object_events", "file": "events_game_corner", "how": "sees the player", "line": 250, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GAME_CORNER_CHALLENGER", "value": 6, "when": ""}]}], "source": "Oxide"}
+     {"commit": "483932033", "event": "object_events", "file": "events_game_corner", "how": "sees the player", "line": 250, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GAME_CORNER_CHALLENGER", "value": 6, "when": ""}]}], "source": "Oxide"},
+     {"command": "StartTrainerBattle", "commit": "36da16866", "file": "scripts_game_corner", "how": "StartTrainerBattle", "line": 328, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_007", "value": 7, "when": ""}]}], "source": "Oxide"}
     ],
     "vars": [
-     {"at": ["scripts_game_corner:282", "scripts_game_corner:283"], "name": "VAR_CONSECUTIVE_BONUS_ROUND_WINS", "op": "check", "origin": "vanilla", "reached": true, "var": 16448}
+     {"at": ["scripts_game_corner:283", "scripts_game_corner:284"], "name": "VAR_CONSECUTIVE_BONUS_ROUND_WINS", "op": "check", "origin": "vanilla", "reached": true, "var": 16448}
     ]
    },
    "events": "events_game_corner",
@@ -5761,15 +5764,16 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_veilstone_city_prize_exchange:109"], "daily": false, "flag": 196, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_PRIZE_EXCHANGE_GUITARIST", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city_prize_exchange:110"], "daily": false, "flag": 196, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_PRIZE_EXCHANGE_GUITARIST", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_veilstone_city_prize_exchange:120"], "daily": false, "flag": 196, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_PRIZE_EXCHANGE_GUITARIST", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city_prize_exchange:18"], "commit": "36da16866", "daily": false, "flag": 1367, "name": "FLAG_DEFEATED_TRAINER_DUMMY_007", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_veilstone_city_prize_exchange:121"], "daily": false, "flag": 196, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_PRIZE_EXCHANGE_GUITARIST", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "items": [
-     {"command": "AddItem", "commit": "5030153cd", "count": [{"by": [], "name": "set by GetSoldTMCopies", "value": null, "when": ""}], "file": "scripts_veilstone_city_prize_exchange", "how": "AddItem", "item": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "line": 40, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
+     {"command": "AddItem", "commit": "5030153cd", "count": [{"by": [], "name": "set by GetSoldTMCopies", "value": null, "when": ""}], "file": "scripts_veilstone_city_prize_exchange", "how": "AddItem", "item": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "line": 44, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "vars": [
-     {"at": ["scripts_veilstone_city_prize_exchange:27", "scripts_veilstone_city_prize_exchange:96"], "name": "VAR_MAP_LOCAL_0x01", "op": "check", "origin": "vanilla", "reached": true, "var": 16385},
-     {"at": ["scripts_veilstone_city_prize_exchange:15"], "name": "VAR_MAP_LOCAL_0x01", "op": "set", "origin": "vanilla", "reached": true, "var": 16385}
+     {"at": ["scripts_veilstone_city_prize_exchange:31", "scripts_veilstone_city_prize_exchange:107"], "name": "VAR_MAP_LOCAL_0x01", "op": "check", "origin": "vanilla", "reached": true, "var": 16385},
+     {"at": ["scripts_veilstone_city_prize_exchange:19"], "name": "VAR_MAP_LOCAL_0x01", "op": "set", "origin": "vanilla", "reached": true, "var": 16385}
     ]
    },
    "events": "events_veilstone_city_prize_exchange",
@@ -12777,34 +12781,44 @@
   },
   {
    "entries": {
+    "eggs": [
+     {"command": "GiveEgg", "commit": "1e582785f", "file": "scripts_pokemon_mansion", "line": 397, "mode": "name", "origin": "added", "reached": true, "source": "Oxide", "species": [{"name": "SPECIES_MANAPHY", "value": 490, "when": ""}]}
+    ],
     "flags": [
-     {"at": ["scripts_pokemon_mansion:75"], "daily": false, "flag": 358, "name": "FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:170", "scripts_pokemon_mansion:188"], "commit": "8eb934677", "daily": false, "flag": 972, "name": "FLAG_UNUSED_0x03CC", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_pokemon_mansion:48"], "daily": false, "flag": 2253, "name": "FLAG_DEFEATED_TRAINER_LADY_CELESTE", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:84"], "daily": false, "flag": 599, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:156"], "daily": false, "flag": 600, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:78"], "daily": false, "flag": 358, "name": "FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:173", "scripts_pokemon_mansion:191"], "commit": "8eb934677", "daily": false, "flag": 972, "name": "FLAG_UNUSED_0x03CC", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_pokemon_mansion:337", "scripts_pokemon_mansion:417"], "commit": "1e582785f", "daily": false, "flag": 1368, "name": "FLAG_DEFEATED_TRAINER_DUMMY_008", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_pokemon_mansion:51"], "daily": false, "flag": 2253, "name": "FLAG_DEFEATED_TRAINER_LADY_CELESTE", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:358", "scripts_pokemon_mansion:382"], "commit": "1e582785f", "daily": false, "flag": 2661, "name": "FLAG_UNK_0x0A65", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_pokemon_mansion:87"], "daily": false, "flag": 599, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:159"], "daily": false, "flag": 600, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_pokemon_mansion:84"], "daily": false, "flag": 599, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pokemon_mansion:69"], "daily": false, "flag": 600, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:76"], "daily": false, "flag": 358, "name": "FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:16"], "daily": false, "flag": 599, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:17"], "daily": false, "flag": 600, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:199"], "commit": "8eb934677", "daily": false, "flag": 972, "name": "FLAG_UNUSED_0x03CC", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_pokemon_mansion:165"], "daily": false, "flag": 2253, "name": "FLAG_DEFEATED_TRAINER_LADY_CELESTE", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:15"], "daily": false, "flag": 2539, "name": "FLAG_FIRST_ARRIVAL_POKEMON_MANSION", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_pokemon_mansion:79"], "daily": false, "flag": 358, "name": "FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:19"], "daily": false, "flag": 599, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:20"], "daily": false, "flag": 600, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:202"], "commit": "8eb934677", "daily": false, "flag": 972, "name": "FLAG_UNUSED_0x03CC", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_pokemon_mansion:355"], "commit": "1e582785f", "daily": false, "flag": 1368, "name": "FLAG_DEFEATED_TRAINER_DUMMY_008", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_pokemon_mansion:168"], "daily": false, "flag": 2253, "name": "FLAG_DEFEATED_TRAINER_LADY_CELESTE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:18"], "daily": false, "flag": 2539, "name": "FLAG_FIRST_ARRIVAL_POKEMON_MANSION", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:398"], "commit": "1e582785f", "daily": false, "flag": 2661, "name": "FLAG_UNK_0x0A65", "op": "set", "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "items": [
-     {"command": "Common_GiveItemQuantity", "commit": "8eb934677", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_pokemon_mansion", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_ABILITY_CAPSULE", "value": 133, "when": ""}], "line": 198, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
+     {"command": "Common_GiveItemQuantity", "commit": "8eb934677", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_pokemon_mansion", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_ABILITY_CAPSULE", "value": 133, "when": ""}], "line": 201, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "trainers": [
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 90, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_BELINDA", "value": 897, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 101, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_SOPHIE", "value": 898, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 112, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_EMILY", "value": 899, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 123, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_ELENA", "value": 900, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 140, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_CLARE", "value": 901, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "commit": "8eb934677", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 162, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_LADY_CELESTE", "value": 893, "when": ""}]}], "source": "Oxide"}
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 93, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_BELINDA", "value": 897, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 104, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_SOPHIE", "value": 898, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 115, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_EMILY", "value": 899, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 126, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_ELENA", "value": 900, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 143, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_CLARE", "value": 901, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "commit": "8eb934677", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 165, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_LADY_CELESTE", "value": 893, "when": ""}]}], "source": "Oxide"},
+     {"command": "StartTrainerBattle", "commit": "1e582785f", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 352, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_008", "value": 8, "when": ""}]}], "source": "Oxide"}
     ],
     "vars": [
-     {"at": ["scripts_pokemon_mansion:151"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416}
+     {"at": ["events_pokemon_mansion:187"], "commit": "1e582785f", "name": "VAR_POKEMON_MANSION_DARACH_STATE", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16668},
+     {"at": ["scripts_pokemon_mansion:154"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
+     {"at": ["scripts_pokemon_mansion:356"], "commit": "1e582785f", "name": "VAR_POKEMON_MANSION_DARACH_STATE", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16668}
     ]
    },
    "events": "events_pokemon_mansion",
@@ -12832,8 +12846,8 @@
    "location": "Pokémon Mansion",
    "missing": [],
    "scripts": "scripts_pokemon_mansion",
-   "split": null,
-   "split_basis": null,
+   "split": "Wake",
+   "split_basis": "its location name",
    "title": "Pokemon Mansion",
    "undecoded": {},
    "unreached": []
@@ -12862,30 +12876,26 @@
    "location": "Pokémon Mansion",
    "missing": [],
    "scripts": "scripts_pokemon_mansion_maids_room",
-   "split": null,
-   "split_basis": null,
+   "split": "Wake",
+   "split_basis": "its location name",
    "title": "Pokemon Mansion Maids Room",
    "undecoded": {},
    "unreached": []
   },
   {
    "entries": {
-    "eggs": [
-     {"command": "GiveEgg", "commit": "81d02e28e", "file": "scripts_pokemon_mansion_office", "line": 282, "mode": "name", "origin": "added", "reached": true, "source": "base ROM", "species": [{"name": "SPECIES_MANAPHY", "value": 490, "when": ""}]}
-    ],
     "flags": [
-     {"at": ["scripts_pokemon_mansion_office:151"], "daily": false, "flag": 251, "name": "FLAG_SKIP_POKEMON_MANSION_OFFICE_BOOK_SEEN_MANAPHY_CHECK", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion_office:129"], "daily": false, "flag": 356, "name": "FLAG_TALKED_TO_POKEMON_MANSION_OFFICE_OLD_MAN_NATIONAL_DEX", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion_office:152"], "daily": false, "flag": 251, "name": "FLAG_SKIP_POKEMON_MANSION_OFFICE_BOOK_SEEN_MANAPHY_CHECK", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion_office:130"], "daily": false, "flag": 356, "name": "FLAG_TALKED_TO_POKEMON_MANSION_OFFICE_OLD_MAN_NATIONAL_DEX", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pokemon_mansion_office:89"], "commit": "81d02e28e", "daily": false, "flag": 2661, "name": "FLAG_UNK_0x0A65", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_pokemon_mansion_office:30", "scripts_pokemon_mansion_office:133"], "daily": true, "flag": 2722, "name": "FLAG_DAILY_ADDED_TROPHY_GARDEN_MON", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion_office:99"], "daily": false, "flag": 651, "name": "FLAG_HIDE_POKEMON_MANSION_OFFICE_POLICEMAN", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion_office:30", "scripts_pokemon_mansion_office:134"], "daily": true, "flag": 2722, "name": "FLAG_DAILY_ADDED_TROPHY_GARDEN_MON", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion_office:100"], "daily": false, "flag": 651, "name": "FLAG_HIDE_POKEMON_MANSION_OFFICE_POLICEMAN", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_pokemon_mansion_office:71"], "daily": false, "flag": 651, "name": "FLAG_HIDE_POKEMON_MANSION_OFFICE_POLICEMAN", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pokemon_mansion_office:26"], "daily": false, "flag": 1071, "name": "FLAG_OBTAINED_POKEMON_MANSION_OFFICE_TM87", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion_office:159", "scripts_pokemon_mansion_office:218"], "daily": false, "flag": 251, "name": "FLAG_SKIP_POKEMON_MANSION_OFFICE_BOOK_SEEN_MANAPHY_CHECK", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion_office:182"], "daily": false, "flag": 356, "name": "FLAG_TALKED_TO_POKEMON_MANSION_OFFICE_OLD_MAN_NATIONAL_DEX", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion_office:103"], "daily": false, "flag": 651, "name": "FLAG_HIDE_POKEMON_MANSION_OFFICE_POLICEMAN", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion_office:283"], "commit": "81d02e28e", "daily": false, "flag": 2661, "name": "FLAG_UNK_0x0A65", "op": "set", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_pokemon_mansion_office:244"], "daily": true, "flag": 2722, "name": "FLAG_DAILY_ADDED_TROPHY_GARDEN_MON", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_pokemon_mansion_office:160", "scripts_pokemon_mansion_office:219"], "daily": false, "flag": 251, "name": "FLAG_SKIP_POKEMON_MANSION_OFFICE_BOOK_SEEN_MANAPHY_CHECK", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion_office:183"], "daily": false, "flag": 356, "name": "FLAG_TALKED_TO_POKEMON_MANSION_OFFICE_OLD_MAN_NATIONAL_DEX", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion_office:104"], "daily": false, "flag": 651, "name": "FLAG_HIDE_POKEMON_MANSION_OFFICE_POLICEMAN", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion_office:245"], "daily": true, "flag": 2722, "name": "FLAG_DAILY_ADDED_TROPHY_GARDEN_MON", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
      {"commit": "03a50f7fd", "count": 2, "daily": false, "event": "object_events", "file": "events_pokemon_mansion_office", "flag": 1071, "flag_name": "FLAG_OBTAINED_POKEMON_MANSION_OFFICE_TM87", "item": "ITEM_TM46", "item_id": 373, "line": 27, "origin": "added", "reached": true, "replaces": "ITEM_TM87 x1, one time, flag FLAG_OBTAINED_POKEMON_MANSION_OFFICE_TM87", "source": "base ROM"}
@@ -12895,8 +12905,8 @@
      {"at": ["scripts_pokemon_mansion_office:32"], "name": "VAR_MAP_LOCAL_0x0B", "op": "check", "origin": "vanilla", "reached": true, "var": 16395},
      {"at": ["events_pokemon_mansion_office:114"], "name": "VAR_POKEMON_MANSION_OFFICE_BLOCK_STATUE_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16662},
      {"at": ["scripts_pokemon_mansion_office:18"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_pokemon_mansion_office:242"], "name": "VAR_MAP_LOCAL_0x0B", "op": "set", "origin": "vanilla", "reached": true, "var": 16395},
-     {"at": ["scripts_pokemon_mansion_office:100", "scripts_pokemon_mansion_office:104"], "name": "VAR_POKEMON_MANSION_OFFICE_BLOCK_STATUE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16662}
+     {"at": ["scripts_pokemon_mansion_office:243"], "name": "VAR_MAP_LOCAL_0x0B", "op": "set", "origin": "vanilla", "reached": true, "var": 16395},
+     {"at": ["scripts_pokemon_mansion_office:101", "scripts_pokemon_mansion_office:105"], "name": "VAR_POKEMON_MANSION_OFFICE_BLOCK_STATUE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16662}
     ]
    },
    "events": "events_pokemon_mansion_office",
@@ -19261,17 +19271,16 @@
  ],
  "summary": {
   "eggs": {
-   "Oxide": 1,
-   "base ROM": 1,
+   "Oxide": 2,
    "gone": 1,
    "total": 3,
    "vanilla": 1
   },
   "flags": {
-   "Oxide": 139,
-   "base ROM": 215,
+   "Oxide": 146,
+   "base ROM": 214,
    "gone": 105,
-   "total": 3318,
+   "total": 3324,
    "vanilla": 2964
   },
   "hidden_items": {
@@ -19314,17 +19323,17 @@
    "vanilla": 4
   },
   "trainers": {
-   "Oxide": 13,
+   "Oxide": 15,
    "base ROM": 72,
    "gone": 14,
-   "total": 592,
+   "total": 594,
    "vanilla": 507
   },
   "vars": {
-   "Oxide": 12,
+   "Oxide": 14,
    "base ROM": 27,
    "gone": 36,
-   "total": 1117,
+   "total": 1119,
    "vanilla": 1078
   }
  }
