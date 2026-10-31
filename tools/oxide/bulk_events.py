@@ -183,6 +183,14 @@ for _m in ("route_203", "oreburgh_gate_1f", "oreburgh_mine_b2f", "route_204_sout
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; then " + _why
                                 if f"events_{_m}" in DIVERGED else _why)
 
+# Wake's split (docs/oxide/wake-split.md): three of Route 213's land trainers
+# stand at its chokepoints, Fisherman Travis leaves Route 212 South's bridge for
+# Route 213's neck by the grass, and Gentleman Jeremy and Socialite Reina leave
+# Route 212 North for Valor Lakefront's two narrows, so those maps lose them and
+# the others gain them (2026-10-31, on a branch for Ian's look).
+for _m in ("route_213", "valor_lakefront", "route_212_north", "route_212_south"):
+    DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; then " + _why
+                                if f"events_{_m}" in DIVERGED else _why)
 
 def render(record, existing, index):
     """One object event as the repo spells it, keeping the existing id."""
