@@ -15,16 +15,6 @@ PokemonMansion_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_POKEMON_MANSION
     SetFlag FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID
     SetFlag FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS
-    GoToIfUnset FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET, PokemonMansion_InitFiveMaidKnockoutChallenge
-    End
-
-@ Oxide (Ian, 2026-10-31): the knockout has no turn target and no Rich Boy
-@ Liam any more. The daily flag, still named for vanilla's turn target, now
-@ only marks that today's challenge is open: each new day clears Lady
-@ Celeste's trainer flag, so the five maids and Celeste can be fought again.
-PokemonMansion_InitFiveMaidKnockoutChallenge:
-    SetFlag FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET
-    ClearTrainerFlag TRAINER_LADY_CELESTE
     End
 
 PokemonMansion_MaidOffice:
@@ -55,7 +45,7 @@ PokemonMansion_MaidWest:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    GoToIfDefeated TRAINER_LADY_CELESTE, PokemonMansion_ChallengeDoneToday
+    GoToIfDefeated TRAINER_LADY_CELESTE, PokemonMansion_ChallengeCleared
     GetPlayerDir VAR_RESULT
     GoToIfEq VAR_RESULT, DIR_NORTH, PokemonMansion_GetInPositionNorth
     GoToIfEq VAR_RESULT, DIR_SOUTH, PokemonMansion_GetInPositionSouth
@@ -76,10 +66,11 @@ PokemonMansion_GetInPositionSouth:
     GoTo PokemonMansion_FiveMaidKnockoutChallenge
     End
 
-@ Oxide (Ian, 2026-10-31): the five maids and then Lady Celeste, every time,
-@ back to back with no healing. Celeste's trainer flag is set only when she
-@ is beaten, so it means "cleared today", and a cleared challenge waits for
-@ the next day.
+@ Oxide (Ian, 2026-10-31): the five maids and then Lady Celeste, back to
+@ back with no healing, with no turn target and no Rich Boy Liam. Celeste's
+@ trainer flag is set only when she is beaten, so it means "cleared", and
+@ nothing clears it again: there is no daily repeat. A loss leaves it unset,
+@ so the challenge can be tried again.
 PokemonMansion_FiveMaidKnockoutChallenge:
     CallIfUnset FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE, PokemonMansion_ExplainChallenge
     SetFlag FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE
@@ -188,16 +179,16 @@ PokemonMansion_CelesteLeaves:
     ApplyMovement LOCALID_MAID_FAR_WEST, PokemonMansion_Movement_MaidFarWestMoveBackInPlace
     WaitMovement
     Message PokemonMansion_Text_TriumphedOverCeleste
-    GoTo PokemonMansion_VisitAgainTomorrow
+    GoTo PokemonMansion_ChallengeClosed
     End
 
-@ After a clear the maid only asks the player back tomorrow, unless a full
-@ Bag refused the Capsule, which she then hands over.
-PokemonMansion_ChallengeDoneToday:
-    GoToIfSet FLAG_UNUSED_0x03CC, PokemonMansion_VisitAgainTomorrow
+@ The challenge closes after the first clear (Ian, 2026-10-31): the maid no
+@ longer offers it, and only hands over the Capsule if a full Bag refused it.
+PokemonMansion_ChallengeCleared:
+    GoToIfSet FLAG_UNUSED_0x03CC, PokemonMansion_ChallengeClosed
     Message PokemonMansion_Text_KeptYourGift
     Call PokemonMansion_GivePrize
-    GoTo PokemonMansion_VisitAgainTomorrow
+    GoTo PokemonMansion_ChallengeClosed
     End
 
 PokemonMansion_GivePrize:
@@ -212,8 +203,8 @@ PokemonMansion_PrizeBagIsFull:
     Common_MessageBagIsFull
     Return
 
-PokemonMansion_VisitAgainTomorrow:
-    Message PokemonMansion_Text_VisitAgainTomorrow
+PokemonMansion_ChallengeClosed:
+    Message PokemonMansion_Text_ChallengeClosed
     GoTo PokemonMansion_MaidChallengeEnd
     End
 

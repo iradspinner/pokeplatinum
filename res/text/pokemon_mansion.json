@@ -84,8 +84,11 @@
       ]
     },
     {
-      "id": "PokemonMansion_Text_VisitAgainTomorrow",
-      "en_US": "Please visit again tomorrow."
+      "id": "PokemonMansion_Text_ChallengeClosed",
+      "en_US": [
+        "The challenge is complete! You have\n",
+        "triumphed over us and Lady Celeste."
+      ]
     },
     {
       "id": "PokemonMansion_Text_StrictlyOffLimits",
@@ -99,7 +102,7 @@
     {
       "id": "PokemonMansion_Text_Maid1Intro",
       "en_US": [
-        "First up! My favorite color is blue!\n",
+        "First up! I do the mansion’s laundry!\n",
         "I will open the proceedings!\r"
       ]
     },
@@ -114,7 +117,7 @@
       "id": "PokemonMansion_Text_Maid2Intro",
       "en_US": [
         "I’m pleased to meet you in battle.\n",
-        "My best color is green!\r"
+        "I tend the mansion’s gardens!\r"
       ]
     },
     {
@@ -127,8 +130,8 @@
     {
       "id": "PokemonMansion_Text_Maid3Intro",
       "en_US": [
-        "My lucky color is yellow!\n",
-        "The sunshine girl! That’s me!\r"
+        "I dust every room, top to bottom!\n",
+        "Not a speck escapes me!\r"
       ]
     },
     {
@@ -141,7 +144,7 @@
     {
       "id": "PokemonMansion_Text_Maid4Intro",
       "en_US": [
-        "Pink is the color I can’t do without!\n",
+        "I cook for the whole mansion!\n",
         "I’m the fourth in line!\r"
       ]
     },
@@ -152,7 +155,7 @@
     {
       "id": "PokemonMansion_Text_Maid5Intro",
       "en_US": [
-        "My symbolic color is red!\n",
+        "I’m the head maid! I hold the keys!\n",
         "Prepare for no. 5!\r"
       ]
     },
