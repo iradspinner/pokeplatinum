@@ -5755,6 +5755,26 @@ def air_balloon_checks():
     return out
 
 
+def scale_shot_checks():
+    """Scale Shot (approved by Ian, 2026-10-31, from wake-barry4-check.md):
+    once its hits are in, its user's Defense falls a stage and its Speed
+    rises a stage (subscript_hit_x_times, the Oxide block after "Hit {0}
+    time(s)!"), each through BtlCmd_ChangeStatStage, so Contrary turns them
+    into a Defense rise and a Speed fall. Barry 4's Serperior has Contrary.
+    Until 2026-10-31 neither stage moved."""
+    out = {}
+    for ability in ("Contrary", "Overgrow"):
+        for name, attack in (("readings", pl.attack), ("fightsim", fs.attack)):
+            b, geo, serp = b8_battle([("Geodude", 30, "Sturdy", ["Tackle"])],
+                                     [("Serperior", 30, ability, ["Scale Shot"])])
+            geo.hp = geo.maxhp = 10 ** 6
+            attack(b, serp, fs.move("Scale Shot"), geo, True)
+            out[(ability, name)] = (geo.hp < geo.maxhp, serp.stages["def"], serp.stages["spe"])
+    ok = all(out[("Contrary", n)] == (True, 1, -1) and out[("Overgrow", n)] == (True, -1, 1)
+             for n in ("readings", "fightsim"))
+    return [("Scale Shot lowers Defense and raises Speed after its hits, the other way round with Contrary",
+             ok, f"(hit, Defense, Speed) {out}")]
+
 def relic_song_checks():
     """Relic Song in the readings' battle on the calculator's real rows
     (approved 2026-10-14): the player's Meloetta's hit puts a trainer's
@@ -7749,6 +7769,7 @@ def main():
     results += relic_song_checks()
     results += clanging_scales_checks()
     results += air_balloon_checks()
+    results += scale_shot_checks()
     results += matcha_gotcha_checks()
     results += fell_stinger_checks()
     results += prevent_escape_hit_checks()

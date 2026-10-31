@@ -1061,6 +1061,7 @@ def _after_attack(b, att, mv, dfn, first, dealt, trainer, hit_by_hit=False):
         # Its chance, doubled for Serene Grace (fightsim.self_raise_chance).
         if certain or secondary("statup", min(100, fs.self_raise_chance(att, mv)) / 100):
             fs.change_stages(att, ch)
+    fs.scale_shot(att, mv)               # its Defense and Speed after the hits (fightsim.scale_shot)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         fs.spin(b, att, dfn, e)
     if e == "CURE_PARTY_STATUS_HIT":

@@ -5024,6 +5024,7 @@ def _after_attack(b, att, mv, dfn, first, dealt):
         ch, certain = HIT_SELF_STAGES[e]
         if certain or b.rng.random() * 100 < self_raise_chance(att, mv):
             change_stages(att, ch)
+    scale_shot(att, mv)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         spin(b, att, dfn, e)
     if e == "CURE_PARTY_STATUS_HIT":
@@ -8416,6 +8417,19 @@ def air_balloon_burst(b, dfn):
     if dfn.item == "Air Balloon" and dfn.alive() and b.last_dealt > 0 and not b.sub_hit:
         consume(dfn, eaten=False)
         mark_unheld(b, dfn)
+
+
+def scale_shot(att, mv):
+    """Scale Shot, once its hits are in (subscript_hit_x_times, the Oxide
+    block after "Hit {0} time(s)!"): its user's Defense falls a stage and
+    its Speed rises a stage, each changed on its own through
+    BtlCmd_ChangeStatStage, so Contrary turns them round and Simple doubles
+    them (change_stages); a user the hits knocked out is left alone, and a
+    miss never gets here. Until 2026-10-31 neither stage moved (Ian
+    approved the fix)."""
+    if mv.const == "MOVE_SCALE_SHOT" and att.alive():
+        change_stages(att, {"def": -1})
+        change_stages(att, {"spe": 1})
 
 
 def lifted(dfn, mv):
