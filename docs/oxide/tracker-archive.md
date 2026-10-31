@@ -982,3 +982,9 @@ Each block below is the tracker's entry as it stood when the work finished, move
 ### Route 214's ruling, as the next steps held it until Wake's split landed (2026-10-31)
 
 - In Wake's split, Route 214's trainers Ruin Maniac Bryan, Devon and Douglas, Ronald and Krystal are Ian's own, built before Oxide went past Generation 4, and he added blockages to the route: read the map and his teams there before any level or placement change, and modernise them only with his say (Ian, 2026-10-29).
+
+### Wake's rework after alpha 1, no longer needed (2026-10-31)
+
+Ian rebuilt Wake's team before the alpha on 2026-10-31, which is this entry's own "Unneeded if", so it leaves the Scheduled list. It read:
+
+- **After alpha 1**: rework Wake's fight, starting from the Kaizo study's set-aside draft (`out/` in the study's folder) and the alpha's notes on Wake. Why: Ian, 2026-10-07, flagged Wake as a prime area for change but kept today's team for the alpha; the corrected readings put the study's draft at 55 won against today's 70, both in rain. Unneeded if: Ian changes Wake before the alpha, or the alpha's notes show the fight is right as it is.

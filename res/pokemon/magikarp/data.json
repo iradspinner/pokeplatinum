@@ -44,7 +44,10 @@
         "by_tm": [
             "TM82"
         ],
-        "by_tutor": [ "MOVE_BOUNCE" ]
+        "by_tutor": [ "MOVE_BOUNCE" ],
+        "egg_moves": [
+            "MOVE_WATERFALL"
+        ]
     },
     "evolutions": [
         [

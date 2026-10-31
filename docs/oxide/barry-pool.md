@@ -54,7 +54,7 @@ Which partners each player meets, both from Barry 3:
 
 **The pool against the fights.** Each column is the six he brings, at the stage the line can be at that level. Barry 3 is in the files on this branch; Barry 4 is Ian's six.
 
-| Slot | Barry 1 (5) | Barry 2 (cap 11) | Barry 3 (36) | Barry 4 (44) | Barry 5 (Byron's split) | Spear Pillar (partner, 59) | Fight Area (partner, 71) | Barry 6 (71) |
+| Slot | Barry 1 (5) | Barry 2 (cap 11) | Barry 3 (36) | Barry 4 (42) | Barry 5 (Byron's split) | Spear Pillar (partner, 59) | Fight Area (partner, 71) | Barry 6 (71) |
 |---|---|---|---|---|---|---|---|---|
 | Starter | first stage | first stage | final, 36 | final | final | final | final | final |
 | First partner | | | Serperior 35, or Greninja 35 for a Piplup player | final | final | final | final | final |

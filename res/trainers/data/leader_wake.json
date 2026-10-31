@@ -5,89 +5,93 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT",
-        "AI_FLAG_WEATHER"
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_LUDICOLO",
+            "species": "SPECIES_CLODSIRE",
             "form": 0,
-            "level": 43,
-            "item": "ITEM_LEFTOVERS",
+            "level": 41,
+            "item": "ITEM_AIR_BALLOON",
             "moves": [
-                "MOVE_SURF",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_LEECH_SEED",
-                "MOVE_ICE_BEAM"
+                "MOVE_GUNK_SHOT",
+                "MOVE_MUDDY_WATER",
+                "MOVE_SPIKES",
+                "MOVE_TOXIC_SPIKES"
             ],
-            "iv_scale": 242,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_QUAGSIRE",
-            "form": 0,
-            "level": 43,
-            "item": "ITEM_RINDO_BERRY",
-            "moves": [
-                "MOVE_EARTHQUAKE",
-                "MOVE_ICE_PUNCH",
-                "MOVE_WATERFALL",
-                "MOVE_YAWN"
-            ],
-            "iv_scale": 246,
+            "iv_scale": 248,
+            "nature": "NATURE_DOCILE",
             "ball_seal": 0,
             "ability": 2,
             "gender": null
         },
         {
-            "species": "SPECIES_POLIWRATH",
+            "species": "SPECIES_LUDICOLO",
             "form": 0,
-            "level": 43,
-            "item": "ITEM_CHOICE_SCARF",
+            "level": 42,
+            "item": "ITEM_BIG_ROOT",
             "moves": [
-                "MOVE_BRICK_BREAK",
-                "MOVE_WATERFALL",
-                "MOVE_ICE_PUNCH",
-                "MOVE_EARTHQUAKE"
+                "MOVE_SCALD",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_LEECH_SEED",
+                "MOVE_ICE_BEAM"
             ],
-            "iv_scale": 248,
+            "iv_scale": 242,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_GYARADOS",
+            "species": "SPECIES_JELLICENT",
+            "form": 0,
+            "level": 41,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_STRENGTH_SAP",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            "iv_scale": 246,
+            "nature": "NATURE_GENTLE",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GYARADOS_M",
             "form": 0,
             "level": 43,
-            "item": "ITEM_WACAN_BERRY",
+            "item": "ITEM_ASSAULT_VEST",
             "moves": [
                 "MOVE_WATERFALL",
                 "MOVE_EARTHQUAKE",
-                "MOVE_ICE_FANG",
-                "MOVE_THRASH"
+                "MOVE_POWER_WHIP",
+                "MOVE_CRUNCH"
             ],
             "iv_scale": 244,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_SHARPEDO",
+            "species": "SPECIES_GOODRA",
             "form": 0,
-            "level": 43,
-            "item": "ITEM_CHOICE_BAND",
+            "level": 40,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_ICE_FANG",
-                "MOVE_CRUNCH",
-                "MOVE_WATERFALL",
-                "MOVE_AQUA_JET"
+                "MOVE_DRAGON_TAIL",
+                "MOVE_THUNDER",
+                "MOVE_WEATHER_BALL",
+                "MOVE_REST"
             ],
             "iv_scale": 238,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 2,
             "gender": null
         },
         {
@@ -98,10 +102,11 @@
             "moves": [
                 "MOVE_ICE_FANG",
                 "MOVE_CRUNCH",
-                "MOVE_WATERFALL",
+                "MOVE_AQUA_TAIL",
                 "MOVE_AQUA_JET"
             ],
             "iv_scale": 227,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null

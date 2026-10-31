@@ -155,7 +155,8 @@
         ],
         "by_tutor": [],
         "egg_moves": [
-            "MOVE_EXPLOSION"
+            "MOVE_EXPLOSION",
+            "MOVE_SHELL_TRAP"
         ]
     },
     "evolutions": [],

@@ -102,7 +102,9 @@
             "TM85"
         ],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_REST"
+        ]
     },
     "evolutions": [
         [
