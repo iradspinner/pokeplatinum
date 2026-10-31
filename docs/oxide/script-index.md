@@ -14,12 +14,12 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 1 | 1 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 592 | 508 | 72 | 12 | 0 | 13 |
-| Items given | 212 | 102 | 31 | 79 | 0 | 34 |
-| Item balls | 333 | 260 | 62 | 11 | 0 | 69 |
+| Trainer battles | 592 | 507 | 72 | 13 | 0 | 14 |
+| Items given | 213 | 102 | 31 | 80 | 0 | 34 |
+| Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
-| Flags | 3323 | 2970 | 215 | 138 | 0 | 99 |
-| Variables | 1121 | 1082 | 27 | 12 | 0 | 32 |
+| Flags | 3318 | 2964 | 215 | 139 | 0 | 105 |
+| Variables | 1117 | 1078 | 27 | 12 | 0 | 36 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
 
@@ -33,7 +33,7 @@ What the tool could not read, counted rather than guessed:
 | raw data lines | 15 | 15 |
 | commands with no name | 227 | 35 |
 | numbers no table holds | 0 | 0 |
-| variables set elsewhere | 30 | 9 |
+| variables set elsewhere | 29 | 8 |
 
 Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src/` starts them): 238 numbered scripts and 66 stretches of code, listed in each section. The Villa's furniture and the Distortion World are started by the engine by number and are marked so; a few other map scripts are too (the Union Room's script 5), which the tool does not see. The shared files indexed by trainer, item or hidden item are not checked this way.
 
@@ -3147,7 +3147,6 @@ Trainer battles:
 Item balls:
 
 - ITEM_MYSTIC_WATER x1, one time, flag FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER. Vanilla. `events_pastoria_city.json:124`
-- ITEM_ABILITY_CAPSULE x1, one time, flag FLAG_UNUSED_0x03CC. Added by Oxide (547b7d259). `events_pastoria_city.json:488`
 
 Hidden items:
 
@@ -3158,7 +3157,7 @@ Flags:
 - Set: FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST, FLAG_TALKED_TO_PASTORIA_CITY_GRUNT_M, FLAG_RECEIVED_PASTORIA_CITY_ACCESSORY_STARTER_MASK, FLAG_HIDE_ROUTE_212_BLOCKADE, FLAG_HIDE_PASTORIA_CITY_RIVAL, FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER, FLAG_HIDE_PASTORIA_CITY_GYM_CRASHER_WAKE, FLAG_UNK_0x0A82 (added, base ROM).
 - Cleared: FLAG_HIDE_PASTORIA_CITY_RIVAL, FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE, FLAG_HIDE_PASTORIA_CITY_GRUNT_M, FLAG_HIDE_PASTORIA_CITY_CROAGUNK.
 - Checked: FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST, FLAG_RECEIVED_PASTORIA_CITY_ACCESSORY_STARTER_MASK, FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT, FLAG_UNK_0x0A7E (added, base ROM), FLAG_UNK_0x0A82 (added, base ROM), FLAG_UNK_0x0A83 (added, base ROM), FLAG_UNK_0x0A85 (added, base ROM).
-- Hide an object: FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL, FLAG_HIDE_PASTORIA_CITY_RIVAL, FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE, FLAG_HIDE_PASTORIA_CITY_GRUNT_M, FLAG_HIDE_PASTORIA_CITY_CROAGUNK, FLAG_UNUSED_0x03CC (added, Oxide), FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER, FLAG_HIDE_TELEPORT_ABRA (added, Oxide).
+- Hide an object: FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL, FLAG_HIDE_PASTORIA_CITY_RIVAL, FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE, FLAG_HIDE_PASTORIA_CITY_GRUNT_M, FLAG_HIDE_PASTORIA_CITY_CROAGUNK, FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER, FLAG_HIDE_TELEPORT_ABRA (added, Oxide).
 
 Variables:
 
@@ -7898,26 +7897,29 @@ Variables:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_MAID_BELINDA (Belinda, level 25, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:99`
-- StartTrainerBattle: against TRAINER_MAID_SOPHIE (Sophie, level 27, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:111`
-- StartTrainerBattle: against TRAINER_MAID_EMILY (Emily, level 29, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:123`
-- StartTrainerBattle: against TRAINER_MAID_ELENA (Elena, level 31, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:135`
-- StartTrainerBattle: against TRAINER_MAID_CLARE (Clare, level 33, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:155`
-- StartTrainerBattle: against TRAINER_RICH_BOY_LIAM (Liam, level 35, 1 Pokemon) if VAR_0x8006 (GetRandom) == 0, TRAINER_LADY_CELESTE (Celeste, level 35, 1 Pokemon) if VAR_0x8006 (GetRandom) == 1, set elsewhere if VAR_0x8005 (AddVar) == VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET; FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE unset; defeated TRAINER_LADY_CELESTE no, through a variable. Vanilla. `scripts_pokemon_mansion.s:183`
+- StartTrainerBattle: against TRAINER_MAID_BELINDA (Belinda, level 40, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:90`
+- StartTrainerBattle: against TRAINER_MAID_SOPHIE (Sophie, level 40, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:101`
+- StartTrainerBattle: against TRAINER_MAID_EMILY (Emily, level 41, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:112`
+- StartTrainerBattle: against TRAINER_MAID_ELENA (Elena, level 41, 1 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:123`
+- StartTrainerBattle: against TRAINER_MAID_CLARE (Clare, level 42, 2 Pokemon), by name. Vanilla. `scripts_pokemon_mansion.s:140`
+- StartTrainerBattle: against TRAINER_LADY_CELESTE (Celeste, level 42, 2 Pokemon), by name. Added by Oxide (8eb934677). `scripts_pokemon_mansion.s:162`
+
+Items given:
+
+- ITEM_ABILITY_CAPSULE x1. Added by Oxide (8eb934677). `scripts_pokemon_mansion.s:198`
 
 Flags:
 
-- Set: FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS, FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM, FLAG_DEFEATED_TRAINER_LADY_CELESTE, FLAG_FIRST_ARRIVAL_POKEMON_MANSION, FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET (daily).
-- Cleared: FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS, FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM, FLAG_DEFEATED_TRAINER_LADY_CELESTE.
-- Checked: FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE, FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM, FLAG_DEFEATED_TRAINER_LADY_CELESTE, FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET (daily).
+- Set: FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS, FLAG_UNUSED_0x03CC (added, Oxide), FLAG_DEFEATED_TRAINER_LADY_CELESTE, FLAG_FIRST_ARRIVAL_POKEMON_MANSION.
+- Cleared: FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS.
+- Checked: FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE, FLAG_UNUSED_0x03CC (added, Oxide), FLAG_DEFEATED_TRAINER_LADY_CELESTE.
 - Hide an object: FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID, FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS.
 
 Variables:
 
-- Set: VAR_OBJ_GFX_ID_0, VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET, VAR_TOTAL_TURNS_LAST_BATTLE.
-- Checked: VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET, VAR_TOTAL_TURNS_LAST_BATTLE.
+- Set: VAR_OBJ_GFX_ID_0.
 
-Could not read: 1 variables set elsewhere.
+Gone from vanilla: StartTrainerBattle: against TRAINER_RICH_BOY_LIAM (Liam, level 35, 1 Pokemon) if VAR_0x8006 (GetRandom) == 0, TRAINER_LADY_CELESTE (Celeste, level 42, 2 Pokemon) if VAR_0x8006 (GetRandom) == 1, set elsewhere if VAR_0x8005 (AddVar) == VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET; FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE unset; defeated TRAINER_LADY_CELESTE no, through a variable; flag FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET (daily) (check); flag FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET (daily) (set); flag FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM (clear); flag FLAG_DEFEATED_TRAINER_LADY_CELESTE (clear); flag FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM (check); flag FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM (set); variable VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET (set); variable VAR_TOTAL_TURNS_LAST_BATTLE (set); variable VAR_TOTAL_TURNS_LAST_BATTLE (check); variable VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET (check).
 
 ### Pokemon Mansion Maids Room
 
@@ -8470,7 +8472,7 @@ Items given:
 - ITEM_SILK_SCARF x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1558`
 - ITEM_TM40 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1569`
 - ITEM_TM10 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1580`
-- ITEM_TM72 x1. Added by Oxide (not yet committed). `scripts_battles.s:1591`
+- ITEM_TM72 x1. Added by Oxide (1ecd6aa1f). `scripts_battles.s:1591`
 - ITEM_TM57 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1602`
 - ITEM_LOADED_DICE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1613`
 - ITEM_TM60 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1624`

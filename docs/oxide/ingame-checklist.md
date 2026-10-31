@@ -877,10 +877,24 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Glasses at night, never a Choice Specs.
 - [ ] Manaphy's Tail Glow (Ian, 2026-10-31): the Pokemon Mansion's egg hatches
   into a Manaphy that does not know Tail Glow; it learns it at level 70.
-- [ ] Pastoria's Ability Capsule (Ian, 2026-10-13): an item ball stands at
-  the southern end of the one-tile strip between the two ponds in the city's
-  southwest corner, and gives an Ability Capsule. Used on a Pokemon, it asks
-  first, naming the other regular ability.
+- [ ] Pastoria's Ability Capsule ball is gone (Ian, 2026-10-31): the
+  southern end of the one-tile strip between the two ponds in the city's
+  southwest corner is empty. The game's one Ability Capsule is the Pokemon
+  Mansion knockout's prize (the next check).
+- [ ] The Pokemon Mansion's maid knockout (Ian, 2026-10-31;
+  `maid-knockout.md`), on Route 212 North. Darach's gate is not built yet,
+  so the mansion is open as in vanilla. The maid at the west of the hall
+  explains the challenge with no turn target. The five maids each name
+  their household job as they come out (Belinda's Araquanid, Sophie's
+  Lurantis, Emily's Cinccino, Elena's Torkoal, Clare's Klefki and
+  Gothitelle), and then Lady Celeste leads with Clefable, Milotic behind.
+  All six battle back to back with no healing, and Celeste uses no bag
+  item. Straight after the win over her, before she leaves, she gives an
+  Ability Capsule. Used on a Pokemon, it asks first, naming the other
+  regular ability. The maid then says the challenge is complete, and she
+  never offers it again, the next day included. With a full Medicine
+  pocket the Capsule is refused, and talking to the maid later hands it
+  over.
 - [ ] The Ability Patch (Ian, 2026-10-13): beating Ace Trainer Jose on
   Route 228 gives an Ability Patch and then TM64, straight after the win.
   With a full Bag, talking to him again gives what was refused.

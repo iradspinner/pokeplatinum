@@ -808,13 +808,18 @@ REHOMED = {
 # reuses a flag: a ball that held something else, or a trainer that already
 # gives a reward (one flag for both, as Deanna's two). The pool grew to 85
 # the same day, and the Ability Capsule, hidden until then, became a ball.
+# On 2026-10-31 Ian moved the Capsule to the Pokemon Mansion, as the maid
+# knockout's prize: a gift its script gives by hand, so the row names the
+# Capsule as what it replaces, and it reuses the ball's freed flag.
 ADDED = [
     Row("ITEM_ICE_STONE", "1", "ball", "Fantina", "MAP_HEADER_WAYWARD_CAVE_1F", "", "ITEM_REVIVE", "", "",
         "the one Ice Stone, in the dead end Camper Diego and Picnicker Tori guard as a two-trainer "
         "battle (Ian, 2026-10-13: behind Wayward Cave's doubles); a Revive's ball today"),
-    Row("ITEM_ABILITY_CAPSULE", "1", "ball", "Wake", "MAP_HEADER_PASTORIA_CITY", "585,855", "", "", "",
-        "a ball at the end of the strip between the southwest ponds, reached on foot "
-        "(Ian, 2026-10-13: in Pastoria; hidden until the flag pool grew the same day)"),
+    Row("ITEM_ABILITY_CAPSULE", "1", "gift", "Wake", "MAP_HEADER_POKEMON_MANSION", "", "ITEM_ABILITY_CAPSULE",
+        "", "",
+        "Lady Celeste's gift straight after the first win over her, at the end of the Mansion's "
+        "maid knockout, under FLAG_UNUSED_0x03CC (Ian, 2026-10-31; a ball in Pastoria from "
+        "2026-10-13 until then)"),
     Row("ITEM_ABILITY_PATCH", "1", "trainer", "Galactic", "MAP_HEADER_ROUTE_228", "", "",
         "TRAINER_ACE_TRAINER_JOSE", "",
         "the game's one Ability Patch, a second reward from a six-Pokemon optional fight "

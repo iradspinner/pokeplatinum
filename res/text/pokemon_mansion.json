@@ -27,25 +27,18 @@
         "pride--the five Trainer maids.\r",
         "The challenge is to beat all five of us\n",
         "in a row without a break.\r",
-        "In addition to beating us, if you can\n",
-        "beat us in a specific number of turns,\f",
+        "After us, our very own prodigy,\n",
+        "Lady Celeste, will battle you.\r",
+        "The first time you triumph over her,\n",
         "there will be a special gift.\r",
-        "Incidentally, a turn refers to the time\n",
-        "it takes for a Trainer and the opponent\f",
-        "to each make an action.\r",
-        "In this case, action refers to making a\n",
-        "Pokémon use a move, using an item, or\f",
-        "switching a Pokémon.\r",
         "And now...\r"
       ]
     },
     {
-      "id": "PokemonMansion_Text_TargetedTurnsIsThis",
+      "id": "PokemonMansion_Text_TryTheChallenge",
       "en_US": [
-        "The 5-Maid Knockout Exact-Turn Attack\n",
-        "Challenge!\r",
-        "Today’s targeted number of turns is\n",
-        "{STRVAR_1 52, 0, 0}! Would you like to try?"
+        "The 5-Maid Knockout Challenge!\n",
+        "Would you like to try?"
       ]
     },
     {
@@ -67,49 +60,17 @@
       "en_US": [
         "Congratulations!\n",
         "You have defeated four maids so far.\r",
-        "You have taken {STRVAR_1 52, 1, 0} turns up to now.\n",
-        "The target is {STRVAR_1 52, 0, 0} turns.\r"
+        "One maid remains, and then\n",
+        "Lady Celeste.\r"
       ]
     },
     {
-      "id": "PokemonMansion_Text_TargetedTurnsYourTurns",
-      "en_US": [
-        "Congratulations for your sweep.\n",
-        "The targeted number of turns was {STRVAR_1 52, 0, 0}.\r",
-        "The number of turns you needed to\n",
-        "defeat the maids was {STRVAR_1 52, 1, 0}.\r"
-      ]
-    },
-    {
-      "id": "PokemonMansion_Text_HitTargetBattleLiam",
+      "id": "PokemonMansion_Text_SweptNowCeleste",
       "en_US": [
         "How splendid of you!\n",
-        "You hit the target!\r",
-        "For making the sweep in the targeted\n",
-        "number of turns, a special gift!\r",
-        "The chance to battle our very own\n",
-        "prodigy, Master Liam!\r"
-      ]
-    },
-    {
-      "id": "PokemonMansion_Text_HitTargetBattleCeleste",
-      "en_US": [
-        "How splendid of you!\n",
-        "You hit the target!\r",
-        "For making the sweep in the targeted\n",
-        "number of turns, a special gift!\r",
-        "The chance to battle our very own\n",
-        "prodigy, Lady Celeste!\r"
-      ]
-    },
-    {
-      "id": "PokemonMansion_Text_TriumphedOverLiam",
-      "en_US": [
-        "Your splendor is authentic!\r",
-        "Sweeping the floor with the five maids\n",
-        "wasn’t enough for you, oh no!\r",
-        "Why, to think you would triumph over\n",
-        "even our Master Liam!\r"
+        "You swept the five maids!\r",
+        "And now, the last of the challenge:\n",
+        "our very own prodigy, Lady Celeste!\r"
       ]
     },
     {
@@ -123,17 +84,11 @@
       ]
     },
     {
-      "id": "PokemonMansion_Text_PlentyToBeProud",
+      "id": "PokemonMansion_Text_ChallengeClosed",
       "en_US": [
-        "Ooh...\n",
-        "How disappointing for you.\r",
-        "That said, you swept the five maids.\n",
-        "That’s plenty to be proud of!\r"
+        "The challenge is complete! You have\n",
+        "triumphed over us and Lady Celeste."
       ]
-    },
-    {
-      "id": "PokemonMansion_Text_VisitAgainTomorrow",
-      "en_US": "Please visit again tomorrow."
     },
     {
       "id": "PokemonMansion_Text_StrictlyOffLimits",
@@ -147,7 +102,7 @@
     {
       "id": "PokemonMansion_Text_Maid1Intro",
       "en_US": [
-        "First up! My favorite color is blue!\n",
+        "First up! I do the mansion’s laundry!\n",
         "I will open the proceedings!\r"
       ]
     },
@@ -162,7 +117,7 @@
       "id": "PokemonMansion_Text_Maid2Intro",
       "en_US": [
         "I’m pleased to meet you in battle.\n",
-        "My best color is green!\r"
+        "I tend the mansion’s gardens!\r"
       ]
     },
     {
@@ -175,8 +130,8 @@
     {
       "id": "PokemonMansion_Text_Maid3Intro",
       "en_US": [
-        "My lucky color is yellow!\n",
-        "The sunshine girl! That’s me!\r"
+        "I dust every room, top to bottom!\n",
+        "Not a speck escapes me!\r"
       ]
     },
     {
@@ -189,7 +144,7 @@
     {
       "id": "PokemonMansion_Text_Maid4Intro",
       "en_US": [
-        "Pink is the color I can’t do without!\n",
+        "I cook for the whole mansion!\n",
         "I’m the fourth in line!\r"
       ]
     },
@@ -200,7 +155,7 @@
     {
       "id": "PokemonMansion_Text_Maid5Intro",
       "en_US": [
-        "My symbolic color is red!\n",
+        "I’m the head maid! I hold the keys!\n",
         "Prepare for no. 5!\r"
       ]
     },
@@ -209,26 +164,6 @@
       "en_US": [
         "You knocked out the five of us!\n",
         "You have to be splendid!\r"
-      ]
-    },
-    {
-      "id": "PokemonMansion_Text_LiamIntro",
-      "en_US": [
-        "A Trainer would come here and pull me\n",
-        "into a battle...?\r",
-        "I never expected this, but I may as\n",
-        "well enjoy it, don’t you think?\r"
-      ]
-    },
-    {
-      "id": "PokemonMansion_Text_LiamDefeat",
-      "en_US": [
-        "Wonderful!\n",
-        "You’re a marvel of a Trainer!\r",
-        "Oh, I’ll ask you not to pry into what\n",
-        "I’m doing in the back of the mansion.\r",
-        "This knowing wink is all you’ll get out\n",
-        "of me.\r"
       ]
     },
     {
@@ -242,9 +177,28 @@
       "id": "PokemonMansion_Text_CelesteDefeat",
       "en_US": [
         "Oh, my! My, my, my!\n",
-        "Your technique was most enchanting.\r",
+        "Your technique was most enchanting.\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_CelesteGift",
+      "en_US": [
+        "For a first triumph, the house has a\n",
+        "gift for you. Please, take this.\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_CelesteLeaves",
+      "en_US": [
         "I will take my leave now.\n",
         "Giggle...\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_KeptYourGift",
+      "en_US": [
+        "Lady Celeste asked me to keep this\n",
+        "for you until you had room.\r"
       ]
     },
     {

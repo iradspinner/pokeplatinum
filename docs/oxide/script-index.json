@@ -51,7 +51,7 @@
      {"at": ["scripts_battles:1576"], "commit": "2f5fc736c", "daily": false, "flag": 462, "name": "FLAG_UNUSED_0x01CE", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1598"], "commit": "2f5fc736c", "daily": false, "flag": 463, "name": "FLAG_UNUSED_0x01CF", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1609"], "commit": "2f5fc736c", "daily": false, "flag": 464, "name": "FLAG_UNUSED_0x01D0", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_battles:1587"], "commit": "uncommitted", "daily": false, "flag": 543, "name": "FLAG_UNUSED_0x021F", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_battles:1587"], "commit": "1ecd6aa1f", "daily": false, "flag": 543, "name": "FLAG_UNUSED_0x021F", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1620"], "commit": "2f5fc736c", "daily": false, "flag": 574, "name": "FLAG_UNUSED_0x023E", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1631"], "commit": "2f5fc736c", "daily": false, "flag": 717, "name": "FLAG_UNUSED_0x02CD", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1642"], "commit": "2f5fc736c", "daily": false, "flag": 718, "name": "FLAG_UNUSED_0x02CE", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
@@ -97,7 +97,7 @@
      {"at": ["scripts_battles:1581"], "commit": "2f5fc736c", "daily": false, "flag": 462, "name": "FLAG_UNUSED_0x01CE", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1603"], "commit": "2f5fc736c", "daily": false, "flag": 463, "name": "FLAG_UNUSED_0x01CF", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1614"], "commit": "2f5fc736c", "daily": false, "flag": 464, "name": "FLAG_UNUSED_0x01D0", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_battles:1592"], "commit": "uncommitted", "daily": false, "flag": 543, "name": "FLAG_UNUSED_0x021F", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_battles:1592"], "commit": "1ecd6aa1f", "daily": false, "flag": 543, "name": "FLAG_UNUSED_0x021F", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1625"], "commit": "2f5fc736c", "daily": false, "flag": 574, "name": "FLAG_UNUSED_0x023E", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1636"], "commit": "2f5fc736c", "daily": false, "flag": 717, "name": "FLAG_UNUSED_0x02CD", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_battles:1647"], "commit": "2f5fc736c", "daily": false, "flag": 718, "name": "FLAG_UNUSED_0x02CE", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
@@ -146,7 +146,7 @@
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_SILK_SCARF", "value": 251, "when": ""}], "line": 1558, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM40", "value": 367, "when": ""}], "line": 1569, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM10", "value": 337, "when": ""}], "line": 1580, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
-     {"command": "Common_GiveItemQuantity", "commit": "uncommitted", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM72", "value": 399, "when": ""}], "line": 1591, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
+     {"command": "Common_GiveItemQuantity", "commit": "1ecd6aa1f", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM72", "value": 399, "when": ""}], "line": 1591, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM57", "value": 384, "when": ""}], "line": 1602, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_LOADED_DICE", "value": 128, "when": ""}], "line": 1613, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "2", "value": 2, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM60", "value": 387, "when": ""}], "line": 1624, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
@@ -2288,7 +2288,7 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_visible_items:2408"], "daily": false, "flag": 2438, "name": "FLAG_ALT_MUSIC_GALACTIC_HQ_1F", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_visible_items:2403"], "daily": false, "flag": 2438, "name": "FLAG_ALT_MUSIC_GALACTIC_HQ_1F", "op": "set", "origin": "vanilla", "reached": true}
     ]
    },
    "file": "scripts_visible_items",
@@ -5108,7 +5108,6 @@
      {"at": ["events_pastoria_city:425"], "daily": false, "flag": 507, "name": "FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pastoria_city:334"], "daily": false, "flag": 524, "name": "FLAG_HIDE_PASTORIA_CITY_GRUNT_M", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pastoria_city:440"], "daily": false, "flag": 669, "name": "FLAG_HIDE_PASTORIA_CITY_CROAGUNK", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_pastoria_city:487"], "commit": "547b7d259", "daily": false, "flag": 972, "name": "FLAG_UNUSED_0x03CC", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["events_pastoria_city:123"], "daily": false, "flag": 1088, "name": "FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pastoria_city:455"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_pastoria_city:581"], "daily": false, "flag": 258, "name": "FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST", "op": "set", "origin": "vanilla", "reached": true},
@@ -5124,8 +5123,7 @@
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_pastoria_city", "flag": 757, "flag_name": "FLAG_OBTAINED_HIDDEN_PASTORIA_CITY_ZINC", "item": "ITEM_ZINC", "item_id": 52, "line": 4, "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_pastoria_city", "flag": 1088, "flag_name": "FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER", "item": "ITEM_MYSTIC_WATER", "item_id": 243, "line": 124, "origin": "vanilla", "reached": true},
-     {"commit": "547b7d259", "count": 1, "daily": false, "event": "object_events", "file": "events_pastoria_city", "flag": 972, "flag_name": "FLAG_UNUSED_0x03CC", "item": "ITEM_ABILITY_CAPSULE", "item_id": 133, "line": 488, "origin": "added", "reached": true, "source": "Oxide"}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_pastoria_city", "flag": 1088, "flag_name": "FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER", "item": "ITEM_MYSTIC_WATER", "item_id": 243, "line": 124, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
      {"command": "StartTrainerBattle", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 490, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_PASTORIA_CITY_TURTWIG", "value": 474, "when": ""}]}]},
@@ -5134,8 +5132,8 @@
      {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 672, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_212", "value": 212, "when": ""}]}], "source": "base ROM"}
     ],
     "vars": [
-     {"at": ["events_pastoria_city:581", "events_pastoria_city:591", "events_pastoria_city:601", "scripts_init_pastoria_city:9", "scripts_pastoria_city:37", "scripts_pastoria_city:39", "scripts_pastoria_city:41", "scripts_pastoria_city:197", "scripts_pastoria_city:199"], "name": "VAR_PASTORIA_CITY_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16508},
-     {"at": ["events_pastoria_city:611"], "name": "VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16583},
+     {"at": ["events_pastoria_city:566", "events_pastoria_city:576", "events_pastoria_city:586", "scripts_init_pastoria_city:9", "scripts_pastoria_city:37", "scripts_pastoria_city:39", "scripts_pastoria_city:41", "scripts_pastoria_city:197", "scripts_pastoria_city:199"], "name": "VAR_PASTORIA_CITY_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16508},
+     {"at": ["events_pastoria_city:596"], "name": "VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16583},
      {"at": ["scripts_pastoria_city:298", "scripts_pastoria_city:580", "scripts_pastoria_city:715"], "name": "VAR_PASTORIA_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16508},
      {"at": ["scripts_pastoria_city:35", "scripts_pastoria_city:367"], "name": "VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16583}
     ]
@@ -12780,42 +12778,55 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_pokemon_mansion:80", "scripts_pokemon_mansion:81"], "daily": false, "flag": 358, "name": "FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:57"], "daily": false, "flag": 2252, "name": "FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:58"], "daily": false, "flag": 2253, "name": "FLAG_DEFEATED_TRAINER_LADY_CELESTE", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:18"], "daily": true, "flag": 2742, "name": "FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:93"], "daily": false, "flag": 599, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:176"], "daily": false, "flag": 600, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:25"], "daily": false, "flag": 2252, "name": "FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:26"], "daily": false, "flag": 2253, "name": "FLAG_DEFEATED_TRAINER_LADY_CELESTE", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:75"], "daily": false, "flag": 358, "name": "FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:170", "scripts_pokemon_mansion:188"], "commit": "8eb934677", "daily": false, "flag": 972, "name": "FLAG_UNUSED_0x03CC", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_pokemon_mansion:48"], "daily": false, "flag": 2253, "name": "FLAG_DEFEATED_TRAINER_LADY_CELESTE", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:84"], "daily": false, "flag": 599, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:156"], "daily": false, "flag": 600, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_pokemon_mansion:84"], "daily": false, "flag": 599, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pokemon_mansion:69"], "daily": false, "flag": 600, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:82"], "daily": false, "flag": 358, "name": "FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:76"], "daily": false, "flag": 358, "name": "FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pokemon_mansion:16"], "daily": false, "flag": 599, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_MAID", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pokemon_mansion:17"], "daily": false, "flag": 600, "name": "FLAG_HIDE_POKEMON_MANSION_FIVE_MAID_KNOCKOUT_BOSS", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:85", "scripts_pokemon_mansion:186"], "daily": false, "flag": 2252, "name": "FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:86", "scripts_pokemon_mansion:187"], "daily": false, "flag": 2253, "name": "FLAG_DEFEATED_TRAINER_LADY_CELESTE", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:15"], "daily": false, "flag": 2539, "name": "FLAG_FIRST_ARRIVAL_POKEMON_MANSION", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_mansion:24"], "daily": true, "flag": 2742, "name": "FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_pokemon_mansion:199"], "commit": "8eb934677", "daily": false, "flag": 972, "name": "FLAG_UNUSED_0x03CC", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_pokemon_mansion:165"], "daily": false, "flag": 2253, "name": "FLAG_DEFEATED_TRAINER_LADY_CELESTE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_mansion:15"], "daily": false, "flag": 2539, "name": "FLAG_FIRST_ARRIVAL_POKEMON_MANSION", "op": "set", "origin": "vanilla", "reached": true}
+    ],
+    "items": [
+     {"command": "Common_GiveItemQuantity", "commit": "8eb934677", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_pokemon_mansion", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_ABILITY_CAPSULE", "value": 133, "when": ""}], "line": 198, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "trainers": [
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 99, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_BELINDA", "value": 897, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 111, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_SOPHIE", "value": 898, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 123, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_EMILY", "value": 899, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 135, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_ELENA", "value": 900, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 155, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_CLARE", "value": 901, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 183, "origin": "vanilla", "reached": true, "slots": [{"mode": "variable", "role": "enemyTrainer1", "values": [{"by": ["VAR_0x8006"], "name": "TRAINER_RICH_BOY_LIAM", "value": 892, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "TRAINER_LADY_CELESTE", "value": 893, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8005"], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": "VAR_0x8005 (AddVar) == VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET; FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE unset; defeated TRAINER_LADY_CELESTE no"}]}]}
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 90, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_BELINDA", "value": 897, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 101, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_SOPHIE", "value": 898, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 112, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_EMILY", "value": 899, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 123, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_ELENA", "value": 900, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 140, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MAID_CLARE", "value": 901, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "commit": "8eb934677", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 162, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_LADY_CELESTE", "value": 893, "when": ""}]}], "source": "Oxide"}
     ],
     "vars": [
-     {"at": ["scripts_pokemon_mansion:145", "scripts_pokemon_mansion:166", "scripts_pokemon_mansion:169", "scripts_pokemon_mansion:300", "scripts_pokemon_mansion:305"], "name": "VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET", "op": "check", "origin": "vanilla", "reached": true, "var": 16460},
-     {"at": ["scripts_pokemon_mansion:102", "scripts_pokemon_mansion:114", "scripts_pokemon_mansion:126", "scripts_pokemon_mansion:138", "scripts_pokemon_mansion:158"], "name": "VAR_TOTAL_TURNS_LAST_BATTLE", "op": "check", "origin": "vanilla", "reached": true, "var": 16461},
-     {"at": ["scripts_pokemon_mansion:208", "scripts_pokemon_mansion:215"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
-     {"at": ["scripts_pokemon_mansion:22", "scripts_pokemon_mansion:23"], "name": "VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET", "op": "set", "origin": "vanilla", "reached": true, "var": 16460},
-     {"at": ["scripts_pokemon_mansion:91"], "name": "VAR_TOTAL_TURNS_LAST_BATTLE", "op": "set", "origin": "vanilla", "reached": true, "var": 16461}
+     {"at": ["scripts_pokemon_mansion:151"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416}
     ]
    },
    "events": "events_pokemon_mansion",
-   "gone_from_vanilla": {},
+   "gone_from_vanilla": {
+    "flags": [
+     {"at": ["scripts_pokemon_mansion:57"], "daily": false, "flag": 2252, "name": "FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM", "op": "check", "origin": null, "reached": true},
+     {"at": ["scripts_pokemon_mansion:18"], "daily": true, "flag": 2742, "name": "FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET", "op": "check", "origin": null, "reached": true},
+     {"at": ["scripts_pokemon_mansion:25"], "daily": false, "flag": 2252, "name": "FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM", "op": "clear", "origin": null, "reached": true},
+     {"at": ["scripts_pokemon_mansion:26"], "daily": false, "flag": 2253, "name": "FLAG_DEFEATED_TRAINER_LADY_CELESTE", "op": "clear", "origin": null, "reached": true},
+     {"at": ["scripts_pokemon_mansion:85"], "daily": false, "flag": 2252, "name": "FLAG_DEFEATED_TRAINER_RICH_BOY_LIAM", "op": "set", "origin": null, "reached": true},
+     {"at": ["scripts_pokemon_mansion:24"], "daily": true, "flag": 2742, "name": "FLAG_DAILY_SET_FIVE_MAID_KNOCKOUT_TURN_TARGET", "op": "set", "origin": null, "reached": true}
+    ],
+    "trainers": [
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_mansion", "how": "StartTrainerBattle", "line": 183, "reached": true, "slots": [{"mode": "variable", "role": "enemyTrainer1", "values": [{"by": ["VAR_0x8006"], "name": "TRAINER_RICH_BOY_LIAM", "value": 892, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "TRAINER_LADY_CELESTE", "value": 893, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8005"], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": "VAR_0x8005 (AddVar) == VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET; FLAG_STARTED_FIVE_MAID_KNOCKOUT_CHALLENGE unset; defeated TRAINER_LADY_CELESTE no"}]}]}
+    ],
+    "vars": [
+     {"at": ["scripts_pokemon_mansion:145"], "name": "VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET", "op": "check", "origin": null, "reached": true, "var": 16460},
+     {"at": ["scripts_pokemon_mansion:102"], "name": "VAR_TOTAL_TURNS_LAST_BATTLE", "op": "check", "origin": null, "reached": true, "var": 16461},
+     {"at": ["scripts_pokemon_mansion:22"], "name": "VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET", "op": "set", "origin": null, "reached": true, "var": 16460},
+     {"at": ["scripts_pokemon_mansion:91"], "name": "VAR_TOTAL_TURNS_LAST_BATTLE", "op": "set", "origin": null, "reached": true, "var": 16461}
+    ]
+   },
    "header": "MAP_HEADER_POKEMON_MANSION",
    "init": "scripts_init_pokemon_mansion",
    "location": "Pokémon Mansion",
@@ -12824,9 +12835,7 @@
    "split": null,
    "split_basis": null,
    "title": "Pokemon Mansion",
-   "undecoded": {
-    "variables set elsewhere": 1
-   },
+   "undecoded": {},
    "unreached": []
   },
   {
@@ -19259,11 +19268,11 @@
    "vanilla": 1
   },
   "flags": {
-   "Oxide": 138,
+   "Oxide": 139,
    "base ROM": 215,
-   "gone": 99,
-   "total": 3323,
-   "vanilla": 2970
+   "gone": 105,
+   "total": 3318,
+   "vanilla": 2964
   },
   "hidden_items": {
    "Oxide": 1,
@@ -19272,17 +19281,17 @@
    "vanilla": 252
   },
   "item_balls": {
-   "Oxide": 11,
+   "Oxide": 10,
    "base ROM": 62,
    "gone": 69,
-   "total": 333,
+   "total": 332,
    "vanilla": 260
   },
   "items": {
-   "Oxide": 79,
+   "Oxide": 80,
    "base ROM": 31,
    "gone": 34,
-   "total": 212,
+   "total": 213,
    "vanilla": 102
   },
   "pokemon": {
@@ -19305,18 +19314,18 @@
    "vanilla": 4
   },
   "trainers": {
-   "Oxide": 12,
+   "Oxide": 13,
    "base ROM": 72,
-   "gone": 13,
+   "gone": 14,
    "total": 592,
-   "vanilla": 508
+   "vanilla": 507
   },
   "vars": {
    "Oxide": 12,
    "base ROM": 27,
-   "gone": 32,
-   "total": 1121,
-   "vanilla": 1082
+   "gone": 36,
+   "total": 1117,
+   "vanilla": 1078
   }
  }
 }
