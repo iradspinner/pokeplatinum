@@ -140,7 +140,10 @@
             "TM84"
         ],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_PROTECT",
+            "MOVE_BODY_PRESS"
+        ]
     },
     "evolutions": [],
     "offspring": "SPECIES_GUZZLORD",

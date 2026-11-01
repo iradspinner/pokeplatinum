@@ -52,7 +52,8 @@
         "egg_moves": [
             "MOVE_METEOR_MASH",
             "MOVE_DYNAMIC_PUNCH",
-            "MOVE_GRAVITY"
+            "MOVE_GRAVITY",
+            "MOVE_EXPLOSION"
         ]
     },
     "evolutions": [

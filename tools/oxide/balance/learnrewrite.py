@@ -200,7 +200,8 @@ IAN_EGG_MOVES = {
     # The level climb of Fantina's and Maylene's splits (Ian, 2026-10-29): the
     # moves its teams carry that the OxiDex's list does not give at their
     # levels. Endure, Swords Dance and Rest were TMs before the TM pass.
-    "SPECIES_MANKEY": [("MOVE_ENDURE", "Ian, 2026-10-29: Cyclist Ryan's Primeape")],
+    "SPECIES_MANKEY": [("MOVE_ENDURE", "Ian, 2026-10-29: Cyclist Ryan's Primeape"),
+                       ("MOVE_ACROBATICS", "Ian, 2026-10-31: Argenta's Annihilape at 50")],
     "SPECIES_SPINDA": [("MOVE_TEETER_DANCE", "Ian, 2026-10-29: Belle and Pa Ava and Matt's Spinda, which "
                                              "learns it at 37")],
     "SPECIES_MACHOP": [("MOVE_DYNAMIC_PUNCH", "Ian, 2026-10-29: Black Belt Gregory's Machoke")],
@@ -244,7 +245,8 @@ IAN_EGG_MOVES = {
     "SPECIES_DRIFLOON": [("MOVE_SELFDESTRUCT", "Ian, 2026-10-31: Ruin Maniac Ronald's Drifblim")],
     "SPECIES_BELDUM": [("MOVE_METEOR_MASH", "Ian, 2026-10-31: Krystal's Metang"),
                        ("MOVE_DYNAMIC_PUNCH", "Ian, 2026-10-31: Krystal's Metang"),
-                       ("MOVE_GRAVITY", "Ian, 2026-10-31: Krystal's Metang")],
+                       ("MOVE_GRAVITY", "Ian, 2026-10-31: Krystal's Metang"),
+                       ("MOVE_EXPLOSION", "Ian, 2026-10-31: Byron's Metagross, a TM before the TM pass")],
     "SPECIES_SNORUNT": [("MOVE_SING", "Ian, 2026-10-31: Krystal's Glalie"),
                         ("MOVE_WEATHER_BALL", "Ian, 2026-10-31: Krystal's Glalie")],
     "SPECIES_DRATINI": [("MOVE_EXTREME_SPEED", "Ian, 2026-10-31: Krystal's Dragonair")],
@@ -313,6 +315,24 @@ IAN_EGG_MOVES = {
                                            "which learns it at 42"),
                      ("MOVE_ICY_WIND", "Ian, 2026-10-31: the Eterna building 3F grunt's Kadabra at 26")],
     "SPECIES_HOOTHOOT": [("MOVE_TAILWIND", "Ian, 2026-10-31: Collector Jamal's Noctowl at 38")],
+    # Ian's first drafts of Byron (cap 53) and two Frontier Brains, Thorton
+    # and Argenta (both at 50), of 2026-10-31 (docs/oxide/byron-brains-check.md):
+    # the moves the three teams carry that no list gives at their levels.
+    # Roar and Explosion were TMs before the TM pass. Diancie's Moonblast is
+    # its level 64 move, Diamond Storm its 71, and Pheromosa's Triple Kick its
+    # 53. Protect goes on an egg list only, which the player never reaches
+    # (Ian, 2026-10-06). Metagross's and Annihilape's are with Beldum's and
+    # Mankey's entries above; Dhelmise, Celesteela, Guzzlord, Diancie and
+    # Pheromosa are first stages of their own.
+    "SPECIES_SHIELDON": [("MOVE_ROAR", "Ian, 2026-10-31: Byron's Bastiodon, a TM before the TM pass")],
+    "SPECIES_DHELMISE": [("MOVE_POWER_WHIP", "Ian, 2026-10-31: Byron's Dhelmise")],
+    "SPECIES_CELESTEELA": [("MOVE_ACROBATICS", "Ian, 2026-10-31: Byron's Celesteela")],
+    "SPECIES_FERROSEED": [("MOVE_GRASSY_GLIDE", "Ian, 2026-10-31: Thorton's Ferrothorn")],
+    "SPECIES_GUZZLORD": [("MOVE_PROTECT", "Ian, 2026-10-31: Thorton's Guzzlord"),
+                         ("MOVE_BODY_PRESS", "Ian, 2026-10-31: Thorton's Guzzlord")],
+    "SPECIES_DIANCIE": [("MOVE_MOONBLAST", "Ian, 2026-10-31: Argenta's Diancie at 50"),
+                        ("MOVE_DIAMOND_STORM", "Ian, 2026-10-31: Argenta's Diancie at 50")],
+    "SPECIES_PHEROMOSA": [("MOVE_TRIPLE_KICK", "Ian, 2026-10-31: Argenta's Pheromosa at 50")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
