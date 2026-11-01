@@ -10596,6 +10596,7 @@
      {"event": "object_events", "file": "events_lake_verity", "how": "sees the player", "line": 25, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_3", "value": 420, "when": ""}]}]},
      {"event": "object_events", "file": "events_lake_verity", "how": "sees the player", "line": 40, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_2", "value": 426, "when": ""}]}]},
      {"event": "object_events", "file": "events_lake_verity", "how": "sees the player", "line": 55, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_4", "value": 427, "when": ""}]}]},
+     {"commit": "7f9af8841", "event": "object_events", "file": "events_lake_verity", "how": "sees the player", "line": 130, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_DUMMY_131", "value": 131, "when": ""}]}], "source": "Oxide"},
      {"command": "StartTrainerBattle", "file": "scripts_lake_verity", "how": "StartTrainerBattle", "line": 200, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_COMMANDER_MARS_LAKE_VERITY", "value": 405, "when": ""}]}]}
     ],
     "vars": [
@@ -10623,6 +10624,11 @@
    "title": "Lake Verity",
    "undecoded": {},
    "unreached": [
+    {
+     "label": "LakeVerity_GruntM",
+     "line": 262,
+     "number": 7
+    },
     {
      "label": "LakeVerity_Unused",
      "line": 56,
@@ -10786,7 +10792,7 @@
    "location": "Lake Acuity",
    "missing": [],
    "scripts": "scripts_lake_acuity_low_water",
-   "split": "Candice",
+   "split": "HQ",
    "split_basis": "its location name",
    "title": "Lake Acuity Low Water",
    "undecoded": {},
@@ -10826,7 +10832,7 @@
    "location": "Lake Acuity",
    "missing": [],
    "scripts": "scripts_lake_acuity",
-   "split": "Candice",
+   "split": "HQ",
    "split_basis": "its encounter table",
    "title": "Lake Acuity",
    "undecoded": {},
@@ -19358,10 +19364,10 @@
    "vanilla": 4
   },
   "trainers": {
-   "Oxide": 24,
+   "Oxide": 25,
    "base ROM": 71,
    "gone": 15,
-   "total": 601,
+   "total": 602,
    "vanilla": 506
   },
   "vars": {

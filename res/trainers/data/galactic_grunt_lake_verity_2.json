@@ -10,20 +10,52 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_HONCHKROW",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_SCOPE_LENS",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_HEAT_WAVE"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_KINGS_ROCK",
+            "moves": [
+                "MOVE_ICE_SHARD",
+                "MOVE_KNOCK_OFF",
+                "MOVE_ICE_PUNCH",
+                "MOVE_BRICK_BREAK"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
             "species": "SPECIES_HOUNDOOM",
             "form": 0,
-            "level": 50,
-            "item": null,
+            "level": 53,
+            "item": "ITEM_CHARCOAL",
             "moves": [
-                "MOVE_FLAMETHROWER",
+                "MOVE_HEAT_WAVE",
                 "MOVE_DARK_PULSE",
-                "MOVE_SHADOW_BALL",
-                "MOVE_WILL_O_WISP"
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_NASTY_PLOT"
             ],
-            "iv_scale": 241,
+            "iv_scale": 225,
+            "nature": "NATURE_BASHFUL",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 2
         }
     ],
     "messages": [

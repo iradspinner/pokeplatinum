@@ -85,18 +85,18 @@
         {
             "id": "LOCALID_SKIER_SHAWN",
             "graphics_id": "OBJ_EVENT_GFX_SKIER_M",
-            "movement_type": "MOVEMENT_TYPE_WALK_WEST_SOUTH_EAST_NORTH",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_SKIER_SHAWN",
-            "initial_dir": 1,
+            "initial_dir": 3,
             "data": [
                 3
             ],
-            "movement_range_x": 2,
-            "movement_range_z": 8,
-            "x": 318,
-            "z": 344,
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 304,
+            "z": 371,
             "y": 0
         },
         {
@@ -170,33 +170,33 @@
         {
             "id": "LOCALID_NINJA_BOY_ETHAN",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
-            "movement_type": "MOVEMENT_TYPE_DISGUISE_SNOW",
-            "trainer_type": "TRAINER_TYPE_VIEW_ALL_DIRECTIONS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_NINJA_BOY_ETHAN",
-            "initial_dir": 1,
+            "initial_dir": 3,
             "data": [
                 1
             ],
             "movement_range_x": 0,
             "movement_range_z": 0,
-            "x": 290,
-            "z": 321,
+            "x": 289,
+            "z": 272,
             "y": 0
         },
         {
             "id": "LOCALID_BLACK_BELT_LUKE",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
-            "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
-            "trainer_type": "TRAINER_TYPE_FACE_COUNTERCLOCKWISE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BLACK_BELT_LUKE",
-            "initial_dir": 1,
+            "initial_dir": 0,
             "data": [
                 2
             ],
             "movement_range_x": 0,
-            "movement_range_z": 8,
+            "movement_range_z": 0,
             "x": 291,
             "z": 273,
             "y": 0

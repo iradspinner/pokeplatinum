@@ -12,44 +12,50 @@
         {
             "species": "SPECIES_FURRET",
             "form": 0,
-            "level": 54,
-            "item": null,
+            "level": 56,
+            "item": "ITEM_SILK_SCARF",
             "moves": [
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_AMNESIA",
-                "MOVE_BATON_PASS",
-                "MOVE_ME_FIRST"
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_U_TURN",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SUCKER_PUNCH"
             ],
-            "iv_scale": 233,
-            "ball_seal": 0
+            "iv_scale": 230,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
             "species": "SPECIES_STANTLER",
             "form": 0,
-            "level": 54,
-            "item": null,
+            "level": 56,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_IMPRISON",
-                "MOVE_CAPTIVATE",
-                "MOVE_ME_FIRST"
+                "MOVE_PSYSHIELD_BASH",
+                "MOVE_TAKE_DOWN",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_WILD_CHARGE"
             ],
-            "iv_scale": 245,
-            "ball_seal": 0
+            "iv_scale": 230,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
             "species": "SPECIES_LINOONE",
             "form": 0,
-            "level": 54,
-            "item": null,
+            "level": 56,
+            "item": "ITEM_SALAC_BERRY",
             "moves": [
-                "MOVE_COVET",
+                "MOVE_BELLY_DRUM",
                 "MOVE_SLASH",
-                "MOVE_REST",
-                "MOVE_BELLY_DRUM"
+                "MOVE_SEED_BOMB",
+                "MOVE_SHADOW_CLAW"
             ],
-            "iv_scale": 245,
-            "ball_seal": 0
+            "iv_scale": 230,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

@@ -314,8 +314,11 @@ _SPLIT_STEMS = {
         "iron_island_b1f_right_room", "iron_island_b2f_right_room",
         "iron_island_b2f_left_room", "iron_island_b3f", "route_220", "route_221",
     ],
-    "Candice": ["route_216", "route_217", "acuity_lakefront", "lake_acuity",
-                "snowpoint_city"],
+    # Lake Acuity's table is first met in HQ's split: Rock Climb opens the
+    # lake, and it works on the Icicle Badge, Candice's own (Ian, 2026-11-01;
+    # docs/oxide/candice-split-map.md, question 8).
+    "Candice": ["route_216", "route_217", "acuity_lakefront", "snowpoint_city"],
+    "HQ": ["lake_acuity"],
     "Galactic": [
         "route_225", "route_226", "route_227", "stark_mountain_outside",
         "stark_mountain_room_1", "stark_mountain_room_2", "route_228", "route_229",

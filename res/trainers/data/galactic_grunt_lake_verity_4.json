@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_ABOMASNOW",
             "form": 0,
-            "level": 53,
+            "level": 51,
             "item": "ITEM_OCCA_BERRY",
             "moves": [
                 "MOVE_BLIZZARD",
@@ -22,7 +22,7 @@
                 "MOVE_EARTHQUAKE"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
             "ability": 3,
             "gender": "female"
@@ -30,7 +30,7 @@
         {
             "species": "SPECIES_MAMOSWINE",
             "form": 0,
-            "level": 53,
+            "level": 51,
             "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_EARTHQUAKE",
@@ -47,7 +47,7 @@
         {
             "species": "SPECIES_GARDEVOIR",
             "form": 0,
-            "level": 54,
+            "level": 52,
             "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_PSYCHIC",

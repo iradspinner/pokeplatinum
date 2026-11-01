@@ -1166,6 +1166,31 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
     one after the other, never one double. Travis has left Route 212 South's
     bridge. After Fen Badge the Galactic grunt chase on Route 213 should
     still run without bumping into either.
+- [ ] **Mandatory fights, Candice's split** (`overseer-candice-pass`, Ian,
+  2026-11-01; `docs/oxide/candice-split.md`). From Byron's badge, walk the
+  story path to Snowpoint without dodging anyone: Lake Valor, Valor Cavern,
+  Lake Verity, Mt. Coronet, Routes 216 and 217. Each trainer below should see
+  you and walk up before you can pass, and after the battle the way on is
+  still open with the trainer standing where it was:
+  - Grunt 1 on the drained Lake Valor, just west of the one-tile gap on the
+    way to Valor Cavern, looking east through it. He has left the open
+    ground where he looked north.
+  - A new grunt at Lake Verity's mouth, the Galactic version after Saturn,
+    on the west tile just inside the entrance, looking east: he should battle
+    as you take your first step in, with his own lines ("That old-timer packs
+    a punch!"), where he used to stand by the shore only saying "Ow! Ouch!".
+    After Mars's win he is gone with the other grunts.
+  - Skier Edward, Route 216, at the west neck north of Snowbound Lodge,
+    looking east. He no longer walks about the middle of the route.
+  - Skier Shawn, Route 217, at the south neck just north of Maylene's scene,
+    looking east. Maylene's scene should still run as you come in from Route
+    216, and Ace Trainer Dalton's battle should stay his own, never a double
+    with Shawn.
+  - Ninja Boy Ethan and Black Belt Luke, Route 217, at the north neck by the
+    signpost: Ethan stands undisguised looking east, Luke stands still looking
+    north. Two battles one after the other, never one double.
+  Also check that the four Rock Climb trainers above Route 216's walls are
+  still out of reach before the Icicle Badge.
 
 ## 5. The ordinary ROM, after the League
 
