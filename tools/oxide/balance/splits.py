@@ -96,7 +96,11 @@ LOCATION_SPLITS = {
     "Battle Castle": "Post", "Battle Arcade": "Post", "Fullmoon Island": "Post",
     "Newmoon Island": "Post", "Iron Ruins": "Post", "Iceberg Ruins": "Post",
     "Rock Peak Ruins": "Post", "Hall of Origin": "Post", "Flower Paradise": "Post",
-    "Seabreak Path": "Post", "Spring Path": "Post", "Pal Park": "Post", "ROTOM’s Room": "Post",
+    "Seabreak Path": "Post", "Spring Path": "Post", "ROTOM’s Room": "Post",
+    # Pal Park opens with Surf, since Oxide gives the National Dex with the
+    # Pokedex, and is required in Byron's split through its partner double,
+    # whose win Barry 5 waits for (Ian, 2026-10-31; docs/oxide/byron-scripts.md).
+    "Pal Park": "Byron",
 }
 
 # Story bosses fought on a map the player first reached in an earlier split.

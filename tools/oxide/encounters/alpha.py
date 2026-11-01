@@ -84,6 +84,9 @@ ZONE_AFTER = {
     "Battleground": "Route 225",
     "Battle Park": "Fight Area",
     "Fullmoon Island": "Canalave City",
+    # Pal Park's lobby holds Byron's partner double (Ian, 2026-10-31) at the
+    # end of Route 221.
+    "Pal Park": "Route 221",
     "Mining Museum": "Oreburgh City",
     "Acuity Cavern": "Lake Acuity",
     "Iron Ruins": "Iron Island",

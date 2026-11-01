@@ -83,6 +83,9 @@ def check_fights_resolve(results):
                                 or (f["key"] == "flint_volkner" and ("Flint" in n or "Volkner" in n))
                                 or (f["key"] == "somnu_moira" and ("Somnu" in n or "Moira" in n))
                                 or (f["key"].startswith("tyche_hermes") and ("Tyche" in n or "Hermes" in n))
+                                # Pal Park's officers are placeholders until Ian
+                                # names them (2026-10-31).
+                                or (f["key"] == "pal_park_double" and "Officer" in n)
                                 or (f["key"].startswith("lucas_dawn")
                                     and ("Lucas" in n or "Dawn" in n)))
         # A hack whose override lists no trainers has no seat for that fight
@@ -399,7 +402,8 @@ def check_item_reach(results):
 GATED_GIFTS = [
     ("OREBURGH_MINE_B1F", "ITEM_FLAME_PLATE", "Post", "Hiker hidden until the Arceus event"),
     ("IRON_ISLAND_HOUSE", "ITEM_METAL_COAT", "Post", "Byron shown once the National Dex is had"),
-    ("ETERNA_CITY_SOUTH_HOUSE", "ITEM_UPGRADE", "Post", "Prof. Oak, after the roaming birds"),
+    ("ETERNA_CITY_SOUTH_HOUSE", "ITEM_UPGRADE", "Post",
+     "Prof. Oak, after the Hall of Fame (Ian, 2026-10-31); Pal Park, which shows him, is Byron's"),
     ("ROUTE_210_SOUTH", "ITEM_OLD_CHARM", "Wake", "Cynthia asks for the SecretPotion"),
     ("CYCLE_SHOP", "ITEM_BICYCLE", "Fantina", "after Team Galactic leaves Eterna"),
     ("UNUSED_OREBURGH_CITY_NORTHWEST_HOUSE_3F", "ITEM_HARD_STONE", None, "only dead warps lead in"),
