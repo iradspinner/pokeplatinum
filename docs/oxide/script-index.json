@@ -13653,7 +13653,7 @@
     "trainers": [
      {"event": "object_events", "file": "events_route_219", "how": "sees the player", "line": 19, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_TUBER_TRENTON", "value": 358, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_219", "how": "sees the player", "line": 36, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_TUBER_MARIEL", "value": 360, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_219", "how": "sees the player", "line": 85, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_VINCENT", "value": 161, "when": ""}]}], "source": "unclear"}
+     {"commit": "cac243cf5", "event": "object_events", "file": "events_route_219", "how": "sees the player", "line": 85, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_VINCENT", "value": 161, "when": ""}]}], "source": "Oxide"}
     ]
    },
    "events": "events_route_219",
@@ -19348,11 +19348,10 @@
    "vanilla": 4
   },
   "trainers": {
-   "Oxide": 21,
+   "Oxide": 22,
    "base ROM": 72,
    "gone": 15,
    "total": 600,
-   "unclear": 1,
    "vanilla": 506
   },
   "vars": {

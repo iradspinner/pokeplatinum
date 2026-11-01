@@ -14,7 +14,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 0 | 2 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 600 | 506 | 72 | 21 | 1 | 15 |
+| Trainer battles | 600 | 506 | 72 | 22 | 0 | 15 |
 | Items given | 212 | 102 | 30 | 80 | 0 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
@@ -954,7 +954,7 @@ Trainer battles:
 
 - TRAINER_TUBER_TRENTON (Trenton, level 46, 3 Pokemon), sees the player. Vanilla. `events_route_219.json:19`
 - TRAINER_TUBER_MARIEL (Mariel, level 46, 3 Pokemon), sees the player. Vanilla. `events_route_219.json:36`
-- TRAINER_SWIMMER_VINCENT (Vincent, level 47, 3 Pokemon), sees the player. Added, origin unclear. `events_route_219.json:85`
+- TRAINER_SWIMMER_VINCENT (Vincent, level 47, 3 Pokemon), sees the player. Added by Oxide (cac243cf5). `events_route_219.json:85`
 
 Item balls:
 
