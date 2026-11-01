@@ -407,6 +407,19 @@
         "I will train you again if you bring a\r",
         "party of Pokemon under level 53!"
       ]
+    },
+    {
+      "id": "CanalaveCity_Text_GoToPalParkFirst",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Whoa, hold it!\n",
+        "Hey, {STRVAR_1 3, 1, 0}!\r",
+        "Have you been to Pal Park yet?\n",
+        "It’s south of Sandgem Town.\r",
+        "I heard Team Galactic is snooping\n",
+        "around there!\r",
+        "Go check it out, then come back.\n",
+        "I’ll be waiting, so hurry it up!\r"
+      ]
     }
   ]
 }

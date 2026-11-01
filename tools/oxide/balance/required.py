@@ -159,6 +159,18 @@ STORY_BLOCKERS = {
     "ROUTE_210_SOUTH": {f"LOCALID_PSYDUCK_{i}": "Byron" for i in range(1, 5)},
 }
 
+# Trainers the field model reads avoidable that Ian counts as mandatory all
+# the same, on the player's honour, as with the soft level caps. Each takes
+# "required" wherever a crossing reaches it. Ian, 2026-10-31: Lake Verity's
+# grunts 3 and 4, Officers Somnu and Moira, "count as mandatory by Ian's
+# honour rule, though Surf can pass them" (the standing rulings), after the
+# check of that day found the game lets Surf take the player round them by
+# the lake's west edge (test_b1e, check_lake_verity_surf).
+HONOUR_REQUIRED = {
+    "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_3": "Ian, 2026-10-31: mandatory on honour, though Surf passes",
+    "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_4": "Ian, 2026-10-31: mandatory on honour, though Surf passes",
+}
+
 # Maps with trainers that the table leaves out, and why.
 NOT_MODELLED = {
     "gym with moving parts": ["HEARTHOME_CITY_GYM_", "HEARTHOME_CITY_DP_GYM_", "VEILSTONE_CITY_GYM",
@@ -364,7 +376,8 @@ def trainer_ids():
 
 def crossing(split, header, src, dst):
     """[(trainer object, verdict)] for one crossing. The verdict is
-    'required' or 'avoidable'; 'not reached' when the player cannot get
+    'required' or 'avoidable' (a trainer on HONOUR_REQUIRED is required once
+    reached, whatever its sight lines); 'not reached' when the player cannot get
     near it on this crossing (it belongs to a later one); or 'no path',
     when even with no trainer in the way the ends do not connect, which is
     a limit of the model worth reading."""
@@ -380,6 +393,8 @@ def crossing(split, header, src, dst):
         near = f.sight(t) | {(t["x"] + dx, t["z"] + dz) for dx, dz in world.DIRS.values()}
         if not near & reached:
             out.append((t, "not reached"))
+        elif t["script"] in HONOUR_REQUIRED:
+            out.append((t, "required"))
         else:
             out.append((t, "avoidable" if f.path(start, goal, frozenset(f.sight(t)))
                         else "required"))

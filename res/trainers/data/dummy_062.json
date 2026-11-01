@@ -1,34 +1,116 @@
 {
-    "name": "Mickey",
-    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "name": "Dawn",
+    "class": "TRAINER_CLASS_PLAYER_FEMALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_UMBREON",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 47,
+            "item": "ITEM_LIGHT_CLAY",
+            "moves": [
+                "MOVE_FOUL_PLAY",
+                "MOVE_SNARL",
+                "MOVE_REFLECT",
+                "MOVE_YAWN"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_SCIZOR",
+            "form": 0,
+            "level": 48,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_WING_ATTACK",
+                "MOVE_PURSUIT",
+                "MOVE_KNOCK_OFF",
+                "MOVE_BRICK_BREAK"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_LOPUNNY",
+            "form": 0,
+            "level": 47,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_JUMP_KICK",
+                "MOVE_ICE_PUNCH",
+                "MOVE_DIZZY_PUNCH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_PACHIRISU",
+            "form": 0,
+            "level": 47,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_ELECTROWEB",
+                "MOVE_WILD_CHARGE",
+                "MOVE_SEED_BOMB",
+                "MOVE_SUPER_FANG"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_GASTRODON",
+            "form": 0,
+            "level": 48,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_MUDDY_WATER",
+                "MOVE_EARTH_POWER",
+                "MOVE_ICE_BEAM",
+                "MOVE_STEALTH_ROCK"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_EMPOLEON",
+            "form": 0,
+            "level": 49,
+            "item": "ITEM_MYSTIC_WATER",
+            "moves": [
+                "MOVE_AQUA_TAIL",
+                "MOVE_DRILL_PECK",
+                "MOVE_KNOCK_OFF",
+                "MOVE_AQUA_JET"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
         }
     ],
-    "messages": [
-        {
-            "type": "TRMSG_PRE_BATTLE",
-            "garbage": 27
-        },
-        {
-            "type": "TRMSG_DEFEAT",
-            "garbage": 10
-        },
-        {
-            "type": "TRMSG_POST_BATTLE",
-            "garbage": 31
-        }
-    ]
+    "messages": []
 }

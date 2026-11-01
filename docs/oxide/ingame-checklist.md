@@ -823,6 +823,38 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   other line ("Aww, you haven't gone to Iron Island, have you? You've got to
   toughen up there first, like I told you!") should no longer be seen, since
   the gym cannot be won before the island.
+- [ ] **The Pal Park partner double** (`overseer-byron-scripts`, Ian,
+  2026-10-31; `byron-scripts.md`). After Cyrus at Celestic, Surf south from
+  Sandgem over Routes 219 to 221 and walk into Pal Park's lobby. Oak's scene
+  plays as before and he leaves by the door. Straight after it, the player
+  walks two steps north (one step west too, from beside the door), Lucas or
+  Dawn calls out and walks in by the door to stand beside the player, and
+  talks about the park's Pokemon from other regions. Two Galactic grunts,
+  named only "Officer", walk in behind and stand in front of the pair, and
+  the tag battle starts beside the counterpart of the other gender to the
+  player. Check that the partner's ace is the starter the player's starter
+  beats (Empoleon for a Turtwig player, Torterra for Scorbunny, Infernape
+  for Piplup), at 49. On the win the officers run out by the door, the
+  counterpart says the park's Pokemon are safe and leaves too, and the
+  lobby's desk works as before. Leave and come back in: nothing plays again.
+  Try once from a save that saw Oak's scene before this ROM: the double
+  plays on the next entry, from the door.
+- [ ] **Barry on Canalave's bridge waits for the Pal Park double**
+  (`overseer-byron-scripts`, Ian, 2026-10-31). Before the double is won,
+  walk west onto Canalave's bridge from Route 218's side: Barry runs in,
+  says "Have you been to Pal Park yet?" and that Team Galactic is snooping
+  around there, the player steps back east, and Barry walks back west and
+  goes. No battle starts, and the gym and the harbor's sailor cannot be
+  reached. Try every row of the bridge's four. After the double, Barry
+  stops the player as in vanilla and battles; his win line sends the player
+  to Iron Island.
+- [ ] **Eterna's Oak waits for the Hall of Fame** (`overseer-byron-scripts`,
+  Ian, 2026-10-31). After seeing Pal Park's lobby, talk to Prof. Oak in
+  Eterna City's south house before the League: he asks how the Pokedex is
+  going and to come back after the Hall of Fame, and gives no Upgrade. No
+  Articuno, Zapdos or Moltres roams (the Pokedex's area map shows none).
+  After the Hall of Fame he gives the Upgrade and sets the three roaming,
+  as in vanilla.
 - [ ] **(live)** The Weather flag's fix on Ace Trainer Shannon's first turn
   (Route 221, optional; a Weather-flag trainer whose Victreebel leads with
   Sunny Day and no weather ability, and keeps it in the comb's draft): break
