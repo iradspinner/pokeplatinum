@@ -53,15 +53,15 @@
     {
       "id": "IronIslandB2FLeftRoom_Text_WellTakeAllPokemon",
       "en_US": [
-        "Grunt 1: We’re Team Galactic!\n",
+        "Boreas: We’re Team Galactic!\n",
         "We’ll take all the Pokémon we want!\f",
-        "Isn’t that right, partner?\r"
+        "Isn’t that right, Laverna?\r"
       ]
     },
     {
       "id": "IronIslandB2FLeftRoom_Text_WereAbductingPokemon",
       "en_US": [
-        "Grunt 2: You said it, brother!\n",
+        "Laverna: You said it, Boreas!\n",
         "So that’s what we’re gonna do!\r",
         "We’re abducting all the Pokémon from\n",
         "this rusted-out Iron Island!\r"
@@ -83,16 +83,16 @@
     {
       "id": "IronIslandB2FLeftRoom_Text_LetsBeatItPartner",
       "en_US": [
-        "Grunt 1: Stop! I said stop!\n",
+        "Boreas: Stop! I said stop!\n",
         "Your combination is so sick!\f",
         "The both of you, and your Pokémon...\r",
-        "Let’s beat it, partner!\r"
+        "Let’s beat it, Laverna!\r"
       ]
     },
     {
       "id": "IronIslandB2FLeftRoom_Text_WeDontKnowBigPlan",
       "en_US": [
-        "Grunt 2: You said it, brother!\r",
+        "Laverna: You said it, Boreas!\r",
         "We don’t even know what Team \n",
         "Galactic’s big plan is anyway!\r"
       ]

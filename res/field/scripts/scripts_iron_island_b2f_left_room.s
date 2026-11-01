@@ -155,11 +155,11 @@ IronIslandB2FLeftRoom_CoordEvent_Grunts:
     CallIfEq VAR_0x8005, 41, IronIslandB2FLeftRoom_PlayerRileyWalkToGruntsZ41
     Message IronIslandB2FLeftRoom_Text_YoureResponsible
     CloseMessage
-    ApplyMovement LOCALID_GRUNT_M_WEST, IronIslandB2FLeftRoom_Movement_GruntMWestWalkOnSpotEast
+    ApplyMovement LOCALID_BOREAS, IronIslandB2FLeftRoom_Movement_GruntMWestWalkOnSpotEast
     WaitMovement
     Message IronIslandB2FLeftRoom_Text_WellTakeAllPokemon
     CloseMessage
-    ApplyMovement LOCALID_GRUNT_M_EAST, IronIslandB2FLeftRoom_Movement_GruntMEastWalkOnSpotEast
+    ApplyMovement LOCALID_LAVERNA, IronIslandB2FLeftRoom_Movement_GruntMEastWalkOnSpotEast
     WaitMovement
     Message IronIslandB2FLeftRoom_Text_WereAbductingPokemon
     CloseMessage
@@ -173,18 +173,18 @@ IronIslandB2FLeftRoom_CoordEvent_Grunts:
     ClearHasPartner
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, IronIslandB2FLeftRoom_BlackOut
-    ApplyMovement LOCALID_GRUNT_M_WEST, IronIslandB2FLeftRoom_Movement_GruntMEastWalkOnSpotSouth
+    ApplyMovement LOCALID_BOREAS, IronIslandB2FLeftRoom_Movement_GruntMEastWalkOnSpotSouth
     WaitMovement
     Message IronIslandB2FLeftRoom_Text_LetsBeatItPartner
     CloseMessage
-    ApplyMovement LOCALID_GRUNT_M_EAST, IronIslandB2FLeftRoom_Movement_GruntMEastWalkOnSpotNorth
+    ApplyMovement LOCALID_LAVERNA, IronIslandB2FLeftRoom_Movement_GruntMEastWalkOnSpotNorth
     WaitMovement
     Message IronIslandB2FLeftRoom_Text_WeDontKnowBigPlan
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    RemoveObject LOCALID_GRUNT_M_WEST
-    RemoveObject LOCALID_GRUNT_M_EAST
+    RemoveObject LOCALID_BOREAS
+    RemoveObject LOCALID_LAVERNA
     FadeScreenIn
     WaitFadeScreen
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

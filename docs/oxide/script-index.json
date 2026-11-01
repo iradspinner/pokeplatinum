@@ -9831,7 +9831,7 @@
      {"command": "CallCommonScript", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_iron_island", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_SITRUS_BERRY", "value": 158, "when": ""}], "line": 37, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "trainers": [
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_iron_island", "how": "StartTrainerBattle", "line": 62, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RILEY_IRON_ISLAND", "value": 609, "when": ""}]}], "source": "base ROM"}
+     {"command": "StartTrainerBattle", "commit": "223376ee9", "file": "scripts_iron_island", "how": "StartTrainerBattle", "line": 62, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_087", "value": 87, "when": ""}]}], "source": "Oxide"}
     ]
    },
    "events": "events_iron_island",
@@ -19358,8 +19358,8 @@
    "vanilla": 4
   },
   "trainers": {
-   "Oxide": 23,
-   "base ROM": 72,
+   "Oxide": 24,
+   "base ROM": 71,
    "gone": 15,
    "total": 601,
    "vanilla": 506

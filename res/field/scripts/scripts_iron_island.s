@@ -59,7 +59,7 @@ IronIsland_00B3:
 IronIsland_00BE:
     Message 6
     CloseMessage
-    StartTrainerBattle 609, 0
+    StartTrainerBattle TRAINER_DUMMY_087, 0
     CheckWonBattle VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
     GoToIf 1, IronIsland_0149

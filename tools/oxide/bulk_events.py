@@ -207,6 +207,13 @@ for _m in ("route_210_south", "route_210_north", "route_218", "route_221",
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; then " + _why
                                 if f"events_{_m}" in DIVERGED else _why)
 
+# Iron Island B2F's two grunts are Officers Boreas and Laverna (Ian,
+# 2026-11-01): the east one, Laverna, wears the female grunt's sprite, and
+# both objects' local ids take their names.
+DIVERGED["events_iron_island_b2f_left_room"] += (
+    "; then the grunts are Officers Boreas and Laverna, Laverna in the female grunt's "
+    "sprite (Ian, 2026-11-01)")
+
 # Candice's split (docs/oxide/candice-split.md), with Ian's answers of
 # 2026-11-01: Lake Valor's Grunt 1 stands at the drained lake's one-tile neck,
 # Skier Edward at Route 216's west neck, and Skier Shawn and Ninja Boy Ethan
