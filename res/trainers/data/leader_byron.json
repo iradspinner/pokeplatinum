@@ -11,66 +11,15 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BASTIODON",
-            "form": 0,
-            "level": 51,
-            "item": "ITEM_FOCUS_SASH",
-            "moves": [
-                "MOVE_STEALTH_ROCK",
-                "MOVE_ROAR",
-                "MOVE_STONE_EDGE",
-                "MOVE_IRON_HEAD"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_IMPISH",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_SKARMORY",
-            "form": 0,
-            "level": 51,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_SPIKES",
-                "MOVE_BRAVE_BIRD",
-                "MOVE_ROOST",
-                "MOVE_WHIRLWIND"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_IMPISH",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_MAGNEZONE",
+            "species": "SPECIES_KLEFKI",
             "form": 0,
             "level": 51,
             "item": "ITEM_LIGHT_CLAY",
             "moves": [
-                "MOVE_REFLECT",
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_THUNDERBOLT",
-                "MOVE_FLASH_CANNON"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_MODEST",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_BRONZONG",
-            "form": 0,
-            "level": 51,
-            "item": "ITEM_SITRUS_BERRY",
-            "moves": [
-                "MOVE_GYRO_BALL",
-                "MOVE_EARTHQUAKE",
-                "MOVE_EXPLOSION",
-                "MOVE_PSYCHIC"
+                "MOVE_THUNDER_WAVE",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_FOUL_PLAY",
+                "MOVE_SPIKES"
             ],
             "iv_scale": 255,
             "nature": "NATURE_RELAXED",
@@ -81,7 +30,7 @@
         {
             "species": "SPECIES_HEATRAN",
             "form": 0,
-            "level": 52,
+            "level": 50,
             "item": "ITEM_SHUCA_BERRY",
             "moves": [
                 "MOVE_FLAMETHROWER",
@@ -96,18 +45,69 @@
             "gender": "male"
         },
         {
-            "species": "SPECIES_METAGROSS",
+            "species": "SPECIES_BASTIODON",
             "form": 0,
-            "level": 53,
-            "item": "ITEM_OCCA_BERRY",
+            "level": 51,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_METEOR_MASH",
-                "MOVE_EARTHQUAKE",
-                "MOVE_BULLET_PUNCH",
-                "MOVE_AGILITY"
+                "MOVE_STEALTH_ROCK",
+                "MOVE_ROAR",
+                "MOVE_STONE_EDGE",
+                "MOVE_IRON_HEAD"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_SASSY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_DHELMISE",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_IRON_BALL",
+            "moves": [
+                "MOVE_GYRO_BALL",
+                "MOVE_PAYBACK",
+                "MOVE_ANCHOR_SHOT",
+                "MOVE_POWER_WHIP"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_METAGROSS",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_ASSAULT_VEST",
+            "moves": [
+                "MOVE_METEOR_MASH",
+                "MOVE_PSYCHIC_FANGS",
+                "MOVE_EXPLOSION",
+                "MOVE_PURSUIT"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CELESTEELA",
+            "form": 0,
+            "level": 53,
+            "item": "ITEM_POWER_HERB",
+            "moves": [
+                "MOVE_AUTOTOMIZE",
+                "MOVE_METEOR_BEAM",
+                "MOVE_ACROBATICS",
+                "MOVE_FLASH_CANNON"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_HARDY",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
