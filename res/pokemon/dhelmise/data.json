@@ -160,7 +160,9 @@
             "HM03"
         ],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_POWER_WHIP"
+        ]
     },
     "evolutions": [],
     "offspring": "SPECIES_DHELMISE",

@@ -333,6 +333,9 @@ DIVERGED["scripts_eterna_city_south_house"] = (
 DIVERGED["scripts_pal_park_lobby"] = (
     "the partner double against two Galactic officers after Oak's first-entry scene "
     "(Ian, 2026-10-31)")
+# The officers are Phobos and Deimos, the Jubilife pair (Ian, 2026-10-31;
+# docs/oxide/phobos-deimos.md), so their local ids and movements carry the names.
+DIVERGED["scripts_pal_park_lobby"] += "; then the officers named Phobos and Deimos (Ian, 2026-10-31)"
 DIVERGED["scripts_init_pal_park_lobby"] = (
     "the frame table runs the partner double while the lobby's state is 1 (Ian, 2026-10-31)")
 # Barry on Canalave's bridge sends the player to Pal Park until its partner

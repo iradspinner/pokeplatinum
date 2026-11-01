@@ -293,7 +293,7 @@ In stretch 1, Fabian's Ninjask, Harry's Aerodactyl and Bruce's Crobat outspeed e
 
 ## The AI flags
 
-Ian asked on 2026-10-31 for every team's AI flags to be set on purpose (`battle-ai/flags-guide.md` is the guide). Every rebuilt team runs Basic, Evaluate Attack and Expert. Five lacked some of those and now have them: Bird Keeper Katherine and Ninja Boy Nick ran Basic alone, Black Belt Sean and Hiker Maurice Basic and Prioritize Extremes, and Fisherman Cody had no Evaluate Attack. Prioritize Extremes, which pushes every status move and Explosion alike, comes off the nine teams that carried it from the base ROM. Weather comes off Swimmers Vincent and Katelyn and Ace Trainer Shannon, since none carries a weather move, so the flag did nothing.
+Ian asked on 2026-10-31 for every team's AI flags to be set on purpose (`battle-ai/flags-guide.md` is the guide). Every rebuilt team runs Basic, Evaluate Attack and Expert. Five lacked some of those and now have them: Bird Keeper Katherine and Ninja Boy Nick ran Basic alone, Black Belt Sean and Hiker Maurice Basic and Prioritize Extremes, and Fisherman Cody had no Evaluate Attack. Prioritize Extremes, which pushes every status move and Explosion alike, came off the nine teams that carried it from the base ROM; Ian's answer of 2026-10-31 was to put it back per team, by the guide, whose last section now covers it. It is back on three of the nine, Fisherman Cody, Hiker Damon and Battle Girl Tyler, whose members mostly lean on status and setup, and stays off the other six, as the last table of this section says. Weather comes off Swimmers Vincent and Katelyn and Ace Trainer Shannon, since none carries a weather move, so the flag did nothing.
 
 Each team adds one of the four flags only where the guide's rule fits its idea:
 
@@ -303,6 +303,7 @@ Each team adds one of the four flags only where the guide's rule fits its idea:
 | Risky | critical hits are the idea | Jake, Nick |
 | Harassment | status or hazards are the idea, with at least two of its table's status moves | Brennan, Joel, Ivan, Erik, Braden |
 | Weather | a lead with a weather move to open with | none |
+| Prioritize Extremes | most members lean on status moves, setup and hazards included, and no Sucker Punch or counter move is held as coverage | Cody, Damon, Tyler |
 
 Every team that carries a move one of the four flags acts on, and why it has the flags it has:
 
@@ -325,7 +326,7 @@ Every team that carries a move one of the four flags acts on, and why it has the
 | Worker Dillan | high-critical: Stone Edge | base only | Its high-critical moves are coverage, not the idea, so no Risky. |
 | Worker Holden | high-critical: Stone Edge; status: Thunder Wave | base only | Its high-critical moves are coverage, not the idea, so no Risky; its status moves support an attacking idea, so no Harassment. |
 | Worker Conrad | high-critical: Stone Edge; status: Will-O-Wisp, Yawn | base only | Its high-critical moves are coverage, not the idea, so no Risky; its status moves support an attacking idea, so no Harassment. |
-| Fisherman Cody | high-critical: Stone Edge | base only | Its high-critical moves are coverage, not the idea, so no Risky. |
+| Fisherman Cody | high-critical: Stone Edge | Prioritize Extremes | Its high-critical moves are coverage, not the idea, so no Risky; Prioritize Extremes for its setup, as the last table says. |
 | Veteran Grant | trade: Explosion; high-critical: Stone Edge | Check HP | Check HP holds Golem's Explosion until it is at 30 percent or less, the Custap Berry's range, so the player can knock it out from higher up. |
 | Sailor Paul | high-critical: Crabhammer, X-Scissor | base only | Its high-critical moves are coverage, not the idea, so no Risky. |
 | Tuber Trenton | status: Encore, Spikes | base only | Its status moves support an attacking idea, so no Harassment. |
@@ -342,7 +343,7 @@ Every team that carries a move one of the four flags acts on, and why it has the
 | Sailor Skyler | high-critical: Crabhammer, Stone Edge | base only | Its high-critical moves are coverage, not the idea, so no Risky. |
 | Worker Noel | status: Spikes, Thunder Wave | base only | Its status moves support an attacking idea, so no Harassment. |
 | Worker Braden | status: Spikes, Thunder Wave, Toxic Spikes | Harassment | Harassment, since the team's idea is hazards and paralysis ahead of a Steelix. |
-| Hiker Damon | high-critical: Stone Edge | base only | Its high-critical moves are coverage, not the idea, so no Risky. |
+| Hiker Damon | high-critical: Stone Edge | Prioritize Extremes | Its high-critical moves are coverage, not the idea, so no Risky; Prioritize Extremes for its status, as the last table says. |
 | Hiker Maurice | high-critical: Stone Edge | base only | Its high-critical moves are coverage, not the idea, so no Risky. |
 | Worker Brendon | high-critical: Stone Edge | base only | Its high-critical moves are coverage, not the idea, so no Risky. |
 | Worker Quentin | high-critical: Stone Edge | base only | Its high-critical moves are coverage, not the idea, so no Risky. |
@@ -354,6 +355,21 @@ Every team that carries a move one of the four flags acts on, and why it has the
 | Worker Gerardo | trade: Explosion | Check HP | Check HP holds Forretress's Explosion until it is low and away from a target already nearly down, after its Spikes are laid. |
 | Black Belt David | high-critical: Stone Edge | base only | Its high-critical moves are coverage, not the idea, so no Risky. |
 | Worker Jackson | counter: Metal Burst; high-critical: Stone Edge | base only | Its high-critical moves are coverage, not the idea, so no Risky; its counter move is left to Expert's own timing, since Risky would push it on half its turns. |
+
+
+Prioritize Extremes on the nine teams that had it from the base ROM, by the guide's rule. The percentages are the guide's chances against the best attack, without the flag and with it:
+
+| Trainer | Status and skipped moves | Prioritize Extremes | Why |
+|---|---|---|---|
+| Black Belt Adam | Bulk Up (Grapploct) | off | One setup move on a team of four attackers. |
+| Black Belt Sean | Swords Dance (Breloom); Sucker Punch (Hitmontop) | off | An attacking team. The flag would lift Hitmontop's Sucker Punch from 17 to 62 percent, a gamble the player reads with a status move. |
+| Fisherman Cody | Curse and Toxic (Quagsire); Curse (Whiscash); Dragon Dance (Gyarados) | back on | Every member is built on setup or status: the Unaware Quagsire stalls with Toxic and Curse, Whiscash Curses, and the Moxie Gyarados Dragon Dances. Toxic goes from 50 to 80 percent, and Gyarados's Dragon Dance from 75 to 90 when it is slower or 50 to 80 when it is faster; Curse barely moves, since Expert already favours it. |
+| Hiker Damon | Curse and Recover (Garganacl); Stealth Rock and Thunder Wave (Probopass) | back on | Two of its three lean on status: a Curse and Recover Garganacl, and a Probopass that lays rocks and paralyses. Stealth Rock goes from 75 to 90 percent; Curse, Recover and the slow Probopass's Thunder Wave move little, since Expert already times them. |
+| Hiker Maurice | Toxic Spikes (Glimmora); Sucker Punch (Golem) | off | Attackers with one hazard. The flag would make Golem's Sucker Punch a gamble, as Sean's. |
+| Black Belt Kendal | Sucker Punch (Toxicroak); Swords Dance (Lucario) | off | Fake Out and priority attackers. The flag would make Toxicroak's Sucker Punch a gamble, as Sean's. |
+| Battle Girl Tyler | Spore (Breloom); Bulk Up and Roost (Hawlucha) | back on | Two of its three lean on status: Breloom opens with Spore behind a Focus Band (50 to 80 percent), and Hawlucha sets up with Bulk Up (67 to 84 percent at full HP) and heals with Roost when Expert allows it. Medicham only attacks. |
+| Black Belt David | Swords Dance (Scizor) | off | One setup move on a team of four attackers. |
+| Black Belt Ricky | Stealth Rock, Roar and Metal Burst (Bastiodon) | off | Only Bastiodon leans on those moves, and Aggron and Steelix attack. The flag would lift Metal Burst from 62 to 85 percent at high HP, which is left to Expert's own timing, as for Risky above. |
 
 ## How the numbers were made
 

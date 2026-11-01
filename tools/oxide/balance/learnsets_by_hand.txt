@@ -28,7 +28,7 @@ SPECIES_SWADLOON    Struggle Bug 22 and Endure 29 as Sewaddle has them, so evolv
 SPECIES_BOUNSWEET   Leafage at 4 where the swap put Triple Axel, the rung before Razor Leaf 12 (Ian, 2026-10-12)
 SPECIES_KRICKETOT   kept as the rewrite left it when Fury Cutter went to 10, 20, 30, so the move change reshuffles no list (Ian, 2026-10-12)
 SPECIES_KRICKETUNE  kept as the rewrite left it when Fury Cutter went to 10, 20, 30 (Ian, 2026-10-12)
-SPECIES_PHEROMOSA   kept as the rewrite left it when Triple Kick went to 20, 30, 40 (Ian, 2026-10-12)
+SPECIES_PHEROMOSA   kept as the rewrite left it when Triple Kick went to 20, 30, 40 (Ian, 2026-10-12); Triple Kick on its egg list, for Argenta's Pheromosa at 50 (Ian, 2026-10-31)
 SPECIES_QWILFISH    kept as the rewrite left it when the rising moves changed (Ian, 2026-10-12); Barb Barrage on its egg list, for trainers (Ian, 2026-10-21, on signature-moves.md)
 SPECIES_ALOLAN_NINETALES kept as its file holds it when Ian placed the Ice Stone (the Overseer, 2026-10-13): caught wild at 13 from Gardenia's split, it would lose the catch's moves to a stone evolution's late, sparse list
 SPECIES_WORMADAM    Quiver Dance at 36, as the Trash cloak learns it, and Swagger moved to 39 (Ian, 2026-10-14, on wormadam-forms.md)

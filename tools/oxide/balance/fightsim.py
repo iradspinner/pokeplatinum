@@ -2857,6 +2857,8 @@ def land_hits(b, att, dfn, mv, first, hits, hit_damage, crits, chance, pick):
                     and not item_flinch_blocked(att, dfn) and chance("kingsrock", 0.1, dfn):
                 dfn.flinch = True
         berry_check(dfn, b)
+        if not sub_hit:
+            rocky_helmet(b, att, dfn, mv, dealt)    # after the target's berry, as the after-move items run
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
     if held and dfn.item == "Focus Sash":
@@ -6171,6 +6173,42 @@ def sticky_barb(att, dfn):
         att.item, dfn.item = dfn.item, None
 
 
+def rocky_helmet(b, att, dfn, mv, dealt):
+    """A Rocky Helmet on the target costs a contact attacker a sixth of its
+    own maximum HP, at least 1 (BattleSystem_TriggerHeldItemOnHit's
+    HOLD_EFFECT_ROCKY_HELMET at AFTER_MOVE_EFFECT_TRIGGER_ITEMS_ON_HIT, the
+    item's effect parameter 6 through BattleSystem_Divide). It needs a hit
+    that hurt the holder itself, so a hit its Substitute took sets off
+    nothing (the caller's sub_hit, which lasts the move); the holder's own
+    knockout does not stop it (subscript_rocky_helmet then only skips the
+    animation). The attacker must stand and lack Magic Guard, and the move
+    must make contact (makes_contact, which Long Reach clears). Klutz on
+    the holder stops it (Battler_HeldItem), as Embargo and Magic Room do by
+    holding the item in item_off. A U-turn or Flip Turn whose user switches
+    out pays nothing (SYSCTL_UTURN_ACTIVE, set only on the switch), and one
+    with no one to switch to pays as any contact hit does. A move of
+    several hits pays at each, since the after-move items run hit by hit
+    (land_hits). Until 2026-10-31 nothing read the item (Ian approved the
+    fix)."""
+    if dealt <= 0 or dfn.item != "Rocky Helmet" or dfn.ability == "Klutz" or att is dfn:
+        return
+    if not att.alive() or att.ability == "Magic Guard" or not makes_contact(att, mv):
+        return
+    if mv.effect == "SWITCH_HIT" and pivot_leaves(b, att):
+        return
+    hurt(b, att, max(1, att.maxhp // 6))
+
+
+def pivot_leaves(b, att):
+    """Whether a U-turn's user switches out once its hit is in
+    (subscript_attack_then_switch_out): it stands, the target's side has
+    someone left (CheckBlackOut), and its own party has someone to send in
+    (TryReplaceFaintedMon), its own trainer's in a double battle. The turn
+    makes the switch itself (att.u_turn)."""
+    own, other = (b.p, b.b) if att.side == "p" else (b.b, b.p)
+    return att.alive() and bool(other.alive()) and bool(own.bench(owner=getattr(att, "owner", None)))
+
+
 # The abilities a hit of these types raises a stat of (subscript_justified,
 # subscript_rattled, by CurrentMoveType).
 HIT_RAISE = {"Justified": ({"Dark"}, "atk"), "Rattled": ({"Bug", "Ghost", "Dark"}, "spe")}
@@ -7197,6 +7235,8 @@ def hit_aftermath(b, att, dfn, mv, chance, pick):
         return
     after_hit(b, att, dfn, mv, b.last_dealt)
     contact_ability(b, att, dfn, mv, b.last_dealt, chance, pick)
+    if not b.sub_hit:
+        rocky_helmet(b, att, dfn, mv, b.last_dealt)   # the target's items on hit, after its ability
     if mv.effect == "FORCE_SWITCH_HIT" and b.last_dealt > 0 and not b.sub_hit:
         # Dragon Tail and Circle Throw drag their target out once its own
         # ability and held items have answered the hit (the engine's

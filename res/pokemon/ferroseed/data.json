@@ -116,7 +116,8 @@
         "by_tutor": [],
         "egg_moves": [
             "MOVE_SELFDESTRUCT",
-            "MOVE_EXPLOSION"
+            "MOVE_EXPLOSION",
+            "MOVE_POWER_WHIP"
         ]
     },
     "evolutions": [

@@ -236,7 +236,8 @@ DIVERGED["events_canalave_city_gym"] = (
 # base ROM leaves these events as vanilla's.
 DIVERGED["events_pal_park_lobby"] = (
     "Lucas or Dawn and two Galactic officers added for the partner double "
-    "(Ian, 2026-10-31)")
+    "(Ian, 2026-10-31); then the officers are Phobos and Deimos, both in the male "
+    "grunt's sprite as at Jubilife (Ian, 2026-10-31)")
 
 def render(record, existing, index):
     """One object event as the repo spells it, keeping the existing id."""

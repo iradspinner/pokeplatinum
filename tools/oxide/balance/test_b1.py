@@ -83,9 +83,10 @@ def check_fights_resolve(results):
                                 or (f["key"] == "flint_volkner" and ("Flint" in n or "Volkner" in n))
                                 or (f["key"] == "somnu_moira" and ("Somnu" in n or "Moira" in n))
                                 or (f["key"].startswith("tyche_hermes") and ("Tyche" in n or "Hermes" in n))
-                                # Pal Park's officers are placeholders until Ian
-                                # names them (2026-10-31).
-                                or (f["key"] == "pal_park_double" and "Officer" in n)
+                                # Officers Phobos and Deimos, in Jubilife and at
+                                # Pal Park (Ian, 2026-10-31).
+                                or (f["key"] in ("phobos_deimos_1", "pal_park_double")
+                                    and ("Phobos" in n or "Deimos" in n))
                                 or (f["key"].startswith("lucas_dawn")
                                     and ("Lucas" in n or "Dawn" in n)))
         # A hack whose override lists no trainers has no seat for that fight
@@ -133,6 +134,10 @@ UNDER_CAP = ("saturn_1", "mars_2", "somnu_moira", "saturn_2", "mars_jupiter", "l
 AWAITING_REDESIGN = {"barry_5": 53}
 FIXED_ACES = {"aaron": 72, "bertha": 73, "flint": 74, "lucian": 75, "cynthia": 78,
               "tyche_hermes_1": 41,
+              # Officers Phobos and Deimos (Ian, 2026-10-31): no caps of their
+              # own, their aces two under Mars 1's 20 and two under Barry
+              # 5's 50 (docs/oxide/phobos-deimos.md).
+              "phobos_deimos_1": 18, "pal_park_double": 48,
               **{f["key"]: f["honour_cap"] for f in data.fights()["fights"] if "honour_cap" in f}}
 MINI_BOSS_UNDER = range(2, 5)
 
@@ -267,6 +272,16 @@ def check_split_overrides(results):
     got = {stem: splits.trainer_split(by_stem[stem]) for stem in stems}
     wrong = {stem: split for stem, split in got.items() if split != "Wake"}
     results.append(("the Veilstone tag battle sits in Wake's split", not wrong,
+                    f"{len(stems)} trainers" + (f"; wrong: {wrong}" if wrong else "")))
+    # The Jubilife tag battle, Officers Phobos and Deimos beside Lucas or Dawn
+    # (Ian, 2026-10-31), is fought once Roark is beaten: Gardenia's split.
+    # Before the override the six partner files had no split at all.
+    stems = ["galactic_grunt_jubilife_city_1", "galactic_grunt_jubilife_city_2"] + [
+        f"{who}_jubilife_city_{starter}" for who in ("lucas", "dawn")
+        for starter in ("turtwig", "chimchar", "piplup")]
+    got = {stem: splits.trainer_split(by_stem[stem]) for stem in stems}
+    wrong = {stem: split for stem, split in got.items() if split != "Gardenia"}
+    results.append(("the Jubilife tag battle sits in Gardenia's split", not wrong,
                     f"{len(stems)} trainers" + (f"; wrong: {wrong}" if wrong else "")))
 
 

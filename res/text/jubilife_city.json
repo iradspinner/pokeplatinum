@@ -581,7 +581,7 @@
     {
       "id": "JubilifeCity_Text_HandOverResearchFindings",
       "en_US": [
-        "Mystery man: Now, now, now, now, now!\n",
+        "Phobos: Now, now, now, now, now!\n",
         "Professor Rowan, you must comply.\r",
         "Hand over all your research findings.\n",
         "For free, naturally.\r",
@@ -605,7 +605,7 @@
     {
       "id": "JubilifeCity_Text_MustYouBeSoDifficult",
       "en_US": [
-        "Mystery man: Oh, professor of Pokémon,\n",
+        "Phobos: Oh, professor of Pokémon,\n",
         "must you be so difficult?\r",
         "We are speaking to you on business.\n",
         "Because this is work for us.\r",
@@ -644,12 +644,14 @@
     {
       "id": "JubilifeCity_Text_RegretInsultingTeamGalactic",
       "en_US": [
-        "Mystery man: Eeeeeh!\n",
+        "Phobos: Eeeeeh!\n",
         "You had to make this personal!\r",
-        "You have forced our hand into making\n",
-        "a show of force!\r",
-        "We will make you regret insulting\n",
-        "Team Galactic!\r"
+        "Deimos: You have forced our hand into\n",
+        "making a show of force!\r",
+        "Phobos: Know the names Phobos and\n",
+        "Deimos, officers of Team Galactic!\r",
+        "Deimos: Fear and dread, children.\n",
+        "We will make you regret this insult!\r"
       ]
     },
     {
@@ -676,10 +678,10 @@
     {
       "id": "JubilifeCity_Text_WeWillRetreatForNow",
       "en_US": [
-        "Grunt 1: You leave us no option.\n",
+        "Phobos: You leave us no option.\n",
         "We will retreat for now.\r",
-        "We shall do so because Team Galactic\n",
-        "is benevolent to all.\r"
+        "Deimos: We shall do so because Team\n",
+        "Galactic is benevolent to all.\r"
       ]
     },
     {
