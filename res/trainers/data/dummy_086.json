@@ -48,7 +48,7 @@
             "species": "SPECIES_DUBWOOL",
             "form": 0,
             "level": 50,
-            "item": "ITEM_NONE",
+            "item": "ITEM_SILK_SCARF",
             "moves": [
                 "MOVE_PAYBACK",
                 "MOVE_COTTON_GUARD",
