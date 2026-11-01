@@ -10,18 +10,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_TOXICROAK",
+            "species": "SPECIES_SKUNTANK",
             "form": 0,
-            "level": 41,
-            "item": null,
+            "level": 42,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_CROSS_CHOP",
+                "MOVE_TAUNT",
                 "MOVE_SUCKER_PUNCH",
-                "MOVE_ICE_PUNCH",
-                "MOVE_POISON_JAB"
+                "MOVE_POISON_JAB",
+                "MOVE_CRUNCH"
             ],
             "iv_scale": 251,
-            "ball_seal": 0
+            "nature": "NATURE_SASSY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_PURUGLY",
+            "form": 0,
+            "level": 42,
+            "item": "ITEM_SILK_SCARF",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_U_TURN",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 251,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_SALAZZLE",
+            "form": 0,
+            "level": 42,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_TOXIC",
+                "MOVE_FLAMETHROWER",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_DRAGON_PULSE"
+            ],
+            "iv_scale": 251,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_TOXICROAK",
+            "form": 0,
+            "level": 43,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_POISON_JAB",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 251,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

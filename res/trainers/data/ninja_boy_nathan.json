@@ -12,18 +12,51 @@
         {
             "species": "SPECIES_DUSTOX",
             "form": 0,
-            "level": 42,
-            "item": null,
+            "level": 43,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_SLUDGE_BOMB",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_BUG_BUZZ"
+                "MOVE_TOXIC",
+                "MOVE_ROOST",
+                "MOVE_BUG_BUZZ",
+                "MOVE_WHIRLWIND"
             ],
             "iv_scale": 221,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 2,
             "gender": null
+        },
+        {
+            "species": "SPECIES_VIKAVOLT",
+            "form": 0,
+            "level": 43,
+            "item": "ITEM_ASSAULT_VEST",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_BUG_BUZZ",
+                "MOVE_ENERGY_BALL",
+                "MOVE_FLASH_CANNON"
+            ],
+            "iv_scale": 221,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_FROSMOTH",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_NEVERMELTICE",
+            "moves": [
+                "MOVE_QUIVER_DANCE",
+                "MOVE_ICE_BEAM",
+                "MOVE_BUG_BUZZ",
+                "MOVE_GIGA_DRAIN"
+            ],
+            "iv_scale": 221,
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

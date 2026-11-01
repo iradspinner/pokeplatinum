@@ -10,32 +10,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGNETON",
+            "species": "SPECIES_KLEFKI",
             "form": 0,
-            "level": 46,
-            "item": null,
+            "level": 49,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_MAGNET_BOMB",
-                "MOVE_SCREECH",
-                "MOVE_DISCHARGE",
-                "MOVE_MIRROR_SHOT"
+                "MOVE_THUNDER_WAVE",
+                "MOVE_FOUL_PLAY",
+                "MOVE_SPIKES",
+                "MOVE_PLAY_ROUGH"
             ],
             "iv_scale": 253,
-            "ball_seal": 0
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
             "species": "SPECIES_MAWILE",
             "form": 0,
-            "level": 46,
-            "item": null,
+            "level": 49,
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
+                "MOVE_PLAY_ROUGH",
                 "MOVE_IRON_HEAD",
-                "MOVE_CRUNCH",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_SUCKER_PUNCH"
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 251,
-            "ball_seal": 0
+            "iv_scale": 253,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_AIR_BALLOON",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_FLASH_CANNON",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_TRI_ATTACK"
+            ],
+            "iv_scale": 253,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

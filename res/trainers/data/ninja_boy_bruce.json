@@ -12,16 +12,50 @@
         {
             "species": "SPECIES_BEEDRILL",
             "form": 0,
-            "level": 41,
-            "item": null,
+            "level": 42,
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
-                "MOVE_BRICK_BREAK",
-                "MOVE_KNOCK_OFF",
                 "MOVE_POISON_JAB",
-                "MOVE_X_SCISSOR"
+                "MOVE_X_SCISSOR",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SWORDS_DANCE"
             ],
             "iv_scale": 254,
-            "ball_seal": 0
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_CROBAT",
+            "form": 0,
+            "level": 42,
+            "item": "ITEM_SHARP_BEAK",
+            "moves": [
+                "MOVE_CROSS_POISON",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_U_TURN",
+                "MOVE_TAUNT"
+            ],
+            "iv_scale": 254,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_VENOMOTH",
+            "form": 0,
+            "level": 43,
+            "item": "ITEM_SHUCA_BERRY",
+            "moves": [
+                "MOVE_SLEEP_POWDER",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 254,
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 2
         }
     ],
     "messages": [

@@ -10,20 +10,69 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_VAPOREON",
+            "species": "SPECIES_FLOATZEL",
             "form": 0,
             "level": 46,
-            "item": null,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_SURF",
-                "MOVE_ICE_BEAM",
-                "MOVE_TOXIC",
-                "MOVE_AQUA_RING"
+                "MOVE_WATERFALL",
+                "MOVE_ICE_PUNCH",
+                "MOVE_CRUNCH",
+                "MOVE_AQUA_JET"
             ],
             "iv_scale": 245,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
+        },
+        {
+            "species": "SPECIES_LANTURN",
+            "form": 0,
+            "level": 46,
+            "item": "ITEM_ASSAULT_VEST",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_DISCHARGE",
+                "MOVE_ICE_BEAM",
+                "MOVE_SIGNAL_BEAM"
+            ],
+            "iv_scale": 245,
+            "nature": "NATURE_SASSY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_TOXAPEX",
+            "form": 0,
+            "level": 46,
+            "item": "ITEM_ROCKY_HELMET",
+            "moves": [
+                "MOVE_TOXIC",
+                "MOVE_LIQUIDATION",
+                "MOVE_RECOVER",
+                "MOVE_BANEFUL_BUNKER"
+            ],
+            "iv_scale": 245,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_VAPOREON",
+            "form": 0,
+            "level": 47,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_SCALD",
+                "MOVE_WISH",
+                "MOVE_PROTECT",
+                "MOVE_ICE_BEAM"
+            ],
+            "iv_scale": 245,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

@@ -10,46 +10,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GYARADOS",
+            "species": "SPECIES_MANTINE",
             "form": 0,
-            "level": 43,
-            "item": null,
+            "level": 45,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_ICE_FANG",
-                "MOVE_AQUA_TAIL",
+                "MOVE_SCALD",
                 "MOVE_BOUNCE",
-                "MOVE_HEADBUTT"
+                "MOVE_HAZE",
+                "MOVE_ROOST"
             ],
             "iv_scale": 250,
-            "ball_seal": 0
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 2
         },
         {
-            "species": "SPECIES_LANTURN",
+            "species": "SPECIES_FLOATZEL",
             "form": 0,
-            "level": 43,
-            "item": null,
+            "level": 45,
+            "item": "ITEM_MYSTIC_WATER",
             "moves": [
-                "MOVE_DISCHARGE",
-                "MOVE_SURF",
-                "MOVE_SIGNAL_BEAM",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_AQUA_JET",
+                "MOVE_WATERFALL",
+                "MOVE_ICE_PUNCH",
+                "MOVE_BULK_UP"
             ],
-            "iv_scale": 254,
-            "ball_seal": 0
+            "iv_scale": 250,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_STARMIE",
+            "form": 0,
+            "level": 46,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT",
+                "MOVE_ICE_BEAM"
+            ],
+            "iv_scale": 250,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 3
         },
         {
             "species": "SPECIES_SHARPEDO",
             "form": 0,
-            "level": 43,
-            "item": null,
+            "level": 46,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
+                "MOVE_WATERFALL",
                 "MOVE_CRUNCH",
-                "MOVE_SLASH",
-                "MOVE_AQUA_JET",
-                "MOVE_TAUNT"
+                "MOVE_ICE_FANG",
+                "MOVE_PROTECT"
             ],
-            "iv_scale": 255,
-            "ball_seal": 0
+            "iv_scale": 250,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

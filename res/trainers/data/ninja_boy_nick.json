@@ -8,22 +8,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SKORUPI",
+            "species": "SPECIES_TOXICROAK",
             "form": 0,
-            "level": 32,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 44,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_SWORDS_DANCE",
+                "MOVE_GUNK_SHOT",
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_SUCKER_PUNCH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_CROAGUNK",
+            "species": "SPECIES_ARIADOS",
             "form": 0,
-            "level": 30,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 25
+            "level": 44,
+            "item": "ITEM_SCOPE_LENS",
+            "moves": [
+                "MOVE_POISON_JAB",
+                "MOVE_X_SCISSOR",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_TOXIC_SPIKES"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_LIEPARD",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_MENTAL_HERB",
+            "moves": [
+                "MOVE_THUNDER_WAVE",
+                "MOVE_FOUL_PLAY",
+                "MOVE_TAUNT",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 2
         }
     ],
     "messages": [
