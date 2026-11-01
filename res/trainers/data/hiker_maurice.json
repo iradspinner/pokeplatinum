@@ -4,27 +4,58 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_PRIORITIZE_EXTREMES"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GRAVELER",
+            "species": "SPECIES_GLIMMORA",
             "form": 0,
-            "level": 35,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 49,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_POWER_GEM",
+                "MOVE_SLUDGE_WAVE",
+                "MOVE_ENERGY_BALL",
+                "MOVE_TOXIC_SPIKES"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_RHYHORN",
+            "species": "SPECIES_GOLEM",
             "form": 0,
-            "level": 35,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 49,
+            "item": "ITEM_SOFT_SAND",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_RHYPERIOR",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_CHOPLE_BERRY",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE",
+                "MOVE_HAMMER_ARM",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

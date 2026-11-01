@@ -1495,6 +1495,18 @@ TEXT_BANKS_SKIPPED[54] = ("Barry at the library door sends the player to Iron Is
 TEXT_BANKS_SKIPPED[56] += ("; then the Gym Guide's line sending the player to Iron Island first "
                            "(Ian, 2026-10-31)")
 
+# Eterna's Oak asks the player back after the Hall of Fame before he gives
+# the Upgrade and sets the birds roaming (Ian, 2026-10-31).
+TEXT_BANKS_SKIPPED[103] = ("Oak asks the player back after the Hall of Fame before he gives the "
+                           "Upgrade and the roaming birds (Ian, 2026-10-31)")
+# Pal Park's lobby gains the partner double's lines (Ian, 2026-10-31).
+TEXT_BANKS_SKIPPED[515] = ("the Pal Park partner double's lines: Lucas or Dawn and two Galactic "
+                           "officers (Ian, 2026-10-31)")
+# Barry on Canalave's bridge sends the player to Pal Park until its partner
+# double is won (Ian, 2026-10-31).
+TEXT_BANKS_SKIPPED[54] += ("; then Barry on the bridge sends the player to Pal Park until its "
+                           "partner double is won (Ian, 2026-10-31)")
+
 
 def text_bank_names():
     return [l.strip() for l in open(os.path.join(ROOT, "generated", "text_banks.txt")) if l.strip()]

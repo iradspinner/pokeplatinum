@@ -261,7 +261,12 @@ class Script:
 
     def _branch(self, label, is_call, compare, code, made):
         taken = _requirement(compare, code, made)
-        fall = None if is_call or code not in _OPPOSITE else _requirement(compare, _OPPOSITE[code], made)
+        # A flag test's codes are 0 (clear) and 1 (set), each the other's
+        # opposite; _OPPOSITE is for a variable's comparisons, and read 0 as
+        # "less than", so a GoToIfUnset's fall-through needed nothing until
+        # 2026-10-31 (Eterna's Oak behind the Hall of Fame).
+        opposite = {0: 1, 1: 0} if compare and compare[0] == "flag" else _OPPOSITE
+        fall = None if is_call or code not in opposite else _requirement(compare, opposite[code], made)
         return ("branch", label, is_call, taken, fall)
 
     def successors(self, i):

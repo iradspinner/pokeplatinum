@@ -195,6 +195,18 @@ for _m in ("route_213", "valor_lakefront", "route_212_north", "route_212_south",
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; then " + _why
                                 if f"events_{_m}" in DIVERGED else _why)
 
+# Byron's split (docs/oxide/byron-split.md), with Ian's yes of 2026-10-31: trainers on
+# Routes 210 South, 210 North, 218 and 221 and on Iron Island B1F and B2F
+# stand at the path's chokepoints, each looking one fixed way, and two of
+# Iron Island B2F's pairs face each other across a corridor (2026-10-31).
+# Ian's yes of the same day added Ace Trainers Jake and Shannon at Pal Park's
+# door on Route 221, and moved Swimmer Vincent from Route 220 to Route 219's
+# islet crossing, so Route 220 loses him and Route 219 gains him.
+for _m in ("route_210_south", "route_210_north", "route_218", "route_221",
+           "iron_island_b1f_right_room", "iron_island_b2f_left_room", "route_219", "route_220"):
+    DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; then " + _why
+                                if f"events_{_m}" in DIVERGED else _why)
+
 # Two Frontier Brains placed (Ian, 2026-10-31; docs/oxide/frontier-brains.md):
 # Dahlia inside the Game Corner's entrance, and Darach and Caitlin at the top
 # of the Pokemon Mansion's entrance aisle, with the trigger that holds the
@@ -219,6 +231,12 @@ DIVERGED["events_canalave_city_gym"] = (
     "the trigger inside the entrance that turns the player back until Riley's tag battle "
     "on Iron Island is won (Ian, 2026-10-31)")
 
+# Pal Park's partner double (Ian, 2026-10-31; bulk_scripts.py says why): Lucas
+# or Dawn and the two Galactic officers, hidden until the scene adds them. The
+# base ROM leaves these events as vanilla's.
+DIVERGED["events_pal_park_lobby"] = (
+    "Lucas or Dawn and two Galactic officers added for the partner double "
+    "(Ian, 2026-10-31)")
 
 def render(record, existing, index):
     """One object event as the repo spells it, keeping the existing id."""

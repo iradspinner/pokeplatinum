@@ -2,8 +2,20 @@
   "ace_trainer_allen": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "ace_trainer_alyssa": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "ace_trainer_breanna": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "ace_trainer_brenda": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "ace_trainer_catherine": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "ace_trainer_cesar": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "ace_trainer_dana": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
@@ -11,11 +23,25 @@
   "ace_trainer_dennis": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "ace_trainer_ernest": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "ace_trainer_felix": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "ace_trainer_jake": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "ace_trainer_jonah": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "ace_trainer_maya": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "ace_trainer_shannon": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
   },
   "aroma_lady_angela": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
@@ -41,6 +67,10 @@
   "battle_girl_kelsey": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "battle_girl_tyler": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "beauty_cyndy": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
@@ -59,11 +89,26 @@
   "bird_keeper_alexandra": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
   },
+  "bird_keeper_brianna": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "bird_keeper_katherine": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "black_belt_adam": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "black_belt_colby": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "black_belt_darren": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "black_belt_david": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
   },
   "black_belt_derek": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
@@ -74,6 +119,10 @@
   "black_belt_jeffery": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "black_belt_kendal": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "black_belt_kyle": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
@@ -82,6 +131,14 @@
   },
   "black_belt_rafael": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "black_belt_ricky": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "black_belt_sean": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
   },
   "breeder_albert": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
@@ -119,6 +176,9 @@
   "camper_jacob": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
   },
+  "camper_lawrence": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "camper_parker": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
@@ -136,6 +196,10 @@
   },
   "collector_fernando": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "collector_ivan": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
   },
   "collector_terry": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
@@ -185,6 +249,9 @@
   "dawn_veilstone_city_turtwig": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "double_team_zac_and_jen": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "dummy_007": {
     "name": "edited in the OxiDex team builder, 2026-10-30",
     "class": "edited in the OxiDex team builder, 2026-10-30",
@@ -199,6 +266,62 @@
     "name": "Darach and Caitlin seeded in free slot 8 for the Pokemon Mansion's gate (Ian, 2026-10-31)",
     "class": "Darach and Caitlin seeded in free slot 8 for the Pokemon Mansion's gate (Ian, 2026-10-31)",
     "messages": "Darach and Caitlin seeded in free slot 8 for the Pokemon Mansion's gate (Ian, 2026-10-31)"
+  },
+  "dummy_009": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "name": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams",
+    "class": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams",
+    "messages": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams"
+  },
+  "dummy_050": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "name": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams",
+    "class": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams",
+    "messages": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams"
+  },
+  "dummy_051": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "name": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)",
+    "class": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)",
+    "messages": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)"
+  },
+  "dummy_052": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "name": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)",
+    "class": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)",
+    "messages": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)"
+  },
+  "dummy_054": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "name": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)",
+    "class": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)",
+    "messages": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)"
+  },
+  "dummy_062": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "name": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)",
+    "class": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)",
+    "messages": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)"
+  },
+  "dummy_063": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "name": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)",
+    "class": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)",
+    "messages": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)"
+  },
+  "dummy_064": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "name": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)",
+    "class": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)",
+    "messages": "the Pal Park partner double's Lucas or Dawn, seeded in a free slot on the Veilstone partner's line (Ian, 2026-10-31)"
   },
   "dummy_793": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
@@ -224,6 +347,13 @@
   "fisherman_andrew": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
   },
+  "fisherman_cody": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "fisherman_cory": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "fisherman_erick": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
@@ -237,6 +367,12 @@
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "fisherman_kenneth": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "fisherman_luc": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "fisherman_miguel": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "fisherman_travis": {
@@ -298,6 +434,9 @@
   "galactic_grunt_valley_windworks_2": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
   },
+  "galactic_grunt_valor_lakefront": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "galactic_grunt_veilstone_city_1": {
     "party": "edited in the OxiDex team builder, 2026-10-29",
     "name": "Ian renamed the Veilstone and Spear Pillar grunts Officers Tyche and Hermes, 2026-10-29",
@@ -314,6 +453,13 @@
   },
   "gentleman_jeremy": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "guitarist_tony": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "hiker_damon": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
   },
   "hiker_daniel": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
@@ -332,6 +478,10 @@
   },
   "hiker_louis": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
+  },
+  "hiker_maurice": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
   },
   "hiker_nicholas": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
@@ -436,6 +586,30 @@
     "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
+  "ninja_boy_brennan": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "ninja_boy_bruce": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "ninja_boy_davido": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "ninja_boy_fabian": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "ninja_boy_joel": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "ninja_boy_nathan": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "ninja_boy_nick": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "ninja_boy_zach": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
   },
@@ -462,6 +636,9 @@
   },
   "picnicker_siena": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
+  },
+  "picnicker_summer": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "picnicker_tori": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
@@ -571,13 +748,22 @@
   "ruin_maniac_gerald": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "ruin_maniac_harry": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "ruin_maniac_karl": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "sailor_damian": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
+  "sailor_paul": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "sailor_samson": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "sailor_skyler": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "school_kid_chance": {
@@ -604,6 +790,48 @@
   "socialite_reina": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
+  "swimmer_adrian": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "swimmer_claire": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "swimmer_dillon": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "swimmer_erica": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "swimmer_erik": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "swimmer_evan": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "swimmer_haley": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "swimmer_jessica": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "swimmer_katelyn": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "swimmer_mary": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "swimmer_sheltin": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "swimmer_vanessa": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "swimmer_vincent": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "tuber_caitlyn": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
@@ -616,6 +844,12 @@
   "tuber_jared": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
+  "tuber_mariel": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "tuber_trenton": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "twins_emma_and_lil": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
@@ -625,14 +859,54 @@
   "twins_teri_and_tia": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "veteran_brian": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "veteran_grant": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "waitress_kati": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "worker_braden": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "worker_brendon": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "worker_colin": {
     "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
+  "worker_conrad": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "worker_dillan": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "worker_gary": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "worker_gerardo": {
+    "party": "edited in the OxiDex team builder, 2026-10-31",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "worker_holden": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "worker_jackson": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "worker_mason": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "worker_noel": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "worker_quentin": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "young_couple_mike_and_nat": {

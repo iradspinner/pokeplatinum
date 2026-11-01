@@ -10,20 +10,69 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SHIFTRY",
+            "species": "SPECIES_NINJASK",
             "form": 0,
-            "level": 41,
-            "item": null,
+            "level": 42,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_DARK_PULSE",
-                "MOVE_WHIRLWIND",
-                "MOVE_SHADOW_BALL",
-                "MOVE_ENERGY_BALL"
+                "MOVE_SWORDS_DANCE",
+                "MOVE_X_SCISSOR",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_AERIAL_ACE"
             ],
             "iv_scale": 252,
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
+        },
+        {
+            "species": "SPECIES_LIEPARD",
+            "form": 0,
+            "level": 42,
+            "item": "ITEM_MENTAL_HERB",
+            "moves": [
+                "MOVE_THUNDER_WAVE",
+                "MOVE_TAUNT",
+                "MOVE_FOUL_PLAY",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 252,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_SHIFTRY",
+            "form": 0,
+            "level": 42,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_NASTY_PLOT",
+                "MOVE_DARK_PULSE",
+                "MOVE_ENERGY_BALL",
+                "MOVE_FOCUS_BLAST"
+            ],
+            "iv_scale": 252,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_GRENINJA",
+            "form": 0,
+            "level": 43,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_WATER_SHURIKEN",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_ICE_BEAM",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 252,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

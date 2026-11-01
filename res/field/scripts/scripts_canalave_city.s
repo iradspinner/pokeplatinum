@@ -586,6 +586,23 @@ CanalaveCity_08AB:
     CallCommonScript 2042
     ApplyMovement 11, CanalaveCity_Movement_0ADA
     WaitMovement
+    @ Platinum Oxide (Ian, 2026-10-31): Barry fights on the bridge only once
+    @ the Pal Park partner double is won (the officers' trainer flags, set by
+    @ Pal Park's lobby). Before then he sends the player to Pal Park and the
+    @ player steps back off the trigger, so the gym and the ferry to Iron
+    @ Island, both past the bridge, wait for the double too.
+    GoToIfDefeated TRAINER_DUMMY_009, CanalaveCity_RivalBridgeBattle
+    BufferRivalName 0
+    BufferPlayerName 1
+    Message 51
+    CloseMessage
+    ApplyMovement LOCALID_PLAYER, CanalaveCity_Movement_PlayerStepBackEast
+    ApplyMovement 11, CanalaveCity_Movement_RivalBridgeWalkBack
+    WaitMovement
+    RemoveObject 11
+    ReleaseAll
+    End
+CanalaveCity_RivalBridgeBattle:
     BufferRivalName 0
     BufferPlayerName 1
     Message 0
@@ -804,3 +821,15 @@ CanalaveCity_Movement_0B22:
     WalkFastWest 9
     EndMovement
 
+    @ Platinum Oxide (Ian, 2026-10-31): Barry's walk back west along the
+    @ bridge, and the player's step back off the trigger, before the Pal Park
+    @ double is won.
+    .balign 4, 0
+CanalaveCity_Movement_RivalBridgeWalkBack:
+    WalkFastWest 8
+    EndMovement
+
+    .balign 4, 0
+CanalaveCity_Movement_PlayerStepBackEast:
+    WalkNormalEast
+    EndMovement

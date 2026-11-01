@@ -165,16 +165,16 @@ section { overflow-y: auto; }
 .listhead { position: sticky; top: 0; z-index: 10; background: var(--panel);
             padding: 12px 12px 8px; border-bottom: 1px solid var(--rule); }
 #filter, #movefilter { width: 100%; }
-.sortbar { margin-top: 7px; font-size: 14.5px; color: var(--dim);
+.sortbar, .dexkeys { margin-top: 7px; font-size: 14.5px; color: var(--dim);
            display: flex; gap: 4px; flex-wrap: wrap; }
-.sortbar button {
+.sortbar button, .dexkeys button {
   border: 1px solid transparent; background: none; color: var(--dim); cursor: pointer;
   padding: 0 8px; border-radius: 3px; font: inherit;
 }
-.sortbar button:hover { background: var(--sunken); }
+.sortbar button:hover, .dexkeys button:hover { background: var(--sunken); }
 /* Every "on" state is place: the sort bar, the Grass, Surf and rod tabs, the
    time of day, the view tabs. Teal used to fill them, and teal is mass. */
-.sortbar button.on, .kinds button.on, #views button.on {
+.sortbar button.on, .dexkeys button.on, .kinds button.on, #views button.on {
   background: var(--place-bg); color: var(--place-ink); border-color: var(--place-ink);
 }
 
@@ -1123,6 +1123,16 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
         <button data-f="new">New</button>
         <button data-f="weather" title="Species with a weather ability in a regular slot, which Oxide rules out">Weather</button>
       </div>
+      <div class="dexkeys" title="Sort the list by a stat, highest first; click the same stat again for lowest first">Sort:
+        <button data-k="dex" class="on">Dex</button>
+        <button data-k="hp">HP</button>
+        <button data-k="attack">Atk</button>
+        <button data-k="defense">Def</button>
+        <button data-k="special_attack">SpA</button>
+        <button data-k="special_defense">SpD</button>
+        <button data-k="speed">Spe</button>
+        <button data-k="bst">BST</button>
+      </div>
     </div>
     <div id="dexrows"></div>
   </section>
@@ -1302,6 +1312,10 @@ async function refreshSaveBar() {
 // /api/dex, so it is the same data the build consumes: no ROM is parsed and
 // nothing is recomputed in the page.
 let POKEDEX = [], DEXSEL = null, DEXDETAIL = null, DEXFILTER = "all";
+// The Dex list's order (Ian, 2026-10-31): the Dex's own, or one stat or the
+// total, highest first unless the same stat is clicked again.
+let DEXSORT = "dex", DEXDESC = true;
+const dexValue = r => DEXSORT === "bst" ? r.bst : (r.stats || {})[DEXSORT] || 0;
 // The eighteen types in the order the games list them, for the matchup grid.
 const TYPES = ["NORMAL", "FIRE", "WATER", "ELECTRIC", "GRASS", "ICE", "FIGHTING",
   "POISON", "GROUND", "FLYING", "PSYCHIC", "BUG", "ROCK", "GHOST", "DRAGON",
@@ -1365,14 +1379,21 @@ function dexMatch(r) {
 }
 
 function drawDexList() {
-  const rows = POKEDEX.filter(dexMatch);
+  let rows = POKEDEX.filter(dexMatch);
+  // Sorting by a stat keeps the Dex's own order among equal values, so ties
+  // stay readable.
+  if (DEXSORT !== "dex") {
+    rows = rows.map((r, i) => [r, i])
+      .sort(([a, i], [b, j]) => (DEXDESC ? dexValue(b) - dexValue(a) : dexValue(a) - dexValue(b)) || i - j)
+      .map(([r]) => r);
+  }
   $("#dexrows").innerHTML = rows.map(r => `
     <div class="dexrow${r.species === DEXSEL ? " on" : ""}${r.new ? " is-new" : ""}"
          data-sp="${r.species}">
       <span class="ico"><img src="${sprite(r.folder, "icon")}" alt="" loading="lazy"></span>
       <span class="nm">${esc(r.name)}${weatherTag(r)}</span>
       <span class="tt">${r.types.map(t => typeChip(t, "mini")).join("")}</span>
-      <span class="num" style="width:2.6em">${r.bst}</span>
+      <span class="num" style="width:2.6em" title="${DEXSORT === "dex" ? "Base stat total" : esc(DEXSORT.replace(/_/g, " "))}">${DEXSORT === "dex" ? r.bst : dexValue(r)}</span>
     </div>`).join("") || `<p class="sub" style="padding:10px 12px">Nothing matches.</p>`;
   $("#dexrows").querySelectorAll(".dexrow").forEach(el =>
     el.onclick = () => selectSpecies(el.dataset.sp));
@@ -4846,6 +4867,14 @@ $("#mid").addEventListener("click", ev => {
 document.querySelectorAll("#dexlist .sortbar button").forEach(b => b.onclick = () => {
   DEXFILTER = b.dataset.f;
   document.querySelectorAll("#dexlist .sortbar button")
+          .forEach(x => x.classList.toggle("on", x === b));
+  drawDexList();
+});
+// The sort row: a new stat sorts highest first, the same stat again flips it.
+document.querySelectorAll("#dexlist .dexkeys button").forEach(b => b.onclick = () => {
+  DEXDESC = b.dataset.k === DEXSORT ? !DEXDESC : true;
+  DEXSORT = b.dataset.k;
+  document.querySelectorAll("#dexlist .dexkeys button")
           .forEach(x => x.classList.toggle("on", x === b));
   drawDexList();
 });

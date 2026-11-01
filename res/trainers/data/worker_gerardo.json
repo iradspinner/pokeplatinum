@@ -5,37 +5,58 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_CHECK_HP"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_FORRETRESS",
             "form": 0,
-            "level": 49,
-            "item": null,
+            "level": 51,
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
-                "MOVE_SELFDESTRUCT",
-                "MOVE_STEALTH_ROCK",
+                "MOVE_SPIKES",
                 "MOVE_GYRO_BALL",
-                "MOVE_TOXIC_SPIKES"
+                "MOVE_RAPID_SPIN",
+                "MOVE_EXPLOSION"
             ],
             "iv_scale": 223,
-            "ball_seal": 0
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
             "species": "SPECIES_MAWILE",
             "form": 0,
-            "level": 49,
-            "item": null,
+            "level": 51,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_THUNDER_FANG",
-                "MOVE_BRICK_BREAK",
-                "MOVE_FIRE_FANG",
-                "MOVE_IRON_HEAD"
+                "MOVE_IRON_HEAD",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_STEALTH_ROCK"
             ],
-            "iv_scale": 219,
-            "ball_seal": 0
+            "iv_scale": 223,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_METAGROSS",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_METAL_COAT",
+            "moves": [
+                "MOVE_METEOR_MASH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 223,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [
