@@ -10,12 +10,12 @@
         "vanilla": {
             "_note": "Oxide's Lucas and Dawn fights live in slots vanilla leaves unused, so vanilla has no seat for them. Somnu and Moira are Oxide's officers in vanilla's Lake Verity grunt slots, compared with nothing, and so are Tyche and Hermes in the Veilstone and Spear Pillar grunt slots, and Phobos and Deimos in the Jubilife grunt slots. Thorton, a Frontier Brain, is in a free slot, so no hack has a seat for him.",
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": []
         },
         "renegade": {
             "_note": "As vanilla: no Lucas and Dawn fights.",
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": []
         },
         "_comment": "Where a Platinum-based hack keeps a fight under a different trainer id than Platinum's, fight key to the ids it really uses. Found by comparing names and levels across the hacks' data (2026-09-22), not from their scripts.",
         "redux": {
@@ -23,20 +23,20 @@
             "cyrus_2": [409], "saturn_2": [403],
             "aaron": [791], "bertha": [787], "flint": [788], "lucian": [789], "cynthia": [790],
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": []
         },
         "redux_hc": {
             "_note": "Same data layout as redux.",
             "cyrus_2": [409], "saturn_2": [403],
             "aaron": [791], "bertha": [787], "flint": [788], "lucian": [789], "cynthia": [790],
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": []
         },
         "kaizo": {
             "_note": "Kaizo's League is at level 100 in Platinum's rematch slots, after an 84 Volkner; the first-fight slots hold vanilla's unchanged sets.",
             "aaron": [866], "bertha": [867], "flint": [868], "lucian": [869], "cynthia": [870],
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": []
         }
     },
     "milestones": {
@@ -104,6 +104,9 @@
         {"key": "barry_3", "label": "Barry 3", "split": "Maylene", "sheet_ace": 33,
          "honour_cap": 36, "beaten": {"var": "VAR_ROUTE_209_GATE_TO_HEARTHOME_CITY_STATE", "at_least": 2},
          "trainers": ["TRAINER_RIVAL_ROUTE_209_PIPLUP", "TRAINER_RIVAL_ROUTE_209_TURTWIG", "TRAINER_RIVAL_ROUTE_209_CHIMCHAR"]},
+        {"key": "dahlia", "label": "Dahlia", "split": "Maylene", "sheet_ace": null,
+         "note": "Dahlia, the Arcade Star, a Frontier Brain and an optional boss (Ian, 2026-09-27; docs/oxide/frontier-brains.md): she stands just inside the Veilstone Game Corner's door, asks before the fight, and her win opens the prize counter next door. Her fight opens in a permanent Wonder Room (battle_lib.c's sPermanentWonderRoomTrainers), which the simulator does not model yet: fightsim.wonder_room says that list is empty, so a reading of her fight plays it without the room. It sits in Maylene's split after Barry 3, under Maylene's cap of 39, with no honour cap of its own; her six are all at 40 (Ian, 2026-10-31, dahlia-check.md).",
+         "trainers": ["TRAINER_DUMMY_007"]},
         {"key": "maylene", "label": "Maylene", "split": "Maylene", "sheet_ace": 39,
          "trainers": ["TRAINER_LEADER_MAYLENE"]},
         {"key": "tyche_hermes_1", "label": "Tyche and Hermes 1", "split": "Wake", "sheet_ace": null, "tag": true,
@@ -114,6 +117,9 @@
          "honour_cap": 42, "beaten": {"var": "VAR_PASTORIA_CITY_STATE", "at_least": 2},
          "note": "Barry in Pastoria City, before Wake's gym, with an honour cap of 42 and his ace at it (Ian, 2026-10-31: \"it will be an intermediate split of 42\").",
          "trainers": ["TRAINER_RIVAL_PASTORIA_CITY_PIPLUP", "TRAINER_RIVAL_PASTORIA_CITY_TURTWIG", "TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR"]},
+        {"key": "darach", "label": "Darach and Caitlin", "split": "Wake", "sheet_ace": null, "tag": true,
+         "note": "Darach, the Castle Valet, with Caitlin beside him in his sprite, a Frontier Brain and an optional boss (Ian, 2026-09-27; docs/oxide/frontier-brains.md): a double battle as one trainer, at the top of the Pokemon Mansion's entrance aisle on Route 212 North, which a trigger holds until he is beaten; the win gives the Manaphy egg (scripted.json). It is marked tag, though it is one trainer, so that every reader takes it as a double: goal 3 drops it as it drops the tag battles, until the doubles planner reads it, and plscore and fightsim prepare it for doubles (pdoubles.prepare_story), as they did for his trainer alone before this entry; his record's own double-battle flag drops it from goal 3 as well. It sits in Wake's split after Barry 4, under Wake's cap of 44, with no honour cap of its own; his six are all at 44, at about Wake's difficulty (Ian, 2026-10-31, darach-check.md).",
+         "trainers": ["TRAINER_DUMMY_008"]},
         {"key": "wake", "label": "Wake", "split": "Wake", "sheet_ace": 44,
          "trainers": ["TRAINER_LEADER_WAKE"]},
         {"key": "cyrus_1", "label": "Cyrus 1", "split": "Byron", "sheet_ace": 45,
@@ -127,6 +133,9 @@
          "note": "Two Galactic officers in Pal Park's lobby, a tag battle beside Lucas or Dawn once Oak's first-entry scene is over, which makes Pal Park required in Byron's split; Barry 5 on Canalave's bridge waits for its win (Ian, 2026-10-31: \"a partner-double fight with lucas/dawn against a galactic double similar to veilstone and jubilife\"). It sits in Barry 5's stretch, under his honour cap of 50, with no cap of its own. The officers are Phobos and Deimos, the Jubilife pair grown on (Ian, 2026-10-31), in free slots 9 and 50: five each, both aces at 48, two under the cap, Intimidate and stat drops for Phobos, Sticky Web and Speed drops for Deimos (docs/oxide/phobos-deimos.md); the partner's six are the Veilstone partner's raised to 47 to 49, its Scyther evolved into Scizor with a Muscle Band (Ian, 2026-10-31).",
          "trainers": ["TRAINER_DUMMY_009", "TRAINER_DUMMY_050"],
          "partners": ["TRAINER_DUMMY_051", "TRAINER_DUMMY_052", "TRAINER_DUMMY_054", "TRAINER_DUMMY_062", "TRAINER_DUMMY_063", "TRAINER_DUMMY_064"]},
+        {"key": "argenta", "label": "Argenta", "split": "Byron", "sheet_ace": null,
+         "note": "Argenta, the Hall Matron, a Frontier Brain and an optional boss (Ian, 2026-11-01; docs/oxide/argenta-place.md): she stands at the west end of Pal Park lobby's north gallery once the partner double is won (VAR_PAL_PARK_LOBBY_STATE 2), asks before the fight, an ordinary single battle, and her win gives a Gold Bottle Cap and three Bottle Caps once. It sits in Barry 5's stretch after the Pal Park double, under his honour cap of 50, with no cap of its own; her six are all at 50 (Ian, 2026-10-31, byron-brains-check.md).",
+         "trainers": ["TRAINER_DUMMY_086"]},
         {"key": "barry_5", "label": "Barry 5", "split": "Byron", "sheet_ace": 49,
          "honour_cap": 50, "beaten": {"var": "VAR_CANALAVE_CITY_STATE", "at_least": 1},
          "note": "Barry on Canalave's bridge closes the second stretch of Byron's split, the south and Pal Park, with an honour cap of 50, his ace at it (Ian, 2026-10-31). He fights only once the Pal Park double is won.",
