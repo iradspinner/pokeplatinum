@@ -14,11 +14,11 @@ the fights are scripted once the teams are final.
 | Dahlia, Arcade Star | Maylene (39) | Inside the Veilstone Game Corner's entrance | Access to the Game Corner's prizes, whose list the balance track reviews | Opens in a permanent Wonder Room |
 | Darach, Castle Valet | Wake (44) | The Pokemon Mansion on Route 212 | Access to the Mansion | A double battle as one trainer, Darach's own class (his sprite already shows Caitlin beside him) |
 | Thorton, Factory Head | Byron (53) | The heart of Fuego Ironworks, in the building now named "Ironworks Hall" (the name Ian approved) | The player picks one of the two starter lines they did not choose, fully evolved at level 40, a capture of its own | Opens in a permanent Trick Room (Saturn 2's mechanism) |
-| Argenta, Hall Matron (tentative spot) | Byron (53) | Pal Park, second floor | Items, which the balance track's item pass picks | Ordinary |
+| Argenta, Hall Matron | Byron (53), in Barry 5's stretch | Pal Park lobby's north gallery, once the Pal Park partner double is won | A bundle of items, proposed and waiting on Ian (`argenta-place.md`) | Ordinary |
 | Palmer, Tower Tycoon (undecided, Ian 2026-10-31) | Galactic (65) or League (78) | The Battle Zone, or a Route 224 opened as the last optional boss before the Champion | Large rewards | Ordinary |
 
-Dahlia's, Darach's and Thorton's placements are settled; Argenta's and
-Palmer's are tentative.
+Dahlia's, Darach's, Thorton's and Argenta's placements are settled;
+Palmer's is tentative.
 
 ## Ian's draft teams (2026-09-27)
 
@@ -30,7 +30,7 @@ Levels are placeholders until Ian sets them.
 | Thorton | Toxapex, Bronzong, Dusclops, Ferrothorn, Turtonator, Guzzlord, all at 47 (Ian's six and his answers, 2026-10-31, `byron-brains-check.md`; free slot `dummy_077`) |
 | Dahlia | Cloyster, Slowbro, Rapidash, Togekiss, Leafeon, Lopunny, all at 40 (Ian's six, 2026-10-31, `dahlia-check.md`; free slot `dummy_007`) |
 | Darach (double) | Galarian Rapidash, Corviknight, Sinistcha, Armarouge, Galarian Articuno, Entei, all at 44 (Ian's six, 2026-10-31, `darach-check.md`; free slot `dummy_008`), at about Wake's difficulty |
-| Argenta | Skarmory, Annihilape, Dubwool, Whiscash, Meowscarada, Pheromosa |
+| Argenta | Skarmory, Annihilape, Dubwool, Diancie, Meowscarada, Pheromosa, all at 50 (Ian's six and his answers, 2026-10-31, `byron-brains-check.md`; free slot `dummy_086`) |
 
 Galarian Articuno replaces Sigilyph, which is not in the game (Ian,
 2026-09-27). Every species listed is in the game.
@@ -62,6 +62,14 @@ Galarian Articuno replaces Sigilyph, which is not in the game (Ian,
   leaves it with him until the player comes back. The OxiDex counts it as
   a real source after his fight, and `fights.json` lists his fight in
   Barry 5's stretch. Needs: Ian's in-game check.
+- Argenta: placed (`overseer-argenta-place`, 2026-11-01;
+  `argenta-place.md` has the summary and the reward question). She stands
+  at the west end of Pal Park lobby's north gallery once the partner
+  double is won, appearing as it ends, and asks before her fight, an
+  ordinary single battle. Her six are Ian's, all at 50. Her win gives a
+  bundle of items once, under `FLAG_UNUSED_0x054D`; the script carries the
+  proposed bundle, a Gold Bottle Cap and four Mints, until Ian chooses.
+  Needs: Ian's choice of bundle, and his in-game check.
 - All five: trainer records in the free trainer slots, the gate scripts, and
   the standing rules that bind any trainer team: Choice items nearly gone,
   weather free to trainers, and no Brain's reward handing out a weather

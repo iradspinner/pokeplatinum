@@ -420,6 +420,19 @@ script, vanilla, base ROM or Oxide, read or wrote the flag (the base ROM's
 scripts were scanned by disassembly, and byte for byte where they do not
 decode). It keeps its pret name, so the reward placer counts it as taken.
 
+## Argenta's bundle takes a spare flag (2026-11-01)
+
+Nothing moves. `FLAG_UNUSED_0x054D` is set once Argenta, in Pal Park's
+lobby, has given her item bundle; until then a player who has beaten her
+(her free trainer slot's defeated flag, `TRAINER_DUMMY_086`, already in the
+save) is offered it again. No script, vanilla, base ROM or Oxide, read or
+wrote the flag (the base ROM's scripts were scanned by disassembly, and
+byte for byte where they do not decode). It keeps its pret name, so the
+reward placer counts it as taken. She is hidden until the lobby's partner
+double is won by `FLAG_MAP_LOCAL_0x01`, a map-local flag the game clears on
+every map change, which the lobby's load sets while the double is still to
+come; it takes no flag of its own.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:
