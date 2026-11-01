@@ -41,7 +41,10 @@ from . import required as R
 # them by the lake's west edge, boulders or not. Unchanged again the same
 # day when Ian's recollection that the water there cannot be reached was
 # checked against the game's code, which allows it (check_lake_verity_surf).
-TOTALS = {"required": 68, "avoidable": 106, "never reached": 12}
+# 70 once Ian ruled the same day that the pair count as mandatory on his
+# honour rule, though Surf can pass them (required.HONOUR_REQUIRED): Candice's
+# split gains the two, Officers Somnu and Moira, one double and so one fight.
+TOTALS = {"required": 70, "avoidable": 104, "never reached": 12}
 
 
 def check_crossings_resolve(results):
