@@ -1,6 +1,6 @@
 {
-    "name": "Grunt",
-    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
+    "name": "Officer Laverna",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
@@ -10,54 +10,76 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PURUGLY",
+            "species": "SPECIES_SABLEYE",
             "form": 0,
-            "level": 46,
-            "item": null,
+            "level": 48,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_FAKE_OUT",
-                "MOVE_SLASH",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_SHADOW_CLAW"
+                "MOVE_KNOCK_OFF",
+                "MOVE_WILL_O_WISP",
+                "MOVE_RECOVER"
             ],
-            "iv_scale": 230,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 3
         },
         {
-            "species": "SPECIES_SKUNTANK",
+            "species": "SPECIES_CRAWDAUNT",
             "form": 0,
-            "level": 46,
-            "item": null,
+            "level": 48,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_TOXIC",
-                "MOVE_DARK_PULSE",
-                "MOVE_FLAMETHROWER",
-                "MOVE_SLUDGE_BOMB"
+                "MOVE_CRABHAMMER",
+                "MOVE_KNOCK_OFF",
+                "MOVE_CEASELESS_EDGE",
+                "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 228,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
-            "species": "SPECIES_TOXICROAK",
+            "species": "SPECIES_INCINEROAR",
             "form": 0,
-            "level": 46,
-            "item": null,
+            "level": 49,
+            "item": "ITEM_SHUCA_BERRY",
             "moves": [
-                "MOVE_POISON_JAB",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_FOCUS_PUNCH",
-                "MOVE_X_SCISSOR"
+                "MOVE_FAKE_OUT",
+                "MOVE_DARKEST_LARIAT",
+                "MOVE_FLARE_BLITZ",
+                "MOVE_PARTING_SHOT"
             ],
-            "iv_scale": 212,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_KECLEON",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_IRON_BALL",
+            "moves": [
+                "MOVE_TRICK",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_DRAIN_PUNCH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [
         {
             "type": "TRMSG_DEFEAT",
             "en_US": [
-                "They’re too tough to handle!\n",
-                "What a combination!\n"
+                "Robbed blind! That’s my\n",
+                "job, not yours!\n"
             ]
         }
     ]

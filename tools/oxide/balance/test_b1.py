@@ -130,8 +130,9 @@ UNDER_CAP = ("saturn_1", "mars_2", "somnu_moira", "saturn_2", "mars_jupiter", "l
 # split in three stretches), before their teams were redesigned; until then
 # each may keep the ace it had at Byron's cap of 53, and the check names them.
 # Drop an entry once its team is at its cap. Cyrus 1's team came to 47 on
-# 2026-10-31 (cyrus-argo-check.md), so only Barry 5 waits.
-AWAITING_REDESIGN = {"barry_5": 53}
+# 2026-10-31 (cyrus-argo-check.md), and Barry 5's to 50 the same day
+# (barry5-riley.md), so none waits.
+AWAITING_REDESIGN = {}
 FIXED_ACES = {"aaron": 72, "bertha": 73, "flint": 74, "lucian": 75, "cynthia": 78,
               "tyche_hermes_1": 41,
               # Officers Phobos and Deimos (Ian, 2026-10-31): no caps of their

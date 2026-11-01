@@ -118,7 +118,8 @@
         "by_tutor": [],
         "egg_moves": [
             "MOVE_GLARE",
-            "MOVE_SCALE_SHOT"
+            "MOVE_SCALE_SHOT",
+            "MOVE_LEAF_STORM"
         ]
     },
     "evolutions": [

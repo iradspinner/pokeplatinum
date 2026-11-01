@@ -14,7 +14,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 0 | 2 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 601 | 506 | 72 | 23 | 0 | 15 |
+| Trainer battles | 601 | 506 | 71 | 24 | 0 | 15 |
 | Items given | 212 | 102 | 30 | 80 | 0 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
@@ -3891,9 +3891,9 @@ Flags:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_TURTWIG (Barry, level 53, 6 Pokemon), by number. Vanilla. `scripts_canalave_city.s:662`
-- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR (Barry, level 53, 6 Pokemon), by number. Vanilla. `scripts_canalave_city.s:665`
-- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_PIPLUP (Barry, level 53, 6 Pokemon), by number. Vanilla. `scripts_canalave_city.s:668`
+- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_TURTWIG (Barry, level 50, 6 Pokemon), by number. Vanilla. `scripts_canalave_city.s:662`
+- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR (Barry, level 50, 6 Pokemon), by number. Vanilla. `scripts_canalave_city.s:665`
+- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_PIPLUP (Barry, level 50, 6 Pokemon), by number. Vanilla. `scripts_canalave_city.s:668`
 - StartTrainerBattle: against TRAINER_DUMMY_213 (Experiencia, level 60, 2 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_canalave_city.s:695`
 
 Item balls:
@@ -4070,7 +4070,7 @@ Scripts nothing reaches: script 1 `CanalaveCityWestHouse_Dummy1` (line 18).
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_RILEY_IRON_ISLAND (Riley, level 52, 3 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_iron_island.s:62`
+- StartTrainerBattle: against TRAINER_DUMMY_087 (Riley, level 51, 6 Pokemon), by name. Added by Oxide (223376ee9). `scripts_iron_island.s:62`
 
 Items given:
 
@@ -4219,7 +4219,7 @@ Trainer battles:
 - TRAINER_WORKER_QUENTIN (Quentin, level 50, 3 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:225`
 - TRAINER_ACE_TRAINER_JONAH (Jonah, level 51, 4 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:242`
 - TRAINER_ACE_TRAINER_BRENDA (Brenda, level 50, 4 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:259`
-- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_IRON_ISLAND_1 (Grunt, level 46, 3 Pokemon), by name; and TRAINER_GALACTIC_GRUNT_IRON_ISLAND_2 (Grunt, level 46, 3 Pokemon), by name. Vanilla. `scripts_iron_island_b2f_left_room.s:172`
+- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_IRON_ISLAND_1 (Officer Boreas, level 50, 4 Pokemon), by name; and TRAINER_GALACTIC_GRUNT_IRON_ISLAND_2 (Officer Laverna, level 51, 4 Pokemon), by name. Vanilla. `scripts_iron_island_b2f_left_room.s:172`
 
 Item balls:
 
