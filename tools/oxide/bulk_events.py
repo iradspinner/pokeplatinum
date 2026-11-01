@@ -255,6 +255,11 @@ DIVERGED["events_pal_park_lobby"] = (
     "Lucas or Dawn and two Galactic officers added for the partner double "
     "(Ian, 2026-10-31); then the officers are Phobos and Deimos, both in the male "
     "grunt's sprite as at Jubilife (Ian, 2026-10-31)")
+# Argenta, the Hall Matron, at the west end of the north gallery, hidden by a
+# map-local flag until the partner double is won (Ian, 2026-11-01;
+# bulk_scripts.py says why).
+DIVERGED["events_pal_park_lobby"] += (
+    "; then Argenta, the Hall Matron, added in the north gallery (Ian, 2026-11-01)")
 # Thorton, the Factory Head, in Ironworks Hall's heart beside the tile where
 # the moving floor brings the player in (Ian, 2026-10-31; bulk_scripts.py says
 # why).

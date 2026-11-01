@@ -713,6 +713,65 @@
         "region!\r",
         "See you, {STRVAR_1 3, 1, 0}!\r"
       ]
+    },
+    {
+      "id": "PalParkLobby_Text_ArgentaIntro",
+      "en_US": [
+        "Argenta: Why, hello, dear.\n",
+        "I’m Argenta, the Hall Matron.\r",
+        "I came to see the Pokémon that\n",
+        "visit from faraway regions.\r",
+        "But a Trainer who raises Pokémon\n",
+        "with care is a finer sight still.\r",
+        "Win against me, and I have a gift\n",
+        "for you. Shall we battle?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_ArgentaBegin",
+      "en_US": [
+        "Argenta: Wonderful! Show me how\n",
+        "your Pokémon have grown.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_ArgentaDeclined",
+      "en_US": [
+        "Argenta: Not today? Then I’ll wait\n",
+        "here. Do come back, dear."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_ArgentaWin",
+      "en_US": [
+        "Argenta: Oh, my...\n",
+        "What a lovely battle that was.\r",
+        "Please take these. They bring out\n",
+        "the best in your Pokémon.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_ArgentaKeptBundle",
+      "en_US": [
+        "Argenta: There you are, dear.\n",
+        "I kept my gift for you.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_ArgentaBagIsFull",
+      "en_US": [
+        "Oh, dear, your Bag is full.\n",
+        "I’ll keep my gift until you make room."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_ArgentaBeaten",
+      "en_US": [
+        "Argenta: Every Pokémon has its own\n",
+        "strength, dear.\r",
+        "Raise each one with care, and it\n",
+        "will carry you through any battle."
+      ]
     }
   ]
 }
