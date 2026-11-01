@@ -1,6 +1,12 @@
 # Barry 5 and Riley: drafts for Ian
 
-The last two pieces of Byron's split, drafted on branch `overseer-barry5-riley` for Ian to judge: Barry 5 on Canalave's bridge (a boss at his honour cap of 50, after the Pal Park double) and Riley's two fights on Iron Island (both mini-bosses under Byron's cap of 53, Ian, 2026-10-31). Nothing lands until Ian says yes. Every number comes from cheap checks; no scorer reading was run.
+The last two pieces of Byron's split, drafted on branch `overseer-barry5-riley` and answered by Ian on 2026-11-01: Barry 5 on Canalave's bridge (a boss at his honour cap of 50, after the Pal Park double) and Riley's two fights on Iron Island (both mini-bosses under Byron's cap of 53, Ian, 2026-10-31). His answers are below and applied on the branch, which lands through the Overseer. Every number comes from cheap checks; no scorer reading was run.
+
+## Ian's answers (2026-11-01)
+
+Riley's two fights use two slots, as built: the door battle on slot 87, the partner in his own file (decision 1). Serperior keeps Leaf Storm and now holds a Miracle Seed (decision 2). Both Barry 5 versions stay as built: "The teams look similarly hard to me, I assume it is just a box difference" (decisions 3 and 4). Riley's partner keeps four Pokemon and his Kommo-o stays (decisions 5 and 6). The grunts keep their themes and become named officers: Officer Boreas, the wind, in the male grunt's sprite, and Officer Laverna, the thieves, in the female grunt's sprite (decision 7). They carry the grunt classes with "Officer" names, as Phobos and Deimos do, the island's scene and their defeat lines name them, and their row is in `boss-shapes.md`'s officers table. As named officers they are mini-bosses, and their aces at 50 and 51, two and three under the stretch's cap of 53, stand. Riley's door fight stays out of `fights.json` (decision 8). The sections after this one are the draft's, from before these answers; where they say "the grunts", read Boreas (grunt 1) and Laverna (grunt 2).
+
+What the answers changed in the tree, beside the Miracle Seed: both officers' names, Laverna's class, their defeat lines ("Our tailwind turned on us! How did it blow your way?" and "Robbed blind! That's my job, not yours!"), the B2F scene's speaker labels (Laverna no longer calls Boreas brother), the east object's sprite, and the map's two objects named `LOCALID_BOREAS` and `LOCALID_LAVERNA`. Each is registered: name, class and messages in `trainers_diverged.json`, text bank 277 in `import_base_rom.TEXT_BANKS_SKIPPED` for `verify_narcs --text`, and the map's events and script in `bulk_events.py` and `bulk_scripts.py`. The branch has merged `origin/oxide`, and the script index is regenerated.
 
 ## Summary
 
@@ -14,11 +20,10 @@ The last two pieces of Byron's split, drafted on branch `overseer-barry5-riley` 
 
 | Step | Who | Time |
 |---|---|---|
-| Answer the decisions below | Ian | 20 minutes |
-| Apply the answers, rerun the probe, land through the Overseer | a worker and the Overseer | 45 minutes |
-| In game: Riley's door battle (slot 87's name, sprite, no defeat line), Kecleon's Trick, the tag battle | Ian with the test kit | 20 minutes |
+| Land the branch | the Overseer | 30 minutes |
+| In game: Riley's door battle (slot 87's name, sprite, no defeat line), Kecleon's Trick, the tag battle with Boreas and Laverna named and Laverna in the female sprite | Ian with the test kit | 20 minutes |
 
-## Ian's decisions
+## Ian's decisions (answered above)
 
 1. Riley's two teams: door battle in free slot 87 and partner in his own file (my pick, one script line), or one team for both fights (no script change, but the partner is then a six-member mini-boss team)?
 2. Serperior: Leaf Storm under Contrary, on Snivy's egg list, with a Miracle Seed for the Big Root, which does nothing without Giga Drain (my pick; its knockouts rose from 8 to 13 to 72 to 182 a run), or Giga Drain and the Big Root as drafted first?
@@ -45,17 +50,17 @@ By version (the file suffix names the starter Platinum had in the player's seat)
 
 | Version | Slot | Member | Level | Ability | Item | Nature | Speed | Moves |
 |---|---|---|---|---|---|---|---|---|
-| Turtwig player (`_turtwig`) | 3 | Serperior | 48 | Contrary | Big Root | Quirky | 128 | Glare, Leaf Storm, Scale Shot, Knock Off |
+| Turtwig player (`_turtwig`) | 3 | Serperior | 48 | Contrary | Miracle Seed | Quirky | 128 | Glare, Leaf Storm, Scale Shot, Knock Off |
 | | 5 | Greninja | 48 | Torrent | Expert Belt | Rash | 137 | Water Shuriken, Dark Pulse, Ice Beam, Gunk Shot |
 | | Ace | Infernape | 50 | Iron Fist | Muscle Band | Hasty | 140 | Bulk Up, Fire Punch, Thunder Punch, Drain Punch |
-| Scorbunny player (`_chimchar`) | 3 | Serperior | 48 | Contrary | Big Root | Quirky | 128 | Glare, Leaf Storm, Scale Shot, Knock Off |
+| Scorbunny player (`_chimchar`) | 3 | Serperior | 48 | Contrary | Miracle Seed | Quirky | 128 | Glare, Leaf Storm, Scale Shot, Knock Off |
 | | 5 | Turtonator | 48 | Shell Armor | Rocky Helmet | Bashful | 54 | Shell Trap, Flamethrower, Body Press, Iron Defense |
 | | Ace | Empoleon | 50 | Torrent | Sitrus Berry | Lonely | 80 | Swords Dance, Waterfall, Earthquake, Drill Peck |
 | Piplup player (`_piplup`) | 3 | Greninja | 48 | Torrent | Expert Belt | Rash | 137 | Water Shuriken, Dark Pulse, Ice Beam, Gunk Shot |
 | | 5 | Turtonator | 48 | Shell Armor | Rocky Helmet | Bashful | 54 | Shell Trap, Flamethrower, Body Press, Iron Defense |
 | | Ace | Torterra | 50 | Thick Fat | Coba Berry | Hardy | 76 | Rock Polish, Wood Hammer, Headlong Rush, Stone Edge |
 
-Each version has four setup members (Primeape, Snorlax, one partner and the ace), as Barry 3 did, with Serperior's Leaf Storm and Scale Shot as self-boosts under Contrary. The Big Root was chosen for the first draft's Giga Drain and does nothing beside Leaf Storm; the checks below ran with it, so a Miracle Seed (decision 2) would make Serperior a little stronger than read. Turtonator's Rocky Helmet fits Shell Trap: both punish a physical hit. Coba Berry is for the box's flyers (Corviknight in all 20 top sixes on box 3). Every member is past its evolution level.
+Each version has four setup members (Primeape, Snorlax, one partner and the ace), as Barry 3 did, with Serperior's Leaf Storm and Scale Shot as self-boosts under Contrary. The Big Root was chosen for the first draft's Giga Drain and does nothing beside Leaf Storm; the checks below ran with it, so Serperior's Miracle Seed, Ian's answer, makes it a little stronger than read. Turtonator's Rocky Helmet fits Shell Trap: both punish a physical hit. Coba Berry is for the box's flyers (Corviknight in all 20 top sixes on box 3). Every member is past its evolution level.
 
 ### The cheap checks
 
@@ -155,7 +160,7 @@ Riley's partner also fights beside the player against B2F's four pairs (three an
 | `rival_canalave_city_turtwig`, `_chimchar`, `_piplup` | Barry 5's six as above |
 | `dummy_087` | free slot 87 becomes Riley's door battle: name Riley, class `TRAINER_CLASS_TRAINER_RILEY`, no messages (as his own file had), the six above |
 | `riley_iron_island` | Riley's partner four |
-| `galactic_grunt_iron_island_1`, `_2` | the wind and the thieves |
+| `galactic_grunt_iron_island_1`, `_2` | the wind and the thieves; since Ian's answer, Officers Boreas and Laverna |
 | `scripts_iron_island.s` | the door battle fights `TRAINER_DUMMY_087` in place of trainer 609 |
 | `bulk_scripts.py` | the second reason for `scripts_iron_island`'s divergence |
 | `trainers_diverged.json` | the seven files, with slot 87's name, class and messages |
