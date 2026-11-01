@@ -20,6 +20,7 @@
     ScriptEntry PalParkLobby_OnFrame_ExitPalPark
     ScriptEntry PalParkLobby_GBASlotGiftLady
     ScriptEntry PalParkLobby_OnFrame_GalacticDouble
+    ScriptEntry PalParkLobby_Argenta
     ScriptEntryEnd
 
 PalParkLobby_OnTransition:
@@ -34,8 +35,18 @@ PalParkLobby_OnTransition:
     GetPlayerGender VAR_MAP_LOCAL_0x01
     CallIfEq VAR_MAP_LOCAL_0x01, GENDER_MALE, PalParkLobby_SetCounterpartGraphicsDawn
     CallIfEq VAR_MAP_LOCAL_0x01, GENDER_FEMALE, PalParkLobby_SetCounterpartGraphicsLucas
+    @ Argenta, the Hall Matron, stands in the north gallery only once the
+    @ partner double is won (the lobby's state 2). Her hide flag is a map-local
+    @ one, which the game clears on every map change, so it costs the save
+    @ nothing: it is set here, before the objects load, while the double is
+    @ still to come.
+    CallIfLt VAR_PAL_PARK_LOBBY_STATE, 2, PalParkLobby_HideArgenta
     GoToIfNe VAR_PAL_PARK_STATE, 0, PalParkLobby_SetWorkerPosAndDir
     End
+
+PalParkLobby_HideArgenta:
+    SetFlag FLAG_MAP_LOCAL_0x01
+    Return
 
 PalParkLobby_SetCounterpartGraphicsDawn:
     SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_F
@@ -532,6 +543,10 @@ PalParkLobby_GalacticDouble_Start:
     RemoveObject LOCALID_COUNTERPART
     WaitSE SEQ_SE_DP_KAIDAN2_sseq
     SetVar VAR_PAL_PARK_LOBBY_STATE, 2
+    @ The double is won, so Argenta takes her place in the north gallery
+    @ straight away, without waiting for the player to leave and come back.
+    ClearFlag FLAG_MAP_LOCAL_0x01
+    AddObject LOCALID_HALL_MATRON_ARGENTA
     ReleaseAll
     End
 
@@ -645,6 +660,90 @@ PalParkLobby_Movement_CounterpartLeave:
     WalkNormalEast
     WalkNormalSouth
     EndMovement
+
+@ Platinum Oxide (Ian, 2026-11-01): Argenta, the Hall Matron, an optional
+@ Frontier Brain in Barry 5's stretch of Byron's split. She stands at the
+@ west end of the north gallery once the partner double is won, and fights
+@ only when spoken to. She asks first, since a loss ends an Oxide run, as the
+@ other Brains do. Her win gives a bundle of items once, under
+@ FLAG_UNUSED_0x054D: until it is set, a player who has beaten her is offered
+@ the bundle again whenever they speak to her. The bundle is the item pass's
+@ proposal, which waits on Ian (docs/oxide/argenta-place.md).
+PalParkLobby_Argenta:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_DUMMY_086, PalParkLobby_ArgentaBeaten
+    Message PalParkLobby_Text_ArgentaIntro
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, PalParkLobby_ArgentaDeclined
+    Message PalParkLobby_Text_ArgentaBegin
+    CloseMessage
+    StartTrainerBattle TRAINER_DUMMY_086
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PalParkLobby_ArgentaBlackOut
+    SetTrainerFlag TRAINER_DUMMY_086
+    Message PalParkLobby_Text_ArgentaWin
+    GoTo PalParkLobby_ArgentaGiveBundle
+    End
+
+PalParkLobby_ArgentaDeclined:
+    Message PalParkLobby_Text_ArgentaDeclined
+    GoTo PalParkLobby_ArgentaEnd
+    End
+
+PalParkLobby_ArgentaBeaten:
+    GoToIfSet FLAG_UNUSED_0x054D, PalParkLobby_ArgentaBeatenLine
+    Message PalParkLobby_Text_ArgentaKeptBundle
+    GoTo PalParkLobby_ArgentaGiveBundle
+    End
+
+PalParkLobby_ArgentaBeatenLine:
+    Message PalParkLobby_Text_ArgentaBeaten
+    GoTo PalParkLobby_ArgentaEnd
+    End
+
+@ Every item is checked for room before any is given, so the bundle arrives
+@ whole or not at all. Each pocket holds one of every item the game has, so
+@ only a stack of 999 could refuse one; the check is kept all the same.
+PalParkLobby_ArgentaGiveBundle:
+    GoToIfCannotFitItem ITEM_GOLD_BOTTLE_CAP, 1, VAR_RESULT, PalParkLobby_ArgentaBagIsFull
+    GoToIfCannotFitItem ITEM_ADAMANT_MINT, 1, VAR_RESULT, PalParkLobby_ArgentaBagIsFull
+    GoToIfCannotFitItem ITEM_MODEST_MINT, 1, VAR_RESULT, PalParkLobby_ArgentaBagIsFull
+    GoToIfCannotFitItem ITEM_JOLLY_MINT, 1, VAR_RESULT, PalParkLobby_ArgentaBagIsFull
+    GoToIfCannotFitItem ITEM_TIMID_MINT, 1, VAR_RESULT, PalParkLobby_ArgentaBagIsFull
+    SetVar VAR_0x8004, ITEM_GOLD_BOTTLE_CAP
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_ADAMANT_MINT
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_MODEST_MINT
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_JOLLY_MINT
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_TIMID_MINT
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x054D
+    Message PalParkLobby_Text_ArgentaBeaten
+    GoTo PalParkLobby_ArgentaEnd
+    End
+
+PalParkLobby_ArgentaBagIsFull:
+    Message PalParkLobby_Text_ArgentaBagIsFull
+PalParkLobby_ArgentaEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PalParkLobby_ArgentaBlackOut:
+    BlackOutFromBattle
+    ReleaseAll
+    End
 
 PalParkLobby_PoketchAppLady:
     PlaySE SE_CONFIRM_sseq_3

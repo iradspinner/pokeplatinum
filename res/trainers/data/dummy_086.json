@@ -109,16 +109,11 @@
     ],
     "messages": [
         {
-            "type": "TRMSG_PRE_BATTLE",
-            "garbage": 26
-        },
-        {
             "type": "TRMSG_DEFEAT",
-            "garbage": 17
-        },
-        {
-            "type": "TRMSG_POST_BATTLE",
-            "garbage": 54
+            "en_US": [
+                "Oh, dear... The trouble with fun is that\n",
+                "it is over so quickly.\n"
+            ]
         }
     ]
 }
