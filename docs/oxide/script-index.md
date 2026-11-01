@@ -14,7 +14,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 0 | 2 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 601 | 506 | 71 | 24 | 0 | 15 |
+| Trainer battles | 602 | 506 | 71 | 25 | 0 | 15 |
 | Items given | 212 | 102 | 30 | 80 | 0 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
@@ -35,7 +35,7 @@ What the tool could not read, counted rather than guessed:
 | numbers no table holds | 0 | 0 |
 | variables set elsewhere | 29 | 8 |
 
-Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src/` starts them): 238 numbered scripts and 66 stretches of code, listed in each section. The Villa's furniture and the Distortion World are started by the engine by number and are marked so; a few other map scripts are too (the Union Room's script 5), which the tool does not see. The shared files indexed by trainer, item or hidden item are not checked this way.
+Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src/` starts them): 239 numbered scripts and 66 stretches of code, listed in each section. The Villa's furniture and the Distortion World are started by the engine by number and are marked so; a few other map scripts are too (the Union Room's script 5), which the tool does not see. The shared files indexed by trainer, item or hidden item are not checked this way.
 
 ### Maps by split
 
@@ -45,7 +45,8 @@ Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src
 - Maylene's split: [Route 209](#route-209), [Route 209 Gate To Hearthome City](#route-209-gate-to-hearthome-city), [Route 209 Lost Tower 1F](#route-209-lost-tower-1f), [Route 209 Lost Tower 2F](#route-209-lost-tower-2f), [Pokemon Day Care](#pokemon-day-care), [Route 209 Lost Tower 3F](#route-209-lost-tower-3f), [Route 209 Lost Tower 4F](#route-209-lost-tower-4f), [Route 209 Lost Tower 5F](#route-209-lost-tower-5f), [Solaceon Town](#solaceon-town), [Solaceon Town East House](#solaceon-town-east-house), [Solaceon Town Mart](#solaceon-town-mart), [Solaceon Town Pokecenter 1F](#solaceon-town-pokecenter-1f), [Solaceon Town Pokecenter 2F](#solaceon-town-pokecenter-2f), [Solaceon Town Pokecenter B1F](#solaceon-town-pokecenter-b1f), [Solaceon Town Pokemon News Press](#solaceon-town-pokemon-news-press), [Solaceon Ruins Room 1](#solaceon-ruins-room-1), [Solaceon Ruins Room 1 Northwest Dead End](#solaceon-ruins-room-1-northwest-dead-end), [Solaceon Ruins Room 2](#solaceon-ruins-room-2), [Solaceon Ruins Room 3](#solaceon-ruins-room-3), [Solaceon Ruins Room 3 Southwest Dead End](#solaceon-ruins-room-3-southwest-dead-end), [Solaceon Ruins Room 5 Southeast Deadend](#solaceon-ruins-room-5-southeast-deadend), [Veilstone City](#veilstone-city), [Veilstone City Galactic Warehouse](#veilstone-city-galactic-warehouse), [Veilstone City Gym](#veilstone-city-gym), [Veilstone City Northeast House](#veilstone-city-northeast-house), [Veilstone City Pokecenter 1F](#veilstone-city-pokecenter-1f), [Veilstone City Pokecenter 2F](#veilstone-city-pokecenter-2f), [Veilstone City Pokecenter B1F](#veilstone-city-pokecenter-b1f), [Veilstone City Prize Exchange](#veilstone-city-prize-exchange), [Veilstone City Southeast House](#veilstone-city-southeast-house), [Veilstone City Southwest House](#veilstone-city-southwest-house), [Solaceon Ruins Room 7](#solaceon-ruins-room-7), [Route 210 Grandma Wilma House](#route-210-grandma-wilma-house), [Route 210 South](#route-210-south), [Route 215](#route-215), [Route 215 Gate To Veilstone City](#route-215-gate-to-veilstone-city).
 - Wake's split: [Route 214](#route-214), [Route 214 Gate To Veilstone City](#route-214-gate-to-veilstone-city), [Maniac Tunnel](#maniac-tunnel), [Ruin Maniac Cave Short](#ruin-maniac-cave-short), [Ruin Maniac Cave Long](#ruin-maniac-cave-long), [Valor Lakefront](#valor-lakefront), [Route 213](#route-213), [Pastoria City](#pastoria-city), [Pastoria City East House](#pastoria-city-east-house), [Pastoria City Gym](#pastoria-city-gym), [Pastoria City Mart](#pastoria-city-mart), [Pastoria City Middle House](#pastoria-city-middle-house), [Pastoria City Northeast House](#pastoria-city-northeast-house), [Pastoria City Observatory Gate 1F](#pastoria-city-observatory-gate-1f), [Pastoria City Pokecenter 1F](#pastoria-city-pokecenter-1f), [Pastoria City Pokecenter 2F](#pastoria-city-pokecenter-2f), [Pastoria City Pokecenter B1F](#pastoria-city-pokecenter-b1f), [Pastoria City Southwest House](#pastoria-city-southwest-house), [Great Marsh 1](#great-marsh-1), [Great Marsh 2](#great-marsh-2), [Great Marsh 3](#great-marsh-3), [Great Marsh 4](#great-marsh-4), [Great Marsh 5](#great-marsh-5), [Great Marsh 6](#great-marsh-6), [Route 212 Gate To Hearthome City](#route-212-gate-to-hearthome-city), [Route 212 House](#route-212-house), [Route 212 North](#route-212-north), [Pokemon Mansion](#pokemon-mansion), [Pokemon Mansion Maids Room](#pokemon-mansion-maids-room), [Pokemon Mansion Office](#pokemon-mansion-office), [Route 212 South](#route-212-south).
 - Byron's split: [Route 210 North](#route-210-north), [Route 211 East](#route-211-east), [Celestic Town](#celestic-town), [Celestic Town Cave](#celestic-town-cave), [Celestic Town North House](#celestic-town-north-house), [Celestic Town Northwest House](#celestic-town-northwest-house), [Celestic Town Pokecenter 1F](#celestic-town-pokecenter-1f), [Celestic Town Pokecenter 2F](#celestic-town-pokecenter-2f), [Celestic Town Pokecenter B1F](#celestic-town-pokecenter-b1f), [Fuego Ironworks Outside](#fuego-ironworks-outside), [Fuego Ironworks Building](#fuego-ironworks-building), [Route 218](#route-218), [Route 218 Gate To Canalave City](#route-218-gate-to-canalave-city), [Route 218 Gate To Jubilife City](#route-218-gate-to-jubilife-city), [Canalave City](#canalave-city), [Canalave City East House](#canalave-city-east-house), [Canalave City Gym](#canalave-city-gym), [Canalave City Harbor Inn](#canalave-city-harbor-inn), [Canalave City Mart](#canalave-city-mart), [Canalave City Pokecenter 1F](#canalave-city-pokecenter-1f), [Canalave City Pokecenter 2F](#canalave-city-pokecenter-2f), [Canalave City Pokecenter B1F](#canalave-city-pokecenter-b1f), [Canalave City Sailor Eldritch House](#canalave-city-sailor-eldritch-house), [Canalave City Southeast House](#canalave-city-southeast-house), [Canalave City West House](#canalave-city-west-house), [Iron Island](#iron-island), [Iron Island House](#iron-island-house), [Iron Island Iron Ruins](#iron-island-iron-ruins), [Iron Island 1F](#iron-island-1f), [Iron Island B1F Left Room](#iron-island-b1f-left-room), [Iron Island B1F Right Room](#iron-island-b1f-right-room), [Iron Island B2F Right Room](#iron-island-b2f-right-room), [Iron Island B2F Left Room](#iron-island-b2f-left-room), [Iron Island B3F](#iron-island-b3f), [Route 220](#route-220), [Route 221](#route-221), [Route 221 House](#route-221-house).
-- Candice's split: [Mt Coronet B1F](#mt-coronet-b1f), [Mt Coronet 1F North Room 2](#mt-coronet-1f-north-room-2), [Route 216](#route-216), [Route 217](#route-217), [Route 217 Northeast House](#route-217-northeast-house), [Route 217 West House](#route-217-west-house), [Acuity Lakefront](#acuity-lakefront), [Lake Acuity](#lake-acuity), [Lake Acuity Low Water](#lake-acuity-low-water), [Snowpoint City](#snowpoint-city), [Snowpoint City East House](#snowpoint-city-east-house), [Snowpoint City Gym](#snowpoint-city-gym), [Snowpoint City Mart](#snowpoint-city-mart), [Snowpoint City Pokecenter 1F](#snowpoint-city-pokecenter-1f), [Snowpoint City Pokecenter 2F](#snowpoint-city-pokecenter-2f), [Snowpoint City Pokecenter B1F](#snowpoint-city-pokecenter-b1f), [Snowpoint City West House](#snowpoint-city-west-house).
+- Candice's split: [Mt Coronet B1F](#mt-coronet-b1f), [Mt Coronet 1F North Room 2](#mt-coronet-1f-north-room-2), [Route 216](#route-216), [Route 217](#route-217), [Route 217 Northeast House](#route-217-northeast-house), [Route 217 West House](#route-217-west-house), [Acuity Lakefront](#acuity-lakefront), [Snowpoint City](#snowpoint-city), [Snowpoint City East House](#snowpoint-city-east-house), [Snowpoint City Gym](#snowpoint-city-gym), [Snowpoint City Mart](#snowpoint-city-mart), [Snowpoint City Pokecenter 1F](#snowpoint-city-pokecenter-1f), [Snowpoint City Pokecenter 2F](#snowpoint-city-pokecenter-2f), [Snowpoint City Pokecenter B1F](#snowpoint-city-pokecenter-b1f), [Snowpoint City West House](#snowpoint-city-west-house).
+- HQ's split: [Lake Acuity](#lake-acuity), [Lake Acuity Low Water](#lake-acuity-low-water).
 - Galactic's split: [Route 225](#route-225), [Route 225 House](#route-225-house), [Route 226](#route-226), [Route 226 House](#route-226-house), [Route 227](#route-227), [Stark Mountain Outside](#stark-mountain-outside), [Stark Mountain Room 3](#stark-mountain-room-3), [Stark Mountain Room 1](#stark-mountain-room-1), [Stark Mountain Room 2](#stark-mountain-room-2), [Route 228](#route-228), [Route 228 North House](#route-228-north-house), [Route 228 Rock Peak Ruins](#route-228-rock-peak-ruins), [Route 229](#route-229), [Distortion World 1F](#distortion-world-1f), [Distortion World B1F](#distortion-world-b1f), [Distortion World B2F](#distortion-world-b2f), [Distortion World B3F](#distortion-world-b3f), [Distortion World B4F](#distortion-world-b4f), [Distortion World B5F](#distortion-world-b5f), [Distortion World B6F](#distortion-world-b6f), [Distortion World B7F](#distortion-world-b7f), [Distortion World Giratina Room](#distortion-world-giratina-room), [Distortion World Turnback Cave Room](#distortion-world-turnback-cave-room), [Resort Area](#resort-area), [Resort Area Pokecenter 1F](#resort-area-pokecenter-1f), [Resort Area Pokecenter 2F](#resort-area-pokecenter-2f), [Resort Area Pokecenter B1F](#resort-area-pokecenter-b1f), [Resort Area Ribbon Syndicate 1F](#resort-area-ribbon-syndicate-1f), [Resort Area Ribbon Syndicate 2F](#resort-area-ribbon-syndicate-2f), [Resort Area Ribbon Syndicate Elevator](#resort-area-ribbon-syndicate-elevator), [Unknown 578](#unknown-578), [Unused Resort Area Mart](#unused-resort-area-mart), [Route 230](#route-230), [Mt Coronet 1F Tunnel Room](#mt-coronet-1f-tunnel-room), [Mt Coronet 2F](#mt-coronet-2f), [Mt Coronet 3F](#mt-coronet-3f), [Mt Coronet Outside South](#mt-coronet-outside-south), [Mt Coronet 4F Rooms 1 And 2](#mt-coronet-4f-rooms-1-and-2), [Mt Coronet 4F Room 3](#mt-coronet-4f-room-3), [Mt Coronet Outside North](#mt-coronet-outside-north), [Mt Coronet 5F](#mt-coronet-5f), [Mt Coronet 6F](#mt-coronet-6f).
 - Volkner's split: [Lake Valor](#lake-valor), [Lake Valor Drained](#lake-valor-drained), [Acuity Cavern](#acuity-cavern), [Valor Cavern](#valor-cavern), [Route 222](#route-222), [Route 222 East House](#route-222-east-house), [Route 222 West House](#route-222-west-house), [Sunyshore City](#sunyshore-city), [Sunyshore City East House](#sunyshore-city-east-house), [Sunyshore City Gym Room 1](#sunyshore-city-gym-room-1), [Sunyshore City Gym Room 2](#sunyshore-city-gym-room-2), [Sunyshore City Gym Room 3](#sunyshore-city-gym-room-3), [Sunyshore City Mart](#sunyshore-city-mart), [Sunyshore City Northeast House](#sunyshore-city-northeast-house), [Sunyshore City Pokecenter 1F](#sunyshore-city-pokecenter-1f), [Sunyshore City Pokecenter 2F](#sunyshore-city-pokecenter-2f), [Sunyshore City Pokecenter B1F](#sunyshore-city-pokecenter-b1f), [Unused Sunyshore City House 1](#unused-sunyshore-city-house-1), [Unused Sunyshore City House 2](#unused-sunyshore-city-house-2).
 - Barry's split: [Sendoff Spring](#sendoff-spring), [Route 223](#route-223), [Victory Road 1F](#victory-road-1f), [Victory Road 2F](#victory-road-2f), [Victory Road B1F](#victory-road-b1f), [Pokemon League](#pokemon-league), [Pokemon League Aaron Room](#pokemon-league-aaron-room), [Pokemon League Bertha Room](#pokemon-league-bertha-room), [Pokemon League Champion Room](#pokemon-league-champion-room), [Pokemon League Elevator To Aaron Room](#pokemon-league-elevator-to-aaron-room), [Pokemon League Elevator To Bertha Room](#pokemon-league-elevator-to-bertha-room), [Pokemon League Elevator To Champion Room](#pokemon-league-elevator-to-champion-room), [Pokemon League Elevator To Flint Room](#pokemon-league-elevator-to-flint-room), [Pokemon League Elevator To Lucian Room](#pokemon-league-elevator-to-lucian-room), [Pokemon League Flint Room](#pokemon-league-flint-room), [Pokemon League Hall Of Fame](#pokemon-league-hall-of-fame), [Pokemon League Hallway To Hall Of Fame](#pokemon-league-hallway-to-hall-of-fame), [Pokemon League Lucian Room](#pokemon-league-lucian-room), [Pokemon League North Pokecenter 1F](#pokemon-league-north-pokecenter-1f), [Pokemon League North Pokecenter 2F](#pokemon-league-north-pokecenter-2f), [Pokemon League North Pokecenter B1F](#pokemon-league-north-pokecenter-b1f), [Pokemon League South Pokecenter 1F](#pokemon-league-south-pokecenter-1f), [Pokemon League South Pokecenter 2F](#pokemon-league-south-pokecenter-2f), [Pokemon League South Pokecenter B1F](#pokemon-league-south-pokecenter-b1f).
@@ -245,11 +246,12 @@ Variables:
 
 Trainer battles:
 
-- TRAINER_GALACTIC_GRUNT_LAKE_VERITY_1 (Grunt, level 50, 1 Pokemon), sees the player. Vanilla. `events_lake_verity.json:10`
-- TRAINER_GALACTIC_GRUNT_LAKE_VERITY_3 (Officer Somnu, level 54, 3 Pokemon), sees the player. Vanilla. `events_lake_verity.json:25`
-- TRAINER_GALACTIC_GRUNT_LAKE_VERITY_2 (Grunt, level 50, 1 Pokemon), sees the player. Vanilla. `events_lake_verity.json:40`
-- TRAINER_GALACTIC_GRUNT_LAKE_VERITY_4 (Officer Moira, level 54, 3 Pokemon), sees the player. Vanilla. `events_lake_verity.json:55`
-- StartTrainerBattle: against TRAINER_COMMANDER_MARS_LAKE_VERITY (Mars, level 53, 6 Pokemon), by name. Vanilla. `scripts_lake_verity.s:200`
+- TRAINER_GALACTIC_GRUNT_LAKE_VERITY_1 (Grunt, level 53, 3 Pokemon), sees the player. Vanilla. `events_lake_verity.json:10`
+- TRAINER_GALACTIC_GRUNT_LAKE_VERITY_3 (Officer Somnu, level 52, 3 Pokemon), sees the player. Vanilla. `events_lake_verity.json:25`
+- TRAINER_GALACTIC_GRUNT_LAKE_VERITY_2 (Grunt, level 53, 3 Pokemon), sees the player. Vanilla. `events_lake_verity.json:40`
+- TRAINER_GALACTIC_GRUNT_LAKE_VERITY_4 (Officer Moira, level 52, 3 Pokemon), sees the player. Vanilla. `events_lake_verity.json:55`
+- TRAINER_DUMMY_131 (Grunt, level 53, 3 Pokemon), sees the player. Added by Oxide (7f9af8841). `events_lake_verity.json:130`
+- StartTrainerBattle: against TRAINER_COMMANDER_MARS_LAKE_VERITY (Mars, level 54, 6 Pokemon), by name. Vanilla. `scripts_lake_verity.s:200`
 
 Item balls:
 
@@ -269,7 +271,7 @@ Variables:
 
 Gone from vanilla: ITEM_TM38 x1, one time, flag FLAG_OBTAINED_LAKE_VERITY_TM38.
 
-Scripts nothing reaches: code at `LakeVerity_Unused` (line 56).
+Scripts nothing reaches: script 7 `LakeVerity_GruntM` (line 262), code at `LakeVerity_Unused` (line 56).
 
 ### Lake Verity Low Water
 
@@ -4419,15 +4421,15 @@ Scripts nothing reaches: script 1 `MtCoronet1FNorthRoom2_Dummy1` (line 9).
 
 Trainer battles:
 
-- TRAINER_ACE_TRAINER_BLAKE (Blake, level 55, 6 Pokemon), sees the player. Vanilla. `events_route_216.json:19`
-- TRAINER_ACE_TRAINER_LAURA (Laura, level 55, 6 Pokemon), sees the player. Vanilla. `events_route_216.json:36`
-- TRAINER_BLACK_BELT_PHILIP (Philip, level 56, 1 Pokemon), sees the player. Vanilla. `events_route_216.json:53`
-- TRAINER_SKIER_BRADLEY (Bradley, level 54, 3 Pokemon), sees the player. Vanilla. `events_route_216.json:70`
-- TRAINER_ACE_TRAINER_GARRETT (Garrett, level 55, 6 Pokemon), sees the player. Vanilla. `events_route_216.json:87`
-- TRAINER_ACE_TRAINER_MARIA (Maria, level 55, 6 Pokemon), sees the player. Vanilla. `events_route_216.json:104`
-- TRAINER_SKIER_KAITLYN (Kaitlyn, level 54, 2 Pokemon), sees the player. Vanilla. `events_route_216.json:121`
-- TRAINER_SKIER_EDWARD (Edward, level 50, 1 Pokemon), sees the player. Vanilla. `events_route_216.json:138`
-- TRAINER_SKIER_ANDREA (Andrea, level 55, 1 Pokemon), sees the player. Vanilla. `events_route_216.json:155`
+- TRAINER_ACE_TRAINER_BLAKE (Blake, level 54, 5 Pokemon), sees the player. Vanilla. `events_route_216.json:19`
+- TRAINER_ACE_TRAINER_LAURA (Laura, level 54, 5 Pokemon), sees the player. Vanilla. `events_route_216.json:36`
+- TRAINER_BLACK_BELT_PHILIP (Philip, level 57, 4 Pokemon), sees the player. Vanilla. `events_route_216.json:53`
+- TRAINER_SKIER_BRADLEY (Bradley, level 56, 3 Pokemon), sees the player. Vanilla. `events_route_216.json:70`
+- TRAINER_ACE_TRAINER_GARRETT (Garrett, level 54, 5 Pokemon), sees the player. Vanilla. `events_route_216.json:87`
+- TRAINER_ACE_TRAINER_MARIA (Maria, level 54, 4 Pokemon), sees the player. Vanilla. `events_route_216.json:104`
+- TRAINER_SKIER_KAITLYN (Kaitlyn, level 57, 3 Pokemon), sees the player. Vanilla. `events_route_216.json:121`
+- TRAINER_SKIER_EDWARD (Edward, level 54, 4 Pokemon), sees the player. Vanilla. `events_route_216.json:138`
+- TRAINER_SKIER_ANDREA (Andrea, level 57, 3 Pokemon), sees the player. Vanilla. `events_route_216.json:155`
 
 Item balls:
 
@@ -4456,15 +4458,15 @@ Scripts nothing reaches: script 1 `Route216_CantRideBike_Unused` (line 10).
 
 Trainer battles:
 
-- TRAINER_SKIER_SHAWN (Shawn, level 51, 1 Pokemon), sees the player. Vanilla. `events_route_217.json:91`
-- TRAINER_SKIER_LEXIE (Lexie, level 51, 2 Pokemon), sees the player. Vanilla. `events_route_217.json:108`
-- TRAINER_SKIER_BJORN (Bjorn, level 51, 1 Pokemon), sees the player. Vanilla. `events_route_217.json:125`
-- TRAINER_SKIER_MADISON (Madison, level 51, 1 Pokemon), sees the player. Vanilla. `events_route_217.json:142`
-- TRAINER_NINJA_BOY_MATTHEW (Matthew, level 51, 1 Pokemon), sees the player. Vanilla. `events_route_217.json:159`
-- TRAINER_NINJA_BOY_ETHAN (Ethan, level 51, 1 Pokemon), sees the player. Vanilla. `events_route_217.json:176`
-- TRAINER_BLACK_BELT_LUKE (Luke, level 51, 3 Pokemon), sees the player. Vanilla. `events_route_217.json:193`
-- TRAINER_ACE_TRAINER_DALTON (Dalton, level 55, 6 Pokemon), sees the player. Vanilla. `events_route_217.json:210`
-- TRAINER_ACE_TRAINER_OLIVIA (Olivia, level 55, 6 Pokemon), sees the player. Vanilla. `events_route_217.json:227`
+- TRAINER_SKIER_SHAWN (Shawn, level 54, 4 Pokemon), sees the player. Vanilla. `events_route_217.json:91`
+- TRAINER_SKIER_LEXIE (Lexie, level 54, 3 Pokemon), sees the player. Vanilla. `events_route_217.json:108`
+- TRAINER_SKIER_BJORN (Bjorn, level 54, 3 Pokemon), sees the player. Vanilla. `events_route_217.json:125`
+- TRAINER_SKIER_MADISON (Madison, level 54, 3 Pokemon), sees the player. Vanilla. `events_route_217.json:142`
+- TRAINER_NINJA_BOY_MATTHEW (Matthew, level 54, 3 Pokemon), sees the player. Vanilla. `events_route_217.json:159`
+- TRAINER_NINJA_BOY_ETHAN (Ethan, level 54, 4 Pokemon), sees the player. Vanilla. `events_route_217.json:176`
+- TRAINER_BLACK_BELT_LUKE (Luke, level 55, 4 Pokemon), sees the player. Vanilla. `events_route_217.json:193`
+- TRAINER_ACE_TRAINER_DALTON (Dalton, level 54, 5 Pokemon), sees the player. Vanilla. `events_route_217.json:210`
+- TRAINER_ACE_TRAINER_OLIVIA (Olivia, level 54, 5 Pokemon), sees the player. Vanilla. `events_route_217.json:227`
 
 Item balls:
 
@@ -4549,43 +4551,6 @@ Variables:
 - Set: VAR_MAP_LOCAL_0x00, VAR_ACUITY_LAKEFRONT_STATE.
 - Checked: VAR_MAP_LOCAL_0x00, VAR_ACUITY_LAKEFRONT_STATE.
 
-### Lake Acuity
-
-`MAP_HEADER_LAKE_ACUITY`: scripts `scripts_lake_acuity`, events `events_lake_acuity`, init scripts `scripts_init_lake_acuity`. Location name Lake Acuity. In Candice's split, placed by its encounter table.
-
-Item balls:
-
-- ITEM_TM42 x2, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. `events_lake_acuity.json:10`
-
-Flags:
-
-- Set: FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN, FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART, FLAG_HIDE_LAKE_VERITY_PROF_ROWAN, FLAG_HIDE_LAKE_VERITY_COUNTERPART, FLAG_ALT_MUSIC_LAKE_ACUITY.
-- Cleared: FLAG_LAKE_VALOR_EXPLODED, FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN, FLAG_HIDE_VEILSTONE_CITY_GRUNT_M_STORAGE_KEY.
-- Hide an object: FLAG_HIDE_LAKE_ACUITY_RIVAL, FLAG_HIDE_LAKE_ACUITY_JUPITER, FLAG_OBTAINED_LAKE_ACUITY_TM14.
-
-Variables:
-
-- Set: VAR_LAKE_ACUITY_STATE.
-- Checked: VAR_LAKE_ACUITY_STATE.
-
-Gone from vanilla: ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14.
-
-### Lake Acuity Low Water
-
-`MAP_HEADER_LAKE_ACUITY_LOW_WATER`: scripts `scripts_lake_acuity_low_water`, events `events_lake_acuity_low_water`, init scripts `scripts_init_lake_acuity_low_water`. Location name Lake Acuity. In Candice's split, placed by its location name.
-
-Item balls:
-
-- ITEM_TM42 x2, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. `events_lake_acuity_low_water.json:25`
-
-Flags:
-
-- Set: FLAG_TALKED_TO_LAKE_ACUITY_LOW_WATER_RIVAL.
-- Checked: FLAG_TALKED_TO_LAKE_ACUITY_LOW_WATER_RIVAL.
-- Hide an object: FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL, FLAG_OBTAINED_LAKE_ACUITY_TM14.
-
-Gone from vanilla: ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14.
-
 ### Snowpoint City
 
 `MAP_HEADER_SNOWPOINT_CITY`: scripts `scripts_snowpoint_city`, events `events_snowpoint_city`, init scripts `scripts_init_snowpoint_city`. Location name Snowpoint City. In Candice's split, placed by its encounter table.
@@ -4633,12 +4598,12 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_ACE_TRAINER_ANTON (Anton, level 55, 6 Pokemon), sees the player. Vanilla. `events_snowpoint_city_gym.json:57`
-- TRAINER_ACE_TRAINER_SAVANNAH (Savannah, level 55, 6 Pokemon), sees the player. Vanilla. `events_snowpoint_city_gym.json:72`
-- TRAINER_ACE_TRAINER_ALICIA (Alicia, level 55, 6 Pokemon), sees the player. Vanilla. `events_snowpoint_city_gym.json:87`
-- TRAINER_ACE_TRAINER_ISAIAH (Isaiah, level 55, 6 Pokemon), sees the player. Vanilla. `events_snowpoint_city_gym.json:102`
-- TRAINER_ACE_TRAINER_BRENNA (Brenna, level 55, 6 Pokemon), sees the player. Vanilla. `events_snowpoint_city_gym.json:117`
-- TRAINER_ACE_TRAINER_SERGIO (Sergio, level 55, 6 Pokemon), sees the player. Vanilla. `events_snowpoint_city_gym.json:132`
+- TRAINER_ACE_TRAINER_ANTON (Anton, level 55, 5 Pokemon), sees the player. Vanilla. `events_snowpoint_city_gym.json:57`
+- TRAINER_ACE_TRAINER_SAVANNAH (Savannah, level 55, 4 Pokemon), sees the player. Vanilla. `events_snowpoint_city_gym.json:72`
+- TRAINER_ACE_TRAINER_ALICIA (Alicia, level 55, 3 Pokemon), sees the player. Vanilla. `events_snowpoint_city_gym.json:87`
+- TRAINER_ACE_TRAINER_ISAIAH (Isaiah, level 55, 4 Pokemon), sees the player. Vanilla. `events_snowpoint_city_gym.json:102`
+- TRAINER_ACE_TRAINER_BRENNA (Brenna, level 54, 3 Pokemon), sees the player. Vanilla. `events_snowpoint_city_gym.json:117`
+- TRAINER_ACE_TRAINER_SERGIO (Sergio, level 54, 3 Pokemon), sees the player. Vanilla. `events_snowpoint_city_gym.json:132`
 - StartTrainerBattle: against TRAINER_LEADER_CANDICE (Candice, level 56, 6 Pokemon), by number. Vanilla. `scripts_snowpoint_city_gym.s:35`
 - StartTrainerBattle: against TRAINER_LEADER_CANDICE_REMATCH (Candice, level 88, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_snowpoint_city_gym.s:127`
 
@@ -4707,6 +4672,45 @@ Flags:
 
 - Set: FLAG_TRADED_FOR_GASPAR_HAUNTER.
 - Checked: FLAG_TRADED_FOR_GASPAR_HAUNTER.
+
+## HQ's split
+
+### Lake Acuity
+
+`MAP_HEADER_LAKE_ACUITY`: scripts `scripts_lake_acuity`, events `events_lake_acuity`, init scripts `scripts_init_lake_acuity`. Location name Lake Acuity. In HQ's split, placed by its encounter table.
+
+Item balls:
+
+- ITEM_TM42 x2, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. `events_lake_acuity.json:10`
+
+Flags:
+
+- Set: FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN, FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART, FLAG_HIDE_LAKE_VERITY_PROF_ROWAN, FLAG_HIDE_LAKE_VERITY_COUNTERPART, FLAG_ALT_MUSIC_LAKE_ACUITY.
+- Cleared: FLAG_LAKE_VALOR_EXPLODED, FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN, FLAG_HIDE_VEILSTONE_CITY_GRUNT_M_STORAGE_KEY.
+- Hide an object: FLAG_HIDE_LAKE_ACUITY_RIVAL, FLAG_HIDE_LAKE_ACUITY_JUPITER, FLAG_OBTAINED_LAKE_ACUITY_TM14.
+
+Variables:
+
+- Set: VAR_LAKE_ACUITY_STATE.
+- Checked: VAR_LAKE_ACUITY_STATE.
+
+Gone from vanilla: ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14.
+
+### Lake Acuity Low Water
+
+`MAP_HEADER_LAKE_ACUITY_LOW_WATER`: scripts `scripts_lake_acuity_low_water`, events `events_lake_acuity_low_water`, init scripts `scripts_init_lake_acuity_low_water`. Location name Lake Acuity. In HQ's split, placed by its location name.
+
+Item balls:
+
+- ITEM_TM42 x2, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. `events_lake_acuity_low_water.json:25`
+
+Flags:
+
+- Set: FLAG_TALKED_TO_LAKE_ACUITY_LOW_WATER_RIVAL.
+- Checked: FLAG_TALKED_TO_LAKE_ACUITY_LOW_WATER_RIVAL.
+- Hide an object: FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL, FLAG_OBTAINED_LAKE_ACUITY_TM14.
+
+Gone from vanilla: ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14.
 
 ## Galactic's split
 
@@ -5553,9 +5557,9 @@ Scripts nothing reaches: script 1 `LakeValor_Dummy1` (line 7).
 
 Trainer battles:
 
-- TRAINER_GALACTIC_GRUNT_LAKE_VALOR_1 (Grunt, level 50, 1 Pokemon), sees the player. Vanilla. `events_lake_valor_drained.json:79`
-- TRAINER_GALACTIC_GRUNT_LAKE_VALOR_3 (Grunt, level 50, 1 Pokemon), sees the player. Vanilla. `events_lake_valor_drained.json:94`
-- TRAINER_GALACTIC_GRUNT_LAKE_VALOR_2 (Officer Hesperid, level 56, 6 Pokemon), sees the player. Vanilla. `events_lake_valor_drained.json:111`
+- TRAINER_GALACTIC_GRUNT_LAKE_VALOR_1 (Grunt, level 52, 4 Pokemon), sees the player. Vanilla. `events_lake_valor_drained.json:79`
+- TRAINER_GALACTIC_GRUNT_LAKE_VALOR_3 (Grunt, level 53, 3 Pokemon), sees the player. Vanilla. `events_lake_valor_drained.json:94`
+- TRAINER_GALACTIC_GRUNT_LAKE_VALOR_2 (Officer Hesperid, level 53, 6 Pokemon), sees the player. Vanilla. `events_lake_valor_drained.json:111`
 
 Item balls:
 
