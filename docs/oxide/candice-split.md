@@ -4,7 +4,7 @@ Candice's split runs from Byron's badge (cap 53) to Candice's (cap 56). Ian answ
 
 ## Summary
 
-The split now counts 12 mandatory fights, gym trainers apart, mini-bosses included and a pair counted once. Six were mandatory already; this branch fixes one trainer in place, moves four to necks, and makes Lake Verity's talking grunt a trainer in free slot 131. Twenty-eight ordinary, mini-boss and gym teams were rebuilt, each with one idea, three to six Pokemon, its own item and nature on every member, and its AI flags set by the guide. The ordinary teams climb from 52 at the lakes to 55 at Route 217's north neck, where only Black Belt Luke reaches 55; the route Ace Trainers' aces sit at 54, two under the cap; Snowpoint Gym's six climb from 54 to 55. The bosses and officers took Ian's levels and the rule fixes and nothing more. Skier Lexie's Sheer Cold is gone. Nothing was seen in game, and the scorer read nothing.
+The split now counts 12 mandatory fights, gym trainers apart, mini-bosses included and a pair counted once. Six were mandatory already; this branch fixes one trainer in place, moves four to necks, and makes Lake Verity's talking grunt a trainer in free slot 131. Twenty-nine ordinary, mini-boss and gym teams were built, the new grunt's among them, each with one idea, three to five Pokemon, its own item and nature on every member, and its AI flags set by the guide. The ordinary teams climb from 52 at the lakes to 55 at Route 217's north neck, where only Black Belt Luke reaches 55; the route Ace Trainers' aces sit at 54, two under the cap; Snowpoint Gym's six climb from 54 to 55. The bosses and officers took Ian's levels and the rule fixes and nothing more. Skier Lexie's Sheer Cold is gone. Nothing was seen in game, and the scorer read nothing.
 
 | Area | Mandatory fights | Of them, this branch's |
 |---|---:|---:|
@@ -19,8 +19,8 @@ Ian's decisions:
 1. Mars 2's and Candice's Baton Pass flag: neither team knows Baton Pass, and through the flag's bug it pushes every status move and Explosion (below). Drop it from both (my pick), drop it from Mars 2 only, or keep it on both?
 2. Saturn 1's Setup First Turn flag does nothing, since his lead, Azelf, knows no move in its table: drop it (my pick) or keep it?
 3. Hesperid's sets: keep them as they stand at 53 for now (my pick), with a checked-stage redesign to his theme later; or have that redesign drafted now?
-4. Candice's five Blizzards with no hail: her Abomasnow's first ability is Adaptability in Oxide, not Snow Warning. Keep it (my pick, since the fight already reads like Byron's), or give it Snow Warning, which makes every Blizzard sure and the fight harder?
-5. The 28 rebuilt teams below: a yes for the whole set, or the trainers to change.
+4. Candice's five Blizzards with no hail: her Abomasnow's first ability is Adaptability in Oxide, not Snow Warning. Keep it (my pick, since the fight already reads a little harder than Byron's), or give it Snow Warning, which makes every Blizzard sure and the fight harder?
+5. The 29 teams below: a yes for the whole set, or the trainers to change.
 
 Next steps:
 
