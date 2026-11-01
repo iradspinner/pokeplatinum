@@ -14,7 +14,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 0 | 2 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 594 | 507 | 72 | 15 | 0 | 14 |
+| Trainer battles | 594 | 506 | 72 | 16 | 0 | 15 |
 | Items given | 212 | 102 | 30 | 80 | 0 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
@@ -954,6 +954,7 @@ Trainer battles:
 
 - TRAINER_TUBER_TRENTON (Trenton, level 46, 3 Pokemon), sees the player. Vanilla. `events_route_219.json:19`
 - TRAINER_TUBER_MARIEL (Mariel, level 46, 3 Pokemon), sees the player. Vanilla. `events_route_219.json:36`
+- TRAINER_SWIMMER_VINCENT (Vincent, level 47, 3 Pokemon), sees the player. Added by Oxide (cac243cf5). `events_route_219.json:85`
 
 Item balls:
 
@@ -4275,18 +4276,17 @@ Scripts nothing reaches: script 3 `IronIslandB3F_Dummy3` (line 19).
 Trainer battles:
 
 - TRAINER_SWIMMER_ERIK (Erik, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:27`
-- TRAINER_SWIMMER_VINCENT (Vincent, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:42`
-- TRAINER_SWIMMER_JESSICA (Jessica, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:57`
-- TRAINER_SWIMMER_ERICA (Erica, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:72`
-- TRAINER_SWIMMER_ADRIAN (Adrian, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:87`
-- TRAINER_SWIMMER_KATELYN (Katelyn, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:102`
-- TRAINER_SWIMMER_CLAIRE (Claire, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:117`
+- TRAINER_SWIMMER_JESSICA (Jessica, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:42`
+- TRAINER_SWIMMER_ERICA (Erica, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:57`
+- TRAINER_SWIMMER_ADRIAN (Adrian, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:72`
+- TRAINER_SWIMMER_KATELYN (Katelyn, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:87`
+- TRAINER_SWIMMER_CLAIRE (Claire, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:102`
 
 Item balls:
 
-- ITEM_CARBOS x1, one time, flag FLAG_OBTAINED_ROUTE_220_CARBOS. Vanilla. `events_route_220.json:132`
-- ITEM_SPLASH_PLATE x1, one time, flag FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE. Vanilla. `events_route_220.json:147`
-- ITEM_MAX_REPEL x1, one time, flag FLAG_OBTAINED_ROUTE_220_MAX_REPEL. Vanilla. `events_route_220.json:162`
+- ITEM_CARBOS x1, one time, flag FLAG_OBTAINED_ROUTE_220_CARBOS. Vanilla. `events_route_220.json:117`
+- ITEM_SPLASH_PLATE x1, one time, flag FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE. Vanilla. `events_route_220.json:132`
+- ITEM_MAX_REPEL x1, one time, flag FLAG_OBTAINED_ROUTE_220_MAX_REPEL. Vanilla. `events_route_220.json:147`
 
 Hidden items:
 
@@ -4296,6 +4296,8 @@ Hidden items:
 Flags:
 
 - Hide an object: FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE, FLAG_OBTAINED_ROUTE_220_CARBOS, FLAG_OBTAINED_ROUTE_220_MAX_REPEL.
+
+Gone from vanilla: TRAINER_SWIMMER_VINCENT (Vincent, level 47, 3 Pokemon), sees the player.
 
 ### Route 221
 
@@ -4307,15 +4309,15 @@ Trainer battles:
 - TRAINER_SWIMMER_VANESSA (Vanessa, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_221.json:68`
 - TRAINER_FISHERMAN_CORY (Cory, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_221.json:83`
 - TRAINER_COLLECTOR_IVAN (Ivan, level 47, 5 Pokemon), sees the player. Vanilla. `events_route_221.json:98`
-- TRAINER_ACE_TRAINER_JAKE (Jake, level 48, 6 Pokemon), sees the player. Vanilla. `events_route_221.json:115`
-- TRAINER_ACE_TRAINER_SHANNON (Shannon, level 48, 6 Pokemon), sees the player. Vanilla. `events_route_221.json:130`
+- TRAINER_ACE_TRAINER_JAKE (Jake, level 48, 3 Pokemon), sees the player. Vanilla. `events_route_221.json:115`
+- TRAINER_ACE_TRAINER_SHANNON (Shannon, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_221.json:132`
 
 Item balls:
 
-- ITEM_PROTEIN x1, one time, flag FLAG_OBTAINED_ROUTE_221_PROTEIN. Vanilla. `events_route_221.json:160`
-- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81. `events_route_221.json:175`
-- ITEM_ULTRA_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_221_ULTRA_BALL. Vanilla. `events_route_221.json:190`
-- ITEM_PURE_INCENSE x1, one time, flag FLAG_OBTAINED_ROUTE_221_PURE_INCENSE. Vanilla. `events_route_221.json:265`
+- ITEM_PROTEIN x1, one time, flag FLAG_OBTAINED_ROUTE_221_PROTEIN. Vanilla. `events_route_221.json:164`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81. `events_route_221.json:179`
+- ITEM_ULTRA_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_221_ULTRA_BALL. Vanilla. `events_route_221.json:194`
+- ITEM_PURE_INCENSE x1, one time, flag FLAG_OBTAINED_ROUTE_221_PURE_INCENSE. Vanilla. `events_route_221.json:269`
 
 Hidden items:
 

@@ -13650,7 +13650,8 @@
     ],
     "trainers": [
      {"event": "object_events", "file": "events_route_219", "how": "sees the player", "line": 19, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_TUBER_TRENTON", "value": 358, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_219", "how": "sees the player", "line": 36, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_TUBER_MARIEL", "value": 360, "when": ""}]}]}
+     {"event": "object_events", "file": "events_route_219", "how": "sees the player", "line": 36, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_TUBER_MARIEL", "value": 360, "when": ""}]}]},
+     {"commit": "cac243cf5", "event": "object_events", "file": "events_route_219", "how": "sees the player", "line": 85, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_VINCENT", "value": 161, "when": ""}]}], "source": "Oxide"}
     ]
    },
    "events": "events_route_219",
@@ -13670,13 +13671,13 @@
    "entries": {
     "flags": [
      {"at": ["scripts_route_221:50"], "commit": "81d02e28e", "daily": false, "flag": 2684, "name": "FLAG_UNK_0x0A7C", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["events_route_221:279"], "daily": false, "flag": 639, "name": "FLAG_HIDE_ROUTE_221_WORKER_WEST", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:294"], "daily": false, "flag": 640, "name": "FLAG_HIDE_ROUTE_221_WORKER_EAST", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:264"], "daily": false, "flag": 1115, "name": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:189"], "daily": false, "flag": 1143, "name": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:159"], "daily": false, "flag": 1144, "name": "FLAG_OBTAINED_ROUTE_221_PROTEIN", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:174"], "daily": false, "flag": 1145, "name": "FLAG_OBTAINED_ROUTE_221_TM81", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:309"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["events_route_221:283"], "daily": false, "flag": 639, "name": "FLAG_HIDE_ROUTE_221_WORKER_WEST", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:298"], "daily": false, "flag": 640, "name": "FLAG_HIDE_ROUTE_221_WORKER_EAST", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:268"], "daily": false, "flag": 1115, "name": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:193"], "daily": false, "flag": 1143, "name": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:163"], "daily": false, "flag": 1144, "name": "FLAG_OBTAINED_ROUTE_221_PROTEIN", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:178"], "daily": false, "flag": 1145, "name": "FLAG_OBTAINED_ROUTE_221_TM81", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:313"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_route_221:43"], "daily": false, "flag": 639, "name": "FLAG_HIDE_ROUTE_221_WORKER_WEST", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_221:44"], "daily": false, "flag": 640, "name": "FLAG_HIDE_ROUTE_221_WORKER_EAST", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_221:61"], "commit": "81d02e28e", "daily": false, "flag": 2684, "name": "FLAG_UNK_0x0A7C", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
@@ -13689,10 +13690,10 @@
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_route_221", "flag": 922, "flag_name": "FLAG_OBTAINED_HIDDEN_ROUTE_221_MAX_REVIVE", "item": "ITEM_MAX_REVIVE", "item_id": 29, "line": 36, "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1144, "flag_name": "FLAG_OBTAINED_ROUTE_221_PROTEIN", "item": "ITEM_PROTEIN", "item_id": 46, "line": 160, "origin": "vanilla", "reached": true},
-     {"commit": "03a50f7fd", "count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1145, "flag_name": "FLAG_OBTAINED_ROUTE_221_TM81", "item": "ITEM_LUM_BERRY", "item_id": 157, "line": 175, "origin": "added", "reached": true, "replaces": "ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81", "source": "base ROM"},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1143, "flag_name": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL", "item": "ITEM_ULTRA_BALL", "item_id": 2, "line": 190, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1115, "flag_name": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE", "item": "ITEM_PURE_INCENSE", "item_id": 320, "line": 265, "origin": "vanilla", "reached": true}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1144, "flag_name": "FLAG_OBTAINED_ROUTE_221_PROTEIN", "item": "ITEM_PROTEIN", "item_id": 46, "line": 164, "origin": "vanilla", "reached": true},
+     {"commit": "03a50f7fd", "count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1145, "flag_name": "FLAG_OBTAINED_ROUTE_221_TM81", "item": "ITEM_LUM_BERRY", "item_id": 157, "line": 179, "origin": "added", "reached": true, "replaces": "ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81", "source": "base ROM"},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1143, "flag_name": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL", "item": "ITEM_ULTRA_BALL", "item_id": 2, "line": 194, "origin": "vanilla", "reached": true},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1115, "flag_name": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE", "item": "ITEM_PURE_INCENSE", "item_id": 320, "line": 269, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 51, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_DILLON", "value": 166, "when": ""}]}]},
@@ -13700,7 +13701,7 @@
      {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 83, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_CORY", "value": 168, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 98, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_COLLECTOR_IVAN", "value": 274, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 115, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_JAKE", "value": 170, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 130, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_SHANNON", "value": 171, "when": ""}]}]}
+     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 132, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_SHANNON", "value": 171, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["scripts_route_221:41"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
@@ -16124,31 +16125,34 @@
   {
    "entries": {
     "flags": [
-     {"at": ["events_route_220:146"], "daily": false, "flag": 1139, "name": "FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_220:131"], "daily": false, "flag": 1141, "name": "FLAG_OBTAINED_ROUTE_220_CARBOS", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_220:161"], "daily": false, "flag": 1142, "name": "FLAG_OBTAINED_ROUTE_220_MAX_REPEL", "op": "hides", "origin": "vanilla", "reached": true}
+     {"at": ["events_route_220:131"], "daily": false, "flag": 1139, "name": "FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_220:116"], "daily": false, "flag": 1141, "name": "FLAG_OBTAINED_ROUTE_220_CARBOS", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_220:146"], "daily": false, "flag": 1142, "name": "FLAG_OBTAINED_ROUTE_220_MAX_REPEL", "op": "hides", "origin": "vanilla", "reached": true}
     ],
     "hidden_items": [
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_route_220", "flag": 778, "flag_name": "FLAG_OBTAINED_HIDDEN_ROUTE_220_BIG_PEARL", "item": "ITEM_BIG_PEARL", "item_id": 89, "line": 4, "origin": "vanilla", "reached": true},
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_route_220", "flag": 899, "flag_name": "FLAG_OBTAINED_HIDDEN_ROUTE_219_ZINC", "item": "ITEM_ZINC", "item_id": 52, "line": 12, "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_220", "flag": 1141, "flag_name": "FLAG_OBTAINED_ROUTE_220_CARBOS", "item": "ITEM_CARBOS", "item_id": 48, "line": 132, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_220", "flag": 1139, "flag_name": "FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE", "item": "ITEM_SPLASH_PLATE", "item_id": 299, "line": 147, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_220", "flag": 1142, "flag_name": "FLAG_OBTAINED_ROUTE_220_MAX_REPEL", "item": "ITEM_MAX_REPEL", "item_id": 77, "line": 162, "origin": "vanilla", "reached": true}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_220", "flag": 1141, "flag_name": "FLAG_OBTAINED_ROUTE_220_CARBOS", "item": "ITEM_CARBOS", "item_id": 48, "line": 117, "origin": "vanilla", "reached": true},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_220", "flag": 1139, "flag_name": "FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE", "item": "ITEM_SPLASH_PLATE", "item_id": 299, "line": 132, "origin": "vanilla", "reached": true},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_220", "flag": 1142, "flag_name": "FLAG_OBTAINED_ROUTE_220_MAX_REPEL", "item": "ITEM_MAX_REPEL", "item_id": 77, "line": 147, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 27, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_ERIK", "value": 160, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 42, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_VINCENT", "value": 161, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 57, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_JESSICA", "value": 162, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 72, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_ERICA", "value": 163, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 87, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_ADRIAN", "value": 159, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 102, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_KATELYN", "value": 164, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 117, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_CLAIRE", "value": 494, "when": ""}]}]}
+     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 42, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_JESSICA", "value": 162, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 57, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_ERICA", "value": 163, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 72, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_ADRIAN", "value": 159, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 87, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_KATELYN", "value": 164, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 102, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_CLAIRE", "value": 494, "when": ""}]}]}
     ]
    },
    "events": "events_route_220",
-   "gone_from_vanilla": {},
+   "gone_from_vanilla": {
+    "trainers": [
+     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 44, "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_VINCENT", "value": 161, "when": ""}]}]}
+    ]
+   },
    "header": "MAP_HEADER_ROUTE_220",
    "init": "scripts_init_empty",
    "location": "Route 220",
@@ -19326,11 +19330,11 @@
    "vanilla": 4
   },
   "trainers": {
-   "Oxide": 15,
+   "Oxide": 16,
    "base ROM": 72,
-   "gone": 14,
+   "gone": 15,
    "total": 594,
-   "vanilla": 507
+   "vanilla": 506
   },
   "vars": {
    "Oxide": 20,
