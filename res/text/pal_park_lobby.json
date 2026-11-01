@@ -643,6 +643,73 @@
     {
       "id": "PalParkLobby_Text_Dummy74",
       "garbage": 52
+    },
+    {
+      "id": "PalParkLobby_Text_CounterpartWaitUp",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 3, 1, 0}!\n",
+        "Wait up!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_CounterpartPokemonFromEverywhere",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: You came to see Pal Park\n",
+        "too? Isn’t it amazing?\r",
+        "Pokémon from Kanto, Johto and\n",
+        "Hoenn, all here in Sinnoh!\r",
+        "I want to see how they live beside\n",
+        "the Pokémon that were always here.\r",
+        "Prof. Rowan says that comparing\n",
+        "them could tell us how far a\f",
+        "Pokémon changes in a new home.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_OfficerMPokemonFromOtherRegions",
+      "en_US": [
+        "Officer: So this is the park where\n",
+        "Pokémon from other regions gather.\r",
+        "The new world our boss is making\n",
+        "will need every Pokémon there is.\r",
+        "Even these!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_OfficerFStepAside",
+      "en_US": [
+        "Officer: Every Pokémon brought here\n",
+        "belongs to Team Galactic now.\r",
+        "Step aside, kids!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_CounterpartBattleTogether",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Team Galactic, here too?\r",
+        "{STRVAR_1 3, 1, 0}, let’s battle them together!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_OfficersFallBack",
+      "en_US": [
+        "Officer: Two kids, again...\n",
+        "The Commander won’t like this.\r",
+        "Officer: Fall back! Fall back!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_CounterpartParkIsSafe",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Phew... The park’s Pokémon\n",
+        "are safe.\r",
+        "I’d better tell Prof. Rowan that\n",
+        "Team Galactic came here.\r",
+        "Then I’m coming straight back to\n",
+        "study every Pokémon from every\f",
+        "region!\r",
+        "See you, {STRVAR_1 3, 1, 0}!\r"
+      ]
     }
   ]
 }

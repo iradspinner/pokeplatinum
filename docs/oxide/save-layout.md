@@ -398,6 +398,18 @@ and meets the gate. The Manaphy egg keeps `FLAG_UNK_0x0A65`, the office's
 old received flag, and Dahlia's and Darach's wins are their free trainer
 slots' defeated flags, all already in the save.
 
+## Pal Park's partner double takes a spare flag (2026-10-31)
+
+Nothing moves. Lucas or Dawn and the two officers in Pal Park's lobby are
+hidden by `FLAG_UNUSED_0x054F`, which no script, vanilla, base ROM or Oxide,
+read or wrote. It keeps its pret name, as the Ability Capsule's
+`FLAG_UNUSED_0x03CC` does, so the reward placer counts it as taken. The
+scene's progress is vanilla's `VAR_PAL_PARK_LOBBY_STATE`, which now reaches 2
+after the double, and the win is the two officers' free trainer slots'
+defeated flags (`TRAINER_DUMMY_009` and `TRAINER_DUMMY_050`), all already in
+the save. A save that saw Oak's scene before this ROM holds the lobby's state
+at 1 and meets the double on its next entry.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:

@@ -41,6 +41,9 @@ from . import required as R
 # them by the lake's west edge, boulders or not. Unchanged again the same
 # day when Ian's recollection that the water there cannot be reached was
 # checked against the game's code, which allows it (check_lake_verity_surf).
+# 70 once Ian ruled the same day that the pair count as mandatory on his
+# honour rule, though Surf can pass them (required.HONOUR_REQUIRED): Candice's
+# split gains the two, Officers Somnu and Moira, one double and so one fight.
 # 77 in Byron's split's pass (2026-10-31, docs/oxide/byron-split.md):
 # nine trainers moved or now look one way, which turns nine avoidable
 # verdicts required (Ninja Boy Fabian on Route 210 South; Bird Keeper
@@ -54,7 +57,15 @@ from . import required as R
 # became crossings the same day: they read Swimmer Dillon, Collector Ivan
 # and Picnicker Summer required and four more of Route 221's trainers
 # (Vanessa, Cory, Jake and Shannon) avoidable, all seven left out before.
-TOTALS = {"required": 80, "avoidable": 101, "never reached": 12}
+# 82 with Ian's answers of the same day: Ace Trainers Jake and Shannon move
+# from Route 221's open shore to the two tiles before Pal Park's door, a
+# pair facing each other, and both turn from avoidable to required.
+# 83 once Route 219, from Sandgem to Route 220, became a crossing: it reads
+# Swimmer Vincent required and Tubers Trenton and Mariel avoidable, all
+# three left out before.
+# 85 with both on oxide (2026-10-31): Byron's pass's +15 required and -5
+# avoidable on top of Lake Verity's honour pair, +2 and -2.
+TOTALS = {"required": 85, "avoidable": 99, "never reached": 12}
 
 
 def check_crossings_resolve(results):
@@ -145,7 +156,10 @@ def check_late_visits(results):
     levels, step 12, put six more teams in a later split than their map's;
     18 until Somnu and Moira at Lake Verity became a story fight): every one
     a crossing reaches lands in a split whose closing boss's ace covers its
-    own, and the rest are off the story path."""
+    own, and the rest are off the story path. 18 are placed since Route 219
+    became a crossing in Byron's split's pass (2026-10-31): Tubers Trenton
+    and Mariel, at Byron's levels on a map Roark's split first opens, and
+    Swimmer Vincent, moved there, all land under Byron's cap."""
     first = R.first_crossings()
     ox = data.oxide_trainers()
     aces = pool.closing_aces()
@@ -160,7 +174,7 @@ def check_late_visits(results):
         placed += 1
         if ace > cap:
             wrong.append(ox[tr_id]["stem"])
-    results.append(("the 22 later visits land under their split's cap", not wrong and placed == 15,
+    results.append(("the 22 later visits land under their split's cap", not wrong and placed == 18,
                     f"{placed} placed, {off} off the story path" + (f"; over cap {wrong}" if wrong else "")))
 
 
@@ -205,21 +219,40 @@ def _canalave_gym_floor():
 
 
 def check_byron_order(results):
-    """Byron's split runs Canalave, Iron Island, the gym, then the library
-    (Ian, 2026-10-31). From Route 218's gate the player reaches the sailor to
-    Iron Island and the gym's door; the island is walked from the boat to
-    Riley's grunts on B2F; inside the gym, the trigger across the row past
-    the entrance (its coord event, which holds until Riley's tag battle is
-    won) leaves the player nowhere to go but out; and Barry at the library
-    door, who waits for the same battle, keeps the library shut."""
+    """Byron's split runs Cyrus 1, Surf, the south and Pal Park, then Barry 5,
+    then Iron Island and the gym, then the library (Ian, 2026-10-31). The
+    south's three routes, from Sandgem to Pal Park's door, open with Surf
+    and not before it. Barry's trigger across Canalave's bridge, which fights
+    only once the Pal Park double is won and before that sends the player
+    back, holds the sailor to Iron Island and the gym's door: with the
+    trigger's tiles shut neither is reached from Route 218's gate, with them
+    open both are. The island is walked from the boat to Riley's grunts on
+    B2F, room by room, since the ferry is a script; inside the gym, the
+    trigger across the row past the entrance (its coord event, which holds
+    until Riley's tag battle is won) leaves the player nowhere to go but
+    out; and Barry at the library door, who waits for the same battle,
+    keeps the library shut."""
     from . import world
+    south = [("SANDGEM_TOWN", "ROUTE_202", "ROUTE_219"), ("ROUTE_219", "SANDGEM_TOWN", "ROUTE_220"),
+             ("ROUTE_220", "ROUTE_219", "ROUTE_221"), ("ROUTE_221", "ROUTE_220", "PAL_PARK_LOBBY")]
+
+    def south_open(split):
+        fields = [(R.Field(h, split), a, b) for h, a, b in south]
+        return all(f.path(f.ends(a), f.ends(b)) for f, a, b in fields)
     canalave = R.Field("CANALAVE_CITY", "Byron")
     start = canalave.ends("ROUTE_218_GATE_TO_CANALAVE_CITY")
     gym_door = world.warps_to("CANALAVE_CITY", "CANALAVE_CITY_GYM")
     library = world.warps_to("CANALAVE_CITY", "CANALAVE_LIBRARY_1F")
+    sailor = canalave.ends("@LOCALID_SAILOR_ELDRITCH")
+    bridge = next(c for c in world.events("CANALAVE_CITY")["coord_events"]
+                  if c["var"] == "VAR_CANALAVE_CITY_STATE" and c["value"] == 0)
+    barry_5 = frozenset((bridge["x"] + i, bridge["z"] + j)
+                        for i in range(bridge["width"]) for j in range(bridge["length"]))
+    held = canalave.reach(start, barry_5)
     seen = canalave.reach(start)
-    got = {"sailor": bool(seen & canalave.ends("@LOCALID_SAILOR_ELDRITCH")),
-           "gym door": bool(seen & gym_door)}
+    got = {"south before Surf": south_open("Wake"), "south with Surf": south_open("Byron"),
+           "sailor before Barry 5": bool(held & sailor), "gym door before Barry 5": bool(held & gym_door),
+           "sailor": bool(seen & sailor), "gym door": bool(seen & gym_door)}
     barry = next(o for o in world.events("CANALAVE_CITY")["object_events"]
                  if o["id"] == "LOCALID_RIVAL_LIBRARY")
     canalave.objects[(barry["x"], barry["z"])] = barry
@@ -251,9 +284,12 @@ def check_byron_order(results):
     # Past the row the entrance opens onto, two rows north of the door.
     door_z = min(z for _x, z in entrance)
     got["gym past the entrance row"] = any(z < door_z - 1 for _x, z in inside)
-    want = {"sailor": True, "gym door": True, "library past Barry": False,
+    want = {"south before Surf": False, "south with Surf": True,
+            "sailor before Barry 5": False, "gym door before Barry 5": False,
+            "sailor": True, "gym door": True, "library past Barry": False,
             "island to Riley's grunts": True, "gym past the entrance row": False}
-    results.append(("Byron's split runs the island, the gym, then the library", got == want,
+    results.append(("Byron's split runs the south, Barry 5, the island, the gym, then the library",
+                    got == want,
                     ", ".join(f"{k} {v}" for k, v in got.items())))
 
 

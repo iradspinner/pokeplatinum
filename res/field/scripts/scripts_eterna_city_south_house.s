@@ -10,6 +10,12 @@ EternaCitySouthHouse_ProfOak:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    @ Platinum Oxide (Ian, 2026-10-31): the Upgrade and the three roaming birds
+    @ wait for the Hall of Fame. Vanilla's park, which sends Oak here, opened
+    @ only with the National Dex after the League; Oxide's opens in Byron's
+    @ split, so Oak checks the Hall of Fame himself, as vanilla's post-game
+    @ scripts do.
+    GoToIfUnset FLAG_GAME_COMPLETED, EternaCitySouthHouse_ProfOakBeforeHallOfFame
     GoToIfSet FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS, EternaCitySouthHouse_PokedexRatingsCheckOak2
     Call EternaCitySouthHouse_CheckCaughtAllRoamingLegendaryBirds
     GoToIfEq VAR_RESULT, TRUE, EternaCitySouthHouse_CaughtAllRoamingLegendaryBirds
@@ -97,6 +103,11 @@ EternaCitySouthHouse_ProfOakEnd:
     WaitButton
     CloseMessage
     ReleaseAll
+    End
+
+EternaCitySouthHouse_ProfOakBeforeHallOfFame:
+    Message EternaCitySouthHouse_Text_ComeBackAfterHallOfFame
+    GoTo EternaCitySouthHouse_ProfOakEnd
     End
 
     .balign 4, 0

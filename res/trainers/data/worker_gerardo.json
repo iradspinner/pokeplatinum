@@ -5,7 +5,8 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_CHECK_HP"
     ],
     "double_battle": false,
     "party": [
@@ -18,7 +19,7 @@
                 "MOVE_SPIKES",
                 "MOVE_GYRO_BALL",
                 "MOVE_RAPID_SPIN",
-                "MOVE_STONE_EDGE"
+                "MOVE_EXPLOSION"
             ],
             "iv_scale": 223,
             "nature": "NATURE_RELAXED",

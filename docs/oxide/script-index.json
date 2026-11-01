@@ -2971,14 +2971,15 @@
      {"at": ["scripts_canalave_city:259"], "daily": false, "flag": 307, "name": "FLAG_TALKED_TO_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:261"], "daily": false, "flag": 316, "name": "FLAG_TRAVELED_TO_NEWMOON_ISLAND", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:369"], "daily": false, "flag": 344, "name": "FLAG_CAUGHT_DARKRAI", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:594"], "commit": null, "daily": false, "flag": 1369, "name": "FLAG_DEFEATED_TRAINER_DUMMY_009", "op": "check", "origin": "added", "reached": true, "source": "unclear"},
      {"at": ["scripts_canalave_city:371"], "daily": false, "flag": 2404, "name": "FLAG_GAME_COMPLETED", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:336"], "commit": "81d02e28e", "daily": false, "flag": 2688, "name": "FLAG_UNK_0x0A80", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_canalave_city:605"], "daily": false, "flag": 373, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:604"], "daily": false, "flag": 404, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:622"], "daily": false, "flag": 373, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:621"], "daily": false, "flag": 404, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:582"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:104"], "daily": false, "flag": 436, "name": "FLAG_HIDE_CANALAVE_CITY_SAILOR", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:388"], "daily": false, "flag": 576, "name": "FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:606"], "daily": false, "flag": 659, "name": "FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:623"], "daily": false, "flag": 659, "name": "FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:191"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:221"], "daily": false, "flag": 435, "name": "FLAG_HIDE_CANALAVE_CITY_PROF_ROWAN", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:236"], "daily": false, "flag": 436, "name": "FLAG_HIDE_CANALAVE_CITY_SAILOR", "op": "hides", "origin": "vanilla", "reached": true},
@@ -2986,7 +2987,7 @@
      {"at": ["events_canalave_city:296"], "daily": false, "flag": 716, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_LIBRARY", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:251"], "daily": false, "flag": 1148, "name": "FLAG_OBTAINED_CANALAVE_CITY_TM89", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:311"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_canalave_city:667"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:684"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:401"], "daily": false, "flag": 435, "name": "FLAG_HIDE_CANALAVE_CITY_PROF_ROWAN", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:402"], "daily": false, "flag": 437, "name": "FLAG_HIDE_CANALAVE_CITY_COUNTERPART", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:37"], "daily": false, "flag": 445, "name": "FLAG_HIDE_CELESTIC_TOWN_CYNTHIA", "op": "set", "origin": "vanilla", "reached": true},
@@ -2999,10 +3000,10 @@
      {"commit": "03a50f7fd", "count": 2, "daily": false, "event": "object_events", "file": "events_canalave_city", "flag": 1148, "flag_name": "FLAG_OBTAINED_CANALAVE_CITY_TM89", "item": "ITEM_TM80", "item_id": 407, "line": 252, "origin": "added", "reached": true, "replaces": "ITEM_TM89 x1, one time, flag FLAG_OBTAINED_CANALAVE_CITY_TM89", "source": "base ROM"}
     ],
     "trainers": [
-     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 645, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_TURTWIG", "value": 477, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 648, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR", "value": 478, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 651, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_PIPLUP", "value": 476, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 678, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_213", "value": 213, "when": ""}]}], "source": "base ROM"}
+     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 662, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_TURTWIG", "value": 477, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 665, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR", "value": 478, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 668, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_PIPLUP", "value": 476, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 695, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_213", "value": 213, "when": ""}]}], "source": "base ROM"}
     ],
     "vars": [
      {"at": ["scripts_canalave_city:43", "scripts_canalave_city:45", "scripts_canalave_city:56", "scripts_canalave_city:58", "scripts_canalave_city:240", "scripts_canalave_city:311", "scripts_canalave_city:374", "scripts_canalave_city:377"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
@@ -3012,7 +3013,7 @@
      {"at": ["scripts_canalave_city:254"], "name": "VAR_LUNAR_WING_EVENT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16646},
      {"at": ["scripts_canalave_city:55", "scripts_canalave_city:373", "scripts_canalave_city:376", "scripts_canalave_city:381", "scripts_canalave_city:578"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["scripts_canalave_city:406", "scripts_canalave_city:409"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
-     {"at": ["scripts_canalave_city:94", "scripts_canalave_city:403", "scripts_canalave_city:603", "scripts_canalave_city:663"], "name": "VAR_CANALAVE_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16504},
+     {"at": ["scripts_canalave_city:94", "scripts_canalave_city:403", "scripts_canalave_city:620", "scripts_canalave_city:680"], "name": "VAR_CANALAVE_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16504},
      {"at": ["scripts_canalave_city:95"], "name": "VAR_CANALAVE_LIBRARY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16562},
      {"at": ["scripts_canalave_city:306", "scripts_canalave_city:361"], "name": "VAR_DARKRAI_EVENT_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16632}
     ]
@@ -4209,24 +4210,25 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_eterna_city_south_house:13"], "daily": false, "flag": 152, "name": "FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_eterna_city_south_house:16"], "daily": false, "flag": 153, "name": "FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_eterna_city_south_house:17"], "daily": false, "flag": 281, "name": "FLAG_RECEIVED_ETERNA_CITY_SOUTH_HOUSE_UPGRADE", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_eterna_city_south_house:19"], "daily": false, "flag": 152, "name": "FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_eterna_city_south_house:22"], "daily": false, "flag": 153, "name": "FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_eterna_city_south_house:23"], "daily": false, "flag": 281, "name": "FLAG_RECEIVED_ETERNA_CITY_SOUTH_HOUSE_UPGRADE", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_eterna_city_south_house:18"], "commit": null, "daily": false, "flag": 2404, "name": "FLAG_GAME_COMPLETED", "op": "check", "origin": "added", "reached": true, "source": "unclear"},
      {"at": ["events_eterna_city_south_house:9"], "daily": false, "flag": 578, "name": "FLAG_HIDE_ETERNA_CITY_SOUTH_HOUSE_PROF_OAK", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_eterna_city_south_house:77"], "daily": false, "flag": 152, "name": "FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_eterna_city_south_house:47"], "daily": false, "flag": 153, "name": "FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_eterna_city_south_house:28"], "daily": false, "flag": 281, "name": "FLAG_RECEIVED_ETERNA_CITY_SOUTH_HOUSE_UPGRADE", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_eterna_city_south_house:83"], "daily": false, "flag": 152, "name": "FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_eterna_city_south_house:53"], "daily": false, "flag": 153, "name": "FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_eterna_city_south_house:34"], "daily": false, "flag": 281, "name": "FLAG_RECEIVED_ETERNA_CITY_SOUTH_HOUSE_UPGRADE", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "items": [
-     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_eterna_city_south_house", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_UPGRADE", "value": 252, "when": ""}], "line": 27, "mode": "variable", "origin": "vanilla", "reached": true}
+     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_eterna_city_south_house", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_UPGRADE", "value": 252, "when": ""}], "line": 33, "mode": "variable", "origin": "vanilla", "reached": true}
     ],
     "vars": [
-     {"at": ["scripts_eterna_city_south_house:53", "scripts_eterna_city_south_house:86"], "name": "VAR_ROAMING_MOLTRES_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16478},
-     {"at": ["scripts_eterna_city_south_house:54", "scripts_eterna_city_south_house:87"], "name": "VAR_ROAMING_ZAPDOS_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16479},
-     {"at": ["scripts_eterna_city_south_house:55", "scripts_eterna_city_south_house:88"], "name": "VAR_ROAMING_ARTICUNO_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16480},
-     {"at": ["scripts_eterna_city_south_house:61"], "name": "VAR_ROAMING_MOLTRES_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16478},
-     {"at": ["scripts_eterna_city_south_house:66"], "name": "VAR_ROAMING_ZAPDOS_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16479},
-     {"at": ["scripts_eterna_city_south_house:71"], "name": "VAR_ROAMING_ARTICUNO_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16480}
+     {"at": ["scripts_eterna_city_south_house:59", "scripts_eterna_city_south_house:92"], "name": "VAR_ROAMING_MOLTRES_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16478},
+     {"at": ["scripts_eterna_city_south_house:60", "scripts_eterna_city_south_house:93"], "name": "VAR_ROAMING_ZAPDOS_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16479},
+     {"at": ["scripts_eterna_city_south_house:61", "scripts_eterna_city_south_house:94"], "name": "VAR_ROAMING_ARTICUNO_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16480},
+     {"at": ["scripts_eterna_city_south_house:67"], "name": "VAR_ROAMING_MOLTRES_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16478},
+     {"at": ["scripts_eterna_city_south_house:72"], "name": "VAR_ROAMING_ZAPDOS_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16479},
+     {"at": ["scripts_eterna_city_south_house:77"], "name": "VAR_ROAMING_ARTICUNO_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16480}
     ]
    },
    "events": "events_eterna_city_south_house",
@@ -10678,7 +10680,7 @@
    "location": "Lake Valor",
    "missing": [],
    "scripts": "scripts_lake_valor_drained",
-   "split": "Byron",
+   "split": "Volkner",
    "split_basis": "its location name",
    "title": "Lake Valor Drained",
    "undecoded": {},
@@ -10704,7 +10706,7 @@
    "location": "Lake Valor",
    "missing": [],
    "scripts": "scripts_lake_valor",
-   "split": "Byron",
+   "split": "Volkner",
    "split_basis": "its encounter table",
    "title": "Lake Valor",
    "undecoded": {},
@@ -13650,7 +13652,8 @@
     ],
     "trainers": [
      {"event": "object_events", "file": "events_route_219", "how": "sees the player", "line": 19, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_TUBER_TRENTON", "value": 358, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_219", "how": "sees the player", "line": 36, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_TUBER_MARIEL", "value": 360, "when": ""}]}]}
+     {"event": "object_events", "file": "events_route_219", "how": "sees the player", "line": 36, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_TUBER_MARIEL", "value": 360, "when": ""}]}]},
+     {"commit": "cac243cf5", "event": "object_events", "file": "events_route_219", "how": "sees the player", "line": 85, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_VINCENT", "value": 161, "when": ""}]}], "source": "Oxide"}
     ]
    },
    "events": "events_route_219",
@@ -13670,13 +13673,13 @@
    "entries": {
     "flags": [
      {"at": ["scripts_route_221:50"], "commit": "81d02e28e", "daily": false, "flag": 2684, "name": "FLAG_UNK_0x0A7C", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["events_route_221:279"], "daily": false, "flag": 639, "name": "FLAG_HIDE_ROUTE_221_WORKER_WEST", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:294"], "daily": false, "flag": 640, "name": "FLAG_HIDE_ROUTE_221_WORKER_EAST", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:264"], "daily": false, "flag": 1115, "name": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:189"], "daily": false, "flag": 1143, "name": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:159"], "daily": false, "flag": 1144, "name": "FLAG_OBTAINED_ROUTE_221_PROTEIN", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:174"], "daily": false, "flag": 1145, "name": "FLAG_OBTAINED_ROUTE_221_TM81", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:309"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["events_route_221:283"], "daily": false, "flag": 639, "name": "FLAG_HIDE_ROUTE_221_WORKER_WEST", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:298"], "daily": false, "flag": 640, "name": "FLAG_HIDE_ROUTE_221_WORKER_EAST", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:268"], "daily": false, "flag": 1115, "name": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:193"], "daily": false, "flag": 1143, "name": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:163"], "daily": false, "flag": 1144, "name": "FLAG_OBTAINED_ROUTE_221_PROTEIN", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:178"], "daily": false, "flag": 1145, "name": "FLAG_OBTAINED_ROUTE_221_TM81", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:313"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_route_221:43"], "daily": false, "flag": 639, "name": "FLAG_HIDE_ROUTE_221_WORKER_WEST", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_221:44"], "daily": false, "flag": 640, "name": "FLAG_HIDE_ROUTE_221_WORKER_EAST", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_221:61"], "commit": "81d02e28e", "daily": false, "flag": 2684, "name": "FLAG_UNK_0x0A7C", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
@@ -13689,10 +13692,10 @@
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_route_221", "flag": 922, "flag_name": "FLAG_OBTAINED_HIDDEN_ROUTE_221_MAX_REVIVE", "item": "ITEM_MAX_REVIVE", "item_id": 29, "line": 36, "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1144, "flag_name": "FLAG_OBTAINED_ROUTE_221_PROTEIN", "item": "ITEM_PROTEIN", "item_id": 46, "line": 160, "origin": "vanilla", "reached": true},
-     {"commit": "03a50f7fd", "count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1145, "flag_name": "FLAG_OBTAINED_ROUTE_221_TM81", "item": "ITEM_LUM_BERRY", "item_id": 157, "line": 175, "origin": "added", "reached": true, "replaces": "ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81", "source": "base ROM"},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1143, "flag_name": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL", "item": "ITEM_ULTRA_BALL", "item_id": 2, "line": 190, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1115, "flag_name": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE", "item": "ITEM_PURE_INCENSE", "item_id": 320, "line": 265, "origin": "vanilla", "reached": true}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1144, "flag_name": "FLAG_OBTAINED_ROUTE_221_PROTEIN", "item": "ITEM_PROTEIN", "item_id": 46, "line": 164, "origin": "vanilla", "reached": true},
+     {"commit": "03a50f7fd", "count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1145, "flag_name": "FLAG_OBTAINED_ROUTE_221_TM81", "item": "ITEM_LUM_BERRY", "item_id": 157, "line": 179, "origin": "added", "reached": true, "replaces": "ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81", "source": "base ROM"},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1143, "flag_name": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL", "item": "ITEM_ULTRA_BALL", "item_id": 2, "line": 194, "origin": "vanilla", "reached": true},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1115, "flag_name": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE", "item": "ITEM_PURE_INCENSE", "item_id": 320, "line": 269, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 51, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_DILLON", "value": 166, "when": ""}]}]},
@@ -13700,7 +13703,7 @@
      {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 83, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_CORY", "value": 168, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 98, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_COLLECTOR_IVAN", "value": 274, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 115, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_JAKE", "value": 170, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 130, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_SHANNON", "value": 171, "when": ""}]}]}
+     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 132, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_SHANNON", "value": 171, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["scripts_route_221:41"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
@@ -13727,29 +13730,45 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_pal_park_lobby:55", "scripts_pal_park_lobby:65"], "daily": false, "flag": 211, "name": "FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pal_park_lobby:347"], "daily": false, "flag": 578, "name": "FLAG_HIDE_ETERNA_CITY_SOUTH_HOUSE_PROF_OAK", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pal_park_lobby:25"], "daily": false, "flag": 2453, "name": "FLAG_ALT_MUSIC_PAL_PARK", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pal_park_lobby:73", "scripts_pal_park_lobby:83"], "daily": false, "flag": 211, "name": "FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pal_park_lobby:365"], "daily": false, "flag": 578, "name": "FLAG_HIDE_ETERNA_CITY_SOUTH_HOUSE_PROF_OAK", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pal_park_lobby:474", "scripts_pal_park_lobby:487", "scripts_pal_park_lobby:495"], "commit": null, "daily": false, "flag": 1359, "name": "FLAG_UNUSED_0x054F", "op": "clear", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_pal_park_lobby:26"], "daily": false, "flag": 2453, "name": "FLAG_ALT_MUSIC_PAL_PARK", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_pal_park_lobby:24"], "daily": false, "flag": 466, "name": "FLAG_HIDE_PAL_PARK_LOBBY_PROF_OAK", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pal_park_lobby:56", "scripts_pal_park_lobby:66"], "daily": false, "flag": 211, "name": "FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pal_park_lobby:26"], "daily": false, "flag": 2547, "name": "FLAG_FIRST_ARRIVAL_POKE_PARK_FRONT_GATE", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["events_pal_park_lobby:144", "events_pal_park_lobby:159", "events_pal_park_lobby:174"], "commit": null, "daily": false, "flag": 1359, "name": "FLAG_UNUSED_0x054F", "op": "hides", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_pal_park_lobby:74", "scripts_pal_park_lobby:84"], "daily": false, "flag": 211, "name": "FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pal_park_lobby:33"], "commit": null, "daily": false, "flag": 1359, "name": "FLAG_UNUSED_0x054F", "op": "set", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_pal_park_lobby:509"], "commit": null, "daily": false, "flag": 1369, "name": "FLAG_DEFEATED_TRAINER_DUMMY_009", "op": "set", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_pal_park_lobby:510"], "commit": null, "daily": false, "flag": 1410, "name": "FLAG_DEFEATED_TRAINER_DUMMY_050", "op": "set", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_pal_park_lobby:27"], "daily": false, "flag": 2547, "name": "FLAG_FIRST_ARRIVAL_POKE_PARK_FRONT_GATE", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "items": [
-     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_pal_park_lobby", "how": "Common_GiveItemQuantity", "item": [{"by": ["VAR_0x8006"], "name": "ITEM_CHERI_BERRY", "value": 149, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "ITEM_CHESTO_BERRY", "value": 150, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8006"], "name": "ITEM_PECHA_BERRY", "value": 151, "when": "VAR_0x8006 (GetRandom) == 2"}, {"by": ["VAR_0x8006"], "name": "ITEM_RAWST_BERRY", "value": 152, "when": "VAR_0x8006 (GetRandom) == 3"}, {"by": ["VAR_0x8006"], "name": "ITEM_ASPEAR_BERRY", "value": 153, "when": "VAR_0x8006 == 4"}, {"by": ["VAR_0x8006"], "name": "ITEM_LEPPA_BERRY", "value": 154, "when": "VAR_0x8006 == 5"}, {"by": ["VAR_0x8006"], "name": "ITEM_ORAN_BERRY", "value": 155, "when": "VAR_0x8006 == 6"}, {"by": ["VAR_0x8006"], "name": "ITEM_PERSIM_BERRY", "value": 156, "when": "VAR_0x8006 == 7"}, {"by": ["VAR_0x8006"], "name": "ITEM_LUM_BERRY", "value": 157, "when": "VAR_0x8006 == 5"}, {"by": ["VAR_0x8006"], "name": "ITEM_SITRUS_BERRY", "value": 158, "when": "VAR_0x8006 == 6"}, {"by": ["VAR_0x8006"], "name": "ITEM_FIGY_BERRY", "value": 159, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "ITEM_WIKI_BERRY", "value": 160, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8006"], "name": "ITEM_MAGO_BERRY", "value": 161, "when": "VAR_0x8006 (GetRandom) == 2"}, {"by": ["VAR_0x8006"], "name": "ITEM_AGUAV_BERRY", "value": 162, "when": "VAR_0x8006 (GetRandom) == 3"}, {"by": ["VAR_0x8006"], "name": "ITEM_IAPAPA_BERRY", "value": 163, "when": "VAR_0x8006 == 4"}, {"by": ["VAR_0x8006"], "name": "ITEM_RAZZ_BERRY", "value": 164, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "ITEM_BLUK_BERRY", "value": 165, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8006"], "name": "ITEM_NANAB_BERRY", "value": 166, "when": "VAR_0x8006 (GetRandom) == 2"}, {"by": ["VAR_0x8006"], "name": "ITEM_WEPEAR_BERRY", "value": 167, "when": "VAR_0x8006 (GetRandom) == 3"}, {"by": ["VAR_0x8006"], "name": "ITEM_PINAP_BERRY", "value": 168, "when": "VAR_0x8006 == 4"}, {"by": ["VAR_0x8006"], "name": "ITEM_POMEG_BERRY", "value": 169, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "ITEM_KELPSY_BERRY", "value": 170, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8006"], "name": "ITEM_QUALOT_BERRY", "value": 171, "when": "VAR_0x8006 (GetRandom) == 2"}, {"by": ["VAR_0x8006"], "name": "ITEM_HONDEW_BERRY", "value": 172, "when": "VAR_0x8006 (GetRandom) == 3"}, {"by": ["VAR_0x8006"], "name": "ITEM_GREPA_BERRY", "value": 173, "when": "VAR_0x8006 == 4"}, {"by": ["VAR_0x8006"], "name": "ITEM_TAMATO_BERRY", "value": 174, "when": "VAR_0x8006 == 5"}, {"by": ["VAR_0x8006"], "name": "set by GetRandom", "value": null, "when": "VAR_0x8006 != 4; VAR_0x8006 (GetRandom) != 3; VAR_0x8006 (GetRandom) != 2 or VAR_0x8006 != 5; VAR_0x8006 != 4; VAR_0x8006 (GetRandom) != 3 or VAR_0x8006 != 6; VAR_0x8006 != 5; VAR_0x8006 != 4 or VAR_0x8006 != 7; VAR_0x8006 != 6; VAR_0x8006 != 5"}], "line": 626, "mode": "variable", "origin": "vanilla", "reached": true}
+     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_pal_park_lobby", "how": "Common_GiveItemQuantity", "item": [{"by": ["VAR_0x8006"], "name": "ITEM_CHERI_BERRY", "value": 149, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "ITEM_CHESTO_BERRY", "value": 150, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8006"], "name": "ITEM_PECHA_BERRY", "value": 151, "when": "VAR_0x8006 (GetRandom) == 2"}, {"by": ["VAR_0x8006"], "name": "ITEM_RAWST_BERRY", "value": 152, "when": "VAR_0x8006 (GetRandom) == 3"}, {"by": ["VAR_0x8006"], "name": "ITEM_ASPEAR_BERRY", "value": 153, "when": "VAR_0x8006 == 4"}, {"by": ["VAR_0x8006"], "name": "ITEM_LEPPA_BERRY", "value": 154, "when": "VAR_0x8006 == 5"}, {"by": ["VAR_0x8006"], "name": "ITEM_ORAN_BERRY", "value": 155, "when": "VAR_0x8006 == 6"}, {"by": ["VAR_0x8006"], "name": "ITEM_PERSIM_BERRY", "value": 156, "when": "VAR_0x8006 == 7"}, {"by": ["VAR_0x8006"], "name": "ITEM_LUM_BERRY", "value": 157, "when": "VAR_0x8006 == 5"}, {"by": ["VAR_0x8006"], "name": "ITEM_SITRUS_BERRY", "value": 158, "when": "VAR_0x8006 == 6"}, {"by": ["VAR_0x8006"], "name": "ITEM_FIGY_BERRY", "value": 159, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "ITEM_WIKI_BERRY", "value": 160, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8006"], "name": "ITEM_MAGO_BERRY", "value": 161, "when": "VAR_0x8006 (GetRandom) == 2"}, {"by": ["VAR_0x8006"], "name": "ITEM_AGUAV_BERRY", "value": 162, "when": "VAR_0x8006 (GetRandom) == 3"}, {"by": ["VAR_0x8006"], "name": "ITEM_IAPAPA_BERRY", "value": 163, "when": "VAR_0x8006 == 4"}, {"by": ["VAR_0x8006"], "name": "ITEM_RAZZ_BERRY", "value": 164, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "ITEM_BLUK_BERRY", "value": 165, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8006"], "name": "ITEM_NANAB_BERRY", "value": 166, "when": "VAR_0x8006 (GetRandom) == 2"}, {"by": ["VAR_0x8006"], "name": "ITEM_WEPEAR_BERRY", "value": 167, "when": "VAR_0x8006 (GetRandom) == 3"}, {"by": ["VAR_0x8006"], "name": "ITEM_PINAP_BERRY", "value": 168, "when": "VAR_0x8006 == 4"}, {"by": ["VAR_0x8006"], "name": "ITEM_POMEG_BERRY", "value": 169, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "ITEM_KELPSY_BERRY", "value": 170, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8006"], "name": "ITEM_QUALOT_BERRY", "value": 171, "when": "VAR_0x8006 (GetRandom) == 2"}, {"by": ["VAR_0x8006"], "name": "ITEM_HONDEW_BERRY", "value": 172, "when": "VAR_0x8006 (GetRandom) == 3"}, {"by": ["VAR_0x8006"], "name": "ITEM_GREPA_BERRY", "value": 173, "when": "VAR_0x8006 == 4"}, {"by": ["VAR_0x8006"], "name": "ITEM_TAMATO_BERRY", "value": 174, "when": "VAR_0x8006 == 5"}, {"by": ["VAR_0x8006"], "name": "set by GetRandom", "value": null, "when": "VAR_0x8006 != 4; VAR_0x8006 (GetRandom) != 3; VAR_0x8006 (GetRandom) != 2 or VAR_0x8006 != 5; VAR_0x8006 != 4; VAR_0x8006 (GetRandom) != 3 or VAR_0x8006 != 6; VAR_0x8006 != 5; VAR_0x8006 != 4 or VAR_0x8006 != 7; VAR_0x8006 != 6; VAR_0x8006 != 5"}], "line": 863, "mode": "variable", "origin": "vanilla", "reached": true}
+    ],
+    "trainers": [
+     {"command": "StartTagBattle", "file": "scripts_pal_park_lobby", "how": "StartTagBattle", "line": 552, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "partnerTrainer", "values": [{"name": "TRAINER_DUMMY_062", "value": 62, "when": ""}]}, {"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_009", "value": 9, "when": ""}]}, {"mode": "name", "role": "enemyTrainer2", "values": [{"name": "TRAINER_DUMMY_050", "value": 50, "when": ""}]}], "source": "unclear"},
+     {"command": "StartTagBattle", "file": "scripts_pal_park_lobby", "how": "StartTagBattle", "line": 556, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "partnerTrainer", "values": [{"name": "TRAINER_DUMMY_063", "value": 63, "when": ""}]}, {"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_009", "value": 9, "when": ""}]}, {"mode": "name", "role": "enemyTrainer2", "values": [{"name": "TRAINER_DUMMY_050", "value": 50, "when": ""}]}], "source": "unclear"},
+     {"command": "StartTagBattle", "file": "scripts_pal_park_lobby", "how": "StartTagBattle", "line": 560, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "partnerTrainer", "values": [{"name": "TRAINER_DUMMY_064", "value": 64, "when": ""}]}, {"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_009", "value": 9, "when": ""}]}, {"mode": "name", "role": "enemyTrainer2", "values": [{"name": "TRAINER_DUMMY_050", "value": 50, "when": ""}]}], "source": "unclear"},
+     {"command": "StartTagBattle", "file": "scripts_pal_park_lobby", "how": "StartTagBattle", "line": 567, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "partnerTrainer", "values": [{"name": "TRAINER_DUMMY_051", "value": 51, "when": ""}]}, {"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_009", "value": 9, "when": ""}]}, {"mode": "name", "role": "enemyTrainer2", "values": [{"name": "TRAINER_DUMMY_050", "value": 50, "when": ""}]}], "source": "unclear"},
+     {"command": "StartTagBattle", "file": "scripts_pal_park_lobby", "how": "StartTagBattle", "line": 571, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "partnerTrainer", "values": [{"name": "TRAINER_DUMMY_052", "value": 52, "when": ""}]}, {"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_009", "value": 9, "when": ""}]}, {"mode": "name", "role": "enemyTrainer2", "values": [{"name": "TRAINER_DUMMY_050", "value": 50, "when": ""}]}], "source": "unclear"},
+     {"command": "StartTagBattle", "file": "scripts_pal_park_lobby", "how": "StartTagBattle", "line": 575, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "partnerTrainer", "values": [{"name": "TRAINER_DUMMY_054", "value": 54, "when": ""}]}, {"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_009", "value": 9, "when": ""}]}, {"mode": "name", "role": "enemyTrainer2", "values": [{"name": "TRAINER_DUMMY_050", "value": 50, "when": ""}]}], "source": "unclear"}
     ],
     "vars": [
-     {"at": ["scripts_pal_park_lobby:353"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_pal_park_lobby:482"], "name": "VAR_MAP_LOCAL_0x09", "op": "check", "origin": "vanilla", "reached": true, "var": 16393},
-     {"at": ["scripts_pal_park_lobby:415", "scripts_pal_park_lobby:416"], "name": "VAR_MAP_LOCAL_0x0A", "op": "check", "origin": "vanilla", "reached": true, "var": 16394},
-     {"at": ["scripts_init_pal_park_lobby:9"], "name": "VAR_PAL_PARK_LOBBY_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16582},
-     {"at": ["scripts_pal_park_lobby:36", "scripts_pal_park_lobby:38", "scripts_pal_park_lobby:43", "scripts_pal_park_lobby:229"], "name": "VAR_CATCHING_SHOW_RECORD", "op": "check", "origin": "vanilla", "reached": true, "var": 16608},
-     {"at": ["scripts_init_pal_park_lobby:10", "scripts_init_pal_park_lobby:11", "scripts_pal_park_lobby:27"], "name": "VAR_PAL_PARK_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16627},
-     {"at": ["scripts_pal_park_lobby:351"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_pal_park_lobby:550", "scripts_pal_park_lobby:557"], "name": "VAR_MAP_LOCAL_0x09", "op": "set", "origin": "vanilla", "reached": true, "var": 16393},
-     {"at": ["scripts_pal_park_lobby:430", "scripts_pal_park_lobby:443"], "name": "VAR_MAP_LOCAL_0x0A", "op": "set", "origin": "vanilla", "reached": true, "var": 16394},
-     {"at": ["scripts_pal_park_lobby:382"], "name": "VAR_PAL_PARK_LOBBY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16582},
-     {"at": ["scripts_pal_park_lobby:237", "scripts_pal_park_lobby:348"], "name": "VAR_CATCHING_SHOW_RECORD", "op": "set", "origin": "vanilla", "reached": true, "var": 16608},
-     {"at": ["scripts_pal_park_lobby:206", "scripts_pal_park_lobby:216"], "name": "VAR_PAL_PARK_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16627}
+     {"at": ["scripts_pal_park_lobby:371"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
+     {"at": ["scripts_pal_park_lobby:35", "scripts_pal_park_lobby:36"], "commit": null, "name": "VAR_MAP_LOCAL_0x01", "op": "check", "origin": "added", "reached": true, "source": "unclear", "var": 16385},
+     {"at": ["scripts_pal_park_lobby:719"], "name": "VAR_MAP_LOCAL_0x09", "op": "check", "origin": "vanilla", "reached": true, "var": 16393},
+     {"at": ["scripts_pal_park_lobby:652", "scripts_pal_park_lobby:653"], "name": "VAR_MAP_LOCAL_0x0A", "op": "check", "origin": "vanilla", "reached": true, "var": 16394},
+     {"at": ["scripts_init_pal_park_lobby:9", "scripts_init_pal_park_lobby:12"], "name": "VAR_PAL_PARK_LOBBY_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16582},
+     {"at": ["scripts_pal_park_lobby:54", "scripts_pal_park_lobby:56", "scripts_pal_park_lobby:61", "scripts_pal_park_lobby:247"], "name": "VAR_CATCHING_SHOW_RECORD", "op": "check", "origin": "vanilla", "reached": true, "var": 16608},
+     {"at": ["scripts_init_pal_park_lobby:10", "scripts_init_pal_park_lobby:11", "scripts_pal_park_lobby:37"], "name": "VAR_PAL_PARK_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16627},
+     {"at": ["scripts_pal_park_lobby:369"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
+     {"at": ["scripts_pal_park_lobby:34"], "commit": null, "name": "VAR_MAP_LOCAL_0x01", "op": "set", "origin": "added", "reached": true, "source": "unclear", "var": 16385},
+     {"at": ["scripts_pal_park_lobby:787", "scripts_pal_park_lobby:794"], "name": "VAR_MAP_LOCAL_0x09", "op": "set", "origin": "vanilla", "reached": true, "var": 16393},
+     {"at": ["scripts_pal_park_lobby:667", "scripts_pal_park_lobby:680"], "name": "VAR_MAP_LOCAL_0x0A", "op": "set", "origin": "vanilla", "reached": true, "var": 16394},
+     {"at": ["scripts_pal_park_lobby:41", "scripts_pal_park_lobby:45"], "commit": null, "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "added", "reached": true, "source": "unclear", "var": 16416},
+     {"at": ["scripts_pal_park_lobby:400", "scripts_pal_park_lobby:533"], "name": "VAR_PAL_PARK_LOBBY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16582},
+     {"at": ["scripts_pal_park_lobby:255", "scripts_pal_park_lobby:366"], "name": "VAR_CATCHING_SHOW_RECORD", "op": "set", "origin": "vanilla", "reached": true, "var": 16608},
+     {"at": ["scripts_pal_park_lobby:224", "scripts_pal_park_lobby:234"], "name": "VAR_PAL_PARK_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16627}
     ]
    },
    "events": "events_pal_park_lobby",
@@ -13766,7 +13785,7 @@
    "unreached": [
     {
      "label": "PalParkLobby_Record_Unused",
-     "line": 293,
+     "line": 311,
      "number": 4
     }
    ]
@@ -16124,31 +16143,34 @@
   {
    "entries": {
     "flags": [
-     {"at": ["events_route_220:146"], "daily": false, "flag": 1139, "name": "FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_220:131"], "daily": false, "flag": 1141, "name": "FLAG_OBTAINED_ROUTE_220_CARBOS", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_220:161"], "daily": false, "flag": 1142, "name": "FLAG_OBTAINED_ROUTE_220_MAX_REPEL", "op": "hides", "origin": "vanilla", "reached": true}
+     {"at": ["events_route_220:131"], "daily": false, "flag": 1139, "name": "FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_220:116"], "daily": false, "flag": 1141, "name": "FLAG_OBTAINED_ROUTE_220_CARBOS", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_220:146"], "daily": false, "flag": 1142, "name": "FLAG_OBTAINED_ROUTE_220_MAX_REPEL", "op": "hides", "origin": "vanilla", "reached": true}
     ],
     "hidden_items": [
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_route_220", "flag": 778, "flag_name": "FLAG_OBTAINED_HIDDEN_ROUTE_220_BIG_PEARL", "item": "ITEM_BIG_PEARL", "item_id": 89, "line": 4, "origin": "vanilla", "reached": true},
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_route_220", "flag": 899, "flag_name": "FLAG_OBTAINED_HIDDEN_ROUTE_219_ZINC", "item": "ITEM_ZINC", "item_id": 52, "line": 12, "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_220", "flag": 1141, "flag_name": "FLAG_OBTAINED_ROUTE_220_CARBOS", "item": "ITEM_CARBOS", "item_id": 48, "line": 132, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_220", "flag": 1139, "flag_name": "FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE", "item": "ITEM_SPLASH_PLATE", "item_id": 299, "line": 147, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_220", "flag": 1142, "flag_name": "FLAG_OBTAINED_ROUTE_220_MAX_REPEL", "item": "ITEM_MAX_REPEL", "item_id": 77, "line": 162, "origin": "vanilla", "reached": true}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_220", "flag": 1141, "flag_name": "FLAG_OBTAINED_ROUTE_220_CARBOS", "item": "ITEM_CARBOS", "item_id": 48, "line": 117, "origin": "vanilla", "reached": true},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_220", "flag": 1139, "flag_name": "FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE", "item": "ITEM_SPLASH_PLATE", "item_id": 299, "line": 132, "origin": "vanilla", "reached": true},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_220", "flag": 1142, "flag_name": "FLAG_OBTAINED_ROUTE_220_MAX_REPEL", "item": "ITEM_MAX_REPEL", "item_id": 77, "line": 147, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 27, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_ERIK", "value": 160, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 42, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_VINCENT", "value": 161, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 57, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_JESSICA", "value": 162, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 72, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_ERICA", "value": 163, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 87, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_ADRIAN", "value": 159, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 102, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_KATELYN", "value": 164, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 117, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_CLAIRE", "value": 494, "when": ""}]}]}
+     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 42, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_JESSICA", "value": 162, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 57, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_ERICA", "value": 163, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 72, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_ADRIAN", "value": 159, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 87, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_KATELYN", "value": 164, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 102, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_CLAIRE", "value": 494, "when": ""}]}]}
     ]
    },
    "events": "events_route_220",
-   "gone_from_vanilla": {},
+   "gone_from_vanilla": {
+    "trainers": [
+     {"event": "object_events", "file": "events_route_220", "how": "sees the player", "line": 44, "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_VINCENT", "value": 161, "when": ""}]}]}
+    ]
+   },
    "header": "MAP_HEADER_ROUTE_220",
    "init": "scripts_init_empty",
    "location": "Route 220",
@@ -19283,7 +19305,8 @@
    "Oxide": 146,
    "base ROM": 214,
    "gone": 105,
-   "total": 3324,
+   "total": 3331,
+   "unclear": 7,
    "vanilla": 2964
   },
   "hidden_items": {
@@ -19326,17 +19349,19 @@
    "vanilla": 4
   },
   "trainers": {
-   "Oxide": 15,
+   "Oxide": 16,
    "base ROM": 72,
-   "gone": 14,
-   "total": 594,
-   "vanilla": 507
+   "gone": 15,
+   "total": 600,
+   "unclear": 6,
+   "vanilla": 506
   },
   "vars": {
    "Oxide": 20,
    "base ROM": 27,
    "gone": 36,
-   "total": 1125,
+   "total": 1128,
+   "unclear": 3,
    "vanilla": 1078
   }
  }

@@ -313,7 +313,6 @@ _SPLIT_STEMS = {
         "route_218", "canalave_city", "iron_island", "iron_island_1f", "iron_island_b1f_left_room",
         "iron_island_b1f_right_room", "iron_island_b2f_right_room",
         "iron_island_b2f_left_room", "iron_island_b3f", "route_220", "route_221",
-        "lake_valor",
     ],
     "Candice": ["route_216", "route_217", "acuity_lakefront", "lake_acuity",
                 "snowpoint_city"],
@@ -326,7 +325,10 @@ _SPLIT_STEMS = {
         "mt_coronet_4f_rooms_1_and_2", "mt_coronet_4f_room_3", "mt_coronet_outside_north",
         "mt_coronet_5f", "mt_coronet_6f",
     ],
-    "Volkner": ["route_222", "sunyshore_city"],
+    # The full Lake Valor's table is first met in Volkner's split: the lake
+    # drains in Byron's, after the library, and refills only after the
+    # Distortion World (Ian, 2026-10-31; docs/oxide/byron-split-map.md).
+    "Volkner": ["route_222", "sunyshore_city", "lake_valor"],
     "Barry": [
         "route_223", "victory_road_1f", "victory_road_2f", "victory_road_b1f",
         "victory_road_1f_room_1", "victory_road_1f_room_2", "victory_road_1f_room_3",
