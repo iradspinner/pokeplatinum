@@ -46,6 +46,22 @@
         },
         {
             "gender": null,
+            "species": "SPECIES_TOTODILE",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_RINDO_BERRY",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_BITE",
+                "MOVE_ICE_PUNCH",
+                "MOVE_SCARY_FACE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
             "species": "SPECIES_SNUBBULL",
             "form": 0,
             "level": 18,
