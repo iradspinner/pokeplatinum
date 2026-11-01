@@ -262,7 +262,8 @@
     "party": "edited in the encounter tool's team builder, 2026-09-27"
   },
   "commander_saturn_valor_cavern": {
-    "party": "edited in the OxiDex team builder, 2026-11-01"
+    "party": "edited in the OxiDex team builder, 2026-11-01",
+    "ai_flags": "edited in the OxiDex team builder, 2026-11-01"
   },
   "cowgirl_shelley": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
@@ -672,7 +673,8 @@
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "leader_candice": {
-    "party": "edited in the OxiDex team builder, 2026-11-01"
+    "party": "edited in the OxiDex team builder, 2026-11-01",
+    "ai_flags": "edited in the OxiDex team builder, 2026-11-01"
   },
   "leader_fantina": {
     "party": "edited in the OxiDex team builder, 2026-10-29",
