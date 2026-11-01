@@ -109,7 +109,9 @@
             "MOVE_PSYCHO_SHIFT",
             "MOVE_SCREECH",
             "MOVE_FAINT_ATTACK",
-            "MOVE_PROTECT"
+            "MOVE_PROTECT",
+            "MOVE_CRUNCH",
+            "MOVE_BRAVE_BIRD"
         ]
     },
     "evolutions": [

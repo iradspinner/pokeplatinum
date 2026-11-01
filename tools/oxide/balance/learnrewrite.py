@@ -138,7 +138,9 @@ IAN_EGG_MOVES = {
     # Fantina's six (Ian, 2026-10-29, on fantina-redesign.md: "legalise via
     # egg lists"): the moves of his team that no list gave at its levels.
     "SPECIES_YAMASK": [("MOVE_CONFUSE_RAY", "Ian, 2026-10-29: Fantina's Runerigus"),
-                       ("MOVE_BODY_PRESS", "Ian, 2026-10-29: Fantina's Runerigus")],
+                       ("MOVE_BODY_PRESS", "Ian, 2026-10-29: Fantina's Runerigus"),
+                       ("MOVE_PAIN_SPLIT", "the egg-list rule (Ian, 2026-10-29): Officer Argo 1's "
+                                           "Cofagrigus at 41, a draft")],
     # Krystal's Heat Rotom shares plain Rotom's lists, so its moves are read here too.
     "SPECIES_ROTOM": [("MOVE_PAIN_SPLIT", "Ian, 2026-10-29: Fantina's Rotom"),
                       ("MOVE_OVERHEAT", "Ian, 2026-10-31: Krystal's Heat Rotom"),
@@ -192,11 +194,17 @@ IAN_EGG_MOVES = {
     "SPECIES_POOCHYENA": [("MOVE_OBSTRUCT", "Ian, 2026-10-29: Officer Hermes's Mightyena at Veilstone")],
     "SPECIES_SPINARAK": [("MOVE_SILK_TRAP", "Ian, 2026-10-29: Officer Tyche's Ariados at Veilstone")],
     # Their Protect, a TM before the TM pass and so already legal for these
-    # trainers, here so the OxiDex agrees.
+    # trainers, here so the OxiDex agrees. Murkrow's is in its own entry
+    # below, with Cyrus 1's two moves, since a second key would drop it.
     **{sp: [("MOVE_PROTECT", f"Ian, 2026-10-29: Officer {who}'s {mon} at Veilstone")]
-       for sp, who, mon in (("SPECIES_ZUBAT", "Tyche", "Golbat"), ("SPECIES_MURKROW", "Tyche", "Murkrow"),
+       for sp, who, mon in (("SPECIES_ZUBAT", "Tyche", "Golbat"),
                             ("SPECIES_SEVIPER", "Hermes", "Seviper"), ("SPECIES_CARVANHA", "Hermes", "Sharpedo"),
                             ("SPECIES_DIGLETT", "Hermes", "Dugtrio"))},
+    "SPECIES_MURKROW": [("MOVE_PROTECT", "Ian, 2026-10-29: Officer Tyche's Murkrow at Veilstone"),
+                        ("MOVE_CRUNCH", "the egg-list rule (Ian, 2026-10-29): Cyrus 1's Honchkrow at 46, "
+                                        "a draft"),
+                        ("MOVE_BRAVE_BIRD", "the egg-list rule (Ian, 2026-10-29): Cyrus 1's Honchkrow at 46, "
+                                            "a draft")],
     # The level climb of Fantina's and Maylene's splits (Ian, 2026-10-29): the
     # moves its teams carry that the OxiDex's list does not give at their
     # levels. Endure, Swords Dance and Rest were TMs before the TM pass.
@@ -277,7 +285,9 @@ IAN_EGG_MOVES = {
     # stages of their own.
     "SPECIES_ROOKIDEE": [("MOVE_ROOST", "Ian, 2026-10-31: Darach's Corviknight at 44"),
                          ("MOVE_TAILWIND", "Ian, 2026-10-31: Darach's Corviknight")],
-    "SPECIES_SINISTEA": [("MOVE_PROTECT", "Ian, 2026-10-31: Darach's Sinistcha")],
+    "SPECIES_SINISTEA": [("MOVE_PROTECT", "Ian, 2026-10-31: Darach's Sinistcha"),
+                         ("MOVE_SHELL_SMASH", "the egg-list rule (Ian, 2026-10-29): Officer Argo 1's "
+                                              "Polteageist at 44, which learns it at 60, a draft")],
     "SPECIES_CHARCADET": [("MOVE_SCORCHING_SANDS", "Ian, 2026-10-31: Darach's Armarouge")],
     "SPECIES_GALARIAN_ARTICUNO": [("MOVE_FREEZING_GLARE", "Ian, 2026-10-31: Darach's Galarian Articuno at 44")],
     "SPECIES_ENTEI": [("MOVE_SACRED_FIRE", "Ian, 2026-10-31: Darach's Entei"),
@@ -313,6 +323,15 @@ IAN_EGG_MOVES = {
                                            "which learns it at 42"),
                      ("MOVE_ICY_WIND", "Ian, 2026-10-31: the Eterna building 3F grunt's Kadabra at 26")],
     "SPECIES_HOOTHOOT": [("MOVE_TAILWIND", "Ian, 2026-10-31: Collector Jamal's Noctowl at 38")],
+    # Argo 1's and Cyrus 1's drafts, carried over at the honour cap of 47
+    # (2026-10-31, cyrus-argo-check.md), by the egg-list rule of 2026-10-29:
+    # the moves no list gives at the new levels. Cofagrigus's, Polteageist's
+    # and Honchkrow's are with Yamask, Sinistea and Murkrow above. Baltoy had
+    # no egg list; Relicanth is a first stage of its own.
+    "SPECIES_BALTOY": [("MOVE_EXTRASENSORY", "the egg-list rule (Ian, 2026-10-29): Officer Argo 1's "
+                                             "Claydol at 43, a draft")],
+    "SPECIES_RELICANTH": [("MOVE_HEAD_SMASH", "the egg-list rule (Ian, 2026-10-29): Officer Argo 1's "
+                                              "Relicanth at 41, which learns it at 78, a draft")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
