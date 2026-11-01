@@ -189,21 +189,40 @@ def _canalave_gym_floor():
 
 
 def check_byron_order(results):
-    """Byron's split runs Canalave, Iron Island, the gym, then the library
-    (Ian, 2026-10-31). From Route 218's gate the player reaches the sailor to
-    Iron Island and the gym's door; the island is walked from the boat to
-    Riley's grunts on B2F; inside the gym, the trigger across the row past
-    the entrance (its coord event, which holds until Riley's tag battle is
-    won) leaves the player nowhere to go but out; and Barry at the library
-    door, who waits for the same battle, keeps the library shut."""
+    """Byron's split runs Cyrus 1, Surf, the south and Pal Park, then Barry 5,
+    then Iron Island and the gym, then the library (Ian, 2026-10-31). The
+    south's three routes, from Sandgem to Pal Park's door, open with Surf
+    and not before it. Barry's trigger across Canalave's bridge, which fights
+    only once the Pal Park double is won and before that sends the player
+    back, holds the sailor to Iron Island and the gym's door: with the
+    trigger's tiles shut neither is reached from Route 218's gate, with them
+    open both are. The island is walked from the boat to Riley's grunts on
+    B2F, room by room, since the ferry is a script; inside the gym, the
+    trigger across the row past the entrance (its coord event, which holds
+    until Riley's tag battle is won) leaves the player nowhere to go but
+    out; and Barry at the library door, who waits for the same battle,
+    keeps the library shut."""
     from . import world
+    south = [("SANDGEM_TOWN", "ROUTE_202", "ROUTE_219"), ("ROUTE_219", "SANDGEM_TOWN", "ROUTE_220"),
+             ("ROUTE_220", "ROUTE_219", "ROUTE_221"), ("ROUTE_221", "ROUTE_220", "PAL_PARK_LOBBY")]
+
+    def south_open(split):
+        fields = [(R.Field(h, split), a, b) for h, a, b in south]
+        return all(f.path(f.ends(a), f.ends(b)) for f, a, b in fields)
     canalave = R.Field("CANALAVE_CITY", "Byron")
     start = canalave.ends("ROUTE_218_GATE_TO_CANALAVE_CITY")
     gym_door = world.warps_to("CANALAVE_CITY", "CANALAVE_CITY_GYM")
     library = world.warps_to("CANALAVE_CITY", "CANALAVE_LIBRARY_1F")
+    sailor = canalave.ends("@LOCALID_SAILOR_ELDRITCH")
+    bridge = next(c for c in world.events("CANALAVE_CITY")["coord_events"]
+                  if c["var"] == "VAR_CANALAVE_CITY_STATE" and c["value"] == 0)
+    barry_5 = frozenset((bridge["x"] + i, bridge["z"] + j)
+                        for i in range(bridge["width"]) for j in range(bridge["length"]))
+    held = canalave.reach(start, barry_5)
     seen = canalave.reach(start)
-    got = {"sailor": bool(seen & canalave.ends("@LOCALID_SAILOR_ELDRITCH")),
-           "gym door": bool(seen & gym_door)}
+    got = {"south before Surf": south_open("Wake"), "south with Surf": south_open("Byron"),
+           "sailor before Barry 5": bool(held & sailor), "gym door before Barry 5": bool(held & gym_door),
+           "sailor": bool(seen & sailor), "gym door": bool(seen & gym_door)}
     barry = next(o for o in world.events("CANALAVE_CITY")["object_events"]
                  if o["id"] == "LOCALID_RIVAL_LIBRARY")
     canalave.objects[(barry["x"], barry["z"])] = barry
@@ -235,9 +254,12 @@ def check_byron_order(results):
     # Past the row the entrance opens onto, two rows north of the door.
     door_z = min(z for _x, z in entrance)
     got["gym past the entrance row"] = any(z < door_z - 1 for _x, z in inside)
-    want = {"sailor": True, "gym door": True, "library past Barry": False,
+    want = {"south before Surf": False, "south with Surf": True,
+            "sailor before Barry 5": False, "gym door before Barry 5": False,
+            "sailor": True, "gym door": True, "library past Barry": False,
             "island to Riley's grunts": True, "gym past the entrance row": False}
-    results.append(("Byron's split runs the island, the gym, then the library", got == want,
+    results.append(("Byron's split runs the south, Barry 5, the island, the gym, then the library",
+                    got == want,
                     ", ".join(f"{k} {v}" for k, v in got.items())))
 
 

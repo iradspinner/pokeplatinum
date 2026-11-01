@@ -1502,6 +1502,10 @@ TEXT_BANKS_SKIPPED[103] = ("Oak asks the player back after the Hall of Fame befo
 # Pal Park's lobby gains the partner double's lines (Ian, 2026-10-31).
 TEXT_BANKS_SKIPPED[515] = ("the Pal Park partner double's lines: Lucas or Dawn and two Galactic "
                            "officers (Ian, 2026-10-31)")
+# Barry on Canalave's bridge sends the player to Pal Park until its partner
+# double is won (Ian, 2026-10-31).
+TEXT_BANKS_SKIPPED[54] += ("; then Barry on the bridge sends the player to Pal Park until its "
+                           "partner double is won (Ian, 2026-10-31)")
 
 
 def text_bank_names():
