@@ -5,6 +5,7 @@
 
     ScriptEntry FuegoIronworksBuilding_OnTransition
     ScriptEntry FuegoIronworksBuilding_MrFuego
+    ScriptEntry FuegoIronworksBuilding_Thorton
     ScriptEntryEnd
 
 FuegoIronworksBuilding_OnTransition:
@@ -120,6 +121,48 @@ FuegoIronworksBuilding_ThereYouAre:
 FuegoIronworksBuilding_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
+    ReleaseAll
+    End
+
+@ Platinum Oxide (Ian, 2026-09-27 and 2026-10-31): Thorton, the Factory Head,
+@ an optional boss in Barry 5's stretch of Byron's split. He stands in the
+@ heart of the ironworks, beside the tile where the moving floor brings the
+@ player into Mr. Fuego's room, and fights only when spoken to. He asks
+@ first, since a loss ends an Oxide run, and his fight opens in a permanent
+@ Trick Room (battle_lib.c).
+FuegoIronworksBuilding_Thorton:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_DUMMY_077, FuegoIronworksBuilding_ThortonBeaten
+    Message FuegoIronworksBuilding_Text_ThortonIntro
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, FuegoIronworksBuilding_ThortonDeclined
+    Message FuegoIronworksBuilding_Text_ThortonBegin
+    CloseMessage
+    StartTrainerBattle TRAINER_DUMMY_077
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, FuegoIronworksBuilding_ThortonBlackOut
+    SetTrainerFlag TRAINER_DUMMY_077
+    Message FuegoIronworksBuilding_Text_ThortonWin
+    GoTo FuegoIronworksBuilding_ThortonEnd
+    End
+
+FuegoIronworksBuilding_ThortonDeclined:
+    Message FuegoIronworksBuilding_Text_ThortonDeclined
+    GoTo FuegoIronworksBuilding_ThortonEnd
+    End
+
+FuegoIronworksBuilding_ThortonBeaten:
+    Message FuegoIronworksBuilding_Text_ThortonBeaten
+FuegoIronworksBuilding_ThortonEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+FuegoIronworksBuilding_ThortonBlackOut:
+    BlackOutFromBattle
     ReleaseAll
     End
 

@@ -78,6 +78,46 @@
         "That’s why I’m always thankful for\n",
         "nature supplying me with iron."
       ]
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_ThortonIntro",
+      "en_US": [
+        "Thorton: Bzweeeeep!\n",
+        "I’m Thorton, the Factory Head.\r",
+        "I came here to see how Trainers hold\n",
+        "up after a ride on the moving floor.\r",
+        "Beat me, and you can pick one of my\n",
+        "Battle Factory rentals to keep.\r",
+        "So, want to battle?"
+      ]
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_ThortonBegin",
+      "en_US": "All righty, let’s get going!\r"
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_ThortonDeclined",
+      "en_US": [
+        "Thorton: No? My rentals will wait.\n",
+        "Come back when you’re ready."
+      ]
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_ThortonWin",
+      "en_US": [
+        "Thorton: Hmm...\n",
+        "I got handed the loss here.\r",
+        "A deal’s a deal, though.\r"
+      ]
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_ThortonBeaten",
+      "en_US": [
+        "Thorton: So, did you get to like your\n",
+        "rental Pokémon?\r",
+        "As the Factory Head, it would sure\n",
+        "make me happy if you did."
+      ]
     }
   ]
 }
