@@ -12,70 +12,70 @@
         {
             "species": "SPECIES_LOPUNNY",
             "form": 0,
-            "level": 50,
-            "item": "ITEM_SILK_SCARF",
+            "level": 48,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_FAKE_OUT",
-                "MOVE_JUMP_KICK",
-                "MOVE_DIZZY_PUNCH",
-                "MOVE_ICE_PUNCH"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_JOLLY",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
-        },
-        {
-            "species": "SPECIES_MEDICHAM",
-            "form": 0,
-            "level": 50,
-            "item": "ITEM_BLACK_BELT",
-            "moves": [
                 "MOVE_HI_JUMP_KICK",
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_BULLET_PUNCH",
-                "MOVE_ICE_PUNCH"
+                "MOVE_ICE_PUNCH",
+                "MOVE_ENCORE"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
+            "ability": 3,
+            "gender": null
         },
         {
             "species": "SPECIES_HITMONTOP",
             "form": 0,
-            "level": 50,
-            "item": "ITEM_LEFTOVERS",
+            "level": 48,
+            "item": "ITEM_EJECT_BUTTON",
             "moves": [
-                "MOVE_HI_JUMP_KICK",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_STONE_EDGE",
-                "MOVE_HELPING_HAND"
+                "MOVE_FAKE_OUT",
+                "MOVE_MACH_PUNCH",
+                "MOVE_TRIPLE_AXEL",
+                "MOVE_SUCKER_PUNCH"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_CAREFUL",
             "ball_seal": 0,
-            "ability": 3,
-            "gender": "male"
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MEDICHAM",
+            "form": 0,
+            "level": 49,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_THUNDER_PUNCH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_GARDEVOIR",
             "form": 0,
-            "level": 51,
-            "item": "ITEM_TWISTEDSPOON",
+            "level": 50,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
+                "MOVE_DAZZLING_GLEAM",
                 "MOVE_PSYCHIC",
-                "MOVE_FOCUS_BLAST",
-                "MOVE_THUNDERBOLT",
+                "MOVE_MYSTICAL_FIRE",
                 "MOVE_CALM_MIND"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
             "ability": 2,
-            "gender": "female"
+            "gender": null
         }
     ],
     "messages": [

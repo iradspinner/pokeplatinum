@@ -44,7 +44,28 @@ from . import required as R
 # 70 once Ian ruled the same day that the pair count as mandatory on his
 # honour rule, though Surf can pass them (required.HONOUR_REQUIRED): Candice's
 # split gains the two, Officers Somnu and Moira, one double and so one fight.
-TOTALS = {"required": 70, "avoidable": 104, "never reached": 12}
+# 77 in Byron's split's pass (2026-10-31, docs/oxide/byron-split.md):
+# nine trainers moved or now look one way, which turns nine avoidable
+# verdicts required (Ninja Boy Fabian on Route 210 South; Bird Keeper
+# Brianna and Black Belt Adam on Route 210 North; Guitarist Tony and Sailor
+# Skyler on Route 218; Iron Island B2F's two pairs). Veteran Brian was read
+# required already and now looks one way. Ace Trainer Ernest and Zac and
+# Jen look one way too; they read avoidable here, since the model gives the
+# split Surf and the river walks round them, but the player meets them
+# before Surf.
+# 80 once Route 221 (to Pal Park's lobby) and Iron Island B1F's right room
+# became crossings the same day: they read Swimmer Dillon, Collector Ivan
+# and Picnicker Summer required and four more of Route 221's trainers
+# (Vanessa, Cory, Jake and Shannon) avoidable, all seven left out before.
+# 82 with Ian's answers of the same day: Ace Trainers Jake and Shannon move
+# from Route 221's open shore to the two tiles before Pal Park's door, a
+# pair facing each other, and both turn from avoidable to required.
+# 83 once Route 219, from Sandgem to Route 220, became a crossing: it reads
+# Swimmer Vincent required and Tubers Trenton and Mariel avoidable, all
+# three left out before.
+# 85 with both on oxide (2026-10-31): Byron's pass's +15 required and -5
+# avoidable on top of Lake Verity's honour pair, +2 and -2.
+TOTALS = {"required": 85, "avoidable": 99, "never reached": 12}
 
 
 def check_crossings_resolve(results):
@@ -93,15 +114,18 @@ def check_ian_examples(results):
     and Route 202's three cannot. This is B1e's check against play. Route
     203's Sebastian and Madeline moved onto the story path on 2026-10-29
     (docs/oxide/mandatory-fights-early.md), so the check holds for its other
-    three."""
-    moved = {"TRAINER_YOUNGSTER_SEBASTIAN", "TRAINER_LASS_MADELINE"}
+    three. Route 218's Tony and Skyler moved to its west neck in Byron's
+    split's pass (2026-10-31, docs/oxide/byron-split.md), so it holds for
+    its other two."""
+    moved = {"TRAINER_YOUNGSTER_SEBASTIAN", "TRAINER_LASS_MADELINE",
+             "TRAINER_GUITARIST_TONY", "TRAINER_SAILOR_SKYLER"}
 
     def verdicts(split, header):
         row = next(c for c in R.CROSSINGS if c[:2] == (split, header))
         return [v for t, v in R.crossing(*row) if t["script"] not in moved]
     got = {h: verdicts(s, h) for s, h in (("Roark", "ROUTE_203"), ("Fantina", "ROUTE_206"),
                                           ("Byron", "ROUTE_218"))}
-    want = {"ROUTE_203": 3, "ROUTE_206": 9, "ROUTE_218": 4}
+    want = {"ROUTE_203": 3, "ROUTE_206": 9, "ROUTE_218": 2}
     ok = all(len(got[h]) == n and set(got[h]) == {"avoidable"} for h, n in want.items())
     results.append(("Ian's avoidable routes come out avoidable", ok,
                     ", ".join(f"{h} {len(v)} {sorted(set(v))}" for h, v in got.items())))
@@ -132,7 +156,10 @@ def check_late_visits(results):
     levels, step 12, put six more teams in a later split than their map's;
     18 until Somnu and Moira at Lake Verity became a story fight): every one
     a crossing reaches lands in a split whose closing boss's ace covers its
-    own, and the rest are off the story path."""
+    own, and the rest are off the story path. 18 are placed since Route 219
+    became a crossing in Byron's split's pass (2026-10-31): Tubers Trenton
+    and Mariel, at Byron's levels on a map Roark's split first opens, and
+    Swimmer Vincent, moved there, all land under Byron's cap."""
     first = R.first_crossings()
     ox = data.oxide_trainers()
     aces = pool.closing_aces()
@@ -147,7 +174,7 @@ def check_late_visits(results):
         placed += 1
         if ace > cap:
             wrong.append(ox[tr_id]["stem"])
-    results.append(("the 22 later visits land under their split's cap", not wrong and placed == 15,
+    results.append(("the 22 later visits land under their split's cap", not wrong and placed == 18,
                     f"{placed} placed, {off} off the story path" + (f"; over cap {wrong}" if wrong else "")))
 
 

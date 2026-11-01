@@ -13,15 +13,49 @@
             "species": "SPECIES_CORSOLA",
             "form": 0,
             "level": 46,
-            "item": null,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_ICE_BEAM",
-                "MOVE_EARTH_POWER",
+                "MOVE_RECOVER",
                 "MOVE_SURF",
-                "MOVE_POWER_GEM"
+                "MOVE_CALM_MIND",
+                "MOVE_TOXIC"
             ],
             "iv_scale": 243,
-            "ball_seal": 0
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_ALOMOMOLA",
+            "form": 0,
+            "level": 46,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_WISH",
+                "MOVE_PROTECT",
+                "MOVE_SURF",
+                "MOVE_PLAY_ROUGH"
+            ],
+            "iv_scale": 243,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_ARAQUANID",
+            "form": 0,
+            "level": 47,
+            "item": "ITEM_MYSTIC_WATER",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_LUNGE",
+                "MOVE_POISON_JAB",
+                "MOVE_X_SCISSOR"
+            ],
+            "iv_scale": 243,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

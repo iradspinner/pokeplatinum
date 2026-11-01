@@ -12,30 +12,66 @@
         {
             "species": "SPECIES_KRICKETUNE",
             "form": 0,
-            "level": 44,
-            "item": null,
+            "level": 47,
+            "item": "ITEM_SILVERPOWDER",
             "moves": [
                 "MOVE_X_SCISSOR",
-                "MOVE_SCREECH",
-                "MOVE_TAUNT",
-                "MOVE_NIGHT_SLASH"
+                "MOVE_THROAT_CHOP",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SWORDS_DANCE"
             ],
             "iv_scale": 237,
-            "ball_seal": 0
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_CHATOT",
+            "form": 0,
+            "level": 47,
+            "item": "ITEM_METRONOME",
+            "moves": [
+                "MOVE_HYPER_VOICE",
+                "MOVE_CHATTER",
+                "MOVE_HEAT_WAVE",
+                "MOVE_NASTY_PLOT"
+            ],
+            "iv_scale": 237,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_PRIMARINA",
+            "form": 0,
+            "level": 47,
+            "item": "ITEM_MYSTIC_WATER",
+            "moves": [
+                "MOVE_HYPER_VOICE",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_PSYCHIC",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 237,
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 3
         },
         {
             "species": "SPECIES_EXPLOUD",
             "form": 0,
-            "level": 44,
-            "item": null,
+            "level": 48,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
-                "MOVE_FIRE_FANG",
-                "MOVE_THUNDER_FANG",
-                "MOVE_ICE_FANG",
-                "MOVE_CRUNCH"
+                "MOVE_HYPER_VOICE",
+                "MOVE_FIRE_BLAST",
+                "MOVE_SURF",
+                "MOVE_FOCUS_BLAST"
             ],
-            "iv_scale": 232,
-            "ball_seal": 18
+            "iv_scale": 237,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

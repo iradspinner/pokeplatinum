@@ -5,24 +5,73 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT",
-        "AI_FLAG_PRIORITIZE_EXTREMES"
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PRIMEAPE",
+            "species": "SPECIES_HARIYAMA",
             "form": 0,
-            "level": 42,
-            "item": null,
+            "level": 43,
+            "item": "ITEM_FLAME_ORB",
             "moves": [
-                "MOVE_OUTRAGE",
-                "MOVE_POISON_JAB",
-                "MOVE_ICE_PUNCH",
-                "MOVE_CLOSE_COMBAT"
+                "MOVE_FAKE_OUT",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_KNOCK_OFF",
+                "MOVE_BULLET_PUNCH"
             ],
             "iv_scale": 249,
-            "ball_seal": 0
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_PRIMEAPE",
+            "form": 0,
+            "level": 43,
+            "item": "ITEM_BLACK_BELT",
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_U_TURN",
+                "MOVE_STONE_EDGE",
+                "MOVE_RAGE_FIST"
+            ],
+            "iv_scale": 249,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_GRAPPLOCT",
+            "form": 0,
+            "level": 43,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_BULK_UP",
+                "MOVE_OCTAZOOKA",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 249,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_MIENSHAO",
+            "form": 0,
+            "level": 44,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_JUMP_KICK",
+                "MOVE_U_TURN",
+                "MOVE_KNOCK_OFF",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 249,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 2
         }
     ],
     "messages": [

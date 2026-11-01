@@ -10,18 +10,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RAICHU",
+            "species": "SPECIES_EMOLGA",
             "form": 0,
-            "level": 46,
-            "item": null,
+            "level": 49,
+            "item": "ITEM_LIGHT_CLAY",
             "moves": [
-                "MOVE_THUNDER_WAVE",
-                "MOVE_GRASS_KNOT",
-                "MOVE_SIGNAL_BEAM",
-                "MOVE_THUNDERBOLT"
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_ENCORE",
+                "MOVE_THUNDERBOLT",
+                "MOVE_U_TURN"
             ],
             "iv_scale": 247,
-            "ball_seal": 0
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_TOGEDEMARU",
+            "form": 0,
+            "level": 49,
+            "item": "ITEM_AIR_BALLOON",
+            "moves": [
+                "MOVE_ZING_ZAP",
+                "MOVE_IRON_HEAD",
+                "MOVE_FAKE_OUT",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 247,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_PAWMOT",
+            "form": 0,
+            "level": 49,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_WILD_CHARGE",
+                "MOVE_BRICK_BREAK",
+                "MOVE_ICE_PUNCH",
+                "MOVE_FAKE_OUT"
+            ],
+            "iv_scale": 247,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_RAICHU",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_MAGNET",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_GRASS_KNOT",
+                "MOVE_NASTY_PLOT"
+            ],
+            "iv_scale": 247,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

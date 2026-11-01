@@ -12,30 +12,50 @@
         {
             "species": "SPECIES_AMBIPOM",
             "form": 0,
-            "level": 46,
-            "item": null,
+            "level": 49,
+            "item": "ITEM_SILK_SCARF",
             "moves": [
                 "MOVE_FAKE_OUT",
-                "MOVE_HEADBUTT",
-                "MOVE_LOW_KICK",
-                "MOVE_FIRE_PUNCH"
+                "MOVE_DOUBLE_HIT",
+                "MOVE_KNOCK_OFF",
+                "MOVE_U_TURN"
             ],
             "iv_scale": 232,
-            "ball_seal": 0
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
             "species": "SPECIES_FLOATZEL",
             "form": 0,
-            "level": 46,
-            "item": null,
+            "level": 49,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_AQUA_JET",
-                "MOVE_CRUNCH",
+                "MOVE_BULK_UP",
+                "MOVE_WATERFALL",
                 "MOVE_ICE_PUNCH",
-                "MOVE_LOW_KICK"
+                "MOVE_AQUA_JET"
             ],
-            "iv_scale": 223,
-            "ball_seal": 0
+            "iv_scale": 232,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_CINDERACE",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_JUMP_KICK",
+                "MOVE_U_TURN",
+                "MOVE_BULK_UP"
+            ],
+            "iv_scale": 232,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

@@ -13,13 +13,13 @@
         {
             "id": "LOCALID_ACE_TRAINER_ERNEST",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_ERNEST",
             "initial_dir": 3,
             "data": [
-                4
+                5
             ],
             "movement_range_x": 0,
             "movement_range_z": 0,
@@ -115,18 +115,18 @@
         {
             "id": "LOCALID_BIRD_KEEPER_BRIANNA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BIRD_KEEPER_BRIANNA",
-            "initial_dir": 1,
+            "initial_dir": 3,
             "data": [
-                2
+                4
             ],
             "movement_range_x": 0,
             "movement_range_z": 0,
-            "x": 511,
-            "z": 533,
+            "x": 561,
+            "z": 541,
             "y": 0
         },
         {
@@ -148,17 +148,17 @@
         {
             "id": "LOCALID_DOUBLE_TEAM_TRAINER_JEN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
-            "movement_type": "MOVEMENT_TYPE_WALK_EAST_NORTH_WEST_SOUTH",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_DOUBLE_TEAM_ZAC_AND_JEN",
             "double_battle_id": 2,
             "initial_dir": 3,
             "data": [
-                2
+                6
             ],
-            "movement_range_x": 3,
-            "movement_range_z": 1,
+            "movement_range_x": 0,
+            "movement_range_z": 0,
             "x": 537,
             "z": 529,
             "y": 8
@@ -166,7 +166,7 @@
         {
             "id": "LOCALID_VETERAN_BRIAN",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_VETERAN_BRIAN",
@@ -183,19 +183,18 @@
         {
             "id": "LOCALID_BLACK_BELT_ADAM",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
-            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
-            "trainer_type": "TRAINER_TYPE_FACE_SIDES",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BLACK_BELT_ADAM",
-            "initial_dir": 3,
+            "initial_dir": 1,
             "data": [
-                4,
-                2
+                3
             ],
             "movement_range_x": 0,
             "movement_range_z": 0,
-            "x": 518,
-            "z": 540,
+            "x": 498,
+            "z": 530,
             "y": 0
         },
         {

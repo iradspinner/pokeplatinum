@@ -10,18 +10,52 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_CLOYSTER",
+            "form": 0,
+            "level": 46,
+            "item": "ITEM_FOCUS_BAND",
+            "moves": [
+                "MOVE_SPIKES",
+                "MOVE_ICICLE_SPEAR",
+                "MOVE_ROCK_BLAST",
+                "MOVE_RAPID_SPIN"
+            ],
+            "iv_scale": 243,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_STARMIE",
+            "form": 0,
+            "level": 46,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_PSYCHIC",
+                "MOVE_RECOVER",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 243,
+            "nature": "NATURE_BASHFUL",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
             "species": "SPECIES_OMASTAR",
             "form": 0,
-            "level": 45,
-            "item": null,
+            "level": 47,
+            "item": "ITEM_WHITE_HERB",
             "moves": [
-                "MOVE_BRINE",
-                "MOVE_RAIN_DANCE",
+                "MOVE_SHELL_SMASH",
+                "MOVE_SURF",
                 "MOVE_ANCIENT_POWER",
                 "MOVE_ICE_BEAM"
             ],
             "iv_scale": 243,
-            "ball_seal": 0
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

@@ -10,32 +10,68 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_ALOMOMOLA",
+            "form": 0,
+            "level": 45,
+            "item": "ITEM_ROCKY_HELMET",
+            "moves": [
+                "MOVE_WISH",
+                "MOVE_PROTECT",
+                "MOVE_WATERFALL",
+                "MOVE_TOXIC"
+            ],
+            "iv_scale": 221,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
             "species": "SPECIES_LUMINEON",
             "form": 0,
-            "level": 44,
-            "item": null,
+            "level": 45,
+            "item": "ITEM_WIDE_LENS",
             "moves": [
-                "MOVE_SURF",
-                "MOVE_BLIZZARD",
-                "MOVE_AQUA_RING",
+                "MOVE_U_TURN",
+                "MOVE_ICE_BEAM",
+                "MOVE_WATERFALL",
                 "MOVE_TAILWIND"
             ],
             "iv_scale": 221,
-            "ball_seal": 0
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
             "species": "SPECIES_LAPRAS",
             "form": 0,
-            "level": 44,
-            "item": null,
+            "level": 46,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_PERISH_SONG",
                 "MOVE_ICE_BEAM",
-                "MOVE_BRINE",
-                "MOVE_SAFEGUARD"
+                "MOVE_SURF",
+                "MOVE_THUNDERBOLT",
+                "MOVE_SING"
             ],
-            "iv_scale": 227,
-            "ball_seal": 0
+            "iv_scale": 221,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_PRIMARINA",
+            "form": 0,
+            "level": 46,
+            "item": "ITEM_PIXIE_PLATE",
+            "moves": [
+                "MOVE_SPARKLING_ARIA",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_PSYCHIC",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 221,
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

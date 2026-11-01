@@ -5,24 +5,57 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT",
-        "AI_FLAG_PRIORITIZE_EXTREMES"
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_TOXICROAK",
+            "species": "SPECIES_HARIYAMA",
             "form": 0,
-            "level": 48,
-            "item": null,
+            "level": 49,
+            "item": "ITEM_ASSAULT_VEST",
             "moves": [
-                "MOVE_SLUDGE_BOMB",
-                "MOVE_DARK_PULSE",
-                "MOVE_MUD_BOMB",
-                "MOVE_VACUUM_WAVE"
+                "MOVE_FAKE_OUT",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_KNOCK_OFF",
+                "MOVE_BULLET_PUNCH"
             ],
             "iv_scale": 251,
-            "ball_seal": 0
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_TOXICROAK",
+            "form": 0,
+            "level": 49,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_GUNK_SHOT",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 251,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_LUCARIO",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_IRON_TAIL",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 251,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

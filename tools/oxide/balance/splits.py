@@ -356,6 +356,10 @@ TRAINER_SPLITS = {
                            "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2")},
     **{f"TRAINER_{who}_VEILSTONE_CITY_{starter}": "Wake"
        for who in ("LUCAS", "DAWN") for starter in ("TURTWIG", "CHIMCHAR", "PIPLUP")},
+    # The Valor Lakefront grunt talks only once Wake is beaten, and Cynthia's
+    # SecretPotion follows his defeat, so he opens Byron's split, though
+    # Valor Lakefront is Wake's map (docs/oxide/wake-split.md, 2026-10-31).
+    "TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT": "Byron",
 }
 
 

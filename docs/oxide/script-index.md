@@ -14,7 +14,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 0 | 2 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 600 | 507 | 72 | 21 | 0 | 14 |
+| Trainer battles | 600 | 506 | 72 | 21 | 1 | 15 |
 | Items given | 212 | 102 | 30 | 80 | 0 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
@@ -952,8 +952,9 @@ Scripts nothing reaches: code at `RavagedPath_Unused` (line 11).
 
 Trainer battles:
 
-- TRAINER_TUBER_TRENTON (Trenton, level 43, 2 Pokemon), sees the player. Vanilla. `events_route_219.json:19`
-- TRAINER_TUBER_MARIEL (Mariel, level 43, 2 Pokemon), sees the player. Vanilla. `events_route_219.json:36`
+- TRAINER_TUBER_TRENTON (Trenton, level 46, 3 Pokemon), sees the player. Vanilla. `events_route_219.json:19`
+- TRAINER_TUBER_MARIEL (Mariel, level 46, 3 Pokemon), sees the player. Vanilla. `events_route_219.json:36`
+- TRAINER_SWIMMER_VINCENT (Vincent, level 47, 3 Pokemon), sees the player. Added, origin unclear. `events_route_219.json:85`
 
 Item balls:
 
@@ -975,7 +976,7 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_VETERAN_GRANT (Grant, level 45, 3 Pokemon), sees the player. Vanilla. `events_oreburgh_gate_b1f.json:10`
+- TRAINER_VETERAN_GRANT (Grant, level 47, 5 Pokemon), sees the player. Vanilla. `events_oreburgh_gate_b1f.json:10`
 
 Item balls:
 
@@ -2132,7 +2133,7 @@ Trainer battles:
 - TRAINER_HIKER_ALEXANDER (Alexander, level 45, 2 Pokemon), sees the player. Vanilla. `events_route_208.json:44`
 - TRAINER_HIKER_JONATHAN (Jonathan, level 29, 4 Pokemon), sees the player. Vanilla. `events_route_208.json:61`
 - TRAINER_BLACK_BELT_KYLE (Kyle, level 29, 3 Pokemon), sees the player. Vanilla. `events_route_208.json:78`
-- TRAINER_FISHERMAN_CODY (Cody, level 44, 2 Pokemon), sees the player. Vanilla. `events_route_208.json:95`
+- TRAINER_FISHERMAN_CODY (Cody, level 46, 3 Pokemon), sees the player. Vanilla. `events_route_208.json:95`
 - TRAINER_AROMA_LADY_HANNAH (Hannah, level 30, 4 Pokemon), sees the player. Vanilla. `events_route_208.json:110`
 - TRAINER_ARTIST_WILLIAM (William, level 30, 3 Pokemon), sees the player. Vanilla. `events_route_208.json:127`
 
@@ -2819,17 +2820,17 @@ Variables:
 
 Trainer battles:
 
-- TRAINER_NINJA_BOY_FABIAN (Fabian, level 41, 1 Pokemon), sees the player. Vanilla. `events_route_210_south.json:51`
-- TRAINER_NINJA_BOY_BRENNAN (Brennan, level 41, 1 Pokemon), sees the player. Vanilla. `events_route_210_south.json:66`
-- TRAINER_TWINS_TERI_AND_TIA (Teri & Tia, level 35, 4 Pokemon), sees the player, double battle. Vanilla. `events_route_210_south.json:81`
-- TRAINER_TWINS_TERI_AND_TIA (Teri & Tia, level 35, 4 Pokemon), sees the player. Vanilla. `events_route_210_south.json:97`
-- TRAINER_NINJA_BOY_BRUCE (Bruce, level 41, 1 Pokemon), sees the player. Vanilla. `events_route_210_south.json:112`
-- TRAINER_JOGGER_WYATT (Wyatt, level 36, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:127`
-- TRAINER_BREEDER_KAHLIL (Kahlil, level 36, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:142`
-- TRAINER_BREEDER_AMBER (Amber, level 36, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:157`
-- TRAINER_BELLE_AND_PA_AVA_AND_MATT (Ava & Matt, level 36, 4 Pokemon), sees the player, double battle. Vanilla. `events_route_210_south.json:172`
-- TRAINER_BELLE_AND_PA_AVA_AND_MATT (Ava & Matt, level 36, 4 Pokemon), sees the player. Vanilla. `events_route_210_south.json:188`
-- TRAINER_RANCHER_MARCO (Marco, level 35, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:414`
+- TRAINER_NINJA_BOY_FABIAN (Fabian, level 43, 4 Pokemon), sees the player. Vanilla. `events_route_210_south.json:51`
+- TRAINER_NINJA_BOY_BRENNAN (Brennan, level 43, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:68`
+- TRAINER_TWINS_TERI_AND_TIA (Teri & Tia, level 35, 4 Pokemon), sees the player, double battle. Vanilla. `events_route_210_south.json:83`
+- TRAINER_TWINS_TERI_AND_TIA (Teri & Tia, level 35, 4 Pokemon), sees the player. Vanilla. `events_route_210_south.json:99`
+- TRAINER_NINJA_BOY_BRUCE (Bruce, level 43, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:114`
+- TRAINER_JOGGER_WYATT (Wyatt, level 36, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:129`
+- TRAINER_BREEDER_KAHLIL (Kahlil, level 36, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:144`
+- TRAINER_BREEDER_AMBER (Amber, level 36, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:159`
+- TRAINER_BELLE_AND_PA_AVA_AND_MATT (Ava & Matt, level 36, 4 Pokemon), sees the player, double battle. Vanilla. `events_route_210_south.json:174`
+- TRAINER_BELLE_AND_PA_AVA_AND_MATT (Ava & Matt, level 36, 4 Pokemon), sees the player. Vanilla. `events_route_210_south.json:190`
+- TRAINER_RANCHER_MARCO (Marco, level 35, 3 Pokemon), sees the player. Vanilla. `events_route_210_south.json:416`
 
 Items given:
 
@@ -2839,10 +2840,10 @@ Items given:
 
 Item balls:
 
-- ITEM_MAX_REPEL x1, one time, flag FLAG_OBTAINED_ROUTE_210_SOUTH_MAX_REPEL. Vanilla. `events_route_210_south.json:218`
-- ITEM_SUPER_REPEL x1, one time, flag FLAG_OBTAINED_ROUTE_210_SOUTH_SUPER_REPEL. Vanilla. `events_route_210_south.json:233`
-- ITEM_NEST_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_210_SOUTH_NEST_BALL. Vanilla. `events_route_210_south.json:263`
-- ITEM_HYPER_POTION x1, one time, flag FLAG_OBTAINED_ROUTE_210_SOUTH_HYPER_POTION. Vanilla. `events_route_210_south.json:383`
+- ITEM_MAX_REPEL x1, one time, flag FLAG_OBTAINED_ROUTE_210_SOUTH_MAX_REPEL. Vanilla. `events_route_210_south.json:220`
+- ITEM_SUPER_REPEL x1, one time, flag FLAG_OBTAINED_ROUTE_210_SOUTH_SUPER_REPEL. Vanilla. `events_route_210_south.json:235`
+- ITEM_NEST_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_210_SOUTH_NEST_BALL. Vanilla. `events_route_210_south.json:265`
+- ITEM_HYPER_POTION x1, one time, flag FLAG_OBTAINED_ROUTE_210_SOUTH_HYPER_POTION. Vanilla. `events_route_210_south.json:385`
 
 Hidden items:
 
@@ -2866,7 +2867,7 @@ Variables:
 
 Gone from vanilla: ITEM_TM51 x1; flag FLAG_UNUSED_0x016B (hides).
 
-Names a script the file does not have: object_event LOCALID_BLACK_BELT runs script 13, and `scripts_route_210_south` has 8. Added. `events_route_210_south.json:490`
+Names a script the file does not have: object_event LOCALID_BLACK_BELT runs script 13, and `scripts_route_210_south` has 8. Added. `events_route_210_south.json:492`
 
 Scripts nothing reaches: script 2 `Route210South_Entry1` (line 29), script 8 `Route210South_Entry7` (line 89).
 
@@ -3040,7 +3041,7 @@ Trainer battles:
 
 - TRAINER_GENTLEMAN_JEREMY (Jeremy, level 39, 5 Pokemon), sees the player. Added by Oxide (b8b54bb10). `events_valor_lakefront.json:224`
 - TRAINER_SOCIALITE_REINA (Reina, level 40, 5 Pokemon), sees the player. Added by Oxide (b8b54bb10). `events_valor_lakefront.json:241`
-- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT (Grunt, level 41, 1 Pokemon), by name. Vanilla. `scripts_valor_lakefront.s:88`
+- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT (Grunt, level 43, 4 Pokemon), by name. Vanilla. `scripts_valor_lakefront.s:88`
 
 Items given:
 
@@ -3079,15 +3080,15 @@ Gone from vanilla: ITEM_TM85 x1, one time, flag FLAG_OBTAINED_VALOR_LAKEFRONT_TM
 
 Trainer battles:
 
-- TRAINER_SWIMMER_SHELTIN (Sheltin, level 43, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:107`
-- TRAINER_SWIMMER_EVAN (Evan, level 44, 2 Pokemon), sees the player. Vanilla. `events_route_213.json:124`
-- TRAINER_SWIMMER_MARY (Mary, level 44, 2 Pokemon), sees the player. Vanilla. `events_route_213.json:141`
-- TRAINER_SWIMMER_HALEY (Haley, level 43, 2 Pokemon), sees the player. Vanilla. `events_route_213.json:158`
+- TRAINER_SWIMMER_SHELTIN (Sheltin, level 46, 4 Pokemon), sees the player. Vanilla. `events_route_213.json:107`
+- TRAINER_SWIMMER_EVAN (Evan, level 46, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:124`
+- TRAINER_SWIMMER_MARY (Mary, level 46, 4 Pokemon), sees the player. Vanilla. `events_route_213.json:141`
+- TRAINER_SWIMMER_HALEY (Haley, level 46, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:158`
 - TRAINER_TUBER_JARED (Jared, level 40, 4 Pokemon), sees the player. Vanilla. `events_route_213.json:176`
 - TRAINER_TUBER_CHELSEA (Chelsea, level 40, 4 Pokemon), sees the player. Vanilla. `events_route_213.json:193`
 - TRAINER_BEAUTY_CYNDY (Cyndy, level 40, 5 Pokemon), sees the player. Vanilla. `events_route_213.json:210`
 - TRAINER_FISHERMAN_KENNETH (Kenneth, level 40, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:227`
-- TRAINER_SAILOR_PAUL (Paul, level 44, 3 Pokemon), sees the player. Vanilla. `events_route_213.json:242`
+- TRAINER_SAILOR_PAUL (Paul, level 47, 4 Pokemon), sees the player. Vanilla. `events_route_213.json:242`
 - TRAINER_FISHERMAN_TRAVIS (Travis, level 40, 4 Pokemon), sees the player. Added by Oxide (b8b54bb10). `events_route_213.json:644`
 
 Item balls:
@@ -3595,25 +3596,25 @@ Gone from vanilla: TRAINER_FISHERMAN_TRAVIS (Travis, level 40, 4 Pokemon), sees 
 
 Trainer battles:
 
-- TRAINER_ACE_TRAINER_ERNEST (Ernest, level 52, 6 Pokemon), sees the player. Vanilla. `events_route_210_north.json:19`
-- TRAINER_ACE_TRAINER_ALYSSA (Alyssa, level 52, 6 Pokemon), sees the player. Vanilla. `events_route_210_north.json:36`
-- TRAINER_NINJA_BOY_JOEL (Joel, level 39, 2 Pokemon), sees the player. Vanilla. `events_route_210_north.json:53`
-- TRAINER_NINJA_BOY_NATHAN (Nathan, level 42, 1 Pokemon), sees the player. Vanilla. `events_route_210_north.json:70`
-- TRAINER_NINJA_BOY_DAVIDO (Davido, level 41, 1 Pokemon), sees the player. Vanilla. `events_route_210_north.json:87`
+- TRAINER_ACE_TRAINER_ERNEST (Ernest, level 45, 6 Pokemon), sees the player. Vanilla. `events_route_210_north.json:19`
+- TRAINER_ACE_TRAINER_ALYSSA (Alyssa, level 44, 5 Pokemon), sees the player. Vanilla. `events_route_210_north.json:36`
+- TRAINER_NINJA_BOY_JOEL (Joel, level 43, 3 Pokemon), sees the player. Vanilla. `events_route_210_north.json:53`
+- TRAINER_NINJA_BOY_NATHAN (Nathan, level 44, 3 Pokemon), sees the player. Vanilla. `events_route_210_north.json:70`
+- TRAINER_NINJA_BOY_DAVIDO (Davido, level 44, 3 Pokemon), sees the player. Vanilla. `events_route_210_north.json:87`
 - TRAINER_DRAGON_TAMER_PATRICK (Patrick, level 43, 1 Pokemon), sees the player. Vanilla. `events_route_210_north.json:104`
-- TRAINER_BIRD_KEEPER_BRIANNA (Brianna, level 42, 2 Pokemon), sees the player. Vanilla. `events_route_210_north.json:121`
-- TRAINER_DOUBLE_TEAM_ZAC_AND_JEN (Zac & Jen, level 42, 2 Pokemon), sees the player. Vanilla. `events_route_210_north.json:138`
-- TRAINER_DOUBLE_TEAM_ZAC_AND_JEN (Zac & Jen, level 42, 2 Pokemon), sees the player, double battle. Vanilla. `events_route_210_north.json:154`
-- TRAINER_VETERAN_BRIAN (Brian, level 43, 3 Pokemon), sees the player. Vanilla. `events_route_210_north.json:172`
-- TRAINER_BLACK_BELT_ADAM (Adam, level 42, 1 Pokemon), sees the player. Vanilla. `events_route_210_north.json:189`
+- TRAINER_BIRD_KEEPER_BRIANNA (Brianna, level 44, 4 Pokemon), sees the player. Vanilla. `events_route_210_north.json:121`
+- TRAINER_DOUBLE_TEAM_ZAC_AND_JEN (Zac & Jen, level 44, 5 Pokemon), sees the player. Vanilla. `events_route_210_north.json:138`
+- TRAINER_DOUBLE_TEAM_ZAC_AND_JEN (Zac & Jen, level 44, 5 Pokemon), sees the player, double battle. Vanilla. `events_route_210_north.json:154`
+- TRAINER_VETERAN_BRIAN (Brian, level 45, 4 Pokemon), sees the player. Vanilla. `events_route_210_north.json:172`
+- TRAINER_BLACK_BELT_ADAM (Adam, level 44, 4 Pokemon), sees the player. Vanilla. `events_route_210_north.json:189`
 
 Item balls:
 
-- ITEM_SMOKE_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_SMOKE_BALL. Vanilla. `events_route_210_north.json:269`
-- ITEM_WAVE_INCENSE x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_WAVE_INCENSE. Vanilla. `events_route_210_north.json:284`
-- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_TM30. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM30 x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_TM30. `events_route_210_north.json:299`
-- ITEM_ZINC x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_ZINC. Vanilla. `events_route_210_north.json:412`
-- ITEM_RED_SHARD x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_RED_SHARD. Vanilla. `events_route_210_north.json:427`
+- ITEM_SMOKE_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_SMOKE_BALL. Vanilla. `events_route_210_north.json:268`
+- ITEM_WAVE_INCENSE x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_WAVE_INCENSE. Vanilla. `events_route_210_north.json:283`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_TM30. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM30 x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_TM30. `events_route_210_north.json:298`
+- ITEM_ZINC x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_ZINC. Vanilla. `events_route_210_north.json:411`
+- ITEM_RED_SHARD x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_RED_SHARD. Vanilla. `events_route_210_north.json:426`
 
 Hidden items:
 
@@ -3631,10 +3632,10 @@ Gone from vanilla: ITEM_TM30 x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_TM
 
 Trainer battles:
 
-- TRAINER_BIRD_KEEPER_KATHERINE (Katherine, level 34, 1 Pokemon), sees the player. Vanilla. `events_route_211_east.json:19`
-- TRAINER_NINJA_BOY_NICK (Nick, level 32, 2 Pokemon), sees the player. Vanilla. `events_route_211_east.json:36`
-- TRAINER_BLACK_BELT_SEAN (Sean, level 31, 3 Pokemon), sees the player. Vanilla. `events_route_211_east.json:53`
-- TRAINER_RUIN_MANIAC_HARRY (Harry, level 32, 3 Pokemon), sees the player. Vanilla. `events_route_211_east.json:320`
+- TRAINER_BIRD_KEEPER_KATHERINE (Katherine, level 45, 3 Pokemon), sees the player. Vanilla. `events_route_211_east.json:19`
+- TRAINER_NINJA_BOY_NICK (Nick, level 44, 3 Pokemon), sees the player. Vanilla. `events_route_211_east.json:36`
+- TRAINER_BLACK_BELT_SEAN (Sean, level 45, 4 Pokemon), sees the player. Vanilla. `events_route_211_east.json:53`
+- TRAINER_RUIN_MANIAC_HARRY (Harry, level 45, 4 Pokemon), sees the player. Vanilla. `events_route_211_east.json:320`
 
 Items given:
 
@@ -3663,7 +3664,7 @@ Gone from vanilla: ITEM_TM77 x1; ITEM_TM29 x1, one time, flag FLAG_OBTAINED_ROUT
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_CELESTIC_TOWN (Officer Argo, level 53, 6 Pokemon), by number. Vanilla. `scripts_celestic_town.s:182`
+- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_CELESTIC_TOWN (Officer Argo, level 44, 6 Pokemon), by number. Vanilla. `scripts_celestic_town.s:182`
 
 Item balls:
 
@@ -3691,8 +3692,8 @@ Variables:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS (Cyrus, level 53, 6 Pokemon), by name. Vanilla. `scripts_celestic_town_cave.s:105`
-- StartTrainerBattle: against TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS (Cyrus, level 53, 6 Pokemon), by name. Vanilla. `scripts_celestic_town_cave.s:424`
+- StartTrainerBattle: against TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS (Cyrus, level 47, 6 Pokemon), by name. Vanilla. `scripts_celestic_town_cave.s:105`
+- StartTrainerBattle: against TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS (Cyrus, level 47, 6 Pokemon), by name. Vanilla. `scripts_celestic_town_cave.s:424`
 
 Items given:
 
@@ -3790,9 +3791,9 @@ Hidden items:
 
 Trainer battles:
 
-- TRAINER_WORKER_DILLAN (Dillan, level 46, 1 Pokemon), sees the player. Vanilla. `events_fuego_ironworks_building.json:87`
-- TRAINER_WORKER_HOLDEN (Holden, level 44, 2 Pokemon), sees the player. Vanilla. `events_fuego_ironworks_building.json:104`
-- TRAINER_WORKER_CONRAD (Conrad, level 46, 1 Pokemon), sees the player. Vanilla. `events_fuego_ironworks_building.json:121`
+- TRAINER_WORKER_DILLAN (Dillan, level 46, 3 Pokemon), sees the player. Vanilla. `events_fuego_ironworks_building.json:87`
+- TRAINER_WORKER_HOLDEN (Holden, level 46, 4 Pokemon), sees the player. Vanilla. `events_fuego_ironworks_building.json:104`
+- TRAINER_WORKER_CONRAD (Conrad, level 46, 4 Pokemon), sees the player. Vanilla. `events_fuego_ironworks_building.json:121`
 
 Items given:
 
@@ -3835,10 +3836,10 @@ Gone from vanilla: ITEM_TM35 x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BU
 
 Trainer battles:
 
-- TRAINER_GUITARIST_TONY (Tony, level 44, 2 Pokemon), sees the player. Vanilla. `events_route_218.json:10`
-- TRAINER_SAILOR_SKYLER (Skyler, level 44, 2 Pokemon), sees the player. Vanilla. `events_route_218.json:27`
-- TRAINER_FISHERMAN_MIGUEL (Miguel, level 44, 2 Pokemon), sees the player. Vanilla. `events_route_218.json:44`
-- TRAINER_FISHERMAN_LUC (Luc, level 45, 1 Pokemon), sees the player. Vanilla. `events_route_218.json:59`
+- TRAINER_GUITARIST_TONY (Tony, level 48, 4 Pokemon), sees the player. Vanilla. `events_route_218.json:10`
+- TRAINER_SAILOR_SKYLER (Skyler, level 48, 4 Pokemon), sees the player. Vanilla. `events_route_218.json:27`
+- TRAINER_FISHERMAN_MIGUEL (Miguel, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_218.json:44`
+- TRAINER_FISHERMAN_LUC (Luc, level 48, 4 Pokemon), sees the player. Vanilla. `events_route_218.json:59`
 
 Item balls:
 
@@ -3925,13 +3926,13 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_BLACK_BELT_DAVID (David, level 51, 1 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:27`
-- TRAINER_WORKER_JACKSON (Jackson, level 49, 2 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:57`
-- TRAINER_WORKER_GARY (Gary, level 51, 1 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:72`
-- TRAINER_BLACK_BELT_RICKY (Ricky, level 51, 1 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:102`
-- TRAINER_ACE_TRAINER_CESAR (Cesar, level 52, 6 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:117`
-- TRAINER_WORKER_GERARDO (Gerardo, level 49, 2 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:132`
-- TRAINER_ACE_TRAINER_BREANNA (Breanna, level 52, 6 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:147`
+- TRAINER_BLACK_BELT_DAVID (David, level 51, 4 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:27`
+- TRAINER_WORKER_JACKSON (Jackson, level 52, 5 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:57`
+- TRAINER_WORKER_GARY (Gary, level 50, 3 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:72`
+- TRAINER_BLACK_BELT_RICKY (Ricky, level 50, 3 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:102`
+- TRAINER_ACE_TRAINER_CESAR (Cesar, level 50, 5 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:117`
+- TRAINER_WORKER_GERARDO (Gerardo, level 51, 3 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:132`
+- TRAINER_ACE_TRAINER_BREANNA (Breanna, level 51, 4 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:147`
 - StartTrainerBattle: against TRAINER_LEADER_BYRON (Byron, level 53, 6 Pokemon), by number. Vanilla. `scripts_canalave_city_gym.s:49`
 - StartTrainerBattle: against TRAINER_LEADER_BYRON_REMATCH (Byron, level 87, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_canalave_city_gym.s:145`
 
@@ -4132,7 +4133,7 @@ Scripts nothing reaches: code at `IronIsland1F_Unused` (line 11).
 
 Trainer battles:
 
-- TRAINER_CAMPER_LAWRENCE (Lawrence, level 46, 2 Pokemon), sees the player. Vanilla. `events_iron_island_b1f_left_room.json:25`
+- TRAINER_CAMPER_LAWRENCE (Lawrence, level 50, 3 Pokemon), sees the player. Vanilla. `events_iron_island_b1f_left_room.json:25`
 
 Item balls:
 
@@ -4149,7 +4150,7 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_PICNICKER_SUMMER (Summer, level 46, 1 Pokemon), sees the player. Vanilla. `events_iron_island_b1f_right_room.json:49`
+- TRAINER_PICNICKER_SUMMER (Summer, level 50, 4 Pokemon), sees the player. Vanilla. `events_iron_island_b1f_right_room.json:49`
 
 Item balls:
 
@@ -4175,8 +4176,8 @@ Variables:
 
 Trainer battles:
 
-- TRAINER_WORKER_NOEL (Noel, level 46, 2 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_right_room.json:49`
-- TRAINER_WORKER_BRADEN (Braden, level 48, 1 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_right_room.json:64`
+- TRAINER_WORKER_NOEL (Noel, level 50, 3 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_right_room.json:49`
+- TRAINER_WORKER_BRADEN (Braden, level 50, 3 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_right_room.json:64`
 
 Item balls:
 
@@ -4203,14 +4204,14 @@ Eggs given:
 
 Trainer battles:
 
-- TRAINER_HIKER_DAMON (Damon, level 46, 3 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:140`
-- TRAINER_HIKER_MAURICE (Maurice, level 35, 2 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:157`
-- TRAINER_BLACK_BELT_KENDAL (Kendal, level 48, 1 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:174`
-- TRAINER_BATTLE_GIRL_TYLER (Tyler, level 48, 1 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:191`
-- TRAINER_WORKER_BRENDON (Brendon, level 48, 2 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:208`
-- TRAINER_WORKER_QUENTIN (Quentin, level 48, 2 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:225`
+- TRAINER_HIKER_DAMON (Damon, level 50, 3 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:140`
+- TRAINER_HIKER_MAURICE (Maurice, level 50, 3 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:157`
+- TRAINER_BLACK_BELT_KENDAL (Kendal, level 50, 3 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:174`
+- TRAINER_BATTLE_GIRL_TYLER (Tyler, level 50, 3 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:191`
+- TRAINER_WORKER_BRENDON (Brendon, level 50, 3 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:208`
+- TRAINER_WORKER_QUENTIN (Quentin, level 50, 3 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:225`
 - TRAINER_ACE_TRAINER_JONAH (Jonah, level 51, 4 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:242`
-- TRAINER_ACE_TRAINER_BRENDA (Brenda, level 51, 4 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:259`
+- TRAINER_ACE_TRAINER_BRENDA (Brenda, level 50, 4 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:259`
 - StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_IRON_ISLAND_1 (Grunt, level 46, 3 Pokemon), by name; and TRAINER_GALACTIC_GRUNT_IRON_ISLAND_2 (Grunt, level 46, 3 Pokemon), by name. Vanilla. `scripts_iron_island_b2f_left_room.s:172`
 
 Item balls:
@@ -4274,19 +4275,18 @@ Scripts nothing reaches: script 3 `IronIslandB3F_Dummy3` (line 19).
 
 Trainer battles:
 
-- TRAINER_SWIMMER_ERIK (Erik, level 45, 1 Pokemon), sees the player. Vanilla. `events_route_220.json:27`
-- TRAINER_SWIMMER_VINCENT (Vincent, level 44, 2 Pokemon), sees the player. Vanilla. `events_route_220.json:42`
-- TRAINER_SWIMMER_JESSICA (Jessica, level 44, 2 Pokemon), sees the player. Vanilla. `events_route_220.json:57`
-- TRAINER_SWIMMER_ERICA (Erica, level 45, 1 Pokemon), sees the player. Vanilla. `events_route_220.json:72`
-- TRAINER_SWIMMER_ADRIAN (Adrian, level 44, 2 Pokemon), sees the player. Vanilla. `events_route_220.json:87`
-- TRAINER_SWIMMER_KATELYN (Katelyn, level 43, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:102`
-- TRAINER_SWIMMER_CLAIRE (Claire, level 45, 1 Pokemon), sees the player. Vanilla. `events_route_220.json:117`
+- TRAINER_SWIMMER_ERIK (Erik, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:27`
+- TRAINER_SWIMMER_JESSICA (Jessica, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:42`
+- TRAINER_SWIMMER_ERICA (Erica, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:57`
+- TRAINER_SWIMMER_ADRIAN (Adrian, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:72`
+- TRAINER_SWIMMER_KATELYN (Katelyn, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:87`
+- TRAINER_SWIMMER_CLAIRE (Claire, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_220.json:102`
 
 Item balls:
 
-- ITEM_CARBOS x1, one time, flag FLAG_OBTAINED_ROUTE_220_CARBOS. Vanilla. `events_route_220.json:132`
-- ITEM_SPLASH_PLATE x1, one time, flag FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE. Vanilla. `events_route_220.json:147`
-- ITEM_MAX_REPEL x1, one time, flag FLAG_OBTAINED_ROUTE_220_MAX_REPEL. Vanilla. `events_route_220.json:162`
+- ITEM_CARBOS x1, one time, flag FLAG_OBTAINED_ROUTE_220_CARBOS. Vanilla. `events_route_220.json:117`
+- ITEM_SPLASH_PLATE x1, one time, flag FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE. Vanilla. `events_route_220.json:132`
+- ITEM_MAX_REPEL x1, one time, flag FLAG_OBTAINED_ROUTE_220_MAX_REPEL. Vanilla. `events_route_220.json:147`
 
 Hidden items:
 
@@ -4297,25 +4297,27 @@ Flags:
 
 - Hide an object: FLAG_OBTAINED_ROUTE_220_SPLASH_PLATE, FLAG_OBTAINED_ROUTE_220_CARBOS, FLAG_OBTAINED_ROUTE_220_MAX_REPEL.
 
+Gone from vanilla: TRAINER_SWIMMER_VINCENT (Vincent, level 47, 3 Pokemon), sees the player.
+
 ### Route 221
 
 `MAP_HEADER_ROUTE_221`: scripts `scripts_route_221`, events `events_route_221`, init scripts `scripts_init_route_221`. Location name Route 221. In Byron's split, placed by its encounter table.
 
 Trainer battles:
 
-- TRAINER_SWIMMER_DILLON (Dillon, level 46, 1 Pokemon), sees the player. Vanilla. `events_route_221.json:51`
-- TRAINER_SWIMMER_VANESSA (Vanessa, level 46, 1 Pokemon), sees the player. Vanilla. `events_route_221.json:66`
-- TRAINER_FISHERMAN_CORY (Cory, level 44, 3 Pokemon), sees the player. Vanilla. `events_route_221.json:81`
-- TRAINER_COLLECTOR_IVAN (Ivan, level 47, 1 Pokemon), sees the player. Vanilla. `events_route_221.json:96`
-- TRAINER_ACE_TRAINER_JAKE (Jake, level 52, 6 Pokemon), sees the player. Vanilla. `events_route_221.json:111`
-- TRAINER_ACE_TRAINER_SHANNON (Shannon, level 52, 6 Pokemon), sees the player. Vanilla. `events_route_221.json:126`
+- TRAINER_SWIMMER_DILLON (Dillon, level 47, 4 Pokemon), sees the player. Vanilla. `events_route_221.json:51`
+- TRAINER_SWIMMER_VANESSA (Vanessa, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_221.json:68`
+- TRAINER_FISHERMAN_CORY (Cory, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_221.json:83`
+- TRAINER_COLLECTOR_IVAN (Ivan, level 47, 5 Pokemon), sees the player. Vanilla. `events_route_221.json:98`
+- TRAINER_ACE_TRAINER_JAKE (Jake, level 48, 3 Pokemon), sees the player. Vanilla. `events_route_221.json:115`
+- TRAINER_ACE_TRAINER_SHANNON (Shannon, level 47, 3 Pokemon), sees the player. Vanilla. `events_route_221.json:132`
 
 Item balls:
 
-- ITEM_PROTEIN x1, one time, flag FLAG_OBTAINED_ROUTE_221_PROTEIN. Vanilla. `events_route_221.json:156`
-- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81. `events_route_221.json:171`
-- ITEM_ULTRA_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_221_ULTRA_BALL. Vanilla. `events_route_221.json:186`
-- ITEM_PURE_INCENSE x1, one time, flag FLAG_OBTAINED_ROUTE_221_PURE_INCENSE. Vanilla. `events_route_221.json:261`
+- ITEM_PROTEIN x1, one time, flag FLAG_OBTAINED_ROUTE_221_PROTEIN. Vanilla. `events_route_221.json:164`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81. `events_route_221.json:179`
+- ITEM_ULTRA_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_221_ULTRA_BALL. Vanilla. `events_route_221.json:194`
+- ITEM_PURE_INCENSE x1, one time, flag FLAG_OBTAINED_ROUTE_221_PURE_INCENSE. Vanilla. `events_route_221.json:269`
 
 Hidden items:
 
