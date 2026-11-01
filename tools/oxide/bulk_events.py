@@ -207,6 +207,16 @@ for _m in ("route_210_south", "route_210_north", "route_218", "route_221",
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; then " + _why
                                 if f"events_{_m}" in DIVERGED else _why)
 
+# Candice's split (docs/oxide/candice-split.md), with Ian's answers of
+# 2026-11-01: Lake Valor's Grunt 1 stands at the drained lake's one-tile neck,
+# Skier Edward at Route 216's west neck, and Skier Shawn and Ninja Boy Ethan
+# at Route 217's south and north necks, each looking one fixed way; Black
+# Belt Luke stands still at the north neck, looking north; and Lake Verity's
+# talking grunt is a trainer in free slot 131, at the lake's mouth.
+for _m in ("lake_valor_drained", "route_216", "route_217", "lake_verity"):
+    DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; then " + _why
+                                if f"events_{_m}" in DIVERGED else _why)
+
 # Two Frontier Brains placed (Ian, 2026-10-31; docs/oxide/frontier-brains.md):
 # Dahlia inside the Game Corner's entrance, and Darach and Caitlin at the top
 # of the Pokemon Mansion's entrance aisle, with the trigger that holds the

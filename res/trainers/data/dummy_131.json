@@ -1,34 +1,84 @@
 {
-    "name": "Angelica",
-    "class": "TRAINER_CLASS_BIRD_KEEPER",
+    "name": "Grunt",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_GYARADOS",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 52,
+            "item": "ITEM_WACAN_BERRY",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_ICE_FANG",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_TAUNT"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_STARAPTOR",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_SHARP_BEAK",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_HARDY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_ARCANINE",
+            "form": 0,
+            "level": 53,
+            "item": "ITEM_ROCKY_HELMET",
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_EXTREME_SPEED",
+                "MOVE_CRUNCH",
+                "MOVE_WILD_CHARGE"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [
         {
             "type": "TRMSG_PRE_BATTLE",
-            "garbage": 24
+            "en_US": [
+                "Ow... That old-timer packs a punch!\n",
+                "You won’t get past me as easy!\r"
+            ]
         },
         {
             "type": "TRMSG_DEFEAT",
-            "garbage": 30
+            "en_US": [
+                "First the old man, now a kid...\n",
+                "This is not my day.\n"
+            ]
         },
         {
             "type": "TRMSG_POST_BATTLE",
-            "garbage": 23
+            "en_US": [
+                "Ouch! Ouch!\n",
+                "What’s with everybody today?\n"
+            ]
         }
     ]
 }

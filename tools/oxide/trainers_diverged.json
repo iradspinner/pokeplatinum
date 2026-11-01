@@ -346,6 +346,13 @@
     "class": "Argenta seeded in a free slot for Ian's first pass (Ian, 2026-10-31)",
     "messages": "Argenta seeded in a free slot for Ian's first pass (Ian, 2026-10-31)"
   },
+  "dummy_131": {
+    "name": "Lake Verity's talking grunt made a trainer at the lake's mouth, in a free slot, so Candice's split counts twelve mandatory fights (Ian, 2026-11-01, docs/oxide/candice-split.md)",
+    "class": "Lake Verity's talking grunt made a trainer at the lake's mouth, in a free slot, so Candice's split counts twelve mandatory fights (Ian, 2026-11-01, docs/oxide/candice-split.md)",
+    "messages": "Lake Verity's talking grunt made a trainer at the lake's mouth, in a free slot, so Candice's split counts twelve mandatory fights (Ian, 2026-11-01, docs/oxide/candice-split.md)",
+    "ai_flags": "Lake Verity's talking grunt made a trainer at the lake's mouth, in a free slot, so Candice's split counts twelve mandatory fights (Ian, 2026-11-01, docs/oxide/candice-split.md)",
+    "party": "Lake Verity's talking grunt made a trainer at the lake's mouth, in a free slot, so Candice's split counts twelve mandatory fights (Ian, 2026-11-01, docs/oxide/candice-split.md)"
+  },
   "dummy_793": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
   },

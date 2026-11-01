@@ -65,7 +65,13 @@ from . import required as R
 # three left out before.
 # 85 with both on oxide (2026-10-31): Byron's pass's +15 required and -5
 # avoidable on top of Lake Verity's honour pair, +2 and -2.
-TOTALS = {"required": 85, "avoidable": 99, "never reached": 12}
+# 90 in Candice's split's pass (2026-11-01, docs/oxide/candice-split.md):
+# Lake Valor's Grunt 1, Skier Edward on Route 216, and Skier Shawn and Ninja
+# Boy Ethan on Route 217 move to necks and turn from avoidable to required;
+# Lake Verity's talking grunt becomes a trainer (free slot 131) at the
+# lake's mouth, one more required. Black Belt Luke was read required
+# already and now stands still, looking north.
+TOTALS = {"required": 90, "avoidable": 95, "never reached": 12}
 
 
 def check_crossings_resolve(results):
