@@ -294,7 +294,8 @@ The mandatory verdicts are `tools.oxide.balance.required`'s field model on the e
 | One-hit KO, trapping, evasion, Choice item | none on the rebuilt teams |
 | `test_trainers` | 44 of 44 |
 | `test_b1` | 49 of 49 |
+| `test_plgoal3`, after the merge | 72 of 72 |
 | `test_learncheck`, `test_learnrewrite` | 18 of 18, 6 of 6 |
 | The encounter tool's 21 suites | all pass; test_trainers failed once while a save ran beside it, and passes alone |
 | `rewards.py check` | 0 failures |
-| `make rom`, then `integrate.sh --verify-only` | 53 checks pass; sync-docs fails off oxide by design; no warnings |
+| `make rom`, then `integrate.sh --verify-only` | 53 checks pass; sync-docs fails off oxide by design; no warnings (rerun after Ian's answers and the merge with the Argenta placement, 6ad6415242a) |
