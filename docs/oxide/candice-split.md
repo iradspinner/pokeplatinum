@@ -290,4 +290,4 @@ The mandatory verdicts are `tools.oxide.balance.required`'s field model on the e
 | `test_learncheck`, `test_learnrewrite` | 18 of 18, 6 of 6 |
 | The encounter tool's 21 suites | all pass; test_trainers failed once while a save ran beside it, and passes alone |
 | `rewards.py check` | 0 failures |
-| `make rom`, then `integrate.sh --verify-only` | {GATE} |
+| `make rom`, then `integrate.sh --verify-only` | 53 checks pass; sync-docs fails off oxide by design; no warnings |
