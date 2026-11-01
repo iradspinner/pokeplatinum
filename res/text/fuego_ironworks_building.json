@@ -118,6 +118,68 @@
         "As the Factory Head, it would sure\n",
         "make me happy if you did."
       ]
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_ThortonKeptRental",
+      "en_US": [
+        "Thorton: Bzweep! I kept your rental\n",
+        "Pokémon for you.\r"
+      ]
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_ThortonPartyFull",
+      "en_US": [
+        "But your party’s full! I’ll hold on to\n",
+        "your rental until you make room."
+      ]
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_ThortonPickRental",
+      "en_US": [
+        "Pick one of these rentals. Whichever\n",
+        "you choose, it’s yours to keep."
+      ]
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_Torterra",
+      "en_US": "Torterra"
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_Cinderace",
+      "en_US": "Cinderace"
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_Empoleon",
+      "en_US": "Empoleon"
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_NotNow",
+      "en_US": "Not now"
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_ThortonNotNow",
+      "en_US": [
+        "Thorton: Can’t decide? I’ll keep them\n",
+        "here until you can."
+      ]
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_ThortonConfirm",
+      "en_US": "So, the {STRVAR_1 0, 0, 0} it is?"
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_ThortonReceived",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the {STRVAR_1 0, 1, 0}!\r"
+      ]
+    },
+    {
+      "id": "FuegoIronworksBuilding_Text_ThortonGiveNickname",
+      "en_US": [
+        "Give a nickname to the {STRVAR_1 0, 1, 0}\n",
+        "you received?"
+      ]
     }
   ]
 }
