@@ -13747,27 +13747,27 @@
    "entries": {
     "flags": [
      {"at": ["scripts_pal_park_lobby:84", "scripts_pal_park_lobby:94"], "daily": false, "flag": 211, "name": "FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pal_park_lobby:696"], "commit": null, "daily": false, "flag": 1357, "name": "FLAG_UNUSED_0x054D", "op": "check", "origin": "added", "reached": true, "source": "unclear"},
-     {"at": ["scripts_pal_park_lobby:676"], "commit": null, "daily": false, "flag": 1446, "name": "FLAG_DEFEATED_TRAINER_DUMMY_086", "op": "check", "origin": "added", "reached": true, "source": "unclear"},
-     {"at": ["scripts_pal_park_lobby:548"], "commit": null, "daily": false, "flag": 1, "name": "FLAG_MAP_LOCAL_0x01", "op": "clear", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_pal_park_lobby:696"], "commit": "15127c3be", "daily": false, "flag": 1357, "name": "FLAG_UNUSED_0x054D", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_pal_park_lobby:676"], "commit": "15127c3be", "daily": false, "flag": 1446, "name": "FLAG_DEFEATED_TRAINER_DUMMY_086", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_pal_park_lobby:548"], "commit": "15127c3be", "daily": false, "flag": 1, "name": "FLAG_MAP_LOCAL_0x01", "op": "clear", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_pal_park_lobby:376"], "daily": false, "flag": 578, "name": "FLAG_HIDE_ETERNA_CITY_SOUTH_HOUSE_PROF_OAK", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pal_park_lobby:485", "scripts_pal_park_lobby:499", "scripts_pal_park_lobby:507"], "commit": "42b75a625", "daily": false, "flag": 1359, "name": "FLAG_UNUSED_0x054F", "op": "clear", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_pal_park_lobby:27"], "daily": false, "flag": 2453, "name": "FLAG_ALT_MUSIC_PAL_PARK", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["events_pal_park_lobby:189"], "commit": null, "daily": false, "flag": 1, "name": "FLAG_MAP_LOCAL_0x01", "op": "hides", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["events_pal_park_lobby:189"], "commit": "15127c3be", "daily": false, "flag": 1, "name": "FLAG_MAP_LOCAL_0x01", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["events_pal_park_lobby:24"], "daily": false, "flag": 466, "name": "FLAG_HIDE_PAL_PARK_LOBBY_PROF_OAK", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pal_park_lobby:144", "events_pal_park_lobby:159", "events_pal_park_lobby:174"], "commit": "42b75a625", "daily": false, "flag": 1359, "name": "FLAG_UNUSED_0x054F", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_pal_park_lobby:48"], "commit": null, "daily": false, "flag": 1, "name": "FLAG_MAP_LOCAL_0x01", "op": "set", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_pal_park_lobby:48"], "commit": "15127c3be", "daily": false, "flag": 1, "name": "FLAG_MAP_LOCAL_0x01", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_pal_park_lobby:85", "scripts_pal_park_lobby:95"], "daily": false, "flag": 211, "name": "FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pal_park_lobby:718"], "commit": null, "daily": false, "flag": 1357, "name": "FLAG_UNUSED_0x054D", "op": "set", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_pal_park_lobby:718"], "commit": "15127c3be", "daily": false, "flag": 1357, "name": "FLAG_UNUSED_0x054D", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_pal_park_lobby:34"], "commit": "42b75a625", "daily": false, "flag": 1359, "name": "FLAG_UNUSED_0x054F", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_pal_park_lobby:521"], "commit": "42b75a625", "daily": false, "flag": 1369, "name": "FLAG_DEFEATED_TRAINER_DUMMY_009", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_pal_park_lobby:522"], "commit": "42b75a625", "daily": false, "flag": 1410, "name": "FLAG_DEFEATED_TRAINER_DUMMY_050", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_pal_park_lobby:685"], "commit": null, "daily": false, "flag": 1446, "name": "FLAG_DEFEATED_TRAINER_DUMMY_086", "op": "set", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_pal_park_lobby:685"], "commit": "15127c3be", "daily": false, "flag": 1446, "name": "FLAG_DEFEATED_TRAINER_DUMMY_086", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_pal_park_lobby:28"], "daily": false, "flag": 2547, "name": "FLAG_FIRST_ARRIVAL_POKE_PARK_FRONT_GATE", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "items": [
-     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_pal_park_lobby", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_GOLD_BOTTLE_CAP", "value": 470, "when": ""}], "line": 714, "mode": "variable", "origin": "added", "reached": true, "source": "unclear"},
-     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "3", "value": 3, "when": ""}], "file": "scripts_pal_park_lobby", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_BOTTLE_CAP", "value": 469, "when": ""}], "line": 717, "mode": "variable", "origin": "added", "reached": true, "source": "unclear"},
+     {"command": "Common_GiveItemQuantity", "commit": "15127c3be", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_pal_park_lobby", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_GOLD_BOTTLE_CAP", "value": 470, "when": ""}], "line": 714, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
+     {"command": "Common_GiveItemQuantity", "commit": "5b4f7d032", "count": [{"by": [], "name": "3", "value": 3, "when": ""}], "file": "scripts_pal_park_lobby", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_BOTTLE_CAP", "value": 469, "when": ""}], "line": 717, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_pal_park_lobby", "how": "Common_GiveItemQuantity", "item": [{"by": ["VAR_0x8006"], "name": "ITEM_CHERI_BERRY", "value": 149, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "ITEM_CHESTO_BERRY", "value": 150, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8006"], "name": "ITEM_PECHA_BERRY", "value": 151, "when": "VAR_0x8006 (GetRandom) == 2"}, {"by": ["VAR_0x8006"], "name": "ITEM_RAWST_BERRY", "value": 152, "when": "VAR_0x8006 (GetRandom) == 3"}, {"by": ["VAR_0x8006"], "name": "ITEM_ASPEAR_BERRY", "value": 153, "when": "VAR_0x8006 == 4"}, {"by": ["VAR_0x8006"], "name": "ITEM_LEPPA_BERRY", "value": 154, "when": "VAR_0x8006 == 5"}, {"by": ["VAR_0x8006"], "name": "ITEM_ORAN_BERRY", "value": 155, "when": "VAR_0x8006 == 6"}, {"by": ["VAR_0x8006"], "name": "ITEM_PERSIM_BERRY", "value": 156, "when": "VAR_0x8006 == 7"}, {"by": ["VAR_0x8006"], "name": "ITEM_LUM_BERRY", "value": 157, "when": "VAR_0x8006 == 5"}, {"by": ["VAR_0x8006"], "name": "ITEM_SITRUS_BERRY", "value": 158, "when": "VAR_0x8006 == 6"}, {"by": ["VAR_0x8006"], "name": "ITEM_FIGY_BERRY", "value": 159, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "ITEM_WIKI_BERRY", "value": 160, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8006"], "name": "ITEM_MAGO_BERRY", "value": 161, "when": "VAR_0x8006 (GetRandom) == 2"}, {"by": ["VAR_0x8006"], "name": "ITEM_AGUAV_BERRY", "value": 162, "when": "VAR_0x8006 (GetRandom) == 3"}, {"by": ["VAR_0x8006"], "name": "ITEM_IAPAPA_BERRY", "value": 163, "when": "VAR_0x8006 == 4"}, {"by": ["VAR_0x8006"], "name": "ITEM_RAZZ_BERRY", "value": 164, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "ITEM_BLUK_BERRY", "value": 165, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8006"], "name": "ITEM_NANAB_BERRY", "value": 166, "when": "VAR_0x8006 (GetRandom) == 2"}, {"by": ["VAR_0x8006"], "name": "ITEM_WEPEAR_BERRY", "value": 167, "when": "VAR_0x8006 (GetRandom) == 3"}, {"by": ["VAR_0x8006"], "name": "ITEM_PINAP_BERRY", "value": 168, "when": "VAR_0x8006 == 4"}, {"by": ["VAR_0x8006"], "name": "ITEM_POMEG_BERRY", "value": 169, "when": "VAR_0x8006 (GetRandom) == 0"}, {"by": ["VAR_0x8006"], "name": "ITEM_KELPSY_BERRY", "value": 170, "when": "VAR_0x8006 (GetRandom) == 1"}, {"by": ["VAR_0x8006"], "name": "ITEM_QUALOT_BERRY", "value": 171, "when": "VAR_0x8006 (GetRandom) == 2"}, {"by": ["VAR_0x8006"], "name": "ITEM_HONDEW_BERRY", "value": 172, "when": "VAR_0x8006 (GetRandom) == 3"}, {"by": ["VAR_0x8006"], "name": "ITEM_GREPA_BERRY", "value": 173, "when": "VAR_0x8006 == 4"}, {"by": ["VAR_0x8006"], "name": "ITEM_TAMATO_BERRY", "value": 174, "when": "VAR_0x8006 == 5"}, {"by": ["VAR_0x8006"], "name": "set by GetRandom", "value": null, "when": "VAR_0x8006 != 4; VAR_0x8006 (GetRandom) != 3; VAR_0x8006 (GetRandom) != 2 or VAR_0x8006 != 5; VAR_0x8006 != 4; VAR_0x8006 (GetRandom) != 3 or VAR_0x8006 != 6; VAR_0x8006 != 5; VAR_0x8006 != 4 or VAR_0x8006 != 7; VAR_0x8006 != 6; VAR_0x8006 != 5"}], "line": 951, "mode": "variable", "origin": "vanilla", "reached": true}
     ],
     "trainers": [
@@ -13777,7 +13777,7 @@
      {"command": "StartTagBattle", "commit": "42b75a625", "file": "scripts_pal_park_lobby", "how": "StartTagBattle", "line": 583, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "partnerTrainer", "values": [{"name": "TRAINER_DUMMY_051", "value": 51, "when": ""}]}, {"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_009", "value": 9, "when": ""}]}, {"mode": "name", "role": "enemyTrainer2", "values": [{"name": "TRAINER_DUMMY_050", "value": 50, "when": ""}]}], "source": "Oxide"},
      {"command": "StartTagBattle", "commit": "42b75a625", "file": "scripts_pal_park_lobby", "how": "StartTagBattle", "line": 587, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "partnerTrainer", "values": [{"name": "TRAINER_DUMMY_052", "value": 52, "when": ""}]}, {"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_009", "value": 9, "when": ""}]}, {"mode": "name", "role": "enemyTrainer2", "values": [{"name": "TRAINER_DUMMY_050", "value": 50, "when": ""}]}], "source": "Oxide"},
      {"command": "StartTagBattle", "commit": "42b75a625", "file": "scripts_pal_park_lobby", "how": "StartTagBattle", "line": 591, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "partnerTrainer", "values": [{"name": "TRAINER_DUMMY_054", "value": 54, "when": ""}]}, {"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_009", "value": 9, "when": ""}]}, {"mode": "name", "role": "enemyTrainer2", "values": [{"name": "TRAINER_DUMMY_050", "value": 50, "when": ""}]}], "source": "Oxide"},
-     {"command": "StartTrainerBattle", "file": "scripts_pal_park_lobby", "how": "StartTrainerBattle", "line": 682, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_086", "value": 86, "when": ""}]}], "source": "unclear"}
+     {"command": "StartTrainerBattle", "commit": "15127c3be", "file": "scripts_pal_park_lobby", "how": "StartTrainerBattle", "line": 682, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_086", "value": 86, "when": ""}]}], "source": "Oxide"}
     ],
     "vars": [
      {"at": ["scripts_pal_park_lobby:382"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
@@ -19328,11 +19328,10 @@
    "vanilla": 1
   },
   "flags": {
-   "Oxide": 157,
+   "Oxide": 164,
    "base ROM": 214,
    "gone": 105,
    "total": 3342,
-   "unclear": 7,
    "vanilla": 2964
   },
   "hidden_items": {
@@ -19349,11 +19348,10 @@
    "vanilla": 260
   },
   "items": {
-   "Oxide": 80,
+   "Oxide": 82,
    "base ROM": 30,
    "gone": 34,
    "total": 214,
-   "unclear": 2,
    "vanilla": 102
   },
   "pokemon": {
@@ -19376,11 +19374,10 @@
    "vanilla": 4
   },
   "trainers": {
-   "Oxide": 25,
+   "Oxide": 26,
    "base ROM": 71,
    "gone": 15,
    "total": 603,
-   "unclear": 1,
    "vanilla": 506
   },
   "vars": {

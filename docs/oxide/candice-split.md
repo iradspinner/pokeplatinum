@@ -298,4 +298,4 @@ The mandatory verdicts are `tools.oxide.balance.required`'s field model on the e
 | `test_learncheck`, `test_learnrewrite` | 18 of 18, 6 of 6 |
 | The encounter tool's 21 suites | all pass; test_trainers failed once while a save ran beside it, and passes alone |
 | `rewards.py check` | 0 failures |
-| `make rom`, then `integrate.sh --verify-only` | 53 checks pass; sync-docs fails off oxide by design; no warnings (rerun after Ian's answers and the merge with the Argenta placement, 6ad6415242a) |
+| `make rom`, then `integrate.sh --verify-only` | 53 checks pass; sync-docs fails off oxide by design (rerun after Ian's answers and the merge with the Argenta placement, 6ad6415242a). Two warnings: the script index lagged the merge commit and was regenerated after it, and the tracker is over 9,000 words, from oxide's tracker, not this branch |
