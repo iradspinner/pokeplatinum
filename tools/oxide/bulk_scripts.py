@@ -320,6 +320,11 @@ DIVERGED["scripts_iron_island"] += (
     "; Riley's door battle fights trainer 87, a free slot, so his partner team on B2F can "
     "differ from it (2026-10-31)")
 
+# The B2F grunts are Officers Boreas and Laverna (Ian, 2026-11-01), so the
+# scene names their objects by them.
+DIVERGED["scripts_iron_island_b2f_left_room"] += (
+    "; then the grunts' objects are named for Officers Boreas and Laverna (Ian, 2026-11-01)")
+
 # The base ROM's Lucky Egg from Lucas or Dawn on Route 207 is dropped (Ian,
 # 2026-10-31), with the choose-a-hand menu that led to it; the Dowsing
 # Machine stays. Vanilla's Vs. Seeker is not restored: in Oxide that item is
