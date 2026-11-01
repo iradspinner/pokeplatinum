@@ -667,8 +667,8 @@ PalParkLobby_Movement_CounterpartLeave:
 @ only when spoken to. She asks first, since a loss ends an Oxide run, as the
 @ other Brains do. Her win gives a bundle of items once, under
 @ FLAG_UNUSED_0x054D: until it is set, a player who has beaten her is offered
-@ the bundle again whenever they speak to her. The bundle is the item pass's
-@ proposal, which waits on Ian (docs/oxide/argenta-place.md).
+@ the bundle again whenever they speak to her: a Gold Bottle Cap and three
+@ Bottle Caps (Ian, 2026-11-01; docs/oxide/argenta-place.md).
 PalParkLobby_Argenta:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
@@ -708,24 +708,12 @@ PalParkLobby_ArgentaBeatenLine:
 @ only a stack of 999 could refuse one; the check is kept all the same.
 PalParkLobby_ArgentaGiveBundle:
     GoToIfCannotFitItem ITEM_GOLD_BOTTLE_CAP, 1, VAR_RESULT, PalParkLobby_ArgentaBagIsFull
-    GoToIfCannotFitItem ITEM_ADAMANT_MINT, 1, VAR_RESULT, PalParkLobby_ArgentaBagIsFull
-    GoToIfCannotFitItem ITEM_MODEST_MINT, 1, VAR_RESULT, PalParkLobby_ArgentaBagIsFull
-    GoToIfCannotFitItem ITEM_JOLLY_MINT, 1, VAR_RESULT, PalParkLobby_ArgentaBagIsFull
-    GoToIfCannotFitItem ITEM_TIMID_MINT, 1, VAR_RESULT, PalParkLobby_ArgentaBagIsFull
+    GoToIfCannotFitItem ITEM_BOTTLE_CAP, 3, VAR_RESULT, PalParkLobby_ArgentaBagIsFull
     SetVar VAR_0x8004, ITEM_GOLD_BOTTLE_CAP
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    SetVar VAR_0x8004, ITEM_ADAMANT_MINT
-    SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
-    SetVar VAR_0x8004, ITEM_MODEST_MINT
-    SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
-    SetVar VAR_0x8004, ITEM_JOLLY_MINT
-    SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
-    SetVar VAR_0x8004, ITEM_TIMID_MINT
-    SetVar VAR_0x8005, 1
+    SetVar VAR_0x8004, ITEM_BOTTLE_CAP
+    SetVar VAR_0x8005, 3
     Common_GiveItemQuantity
     SetFlag FLAG_UNUSED_0x054D
     Message PalParkLobby_Text_ArgentaBeaten
