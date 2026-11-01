@@ -57,7 +57,10 @@ from . import required as R
 # 82 with Ian's answers of the same day: Ace Trainers Jake and Shannon move
 # from Route 221's open shore to the two tiles before Pal Park's door, a
 # pair facing each other, and both turn from avoidable to required.
-TOTALS = {"required": 82, "avoidable": 99, "never reached": 12}
+# 83 once Route 219, from Sandgem to Route 220, became a crossing: it reads
+# Swimmer Vincent required and Tubers Trenton and Mariel avoidable, all
+# three left out before.
+TOTALS = {"required": 83, "avoidable": 101, "never reached": 12}
 
 
 def check_crossings_resolve(results):
@@ -148,7 +151,10 @@ def check_late_visits(results):
     levels, step 12, put six more teams in a later split than their map's;
     18 until Somnu and Moira at Lake Verity became a story fight): every one
     a crossing reaches lands in a split whose closing boss's ace covers its
-    own, and the rest are off the story path."""
+    own, and the rest are off the story path. 18 are placed since Route 219
+    became a crossing in Byron's split's pass (2026-10-31): Tubers Trenton
+    and Mariel, at Byron's levels on a map Roark's split first opens, and
+    Swimmer Vincent, moved there, all land under Byron's cap."""
     first = R.first_crossings()
     ox = data.oxide_trainers()
     aces = pool.closing_aces()
@@ -163,7 +169,7 @@ def check_late_visits(results):
         placed += 1
         if ace > cap:
             wrong.append(ox[tr_id]["stem"])
-    results.append(("the 22 later visits land under their split's cap", not wrong and placed == 15,
+    results.append(("the 22 later visits land under their split's cap", not wrong and placed == 18,
                     f"{placed} placed, {off} off the story path" + (f"; over cap {wrong}" if wrong else "")))
 
 
