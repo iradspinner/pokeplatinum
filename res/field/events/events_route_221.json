@@ -109,31 +109,35 @@
         {
             "id": "LOCALID_ACE_TRAINER_JAKE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_JAKE",
-            "initial_dir": 2,
-            "data": [ 3 ],
+            "initial_dir": 3,
+            "data": [
+                2
+            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 305,
-            "z": 917,
+            "z": 910,
             "y": 1
         },
         {
             "id": "LOCALID_ACE_TRAINER_SHANNON",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_SHANNON",
             "initial_dir": 2,
-            "data": [ 3 ],
+            "data": [
+                2
+            ],
             "movement_range_x": 0,
             "movement_range_z": 0,
-            "x": 277,
-            "z": 923,
+            "x": 308,
+            "z": 910,
             "y": 1
         },
         {

@@ -54,7 +54,10 @@ from . import required as R
 # became crossings the same day: they read Swimmer Dillon, Collector Ivan
 # and Picnicker Summer required and four more of Route 221's trainers
 # (Vanessa, Cory, Jake and Shannon) avoidable, all seven left out before.
-TOTALS = {"required": 80, "avoidable": 101, "never reached": 12}
+# 82 with Ian's answers of the same day: Ace Trainers Jake and Shannon move
+# from Route 221's open shore to the two tiles before Pal Park's door, a
+# pair facing each other, and both turn from avoidable to required.
+TOTALS = {"required": 82, "avoidable": 99, "never reached": 12}
 
 
 def check_crossings_resolve(results):
