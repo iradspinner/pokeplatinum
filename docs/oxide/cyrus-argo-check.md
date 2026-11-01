@@ -2,6 +2,45 @@
 
 Ian asked on 2026-10-31 to see the drafts of Officer Argo 1 (Celestic Town, a mini-boss) and Cyrus 1 (the Celestic ruins, a boss), drafted on 2026-10-13 and never put to him. They are on branch `overseer-cyrus-argo`, cut from `oxide` at 6387623469, at the levels of Cyrus 1's honour cap of 47, and reach Ian's OxiDex once the Overseer merges the branch into its `ian-saves` checkout. This page checks two things only, as Maylene's did: anything that invalidates either fight, and the weakest crux of each with its top replacement picks. Nothing here is landed.
 
+## Ian's answers (2026-10-31)
+
+Argo 1 keeps his ace at 44, Claydol keeps Extrasensory, and Polteageist keeps its White Herb Shell Smash; Aerodactyl takes Ice Fang in place of Taunt. Cyrus 1 is softened toward Wake's difficulty without becoming trivial, since it is still the split's first boss. Crobat stays the lead and Honchkrow keeps Super Luck. Porygon-Z and Electivire, where most knockouts came from, are toned down, and Salamence takes one tamer swap. The page below, from the summary on, is the check as Ian read it; this section and the next say what was applied and how it reads.
+
+The softened Cyrus 1, every move legal (the Kaizo checker finds only the note on Salamence under Shelgon's 50), no item or nature repeated:
+
+| Pokemon | Level | Ability | Item | Nature | Moves |
+|---|---|---|---|---|---|
+| Crobat | 45 | Inner Focus | Razor Fang | Jolly | Cross Poison, Brave Bird, U-turn, Taunt |
+| Honchkrow | 46 | Super Luck | Black Glasses | Adamant | Crunch, Brave Bird, Sucker Punch, Heat Wave |
+| Porygon-Z | 44 | Analytic | Leftovers | Bold | Tri Attack, Thunderbolt, Thunder Wave, Recover |
+| Electivire | 44 | Vital Spirit | Sitrus Berry | Hardy | Thunder Punch, Ice Punch, Fire Punch, Earthquake |
+| Magmortar | 44 | Flame Body | Charcoal | Timid | Flamethrower, Focus Blast, Psychic, Will-O-Wisp |
+| Salamence | 47 | Intimidate | Lum Berry | Naughty | Dragon Dance, Dragon Claw, Earthquake, Fire Fang |
+
+Porygon-Z loses Download, the Silk Scarf, its Sp. Atk nature, Ice Beam and Shadow Ball, and drops a level, staying inside Mars 1's shape. Electivire loses Adaptability, the Expert Belt, its Speed nature and Brick Break, which had broken the box's Rock and Steel walls. The AI flags stay Basic, Evaluate Attack and Expert: by the flags guide, Thunder Wave and Will-O-Wisp do not make a status team.
+
+How it reads, on the same probe as before (rough wins of 900, six runs; Argo's box 2 gave one six, so five runs):
+
+| Fight | Rough wins | By run |
+|---|---|---|
+| Wake | 378 of 900 | 95, 67, 28, 66, 55, 67 |
+| Cyrus 1, softened | 242 of 900 | 61, 29, 44, 20, 44, 44 |
+| Cyrus 1, as drafted | 52 of 900 | 15, 8, 22, 5, 1, 1 |
+| Argo 1, with Ice Fang | 403 of 750 | 99, 110, 53, 71, 70 |
+
+Cyrus 1 now reads about two thirds as winnable as Wake, from a ninth. The probe stops rising there. Fourteen variants of Porygon-Z and Electivire were tried, and the softest landed between 220 and 245 of 900 whatever else changed, because Salamence and Honchkrow now make most of the knockouts. Reaching Wake's 378 would need one of those two, or Magmortar, toned down as well.
+
+Salamence's swap: Lum for Yache reads better than Crunch for Dragon Dance with this team, 242 rough wins of 900 against 185, since the Yache Berry is what turned away the box's Ice answers. The cost is sweeps. With the rest softened, Salamence is the team's main threat either way, and with Dragon Dance kept it takes all six in 9 fights of 900 (Crunch: 1) and sweeps the rest from three or more in 219 (Crunch: 216). Polteageist, with Argo's Ice Fang Aerodactyl, takes all six in 2 of 750 and sweeps the rest in 88.
+
+| Member (softened Cyrus 1) | Knocked out while in, six runs | All six | Swept the rest |
+|---|---|---|---|
+| Salamence | 1743 | 9 | 219 |
+| Honchkrow | 1099 | 1 | 43 |
+| Electivire | 656 | 0 | 1 |
+| Porygon-Z | 585 | 0 | 12 |
+
+Two questions remain for Ian: whether 242 of 900 is near enough to Wake, or Honchkrow or Salamence should be toned down too; and whether Salamence should take Crunch as well as the Lum Berry (both swaps read 233 of 900, with 4 full sweeps).
+
 ## Summary
 
 **Outcome.** Nothing in either team breaks its fight. Every move is legal at the new levels once six moves went on egg lists. Every ability and item is modelled by the simulator and present in the engine (the engine side was checked in the code and the item data only; nothing was tried in game). No item or nature repeats within a team. The trouble is Cyrus 1's difficulty: on the cheap checks it reads far harder than any accepted fight before it. Against the same rough player that wins 42 percent of Wake's fights and 41 percent of Barry 4's, Cyrus 1 is won in 6 percent and Argo 1 in 59. The faints come from Porygon-Z and Electivire, not from Salamence.
@@ -21,7 +60,7 @@ Ian asked on 2026-10-31 to see the drafts of Officer Argo 1 (Celestic Town, a mi
 7. Polteageist's White Herb Shell Smash: keep it, on the numbers above?
 8. Salamence's Intimidate, Yache Berry and Dragon Dance: keep it, on the numbers above?
 
-**Next steps.** Ian answers in a line each. A session then applies the answers on this branch and reruns the legality check and the outcome probe, about an hour. The Overseer adds Cyrus 1's honour cap to `fights.json` before landing, since the gate's boss-level check still expects Cyrus 1 at Byron's cap of 53. A spot-check reading happens only if Ian names one.
+**Next steps.** Ian answers in a line each. A session then applies the answers on this branch and reruns the legality check and the outcome probe, about an hour. A spot-check reading happens only if Ian names one. (Done on 2026-10-31: the answers are applied, above, and Cyrus 1's honour cap of 47 came with `oxide`, so the gate's boss-level check reads his ace at 47.)
 
 ## Part 1: what could invalidate either fight
 
