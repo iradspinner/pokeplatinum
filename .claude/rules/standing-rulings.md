@@ -278,7 +278,17 @@ read, so they are written here too. Each is a standing instruction.
   (none before Fantina) and an ordinary trainer none, though from Wake's
   split on an ordinary trainer may occasionally carry Self-Destruct,
   Explosion or Destiny Bond, or trapping (Ian, 2026-10-31: "at this point
-  in the game they are occasionally acceptable"). Every enemy Pokemon
+  in the game they are occasionally acceptable"), and from Byron's split
+  on more freely, Explosion, Destiny Bond and other gimmicks alike, since
+  the player has the tools to play around them (Ian, 2026-10-31). Ian does
+  not call them forced trades: a trade move can be played around, by a KO
+  from outside Custap range or at an HP it is unlikely to explode at, and
+  status gets round Destiny Bond, Counter and Mirror Coat. AI flags are
+  chosen on purpose for each team, from what they do (Ian, 2026-10-31):
+  Check HP against Explosion and Self-Destruct, Weather against a lead's
+  weather move, Harassment against a status-heavy team, and Risky against
+  high-critical-hit moves (`docs/oxide/battle-ai/flags-guide.md`). Every
+  enemy Pokemon
   holds its own item and has its own nature, with no repeats in a team
   (2026-10-12). Trainers may use TM and tutor moves freely, and from Cyrus
   3's split on any move. A move on a team Ian builds that its species
