@@ -343,6 +343,11 @@ IAN_EGG_MOVES = {
     "SPECIES_DIANCIE": [("MOVE_MOONBLAST", "Ian, 2026-10-31: Argenta's Diancie at 50"),
                         ("MOVE_DIAMOND_STORM", "Ian, 2026-10-31: Argenta's Diancie at 50")],
     "SPECIES_PHEROMOSA": [("MOVE_TRIPLE_KICK", "Ian, 2026-10-31: Argenta's Pheromosa at 50")],
+    # The Pal Park partner's Scizor at 48 (Ian, 2026-10-31): Scizor learns
+    # Brick Break at 55. TM 31 also gives it today, so this keeps the move in
+    # the palette if the TM list changes.
+    "SPECIES_SCYTHER": [("MOVE_BRICK_BREAK", "Ian, 2026-10-31: the Pal Park partner's Scizor at 48, "
+                                             "which learns it at 55")],
     # Argo 1's and Cyrus 1's drafts, carried over at the honour cap of 47
     # (2026-10-31, cyrus-argo-check.md), by the egg-list rule of 2026-10-29:
     # the moves no list gives at the new levels. Cofagrigus's, Polteageist's

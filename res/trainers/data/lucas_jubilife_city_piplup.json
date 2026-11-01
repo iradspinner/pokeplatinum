@@ -10,15 +10,31 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CHIMCHAR",
+            "species": "SPECIES_MONFERNO",
             "form": 0,
-            "level": 13,
-            "item": null,
+            "level": 17,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_EMBER",
-                "MOVE_SCRATCH"
+                "MOVE_FLAME_WHEEL",
+                "MOVE_MACH_PUNCH",
+                "MOVE_FURY_SWIPES",
+                "MOVE_LEER"
             ],
-            "iv_scale": 30,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PACHIRISU",
+            "form": 0,
+            "level": 16,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_SPARK",
+                "MOVE_ELECTROWEB",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_CHARM"
+            ],
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

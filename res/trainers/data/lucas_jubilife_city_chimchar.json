@@ -12,13 +12,29 @@
         {
             "species": "SPECIES_TURTWIG",
             "form": 0,
-            "level": 13,
-            "item": null,
+            "level": 17,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_ABSORB",
-                "MOVE_TACKLE"
+                "MOVE_RAZOR_LEAF",
+                "MOVE_BULLET_SEED",
+                "MOVE_ROCK_BLAST",
+                "MOVE_WITHDRAW"
             ],
-            "iv_scale": 30,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PACHIRISU",
+            "form": 0,
+            "level": 16,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_SPARK",
+                "MOVE_ELECTROWEB",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_CHARM"
+            ],
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

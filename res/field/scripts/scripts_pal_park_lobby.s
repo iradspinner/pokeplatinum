@@ -482,23 +482,24 @@ PalParkLobby_GalacticDouble_Start:
     BufferCounterpartName 0
     Message PalParkLobby_Text_CounterpartPokemonFromEverywhere
     CloseMessage
-    @ The officers come in by the door: the man stops below the player at
-    @ (7, 18), the woman below the counterpart at (6, 18).
+    @ Officers Phobos and Deimos, the pair from Jubilife, come in by the
+    @ door: Phobos stops below the player at (7, 18), Deimos below the
+    @ counterpart at (6, 18).
     ClearFlag FLAG_UNUSED_0x054F
-    SetObjectEventPos LOCALID_OFFICER_M, 7, 19
-    AddObject LOCALID_OFFICER_M
+    SetObjectEventPos LOCALID_PHOBOS, 7, 19
+    AddObject LOCALID_PHOBOS
     PlaySE SEQ_SE_DP_KAIDAN2_sseq
-    ApplyMovement LOCALID_OFFICER_M, PalParkLobby_Movement_OfficerMWalkIn
+    ApplyMovement LOCALID_PHOBOS, PalParkLobby_Movement_PhobosWalkIn
     ApplyMovement LOCALID_PLAYER, PalParkLobby_Movement_NoticeSouth
     ApplyMovement LOCALID_COUNTERPART, PalParkLobby_Movement_NoticeSouth
     WaitMovement
     ClearFlag FLAG_UNUSED_0x054F
-    SetObjectEventPos LOCALID_OFFICER_F, 7, 19
-    AddObject LOCALID_OFFICER_F
-    ApplyMovement LOCALID_OFFICER_F, PalParkLobby_Movement_OfficerFWalkIn
+    SetObjectEventPos LOCALID_DEIMOS, 7, 19
+    AddObject LOCALID_DEIMOS
+    ApplyMovement LOCALID_DEIMOS, PalParkLobby_Movement_DeimosWalkIn
     WaitMovement
-    Message PalParkLobby_Text_OfficerMPokemonFromOtherRegions
-    Message PalParkLobby_Text_OfficerFStepAside
+    Message PalParkLobby_Text_PhobosPokemonFromOtherRegions
+    Message PalParkLobby_Text_DeimosStepAside
     BufferCounterpartName 0
     BufferPlayerName 1
     Message PalParkLobby_Text_CounterpartBattleTogether
@@ -510,14 +511,14 @@ PalParkLobby_GalacticDouble_Start:
     SetTrainerFlag TRAINER_DUMMY_050
     Message PalParkLobby_Text_OfficersFallBack
     CloseMessage
-    ApplyMovement LOCALID_OFFICER_M, PalParkLobby_Movement_OfficerMLeave
+    ApplyMovement LOCALID_PHOBOS, PalParkLobby_Movement_PhobosLeave
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2_sseq
-    RemoveObject LOCALID_OFFICER_M
-    ApplyMovement LOCALID_OFFICER_F, PalParkLobby_Movement_OfficerFLeave
+    RemoveObject LOCALID_PHOBOS
+    ApplyMovement LOCALID_DEIMOS, PalParkLobby_Movement_DeimosLeave
     WaitMovement
     PlaySE SEQ_SE_DP_KAIDAN2_sseq
-    RemoveObject LOCALID_OFFICER_F
+    RemoveObject LOCALID_DEIMOS
     ApplyMovement LOCALID_PLAYER, PalParkLobby_Movement_FaceWest
     ApplyMovement LOCALID_COUNTERPART, PalParkLobby_Movement_FaceEast
     WaitMovement
@@ -617,23 +618,23 @@ PalParkLobby_Movement_CounterpartWalkIn:
     EndMovement
 
     .balign 4, 0
-PalParkLobby_Movement_OfficerMWalkIn:
+PalParkLobby_Movement_PhobosWalkIn:
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-PalParkLobby_Movement_OfficerFWalkIn:
+PalParkLobby_Movement_DeimosWalkIn:
     WalkNormalWest
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-PalParkLobby_Movement_OfficerMLeave:
+PalParkLobby_Movement_PhobosLeave:
     WalkFastSouth
     EndMovement
 
     .balign 4, 0
-PalParkLobby_Movement_OfficerFLeave:
+PalParkLobby_Movement_DeimosLeave:
     WalkFastSouth
     WalkFastEast
     EndMovement
