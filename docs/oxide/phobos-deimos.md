@@ -6,18 +6,17 @@ Ian asked on 2026-10-31 for two more named officers, the pair fought in Jubilife
 
 Outcome. Both fights are built on one theme, "fear saps, dread slows". Phobos lowers what the player hits with (Intimidate, Charm, Snarl, Will-O-Wisp). Deimos lowers how fast the player moves (Electroweb, Icy Wind, Scary Face, Sticky Web, Glare), so the officers' side moves first and the player's hits land weak. In a tag battle every Intimidate and every spread drop reaches the player's Pokemon and the partner's at once, which a single battle cannot do. Every Pal Park member but four grows out of a Jubilife one.
 
-Jubilife reads a little easier than Officer Somnu 1 on the matchup screen, the earliest officer after it. Lucas or Dawn now brings two Pokemon there, as Ian asked, so six officers' Pokemon face eight. Pal Park reads harder than Tyche and Hermes do on their own boxes. It still reads easier than Argo 1 on the same box, and the gap is the level rule, not the sets (below).
+Ian answered the questions on 2026-10-31 (below), and the fights now stand as he set them. Jubilife, with both its walls softened as he asked, reads easier than Officer Somnu 1 on the matchup screen, the earliest officer after it. Lucas or Dawn now brings two Pokemon there, as Ian asked, so six officers' Pokemon face eight. Pal Park reads harder than Tyche and Hermes do on their own boxes. It still reads easier than Argo 1 on the same box, and the gap is the level rule, not the sets (below).
 
 Checked: the trainer lint and the real packer on all ten changed files, no move off its list at its level, `test_b1` 49 of 49, `test_b1e` 11 of 11, `test_learnrewrite` 6 of 6, `test_learncheck` 18 of 18, `test_trainers` 44 of 44, and `test_plgoal3` 71 of 72. Its one failure is the box-size check that fails on `oxide` too. The ROM builds, the bulk tools' dry runs write nothing, and the text check finds no unexpected difference. Not checked: no reading of either fight, since the simulator, the probe and goal 3 read single battles only.
 
-What Ian decides, one line each (the reasoning is under "Questions" below):
+Ian's answers (2026-10-31):
 
-1. The theme: A, fear saps and dread slows (built), or B or C?
-2. Pal Park at the officer rule's levels (aces at 48, two under the cap of 50), or raised toward the box's 50 so it reads like Argo 1?
-3. Arbok at 18 in Jubilife, four levels before Ekans evolves: keep, or Ekans?
-4. Snubbull and Arbok are the two Jubilife members that almost no early catch beats alone. Keep both, or soften one?
-5. Froslass's Destiny Bond at Pal Park: keep, now that Byron's split allows trade moves more freely?
-6. The scene's lines (below): read before landing.
+1. Theme A, fear saps and dread slows, as built.
+2. Pal Park keeps every member at 47 and the aces at 48, the officer rule's levels.
+3. and 4. "Both": both Jubilife walls softened. Deimos's ace is Ekans at 18, below its evolution level, with Arbok's set kept, and Snubbull holds an Oran Berry in place of its Eviolite.
+5. Froslass keeps Destiny Bond, with Check HP.
+6. The scene's lines (below) are still to read before landing.
 
 Next steps. Ian's in-game check of both fights, about 30 minutes from a save after Roark and one after Celestic, or from the test kit. A spot-check reading is not possible for a tag battle.
 
@@ -43,7 +42,7 @@ Officer Phobos, fear:
 |---|---|---|---|---|---|---|
 | Growlithe (lead) | 17 | Intimidate | Sitrus Berry | Careful | Flamethrower, Crunch, Will-O-Wisp, Leer | 30 |
 | Houndour | 17 | Unnerve | BlackGlasses | Mild | Snarl, Dark Pulse, Ember, Taunt | 32 |
-| Snubbull (ace) | 18 | Intimidate | Eviolite | Sassy | Charm, Play Rough, Ice Fang, Stomping Tantrum | 18 |
+| Snubbull (ace) | 18 | Intimidate | Oran Berry | Sassy | Charm, Play Rough, Ice Fang, Stomping Tantrum | 18 |
 
 Officer Deimos, dread:
 
@@ -51,7 +50,7 @@ Officer Deimos, dread:
 |---|---|---|---|---|---|---|
 | Joltik (lead) | 17 | Unnerve | Oran Berry | Hasty | Electroweb, Giga Drain, String Shot, Light Screen | 35 |
 | Surskit | 17 | Swift Swim | Mystic Water | Quiet | Icy Wind, Scary Face, Water Pulse, Struggle Bug | 28 |
-| Arbok (ace) | 18 | Unnerve | Poison Barb | Naughty | Glare, Poison Jab, Bite, Rock Tomb | 39 |
+| Ekans (ace) | 18 | Unnerve | Poison Barb | Naughty | Glare, Poison Jab, Bite, Rock Tomb | 30 |
 
 The partner, in all six files (Ian, 2026-10-31: a real team). The starter is the line the file already had, the one that beats the player's starter, and the sets are plain: iv_scale 200, no tuned items.
 
@@ -62,9 +61,9 @@ The partner, in all six files (Ian, 2026-10-31: a real team). The starter is the
 | `_piplup` | Monferno | 17 | Oran Berry | Flame Wheel, Mach Punch, Fury Swipes, Leer |
 | all six | Pachirisu | 16 | Sitrus Berry | Spark, Electroweb, Quick Attack, Charm |
 
-How it plays. Joltik's and Surskit's spread drops take the box's Speeds of about 30 to about 20, under Growlithe, Houndour and Arbok. Growlithe's and Snubbull's Intimidate and Snubbull's Charm cut the box's physical side, which is most of it at this point, and Houndour's Snarl and Surskit's Struggle Bug cut the special side. Light Screen covers the special hits that Intimidate does not. The counterplay is the box's special attackers (Prinplup's and Barboach's Water, Dottler, Budew, Raboot's and Fletchinder's Ember), switching to clear the drops, and the partner's own Electroweb.
+How it plays. Joltik's and Surskit's spread drops take the box's Speeds of about 30 to about 20, under Growlithe, Houndour and Ekans. Growlithe's and Snubbull's Intimidate and Snubbull's Charm cut the box's physical side, which is most of it at this point, and Houndour's Snarl and Surskit's Struggle Bug cut the special side. Light Screen covers the special hits that Intimidate does not. The counterplay is the box's special attackers (Prinplup's and Barboach's Water, Dottler, Budew, Raboot's and Fletchinder's Ember), switching to clear the drops, and the partner's own Electroweb.
 
-Arbok is four levels before Ekans evolves, which the ruling from Gardenia's redesign allows when it is not egregious (`rulings-detail.md`); Mars 1's Golbat is four early too (question 3).
+A first draft had Arbok at 18, four levels before Ekans evolves, and Snubbull with an Eviolite. They were the fight's two walls, beaten one on one by almost no early catch, and Ian had both softened (2026-10-31).
 
 ## Phobos and Deimos 2: Pal Park
 
@@ -87,7 +86,7 @@ Officer Deimos, dread:
 | Galvantula (lead) | 47 | Compound Eyes | Focus Sash | Hasty | Sticky Web, Electroweb, Thunder, Energy Ball | 133 | Joltik |
 | Absol | 47 | Super Luck | Black Belt | Adamant | Knock Off, Sucker Punch, Superpower, Stone Edge | 108 | new |
 | Masquerain | 47 | Intimidate | Wise Glasses | Modest | Icy Wind, Bug Buzz, Hydro Pump, Air Slash | 75 | Surskit |
-| Arbok | 47 | Intimidate | Black Sludge | Impish | Glare, Gunk Shot, Crunch, Rock Slide | 94 | Arbok |
+| Arbok | 47 | Intimidate | Black Sludge | Impish | Glare, Gunk Shot, Crunch, Rock Slide | 94 | Ekans |
 | Froslass (ace) | 48 | Cursed Body | NeverMeltIce | Naive | Ice Beam, Shadow Ball, Thunderbolt, Destiny Bond | 137 | new |
 
 How it plays. Galvantula's Focus Sash buys a Sticky Web on turn 1, so every Pokemon the player's side sends in loses a Speed stage. Electroweb, Icy Wind and Glare do the rest, and Phobos's slow hitters (Granbull, Mawile) and fast ones (Arcanine's Extreme Speed, Houndoom) then move first. Five Intimidates cross the field over the fight. Absol, the disaster Pokemon, and Froslass's Destiny Bond are the dread at the end. The partner's Umbreon, Electroweb and Fake Out answer some of it. The four new members (Mawile, Feraligatr, Absol, Froslass) give the coverage the box's walls asked for: Fighting and Water into Bastiodon, Garganacl and Golem, Fire and Electric into Corviknight.
@@ -102,13 +101,14 @@ Jubilife, the six officers' members read as one team:
 
 | Team | Box 1 | Box 2 | Box 3 | Per member |
 |---|---:|---:|---:|---:|
-| Phobos and Deimos 1, with the partner | 12.6 | 9.6 | 16.5 | 2.1 |
-| Phobos and Deimos 1, without the partner | 12.6 | 9.6 | 15.2 | 2.1 |
+| Phobos and Deimos 1, with the partner, as Ian set it | 16.2 | 16.0 | 18.1 | 2.8 |
+| The same before the walls were softened, with the partner | 12.6 | 9.6 | 16.5 | 2.1 |
+| The same, without the partner | 12.6 | 9.6 | 15.2 | 2.1 |
 | Somnu 1 (four members) | 5.7 | 7.7 | 7.2 | 1.7 |
 | Mars 1 (five members) | 1.1 | -2.1 | 9.5 | 0.6 |
 | This page's first draft (levels 16 and 17, weaker moves) | 19.2 | not run | not run | 3.2 |
 
-The partner's Monferno joins box 3's best six, which is why that box reads easier with it. Snubbull is beaten one on one by one catch on each box, and Arbok by none to two; every other member is beaten by five to fourteen (question 4).
+The partner's Monferno joins box 3's best six, which is why that box reads easier with it. Softened, Snubbull is beaten one on one by two to five catches a box and Ekans by seven or eight, where Snubbull with its Eviolite was beaten by one and Arbok by none to two. Every other member is beaten by five to fourteen.
 
 Pal Park, each officer and both together:
 
@@ -124,7 +124,7 @@ Pal Park, each officer and both together:
 
 Why Pal Park cannot read like Argo 1 at these levels. Argo's six and Barry 5's sit at 51 to 53, above the box's 50, and both still await their redesign under the caps of 47 and 50. The officer rule puts Phobos and Deimos 2 to 4 under the cap in force, so at 47 and 48 against a box at 50. The same ten sets raised four levels, to Argo's, read 12.0 for Phobos on box 1, against Argo's 12.6, and 15.2 for Deimos. So the sets are about as strong as Argo's, and the gap is the levels. A box of 89 catches always holds a wall for any one member, so the screen's ceiling bites here more than at Jubilife. Tyche and Hermes, whom Ian accepted as officer difficulty, read easier than these on their own boxes (question 2).
 
-Speed tiers. At Jubilife the box's fastest are Raboot 41, Ponyta 40, Pawmo 38 and Fletchinder 37; Arbok (39) outspeeds all but the first two, Joltik (35) most, and one Electroweb or Icy Wind puts the box's 30s under Growlithe and Houndour. At Pal Park the box's top is Crobat 142, Talonflame 138, Weavile 137 and Cinderace 131; Froslass (137) and Galvantula (133) sit among them, Arcanine (122) and Houndoom (118) just under, and Sticky Web plus Electroweb puts most of the box under Phobos's fast half.
+Speed tiers. At Jubilife the box's fastest are Raboot 41, Ponyta 40, Pawmo 38 and Fletchinder 37; Joltik (35) outspeeds most of the box, Houndour (32) and Growlithe and Ekans (30) about half, and one Electroweb or Icy Wind puts the box's 30s under Growlithe and Houndour. At Pal Park the box's top is Crobat 142, Talonflame 138, Weavile 137 and Cinderace 131; Froslass (137) and Galvantula (133) sit among them, Arcanine (122) and Houndoom (118) just under, and Sticky Web plus Electroweb puts most of the box under Phobos's fast half.
 
 The replacement trace (who the AI sends in when a member leaves) reads sensibly in every row looked at: Arcanine against Corviknight and Torterra, Feraligatr against Garganacl and Bastiodon, Masquerain against Bastiodon and Probopass, Arbok against the Fairy types, and at Jubilife Surskit against the Rock types and Joltik against Bibarel and Corvisquire. The trace was read on a stand-in single team; in the battle each officer replaces from its own five.
 
@@ -156,11 +156,10 @@ Every changed line is no longer than the longest line already in its box. No mes
 
 Nothing in the save moves.
 
-## Questions, with their reasoning
+## Ian's answers, with the reasoning they settled
 
-1. The theme. A is built; B and C are above. A is the one a double rewards and the one the early lines carry best.
-2. Pal Park's levels. At the officer rule's levels it reads harder than Tyche and Hermes and easier than Argo 1, whose levels sit above the cap and await their redesign. Raising Phobos and Deimos 2 to 50 and 51 would read about like Argo; keeping 47 and 48 keeps the rule.
-3. Arbok at 18. It is four levels early, as Mars 1's Golbat is; Ekans in its place would make Deimos's ace the frailest member of either team.
-4. Snubbull and Arbok. They are the fight's two walls for an early box: Snubbull's Eviolite and Intimidate, Arbok's speed and Glare. The player can put both its Pokemon and the partner's onto one of them, which the screen cannot show. Softening one would be Snubbull without Eviolite.
-5. Destiny Bond. Check HP holds it to a low Froslass, and the player plays round it with status or by not striking the last blow.
-6. The text. The lines above are new; a separate commit carries them.
+1. The theme. A was built and taken; B and C are above. A is the one a double rewards and the one the early lines carry best.
+2. Pal Park's levels. At the officer rule's levels it reads harder than Tyche and Hermes and easier than Argo 1, whose levels sit above the cap and await their redesign. Raising Phobos and Deimos 2 to 50 and 51 would have read about like Argo; Ian kept 47 and 48 and the rule.
+3. and 4. The two walls. Snubbull's Eviolite and Intimidate and Arbok's speed and Glare left an early box almost no one-on-one answer to either. Ian softened both: Ekans at 18 keeps the Glare, and Snubbull with an Oran Berry keeps its Intimidate and Charm.
+5. Destiny Bond. Check HP holds it to a low Froslass, and the player plays round it with status or by not striking the last blow. Kept.
+6. The text. The lines above are new; read them before landing.
