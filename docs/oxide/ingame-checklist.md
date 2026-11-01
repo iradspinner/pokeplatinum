@@ -1073,6 +1073,26 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   says your party is full and keeps the rental; "Not now" does the same.
   Talking to him again with room offers the menu again; once a rental is
   given he has his closing line and offers nothing more.
+- [ ] Argenta waits for the Pal Park double (`overseer-argenta-place`,
+  Ian, 2026-11-01). In Pal Park's lobby before the partner double is won,
+  walk up the east corridor into the north gallery: the four spectators
+  are there and Argenta is not. Win the double, and without leaving the
+  lobby walk up again: Argenta, the Hall Matron, stands at the gallery's
+  west end, facing east. Leave and come back: she is still there.
+- [ ] Argenta asks first: nothing happens until you speak to her. She says
+  who she is, that she came to see the Pokemon from faraway regions, and
+  that a win earns a gift, then asks; "No" gives her "Not today?" line and
+  leaves her standing. Every line fits its box.
+- [ ] Argenta's battle (from a save, since a loss ends the run): an
+  ordinary single battle, no room or field effect, against her six at 50,
+  Skarmory first. Her defeat line, "Oh, dear... The trouble with fun is
+  that it is over so quickly.", shows on the win.
+- [ ] Argenta's bundle comes once: straight after the win she gives a Gold
+  Bottle Cap, then three Bottle Caps, each give with its own "obtained"
+  message, then her closing line. One Gold Bottle Cap and three Bottle Caps
+  are in the Bag. Speaking to her again, after leaving and coming back, and
+  after saving and reloading, gives only her closing line: no battle and
+  no items.
 - [ ] The Ability Patch (Ian, 2026-10-13): beating Ace Trainer Jose on
   Route 228 gives an Ability Patch and then TM64, straight after the win.
   With a full Bag, talking to him again gives what was refused.

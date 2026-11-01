@@ -180,6 +180,21 @@
             "x": 7,
             "z": 19,
             "y": 0
+        },
+        {
+            "id": "LOCALID_HALL_MATRON_ARGENTA",
+            "graphics_id": "OBJ_EVENT_GFX_ARGENTA",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_0x01",
+            "script": 15,
+            "initial_dir": 3,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 1,
+            "z": 5,
+            "y": 0
         }
     ],
     "warp_events": [

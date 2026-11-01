@@ -782,8 +782,8 @@ def main():
     rows = g.fights()
     bosses = [f for f in rows if f["kind"] != g.ACE]
     aces = [f for f in rows if f["kind"] == g.ACE]
-    results.append(("goal 3 reads its 80 single battles: 39 bosses and 41 Ace Trainers",
-                    (len(bosses), len(aces)) == (39, 41), f"{len(bosses)} bosses, {len(aces)} Ace Trainers"))
+    results.append(("goal 3 reads its 83 single battles: 42 bosses and 41 Ace Trainers",
+                    (len(bosses), len(aces)) == (42, 41), f"{len(bosses)} bosses, {len(aces)} Ace Trainers"))
 
     # The team each starter meets: Barry's slots by the player's starter
     # (Scorbunny meets the _CHIMCHAR slot), Lucas and Dawn's by the
@@ -873,7 +873,7 @@ def main():
     # Veilstone Elekid from Maylene's split on (held out since 2026-10-21;
     # held_back_checks).
     want = {"roark": 17.0, "mars_1": 21.0, "gardenia": 25.0, "jupiter_1": 27.0, "fantina": 34.0,
-            "maylene": 40.0, "wake": 50.0}
+            "maylene": 41.0, "wake": 51.0}
     got = {k: round(sum(len(g.cut(g.roll(by[k]["split"], s), by[k])) for s in range(1, 21)) / 20, 1)
            for k in want}
     results.append(("one run per seed keeps the box sizes over 20 seeds", got == want, str(got)))

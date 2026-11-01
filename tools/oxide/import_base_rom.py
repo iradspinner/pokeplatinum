@@ -1511,6 +1511,9 @@ TEXT_BANKS_SKIPPED[515] = ("the Pal Park partner double's lines: Lucas or Dawn a
                            "officers (Ian, 2026-10-31)")
 # The Pal Park officers are Phobos and Deimos, the Jubilife pair (Ian, 2026-10-31).
 TEXT_BANKS_SKIPPED[515] += "; then the officers named Phobos and Deimos (Ian, 2026-10-31)"
+# Argenta, the Hall Matron, in the lobby's north gallery (Ian, 2026-11-01):
+# her lines go at the end of the bank, so every earlier id stays.
+TEXT_BANKS_SKIPPED[515] += "; then Argenta's lines and her item bundle (Ian, 2026-11-01)"
 # Jubilife's two grunts are Officers Phobos and Deimos (Ian, 2026-10-31), so the
 # Rowan scene's speaker labels name them and they name themselves.
 TEXT_BANKS_SKIPPED[23] = ("the Rowan scene's grunts are Officers Phobos and Deimos, and their "
