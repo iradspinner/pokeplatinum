@@ -5755,6 +5755,55 @@ def air_balloon_checks():
     return out
 
 
+def rocky_helmet_checks():
+    """The Rocky Helmet (approved by Ian, 2026-10-31; Thorton's Toxapex holds
+    one): a contact hit that hurts its holder costs the attacker a sixth of
+    its maximum HP, at least 1 (BattleSystem_TriggerHeldItemOnHit's
+    HOLD_EFFECT_ROCKY_HELMET, the item's effect parameter 6), at each hit of
+    a move of several, and when the hit knocks the holder out too
+    (subscript_rocky_helmet only skips the animation then). It does nothing
+    for a move without contact, for a Magic Guard or Long Reach attacker,
+    for a hit its holder's Substitute took (the rest of that move
+    included), or for a U-turn whose user switches out (SYSCTL_UTURN_ACTIVE);
+    a U-turn with no one to switch to pays it. Until 2026-10-31 the
+    simulator ignored the item."""
+    def cost(use, attacker, move, holder_hp=10 ** 6, sub=0, bench=False):
+        # The calculator's rows hold only the moves a battle is built with,
+        # so the attacker is built knowing the move it uses.
+        attacker = attacker[:3] + ([move],)
+        player = [attacker] + ([("Machop", 30, "Guts", ["Tackle"])] if bench else [])
+        b, pex, mon = b8_battle([("Toxapex", 30, "Limber", ["Tackle"], "Rocky Helmet")], player)
+        pex.maxhp, pex.hp, pex.sub = 10 ** 6, holder_hp, sub
+        mon.moves, mon.pp = [fs.move(move)], {move: 9}
+        b.rng, b.dice = random.Random(0), pl.RunDice(random.Random(0), True)
+        before, pex_before = mon.hp, pex.hp + pex.sub
+        use(b, mon, fs.move(move), pex, True)
+        assert pex.hp + pex.sub < pex_before, f"{move} did not land"
+        return before - mon.hp, max(1, mon.maxhp // 6)
+
+    out = []
+    for name, use in (("readings", pl._use_move), ("fightsim", fs._use_move)):
+        machop = ("Machop", 30, "Guts", ["Tackle"])
+        rows = {
+            "Tackle": cost(use, machop, "Tackle"),
+            "Tackle, holder knocked out": cost(use, machop, "Tackle", holder_hp=1),
+            "Double Kick": cost(use, machop, "Double Kick"),
+            "Water Gun": cost(use, machop, "Water Gun"),
+            "Tackle into a Substitute": cost(use, machop, "Tackle", sub=10 ** 6),
+            "Double Kick breaking a Substitute": cost(use, machop, "Double Kick", sub=1),
+            "Magic Guard": cost(use, ("Clefable", 30, "Magic Guard", ["Tackle"]), "Tackle"),
+            "Long Reach": cost(use, ("Decidueye", 30, "Long Reach", ["Tackle"]), "Tackle"),
+            "U-turn, a bench to switch to": cost(use, machop, "U-turn", bench=True),
+            "U-turn, no bench": cost(use, machop, "U-turn"),
+        }
+        want = {k: (sixth if k in ("Tackle", "Tackle, holder knocked out", "U-turn, no bench")
+                    else 2 * sixth if k == "Double Kick" else 0) for k, (_, sixth) in rows.items()}
+        got = {k: lost for k, (lost, _) in rows.items()}
+        out.append((f"the Rocky Helmet takes a sixth from a contact attacker, by the engine's rules ({name})",
+                    got == want, f"lost {got}, wanted {want}"))
+    return out
+
+
 def scale_shot_checks():
     """Scale Shot (approved by Ian, 2026-10-31, from wake-barry4-check.md):
     once its hits are in, its user's Defense falls a stage and its Speed
@@ -7769,6 +7818,7 @@ def main():
     results += relic_song_checks()
     results += clanging_scales_checks()
     results += air_balloon_checks()
+    results += rocky_helmet_checks()
     results += scale_shot_checks()
     results += matcha_gotcha_checks()
     results += fell_stinger_checks()
