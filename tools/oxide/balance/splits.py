@@ -347,6 +347,11 @@ TRAINER_SPLITS = {
     # so they belong to Gardenia's split, though Jubilife's map is Roark's.
     **{c: "Gardenia" for c in ("TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1",
                                "TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2")},
+    # They are Officers Phobos and Deimos since 2026-10-31, and the partner
+    # beside the player there, picked through a variable as at Veilstone,
+    # is placed with them.
+    **{f"TRAINER_{who}_JUBILIFE_CITY_{starter}": "Gardenia"
+       for who in ("LUCAS", "DAWN") for starter in ("TURTWIG", "CHIMCHAR", "PIPLUP")},
     **{c: "Wake" for c in ("TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1",
                            "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2")},
     **{f"TRAINER_{who}_VEILSTONE_CITY_{starter}": "Wake"

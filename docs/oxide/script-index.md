@@ -14,12 +14,12 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 0 | 2 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 600 | 506 | 72 | 16 | 6 | 15 |
+| Trainer battles | 600 | 506 | 72 | 22 | 0 | 15 |
 | Items given | 212 | 102 | 30 | 80 | 0 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
-| Flags | 3331 | 2964 | 214 | 146 | 7 | 105 |
-| Variables | 1128 | 1078 | 27 | 20 | 3 | 36 |
+| Flags | 3331 | 2964 | 214 | 153 | 0 | 105 |
+| Variables | 1128 | 1078 | 27 | 23 | 0 | 36 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
 
@@ -433,7 +433,7 @@ Variables:
 
 Trainer battles:
 
-- StartTagBattle: partner TRAINER_LUCAS_JUBILIFE_CITY_CHIMCHAR (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_JUBILIFE_CITY_PIPLUP (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_JUBILIFE_CITY_TURTWIG (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerGender) == 1, TRAINER_DAWN_JUBILIFE_CITY_CHIMCHAR (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_JUBILIFE_CITY_PIPLUP (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_JUBILIFE_CITY_TURTWIG (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerGender) == 0, through a variable; against TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1 (Grunt, level 16, 3 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2 (Grunt, level 16, 3 Pokemon), by number. Vanilla. `scripts_jubilife_city.s:1026`
+- StartTagBattle: partner TRAINER_LUCAS_JUBILIFE_CITY_CHIMCHAR (Lucas, level 17, 2 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_JUBILIFE_CITY_PIPLUP (Lucas, level 17, 2 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_JUBILIFE_CITY_TURTWIG (Lucas, level 17, 2 Pokemon) if VAR_RESULT (GetPlayerGender) == 1, TRAINER_DAWN_JUBILIFE_CITY_CHIMCHAR (Dawn, level 17, 2 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_JUBILIFE_CITY_PIPLUP (Dawn, level 17, 2 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_JUBILIFE_CITY_TURTWIG (Dawn, level 17, 2 Pokemon) if VAR_RESULT (GetPlayerGender) == 0, through a variable; against TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1 (Officer Phobos, level 18, 3 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2 (Officer Deimos, level 18, 3 Pokemon), by number. Vanilla. `scripts_jubilife_city.s:1026`
 
 Items given:
 
@@ -1438,7 +1438,7 @@ Items given:
 Flags:
 
 - Set: FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS, FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS, FLAG_RECEIVED_ETERNA_CITY_SOUTH_HOUSE_UPGRADE.
-- Checked: FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS, FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS, FLAG_RECEIVED_ETERNA_CITY_SOUTH_HOUSE_UPGRADE, FLAG_GAME_COMPLETED (added, unclear).
+- Checked: FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS, FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS, FLAG_RECEIVED_ETERNA_CITY_SOUTH_HOUSE_UPGRADE, FLAG_GAME_COMPLETED (added, Oxide).
 - Hide an object: FLAG_HIDE_ETERNA_CITY_SOUTH_HOUSE_PROF_OAK.
 
 Variables:
@@ -3664,7 +3664,7 @@ Gone from vanilla: ITEM_TM77 x1; ITEM_TM29 x1, one time, flag FLAG_OBTAINED_ROUT
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_CELESTIC_TOWN (Officer Argo, level 53, 6 Pokemon), by number. Vanilla. `scripts_celestic_town.s:182`
+- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_CELESTIC_TOWN (Officer Argo, level 44, 6 Pokemon), by number. Vanilla. `scripts_celestic_town.s:182`
 
 Item balls:
 
@@ -3692,8 +3692,8 @@ Variables:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS (Cyrus, level 53, 6 Pokemon), by name. Vanilla. `scripts_celestic_town_cave.s:105`
-- StartTrainerBattle: against TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS (Cyrus, level 53, 6 Pokemon), by name. Vanilla. `scripts_celestic_town_cave.s:424`
+- StartTrainerBattle: against TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS (Cyrus, level 47, 6 Pokemon), by name. Vanilla. `scripts_celestic_town_cave.s:105`
+- StartTrainerBattle: against TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS (Cyrus, level 47, 6 Pokemon), by name. Vanilla. `scripts_celestic_town_cave.s:424`
 
 Items given:
 
@@ -3901,7 +3901,7 @@ Flags:
 
 - Set: FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE, FLAG_HIDE_CANALAVE_CITY_PROF_ROWAN, FLAG_HIDE_CANALAVE_CITY_COUNTERPART, FLAG_HIDE_CELESTIC_TOWN_CYNTHIA, FLAG_UNK_0x0A80 (added, base ROM).
 - Cleared: FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN, FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART, FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE, FLAG_HIDE_CANALAVE_CITY_SAILOR, FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI, FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL.
-- Checked: FLAG_LAKE_VALOR_EXPLODED, FLAG_WOKE_UP_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY, FLAG_TALKED_TO_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY, FLAG_TRAVELED_TO_NEWMOON_ISLAND, FLAG_CAUGHT_DARKRAI, FLAG_DEFEATED_TRAINER_DUMMY_009 (added, unclear), FLAG_GAME_COMPLETED, FLAG_UNK_0x0A80 (added, base ROM).
+- Checked: FLAG_LAKE_VALOR_EXPLODED, FLAG_WOKE_UP_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY, FLAG_TALKED_TO_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY, FLAG_TRAVELED_TO_NEWMOON_ISLAND, FLAG_CAUGHT_DARKRAI, FLAG_DEFEATED_TRAINER_DUMMY_009 (added, Oxide), FLAG_GAME_COMPLETED, FLAG_UNK_0x0A80 (added, base ROM).
 - Hide an object: FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE, FLAG_HIDE_CANALAVE_CITY_PROF_ROWAN, FLAG_HIDE_CANALAVE_CITY_SAILOR, FLAG_HIDE_CANALAVE_CITY_COUNTERPART, FLAG_HIDE_CANALAVE_CITY_RIVAL_LIBRARY, FLAG_OBTAINED_CANALAVE_CITY_TM89, FLAG_HIDE_TELEPORT_ABRA (added, Oxide).
 
 Variables:
@@ -7913,28 +7913,28 @@ Scripts nothing reaches: script 3 `PalPark_CoordEvent_CaughtAllPokemon` (line 51
 
 Trainer battles:
 
-- StartTagBattle: partner TRAINER_DUMMY_062 (Dawn, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer, level 48, 4 Pokemon), by name; and TRAINER_DUMMY_050 (Officer, level 48, 4 Pokemon), by name. Added, origin unclear. `scripts_pal_park_lobby.s:552`
-- StartTagBattle: partner TRAINER_DUMMY_063 (Dawn, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer, level 48, 4 Pokemon), by name; and TRAINER_DUMMY_050 (Officer, level 48, 4 Pokemon), by name. Added, origin unclear. `scripts_pal_park_lobby.s:556`
-- StartTagBattle: partner TRAINER_DUMMY_064 (Dawn, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer, level 48, 4 Pokemon), by name; and TRAINER_DUMMY_050 (Officer, level 48, 4 Pokemon), by name. Added, origin unclear. `scripts_pal_park_lobby.s:560`
-- StartTagBattle: partner TRAINER_DUMMY_051 (Lucas, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer, level 48, 4 Pokemon), by name; and TRAINER_DUMMY_050 (Officer, level 48, 4 Pokemon), by name. Added, origin unclear. `scripts_pal_park_lobby.s:567`
-- StartTagBattle: partner TRAINER_DUMMY_052 (Lucas, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer, level 48, 4 Pokemon), by name; and TRAINER_DUMMY_050 (Officer, level 48, 4 Pokemon), by name. Added, origin unclear. `scripts_pal_park_lobby.s:571`
-- StartTagBattle: partner TRAINER_DUMMY_054 (Lucas, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer, level 48, 4 Pokemon), by name; and TRAINER_DUMMY_050 (Officer, level 48, 4 Pokemon), by name. Added, origin unclear. `scripts_pal_park_lobby.s:575`
+- StartTagBattle: partner TRAINER_DUMMY_062 (Dawn, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:553`
+- StartTagBattle: partner TRAINER_DUMMY_063 (Dawn, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:557`
+- StartTagBattle: partner TRAINER_DUMMY_064 (Dawn, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:561`
+- StartTagBattle: partner TRAINER_DUMMY_051 (Lucas, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:568`
+- StartTagBattle: partner TRAINER_DUMMY_052 (Lucas, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:572`
+- StartTagBattle: partner TRAINER_DUMMY_054 (Lucas, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:576`
 
 Items given:
 
-- one of 27, ITEM_CHERI_BERRY, ITEM_CHESTO_BERRY, ITEM_PECHA_BERRY, ITEM_RAWST_BERRY, ITEM_ASPEAR_BERRY, ITEM_LEPPA_BERRY, ITEM_ORAN_BERRY, ITEM_PERSIM_BERRY, ITEM_LUM_BERRY, ITEM_SITRUS_BERRY, ITEM_FIGY_BERRY, ITEM_WIKI_BERRY, ITEM_MAGO_BERRY, ITEM_AGUAV_BERRY, ITEM_IAPAPA_BERRY, ITEM_RAZZ_BERRY, ITEM_BLUK_BERRY, ITEM_NANAB_BERRY, ITEM_WEPEAR_BERRY, ITEM_PINAP_BERRY, ITEM_POMEG_BERRY, ITEM_KELPSY_BERRY, ITEM_QUALOT_BERRY, ITEM_HONDEW_BERRY, ITEM_GREPA_BERRY, ITEM_TAMATO_BERRY, set by GetRandom, chosen by VAR_0x8006 x1. Vanilla. `scripts_pal_park_lobby.s:863`
+- one of 27, ITEM_CHERI_BERRY, ITEM_CHESTO_BERRY, ITEM_PECHA_BERRY, ITEM_RAWST_BERRY, ITEM_ASPEAR_BERRY, ITEM_LEPPA_BERRY, ITEM_ORAN_BERRY, ITEM_PERSIM_BERRY, ITEM_LUM_BERRY, ITEM_SITRUS_BERRY, ITEM_FIGY_BERRY, ITEM_WIKI_BERRY, ITEM_MAGO_BERRY, ITEM_AGUAV_BERRY, ITEM_IAPAPA_BERRY, ITEM_RAZZ_BERRY, ITEM_BLUK_BERRY, ITEM_NANAB_BERRY, ITEM_WEPEAR_BERRY, ITEM_PINAP_BERRY, ITEM_POMEG_BERRY, ITEM_KELPSY_BERRY, ITEM_QUALOT_BERRY, ITEM_HONDEW_BERRY, ITEM_GREPA_BERRY, ITEM_TAMATO_BERRY, set by GetRandom, chosen by VAR_0x8006 x1. Vanilla. `scripts_pal_park_lobby.s:864`
 
 Flags:
 
-- Set: FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST, FLAG_UNUSED_0x054F (added, unclear), FLAG_DEFEATED_TRAINER_DUMMY_009 (added, unclear), FLAG_DEFEATED_TRAINER_DUMMY_050 (added, unclear), FLAG_FIRST_ARRIVAL_POKE_PARK_FRONT_GATE.
-- Cleared: FLAG_HIDE_ETERNA_CITY_SOUTH_HOUSE_PROF_OAK, FLAG_UNUSED_0x054F (added, unclear), FLAG_ALT_MUSIC_PAL_PARK.
+- Set: FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST, FLAG_UNUSED_0x054F (added, Oxide), FLAG_DEFEATED_TRAINER_DUMMY_009 (added, Oxide), FLAG_DEFEATED_TRAINER_DUMMY_050 (added, Oxide), FLAG_FIRST_ARRIVAL_POKE_PARK_FRONT_GATE.
+- Cleared: FLAG_HIDE_ETERNA_CITY_SOUTH_HOUSE_PROF_OAK, FLAG_UNUSED_0x054F (added, Oxide), FLAG_ALT_MUSIC_PAL_PARK.
 - Checked: FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST.
-- Hide an object: FLAG_HIDE_PAL_PARK_LOBBY_PROF_OAK, FLAG_UNUSED_0x054F (added, unclear).
+- Hide an object: FLAG_HIDE_PAL_PARK_LOBBY_PROF_OAK, FLAG_UNUSED_0x054F (added, Oxide).
 
 Variables:
 
-- Set: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01 (added, unclear), VAR_MAP_LOCAL_0x09, VAR_MAP_LOCAL_0x0A, VAR_OBJ_GFX_ID_0 (added, unclear), VAR_PAL_PARK_LOBBY_STATE, VAR_CATCHING_SHOW_RECORD, VAR_PAL_PARK_STATE.
-- Checked: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01 (added, unclear), VAR_MAP_LOCAL_0x09, VAR_MAP_LOCAL_0x0A, VAR_PAL_PARK_LOBBY_STATE, VAR_CATCHING_SHOW_RECORD, VAR_PAL_PARK_STATE.
+- Set: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01 (added, Oxide), VAR_MAP_LOCAL_0x09, VAR_MAP_LOCAL_0x0A, VAR_OBJ_GFX_ID_0 (added, Oxide), VAR_PAL_PARK_LOBBY_STATE, VAR_CATCHING_SHOW_RECORD, VAR_PAL_PARK_STATE.
+- Checked: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01 (added, Oxide), VAR_MAP_LOCAL_0x09, VAR_MAP_LOCAL_0x0A, VAR_PAL_PARK_LOBBY_STATE, VAR_CATCHING_SHOW_RECORD, VAR_PAL_PARK_STATE.
 
 Scripts nothing reaches: script 4 `PalParkLobby_Record_Unused` (line 311).
 

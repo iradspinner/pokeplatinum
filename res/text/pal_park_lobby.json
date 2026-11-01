@@ -666,9 +666,9 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_OfficerMPokemonFromOtherRegions",
+      "id": "PalParkLobby_Text_PhobosPokemonFromOtherRegions",
       "en_US": [
-        "Officer: So this is the park where\n",
+        "Phobos: So this is the park where\n",
         "Pokémon from other regions gather.\r",
         "The new world our boss is making\n",
         "will need every Pokémon there is.\r",
@@ -676,11 +676,14 @@
       ]
     },
     {
-      "id": "PalParkLobby_Text_OfficerFStepAside",
+      "id": "PalParkLobby_Text_DeimosStepAside",
       "en_US": [
-        "Officer: Every Pokémon brought here\n",
+        "Deimos: Every Pokémon brought here\n",
         "belongs to Team Galactic now.\r",
-        "Step aside, kids!\r"
+        "Phobos: Wait... You two again?\n",
+        "The brats from Jubilife City!\r",
+        "Deimos: Not this time, children.\n",
+        "Step aside, or learn to fear us!\r"
       ]
     },
     {
@@ -693,9 +696,9 @@
     {
       "id": "PalParkLobby_Text_OfficersFallBack",
       "en_US": [
-        "Officer: Two kids, again...\n",
-        "The Commander won’t like this.\r",
-        "Officer: Fall back! Fall back!\r"
+        "Phobos: Two kids, again...\n",
+        "Commander Mars won’t like this.\r",
+        "Deimos: Fall back! Fall back!\r"
       ]
     },
     {
