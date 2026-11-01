@@ -15,7 +15,7 @@
         {
             "species": "SPECIES_SWALOT",
             "form": 0,
-            "level": 53,
+            "level": 51,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_SLUDGE_BOMB",
@@ -32,7 +32,7 @@
         {
             "species": "SPECIES_SKUNTANK",
             "form": 0,
-            "level": 53,
+            "level": 51,
             "item": "ITEM_DREAD_PLATE",
             "moves": [
                 "MOVE_CRUNCH",
@@ -49,7 +49,7 @@
         {
             "species": "SPECIES_GLACEON",
             "form": 0,
-            "level": 54,
+            "level": 52,
             "item": "ITEM_NEVERMELTICE",
             "moves": [
                 "MOVE_BLIZZARD",

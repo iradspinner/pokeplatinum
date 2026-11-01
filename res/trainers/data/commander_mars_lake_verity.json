@@ -6,14 +6,15 @@
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT",
-        "AI_FLAG_BATON_PASS"
+        "AI_FLAG_BATON_PASS",
+        "AI_FLAG_CHECK_HP"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_MESPRIT",
             "form": 0,
-            "level": 51,
+            "level": 52,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_STEALTH_ROCK",
@@ -30,7 +31,7 @@
         {
             "species": "SPECIES_CROBAT",
             "form": 0,
-            "level": 52,
+            "level": 53,
             "item": "ITEM_SHARP_BEAK",
             "moves": [
                 "MOVE_BRAVE_BIRD",
@@ -47,8 +48,8 @@
         {
             "species": "SPECIES_BRONZONG",
             "form": 0,
-            "level": 52,
-            "item": "ITEM_LEFTOVERS",
+            "level": 53,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_GYRO_BALL",
                 "MOVE_EARTHQUAKE",
@@ -64,7 +65,7 @@
         {
             "species": "SPECIES_PURUGLY",
             "form": 0,
-            "level": 52,
+            "level": 53,
             "item": "ITEM_SILK_SCARF",
             "moves": [
                 "MOVE_FAKE_OUT",
@@ -73,7 +74,7 @@
                 "MOVE_KNOCK_OFF"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 3,
             "gender": "female"
@@ -81,7 +82,7 @@
         {
             "species": "SPECIES_UMBREON",
             "form": 0,
-            "level": 52,
+            "level": 53,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_PAYBACK",
@@ -98,7 +99,7 @@
         {
             "species": "SPECIES_LUXRAY",
             "form": 0,
-            "level": 53,
+            "level": 54,
             "item": "ITEM_EXPERT_BELT",
             "moves": [
                 "MOVE_THUNDER_FANG",

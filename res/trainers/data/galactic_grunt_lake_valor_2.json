@@ -14,7 +14,7 @@
         {
             "species": "SPECIES_SUDOWOODO",
             "form": 0,
-            "level": 54,
+            "level": 51,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_STEALTH_ROCK",
@@ -31,7 +31,7 @@
         {
             "species": "SPECIES_WEEZING",
             "form": 0,
-            "level": 55,
+            "level": 52,
             "item": "ITEM_BLACK_SLUDGE",
             "moves": [
                 "MOVE_SLUDGE_BOMB",
@@ -48,7 +48,7 @@
         {
             "species": "SPECIES_GIRAFARIG",
             "form": 0,
-            "level": 55,
+            "level": 52,
             "item": "ITEM_STARF_BERRY",
             "moves": [
                 "MOVE_AGILITY",
@@ -65,7 +65,7 @@
         {
             "species": "SPECIES_CHATOT",
             "form": 0,
-            "level": 55,
+            "level": 52,
             "item": "ITEM_SHARP_BEAK",
             "moves": [
                 "MOVE_HYPER_VOICE",
@@ -74,7 +74,7 @@
                 "MOVE_NASTY_PLOT"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"
@@ -82,7 +82,7 @@
         {
             "species": "SPECIES_TANGROWTH",
             "form": 0,
-            "level": 55,
+            "level": 52,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_SEED_BOMB",
@@ -99,7 +99,7 @@
         {
             "species": "SPECIES_SCEPTILE",
             "form": 0,
-            "level": 56,
+            "level": 53,
             "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_LEAF_STORM",
