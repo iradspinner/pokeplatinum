@@ -50,7 +50,11 @@ from . import required as R
 # Jen look one way too; they read avoidable here, since the model gives the
 # split Surf and the river walks round them, but the player meets them
 # before Surf.
-TOTALS = {"required": 77, "avoidable": 97, "never reached": 12}
+# 80 once Route 221 (to Pal Park's lobby) and Iron Island B1F's right room
+# became crossings the same day: they read Swimmer Dillon, Collector Ivan
+# and Picnicker Summer required and four more of Route 221's trainers
+# (Vanessa, Cory, Jake and Shannon) avoidable, all seven left out before.
+TOTALS = {"required": 80, "avoidable": 101, "never reached": 12}
 
 
 def check_crossings_resolve(results):
