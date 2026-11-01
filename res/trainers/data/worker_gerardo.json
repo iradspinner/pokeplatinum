@@ -18,7 +18,7 @@
                 "MOVE_SPIKES",
                 "MOVE_GYRO_BALL",
                 "MOVE_RAPID_SPIN",
-                "MOVE_STONE_EDGE"
+                "MOVE_EXPLOSION"
             ],
             "iv_scale": 223,
             "nature": "NATURE_RELAXED",
