@@ -306,6 +306,12 @@ DIVERGED["scripts_route_214_gate_to_veilstone_city"] = (
 DIVERGED["scripts_canalave_city"] += (
     "; Barry lets the player into the library only once Riley's Iron Island section is done "
     "(Ian, 2026-10-31)")
+# The whole of Iron Island in Byron's split (Ian, 2026-10-31): Canalave's gym
+# loads Riley's state into a map-local var, and the Gym Guide turns the player
+# back at the entrance until Riley's tag battle on B2F is won.
+DIVERGED["scripts_canalave_city_gym"] += (
+    "; then the Gym Guide turns the player back at the entrance until Riley's tag battle "
+    "on Iron Island is won (Ian, 2026-10-31)")
 
 # The base ROM's Lucky Egg from Lucas or Dawn on Route 207 is dropped (Ian,
 # 2026-10-31), with the choose-a-hand menu that led to it; the Dowsing

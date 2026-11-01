@@ -38,7 +38,9 @@ from . import required as R
 # Psychics Abigail and Mitchell were read required and now look one way.
 # Unchanged when unpushable boulders became walls (2026-10-31): Lake
 # Verity's grunts 3 and 4 stay avoidable, since Surf takes the player round
-# them by the lake's west edge, boulders or not.
+# them by the lake's west edge, boulders or not. Unchanged again the same
+# day when Ian's recollection that the water there cannot be reached was
+# checked against the game's code, which allows it (check_lake_verity_surf).
 TOTALS = {"required": 68, "avoidable": 106, "never reached": 12}
 
 
@@ -147,11 +149,13 @@ def check_late_visits(results):
 
 
 def check_gauntlet_sections(results):
-    """The sections keep Ian's rulings: 2 to 5 trainers each, the built ten
+    """The sections keep Ian's rulings: 2 to 5 trainers each, the built nine
     (src/gauntlet.c), Victory Road 1F halved as the code lists it with its
     2F and B1F detours left out, and Mt. Coronet's bosses and hard officers
     out. Moved here from test_b6 when the first scoring system retired
-    (2026-10-13)."""
+    (2026-10-13). Ten until the Eterna building's 3F, with Officer Moira,
+    left the gauntlets (Ian, 2026-10-31), and neither of its trainers may
+    sit in a section."""
     from . import gauntlet
     sizes = {(area, s[0]): len(gauntlet.section_trainers(area, s))
              for area, sections in gauntlet.SECTIONS.items() for s in sections}
@@ -160,11 +164,81 @@ def check_gauntlet_sections(results):
     names = {tr: t["constant"] for tr, t in data.oxide_trainers().items()}
     vr = [{names[tr] for tr in gauntlet.section_trainers("victory_road", s)}
           for s in gauntlet.SECTIONS["victory_road"]]
-    ok = (len(sizes) == 10 and all(2 <= n <= 5 for n in sizes.values()) and not coronet & {520, 526, 834}
+    eterna = {names[tr] for s in gauntlet.SECTIONS["galactic_eterna"]
+              for tr in gauntlet.section_trainers("galactic_eterna", s)}
+    ok = (len(sizes) == 9 and all(2 <= n <= 5 for n in sizes.values()) and not coronet & {520, 526, 834}
+          and not eterna & {"TRAINER_SCIENTIST_TRAVON", "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_3F"}
           and vr == [{"TRAINER_PSYCHIC_BRYCE", "TRAINER_BIRD_KEEPER_HANA", "TRAINER_ACE_TRAINER_MARIAH"},
                      {"TRAINER_BLACK_BELT_MILES", "TRAINER_DRAGON_TAMER_CLINTON", "TRAINER_VETERAN_EDGAR"}])
     results.append(("gauntlet sections hold 2 to 5 trainers, bosses left out", ok,
                     f"{len(sizes)} sections" if ok else f"{sizes}, Coronet {coronet}, 1F {vr}"))
+
+
+def _canalave_gym_floor():
+    """The open tiles of Canalave Gym's ground floor, from the collision map
+    the game reads there in place of the tiles' own bit
+    (src/overlay008/gym_features.c, sCanalaveGymCollisionMaps[0])."""
+    import os
+    import re
+    with open(os.path.join(data.ROOT, "src", "overlay008", "gym_features.c"), encoding="utf-8") as f:
+        src = f.read()
+    body = src[src.index("sCanalaveGymCollisionMaps"):]
+    body = body[body.index("=") + 1:body.index("};")]
+    floor = [int(v) for v in re.findall(r"\b[01]\b", body)][:32 * 32]
+    return {(x, z) for z in range(32) for x in range(32) if not floor[z * 32 + x]}
+
+
+def check_byron_order(results):
+    """Byron's split runs Canalave, Iron Island, the gym, then the library
+    (Ian, 2026-10-31). From Route 218's gate the player reaches the sailor to
+    Iron Island and the gym's door; the island is walked from the boat to
+    Riley's grunts on B2F; inside the gym, the trigger across the row past
+    the entrance (its coord event, which holds until Riley's tag battle is
+    won) leaves the player nowhere to go but out; and Barry at the library
+    door, who waits for the same battle, keeps the library shut."""
+    from . import world
+    canalave = R.Field("CANALAVE_CITY", "Byron")
+    start = canalave.ends("ROUTE_218_GATE_TO_CANALAVE_CITY")
+    gym_door = world.warps_to("CANALAVE_CITY", "CANALAVE_CITY_GYM")
+    library = world.warps_to("CANALAVE_CITY", "CANALAVE_LIBRARY_1F")
+    seen = canalave.reach(start)
+    got = {"sailor": bool(seen & canalave.ends("@LOCALID_SAILOR_ELDRITCH")),
+           "gym door": bool(seen & gym_door)}
+    barry = next(o for o in world.events("CANALAVE_CITY")["object_events"]
+                 if o["id"] == "LOCALID_RIVAL_LIBRARY")
+    canalave.objects[(barry["x"], barry["z"])] = barry
+    got["library past Barry"] = bool(canalave.reach(start) & library)
+
+    # The island, floor by floor, from the boat's landing beside its sailor.
+    walk = [("IRON_ISLAND", {(100, 502)}, world.warps_to("IRON_ISLAND", "IRON_ISLAND_1F")),
+            ("IRON_ISLAND_1F", world.warps_to("IRON_ISLAND_1F", "IRON_ISLAND"),
+             world.warps_to("IRON_ISLAND_1F", "IRON_ISLAND_B1F_RIGHT_ROOM")),
+            ("IRON_ISLAND_B1F_RIGHT_ROOM", world.warps_to("IRON_ISLAND_B1F_RIGHT_ROOM", "IRON_ISLAND_1F"),
+             world.warps_to("IRON_ISLAND_B1F_RIGHT_ROOM", "IRON_ISLAND_B2F_LEFT_ROOM")),
+            ("IRON_ISLAND_B2F_LEFT_ROOM",
+             world.warps_to("IRON_ISLAND_B2F_LEFT_ROOM", "IRON_ISLAND_B1F_RIGHT_ROOM"), {(21, 40), (21, 41)})]
+    got["island to Riley's grunts"] = all(R.Field(h, "Byron").path(a, b) for h, a, b in walk)
+
+    gym = next((c for c in world.events("CANALAVE_CITY_GYM")["coord_events"]
+                if c["var"] == "VAR_MAP_LOCAL_0x00"), {"x": 0, "z": 0, "width": 0})
+    trigger = {(gym["x"] + i, gym["z"]) for i in range(gym["width"])}
+    floor = _canalave_gym_floor()
+    entrance = {(w["x"], w["z"]) for w in world.events("CANALAVE_CITY_GYM")["warp_events"]}
+    inside, frontier = set(entrance), list(entrance)
+    while frontier:
+        x, z = frontier.pop()
+        for dx, dz in world.DIRS.values():
+            n = (x + dx, z + dz)
+            if n in floor and n not in trigger and n not in inside:
+                inside.add(n)
+                frontier.append(n)
+    # Past the row the entrance opens onto, two rows north of the door.
+    door_z = min(z for _x, z in entrance)
+    got["gym past the entrance row"] = any(z < door_z - 1 for _x, z in inside)
+    want = {"sailor": True, "gym door": True, "library past Barry": False,
+            "island to Riley's grunts": True, "gym past the entrance row": False}
+    results.append(("Byron's split runs the island, the gym, then the library", got == want,
+                    ", ".join(f"{k} {v}" for k, v in got.items())))
 
 
 def check_unpushable_boulders(results):
@@ -190,6 +264,37 @@ def check_unpushable_boulders(results):
                     ", ".join(f"{k} {'wall' if v else 'gone'}" for k, v in got.items())))
 
 
+def check_lake_verity_surf(results):
+    """Lake Verity's grunts 3 and 4 read avoidable on Surf alone (2026-10-31).
+    Ian recalled that the water round them cannot be reached and that a
+    boulder cannot be pushed into water; the game's code allows both. Surf
+    is offered when the faced tile is surfable, unless the player stands on
+    a raised bridge (PlayerAvatar_CanUseSurf), and Oxide asks only for the
+    Fen Badge and Celestic's story (field_control.c); no collision bit,
+    tile side or height is read. The shore at (44,46) stands at height 16
+    and the water at 8, under the 20 that stops a step
+    (terrain_collision_manager.c, GetVerticalDirection), and the same holds
+    at the landing, (48,43). A boulder's push refuses only the collision
+    bit, a wall behaviour, a missing tile or an object (sub_02063E18). So
+    the verdicts stand: with Surf both grunts are avoidable, boulder or no
+    boulder, and without it both are required. If Ian wants the pair
+    mandatory, the map must change."""
+    def verdicts(field):
+        start, goal = field.ends("VERITY_LAKEFRONT"), field.ends("@LOCALID_MARS")
+        return {t["script"][-1]: "avoidable" if field.path(start, goal, frozenset(field.sight(t)))
+                else "required" for t in field.trainers if t["script"][-1] in "34"}
+    built = R.Field("LAKE_VERITY", "Candice")
+    held = R.Field("LAKE_VERITY", "Candice")
+    held.objects[(46, 45)] = {"graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER"}
+    dry = R.Field("LAKE_VERITY", "Candice")
+    dry.can = dry.can - {"surf"}
+    got = {"with Surf": verdicts(built), "boulder held": verdicts(held), "no Surf": verdicts(dry)}
+    ok = (set(got["with Surf"].values()) == {"avoidable"} and got["boulder held"] == got["with Surf"]
+          and set(got["no Surf"].values()) == {"required"} and len(got["no Surf"]) == 2)
+    results.append(("Lake Verity's grunts 3 and 4 hang on Surf alone", ok,
+                    "; ".join(f"{k} {sorted(set(v.values()))}" for k, v in got.items())))
+
+
 def check_totals(results):
     got = {"required": 0, "avoidable": 0}
     for c in R.summary().values():
@@ -202,8 +307,8 @@ def check_totals(results):
 def main():
     results = []
     for check in (check_crossings_resolve, check_sight_and_ledges, check_route_202, check_ian_examples,
-                  check_gates, check_late_visits, check_gauntlet_sections, check_unpushable_boulders,
-                  check_totals):
+                  check_gates, check_late_visits, check_gauntlet_sections, check_byron_order,
+                  check_unpushable_boulders, check_lake_verity_surf, check_totals):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

@@ -996,3 +996,7 @@ Ian rebuilt Wake's team before the alpha on 2026-10-31, which is this entry's ow
 ### The story-route check and the Route 214 gate (2026-10-31)
 
 - [x] **The story route against the base ROM** (Ian, 2026-10-31), `story-route.md`: every split walked with the tile model and the base ROM diffed against vanilla map by map. One break skipped a boss: Wake before Maylene, which lost Barry 4 for good, as in vanilla; fixed the same day as a VANILLA FIX, Route 214's gate from Veilstone waiting on the Cobble Badge (d1a5c1b15). Ian's answers: the later splits' short counts are settled split by split; Iron Island comes back onto the path by gating the library on Riley; the Regis and the early areas are rechecked from their scripts; named officers stay out of gauntlets; the fight kinds are a standing ruling; Route 207's Lucky Egg is dropped; `required.py` keeps unpushable boulders as walls.
+
+### The honour caps entry as it stood until 2026-10-31
+
+  - [ ] Mini-boss honour caps, set by Ian on 2026-10-29 and in the game: Mars 1 20 (final), Jupiter 1 29, Lucas and Dawn 2 31, Barry 3 36 and Barry 4 in Pastoria 42, a cap that runs from Maylene's badge to Barry 4 and so covers Tyche and Hermes at Veilstone, whose aces are at 41 (Ian, 2026-10-31: theirs is no cap of its own), each team in Mars 1's shape (the ace at the cap, one right below, the rest two or three below; `rulings-detail.md`). Barry 2 (interim 11), Cyrus 1 and the later Galactic bosses wait on Ian. The caps are not in the engine's table, so the OxiDex flags only the split caps.

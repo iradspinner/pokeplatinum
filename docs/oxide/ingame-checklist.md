@@ -36,7 +36,7 @@ real save at that point. The times are rough, for one try each.
 | 10 | Section 3, **Mandatory fights, Gardenia's split** | The kit's Jubilife warp, then north | 20 min |
 | 11 | Section 3, Gardenia's new team | A real save at Eterna's gym | 10 min |
 | 12 | Section 4, Level caps through the story (Gardenia to Wake) | Each badge of the run, then the save bar | 1 min a badge |
-| 13 | Section 2, **Gauntlets**, the Eterna Galactic building's sections | The kit's Eterna City gauntlet warp | 15 min |
+| 13 | Section 2, **Gauntlets**, the Eterna Galactic building's section, which now ends on 3F's main side | The kit's Eterna City gauntlet warp | 15 min |
 | 14 | Section 3, **Mandatory fights, Fantina's split** | A save with the bike, Route 206 south to 207 and 208 | 15 min |
 | 15 | Section 3, Wayward Cave 1F's Ice Stone (Diego and Tori's pair) | A save with the bike, Route 206's cave | 10 min |
 | 16 | Section 2, **Knock Off on the first turn out** (Ace Trainer Allen's Sableye) | A real save in Hearthome's gym | 5 min |
@@ -431,8 +431,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   "There’s no turning back now! / Press on, or beat the Trainers here.", after
   which a staircase or warp panel stepped onto walks the player back off it.
   Then, one per entry:
-  - Eterna: go up to 3F and beat Travon and the grunt. The Pocket PC works on
-    3F again, and the stairs down no longer refuse.
+  - Eterna: with a 1F or 2F grunt still unbeaten, take 2F's east stairs
+    into 3F's small dead-end room: the Pocket PC still refuses there. Then
+    take 2F's other stairs up to 3F's main side: since 2026-10-31
+    (`overseer-byron-prep`) the section ends on arrival, so the Pocket PC
+    works at once, before Scientist Travon and Officer Moira, and the stairs
+    back down no longer refuse.
   - Galactic HQ: the warehouse's stairs lead into B2F. Leave the Galactic Key
     on B2F at first, and climb through 1F and 2F to 3F: its stairs back down
     let you go. Then fetch the key and come back: the same stairs refuse.
@@ -803,14 +807,22 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   used here". Straight after the win over Cyrus, all three work. The test
   kit's "Route 208, all badges" marks Celestic's story done, so Surf works
   there.
-- [ ] **Barry holds the library until Iron Island** (`overseer-route-fixes`,
-  Ian, 2026-10-31). In Canalave, with Byron beaten but Iron Island not done,
-  Barry stands at the library door; talking to him gives "Aww, you haven't
-  gone to Iron Island, have you? You've got to toughen up there first, like
-  I told you!", and the door stays shut, whether or not the player holds
-  HM04 or a Pokemon knows Strength. After Riley's grunts on Iron Island B2F
-  are beaten (with his egg taken, or refused for a full party), Barry says
-  "Too slow!" and goes in, and the library's scene on 3F plays as before.
+- [ ] **Iron Island before Byron's gym, and Barry at the library**
+  (`overseer-route-fixes`, then `overseer-byron-prep`, Ian, 2026-10-31). In
+  Canalave, before Iron Island, walk into the gym and take one step north
+  from the door: the Gym Guide shows "!" and says "Whoa, hold it right
+  there, champ-to-be! Byron only takes challengers who've proven themselves
+  on Iron Island. Ask the sailor at the harbor to take you there, then come
+  back!", and the player steps back south. Try it from each end of the row
+  inside the door too. The sailor at the harbor sails to Iron Island, Riley
+  meets the player outside, and the island can be walked down to B2F with
+  no badge check on the way. After Riley's tag battle on B2F is won (with
+  his egg taken, or refused for a full party), the gym lets the player
+  through. Then, with Byron beaten, Barry stands at the library door; he says
+  "Too slow!" and goes in, and the library's scene on 3F plays as before. His
+  other line ("Aww, you haven't gone to Iron Island, have you? You've got to
+  toughen up there first, like I told you!") should no longer be seen, since
+  the gym cannot be won before the island.
 - [ ] **(live)** The Weather flag's fix on Ace Trainer Shannon's first turn
   (Route 221, optional; a Weather-flag trainer whose Victreebel leads with
   Sunny Day and no weather ability, and keeps it in the comb's draft): break

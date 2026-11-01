@@ -23,7 +23,9 @@ from . import data, required, splits
 # trainers left out of it. Named Galactic officers stay outside every
 # gauntlet (Ian, 2026-10-31: "it would be too hard to manage the
 # difficulty"), so Mt. Coronet's climb ends on arrival at 5F, before Somnu
-# and Moira. The ten sections
+# and Moira, and the Eterna building's 3F, with Travon and its Officer Moira,
+# is no section at all: 1F and 2F's section ends on arrival at 3F's main side.
+# The nine sections
 # are the built ones (src/gauntlet.c, main-gauntlets): Victory Road's 2F and
 # B1F are detours inside 1F's locks, not sections, so their eight trainers
 # are optional (Ian, 2026-09-29, restated 2026-10-07), and 1F's halves hold
@@ -31,8 +33,7 @@ from . import data, required, splits
 SECTIONS = {
     "galactic_eterna": [
         ("1F and 2F", ["TEAM_GALACTIC_ETERNA_BUILDING_1F", "TEAM_GALACTIC_ETERNA_BUILDING_2F"],
-         None, ()),
-        ("3F", ["TEAM_GALACTIC_ETERNA_BUILDING_3F"], None, ())],
+         None, ())],
     "galactic_hq": [
         ("1F", ["GALACTIC_HQ_1F"], None, ()), ("2F", ["GALACTIC_HQ_2F"], None, ()),
         ("3F", ["GALACTIC_HQ_3F"], None, ()), ("B2F", ["GALACTIC_HQ_B2F"], None, ())],

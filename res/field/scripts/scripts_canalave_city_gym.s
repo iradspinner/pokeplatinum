@@ -11,11 +11,26 @@
     ScriptEntry CanalaveCityGym_Entry4
     ScriptEntry CanalaveCityGym_Entry5
     ScriptEntry CanalaveCityGym_Entry6
+    ScriptEntry CanalaveCityGym_GymGuideStopsPlayer
     ScriptEntryEnd
 
 CanalaveCityGym_Entry0:
     InitPersistedMapFeaturesForCanalaveGym
+    @ Platinum Oxide (Ian, 2026-10-31): the gym opens only once the player has
+    @ won Riley's tag battle on Iron Island B2F, so the whole island falls in
+    @ Byron's split. That win sets Riley's state to 2, egg taken or not. The
+    @ Mine Badge also counts, for a save that beat Byron before this change.
+    @ The answer goes in VAR_MAP_LOCAL_0x00 each time the gym loads, and the
+    @ trigger across the entrance (the events' coord event) runs while it is 0.
+    @ No temporary var is used: none is safe before a script task exists.
+    CheckBadgeAcquired BADGE_ID_MINE, VAR_MAP_LOCAL_0x00
+    CallIfEq VAR_IRON_ISLAND_B2F_LEFT_ROOM_FOLLOWER_RILEY_STATE, 2, CanalaveCityGym_IronIslandDone
     End
+
+CanalaveCityGym_IronIslandDone:
+    SetVar VAR_MAP_LOCAL_0x00, 1
+    Return
+
 CanalaveCityGym_Entry1:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
@@ -238,3 +253,29 @@ CanalaveCityGym_0305:
     CloseMessage
     ReleaseAll
     End
+
+@ Stepping north off the entrance row before Iron Island is done: the Gym
+@ Guide calls out, points the player to the island, and the player steps back
+@ south. The trigger spans the whole row the entrance opens onto, wall to
+@ wall on the gym's ground floor, so no step north gets past it.
+CanalaveCityGym_GymGuideStopsPlayer:
+    LockAll
+    ApplyMovement 1, CanalaveCityGym_Movement_GymGuideNotice
+    WaitMovement
+    Message 20
+    WaitButton
+    CloseMessage
+    ApplyMovement LOCALID_PLAYER, CanalaveCityGym_Movement_PlayerStepBack
+    WaitMovement
+    ReleaseAll
+    End
+
+    .balign 4, 0
+CanalaveCityGym_Movement_GymGuideNotice:
+    EmoteExclamationMark
+    EndMovement
+
+    .balign 4, 0
+CanalaveCityGym_Movement_PlayerStepBack:
+    WalkNormalSouth
+    EndMovement

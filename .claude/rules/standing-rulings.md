@@ -292,9 +292,12 @@ read, so they are written here too. Each is a standing instruction.
   wants, and a lead may be wholly countered by a Pokemon or a type when
   that answer draws in a member that beats it with a setup move, since
   the player's switch then hands it a free turn (2026-10-29). A split
-  carries 10 to 15 mandatory non-boss fights, gym trainers not counted,
-  and a trainer who turns, spins or walks counts as optional and may be
-  harder than normal (2026-10-29). Two trainers the player fights alone
+  carries 10 to 15 mandatory non-boss fights, gym trainers not counted
+  (Byron's long split about 20, Ian, 2026-10-31), two trainers fought
+  together in one double counting as one fight, and a trainer who turns,
+  spins or walks counts as optional and may be harder than normal
+  (2026-10-29). Lake Verity's grunts 3 and 4 count as mandatory by Ian's
+  honour rule, though Surf can pass them (2026-10-31). Two trainers the player fights alone
   together field six Pokemon between them at most, barring Ian's
   explicit permission (2026-10-29). Ordinary trainers favour variety over
   the optimal: neutral or less common natures more often, items that are

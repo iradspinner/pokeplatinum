@@ -1490,6 +1490,10 @@ TEXT_BANKS_SKIPPED[477] += ("; then the Lucky Egg's lines and the hand choice be
                             "(Ian, 2026-10-31)")
 TEXT_BANKS_SKIPPED[54] = ("Barry at the library door sends the player to Iron Island rather than "
                           "for HM Strength (Ian, 2026-10-31)")
+# The whole of Iron Island in Byron's split (Ian, 2026-10-31): Canalave's Gym
+# Guide gains the line that turns the player back until Riley's tag battle.
+TEXT_BANKS_SKIPPED[56] += ("; then the Gym Guide's line sending the player to Iron Island first "
+                           "(Ian, 2026-10-31)")
 
 
 def text_bank_names():

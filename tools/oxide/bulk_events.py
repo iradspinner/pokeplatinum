@@ -212,6 +212,12 @@ for _m, _why in (("game_corner", "Dahlia, the Arcade Star, added inside the entr
 DIVERGED["events_route_214_gate_to_veilstone_city"] = (
     "a policeman and the trigger across the corridor that turns the player back from "
     "Route 214 until the Cobble Badge (Ian, 2026-10-31)")
+# Canalave's gym waits for Iron Island (Ian, 2026-10-31; bulk_scripts.py says
+# why): a trigger across the row inside the entrance that runs only until
+# Riley's tag battle is won. The base ROM leaves these events as vanilla's.
+DIVERGED["events_canalave_city_gym"] = (
+    "the trigger inside the entrance that turns the player back until Riley's tag battle "
+    "on Iron Island is won (Ian, 2026-10-31)")
 
 
 def render(record, existing, index):

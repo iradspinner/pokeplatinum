@@ -19,7 +19,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
 | Flags | 3324 | 2964 | 214 | 146 | 0 | 105 |
-| Variables | 1122 | 1078 | 27 | 17 | 0 | 36 |
+| Variables | 1125 | 1078 | 27 | 20 | 0 | 36 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
 
@@ -3932,12 +3932,12 @@ Trainer battles:
 - TRAINER_ACE_TRAINER_CESAR (Cesar, level 52, 6 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:117`
 - TRAINER_WORKER_GERARDO (Gerardo, level 49, 2 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:132`
 - TRAINER_ACE_TRAINER_BREANNA (Breanna, level 52, 6 Pokemon), sees the player. Vanilla. `events_canalave_city_gym.json:147`
-- StartTrainerBattle: against TRAINER_LEADER_BYRON (Byron, level 53, 6 Pokemon), by number. Vanilla. `scripts_canalave_city_gym.s:34`
-- StartTrainerBattle: against TRAINER_LEADER_BYRON_REMATCH (Byron, level 87, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_canalave_city_gym.s:130`
+- StartTrainerBattle: against TRAINER_LEADER_BYRON (Byron, level 53, 6 Pokemon), by number. Vanilla. `scripts_canalave_city_gym.s:49`
+- StartTrainerBattle: against TRAINER_LEADER_BYRON_REMATCH (Byron, level 87, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_canalave_city_gym.s:145`
 
 Items given:
 
-- ITEM_TM47 x2. Added by Oxide (2f5fc736c). `scripts_canalave_city_gym.s:160`
+- ITEM_TM47 x2. Added by Oxide (2f5fc736c). `scripts_canalave_city_gym.s:175`
 
 Flags:
 
@@ -3947,7 +3947,8 @@ Flags:
 
 Variables:
 
-- Set: VAR_OBJ_GFX_ID_6 (added, base ROM), VAR_CANALAVE_CITY_STATE.
+- Set: VAR_MAP_LOCAL_0x00 (added, Oxide), VAR_OBJ_GFX_ID_6 (added, base ROM), VAR_CANALAVE_CITY_STATE.
+- Checked: VAR_MAP_LOCAL_0x00 (added, Oxide), VAR_IRON_ISLAND_B2F_LEFT_ROOM_FOLLOWER_RILEY_STATE (added, Oxide).
 
 Gone from vanilla: ITEM_TM91 x1.
 
