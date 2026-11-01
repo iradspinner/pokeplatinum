@@ -226,6 +226,16 @@ has no wild table, so it is a place of its own, open only after that win:
 order, so no box for a fight there holds it. The save shows the egg given at
 "Distant land", the special met location its giver names, and the OxiDex's
 save reader counts a Pokemon from there as the mansion's.
+
+Thorton's prize has been a real source since 2026-10-31. Straight after the
+player beats him in Ironworks Hall, a menu offers the final stages of the two
+starter lines they did not choose, at level 40, and the one picked is given
+there, so its met location is Ironworks Hall, a place of its own with no wild
+table. `scripted.json` reads the three species from
+`scripts_fuego_ironworks_building.s` and orders the prize just after the
+hall's place in walking order, so no box for Thorton's own fight holds it.
+A full party leaves the prize with Thorton until there is room.
+
 Mesprit takes the name of the route it is caught on. Snowpoint City's trade
 wants a Snover.
 

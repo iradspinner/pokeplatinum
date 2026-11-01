@@ -4308,6 +4308,7 @@ enum SwitchInCheckResult {
 // ends in TRAINER_NONE.
 static const u16 sPermanentTrickRoomTrainers[] = {
     TRAINER_COMMANDER_SATURN_GALACTIC_HQ,
+    TRAINER_DUMMY_077, // Thorton, the Factory Head, in Ironworks Hall (Ian, 2026-09-27)
     TRAINER_NONE,
 };
 

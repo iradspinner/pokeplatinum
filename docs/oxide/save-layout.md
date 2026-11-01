@@ -410,6 +410,16 @@ defeated flags (`TRAINER_DUMMY_009` and `TRAINER_DUMMY_050`), all already in
 the save. A save that saw Oak's scene before this ROM holds the lobby's state
 at 1 and meets the double on its next entry.
 
+## Thorton's prize takes a spare flag (2026-10-31)
+
+Nothing moves. `FLAG_UNUSED_0x054E` is set once Thorton has given the
+player's pick of the two starter lines they did not choose; until then a
+player who has beaten him (his free trainer slot's defeated flag,
+`TRAINER_DUMMY_077`, already in the save) is offered the pick again. No
+script, vanilla, base ROM or Oxide, read or wrote the flag (the base ROM's
+scripts were scanned by disassembly, and byte for byte where they do not
+decode). It keeps its pret name, so the reward placer counts it as taken.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:

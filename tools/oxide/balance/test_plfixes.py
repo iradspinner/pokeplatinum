@@ -973,7 +973,8 @@ def trick_room_checks():
     the game's own list (battle_lib.c, sPermanentTrickRoomTrainers): the
     story fight, and the study's reader on his own file (which started clear
     until 2026-10-06). In the planner's battle the room stays through a
-    Trick Room and ten turns' ends; Roark's file opens with none."""
+    Trick Room and ten turns' ends; Roark's file opens with none. Thorton
+    (TRAINER_DUMMY_077) joined the list on 2026-10-31, so it names the two."""
     from . import plstep3, plstudy, plteam_test
     listed = fs.permanent_trick_room()
     recs = plstudy.fixed(plteam_test.box(plstep3.ROARK, 16))
@@ -988,7 +989,7 @@ def trick_room_checks():
     for stem in ("commander_saturn_galactic_hq", "leader_roark"):
         st, _k, _f = plstudy.prepare([os.path.join(plstudy.RES, stem + ".json")], "HQ", 60, recs, plstudy.stock({}))
         study[stem] = st["trick_room"]
-    ok = (listed == {"TRAINER_COMMANDER_SATURN_GALACTIC_HQ"} and prep["st"]["trick_room"] and start == 999
+    ok = (listed == {"TRAINER_COMMANDER_SATURN_GALACTIC_HQ", "TRAINER_DUMMY_077"} and prep["st"]["trick_room"] and start == 999
           and b.trick_room == 999 and study == {"commander_saturn_galactic_hq": True, "leader_roark": False})
     return [("Saturn 2 opens in the game's permanent Trick Room on the story and study paths", ok,
              f"list {sorted(listed)}; story {prep['st']['trick_room']}, battle {start} then {b.trick_room}; "

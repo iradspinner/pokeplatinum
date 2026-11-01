@@ -646,6 +646,11 @@ GIFT_NOTES = {
         "once only (FLAG_RECEIVED_FLOAROMA_MEADOW_HOUSE_GIFT)",
     "floaroma_town_middle_house": "clown gift, one of four rolled at random; "
         "once only (FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_GIFT)",
+    "fuego_ironworks_building": "Thorton's Battle Factory rental, straight "
+        "after the player beats him in Ironworks Hall (Ian, 2026-09-27): pick "
+        "one of the two starter lines the player did not choose, fully evolved, "
+        "from a menu; once only (FLAG_UNUSED_0x054E); a full party leaves it "
+        "with him; Ironworks Hall's own capture",
     "hearthome_city_northwest_house": "gift from the woman in the house; once "
         "only (FLAG_RECEIVED_...EEVEE), cleared again by the post-game "
         "Trades/Gifts Reset",

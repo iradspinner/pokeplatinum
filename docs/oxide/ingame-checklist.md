@@ -1050,6 +1050,29 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] The Trophy Garden opens behind them: after the win the aisle is open,
   and the office, the maids' rooms and the Trophy Garden at the back of the
   hall can all be entered.
+- [ ] Thorton asks first (Ian, 2026-09-27 and 2026-10-31). In Ironworks
+  Hall, ride the moving floor to Mr. Fuego's room: the slide that brings
+  you in stops beside Thorton, who stands just below and to the left of
+  that tile, facing north. Nothing happens until you speak to him; then he
+  asks before the fight, and "No" leaves him standing. Mr. Fuego, the
+  TM35 ball and the way back down to the door can all still be reached
+  with him there.
+- [ ] Thorton's fight opens in a Trick Room that never ends: before the
+  first turn the screen says "The dimensions became distorted!", the
+  slower Pokemon move first all fight long, "The twisted dimensions
+  returned to normal!" never shows, and the move Trick Room fails. His defeat line shows
+  on the win.
+- [ ] Thorton's prize menu offers the right two starters at 40: straight
+  after the win he offers a menu of the final stages of the two starter
+  lines you did not choose (Cinderace and Empoleon after Turtwig, Torterra
+  and Empoleon after Scorbunny, Torterra and Cinderace after Piplup), with
+  "Not now". A no at "So, the ... it is?" goes back to the menu. The one
+  picked is level 40, and its summary says it was met at Ironworks Hall;
+  the OxiDex counts it as Ironworks Hall's capture, not the yard's.
+- [ ] A full party keeps the gift: beat Thorton with six Pokemon, and he
+  says your party is full and keeps the rental; "Not now" does the same.
+  Talking to him again with room offers the menu again; once a rental is
+  given he has his closing line and offers nothing more.
 - [ ] The Ability Patch (Ian, 2026-10-13): beating Ace Trainer Jose on
   Route 228 gives an Ability Patch and then TM64, straight after the win.
   With a full Bag, talking to him again gives what was refused.

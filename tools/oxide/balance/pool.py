@@ -204,8 +204,8 @@ def _tool_sources():
     Cresselia or Pheromosa drawn at a new game, at level 50 in Volkner's.
     Every species a run can draw counts, as every catch does here. A draw
     held back (the roamer's since 2026-09-27), a source only planned and
-    not yet scripted (Thorton's starter gift), and eggs, which the sources
-    file already gives, do not."""
+    not yet scripted (Thorton's starter gift was one until 2026-10-31), and
+    eggs, which the sources file already gives, do not."""
     live = {d["species"] for d in audit.pool_draws(data.ROOT)}
     out = []
     for src in scripted.load(data.ROOT):
