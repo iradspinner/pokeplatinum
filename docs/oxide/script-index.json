@@ -7512,8 +7512,10 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_fuego_ironworks_building:18"], "daily": false, "flag": 219, "name": "FLAG_MR_FUEGO_ASKED_FOR_TRADE", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_fuego_ironworks_building:19"], "daily": false, "flag": 312, "name": "FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_fuego_ironworks_building:19"], "daily": false, "flag": 219, "name": "FLAG_MR_FUEGO_ASKED_FOR_TRADE", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_fuego_ironworks_building:20"], "daily": false, "flag": 312, "name": "FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_fuego_ironworks_building:162"], "commit": null, "daily": false, "flag": 1358, "name": "FLAG_UNUSED_0x054E", "op": "check", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_fuego_ironworks_building:142"], "commit": null, "daily": false, "flag": 1437, "name": "FLAG_DEFEATED_TRAINER_DUMMY_077", "op": "check", "origin": "added", "reached": true, "source": "unclear"},
      {"at": ["events_fuego_ironworks_building:26"], "daily": false, "flag": 1134, "name": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_TM35", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_fuego_ironworks_building:56"], "daily": false, "flag": 1135, "name": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_ROCK_INCENSE", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_fuego_ironworks_building:41"], "daily": false, "flag": 1136, "name": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_CALCIUM", "op": "hides", "origin": "vanilla", "reached": true},
@@ -7521,9 +7523,11 @@
      {"at": ["events_fuego_ironworks_building:152"], "daily": false, "flag": 1296, "name": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_RED_SHARD", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_fuego_ironworks_building:167"], "daily": false, "flag": 1297, "name": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_GREEN_SHARD", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_fuego_ironworks_building:182"], "daily": false, "flag": 1298, "name": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_YELLOW_SHARD", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_fuego_ironworks_building:37"], "daily": false, "flag": 219, "name": "FLAG_MR_FUEGO_ASKED_FOR_TRADE", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_fuego_ironworks_building:24"], "daily": false, "flag": 312, "name": "FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_fuego_ironworks_building:11"], "daily": false, "flag": 2501, "name": "FLAG_FIRST_ARRIVAL_FUEGO_IRONWORKS", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_fuego_ironworks_building:38"], "daily": false, "flag": 219, "name": "FLAG_MR_FUEGO_ASKED_FOR_TRADE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_fuego_ironworks_building:25"], "daily": false, "flag": 312, "name": "FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_fuego_ironworks_building:259"], "commit": null, "daily": false, "flag": 1358, "name": "FLAG_UNUSED_0x054E", "op": "set", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_fuego_ironworks_building:151"], "commit": null, "daily": false, "flag": 1437, "name": "FLAG_DEFEATED_TRAINER_DUMMY_077", "op": "set", "origin": "added", "reached": true, "source": "unclear"},
+     {"at": ["scripts_fuego_ironworks_building:12"], "daily": false, "flag": 2501, "name": "FLAG_FIRST_ARRIVAL_FUEGO_IRONWORKS", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "hidden_items": [
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_fuego_ironworks_building", "flag": 777, "flag_name": "FLAG_OBTAINED_HIDDEN_FUEGO_IRONWORKS_BUILDING_STAR_PIECE", "item": "ITEM_STAR_PIECE", "item_id": 91, "line": 4, "origin": "vanilla", "reached": true},
@@ -7539,20 +7543,26 @@
      {"count": 1, "daily": false, "event": "object_events", "file": "events_fuego_ironworks_building", "flag": 1298, "flag_name": "FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_YELLOW_SHARD", "item": "ITEM_YELLOW_SHARD", "item_id": 74, "line": 183, "origin": "vanilla", "reached": true}
     ],
     "items": [
-     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_STAR_PIECE", "value": 91, "when": ""}], "line": 25, "mode": "variable", "origin": "vanilla", "reached": true},
-     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_RED_SHARD", "value": 72, "when": ""}], "line": 78, "mode": "name", "origin": "vanilla", "reached": true},
-     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_BLUE_SHARD", "value": 73, "when": ""}], "line": 79, "mode": "name", "origin": "vanilla", "reached": true},
-     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_YELLOW_SHARD", "value": 74, "when": ""}], "line": 80, "mode": "name", "origin": "vanilla", "reached": true},
-     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_GREEN_SHARD", "value": 75, "when": ""}], "line": 81, "mode": "name", "origin": "vanilla", "reached": true},
-     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_RED_SHARD", "value": 72, "when": ""}], "line": 103, "mode": "name", "origin": "vanilla", "reached": true},
-     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_BLUE_SHARD", "value": 73, "when": ""}], "line": 104, "mode": "name", "origin": "vanilla", "reached": true},
-     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_YELLOW_SHARD", "value": 74, "when": ""}], "line": 105, "mode": "name", "origin": "vanilla", "reached": true},
-     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_GREEN_SHARD", "value": 75, "when": ""}], "line": 106, "mode": "name", "origin": "vanilla", "reached": true}
+     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_STAR_PIECE", "value": 91, "when": ""}], "line": 26, "mode": "variable", "origin": "vanilla", "reached": true},
+     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_RED_SHARD", "value": 72, "when": ""}], "line": 79, "mode": "name", "origin": "vanilla", "reached": true},
+     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_BLUE_SHARD", "value": 73, "when": ""}], "line": 80, "mode": "name", "origin": "vanilla", "reached": true},
+     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_YELLOW_SHARD", "value": 74, "when": ""}], "line": 81, "mode": "name", "origin": "vanilla", "reached": true},
+     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_GREEN_SHARD", "value": 75, "when": ""}], "line": 82, "mode": "name", "origin": "vanilla", "reached": true},
+     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_RED_SHARD", "value": 72, "when": ""}], "line": 104, "mode": "name", "origin": "vanilla", "reached": true},
+     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_BLUE_SHARD", "value": 73, "when": ""}], "line": 105, "mode": "name", "origin": "vanilla", "reached": true},
+     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_YELLOW_SHARD", "value": 74, "when": ""}], "line": 106, "mode": "name", "origin": "vanilla", "reached": true},
+     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_fuego_ironworks_building", "how": "AddItem", "item": [{"name": "ITEM_GREEN_SHARD", "value": 75, "when": ""}], "line": 107, "mode": "name", "origin": "vanilla", "reached": true}
+    ],
+    "pokemon": [
+     {"command": "GivePokemon", "file": "scripts_fuego_ironworks_building", "how": "GivePokemon", "item": [], "level": [{"name": "40", "value": 40, "when": ""}], "line": 244, "mode": "name", "origin": "added", "reached": true, "source": "unclear", "species": [{"name": "SPECIES_EMPOLEON", "value": 395, "when": ""}]},
+     {"command": "GivePokemon", "file": "scripts_fuego_ironworks_building", "how": "GivePokemon", "item": [], "level": [{"name": "40", "value": 40, "when": ""}], "line": 249, "mode": "name", "origin": "added", "reached": true, "source": "unclear", "species": [{"name": "SPECIES_TORTERRA", "value": 389, "when": ""}]},
+     {"command": "GivePokemon", "file": "scripts_fuego_ironworks_building", "how": "GivePokemon", "item": [], "level": [{"name": "40", "value": 40, "when": ""}], "line": 254, "mode": "name", "origin": "added", "reached": true, "source": "unclear", "species": [{"name": "SPECIES_CINDERACE", "value": 620, "when": ""}]}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_fuego_ironworks_building", "how": "sees the player", "line": 87, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_WORKER_DILLAN", "value": 844, "when": ""}]}]},
      {"event": "object_events", "file": "events_fuego_ironworks_building", "how": "sees the player", "line": 104, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_WORKER_HOLDEN", "value": 845, "when": ""}]}]},
-     {"event": "object_events", "file": "events_fuego_ironworks_building", "how": "sees the player", "line": 121, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_WORKER_CONRAD", "value": 846, "when": ""}]}]}
+     {"event": "object_events", "file": "events_fuego_ironworks_building", "how": "sees the player", "line": 121, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_WORKER_CONRAD", "value": 846, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_fuego_ironworks_building", "how": "StartTrainerBattle", "line": 148, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_077", "value": 77, "when": ""}]}], "source": "unclear"}
     ]
    },
    "events": "events_fuego_ironworks_building",
@@ -19305,7 +19315,8 @@
    "Oxide": 153,
    "base ROM": 214,
    "gone": 105,
-   "total": 3331,
+   "total": 3335,
+   "unclear": 4,
    "vanilla": 2964
   },
   "hidden_items": {
@@ -19332,7 +19343,8 @@
    "Oxide": 3,
    "base ROM": 3,
    "gone": 1,
-   "total": 9,
+   "total": 12,
+   "unclear": 3,
    "vanilla": 3
   },
   "statics": {
@@ -19351,7 +19363,8 @@
    "Oxide": 23,
    "base ROM": 71,
    "gone": 15,
-   "total": 600,
+   "total": 601,
+   "unclear": 1,
    "vanilla": 506
   },
   "vars": {

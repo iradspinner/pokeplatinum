@@ -244,6 +244,44 @@ def check_mansion_egg(results):
                     f"egg location {shown!r}, counted at {start['members'][0]['area']}"))
 
 
+def check_thorton_prize(results):
+    """Ian, 2026-09-27: straight after beating Thorton the player picks one of
+    the two starter lines they did not choose, fully evolved at level 40, a
+    capture of its own at Ironworks Hall. Scripted on 2026-10-31, so the
+    source is read from the hall's script rather than planned."""
+    root = model.repo_root()
+    src = next(x for x in scripted.load(root) if x["id"] == "ironworks_hall_thorton")
+    finals = {"SPECIES_TORTERRA", "SPECIES_CINDERACE", "SPECIES_EMPOLEON"}
+    hall_at = alpha.zone_order(root).get("Ironworks Hall")
+    area = next((a for a in simulate.world("Byron", root) if "ironworks_hall_thorton" in a["sources"]),
+                None)
+    results.append(("Thorton's prize is scripted in Ironworks Hall: the three starter final "
+                    "stages at 40, a choice, its own capture in Byron's split after the hall's place",
+                    not src["planned"] and src["from"]["file"] == "scripts_fuego_ironworks_building.s"
+                    and set(src["pool"]) == finals and src["level"] == 40 and src["pick"] == "choice"
+                    and area is not None and area["name"] == "Ironworks Hall"
+                    and area["split"] == "Byron" and not src["shares_table"]
+                    and hall_at is not None and src["order"] > hall_at,
+                    f"{sorted(src['pool'])} at {src['level']}, {area and area['name']} at "
+                    f"{src['order']}, the hall at {hall_at}"))
+    # The dupes rule leaves the two lines the player did not start with.
+    ctx = simulate.context("Byron", root)
+    box = simulate.Box(root, ctx["values"])
+    box.add("SPECIES_TURTWIG", "Rowan's Briefcase")
+    option = next(o for o in area["options"] if o.kind == "choice") if area else None
+    live = sorted(simulate._live(option.shares, box)) if option else []
+    results.append(("for a Turtwig start the prize offers Cinderace and Empoleon",
+                    live == ["SPECIES_CINDERACE", "SPECIES_EMPOLEON"], f"{live}"))
+    given = {"species": "SPECIES_CINDERACE", "name": "Cinderace", "met_location": "Ironworks Hall",
+             "slot": "party 1"}
+    start = simulate.start_from_save({"party": [given], "boxes": [], "box_count": 30},
+                                     {}, "Byron", root, ctx)
+    results.append(("a Cinderace met at Ironworks Hall spends the hall's capture",
+                    start["members"][0]["area"] == "Ironworks Hall" and "Ironworks Hall" in start["used"]
+                    and not start["unmatched"],
+                    f"counted at {start['members'][0]['area']}, unmatched {start['unmatched']}"))
+
+
 def rank_of(split):
     return progression.split_index(model.load_sidecar()).get(split, 99)
 
@@ -251,7 +289,7 @@ def rank_of(split):
 def main():
     results = []
     for check in (check_runs, check_scarcity, check_areas, check_requests, check_stones,
-                  check_mansion_egg):
+                  check_mansion_egg, check_thorton_prize):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

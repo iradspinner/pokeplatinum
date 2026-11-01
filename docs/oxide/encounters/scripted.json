@@ -150,11 +150,10 @@
       "capture_area": "Ironworks Hall",
       "split": "Byron",
       "order": 87.5,
-      "pool": ["SPECIES_TORTERRA", "SPECIES_CINDERACE", "SPECIES_EMPOLEON"],
-      "level": 40,
+      "from": {"file": "scripts_fuego_ironworks_building.s"},
       "pick": "choice",
-      "planned": true,
-      "note": "Ian, 2026-09-27: after beating Thorton the player picks one of the two starter lines they did not choose, fully evolved at level 40. The building has its own location name, so this is a capture of its own. Not scripted yet (the main track's Frontier Brain work)."
+      "after": "TRAINER_DUMMY_077",
+      "note": "Ian, 2026-09-27: straight after beating Thorton in the heart of the hall, the player picks one of the two starter lines they did not choose, fully evolved at level 40, from a menu, so the box's dupes rule leaves the other two. The building has its own location name, so this is a capture of its own. Its order sits after Ironworks Hall's place (87.01), so a box for Thorton's own fight never holds it."
     },
     {
       "id": "riolu_egg",

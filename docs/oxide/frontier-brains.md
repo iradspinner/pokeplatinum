@@ -27,7 +27,7 @@ Levels are placeholders until Ian sets them.
 | Brain | Pokemon |
 |---|---|
 | Palmer | Dragonite, Heatran, Cresselia, Milotic, Rhyperior, Xurkitree |
-| Thorton | Bronzong, Magnezone, Toxapex, Dhelmise, Turtonator, Guzzlord |
+| Thorton | Toxapex, Bronzong, Dusclops, Ferrothorn, Turtonator, Guzzlord, all at 47 (Ian's six and his answers, 2026-10-31, `byron-brains-check.md`; free slot `dummy_077`) |
 | Dahlia | Cloyster, Slowbro, Rapidash, Togekiss, Leafeon, Lopunny, all at 40 (Ian's six, 2026-10-31, `dahlia-check.md`; free slot `dummy_007`) |
 | Darach (double) | Galarian Rapidash, Corviknight, Sinistcha, Armarouge, Galarian Articuno, Entei, all at 44 (Ian's six, 2026-10-31, `darach-check.md`; free slot `dummy_008`), at about Wake's difficulty |
 | Argenta | Skarmory, Annihilape, Dubwool, Whiscash, Meowscarada, Pheromosa |
@@ -51,9 +51,17 @@ Galarian Articuno replaces Sigilyph, which is not in the game (Ian,
   The OxiDex counts the egg as the Mansion's own capture after the fight.
   Manaphy's Tail Glow is at 70, and Backlot's daily Trophy Garden Pokemon
   stay behind the National Dex. Needs: Ian's in-game check.
-- Thorton: his trainer added to `sPermanentTrickRoomTrainers` in `battle_lib.c`,
-  and the prize's scripted capture. Ironworks Hall, the location name that
-  makes it a capture of its own, is merged (1902bd197).
+- Thorton: placed (`overseer-thorton-place`, 2026-10-31). He stands in
+  Mr. Fuego's room at the heart of Ironworks Hall, beside the one tile
+  where the moving floor lets the player in, and asks before his fight,
+  which opens in the permanent Trick Room (`sPermanentTrickRoomTrainers`,
+  which the simulator reads too). His six are Ian's, all at 47
+  (`byron-brains-check.md`). Straight after the win a menu offers the final
+  stages of the two starter lines the player did not choose, at 40, given
+  at Ironworks Hall as a capture of its own; a full party or "Not now"
+  leaves it with him until the player comes back. The OxiDex counts it as
+  a real source after his fight, and `fights.json` lists his fight in
+  Barry 5's stretch. Needs: Ian's in-game check.
 - All five: trainer records in the free trainer slots, the gate scripts, and
   the standing rules that bind any trainer team: Choice items nearly gone,
   weather free to trainers, and no Brain's reward handing out a weather
