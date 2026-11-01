@@ -9,10 +9,10 @@ Outcome. All six parts are in. Pal Park's lobby now holds a partner double: once
 What waits on Ian:
 
 1. Which two officers fight at Pal Park. They are placeholders named "Officer" in free trainer slots 9 and 50, a grunt of each sex, four Pokemon each at 46 to 48 with their level-up moves and no items. Name them and give their sixes, and the scene's "Officer:" labels follow.
-2. Lucas's and Dawn's lines are one text for both, with the name filled in. Should each get their own voice, as at Veilstone?
-3. The partner's six are the Veilstone partner's raised eight levels, 47 to 49, with the same sets: Scyther keeps its Eviolite. Keep it, or evolve it to Scizor for this fight?
-4. Cyrus 1's and Barry 5's teams still have their aces at 53. The level check lets that stand until their redesign and names them; their teams are for the boss stages.
-5. Somnu and Moira, now mandatory, are a named Galactic boss double, so they count for the field model but not among Candice's 10 to 15 ordinary fights.
+2. Cyrus 1's and Barry 5's teams still have their aces at 53. The level check lets that stand until their redesign and names them; their teams are for the boss stages.
+3. Somnu and Moira, now mandatory, are a named Galactic boss double, so they count for the field model but not among Candice's 10 to 15 ordinary fights.
+
+Ian's answers (2026-10-31). Lucas and Dawn keep one shared text at Pal Park. The partner's Scyther evolves into Scizor, at 48 in all six partner slots, and holds a Muscle Band in place of the Eviolite: no other member of the team holds one, and it lifts every one of Scizor's four physical moves, where a Metal Coat would lift none, since the set has no Steel move. The rest of the six stay as built. One thing carried over from Veilstone: Brick Break is on neither Scyther's nor Scizor's lists at 48 (Scizor learns it at 55), so the Veilstone partner already holds it off-list; Wing Attack and Pursuit come from Scyther's level-up list and Knock Off from the tutor. The officers stay placeholders while Ian chooses them.
 
 Next steps. Ian's in-game checks of the three new pieces (below), about 30 minutes from a save after Celestic. Ian's picks for the officers, then their teams in a later pass.
 

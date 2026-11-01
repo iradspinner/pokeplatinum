@@ -27,10 +27,10 @@
             "gender": "male"
         },
         {
-            "species": "SPECIES_SCYTHER",
+            "species": "SPECIES_SCIZOR",
             "form": 0,
             "level": 48,
-            "item": "ITEM_EVIOLITE",
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
                 "MOVE_WING_ATTACK",
                 "MOVE_PURSUIT",
