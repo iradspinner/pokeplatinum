@@ -14,7 +14,7 @@ the fights are scripted once the teams are final.
 | Dahlia, Arcade Star | Maylene (39) | Inside the Veilstone Game Corner's entrance | Access to the Game Corner's prizes, whose list the balance track reviews | Opens in a permanent Wonder Room |
 | Darach, Castle Valet | Wake (44) | The Pokemon Mansion on Route 212 | Access to the Mansion | A double battle as one trainer, Darach's own class (his sprite already shows Caitlin beside him) |
 | Thorton, Factory Head | Byron (53) | The heart of Fuego Ironworks, in the building now named "Ironworks Hall" (the name Ian approved) | The player picks one of the two starter lines they did not choose, fully evolved at level 40, a capture of its own | Opens in a permanent Trick Room (Saturn 2's mechanism) |
-| Argenta, Hall Matron | Byron (53), in Barry 5's stretch | Pal Park lobby's north gallery, once the Pal Park partner double is won | A bundle of items, proposed and waiting on Ian (`argenta-place.md`) | Ordinary |
+| Argenta, Hall Matron | Byron (53), in Barry 5's stretch | Pal Park lobby's north gallery, once the Pal Park partner double is won | A Gold Bottle Cap and three Bottle Caps, once (Ian, 2026-11-01; `argenta-place.md`) | Ordinary |
 | Palmer, Tower Tycoon (undecided, Ian 2026-10-31) | Galactic (65) or League (78) | The Battle Zone, or a Route 224 opened as the last optional boss before the Champion | Large rewards | Ordinary |
 
 Dahlia's, Darach's, Thorton's and Argenta's placements are settled;
@@ -67,9 +67,15 @@ Galarian Articuno replaces Sigilyph, which is not in the game (Ian,
   at the west end of Pal Park lobby's north gallery once the partner
   double is won, appearing as it ends, and asks before her fight, an
   ordinary single battle. Her six are Ian's, all at 50. Her win gives a
-  bundle of items once, under `FLAG_UNUSED_0x054D`; the script carries the
-  proposed bundle, a Gold Bottle Cap and four Mints, until Ian chooses.
-  Needs: Ian's choice of bundle, and his in-game check.
+  Gold Bottle Cap and three Bottle Caps once, under `FLAG_UNUSED_0x054D`
+  (Ian's choice, 2026-11-01). Needs: Ian's in-game check.
+- Dahlia, Darach and Argenta joined Thorton in `fights.json` (Ian,
+  2026-11-01: "Add her along with Dahlia and Darach"), each in its split's
+  story order with no honour cap of its own. Goal 3 reads Dahlia and
+  Argenta as bosses and drops Darach and Caitlin as a double, marked tag
+  as the tag battles are. Dahlia's permanent Wonder Room is not modelled by
+  the simulator, and goal 3 places Dahlia's and Argenta's fights at their
+  split's start (`argenta-place.md`, "What could not be checked").
 - All five: trainer records in the free trainer slots, the gate scripts, and
   the standing rules that bind any trainer team: Choice items nearly gone,
   weather free to trainers, and no Brain's reward handing out a weather

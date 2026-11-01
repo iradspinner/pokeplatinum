@@ -1088,12 +1088,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Skarmory first. Her defeat line, "Oh, dear... The trouble with fun is
   that it is over so quickly.", shows on the win.
 - [ ] Argenta's bundle comes once: straight after the win she gives a Gold
-  Bottle Cap, then an Adamant, a Modest, a Jolly and a Timid Mint, each
-  with its own "obtained" message, then her closing line. The Gold Bottle
-  Cap and the Mints are in the Bag. Speaking to her again, after leaving
-  and coming back, and after saving and reloading, gives only her closing
-  line: no battle and no items. (If Ian picks another bundle, its items
-  replace these.)
+  Bottle Cap, then three Bottle Caps, each give with its own "obtained"
+  message, then her closing line. One Gold Bottle Cap and three Bottle Caps
+  are in the Bag. Speaking to her again, after leaving and coming back, and
+  after saving and reloading, gives only her closing line: no battle and
+  no items.
 - [ ] The Ability Patch (Ian, 2026-10-13): beating Ace Trainer Jose on
   Route 228 gives an Ability Patch and then TM64, straight after the win.
   With a full Bag, talking to him again gives what was refused.

@@ -15,7 +15,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
 | Trainer battles | 602 | 506 | 71 | 25 | 0 | 15 |
-| Items given | 217 | 102 | 30 | 85 | 0 | 34 |
+| Items given | 214 | 102 | 30 | 82 | 0 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
 | Flags | 3342 | 2964 | 214 | 164 | 0 | 105 |
@@ -7930,12 +7930,9 @@ Trainer battles:
 
 Items given:
 
-- ITEM_GOLD_BOTTLE_CAP x1. Added by Oxide (15127c3be). `scripts_pal_park_lobby.s:717`
-- ITEM_ADAMANT_MINT x1. Added by Oxide (15127c3be). `scripts_pal_park_lobby.s:720`
-- ITEM_MODEST_MINT x1. Added by Oxide (15127c3be). `scripts_pal_park_lobby.s:723`
-- ITEM_JOLLY_MINT x1. Added by Oxide (15127c3be). `scripts_pal_park_lobby.s:726`
-- ITEM_TIMID_MINT x1. Added by Oxide (15127c3be). `scripts_pal_park_lobby.s:729`
-- one of 27, ITEM_CHERI_BERRY, ITEM_CHESTO_BERRY, ITEM_PECHA_BERRY, ITEM_RAWST_BERRY, ITEM_ASPEAR_BERRY, ITEM_LEPPA_BERRY, ITEM_ORAN_BERRY, ITEM_PERSIM_BERRY, ITEM_LUM_BERRY, ITEM_SITRUS_BERRY, ITEM_FIGY_BERRY, ITEM_WIKI_BERRY, ITEM_MAGO_BERRY, ITEM_AGUAV_BERRY, ITEM_IAPAPA_BERRY, ITEM_RAZZ_BERRY, ITEM_BLUK_BERRY, ITEM_NANAB_BERRY, ITEM_WEPEAR_BERRY, ITEM_PINAP_BERRY, ITEM_POMEG_BERRY, ITEM_KELPSY_BERRY, ITEM_QUALOT_BERRY, ITEM_HONDEW_BERRY, ITEM_GREPA_BERRY, ITEM_TAMATO_BERRY, set by GetRandom, chosen by VAR_0x8006 x1. Vanilla. `scripts_pal_park_lobby.s:963`
+- ITEM_GOLD_BOTTLE_CAP x1. Added by Oxide (15127c3be). `scripts_pal_park_lobby.s:714`
+- ITEM_BOTTLE_CAP x3. Added by Oxide (5b4f7d032). `scripts_pal_park_lobby.s:717`
+- one of 27, ITEM_CHERI_BERRY, ITEM_CHESTO_BERRY, ITEM_PECHA_BERRY, ITEM_RAWST_BERRY, ITEM_ASPEAR_BERRY, ITEM_LEPPA_BERRY, ITEM_ORAN_BERRY, ITEM_PERSIM_BERRY, ITEM_LUM_BERRY, ITEM_SITRUS_BERRY, ITEM_FIGY_BERRY, ITEM_WIKI_BERRY, ITEM_MAGO_BERRY, ITEM_AGUAV_BERRY, ITEM_IAPAPA_BERRY, ITEM_RAZZ_BERRY, ITEM_BLUK_BERRY, ITEM_NANAB_BERRY, ITEM_WEPEAR_BERRY, ITEM_PINAP_BERRY, ITEM_POMEG_BERRY, ITEM_KELPSY_BERRY, ITEM_QUALOT_BERRY, ITEM_HONDEW_BERRY, ITEM_GREPA_BERRY, ITEM_TAMATO_BERRY, set by GetRandom, chosen by VAR_0x8006 x1. Vanilla. `scripts_pal_park_lobby.s:951`
 
 Flags:
 

@@ -1,27 +1,27 @@
-# Argenta at Pal Park: her placement, and the bundle question
+# Argenta at Pal Park: her placement and her bundle
 
-Ian placed Argenta, the Hall Matron, as an optional Frontier Brain in Pal Park lobby's north gallery on 2026-11-01, in Barry 5's stretch of Byron's split. This page covers that placement, built on the branch `overseer-argenta-place` the way Thorton's was, and puts her reward to Ian. Nothing here has been seen in game.
+Ian placed Argenta, the Hall Matron, as an optional Frontier Brain in Pal Park lobby's north gallery on 2026-11-01, in Barry 5's stretch of Byron's split. This page covers that placement, built on the branch `overseer-argenta-place` the way Thorton's was, and her reward, which Ian chose the same day. Nothing here has been seen in game.
 
 ## Summary
 
-Outcome. Argenta stands at the west end of the lobby's north gallery, facing east, once the Pal Park partner double is won. She appears the moment the double ends, without the player leaving the lobby, and on every later entry. She fights only when spoken to, and asks first. Her team is Ian's six at 50 in her trainer file, unchanged; only her trainer messages gave way to one defeat line, her Battle Hall line from the vanilla game. Her win gives a bundle of items once, under a spare flag; until it is given she offers it again when spoken to, and after it she has a closing line.
+Outcome. Argenta stands at the west end of the lobby's north gallery, facing east, once the Pal Park partner double is won. She appears the moment the double ends, without the player leaving the lobby, and on every later entry. She fights only when spoken to, and asks first. Her team is Ian's six at 50 in her trainer file, unchanged; only her trainer messages gave way to one defeat line, her Battle Hall line from the vanilla game. Her win gives a Gold Bottle Cap and three Bottle Caps once, under a spare flag; until it is given she offers it again when spoken to, and after it she has a closing line.
 
-Ian's decision. Which bundle she gives. The script carries bundle A, below, until he answers.
+Ian's answer (2026-11-01): bundle C, a Gold Bottle Cap and three Bottle Caps, and Argenta goes into `fights.json` with Dahlia and Darach. The four bundles he chose from are kept below for the record.
 
 | | Bundle | What it does for the player | Why |
 |---|---|---|---|
-| A, built | a Gold Bottle Cap and four Mints (Adamant, Modest, Jolly, Timid) | perfects one Pokemon: every IV to 31, and the nature its stats need | none of these is placed or sold anywhere yet (the tracker's open item of 2026-10-13); none is a held item, so no fight's item ceiling moves; it fits the Battle Hall, where one Pokemon faces every type. The four Mints are the natures most attackers want |
+| A | a Gold Bottle Cap and four Mints (Adamant, Modest, Jolly, Timid) | perfects one Pokemon: every IV to 31, and the nature its stats need | none of these is placed or sold anywhere yet (the tracker's open item of 2026-10-13); none is a held item, so no fight's item ceiling moves; it fits the Battle Hall, where one Pokemon faces every type. The four Mints are the natures most attackers want |
 | B | Leftovers, Muscle Band, Black Sludge | three strong held items for fights | the Leftovers is otherwise only Victory Road's ball and Pickup, the Muscle Band only the post-game Battle Point exchange, the Black Sludge nowhere. Material: a Leftovers from Byron's split on reaches every later boss's box |
-| C | a Gold Bottle Cap and three Bottle Caps | perfects one Pokemon's IVs, and one stat each of up to three more | spreads the gain across the box, as Ian's ruling that Bottle Caps be usable throughout suggests, and leaves the Mints for a later decision |
+| C, chosen and built | a Gold Bottle Cap and three Bottle Caps | perfects one Pokemon's IVs, and one stat each of up to three more | spreads the gain across the box, as Ian's ruling that Bottle Caps be usable throughout suggests, and leaves the Mints for a later decision |
 | D | Leftovers, a Gold Bottle Cap, a Jolly Mint and a Timid Mint | one strong held item, and one Pokemon perfected | the middle way between A and B; material through the Leftovers, as B is |
 
-My recommendation is A. It is strong, it is the first home for items that have none, and it moves no fight's difficulty, so it needs no reading. B is the strongest for fights, and the one to take if Ian wants the reward felt in the next gym.
+The proposal recommended A; Ian took C, which shares its reasons (the first home for items that have none, no held item, no fight's difficulty moved) and spreads the gain over more of the box. The Mints are still placed nowhere.
 
 Left out on purpose: the Life Orb and the Choice items (never for the player), the Ability Patch (the one is Ace Trainer Jose's), the Lucky Egg (Ian dropped Route 207's on 2026-10-31), the Expert Belt and Focus Sash (Route 221's house gives them in turn, one a day, from this same split), the Wise Glasses and BlackGlasses (Celestic's house), PP Max (it would undo the expensive setup moves), and the element 7 held items, each of which already has its one optional trainer.
 
-Difficulty: not material. Argenta is an optional fight whose team is unchanged, and bundle A holds no held item. Bundles B and D would be material from Byron's split on, through the Leftovers.
+Difficulty: not material. Argenta is an optional fight whose team is unchanged, and bundle C holds no held item. Bundles B and D would have been material from Byron's split on, through the Leftovers.
 
-Next steps. Ian's answer on the bundle; a change to it is a few lines of her script and one line of her text ("They help one Pokemon become all it can be" fits A and C). Then Ian's in-game checks, about 15 minutes from a save that has won the Pal Park double (`ingame-checklist.md`, section 4, after Thorton's).
+Next steps. Ian's in-game checks, about 15 minutes from a save that has won the Pal Park double (`ingame-checklist.md`, section 4, after Thorton's).
 
 ## How she is placed
 
@@ -36,8 +36,10 @@ Next steps. Ian's answer on the bundle; a change to it is a few lines of her scr
 
 Her spare flag was chosen as Thorton's was: `FLAG_UNUSED_0x054D` is one of pret's unused flags in the reward placer's spare window, the next below the double's 0x054F and Thorton's 0x054E. Nothing names it in the tree, on `main`, or in the other helpers' branches, and the base ROM's scripts never use it (scanned by disassembly, and byte for byte in the 549 files that do not decode, with a known flag found as a control). It keeps its pret name, so the placer counts it as taken (`save-layout.md`).
 
-She is not in `fights.json`. Thorton's entry there makes goal 3 read him as a story boss, which his commit marked material; adding her the same way is the Overseer's call.
+She is in `fights.json` since Ian's answer of 2026-11-01, beside Dahlia and Darach, each written as Thorton's is: split, place in the story order, a note, no honour cap of their own. Goal 3 counts Dahlia and Argenta as bosses and drops Darach as a double. Goal 3 places Dahlia's and Argenta's fights at their split's start, so a reading would build their boxes from earlier splits' catches only (below).
 
 ## What could not be checked
+
+Goal 3's place for Dahlia and Argenta. `plgoal3.place` gives a fight its zone's order only when that falls inside its split's own capture areas. The Game Corner's zone (67.03) lies just past Maylene's last area (67), and Pal Park's (99.01) just past Byron's (99), so both fights take the split's start, and a reading of either would see a box without that split's catches. Changing the rule is a scorer change, which waits on Ian; Thorton reads right because Ironworks Hall is a capture area of its own.
 
 Nothing was played. Her tile and the gallery's walking were read off the lobby's collision map. That a map-local flag hides an object until a script clears it is how vanilla's field-move obstacles work, but this is its first use on a person.
