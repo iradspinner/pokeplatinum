@@ -313,6 +313,13 @@ DIVERGED["scripts_canalave_city_gym"] += (
     "; then the Gym Guide turns the player back at the entrance until Riley's tag battle "
     "on Iron Island is won (Ian, 2026-10-31)")
 
+# Riley's door battle on Iron Island moves to a free slot (trainer 87), so
+# that his team there and his partner team on B2F, which keeps his own slot,
+# can differ (a draft for Ian, 2026-10-31, docs/oxide/barry5-riley.md).
+DIVERGED["scripts_iron_island"] += (
+    "; Riley's door battle fights trainer 87, a free slot, so his partner team on B2F can "
+    "differ from it (2026-10-31)")
+
 # The base ROM's Lucky Egg from Lucas or Dawn on Route 207 is dropped (Ian,
 # 2026-10-31), with the choose-a-hand menu that led to it; the Dowsing
 # Machine stays. Vanilla's Vs. Seeker is not restored: in Oxide that item is
