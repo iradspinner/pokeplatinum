@@ -275,7 +275,9 @@ IAN_EGG_MOVES = {
     "SPECIES_GOOMY": [("MOVE_REST", "Ian, 2026-10-31: Wake's Goodra")],
     "SPECIES_TURTONATOR": [("MOVE_SHELL_TRAP", "Ian, 2026-10-31: Barry 4's Turtonator")],
     "SPECIES_SNIVY": [("MOVE_GLARE", "Ian, 2026-10-31: Barry 4's Serperior at 41 and 42"),
-                      ("MOVE_SCALE_SHOT", "Ian, 2026-10-31: Barry 4's Serperior at 41 and 42")],
+                      ("MOVE_SCALE_SHOT", "Ian, 2026-10-31: Barry 4's Serperior at 41 and 42"),
+                      ("MOVE_LEAF_STORM", "2026-10-31, a draft for Ian: Barry 5's Contrary Serperior at 48 "
+                                          "(barry5-riley.md); Serperior learns it by no list")],
     "SPECIES_FROAKIE": [("MOVE_GUNK_SHOT", "Ian, 2026-10-31: Barry 4's Greninja at 42")],
     # Darach and Caitlin's first draft (Ian, 2026-10-31), every member at 44:
     # the moves the six carries that no list gives at that level. Roost is

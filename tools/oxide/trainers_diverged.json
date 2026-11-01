@@ -346,6 +346,13 @@
     "class": "Argenta seeded in a free slot for Ian's first pass (Ian, 2026-10-31)",
     "messages": "Argenta seeded in a free slot for Ian's first pass (Ian, 2026-10-31)"
   },
+  "dummy_087": {
+    "name": "Riley's door battle on Iron Island, moved to a free slot so his partner team on B2F can differ (a draft for Ian, 2026-10-31, docs/oxide/barry5-riley.md)",
+    "class": "Riley's door battle on Iron Island, moved to a free slot so his partner team on B2F can differ (a draft for Ian, 2026-10-31, docs/oxide/barry5-riley.md)",
+    "messages": "Riley's door battle on Iron Island, moved to a free slot so his partner team on B2F can differ (a draft for Ian, 2026-10-31, docs/oxide/barry5-riley.md)",
+    "ai_flags": "Riley's door battle on Iron Island, moved to a free slot so his partner team on B2F can differ (a draft for Ian, 2026-10-31, docs/oxide/barry5-riley.md)",
+    "party": "Riley's door battle on Iron Island, moved to a free slot so his partner team on B2F can differ (a draft for Ian, 2026-10-31, docs/oxide/barry5-riley.md)"
+  },
   "dummy_793": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
   },
@@ -419,6 +426,12 @@
   },
   "galactic_grunt_floaroma_meadow_2": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "galactic_grunt_iron_island_1": {
+    "party": "drafted for Ian, 2026-10-31 (docs/oxide/barry5-riley.md)"
+  },
+  "galactic_grunt_iron_island_2": {
+    "party": "drafted for Ian, 2026-10-31 (docs/oxide/barry5-riley.md)"
   },
   "galactic_grunt_jubilife_city_1": {
     "party": "edited in the OxiDex team builder, 2026-10-30",
@@ -742,6 +755,18 @@
   },
   "rich_boy_jason": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "riley_iron_island": {
+    "party": "drafted for Ian, 2026-10-31 (docs/oxide/barry5-riley.md)"
+  },
+  "rival_canalave_city_chimchar": {
+    "party": "drafted for Ian, 2026-10-31 (docs/oxide/barry5-riley.md)"
+  },
+  "rival_canalave_city_piplup": {
+    "party": "drafted for Ian, 2026-10-31 (docs/oxide/barry5-riley.md)"
+  },
+  "rival_canalave_city_turtwig": {
+    "party": "drafted for Ian, 2026-10-31 (docs/oxide/barry5-riley.md)"
   },
   "rival_fight_area_chimchar": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
