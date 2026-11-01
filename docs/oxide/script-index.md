@@ -14,11 +14,11 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 0 | 2 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 602 | 506 | 71 | 25 | 0 | 15 |
-| Items given | 212 | 102 | 30 | 80 | 0 | 34 |
+| Trainer battles | 603 | 506 | 71 | 25 | 1 | 15 |
+| Items given | 214 | 102 | 30 | 80 | 2 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
-| Flags | 3335 | 2964 | 214 | 157 | 0 | 105 |
+| Flags | 3342 | 2964 | 214 | 157 | 7 | 105 |
 | Variables | 1128 | 1078 | 27 | 23 | 0 | 36 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
@@ -7924,30 +7924,33 @@ Scripts nothing reaches: script 3 `PalPark_CoordEvent_CaughtAllPokemon` (line 51
 
 Trainer battles:
 
-- StartTagBattle: partner TRAINER_DUMMY_062 (Dawn, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:553`
-- StartTagBattle: partner TRAINER_DUMMY_063 (Dawn, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:557`
-- StartTagBattle: partner TRAINER_DUMMY_064 (Dawn, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:561`
-- StartTagBattle: partner TRAINER_DUMMY_051 (Lucas, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:568`
-- StartTagBattle: partner TRAINER_DUMMY_052 (Lucas, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:572`
-- StartTagBattle: partner TRAINER_DUMMY_054 (Lucas, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:576`
+- StartTagBattle: partner TRAINER_DUMMY_062 (Dawn, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:568`
+- StartTagBattle: partner TRAINER_DUMMY_063 (Dawn, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:572`
+- StartTagBattle: partner TRAINER_DUMMY_064 (Dawn, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:576`
+- StartTagBattle: partner TRAINER_DUMMY_051 (Lucas, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:583`
+- StartTagBattle: partner TRAINER_DUMMY_052 (Lucas, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:587`
+- StartTagBattle: partner TRAINER_DUMMY_054 (Lucas, level 49, 6 Pokemon), by name; against TRAINER_DUMMY_009 (Officer Phobos, level 48, 5 Pokemon), by name; and TRAINER_DUMMY_050 (Officer Deimos, level 48, 5 Pokemon), by name. Added by Oxide (42b75a625). `scripts_pal_park_lobby.s:591`
+- StartTrainerBattle: against TRAINER_DUMMY_086 (Argenta, level 50, 6 Pokemon), by name. Added, origin unclear. `scripts_pal_park_lobby.s:682`
 
 Items given:
 
-- one of 27, ITEM_CHERI_BERRY, ITEM_CHESTO_BERRY, ITEM_PECHA_BERRY, ITEM_RAWST_BERRY, ITEM_ASPEAR_BERRY, ITEM_LEPPA_BERRY, ITEM_ORAN_BERRY, ITEM_PERSIM_BERRY, ITEM_LUM_BERRY, ITEM_SITRUS_BERRY, ITEM_FIGY_BERRY, ITEM_WIKI_BERRY, ITEM_MAGO_BERRY, ITEM_AGUAV_BERRY, ITEM_IAPAPA_BERRY, ITEM_RAZZ_BERRY, ITEM_BLUK_BERRY, ITEM_NANAB_BERRY, ITEM_WEPEAR_BERRY, ITEM_PINAP_BERRY, ITEM_POMEG_BERRY, ITEM_KELPSY_BERRY, ITEM_QUALOT_BERRY, ITEM_HONDEW_BERRY, ITEM_GREPA_BERRY, ITEM_TAMATO_BERRY, set by GetRandom, chosen by VAR_0x8006 x1. Vanilla. `scripts_pal_park_lobby.s:864`
+- ITEM_GOLD_BOTTLE_CAP x1. Added, origin unclear. `scripts_pal_park_lobby.s:714`
+- ITEM_BOTTLE_CAP x3. Added, origin unclear. `scripts_pal_park_lobby.s:717`
+- one of 27, ITEM_CHERI_BERRY, ITEM_CHESTO_BERRY, ITEM_PECHA_BERRY, ITEM_RAWST_BERRY, ITEM_ASPEAR_BERRY, ITEM_LEPPA_BERRY, ITEM_ORAN_BERRY, ITEM_PERSIM_BERRY, ITEM_LUM_BERRY, ITEM_SITRUS_BERRY, ITEM_FIGY_BERRY, ITEM_WIKI_BERRY, ITEM_MAGO_BERRY, ITEM_AGUAV_BERRY, ITEM_IAPAPA_BERRY, ITEM_RAZZ_BERRY, ITEM_BLUK_BERRY, ITEM_NANAB_BERRY, ITEM_WEPEAR_BERRY, ITEM_PINAP_BERRY, ITEM_POMEG_BERRY, ITEM_KELPSY_BERRY, ITEM_QUALOT_BERRY, ITEM_HONDEW_BERRY, ITEM_GREPA_BERRY, ITEM_TAMATO_BERRY, set by GetRandom, chosen by VAR_0x8006 x1. Vanilla. `scripts_pal_park_lobby.s:951`
 
 Flags:
 
-- Set: FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST, FLAG_UNUSED_0x054F (added, Oxide), FLAG_DEFEATED_TRAINER_DUMMY_009 (added, Oxide), FLAG_DEFEATED_TRAINER_DUMMY_050 (added, Oxide), FLAG_FIRST_ARRIVAL_POKE_PARK_FRONT_GATE.
-- Cleared: FLAG_HIDE_ETERNA_CITY_SOUTH_HOUSE_PROF_OAK, FLAG_UNUSED_0x054F (added, Oxide), FLAG_ALT_MUSIC_PAL_PARK.
-- Checked: FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST.
-- Hide an object: FLAG_HIDE_PAL_PARK_LOBBY_PROF_OAK, FLAG_UNUSED_0x054F (added, Oxide).
+- Set: FLAG_MAP_LOCAL_0x01 (added, unclear), FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST, FLAG_UNUSED_0x054D (added, unclear), FLAG_UNUSED_0x054F (added, Oxide), FLAG_DEFEATED_TRAINER_DUMMY_009 (added, Oxide), FLAG_DEFEATED_TRAINER_DUMMY_050 (added, Oxide), FLAG_DEFEATED_TRAINER_DUMMY_086 (added, unclear), FLAG_FIRST_ARRIVAL_POKE_PARK_FRONT_GATE.
+- Cleared: FLAG_MAP_LOCAL_0x01 (added, unclear), FLAG_HIDE_ETERNA_CITY_SOUTH_HOUSE_PROF_OAK, FLAG_UNUSED_0x054F (added, Oxide), FLAG_ALT_MUSIC_PAL_PARK.
+- Checked: FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST, FLAG_UNUSED_0x054D (added, unclear), FLAG_DEFEATED_TRAINER_DUMMY_086 (added, unclear).
+- Hide an object: FLAG_MAP_LOCAL_0x01 (added, unclear), FLAG_HIDE_PAL_PARK_LOBBY_PROF_OAK, FLAG_UNUSED_0x054F (added, Oxide).
 
 Variables:
 
 - Set: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01 (added, Oxide), VAR_MAP_LOCAL_0x09, VAR_MAP_LOCAL_0x0A, VAR_OBJ_GFX_ID_0 (added, Oxide), VAR_PAL_PARK_LOBBY_STATE, VAR_CATCHING_SHOW_RECORD, VAR_PAL_PARK_STATE.
 - Checked: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01 (added, Oxide), VAR_MAP_LOCAL_0x09, VAR_MAP_LOCAL_0x0A, VAR_PAL_PARK_LOBBY_STATE, VAR_CATCHING_SHOW_RECORD, VAR_PAL_PARK_STATE.
 
-Scripts nothing reaches: script 4 `PalParkLobby_Record_Unused` (line 311).
+Scripts nothing reaches: script 4 `PalParkLobby_Record_Unused` (line 322).
 
 ### Poffin House
 

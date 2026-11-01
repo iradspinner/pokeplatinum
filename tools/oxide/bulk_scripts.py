@@ -350,6 +350,13 @@ DIVERGED["scripts_pal_park_lobby"] = (
 DIVERGED["scripts_pal_park_lobby"] += "; then the officers named Phobos and Deimos (Ian, 2026-10-31)"
 DIVERGED["scripts_init_pal_park_lobby"] = (
     "the frame table runs the partner double while the lobby's state is 1 (Ian, 2026-10-31)")
+# Argenta, the Hall Matron, a fourth Frontier Brain (Ian, 2026-11-01;
+# docs/oxide/argenta-place.md), stands in the lobby's north gallery once the
+# partner double is won and asks before her fight. Her win gives a bundle of
+# items once, under FLAG_UNUSED_0x054D.
+DIVERGED["scripts_pal_park_lobby"] += (
+    "; then Argenta, the Hall Matron, added with her fight and her item bundle "
+    "(Ian, 2026-11-01; docs/oxide/argenta-place.md)")
 # Barry on Canalave's bridge sends the player to Pal Park until its partner
 # double is won (Ian, 2026-10-31; docs/oxide/byron-scripts.md).
 DIVERGED["scripts_canalave_city"] += (
