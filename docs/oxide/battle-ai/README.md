@@ -353,5 +353,6 @@ Knock Off. Ian, the same day: "Drop the first-turn rule and make it a chance to 
 | `expert-gaps.md` | Platinum's own moves with no Expert routine, grouped by effect, with what else scores them |
 | `expert-new-moves.md` | every learnable new move and the Expert routine it takes, or why none |
 | `other-flags-new-moves.md` | every learnable new move in the nine other flags: what each flag now does with it, or why nothing |
+| `flags-guide.md` | Check HP, Weather, Harassment and Risky against the moves they act on, with the chances, and the rule for which teams carry each (2026-10-31) |
 
 Each of the first five parts ends with its apparent bugs, every one labelled as present in vanilla Platinum or introduced by Oxide and headed by a line saying which are fixed, then a pointer to the battle_edits fixes that fall in it, then what Oxide's new moves, abilities and types do there. Fixing a bug that is present in vanilla is Ian's call and is always called out as such.

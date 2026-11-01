@@ -162,6 +162,7 @@ copy "battle-ai/other-flags-new-moves.md" "notes/battle-ai/other-flags-new-moves
 copy "battle-ai/expert-gaps.md" "notes/battle-ai/expert-gaps.md"
 copy "battle-ai/expert-new-moves.md" "notes/battle-ai/expert-new-moves.md"
 copy "battle-ai/switching-and-items.md" "notes/battle-ai/switching-and-items.md"
+copy "battle-ai/flags-guide.md" "notes/battle-ai/flags-guide.md"
 copy "encounter-design-survey.md" "Claude outputs/encounter-design-survey.md"
 copy "encounter-tool-design.md" "Claude outputs/encounter-tool-design.md"
 copy "encounter-tool-build-plan.md" "Claude outputs/encounter-tool-build-plan.md"
