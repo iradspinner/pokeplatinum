@@ -559,6 +559,9 @@
   "lass_sarah": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
   },
+  "leader_byron": {
+    "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
   "leader_fantina": {
     "party": "edited in the OxiDex team builder, 2026-10-29",
     "ai_flags": "edited in the OxiDex team builder, 2026-10-29"
@@ -964,8 +967,5 @@
   },
   "youngster_wayne": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
-  },
-  "leader_byron": {
-    "party": "edited in the OxiDex team builder, 2026-10-31"
   }
 }

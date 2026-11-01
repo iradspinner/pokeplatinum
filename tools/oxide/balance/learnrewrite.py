@@ -326,7 +326,7 @@ IAN_EGG_MOVES = {
                      ("MOVE_ICY_WIND", "Ian, 2026-10-31: the Eterna building 3F grunt's Kadabra at 26")],
     "SPECIES_HOOTHOOT": [("MOVE_TAILWIND", "Ian, 2026-10-31: Collector Jamal's Noctowl at 38")],
     # Ian's first drafts of Byron (cap 53) and two Frontier Brains, Thorton
-    # and Argenta (both at 50), of 2026-10-31 (docs/oxide/byron-brains-check.md):
+    # and Argenta, of 2026-10-31 (docs/oxide/byron-brains-check.md; Thorton at 47 since Ian's answers):
     # the moves the three teams carry that no list gives at their levels.
     # Roar and Explosion were TMs before the TM pass. Diancie's Moonblast is
     # its level 64 move, Diamond Storm its 71, and Pheromosa's Triple Kick its
@@ -337,7 +337,7 @@ IAN_EGG_MOVES = {
     "SPECIES_SHIELDON": [("MOVE_ROAR", "Ian, 2026-10-31: Byron's Bastiodon, a TM before the TM pass")],
     "SPECIES_DHELMISE": [("MOVE_POWER_WHIP", "Ian, 2026-10-31: Byron's Dhelmise")],
     "SPECIES_CELESTEELA": [("MOVE_ACROBATICS", "Ian, 2026-10-31: Byron's Celesteela")],
-    "SPECIES_FERROSEED": [("MOVE_GRASSY_GLIDE", "Ian, 2026-10-31: Thorton's Ferrothorn")],
+    "SPECIES_FERROSEED": [("MOVE_POWER_WHIP", "Ian, 2026-10-31: Thorton's Ferrothorn at 47")],
     "SPECIES_GUZZLORD": [("MOVE_PROTECT", "Ian, 2026-10-31: Thorton's Guzzlord"),
                          ("MOVE_BODY_PRESS", "Ian, 2026-10-31: Thorton's Guzzlord")],
     "SPECIES_DIANCIE": [("MOVE_MOONBLAST", "Ian, 2026-10-31: Argenta's Diancie at 50"),

@@ -117,7 +117,7 @@
         "egg_moves": [
             "MOVE_SELFDESTRUCT",
             "MOVE_EXPLOSION",
-            "MOVE_GRASSY_GLIDE"
+            "MOVE_POWER_WHIP"
         ]
     },
     "evolutions": [

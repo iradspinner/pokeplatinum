@@ -6,9 +6,6 @@
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT",
-        "AI_FLAG_SETUP_FIRST_TURN",
-        "AI_FLAG_RISKY",
-        "AI_FLAG_PRIORITIZE_EXTREMES",
         "AI_FLAG_CHECK_HP",
         "AI_FLAG_HARRASSMENT"
     ],
@@ -17,7 +14,7 @@
         {
             "species": "SPECIES_TOXAPEX",
             "form": 0,
-            "level": 50,
+            "level": 47,
             "item": "ITEM_ROCKY_HELMET",
             "moves": [
                 "MOVE_TOXIC_SPIKES",
@@ -33,7 +30,7 @@
         {
             "species": "SPECIES_BRONZONG",
             "form": 0,
-            "level": 50,
+            "level": 47,
             "item": "ITEM_IRON_BALL",
             "moves": [
                 "MOVE_GYRO_BALL",
@@ -49,7 +46,7 @@
         {
             "species": "SPECIES_DUSCLOPS",
             "form": 0,
-            "level": 50,
+            "level": 47,
             "item": "ITEM_EVIOLITE",
             "moves": [
                 "MOVE_PAIN_SPLIT",
@@ -65,13 +62,13 @@
         {
             "species": "SPECIES_FERROTHORN",
             "form": 0,
-            "level": 50,
+            "level": 47,
             "item": "ITEM_OCCA_BERRY",
             "moves": [
                 "MOVE_GYRO_BALL",
                 "MOVE_SELFDESTRUCT",
                 "MOVE_POISON_JAB",
-                "MOVE_GRASSY_GLIDE"
+                "MOVE_POWER_WHIP"
             ],
             "iv_scale": 255,
             "nature": "NATURE_RELAXED",
@@ -81,13 +78,13 @@
         {
             "species": "SPECIES_TURTONATOR",
             "form": 0,
-            "level": 50,
+            "level": 47,
             "item": "ITEM_SHELL_BELL",
             "moves": [
                 "MOVE_DRAGON_PULSE",
-                "MOVE_SHELL_SMASH",
+                "MOVE_SHELL_TRAP",
                 "MOVE_EARTHQUAKE",
-                "MOVE_HEAT_CRASH"
+                "MOVE_WILL_O_WISP"
             ],
             "iv_scale": 255,
             "nature": "NATURE_NAUGHTY",
@@ -97,7 +94,7 @@
         {
             "species": "SPECIES_GUZZLORD",
             "form": 0,
-            "level": 50,
+            "level": 47,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_PROTECT",
