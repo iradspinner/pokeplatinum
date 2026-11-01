@@ -10,18 +10,52 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_WEEZING",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_WILL_O_WISP",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_FIRE_BLAST",
+                "MOVE_PAIN_SPLIT"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_DRAPION",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_RAZOR_CLAW",
+            "moves": [
+                "MOVE_KNOCK_OFF",
+                "MOVE_POISON_JAB",
+                "MOVE_AQUA_TAIL",
+                "MOVE_ICE_FANG"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_DOCILE",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
             "species": "SPECIES_NIDOKING",
             "form": 0,
-            "level": 50,
-            "item": null,
+            "level": 53,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_SURF",
+                "MOVE_EARTH_POWER",
                 "MOVE_SLUDGE_BOMB",
-                "MOVE_THUNDERBOLT",
-                "MOVE_EARTH_POWER"
+                "MOVE_ICE_BEAM",
+                "MOVE_THUNDERBOLT"
             ],
-            "iv_scale": 220,
-            "ball_seal": 0
+            "iv_scale": 225,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

@@ -5,23 +5,58 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_BATON_PASS"
     ],
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_NINJASK",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_SWORDS_DANCE",
+                "MOVE_BATON_PASS",
+                "MOVE_X_SCISSOR",
+                "MOVE_AERIAL_ACE"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_SCIZOR",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_BULLET_PUNCH",
+                "MOVE_X_SCISSOR",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SUPERPOWER"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
             "species": "SPECIES_SHEDINJA",
             "form": 0,
-            "level": 51,
-            "item": null,
+            "level": 54,
+            "item": "ITEM_SAFETY_GOGGLES",
             "moves": [
-                "MOVE_X_SCISSOR",
-                "MOVE_CONFUSE_RAY",
                 "MOVE_SHADOW_SNEAK",
-                "MOVE_NIGHT_SLASH"
+                "MOVE_X_SCISSOR",
+                "MOVE_WILL_O_WISP",
+                "MOVE_SHADOW_CLAW"
             ],
-            "iv_scale": 250,
-            "ball_seal": 5
+            "iv_scale": 225,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

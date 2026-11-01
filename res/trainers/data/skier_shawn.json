@@ -10,20 +10,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GLALIE",
+            "species": "SPECIES_WEAVILE",
             "form": 0,
-            "level": 51,
-            "item": null,
+            "level": 53,
+            "item": "ITEM_NEVERMELTICE",
             "moves": [
-                "MOVE_CRUNCH",
-                "MOVE_SUPER_FANG",
                 "MOVE_ICE_SHARD",
-                "MOVE_HEADBUTT"
+                "MOVE_KNOCK_OFF",
+                "MOVE_ICE_PUNCH",
+                "MOVE_BRICK_BREAK"
             ],
-            "iv_scale": 233,
+            "iv_scale": 225,
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_ABSOL",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_SCOPE_LENS",
+            "moves": [
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_SUPERPOWER",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_SCIZOR",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_METAL_COAT",
+            "moves": [
+                "MOVE_BULLET_PUNCH",
+                "MOVE_X_SCISSOR",
+                "MOVE_KNOCK_OFF",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_DEWGONG",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_AQUA_JET",
+                "MOVE_ICE_SHARD",
+                "MOVE_WATERFALL",
+                "MOVE_ENCORE"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

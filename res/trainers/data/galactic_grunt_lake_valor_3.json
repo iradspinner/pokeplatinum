@@ -5,25 +5,58 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_HARRASSMENT"
     ],
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_LIEPARD",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_THUNDER_WAVE",
+                "MOVE_FOUL_PLAY",
+                "MOVE_U_TURN",
+                "MOVE_TAUNT"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
             "species": "SPECIES_ARBOK",
             "form": 0,
-            "level": 50,
-            "item": null,
+            "level": 52,
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
+                "MOVE_GLARE",
                 "MOVE_GUNK_SHOT",
-                "MOVE_SEED_BOMB",
-                "MOVE_ICE_FANG",
-                "MOVE_GLARE"
+                "MOVE_CRUNCH",
+                "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 255,
+            "iv_scale": 225,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_BANETTE",
+            "form": 0,
+            "level": 53,
+            "item": "ITEM_SPELL_TAG",
+            "moves": [
+                "MOVE_HEX",
+                "MOVE_SHADOW_SNEAK",
+                "MOVE_WILL_O_WISP",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [
