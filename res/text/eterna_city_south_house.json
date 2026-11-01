@@ -68,6 +68,18 @@
         "Well, then, allow me to examine your\n",
         "Pokédex.\r"
       ]
+    },
+    {
+      "id": "EternaCitySouthHouse_Text_ComeBackAfterHallOfFame",
+      "en_US": [
+        "Oak: Ah, it’s you! Good to see you!\n",
+        "How is your Pokédex coming along?\r",
+        "I am studying the Pokémon of the\n",
+        "Sinnoh region while I’m here.\r",
+        "Once you have entered the Hall of\n",
+        "Fame, do come and see me again.\r",
+        "I may have something for you then."
+      ]
     }
   ]
 }

@@ -64,6 +64,11 @@ MAP_SPLITS = {
     "POKEMON_LEAGUE_CHAMPION_ROOM": "League", "POKEMON_LEAGUE_ELEVATOR_TO_": "League",
     "POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME": "League", "POKEMON_LEAGUE_HALL_OF_FAME": "League",
     "POKEMON_LEAGUE": "Barry",
+    # The drained lake took its split from the full lake's table by name;
+    # that table moved to Volkner's split (Ian, 2026-10-31), but the drained
+    # map opens with the library scene after Byron's badge, so it keeps the
+    # split it had.
+    "LAKE_VALOR_DRAINED": "Byron",
 }
 
 # Where the player first arrives, for location names with no wild table of
@@ -96,7 +101,11 @@ LOCATION_SPLITS = {
     "Battle Castle": "Post", "Battle Arcade": "Post", "Fullmoon Island": "Post",
     "Newmoon Island": "Post", "Iron Ruins": "Post", "Iceberg Ruins": "Post",
     "Rock Peak Ruins": "Post", "Hall of Origin": "Post", "Flower Paradise": "Post",
-    "Seabreak Path": "Post", "Spring Path": "Post", "Pal Park": "Post", "ROTOM’s Room": "Post",
+    "Seabreak Path": "Post", "Spring Path": "Post", "ROTOM’s Room": "Post",
+    # Pal Park opens with Surf, since Oxide gives the National Dex with the
+    # Pokedex, and is required in Byron's split through its partner double,
+    # whose win Barry 5 waits for (Ian, 2026-10-31; docs/oxide/byron-scripts.md).
+    "Pal Park": "Byron",
 }
 
 # Story bosses fought on a map the player first reached in an earlier split.

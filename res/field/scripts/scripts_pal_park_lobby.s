@@ -19,13 +19,31 @@
     ScriptEntry PalParkLobby_PoketchAppLady
     ScriptEntry PalParkLobby_OnFrame_ExitPalPark
     ScriptEntry PalParkLobby_GBASlotGiftLady
+    ScriptEntry PalParkLobby_OnFrame_GalacticDouble
     ScriptEntryEnd
 
 PalParkLobby_OnTransition:
     ClearFlag FLAG_ALT_MUSIC_PAL_PARK
     SetFlag FLAG_FIRST_ARRIVAL_POKE_PARK_FRONT_GATE
+    @ Platinum Oxide (Ian, 2026-10-31): the counterpart and the two officers of
+    @ the partner double load hidden; the scene adds them as they walk in. The
+    @ counterpart wears the sprite of the player's opposite gender. Their hide
+    @ flag is one vanilla never used, kept under its pret name so the reward
+    @ placer counts it as taken (place_rewards.py, SpareFlags).
+    SetFlag FLAG_UNUSED_0x054F
+    GetPlayerGender VAR_MAP_LOCAL_0x01
+    CallIfEq VAR_MAP_LOCAL_0x01, GENDER_MALE, PalParkLobby_SetCounterpartGraphicsDawn
+    CallIfEq VAR_MAP_LOCAL_0x01, GENDER_FEMALE, PalParkLobby_SetCounterpartGraphicsLucas
     GoToIfNe VAR_PAL_PARK_STATE, 0, PalParkLobby_SetWorkerPosAndDir
     End
+
+PalParkLobby_SetCounterpartGraphicsDawn:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_F
+    Return
+
+PalParkLobby_SetCounterpartGraphicsLucas:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
+    Return
 
 PalParkLobby_SetWorkerPosAndDir:
     SetObjectEventPos LOCALID_WORKER, 8, 9
@@ -406,6 +424,225 @@ PalParkLobby_Movement_ProfOakLeave:
 PalParkLobby_Movement_PlayerMoveAside:
     WalkNormalEast
     WalkOnSpotNormalWest
+    EndMovement
+
+@ Platinum Oxide (Ian, 2026-10-31): Pal Park is required in Byron's split. Once
+@ Oak's first-entry scene is over (the lobby's state 1), Lucas or Dawn walks
+@ in, two Galactic officers follow, and the player and the counterpart fight
+@ them in a tag battle. The win sets both officers' trainer flags, which
+@ Barry on Canalave's bridge waits for, and moves the lobby to state 2.
+PalParkLobby_OnFrame_GalacticDouble:
+    LockAll
+    @ The scene runs from the door: the player has just come in (7, 19) or has
+    @ just stepped aside for Oak (8, 19). Anywhere else, as in a save that used
+    @ the park before this scene existed, the player is put back at the door
+    @ and the scene starts from there.
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfNe VAR_0x8005, 19, PalParkLobby_GalacticDouble_ReturnToDoor
+    GoToIfEq VAR_0x8004, 7, PalParkLobby_GalacticDouble_FromDoor
+    GoToIfEq VAR_0x8004, 8, PalParkLobby_GalacticDouble_FromBesideDoor
+    GoTo PalParkLobby_GalacticDouble_ReturnToDoor
+
+PalParkLobby_GalacticDouble_ReturnToDoor:
+    FadeScreenOut
+    WaitFadeScreen
+    Warp MAP_HEADER_PAL_PARK_LOBBY, 7, 19, DIR_NORTH
+    FadeScreenIn
+    WaitFadeScreen
+    ReleaseAll
+    End
+
+PalParkLobby_GalacticDouble_FromDoor:
+    ApplyMovement LOCALID_PLAYER, PalParkLobby_Movement_PlayerWalkInFromDoor
+    WaitMovement
+    GoTo PalParkLobby_GalacticDouble_Start
+
+PalParkLobby_GalacticDouble_FromBesideDoor:
+    ApplyMovement LOCALID_PLAYER, PalParkLobby_Movement_PlayerWalkInFromBesideDoor
+    WaitMovement
+    GoTo PalParkLobby_GalacticDouble_Start
+
+@ The player stands at (7, 17). The counterpart comes in by the door and
+@ stops at (6, 17), beside the player, leaving the door's column clear.
+PalParkLobby_GalacticDouble_Start:
+    BufferCounterpartName 0
+    BufferPlayerName 1
+    Message PalParkLobby_Text_CounterpartWaitUp
+    CloseMessage
+    ApplyMovement LOCALID_PLAYER, PalParkLobby_Movement_FaceSouth
+    WaitMovement
+    ClearFlag FLAG_UNUSED_0x054F
+    SetObjectEventPos LOCALID_COUNTERPART, 7, 19
+    AddObject LOCALID_COUNTERPART
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    ApplyMovement LOCALID_COUNTERPART, PalParkLobby_Movement_CounterpartWalkIn
+    WaitMovement
+    ApplyMovement LOCALID_PLAYER, PalParkLobby_Movement_FaceWest
+    WaitMovement
+    BufferCounterpartName 0
+    Message PalParkLobby_Text_CounterpartPokemonFromEverywhere
+    CloseMessage
+    @ The officers come in by the door: the man stops below the player at
+    @ (7, 18), the woman below the counterpart at (6, 18).
+    ClearFlag FLAG_UNUSED_0x054F
+    SetObjectEventPos LOCALID_OFFICER_M, 7, 19
+    AddObject LOCALID_OFFICER_M
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    ApplyMovement LOCALID_OFFICER_M, PalParkLobby_Movement_OfficerMWalkIn
+    ApplyMovement LOCALID_PLAYER, PalParkLobby_Movement_NoticeSouth
+    ApplyMovement LOCALID_COUNTERPART, PalParkLobby_Movement_NoticeSouth
+    WaitMovement
+    ClearFlag FLAG_UNUSED_0x054F
+    SetObjectEventPos LOCALID_OFFICER_F, 7, 19
+    AddObject LOCALID_OFFICER_F
+    ApplyMovement LOCALID_OFFICER_F, PalParkLobby_Movement_OfficerFWalkIn
+    WaitMovement
+    Message PalParkLobby_Text_OfficerMPokemonFromOtherRegions
+    Message PalParkLobby_Text_OfficerFStepAside
+    BufferCounterpartName 0
+    BufferPlayerName 1
+    Message PalParkLobby_Text_CounterpartBattleTogether
+    CloseMessage
+    Call PalParkLobby_GalacticDouble_Battle
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PalParkLobby_GalacticDouble_BlackOut
+    SetTrainerFlag TRAINER_DUMMY_009
+    SetTrainerFlag TRAINER_DUMMY_050
+    Message PalParkLobby_Text_OfficersFallBack
+    CloseMessage
+    ApplyMovement LOCALID_OFFICER_M, PalParkLobby_Movement_OfficerMLeave
+    WaitMovement
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    RemoveObject LOCALID_OFFICER_M
+    ApplyMovement LOCALID_OFFICER_F, PalParkLobby_Movement_OfficerFLeave
+    WaitMovement
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    RemoveObject LOCALID_OFFICER_F
+    ApplyMovement LOCALID_PLAYER, PalParkLobby_Movement_FaceWest
+    ApplyMovement LOCALID_COUNTERPART, PalParkLobby_Movement_FaceEast
+    WaitMovement
+    BufferCounterpartName 0
+    BufferPlayerName 1
+    Message PalParkLobby_Text_CounterpartParkIsSafe
+    CloseMessage
+    ApplyMovement LOCALID_COUNTERPART, PalParkLobby_Movement_CounterpartLeave
+    WaitMovement
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    RemoveObject LOCALID_COUNTERPART
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
+    SetVar VAR_PAL_PARK_LOBBY_STATE, 2
+    ReleaseAll
+    End
+
+PalParkLobby_GalacticDouble_BlackOut:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+@ The partner is the counterpart of the player's opposite gender, on the
+@ team for the player's starter, as at Veilstone: the Scorbunny player's
+@ files are the _chimchar ones (Oxide's fire starter, Ian, 2026-09-21).
+@ Each StartTagBattle names its partner, so the census sees every team.
+PalParkLobby_GalacticDouble_Battle:
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, PalParkLobby_GalacticDouble_BattleLucas
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_SCORBUNNY, PalParkLobby_GalacticDouble_BattleDawnChimchar
+    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, PalParkLobby_GalacticDouble_BattleDawnPiplup
+    StartTagBattle TRAINER_DUMMY_062, TRAINER_DUMMY_009, TRAINER_DUMMY_050
+    Return
+
+PalParkLobby_GalacticDouble_BattleDawnChimchar:
+    StartTagBattle TRAINER_DUMMY_063, TRAINER_DUMMY_009, TRAINER_DUMMY_050
+    Return
+
+PalParkLobby_GalacticDouble_BattleDawnPiplup:
+    StartTagBattle TRAINER_DUMMY_064, TRAINER_DUMMY_009, TRAINER_DUMMY_050
+    Return
+
+PalParkLobby_GalacticDouble_BattleLucas:
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_SCORBUNNY, PalParkLobby_GalacticDouble_BattleLucasChimchar
+    GoToIfEq VAR_RESULT, SPECIES_PIPLUP, PalParkLobby_GalacticDouble_BattleLucasPiplup
+    StartTagBattle TRAINER_DUMMY_051, TRAINER_DUMMY_009, TRAINER_DUMMY_050
+    Return
+
+PalParkLobby_GalacticDouble_BattleLucasChimchar:
+    StartTagBattle TRAINER_DUMMY_052, TRAINER_DUMMY_009, TRAINER_DUMMY_050
+    Return
+
+PalParkLobby_GalacticDouble_BattleLucasPiplup:
+    StartTagBattle TRAINER_DUMMY_054, TRAINER_DUMMY_009, TRAINER_DUMMY_050
+    Return
+
+    .balign 4, 0
+PalParkLobby_Movement_PlayerWalkInFromDoor:
+    WalkNormalNorth 2
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_Movement_PlayerWalkInFromBesideDoor:
+    WalkNormalNorth 2
+    WalkNormalWest
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_Movement_FaceSouth:
+    WalkOnSpotNormalSouth
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_Movement_FaceWest:
+    WalkOnSpotNormalWest
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_Movement_FaceEast:
+    WalkOnSpotNormalEast
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_Movement_NoticeSouth:
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
+    Delay8
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_Movement_CounterpartWalkIn:
+    WalkNormalNorth
+    WalkNormalWest
+    WalkNormalNorth
+    WalkOnSpotNormalEast
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_Movement_OfficerMWalkIn:
+    WalkNormalNorth
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_Movement_OfficerFWalkIn:
+    WalkNormalWest
+    WalkNormalNorth
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_Movement_OfficerMLeave:
+    WalkFastSouth
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_Movement_OfficerFLeave:
+    WalkFastSouth
+    WalkFastEast
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_Movement_CounterpartLeave:
+    WalkNormalSouth
+    WalkNormalEast
+    WalkNormalSouth
     EndMovement
 
 PalParkLobby_PoketchAppLady:

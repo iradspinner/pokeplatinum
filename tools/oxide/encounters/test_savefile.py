@@ -232,13 +232,27 @@ def main():
     results.append(("a mini-boss's honour cap is in force until its win shows in the save: "
                     "Jupiter 1's 29, then Lucas and Dawn 2's 31, Barry 4's 42 before Wake's 44",
                     honour == {"barry_2": 11, "mars_1": 20, "jupiter_1": 29, "lucas_dawn_2": 31,
-                               "barry_3": 36, "barry_4": 42}
+                               "barry_3": 36, "barry_4": 42, "cyrus_1": 47, "barry_5": 50}
                     and flagged(before_jupiter) == [(30, 29, "Jupiter 1")]
                     and S.summary(hs)["party"][0].endswith("(over Jupiter 1's honour cap of 29)")
                     and flagged(after_jupiter) == [(32, 31, "Lucas and Dawn 2")]
                     and flagged(wake_before) == [(43, 42, "Barry 4")]
                     and flagged(wake_after) == [],
                     f"{honour}; {flagged(before_jupiter) if honour else ''}"))
+    # Byron's split runs in three stretches (Ian, 2026-10-31): above Cyrus 1's
+    # 47 until Celestic's state shows him beaten, then above Barry 5's 50
+    # until Canalave's does, then above Byron's 53.
+    byron = {"before Cyrus 1": make_save(chimchars(48, 47), {}, split=5, box_size=BOX_SIZE_30),
+             "before Barry 5": make_save(chimchars(51, 50), {}, split=5, box_size=BOX_SIZE_30,
+                                         variables={"VAR_CELESTIC_TOWN_STATE": 1}),
+             "after Barry 5": make_save(chimchars(53, 52), {}, split=5, box_size=BOX_SIZE_30,
+                                        variables={"VAR_CELESTIC_TOWN_STATE": 1,
+                                                   "VAR_CANALAVE_CITY_STATE": 1})}
+    got = {k: flagged(v) for k, v in byron.items()} if hasattr(S, "honour_caps") else {}
+    results.append(("Byron's split flags above Cyrus 1's 47, then Barry 5's 50, then none at 53",
+                    got == {"before Cyrus 1": [(48, 47, "Cyrus 1")],
+                            "before Barry 5": [(51, 50, "Barry 5")], "after Barry 5": []},
+                    str(got)))
     # Each fight's win marker is one its own battle script sets, so a save
     # that shows it has won the fight.
     import re
