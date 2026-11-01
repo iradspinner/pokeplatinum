@@ -3091,9 +3091,9 @@
      {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_canalave_city_gym", "how": "StartTrainerBattle", "line": 145, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_LEADER_BYRON_REMATCH", "value": 856, "when": ""}]}], "source": "base ROM"}
     ],
     "vars": [
-     {"at": ["events_canalave_city_gym:219"], "commit": "uncommitted", "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16384},
-     {"at": ["scripts_canalave_city_gym:27"], "commit": "uncommitted", "name": "VAR_IRON_ISLAND_B2F_LEFT_ROOM_FOLLOWER_RILEY_STATE", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16530},
-     {"at": ["scripts_canalave_city_gym:26", "scripts_canalave_city_gym:31"], "commit": "uncommitted", "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16384},
+     {"at": ["events_canalave_city_gym:219"], "commit": "47c1c8b1e", "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16384},
+     {"at": ["scripts_canalave_city_gym:27"], "commit": "47c1c8b1e", "name": "VAR_IRON_ISLAND_B2F_LEFT_ROOM_FOLLOWER_RILEY_STATE", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16530},
+     {"at": ["scripts_canalave_city_gym:26", "scripts_canalave_city_gym:31"], "commit": "47c1c8b1e", "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16384},
      {"at": ["scripts_canalave_city_gym:171"], "commit": "81d02e28e", "name": "VAR_OBJ_GFX_ID_6", "op": "set", "origin": "added", "reached": true, "source": "base ROM", "var": 16422},
      {"at": ["scripts_canalave_city_gym:74"], "name": "VAR_CANALAVE_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16504}
     ]
@@ -12430,15 +12430,15 @@
      {"at": ["scripts_route_210_south:172"], "daily": false, "flag": 433, "name": "FLAG_HIDE_ROUTE_210_SOUTH_CYNTHIA", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_210_south:128"], "daily": false, "flag": 624, "name": "FLAG_HIDE_ROUTE_210_SOUTH_JOGGER_WYATT_NO_BATTLE", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_210_south:124"], "daily": false, "flag": 625, "name": "FLAG_HIDE_ROUTE_210_SOUTH_JOGGER_WYATT", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_south:428"], "daily": false, "flag": 382, "name": "FLAG_HIDE_ROUTE_212_BLOCKADE", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_south:337", "events_route_210_south:444", "events_route_210_south:459", "events_route_210_south:474"], "daily": false, "flag": 432, "name": "FLAG_HIDE_ROUTE_210_SOUTH_PSYDUCK", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_south:352", "events_route_210_south:397"], "daily": false, "flag": 433, "name": "FLAG_HIDE_ROUTE_210_SOUTH_CYNTHIA", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_south:505"], "daily": false, "flag": 624, "name": "FLAG_HIDE_ROUTE_210_SOUTH_JOGGER_WYATT_NO_BATTLE", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_south:126"], "daily": false, "flag": 625, "name": "FLAG_HIDE_ROUTE_210_SOUTH_JOGGER_WYATT", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_south:232"], "daily": false, "flag": 1113, "name": "FLAG_OBTAINED_ROUTE_210_SOUTH_SUPER_REPEL", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_south:217"], "daily": false, "flag": 1114, "name": "FLAG_OBTAINED_ROUTE_210_SOUTH_MAX_REPEL", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_south:262"], "daily": false, "flag": 1116, "name": "FLAG_OBTAINED_ROUTE_210_SOUTH_NEST_BALL", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_south:382"], "daily": false, "flag": 1117, "name": "FLAG_OBTAINED_ROUTE_210_SOUTH_HYPER_POTION", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_south:430"], "daily": false, "flag": 382, "name": "FLAG_HIDE_ROUTE_212_BLOCKADE", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_south:339", "events_route_210_south:446", "events_route_210_south:461", "events_route_210_south:476"], "daily": false, "flag": 432, "name": "FLAG_HIDE_ROUTE_210_SOUTH_PSYDUCK", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_south:354", "events_route_210_south:399"], "daily": false, "flag": 433, "name": "FLAG_HIDE_ROUTE_210_SOUTH_CYNTHIA", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_south:507"], "daily": false, "flag": 624, "name": "FLAG_HIDE_ROUTE_210_SOUTH_JOGGER_WYATT_NO_BATTLE", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_south:128"], "daily": false, "flag": 625, "name": "FLAG_HIDE_ROUTE_210_SOUTH_JOGGER_WYATT", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_south:234"], "daily": false, "flag": 1113, "name": "FLAG_OBTAINED_ROUTE_210_SOUTH_SUPER_REPEL", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_south:219"], "daily": false, "flag": 1114, "name": "FLAG_OBTAINED_ROUTE_210_SOUTH_MAX_REPEL", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_south:264"], "daily": false, "flag": 1116, "name": "FLAG_OBTAINED_ROUTE_210_SOUTH_NEST_BALL", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_south:384"], "daily": false, "flag": 1117, "name": "FLAG_OBTAINED_ROUTE_210_SOUTH_HYPER_POTION", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_210_south:51"], "daily": false, "flag": 199, "name": "FLAG_RECEIVED_ROUTE_210_SOUTH_TM51", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_210_south:102"], "commit": "81d02e28e", "daily": false, "flag": 203, "name": "FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42", "op": "set", "origin": "added", "reached": false, "source": "base ROM"},
      {"at": ["scripts_route_210_south:216"], "daily": false, "flag": 263, "name": "FLAG_USED_SECRETPOTION", "op": "set", "origin": "vanilla", "reached": true},
@@ -12453,10 +12453,10 @@
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_route_210_south", "flag": 932, "flag_name": "FLAG_OBTAINED_HIDDEN_ROUTE_210_SOUTH_ULTRA_BALL_2", "item": "ITEM_ULTRA_BALL", "item_id": 2, "line": 36, "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_south", "flag": 1114, "flag_name": "FLAG_OBTAINED_ROUTE_210_SOUTH_MAX_REPEL", "item": "ITEM_MAX_REPEL", "item_id": 77, "line": 218, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_south", "flag": 1113, "flag_name": "FLAG_OBTAINED_ROUTE_210_SOUTH_SUPER_REPEL", "item": "ITEM_SUPER_REPEL", "item_id": 76, "line": 233, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_south", "flag": 1116, "flag_name": "FLAG_OBTAINED_ROUTE_210_SOUTH_NEST_BALL", "item": "ITEM_NEST_BALL", "item_id": 8, "line": 263, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_south", "flag": 1117, "flag_name": "FLAG_OBTAINED_ROUTE_210_SOUTH_HYPER_POTION", "item": "ITEM_HYPER_POTION", "item_id": 25, "line": 383, "origin": "vanilla", "reached": true}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_south", "flag": 1114, "flag_name": "FLAG_OBTAINED_ROUTE_210_SOUTH_MAX_REPEL", "item": "ITEM_MAX_REPEL", "item_id": 77, "line": 220, "origin": "vanilla", "reached": true},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_south", "flag": 1113, "flag_name": "FLAG_OBTAINED_ROUTE_210_SOUTH_SUPER_REPEL", "item": "ITEM_SUPER_REPEL", "item_id": 76, "line": 235, "origin": "vanilla", "reached": true},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_south", "flag": 1116, "flag_name": "FLAG_OBTAINED_ROUTE_210_SOUTH_NEST_BALL", "item": "ITEM_NEST_BALL", "item_id": 8, "line": 265, "origin": "vanilla", "reached": true},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_south", "flag": 1117, "flag_name": "FLAG_OBTAINED_ROUTE_210_SOUTH_HYPER_POTION", "item": "ITEM_HYPER_POTION", "item_id": 25, "line": 385, "origin": "vanilla", "reached": true}
     ],
     "items": [
      {"command": "CallCommonScript", "commit": "2f5fc736c", "count": [{"by": [], "name": "2", "value": 2, "when": ""}], "file": "scripts_route_210_south", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM16", "value": 343, "when": ""}], "line": 50, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
@@ -12465,16 +12465,16 @@
     ],
     "trainers": [
      {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 51, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_NINJA_BOY_FABIAN", "value": 488, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 66, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_NINJA_BOY_BRENNAN", "value": 489, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player, double battle", "line": 81, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_TWINS_TERI_AND_TIA", "value": 65, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 97, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_TWINS_TERI_AND_TIA", "value": 65, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 112, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_NINJA_BOY_BRUCE", "value": 490, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 127, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_JOGGER_WYATT", "value": 306, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 142, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BREEDER_KAHLIL", "value": 56, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 157, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BREEDER_AMBER", "value": 57, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player, double battle", "line": 172, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BELLE_AND_PA_AVA_AND_MATT", "value": 290, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 188, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BELLE_AND_PA_AVA_AND_MATT", "value": 290, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 414, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_RANCHER_MARCO", "value": 292, "when": ""}]}]}
+     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 68, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_NINJA_BOY_BRENNAN", "value": 489, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player, double battle", "line": 83, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_TWINS_TERI_AND_TIA", "value": 65, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 99, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_TWINS_TERI_AND_TIA", "value": 65, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 114, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_NINJA_BOY_BRUCE", "value": 490, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 129, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_JOGGER_WYATT", "value": 306, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 144, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BREEDER_KAHLIL", "value": 56, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 159, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BREEDER_AMBER", "value": 57, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player, double battle", "line": 174, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BELLE_AND_PA_AVA_AND_MATT", "value": 290, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 190, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BELLE_AND_PA_AVA_AND_MATT", "value": 290, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_210_south", "how": "sees the player", "line": 416, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_RANCHER_MARCO", "value": 292, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["scripts_route_210_south:78", "scripts_route_210_south:80", "scripts_route_210_south:82", "scripts_route_210_south:84", "scripts_route_210_south:86"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
@@ -12499,7 +12499,7 @@
      "file": "events_route_210_south",
      "has": 8,
      "id": "LOCALID_BLACK_BELT",
-     "line": 490,
+     "line": 492,
      "origin": "added",
      "script": 13
     }
@@ -12525,24 +12525,24 @@
   {
    "entries": {
     "flags": [
-     {"at": ["events_route_210_north:253"], "daily": false, "flag": 32, "name": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_north:238"], "daily": false, "flag": 33, "name": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_north:381"], "daily": false, "flag": 34, "name": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_3", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_north:268"], "daily": false, "flag": 1131, "name": "FLAG_OBTAINED_ROUTE_210_NORTH_SMOKE_BALL", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_north:283"], "daily": false, "flag": 1132, "name": "FLAG_OBTAINED_ROUTE_210_NORTH_WAVE_INCENSE", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_north:298"], "daily": false, "flag": 1133, "name": "FLAG_OBTAINED_ROUTE_210_NORTH_TM30", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_north:426"], "daily": false, "flag": 1293, "name": "FLAG_OBTAINED_ROUTE_210_NORTH_RED_SHARD", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_210_north:411"], "daily": false, "flag": 1294, "name": "FLAG_OBTAINED_ROUTE_210_NORTH_ZINC", "op": "hides", "origin": "vanilla", "reached": true}
+     {"at": ["events_route_210_north:252"], "daily": false, "flag": 32, "name": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_1", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_north:237"], "daily": false, "flag": 33, "name": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_2", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_north:380"], "daily": false, "flag": 34, "name": "FLAG_MAP_LOCAL_HIDE_OBSTACLE_3", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_north:267"], "daily": false, "flag": 1131, "name": "FLAG_OBTAINED_ROUTE_210_NORTH_SMOKE_BALL", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_north:282"], "daily": false, "flag": 1132, "name": "FLAG_OBTAINED_ROUTE_210_NORTH_WAVE_INCENSE", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_north:297"], "daily": false, "flag": 1133, "name": "FLAG_OBTAINED_ROUTE_210_NORTH_TM30", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_north:425"], "daily": false, "flag": 1293, "name": "FLAG_OBTAINED_ROUTE_210_NORTH_RED_SHARD", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_210_north:410"], "daily": false, "flag": 1294, "name": "FLAG_OBTAINED_ROUTE_210_NORTH_ZINC", "op": "hides", "origin": "vanilla", "reached": true}
     ],
     "hidden_items": [
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_route_210_north", "flag": 774, "flag_name": "FLAG_OBTAINED_HIDDEN_ROUTE_210_NORTH_MEADOW_PLATE", "item": "ITEM_MEADOW_PLATE", "item_id": 301, "line": 4, "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_north", "flag": 1131, "flag_name": "FLAG_OBTAINED_ROUTE_210_NORTH_SMOKE_BALL", "item": "ITEM_SMOKE_BALL", "item_id": 228, "line": 269, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_north", "flag": 1132, "flag_name": "FLAG_OBTAINED_ROUTE_210_NORTH_WAVE_INCENSE", "item": "ITEM_WAVE_INCENSE", "item_id": 317, "line": 284, "origin": "vanilla", "reached": true},
-     {"commit": "9cf282b53", "count": 1, "daily": false, "event": "object_events", "file": "events_route_210_north", "flag": 1133, "flag_name": "FLAG_OBTAINED_ROUTE_210_NORTH_TM30", "item": "ITEM_SITRUS_BERRY", "item_id": 158, "line": 299, "origin": "added", "reached": true, "replaces": "ITEM_TM30 x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_TM30", "source": "base ROM"},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_north", "flag": 1294, "flag_name": "FLAG_OBTAINED_ROUTE_210_NORTH_ZINC", "item": "ITEM_ZINC", "item_id": 52, "line": 412, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_north", "flag": 1293, "flag_name": "FLAG_OBTAINED_ROUTE_210_NORTH_RED_SHARD", "item": "ITEM_RED_SHARD", "item_id": 72, "line": 427, "origin": "vanilla", "reached": true}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_north", "flag": 1131, "flag_name": "FLAG_OBTAINED_ROUTE_210_NORTH_SMOKE_BALL", "item": "ITEM_SMOKE_BALL", "item_id": 228, "line": 268, "origin": "vanilla", "reached": true},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_north", "flag": 1132, "flag_name": "FLAG_OBTAINED_ROUTE_210_NORTH_WAVE_INCENSE", "item": "ITEM_WAVE_INCENSE", "item_id": 317, "line": 283, "origin": "vanilla", "reached": true},
+     {"commit": "9cf282b53", "count": 1, "daily": false, "event": "object_events", "file": "events_route_210_north", "flag": 1133, "flag_name": "FLAG_OBTAINED_ROUTE_210_NORTH_TM30", "item": "ITEM_SITRUS_BERRY", "item_id": 158, "line": 298, "origin": "added", "reached": true, "replaces": "ITEM_TM30 x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_TM30", "source": "base ROM"},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_north", "flag": 1294, "flag_name": "FLAG_OBTAINED_ROUTE_210_NORTH_ZINC", "item": "ITEM_ZINC", "item_id": 52, "line": 411, "origin": "vanilla", "reached": true},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_210_north", "flag": 1293, "flag_name": "FLAG_OBTAINED_ROUTE_210_NORTH_RED_SHARD", "item": "ITEM_RED_SHARD", "item_id": 72, "line": 426, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_route_210_north", "how": "sees the player", "line": 19, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_ERNEST", "value": 66, "when": ""}]}]},
@@ -13670,13 +13670,13 @@
    "entries": {
     "flags": [
      {"at": ["scripts_route_221:50"], "commit": "81d02e28e", "daily": false, "flag": 2684, "name": "FLAG_UNK_0x0A7C", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["events_route_221:275"], "daily": false, "flag": 639, "name": "FLAG_HIDE_ROUTE_221_WORKER_WEST", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:290"], "daily": false, "flag": 640, "name": "FLAG_HIDE_ROUTE_221_WORKER_EAST", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:260"], "daily": false, "flag": 1115, "name": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:185"], "daily": false, "flag": 1143, "name": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:155"], "daily": false, "flag": 1144, "name": "FLAG_OBTAINED_ROUTE_221_PROTEIN", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:170"], "daily": false, "flag": 1145, "name": "FLAG_OBTAINED_ROUTE_221_TM81", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_route_221:305"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["events_route_221:279"], "daily": false, "flag": 639, "name": "FLAG_HIDE_ROUTE_221_WORKER_WEST", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:294"], "daily": false, "flag": 640, "name": "FLAG_HIDE_ROUTE_221_WORKER_EAST", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:264"], "daily": false, "flag": 1115, "name": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:189"], "daily": false, "flag": 1143, "name": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:159"], "daily": false, "flag": 1144, "name": "FLAG_OBTAINED_ROUTE_221_PROTEIN", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:174"], "daily": false, "flag": 1145, "name": "FLAG_OBTAINED_ROUTE_221_TM81", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_route_221:309"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_route_221:43"], "daily": false, "flag": 639, "name": "FLAG_HIDE_ROUTE_221_WORKER_WEST", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_221:44"], "daily": false, "flag": 640, "name": "FLAG_HIDE_ROUTE_221_WORKER_EAST", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_221:61"], "commit": "81d02e28e", "daily": false, "flag": 2684, "name": "FLAG_UNK_0x0A7C", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
@@ -13689,18 +13689,18 @@
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_route_221", "flag": 922, "flag_name": "FLAG_OBTAINED_HIDDEN_ROUTE_221_MAX_REVIVE", "item": "ITEM_MAX_REVIVE", "item_id": 29, "line": 36, "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1144, "flag_name": "FLAG_OBTAINED_ROUTE_221_PROTEIN", "item": "ITEM_PROTEIN", "item_id": 46, "line": 156, "origin": "vanilla", "reached": true},
-     {"commit": "03a50f7fd", "count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1145, "flag_name": "FLAG_OBTAINED_ROUTE_221_TM81", "item": "ITEM_LUM_BERRY", "item_id": 157, "line": 171, "origin": "added", "reached": true, "replaces": "ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81", "source": "base ROM"},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1143, "flag_name": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL", "item": "ITEM_ULTRA_BALL", "item_id": 2, "line": 186, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1115, "flag_name": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE", "item": "ITEM_PURE_INCENSE", "item_id": 320, "line": 261, "origin": "vanilla", "reached": true}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1144, "flag_name": "FLAG_OBTAINED_ROUTE_221_PROTEIN", "item": "ITEM_PROTEIN", "item_id": 46, "line": 160, "origin": "vanilla", "reached": true},
+     {"commit": "03a50f7fd", "count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1145, "flag_name": "FLAG_OBTAINED_ROUTE_221_TM81", "item": "ITEM_LUM_BERRY", "item_id": 157, "line": 175, "origin": "added", "reached": true, "replaces": "ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81", "source": "base ROM"},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1143, "flag_name": "FLAG_OBTAINED_ROUTE_221_ULTRA_BALL", "item": "ITEM_ULTRA_BALL", "item_id": 2, "line": 190, "origin": "vanilla", "reached": true},
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_route_221", "flag": 1115, "flag_name": "FLAG_OBTAINED_ROUTE_221_PURE_INCENSE", "item": "ITEM_PURE_INCENSE", "item_id": 320, "line": 265, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 51, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_DILLON", "value": 166, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 66, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_VANESSA", "value": 167, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 81, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_CORY", "value": 168, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 96, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_COLLECTOR_IVAN", "value": 274, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 111, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_JAKE", "value": 170, "when": ""}]}]},
-     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 126, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_SHANNON", "value": 171, "when": ""}]}]}
+     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 68, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SWIMMER_VANESSA", "value": 167, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 83, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_FISHERMAN_CORY", "value": 168, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 98, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_COLLECTOR_IVAN", "value": 274, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 115, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_JAKE", "value": 170, "when": ""}]}]},
+     {"event": "object_events", "file": "events_route_221", "how": "sees the player", "line": 130, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_SHANNON", "value": 171, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["scripts_route_221:41"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
