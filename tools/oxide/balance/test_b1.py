@@ -139,6 +139,10 @@ FIXED_ACES = {"aaron": 72, "bertha": 73, "flint": 74, "lucian": 75, "cynthia": 7
               # own, their aces two under Mars 1's 20 and two under Barry
               # 5's 50 (docs/oxide/phobos-deimos.md).
               "phobos_deimos_1": 18, "pal_park_double": 48,
+              # Officers Argo 1 and Hesperid 1, no caps of their own: Argo's
+              # ace at 44 under Cyrus 1's 47 (cyrus-argo-check.md), and
+              # Hesperid's at 53, no higher than Saturn 1's (Ian, 2026-11-01).
+              "argo_1": 44, "hesperid_1": 53,
               **{f["key"]: f["honour_cap"] for f in data.fights()["fights"] if "honour_cap" in f}}
 MINI_BOSS_UNDER = range(2, 5)
 

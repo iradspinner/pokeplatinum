@@ -114,6 +114,8 @@ LOCATION_SPLITS = {
 STORY_REVISITS = {
     "mars_2": "Lake Verity, first reached in Roark's split, fought in Candice's",
     "somnu_moira": "Lake Verity, as Mars 2",
+    "hesperid_1": "the drained Lake Valor, which the census places in Byron's split, fought in "
+                  "Candice's once the library scene drains it (2026-11-01)",
     "lucas_dawn_2": "Route 207, first reached in Roark's split, fought in Fantina's "
                     "on the way from Eterna to Hearthome (its aces are 30)",
     "flint_volkner": "the Fight Area, first reached in the Galactic split, fought in the "
@@ -360,6 +362,13 @@ TRAINER_SPLITS = {
     # SecretPotion follows his defeat, so he opens Byron's split, though
     # Valor Lakefront is Wake's map (docs/oxide/wake-split.md, 2026-10-31).
     "TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT": "Byron",
+    # Route 216's four trainers above its Rock Climb walls are first met in
+    # HQ's split: Rock Climb works on the Icicle Badge, Candice's own, so they
+    # are levelled for HQ's cap of 60 (Ian, 2026-11-01;
+    # docs/oxide/candice-split-map.md, question 6), though the route is
+    # Candice's map.
+    **{c: "HQ" for c in ("TRAINER_SKIER_BRADLEY", "TRAINER_SKIER_KAITLYN", "TRAINER_SKIER_ANDREA",
+                         "TRAINER_BLACK_BELT_PHILIP")},
 }
 
 
