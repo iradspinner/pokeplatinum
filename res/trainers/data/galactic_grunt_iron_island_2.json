@@ -1,6 +1,6 @@
 {
-    "name": "Grunt",
-    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
+    "name": "Officer Laverna",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
@@ -78,8 +78,8 @@
         {
             "type": "TRMSG_DEFEAT",
             "en_US": [
-                "They’re too tough to handle!\n",
-                "What a combination!\n"
+                "Robbed blind! That’s my\n",
+                "job, not yours!\n"
             ]
         }
     ]

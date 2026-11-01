@@ -1520,6 +1520,11 @@ TEXT_BANKS_SKIPPED[23] = ("the Rowan scene's grunts are Officers Phobos and Deim
 TEXT_BANKS_SKIPPED[54] += ("; then Barry on the bridge sends the player to Pal Park until its "
                            "partner double is won (Ian, 2026-10-31)")
 
+# Iron Island B2F's two grunts are Officers Boreas and Laverna (Ian,
+# 2026-11-01), so the scene's speaker labels name them and Laverna is no
+# one's brother.
+TEXT_BANKS_SKIPPED[277] = ("the B2F grunts' lines name Officers Boreas and Laverna "
+                           "(Ian, 2026-11-01)")
 
 def text_bank_names():
     return [l.strip() for l in open(os.path.join(ROOT, "generated", "text_banks.txt")) if l.strip()]

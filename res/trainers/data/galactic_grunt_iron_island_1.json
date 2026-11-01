@@ -1,5 +1,5 @@
 {
-    "name": "Grunt",
+    "name": "Officer Boreas",
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
@@ -78,8 +78,8 @@
         {
             "type": "TRMSG_DEFEAT",
             "en_US": [
-                "I want to cry...\n",
-                "My heart is shattered...\n"
+                "Our tailwind turned on us!\n",
+                "How did it blow your way?\n"
             ]
         }
     ]

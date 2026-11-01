@@ -10,15 +10,15 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 
 | Kind | Entries | Vanilla | Added from the base ROM | Added by Oxide | Added, unclear | Gone from vanilla |
 |---|---:|---:|---:|---:|---:|---:|
-| Pokemon given | 12 | 3 | 3 | 3 | 3 | 1 |
+| Pokemon given | 12 | 3 | 3 | 6 | 0 | 1 |
 | Eggs given | 3 | 1 | 0 | 2 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 601 | 506 | 71 | 23 | 1 | 15 |
+| Trainer battles | 601 | 506 | 71 | 24 | 0 | 15 |
 | Items given | 212 | 102 | 30 | 80 | 0 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
-| Flags | 3335 | 2964 | 214 | 153 | 4 | 105 |
+| Flags | 3335 | 2964 | 214 | 157 | 0 | 105 |
 | Variables | 1128 | 1078 | 27 | 23 | 0 | 36 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
@@ -3791,16 +3791,16 @@ Hidden items:
 
 Pokemon given:
 
-- GivePokemon: SPECIES_EMPOLEON at level 40. Added, origin unclear. `scripts_fuego_ironworks_building.s:244`
-- GivePokemon: SPECIES_TORTERRA at level 40. Added, origin unclear. `scripts_fuego_ironworks_building.s:249`
-- GivePokemon: SPECIES_CINDERACE at level 40. Added, origin unclear. `scripts_fuego_ironworks_building.s:254`
+- GivePokemon: SPECIES_EMPOLEON at level 40. Added by Oxide (2473fbc6a). `scripts_fuego_ironworks_building.s:244`
+- GivePokemon: SPECIES_TORTERRA at level 40. Added by Oxide (2473fbc6a). `scripts_fuego_ironworks_building.s:249`
+- GivePokemon: SPECIES_CINDERACE at level 40. Added by Oxide (2473fbc6a). `scripts_fuego_ironworks_building.s:254`
 
 Trainer battles:
 
 - TRAINER_WORKER_DILLAN (Dillan, level 46, 3 Pokemon), sees the player. Vanilla. `events_fuego_ironworks_building.json:87`
 - TRAINER_WORKER_HOLDEN (Holden, level 46, 4 Pokemon), sees the player. Vanilla. `events_fuego_ironworks_building.json:104`
 - TRAINER_WORKER_CONRAD (Conrad, level 46, 4 Pokemon), sees the player. Vanilla. `events_fuego_ironworks_building.json:121`
-- StartTrainerBattle: against TRAINER_DUMMY_077 (Thorton, level 47, 6 Pokemon), by name. Added, origin unclear. `scripts_fuego_ironworks_building.s:148`
+- StartTrainerBattle: against TRAINER_DUMMY_077 (Thorton, level 47, 6 Pokemon), by name. Added by Oxide (93e04c7c6). `scripts_fuego_ironworks_building.s:148`
 
 Items given:
 
@@ -3831,8 +3831,8 @@ Hidden items:
 
 Flags:
 
-- Set: FLAG_MR_FUEGO_ASKED_FOR_TRADE, FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE, FLAG_UNUSED_0x054E (added, unclear), FLAG_DEFEATED_TRAINER_DUMMY_077 (added, unclear), FLAG_FIRST_ARRIVAL_FUEGO_IRONWORKS.
-- Checked: FLAG_MR_FUEGO_ASKED_FOR_TRADE, FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE, FLAG_UNUSED_0x054E (added, unclear), FLAG_DEFEATED_TRAINER_DUMMY_077 (added, unclear).
+- Set: FLAG_MR_FUEGO_ASKED_FOR_TRADE, FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE, FLAG_UNUSED_0x054E (added, Oxide), FLAG_DEFEATED_TRAINER_DUMMY_077 (added, Oxide), FLAG_FIRST_ARRIVAL_FUEGO_IRONWORKS.
+- Checked: FLAG_MR_FUEGO_ASKED_FOR_TRADE, FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE, FLAG_UNUSED_0x054E (added, Oxide), FLAG_DEFEATED_TRAINER_DUMMY_077 (added, Oxide).
 - Hide an object: FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_TM35, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_ROCK_INCENSE, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_CALCIUM, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_BLUE_SHARD, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_RED_SHARD, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_GREEN_SHARD, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_YELLOW_SHARD.
 
 Gone from vanilla: ITEM_TM35 x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_TM35; ITEM_FIRE_STONE x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_FIRE_STONE; flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_FIRE_STONE (hides).
@@ -4219,7 +4219,7 @@ Trainer battles:
 - TRAINER_WORKER_QUENTIN (Quentin, level 50, 3 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:225`
 - TRAINER_ACE_TRAINER_JONAH (Jonah, level 51, 4 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:242`
 - TRAINER_ACE_TRAINER_BRENDA (Brenda, level 50, 4 Pokemon), sees the player. Vanilla. `events_iron_island_b2f_left_room.json:259`
-- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_IRON_ISLAND_1 (Grunt, level 50, 4 Pokemon), by name; and TRAINER_GALACTIC_GRUNT_IRON_ISLAND_2 (Grunt, level 51, 4 Pokemon), by name. Vanilla. `scripts_iron_island_b2f_left_room.s:172`
+- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_IRON_ISLAND_1 (Officer Boreas, level 50, 4 Pokemon), by name; and TRAINER_GALACTIC_GRUNT_IRON_ISLAND_2 (Officer Laverna, level 51, 4 Pokemon), by name. Vanilla. `scripts_iron_island_b2f_left_room.s:172`
 
 Item balls:
 
