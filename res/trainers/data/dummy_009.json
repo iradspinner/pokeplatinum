@@ -17,9 +17,9 @@
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_SPIRIT_BREAK",
-                "MOVE_CRUNCH",
+                "MOVE_CLOSE_COMBAT",
                 "MOVE_CHARM",
-                "MOVE_ICE_FANG"
+                "MOVE_CRUNCH"
             ],
             "iv_scale": 255,
             "nature": "NATURE_SASSY",
@@ -45,7 +45,7 @@
         {
             "species": "SPECIES_MAWILE",
             "form": 0,
-            "level": 46,
+            "level": 47,
             "item": "ITEM_ROCKY_HELMET",
             "moves": [
                 "MOVE_IRON_HEAD",
@@ -61,12 +61,12 @@
         {
             "species": "SPECIES_FERALIGATR",
             "form": 0,
-            "level": 46,
+            "level": 47,
             "item": "ITEM_MYSTIC_WATER",
             "moves": [
                 "MOVE_WATERFALL",
                 "MOVE_CRUNCH",
-                "MOVE_ICE_FANG",
+                "MOVE_SUPERPOWER",
                 "MOVE_DRAGON_DANCE"
             ],
             "iv_scale": 255,
