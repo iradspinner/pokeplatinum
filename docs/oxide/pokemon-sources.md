@@ -47,7 +47,7 @@ replace a slot:
 | 6, 7 | `daily_encounters` (Trophy Garden) or the Great Marsh daily | National Dex, or a running Safari Game |
 | 8, 9 | `ruby`..`leafgreen` | National Dex and that GBA cartridge in the slot |
 
-165 rows across 31 locations, generated 2026-10-31.
+168 rows across 32 locations, generated 2026-10-31.
 
 ## Rows by method
 
@@ -56,8 +56,8 @@ replace a slot:
 | unown room | 18 |
 | static battle | 13 |
 | egg gift | 10 |
+| gift | 9 |
 | fossil | 7 |
-| gift | 6 |
 | honey tree (common, 1 badge) | 6 |
 | honey tree (uncommon, 1 badge) | 6 |
 | honey tree (common, 2 badges) | 6 |
@@ -254,6 +254,14 @@ replace a slot:
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
 | Registeel | static battle | 30 | the Iron Island Regi puzzle, post-game | vanilla | yes | `scripts_iron_ruins.s` |
+
+### Ironworks Hall
+
+| Species | Method | Level | Conditions | Origin | On pick-list | Source |
+|---|---|---|---|---|---|---|
+| Cinderace | gift | 40 | Thorton's Battle Factory rental, straight after the player beats him in Ironworks Hall (Ian, 2026-09-27): pick one of the two starter lines the player did not choose, fully evolved, from a menu; once only (FLAG_UNUSED_0x054E); a full party leaves it with him; Ironworks Hall's own capture | **base-ROM** | yes | `scripts_fuego_ironworks_building.s` |
+| Empoleon | gift | 40 | Thorton's Battle Factory rental, straight after the player beats him in Ironworks Hall (Ian, 2026-09-27): pick one of the two starter lines the player did not choose, fully evolved, from a menu; once only (FLAG_UNUSED_0x054E); a full party leaves it with him; Ironworks Hall's own capture | **base-ROM** | yes | `scripts_fuego_ironworks_building.s` |
+| Torterra | gift | 40 | Thorton's Battle Factory rental, straight after the player beats him in Ironworks Hall (Ian, 2026-09-27): pick one of the two starter lines the player did not choose, fully evolved, from a menu; once only (FLAG_UNUSED_0x054E); a full party leaves it with him; Ironworks Hall's own capture | **base-ROM** | yes | `scripts_fuego_ironworks_building.s` |
 
 ### Jubilife City
 

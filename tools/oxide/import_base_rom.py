@@ -1495,6 +1495,13 @@ TEXT_BANKS_SKIPPED[54] = ("Barry at the library door sends the player to Iron Is
 TEXT_BANKS_SKIPPED[56] += ("; then the Gym Guide's line sending the player to Iron Island first "
                            "(Ian, 2026-10-31)")
 
+# The level-cap line after Candice and after Volkner matched an older cap
+# sheet (62 and 78); the engine's table sets 60 (HQ's split) and 71
+# (Barry's), and the lines now say so (2026-10-31). Both banks are skipped
+# for the reward table already.
+for _i in (178, 165):
+    TEXT_BANKS_SKIPPED[_i] += "; then its level-cap line matches the engine's table (2026-10-31)"
+
 # Eterna's Oak asks the player back after the Hall of Fame before he gives
 # the Upgrade and sets the birds roaming (Ian, 2026-10-31).
 TEXT_BANKS_SKIPPED[103] = ("Oak asks the player back after the Hall of Fame before he gives the "

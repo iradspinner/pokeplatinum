@@ -110,16 +110,11 @@
     ],
     "messages": [
         {
-            "type": "TRMSG_PRE_BATTLE",
-            "garbage": 17
-        },
-        {
             "type": "TRMSG_DEFEAT",
-            "garbage": 18
-        },
-        {
-            "type": "TRMSG_POST_BATTLE",
-            "garbage": 14
+            "en_US": [
+                "Not making me happy at all, losing.\n",
+                "But I did glean some useful data.\n"
+            ]
         }
     ]
 }

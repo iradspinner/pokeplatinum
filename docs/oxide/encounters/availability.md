@@ -252,14 +252,14 @@ Also for Ian: the early cast rests on the widened starter-adjacent tier (`EARLY_
 | Palkia | gate | non-wild |  |  |  |  | static spear_pillar_palkia; static, spear_pillar_palkia | static battle at Spear Pillar |  |  |
 | Pheromosa | gate | non-wild |  |  |  | pool | static init_new_game; static, acuity_cavern |  |  |  |
 | Phione | gate | non-wild |  |  |  |  | bred from Manaphy, pokemon_day_care |  |  |  |
-| Piplup | gate | non-wild |  |  |  |  | gift, ironworks_hall_thorton, starter, starter | starter at Route 201 |  |  |
+| Piplup | gate | non-wild |  |  |  |  | gift fuego_ironworks_building; gift, ironworks_hall_thorton, starter, starter | starter at Route 201; gift at Ironworks Hall |  |  |
 | Poipole | gate | pool |  |  |  | pool |  |  |  |  |
 | Regice | gate | non-wild |  |  |  |  | static iceberg_ruins; static, iceberg_regice | static battle at Iceberg Ruins |  |  |
 | Regigigas | gate | non-wild |  |  |  |  | static snowpoint_temple_b5f; static, snowpoint_temple_regigigas | static battle at Snowpoint Temple |  |  |
 | Regirock | gate | non-wild |  |  |  |  | static rock_peak_ruins; static, rock_peak_regirock | static battle at Rock Peak Ruins |  |  |
 | Registeel | gate | non-wild |  |  |  |  | static iron_ruins; static, iron_ruins_registeel | static battle at Iron Ruins |  |  |
 | Rotom | gate | non-wild |  |  |  |  | static old_chateau_back_middle_west_room; static, old_chateau_rotom | static battle at Old Chateau |  |  |
-| Scorbunny | gate | non-wild |  |  |  |  | gift, ironworks_hall_thorton, starter, starter | starter at Route 201 |  |  |
+| Scorbunny | gate | non-wild |  |  |  |  | gift fuego_ironworks_building; gift, ironworks_hall_thorton, starter, starter | starter at Route 201; gift at Ironworks Hall |  |  |
 | Shaymin | gate | non-wild |  |  |  |  | static flower_paradise | static battle at Flower Paradise |  |  |
 | Shieldon | gate | non-wild |  |  |  |  | fossil, mining_museum_fossil | fossil at Mining Museum |  |  |
 | Spiritomb | gate | non-wild |  |  |  |  | static route_209 | static battle at Route 209 |  |  |
@@ -269,7 +269,7 @@ Also for Ian: the early cast rests on the widened starter-adjacent tier (`EARLY_
 | Tapu Fini | gate | pool |  |  |  | pool |  |  |  |  |
 | Tapu Koko | gate | pool |  |  |  | pool |  |  |  |  |
 | Tapu Lele | gate | pool |  |  |  | pool |  |  |  |  |
-| Turtwig | gate | non-wild |  |  |  |  | gift, ironworks_hall_thorton, starter, starter | starter at Route 201 |  |  |
+| Turtwig | gate | non-wild |  |  |  |  | gift fuego_ironworks_building; gift, ironworks_hall_thorton, starter, starter | starter at Route 201; gift at Ironworks Hall |  |  |
 | Uxie | gate | pool |  |  |  | pool |  |  |  |  |
 | Xerneas | gate | proposed |  |  |  |  |  |  |  |  |
 | Xurkitree | gate | pool |  |  |  | pool |  |  |  |  |

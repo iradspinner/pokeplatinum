@@ -10,15 +10,15 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 
 | Kind | Entries | Vanilla | Added from the base ROM | Added by Oxide | Added, unclear | Gone from vanilla |
 |---|---:|---:|---:|---:|---:|---:|
-| Pokemon given | 9 | 3 | 3 | 3 | 0 | 1 |
+| Pokemon given | 12 | 3 | 3 | 3 | 3 | 1 |
 | Eggs given | 3 | 1 | 0 | 2 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 600 | 506 | 71 | 23 | 0 | 15 |
+| Trainer battles | 601 | 506 | 71 | 23 | 1 | 15 |
 | Items given | 212 | 102 | 30 | 80 | 0 | 34 |
 | Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
-| Flags | 3331 | 2964 | 214 | 153 | 0 | 105 |
+| Flags | 3335 | 2964 | 214 | 153 | 4 | 105 |
 | Variables | 1128 | 1078 | 27 | 23 | 0 | 36 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
@@ -3789,23 +3789,30 @@ Hidden items:
 
 `MAP_HEADER_FUEGO_IRONWORKS_BUILDING`: scripts `scripts_fuego_ironworks_building`, events `events_fuego_ironworks_building`, init scripts `scripts_init_fuego_ironworks_building`. Location name Ironworks Hall. In Byron's split, placed by its location name.
 
+Pokemon given:
+
+- GivePokemon: SPECIES_EMPOLEON at level 40. Added, origin unclear. `scripts_fuego_ironworks_building.s:244`
+- GivePokemon: SPECIES_TORTERRA at level 40. Added, origin unclear. `scripts_fuego_ironworks_building.s:249`
+- GivePokemon: SPECIES_CINDERACE at level 40. Added, origin unclear. `scripts_fuego_ironworks_building.s:254`
+
 Trainer battles:
 
 - TRAINER_WORKER_DILLAN (Dillan, level 46, 3 Pokemon), sees the player. Vanilla. `events_fuego_ironworks_building.json:87`
 - TRAINER_WORKER_HOLDEN (Holden, level 46, 4 Pokemon), sees the player. Vanilla. `events_fuego_ironworks_building.json:104`
 - TRAINER_WORKER_CONRAD (Conrad, level 46, 4 Pokemon), sees the player. Vanilla. `events_fuego_ironworks_building.json:121`
+- StartTrainerBattle: against TRAINER_DUMMY_077 (Thorton, level 47, 6 Pokemon), by name. Added, origin unclear. `scripts_fuego_ironworks_building.s:148`
 
 Items given:
 
-- ITEM_STAR_PIECE x1. Vanilla. `scripts_fuego_ironworks_building.s:25`
-- ITEM_RED_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:78`
-- ITEM_BLUE_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:79`
-- ITEM_YELLOW_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:80`
-- ITEM_GREEN_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:81`
-- ITEM_RED_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:103`
-- ITEM_BLUE_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:104`
-- ITEM_YELLOW_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:105`
-- ITEM_GREEN_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:106`
+- ITEM_STAR_PIECE x1. Vanilla. `scripts_fuego_ironworks_building.s:26`
+- ITEM_RED_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:79`
+- ITEM_BLUE_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:80`
+- ITEM_YELLOW_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:81`
+- ITEM_GREEN_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:82`
+- ITEM_RED_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:104`
+- ITEM_BLUE_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:105`
+- ITEM_YELLOW_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:106`
+- ITEM_GREEN_SHARD x1. Vanilla. `scripts_fuego_ironworks_building.s:107`
 
 Item balls:
 
@@ -3824,8 +3831,8 @@ Hidden items:
 
 Flags:
 
-- Set: FLAG_MR_FUEGO_ASKED_FOR_TRADE, FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE, FLAG_FIRST_ARRIVAL_FUEGO_IRONWORKS.
-- Checked: FLAG_MR_FUEGO_ASKED_FOR_TRADE, FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE.
+- Set: FLAG_MR_FUEGO_ASKED_FOR_TRADE, FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE, FLAG_UNUSED_0x054E (added, unclear), FLAG_DEFEATED_TRAINER_DUMMY_077 (added, unclear), FLAG_FIRST_ARRIVAL_FUEGO_IRONWORKS.
+- Checked: FLAG_MR_FUEGO_ASKED_FOR_TRADE, FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE, FLAG_UNUSED_0x054E (added, unclear), FLAG_DEFEATED_TRAINER_DUMMY_077 (added, unclear).
 - Hide an object: FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_TM35, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_ROCK_INCENSE, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_CALCIUM, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_BLUE_SHARD, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_RED_SHARD, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_GREEN_SHARD, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_YELLOW_SHARD.
 
 Gone from vanilla: ITEM_TM35 x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_TM35; ITEM_FIRE_STONE x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_FIRE_STONE; flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_FIRE_STONE (hides).
