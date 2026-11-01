@@ -49,7 +49,7 @@
             "species": "SPECIES_SNUBBULL",
             "form": 0,
             "level": 18,
-            "item": "ITEM_EVIOLITE",
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
                 "MOVE_CHARM",
                 "MOVE_PLAY_ROUGH",
