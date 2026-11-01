@@ -140,8 +140,8 @@ TMs by the split they first come in, against each split's share by its length (t
 | Gardenia | 9.2 | 8 | 13 |
 | Fantina | 10.4 | 10 | 14 |
 | Maylene | 8.7 | 9 | 17 |
-| Wake | 17.5 | 17 | 9 |
-| Byron | 14.4 | 14 | 17 |
+| Wake | 15.3 | 17 | 9 |
+| Byron | 16.5 | 14 | 17 |
 | Candice | 6.8 | 7 | 6 |
 | HQ | 2.8 | 2 | 8 |
 | Galactic | 15.3 | 17 | 5 |
