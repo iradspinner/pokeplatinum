@@ -2,6 +2,35 @@
 
 Ian built three boss drafts in the OxiDex on 2026-10-31: Byron, who closes his split at Canalave Gym (cap 53), and two optional Frontier Brains in Barry 5's stretch (cap 50), Thorton the Factory Head at Fuego Ironworks and Argenta the Hall Matron at Pal Park. He asked for the check Maylene's six had: anything that invalidates a fight, and the weakest crux in each with the top replacement picks for it. His natures are his choice; none repeats inside a team. The teams are on branch `overseer-boss-checks` (Byron's from `overseer-byron-leader`, the Brains' from `overseer-brains-seed`), and no team changed. The only change to the game's data is the egg-list commit below. Every number comes from cheap checks; no scorer reading was run.
 
+## Ian's answers (2026-10-31)
+
+Byron's Klefki keeps the lead and holds Leftovers in place of the Light Clay (questions 1 and 2), and his difficulty stays as it is (question 3). Thorton's six all drop to 47 (question 4). His Turtonator takes Shell Trap for Shell Smash and Will-O-Wisp for Heat Crash (question 5), his Ferrothorn takes Power Whip for Grassy Glide (question 10), and his flags drop Setup First Turn, Risky and Prioritize Extremes, keeping Check HP and Harassment (question 6). Argenta's flags drop Setup First Turn and Risky and keep Prioritize Extremes (question 7), and she keeps Diancie and stays at 50 (questions 8 and 9). The Rocky Helmet fix landed on `oxide` at 3d070be1a (question 11), and this branch has merged it. The sections after this one are the check's, from before these answers.
+
+The edits went through `trainers.save`, in commit 07d323fbdd3. No item and no nature repeats in any of the three teams. Power Whip is on no Ferrothorn list at 47, so it went on Ferroseed's egg list; Grassy Glide, which this pass had put there and no trainer now uses, came off. Every other move of the three teams is on its species' list at its new level: Shell Trap on Turtonator's egg list since Barry 4, Will-O-Wisp by its TM. Both checkers then find nothing, the trainer lint finds nothing, test_learnrewrite passes 6 of 6, test_learncheck 18 of 18, test_trainers 44 of 44 and test_b1 48 of 48, and `make rom` builds.
+
+The probe was run again on the teams as they now stand, with the helmet in the simulator and Thorton's room held on as before. Each cell is the player's wins in 150 rough fights against the best six and then the most-taken six; one number means the two were the same six.
+
+| Fight, on which boxes | Box 1 | Box 2 | Box 3 | Before the answers |
+|---|---|---|---|---|
+| Wake, on Wake's boxes (44) | 95, 67 | 28, 66 | 55, 67 | the same |
+| Barry 4, on his own boxes (42) | 52, 80 | 71, 45 | 59 | the same |
+| Byron, on Byron's boxes (53) | 69, 81 | 67, 81 | 41, 86 | 69, 90; 69, 78; 49, 91 |
+| Thorton at 47, on Barry 5's boxes (50) | 44, 42 | 28, 44 | 118, 73 | 9; 4, 3; 39, 22 |
+| Thorton at 47, on Cyrus 1's boxes (47) | 1, 2 | 3, 3 | 3, 0 | not run |
+| Thorton at 47, on Byron's boxes (53) | 87 | 82, 85 | 142, 90 | 40, 76; 49, 32; 44 |
+| Argenta, on Barry 5's boxes (50) | 14, 60 | 46, 63 | 35, 58 | 17, 51; 50, 59; 33, 51 |
+| Argenta, on Byron's boxes (53) | 79 | 89, 86 | 83 | 95; 83, 84; 81 |
+
+Byron and Argenta read as before, within the probe's spread. Thorton in Barry 5's stretch now reads about as hard as Wake and Barry 4 do on their own boxes, and on Byron's boxes he is easier than Byron. The one thing to see is the row for Cyrus 1's boxes. His fight first opens at Cyrus 1, and a player who walks in then, with a box at 47 and fewer catches, is beaten nearly every time. That is the shape Dahlia has in Maylene's split, and an optional fight may have it, but it is said here so that it is a choice.
+
+What the answers changed in play, on Barry 5's boxes:
+
+- Shell Trap struck in 14 to 74 of its 90 to 143 uses a six, since it fails unless a physical move hits Turtonator first. The screen counts it as a sure hit, so the lead test below reads it kindly. Will-O-Wisp burned 23 to 63 times a six.
+- Ferrothorn used Power Whip 359 to 584 times a six. Its Self-Destruct now goes almost only at 30 percent HP or less (13 to 37 times a six, with 0 to 5 from 31 to 70 percent and one above 70 in all), as the guide expects of Check HP alone.
+- Guzzlord's Protect fell from 125 to 533 picks a six to 190 to 272, with Dragon Tail its most-picked move.
+- The Rocky Helmet took its sixth on 77 to 299 contact hits a six. The player's attacker fainted during its own contact move into Toxapex 5 to 31 times a six, the helmet's chip among the causes.
+- Toxapex's lead now passes Ian's test against Corviknight, Torterra, Bronzong and Empoleon, which draw a Turtonator that beats them. Bastiodon, in 19 or 20 of the top 20 sixes, still beats the Turtonator it draws (+1.5), and Hariyama does the same to Bronzong on box 3.
+
 ## Summary
 
 ### Byron
