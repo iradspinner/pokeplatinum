@@ -1,6 +1,6 @@
 # Argo 1 and Cyrus 1: a short check
 
-Ian asked on 2026-10-31 to see the drafts of Officer Argo 1 (Celestic Town, a mini-boss) and Cyrus 1 (the Celestic ruins, a boss), drafted on 2026-10-13 and never put to him. They are on branch `overseer-cyrus-argo`, cut from `oxide` at 6387623469, at the levels of Cyrus 1's honour cap of 47, and the OxiDex shows them from that branch. This page checks two things only, as Maylene's did: anything that invalidates either fight, and the weakest crux of each with its top replacement picks. Nothing here is landed.
+Ian asked on 2026-10-31 to see the drafts of Officer Argo 1 (Celestic Town, a mini-boss) and Cyrus 1 (the Celestic ruins, a boss), drafted on 2026-10-13 and never put to him. They are on branch `overseer-cyrus-argo`, cut from `oxide` at 6387623469, at the levels of Cyrus 1's honour cap of 47, and reach Ian's OxiDex once the Overseer merges the branch into its `ian-saves` checkout. This page checks two things only, as Maylene's did: anything that invalidates either fight, and the weakest crux of each with its top replacement picks. Nothing here is landed.
 
 ## Summary
 
