@@ -89,8 +89,8 @@ HELD = [("ITEM_EVIOLITE", "Gardenia"), ("ITEM_ABSORB_BULB", "Gardenia"), ("ITEM_
         ("ITEM_ROCKY_HELMET", "Fantina"), ("ITEM_AIR_BALLOON", "Fantina"), ("ITEM_LOADED_DICE", "Fantina"),
         ("ITEM_FAIRY_FEATHER", "Fantina"), ("ITEM_BINDING_BAND", "Fantina"),
         ("ITEM_ASSAULT_VEST", "Maylene"), ("ITEM_SAFETY_GOGGLES", "Maylene"), ("ITEM_PUNCHING_GLOVE", "Maylene"),
-        ("ITEM_WEAKNESS_POLICY", "Wake"), ("ITEM_COVERT_CLOAK", "Wake"), ("ITEM_EJECT_BUTTON", "Wake"),
-        ("ITEM_RED_CARD", "Wake"), ("ITEM_CLEAR_AMULET", "Byron"), ("ITEM_MIRROR_HERB", "Byron"),
+        ("ITEM_WEAKNESS_POLICY", "Wake"), ("ITEM_COVERT_CLOAK", "Wake"), ("ITEM_EJECT_BUTTON", "Byron"),
+        ("ITEM_RED_CARD", "Byron"), ("ITEM_CLEAR_AMULET", "Byron"), ("ITEM_MIRROR_HERB", "Byron"),
         ("ITEM_ABILITY_SHIELD", "Candice"), ("ITEM_RING_TARGET", "Candice"), ("ITEM_PIXIE_PLATE", "Volkner"),
         # The Game Corner's four held items, behind optional fights too (Ian,
         # 2026-10-06); their prize slots give another item.
@@ -803,6 +803,13 @@ REHOMED = {
     "ITEM_TM72": ("TRAINER_LADY_MELISSA", "Avalanche, weak; reading 2.3"),
 }
 
+# Rewards whose trainer now first falls in a later split than the approved
+# table says. Route 219's tubers need Surf, which waits on Cyrus at Celestic
+# Town, so their Eject Button and Red Card come in Byron's split, not Wake's;
+# the census placed them in Wake's only while their teams sat at Wake's
+# levels (Byron's split's climb, 2026-10-31, docs/oxide/byron-split.md).
+RESPLIT = {"ITEM_EJECT_BUTTON": "Byron", "ITEM_RED_CARD": "Byron"}
+
 # Items the table never held, placed where Ian chose (2026-10-13). They
 # were placed while the 46 spare flags of the day were all taken, so each
 # reuses a flag: a ball that held something else, or a trainer that already
@@ -854,6 +861,9 @@ def frozen_rows():
         old = next(r for r in rows if r.reward == it and r.kind == "trainer")
         h, _obj = trainer_objects()[_trainer_number(trainer_id)]
         rows[rows.index(old)] = old._replace(map=header(h), trainer_id=trainer_id, note=why)
+    for it, split in RESPLIT.items():
+        old = next(r for r in rows if r.reward == it and r.kind == "trainer")
+        rows[rows.index(old)] = old._replace(split=split)
     rows += ADDED
     rows.sort(key=lambda r: (si(r.split), r.kind, r.map, r.reward))
     return rows

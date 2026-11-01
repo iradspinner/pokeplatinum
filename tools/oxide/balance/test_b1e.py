@@ -41,7 +41,20 @@ from . import required as R
 # them by the lake's west edge, boulders or not. Unchanged again the same
 # day when Ian's recollection that the water there cannot be reached was
 # checked against the game's code, which allows it (check_lake_verity_surf).
-TOTALS = {"required": 68, "avoidable": 106, "never reached": 12}
+# 77 in Byron's split's pass (2026-10-31, docs/oxide/byron-split.md):
+# nine trainers moved or now look one way, which turns nine avoidable
+# verdicts required (Ninja Boy Fabian on Route 210 South; Bird Keeper
+# Brianna and Black Belt Adam on Route 210 North; Guitarist Tony and Sailor
+# Skyler on Route 218; Iron Island B2F's two pairs). Veteran Brian was read
+# required already and now looks one way. Ace Trainer Ernest and Zac and
+# Jen look one way too; they read avoidable here, since the model gives the
+# split Surf and the river walks round them, but the player meets them
+# before Surf.
+# 80 once Route 221 (to Pal Park's lobby) and Iron Island B1F's right room
+# became crossings the same day: they read Swimmer Dillon, Collector Ivan
+# and Picnicker Summer required and four more of Route 221's trainers
+# (Vanessa, Cory, Jake and Shannon) avoidable, all seven left out before.
+TOTALS = {"required": 80, "avoidable": 101, "never reached": 12}
 
 
 def check_crossings_resolve(results):
@@ -90,15 +103,18 @@ def check_ian_examples(results):
     and Route 202's three cannot. This is B1e's check against play. Route
     203's Sebastian and Madeline moved onto the story path on 2026-10-29
     (docs/oxide/mandatory-fights-early.md), so the check holds for its other
-    three."""
-    moved = {"TRAINER_YOUNGSTER_SEBASTIAN", "TRAINER_LASS_MADELINE"}
+    three. Route 218's Tony and Skyler moved to its west neck in Byron's
+    split's pass (2026-10-31, docs/oxide/byron-split.md), so it holds for
+    its other two."""
+    moved = {"TRAINER_YOUNGSTER_SEBASTIAN", "TRAINER_LASS_MADELINE",
+             "TRAINER_GUITARIST_TONY", "TRAINER_SAILOR_SKYLER"}
 
     def verdicts(split, header):
         row = next(c for c in R.CROSSINGS if c[:2] == (split, header))
         return [v for t, v in R.crossing(*row) if t["script"] not in moved]
     got = {h: verdicts(s, h) for s, h in (("Roark", "ROUTE_203"), ("Fantina", "ROUTE_206"),
                                           ("Byron", "ROUTE_218"))}
-    want = {"ROUTE_203": 3, "ROUTE_206": 9, "ROUTE_218": 4}
+    want = {"ROUTE_203": 3, "ROUTE_206": 9, "ROUTE_218": 2}
     ok = all(len(got[h]) == n and set(got[h]) == {"avoidable"} for h, n in want.items())
     results.append(("Ian's avoidable routes come out avoidable", ok,
                     ", ".join(f"{h} {len(v)} {sorted(set(v))}" for h, v in got.items())))

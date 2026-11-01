@@ -11,106 +11,106 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_VICTREEBEL",
+            "species": "SPECIES_NINETALES",
             "form": 0,
-            "level": 50,
+            "level": 45,
             "item": "ITEM_HEAT_ROCK",
             "moves": [
-                "MOVE_SUNNY_DAY",
+                "MOVE_FIRE_BLAST",
                 "MOVE_SOLAR_BEAM",
-                "MOVE_SLUDGE_BOMB",
-                "MOVE_SLEEP_POWDER"
+                "MOVE_WILL_O_WISP",
+                "MOVE_NASTY_PLOT"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_VICTREEBEL",
+            "form": 0,
+            "level": 45,
+            "item": "ITEM_MIRACLE_SEED",
+            "moves": [
+                "MOVE_SEED_BOMB",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_GROWTH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         },
         {
             "species": "SPECIES_CHERRIM",
             "form": 0,
-            "level": 51,
-            "item": "ITEM_MIRACLE_SEED",
+            "level": 46,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_SOLAR_BEAM",
-                "MOVE_ENERGY_BALL",
-                "MOVE_LEECH_SEED",
-                "MOVE_GROWTH"
+                "MOVE_PETAL_BLIZZARD",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_SYNTHESIS"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_MODEST",
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": "female"
-        },
-        {
-            "species": "SPECIES_NINETALES",
-            "form": 0,
-            "level": 51,
-            "item": "ITEM_CHARCOAL",
-            "moves": [
-                "MOVE_FLAMETHROWER",
-                "MOVE_SOLAR_BEAM",
-                "MOVE_ENERGY_BALL",
-                "MOVE_NASTY_PLOT"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         },
         {
             "species": "SPECIES_MILTANK",
             "form": 0,
-            "level": 51,
-            "item": "ITEM_LEFTOVERS",
+            "level": 46,
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
                 "MOVE_BODY_SLAM",
-                "MOVE_EARTHQUAKE",
                 "MOVE_MILK_DRINK",
-                "MOVE_ICE_PUNCH"
+                "MOVE_EARTHQUAKE",
+                "MOVE_STEALTH_ROCK"
             ],
             "iv_scale": 255,
             "nature": "NATURE_IMPISH",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         },
         {
             "species": "SPECIES_LOPUNNY",
             "form": 0,
-            "level": 51,
-            "item": "ITEM_LUM_BERRY",
+            "level": 47,
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
-                "MOVE_JUMP_KICK",
-                "MOVE_DIZZY_PUNCH",
-                "MOVE_ICE_PUNCH",
-                "MOVE_FAKE_OUT"
+                "MOVE_FAKE_OUT",
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_RETURN",
+                "MOVE_ICE_PUNCH"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
+            "ability": 3,
+            "gender": null
         },
         {
             "species": "SPECIES_ARCANINE",
             "form": 0,
-            "level": 52,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 48,
+            "item": "ITEM_CHARCOAL",
             "moves": [
                 "MOVE_FLARE_BLITZ",
                 "MOVE_EXTREME_SPEED",
                 "MOVE_CRUNCH",
-                "MOVE_THUNDER_FANG"
+                "MOVE_WILD_CHARGE"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         }
     ],
     "messages": [

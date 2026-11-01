@@ -10,32 +10,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GOLDUCK",
-            "form": 0,
-            "level": 43,
-            "item": null,
-            "moves": [
-                "MOVE_AQUA_JET",
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_WATERFALL",
-                "MOVE_ICE_PUNCH"
-            ],
-            "iv_scale": 251,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_SLOWBRO",
             "form": 0,
-            "level": 43,
-            "item": null,
+            "level": 45,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_SURF",
-                "MOVE_PSYCHIC",
-                "MOVE_SHADOW_BALL",
-                "MOVE_SLACK_OFF"
+                "MOVE_PSYSHOCK",
+                "MOVE_SLACK_OFF",
+                "MOVE_CALM_MIND"
             ],
-            "iv_scale": 253,
-            "ball_seal": 0
+            "iv_scale": 251,
+            "nature": "NATURE_SASSY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_GOLDUCK",
+            "form": 0,
+            "level": 46,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_PSYCHIC",
+                "MOVE_ICE_BEAM",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 251,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_ARAQUANID",
+            "form": 0,
+            "level": 46,
+            "item": "ITEM_BIG_ROOT",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_LUNGE",
+                "MOVE_STICKY_WEB",
+                "MOVE_POISON_JAB"
+            ],
+            "iv_scale": 251,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

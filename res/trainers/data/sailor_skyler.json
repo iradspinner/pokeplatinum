@@ -12,30 +12,66 @@
         {
             "species": "SPECIES_MANTINE",
             "form": 0,
-            "level": 44,
-            "item": "ITEM_NONE",
+            "level": 47,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_SURF",
-                "MOVE_PSYBEAM",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_SIGNAL_BEAM"
+                "MOVE_DEFOG",
+                "MOVE_SCALD",
+                "MOVE_BOUNCE",
+                "MOVE_HAZE"
             ],
             "iv_scale": 240,
-            "ball_seal": 0
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 2
         },
         {
-            "species": "SPECIES_HARIYAMA",
+            "species": "SPECIES_MACHAMP",
             "form": 0,
-            "level": 44,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 47,
+            "item": "ITEM_BLACK_BELT",
             "moves": [
-                "MOVE_BELLY_DRUM",
-                "MOVE_SUPERPOWER",
-                "MOVE_FIRE_PUNCH",
-                "MOVE_ICE_PUNCH"
+                "MOVE_DYNAMIC_PUNCH",
+                "MOVE_KNOCK_OFF",
+                "MOVE_STONE_EDGE",
+                "MOVE_BULLET_PUNCH"
             ],
-            "iv_scale": 245,
-            "ball_seal": 0
+            "iv_scale": 240,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_CRAWDAUNT",
+            "form": 0,
+            "level": 47,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_CRABHAMMER",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SUPERPOWER",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 240,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_GYARADOS",
+            "form": 0,
+            "level": 48,
+            "item": "ITEM_RINDO_BERRY",
+            "moves": [
+                "MOVE_DRAGON_DANCE",
+                "MOVE_WATERFALL",
+                "MOVE_BOUNCE",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 240,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

@@ -10,18 +10,68 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_TORKOAL",
+            "form": 0,
+            "level": 45,
+            "item": "ITEM_HEAT_ROCK",
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_LAVA_PLUME",
+                "MOVE_YAWN",
+                "MOVE_RAPID_SPIN"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_ARMAROUGE",
+            "form": 0,
+            "level": 45,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_MYSTICAL_FIRE",
+                "MOVE_PSYSHOCK",
+                "MOVE_ENERGY_BALL",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_CAMERUPT",
+            "form": 0,
+            "level": 45,
+            "item": "ITEM_PASSHO_BERRY",
+            "moves": [
+                "MOVE_HEAT_WAVE",
+                "MOVE_EARTH_POWER",
+                "MOVE_STONE_EDGE",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
             "species": "SPECIES_MAGMORTAR",
             "form": 0,
             "level": 46,
-            "item": null,
+            "item": "ITEM_CHARCOAL",
             "moves": [
-                "MOVE_CONFUSE_RAY",
-                "MOVE_FLARE_BLITZ",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_MACH_PUNCH"
+                "MOVE_FIRE_BLAST",
+                "MOVE_THUNDERBOLT",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_PSYCHIC"
             ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

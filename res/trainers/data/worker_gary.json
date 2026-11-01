@@ -10,18 +10,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGNETON",
+            "species": "SPECIES_METANG",
             "form": 0,
-            "level": 51,
-            "item": null,
+            "level": 50,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_THUNDERBOLT",
-                "MOVE_TRI_ATTACK",
-                "MOVE_FLASH_CANNON",
-                "MOVE_NONE"
+                "MOVE_METEOR_MASH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_EARTHQUAKE"
             ],
             "iv_scale": 244,
-            "ball_seal": 0
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_PROBOPASS",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_POWER_GEM",
+                "MOVE_EARTH_POWER",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 244,
+            "nature": "NATURE_SASSY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_MAGNET",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_FLASH_CANNON",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_MIRROR_COAT"
+            ],
+            "iv_scale": 244,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

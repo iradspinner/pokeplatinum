@@ -10,20 +10,53 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_GARGANACL",
+            "form": 0,
+            "level": 45,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_STONE_EDGE",
+                "MOVE_RECOVER",
+                "MOVE_CURSE"
+            ],
+            "iv_scale": 246,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_HARIYAMA",
+            "form": 0,
+            "level": 45,
+            "item": "ITEM_FLAME_ORB",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_KNOCK_OFF",
+                "MOVE_BULLET_PUNCH"
+            ],
+            "iv_scale": 246,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
             "species": "SPECIES_MACHAMP",
             "form": 0,
             "level": 46,
-            "item": "ITEM_FLAME_ORB",
+            "item": "ITEM_ZOOM_LENS",
             "moves": [
-                "MOVE_CLOSE_COMBAT",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_BULK_UP",
-                "MOVE_SMELLING_SALT"
+                "MOVE_DYNAMIC_PUNCH",
+                "MOVE_STONE_EDGE",
+                "MOVE_KNOCK_OFF",
+                "MOVE_ICE_PUNCH"
             ],
             "iv_scale": 246,
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 2
         }
     ],
     "messages": [

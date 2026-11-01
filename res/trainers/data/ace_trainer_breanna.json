@@ -10,55 +10,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PROBOPASS",
-            "form": 0,
-            "level": 50,
-            "item": "ITEM_FOCUS_SASH",
-            "moves": [
-                "MOVE_STEALTH_ROCK",
-                "MOVE_POWER_GEM",
-                "MOVE_EARTH_POWER",
-                "MOVE_THUNDER_WAVE"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_MODEST",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
-        },
-        {
             "species": "SPECIES_BRONZONG",
             "form": 0,
-            "level": 51,
-            "item": "ITEM_LEFTOVERS",
+            "level": 50,
+            "item": "ITEM_MENTAL_HERB",
+            "moves": [
+                "MOVE_TRICK_ROOM",
+                "MOVE_GYRO_BALL",
+                "MOVE_EARTHQUAKE",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_SASSY",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_KLEFKI",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_LIGHT_CLAY",
             "moves": [
                 "MOVE_REFLECT",
                 "MOVE_LIGHT_SCREEN",
-                "MOVE_GYRO_BALL",
-                "MOVE_EARTHQUAKE"
+                "MOVE_SPIKES",
+                "MOVE_THUNDER_WAVE"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_RELAXED",
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_SKARMORY",
+            "species": "SPECIES_CORVIKNIGHT",
             "form": 0,
             "level": 51,
-            "item": "ITEM_SHARP_BEAK",
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
                 "MOVE_BRAVE_BIRD",
-                "MOVE_STEEL_WING",
-                "MOVE_ROOST",
-                "MOVE_SWORDS_DANCE"
+                "MOVE_IRON_HEAD",
+                "MOVE_BULK_UP",
+                "MOVE_ROOST"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
+            "ability": 3,
+            "gender": null
         },
         {
             "species": "SPECIES_EMPOLEON",
@@ -66,50 +66,16 @@
             "level": 51,
             "item": "ITEM_MYSTIC_WATER",
             "moves": [
-                "MOVE_SURF",
-                "MOVE_ICE_BEAM",
+                "MOVE_HYDRO_PUMP",
                 "MOVE_FLASH_CANNON",
+                "MOVE_ICE_BEAM",
                 "MOVE_GRASS_KNOT"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
             "ability": 2,
-            "gender": "female"
-        },
-        {
-            "species": "SPECIES_STEELIX",
-            "form": 0,
-            "level": 51,
-            "item": "ITEM_PASSHO_BERRY",
-            "moves": [
-                "MOVE_IRON_HEAD",
-                "MOVE_EARTHQUAKE",
-                "MOVE_STONE_EDGE",
-                "MOVE_CRUNCH"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
-            "ball_seal": 0,
-            "ability": 2,
-            "gender": "female"
-        },
-        {
-            "species": "SPECIES_CORVIKNIGHT",
-            "form": 0,
-            "level": 52,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_BRAVE_BIRD",
-                "MOVE_IRON_HEAD",
-                "MOVE_REVENGE",
-                "MOVE_ROOST"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_IMPISH",
-            "ball_seal": 0,
-            "ability": 3,
-            "gender": "female"
+            "gender": null
         }
     ],
     "messages": [

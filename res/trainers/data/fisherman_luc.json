@@ -10,20 +10,69 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_OCTILLERY",
+            "species": "SPECIES_QWILFISH",
             "form": 0,
-            "level": 45,
-            "item": null,
+            "level": 47,
+            "item": "ITEM_EVIOLITE",
             "moves": [
+                "MOVE_SPIKES",
                 "MOVE_WATERFALL",
-                "MOVE_SEED_BOMB",
-                "MOVE_GUNK_SHOT",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_POISON_JAB",
+                "MOVE_TAUNT"
             ],
             "iv_scale": 236,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
+        },
+        {
+            "species": "SPECIES_MANTINE",
+            "form": 0,
+            "level": 47,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_SCALD",
+                "MOVE_BOUNCE",
+                "MOVE_ROOST",
+                "MOVE_TOXIC"
+            ],
+            "iv_scale": 236,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_OCTILLERY",
+            "form": 0,
+            "level": 47,
+            "item": "ITEM_SCOPE_LENS",
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_FIRE_BLAST",
+                "MOVE_ENERGY_BALL",
+                "MOVE_GUNK_SHOT"
+            ],
+            "iv_scale": 236,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_DHELMISE",
+            "form": 0,
+            "level": 48,
+            "item": "ITEM_SPELL_TAG",
+            "moves": [
+                "MOVE_POLTERGEIST",
+                "MOVE_FLASH_CANNON",
+                "MOVE_SOLAR_BLADE",
+                "MOVE_RAPID_SPIN"
+            ],
+            "iv_scale": 236,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

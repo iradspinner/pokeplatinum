@@ -10,36 +10,54 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_OCTILLERY",
+            "species": "SPECIES_QWILFISH",
             "form": 0,
-            "level": 44,
-            "item": null,
+            "level": 46,
+            "item": "ITEM_EVIOLITE",
             "moves": [
-                "MOVE_OCTAZOOKA",
-                "MOVE_ICE_BEAM",
-                "MOVE_FLAMETHROWER",
-                "MOVE_SIGNAL_BEAM"
+                "MOVE_SPIKES",
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_WATERFALL",
+                "MOVE_POISON_JAB"
             ],
             "iv_scale": 239,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
         },
         {
             "species": "SPECIES_TENTACRUEL",
             "form": 0,
-            "level": 44,
-            "item": null,
+            "level": 46,
+            "item": "ITEM_ZOOM_LENS",
             "moves": [
-                "MOVE_POISON_JAB",
-                "MOVE_WATERFALL",
-                "MOVE_KNOCK_OFF",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_HYDRO_PUMP",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_ICE_BEAM",
+                "MOVE_RAPID_SPIN"
             ],
-            "iv_scale": 246,
+            "iv_scale": 239,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
+        },
+        {
+            "species": "SPECIES_OCTILLERY",
+            "form": 0,
+            "level": 47,
+            "item": "ITEM_SCOPE_LENS",
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_FIRE_BLAST",
+                "MOVE_ICE_BEAM",
+                "MOVE_GUNK_SHOT"
+            ],
+            "iv_scale": 239,
+            "nature": "NATURE_RASH",
+            "ball_seal": 0,
+            "ability": 2
         }
     ],
     "messages": [

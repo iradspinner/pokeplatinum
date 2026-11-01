@@ -10,36 +10,86 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_WORMADAM",
-            "form": 2,
-            "level": 49,
-            "item": null,
+            "species": "SPECIES_KLEFKI",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_LIGHT_CLAY",
             "moves": [
-                "MOVE_GYRO_BALL",
-                "MOVE_BUG_BITE",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_STEALTH_ROCK"
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_FOUL_PLAY"
             ],
             "iv_scale": 225,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_MAGNETON",
+            "species": "SPECIES_CORVIKNIGHT",
             "form": 0,
-            "level": 49,
-            "item": null,
+            "level": 51,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_FLASH_CANNON",
-                "MOVE_THUNDERBOLT",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_TRI_ATTACK"
+                "MOVE_BRAVE_BIRD",
+                "MOVE_IRON_HEAD",
+                "MOVE_ROOST",
+                "MOVE_U_TURN"
             ],
-            "iv_scale": 248,
+            "iv_scale": 225,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 3,
             "gender": null
+        },
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_FLASH_CANNON",
+                "MOVE_TRI_ATTACK",
+                "MOVE_LIGHT_SCREEN"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_FERROTHORN",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_ROCKY_HELMET",
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_GYRO_BALL",
+                "MOVE_ENERGY_BALL",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_BASTIODON",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_CHOPLE_BERRY",
+            "moves": [
+                "MOVE_IRON_HEAD",
+                "MOVE_STONE_EDGE",
+                "MOVE_METAL_BURST",
+                "MOVE_ROAR"
+            ],
+            "iv_scale": 225,
+            "nature": "NATURE_SASSY",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [

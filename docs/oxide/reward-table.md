@@ -140,8 +140,8 @@ TMs by the split they first come in, against each split's share by its length (t
 | Gardenia | 9.2 | 8 | 13 |
 | Fantina | 10.4 | 10 | 14 |
 | Maylene | 8.7 | 9 | 17 |
-| Wake | 17.5 | 17 | 9 |
-| Byron | 14.4 | 14 | 17 |
+| Wake | 15.3 | 17 | 9 |
+| Byron | 16.5 | 14 | 17 |
 | Candice | 6.8 | 7 | 6 |
 | HQ | 2.8 | 2 | 8 |
 | Galactic | 15.3 | 17 | 5 |
@@ -459,8 +459,8 @@ Each is optional (the census reads it as avoidable or off the story path) and gi
 | Weakness Policy | Wake | Scientist Shaun | Route 212 South | 3.2 |
 | Wide Lens | Wake | Fisherman Josh | Route 212 South | 3.4 |
 | Covert Cloak | Wake | Fisherman Kenneth | Route 213 | 3.2 |
-| Eject Button | Wake | Tuber Trenton | Route 219 | 2.9 |
-| Red Card | Wake | Tuber Mariel | Route 219 | 2.8 |
+| Eject Button | Byron | Tuber Trenton | Route 219 | 2.9 |
+| Red Card | Byron | Tuber Mariel | Route 219 | 2.8 |
 | Mirror Herb | Byron | Swimmer♀ Jessica | Route 220 | 2.7 |
 | Zoom Lens | Byron | Swimmer♂ Adrian | Route 220 | 2.7 |
 | Clear Amulet | Byron | Fisherman Cory | Route 221 | 2.7 |

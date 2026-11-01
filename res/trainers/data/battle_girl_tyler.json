@@ -13,16 +13,50 @@
         {
             "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 48,
-            "item": null,
+            "level": 49,
+            "item": "ITEM_FOCUS_BAND",
             "moves": [
-                "MOVE_SKY_UPPERCUT",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_SEED_BOMB",
-                "MOVE_SPORE"
+                "MOVE_SPORE",
+                "MOVE_MACH_PUNCH",
+                "MOVE_BULLET_SEED",
+                "MOVE_ROCK_TOMB"
             ],
             "iv_scale": 251,
-            "ball_seal": 0
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_MEDICHAM",
+            "form": 0,
+            "level": 49,
+            "item": "ITEM_BLACK_BELT",
+            "moves": [
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_ICE_PUNCH",
+                "MOVE_BULLET_PUNCH"
+            ],
+            "iv_scale": 251,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_HAWLUCHA",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_SHARP_BEAK",
+            "moves": [
+                "MOVE_FLYING_PRESS",
+                "MOVE_BOUNCE",
+                "MOVE_BULK_UP",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 251,
+            "nature": "NATURE_HARDY",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [
