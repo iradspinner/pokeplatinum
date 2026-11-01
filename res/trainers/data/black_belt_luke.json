@@ -21,7 +21,7 @@
                 "MOVE_BULK_UP"
             ],
             "iv_scale": 225,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
             "ability": 2
         },
@@ -37,7 +37,7 @@
                 "MOVE_POWER_UP_PUNCH"
             ],
             "iv_scale": 225,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 3
         },

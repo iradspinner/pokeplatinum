@@ -22,7 +22,7 @@
                 "MOVE_WILL_O_WISP"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 3
         },
@@ -54,7 +54,7 @@
                 "MOVE_NASTY_PLOT"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
             "ability": 1
         },
@@ -70,7 +70,7 @@
                 "MOVE_BRICK_BREAK"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
             "ability": 1
         }

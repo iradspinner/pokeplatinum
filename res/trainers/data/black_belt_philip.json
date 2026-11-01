@@ -21,7 +21,7 @@
                 "MOVE_BLAZE_KICK"
             ],
             "iv_scale": 230,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 2
         },
@@ -53,7 +53,7 @@
                 "MOVE_ICE_PUNCH"
             ],
             "iv_scale": 230,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
             "ability": 2
         },

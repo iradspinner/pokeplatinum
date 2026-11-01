@@ -22,7 +22,7 @@
                 "MOVE_CALM_MIND"
             ],
             "iv_scale": 225,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
             "ability": 3
         },
@@ -38,7 +38,7 @@
                 "MOVE_THUNDERBOLT"
             ],
             "iv_scale": 225,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
             "ability": 1
         },

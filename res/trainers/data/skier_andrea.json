@@ -37,7 +37,7 @@
                 "MOVE_SPIKES"
             ],
             "iv_scale": 230,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 3
         },
@@ -53,7 +53,7 @@
                 "MOVE_HEX"
             ],
             "iv_scale": 230,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
             "ability": 1
         }

@@ -21,7 +21,7 @@
                 "MOVE_HYPNOSIS"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 3
         },

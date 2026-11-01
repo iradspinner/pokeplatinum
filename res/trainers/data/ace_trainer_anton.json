@@ -85,7 +85,7 @@
                 "MOVE_BRICK_BREAK"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_SERIOUS",
             "ball_seal": 0,
             "ability": 1
         }

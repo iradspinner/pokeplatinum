@@ -22,7 +22,7 @@
                 "MOVE_AERIAL_ACE"
             ],
             "iv_scale": 225,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 1
         },
@@ -38,7 +38,7 @@
                 "MOVE_SUPERPOWER"
             ],
             "iv_scale": 225,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
             "ability": 1
         },

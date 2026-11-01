@@ -37,7 +37,7 @@
                 "MOVE_BRICK_BREAK"
             ],
             "iv_scale": 225,
-            "nature": "NATURE_JOLLY",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 1
         },
@@ -53,7 +53,7 @@
                 "MOVE_NASTY_PLOT"
             ],
             "iv_scale": 225,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_BASHFUL",
             "ball_seal": 0,
             "ability": 2
         }

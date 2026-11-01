@@ -21,7 +21,7 @@
                 "MOVE_ENERGY_BALL"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
             "ability": 1
         },
@@ -69,7 +69,7 @@
                 "MOVE_SHADOW_BALL"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 3
         }

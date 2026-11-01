@@ -21,7 +21,7 @@
                 "MOVE_THUNDER_WAVE"
             ],
             "iv_scale": 225,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 3
         },
@@ -37,7 +37,7 @@
                 "MOVE_SUCKER_PUNCH"
             ],
             "iv_scale": 225,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
             "ability": 3
         },

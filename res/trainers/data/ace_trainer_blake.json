@@ -21,7 +21,7 @@
                 "MOVE_EARTHQUAKE"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
             "ability": 2
         },
@@ -53,7 +53,7 @@
                 "MOVE_FOCUS_BLAST"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
             "ability": 1
         },
@@ -69,7 +69,7 @@
                 "MOVE_NASTY_PLOT"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 3
         },

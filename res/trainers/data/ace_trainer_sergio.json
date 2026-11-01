@@ -21,7 +21,7 @@
                 "MOVE_PSYCHIC"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 3
         },
@@ -37,7 +37,7 @@
                 "MOVE_FOCUS_BLAST"
             ],
             "iv_scale": 240,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
             "ability": 3
         },
