@@ -203,16 +203,16 @@
   "dummy_009": {
     "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
     "party": "edited in the OxiDex team builder, 2026-10-31",
-    "name": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams",
-    "class": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams",
-    "messages": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams"
+    "name": "Ian named the Pal Park officers Phobos and Deimos, the Jubilife pair, 2026-10-31",
+    "class": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams; then a male grunt, as at Jubilife (2026-10-31)",
+    "messages": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams; then Phobos's and Deimos's defeat lines (2026-10-31)"
   },
   "dummy_050": {
     "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
     "party": "edited in the OxiDex team builder, 2026-10-31",
-    "name": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams",
-    "class": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams",
-    "messages": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams"
+    "name": "Ian named the Pal Park officers Phobos and Deimos, the Jubilife pair, 2026-10-31",
+    "class": "both officers are male grunts, as at Jubilife (2026-10-31)",
+    "messages": "the Pal Park partner double's placeholder officers, seeded in a free slot (Ian, 2026-10-31); Ian names them and sets their teams; then Phobos's and Deimos's defeat lines (2026-10-31)"
   },
   "dummy_051": {
     "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
@@ -311,10 +311,18 @@
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
   "galactic_grunt_jubilife_city_1": {
-    "party": "edited in the OxiDex team builder, 2026-10-30"
+    "party": "edited in the OxiDex team builder, 2026-10-30",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "name": "Ian named the Jubilife grunts Officers Phobos and Deimos, 2026-10-31",
+    "class": "a male grunt, as the Jubilife scene's two sprites are (2026-10-31)",
+    "messages": "the officers' defeat lines name their fear and dread (2026-10-31)"
   },
   "galactic_grunt_jubilife_city_2": {
-    "party": "edited in the OxiDex team builder, 2026-10-30"
+    "party": "edited in the OxiDex team builder, 2026-10-30",
+    "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
+    "name": "Ian named the Jubilife grunts Officers Phobos and Deimos, 2026-10-31",
+    "class": "a male grunt, as the Jubilife scene's two sprites are (2026-10-31)",
+    "messages": "the officers' defeat lines name their fear and dread (2026-10-31)"
   },
   "galactic_grunt_lake_verity_3": {
     "party": "edited in the OxiDex team builder, 2026-10-29"

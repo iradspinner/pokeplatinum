@@ -313,6 +313,11 @@ IAN_EGG_MOVES = {
                                            "which learns it at 42"),
                      ("MOVE_ICY_WIND", "Ian, 2026-10-31: the Eterna building 3F grunt's Kadabra at 26")],
     "SPECIES_HOOTHOOT": [("MOVE_TAILWIND", "Ian, 2026-10-31: Collector Jamal's Noctowl at 38")],
+    # The Pal Park partner's Scizor at 48 (Ian, 2026-10-31): Scizor learns
+    # Brick Break at 55. TM 31 also gives it today, so this keeps the move in
+    # the palette if the TM list changes.
+    "SPECIES_SCYTHER": [("MOVE_BRICK_BREAK", "Ian, 2026-10-31: the Pal Park partner's Scizor at 48, "
+                                             "which learns it at 55")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

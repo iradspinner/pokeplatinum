@@ -1,63 +1,64 @@
 {
-    "name": "Grunt",
+    "name": "Officer Deimos",
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_HARRASSMENT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GLAMEOW",
+            "species": "SPECIES_JOLTIK",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_SILK_SCARF",
+            "level": 17,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_FAKE_OUT",
-                "MOVE_HYPNOSIS",
-                "MOVE_FURY_SWIPES",
-                "MOVE_BITE"
+                "MOVE_ELECTROWEB",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_STRING_SHOT",
+                "MOVE_LIGHT_SCREEN"
             ],
-            "iv_scale": 200,
-            "nature": "NATURE_NAIVE",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_BRONZOR",
-            "form": 0,
-            "level": 15,
-            "item": "ITEM_COLBUR_BERRY",
-            "moves": [
-                "MOVE_CONFUSION",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_ROCK_TOMB",
-                "MOVE_IMPRISON"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_SASSY",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_PURRLOIN",
-            "form": 0,
-            "level": 16,
-            "item": "ITEM_BLACKGLASSES",
-            "moves": [
-                "MOVE_THUNDER_WAVE",
-                "MOVE_PURSUIT",
-                "MOVE_FURY_SWIPES",
-                "MOVE_TAUNT"
-            ],
-            "iv_scale": 200,
-            "nature": "NATURE_QUIRKY",
+            "iv_scale": 255,
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SURSKIT",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_MYSTIC_WATER",
+            "moves": [
+                "MOVE_ICY_WIND",
+                "MOVE_SCARY_FACE",
+                "MOVE_WATER_PULSE",
+                "MOVE_STRUGGLE_BUG"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_ARBOK",
+            "form": 0,
+            "level": 18,
+            "item": "ITEM_POISON_BARB",
+            "moves": [
+                "MOVE_GLARE",
+                "MOVE_POISON_JAB",
+                "MOVE_BITE",
+                "MOVE_ROCK_TOMB"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 3,
             "gender": null
         }
     ],
@@ -65,8 +66,8 @@
         {
             "type": "TRMSG_DEFEAT",
             "en_US": [
-                "This won’t do... Time to retreat.\n",
-                "This mission is a failure.\n"
+                "The dread was meant to be yours...\n",
+                "Fall back. This mission has failed.\n"
             ]
         }
     ]

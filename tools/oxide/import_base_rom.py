@@ -1502,6 +1502,12 @@ TEXT_BANKS_SKIPPED[103] = ("Oak asks the player back after the Hall of Fame befo
 # Pal Park's lobby gains the partner double's lines (Ian, 2026-10-31).
 TEXT_BANKS_SKIPPED[515] = ("the Pal Park partner double's lines: Lucas or Dawn and two Galactic "
                            "officers (Ian, 2026-10-31)")
+# The Pal Park officers are Phobos and Deimos, the Jubilife pair (Ian, 2026-10-31).
+TEXT_BANKS_SKIPPED[515] += "; then the officers named Phobos and Deimos (Ian, 2026-10-31)"
+# Jubilife's two grunts are Officers Phobos and Deimos (Ian, 2026-10-31), so the
+# Rowan scene's speaker labels name them and they name themselves.
+TEXT_BANKS_SKIPPED[23] = ("the Rowan scene's grunts are Officers Phobos and Deimos, and their "
+                          "lines name them (Ian, 2026-10-31)")
 # Barry on Canalave's bridge sends the player to Pal Park until its partner
 # double is won (Ian, 2026-10-31).
 TEXT_BANKS_SKIPPED[54] += ("; then Barry on the bridge sends the player to Pal Park until its "
