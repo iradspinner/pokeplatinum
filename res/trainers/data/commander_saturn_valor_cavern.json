@@ -10,6 +10,74 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_GLIMMORA",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_ENERGY_BALL",
+                "MOVE_STEALTH_ROCK",
+                "MOVE_SLUDGE_WAVE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_MANTINE",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_CONFUSE_RAY",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_HURRICANE",
+                "MOVE_AQUA_RING"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_NAGANADEL",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_VENOSHOCK",
+                "MOVE_THUNDERBOLT",
+                "MOVE_HEX",
+                "MOVE_FLAMETHROWER"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_TROPIUS",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_YACHE_BERRY",
+            "moves": [
+                "MOVE_APPLE_ACID",
+                "MOVE_DRAGON_TAIL",
+                "MOVE_TAILWIND",
+                "MOVE_SYNTHESIS"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
             "species": "SPECIES_AZELF",
             "form": 0,
             "level": 51,
@@ -23,93 +91,25 @@
             "iv_scale": 255,
             "nature": "NATURE_TIMID",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_MR_MIME",
-            "form": 0,
-            "level": 52,
-            "item": "ITEM_LIGHT_CLAY",
-            "moves": [
-                "MOVE_REFLECT",
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_PSYCHIC",
-                "MOVE_THUNDERBOLT"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_HASTY",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_WOBBUFFET",
-            "form": 0,
-            "level": 52,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_COUNTER",
-                "MOVE_ENCORE",
-                "MOVE_SAFEGUARD",
-                "MOVE_CHARM"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_BOLD",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_LICKILICKY",
-            "form": 0,
-            "level": 52,
-            "item": "ITEM_TOXIC_ORB",
-            "moves": [
-                "MOVE_BODY_SLAM",
-                "MOVE_EARTHQUAKE",
-                "MOVE_KNOCK_OFF",
-                "MOVE_POWER_WHIP"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_BRAVE",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_RHYPERIOR",
-            "form": 0,
-            "level": 52,
-            "item": "ITEM_PASSHO_BERRY",
-            "moves": [
-                "MOVE_EARTHQUAKE",
-                "MOVE_STONE_EDGE",
-                "MOVE_HAMMER_ARM",
-                "MOVE_ICE_PUNCH"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_TOXICROAK",
+            "species": "SPECIES_SALAZZLE",
             "form": 0,
             "level": 53,
-            "item": "ITEM_LUM_BERRY",
+            "item": "ITEM_POISON_BARB",
             "moves": [
-                "MOVE_POISON_JAB",
-                "MOVE_CROSS_CHOP",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_SWORDS_DANCE"
+                "MOVE_VENOSHOCK",
+                "MOVE_TOXIC",
+                "MOVE_FIRE_BLAST",
+                "MOVE_NASTY_PLOT"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_LONELY",
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": "female"
         }
     ],
     "messages": [
