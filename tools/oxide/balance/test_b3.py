@@ -238,6 +238,57 @@ def check_exact_types(results, blob):
                     f"{top[('pika', 'water')]}; the alias's types {out['pokemon']['water']['types']}"))
 
 
+def check_batching(results, blob):
+    """A job too big for one Node process (its answer past V8's longest
+    string, Ace Trainer Alyssa's blind draw of 2026-11-02) is run in batches
+    of its pairs, and the batches' joined answer is the one process's, byte
+    for byte. A small job stands in for a big one by lowering the batch
+    size: one Pokemon holds the Eviolite and one has exact types, so each
+    batch's engine set-up is checked too, and the weathers and Pokemon
+    recur across batches."""
+    iv = {k: 31 for k in ("hp", "at", "df", "sp", "sa", "sd")}
+    ev = {k: 0 for k in iv}
+    base = {"level": 50, "nature": "Hardy", "ivs": iv, "evs": ev}
+    pel = blob["poks"]["Pelipper"]
+    pokemon = {
+        "chomp": dict(base, species="Garchomp"), "champ": dict(base, species="Machamp"),
+        "nacl": dict(base, species="Naclstack", item="Eviolite"), "zor": dict(base, species="Bronzor"),
+        "water": dict(base, species="Pelipper", species_data={
+            "bs": {k: pel["bs"][k] for k in STATS}, "types": ["Water"], "exact_types": True}),
+    }
+    moves = {"chomp": ["Earthquake", "Dragon Claw", "Stone Edge"], "champ": ["Cross Chop", "Crunch"],
+             "nacl": ["Rock Slide"], "zor": ["Psychic", "Gyro Ball"], "water": ["Surf", "Hurricane"]}
+    pairs = [[a, d, moves[a], w] for w in (None, "Rain", "Sand") for a in pokemon for d in pokemon if a != d]
+    jobs = {"pokemon": pokemon, "pairs": pairs}
+    calls = []
+    real = calc.subprocess.run
+
+    def counted(*args, **kw):
+        calls.append(args)
+        return real(*args, **kw)
+
+    saved = getattr(calc, "BATCH_MOVES", None)
+    calc.subprocess.run = counted
+    try:
+        whole = _run(blob, jobs)
+        one = len(calls)
+        calc.BATCH_MOVES = 7
+        split = _run(blob, jobs)
+    finally:
+        calc.subprocess.run = real
+        if saved is None:
+            del calc.BATCH_MOVES
+        else:
+            calc.BATCH_MOVES = saved
+    runs = len(calls) - one
+    for out in (whole, split):
+        out.pop("seconds", None)
+    same = json.dumps(whole) == json.dumps(split)
+    results.append(("a big job runs in batches whose joined answer is one process's", one == 1 and runs > 1 and same,
+                    f"{len(pairs)} pairs: one process, then {runs} batches of at most 7 moves; "
+                    f"answers {'identical' if same else 'differ'}"))
+
+
 def main():
     results = []
     blob = calc_export.build()
@@ -246,6 +297,7 @@ def main():
     check_eviolite(results, blob)
     check_ref_overrides(results, blob)
     check_exact_types(results, blob)
+    check_batching(results, blob)
     check_pool(results, blob)
     check_flag_numbers(results)
     width = max(len(label) for label, _, _ in results)

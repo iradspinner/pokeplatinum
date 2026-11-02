@@ -252,6 +252,7 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None, share=None):
         a = 0                    # Unaware ignores the attacker's stages
     if att.ability == "Unaware" or mv.const in fs.IGNORE_TARGET_STAGES:
         d = 0                    # and, on its own attack, the target's, as Sacred Sword's kind does
+    a = fs.foul_play_stage(dfn, mv, a)   # Foul Play meets the target's Attack stage
     if crit:
         a, d = max(a, 0), min(d, 0)
     mult = fs.stage_mult(a) / fs.stage_mult(d) * fs.state_mult(b, att, dfn, mv)
