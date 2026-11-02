@@ -1,6 +1,15 @@
 # Lucas and Dawn 2: a small tune toward 90 to 94 percent won
 
-Lucas and Dawn 2 (Route 207, Fantina's split, honour cap 31) read 100, 92 and 99 percent won on the scorer's three boxes in run `spot-61b9d0391` (at 61b9d0391, before Pursuit went to 60 power). Ian's target when the team was redesigned was 90 to 94, and on 2026-11-02 he chose "Tune it a little". This page proposes the dials from the reading's own evidence. Nothing in `res/` has changed, the scorer was not run, and the simulator was not touched.
+Lucas and Dawn 2 (Route 207, Fantina's split, honour cap 31) read 100, 92 and 99 percent won on the scorer's three boxes in run `spot-61b9d0391` (at 61b9d0391, before Pursuit went to 60 power). Ian's target when the team was redesigned was 90 to 94, and on 2026-11-02 he chose "Tune it a little". This page proposes the dials from the reading's own evidence, and Ian answered the same day.
+
+## Ian's answers (2026-11-02)
+
+1. Umbreon takes Foul Play for Payback, in all six files. Foul Play's 95 power goes past the redesign's limit of 90 for borrowed attacks, by Ian's choice.
+2. Monferno takes Grass Knot for Rock Slide, in the Piplup player's files (`dummy_794` and `dummy_801`) only.
+3. The simulator's Foul Play gap is fixed, test first, on its own branch (`overseer-foul-play-fix`), so that a later reading counts the target's Attack and stages.
+4. No scorer reading. "its not the end of the world if this is a slightly easy fight." Lucas and Dawn 2 is judged in the playtest (`ingame-checklist.md`, section 3).
+
+Both dials are in the six files on this branch, saved through the OxiDex's own save (the trainer lint and the packer). Both moves are on their species' Oxide lists at the members' levels (Foul Play TM 77 at 29, Grass Knot TM 86 at 31), so no egg list changed. Umbreon's Toxic stays out. The rest of this page is the proposal as Ian read it.
 
 ## Summary
 
