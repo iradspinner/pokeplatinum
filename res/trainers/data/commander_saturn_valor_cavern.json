@@ -55,7 +55,7 @@
                 "MOVE_FLAMETHROWER"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_HASTY",
+            "nature": "NATURE_RASH",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -81,9 +81,9 @@
             "species": "SPECIES_AZELF",
             "form": 0,
             "level": 51,
-            "item": "ITEM_FOCUS_SASH",
+            "item": "ITEM_BABIRI_BERRY",
             "moves": [
-                "MOVE_STEALTH_ROCK",
+                "MOVE_DAZZLING_GLEAM",
                 "MOVE_U_TURN",
                 "MOVE_PSYCHIC",
                 "MOVE_FIRE_BLAST"
