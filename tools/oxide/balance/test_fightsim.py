@@ -3290,6 +3290,40 @@ def check_sacred_sword(results):
                     f"(at +2 Defense, at -2) {got}; landed of 2000 against +6 evasion {hits}"))
 
 
+def check_foul_play_stages(results):
+    """Foul Play (BattleSystem_CalcMoveDamage, battle_lib.c) hits with the
+    target's Attack and the target's Attack stage, taken after the Unaware
+    step, so the user's own stages, an Intimidate drop on the user and a
+    target's Unaware all leave it alone; a critical hit passes over a
+    lowered stage as with any attack. The calculator's row already holds
+    the target's Attack at no stage. Rows of 40 here, each figure from the
+    battle's own damage and from perfectline's, which the readings use;
+    until 2026-11-02 both scaled Foul Play by the user's stage and missed
+    the target's."""
+    def hit(target_atk=0, user_atk=0, intimidated=False, unaware=False, crit=False, name="Foul Play"):
+        b, p, foe = battle([name], ["Tackle"], {("p", name): [40] * 16})
+        foe.stages["atk"], p.stages["atk"] = target_atk, user_atk
+        if intimidated:
+            foe.ability = "Intimidate"
+            fs.intimidate_foes(b, [foe])
+        if unaware:
+            foe.ability = "Unaware"
+        mv = fs.move(name)
+        return (b.damage(p, foe, mv, roll=0, crit=crit), perfectline.damage_of(b, p, foe, mv, crit, True))
+    from . import perfectline
+    got = {"plain": hit(), "target at +3 Attack": hit(target_atk=3),
+           "target at -2 Attack": hit(target_atk=-2), "user at +2 Attack": hit(user_atk=2),
+           "user under Intimidate": hit(intimidated=True), "Unaware target at +2": hit(target_atk=2, unaware=True),
+           "critical hit, target at -2": hit(target_atk=-2, crit=True),
+           "Tackle, user under Intimidate": hit(intimidated=True, name="Tackle")}
+    want = {"plain": 40, "target at +3 Attack": 100, "target at -2 Attack": 20, "user at +2 Attack": 40,
+            "user under Intimidate": 40, "Unaware target at +2": 80, "critical hit, target at -2": 60,
+            "Tackle, user under Intimidate": 26}
+    want = {k: (v, v) for k, v in want.items()}
+    results.append(("Foul Play takes the target's Attack stage, not the user's (Battle.damage, perfectline.damage_of)",
+                    got == want, f"{got}"))
+
+
 def check_mold_breaker(results):
     """Mold Breaker (approved 2026-10-14; Battler_IgnorableAbility) gets past
     each ability the engine asks that function about, unless the target
@@ -9434,7 +9468,7 @@ def main():
                   check_natural_gift, check_imprison, check_baton_pass,
                   check_magic_guard, check_liquid_ooze,
                   check_drop_answers, check_technician_power, check_stored_power,
-                  check_hard_press, check_electro_ball, check_sacred_sword, check_mold_breaker,
+                  check_hard_press, check_electro_ball, check_sacred_sword, check_foul_play_stages, check_mold_breaker,
                   check_oblivious_taunt, check_cursed_body, check_justified_rattled,
                   check_knockout_boost, check_trapping_exemptions, check_accuracy_abilities,
                   check_download, check_weather_abilities, check_sand_force,

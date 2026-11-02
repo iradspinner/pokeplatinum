@@ -632,6 +632,15 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   you."), then asks about the Pokétch and gives the Dowsing Machine app as
   before, and the bag holds no Lucky Egg. The Pocket PC from Sandgem still
   works.
+- [ ] **Lucas and Dawn 2's tune** (`overseer-ld2-tune`, Ian, 2026-11-02;
+  `ld2-tune.md`). On a real save at the battle at Mt. Coronet's mouth, at or
+  under the honour cap of 31: Umbreon leads and uses Foul Play, not Payback.
+  If one of your Pokemon has used Curse, Foul Play still hits it about as
+  hard as before the Curse, not less. For a Piplup player, Monferno comes
+  last and has Grass Knot, not Rock Slide (it takes a Rock or Ground type
+  such as Onix in one hit). Note how many of your Pokemon faint; the target
+  was about 90 to 94 percent won, and Ian has said a slightly easy fight is
+  acceptable.
 - [ ] Wayward Cave 1F's Ice Stone (Ian, 2026-10-13): in the far northwest,
   walking between Camper Diego and Picnicker Tori starts one battle against
   both, and the ball in the nook behind them gives an Ice Stone, not a

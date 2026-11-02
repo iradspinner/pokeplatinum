@@ -2,7 +2,8 @@
 
 The fight simulator (fightsim.prepare) asks the vendored calculator's own
 engine for every matchup's sixteen damage rolls and both Speeds, through
-calc_headless.js in one Node process. This module holds what it needs to do
+calc_headless.js in one Node process (one a batch, in turn, for a job too
+big for one: run_node). This module holds what it needs to do
 that: the calculator's data (the encounter tool's calc_export, built once a
 process and written to a file the runner reads), the runner itself with the
 Eviolite rule the engine follows, and a fight's map weather in the
@@ -146,8 +147,41 @@ def can_evolve():
     return out
 
 
+# The most move rows one Node process is given. The runner returns its whole
+# answer as one JSON string, and V8 caps a string at about 536 million
+# characters; each move's row (its sixteen rolls, priority and category)
+# takes about 135 of them, so a job past about 4 million moves died with
+# "Invalid string length", and the rows it held before writing ran its
+# heap out first (Ace Trainer Alyssa's blind draw in Byron's split, 7.2
+# million moves, 2026-11-02). 400,000 moves write about 54 MB.
+BATCH_MOVES = 400_000
+
+
+def batches(pairs, budget):
+    """The pairs in order, cut into runs of at most `budget` moves each (a
+    pair counts its moves, and one more for its row), a pair never split."""
+    out, run, used = [], [], 0
+    for pair in pairs:
+        cost = 1 + len(pair[2])
+        if run and used + cost > budget:
+            out.append(run)
+            run, used = [], 0
+        run.append(pair)
+        used += cost
+    if run or not out:
+        out.append(run)
+    return out
+
+
 def run_node(blob_path, jobs):
-    """One Node process, waited on, so nothing else runs beside it."""
+    """Node processes one after another, each waited on, so nothing else runs
+    beside them: one for a job of up to BATCH_MOVES moves, and for a bigger
+    job one for each batch of its pairs, joined into the answer one process
+    would have given. Each batch is sent every Pokemon, so each runner sets
+    up its engine as the one would (the Eviolite's and exact types' tables);
+    the calculator copies a Pokemon before each matchup, so no row depends
+    on the rows run before it in the same process. The results keep the
+    pairs' order and the Pokemon their first appearance's."""
     # Each Eviolite holder carries whether its species can still evolve, by
     # the engine's rule (can_evolve), for the runner's Generation 4 table.
     pokemon = jobs.get("pokemon") or {}
@@ -157,6 +191,21 @@ def run_node(blob_path, jobs):
             k: dict(p, can_evolve=evolves[p["species"]])
             if p.get("item") == "Eviolite" and p.get("species") in evolves else p
             for k, p in pokemon.items()})
+    runs = batches(jobs.get("pairs") or [], BATCH_MOVES)
+    if len(runs) == 1:
+        return _run_once(blob_path, jobs)
+    out = {"pokemon": {}, "results": [], "seconds": 0.0}
+    for run in runs:
+        part = _run_once(blob_path, dict(jobs, pairs=run))
+        out["results"].extend(part["results"])
+        for k, info in part["pokemon"].items():
+            out["pokemon"].setdefault(k, info)
+        out["seconds"] += part.get("seconds", 0.0)
+    return out
+
+
+def _run_once(blob_path, jobs):
+    """One Node process on one job, waited on."""
     with tempfile.TemporaryDirectory(prefix="oxide-b3-") as tmp:
         jobs_path, out_path = os.path.join(tmp, "jobs.json"), os.path.join(tmp, "out.json")
         with open(jobs_path, "w", encoding="utf-8") as f:

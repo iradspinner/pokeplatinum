@@ -18,7 +18,7 @@
                 "MOVE_YAWN",
                 "MOVE_CONFUSE_RAY",
                 "MOVE_REFLECT",
-                "MOVE_PAYBACK"
+                "MOVE_FOUL_PLAY"
             ],
             "iv_scale": 255,
             "nature": "NATURE_TIMID",
@@ -103,7 +103,7 @@
                 "MOVE_BLAZE_KICK",
                 "MOVE_MACH_PUNCH",
                 "MOVE_ZEN_HEADBUTT",
-                "MOVE_ROCK_SLIDE"
+                "MOVE_GRASS_KNOT"
             ],
             "iv_scale": 255,
             "nature": "NATURE_NAIVE",
