@@ -1305,6 +1305,7 @@ class Battle:
             a = 0                # Unaware ignores the attacker's stages
         if att.ability == "Unaware" or mv.const in IGNORE_TARGET_STAGES:
             d = 0                # and, on its own attack, the target's, as Sacred Sword's kind does
+        a = foul_play_stage(dfn, mv, a)
         if crit:
             a, d = max(a, 0), min(d, 0)
         mult = stage_mult(a) / stage_mult(d) * state_mult(self, att, dfn, mv)
@@ -5828,6 +5829,20 @@ def wonder_room(b):
     (sPermanentWonderRoomTrainers) is empty. Until 2026-10-20 the move did
     nothing (Ian approved the fix)."""
     b.wonder_room = 0 if b.wonder_room else 5
+
+
+def foul_play_stage(dfn, mv, a):
+    """The attack stage a hit meets, `a` being the user's after the Unaware
+    step: Foul Play's is the target's Attack stage instead. Oxide's engine
+    (BattleSystem_CalcMoveDamage, src/battle/battle_lib.c) takes Foul Play's
+    attackStat from the defender's BATTLEMON_ATTACK and, after the Unaware
+    step, its attackStage from the defender's BATTLEMON_ATTACK_STAGE, so the
+    user's own stages, an Intimidate drop on the user and a target's Unaware
+    leave it alone; a critical hit then passes over a lowered stage as for
+    any attack. The calculator's row already holds the target's Attack at
+    no stage (its Oxide profile's attackSource). Until 2026-11-02 Battle.damage
+    and perfectline.damage_of used the user's stage (Ian approved the fix)."""
+    return dfn.stages["atk"] if mv.const == "MOVE_FOUL_PLAY" else a
 
 
 def room_mult(att, dfn, mv):
