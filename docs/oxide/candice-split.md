@@ -152,7 +152,7 @@ Each line gives the team in send-out order, its one idea, and any AI flag it car
 | Ninja Boy Ethan | Froslass 54, Banette 54, Sableye 54, Dusknoir 54 | Ghosts in the snow: a Cursed Body Froslass lays Spikes, then ghosts that burn, sneak in first and strip items. | none |
 | Black Belt Luke | Hitmonchan 54, Pawmot 54, Infernape 55, Machamp 55 | Iron fists at the north neck: Iron Fist punches, then Machamp's No Guard Dynamic Punch. | none |
 | Ace Trainer Olivia | Lapras 52, Gyarados 52, Kingdra 53, Goodra 53, Dragonite 54 | Dragons that fear no ice: a singing Lapras, then Dragon Dance from Gyarados, Kingdra and a Multiscale Dragonite, with a Goodra the ice barely scratches. | none |
-| Ace Trainer Brenna | Alolan Ninetales 54, Glaceon 54, Walrein 54 | The first guard: Ice Body in hail from a Snow Warning Ninetales, healing while it chips. | none |
+| Ace Trainer Brenna | Alolan Ninetales 54, Glaceon 54, Walrein 54 | The first guard: Ice Body in the gym's hail, healing while it chips, behind a Light Clay Aurora Veil. | none |
 | Ace Trainer Isaiah | Piloswine 54, Quagsire 54, Swampert 54, Mamoswine 55 | Ground under the ice: Thick Fat and Earthquake, Stealth Rock, and an Unaware Quagsire. | none |
 | Ace Trainer Sergio | Mr. Rime 54, Jynx 54, Frosmoth 54 | Moths and mimes: an Ice Scales Frosmoth Quiver Dances behind Mr. Rime's screens. | none |
 | Ace Trainer Savannah | Froslass 54, Jellicent 54, Mismagius 54, Weavile 55 | Ghosts of the snowfield: a Cursed Body Froslass and a Jellicent, then Hex on the burned and frozen. | Harassment |
@@ -257,7 +257,7 @@ Question 4, Candice's Blizzards, as first asked, rested on a wrong premise: the 
 
 The gym trainers fight in the same hail (goal 3 reads Hail for Brenna, Isaiah and Anton, and the gym's header covers all six). Notes on their sets, now that the hail is known, for a later look and not changed here:
 
-- Ace Trainer Brenna's Alolan Ninetales brings Snow Warning and an Icy Rock for a hail that is already up and never ends, so both do nothing; its Aurora Veil works from the first turn without them. The Icy Rock could become a Light Clay, which lengthens the veil.
+- Ace Trainer Brenna's Alolan Ninetales brought Snow Warning and an Icy Rock for a hail that is already up and never ends, so both did nothing. The Icy Rock is now a Light Clay, which makes her Aurora Veil last eight turns (Ian, 2026-11-01); Snow Warning stays, since Snow Cloak would add evasion.
 - Ace Trainer Isaiah's Quagsire and Swampert, Ace Trainer Savannah's Jellicent and Mismagius, Ace Trainer Sergio's Jynx and Ace Trainer Alicia's Lapras take the hail's chip every turn, and Alicia's Cloyster and Dewgong, Ice types, do not. Isaiah's two Water and Ground members fit the gym least; an Ice type in one slot would suit it better.
 - Ace Trainer Dalton's Abomasnow on Route 217 and Skier Edward's on Route 216 bring their own hail with Snow Warning; those routes have no weather of their own, so theirs still does its job.
 - The members with Ice Body heal in the gym every turn: Brenna's Glaceon and Walrein, Sergio's Mr. Rime, Anton's Glalie. That is a reason to keep them, not to change them.

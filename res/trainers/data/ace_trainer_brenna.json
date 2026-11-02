@@ -13,7 +13,7 @@
             "species": "SPECIES_ALOLAN_NINETALES",
             "form": 0,
             "level": 54,
-            "item": "ITEM_ICY_ROCK",
+            "item": "ITEM_LIGHT_CLAY",
             "moves": [
                 "MOVE_BLIZZARD",
                 "MOVE_DAZZLING_GLEAM",
