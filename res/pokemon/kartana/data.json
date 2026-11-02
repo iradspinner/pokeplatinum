@@ -113,7 +113,10 @@
             "HM05"
         ],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_SMART_STRIKE",
+            "MOVE_SWORDS_DANCE"
+        ]
     },
     "evolutions": [],
     "offspring": "SPECIES_KARTANA",

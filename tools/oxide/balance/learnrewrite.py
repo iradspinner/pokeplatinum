@@ -218,7 +218,9 @@ IAN_EGG_MOVES = {
     # Barry 3 at his honour cap of 36 (Ian, 2026-10-29): moves his three versions
     # carry that their members' lists give only above their new levels.
     "SPECIES_STARLY": [("MOVE_BRAVE_BIRD", "Ian, 2026-10-29: Barry 3's Staraptor at 35")],
-    "SPECIES_PIPLUP": [("MOVE_DRILL_PECK", "Ian, 2026-10-29: Barry 3's Empoleon at 36")],
+    "SPECIES_PIPLUP": [("MOVE_DRILL_PECK", "Ian, 2026-10-29: Barry 3's Empoleon at 36"),
+                       ("MOVE_FLIP_TURN", "the egg-list rule (Ian, 2026-10-29): Byron's Empoleon at 52, "
+                                          "Ian's redraft of 2026-11-02; Empoleon learns it at 56")],
     "SPECIES_TURTWIG": [("MOVE_CRUNCH", "Ian, 2026-10-29: Barry 3's Torterra at 36"),
                         ("MOVE_ABSORB", "Ian, 2026-10-31: Lucas and Dawn 1's Turtwig at 9")],
     # The level climb of Gardenia's split (Ian, 2026-10-29); Sunny Day was a TM
@@ -340,7 +342,15 @@ IAN_EGG_MOVES = {
     # Pheromosa are first stages of their own.
     "SPECIES_SHIELDON": [("MOVE_ROAR", "Ian, 2026-10-31: Byron's Bastiodon, a TM before the TM pass")],
     "SPECIES_DHELMISE": [("MOVE_POWER_WHIP", "Ian, 2026-10-31: Byron's Dhelmise")],
-    "SPECIES_CELESTEELA": [("MOVE_ACROBATICS", "Ian, 2026-10-31: Byron's Celesteela")],
+    "SPECIES_CELESTEELA": [("MOVE_ACROBATICS", "Ian, 2026-10-31: Byron's Celesteela"),
+                           ("MOVE_AIR_SLASH", "the egg-list rule (Ian, 2026-10-29): Byron's Celesteela at "
+                                              "53, Ian's redraft of 2026-11-02")],
+    # Kartana, a first stage of its own, in Ian's Byron redraft (2026-11-02):
+    # Smart Strike is on no Oxide list for it, and Swords Dance comes at 65.
+    "SPECIES_KARTANA": [("MOVE_SMART_STRIKE", "the egg-list rule (Ian, 2026-10-29): Byron's Kartana at 51, "
+                                              "Ian's redraft of 2026-11-02"),
+                        ("MOVE_SWORDS_DANCE", "the egg-list rule (Ian, 2026-10-29): Byron's Kartana at 51, "
+                                              "Ian's redraft of 2026-11-02; it learns it at 65")],
     "SPECIES_FERROSEED": [("MOVE_POWER_WHIP", "Ian, 2026-10-31: Thorton's Ferrothorn at 47")],
     "SPECIES_GUZZLORD": [("MOVE_PROTECT", "Ian, 2026-10-31: Thorton's Guzzlord"),
                          ("MOVE_BODY_PRESS", "Ian, 2026-10-31: Thorton's Guzzlord")],

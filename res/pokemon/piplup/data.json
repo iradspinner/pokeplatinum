@@ -98,7 +98,8 @@
             "MOVE_AGILITY",
             "MOVE_AQUA_RING",
             "MOVE_HYDRO_PUMP",
-            "MOVE_DRILL_PECK"
+            "MOVE_DRILL_PECK",
+            "MOVE_FLIP_TURN"
         ]
     },
     "evolutions": [
