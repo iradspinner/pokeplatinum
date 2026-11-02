@@ -1,5 +1,7 @@
 # Mars 2: a check of Ian's first draft
 
+Ian's edit after landing (2026-11-02): Crobat takes Heat Wave for Roost, and Mesprit takes Dazzling Gleam and Fire Punch for U-turn and Thunder Wave, with a Docile nature for Timid. All three moves are on the species' lists at their levels (Crobat's tutor list, Mesprit's TM05 and tutor list), and no nature repeats. With Roost and Thunder Wave gone, Check HP now only times Howl.
+
 Ian drafted Mars 2's new six in the OxiDex on 2026-11-01. She is fought at Lake Verity in Candice's split, after the Somnu and Moira double, with her ace at 54 (`candice-split.md`). He asked for the check his Maylene and Byron drafts had (`maylene-redesign.md`, `byron-brains-check.md`): anything that invalidates the fight, the weakest crux with the top picks for it, and the cheap checks. The draft is saved on branch `overseer-mars2-check` as Ian's first draft, kept on its branch for his check. The other changes are the egg-list commit for its two off-list moves and, after Ian's answers, Thunderous Kick's contact flag. No team change was made, no scorer reading was run, and the simulator was not touched.
 
 ## Ian's answers (2026-11-01)

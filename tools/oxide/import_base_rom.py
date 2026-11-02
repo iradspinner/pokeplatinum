@@ -1882,6 +1882,9 @@ def main():
         400: "Bibarel's Def 70 and Sp. Def 70 (Ian, 2026-09-29)",
         414: "Mothim to 80/94/60/94/60/76 (Ian, 2026-09-29)",
         444: "Gabite to 68/90/75/50/65/82 (Ian, 2026-09-29)",
+        # The alternate forms' stat pass (docs/oxide/alternate-forms-stats.md).
+        38: "Ninetales to 85/65/84/95/109/117, the slow special caster beside Alolan "
+            "Ninetales (Ian, 2026-11-02)",
     }
 
     # species: personal + learnset + evolutions live in one data.json

@@ -1,11 +1,11 @@
 {
     "base_stats": {
-        "hp": 70,
-        "attack": 105,
-        "defense": 75,
-        "speed": 110,
-        "special_attack": 85,
-        "special_defense": 85
+        "hp": 80,
+        "attack": 100,
+        "defense": 85,
+        "speed": 95,
+        "special_attack": 75,
+        "special_defense": 95
     },
     "types": [
         "TYPE_FAIRY",
