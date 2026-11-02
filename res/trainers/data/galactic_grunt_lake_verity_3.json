@@ -30,15 +30,15 @@
             "gender": "female"
         },
         {
-            "species": "SPECIES_SKUNTANK",
+            "species": "SPECIES_STANTLER",
             "form": 0,
             "level": 51,
-            "item": "ITEM_DREAD_PLATE",
+            "item": "ITEM_SHELL_BELL",
             "moves": [
-                "MOVE_CRUNCH",
-                "MOVE_POISON_JAB",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_FIRE_BLAST"
+                "MOVE_HYPNOSIS",
+                "MOVE_HYPER_BEAM",
+                "MOVE_DREAM_EATER",
+                "MOVE_SHADOW_BALL"
             ],
             "iv_scale": 255,
             "nature": "NATURE_ADAMANT",
@@ -47,20 +47,20 @@
             "gender": "female"
         },
         {
-            "species": "SPECIES_GLACEON",
+            "species": "SPECIES_GARDEVOIR",
             "form": 0,
             "level": 52,
-            "item": "ITEM_NEVERMELTICE",
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_BLIZZARD",
-                "MOVE_SHADOW_BALL",
-                "MOVE_SIGNAL_BEAM",
-                "MOVE_TOXIC"
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_HYPNOSIS"
             ],
             "iv_scale": 255,
             "nature": "NATURE_MODEST",
             "ball_seal": 0,
-            "ability": 3,
+            "ability": 1,
             "gender": "female"
         }
     ],
