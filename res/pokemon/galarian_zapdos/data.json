@@ -123,7 +123,9 @@
             "HM02"
         ],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_HOWL"
+        ]
     },
     "evolutions": [],
     "offspring": "SPECIES_GALARIAN_ZAPDOS",

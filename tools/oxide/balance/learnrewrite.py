@@ -308,7 +308,9 @@ IAN_EGG_MOVES = {
     # Galarian Mr. Mime is a first stage of its own (Mime Jr. evolves into
     # the plain form).
     "SPECIES_PURRLOIN": [("MOVE_FAINT_ATTACK", "Ian, 2026-10-31: Mars 1's Liepard at 18")],
-    "SPECIES_LITTEN": [("MOVE_FLAME_WHEEL", "Ian, 2026-10-31: Mars 1's Torracat at 19")],
+    "SPECIES_LITTEN": [("MOVE_FLAME_WHEEL", "Ian, 2026-10-31: Mars 1's Torracat at 19"),
+                       ("MOVE_THUNDER_PUNCH", "the egg-list rule (Ian, 2026-10-29): Mars 2's Incineroar "
+                                              "at 53, a draft")],
     "SPECIES_MUNCHLAX": [("MOVE_YAWN", "Ian, 2026-10-31: Officer Somnu 1's Munchlax at 17"),
                          ("MOVE_BODY_SLAM", "Ian, 2026-10-31: Officer Somnu 1's Munchlax at 17"),
                          ("MOVE_CRUNCH", "Ian, 2026-10-31: Officer Somnu 1's Munchlax at 17")],
@@ -369,6 +371,11 @@ IAN_EGG_MOVES = {
                                             "Sudowoodo at 52, a TM before the TM pass")],
     "SPECIES_IGGLYBUFF": [("MOVE_MISTY_EXPLOSION", "the egg-list rule (Ian, 2026-10-29): Officer "
                                                    "Hesperid 1's Wigglytuff at 52")],
+    # Mars 2's first draft (Ian, 2026-11-01, mars2-check.md), by the egg-list
+    # rule: Galarian Zapdos, a first stage of its own, learns Howl on no list.
+    # Incineroar's Thunder Punch is with Litten's entry above.
+    "SPECIES_GALARIAN_ZAPDOS": [("MOVE_HOWL", "the egg-list rule (Ian, 2026-10-29): Mars 2's Galarian "
+                                              "Zapdos at 52, a draft")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

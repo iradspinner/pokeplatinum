@@ -113,7 +113,8 @@
         ],
         "by_tutor": [],
         "egg_moves": [
-            "MOVE_FLAME_WHEEL"
+            "MOVE_FLAME_WHEEL",
+            "MOVE_THUNDER_PUNCH"
         ]
     },
     "evolutions": [
