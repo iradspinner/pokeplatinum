@@ -1,6 +1,6 @@
-# Cyrus 1's redesign: the evidence, the diagnosis and the shapes
+# Cyrus 1's redesign: the evidence, the diagnosis, the shapes and the sets
 
-Ian asked on 2026-11-01 for Cyrus 1 (the Celestic ruins, Byron's split, honour cap 47) to be redesigned in Roark's and Lucas and Dawn 2's checked stages, because its first scorer reading reads far too easy. This page holds stages 1 and 2, the evidence and the diagnosis, which Ian checked the same day, and stage 3, the candidates and three team shapes, for him to check before any sets are written. The team in the game is unchanged.
+Ian asked on 2026-11-01 for Cyrus 1 (the Celestic ruins, Byron's split, honour cap 47) to be redesigned in Roark's and Lucas and Dawn 2's checked stages, because its first scorer reading reads far too easy. This page holds stages 1 and 2, the evidence and the diagnosis, which Ian checked the same day, stage 3, the candidates and three team shapes, which he checked the same day, and stage 4, the sets of the shape he picked, now in Cyrus 1's file and waiting on the Overseer's scorer reading.
 
 ## Ian's answers (2026-11-01)
 
@@ -12,7 +12,112 @@ Ian asked on 2026-11-01 for Cyrus 1 (the Celestic ruins, Byron's split, honour c
 6. Argo 1 is not redesigned. The scorer reads him beside the new Cyrus 1.
 7. The new team gets a scorer reading before it lands, which the Overseer runs.
 
+## Ian's answers to stage 3 (2026-11-01)
+
+1. Shape C: Swampert leads, then Honchkrow, Porygon-Z and Electivire with the draft's sets, Magmortar and Salamence.
+2. The lead's job is Swampert's Stealth Rock.
+3. Salamence's Yache Berry comes back.
+4. A species that a later or optional fight also uses is allowed (Swampert is on May).
+
 ## Summary
+
+Shape C is written into Cyrus 1's file, and every check passes. The AI flags stay Basic, Evaluate Attack and Expert. No move needed an egg-list addition. The next step is the Overseer's scorer reading, with Argo 1 beside it. Nothing waits on Ian before then.
+
+| Member | Level | Ability | Item | Nature | Speed | Moves |
+|---|---|---|---|---|---|---|
+| Swampert (lead) | 45 | Torrent | Leftovers | Brave | 64 | Stealth Rock, Earthquake, Waterfall, Ice Punch |
+| Honchkrow | 46 | Super Luck | Black Glasses | Adamant | 102 | Crunch, Brave Bird, Sucker Punch, Heat Wave |
+| Porygon-Z | 45 | Download | Silk Scarf | Modest | 99 | Tri Attack, Thunderbolt, Ice Beam, Shadow Ball |
+| Electivire | 44 | Adaptability | Expert Belt | Naive | 122 | Thunder Punch, Brick Break, Ice Punch, Earthquake |
+| Magmortar | 44 | Flame Body | Charcoal | Timid | 110 | Flamethrower, Focus Blast, Psychic, Will-O-Wisp |
+| Salamence (ace) | 47 | Intimidate | Yache Berry | Naughty | 113 | Dragon Dance, Dragon Claw, Earthquake, Fire Fang |
+
+The levels take Mars 1's shape at the honour cap of 47: the ace at 47, Honchkrow right below it at 46, and the rest two or three below. No item or nature repeats.
+
+C risks a box under Ian's floor of 60, since it is the shape the screen reads hardest. If the reading shows one, these are the two dials to soften it, in this order. Neither is applied.
+
+1. Porygon-Z's Download for its hidden Analytic. Download raises its Sp. Atk on entry against nearly every wall, and that raise turns Ice Beam into a one-hit knockout on Golem, Palossand and Donphan and lets Tri Attack and Thunderbolt knock out Quagsire, Hippowdon and Manaphy on a high roll. Analytic never fires here, since Porygon-Z outspeeds every wall.
+2. Electivire's Adaptability for Vital Spirit, keeping Brick Break. Adaptability is what lets Brick Break take Bastiodon, the box's most common wall, in one hit or nearly (97 to 118 percent), and Thunder Punch knock out Manaphy (112 to 133).
+
+Swampert's Leftovers are a third dial if one box stays low after those two. No answer in the boxes takes half of Swampert's HP with its lowest roll.
+
+## Stage 4: the sets and their checks
+
+### Why each set is as it is
+
+Swampert carries Stealth Rock for its job, Earthquake and Waterfall for the Rock, Steel and Ground walls, and Ice Punch for the Grass types that are its only real answers (Tsareena, Leavanny, Breloom, Leafeon). Brave suits a physical set whose Speed hardly matters: at 64 or at a neutral 72, it is over every wall and under Tsareena, Leavanny and Leafeon. Leftovers keep it in for a second layer of damage after the hazard.
+
+Honchkrow, Magmortar and Salamence keep their sets, with Salamence's Yache Berry back by Ian's answer. Porygon-Z and Electivire take the draft's sets of 2026-10-13 whole, at the levels of 2026-10-31.
+
+### The AI flags, by the flags guide
+
+The team keeps Basic, Evaluate Attack and Expert, and takes no other flag.
+
+- Weather: no member carries a weather move, so the flag would do nothing.
+- Harassment: the team's only move in its table is Will-O-Wisp; a status team carries two or more.
+- Risky: Honchkrow's Super Luck is one member's idea, not the team's, and the flag would push Sucker Punch as a gamble.
+- Prioritize Extremes: Stealth Rock and Will-O-Wisp are pieces of an attacking plan, and the guide keeps the flag off a team holding Sucker Punch.
+- Check HP: no member carries a trade move.
+
+On the base flags Expert already gives Stealth Rock a 75 percent chance against Swampert's best attack on its first turns, which is the lead's job.
+
+### Legality
+
+The OxiDex's own check (`learnsets.lists`) finds every move of the six in Oxide's lists at its member's level. Swampert has its four by TM and HM (Stealth Rock is TM 76). Honchkrow's Crunch and Brave Bird come from Murkrow's egg list, added on 2026-10-31. Porygon-Z has Tri Attack by egg and the rest by TM. Electivire has Thunder Punch at level 28, Brick Break and Earthquake by TM, and Ice Punch by egg. Nothing went into `learnrewrite.IAN_EGG_MOVES`.
+
+### Speed tiers, against each whole box at 47
+
+| Member | Speed | Outspeeds (box 1, 2, 3) | Within three points |
+|---|---|---|---|
+| Electivire | 122 | 86 of 91, 86 of 93, 85 of 88 | Cinderace 123 and Liepard 121 (box 2); Salazzle 122, a tie (box 3) |
+| Salamence | 113 | 84, 80, 85 | Gengar 115 (box 1) and Rapidash 115 (box 2) over it; Staraptor and Mienshao 110 under |
+| Magmortar | 110 | 82, 77, 85 | ties with Staraptor (boxes 1 and 2) and Mienshao (box 2); Delphox 109 (box 3) |
+| Honchkrow | 102 | 78, 72, 81 | one point over Luxray, Absol, Leafeon, Pachirisu, Jynx and Sharpedo at 101; under Manaphy and Alolan Ninetales at 106 |
+| Porygon-Z | 99 | 69, 70, 78 | over Rotom 97 and Leavanny and Tsareena 98; under Luxray, Absol and Leafeon 101 |
+| Swampert | 64 | 31, 28, 35 | ties Torterra (box 1); Machamp 63 (box 3) |
+
+The boxes' fastest catch is Crobat at 134. Three tiers sit on a knife edge, and stage 4 leaves them as set. Magmortar ties Staraptor and Mienshao. Honchkrow sits one point over six catches. Porygon-Z sits between the Rotom and Tsareena tier and the Luxray tier.
+
+### Porygon-Z with Download
+
+Download raises one stat a stage as Porygon-Z comes in. It raises Sp. Atk when the Pokemon in front has a Defense no lower than its Sp. Def, and Attack otherwise, which this all-special set never uses. Against the likely answers, from the calculator's own runner, with the player's item left out:
+
+| The Pokemon in front | Raised | Best move without Download | With it |
+|---|---|---|---|
+| Golem | Sp. Atk | Ice Beam 90 to 107 | 135 to 160 |
+| Palossand | Sp. Atk | Ice Beam 81 to 96 | 121 to 144 |
+| Donphan | Sp. Atk | Ice Beam 91 to 108 | 137 to 162 |
+| Quagsire | Sp. Atk | Tri Attack 57 to 68 | 85 to 101 |
+| Hippowdon | Sp. Atk | Tri Attack 58 to 69 | 87 to 103 |
+| Manaphy | Sp. Atk | Thunderbolt 56 to 68 | 86 to 101 |
+| Crustle | Sp. Atk | Thunderbolt 44 to 53 | 67 to 79 |
+| Garganacl | Sp. Atk | Thunderbolt 31 to 37 | 46 to 55 |
+| Bastiodon | Sp. Atk | Thunderbolt 24 to 29 | 36 to 43 |
+| Corviknight | Sp. Atk | Thunderbolt 66 to 79 | 101 to 119 |
+| Rotom | Sp. Atk | Shadow Ball 70 to 82 | 102 to 122 |
+| Probopass, Alolan Ninetales, Jellicent, Araquanid, Empoleon, Abomasnow | Attack (no use) | Thunderbolt or Tri Attack, 24 to 75 | the same |
+
+So Download is the set's power against the Ground walls, and the first dial to soften. Against Probopass and Alolan Ninetales it does nothing.
+
+### The replacement trace
+
+The trace was run on the file as written, on all three boxes, with the trainer AI's own rule. It matches stage 3's run of shape C exactly. While Swampert stands, the rule sends it into every Rock, Steel and Ground wall, and into Palossand. Once Swampert is gone, Electivire comes in against Golem, Quagsire and the Rock and Steel walls, and Golem and Quagsire knock it out with one Earthquake or nearly. Against Hippowdon and Donphan Porygon-Z comes in instead, with Ice Beam and Tri Attack in range. Manaphy draws in Electivire, whose Thunder Punch knocks it out. Alolan Ninetales and Corviknight draw in Magmortar. Rotom, Jellicent and Araquanid draw in Honchkrow. The matchup screen reads 11.7, 11.6 and 10.9, as in stage 3.
+
+### Checks
+
+| Check | Result |
+|---|---|
+| The trainer lint, through `trainers.save` | no findings |
+| The real packer | packed (re-run once the build made it) |
+| The OxiDex's legality check | every move in Oxide's lists at its level; no egg-list addition |
+| test_b1 (Cyrus 1's ace at his honour cap among them) | 50 of 50 |
+| test_learncheck | 18 of 18 |
+| test_learnrewrite | 6 of 6 (its note on five species files differing from the generator was there before) |
+| test_trainers | 44 of 44 |
+| `make rom` | builds |
+| the gate (`integrate.sh --verify-only` on the built ROM) | 53 of 54 pass; the one failure is sync-docs, which refuses to run on any branch but `oxide`, so the Overseer's merge runs it |
+
+## Stage 3: the summary as Ian read it
 
 Stage 3 gives three team shapes. Each was built from a sweep of 267 species on the vendored calculator against 32 of the player's likely answers, and each was checked with the trainer AI's own replacement rule on all three boxes. No shape has a scorer reading, so how hard each reads is a forecast from cheap checks. My pick is shape A.
 
@@ -33,7 +138,7 @@ The matchup screen's best six, by box, as background only, since the screen and 
 
 I recommend A for four reasons. Every member beats a class of wall, and the replacement rule sends it into that class. Cloyster's Spikes make each switch cost an eighth of the player's HP, and switching into walls is how the player wins today. No answer in the boxes takes half of Swampert's HP with its lowest roll, and only two take half of Meganium's, so the walls cannot simply sit in front of them. And A carries two Flying types and no species from a nearby boss. C is the harder fallback: the smallest change, but it brings back the draft's Porygon-Z and Electivire, which the probe read as far harder than any accepted fight, so it risks a box under 60. B barely moves the screen and keeps three Flying types, so I do not recommend it.
 
-What Ian decides, one line each:
+What Ian decided on (his answers are at the top of the page):
 
 1. Which shape goes to stage 4: A (recommended), C, or B.
 2. For A, the lead's job: Cloyster's Spikes (recommended, a cost on every switch, Ground types included), or Stealth Rock from Swampert, which barely touches the Rock and Steel walls.
@@ -408,3 +513,5 @@ The reading's files are in `~/oxide-trials/goal3/cyrus-1-61b9d0391/cyrus_1/box1`
 Stage 1's damage and Speed figures come from three short scripts in `/home/ian/.claude/jobs/cyrus-1-redesign/`, run from this branch's worktree under `tools/oxide/capped`. Each builds the reading's fight with goal 3's own setup (`plgoal3.setup` and `fight_state`, seeds 1 to 3, the box at 47, a fresh run name) and reads the calculator rows the scorer reads. `dmg.py` gives each Cyrus member's best move on each chosen catch and the reverse, `pair.py` every move of a named pair, and `abil.py` the catches' abilities and stats. Cyrus's members are limited to their four moves; the player's to the moves the scorer gave them. The replacement rule's picks were worked by hand from `fightai.replacement` and the type chart, not run.
 
 Stage 3's figures come from scripts in `/home/ian/.claude/jobs/cyrus-1-redesign/s3/`, run the same way. `walls.py` takes the 32 answers from the three boxes with the reading's four moves for each. `sweep.py` runs the whole-Pokedex sweep through the calculator's own runner in one Node process, and `rank.py` and `detail.py` read it. `shape.py` swaps a whole party into the trainer file in memory and builds the reading's fight on each box with it. It prints each member's best move on each answer and the reverse, from the scorer's own calculator rows with the shape's items, and who `fightai.replacement` sends in against each answer as each member leaves, run on a battle built by `perfectline.make_battle`. It also prints the matchup screen's top sixes. `digest.py` condenses its output. Legality was checked with the Kaizo study's checker (`oxide.legal_moves`, with the TMs from before the TM pass); every move the shapes name is in its species' palette at its level. No scorer, probe or simulator change was run, and `res/` was not written.
+
+Stage 4's sets were written by `/home/ian/.claude/jobs/cyrus-1-redesign/s4/apply.py` through `trainers.save`, from `sets.json` beside it. `legal.py` there runs the OxiDex's check, `tiers.py` gives the Speed tiers against each whole box and Porygon-Z's Download figures (the calculator's runner with the stage given as a boost), and the replacement trace is `s3/shape.py today`, which reads the file as written.
