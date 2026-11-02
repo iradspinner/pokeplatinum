@@ -262,7 +262,8 @@
     "party": "edited in the encounter tool's team builder, 2026-09-27"
   },
   "commander_saturn_valor_cavern": {
-    "party": "edited in the OxiDex team builder, 2026-11-01"
+    "party": "edited in the OxiDex team builder, 2026-11-01",
+    "ai_flags": "edited in the OxiDex team builder, 2026-11-01"
   },
   "cowgirl_shelley": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
@@ -410,6 +411,27 @@
     "messages": "Lake Verity's talking grunt made a trainer at the lake's mouth, in a free slot, so Candice's split counts twelve mandatory fights (Ian, 2026-11-01, docs/oxide/candice-split.md)",
     "ai_flags": "Lake Verity's talking grunt made a trainer at the lake's mouth, in a free slot, so Candice's split counts twelve mandatory fights (Ian, 2026-11-01, docs/oxide/candice-split.md)",
     "party": "Lake Verity's talking grunt made a trainer at the lake's mouth, in a free slot, so Candice's split counts twelve mandatory fights (Ian, 2026-11-01, docs/oxide/candice-split.md)"
+  },
+  "dummy_779": {
+    "party": "edited in the OxiDex team builder, 2026-11-01"
+  },
+  "dummy_780": {
+    "party": "edited in the OxiDex team builder, 2026-11-01"
+  },
+  "dummy_781": {
+    "party": "edited in the OxiDex team builder, 2026-11-01"
+  },
+  "dummy_782": {
+    "party": "edited in the OxiDex team builder, 2026-11-01"
+  },
+  "dummy_783": {
+    "party": "edited in the OxiDex team builder, 2026-11-01"
+  },
+  "dummy_784": {
+    "party": "edited in the OxiDex team builder, 2026-11-01"
+  },
+  "dummy_792": {
+    "party": "edited in the OxiDex team builder, 2026-11-01"
   },
   "dummy_793": {
     "party": "edited in the OxiDex team builder, 2026-10-30"
@@ -672,7 +694,8 @@
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
   "leader_candice": {
-    "party": "edited in the OxiDex team builder, 2026-11-01"
+    "party": "edited in the OxiDex team builder, 2026-11-01",
+    "ai_flags": "edited in the OxiDex team builder, 2026-11-01"
   },
   "leader_fantina": {
     "party": "edited in the OxiDex team builder, 2026-10-29",

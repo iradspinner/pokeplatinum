@@ -61,38 +61,38 @@
             "gender": "male"
         },
         {
-            "species": "SPECIES_PACHIRISU",
+            "species": "SPECIES_SLOWBRO",
             "form": 0,
             "level": 47,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_ELECTROWEB",
-                "MOVE_WILD_CHARGE",
-                "MOVE_SEED_BOMB",
-                "MOVE_SUPER_FANG"
+                "MOVE_PSYCHIC",
+                "MOVE_WATER_PULSE",
+                "MOVE_YAWN",
+                "MOVE_SLACK_OFF"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_HASTY",
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"
         },
         {
-            "species": "SPECIES_GASTRODON",
+            "species": "SPECIES_NIDOQUEEN",
             "form": 0,
             "level": 48,
-            "item": "ITEM_LEFTOVERS",
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_MUDDY_WATER",
                 "MOVE_EARTH_POWER",
+                "MOVE_SLUDGE_BOMB",
                 "MOVE_ICE_BEAM",
-                "MOVE_STEALTH_ROCK"
+                "MOVE_TOXIC_SPIKES"
             ],
             "iv_scale": 255,
             "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": "female"
         },
         {
             "species": "SPECIES_TORTERRA",

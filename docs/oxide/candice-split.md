@@ -4,7 +4,7 @@ Candice's split runs from Byron's badge (cap 53) to Candice's (cap 56). Ian answ
 
 ## Summary
 
-The split now counts 12 mandatory fights, gym trainers apart, mini-bosses included and a pair counted once. Six were mandatory already; this branch fixes one trainer in place, moves four to necks, and makes Lake Verity's talking grunt a trainer in free slot 131. Twenty-nine ordinary, mini-boss and gym teams were built, the new grunt's among them, each with one idea, three to five Pokemon, its own item and nature on every member, and its AI flags set by the guide. The ordinary teams climb from 52 at the lakes to 55 at Route 217's north neck, where only Black Belt Luke reaches 55; the route Ace Trainers' aces sit at 54, two under the cap; Snowpoint Gym's six climb from 54 to 55. The bosses and officers took Ian's levels and the rule fixes and nothing more. Skier Lexie's Sheer Cold is gone. Nothing was seen in game, and the scorer read nothing.
+The split now counts 12 mandatory fights, gym trainers apart, mini-bosses included and a pair counted once. Six were mandatory already; this branch fixes one trainer in place, moves four to necks, and makes Lake Verity's talking grunt a trainer in free slot 131. Twenty-nine ordinary, mini-boss and gym teams were built, the new grunt's among them, each with one idea, three to five Pokemon, its own item and nature on every member, and its AI flags set by the guide. The ordinary teams climb from 52 at the lakes to 55 at Route 217's north neck, where only Black Belt Luke reaches 55; the route Ace Trainers' aces sit at 54, two under the cap; Snowpoint Gym's six climb from 54 to 55. The bosses and officers took Ian's levels, the rule fixes and the flag changes of his answers, and nothing more. Skier Lexie's Sheer Cold is gone. Nothing was seen in game, and the scorer read nothing.
 
 | Area | Mandatory fights | Of them, this branch's |
 |---|---:|---:|
@@ -14,20 +14,20 @@ The split now counts 12 mandatory fights, gym trainers apart, mini-bosses includ
 | Route 217 | 5 (Skier Shawn; Ace Trainer Dalton; Ninja Boy Ethan; Black Belt Luke; Ace Trainer Olivia) | 3 |
 | In all | 12 | 6 |
 
-Ian's decisions:
+Ian's answers (2026-11-01), as applied:
 
-1. Mars 2's and Candice's Baton Pass flag: neither team knows Baton Pass, and through the flag's bug it pushes every status move and Explosion (below). Drop it from both (my pick), drop it from Mars 2 only, or keep it on both?
-2. Saturn 1's Setup First Turn flag does nothing, since his lead, Azelf, knows no move in its table: drop it (my pick) or keep it?
-3. Hesperid's sets: keep them as they stand at 53 for now (my pick), with a checked-stage redesign to his theme later; or have that redesign drafted now?
-4. Candice's five Blizzards with no hail: her Abomasnow's first ability is Adaptability in Oxide, not Snow Warning. Keep it (my pick, since the fight already reads a little harder than Byron's), or give it Snow Warning, which makes every Blizzard sure and the fight harder?
-5. The 29 teams below: a yes for the whole set, or the trainers to change.
+1. The Baton Pass flag comes off Mars 2 and Candice. Neither team knows Baton Pass, and through the flag's bug it lifted every status move and Explosion. The rerun on the saved files confirms that Check HP now holds Mars 2's Bronzong back (section "The questions, with their numbers").
+2. Saturn 1's Setup First Turn flag comes off, since it did nothing.
+3. Hesperid and Mars 2 stay as they are. Their redesigns come later, in checked stages, Mars 2 first.
+4. Candice's team stays as it is. The question's premise was wrong: Snowpoint Gym's map header carries the base ROM's blizzard weather, which the battle engine turns into permanent hail, so her Blizzards already never miss and the gym trainers fight in hail too. The probe already fought her in hail, so her numbers stand.
+5. Ian takes the whole set of 29 teams.
 
 Next steps:
 
 | Step | Who | Time |
 |---|---|---|
-| Answer the five questions | Ian | 15 minutes |
-| Apply the answers on this branch, rerun the checks, land it with `merge-branch.sh` | the Overseer | 1 hour |
+| Land the branch with `merge-branch.sh`, then `sync-docs.sh` on oxide | the Overseer | 30 minutes |
+| Mars 2's redesign in checked stages, then Hesperid's | the Overseer, with Ian | 1 to 2 hours each, plus Ian's look |
 | Walk the split's mandatory fights with the test kit or a save after Byron | Ian | 40 minutes |
 
 What is unverified:
@@ -152,7 +152,7 @@ Each line gives the team in send-out order, its one idea, and any AI flag it car
 | Ninja Boy Ethan | Froslass 54, Banette 54, Sableye 54, Dusknoir 54 | Ghosts in the snow: a Cursed Body Froslass lays Spikes, then ghosts that burn, sneak in first and strip items. | none |
 | Black Belt Luke | Hitmonchan 54, Pawmot 54, Infernape 55, Machamp 55 | Iron fists at the north neck: Iron Fist punches, then Machamp's No Guard Dynamic Punch. | none |
 | Ace Trainer Olivia | Lapras 52, Gyarados 52, Kingdra 53, Goodra 53, Dragonite 54 | Dragons that fear no ice: a singing Lapras, then Dragon Dance from Gyarados, Kingdra and a Multiscale Dragonite, with a Goodra the ice barely scratches. | none |
-| Ace Trainer Brenna | Alolan Ninetales 54, Glaceon 54, Walrein 54 | The first guard: Ice Body in hail from a Snow Warning Ninetales, healing while it chips. | none |
+| Ace Trainer Brenna | Alolan Ninetales 54, Glaceon 54, Walrein 54 | The first guard: Ice Body in the gym's hail, healing while it chips, behind a Light Clay Aurora Veil. | none |
 | Ace Trainer Isaiah | Piloswine 54, Quagsire 54, Swampert 54, Mamoswine 55 | Ground under the ice: Thick Fat and Earthquake, Stealth Rock, and an Unaware Quagsire. | none |
 | Ace Trainer Sergio | Mr. Rime 54, Jynx 54, Frosmoth 54 | Moths and mimes: an Ice Scales Frosmoth Quiver Dances behind Mr. Rime's screens. | none |
 | Ace Trainer Savannah | Froslass 54, Jellicent 54, Mismagius 54, Weavile 55 | Ghosts of the snowfield: a Cursed Body Froslass and a Jellicent, then Hex on the burned and frozen. | Harassment |
@@ -200,9 +200,9 @@ Ian's levels, and the rule fixes, with no other change to their sets:
 
 | Fight | Levels | Rule fixes |
 |---|---|---|
-| Saturn 1 | 51 to 53, as before, the ace at 53 | Mr. Mime Hasty, Lickilicky Brave, Toxicroak Lonely, so Timid and Adamant appear once |
-| Mars 2 | 52, four at 53, Luxray 54 (each one up, the ace to 54) | Purugly Hasty; Bronzong holds a Sitrus Berry for its second Leftovers; Check HP for Bronzong's Explosion |
-| Candice | 54 to 56, as before, the ace at the cap | Articuno Mild, Abomasnow Brave |
+| Saturn 1 | 51 to 53, as before, the ace at 53 | Mr. Mime Hasty, Lickilicky Brave, Toxicroak Lonely, so Timid and Adamant appear once; Setup First Turn dropped (Ian) |
+| Mars 2 | 52, four at 53, Luxray 54 (each one up, the ace to 54) | Purugly Hasty; Bronzong holds a Sitrus Berry for its second Leftovers; Check HP for Bronzong's Explosion; the Baton Pass flag dropped (Ian) |
+| Candice | 54 to 56, as before, the ace at the cap | Articuno Mild, Abomasnow Brave; the Baton Pass flag dropped (Ian) |
 | Officer Hesperid 1 | 51, four at 52, Sceptile 53 (each three down) | Chatot Hasty |
 | Officer Somnu | 51, 51, 52 (each two down) | none needed |
 | Officer Moira | 51, 51, 52 (each two down) | Abomasnow Quiet |
@@ -211,7 +211,7 @@ Every move is still legal at its new level. `fights.json` now lists Hesperid 1 a
 
 ### How they read
 
-Each cell is the player's wins in 150 rough fights against the matchup screen's best six, then against the six it takes most; one number means the two were the same six. The player is the Byron check's greedy probe player, who never switches, never sets up and holds no items, so only the comparison between rows means anything. Byron's row matches the Byron check's own numbers exactly, which says the harness reads as that one did. Fewer wins means a harder fight.
+Mars 2's, Candice's and Saturn 1's rows are the rerun on the files as Ian's answers left them (Saturn's flag change moved nothing, as expected). Each cell is the player's wins in 150 rough fights against the matchup screen's best six, then against the six it takes most; one number means the two were the same six. The player is the Byron check's greedy probe player, who never switches, never sets up and holds no items, so only the comparison between rows means anything. Byron's row matches the Byron check's own numbers exactly, which says the harness reads as that one did. Fewer wins means a harder fight.
 
 | Fight, on its own boxes | Box 1 | Box 2 | Box 3 | Screen's best score, by box |
 |---|---|---|---|---|
@@ -219,16 +219,16 @@ Each cell is the player's wins in 150 rough fights against the matchup screen's 
 | Byron (53), for scale | 69, 81 | 67, 81 | 41, 86 | 18.15, 18.60, 19.75 |
 | Hesperid 1 (53) | 68, 59 | 67, 70 | 96, 52 | 20.25, 19.60, 19.60 |
 | Saturn 1 (53) | 40 | 29 | 28, 40 | 19.10, 17.95, 17.80 |
-| Mars 2 (54) | 67, 61 | 109, 132 | 118, 126 | 21.15, 22.30, 21.00 |
-| Candice (56) | 57, 59 | 62, 48 | 30, 48 | 17.55, 21.05, 20.05 |
+| Mars 2 (54), without the Baton Pass flag | 62, 43 | 90, 114 | 124, 99 | 21.15, 22.30, 21.00 |
+| Candice (56), without the Baton Pass flag, in the gym's hail | 43, 37 | 51, 56 | 48, 54 | 17.55, 21.05, 20.05 |
 
 Saturn 1 reads the hardest of the split's fights, harder than Byron and about as hard as Cyrus 1. His Rhyperior makes the most knockouts (198 to 244 a six), and his Azelf lead passes Ian's lead test: its common answers, Bastiodon, Metagross and Probopass, draw Rhyperior, which beats them. His Wobbuffet has Shadow Tag in Oxide, a trap, which the named Galactic fights may carry; it uses Counter about 350 times a six.
 
-Hesperid 1 at 53 reads easier than Saturn and about as Byron, so he sits under his commander, as Ian asked. At his old levels, 54 to 56, he read 44 and 103, 68, and 113 and 81: within the probe's spread of today's numbers, so the three levels cost him little on this check. His Sudowoodo lead passes the lead test (its answers draw Tangrowth, Chatot with Nasty Plot, or Girafarig with Agility).
+Hesperid 1 at 53 reads easier than Saturn and about as Byron, so he sits under his commander, as Ian asked. Ian keeps him as he stands; his redesign follows Mars 2's. At his old levels, 54 to 56, he read 44 and 103, 68, and 113 and 81: within the probe's spread of today's numbers, so the three levels cost him little on this check. His Sudowoodo lead passes the lead test (its answers draw Tangrowth, Chatot with Nasty Plot, or Girafarig with Agility).
 
-Mars 2 reads the easiest of the split's bosses, well under Saturn, though her ace is one level higher. Her Mesprit lead mostly passes the lead test (its answers draw Bronzong, which beats most of them), but Bronzong itself, in 14 of the top 20 sixes on box 2, draws her own Bronzong and beats it. Her Bronzong explodes above 70 percent HP in 32 to 48 fights of 150, although it has Check HP now: the Baton Pass flag cancels it (question 1).
+Mars 2 reads the easiest of the split's bosses, well under Saturn, though her ace is one level higher. Her Mesprit lead mostly passes the lead test (its answers draw Bronzong, which beats most of them), but Bronzong itself, in 14 of the top 20 sixes on box 2, draws her own Bronzong and beats it. With the Baton Pass flag gone, her Bronzong explodes above 70 percent HP in 2 to 7 fights of 150, where it did in 32 to 48 with the flag: Check HP holds it back again (question 1). Ian keeps her team as it is; her redesign comes first of the two, in checked stages.
 
-Candice reads a little harder than Byron. Mamoswine, Abomasnow and Walrein make most of her knockouts; her Froslass lead makes the fewest (20 to 52 a six) and fails the lead test on box 2, where Bronzong and Heracross, each in all 20 of the top sixes, draw Glaceon and Articuno, which lose to them. Her team holds five Blizzards and no hail (question 4).
+Candice reads a little harder than Byron, and a little harder still without the Baton Pass flag. Mamoswine, Abomasnow and Walrein make most of her knockouts; her Froslass lead makes the fewest (20 to 52 a six) and fails the lead test on box 2, where Bronzong and Heracross, each in all 20 of the top sixes, draw Glaceon and Articuno, which lose to them. Snowpoint Gym fights in permanent hail: its map header carries the base ROM's blizzard weather, which the battle engine turns into hail that never ends, and goal 3 starts her fight in it, so these numbers are her fight in hail. Her five Blizzards never miss there, her Glaceon heals by Ice Body, and all six of hers are Ice types, so none takes the hail's chip.
 
 Speeds in battle: Saturn's Azelf 151, Toxicroak 111, the rest 55 to 125; Mars's Crobat 174, Purugly 154, Luxray 124, Mesprit 114, Umbreon 90, Bronzong 50; Candice's Froslass 154, Articuno 115, Mamoswine 110, the rest 80 to 93. Against the box's Crobat at 159 and Weavile at 153 for Candice's cap, only Mars's Crobat outspeeds them.
 
@@ -236,24 +236,31 @@ The Somnu and Moira double could not be probed, since the probe plays single bat
 
 ### The questions, with their numbers
 
-Question 1, the Baton Pass flag on Mars 2 and Candice. Neither team knows Baton Pass. By the flag's bug (O2 in `battle-ai/other-flags.md`), it adds 3, then 1 more at 60 percent HP or more, to every move the damage check skips, 68.75 percent of the time: every status move, and Explosion. So it pushes their leads to open with Stealth Rock, Spikes or Thunder Wave, and it cancels the Check HP that Mars 2's Bronzong took for its Explosion. Without it:
+Question 1, as asked, the Baton Pass flag on Mars 2 and Candice. Neither team knows Baton Pass. By the flag's bug (O2 in `battle-ai/other-flags.md`), it adds 3, then 1 more at 60 percent HP or more, to every move the damage check skips, 68.75 percent of the time: every status move, and Explosion. So it pushes their leads to open with Stealth Rock, Spikes or Thunder Wave, and it cancels the Check HP that Mars 2's Bronzong took for its Explosion. Without it:
 
 | | Box 1 | Box 2 | Box 3 |
 |---|---|---|---|
-| Mars 2, as it stands | 67, 61 | 109, 132 | 118, 126 |
-| Mars 2, no Baton Pass flag | 62, 43 | 90, 114 | 124, 99 |
-| Bronzong's Explosions above 70 percent HP a six, as it stands | 36 to 43 | 32 to 42 | 47 to 48 |
-| The same, no Baton Pass flag | 2 | 2 to 3 | 6 to 7 |
-| Candice, as she stands | 57, 59 | 62, 48 | 30, 48 |
-| Candice, no Baton Pass flag | 43, 37 | 51, 56 | 48, 54 |
+| Mars 2, with the flag (before the answer) | 67, 61 | 109, 132 | 118, 126 |
+| Mars 2, without it (the saved file, rerun) | 62, 43 | 90, 114 | 124, 99 |
+| Bronzong's Explosions above 70 percent HP, of 150 a six, with the flag | 36 to 43 | 32 to 42 | 47 to 48 |
+| The same, without it (the saved file, rerun) | 2 | 2 to 3 | 6 to 7 |
+| Candice, with the flag (before the answer) | 57, 59 | 62, 48 | 30, 48 |
+| Candice, without it (the saved file, rerun) | 43, 37 | 51, 56 | 48, 54 |
 
-Without the flag both read a little harder for the probe player, since the leads attack more (Candice's Froslass Blizzards 19 to 47 times a six where it did 1 to 6) and Bronzong keeps its Explosion for low HP, where the player can see it coming. Mars 2's lead still opens with Stealth Rock in about half its fights, where it did in two of three. I would drop the flag from both: it does no job its name says on either team, and on Mars 2 it undoes the Check HP fix.
+Without the flag both read a little harder for the probe player, since the leads attack more (Candice's Froslass Blizzards 19 to 47 times a six where it did 1 to 6) and Bronzong keeps its Explosion for low HP, where the player can see it coming. Mars 2's lead still opens with Stealth Rock in about half its fights, where it did in two of three. Ian's answer: the flag comes off both. The rerun on the saved files (commit 8a0f257693f) gives the same numbers as the in-memory swap did, and Bronzong's Explosions above 70 percent fall to 2 to 7 of 150, so Check HP works again. Both fights ran in the weather goal 3 gives them: Mars 2's clear, Candice's the gym's hail.
 
-Question 2, Saturn 1's Setup First Turn. It adds 2 on the battle's first turn to the moves in its table, and Azelf, his lead, knows none of them (Stealth Rock is not in it). Later members never get it, since the turn is the battle's. It does nothing in this fight, so I would drop it; the check needs no run.
+Question 2, Saturn 1's Setup First Turn. It adds 2 on the battle's first turn to the moves in its table, and Azelf, his lead, knows none of them (Stealth Rock is not in it). Later members never get it, since the turn is the battle's. It did nothing in this fight, and Ian dropped it; the rerun reads exactly as before.
 
-Question 3, Hesperid's sets. Ian asked for his difficulty to be in his sets, and his theme (boss-shapes.md) names BrightPowder, a Petaya Berry, Explosion with Pursuit and Baton Pass, and Choice items on rarely used Pokemon. Today he has the Explosion, the Baton Pass and a Starf Berry, and reads about as Byron and easier than Saturn, which fits "no higher than his commander". The simulator does not model BrightPowder, so a draft built on the theme's items could not be read, and a Choice item makes an AI team weaker in play than on paper (the standing ruling on Choice items). I would keep him as he stands and give him the checked-stage redesign his theme asks for when Ian has a picture of it; the Overseer can start one in about two hours.
+Question 3, Hesperid's sets. Ian asked for his difficulty to be in his sets, and his theme (boss-shapes.md) names BrightPowder, a Petaya Berry, Explosion with Pursuit and Baton Pass, and Choice items on rarely used Pokemon. Today he has the Explosion, the Baton Pass and a Starf Berry, and reads about as Byron and easier than Saturn, which fits "no higher than his commander". The simulator does not model BrightPowder, so a draft built on the theme's items could not be read, and a Choice item makes an AI team weaker in play than on paper (the standing ruling on Choice items). Ian's answer: Hesperid and Mars 2 stay as they are, and their redesigns come later in checked stages, Mars 2 first.
 
-Question 4, Candice's Blizzards. Five of her six carry Blizzard, and none sets hail: in Oxide her Abomasnow's first ability is Adaptability, not Snow Warning, which is its third. Snow Warning would make every Blizzard sure-hitting for five turns from Abomasnow's entry, and Abomasnow comes in second in 37 to 69 fights of 150 on the boxes. That is a material change to a leader's fight and the fight reads a little harder than Byron already, so I would keep it as it is unless Ian wants her to be the hail gym in play as well as in name.
+Question 4, Candice's Blizzards, as first asked, rested on a wrong premise: the page read her team as having no hail. Snowpoint Gym's map header carries `OVERWORLD_WEATHER_BLIZZARD`, from the base ROM's map-header edits (56b6609dbc1), and the battle engine turns that into permanent hail (`subscript_overworld_hail`). `plscore.prepare` starts her fight in Hail, and the probe's battles took that weather, so her numbers above are her fight in hail, and they stand. Ian keeps her team as it is.
+
+The gym trainers fight in the same hail (goal 3 reads Hail for Brenna, Isaiah and Anton, and the gym's header covers all six). Notes on their sets, now that the hail is known, for a later look and not changed here:
+
+- Ace Trainer Brenna's Alolan Ninetales brought Snow Warning and an Icy Rock for a hail that is already up and never ends, so both did nothing. The Icy Rock is now a Light Clay, which makes her Aurora Veil last eight turns (Ian, 2026-11-01); Snow Warning stays, since Snow Cloak would add evasion.
+- Ace Trainer Isaiah's Quagsire and Swampert, Ace Trainer Savannah's Jellicent and Mismagius, Ace Trainer Sergio's Jynx and Ace Trainer Alicia's Lapras take the hail's chip every turn, and Alicia's Cloyster and Dewgong, Ice types, do not. Isaiah's two Water and Ground members fit the gym least; an Ice type in one slot would suit it better.
+- Ace Trainer Dalton's Abomasnow on Route 217 and Skier Edward's on Route 216 bring their own hail with Snow Warning; those routes have no weather of their own, so theirs still does its job.
+- The members with Ice Body heal in the gym every turn: Brenna's Glaceon and Walrein, Sergio's Mr. Rime, Anton's Glalie. That is a reason to keep them, not to change them.
 
 ## The census
 
@@ -287,7 +294,8 @@ The mandatory verdicts are `tools.oxide.balance.required`'s field model on the e
 | One-hit KO, trapping, evasion, Choice item | none on the rebuilt teams |
 | `test_trainers` | 44 of 44 |
 | `test_b1` | 49 of 49 |
+| `test_plgoal3`, after the merge | 72 of 72 |
 | `test_learncheck`, `test_learnrewrite` | 18 of 18, 6 of 6 |
 | The encounter tool's 21 suites | all pass; test_trainers failed once while a save ran beside it, and passes alone |
 | `rewards.py check` | 0 failures |
-| `make rom`, then `integrate.sh --verify-only` | 53 checks pass; sync-docs fails off oxide by design; no warnings |
+| `make rom`, then `integrate.sh --verify-only` | 53 checks pass; sync-docs fails off oxide by design (rerun after Ian's answers and the merge with the Argenta placement, 6ad6415242a). Two warnings: the script index lagged the merge commit and was regenerated after it, and the tracker is over 9,000 words, from oxide's tracker, not this branch |
