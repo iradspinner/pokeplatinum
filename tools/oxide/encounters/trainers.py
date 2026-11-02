@@ -31,6 +31,7 @@ import subprocess
 import tempfile
 
 from . import calc_trainers
+from . import coverage
 from . import dex
 from . import model
 from . import pokedex
@@ -383,7 +384,9 @@ def detail(root, stem, data=None):
     built = calc_trainers.build_trainer(root, stem, data)
     party = data.get("party") or []
     split = split_map(root).get(stem)
-    members = []
+    members, fighters = [], []
+    # Every member lists moves or none does (build_trainer reads the first).
+    listed = bool(party) and isinstance(party[0].get("moves"), list)
     for m, (showdown, s) in zip(party, built):
         rec = pokedex.load(root, m["species"]) or {}
         file_moves = m.get("moves")
@@ -415,6 +418,14 @@ def detail(root, stem, data=None):
             "default_move_ids": _default_move_ids(root, m),
             "calc_name": showdown,
         })
+        # What the coverage tables read of the member as the game builds it.
+        fighters.append({
+            "species": m["species"], "types": types,
+            "ability": calc_trainers.member_ability(root, m, s["personality"]).replace("ABILITY_", ""),
+            "moves": [mv for mv in (file_moves or []) if mv and mv != "MOVE_NONE"]
+                     if listed else members[-1]["default_move_ids"],
+            "item": m.get("item"), "iv": members[-1]["iv"],
+        })
     return {
         "data": data,
         "stem": stem, "label": calc_trainers.trainer_name(root, data, stem),
@@ -427,6 +438,8 @@ def detail(root, stem, data=None):
         "members": members,
         "all_ai_flags": ai_flags(root, data.get("ai_flags") or []),
         "ability_choices": ABILITY_CHOICES,
+        # The team's type coverage, defensive and offensive (Ian, 2026-11-02).
+        "coverage": coverage.team(root, fighters, split),
     }
 
 

@@ -553,6 +553,22 @@ def type_chart(root):
     return out
 
 
+@functools.lru_cache(maxsize=4)
+def foresight_entries(root):
+    """{(attacking, defending)} for the chart's entries after its 0xFE marker:
+    Normal and Fighting on Ghost, the immunities Foresight and Scrappy skip
+    (BattleSystem_ApplyTypeChart stops reading the chart at the marker for a
+    Scrappy attacker)."""
+    with open(os.path.join(root, BATTLE_LIB), encoding="utf-8") as f:
+        src = f.read()
+    start = src.index("static const u8 sTypeMatchupMultipliers[][3] = {")
+    body = src[start:src.index("};", start)]
+    tail = body[body.index("{ 0xFE"):]
+    return frozenset((_strip(atk, "TYPE_"), _strip(dfn, "TYPE_"))
+                     for atk, dfn, _ in _ROW.findall(tail)
+                     if atk != "0xFF" and dfn != "0xFF")
+
+
 def effectiveness(chart, attacking, defending):
     """The multiplier of one attacking type against one or two defending ones."""
     mult = 1.0

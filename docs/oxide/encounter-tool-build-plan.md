@@ -74,6 +74,7 @@ PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3  # expect 36/36
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5  # expect 25/25
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_sim    # expect 19/19, the Box sim
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_trainers   # expect 36/36; the save check needs the packer built (make rom), and the last check a quiet checkout
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_coverage   # expect 30/30, the Trainers tab's type coverage tables (coverage.py)
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_saves      # expect 5/5
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_savefile   # expect 18/18
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_savewatch  # expect 8/8

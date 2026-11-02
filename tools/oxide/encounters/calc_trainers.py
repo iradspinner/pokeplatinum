@@ -192,6 +192,23 @@ def trainer_name(root, data, stem):
     return f"{cls} {data['name']}".strip()
 
 
+def member_ability(root, member, personality):
+    """The ability constant a party member gets, as the game picks it from
+    its personality. The Trainers tab's coverage tables read it too."""
+    species, form = member["species"], member.get("form") or 0
+    # The ability comes from the form's own record, by the same bit
+    # (f801cc160); a form without one, such as the East Sea's, is its base.
+    form_folder = FORM_FOLDERS.get((species, form))
+    record = _raw_species(root, species, form_folder) if form_folder else _raw_species(root, species)
+    a1, a2, hidden = (record["abilities"] + ["ABILITY_NONE"] * 3)[:3]
+    ability = a2 if a2 != "ABILITY_NONE" and personality & 1 else a1
+    # Asking for the hidden ability falls back to the ordinary one when the
+    # record has none, as Pokemon_TryGiveHiddenAbility does.
+    if member.get("ability") == ABILITY_HIDDEN and hidden != "ABILITY_NONE":
+        ability = hidden
+    return ability
+
+
 def build_trainer(root, stem, data=None):
     """One trainer as a list of calculator sets, in party order, plus what
     the calculator's set list needs to find them."""
@@ -221,16 +238,8 @@ def build_trainer(root, stem, data=None):
                           want_gender=m.get("gender"), want_slot=m.get("ability") or 0,
                           nature=NATURES.index(named.replace("NATURE_", "").title())
                           if named else None)
-        # The ability comes from the form's own record, by the same bit
-        # (f801cc160); a form without one, such as the East Sea's, is its base.
         form_folder = FORM_FOLDERS.get((species, form))
-        record = _raw_species(root, species, form_folder) if form_folder else base
-        a1, a2, hidden = (record["abilities"] + ["ABILITY_NONE"] * 3)[:3]
-        ability = a2 if a2 != "ABILITY_NONE" and pid & 1 else a1
-        # Asking for the hidden ability falls back to the ordinary one when the
-        # record has none, as Pokemon_TryGiveHiddenAbility does.
-        if m.get("ability") == ABILITY_HIDDEN and hidden != "ABILITY_NONE":
-            ability = hidden
+        ability = member_ability(root, m, pid)
         if has_moves:
             move_ids = [mv for mv in (m.get("moves") or []) if mv and mv != "MOVE_NONE"]
         else:
