@@ -2,6 +2,36 @@
 
 Ian drafted Saturn 1's new six in his OxiDex on 2026-11-02. Saturn is a Galactic commander, so a boss, fought in Valor Cavern in Candice's split (cap 56) after Officer Hesperid 1, with his ace at 53 as Ian set it. This is the check his Hesperid 1 and Mars 2 drafts had ([hesperid-check.md](hesperid-check.md), [mars2-check.md](mars2-check.md)): anything that invalidates the fight, each member's job, the weakest crux with the top picks for it, and the cheap checks. The draft is on branch `overseer-saturn1-check`, saved as it stands. The only other change to the game's data is the egg-list commit for its three off-list moves. No team change was made, no scorer reading was run, and the simulator was not touched.
 
+## Ian's answers (2026-11-02)
+
+1. Azelf holds a Babiri Berry in place of its Focus Sash, and Glimmora keeps the lead's Sash.
+2. Naganadel is Rash in place of Hasty, so Beast Boost raises its Sp. Atk.
+3. Azelf takes Dazzling Gleam in place of its Stealth Rock. Ian chose it over Drain Punch.
+4. The AI flags stay Basic, Evaluate Attack and Expert.
+5. Saturn 1's theme line in [boss-shapes.md](boss-shapes.md) is now poison and hazards; Saturn 2 at the HQ keeps the permanent Trick Room.
+6. No scorer reading: Saturn 1 is judged in Ian's playtest.
+
+The three edits went through `trainers.save`. No item and no nature repeats: the items are Focus Sash, Leftovers, Life Orb, Yache Berry, Babiri Berry and Poison Barb, and the natures Hasty, Bold, Rash, Mild, Timid and Modest. Dazzling Gleam is Azelf's TM05, so both checkers pass it at 51 and no egg list was needed; the OxiDex's lists give all 24 moves and the Kaizo checker finds 0 problems. The lint finds nothing, the packer packs the file, test_b1 passes 50 of 50, test_learnrewrite 6 of 6, test_learncheck 18 of 18 and test_trainers 44 of 44, and `make rom` builds.
+
+The AI-picks probe was run again on the saved file, on the same three boxes, per six over 150 fights:
+
+| | Ian's draft | After the answers |
+|---|---|---|
+| The player's wins, mean of the three boxes | 62 | 29 (34, 26; 25; 29, 37) |
+| Naganadel's Beast Boost raising Sp. Atk | 0 | 161 to 335 |
+| Naganadel's Beast Boost raising Speed | 105 to 154 | 0 |
+| Knocked out while Naganadel was in | 130 to 166 | 190 to 362 |
+| The player's Pokemon poisoned by Toxic Spikes coming in | 220 to 463 | 116 to 367 |
+| Naganadel's Hex and Venoshock into a poisoned target | 49 to 148 | 17 to 146 |
+| Glimmora's Toxic Spikes and Stealth Rock | 117 to 134, 104 to 126 | 114 to 148, 106 to 125 |
+| Azelf's Dazzling Gleam | | 30 to 95 |
+| Azelf's Babiri Berry eaten | | 47 to 106 |
+| Knocked out while Azelf was in | 130 to 175 | 155 to 243 |
+
+The poison plan is intact: Glimmora lays both hazards as before, and the payoff still lands. The counts of poisoned entries fall a little because fights end sooner. Rash moves Naganadel's Speed from 158 to 144, under Crobat (150) and Talonflame (146), and its Sp. Atk from 150 to 165. The fight now reads about as the old team did (34), harder than Candice (48), Hesperid 1 and Mars 2 (71 each), and easier than Cyrus 1 (4), so Saturn 1 is the split's hardest fight again.
+
+The sections after this one are the check's, from before these answers.
+
 ## Summary
 
 **What could not be checked, first.** Nothing was seen in game. No scorer reading exists for Saturn 1, old or new, so the counterpiece check (the sixes that beat the old team, played against the new one) cannot run, and the probe cannot say on its own whether the fight sits under the 95 percent ceiling for a boss (decision 6).
