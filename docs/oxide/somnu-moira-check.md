@@ -2,6 +2,15 @@
 
 Ian drafted the Lake Verity double against Officers Somnu and Moira in his OxiDex on 2026-11-02. They are named Galactic officers, so mini-bosses, fought together in one double at Lake Verity in Candice's split (cap 56), just before Mars 2, with their aces at 52 as Ian ruled on 2026-11-01 (`candice-split.md`). Both see the player from opposite ends of one row, so the player always meets them together. Somnu's theme is sleep, Moira's Future Sight with Ice and hail, and the pair's is sleep beside Future Sight and hail (`boss-shapes.md`). This is the check Mars 2's and Hesperid's drafts had: anything in the engine, the simulator or the AI that invalidates the fight, the rules, each member's job, and how the pair reads beside Mars 2. The draft is saved on branch `overseer-somnu-moira-check` as it stands; the only other change to the game's data is the egg-list commit below. No scorer reading was run, and the simulator was not touched.
 
+## Ian's answers (2026-11-02)
+
+1. Somnu's Stantler is Mild in place of Adamant.
+2. Moira's Mr. Rime is Rash in place of Adamant.
+
+Both went through `trainers.save`, which changed only the one nature in each file. No nature repeats within either trainer now: Somnu's are Calm, Mild and Modest, Moira's Quiet, Rash and Modest, and across the six only Modest appears twice. No item repeats. The lint finds nothing on either file, the packer packs both, test_b1 passes 50 of 50 and test_trainers 44 of 44, and `make rom` builds. No proxy was rerun: the rows "with Stantler Mild and Mr. Rime Rash" below are these two answers. On them the pair reads harder than the draft on boxes 1 and 3 and still easier than Mars 2 on average, on both proxies.
+
+The sections after this one are the check's, from before these answers.
+
 ## Summary
 
 **What could not be checked, first.** No reading can read a double battle, and the probe of the earlier checks plays single battles only. Every number below comes from two stand-ins, the doubles proxy of the Darach check and a single-battle proxy, and neither has ever been checked against a scorer reading of a double. Mars 2 is a single battle in the game, so the doubles comparison plays her six as if her fight were a double. Nothing was seen in game.

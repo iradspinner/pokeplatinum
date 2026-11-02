@@ -41,7 +41,7 @@
                 "MOVE_SHADOW_BALL"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_MILD",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
