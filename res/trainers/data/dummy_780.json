@@ -75,26 +75,26 @@
                 "MOVE_EARTHQUAKE"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
             "ability": 2,
             "gender": "female"
         },
         {
-            "species": "SPECIES_MAGMORTAR",
+            "species": "SPECIES_TYPHLOSION",
             "form": 0,
             "level": 67,
             "item": "ITEM_WISE_GLASSES",
             "moves": [
                 "MOVE_LAVA_PLUME",
-                "MOVE_THUNDERBOLT",
-                "MOVE_FOCUS_BLAST",
-                "MOVE_PSYCHIC"
+                "MOVE_INFERNAL_PARADE",
+                "MOVE_WILL_O_WISP",
+                "MOVE_FOCUS_BLAST"
             ],
             "iv_scale": 255,
             "nature": "NATURE_MODEST",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": "female"
         },
         {
@@ -109,7 +109,7 @@
                 "MOVE_LEECH_SEED"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 2,
             "gender": "female"

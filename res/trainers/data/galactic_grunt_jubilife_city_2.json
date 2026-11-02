@@ -11,6 +11,7 @@
     "double_battle": false,
     "party": [
         {
+            "gender": null,
             "species": "SPECIES_JOLTIK",
             "form": 0,
             "level": 17,
@@ -24,10 +25,10 @@
             "iv_scale": 255,
             "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": null
+            "ability": 2
         },
         {
+            "gender": null,
             "species": "SPECIES_SURSKIT",
             "form": 0,
             "level": 17,
@@ -41,8 +42,24 @@
             "iv_scale": 255,
             "nature": "NATURE_QUIET",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": null
+            "ability": 1
+        },
+        {
+            "gender": null,
+            "species": "SPECIES_SNORUNT",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_EVIOLITE",
+            "moves": [
+                "MOVE_ICY_WIND",
+                "MOVE_SHADOW_BALL",
+                "MOVE_WATER_PULSE",
+                "MOVE_BITE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 1
         },
         {
             "species": "SPECIES_EKANS",
@@ -58,8 +75,7 @@
             "iv_scale": 255,
             "nature": "NATURE_NAUGHTY",
             "ball_seal": 0,
-            "ability": 3,
-            "gender": null
+            "ability": 3
         }
     ],
     "messages": [

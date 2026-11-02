@@ -288,6 +288,23 @@ def check_split_overrides(results):
     wrong = {stem: split for stem, split in got.items() if split != "Gardenia"}
     results.append(("the Jubilife tag battle sits in Gardenia's split", not wrong,
                     f"{len(stems)} trainers" + (f"; wrong: {wrong}" if wrong else "")))
+    # Four a side there since 2026-11-01 (Ian: "Have lucas/dawn go to 4
+    # members (and not lead with their starters) and phobos/deimos go to 4
+    # members"): every file brings four, and no partner leads with its
+    # starter, which is the line the file's suffix beats.
+    starters = {"turtwig": "Prinplup", "chimchar": "Turtwig", "piplup": "Monferno"}
+    party = {stem: data.oxide_trainers()[by_stem[stem]]["party"] for stem in stems}
+    sizes = {stem: len(p) for stem, p in party.items()}
+    leads = {stem: party[stem][0]["species"] for stem in stems[2:]}
+    bad = {stem: n for stem, n in sizes.items() if n != 4}
+    led = {stem: sp for stem, sp in leads.items() if sp == starters[stem.rsplit("_", 1)[1]]}
+    last = {stem: party[stem][-1]["species"] for stem in stems[2:]}
+    gone = {stem: sp for stem, sp in last.items() if sp != starters[stem.rsplit("_", 1)[1]]}
+    results.append(("Jubilife is four a side, and the partner keeps its starter but not in the lead",
+                    not bad and not led and not gone,
+                    f"sizes {sorted(set(sizes.values()))}"
+                    + (f"; not four: {bad}" if bad else "") + (f"; starter leads: {led}" if led else "")
+                    + (f"; starter missing: {gone}" if gone else "")))
 
 
 def check_items_and_marts(results):
