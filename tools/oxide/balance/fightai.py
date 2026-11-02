@@ -3858,8 +3858,24 @@ def _ko_score(b, fainted, cand, target, m):
     Filter, Solid Rock, Expert Belt, Tinted Lens), cut to a byte again; 0
     into an immunity. A status move costs 2 (no class branch, CalcMoveDamage
     returns its closing + 2). The calculator's top roll includes the
-    same-type bonus and the type, so they are divided back out of it."""
+    same-type bonus and the type, so they are divided back out of it.
+
+    Scrappy: BattleAI_PostKOSwitchIn passes the fainted battler as the
+    attacker to BattleSystem_ApplyTypeChart (battle_lib.c), whose chart
+    loop stops at the 0xFE marker of sTypeMatchupMultipliers when that
+    attacker has Scrappy (or the defender is under Foresight). The only
+    entries after the marker are Normal and Fighting into Ghost, so a
+    Scrappy holder's Normal or Fighting move applies no multiplier for the
+    Ghost type: the Ghost half counts as neutral, in the divide-back as in
+    the chart steps, as _type_flags already reads it. Until 2026-11-01 the
+    divide-back took the chart's 0 there and raised ZeroDivisionError."""
     ty = move_type(b, cand, m)
+    scrappy = fainted.ability == "Scrappy" and ty in ("Normal", "Fighting")
+
+    def chart(types):
+        # The chart's multiplier for this move into these types, with the
+        # Ghost type skipped for a Scrappy holder (the 0xFE stop above).
+        return fs.effectiveness(b.st["chart"], ty, [x for x in types if not (scrappy and x.title() == "Ghost")])
     if ty == "Ground" and m.name != "Thousand Arrows" and (
             (target.ability == "Levitate" and not mold(fainted, target)) or target.item == "Air Balloon"):
         return 0
@@ -3869,7 +3885,7 @@ def _ko_score(b, fainted, cand, target, m):
     if m.power and target.ability == "Wonder Guard" and not mold(fainted, target) and not se:
         return 0
     stab = (2 if fainted.ability == "Adaptability" else 1.5) if ty in fainted.types else 1
-    eff = fs.effectiveness(b.st["chart"], ty, target.types)
+    eff = chart(target.types)
     if m.cat == "Status":
         d = 2
     else:
@@ -3884,6 +3900,8 @@ def _ko_score(b, fainted, cand, target, m):
     if ty in fainted.types:
         d = d * 2 if fainted.ability == "Adaptability" else d * 15 // 10
     for x in dict.fromkeys(target.types):
+        if scrappy and x.title() == "Ghost":
+            continue             # the 0xFE stop: no entry for this type is read
         mx = fs.effectiveness(b.st["chart"], ty, [x])
         if d:
             d = max(1, d * int(mx * 10) // 10)

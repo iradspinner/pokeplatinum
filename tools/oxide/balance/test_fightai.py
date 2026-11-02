@@ -720,6 +720,40 @@ def post_ko_pick():
     out.append(("PostKOSwitchIn stage 2: a status move scores 2, 0 into an immunity",
                 ai._ko_score(b, gengar, lax, champ, growl) == 2 and ai._ko_score(b, lax, lax, champ, growl) == 3,
                 f"{ai._ko_score(b, gengar, lax, champ, growl)}, as Snorlax {ai._ko_score(b, lax, lax, champ, growl)}"))
+    # Scrappy, in the fainted Pokemon's slot, lets its Normal and Fighting
+    # moves meet a Ghost at neutral: ApplyTypeChart stops at the chart's 0xFE
+    # marker when the attacker (the fainted battler) has Scrappy, so the two
+    # Ghost immunities after it never apply. A Normal move into Gengar (Ghost
+    # and Poison) then scores as into a Poison type alone. Until 2026-11-01
+    # the divide-back took the chart's 0 for Ghost and raised
+    # ZeroDivisionError (Officer Hesperid 1's Chatot, hesperid-check.md).
+    b = battle([("Chatot", 40, "Scrappy", ["Chatter"]), ("Snorlax", 40, "Thick Fat", ["Body Slam"]),
+                ("Machamp", 40, "Guts", ["Cross Chop"])],
+               [("Gengar", 40, "Levitate", ["Shadow Ball"])])
+    b.rng = Dice(PASS)
+    chatot, lax, champ, gengar = b.b.mons[0], b.b.mons[1], b.b.mons[2], b.p.cur()
+    got = {}
+    for label, cand, mv in (("Body Slam", lax, fs.move("Body Slam")), ("Cross Chop", champ, fs.move("Cross Chop"))):
+        try:
+            into_ghost = ai._ko_score(b, chatot, cand, gengar, mv)
+        except ZeroDivisionError:
+            into_ghost = "ZeroDivisionError"
+        was = gengar.types
+        gengar.types = ["Poison"]
+        try:
+            into_poison = ai._ko_score(b, chatot, cand, gengar, mv)
+        finally:
+            gengar.types = was
+        got[label] = (into_ghost, into_poison)
+    out.append(("PostKOSwitchIn stage 2: a Scrappy holder's Normal and Fighting moves meet a Ghost at neutral",
+                all(g == p and isinstance(g, int) and g > 1 for g, p in got.values()),
+                f"(into Gengar, into a Poison type alone): {got}"))
+    try:
+        picked = b.b.mons[ai.replacement(b, b.b, gengar)].species
+    except ZeroDivisionError:
+        picked = "ZeroDivisionError"
+    out.append(("PostKOSwitchIn: Chatot (Scrappy) fainting before a Ghost picks a replacement",
+                picked in ("Snorlax", "Machamp"), f"picked {picked}"))
     return out
 
 
