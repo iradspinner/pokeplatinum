@@ -359,6 +359,16 @@ IAN_EGG_MOVES = {
                                              "Claydol at 43, a draft")],
     "SPECIES_RELICANTH": [("MOVE_HEAD_SMASH", "the egg-list rule (Ian, 2026-10-29): Officer Argo 1's "
                                               "Relicanth at 41, which learns it at 78, a draft")],
+    # Ian's Officer Hesperid 1 (2026-11-01, docs/oxide/hesperid-check.md): the
+    # moves his draft carries that no list gives at its levels. Explosion and
+    # Focus Punch were Sudowoodo's TMs before the TM pass; Misty Explosion is
+    # on no Oxide list for the Jigglypuff line.
+    "SPECIES_BONSLY": [("MOVE_EXPLOSION", "the egg-list rule (Ian, 2026-10-29): Officer Hesperid 1's "
+                                          "Sudowoodo at 52, a TM before the TM pass"),
+                       ("MOVE_FOCUS_PUNCH", "the egg-list rule (Ian, 2026-10-29): Officer Hesperid 1's "
+                                            "Sudowoodo at 52, a TM before the TM pass")],
+    "SPECIES_IGGLYBUFF": [("MOVE_MISTY_EXPLOSION", "the egg-list rule (Ian, 2026-10-29): Officer "
+                                                   "Hesperid 1's Wigglytuff at 52")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

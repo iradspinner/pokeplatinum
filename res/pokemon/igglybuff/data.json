@@ -93,7 +93,8 @@
             "MOVE_FAKE_TEARS",
             "MOVE_LAST_RESORT",
             "MOVE_COVET",
-            "MOVE_GRAVITY"
+            "MOVE_GRAVITY",
+            "MOVE_MISTY_EXPLOSION"
         ]
     },
     "evolutions": [
