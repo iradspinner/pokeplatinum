@@ -1,8 +1,141 @@
-# Cyrus 1's redesign: the evidence and the diagnosis
+# Cyrus 1's redesign: the evidence, the diagnosis and the shapes
 
-Ian asked on 2026-11-01 for Cyrus 1 (the Celestic ruins, Byron's split, honour cap 47) to be redesigned in Roark's and Lucas and Dawn 2's checked stages, because its first scorer reading reads far too easy. This page holds stages 1 and 2, the evidence and the diagnosis, for Ian to check before any candidate or set is drafted. The team in the game is unchanged.
+Ian asked on 2026-11-01 for Cyrus 1 (the Celestic ruins, Byron's split, honour cap 47) to be redesigned in Roark's and Lucas and Dawn 2's checked stages, because its first scorer reading reads far too easy. This page holds stages 1 and 2, the evidence and the diagnosis, which Ian checked the same day, and stage 3, the candidates and three team shapes, for him to check before any sets are written. The team in the game is unchanged.
+
+## Ian's answers (2026-11-01)
+
+1. The shape and the diagnosis match how he would plan the fight.
+2. The target is 75 to 85 percent won over the three boxes, with no box under 60.
+3. Every member is open but Salamence and Honchkrow. The page's question named Honchkrow and Crobat as the two canon picks that would stay; Ian opened Crobat too: "seeing as that is still 3 flying types you can change up the crobat as well if needed."
+4. Cyrus 1 takes none of Gyarados, Weavile or Houndoom, which stay for Cyrus 2 and 3.
+5. Every dial the softening of 2026-10-31 turned off is open again: Download, Adaptability, the Expert Belt, Brick Break, Speed natures and Salamence's item.
+6. Argo 1 is not redesigned. The scorer reads him beside the new Cyrus 1.
+7. The new team gets a scorer reading before it lands, which the Overseer runs.
 
 ## Summary
+
+Stage 3 gives three team shapes. Each was built from a sweep of 267 species on the vendored calculator against 32 of the player's likely answers, and each was checked with the trainer AI's own replacement rule on all three boxes. No shape has a scorer reading, so how hard each reads is a forecast from cheap checks. My pick is shape A.
+
+| Shape | The six (lead first, ace last) | New species | Flying types |
+|---|---|---|---|
+| A, Spikes and the walls' own weaknesses | Cloyster, Honchkrow, Hariyama, Swampert, Meganium, Salamence | 4 | 2 |
+| B, Crobat's U-turn into the answer | Crobat, Honchkrow, Machamp, Nidoking, Meganium, Salamence | 3 | 3 |
+| C, the draft's dials back, Swampert for Crobat | Swampert, Honchkrow, Porygon-Z, Electivire, Magmortar, Salamence | 1 | 2 |
+
+The matchup screen's best six, by box, as background only, since the screen and the probe misjudged this fight. Lower means the player's best six wins its one-on-ones by less. The order is C, then A, then B, then today's team, but no screen figure can be turned into a percent won.
+
+| Screen's best six | Box 1 | Box 2 | Box 3 |
+|---|---|---|---|
+| Today's team (read at 96, 100 and 97 percent won) | 17.3 | 17.2 | 17.7 |
+| A | 13.6 | 13.6 | 12.2 |
+| B | 16.3 | 15.7 | 16.7 |
+| C | 11.7 | 11.6 | 10.9 |
+
+I recommend A for four reasons. Every member beats a class of wall, and the replacement rule sends it into that class. Cloyster's Spikes make each switch cost an eighth of the player's HP, and switching into walls is how the player wins today. No answer in the boxes takes half of Swampert's HP with its lowest roll, and only two take half of Meganium's, so the walls cannot simply sit in front of them. And A carries two Flying types and no species from a nearby boss. C is the harder fallback: the smallest change, but it brings back the draft's Porygon-Z and Electivire, which the probe read as far harder than any accepted fight, so it risks a box under 60. B barely moves the screen and keeps three Flying types, so I do not recommend it.
+
+What Ian decides, one line each:
+
+1. Which shape goes to stage 4: A (recommended), C, or B.
+2. For A, the lead's job: Cloyster's Spikes (recommended, a cost on every switch, Ground types included), or Stealth Rock from Swampert, which barely touches the Rock and Steel walls.
+3. Salamence's item: the Yache Berry back (A and C; recommended, since the Ice attackers are its main answers) or the Lum Berry (B).
+4. A species a later or optional fight also uses: allowed, or not. A's Cloyster is on Dahlia (an optional Brain), Swampert on May, and Hariyama on Maylene's rematch; none is a mandatory fight near Cyrus 1. Recommended: allowed.
+
+Next steps once Ian has answered. Stage 4, the sets for his pick, with legality, items and natures, and the Speed tiers named below: about an hour. The Overseer's scorer reading of the new team, with Argo 1 beside it: about four hours of machine time. If the reading lands outside 75 to 85, the first dials to turn are named in each shape's section.
+
+## Stage 3: the candidates and three shapes
+
+### How the candidates were found
+
+Every Oxide species that is fully evolved, has a base stat total of 455 or more and is not a legendary went through the sweep: 267 species. Ultra Beasts and Megas were then left out of the ranking. Each was built at 45 (31 IVs, no EVs, a neutral nature, no item) in each of its three ability slots. Its moves were its legal trainer palette at 45, from the Kaizo study's checker: level-up moves, egg moves, TMs, tutor moves and the TMs from before the TM pass. The calculator gave its best move on each of 32 answers from the three boxes (at 47, Hardy, IVs 15, with the four moves the reading's search gave them), and each answer's best hit on it. Conditional, charging and half-recoil moves were left out of the ranking: Solar Beam without sun, Meteor Beam, Water Spout, Eruption, and the beams that cost half the damage dealt.
+
+Two things came out of it. Damage is not what limits the team. Any strong species with a special Grass, Water or Ice move takes half or more off the Ground walls, which are specially frail, and Focus Blast, an old TM many palettes keep, takes half off Bastiodon and Probopass for many of them. What limits it is what the walls do back, with Earthquake, Rock moves and Golem's Fire Punch, and which member the AI sends into which wall. So the useful picks are those the walls cannot hurt, and each was then checked inside a whole team.
+
+### The candidates by need
+
+Figures are the lowest to highest roll as a percent of the answer's HP, from the shape runs (with the shape's items; the player's item left out). An asterisk marks a sure one-hit knockout.
+
+| Need (from stage 2) | Candidates looked at | What the kept picks do |
+|---|---|---|
+| The Ground walls: Hippowdon, Quagsire, Donphan, Golem, Palossand | Grass: Meganium, Venusaur, Tangrowth, Roserade, Sceptile, Ludicolo. Water: Swampert, Cloyster. Ice: Porygon-Z's Ice Beam | Meganium's Energy Ball: Quagsire 187 to 222*, Golem*, Palossand*, Donphan*, Hippowdon half or more. Swampert's Waterfall on Golem 95 to 117. Cloyster's Hydro Pump on Golem 187 to 220* |
+| The Rock and Steel walls: Bastiodon, Probopass, Garganacl, Crustle | Hariyama, Machamp, Swampert, Nidoking, Electivire with Adaptability, Kommo-o, Lucario, Mamoswine, Metagross | Hariyama's Close Combat: Bastiodon 125 to 148*, Probopass 153 to 181*. Swampert's Earthquake: Bastiodon 77 to 92, Probopass 97 to 113. Electivire's Adaptability Brick Break: Bastiodon 97 to 118 |
+| Palossand | Cloyster, Meganium, Porygon-Z's Shadow Ball, Honchkrow | Cloyster's Icicle Spear 104 to 125*, Meganium's Energy Ball one hit, Honchkrow's Crunch 89 to 106 |
+| Salamence's answers: Manaphy and Alolan Ninetales | Meganium, Hariyama, Electivire, Magmortar, Cloyster, Crobat | Meganium's Energy Ball on Manaphy 73 to 87, and Thick Fat halves Ninetales's Triple Axel to 43 to 53. Electivire's Thunder Punch on Manaphy 112 to 133*. Magmortar's Flamethrower on Ninetales 95 to 113, at 110 Speed over its 106 |
+| A lead with a job | Spikes: Cloyster, Forretress, Froslass, Glalie, Omastar, Qwilfish, Greninja, Cacturne, Klefki. Stealth Rock: Swampert, Mamoswine, Ferrothorn. Toxic Spikes: Nidoking, Drapion, Glimmora | Cloyster sets Spikes; Swampert sets Stealth Rock in C |
+
+Left out, and why:
+
+- Gyarados, Weavile and Houndoom: Ian keeps them for Cyrus 2 and 3. The species now on those two files (Skarmory, Magnezone, Dusknoir, Suicune, Heatran, Flygon, Regirock) were set aside too, for the no-repeat theme, though neither file is redesigned yet.
+- Lucario and the Kommo-o line (Maylene, and Riley in this same split), Poliwrath (Riley), Ludicolo (Wake), Metagross (Byron), Decidueye (Fantina), Roserade and Exeggutor (Gardenia; Roserade also Cynthia), Tangrowth (Jupiter's theme), Mamoswine and Abomasnow (Candice, and Moira's Ice): each is on a boss the player meets near Cyrus 1. Kommo-o took half its HP from only one core answer in the sweep (Alolan Ninetales), and is the first swap if Ian wants one.
+- Ferrothorn: Oxide's palette gives it no Spikes, so as a lead it needs an egg-list addition.
+- Rhyperior and Steelix: Saturn's slow giants.
+- Legendaries: one before Cyrus 3 would be a ruling of its own, and no need above calls for one.
+
+### Shape A: Spikes, then the walls' own weaknesses
+
+| Member | Level | Ability | Item | Nature | Speed | The moves the shape needs |
+|---|---|---|---|---|---|---|
+| Cloyster (lead) | 45 | Skill Link | Never-Melt Ice | Impish | 81 | Spikes, Icicle Spear, Rock Blast, Hydro Pump |
+| Honchkrow | 46 | Super Luck | Black Glasses | Adamant | 102 | as today |
+| Hariyama | 44 | Thick Fat | Black Belt | Brave | 55 | Close Combat, Bullet Punch, Knock Off, Bulk Up |
+| Swampert | 45 | Torrent | Leftovers | Hardy | 72 | Earthquake, Waterfall, Ice Punch, Rock Slide |
+| Meganium | 44 | Thick Fat | Miracle Seed | Modest | 89 | Energy Ball, Earthquake, Iron Tail, Synthesis |
+| Salamence (ace) | 47 | Intimidate | Yache Berry | Naughty | 113 | as today |
+
+The lead's job is Spikes. Against the leads the player brings today, Cloyster wins or works freely. Golem takes 187 to 220 percent from Hydro Pump. Bastiodon and Probopass take 36 to 45 and hit back for 23 to 47, so Cloyster lays Spikes in front of them; the Taunt both of them carry is what stops it. Its answers are the Electric types, Luxray (Wild Charge 53 to 63) and Rotom, and special hits on its low Special Defence. Luxray draws in Hariyama, whose Close Combat knocks it out (159 to 189) and who carries Bulk Up, so the player's switch hands it a free turn: Ian's lead test passes there. Rotom draws in Honchkrow, whose Crunch knocks Rotom out in one hit, though without setup.
+
+Who the replacement rule sends in, on all three boxes:
+
+| The player's Pokemon in front | Comes in |
+|---|---|
+| Golem, Crustle, Hippowdon, Donphan, Onix, Palossand, Corviknight | Cloyster while it stands; once it is gone, Swampert (Golem, Crustle, Onix), Meganium (Hippowdon, Donphan, Palossand) or Honchkrow (Corviknight) |
+| Bastiodon, Probopass | Swampert |
+| Garganacl, Luxray, Empoleon, Alolan Ninetales | Hariyama |
+| Quagsire, Manaphy, Whiscash, Jellicent | Meganium |
+| Rotom, Bronzong, Araquanid | Honchkrow (Salamence against Bronzong once Honchkrow is gone) |
+
+Each member drawn in takes half or more off the Pokemon it is drawn into with its lowest roll, except Honchkrow against Bronzong and Corviknight (Heat Wave, 46 to 55 on Corviknight). No answer in the three boxes takes half of Swampert's HP with its lowest roll. Meganium takes half or more only from Crustle's X-Scissor and Corviknight's Dual Wingbeat. Against A the screen's sixes move to Bastiodon and Crustle (all 20 of the top 20 on boxes 2 and 3), the player's own Crobat (14 to 20 of 20; Poison and Flying resist Fighting and Grass and ignore Earthquake, and Cloyster's Ice and Rock moves and Honchkrow are its checks), Heracross, Glimmora and Corviknight. That is a new plan for the player to find, with type answers, rather than one wall class that beats the whole team.
+
+Speed tiers to settle in stage 4. Hariyama, Brave, sits at 55, one point over Golem and Crustle (54) and under Hippowdon (56) and Donphan (59); a neutral nature puts it at 62, over every wall. Cloyster (81) and Meganium (89) sit under Rotom (97), Luxray (101), and Manaphy and Ninetales (106). The first dials if A reads too easy: Hariyama's nature, a second layer of Spikes, and Meganium's item. If it reads too hard: Cloyster's Spikes for Stealth Rock, and Swampert's Leftovers.
+
+Tried and dropped: A with Venusaur in Meganium's place. The rule sent Venusaur into Alolan Ninetales, which outspeeds it and takes 97 to 118 percent with Triple Axel; Meganium's Thick Fat halves that hit, and the rule then sends Hariyama, with Bullet Punch, instead. The screen read the same (13.6, 13.0, 12.2).
+
+### Shape B: Crobat's U-turn into the answer
+
+| Member | Level | Ability | Item | Nature | Speed | The moves the shape needs |
+|---|---|---|---|---|---|---|
+| Crobat (lead) | 45 | Inner Focus | Razor Fang | Jolly | 148 | as today |
+| Honchkrow | 46 | Super Luck | Black Glasses | Adamant | 102 | as today |
+| Machamp | 45 | No Guard | Black Belt | Brave | 61 | Dynamic Punch, Stone Edge, Ice Punch, Bulk Up |
+| Nidoking | 44 | Sheer Force | Soft Sand | Modest | 93 | Earth Power, Sludge Bomb, Ice Beam, Surf |
+| Meganium | 44 | Thick Fat | Leftovers | Calm | 89 | Energy Ball, Earthquake, Knock Off, Synthesis |
+| Salamence (ace) | 47 | Intimidate | Lum Berry | Naughty | 113 | as today |
+
+The lead's job is to pivot. Crobat's answers, the Rock and Steel leads, now draw in Machamp against Golem, Crustle and Garganacl (with Bulk Up, so the lead test passes there) and Nidoking against Bastiodon and Probopass, which Earth Power and Earthquake knock out in one hit. Meganium is drawn into the Ground and Water walls. The fault is what the screen finds: Gengar and Bronzong (Levitate), Corviknight, Staraptor and Orbeetle, which Nidoking's Ground moves and Machamp's Fighting moves miss or barely touch. Crobat itself still takes half off only Ninetales, Jellicent and Araquanid, and Nidoking falls to one Earthquake from Golem. The screen hardly moves (16.3, 15.7, 16.7).
+
+Tried and dropped: B with today's Magmortar in Nidoking's place, so that only two species are new. The screen read as today's (17.8, 16.7, 17.5).
+
+### Shape C: the draft's dials back, Swampert for Crobat
+
+| Member | Level | Ability | Item | Nature | Speed | The moves the shape needs |
+|---|---|---|---|---|---|---|
+| Swampert (lead) | 45 | Torrent | Leftovers | Brave | 64 | Stealth Rock, Earthquake, Waterfall, Ice Punch |
+| Honchkrow | 46 | Super Luck | Black Glasses | Adamant | 102 | as today |
+| Porygon-Z | 45 | Download | Silk Scarf | Modest | 99 | Tri Attack, Thunderbolt, Ice Beam, Shadow Ball (the draft's) |
+| Electivire | 44 | Adaptability | Expert Belt | Naive | 122 | Thunder Punch, Brick Break, Ice Punch, Earthquake (the draft's) |
+| Magmortar | 44 | Flame Body | Charcoal | Timid | 110 | as today |
+| Salamence (ace) | 47 | Intimidate | Yache Berry | Naughty | 113 | as today |
+
+The lead's job is Stealth Rock and damage. No answer in the boxes takes half of Swampert's HP with its lowest roll, and it hits most walls hard; Golem, Probopass, Luxray and Onix fall to one hit. Its answers are Grass types (Tsareena, Leavanny, Breloom, Leafeon and Abomasnow, which the screen now favours), and they draw in Magmortar, which beats them without setup, so the lead test passes only by half.
+
+The bait order has one weak point. While Swampert stands, the rule sends it into every Rock, Steel and Ground wall. Once it is gone, it sends Electivire, and Golem, Hippowdon and Donphan still knock Electivire out with one Earthquake. So the old trap returns late in the fight. Manaphy draws in Electivire, whose Thunder Punch knocks it out (112 to 133); Ninetales draws in Magmortar, which outspeeds it. Quagsire stays in all 20 of box 1's top sixes, beside Abomasnow. Porygon-Z's figures leave out Download's raise, which the battle applies on entry.
+
+This shape reads hardest on the screen (11.7, 11.6, 10.9). Its two drafted members, with today's other four, read on the probe as far harder than any accepted fight at these levels (52 rough wins of 900, against Wake's 378). With Swampert on top, it is the shape likeliest to put a box under Ian's floor of 60.
+
+### An engine rule the shapes meet
+
+The replacement rule adds the candidate's two type scores into one byte, as the engine does, so a total over 255 wraps. A pure Fighting type against Bastiodon or Probopass scores 160 twice, 320, which wraps to 64, so the rule passes over Hariyama and Machamp there even though their Fighting moves hit four times. A shape that wants its Fighting member drawn into Bastiodon needs a Fighting dual type. This is the engine's own rule, which the simulator mirrors; nothing here changes it.
+
+## Stages 1 and 2: the summary as Ian read it
 
 The scorer wins Cyrus 1 on 98 percent of fights over goal 3's three boxes (96, 100 and 97), above Ian's 95 percent ceiling for a boss and easier than any boss read so far; only Moira 1's earlier team, an officer fight, read easier. The player loses about one Pokemon a fight. The reading is run `cyrus-1-61b9d0391`, on the team in the game today.
 
@@ -10,7 +143,7 @@ The fight is easy because every member is walled by a type each box holds eight 
 
 Golem is in all three of the scorer's sixes, and nearly every six the search played out won 84 percent of its fights or more. Salamence makes half the knockouts and Honchkrow a fifth. Crobat, Electivire and Porygon-Z together make an eighth. The softening of 2026-10-31 removed Brick Break, Adaptability, Ice Beam and Shadow Ball, the moves that reached the walls. That softening was judged on the outcome probe, whose player never switches, and this fight is won by switching each member into its wall.
 
-What Ian decides, one line each:
+What Ian decided on (his answers are at the top of the page):
 
 1. The shape and diagnosis below: do they match how he would plan the fight? Yes, or yes with changes he names.
 2. The target, percent won over the three boxes. (a) 85 to 92, beside Roark, Gardenia and Jupiter 1; (b) 75 to 85, the band of the hardest bosses, with no box under about 60; (c) 55 to 75, toward the 52 that Gardenia's first whole reading gave, which the Cyrus fights are allowed. Recommended: (b), since this is the first of three Cyrus fights and the split's first boss.
@@ -272,4 +405,6 @@ Material for this fight: the availability by Celestic of Golem, Bastiodon, Probo
 
 The reading's files are in `~/oxide-trials/goal3/cyrus-1-61b9d0391/cyrus_1/box1` to `box3`: each box's `result.json` and `log.txt`, and its search's `line.txt`. The reading ran at 61b9d0391 from the tree `~/oxide-trials/goal3/tree-cyrus-1`, whose Cyrus 1 file matches `oxide`'s. Boxes 2 and 3 reused box 1's networks without labels or training of their own, as their logs say. Nothing here ran the scorer or the probe, and nothing changed the simulator or `res/`.
 
-The damage and Speed figures come from three short scripts in `/home/ian/.claude/jobs/cyrus-1-redesign/`, run from this branch's worktree under `tools/oxide/capped`. Each builds the reading's fight with goal 3's own setup (`plgoal3.setup` and `fight_state`, seeds 1 to 3, the box at 47, a fresh run name) and reads the calculator rows the scorer reads. `dmg.py` gives each Cyrus member's best move on each chosen catch and the reverse, `pair.py` every move of a named pair, and `abil.py` the catches' abilities and stats. Cyrus's members are limited to their four moves; the player's to the moves the scorer gave them. The replacement rule's picks were worked by hand from `fightai.replacement` and the type chart, not run.
+Stage 1's damage and Speed figures come from three short scripts in `/home/ian/.claude/jobs/cyrus-1-redesign/`, run from this branch's worktree under `tools/oxide/capped`. Each builds the reading's fight with goal 3's own setup (`plgoal3.setup` and `fight_state`, seeds 1 to 3, the box at 47, a fresh run name) and reads the calculator rows the scorer reads. `dmg.py` gives each Cyrus member's best move on each chosen catch and the reverse, `pair.py` every move of a named pair, and `abil.py` the catches' abilities and stats. Cyrus's members are limited to their four moves; the player's to the moves the scorer gave them. The replacement rule's picks were worked by hand from `fightai.replacement` and the type chart, not run.
+
+Stage 3's figures come from scripts in `/home/ian/.claude/jobs/cyrus-1-redesign/s3/`, run the same way. `walls.py` takes the 32 answers from the three boxes with the reading's four moves for each. `sweep.py` runs the whole-Pokedex sweep through the calculator's own runner in one Node process, and `rank.py` and `detail.py` read it. `shape.py` swaps a whole party into the trainer file in memory and builds the reading's fight on each box with it. It prints each member's best move on each answer and the reverse, from the scorer's own calculator rows with the shape's items, and who `fightai.replacement` sends in against each answer as each member leaves, run on a battle built by `perfectline.make_battle`. It also prints the matchup screen's top sixes. `digest.py` condenses its output. Legality was checked with the Kaizo study's checker (`oxide.legal_moves`, with the TMs from before the TM pass); every move the shapes name is in its species' palette at its level. No scorer, probe or simulator change was run, and `res/` was not written.
