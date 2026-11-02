@@ -18,7 +18,7 @@
                 "MOVE_YAWN",
                 "MOVE_CONFUSE_RAY",
                 "MOVE_REFLECT",
-                "MOVE_PAYBACK"
+                "MOVE_FOUL_PLAY"
             ],
             "iv_scale": 255,
             "nature": "NATURE_TIMID",
