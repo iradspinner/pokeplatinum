@@ -2,6 +2,29 @@
 
 Ian drafted Officer Hesperid 1's new six in his OxiDex on 2026-11-01. Hesperid is a named Galactic officer, a mini-boss, fought at Lake Valor before Saturn 1 in Candice's split (cap 56), with his ace at 53 as Ian ruled. His theme is Platinum Kaizo teambuilding with no holds barred, on rarely used Pokemon with odd movesets ([boss-shapes.md](boss-shapes.md)), and he is the one officer allowed to read harder than his commander. This is the check Maylene's six and the Brains had: anything that invalidates the fight, the weakest crux with the top picks for it, and the cheap checks. The draft is on branch `overseer-hesperid-check`, saved as it stands; the only other change to the game's data is the egg-list commit below. No scorer reading was run.
 
+## Ian's answers (2026-11-01)
+
+1. The Baton Pass flag comes off. His flags are now Basic, Evaluate Attack, Expert and Check HP.
+2. Sudowoodo stays exactly as drafted. Its worth is Stealth Rock, Explosion, Sucker Punch and BrightPowder, not its knockouts. Ian, on the case this page made from the knockout counts: "this is a classic example of simple rules-based reading breaking down". The probe counts knockouts made while a member is in, and a member whose job is to lay rocks, trade itself and make the player miss scores low on that count however well it does the job. So the replacement picks below are the record of what was weighed, not a recommendation, and the decisions no longer carry them.
+3. Sceptile holds a White Herb in place of the Yache Berry.
+4. Question 3 needs no answer: there is no further round of picks.
+5. He approved the Scrappy fix, with a test ("Approve, with a test"). It is on its own branch, `overseer-scrappy-fix`.
+
+The two edits went through `trainers.save`; the lint finds only its Choice Specs warning and the packer packs the file. test_b1 passes 50 of 50, test_learnrewrite 6 of 6, test_learncheck 18 of 18 and test_trainers 44 of 44, and `make rom` builds. No item and no nature repeats: the White Herb is new to the team. The AI-picks probe was run again on the saved file, on the same three boxes, to show what the answers changed in play:
+
+| Per 150 fights, a six | Before the answers | After |
+|---|---|---|
+| Weezing's Explosion on the battle's first turn | 80 to 97 | 0 to 1 |
+| Weezing's Explosion at 30 percent HP or less | 3 to 5 | 15 to 34 |
+| Weezing's Explosion above 70 percent HP | 70 to 84 on box 1 | 1 to 2 |
+| Sceptile's attacks with Unburden on | 0 | 165 to 261 |
+| The White Herb spent (Yache Berry before) | 0 to 15 | 74 to 129 |
+| Girafarig's Agility | 93 to 115 | 0 to 7 |
+
+Weezing's Explosion now waits for low HP, as Check HP means it to, and Weezing leads with Thunder, Sludge Bomb or Payback. Sceptile's first Leaf Storm spends the herb, which puts its Sp. Atk back, and Unburden then doubles its Speed to 314 for the rest of its stay. Without the flag Girafarig almost never uses Agility, and it passes 19 to 70 times a six, often with no stage raised at all. The player's wins in the rough fights were 85, 60; 66, 87; 62, 66, by box, best six then most-taken six; these are the probe's numbers, not a target. With the guard in the harness, the Scrappy case came up 0 to 17 times a six; the fix on its own branch removes the need for the guard.
+
+The sections after this one are the check's, from before these answers.
+
 ## Summary
 
 **What could not be checked, first.** The simulator crashes on this team. When Chatot, whose ability is Scrappy, faints with a Ghost type in front, the trainer AI's replacement rule divides by zero (`fightai._ko_score`), so a scorer reading of this draft would stop on boxes 2 and 3. The probes below ran with a guard in my scratch harness that rescores that one case as Scrappy makes it; the simulator file was not changed. On Ian's draft the guard fired 0 to 15 times a six, counting the player's look-ahead, and never on box 1. Decision 5 asks for the fix. Nothing was seen in game.
@@ -10,13 +33,13 @@ Ian drafted Officer Hesperid 1's new six in his OxiDex on 2026-11-01. Hesperid i
 
 **The weakest crux is Sudowoodo's slot.** It knocks out 18 to 49 of the player's Pokemon per 150 fights, against 59 to 179 for the other five. Bastiodon, in all 20 of the screen's top sixes on every box, is its main target. Focus Punch is its only good hit on Bastiodon (120 to 144 percent), but it lands in 17 to 31 of its 65 to 109 uses, since the player hits first. Its other three moves get no damage comparison, so the Baton Pass flag lifts all four alike at high HP.
 
-**What Ian decides.**
+**What Ian decided** (his answers are at the top).
 
-1. The Baton Pass flag: drop it (my pick), give Girafarig Calm Mind for Agility so the flag can read what it passes, or keep it?
-2. Sudowoodo's slot: Magcargo with Shell Smash (my pick), Sudowoodo with Earthquake for Focus Punch, or keep Sudowoodo?
-3. Hesperid's difficulty: with 1 and 2 taken he reads between Byron and Saturn 1. Stop there (my pick), push him past Saturn with another round of picks, or keep the draft's level?
-4. Sceptile's item: a White Herb for the Yache Berry (my pick), so Unburden fires, or keep the Yache?
-5. Approve a simulator fix for the Scrappy crash, with a test that fails before it (my pick: yes, before any reading of Hesperid)?
+1. The Baton Pass flag: dropped.
+2. Sudowoodo: kept as drafted. Its worth is in Stealth Rock, Explosion, Sucker Punch and BrightPowder.
+3. Hesperid's difficulty: no further round of picks.
+4. Sceptile's item: the White Herb.
+5. The Scrappy fix: approved, with a test.
 
 **Next steps.**
 
@@ -92,6 +115,8 @@ With Calm Mind in Agility's place, the pass rows read the Sp. Atk it raises: Gir
 ## Part 2: the weakest crux
 
 ### Sudowoodo's slot
+
+Ian kept Sudowoodo (his answer 2): this section reads it by knockouts, and that count misses what it is for. The table and picks stay as the record.
 
 | | Weezing | Sceptile | Girafarig | Sudowoodo | Wigglytuff | Chatot |
 |---|---|---|---|---|---|---|
