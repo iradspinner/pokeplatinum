@@ -516,6 +516,38 @@ button.linkish { background: none; border: 0; padding: 0; color: var(--dim); cur
 .scorenum.big { font-size: 40px; }
 .scorebig { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
 #trainmid table.grid { margin: 4px 0 8px; font-size: 15px; }
+/* The coverage tables under the team (Ian, 2026-11-02). Their cells take
+   the Dex's matchup colours: warm for what the team takes or deals well,
+   cool for resisted, a dashed edge for nothing at all. */
+#trcoverage .card { display: flex; flex-direction: column; gap: 10px; }
+.covhead { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.covhead .segtabs { min-width: 280px; }
+.covcols { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 18px; align-items: start; }
+table.covdef { border-collapse: separate; border-spacing: 3px; }
+table.covdef th { font-weight: 600; font-size: 14px; color: var(--dim); padding: 0 6px; }
+table.covdef td { text-align: center; font: 600 14px/1.7 var(--mono); min-width: 42px;
+  padding: 0 6px; border: 1px solid transparent; border-radius: 3px; }
+table.covdef td.type { text-align: left; min-width: 0; padding: 0; }
+table.covdef td.zero { color: var(--faint); font-weight: 400; }
+.abmark { color: var(--place-ink); font-weight: 700; cursor: help; margin-left: 1px; }
+.covmems { display: flex; flex-direction: column; gap: 6px; }
+details.covmem { border: 1px solid var(--rule); border-radius: 8px; padding: 3px 8px; }
+details.covmem > summary { display: flex; align-items: center; gap: 6px 10px; flex-wrap: wrap;
+  cursor: pointer; }
+.covmem .who { display: inline-flex; align-items: center; gap: 4px; min-width: 150px; font-weight: 600; }
+.covmem .moves { display: inline-flex; flex-wrap: wrap; gap: 2px; flex: 1; }
+.covns { display: inline-flex; gap: 4px; }
+.covn { font: 14px/1.6 var(--mono); padding: 0 6px; border: 1px solid transparent;
+  border-radius: 3px; white-space: nowrap; }
+.covn.x1 { color: var(--dim); }
+.covmem .body { padding: 4px 0 6px 4px; display: flex; flex-direction: column; gap: 4px; }
+.covmem details > summary { cursor: pointer; font-size: 15px; color: var(--dim); }
+.covlist { display: flex; flex-wrap: wrap; gap: 2px 12px; font-size: 14px; margin: 2px 0 4px; }
+.covlist .e { display: inline-flex; align-items: center; gap: 3px; }
+.covlist .m { font-family: var(--mono); color: var(--dim); }
+table.covwalls td { vertical-align: middle; }
+table.covwalls td.n { font: 600 15px var(--mono); text-align: right; }
+table.covwalls .who { display: inline-flex; align-items: center; gap: 4px; }
 #trainmid ul.sub { margin: 0 0 6px; padding-left: 18px; }
 /* The AI flags: a fixed grid, every flag in its own cell (Ian, 2026-09-29). */
 .aihead { font-weight: 700; font-size: 14.5px; }
@@ -616,12 +648,12 @@ table.facts td { padding: 1px 0; }
 .mxcell { display: flex; flex-direction: column; align-items: center; gap: 2px;
   padding: 4px 0; border: 1px solid transparent; border-radius: 3px; }
 .mxcell .m { font: 600 14px/1 var(--mono); }
-.mxcell.x4 { background: color-mix(in srgb, var(--stat-0) 45%, var(--panel)); }
-.mxcell.x2 { background: color-mix(in srgb, var(--stat-0) 24%, var(--panel)); }
+.mxcell.x4, .covcell.x4 { background: color-mix(in srgb, var(--stat-0) 45%, var(--panel)); }
+.mxcell.x2, .covcell.x2 { background: color-mix(in srgb, var(--stat-0) 24%, var(--panel)); }
 .mxcell.x1 .m { color: var(--faint); font-weight: 400; }
-.mxcell.x05 { background: color-mix(in srgb, var(--stat-4) 24%, var(--panel)); }
-.mxcell.x025 { background: color-mix(in srgb, var(--stat-4) 45%, var(--panel)); }
-.mxcell.x0 { border: 1px dashed var(--rule); }
+.mxcell.x05, .covcell.x05 { background: color-mix(in srgb, var(--stat-4) 24%, var(--panel)); }
+.mxcell.x025, .covcell.x025 { background: color-mix(in srgb, var(--stat-4) 45%, var(--panel)); }
+.mxcell.x0, .covcell.x0 { border: 1px dashed var(--rule); }
 
 .dexsec { margin-top: 18px; }
 .dexsec > h4 { margin: 0 0 8px; font-size: 15px; font-weight: 600;
@@ -3161,7 +3193,8 @@ const TR_TAIL = `<p class="sub">Click any cell to edit it in place: a level, a s
   IV scale and gender, its move lists and its removal sit in its menu, the dots on its sprite.
   Drag a Pokemon's sprite onto another's to swap their slots.</p>
   <div id="trmoves" class="card" hidden></div>
-  <div class="trbottom" id="trbottom"></div>`;
+  <div class="trbottom" id="trbottom"></div>
+  <div id="trcoverage"></div>`;
 // Runs `fn` with side k's state loaded, then puts the active side back, so
 // both sheets of a pair draw with the single editor's own code.
 function asSide(k, fn) {
@@ -3304,6 +3337,134 @@ function drawTrainerRight() {
   bottom.innerHTML = `
     <section class="card">${hardBlock()}</section>
     <section class="card">${battleCard()}</section>`;
+  drawCoverage();
+}
+
+// ---- the coverage tables (coverage.py; Ian, 2026-11-02) --------------------
+// The server works every number out and sends it with the team; the page
+// only draws. Which scope is shown, which sections are open and whether the
+// walls list is cut short live here, across trainers.
+const TRCOV = { scope: "split", open: new Set(), all: false };
+const COV_BUCKETS = [4, 2, 1, 0.5, 0.25, 0];
+const COV_CLASS = { 4: "x4", 2: "x2", 1: "x1", 0.5: "x05", 0.25: "x025", 0: "x0" };
+const covX = v => "×" + (v === 0.5 ? "½" : v === 0.25 ? "¼" : String(+Number(v).toFixed(3)));
+const covAbil = list => [].concat(list || []).map(tidy).join(" and ");
+// The offence's four groups, as pokemondb's coverage tool puts them.
+const COV_GROUPS = [["super", "×4 or ×2", "x2"], ["neutral", "×1", "x1"],
+                    ["resisted", "×½ or ×¼", "x05"], ["immune", "×0", "x0"]];
+const COV_WALLS_SHOWN = 20;
+const covMark = title => `<span class="abmark" title="${esc(title)}">*</span>`;
+const covName = i => ((TRDETAIL.members || [])[i] || {}).name || `Pokemon ${i + 1}`;
+
+// Defence: each attacking type down the side, how many members take each
+// multiplier across. A count an ability moved carries a mark that names it.
+function covDefence(c) {
+  const head = `<tr><th>Attacking type</th>${COV_BUCKETS.map(b => `<th>${covX(b)}</th>`).join("")}</tr>`;
+  const rows = c.defence.map(r => `<tr><td class="type">${typeChip(r.type, "mini")}</td>${
+    COV_BUCKETS.map(b => {
+      const es = r.cells[String(b)] || [];
+      if (!es.length) return `<td class="zero">0</td>`;
+      const said = es.map(e => covName(e.i) + (e.ability ? ` (${tidy(e.ability)}${e.plain != null
+        ? `, ${covX(e.plain)} without it` : `, ${covX(e.mult)}`})` : "")).join(", ");
+      const moved = es.filter(e => e.plain != null);
+      return `<td class="covcell ${COV_CLASS[b]}" title="${esc(said)}">${es.length}${moved.length
+        ? covMark(moved.map(e => `${covName(e.i)} is here by ${tidy(e.ability)}, ${covX(e.plain)} without it`)
+          .join("; ")) : ""}</td>`;
+    }).join("")}</tr>`).join("");
+  return `<div><h2>Damage taken</h2><table class="covdef">${head}${rows}</table></div>`;
+}
+
+// One Pokemon in a list: its icon (which opens it in the Dex), name and
+// types, the multiplier where the list has more than one, and a mark when an
+// ability put it there.
+function covEntry(c, e, showMult) {
+  const sp = c.species[e.sp] || {};
+  return `<span class="e">${icon(e.sp, true)}${esc(sp.name || e.sp)}${
+    (sp.types || []).map(t => typeChip(t, "mini")).join("")}${
+    showMult ? `<span class="m">${covX(e.mult)}</span>` : ""}${
+    e.ability ? covMark(`By ${covAbil(e.ability)}`) : ""}</span>`;
+}
+
+function covList(c, key, label, list, showMult) {
+  const open = TRCOV.open.has(key);
+  return `<details data-cov="${key}"${open ? " open" : ""}><summary>${esc(label)} (${list.length})</summary>
+    ${open ? `<div class="covlist">${list.length ? list.map(e => covEntry(c, e, showMult)).join("")
+      : `<span class="sub">None.</span>`}</div>` : ""}</details>`;
+}
+
+// Offence: one section per member, its counts in the line that opens it.
+function covMember(c, s, r) {
+  const m = (TRDETAIL.members || [])[r.i] || {}, key = `m${r.i}`;
+  const moves = r.attacks.map(a => `<span title="${esc(a.note || tidy(a.class))}">${
+    typeChip(a.type, "mini", a.name)}</span>`).join("");
+  const counts = r.counts ? COV_GROUPS.map(([g, label, cls]) => {
+    const moved = r.moved[g] || [];
+    return `<span class="covn covcell ${r.counts[g] ? cls : "x1"}" title="${esc(label)}">${label} <b>${
+      r.counts[g]}</b>${moved.length ? covMark(moved.map(e => `${(c.species[e.sp] || {}).name || e.sp} by ${
+        covAbil(e.ability)}`).join(", ")) : ""}</span>`;
+  }).join("") : `<span class="sub">No damaging moves, so it hits nothing.</span>`;
+  const notes = r.attacks.filter(a => a.note).map(a => `${a.name}: ${a.note}`).concat(r.notes || []);
+  const open = TRCOV.open.has(key);
+  return `<details class="covmem" data-cov="${key}"${open ? " open" : ""}>
+    <summary><span class="who">${icon((m.file || {}).species)}${esc(covName(r.i))}</span>
+      <span class="moves">${moves}</span><span class="covns">${counts}</span></summary>
+    ${open ? `<div class="body">${notes.length ? `<p class="sub">${esc(notes.join(". "))}.</p>` : ""}
+      ${r.counts ? covList(c, key + "r", "Hit ×½ or ×¼", r.resisted, true)
+        + covList(c, key + "z", "Hit ×0", r.immune, false) : ""}</div>` : ""}
+  </details>`;
+}
+
+// Walls: every Pokemon in scope that walls a member, the worst first, each
+// with the members it walls. Long lists show their first twenty.
+function covWalls(c, s) {
+  const rows = TRCOV.all ? s.walls : s.walls.slice(0, COV_WALLS_SHOWN);
+  const body = rows.map(w => {
+    const sp = c.species[w.sp] || {};
+    return `<tr><td><span class="who">${icon(w.sp, true)}${esc(sp.name || w.sp)}</span></td>
+      <td>${(sp.types || []).map(t => typeChip(t, "mini")).join("")}${
+        sp.ability ? ` <span class="sub">${esc(tidy(sp.ability))}</span>` : ""}</td>
+      <td class="n">${w.members.length}</td>
+      <td>${w.members.map(m => `<span class="chip plain mini">${esc(covName(m.i))} ${covX(m.mult)}${
+        m.ability ? covMark(`Walled by ${covAbil(m.ability)}; not without it`) : ""}</span>`).join("")}</td></tr>`;
+  }).join("");
+  return `<h2>Walls</h2>
+    <p class="sub">A member is walled when its best damaging move does ×½ or less.
+      ${s.clear} of the ${s.size} wall no one.</p>
+    ${s.walls.length ? `<table class="grid covwalls"><tr><th>Pokemon</th><th>Types, ability</th>
+      <th class="num">Walls</th><th>Members walled, best hit</th></tr>${body}</table>
+      ${s.walls.length > COV_WALLS_SHOWN ? `<button data-covall>${TRCOV.all
+        ? `Show the first ${COV_WALLS_SHOWN}` : `Show all ${s.walls.length}`}</button>` : ""}`
+      : `<p class="sub">Nothing in scope walls any member.</p>`}`;
+}
+
+function drawCoverage() {
+  const el = $("#trcoverage"), d = TRDETAIL, c = d && d.coverage;
+  if (!el) return;
+  if (!c) { el.innerHTML = ""; return; }
+  const scope = c.scopes[TRCOV.scope] ? TRCOV.scope : "dex", s = c.scopes[scope];
+  // Redrawn only when the team or the view changed, since an edit redraws
+  // the cards on every key.
+  const state = JSON.stringify([scope, [...TRCOV.open].sort(), TRCOV.all]);
+  if (el.covFor === c && el.covState === state) return;
+  el.covFor = c; el.covState = state;
+  const what = scope === "split"
+    ? `The ${s.size} Pokemon the player can have by ${esc(d.split)}'s split: what the Box sim
+       can catch or be given there, the starters, and what each evolves into by the cap${
+       d.cap ? " of " + d.cap : ""} or a stone already in reach.`
+    : `All ${s.size} Pokemon in the Dex.`;
+  el.innerHTML = `<section class="card">
+    <div class="covhead"><h2>Type coverage${TRPAIR ? `: ${esc(d.label)}'s team` : ""}</h2>
+      <div class="segtabs"><button data-covscope="split"${scope === "split" ? ` class="on"` : ""}${
+        c.scopes.split ? "" : ` disabled title="Not placed in a split"`}>By ${esc(d.split || "split")}</button><button
+        data-covscope="dex"${scope === "dex" ? ` class="on"` : ""}>Whole dex</button></div></div>
+    <p class="sub">${what} ${esc(c.note)} A mark (*) shows where an ability changed a count;
+      hover it for which.</p>
+    <div class="covcols">${covDefence(c)}
+      <div><h2>Damage dealt</h2><p class="sub">Each member's best damaging move against each
+        Pokemon in scope; status moves do not count. Open a member for the lists.</p>
+        <div class="covmems">${s.members.map(r => covMember(c, s, r)).join("")}</div></div></div>
+    ${covWalls(c, s)}
+  </section>`;
 }
 
 // ---- the battle (the line tester) ----------------------------------------
@@ -4694,6 +4855,9 @@ $("#trainmid").addEventListener("click", ev => {
     edited();
     return drawTrainer();
   }
+  const scope = ev.target.closest("[data-covscope]");
+  if (scope) { TRCOV.scope = scope.dataset.covscope; return drawCoverage(); }
+  if (ev.target.closest("[data-covall]")) { TRCOV.all = !TRCOV.all; return drawCoverage(); }
   const id = ev.target.id;
   if (id === "trsave") return saveTrainer();
   if (id === "trrevert") {
@@ -4718,6 +4882,14 @@ $("#trainmid").addEventListener("click", ev => {
   ev.preventDefault();
   openSpecies(hit.dataset.sp);
 });
+// A coverage section remembers being open, and draws its lists only once it
+// is (toggle does not bubble, so this listens on the way down).
+$("#trainmid").addEventListener("toggle", ev => {
+  const key = ev.target.dataset && ev.target.dataset.cov;
+  if (!key || ev.target.open === TRCOV.open.has(key)) return;
+  ev.target.open ? TRCOV.open.add(key) : TRCOV.open.delete(key);
+  drawCoverage();
+}, true);
 $("#trainmid").addEventListener("focusin", ev => {
   if (TREDIT) sideOf(ev);
   const box = ev.target.closest("input.mv");

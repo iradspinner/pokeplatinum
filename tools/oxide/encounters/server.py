@@ -37,6 +37,7 @@ from . import alphanotes
 from . import analysis as A
 from . import calc_export
 from . import canon
+from . import coverage
 from . import dex
 from . import docview
 from . import learnsets
@@ -1379,6 +1380,8 @@ def main(argv=None):
     # The pair finder takes a few seconds the first time; doing it now, on
     # the side, keeps the first trainer list quick.
     threading.Thread(target=trainers.warm, daemon=True).start()
+    # So are the coverage tables' scopes, one per split (coverage.py).
+    threading.Thread(target=coverage.warm, daemon=True).start()
     # The Sync bridge watches the save file set in ~/.config/oxidex/settings.json.
     savewatch.WATCHER.start()
     with httpd:
