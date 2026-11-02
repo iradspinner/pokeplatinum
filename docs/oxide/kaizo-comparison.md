@@ -393,7 +393,7 @@ One row per line of `kaizo-move-changes.md`, in its order. "Kaizo" gives the val
 | DragonBreath | power 70 | 60 | lacks | power lacks |
 | Baton Pass | priority +1 | 0 | lacks | priority lacks |
 | Encore | PP 3 | 5 | lacks | PP lacks |
-| Pursuit | power 70; PP 15 | 40, 20 | lacks | power lacks; PP lacks |
+| Pursuit | power 70; PP 15 | 60 (Ian, 2026-11-01), 20 | lacks | power lacks, nearer; PP lacks |
 | Rapid Spin (Kaizo: HP Fire) | power 70; type Fire; PP 15 | 60, Normal, 40 | Kaizo-only | Kaizo-only move (HP Fire); Oxide keeps Rapid Spin as hazard removal with a Speed raise (ruling 7) |
 | Sweet Scent | PP 2 | 20 | lacks | PP lacks |
 | Iron Tail | power 120; accuracy 90 | 100, 75 | lacks | power lacks; accuracy lacks |
