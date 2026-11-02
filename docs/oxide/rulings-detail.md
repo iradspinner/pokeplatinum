@@ -196,6 +196,8 @@ multi-hit move on its expected hits (about 3.1, or 5 with Skill Link).
 Uproar and Raging Fury hit one chosen foe.
 Poison Fang takes Kaizo's 90 power and 40% chance to badly poison (Ian,
 2026-10-06).
+Pursuit at 60 power, still doubled into a foe that is switching out
+(Ian, 2026-11-01).
 
 ## Level-up lists
 

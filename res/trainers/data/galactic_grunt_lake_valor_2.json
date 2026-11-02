@@ -6,43 +6,42 @@
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT",
-        "AI_FLAG_BATON_PASS",
         "AI_FLAG_CHECK_HP"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SUDOWOODO",
-            "form": 0,
-            "level": 51,
-            "item": "ITEM_FOCUS_SASH",
-            "moves": [
-                "MOVE_STEALTH_ROCK",
-                "MOVE_STONE_EDGE",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_WOOD_HAMMER"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
-            "ball_seal": 0,
-            "ability": 2,
-            "gender": "male"
-        },
-        {
             "species": "SPECIES_WEEZING",
             "form": 0,
-            "level": 52,
+            "level": 51,
             "item": "ITEM_BLACK_SLUDGE",
             "moves": [
                 "MOVE_SLUDGE_BOMB",
-                "MOVE_WILL_O_WISP",
-                "MOVE_THUNDERBOLT",
+                "MOVE_PAYBACK",
+                "MOVE_THUNDER",
                 "MOVE_EXPLOSION"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_BOLD",
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
             "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_SCEPTILE",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_WHITE_HERB",
+            "moves": [
+                "MOVE_LEAF_STORM",
+                "MOVE_PURSUIT",
+                "MOVE_AERIAL_ACE",
+                "MOVE_ROCK_SLIDE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 3,
             "gender": "male"
         },
         {
@@ -53,11 +52,45 @@
             "moves": [
                 "MOVE_AGILITY",
                 "MOVE_BATON_PASS",
-                "MOVE_PSYCHIC",
-                "MOVE_THUNDERBOLT"
+                "MOVE_EARTHQUAKE",
+                "MOVE_THUNDER"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_SUDOWOODO",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_BRIGHTPOWDER",
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_EXPLOSION",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_FOCUS_PUNCH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_GENTLE",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_WIGGLYTUFF",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_SILK_SCARF",
+            "moves": [
+                "MOVE_HYPER_BEAM",
+                "MOVE_CALM_MIND",
+                "MOVE_PERISH_SONG",
+                "MOVE_MISTY_EXPLOSION"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"
@@ -65,50 +98,15 @@
         {
             "species": "SPECIES_CHATOT",
             "form": 0,
-            "level": 52,
-            "item": "ITEM_SHARP_BEAK",
+            "level": 53,
+            "item": "ITEM_CHOICE_SPECS",
             "moves": [
                 "MOVE_HYPER_VOICE",
                 "MOVE_HEAT_WAVE",
-                "MOVE_CHATTER",
-                "MOVE_NASTY_PLOT"
+                "MOVE_CHATTER"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_HASTY",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_TANGROWTH",
-            "form": 0,
-            "level": 52,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_SEED_BOMB",
-                "MOVE_EARTHQUAKE",
-                "MOVE_KNOCK_OFF",
-                "MOVE_SLEEP_POWDER"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_RELAXED",
-            "ball_seal": 0,
-            "ability": 3,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_SCEPTILE",
-            "form": 0,
-            "level": 53,
-            "item": "ITEM_LIFE_ORB",
-            "moves": [
-                "MOVE_LEAF_STORM",
-                "MOVE_FOCUS_BLAST",
-                "MOVE_EARTHQUAKE",
-                "MOVE_ROCK_SLIDE"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_NAIVE",
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"

@@ -91,7 +91,9 @@
             "MOVE_HARDEN",
             "MOVE_DEFENSE_CURL",
             "MOVE_ROLLOUT",
-            "MOVE_SAND_TOMB"
+            "MOVE_SAND_TOMB",
+            "MOVE_EXPLOSION",
+            "MOVE_FOCUS_PUNCH"
         ]
     },
     "evolutions": [
