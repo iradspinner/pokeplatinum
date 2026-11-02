@@ -311,7 +311,10 @@ read, so they are written here too. Each is a standing instruction.
   together field six Pokemon between them at most, barring Ian's
   explicit permission (2026-10-29). Ordinary trainers favour variety over
   the optimal: neutral or less common natures more often, items that are
-  not the textbook pick (2026-10-29). The full ruling (luck items, Focus Sash, Custap and enemy priority,
+  not the textbook pick (2026-10-29). A legendary on a trainer team is
+  weighed by its base stat total and role like any other member, and
+  being legendary raises nothing (Ian, 2026-11-01, on Mars 2's Galarian
+  Zapdos: "no more worrying than salamence or goodra"). The full ruling (luck items, Focus Sash, Custap and enemy priority,
   accuracy, conditional moves, members under their evolution level, the
   iv_scale) is in `docs/oxide/rulings-detail.md`; read it before designing a
   team.
