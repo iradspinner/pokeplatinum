@@ -1,6 +1,20 @@
 # Alternate forms: a thematic stat pass
 
-A proposal for Ian (2026-11-02), nothing applied. No file under `res/` changed; the spreads go in only after his yes.
+A proposal for Ian (2026-11-02), answered the same day and applied on this branch.
+
+## Ian's answers (2026-11-02)
+
+Five spreads go in as proposed: Kanto Ninetales, Galarian Rapidash, Galarian Weezing, Gyarados M and Lopunny M. Weezing stays as it is ("Galarian Weezing only", decision 3b). The Goodra and Sliggoo pairs stay as they are ("the Goodra spdef is iconic", decision 7b). Alolan Ninetales, Rapidash, Gyarados, Lopunny and both Mr. Mimes stay as proposed. No scorer reading is run (decision 8a): the fights the changes move are judged in his playtest.
+
+| Species | Before | Now |
+|---|---|---|
+| Ninetales | 79/89/79/100/109/99 | 85/65/84/95/109/117 |
+| Galarian Rapidash | 70/105/75/110/85/85 | 80/100/85/95/75/95 |
+| Galarian Weezing | 65/90/120/60/85/70 | 70/65/115/50/85/105 |
+| Gyarados M | 95/125/79/81/75/100 | 95/125/105/65/65/100 |
+| Lopunny M | 65/106/84/105/54/96 | 75/106/94/90/54/91 |
+
+The fights these move are Darach and Caitlin (Galarian Rapidash, its lead), Dahlia (Lopunny M, her main Baton Pass receiver) and Jupiter 1 (Galarian Weezing's Sp. Def). With Weezing kept, Hesperid 1 and 2 do not move. Wake's Gyarados M is a one-off in his six: his core is the rain, the Swift Swim pair and Goodra, its damage is unchanged, and the Speed it loses matters little beside Swift Swim. The summary and the per-pair reasoning below are the proposal as Ian saw it.
 
 ## Summary
 
