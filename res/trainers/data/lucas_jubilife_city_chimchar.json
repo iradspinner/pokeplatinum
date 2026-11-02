@@ -10,15 +10,29 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_TURTWIG",
+            "species": "SPECIES_EEVEE",
             "form": 0,
-            "level": 17,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 16,
+            "item": "ITEM_RAWST_BERRY",
             "moves": [
-                "MOVE_RAZOR_LEAF",
-                "MOVE_BULLET_SEED",
-                "MOVE_ROCK_BLAST",
-                "MOVE_WITHDRAW"
+                "MOVE_SWIFT",
+                "MOVE_DIG",
+                "MOVE_YAWN",
+                "MOVE_HELPING_HAND"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BUNEARY",
+            "form": 0,
+            "level": 16,
+            "item": "ITEM_CHERI_BERRY",
+            "moves": [
+                "MOVE_DOUBLE_KICK",
+                "MOVE_DOUBLE_HIT",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_BABY_DOLL_EYES"
             ],
             "iv_scale": 200,
             "ball_seal": 0
@@ -33,6 +47,20 @@
                 "MOVE_ELECTROWEB",
                 "MOVE_QUICK_ATTACK",
                 "MOVE_CHARM"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TURTWIG",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_RAZOR_LEAF",
+                "MOVE_BULLET_SEED",
+                "MOVE_ROCK_BLAST",
+                "MOVE_WITHDRAW"
             ],
             "iv_scale": 200,
             "ball_seal": 0
