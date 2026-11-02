@@ -29,7 +29,7 @@ The question for Ian: which Pokemon takes Galvantula's slot. Each option keeps t
 2. Magnezone. Electric and Steel, Byron's own line (his Magneton in vanilla Platinum): Thunderbolt, Flash Cannon, Thunder Wave, Tri Attack, Occa Berry, Modest, Levitate. The best fit for a Steel gym. It drops the Sticky Web and the Grass hit, so Thunder Wave is its only Speed control and Quagsire goes to Empoleon and Metagross.
 3. Togedemaru. Electric and Steel, fast, Sturdy in its hidden slot: Nuzzle, Zing Zap, Fake Out, Electroweb, Occa Berry, Adamant. It keeps Speed control by paralysis and Electroweb, but it hits too softly. The screen reads it the easiest of the four, Galvantula included.
 
-My recommendation is Vikavolt if Ian's objection is to the species, and Magnezone if he also wants Sticky Web gone from Byron. The first reading Galvantula's slot does in the check is the Water and Flying walls, and Vikavolt is the only option that keeps every one of them, Quagsire and Luxray included.
+My recommendation is Vikavolt if Ian's objection is to the species, and Magnezone if he also wants Sticky Web gone from Byron. The slot's work is against the Water and Flying walls, and Vikavolt is the only option the AI sends into every one of them, Quagsire and Luxray included.
 
 The counterpiece check, Ian's draft (run `ian-final`) and the Vikavolt pick (run `ian-vikavolt`), against the sixes that beat today's Byron:
 
@@ -51,7 +51,7 @@ Next steps. A session swaps the pick into this branch and reruns the legality ch
 
 ## The slot's job
 
-Galvantula is the team's answer to the Water and Flying walls. Against every likely answer from goal 3's three boxes at 53 (`byron-redesign.md` has how they are chosen), the trainer AI's own replacement rule, `fightai.replacement`, sends Galvantula in against 10 or 11 answers a box, as any other member but Metagross leaves: Manaphy, Corviknight, Quagsire, Whiscash, Kingler, Jellicent, Empoleon, Luxray and the Flying types among them. Its Thunder, Energy Ball and Bug Buzz hit each of those for 51 to 153 percent at the lowest roll, and at 143 Speed it moves first against all but one to four Pokemon of each box. Sticky Web then cuts every switch-in's Speed by a stage. The screen and the calculator do not see that, though it is most of what the slot adds to the rest of the six: after one stage down, Manaphy (118 to 79), Houndoom (124 to 83), Luxray (113 to 75), Delphox (123 to 82) and Rapidash (129 to 86) fall under Metagross (90) and Empoleon (91), and Cinderace (139 to 93) only just stays above them.
+Galvantula is the team's answer to the Water and Flying walls. Against every likely answer from goal 3's three boxes at 53 (`byron-redesign.md` has how they are chosen), the trainer AI's own replacement rule, `fightai.replacement`, sends Galvantula in against 10 or 11 answers a box, whichever other member leaves: Manaphy, Corviknight, Quagsire, Whiscash, Kingler, Jellicent, Empoleon, Luxray and the Flying types among them. Its Thunder, Energy Ball and Bug Buzz hit each of those for 51 to 153 percent at the lowest roll, and at 143 Speed it moves first against all but one to four Pokemon of each box. Sticky Web then cuts every switch-in's Speed by a stage. The screen and the calculator do not see that, though it may be much of what the slot gives the rest of the six: after one stage down, Manaphy (118 to 79), Houndoom (124 to 83), Luxray (113 to 75), Delphox (123 to 82) and Rapidash (129 to 86) fall under Metagross (90) and Empoleon (91), and Cinderace (139 to 93) only just stays above them.
 
 In the check, Galvantula made the third most knockouts on box 1 (47 over 75 fights, behind Celesteela and Hisuian Goodra) and the second most on box 3 (40, behind Celesteela), and the fewest on box 2 (19), whose six is mostly Fire and Ground types it hurts little.
 
@@ -82,7 +82,7 @@ The counterpiece sixes' members that the slot meets, its hit and the hit back at
 | Luxray (1) | Bug Buzz 82, back 68 | Bug Buzz 125, back 42 | not sent; Tri Attack 34 | not sent |
 | Empoleon (3) | Thunder 76, back 63 | Thunderbolt 98, back 40 | Thunderbolt 90, back 34 | Zing Zap 72, back 47 |
 
-Vikavolt takes Galvantula's place in all but one or two rows of the replacement rule a box, and wins each meeting by more: its Special Attack (145 against 97) and its bulk (77, 90, 75 against 70, 60, 60) outweigh the Speed it gives up, and Levitate turns Quagsire's and Whiscash's Earthquake, 51 to 66 percent into Galvantula, into nothing. The cost is Speed: it moves after Manaphy, Luxray and every Fire type, so it takes a hit before it lays Sticky Web, and it lays it later in the fight than Galvantula did.
+Vikavolt takes Galvantula's place in all but one or two rows of the replacement rule a box, and wins each meeting by more: its Special Attack (145 against 97) and its bulk (77, 90, 75 against 70, 60, 60) outweigh the Speed it gives up, and Levitate turns Quagsire's and Whiscash's Earthquake, 51 to 66 percent into Galvantula, into nothing. The cost is Speed: it moves after Manaphy, Luxray and every Fire type, so it takes a hit before it lays Sticky Web, where Galvantula laid it first.
 
 Magnezone is the strongest pure Electric answer (Corviknight hits it for 25 percent back), and Levitate makes it immune to the Ground moves that hit Galvantula and Metagross for double. It has no Grass or Bug move in its legal palette, so the rule sends Empoleon or Metagross into Quagsire and Hisuian Goodra into Luxray, where Galvantula went before. Thunder Wave is in its four for Speed control; it paralyses one target, where the Web slows every switch-in. Magnezone is also on Cyrus 2's team at Galactic HQ, and on three Workers in Byron's own split; Cyrus 1's answer 4 allowed a species that a later fight uses.
 
@@ -101,7 +101,7 @@ Togedemaru's Adamant ties Manaphy at 118; Hasty, freed by Galvantula, would put 
 
 ## The sets
 
-Each set is legal at 51 on both checkers below, and none repeats an item or a nature of the other five. Occa Berry is Galvantula's own, and every option is weak to Fire.
+Each set is legal at 51 on both checkers (the OxiDex's lists and the Kaizo checker), the trainer lint finds nothing in a file with it in place, and none repeats an item or a nature of the other five. Occa Berry is Galvantula's own, and every option is weak to Fire.
 
 | Pick | Ability | Item | Nature | Moves |
 |---|---|---|---|---|
@@ -129,7 +129,7 @@ Checked on this branch:
 | test_learnrewrite, test_learncheck | 6 of 6, 18 of 18 |
 | test_trainers | 44 of 44 |
 | `make rom` | builds |
-| The gate, `integrate.sh --verify-only` | running |
+| The gate, `integrate.sh --verify-only` | 53 checks pass with no warning; sync-docs fails, since it refuses to mirror from any branch but `oxide`, by design |
 
 ## How the numbers were made
 
