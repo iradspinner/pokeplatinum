@@ -36,7 +36,7 @@
                 "MOVE_BRAVE_BIRD",
                 "MOVE_CROSS_POISON",
                 "MOVE_U_TURN",
-                "MOVE_ROOST"
+                "MOVE_HEAT_WAVE"
             ],
             "iv_scale": 255,
             "nature": "NATURE_JOLLY",
@@ -85,12 +85,12 @@
             "item": "ITEM_STARF_BERRY",
             "moves": [
                 "MOVE_STEALTH_ROCK",
-                "MOVE_U_TURN",
+                "MOVE_DAZZLING_GLEAM",
                 "MOVE_PSYCHIC",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_FIRE_PUNCH"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_TIMID",
+            "nature": "NATURE_DOCILE",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
