@@ -445,6 +445,7 @@ exports.platinumOxideData = {
   "Throat Chop",
   "Thunder Fang",
   "Thunder Punch",
+  "Thunderous Kick",
   "Trailblaze",
   "Triple Axel",
   "Triple Dive",
