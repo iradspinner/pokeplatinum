@@ -701,9 +701,13 @@ def post_ko_pick():
     # Stage 1 never takes a candidate whose type score is 0. Against the
     # player's Gengar, Kangaskhan (Normal, 0) has a super-effective Pursuit,
     # which stage 1 used to take; Steelix (above 0) has no super-effective
-    # move, so the engine goes to stage 2, where Iron Tail outscores Pursuit.
+    # move, so the engine goes to stage 2, where Head Smash outscores Pursuit.
+    # Stage 2 costs every move with the fainted Pokemon's stats, so only power
+    # and the chart count: Pursuit at 60 (Ian, 2026-11-01) doubled into Gengar
+    # is 120 against Head Smash's neutral 150. Iron Tail's 100 served until
+    # Pursuit rose from 40.
     b = battle([("Gengar", 40, "Levitate", ["Shadow Ball"]), ("Kangaskhan", 40, "Early Bird", ["Pursuit"]),
-                ("Steelix", 40, "Sturdy", ["Iron Tail"])],
+                ("Steelix", 40, "Sturdy", ["Head Smash"])],
                [("Gengar", 40, "Levitate", ["Shadow Ball"])])
     b.rng = Dice(PASS)
     got = b.b.mons[ai.replacement(b, b.b, b.p.cur())].species
