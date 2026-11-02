@@ -1,6 +1,10 @@
 # Mars 2: a check of Ian's first draft
 
-Ian drafted Mars 2's new six in the OxiDex on 2026-11-01. She is fought at Lake Verity in Candice's split, after the Somnu and Moira double, with her ace at 54 (`candice-split.md`). He asked for the check his Maylene and Byron drafts had (`maylene-redesign.md`, `byron-brains-check.md`): anything that invalidates the fight, the weakest crux with the top picks for it, and the cheap checks. The draft is saved on branch `overseer-mars2-check` as Ian's first draft, kept on its branch for his check. The only other change is the egg-list commit for its two off-list moves. No team change was made, no scorer reading was run, and the simulator was not touched.
+Ian drafted Mars 2's new six in the OxiDex on 2026-11-01. She is fought at Lake Verity in Candice's split, after the Somnu and Moira double, with her ace at 54 (`candice-split.md`). He asked for the check his Maylene and Byron drafts had (`maylene-redesign.md`, `byron-brains-check.md`): anything that invalidates the fight, the weakest crux with the top picks for it, and the cheap checks. The draft is saved on branch `overseer-mars2-check` as Ian's first draft, kept on its branch for his check. The other changes are the egg-list commit for its two off-list moves and, after Ian's answers, Thunderous Kick's contact flag. No team change was made, no scorer reading was run, and the simulator was not touched.
+
+## Ian's answers (2026-11-01)
+
+Mars 2 keeps the draft as he built it, with no Luxray and no other swap (question 1), and keeps Check HP among her flags (question 2). Thunderous Kick takes the contact flag, in its own commit (question 3). It is one of Oxide's own moves, so this is not a vanilla fix. The simulator reads the flag from the move data, so it counts the move as contact with no change to the simulator. The probe on Mars 2's three boxes gives the same wins and knockouts as before, since the probe's player holds no Rocky Helmet and no common catch in front of Galarian Zapdos has a contact ability. No scorer reading is run (question 4). The sections after this one are the check's, from before these answers.
 
 ## Summary
 
@@ -53,7 +57,7 @@ Each was read in the move and item data, the engine and the simulator. All of th
 
 - Giga Impact is Oxide's rework: 180 power, no recharge turn, half the damage dealt as recoil. With Purugly's Silk Scarf it takes 175 to 207 from a box Staraptor.
 - Dig is one turn, a plain 60-power Ground hit with no turn underground. It is Purugly's answer to Steel, 48 to 63 on Bastiodon and Probopass, where Giga Impact does 19 to 27.
-- Thunderous Kick is 90 power and lowers Defense a stage on every hit. Oxide's move table gives it no contact flag, though the later games make it contact, so contact abilities and a Rocky Helmet never touch Galarian Zapdos for it (decision 3).
+- Thunderous Kick is 90 power and lowers Defense a stage on every hit. Oxide's move table gave it no contact flag, though the later games make it contact, so contact abilities and a Rocky Helmet never touched Galarian Zapdos for it (decision 3; fixed since).
 - Darkest Lariat, 85 power, ignores the target's stat stages in the engine and the simulator alike, so an Iron Defense Metagross takes it in full.
 - Throat Chop's sound block runs in both since the simulator fixes of October.
 - Parting Shot lowers the target's Attack and Sp. Atk a stage, then switches its user out; it fails, and its user stays in, when both stats are already at -6. Each return brings Incineroar's Intimidate again.
