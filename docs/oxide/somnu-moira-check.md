@@ -9,6 +9,8 @@ Ian drafted the Lake Verity double against Officers Somnu and Moira in his OxiDe
 
 Both went through `trainers.save`, which changed only the one nature in each file. No nature repeats within either trainer now: Somnu's are Calm, Mild and Modest, Moira's Quiet, Rash and Modest, and across the six only Modest appears twice. No item repeats. The lint finds nothing on either file, the packer packs both, test_b1 passes 50 of 50 and test_trainers 44 of 44, and `make rom` builds. No proxy was rerun: the rows "with Stantler Mild and Mr. Rime Rash" below are these two answers. On them the pair reads harder than the draft on boxes 1 and 3 and still easier than Mars 2 on average, on both proxies.
 
+The Mars 2 rows below were played before Ian's edit of Mars 2 the same day, which this branch now carries: Crobat takes Heat Wave for Roost, and Mesprit takes Dazzling Gleam and Fire Punch for U-turn and Thunder Wave. Those rows were not rerun. The edit swaps a heal, a pivot and a status move for attacks, two of them Fire hits into the box's Steel core, so by judgement it makes Mars 2 harder, not easier, and the comparison's conclusion stands; it is not measured.
+
 The sections after this one are the check's, from before these answers.
 
 ## Summary
