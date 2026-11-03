@@ -6809,7 +6809,9 @@ def check_sure(results):
     sure = fs.sure_catches()
     want = {"SPECIES_TURTWIG", "SPECIES_PIPLUP", "SPECIES_SCORBUNNY", "SPECIES_EEVEE", "SPECIES_TOGEPI",
             "SPECIES_VULLABY", "SPECIES_POPPLIO", "SPECIES_ROTOM"}
-    not_sure = {"SPECIES_RIOLU", "SPECIES_GLAMEOW", "SPECIES_ELEKID", "SPECIES_SUICUNE"}
+    # The Veilstone Elekid left this set when its gift was removed (Ian,
+    # 2026-11-02): the game no longer has it, so it is in no list at all.
+    not_sure = {"SPECIES_RIOLU", "SPECIES_GLAMEOW", "SPECIES_SUICUNE"}
     ok = want <= set(sure) and not (not_sure & set(sure))
     results.append(("the sure Pokemon are the ones every run has", ok,
                     f"{len(sure)} sure; missing {sorted(want - set(sure))}; wrongly in "

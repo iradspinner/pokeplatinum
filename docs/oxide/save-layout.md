@@ -445,6 +445,17 @@ taken. HQ's split pass also uses free trainer slots 100, 101, 109, 115 to
 tower's gauntlet section is held in `VAR_GAUNTLET_SECTION` as every section
 is (`docs/oxide/hq-split.md`).
 
+## The Veilstone man's two flags fall idle (2026-11-02)
+
+Nothing moves. The man in Veilstone City's northeast house no longer gives
+an Elekid (Ian, 2026-11-02), so his script no longer reads or sets
+`FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON` or
+`FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M`, and no other
+Oxide script does. A save that took the gift keeps both set, and nothing
+reads them. They keep their names, so the reward placer does not count them
+as spare; the base ROM's script still uses both, so a later change that
+claims one says so here.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:

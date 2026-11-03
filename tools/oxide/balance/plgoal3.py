@@ -1,7 +1,7 @@
 """Goal 3: every boss, rival, named Galactic fight and Ace Trainer of the
 game read once, on the trainer files of the commit that lands alpha
 readiness step 12 (step 15; docs/oxide/trainer-scoring-handoff.md, "Goal
-3's reading").
+3's driver").
 
 Run it from an extracted copy of that commit, so that every file the
 scorer reads (trainers, learnsets, encounters, items) is that commit's:

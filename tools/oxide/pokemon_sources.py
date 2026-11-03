@@ -684,10 +684,6 @@ GIFT_NOTES = {
         "Jubilife clown; once only "
         "(FLAG_RECEIVED_UNUSED_JUBILIFE_CITY_SOUTH_HOUSE_3F_GIFT); check the "
         "map is reachable before counting it",
-    "veilstone_city_northeast_house": "clown gift, one of three rolled at "
-        "random; once only "
-        "(FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot "
-        "beside it is a separate gift with its own vanilla flag",
 }
 
 BATTLE_NOTES = {

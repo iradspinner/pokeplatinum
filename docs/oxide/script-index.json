@@ -2288,7 +2288,7 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_visible_items:2408"], "daily": false, "flag": 2438, "name": "FLAG_ALT_MUSIC_GALACTIC_HQ_1F", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_visible_items:2403"], "daily": false, "flag": 2438, "name": "FLAG_ALT_MUSIC_GALACTIC_HQ_1F", "op": "set", "origin": "vanilla", "reached": true}
     ]
    },
    "file": "scripts_visible_items",
@@ -5416,18 +5416,18 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_veilstone_city:442"], "daily": false, "flag": 155, "name": "FLAG_AGREED_WITH_LOOKER_TO_ENTER_HIDEOUT", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city:432"], "daily": false, "flag": 155, "name": "FLAG_AGREED_WITH_LOOKER_TO_ENTER_HIDEOUT", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_veilstone_city:103"], "daily": false, "flag": 204, "name": "FLAG_RECEIVED_VEILSTONE_CITY_TM63", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_veilstone_city:44"], "daily": false, "flag": 341, "name": "FLAG_VEILSTONE_CITY_GRUNT_DROPPED_STORAGE_KEY", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city:478"], "commit": "81d02e28e", "daily": false, "flag": 2686, "name": "FLAG_UNK_0x0A7E", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_veilstone_city:476"], "commit": "81d02e28e", "daily": false, "flag": 2689, "name": "FLAG_UNK_0x0A81", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_veilstone_city:474"], "commit": "81d02e28e", "daily": false, "flag": 2690, "name": "FLAG_UNK_0x0A82", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_veilstone_city:468"], "commit": "81d02e28e", "daily": false, "flag": 2691, "name": "FLAG_UNK_0x0A83", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_veilstone_city:472"], "commit": "81d02e28e", "daily": false, "flag": 2692, "name": "FLAG_UNK_0x0A84", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_veilstone_city:237"], "daily": false, "flag": 401, "name": "FLAG_HIDE_VEILSTONE_CRASHER_WAKE", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city:428"], "daily": false, "flag": 424, "name": "FLAG_HIDE_VEILSTONE_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city:1089"], "daily": false, "flag": 525, "name": "FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city:188", "scripts_veilstone_city:917"], "daily": false, "flag": 650, "name": "FLAG_HIDE_VEILSTONE_CITY_LOOKER", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city:468"], "commit": "81d02e28e", "daily": false, "flag": 2686, "name": "FLAG_UNK_0x0A7E", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_veilstone_city:466"], "commit": "81d02e28e", "daily": false, "flag": 2689, "name": "FLAG_UNK_0x0A81", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_veilstone_city:464"], "commit": "81d02e28e", "daily": false, "flag": 2690, "name": "FLAG_UNK_0x0A82", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_veilstone_city:458"], "commit": "81d02e28e", "daily": false, "flag": 2691, "name": "FLAG_UNK_0x0A83", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_veilstone_city:462"], "commit": "81d02e28e", "daily": false, "flag": 2692, "name": "FLAG_UNK_0x0A84", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_veilstone_city:227"], "daily": false, "flag": 401, "name": "FLAG_HIDE_VEILSTONE_CRASHER_WAKE", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city:418"], "daily": false, "flag": 424, "name": "FLAG_HIDE_VEILSTONE_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city:1079"], "daily": false, "flag": 525, "name": "FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city:182", "scripts_veilstone_city:907"], "daily": false, "flag": 650, "name": "FLAG_HIDE_VEILSTONE_CITY_LOOKER", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_veilstone_city:441"], "daily": false, "flag": 401, "name": "FLAG_HIDE_VEILSTONE_CRASHER_WAKE", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_veilstone_city:156"], "daily": false, "flag": 424, "name": "FLAG_HIDE_VEILSTONE_COUNTERPART", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_veilstone_city:171", "events_veilstone_city:366", "events_veilstone_city:426"], "daily": false, "flag": 447, "name": "FLAG_HIDE_VEILSTONE_GALACTIC_GRUNTS", "op": "hides", "origin": "vanilla", "reached": true},
@@ -5437,12 +5437,12 @@
      {"at": ["events_veilstone_city:351"], "daily": false, "flag": 1124, "name": "FLAG_OBTAINED_VEILSTONE_CITY_RARE_CANDY", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_veilstone_city:471"], "daily": false, "flag": 1286, "name": "FLAG_OBTAINED_VEILSTONE_CITY_STAR_PIECE", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_veilstone_city:516"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_veilstone_city:718"], "daily": false, "flag": 155, "name": "FLAG_AGREED_WITH_LOOKER_TO_ENTER_HIDEOUT", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city:708"], "daily": false, "flag": 155, "name": "FLAG_AGREED_WITH_LOOKER_TO_ENTER_HIDEOUT", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_veilstone_city:112"], "daily": false, "flag": 204, "name": "FLAG_RECEIVED_VEILSTONE_CITY_TM63", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city:184"], "daily": false, "flag": 341, "name": "FLAG_VEILSTONE_CITY_GRUNT_DROPPED_STORAGE_KEY", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city:1087"], "daily": false, "flag": 425, "name": "FLAG_HIDE_PASTORIA_CITY_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city:1088"], "daily": false, "flag": 650, "name": "FLAG_HIDE_VEILSTONE_CITY_LOOKER", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city:740"], "commit": "81d02e28e", "daily": false, "flag": 2691, "name": "FLAG_UNK_0x0A83", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
+     {"at": ["scripts_veilstone_city:178"], "daily": false, "flag": 341, "name": "FLAG_VEILSTONE_CITY_GRUNT_DROPPED_STORAGE_KEY", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city:1077"], "daily": false, "flag": 425, "name": "FLAG_HIDE_PASTORIA_CITY_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city:1078"], "daily": false, "flag": 650, "name": "FLAG_HIDE_VEILSTONE_CITY_LOOKER", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city:730"], "commit": "81d02e28e", "daily": false, "flag": 2691, "name": "FLAG_UNK_0x0A83", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
     ],
     "hidden_items": [
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_veilstone_city", "flag": 771, "flag_name": "FLAG_OBTAINED_HIDDEN_VEILSTONE_CITY_CALCIUM", "item": "ITEM_CALCIUM", "item_id": 49, "line": 4, "origin": "vanilla", "reached": true},
@@ -5458,9 +5458,8 @@
      {"command": "CallCommonScript", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_veilstone_city", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_SITRUS_BERRY", "value": 158, "when": ""}], "line": 111, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "trainers": [
-     {"command": "StartTrainerBattle", "commit": "610527338", "file": "scripts_veilstone_city", "how": "StartTrainerBattle", "line": 181, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_101", "value": 101, "when": ""}]}], "source": "Oxide"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_veilstone_city", "how": "StartTrainerBattle", "line": 817, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_211", "value": 211, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTagBattle", "file": "scripts_veilstone_city", "how": "StartTagBattle", "line": 870, "origin": "vanilla", "reached": true, "slots": [{"mode": "variable", "role": "partnerTrainer", "values": [{"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG", "value": 621, "when": "VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR", "value": 622, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP", "value": 623, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_VEILSTONE_CITY_TURTWIG", "value": 624, "when": "VAR_RESULT (GetPlayerGender) == 0"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR", "value": 625, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_VEILSTONE_CITY_PIPLUP", "value": 626, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0"}]}, {"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1", "value": 848, "when": ""}]}, {"mode": "number", "role": "enemyTrainer2", "values": [{"name": "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2", "value": 849, "when": ""}]}]}
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_veilstone_city", "how": "StartTrainerBattle", "line": 807, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_211", "value": 211, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTagBattle", "file": "scripts_veilstone_city", "how": "StartTagBattle", "line": 860, "origin": "vanilla", "reached": true, "slots": [{"mode": "variable", "role": "partnerTrainer", "values": [{"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG", "value": 621, "when": "VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR", "value": 622, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP", "value": 623, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_VEILSTONE_CITY_TURTWIG", "value": 624, "when": "VAR_RESULT (GetPlayerGender) == 0"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR", "value": 625, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_VEILSTONE_CITY_PIPLUP", "value": 626, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0"}]}, {"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1", "value": 848, "when": ""}]}, {"mode": "number", "role": "enemyTrainer2", "values": [{"name": "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2", "value": 849, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["scripts_veilstone_city:49", "scripts_veilstone_city:51"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
@@ -5468,10 +5467,10 @@
      {"at": ["events_veilstone_city:665"], "name": "VAR_VEILSTONE_CITY_CRASHER_WAKE_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16629},
      {"at": ["scripts_init_veilstone_city:9", "scripts_veilstone_city:46"], "name": "VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16666},
      {"at": ["scripts_veilstone_city:48"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_veilstone_city:519", "scripts_veilstone_city:522"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
-     {"at": ["scripts_veilstone_city:289"], "name": "VAR_VEILSTONE_CITY_CRASHER_WAKE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16629},
-     {"at": ["scripts_veilstone_city:430"], "name": "VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16666},
-     {"at": ["scripts_veilstone_city:717", "scripts_veilstone_city:1090"], "name": "VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16671}
+     {"at": ["scripts_veilstone_city:509", "scripts_veilstone_city:512"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
+     {"at": ["scripts_veilstone_city:279"], "name": "VAR_VEILSTONE_CITY_CRASHER_WAKE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16629},
+     {"at": ["scripts_veilstone_city:420"], "name": "VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16666},
+     {"at": ["scripts_veilstone_city:707", "scripts_veilstone_city:1080"], "name": "VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16671}
     ]
    },
    "events": "events_veilstone_city",
@@ -5485,8 +5484,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City",
    "undecoded": {},
    "unreached": []
@@ -5536,8 +5535,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_gym",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Gym",
    "undecoded": {
     "raw data lines": 1
@@ -5558,8 +5557,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_pokecenter_1f",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Pokecenter 1F",
    "undecoded": {},
    "unreached": []
@@ -5577,8 +5576,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_pokecenter_2f",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Pokecenter 2F",
    "undecoded": {},
    "unreached": [
@@ -5762,8 +5761,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_galactic_warehouse",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Galactic Warehouse",
    "undecoded": {},
    "unreached": []
@@ -5794,8 +5793,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_prize_exchange",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Prize Exchange",
    "undecoded": {
     "variables set elsewhere": 1
@@ -5819,32 +5818,28 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_southeast_house",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Southeast House",
    "undecoded": {},
    "unreached": []
   },
   {
-   "entries": {
-    "flags": [
-     {"at": ["scripts_veilstone_city_northeast_house:20"], "daily": false, "flag": 151, "name": "FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city_northeast_house:22"], "daily": false, "flag": 181, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city_northeast_house:62"], "daily": false, "flag": 151, "name": "FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city_northeast_house:24"], "daily": false, "flag": 181, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M", "op": "set", "origin": "vanilla", "reached": true}
-    ],
-    "pokemon": [
-     {"command": "GivePokemon", "commit": "3fb75c2d7", "file": "scripts_veilstone_city_northeast_house", "how": "GivePokemon", "item": [], "level": [{"name": "25", "value": 25, "when": ""}], "line": 61, "mode": "name", "origin": "added", "reached": true, "source": "Oxide", "species": [{"name": "SPECIES_ELEKID", "value": 239, "when": ""}]}
-    ],
-    "vars": [
-     {"at": ["scripts_veilstone_city_northeast_house:82"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_veilstone_city_northeast_house:78", "scripts_veilstone_city_northeast_house:79"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384}
-    ]
-   },
+   "entries": {},
    "events": "events_veilstone_city_northeast_house",
    "gone_from_vanilla": {
+    "flags": [
+     {"at": ["scripts_veilstone_city_northeast_house:13"], "daily": false, "flag": 151, "name": "FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON", "op": "check", "origin": null, "reached": true},
+     {"at": ["scripts_veilstone_city_northeast_house:14"], "daily": false, "flag": 181, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M", "op": "check", "origin": null, "reached": true},
+     {"at": ["scripts_veilstone_city_northeast_house:40"], "daily": false, "flag": 151, "name": "FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON", "op": "set", "origin": null, "reached": true},
+     {"at": ["scripts_veilstone_city_northeast_house:15"], "daily": false, "flag": 181, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M", "op": "set", "origin": null, "reached": true}
+    ],
     "pokemon": [
      {"command": "GivePokemon", "file": "scripts_veilstone_city_northeast_house", "how": "GivePokemon", "item": [], "level": [{"name": "25", "value": 25, "when": ""}], "line": 39, "mode": "name", "reached": true, "species": [{"name": "SPECIES_PORYGON", "value": 137, "when": ""}]}
+    ],
+    "vars": [
+     {"at": ["scripts_veilstone_city_northeast_house:53"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": null, "reached": true, "var": 16384},
+     {"at": ["scripts_veilstone_city_northeast_house:49"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": null, "reached": true, "var": 16384}
     ]
    },
    "header": "MAP_HEADER_VEILSTONE_CITY_NORTHEAST_HOUSE",
@@ -5852,8 +5847,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_northeast_house",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Northeast House",
    "undecoded": {},
    "unreached": []
@@ -5876,8 +5871,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_southwest_house",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Southwest House",
    "undecoded": {},
    "unreached": []
@@ -7671,7 +7666,7 @@
    "location": "Mt. Coronet",
    "missing": [],
    "scripts": "scripts_mt_coronet_2f",
-   "split": "HQ",
+   "split": "Galactic",
    "split_basis": "its encounter table",
    "title": "Mt Coronet 2F",
    "undecoded": {},
@@ -10311,11 +10306,11 @@
    "entries": {
     "flags": [
      {"at": ["scripts_galactic_hq_1f:24", "scripts_galactic_hq_1f:42", "scripts_galactic_hq_1f:60", "scripts_galactic_hq_1f:78"], "daily": false, "flag": 350, "name": "FLAG_GALACTIC_LEFT_LAKE_VALOR", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["events_galactic_hq_1f:103", "events_galactic_hq_1f:118"], "daily": false, "flag": 548, "name": "FLAG_HIDE_GALACTIC_HQ_1F_DOOR", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_galactic_hq_1f:71", "events_galactic_hq_1f:88", "events_galactic_hq_1f:193", "events_galactic_hq_1f:208"], "daily": false, "flag": 567, "name": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_galactic_hq_1f:163"], "daily": false, "flag": 658, "name": "FLAG_HIDE_GALACTIC_HQ_1F_SATURN", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_galactic_hq_1f:105", "events_galactic_hq_1f:120"], "daily": false, "flag": 548, "name": "FLAG_HIDE_GALACTIC_HQ_1F_DOOR", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_galactic_hq_1f:71", "events_galactic_hq_1f:88"], "daily": false, "flag": 567, "name": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_galactic_hq_1f:165"], "daily": false, "flag": 658, "name": "FLAG_HIDE_GALACTIC_HQ_1F_SATURN", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_galactic_hq_1f:56"], "daily": false, "flag": 1179, "name": "FLAG_OBTAINED_GALACTIC_HQ_1F_TM49", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_galactic_hq_1f:178"], "daily": false, "flag": 1312, "name": "FLAG_OBTAINED_GALACTIC_HQ_1F_DUBIOUS_DISC", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_galactic_hq_1f:180"], "daily": false, "flag": 1312, "name": "FLAG_OBTAINED_GALACTIC_HQ_1F_DUBIOUS_DISC", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["scripts_galactic_hq_1f:124"], "daily": false, "flag": 548, "name": "FLAG_HIDE_GALACTIC_HQ_1F_DOOR", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_galactic_hq_1f:17"], "daily": false, "flag": 2525, "name": "FLAG_FIRST_ARRIVAL_GALACTIC_HQ", "op": "set", "origin": "vanilla", "reached": true}
     ],
@@ -10324,13 +10319,11 @@
     ],
     "item_balls": [
      {"commit": "9cf282b53", "count": 1, "daily": false, "event": "object_events", "file": "events_galactic_hq_1f", "flag": 1179, "flag_name": "FLAG_OBTAINED_GALACTIC_HQ_1F_TM49", "item": "ITEM_SITRUS_BERRY", "item_id": 158, "line": 57, "origin": "added", "reached": true, "replaces": "ITEM_TM49 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_1F_TM49", "source": "base ROM"},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_galactic_hq_1f", "flag": 1312, "flag_name": "FLAG_OBTAINED_GALACTIC_HQ_1F_DUBIOUS_DISC", "item": "ITEM_DUBIOUS_DISC", "item_id": 324, "line": 179, "origin": "vanilla", "reached": true}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_galactic_hq_1f", "flag": 1312, "flag_name": "FLAG_OBTAINED_GALACTIC_HQ_1F_DUBIOUS_DISC", "item": "ITEM_DUBIOUS_DISC", "item_id": 324, "line": 181, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_galactic_hq_1f", "how": "sees the player", "line": 72, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_1F", "value": 428, "when": ""}]}]},
-     {"event": "object_events", "file": "events_galactic_hq_1f", "how": "sees the player", "line": 89, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SCIENTIST_FREDRICK", "value": 830, "when": ""}]}]},
-     {"commit": "610527338", "event": "object_events", "file": "events_galactic_hq_1f", "how": "sees the player", "line": 194, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_DUMMY_116", "value": 116, "when": ""}]}], "source": "Oxide"},
-     {"commit": "610527338", "event": "object_events", "file": "events_galactic_hq_1f", "how": "sees the player", "line": 209, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_DUMMY_117", "value": 117, "when": ""}]}], "source": "Oxide"}
+     {"event": "object_events", "file": "events_galactic_hq_1f", "how": "sees the player", "line": 89, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_SCIENTIST_FREDRICK", "value": 830, "when": ""}]}]}
     ]
    },
    "events": "events_galactic_hq_1f",
@@ -10355,7 +10348,7 @@
     "flags": [
      {"at": ["events_galactic_hq_2f:121", "events_galactic_hq_2f:138", "events_galactic_hq_2f:155", "events_galactic_hq_2f:172"], "daily": false, "flag": 567, "name": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_galactic_hq_2f:106"], "daily": false, "flag": 1181, "name": "FLAG_OBTAINED_GALACTIC_HQ_2F_REVIVE", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_galactic_hq_2f:187"], "daily": false, "flag": 1313, "name": "FLAG_OBTAINED_GALACTIC_HQ_2F_GREEN_SHARD", "op": "hides", "origin": "vanilla", "reached": true}
+     {"at": ["events_galactic_hq_2f:189"], "daily": false, "flag": 1313, "name": "FLAG_OBTAINED_GALACTIC_HQ_2F_GREEN_SHARD", "op": "hides", "origin": "vanilla", "reached": true}
     ],
     "hidden_items": [
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_galactic_hq_2f", "flag": 805, "flag_name": "FLAG_OBTAINED_HIDDEN_GALACTIC_HQ_2F_POKE_DOLL", "item": "ITEM_POKE_DOLL", "item_id": 63, "line": 12, "origin": "vanilla", "reached": true},
@@ -10363,7 +10356,7 @@
     ],
     "item_balls": [
      {"count": 1, "daily": false, "event": "object_events", "file": "events_galactic_hq_2f", "flag": 1181, "flag_name": "FLAG_OBTAINED_GALACTIC_HQ_2F_REVIVE", "item": "ITEM_MAX_REVIVE", "item_id": 29, "line": 107, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_galactic_hq_2f", "flag": 1313, "flag_name": "FLAG_OBTAINED_GALACTIC_HQ_2F_GREEN_SHARD", "item": "ITEM_GREEN_SHARD", "item_id": 75, "line": 188, "origin": "vanilla", "reached": true}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_galactic_hq_2f", "flag": 1313, "flag_name": "FLAG_OBTAINED_GALACTIC_HQ_2F_GREEN_SHARD", "item": "ITEM_GREEN_SHARD", "item_id": 75, "line": 190, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_galactic_hq_2f", "how": "sees the player", "line": 122, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_1", "value": 510, "when": ""}]}]},
@@ -10390,7 +10383,6 @@
     "flags": [
      {"at": ["events_galactic_hq_3f:124", "events_galactic_hq_3f:139"], "daily": false, "flag": 549, "name": "FLAG_HIDE_GALACTIC_HQ_3F_DOOR", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_galactic_hq_3f:42", "events_galactic_hq_3f:72", "events_galactic_hq_3f:90", "events_galactic_hq_3f:107", "events_galactic_hq_3f:154"], "daily": false, "flag": 567, "name": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_galactic_hq_3f:201"], "commit": "cccdc088f", "daily": false, "flag": 973, "name": "FLAG_UNUSED_0x03CD", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["events_galactic_hq_3f:57"], "daily": false, "flag": 1180, "name": "FLAG_OBTAINED_GALACTIC_HQ_3F_TM21", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_galactic_hq_3f:171"], "daily": false, "flag": 1182, "name": "FLAG_OBTAINED_GALACTIC_HQ_3F_MAX_ELIXIR", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_galactic_hq_3f:186"], "daily": false, "flag": 1310, "name": "FLAG_OBTAINED_GALACTIC_HQ_3F_PROTEIN", "op": "hides", "origin": "vanilla", "reached": true},
@@ -10404,8 +10396,7 @@
     "item_balls": [
      {"commit": "9cf282b53", "count": 2, "daily": false, "event": "object_events", "file": "events_galactic_hq_3f", "flag": 1180, "flag_name": "FLAG_OBTAINED_GALACTIC_HQ_3F_TM21", "item": "ITEM_TM56", "item_id": 383, "line": 58, "origin": "added", "reached": true, "replaces": "ITEM_TM21 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_TM21", "source": "base ROM"},
      {"count": 1, "daily": false, "event": "object_events", "file": "events_galactic_hq_3f", "flag": 1182, "flag_name": "FLAG_OBTAINED_GALACTIC_HQ_3F_MAX_ELIXIR", "item": "ITEM_MAX_ELIXIR", "item_id": 41, "line": 172, "origin": "vanilla", "reached": true},
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_galactic_hq_3f", "flag": 1310, "flag_name": "FLAG_OBTAINED_GALACTIC_HQ_3F_PROTEIN", "item": "ITEM_PROTEIN", "item_id": 46, "line": 187, "origin": "vanilla", "reached": true},
-     {"commit": "cccdc088f", "count": 1, "daily": false, "event": "object_events", "file": "events_galactic_hq_3f", "flag": 973, "flag_name": "FLAG_UNUSED_0x03CD", "item": "ITEM_ABILITY_CAPSULE", "item_id": 133, "line": 202, "origin": "added", "reached": true, "source": "Oxide"}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_galactic_hq_3f", "flag": 1310, "flag_name": "FLAG_OBTAINED_GALACTIC_HQ_3F_PROTEIN", "item": "ITEM_PROTEIN", "item_id": 46, "line": 187, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_galactic_hq_3f", "how": "sees the player", "line": 73, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_2", "value": 512, "when": ""}]}]},
@@ -10436,7 +10427,7 @@
     "flags": [
      {"at": ["events_galactic_hq_4f:34"], "daily": false, "flag": 446, "name": "FLAG_HIDE_GALACTIC_HQ_4F_CYRUS", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_galactic_hq_4f:49", "events_galactic_hq_4f:64"], "daily": false, "flag": 550, "name": "FLAG_HIDE_GALACTIC_HQ_4F_DOOR", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_galactic_hq_4f:79", "events_galactic_hq_4f:94", "events_galactic_hq_4f:109", "events_galactic_hq_4f:124", "events_galactic_hq_4f:139"], "daily": false, "flag": 567, "name": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_galactic_hq_4f:79", "events_galactic_hq_4f:94"], "daily": false, "flag": 567, "name": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["scripts_galactic_hq_4f:132"], "daily": false, "flag": 550, "name": "FLAG_HIDE_GALACTIC_HQ_4F_DOOR", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "hidden_items": [
@@ -10446,13 +10437,10 @@
      {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_galactic_hq_4f", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_MASTER_BALL", "value": 1, "when": ""}], "line": 61, "mode": "variable", "origin": "vanilla", "reached": true}
     ],
     "trainers": [
-     {"commit": "610527338", "event": "object_events", "file": "events_galactic_hq_4f", "how": "sees the player", "line": 110, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_DUMMY_118", "value": 118, "when": ""}]}], "source": "Oxide"},
-     {"commit": "610527338", "event": "object_events", "file": "events_galactic_hq_4f", "how": "sees the player", "line": 125, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_DUMMY_122", "value": 122, "when": ""}]}], "source": "Oxide"},
-     {"commit": "610527338", "event": "object_events", "file": "events_galactic_hq_4f", "how": "sees the player", "line": 140, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_DUMMY_123", "value": 123, "when": ""}]}], "source": "Oxide"},
      {"command": "StartTrainerBattle", "file": "scripts_galactic_hq_4f", "how": "StartTrainerBattle", "line": 39, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ", "value": 403, "when": ""}]}]}
     ],
     "vars": [
-     {"at": ["events_galactic_hq_4f:184"], "name": "VAR_GALACTIC_HQ_4F_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16598},
+     {"at": ["events_galactic_hq_4f:139"], "name": "VAR_GALACTIC_HQ_4F_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16598},
      {"at": ["scripts_galactic_hq_4f:56"], "name": "VAR_GALACTIC_HQ_4F_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16598}
     ]
    },
@@ -10473,9 +10461,6 @@
    "entries": {
     "flags": [
      {"at": ["events_galactic_hq_b1f:9"], "daily": false, "flag": 567, "name": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC", "op": "hides", "origin": "vanilla", "reached": true}
-    ],
-    "trainers": [
-     {"commit": "610527338", "event": "object_events", "file": "events_galactic_hq_b1f", "how": "sees the player", "line": 10, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_DUMMY_100", "value": 100, "when": ""}]}], "source": "Oxide"}
     ]
    },
    "events": "events_galactic_hq_b1f",
@@ -10489,13 +10474,7 @@
    "split_basis": null,
    "title": "Galactic HQ B1F",
    "undecoded": {},
-   "unreached": [
-    {
-     "label": "GalacticHQB1F_GruntM",
-     "line": 8,
-     "number": 1
-    }
-   ]
+   "unreached": []
   },
   {
    "entries": {
@@ -11621,12 +11600,9 @@
      {"count": 1, "daily": false, "event": "object_events", "file": "events_acuity_lakefront", "flag": 1177, "flag_name": "FLAG_OBTAINED_ACUITY_LAKEFRONT_ULTRA_BALL", "item": "ITEM_ULTRA_BALL", "item_id": 2, "line": 10, "origin": "vanilla", "reached": true},
      {"count": 1, "daily": false, "event": "object_events", "file": "events_acuity_lakefront", "flag": 1324, "flag_name": "FLAG_OBTAINED_ACUITY_LAKEFRONT_REAPER_CLOTH", "item": "ITEM_REAPER_CLOTH", "item_id": 325, "line": 57, "origin": "vanilla", "reached": true}
     ],
-    "trainers": [
-     {"commit": "610527338", "event": "object_events", "file": "events_acuity_lakefront", "how": "sees the player", "line": 72, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_DUMMY_109", "value": 109, "when": ""}]}], "source": "Oxide"}
-    ],
     "vars": [
      {"at": ["scripts_acuity_lakefront:29"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["events_acuity_lakefront:116"], "name": "VAR_ACUITY_LAKEFRONT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16516},
+     {"at": ["events_acuity_lakefront:101"], "name": "VAR_ACUITY_LAKEFRONT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16516},
      {"at": ["scripts_acuity_lakefront:28"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["scripts_acuity_lakefront:60"], "name": "VAR_ACUITY_LAKEFRONT_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16516}
     ]
@@ -16534,8 +16510,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_pokecenter_b1f",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Pokecenter B1F",
    "undecoded": {},
    "unreached": []
@@ -17016,15 +16992,11 @@
   {
    "entries": {
     "flags": [
-     {"at": ["events_galactic_hq_laboratory:90", "events_galactic_hq_laboratory:105", "events_galactic_hq_laboratory:135"], "daily": false, "flag": 567, "name": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_galactic_hq_laboratory:90", "events_galactic_hq_laboratory:105"], "daily": false, "flag": 567, "name": "FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_galactic_hq_laboratory:120"], "daily": false, "flag": 1311, "name": "FLAG_OBTAINED_GALACTIC_HQ_LABORATORY_FULL_RESTORE", "op": "hides", "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
      {"count": 1, "daily": false, "event": "object_events", "file": "events_galactic_hq_laboratory", "flag": 1311, "flag_name": "FLAG_OBTAINED_GALACTIC_HQ_LABORATORY_FULL_RESTORE", "item": "ITEM_FULL_RESTORE", "item_id": 23, "line": 121, "origin": "vanilla", "reached": true}
-    ],
-    "trainers": [
-     {"commit": "610527338", "event": "object_events", "file": "events_galactic_hq_laboratory", "how": "sees the player", "line": 91, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_DUMMY_115", "value": 115, "when": ""}]}], "source": "Oxide"},
-     {"commit": "610527338", "event": "object_events", "file": "events_galactic_hq_laboratory", "how": "sees the player", "line": 136, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_DUMMY_124", "value": 124, "when": ""}]}], "source": "Oxide"}
     ]
    },
    "events": "events_galactic_hq_laboratory",
@@ -17038,13 +17010,7 @@
    "split_basis": null,
    "title": "Galactic HQ Laboratory",
    "undecoded": {},
-   "unreached": [
-    {
-     "label": "GalacticHQLaboratory_ScientistM",
-     "line": 10,
-     "number": 1
-    }
-   ]
+   "unreached": []
   },
   {
    "entries": {
@@ -19358,11 +19324,11 @@
    "vanilla": 1
   },
   "flags": {
-   "Oxide": 165,
+   "Oxide": 164,
    "base ROM": 214,
-   "gone": 105,
-   "total": 3343,
-   "vanilla": 2964
+   "gone": 109,
+   "total": 3338,
+   "vanilla": 2960
   },
   "hidden_items": {
    "Oxide": 1,
@@ -19371,10 +19337,10 @@
    "vanilla": 252
   },
   "item_balls": {
-   "Oxide": 11,
+   "Oxide": 10,
    "base ROM": 62,
    "gone": 69,
-   "total": 333,
+   "total": 332,
    "vanilla": 260
   },
   "items": {
@@ -19385,10 +19351,10 @@
    "vanilla": 102
   },
   "pokemon": {
-   "Oxide": 6,
+   "Oxide": 5,
    "base ROM": 3,
    "gone": 1,
-   "total": 12,
+   "total": 11,
    "vanilla": 3
   },
   "statics": {
@@ -19404,18 +19370,18 @@
    "vanilla": 4
   },
   "trainers": {
-   "Oxide": 36,
+   "Oxide": 26,
    "base ROM": 71,
    "gone": 15,
-   "total": 613,
+   "total": 603,
    "vanilla": 506
   },
   "vars": {
    "Oxide": 23,
    "base ROM": 27,
-   "gone": 36,
-   "total": 1128,
-   "vanilla": 1078
+   "gone": 38,
+   "total": 1126,
+   "vanilla": 1076
   }
  }
 }

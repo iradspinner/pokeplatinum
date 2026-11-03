@@ -12,15 +12,15 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GALVANTULA",
+            "species": "SPECIES_JOLTEON",
             "form": 0,
             "level": 47,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_STICKY_WEB",
                 "MOVE_ELECTROWEB",
-                "MOVE_THUNDER",
-                "MOVE_ENERGY_BALL"
+                "MOVE_THUNDERBOLT",
+                "MOVE_SHADOW_BALL",
+                "MOVE_THUNDER_WAVE"
             ],
             "iv_scale": 255,
             "nature": "NATURE_HASTY",

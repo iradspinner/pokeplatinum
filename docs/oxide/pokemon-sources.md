@@ -47,7 +47,7 @@ replace a slot:
 | 6, 7 | `daily_encounters` (Trophy Garden) or the Great Marsh daily | National Dex, or a running Safari Game |
 | 8, 9 | `ruby`..`leafgreen` | National Dex and that GBA cartridge in the slot |
 
-168 rows across 32 locations, generated 2026-10-31.
+167 rows across 31 locations, generated 2026-11-02.
 
 ## Rows by method
 
@@ -56,7 +56,7 @@ replace a slot:
 | unown room | 18 |
 | static battle | 13 |
 | egg gift | 10 |
-| gift | 9 |
+| gift | 8 |
 | fossil | 7 |
 | honey tree (common, 1 badge) | 6 |
 | honey tree (uncommon, 1 badge) | 6 |
@@ -404,10 +404,4 @@ replace a slot:
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
 | Giratina | static battle | 47 | Turnback Cave, after the Distortion World; Altered Forme | vanilla | yes | `scripts_turnback_cave_giratina_room.s` |
-
-### Veilstone City
-
-| Species | Method | Level | Conditions | Origin | On pick-list | Source |
-|---|---|---|---|---|---|---|
-| Elekid | gift | 25 | clown gift, one of three rolled at random; once only (FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_GIFT); the Porygon slot beside it is a separate gift with its own vanilla flag | **base-ROM** | yes | `scripts_veilstone_city_northeast_house.s` |
 

@@ -24,13 +24,11 @@ def context(split):
 
 
 # Catches no box the scorer builds may take, as (capture area, species
-# rolled there). Ian, 2026-10-21: the Veilstone City northeast house's level
-# 25 Elekid, the game's only Elekid, waits on his decision about that gift
-# and the Elekid line, so until then no reading's box holds it (nor the
-# Electabuzz or Electivire it would become). The game still gives it; only
-# the scorer's boxes pass it by. Temporary: remove the entry once Ian
-# decides the gift's future.
-HELD_BACK = frozenset({("Veilstone City", "SPECIES_ELEKID")})
+# rolled there), for a catch the game gives that the readings should pass
+# by. Empty since 2026-11-02: its one entry was the Veilstone City northeast
+# house's level 25 Elekid, held out from 2026-10-21 while Ian decided that
+# gift's future, and he removed the gift from the game.
+HELD_BACK = frozenset()
 
 
 def roll(area, option, box, rng, drawn=()):
