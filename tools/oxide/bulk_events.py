@@ -84,6 +84,10 @@ DIVERGED.update({
 })
 # The base ROM's free evolution stones are gone (Ian, 2026-09-27): Galactic HQ
 # B2F loses the nine stone balls appended to the end of its object list.
+# Officer Hesperid is a male grunt (Ian, 2026-11-02; docs/oxide/hq-split.md):
+# his Mt. Coronet 6F object wears the male grunt's sprite, as at Lake Valor.
+DIVERGED["events_mt_coronet_6f"] += (
+    "; then Officer Hesperid in the male grunt's sprite (Ian, 2026-11-02)")
 DIVERGED["events_galactic_hq_b2f"] = (
     "the nine evolution stone balls the base ROM added removed (Ian, 2026-09-27)")
 # Ian's approved stone plan (2026-09-27, from the balance track's stone census):
@@ -265,6 +269,28 @@ DIVERGED["events_pal_park_lobby"] += (
 # why).
 DIVERGED["events_fuego_ironworks_building"] += (
     "; then Thorton, the Factory Head, added in the heart of the hall (Ian, 2026-10-31)")
+
+# HQ's split (Ian, 2026-11-02; docs/oxide/hq-split.md): Scientists Fredrick
+# and Darrius stand at necks of their rooms, each looking one fixed way;
+# B1F's talking grunt and the laboratory's male scientist are trainers in
+# free slots 100 and 115; Officers Phobos and Deimos stand at the lobby's key
+# door, Boreas and Laverna at 4F's, Argo on 4F after Cyrus and Hesperid by
+# the laboratory's door, in free slots 116 to 124; a new hiker (free slot
+# 109) stands at the foot of Acuity Lakefront's climb; and 3F west's locked
+# room holds the Ability Capsule's ball under FLAG_UNUSED_0x03CD.
+for _m, _why in (("galactic_hq_1f", "Fredrick at his room's neck; Officers Phobos and Deimos "
+                                    "at the lobby's key door"),
+                 ("galactic_hq_2f", "Darrius at 2F east's neck"),
+                 ("galactic_hq_3f", "the Ability Capsule's ball in 3F west's locked room"),
+                 ("galactic_hq_4f", "Officers Boreas and Laverna at the key door, Argo after "
+                                    "Cyrus"),
+                 ("galactic_hq_b1f", "the talking grunt a trainer in free slot 100"),
+                 ("galactic_hq_laboratory", "the male scientist a trainer in free slot 115 at "
+                                            "the west neck; Officer Hesperid by the door"),
+                 ("acuity_lakefront", "a hiker in free slot 109 at the climb's foot")):
+    _why += " (Ian, 2026-11-02; docs/oxide/hq-split.md)"
+    DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; then " + _why
+                                if f"events_{_m}" in DIVERGED else _why)
 
 def render(record, existing, index):
     """One object event as the repo spells it, keeping the existing id."""

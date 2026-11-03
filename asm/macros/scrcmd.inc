@@ -5282,6 +5282,14 @@
     .short \destVar
     .endm
 
+    /* Platinum Oxide: sets \destVar to TRUE while a gauntlet section is open
+       where the player stands (src/gauntlet.c), else FALSE, so a script that
+       heals can refuse as the Pocket PC does. */
+    .macro GauntletIsOpen destVar
+    .short SCRCMD_GAUNTLETISOPEN
+    .short \destVar
+    .endm
+
 #ifdef OXIDE_TESTKIT
     /* Platinum Oxide test kit only (make testkit): puts the Pokemon in
        \partySlot into \form. Rotom takes the game's own form change, which

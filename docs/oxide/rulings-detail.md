@@ -79,7 +79,7 @@ and which read no harder than their commander, Hesperid likely excepted
 (Ian, 2026-10-21, adding that this may shift later in the game); a boss's
 difficulty spikes or drops with how
 important it is, and Oxide's hardest bosses top out around the easiest of
-Kaizo's read on the same box (about 80 percent won). The numbers order
+Kaizo's read on the same box (about 80 percent won). These targets are a perfect player's and no longer gate a fight (Ian, 2026-11-02): the scorer is a ceiling, a boss need only be clearly harder than before, the playtest decides, a reading is asked for only when a fight looks trivial (under about one faint a fight), and the scorer's lines serve after a fight to show what the line could have been. The numbers order
 fights rather than measure them absolutely, and Oxide is not meant to be
 beaten on a first run. A trainer that trends a little hard, or reads as an
 outlier, is fine while it approximates its band (Ian, 2026-10-06).

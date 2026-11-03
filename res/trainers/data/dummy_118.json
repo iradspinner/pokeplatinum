@@ -1,34 +1,83 @@
 {
-    "name": "Angelica",
-    "class": "TRAINER_CLASS_PICNICKER",
+    "name": "Officer Boreas",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_TALONFLAME",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 56,
+            "item": "ITEM_SHARP_BEAK",
+            "moves": [
+                "MOVE_TAILWIND",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_FLARE_BLITZ",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_HASTY",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_PIDGEOT",
+            "form": 0,
+            "level": 56,
+            "item": "ITEM_SCOPE_LENS",
+            "moves": [
+                "MOVE_AIR_SLASH",
+                "MOVE_HEAT_WAVE",
+                "MOVE_U_TURN",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_YANMEGA",
+            "form": 0,
+            "level": 57,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_AIR_SLASH",
+                "MOVE_BUG_BUZZ",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_ANCIENT_POWER"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [
         {
             "type": "TRMSG_PRE_BATTLE",
-            "garbage": 21
+            "en_US": [
+                "The north wind blows at our backs!\n",
+                "You’ll never catch up!\r"
+            ]
         },
         {
             "type": "TRMSG_DEFEAT",
-            "garbage": 24
+            "en_US": [
+                "The wind... has turned...\n"
+            ]
         },
         {
             "type": "TRMSG_POST_BATTLE",
-            "garbage": 31
+            "en_US": [
+                "Master Cyrus is just through that\n",
+                "door. Not that it’ll help you.\n"
+            ]
         }
     ]
 }

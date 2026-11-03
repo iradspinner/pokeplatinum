@@ -121,6 +121,7 @@ ScriptCommand(AICMD_IFPARTNEREFFECTIVENESSEQUALS,   AICmd_IfPartnerEffectiveness
 ScriptCommand(AICMD_IFMOVECANBEREFLECTED,           AICmd_IfMoveCanBeReflected)     // Oxide
 ScriptCommand(AICMD_IFMOLDBREAKERIGNORES,           AICmd_IfMoldBreakerIgnores)     // Oxide
 ScriptCommand(AICMD_IFBATTLERKNOWSPRIORITYMOVE,     AICmd_IfBattlerKnowsPriorityMove) // Oxide
+ScriptCommand(AICMD_IFHOLDEFFECTACTIVE,            AICmd_IfHoldEffectActive)       // Oxide
 
 // clang-format on
 

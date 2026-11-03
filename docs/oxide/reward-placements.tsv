@@ -130,6 +130,7 @@ ITEM_METRONOME	1	trainer	Candice	MAP_HEADER_LAKE_VALOR_DRAINED			TRAINER_GALACTI
 ITEM_RING_TARGET	1	trainer	Candice	MAP_HEADER_ROUTE_216			TRAINER_ACE_TRAINER_BLAKE		held item; reading 2.4
 ITEM_ABILITY_SHIELD	1	trainer	Candice	MAP_HEADER_ROUTE_217			TRAINER_SKIER_LEXIE		held item; reading 2.4
 ITEM_SITRUS_BERRY	1	ball	HQ	MAP_HEADER_GALACTIC_HQ_1F		ITEM_TM49			a TM place the spread leaves to another item
+ITEM_ABILITY_CAPSULE	1	ball	HQ	MAP_HEADER_GALACTIC_HQ_3F	27,10				the game's second Ability Capsule, a new ball in 3F west's locked room, past both of 3F west's optional grunts and the Galactic Key's door, under FLAG_UNUSED_0x03CD (Ian, 2026-11-02; docs/oxide/hq-split.md)
 ITEM_TM56	2	ball	HQ	MAP_HEADER_GALACTIC_HQ_3F		ITEM_TM21			Hex, utility; a TM place today (ITEM_TM21)
 ITEM_TM33	2	ball	HQ	MAP_HEADER_GALACTIC_HQ_B2F		ITEM_TM36			Reflect, utility; a TM place today (ITEM_TM36)
 ITEM_SITRUS_BERRY	1	ball	HQ	MAP_HEADER_ROUTE_211_EAST		ITEM_TM29			a TM place the spread leaves to another item

@@ -13,7 +13,7 @@
             "species": "SPECIES_NINETALES",
             "form": 0,
             "level": 46,
-            "item": "ITEM_HEAT_ROCK",
+            "item": "ITEM_CHARCOAL",
             "moves": [
                 "MOVE_FLAMETHROWER",
                 "MOVE_ENERGY_BALL",

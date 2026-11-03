@@ -2276,7 +2276,7 @@
       "locked": [],
       "base_level": 36,
       "order": 119,
-      "split": "Galactic",
+      "split": "HQ",
       "cast": [
         "SPECIES_BRONZONG",
         "SPECIES_MACHOKE",
@@ -5767,7 +5767,7 @@
         "SPECIES_TOGEDEMARU",
         "SPECIES_CHATOT",
         "SPECIES_GALVANTULA",
-        "SPECIES_TOUCANNON",
+        "SPECIES_ELECTIVIRE",
         "SPECIES_LUXRAY",
         "SPECIES_EMOLGA",
         "SPECIES_PAWMOT",

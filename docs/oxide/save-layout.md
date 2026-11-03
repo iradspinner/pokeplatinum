@@ -433,6 +433,29 @@ double is won by `FLAG_MAP_LOCAL_0x01`, a map-local flag the game clears on
 every map change, which the lobby's load sets while the double is still to
 come; it takes no flag of its own.
 
+## The HQ's Ability Capsule takes a spare flag (2026-11-02)
+
+Nothing moves. The Ability Capsule's ball in the Galactic HQ 3F west's
+locked room is hidden by `FLAG_UNUSED_0x03CD` once it is picked up, the next
+spare story flag after the maid knockout's `FLAG_UNUSED_0x03CC`. No script,
+vanilla, base ROM or Oxide, read or wrote it (the reward placer's spare pool
+counted it free). It keeps its pret name, so the reward placer counts it as
+taken. HQ's split pass also uses free trainer slots 100, 101, 109, 115 to
+118 and 122 to 124, whose defeated flags are already in the save, and the
+tower's gauntlet section is held in `VAR_GAUNTLET_SECTION` as every section
+is (`docs/oxide/hq-split.md`).
+
+## The Veilstone man's two flags fall idle (2026-11-02)
+
+Nothing moves. The man in Veilstone City's northeast house no longer gives
+an Elekid (Ian, 2026-11-02), so his script no longer reads or sets
+`FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON` or
+`FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M`, and no other
+Oxide script does. A save that took the gift keeps both set, and nothing
+reads them. They keep their names, so the reward placer does not count them
+as spare; the base ROM's script still uses both, so a later change that
+claims one says so here.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:

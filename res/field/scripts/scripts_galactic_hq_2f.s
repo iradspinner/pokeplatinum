@@ -14,6 +14,11 @@
 GalacticHQ2F_Bed:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
+    @ Platinum Oxide: the nap room is halfway up the tower's gauntlet
+    @ section (src/gauntlet.c), so the bed refuses while it is open, as the
+    @ Pocket PC does (Ian, 2026-11-02).
+    GauntletIsOpen VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, GalacticHQ2F_NoTimeToRest
     Message GalacticHQ2F_Text_TakeARest
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, GalacticHQ2F_TakeARest
@@ -38,6 +43,13 @@ GalacticHQ2F_TakeARest:
     End
 
 GalacticHQ2F_BedEnd:
+    CloseMessage
+    ReleaseAll
+    End
+
+GalacticHQ2F_NoTimeToRest:
+    Message GalacticHQ2F_Text_NoTimeToRest
+    WaitButton
     CloseMessage
     ReleaseAll
     End

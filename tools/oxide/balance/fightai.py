@@ -213,6 +213,14 @@ def mold(u, mon):
     return u.ability == "Mold Breaker" and mon.item != "Ability Shield"
 
 
+def item_works(mon, item):
+    """AICmd_IfHoldEffectActive (Oxide, 2026-11-02): mon holds item and it
+    works, as Battler_HeldItemEffect reads it. Klutz stops it; Embargo and
+    Magic Room have already taken it out of mon.item (fightsim.lock_item),
+    and a burst Air Balloon is gone from it."""
+    return mon.item == item and mon.ability != "Klutz"
+
+
 def script_type(b, u, mv):
     """LoadTypeFrom LOAD_MOVE_TYPE (AI_ScriptMoveType, 974 to 981): Weather
     Ball's type from the weather, every other move its listed type."""
@@ -570,6 +578,9 @@ def _basic_effect(b, u, t, mv):
     if c in BASIC_POWDERS or c in GRASS_STATUS:
         if c in BASIC_POWDERS and "Grass" in t.types:
             return -10
+        # Safety Goggles keep the powder off (Ian, 2026-11-02), Mold Breaker or not.
+        if c in BASIC_POWDERS and item_works(t, "Safety Goggles"):
+            return -10
         if not mold(u, t):
             if c in BASIC_POWDERS and ability_of(b, u, t) == "Overcoat":
                 return -10
@@ -881,7 +892,9 @@ def _basic_effect(b, u, t, mv):
     if e == "RESTORE_HP_EVERY_TURN":                                # Basic_CheckAquaRing
         return -10 if getattr(u, "aqua_ring", False) else 0
     if e == "GIVE_GROUND_IMMUNITY":                                 # Basic_CheckMagnetRise
-        return -10 if getattr(u, "magnet_rise", 0) or u.ability == "Levitate" or "Flying" in u.types else 0
+        # The Air Balloon counts as Levitate does (Ian, 2026-11-02).
+        return -10 if getattr(u, "magnet_rise", 0) or u.ability == "Levitate" or "Flying" in u.types \
+            or item_works(u, "Air Balloon") else 0
     if e == "REMOVE_HAZARDS_SCREENS_EVA_DOWN":
         return _basic_defog(b, u, t, own, foe)
     if e == "TRICK_ROOM":                                           # Basic_CheckTrickRoom
@@ -2403,9 +2416,11 @@ def x_dragon_dance(c):
 
 def x_gravity(c):
     """Expert_Gravity (Gravity, Smack Down, Thousand Arrows): +1 at 75%
-    against a foe in the air; a grounded one at 60% HP or more, +1 at 37.5%."""
+    against a foe in the air (an Air Balloon's holder too since 2026-11-02);
+    a grounded one at 60% HP or more, +1 at 37.5%."""
     t = c.t
-    airborne = t.ability == "Levitate" or getattr(t, "magnet_rise", 0) or "Flying" in t.types
+    airborne = t.ability == "Levitate" or getattr(t, "magnet_rise", 0) or "Flying" in t.types \
+        or item_works(t, "Air Balloon")
     if not airborne and (c.hu < 60 or not c.roll(50)):
         return 0
     return 1 if c.roll(75) else 0
@@ -3320,7 +3335,7 @@ def _tag_quake(u, ally):
     """TagStrategy_Earthquake (Earthquake, Magnitude, Bulldoze)."""
     if ally is None:
         return 0
-    if getattr(ally, "magnet_rise", 0):
+    if getattr(ally, "magnet_rise", 0) or item_works(ally, "Air Balloon"):   # the balloon since 2026-11-02
         return 2
     if not mold(u, ally) and ally.ability in ("Levitate", "Telepathy"):
         return 2

@@ -857,6 +857,7 @@ ScriptCommand(SCRCMD_GETGAMECORNERPRIZECOUNT,                              ScrCm
 ScriptCommand(SCRCMD_GETSOLDTMCOPIES,                                      ScrCmd_GetSoldTMCopies)
 ScriptCommand(SCRCMD_MARKSOLDTMBOUGHT,                                     ScrCmd_MarkSoldTMBought)
 ScriptCommand(SCRCMD_GAUNTLETSTEPONLINE,                                    ScrCmd_GauntletStepOnLine)
+ScriptCommand(SCRCMD_GAUNTLETISOPEN,                                         ScrCmd_GauntletIsOpen)
 
 #ifdef OXIDE_TESTKIT
 // The test kit's own commands, built only by `make testkit` (docs/oxide/test-kit.md).

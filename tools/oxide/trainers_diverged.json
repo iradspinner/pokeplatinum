@@ -313,6 +313,9 @@
   "double_team_zac_and_jen": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
+  "dragon_tamer_patrick": {
+    "party": "edited in the OxiDex team builder, 2026-11-02"
+  },
   "dummy_007": {
     "name": "edited in the OxiDex team builder, 2026-10-30",
     "class": "edited in the OxiDex team builder, 2026-10-30",
@@ -404,6 +407,76 @@
     "messages": "Riley's door battle on Iron Island, moved to a free slot so his partner team on B2F can differ (a draft for Ian, 2026-10-31, docs/oxide/barry5-riley.md)",
     "ai_flags": "Riley's door battle on Iron Island, moved to a free slot so his partner team on B2F can differ (a draft for Ian, 2026-10-31, docs/oxide/barry5-riley.md)",
     "party": "Riley's door battle on Iron Island, moved to a free slot so his partner team on B2F can differ (a draft for Ian, 2026-10-31, docs/oxide/barry5-riley.md)"
+  },
+  "dummy_100": {
+    "name": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): B1F's talking grunt made a trainer at his own tile",
+    "class": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): B1F's talking grunt made a trainer at his own tile",
+    "messages": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): B1F's talking grunt made a trainer at his own tile",
+    "ai_flags": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): B1F's talking grunt made a trainer at his own tile",
+    "party": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): B1F's talking grunt made a trainer at his own tile"
+  },
+  "dummy_101": {
+    "name": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Veilstone's storage-key grunt fights before he drops the key",
+    "class": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Veilstone's storage-key grunt fights before he drops the key",
+    "messages": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Veilstone's storage-key grunt fights before he drops the key",
+    "ai_flags": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Veilstone's storage-key grunt fights before he drops the key",
+    "party": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Veilstone's storage-key grunt fights before he drops the key"
+  },
+  "dummy_109": {
+    "name": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): a new trainer at the foot of Acuity Lakefront's climb",
+    "class": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): a new trainer at the foot of Acuity Lakefront's climb",
+    "messages": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): a new trainer at the foot of Acuity Lakefront's climb",
+    "ai_flags": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): a new trainer at the foot of Acuity Lakefront's climb",
+    "party": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): a new trainer at the foot of Acuity Lakefront's climb"
+  },
+  "dummy_115": {
+    "name": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): the laboratory's male scientist made a trainer at its west neck",
+    "class": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): the laboratory's male scientist made a trainer at its west neck",
+    "messages": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): the laboratory's male scientist made a trainer at its west neck",
+    "ai_flags": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): the laboratory's male scientist made a trainer at its west neck",
+    "party": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): the laboratory's male scientist made a trainer at its west neck"
+  },
+  "dummy_116": {
+    "name": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Phobos at the lobby's key door, beside Deimos",
+    "class": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Phobos at the lobby's key door, beside Deimos",
+    "messages": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Phobos at the lobby's key door, beside Deimos",
+    "ai_flags": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Phobos at the lobby's key door, beside Deimos",
+    "party": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Phobos at the lobby's key door, beside Deimos"
+  },
+  "dummy_117": {
+    "name": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Deimos at the lobby's key door, beside Phobos",
+    "class": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Deimos at the lobby's key door, beside Phobos",
+    "messages": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Deimos at the lobby's key door, beside Phobos",
+    "ai_flags": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Deimos at the lobby's key door, beside Phobos",
+    "party": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Deimos at the lobby's key door, beside Phobos"
+  },
+  "dummy_118": {
+    "name": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Boreas at 4F's key door, beside Laverna",
+    "class": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Boreas at 4F's key door, beside Laverna",
+    "messages": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Boreas at 4F's key door, beside Laverna",
+    "ai_flags": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Boreas at 4F's key door, beside Laverna",
+    "party": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Boreas at 4F's key door, beside Laverna"
+  },
+  "dummy_122": {
+    "name": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Laverna at 4F's key door, beside Boreas",
+    "class": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Laverna at 4F's key door, beside Boreas",
+    "messages": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Laverna at 4F's key door, beside Boreas",
+    "ai_flags": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Laverna at 4F's key door, beside Boreas",
+    "party": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Laverna at 4F's key door, beside Boreas"
+  },
+  "dummy_123": {
+    "name": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Argo on 4F, between Cyrus and the laboratory",
+    "class": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Argo on 4F, between Cyrus and the laboratory",
+    "messages": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Argo on 4F, between Cyrus and the laboratory",
+    "ai_flags": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Argo on 4F, between Cyrus and the laboratory",
+    "party": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Argo on 4F, between Cyrus and the laboratory"
+  },
+  "dummy_124": {
+    "name": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Hesperid in the laboratory, by the door to Saturn",
+    "class": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Hesperid in the laboratory, by the door to Saturn",
+    "messages": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Hesperid in the laboratory, by the door to Saturn",
+    "ai_flags": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Hesperid in the laboratory, by the door to Saturn",
+    "party": "HQ's split pass (Ian, 2026-11-02, docs/oxide/hq-split.md): Officer Hesperid in the laboratory, by the door to Saturn"
   },
   "dummy_131": {
     "name": "Lake Verity's talking grunt made a trainer at the lake's mouth, in a free slot, so Candice's split counts twelve mandatory fights (Ian, 2026-11-01, docs/oxide/candice-split.md)",
@@ -497,6 +570,9 @@
   "galactic_boss_cyrus_celestic_town_ruins": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
   },
+  "galactic_boss_cyrus_galactic_hq": {
+    "party": "edited in the OxiDex team builder, 2026-11-02"
+  },
   "galactic_grunt_celestic_town": {
     "ai_flags": "edited in the OxiDex team builder, 2026-10-31",
     "party": "edited in the OxiDex team builder, 2026-10-31"
@@ -506,6 +582,41 @@
   },
   "galactic_grunt_floaroma_meadow_2": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "galactic_grunt_galactic_hq_1f": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-11-02",
+    "party": "edited in the OxiDex team builder, 2026-11-02"
+  },
+  "galactic_grunt_galactic_hq_2f_1": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-11-02",
+    "party": "edited in the OxiDex team builder, 2026-11-02"
+  },
+  "galactic_grunt_galactic_hq_2f_2": {
+    "party": "edited in the OxiDex team builder, 2026-11-02"
+  },
+  "galactic_grunt_galactic_hq_2f_3": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-11-02",
+    "party": "edited in the OxiDex team builder, 2026-11-02"
+  },
+  "galactic_grunt_galactic_hq_3f_1": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-11-02",
+    "party": "edited in the OxiDex team builder, 2026-11-02"
+  },
+  "galactic_grunt_galactic_hq_3f_2": {
+    "party": "edited in the OxiDex team builder, 2026-11-02"
+  },
+  "galactic_grunt_galactic_hq_3f_3": {
+    "party": "edited in the OxiDex team builder, 2026-11-02"
+  },
+  "galactic_grunt_galactic_hq_3f_4": {
+    "party": "edited in the OxiDex team builder, 2026-11-02"
+  },
+  "galactic_grunt_galactic_hq_b2f_1": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-11-02",
+    "party": "edited in the OxiDex team builder, 2026-11-02"
+  },
+  "galactic_grunt_galactic_hq_b2f_2": {
+    "party": "edited in the OxiDex team builder, 2026-11-02"
   },
   "galactic_grunt_iron_island_1": {
     "party": "drafted for Ian, 2026-10-31; Ian's yes, 2026-11-01 (docs/oxide/barry5-riley.md)",
@@ -555,6 +666,9 @@
   "galactic_grunt_lake_verity_4": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "galactic_grunt_mt_coronet_6f": {
+    "class": "Officer Hesperid is a male grunt, as at Lake Valor and in the Galactic HQ (Ian, 2026-11-02; docs/oxide/hq-split.md)"
+  },
   "galactic_grunt_spear_pillar_1": {
     "name": "Ian renamed the Veilstone and Spear Pillar grunts Officers Tyche and Hermes, 2026-10-29",
     "messages": "Tyche's defeat line calls her an officer, not a grunt (Ian, 2026-10-29)"
@@ -602,6 +716,10 @@
   },
   "guitarist_tony": {
     "party": "edited in the OxiDex team builder, 2026-10-31"
+  },
+  "hiker_alexander": {
+    "ai_flags": "edited in the OxiDex team builder, 2026-11-02",
+    "party": "edited in the OxiDex team builder, 2026-11-02"
   },
   "hiker_damon": {
     "party": "edited in the OxiDex team builder, 2026-10-31",
@@ -959,6 +1077,12 @@
   },
   "school_kid_mackenzie": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
+  },
+  "scientist_darrius": {
+    "party": "edited in the OxiDex team builder, 2026-11-02"
+  },
+  "scientist_fredrick": {
+    "party": "edited in the OxiDex team builder, 2026-11-02"
   },
   "scientist_shaun": {
     "party": "edited in the OxiDex team builder, 2026-10-31"

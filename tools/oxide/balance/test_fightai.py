@@ -390,6 +390,10 @@ EXPERT_ROWS = [
      _t(slower=True, u_hp=40), Seq([0.9999, 0.0]), 0),
     ("DragonDance, Quiver Dance slower", "Quiver Dance", _t(slower=True), 1, 0),
     ("Gravity, a Flying foe", "Gravity", _t(t_types=["Flying"]), 1, 0),
+    # The Air Balloon (Ian, 2026-11-02): a foe floating on one is in the air
+    # as a Levitate foe is; the user's HP is under 60% so only that counts.
+    ("Gravity, a grounded foe, the user at half HP", "Gravity", _t(u_hp=50), 0, 0),
+    ("Gravity, a foe on an Air Balloon, the user at half HP", "Gravity", _t(t_item="Air Balloon", u_hp=50), 1, 0),
     ("MiracleEye, a Dark foe", "Miracle Eye", _t(t_types=["Dark"]), 2, 0),
     ("WakeUpSlap, sleeping foe", "Wake-Up Slap", _t(t_status="slp", t_types=["Normal"]), 1, 1),
     ("HammerArm, slower", "Hammer Arm", _t(slower=True, t_types=["Normal"]), 1, 1),
@@ -881,6 +885,18 @@ BASIC_ROWS = [
      "Sucker Punch", None, 0, -10),
     ("CheckPowderImmunity and SapSipper: Sleep Powder into Goodra (Sap Sipper or Hydration)", "Venusaur", "Goodra",
      "Sleep Powder", None, -10, 0),
+    # Safety Goggles (Ian, 2026-11-02): a powder move into a holder fails in
+    # the engine, so Basic refuses it, unless Klutz stops the Goggles working.
+    ("CheckPowderImmunity: Sleep Powder into Safety Goggles", "Venusaur", "Zigzagoon", "Sleep Powder",
+     _t(t_item="Safety Goggles"), -10, -10),
+    ("CheckPowderImmunity: Sleep Powder into a Klutz holder's Safety Goggles", "Venusaur", "Zigzagoon",
+     "Sleep Powder", _t(t_item="Safety Goggles", t_ability="Klutz"), 0, 0),
+    # The Air Balloon (Ian, 2026-11-02) counts where Levitate does. The type
+    # chart's check already saw it; Magnet Rise's Levitate check did not.
+    ("CheckForImmunity: Earthquake into an Air Balloon (the type chart's check)", "Kangaskhan", "Zigzagoon",
+     "Earthquake", _t(t_item="Air Balloon"), -10, -10),
+    ("CheckMagnetRise: the user floats on an Air Balloon", "Kangaskhan", "Zigzagoon", "Magnet Rise",
+     _t(u_item="Air Balloon"), -10, -10),
     ("CheckRest: Leaf Guard in sun at half HP", "Gengar", "Zigzagoon", "Rest",
      _t(u_ability="Leaf Guard", weather="Sun", u_hp=50), -10, -10),
     ("CheckUpperHand: no priority move shown", "Kangaskhan", "Zigzagoon", "Upper Hand", None, -10, -10),
@@ -1032,6 +1048,50 @@ def basic_routines():
 
 
 @check
+def held_item_refusals():
+    """Ian's two held-item rules of 2026-11-02, read through the whole
+    choice: a Venusaur that knows Sleep Powder and Energy Ball never picks
+    the powder into Safety Goggles, and Earthquake into an Air Balloon
+    scores as it does into Levitate. Sleep Powder and Tackle tie at 100
+    into a Zigzagoon, and the tie goes to the first slot, Sleep Powder."""
+    out = []
+    picks = {}
+    for item in (None, "Safety Goggles"):
+        b = battle(A_BOSS, A_PLAYER)
+        _to(b, b.b, "Venusaur")
+        _to(b, b.p, "Zigzagoon")
+        _alone(b, b.b.cur(), b.p.cur())
+        u, t = b.b.cur(), b.p.cur()
+        moves(u, "Sleep Powder", "Tackle")
+        t.item = item
+        speeds(b, 100, 50)
+        got = set()
+        for dice in (PASS, FAIL, Seq([0.0, 0.9999]), Seq([0.9999, 0.0])):
+            b.rng = dice if isinstance(dice, Dice) else Dice(dice)
+            choice = ai.choose(b, u, t)
+            got.add(choice[1].name if choice[0] == "move" else f"switch {choice[1]}")
+        picks[item] = (ai.score_moves(b, u, t, 7), got)
+    out.append(("Safety Goggles: Sleep Powder is never picked into them",
+                "Sleep Powder" in picks[None][1] and picks["Safety Goggles"][1] == {"Tackle"},
+                f"no item {picks[None]}, Goggles {picks['Safety Goggles']}"))
+    scores = {}
+    for label, setup in (("Levitate", _t(t_ability="Levitate", t_revealed="Levitate")),
+                         ("Air Balloon", _t(t_item="Air Balloon"))):
+        b = battle(A_BOSS, A_PLAYER)
+        _to(b, b.b, "Kangaskhan")
+        _to(b, b.p, "Zigzagoon")
+        u, t = b.b.cur(), b.p.cur()
+        moves(u, "Earthquake", "Body Slam")
+        setup(b, u, t)
+        b.rng = Dice(PASS)
+        scores[label] = ai.score_moves(b, u, t, 1)
+    out.append(("Air Balloon: Earthquake scores into it as into Levitate",
+                scores["Levitate"] == scores["Air Balloon"] and scores["Air Balloon"][0] < scores["Air Balloon"][1],
+                f"{scores}"))
+    return out
+
+
+@check
 def damage_figure_and_engine():
     out = []
     b = battle(A_BOSS, A_PLAYER)
@@ -1176,6 +1236,12 @@ def tag_strategy_routines():
     b, lax, gen, champ, bliss = doubles()
     rows.append(("TagStrategy_Earthquake: beside a Rock/Bug partner", ai._tag_quake(lax, _as(gen, ["Rock", "Bug"], "Swift Swim")), -10))
     rows.append(("TagStrategy_Earthquake: beside a Levitate partner", ai._tag_quake(lax, _as(gen, ["Ghost", "Poison"], "Levitate")), 2))
+    # The Air Balloon (Ian, 2026-11-02): a Fire partner floating on one is
+    # as safe from Earthquake as a Levitate one.
+    gen.item = "Air Balloon"
+    rows.append(("TagStrategy_Earthquake: beside a Fire partner on an Air Balloon",
+                 ai._tag_quake(lax, _as(gen, ["Fire"], "Flash Fire")), 2))
+    gen.item = None
     rows.append(("TagStrategy_Explosion: beside a Ghost partner", ai._tag_boom(lax, _as(gen, ["Ghost"], "Levitate")), 0))
     rows.append(("TagStrategy_Explosion: beside a Grass/Dark partner", ai._tag_boom(lax, _as(gen, ["Grass", "Dark"], "Chlorophyll")), -10))
     rows.append(("TagStrategy_CheckElectricMove: Discharge beside a Water/Ground partner",

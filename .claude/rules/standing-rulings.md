@@ -174,7 +174,16 @@ read, so they are written here too. Each is a standing instruction.
   trainer won cleanly 80 to 85 percent of the time, no boss above 95 percent
   won (the Galactic officers may near 100 so long as their death rate is
   not trivial, and none reads harder than its commander, Hesperid likely
-  excepted; 2026-10-21), the hardest bosses near 80. The
+  excepted; 2026-10-21), the hardest bosses near 80. Those targets are a
+  perfect player's, so they no longer gate a fight (Ian, 2026-11-02): the
+  scorer is a ceiling, since it knows the AI exactly and plays the best six
+  from the whole box, and Ian plays his own lines, generally worse. Every
+  fight built on judgement read 95 to 100 percent won, his hardest Byron
+  included ("I genuinely don't think I could easily conceive a harder
+  team"), so a boss need only be clearly harder than before, the playtest
+  decides, a reading is asked for only when a fight looks trivial (under
+  about one faint a fight), and the scorer's lines serve after a fight to
+  show Ian what the line could have been. The
   scorer's good play must arise from search over the real simulator, never
   from named rules. Since 2026-10-22 it only spot-checks (the second ruling
   above). The full ruling, with the held-back versions, the box rules, the
