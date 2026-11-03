@@ -1,6 +1,6 @@
 # Officer Deimos's new lead at Pal Park
 
-Ian kept Galvantula on Byron on 2026-11-02 ("Galvantula, change Deimos"), so Deimos's Galvantula with Sticky Web, his lead in the Phobos and Deimos 2 tag battle at Pal Park (`dummy_050`), gives way instead. This page asks which Pokemon replaces it. The branch `overseer-deimos-lead` holds only this page: the trainer file does not change until Ian picks. The fight itself is described in `phobos-deimos.md`.
+Ian kept Galvantula on Byron on 2026-11-02 ("Galvantula, change Deimos"), so Deimos's Galvantula with Sticky Web, his lead in the Phobos and Deimos 2 tag battle at Pal Park (`dummy_050`), gives way instead. Ian picked Jolteon on 2026-11-02, as recommended: Volt Absorb, Focus Sash, Hasty; Electroweb, Thunderbolt, Shadow Ball, Thunder Wave, at 47. It is saved in `dummy_050` on the branch `overseer-deimos-lead`, and `phobos-deimos.md`'s Pal Park table says so. This page keeps the question and its checks as the record of the pick. The fight itself is described in `phobos-deimos.md`.
 
 ## Summary
 
@@ -21,11 +21,9 @@ Weavile is the Galactic choice, Cyrus's own Pokemon. But the AI almost never cho
 
 Each option breaks the line from Jubilife: Deimos's Galvantula grew out of his Joltik there, as most Pal Park members grow out of a Jubilife one. The new lead stands as a new member, as Absol and Froslass do. Changing Jubilife's Joltik as well would be a question of its own; an Eevee there would clash with the partner's Eevee lead.
 
-Action items for Ian:
+Action items for Ian: none; he picked Jolteon.
 
-1. Pick the lead: Jolteon, Weavile or Leavanny. About five minutes.
-
-Next steps. A session saves the pick into `dummy_050` on this branch through the OxiDex's save, reruns the legality checks, the lint and the tests, and builds, in about 30 minutes. Ian's in-game check of the fight, already in the tracker, covers it.
+Next step. Ian's in-game check of the fight, already in the tracker, covers the new lead.
 
 ## The checks
 
