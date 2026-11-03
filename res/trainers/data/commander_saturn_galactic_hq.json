@@ -13,13 +13,13 @@
         {
             "species": "SPECIES_UXIE",
             "form": 0,
-            "level": 55,
+            "level": 58,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_STEALTH_ROCK",
                 "MOVE_U_TURN",
                 "MOVE_PSYCHIC",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_YAWN"
             ],
             "iv_scale": 255,
             "nature": "NATURE_RELAXED",
@@ -30,7 +30,7 @@
         {
             "species": "SPECIES_LICKILICKY",
             "form": 0,
-            "level": 56,
+            "level": 58,
             "item": "ITEM_TOXIC_ORB",
             "moves": [
                 "MOVE_BODY_SLAM",
@@ -39,7 +39,7 @@
                 "MOVE_POWER_WHIP"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_BRAVE",
+            "nature": "NATURE_SASSY",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"
@@ -47,8 +47,8 @@
         {
             "species": "SPECIES_WOBBUFFET",
             "form": 0,
-            "level": 56,
-            "item": "ITEM_LEFTOVERS",
+            "level": 58,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_COUNTER",
                 "MOVE_ENCORE",
@@ -56,7 +56,7 @@
                 "MOVE_CHARM"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_RELAXED",
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"
@@ -64,7 +64,7 @@
         {
             "species": "SPECIES_WAILORD",
             "form": 0,
-            "level": 56,
+            "level": 58,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_WATER_SPOUT",
@@ -81,7 +81,7 @@
         {
             "species": "SPECIES_RHYPERIOR",
             "form": 0,
-            "level": 56,
+            "level": 59,
             "item": "ITEM_PASSHO_BERRY",
             "moves": [
                 "MOVE_EARTHQUAKE",
@@ -90,7 +90,7 @@
                 "MOVE_ICE_PUNCH"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_BRAVE",
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"
@@ -98,7 +98,7 @@
         {
             "species": "SPECIES_TOXICROAK",
             "form": 0,
-            "level": 57,
+            "level": 60,
             "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_GUNK_SHOT",

@@ -1,34 +1,83 @@
 {
-    "name": "Mickey",
-    "class": "TRAINER_CLASS_GUITARIST",
+    "name": "Officer Laverna",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_SABLEYE",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 56,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_KNOCK_OFF",
+                "MOVE_WILL_O_WISP",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_KECLEON",
+            "form": 0,
+            "level": 56,
+            "item": "ITEM_FLAME_ORB",
+            "moves": [
+                "MOVE_TRICK",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_SHADOW_SNEAK"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_INCINEROAR",
+            "form": 0,
+            "level": 57,
+            "item": "ITEM_SHUCA_BERRY",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_KNOCK_OFF",
+                "MOVE_FLARE_BLITZ",
+                "MOVE_PARTING_SHOT"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [
         {
             "type": "TRMSG_PRE_BATTLE",
-            "garbage": 26
+            "en_US": [
+                "You got lucky on Iron Island.\n",
+                "This time I’m taking everything!\r"
+            ]
         },
         {
             "type": "TRMSG_DEFEAT",
-            "garbage": 17
+            "en_US": [
+                "Hmph! Keep your things, then.\n"
+            ]
         },
         {
             "type": "TRMSG_POST_BATTLE",
-            "garbage": 25
+            "en_US": [
+                "A thief always gets another chance.\n",
+                "Remember that.\n"
+            ]
         }
     ]
 }

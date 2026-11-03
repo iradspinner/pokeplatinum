@@ -7892,7 +7892,7 @@ KEEPS_PROTECT_RUN = frozenset({"MOVE_WIDE_GUARD", "MOVE_QUICK_GUARD"})
 
 # The protecting moves that stop only damaging moves and lower a contact
 # attacker's stat (subscript_missed): the stat and the stages.
-GUARD_DROPS = {"Obstruct": ("def", -2), "Silk Trap": ("spe", -1)}
+GUARD_DROPS = {"Obstruct": ("def", -2), "Silk Trap": ("spe", -1), "King's Shield": ("atk", -1)}
 
 # The protecting moves that stop only damaging moves, so a status move gets
 # through them (BattleControllerPlayer_CheckMoveHitOverrides, hg-engine's
@@ -7923,7 +7923,10 @@ def protected(b, att, mv, dfn):
     (subscript_missed); until then both ran as a plain Protect (Ian approved
     the fix, 2026-10-29). King's Shield and Burning Bulwark let status moves
     through as well since 2026-10-30 (STATUS_PASSES; Ian approved the fix,
-    2026-10-29), and King's Shield still does nothing more than protect.
+    2026-10-29). Since 2026-11-02 a contact move King's Shield stops loses
+    its user a stage of Attack, the later games' drop, made as Silk Trap's
+    is (GUARD_DROPS, subscript_missed); until then it only protected (Ian
+    approved the fix, 2026-11-02).
     Until 2026-10-14 Protect stopped every move but Feint (Ian approved the
     fix)."""
     guard = dfn.last.name if dfn.last is not None else None
@@ -10903,7 +10906,7 @@ def sure_catches():
         if not split or (len(rows) > 1 and how != "starter"):
             continue
         if "at random" in rows[0]["conditions"]:
-            continue            # the Veilstone clown lists only the roll that is a Pokemon
+            continue            # a gift rolled at random is never sure, even where one roll is listed
         if how == "in-game trade" and "trade away SPECIES_NONE" not in rows[0]["conditions"]:
             continue
         for r in rows:

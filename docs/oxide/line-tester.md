@@ -1,5 +1,7 @@
 # The line tester
 
+All six checks pass: Ian passed checks 1 and 4 by eye on 2026-11-02, the calculator's Fight button opening a battle and his Gardenia box 3 line showing Solrock's Stealth Rock 75 and Zen Headbutt 25 percent on turn 1.
+
 A Battle tab for the OxiDex, planned on 2026-10-14; version 1 landed at 5b14152df on 2026-10-21. Ian sets up a party, presses Fight against a trainer's team, and plays his hand-made line turn by turn on the same simulator and trainer AI the readings use, seeing the AI's odds for every move and every way each turn can go. Checks 1 and 4 wait on Ian (the tracker's line tester item).
 
 ## Summary

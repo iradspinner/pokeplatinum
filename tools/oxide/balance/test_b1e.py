@@ -185,13 +185,15 @@ def check_late_visits(results):
 
 
 def check_gauntlet_sections(results):
-    """The sections keep Ian's rulings: 2 to 5 trainers each, the built nine
-    (src/gauntlet.c), Victory Road 1F halved as the code lists it with its
-    2F and B1F detours left out, and Mt. Coronet's bosses and hard officers
-    out. Moved here from test_b6 when the first scoring system retired
-    (2026-10-13). Ten until the Eterna building's 3F, with Officer Moira,
-    left the gauntlets (Ian, 2026-10-31), and neither of its trainers may
-    sit in a section."""
+    """The sections keep Ian's rulings: 2 to 5 trainers each, the built
+    seven (src/gauntlet.c), Victory Road 1F halved as the code lists it with
+    its 2F and B1F detours left out, and Mt. Coronet's bosses and hard
+    officers out. Moved here from test_b6 when the first scoring system
+    retired (2026-10-13). Ten until the Eterna building's 3F, with Officer
+    Moira, left the gauntlets (Ian, 2026-10-31), and neither of its trainers
+    may sit in a section. Nine until the Galactic HQ's four became the
+    basement run and the tower (Ian, 2026-11-02), each of five trainers, and
+    no named officer may sit in either."""
     from . import gauntlet
     sizes = {(area, s[0]): len(gauntlet.section_trainers(area, s))
              for area, sections in gauntlet.SECTIONS.items() for s in sections}
@@ -202,12 +204,162 @@ def check_gauntlet_sections(results):
           for s in gauntlet.SECTIONS["victory_road"]]
     eterna = {names[tr] for s in gauntlet.SECTIONS["galactic_eterna"]
               for tr in gauntlet.section_trainers("galactic_eterna", s)}
-    ok = (len(sizes) == 9 and all(2 <= n <= 5 for n in sizes.values()) and not coronet & {520, 526, 834}
+    hq = {names[tr] for s in gauntlet.SECTIONS["galactic_hq"]
+          for tr in gauntlet.section_trainers("galactic_hq", s)}
+    officers = {names[tr] for tr, t in data.oxide_trainers().items() if t["name"].startswith("Officer ")}
+    ok = (len(sizes) == 7 and all(2 <= n <= 5 for n in sizes.values()) and not coronet & {520, 526, 834}
+          and not hq & officers and sizes.get(("galactic_hq", "the basement run")) == 5
+          and sizes.get(("galactic_hq", "the tower")) == 5
           and not eterna & {"TRAINER_SCIENTIST_TRAVON", "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_3F"}
           and vr == [{"TRAINER_PSYCHIC_BRYCE", "TRAINER_BIRD_KEEPER_HANA", "TRAINER_ACE_TRAINER_MARIAH"},
                      {"TRAINER_BLACK_BELT_MILES", "TRAINER_DRAGON_TAMER_CLINTON", "TRAINER_VETERAN_EDGAR"}])
     results.append(("gauntlet sections hold 2 to 5 trainers, bosses left out", ok,
                     f"{len(sizes)} sections" if ok else f"{sizes}, Coronet {coronet}, 1F {vr}"))
+
+
+def _gauntlet_code():
+    """The built sections as src/gauntlet.c lists them: {section: {maps,
+    ways in, ways back, trainers}}, its lines and its exits. Each way is
+    (map, warp index, item, until), the item being the one whose holding
+    makes a way back refuse and until the one whose holding lets it pass
+    (None: no such test)."""
+    import os
+    import re
+    text = open(os.path.join(data.ROOT, "src", "gauntlet.c"), encoding="utf-8").read()
+    start = text.index("sGauntletSections[GAUNTLET_SECTION_COUNT]")
+    body = text[text.index("= {", start) + 3:text.index("sGauntletLines[]")]
+    hdr = lambda m: m.replace("MAP_HEADER_", "")
+    warp = re.compile(r"\{\s*MAP_HEADER_(\w+),\s*(\d+),\s*ITEM_(\w+),\s*ITEM_(\w+)\s*\}")
+    sections = {}
+    for name, block in re.findall(r"\[(GAUNTLET_\w+)\]\s*=\s*\{(.*?)\n    \},", body, re.S):
+        def field(key):
+            m = re.search(r"\." + key + r"\s*=\s*\{(.*?)\}\s*,\s*\n", block, re.S)
+            return m.group(1) if m else ""
+        maps = [hdr(m) for m in re.findall(r"MAP_HEADER_\w+", field("maps")) if m != "MAP_HEADER_INVALID"]
+        ways = {}
+        for key in ("waysIn", "waysBack"):
+            m = re.search(r"\." + key + r"\s*=\s*\{(.*?)END_WARPS", block, re.S)
+            ways[key] = [(mp, int(i), None if it == "NONE" else "ITEM_" + it,
+                          None if un == "NONE" else "ITEM_" + un)
+                         for mp, i, it, un in warp.findall(m.group(1) if m else "")]
+        trainers = re.findall(r"\{\s*(TRAINER_\w+),", block)
+        sections[name] = {"maps": maps, "in": ways["waysIn"], "back": ways["waysBack"], "trainers": trainers}
+    lines = re.findall(r"\{\s*MAP_HEADER_(\w+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*DIR_\w+,\s*(GAUNTLET_\w+)\s*\}",
+                       text[text.index("sGauntletLines[]"):text.index("sGauntletExits[]")])
+    exits = re.findall(r"\{\s*MAP_HEADER_(\w+),\s*(\d+),\s*(GAUNTLET_\w+)\s*\}",
+                       text[text.index("sGauntletExits[]"):text.index("GetSectionVar")])
+    return sections, lines, [(m, int(i), s) for m, i, s in exits]
+
+
+# Sections whose every listed trainer must stand where the section opens, so
+# that the player can always finish one from inside it: the Galactic HQ's
+# basement run and its tower (Ian, 2026-11-02; section 6 alone earlier the
+# same day).
+WHOLE_LIST = {"GAUNTLET_GALACTIC_HQ_BASEMENT", "GAUNTLET_GALACTIC_HQ_TOWER"}
+
+
+def check_gauntlet_no_trap(results):
+    """No gauntlet section can shut the player in (the trap of 2026-11-02).
+    From every way in, walking the section's maps on foot and through every
+    warp that stays on them, with each way back the open section refuses
+    taken as refused, the player must reach either a way off the section's
+    maps or every trainer that closes it. Read twice, once holding the item
+    a way back may name (its locked doors then open) and once without (the
+    Galactic HQ's key doors shut). Section 6 failed this until it moved to
+    3F's east stairs: with the Galactic Key held, 3F west's only stairs
+    refused and two of its four trainers stood on the east side. The HQ's
+    basement run refuses its way back only until the key is held, so it is
+    read both ways too: without the key the five trainers must all be in
+    reach, and with it the warehouse must be. The walk is
+    tools/oxide/mapreach.py's, with objects other than key doors and
+    bollards ignored."""
+    import json
+    import os
+    sys.path.insert(0, os.path.join(data.ROOT, "tools", "oxide"))
+    import mapreach
+    sections, lines, exits = _gauntlet_code()
+    events = {}
+
+    def ev(m):
+        if m not in events:
+            fields = mapreach.maprender.header_fields("MAP_HEADER_" + m)
+            path = os.path.join(data.ROOT, "res/field/events", fields["eventsArchiveID"] + ".json")
+            events[m] = json.load(open(path, encoding="utf-8"))
+        return events[m]
+
+    walks = {}
+
+    def walk(m, held, extra=()):
+        key = (m, held, tuple(extra))
+        if key not in walks:
+            walls = list(extra)
+            for o in ev(m)["object_events"]:
+                g = o["graphics_id"]
+                if "BOLLARD" in g or ("GALACTIC_HQ_DOOR" in g and not held):
+                    walls.append((o["x"], o["z"]))
+            walks[key] = mapreach.MapWalk("MAP_HEADER_" + m, walls)
+        return walks[key]
+
+    problems, read = [], 0
+    for name, s in sections.items():
+        if not s["maps"]:
+            continue
+        starts = [(m, i) for m, i, _it, _un in s["in"]]
+        starts += [(m, ("tile", int(fx), int(fz))) for m, _nx, _nz, fx, fz, sec in lines if sec == name]
+        line_walls = {m: [(int(nx), int(nz))] for m, nx, nz, _fx, _fz, sec in lines if sec == name}
+        items = {item for _m, _i, it, un in s["back"] for item in (it, un) if item}
+        for held in sorted({False, True} if items else {True}):
+            refused = {(m, i) for m, i, it, un in s["back"]
+                       if (it is None or held) and (un is None or not held)}
+            def search(first, stop=True):
+                """(the way off reached or None, trainers met, places entered);
+                with stop False, the whole of the open section is walked."""
+                seen, todo, met = {first}, [first], set()
+                while todo:
+                    m, x, z = todo.pop()
+                    wk = walk(m, held, line_walls.get(m, ()))
+                    tiles = wk.reach(x, z)
+                    met |= {t for t, tx, tz in wk.trainers if wk.touches(tiles, tx, tz)}
+                    for j, w in enumerate(ev(m)["warp_events"]):
+                        if not wk.touches(tiles, w["x"], w["z"]) or (m, j) in refused:
+                            continue
+                        dest = w["dest_header_id"].replace("MAP_HEADER_", "")
+                        if dest not in s["maps"] or (dest, w["dest_warp_id"], name) in exits:
+                            if stop:
+                                return f"{m} warp {j} to {dest}", met, seen
+                            continue
+                        dw = ev(dest)["warp_events"]
+                        if w["dest_warp_id"] < len(dw):
+                            nxt = (dest, dw[w["dest_warp_id"]]["x"], dw[w["dest_warp_id"]]["z"])
+                            if nxt not in seen:
+                                seen.add(nxt)
+                                todo.append(nxt)
+                return None, met, seen
+
+            for start in starts:
+                read += 1
+                m0, w0 = start
+                if isinstance(w0, tuple):
+                    first = (m0, w0[1], w0[2])
+                else:
+                    wp = ev(m0)["warp_events"][w0]
+                    first = (m0, wp["x"], wp["z"])
+                # Every place the open section lets the player stand, not
+                # only its way in: a ledge or a one-way warp could leave a
+                # later pocket with neither a way off nor the trainers.
+                _left, met_all, places = search(first, stop=False)
+                if name in WHOLE_LIST and not set(s["trainers"]) <= met_all:
+                    problems.append(f"{name} from {m0} {w0}: {sorted(set(s['trainers']) - met_all)} "
+                                    "cannot be reached from its way in")
+                for place in sorted(places):
+                    left, met, _seen = search(place)
+                    if left is None and not set(s["trainers"]) <= met:
+                        problems.append(f"{name} from {m0} {w0}, at {place}"
+                                        f"{' holding ' + '/'.join(items) if held and items else ''}: no way off, "
+                                        f"and {sorted(set(s['trainers']) - met)} out of reach")
+                        break
+    results.append(("no gauntlet section can shut the player in", not problems and read > 0,
+                    f"{read} ways in read" if not problems else "; ".join(problems)))
 
 
 def _canalave_gym_floor():
@@ -365,7 +517,7 @@ def check_totals(results):
 def main():
     results = []
     for check in (check_crossings_resolve, check_sight_and_ledges, check_route_202, check_ian_examples,
-                  check_gates, check_late_visits, check_gauntlet_sections, check_byron_order,
+                  check_gates, check_late_visits, check_gauntlet_sections, check_gauntlet_no_trap, check_byron_order,
                   check_unpushable_boulders, check_lake_verity_surf, check_totals):
         check(results)
     width = max(len(label) for label, _, _ in results)

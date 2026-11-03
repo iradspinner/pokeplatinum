@@ -27,7 +27,7 @@ real save at that point. The times are rough, for one try each.
 | 1 | Section 2, **Soft level caps** | Test kit, Level caps menu | 10 min |
 | 2 | Section 2, **Silk Trap's Speed drop** and **Obstruct's Defense drop** | Test kit, move sets 89 and 90 | 5 min |
 | 3 | Section 2, **Corrosion through Baneful Bunker** | Test kit, move set 91 | 3 min |
-| 4 | Section 2, **King's Shield lets status moves through** and **Burning Bulwark lets status moves through** | Test kit, move sets 92 and 93 | 5 min |
+| 4 | Section 2, **King's Shield lets status moves through**, **King's Shield's Attack drop** and **Burning Bulwark lets status moves through** | Test kit, move sets 92 and 93 | 5 min |
 | 5 | Section 3, Rare Candy chaining past the level cap | Test kit's Items menu, or the first candy of a run | 3 min |
 | 6 | Section 3, **Mandatory fights, Roark's split** | A new game, or the kit's Sandgem warp | 20 min |
 | 7 | Section 3, Roark's new team | A real save at Roark's gym | 10 min |
@@ -208,10 +208,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Shield used every turn works the first time, then about one time in two, then
   one in four, with "But it failed!"; Spiky Shield the same. Before the fix
   both worked every turn.
-- [ ] **One calculator roll** (the encounter tool, M8): in a battle, note an
-  attacker's and a defender's level and stats and the damage a move does, enter
-  the same two in the encounter tool's calculator, and check the damage falls
-  in its range.
+- [ ] **Five recorded hits against the calculator** (the encounter tool, M8):
+  during the alpha run, with the battle recorder on, record five ordinary hits.
+  The Overseer compares each against the calculator's roll range from the
+  recorder's logged stats and HP (Ian, 2026-11-02).
 - [ ] **Element 8, hidden abilities and restored items** (the three Modern
   rules entries before "Kaizo move data"):
   "Hidden ability gift" gives a Lv. 15 Litten whose summary reads
@@ -375,6 +375,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Tackle brings "MEW protected itself!" and then "The wild RATTATA was
   burned!"; a Tail Whip gets through ("MEW's Defense fell!"). Before the
   change the Tail Whip was stopped too.
+- [ ] **King's Shield's Attack drop** (set 92 again, `overseer-kings-shield`;
+  Ian, 2026-11-02: "Give it the Attack drop"). Play set 92 as above. When a
+  Tackle meets the shield, "MEW protected itself!" is now followed by "The
+  wild RATTATA's Attack fell!", and Rattata's next Tackle that lands does
+  clearly less. A Tail Whip still gets through and lowers nothing on
+  Rattata. Before the change King's Shield only protected.
 - [ ] **A Corrosion holder uses Toxic on a Steel type** (normal play,
   `overseer-protect-ai`; Ian, 2026-10-29). The trainer AI no longer refuses
   a Corrosion holder's Toxic, Poison Powder and the like, a flung Toxic Orb
@@ -437,11 +443,24 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
     (`overseer-byron-prep`) the section ends on arrival, so the Pocket PC
     works at once, before Scientist Travon and Officer Moira, and the stairs
     back down no longer refuse.
-  - Galactic HQ: the warehouse's stairs lead into B2F. Leave the Galactic Key
-    on B2F at first, and climb through 1F and 2F to 3F: its stairs back down
-    let you go. Then fetch the key and come back: the same stairs refuse.
-    1F's front doors to Veilstone refuse too, once the key has opened its
-    lobby.
+  - Galactic HQ, two sections since 2026-11-02 (`overseer-hq-pass`,
+    `docs/oxide/hq-split.md`). The basement run: the warehouse's stairs
+    lead into B2F, and with any of its five trainers unbeaten (B2F's two
+    grunts, B1F's grunt, 1F's grunt, Scientist Fredrick) the stairs back to
+    the warehouse refuse, and so does the Pocket PC, on B1F, 1F, 2F west
+    and 3F west too. Fetch the Galactic Key from B2F's north end: the
+    stairs to the warehouse now let you go even with a basement trainer
+    unbeaten. Come back in with the key, climb to 3F west and open its
+    locked room: the Pocket PC works there, and the stairs back down let
+    you go. The tower: key in hand, enter the HQ's front door in
+    Veilstone, open the lobby's inner door and take the stairs up to 2F's
+    east side. With any of its five trainers unbeaten (2F's grunt pair,
+    Scientist Darrius, 3F's grunt pair) the stairs back to the lobby
+    refuse, the Pocket PC refuses in the hall and on 3F's east side, and
+    the nap room's bed says "There’s no time to rest now! / Press on, or
+    beat the Trainers here." without healing. Go on up to 4F: the Pocket
+    PC works there, before Cyrus, and the bed heals again if you walk back
+    down to it.
   - Coronet 1F: south into the tunnel room, then back north: refused. At the
     far end, out onto the north ledge, the Pocket PC works again.
   - Coronet 3F: up the stairs from 2F, then out onto the south ledge. Fly
@@ -632,6 +651,15 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   you."), then asks about the Pokétch and gives the Dowsing Machine app as
   before, and the bag holds no Lucky Egg. The Pocket PC from Sandgem still
   works.
+- [ ] **Lucas and Dawn 2's tune** (`overseer-ld2-tune`, Ian, 2026-11-02;
+  `ld2-tune.md`). On a real save at the battle at Mt. Coronet's mouth, at or
+  under the honour cap of 31: Umbreon leads and uses Foul Play, not Payback.
+  If one of your Pokemon has used Curse, Foul Play still hits it about as
+  hard as before the Curse, not less. For a Piplup player, Monferno comes
+  last and has Grass Knot, not Rock Slide (it takes a Rock or Ground type
+  such as Onix in one hit). Note how many of your Pokemon faint; the target
+  was about 90 to 94 percent won, and Ian has said a slightly easy fight is
+  acceptable.
 - [ ] Wayward Cave 1F's Ice Stone (Ian, 2026-10-13): in the far northwest,
   walking between Camper Diego and Picnicker Tori starts one battle against
   both, and the ball in the nook behind them gives an Ice Stone, not a
@@ -934,8 +962,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Oreburgh (middle house), Floaroma Town (middle house), Floaroma Meadow,
   Eterna (condominiums 1F), Solaceon (north-east house), Veilstone (north-east
   house), Pastoria (north house) and Canalave Library 2F, and the Restaurant on
-  Route 213, have no clown; everyone else in them talks as before, and
-  Veilstone's Elekid gift still gives Elekid.
+  Route 213, have no clown; everyone else in them talks as before (the man
+  in Veilstone's north-east house gives nothing since 2026-11-02, the check
+  below).
 - [ ] The new grass (rustle on stepping in it, everywhere): Amity Square's lawn north-east of the pond (x 33 to 43, z 27 to 29) and Verity Lakefront's fenced lawn (x 85 to 95, z 846 to 850) give wild encounters from their tables; in Amity Square a battle with the walking partner out behaves normally. Sandgem's lawn by the beach road, Jubilife's fountain garden, Floaroma's north bed and Solaceon's lawn by the Day Care give encounters from their towns' new tables. Walking the Verity Lakefront lawn before the starter gives no encounter.
 - [ ] The battle backdrop on the new grass (`main-production`, Ian's open bug
   of 2026-09-30): a wild battle in Sandgem's, Jubilife's, Floaroma's or
@@ -944,6 +973,16 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   look the same as ever. A trainer fight on a town's paved ground (the
   Galactic pair in Jubilife with Dawn) keeps the town backdrop.
 - [ ] A Burmy in a Sandy or Trash cloak evolves into a Wormadam with Anticipation, not Snow Cloak.
+- [ ] The man in Veilstone City's north-east house gives nothing
+  (`overseer-elekid-gift`, 2026-11-02): talking to him, once or again, shows
+  only "Team Galactic's building bugs me so much, I can't sleep well. It's
+  so bizarre, like a robot that's about to start moving.", with no yes or no
+  question, no Pokemon and no PORYGON or ELEKID named; the woman beside him
+  still talks about the building's thorny things. On a save that took the
+  Elekid before this ROM he says the same.
+- [ ] Route 222's grass gives a wild Electivire at level 40 now and then
+  (`overseer-elekid-gift`, 2026-11-02; 10%, in Toucannon's old slot), and
+  no Toucannon.
 - [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
   Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.
 - [ ] The Lost Tower: stepping in from Route 209 shows "Lost Tower" in the indoor window, with no new window between
@@ -1211,6 +1250,41 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
     north. Two battles one after the other, never one double.
   Also check that the four Rock Climb trainers above Route 216's walls are
   still out of reach before the Icicle Badge.
+- [ ] **Mandatory fights, HQ's split** (`overseer-hq-pass`, Ian, 2026-11-02;
+  `docs/oxide/hq-split.md`). From Candice's badge, walk the story path
+  without dodging anyone. Each trainer below should see you and walk up
+  before you can pass, and after the battle the way on is still open:
+  - A new Hiker, Gunnar, at the foot of Acuity Lakefront's climb, looking
+    east across it, once Rock Climb takes you up the wall; out of reach
+    before the Icicle Badge.
+  - Veilstone's storage-key grunt, by the Galactic building: talking to him
+    starts a battle after "I don’t know anything about any Storage Key!",
+    and only when you win does he drop the key and Looker arrive. Lose, and
+    you black out with the key still his.
+  - B1F's grunt, now a trainer at his own tile, looking west: he battles as
+    you arrive from B2F, with his own lines ("They finally gave me some
+    Pokémon!").
+  - Scientist Fredrick in his 1F room, now at the two-tile gap east of his
+    old spot, looking south; Scientist Darrius on 2F's east side at the gap
+    between the arrival and the grunt pair, looking south. Both fights come
+    before the grunts beyond them.
+  - Officers Phobos and Deimos in the lobby, either side of the corridor
+    beyond the key door, facing each other: one double battle as you step
+    up from the door, never two singles if two of your Pokemon can fight.
+  - Officers Boreas and Laverna on 4F, either side of the row below
+    Cyrus's key door, facing each other: one double battle before the door.
+  - Officer Argo on 4F's north side after Cyrus, at the gap on the way to
+    the laboratory's panel, looking south.
+  - In the laboratory, the male scientist, Oskar, now standing still at the
+    west gap between the pillars, looking south; and Officer Hesperid in the
+    top-left corner of the room by the door to the control room, looking
+    east along the row before it.
+  - Cyrus 2's ace (Weavile) at 59 and Saturn 2's (Toxicroak) at 60.
+  Also check the Ability Capsule: 3F west's locked room, opened with the
+  Galactic Key, holds a ball at its top-left alcove that gives the Ability
+  Capsule once, and the TM ball there still gives its TM. Hiker Alexander
+  (Route 208) and Dragon Tamer Patrick (Route 210 North) are still behind
+  their Rock Climb walls, now at 56 and 57.
 
 ## 5. The ordinary ROM, after the League
 

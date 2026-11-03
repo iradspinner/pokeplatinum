@@ -6,41 +6,57 @@
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT",
-        "AI_FLAG_WEATHER"
+        "AI_FLAG_HARRASSMENT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BRELOOM",
+            "species": "SPECIES_PARASECT",
             "form": 0,
-            "level": 54,
-            "item": null,
+            "level": 56,
+            "item": "ITEM_BIG_ROOT",
             "moves": [
-                "MOVE_SKY_UPPERCUT",
-                "MOVE_THUNDER_PUNCH",
+                "MOVE_SPORE",
+                "MOVE_LEECH_LIFE",
                 "MOVE_SEED_BOMB",
-                "MOVE_DYNAMIC_PUNCH"
+                "MOVE_KNOCK_OFF"
             ],
-            "iv_scale": 214,
+            "iv_scale": 230,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1
         },
         {
-            "species": "SPECIES_EXEGGUTOR",
+            "species": "SPECIES_VILEPLUME",
             "form": 0,
-            "level": 54,
-            "item": null,
+            "level": 56,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_PSYCHIC",
-                "MOVE_SYNTHESIS",
-                "MOVE_SUNNY_DAY",
-                "MOVE_SOLAR_BEAM"
+                "MOVE_SLEEP_POWDER",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_DAZZLING_GLEAM"
             ],
-            "iv_scale": 198,
+            "iv_scale": 230,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_BRELOOM",
+            "form": 0,
+            "level": 57,
+            "item": "ITEM_KINGS_ROCK",
+            "moves": [
+                "MOVE_SPORE",
+                "MOVE_MACH_PUNCH",
+                "MOVE_BULLET_SEED",
+                "MOVE_ROCK_TOMB"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

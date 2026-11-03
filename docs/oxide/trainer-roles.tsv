@@ -134,8 +134,6 @@ Maylene	TRAINER_YOUNGSTER_OLIVER	Youngster Oliver	MAP_HEADER_ROUTE_209_LOST_TOWE
 Maylene	TRAINER_BELLE_AND_PA_BETH_AND_BOB	Belle & Pa Beth & Bob	MAP_HEADER_ROUTE_209_LOST_TOWER_4F	LOCALID_PA_BOB	no	none				4	2.5		multi-floor dungeon
 Maylene	TRAINER_YOUNG_COUPLE_MIKE_AND_NAT	Young Couple Mike & Nat	MAP_HEADER_ROUTE_209_LOST_TOWER_4F	LOCALID_YOUNG_COUPLE_TRAINER_MIKE	no	none				4	2.4		multi-floor dungeon
 Maylene	TRAINER_RUIN_MANIAC_KARL	Ruin Maniac Karl	MAP_HEADER_SOLACEON_RUINS_ROOM_3	LOCALID_RUIN_MANIAC_KARL	no	none				3	2.7		multi-floor dungeon
-Wake	TRAINER_DUMMY_007	Arcade Star Dahlia			no	none				6			not on a crossing
-Wake	TRAINER_DUMMY_008	Castle Valet Darach			no	none				6			not on a crossing
 Wake	TRAINER_RICH_BOY_JASON	Rich Boy Jason	MAP_HEADER_ROUTE_212_NORTH	LOCALID_RICH_BOY_JASON	no	none				3	2.3		off the story path
 Wake	TRAINER_LADY_MELISSA	Lady Melissa	MAP_HEADER_ROUTE_212_NORTH	LOCALID_LADY_MELISSA	no	reward		ITEM_TM72	1	3	2.3	spare	off the story path
 Wake	TRAINER_GENTLEMAN_JEREMY	Gentleman Jeremy	MAP_HEADER_VALOR_LAKEFRONT	LOCALID_GENTLEMAN_JEREMY	yes	none				5	2.3		required
@@ -199,7 +197,6 @@ Wake	TRAINER_MAID_SOPHIE	Maid Sophie			no	none				1	2.3		not on a crossing
 Wake	TRAINER_MAID_EMILY	Maid Emily			no	none				1	2.3		not on a crossing
 Wake	TRAINER_MAID_ELENA	Maid Elena			no	none				1	2.3		not on a crossing
 Wake	TRAINER_MAID_CLARE	Maid Clare			no	none				2	2.3		not on a crossing
-Byron	TRAINER_HIKER_ALEXANDER	Hiker Alexander	MAP_HEADER_ROUTE_208	LOCALID_HIKER_ALEXANDER	no	none				2	2.9		behind a field move
 Byron	TRAINER_FISHERMAN_CODY	Fisherman Cody	MAP_HEADER_ROUTE_208	LOCALID_FISHERMAN_CODY	no	none				3	3.1		behind a field move
 Byron	TRAINER_ACE_TRAINER_ERNEST	Ace Trainer Ernest	MAP_HEADER_ROUTE_210_NORTH	LOCALID_ACE_TRAINER_ERNEST	no	none				6	2.5		avoidable
 Byron	TRAINER_ACE_TRAINER_ALYSSA	Ace Trainer Alyssa	MAP_HEADER_ROUTE_210_NORTH	LOCALID_ACE_TRAINER_ALYSSA	yes	none				5	2.4		required
@@ -208,7 +205,6 @@ Byron	TRAINER_BLACK_BELT_ADAM	Black Belt Adam	MAP_HEADER_ROUTE_210_NORTH	LOCALID
 Byron	TRAINER_NINJA_BOY_JOEL	Ninja Boy Joel	MAP_HEADER_ROUTE_210_NORTH	LOCALID_NINJA_BOY_JOEL	no	none				3	2.3		avoidable
 Byron	TRAINER_NINJA_BOY_NATHAN	Ninja Boy Nathan	MAP_HEADER_ROUTE_210_NORTH	LOCALID_NINJA_BOY_NATHAN	no	none				3	2.3		avoidable
 Byron	TRAINER_NINJA_BOY_DAVIDO	Ninja Boy Davido	MAP_HEADER_ROUTE_210_NORTH	LOCALID_NINJA_BOY_DAVIDO	no	none				3	2.3		avoidable
-Byron	TRAINER_DRAGON_TAMER_PATRICK	Dragon Tamer Patrick	MAP_HEADER_ROUTE_210_NORTH	LOCALID_DRAGON_TAMER_PATRICK	no	none				1	2.3		behind a field move
 Byron	TRAINER_BIRD_KEEPER_BRIANNA	Bird Keeper Brianna	MAP_HEADER_ROUTE_210_NORTH	LOCALID_BIRD_KEEPER_BRIANNA	yes	none				4	2.8		required
 Byron	TRAINER_DOUBLE_TEAM_ZAC_AND_JEN	Double Team Zac & Jen	MAP_HEADER_ROUTE_210_NORTH	LOCALID_DOUBLE_TEAM_TRAINER_ZAC	no	none				5	2.8		avoidable
 Byron	TRAINER_BLACK_BELT_SEAN	Black Belt Sean	MAP_HEADER_ROUTE_211_EAST	LOCALID_BLACK_BELT_SEAN	no	none				4	2.3		off the story path
@@ -294,22 +290,28 @@ Candice	TRAINER_GALACTIC_GRUNT_LAKE_VALOR_3	Galactic Grunt	MAP_HEADER_LAKE_VALOR
 Candice	TRAINER_GALACTIC_GRUNT_LAKE_VERITY_2	Galactic Grunt	MAP_HEADER_LAKE_VERITY	LOCALID_GALACTIC_GRUNT_2	yes	none				3	2.3		required
 Candice	TRAINER_ACE_TRAINER_ANTON	Ace Trainer Anton	MAP_HEADER_SNOWPOINT_CITY_GYM	LOCALID_ACE_TRAINER_ANTON	no	none				5	2.3		gym with moving parts
 Candice	TRAINER_ACE_TRAINER_BRENNA	Ace Trainer Brenna	MAP_HEADER_SNOWPOINT_CITY_GYM	LOCALID_ACE_TRAINER_BRENNA	no	none				3	2.3		gym with moving parts
+HQ	TRAINER_HIKER_ALEXANDER	Hiker Alexander	MAP_HEADER_ROUTE_208	LOCALID_HIKER_ALEXANDER	no	none				4	2.9		behind a field move
+HQ	TRAINER_DRAGON_TAMER_PATRICK	Dragon Tamer Patrick	MAP_HEADER_ROUTE_210_NORTH	LOCALID_DRAGON_TAMER_PATRICK	no	none				3	2.3		behind a field move
+HQ	TRAINER_DUMMY_100	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_B1F	LOCALID_GRUNT_M	no	gauntlet	galactic_hq: the basement run			5			multi-floor dungeon
+HQ	TRAINER_DUMMY_101	Galactic Grunt			no	none				3			not on a crossing
+HQ	TRAINER_DUMMY_109	Hiker Gunnar	MAP_HEADER_ACUITY_LAKEFRONT	LOCALID_HIKER	no	none				4			off the story path
+HQ	TRAINER_DUMMY_115	Scientist Oskar	MAP_HEADER_GALACTIC_HQ_LABORATORY	LOCALID_SCIENTIST_M	no	none				5			multi-floor dungeon
 HQ	TRAINER_SKIER_BRADLEY	Skier Bradley	MAP_HEADER_ROUTE_216	LOCALID_SKIER_BRADLEY	no	none				3	2.4		behind a field move
 HQ	TRAINER_SKIER_KAITLYN	Skier Kaitlyn	MAP_HEADER_ROUTE_216	LOCALID_SKIER_KAITLYN	no	none				3	4.2		behind a field move
 HQ	TRAINER_SKIER_ANDREA	Skier Andrea	MAP_HEADER_ROUTE_216	LOCALID_SKIER_ANDREA	no	none				3	2.3		behind a field move
 HQ	TRAINER_BLACK_BELT_PHILIP	Black Belt Philip	MAP_HEADER_ROUTE_216	LOCALID_BLACK_BELT_PHILIP	no	none				4	2.3		behind a field move
-HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_1F	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_1F	LOCALID_GALACTIC_GRUNT	no	gauntlet	galactic_hq: 1F			2	3.3		multi-floor dungeon
-HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_3	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_2F	LOCALID_GALACTIC_GRUNT_3	no	gauntlet	galactic_hq: 2F			2	3.3		multi-floor dungeon
-HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_1	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_B2F	LOCALID_GALACTIC_GRUNT_1	no	gauntlet	galactic_hq: B2F			2	4.1		multi-floor dungeon
-HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_2	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_B2F	LOCALID_GALACTIC_GRUNT_2	no	gauntlet	galactic_hq: B2F			2	2.8		multi-floor dungeon
-HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_1	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_3F	LOCALID_GALACTIC_GRUNT_1	no	gauntlet	galactic_hq: 3F			2	2.9		multi-floor dungeon
-HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_1	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_2F	LOCALID_GALACTIC_GRUNT_1	no	gauntlet	galactic_hq: 2F			2	3.0		multi-floor dungeon
-HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_2	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_3F	LOCALID_GALACTIC_GRUNT_2	no	gauntlet	galactic_hq: 3F			2	2.3		multi-floor dungeon
-HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_2	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_2F	LOCALID_GALACTIC_GRUNT_2	no	gauntlet	galactic_hq: 2F			2	3.0		multi-floor dungeon
-HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_3F	LOCALID_GALACTIC_GRUNT_3	no	gauntlet	galactic_hq: 3F			2	2.5		multi-floor dungeon
-HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_3F	LOCALID_GALACTIC_GRUNT_4	no	gauntlet	galactic_hq: 3F			2	2.8		multi-floor dungeon
-HQ	TRAINER_SCIENTIST_DARRIUS	Scientist Darrius	MAP_HEADER_GALACTIC_HQ_2F	LOCALID_SCIENTIST_DARRIUS	no	gauntlet	galactic_hq: 2F			1	2.3		multi-floor dungeon
-HQ	TRAINER_SCIENTIST_FREDRICK	Scientist Fredrick	MAP_HEADER_GALACTIC_HQ_1F	LOCALID_SCIENTIST_FREDRICK	no	gauntlet	galactic_hq: 1F			2	3.9		multi-floor dungeon
+HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_1F	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_1F	LOCALID_GALACTIC_GRUNT	no	gauntlet	galactic_hq: the basement run			4	3.3		multi-floor dungeon
+HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_3	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_2F	LOCALID_GALACTIC_GRUNT_3	no	gauntlet	galactic_hq: the tower			3	3.3		multi-floor dungeon
+HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_1	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_B2F	LOCALID_GALACTIC_GRUNT_1	no	gauntlet	galactic_hq: the basement run			4	4.1		multi-floor dungeon
+HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_2	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_B2F	LOCALID_GALACTIC_GRUNT_2	no	gauntlet	galactic_hq: the basement run			3	2.8		multi-floor dungeon
+HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_1	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_3F	LOCALID_GALACTIC_GRUNT_1	no	none				4	2.9		multi-floor dungeon
+HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_1	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_2F	LOCALID_GALACTIC_GRUNT_1	no	none				3	3.0		multi-floor dungeon
+HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_2	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_3F	LOCALID_GALACTIC_GRUNT_2	no	none				3	2.3		multi-floor dungeon
+HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_2	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_2F	LOCALID_GALACTIC_GRUNT_2	no	gauntlet	galactic_hq: the tower			3	3.0		multi-floor dungeon
+HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_3F	LOCALID_GALACTIC_GRUNT_3	no	gauntlet	galactic_hq: the tower			3	2.5		multi-floor dungeon
+HQ	TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4	Galactic Grunt	MAP_HEADER_GALACTIC_HQ_3F	LOCALID_GALACTIC_GRUNT_4	no	gauntlet	galactic_hq: the tower			3	2.8		multi-floor dungeon
+HQ	TRAINER_SCIENTIST_DARRIUS	Scientist Darrius	MAP_HEADER_GALACTIC_HQ_2F	LOCALID_SCIENTIST_DARRIUS	no	gauntlet	galactic_hq: the tower			5	2.3		multi-floor dungeon
+HQ	TRAINER_SCIENTIST_FREDRICK	Scientist Fredrick	MAP_HEADER_GALACTIC_HQ_1F	LOCALID_SCIENTIST_FREDRICK	no	gauntlet	galactic_hq: the basement run			5	3.9		multi-floor dungeon
 Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_3F_1	Galactic Grunt	MAP_HEADER_MT_CORONET_3F	LOCALID_GALACTIC_GRUNT_1	no	gauntlet	mt_coronet: 3F and 4F			1	2.3		multi-floor dungeon
 Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_1	Galactic Grunt	MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2	LOCALID__GALACTIC_GRUNT_1	no	gauntlet	mt_coronet: 3F and 4F			2	3.1		multi-floor dungeon
 Galactic	TRAINER_GALACTIC_GRUNT_MT_CORONET_4F_2	Galactic Grunt	MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2	LOCALID__GALACTIC_GRUNT_2	no	gauntlet	mt_coronet: 3F and 4F			2	2.7		multi-floor dungeon

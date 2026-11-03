@@ -598,6 +598,13 @@ DIVERGED = {
             "why": "the buff review's Fairy retypes: Swablu Fairy/Flying, Altaria "
                    "Dragon/Fairy, Luvdisc Water/Fairy (Ian, 2026-09-29)",
         },
+        {
+            "offsets": (0, 1, 2, 3, 4, 5),  # HP, Atk, Def, Speed, Sp. Atk, Sp. Def
+            "members": {38},
+            "why": "Ninetales as the slow special caster beside Alolan Ninetales, the "
+                   "alternate forms' stat pass (Ian, 2026-11-02; "
+                   "docs/oxide/alternate-forms-stats.md)",
+        },
     ],
     # A list when more than one change touches the archive; a member passes if
     # every byte it differs at is allowed by some entry that lists it.

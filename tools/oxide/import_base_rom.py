@@ -1528,6 +1528,10 @@ TEXT_BANKS_SKIPPED[54] += ("; then Barry on the bridge sends the player to Pal P
 # one's brother.
 TEXT_BANKS_SKIPPED[277] = ("the B2F grunts' lines name Officers Boreas and Laverna "
                            "(Ian, 2026-11-01)")
+# The Veilstone northeast house's man gives nothing now (Ian, 2026-11-02):
+# his seven gift lines, which still named vanilla's Porygon, are gone, and
+# his after-gift line and the woman's line renumber to 0 and 1.
+TEXT_BANKS_SKIPPED[159] += "; then the man's Elekid gift and its lines removed (Ian, 2026-11-02)"
 
 def text_bank_names():
     return [l.strip() for l in open(os.path.join(ROOT, "generated", "text_banks.txt")) if l.strip()]
@@ -1882,6 +1886,9 @@ def main():
         400: "Bibarel's Def 70 and Sp. Def 70 (Ian, 2026-09-29)",
         414: "Mothim to 80/94/60/94/60/76 (Ian, 2026-09-29)",
         444: "Gabite to 68/90/75/50/65/82 (Ian, 2026-09-29)",
+        # The alternate forms' stat pass (docs/oxide/alternate-forms-stats.md).
+        38: "Ninetales to 85/65/84/95/109/117, the slow special caster beside Alolan "
+            "Ninetales (Ian, 2026-11-02)",
     }
 
     # species: personal + learnset + evolutions live in one data.json

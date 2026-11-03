@@ -13,7 +13,7 @@
             "species": "SPECIES_TORKOAL",
             "form": 0,
             "level": 45,
-            "item": "ITEM_HEAT_ROCK",
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
                 "MOVE_STEALTH_ROCK",
                 "MOVE_LAVA_PLUME",

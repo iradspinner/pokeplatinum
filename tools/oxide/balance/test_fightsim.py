@@ -4129,6 +4129,33 @@ def check_silk_trap_obstruct(results):
                     f"{ {k: v for k, v in got.items() if v != want[k]} or 'as wanted'}"))
 
 
+def check_kings_shield_drop(results):
+    """King's Shield's Attack drop (Oxide's engine since 2026-11-02,
+    subscript_missed; Ian, 2026-11-02: "Give it the Attack drop"): a contact
+    move it stops loses its user a stage of Attack, as in the later games,
+    and a move without contact loses nothing. The drop is the protecting
+    battler's, as Silk Trap's and Obstruct's are: Clear Body keeps it,
+    Mirror Armor turns it back, Defiant answers it with two stages of
+    Attack, and nothing happens at -6 or behind the attacker's own
+    Substitute. Until then King's Shield only protected."""
+    def into(move="Tackle", ability=None, atk=0, sub=0):
+        b, p, foe = battle([move], ["King's Shield"], {("p", move): [10] * 16})
+        b.st["first_battle"] = True
+        foe.protecting, foe.last = True, fs.move("King's Shield")
+        p.ability, p.sub = ability, sub
+        p.stages["atk"] = atk
+        fs.attack(b, p, fs.move(move), foe, True)
+        return (100 - foe.hp, p.stages["atk"], foe.stages["atk"])
+    got = {"Tackle": into(), "Ember": into("Ember"), "Clear Body": into(ability="Clear Body"),
+           "Mirror Armor": into(ability="Mirror Armor"), "Defiant": into(ability="Defiant"),
+           "Attack at -6": into(atk=-6), "a Substitute": into(sub=25)}
+    want = {"Tackle": (0, -1, 0), "Ember": (0, 0, 0), "Clear Body": (0, 0, 0), "Mirror Armor": (0, 0, -1),
+            "Defiant": (0, 1, 0), "Attack at -6": (0, -6, 0), "a Substitute": (0, 0, 0)}
+    results.append(("King's Shield lowers a contact attacker's Attack a stage", got == want,
+                    f"(damage, the user's Attack, the target's Attack) "
+                    f"{ {k: v for k, v in got.items() if v != want[k]} or 'as wanted'}"))
+
+
 def check_status_through_guards(results):
     """King's Shield and Burning Bulwark let status moves through (Oxide's
     engine since 2026-10-30, BattleControllerPlayer_CheckMoveHitOverrides;
@@ -6809,7 +6836,9 @@ def check_sure(results):
     sure = fs.sure_catches()
     want = {"SPECIES_TURTWIG", "SPECIES_PIPLUP", "SPECIES_SCORBUNNY", "SPECIES_EEVEE", "SPECIES_TOGEPI",
             "SPECIES_VULLABY", "SPECIES_POPPLIO", "SPECIES_ROTOM"}
-    not_sure = {"SPECIES_RIOLU", "SPECIES_GLAMEOW", "SPECIES_ELEKID", "SPECIES_SUICUNE"}
+    # The Veilstone Elekid left this set when its gift was removed (Ian,
+    # 2026-11-02): the game no longer has it, so it is in no list at all.
+    not_sure = {"SPECIES_RIOLU", "SPECIES_GLAMEOW", "SPECIES_SUICUNE"}
     ok = want <= set(sure) and not (not_sure & set(sure))
     results.append(("the sure Pokemon are the ones every run has", ok,
                     f"{len(sure)} sure; missing {sorted(want - set(sure))}; wrongly in "
@@ -9478,7 +9507,7 @@ def main():
                   check_sticky_barb, check_payback, check_leech_seed_sap,
                   check_ghost_untrapped, check_soundproof_status, check_item_flinch_blocked,
                   check_black_sludge, check_water_bubble, check_eerie_spell,
-                  check_burning_bulwark, check_silk_trap_obstruct, check_status_through_guards,
+                  check_burning_bulwark, check_silk_trap_obstruct, check_kings_shield_drop, check_status_through_guards,
                   check_corrosion_bunker,
                   check_refresh, check_wring_out, check_miracle_eye, check_acupressure,
                   check_trainer_frustration, check_secret_power, check_snore,

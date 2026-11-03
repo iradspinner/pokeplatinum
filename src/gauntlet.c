@@ -33,10 +33,10 @@ enum GauntletSectionID {
     GAUNTLET_NONE = 0,
     GAUNTLET_ETERNA_BUILDING_1F_2F,
     GAUNTLET_ETERNA_BUILDING_3F,
-    GAUNTLET_GALACTIC_HQ_B2F,
+    GAUNTLET_GALACTIC_HQ_BASEMENT,
     GAUNTLET_GALACTIC_HQ_1F,
     GAUNTLET_GALACTIC_HQ_2F,
-    GAUNTLET_GALACTIC_HQ_3F,
+    GAUNTLET_GALACTIC_HQ_TOWER,
     GAUNTLET_MT_CORONET_TUNNEL,
     GAUNTLET_MT_CORONET_CLIMB,
     GAUNTLET_VICTORY_ROAD_NEAR,
@@ -48,9 +48,14 @@ typedef struct GauntletWarp {
     u16 mapHeaderID;
     u16 warpIndex;
     // A way back is refused only while the player holds this item (ITEM_NONE:
-    // always). Galactic HQ 3F's way on is a locked door, so a player without
-    // the Galactic Key must still be able to turn back.
+    // no such test). No section names one since section 6 moved to 3F's east
+    // stairs (2026-11-02); the field stays for a way on behind a locked door.
     u16 unlessMissingItem;
+    // The reverse: a way back is refused only until the player holds this
+    // item (ITEM_NONE: no such test). The Galactic HQ's basement run refuses
+    // its warp back to the warehouse until the Galactic Key is fetched, so a
+    // player who comes back in with the key can always walk out again.
+    u16 untilHeldItem;
 } GauntletWarp;
 
 typedef struct GauntletTrainer {
@@ -71,7 +76,7 @@ typedef struct GauntletSection {
 } GauntletSection;
 
 #define END_MAPS     MAP_HEADER_INVALID
-#define END_WARPS    { MAP_HEADER_INVALID, 0, ITEM_NONE }
+#define END_WARPS    { MAP_HEADER_INVALID, 0, ITEM_NONE, ITEM_NONE }
 #define END_TRAINERS { 0, 0 }
 
 // Today's sections (the balance plan, "The gauntlets, reworked on Ian's
@@ -83,8 +88,8 @@ static const GauntletSection sGauntletSections[GAUNTLET_SECTION_COUNT] = {
     // forward and closes the section (sGauntletExits below).
     [GAUNTLET_ETERNA_BUILDING_1F_2F] = {
         .maps = { MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F, MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_2F, MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F, MAP_HEADER_ROTOMS_ROOM, END_MAPS },
-        .waysIn = { { MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F, 0, ITEM_NONE }, END_WARPS },
-        .waysBack = { { MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F, 0, ITEM_NONE }, END_WARPS },
+        .waysIn = { { MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F, 0, ITEM_NONE, ITEM_NONE }, END_WARPS },
+        .waysBack = { { MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F, 0, ITEM_NONE, ITEM_NONE }, END_WARPS },
         .trainers = {
             { TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_1F_1, FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS },
             { TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_1F_2, FLAG_HIDE_ETERNA_CITY_GALACTIC_GRUNTS },
@@ -104,68 +109,71 @@ static const GauntletSection sGauntletSections[GAUNTLET_SECTION_COUNT] = {
         .waysBack = { END_WARPS },
         .trainers = { END_TRAINERS },
     },
-    // The warehouse leads into B2F, so the HQ is walked B2F, B1F, 1F, 2F, 3F.
-    [GAUNTLET_GALACTIC_HQ_B2F] = {
-        .maps = { MAP_HEADER_GALACTIC_HQ_B2F, END_MAPS },
-        .waysIn = { { MAP_HEADER_GALACTIC_HQ_B2F, 2, ITEM_NONE }, END_WARPS },
-        .waysBack = { { MAP_HEADER_GALACTIC_HQ_B2F, 2, ITEM_NONE }, END_WARPS },
+    // The HQ is two halves (Ian's answer of 2026-11-02 to
+    // docs/oxide/hq-split-map.md, question 4). The basement run goes from the
+    // warehouse down into B2F, then B1F, 1F's back rooms, 2F's west side
+    // (3F's west side a detour off it), Fredrick's room and B2F's north end,
+    // where the Galactic Key lies; its way on is back out through the
+    // warehouse, so that warp is refused only until the key is held. The
+    // lobby, 2F's east side and 3F's east side share no tile with it, so
+    // listing all five floors keeps the lock on every pocket the run reaches.
+    // Arriving in the warehouse closes it.
+    [GAUNTLET_GALACTIC_HQ_BASEMENT] = {
+        .maps = { MAP_HEADER_GALACTIC_HQ_B2F, MAP_HEADER_GALACTIC_HQ_B1F, MAP_HEADER_GALACTIC_HQ_1F, MAP_HEADER_GALACTIC_HQ_2F, MAP_HEADER_GALACTIC_HQ_3F, END_MAPS },
+        .waysIn = { { MAP_HEADER_GALACTIC_HQ_B2F, 2, ITEM_NONE, ITEM_NONE }, END_WARPS },
+        .waysBack = { { MAP_HEADER_GALACTIC_HQ_B2F, 2, ITEM_NONE, ITEM_GALACTIC_KEY }, END_WARPS },
         .trainers = {
             { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_1, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
             { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_2, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
-            END_TRAINERS,
-        },
-    },
-    // The front doors to Veilstone are ways back too: the Galactic Key, found
-    // on B2F, opens the lobby from inside.
-    [GAUNTLET_GALACTIC_HQ_1F] = {
-        .maps = { MAP_HEADER_GALACTIC_HQ_1F, END_MAPS },
-        .waysIn = { { MAP_HEADER_GALACTIC_HQ_1F, 7, ITEM_NONE }, END_WARPS },
-        .waysBack = {
-            { MAP_HEADER_GALACTIC_HQ_1F, 7, ITEM_NONE },
-            { MAP_HEADER_GALACTIC_HQ_1F, 0, ITEM_NONE },
-            { MAP_HEADER_GALACTIC_HQ_1F, 1, ITEM_NONE },
-            END_WARPS,
-        },
-        .trainers = {
+            { TRAINER_DUMMY_100, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
             { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_1F, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
             { TRAINER_SCIENTIST_FREDRICK, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
-            END_TRAINERS,
         },
     },
-    // Fredrick's pocket on 1F, and the dead end on B2F past it, are a detour
-    // from 2F, so the lock holds there.
+    // Retired (Ian, 2026-11-02): 1F's and 2F's sections were drawn on a walk
+    // that read the HQ as one climb, and the basement run and the tower now
+    // hold their trainers. The entries stay, empty, so that the later
+    // sections keep their numbers in VAR_GAUNTLET_SECTION.
+    [GAUNTLET_GALACTIC_HQ_1F] = {
+        .maps = { END_MAPS },
+        .waysIn = { END_WARPS },
+        .waysBack = { END_WARPS },
+        .trainers = { END_TRAINERS },
+    },
     [GAUNTLET_GALACTIC_HQ_2F] = {
-        .maps = { MAP_HEADER_GALACTIC_HQ_2F, MAP_HEADER_GALACTIC_HQ_1F, MAP_HEADER_GALACTIC_HQ_B2F, END_MAPS },
-        .waysIn = { { MAP_HEADER_GALACTIC_HQ_2F, 0, ITEM_NONE }, END_WARPS },
-        .waysBack = { { MAP_HEADER_GALACTIC_HQ_2F, 0, ITEM_NONE }, END_WARPS },
-        .trainers = {
-            { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_3, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
-            { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_2, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
-            { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_1, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
-            { TRAINER_SCIENTIST_DARRIUS, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
-            END_TRAINERS,
-        },
+        .maps = { END_MAPS },
+        .waysIn = { END_WARPS },
+        .waysBack = { END_WARPS },
+        .trainers = { END_TRAINERS },
     },
-    // Past 3F's locked door, the hall leads back into 2F's east side, a detour
-    // with no way out, so the lock holds there as well.
-    [GAUNTLET_GALACTIC_HQ_3F] = {
-        .maps = { MAP_HEADER_GALACTIC_HQ_3F, MAP_HEADER_GALACTIC_HQ_2F, MAP_HEADER_GALACTIC_HQ_HALL, MAP_HEADER_GALACTIC_HQ_1F, END_MAPS },
-        .waysIn = { { MAP_HEADER_GALACTIC_HQ_3F, 0, ITEM_NONE }, END_WARPS },
-        .waysBack = { { MAP_HEADER_GALACTIC_HQ_3F, 0, ITEM_GALACTIC_KEY }, END_WARPS },
+    // The tower, reached with the Galactic Key from the lobby (Ian,
+    // 2026-11-02): 2F's east side, the hall and Cyrus's speech, the nap room
+    // on 2F's north-east side, and 3F's east side, up to the stairs to Cyrus
+    // on 4F. The lobby's stairs up are its way in and its refused way back,
+    // and arriving on 4F closes it, so the officers in the lobby and on 4F
+    // stand outside it. The nap room's bed refuses while it is open
+    // (scripts_galactic_hq_2f.s). This was section 6, 3F's east side alone,
+    // from earlier on 2026-11-02; it grew down to the lobby's stairs. Until
+    // then section 6 opened on 2F's west stairs and refused them while the
+    // key was held, which shut a player with the key into 3F's west side.
+    [GAUNTLET_GALACTIC_HQ_TOWER] = {
+        .maps = { MAP_HEADER_GALACTIC_HQ_2F, MAP_HEADER_GALACTIC_HQ_HALL, MAP_HEADER_GALACTIC_HQ_3F, END_MAPS },
+        .waysIn = { { MAP_HEADER_GALACTIC_HQ_2F, 2, ITEM_NONE, ITEM_NONE }, END_WARPS },
+        .waysBack = { { MAP_HEADER_GALACTIC_HQ_2F, 2, ITEM_NONE, ITEM_NONE }, END_WARPS },
         .trainers = {
-            { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_2, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
+            { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_2, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
+            { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_3, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
+            { TRAINER_SCIENTIST_DARRIUS, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
             { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
-            { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_1, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
             { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
-            END_TRAINERS,
         },
     },
     // The climb has two routes that meet on the outside north ledge: this
     // tunnel from Route 211's room, and the southern one below.
     [GAUNTLET_MT_CORONET_TUNNEL] = {
         .maps = { MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM, END_MAPS },
-        .waysIn = { { MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM, 1, ITEM_NONE }, END_WARPS },
-        .waysBack = { { MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM, 1, ITEM_NONE }, END_WARPS },
+        .waysIn = { { MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM, 1, ITEM_NONE, ITEM_NONE }, END_WARPS },
+        .waysBack = { { MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM, 1, ITEM_NONE, ITEM_NONE }, END_WARPS },
         .trainers = {
             { TRAINER_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_2, FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS },
             { TRAINER_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_3, FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS },
@@ -180,10 +188,10 @@ static const GauntletSection sGauntletSections[GAUNTLET_SECTION_COUNT] = {
     // (Ian, 2026-10-31), so the player may heal before them.
     [GAUNTLET_MT_CORONET_CLIMB] = {
         .maps = { MAP_HEADER_MT_CORONET_3F, MAP_HEADER_MT_CORONET_2F, MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH, MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2, MAP_HEADER_MT_CORONET_OUTSIDE_NORTH, MAP_HEADER_MT_CORONET_4F_ROOM_3, END_MAPS },
-        .waysIn = { { MAP_HEADER_MT_CORONET_3F, 0, ITEM_NONE }, END_WARPS },
+        .waysIn = { { MAP_HEADER_MT_CORONET_3F, 0, ITEM_NONE, ITEM_NONE }, END_WARPS },
         .waysBack = {
-            { MAP_HEADER_MT_CORONET_3F, 0, ITEM_NONE },
-            { MAP_HEADER_MT_CORONET_OUTSIDE_NORTH, 2, ITEM_NONE },
+            { MAP_HEADER_MT_CORONET_3F, 0, ITEM_NONE, ITEM_NONE },
+            { MAP_HEADER_MT_CORONET_OUTSIDE_NORTH, 2, ITEM_NONE, ITEM_NONE },
             END_WARPS,
         },
         .trainers = {
@@ -200,15 +208,15 @@ static const GauntletSection sGauntletSections[GAUNTLET_SECTION_COUNT] = {
     [GAUNTLET_VICTORY_ROAD_NEAR] = {
         .maps = { MAP_HEADER_VICTORY_ROAD_1F, MAP_HEADER_VICTORY_ROAD_2F, MAP_HEADER_VICTORY_ROAD_B1F, END_MAPS },
         .waysIn = {
-            { MAP_HEADER_VICTORY_ROAD_1F, 7, ITEM_NONE },
-            { MAP_HEADER_VICTORY_ROAD_1F, 9, ITEM_NONE },
-            { MAP_HEADER_VICTORY_ROAD_1F, 10, ITEM_NONE },
+            { MAP_HEADER_VICTORY_ROAD_1F, 7, ITEM_NONE, ITEM_NONE },
+            { MAP_HEADER_VICTORY_ROAD_1F, 9, ITEM_NONE, ITEM_NONE },
+            { MAP_HEADER_VICTORY_ROAD_1F, 10, ITEM_NONE, ITEM_NONE },
             END_WARPS,
         },
         .waysBack = {
-            { MAP_HEADER_VICTORY_ROAD_1F, 7, ITEM_NONE },
-            { MAP_HEADER_VICTORY_ROAD_1F, 9, ITEM_NONE },
-            { MAP_HEADER_VICTORY_ROAD_1F, 10, ITEM_NONE },
+            { MAP_HEADER_VICTORY_ROAD_1F, 7, ITEM_NONE, ITEM_NONE },
+            { MAP_HEADER_VICTORY_ROAD_1F, 9, ITEM_NONE, ITEM_NONE },
+            { MAP_HEADER_VICTORY_ROAD_1F, 10, ITEM_NONE, ITEM_NONE },
             END_WARPS,
         },
         .trainers = {
@@ -222,7 +230,7 @@ static const GauntletSection sGauntletSections[GAUNTLET_SECTION_COUNT] = {
     [GAUNTLET_VICTORY_ROAD_FAR] = {
         .maps = { MAP_HEADER_VICTORY_ROAD_1F, MAP_HEADER_VICTORY_ROAD_2F, MAP_HEADER_VICTORY_ROAD_B1F, MAP_HEADER_VICTORY_ROAD_1F_ROOM_1, MAP_HEADER_VICTORY_ROAD_1F_ROOM_2, MAP_HEADER_VICTORY_ROAD_1F_ROOM_3, END_MAPS },
         .waysIn = { END_WARPS },
-        .waysBack = { { MAP_HEADER_VICTORY_ROAD_1F_ROOM_3, 1, ITEM_NONE }, END_WARPS },
+        .waysBack = { { MAP_HEADER_VICTORY_ROAD_1F_ROOM_3, 1, ITEM_NONE, ITEM_NONE }, END_WARPS },
         .trainers = {
             { TRAINER_BLACK_BELT_MILES, 0 },
             { TRAINER_DRAGON_TAMER_CLINTON, 0 },
@@ -387,8 +395,19 @@ BOOL Gauntlet_RefusesWarp(FieldSystem *fieldSystem, int warpIndex)
         return FALSE;
     }
 
-    return wayBack->unlessMissingItem == ITEM_NONE
-        || Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), wayBack->unlessMissingItem, 1, HEAP_ID_FIELD1);
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
+
+    if (wayBack->unlessMissingItem != ITEM_NONE
+        && !Bag_CanRemoveItem(bag, wayBack->unlessMissingItem, 1, HEAP_ID_FIELD1)) {
+        return FALSE;
+    }
+
+    if (wayBack->untilHeldItem != ITEM_NONE
+        && Bag_CanRemoveItem(bag, wayBack->untilHeldItem, 1, HEAP_ID_FIELD1)) {
+        return FALSE;
+    }
+
+    return TRUE;
 }
 
 enum GauntletLineResult Gauntlet_StepOnLine(FieldSystem *fieldSystem)

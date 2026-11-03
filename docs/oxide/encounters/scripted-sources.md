@@ -6,8 +6,11 @@ Written 2026-09-21 from `docs/oxide/pokemon-sources.csv`, which
 Most of the pools and counts below are the state of 2026-09-21 to 25 and have
 changed since. The clowns, the Eterna condominium's gift, the Canalave
 Library's and the Fan Club's went on 2026-09-27 (`clown-replacements.md`), so
-the gifts left are Bebe's Eevee, the Veilstone Elekid and the Day Care's
-Floette; the Route 226 trade now gives Meloetta for a Finneon, and Snowpoint's
+the gifts left were Bebe's Eevee, the Veilstone Elekid and the Day Care's
+Floette. The Elekid went too on 2026-11-02 (Ian, the QA pass's finding 13),
+so the gifts left are Bebe's Eevee and the Floette, and the Elekid line is
+wild instead, as Electivire at 10% on Route 222 in Volkner's split (Ian, the
+same day); the Route 226 trade now gives Meloetta for a Finneon, and Snowpoint's
 a Suicune for a Snover. `docs/oxide/pokemon-sources.md`, regenerated from the
 scripts, is the list as it is today. The rules here still hold: a gift is an
 even-odds pool handed out once under its own flag, a scripted Pokemon's
@@ -51,7 +54,7 @@ them what they wanted and the even odds meant nothing.
 | Hearthome City, northwest house | once, flagged | 20 | Fantina | Eevee |
 | Solaceon Town, northeast house | random, 3 | 30 | Maylene | Lunatone, Trapinch, Solrock |
 | Veilstone City, northeast house | random, 3 | 40 | Maylene | Clobbopus, Hawlucha, Masquerain |
-| Veilstone City, the Porygon gift | once | 25 | Maylene | Elekid |
+| Veilstone City, the Porygon gift (removed 2026-11-02) | once | 25 | Maylene | Elekid |
 | Pastoria City, north house | random, 6 | 45 | Wake | Octillery, Mantine, Crawdaunt, Sharpedo, Lanturn, Whiscash |
 | Canalave City, the library 2F | random, 7 | 50 | Byron | Flygon, Cofagrigus, Hariyama, Klefki, Drapion, Dusclops, Primeape |
 
@@ -92,8 +95,8 @@ the gate tier to preferred.
 
 A line the player can always have if they want it appears in no table and
 no other pool. That covers Togepi (Cynthia's egg), Floette (the Day Care),
-Vullaby and Popplio (the two any-Pokemon trades), Eevee (Bebe) and Elekid
-(Veilstone), and the fossils, which is why Canalave's Bastiodon became
+Vullaby and Popplio (the two any-Pokemon trades), Eevee (Bebe) and, until
+its gift was removed on 2026-11-02, Elekid (Veilstone), and the fossils, which is why Canalave's Bastiodon became
 Klefki and the Meadow's Flabebe became Budew. Each was replaced table by
 table with a line of the same kind the table lacked. The Popplio line's
 water slots were different: the on-list water pool is too thin to fill
@@ -207,7 +210,7 @@ names have no table at all, so a free place is never short.
 | Route 201: the starter | Sandgem Town, Jubilife City, Floaroma Town, Floaroma Meadow, Solaceon Town: the clowns |
 | Eterna City: the condo gift and the Popplio trade | Oreburgh City: the clown and the Vullaby trade, one capture |
 | Valley Windworks: nothing scripted since 2026-09-26 | Hearthome City: Bebe's Eevee |
-| Old Chateau: Rotom | Veilstone City: the clown and Elekid, one capture |
+| Old Chateau: Rotom | Veilstone City: nothing scripted since 2026-11-02 (the clown and the Elekid both gone) |
 | Route 209: Spiritomb | Mining Museum (fossils), Pokemon Day Care (Floette), Canalave Library |
 | Pastoria City: the clown | Acuity Cavern (Uxie), Valor Cavern (Azelf), Distortion World (Giratina) |
 

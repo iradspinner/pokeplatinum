@@ -318,13 +318,16 @@ _SPLIT_STEMS = {
     # lake, and it works on the Icicle Badge, Candice's own (Ian, 2026-11-01;
     # docs/oxide/candice-split-map.md, question 8).
     "Candice": ["route_216", "route_217", "acuity_lakefront", "snowpoint_city"],
-    "HQ": ["lake_acuity"],
+    # Mt. Coronet 2F's Rock Climb rooms open with the Icicle Badge too, so
+    # its table is first met in HQ's split (Ian, 2026-11-02;
+    # docs/oxide/hq-split-map.md, question 8).
+    "HQ": ["lake_acuity", "mt_coronet_2f"],
     "Galactic": [
         "route_225", "route_226", "route_227", "stark_mountain_outside",
         "stark_mountain_room_1", "stark_mountain_room_2", "route_228", "route_229",
         "resort_area", "route_230",
         "mt_coronet_1f_tunnel_room", "mt_coronet_1f_north_room_2", "mt_coronet_b1f",
-        "mt_coronet_2f", "mt_coronet_3f", "mt_coronet_outside_south",
+        "mt_coronet_3f", "mt_coronet_outside_south",
         "mt_coronet_4f_rooms_1_and_2", "mt_coronet_4f_room_3", "mt_coronet_outside_north",
         "mt_coronet_5f", "mt_coronet_6f",
     ],
