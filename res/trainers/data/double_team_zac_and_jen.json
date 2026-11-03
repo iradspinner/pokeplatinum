@@ -13,7 +13,7 @@
             "species": "SPECIES_PELIPPER",
             "form": 0,
             "level": 43,
-            "item": "ITEM_DAMP_ROCK",
+            "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_SCALD",
                 "MOVE_ICE_BEAM",

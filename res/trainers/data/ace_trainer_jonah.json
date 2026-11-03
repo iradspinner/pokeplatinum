@@ -13,7 +13,7 @@
             "species": "SPECIES_HIPPOWDON",
             "form": 0,
             "level": 48,
-            "item": "ITEM_SMOOTH_ROCK",
+            "item": "ITEM_PASSHO_BERRY",
             "moves": [
                 "MOVE_STEALTH_ROCK",
                 "MOVE_EARTHQUAKE",

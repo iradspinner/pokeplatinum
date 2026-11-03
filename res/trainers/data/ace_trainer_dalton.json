@@ -13,7 +13,7 @@
             "species": "SPECIES_ABOMASNOW",
             "form": 0,
             "level": 52,
-            "item": "ITEM_ICY_ROCK",
+            "item": "ITEM_OCCA_BERRY",
             "moves": [
                 "MOVE_BLIZZARD",
                 "MOVE_GIGA_DRAIN",

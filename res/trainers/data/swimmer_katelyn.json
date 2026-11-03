@@ -13,7 +13,7 @@
             "species": "SPECIES_LUDICOLO",
             "form": 0,
             "level": 46,
-            "item": "ITEM_DAMP_ROCK",
+            "item": "ITEM_MYSTIC_WATER",
             "moves": [
                 "MOVE_FAKE_OUT",
                 "MOVE_HYDRO_PUMP",

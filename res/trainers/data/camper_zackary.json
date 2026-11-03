@@ -48,7 +48,7 @@
             "species": "SPECIES_CASTFORM",
             "form": 0,
             "level": 20,
-            "item": "ITEM_ICY_ROCK",
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_ICY_WIND",
                 "MOVE_SHOCK_WAVE",

@@ -13,7 +13,7 @@
             "species": "SPECIES_POLITOED",
             "form": 0,
             "level": 41,
-            "item": "ITEM_DAMP_ROCK",
+            "item": "ITEM_QUICK_CLAW",
             "moves": [
                 "MOVE_SCALD",
                 "MOVE_ICE_BEAM",

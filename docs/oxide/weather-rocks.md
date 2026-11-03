@@ -1,20 +1,24 @@
 # Weather rocks that do nothing
 
+## Ian's answers (2026-11-02)
+
+Ian approved all ten swaps as listed below, and both of the extra ones: Camper Zackary's Castform takes a Sitrus Berry, and Swimmer Katelyn's Ludicolo takes Mystic Water. All twelve are applied on `overseer-weather-rocks`, each saved through the team builder's save (which lints and packs the file), and no item repeats in any of the twelve teams or across the two Ace Trainer pairs. Flint's Torkoal and Moira's Abomasnow on Mt. Coronet 5F keep their rocks until their own passes.
+
+Difficulty: not material. Each change is one item on one member, the three Ace Trainers included.
+
 ## Summary
 
-Ten trainer Pokemon hold a weather rock that cannot work, and this page proposes one working item for each. Nothing in the game has changed yet: the swaps wait on Ian's word (old questions sheet, question 13, "Swap ten now", 2026-11-02).
+Ten trainer Pokemon held a weather rock that cannot work, and this page proposed one working item for each (old questions sheet, question 13, "Swap ten now", 2026-11-02).
 
 The twelve the sheet named are confirmed from the trainer files and the engine. In Oxide, as in Platinum, Drizzle, Drought, Sand Stream and Snow Warning set weather that lasts the whole battle, and a rock adds turns only to weather its own holder sets with Rain Dance, Sunny Day, Sandstorm or Hail. None of the twelve knows its weather move. Flint's Torkoal waits for the League's pass and Moira's Abomasnow on Mt. Coronet 5F for her next pass, so ten are swapped here.
 
 Each replacement is an item the engine runs, the simulator runs right (it is on the simulator gaps page's list of items that run right, or among its fixed rows), and at least fifteen trainer files already hold. None repeats an item in its team, nor in the partner's team for the two Ace Trainers who fight in a pair. Five are Berries and five are other items, so the ten do not all read alike.
 
-What Ian decides: yes to the ten as listed, or a different item for any of them. Once he answers, applying them takes a helper about twenty minutes, with a rebuild and the gate. The change is not material to difficulty for the seven ordinary trainers. For the three Ace Trainers it is one item on one member, which this page reads as not material unless Ian reads it otherwise.
-
-Two more dead rocks turned up that the sheet did not name, of a different kind, and are listed after the table as a separate question.
+Two more dead rocks turned up that the sheet did not name, of a different kind, and are listed after the table; Ian approved a swap for both.
 
 ## The ten swaps
 
-| Trainer | Kind, where | Member and set | Rock now | Proposed | Why it suits the set |
+| Trainer | Kind, where | Member and set | Rock it held | New item | Why it suits the set |
 |---|---|---|---|---|---|
 | Ace Trainer Dalton | mini-boss, Route 217 (Candice) | Abomasnow 52, Mild, Snow Warning: Blizzard, Giga Drain, Ice Shard, Focus Blast | Icy Rock | Occa Berry | Fire hits it four times over, so halving the first Fire hit keeps the hail lead in to fire back a Blizzard. |
 | Ace Trainer Jonah | mini-boss beside Brenda, Iron Island B2F (Byron) | Hippowdon 48, Impish, Sand Stream: Stealth Rock, Earthquake, Slack Off, Yawn | Smooth Rock | Passho Berry | Water is the usual answer to it; surviving one Water hit buys the turn for Stealth Rock or Yawn. |
@@ -31,9 +35,9 @@ The items the rest of each team holds, which the proposals avoid: Dalton's Lefto
 
 ## Two more dead rocks, not in the sheet
 
-Two other trainers hold a rock on a Pokemon that never sets that weather by move, so their rocks do nothing either. They fall outside question 13's twelve, which are rocks under the holder's own ability weather, so they are not part of the ten. Each could take one more swap with Ian's yes.
+Two other trainers held a rock on a Pokemon that never sets that weather by move, so their rocks did nothing either. They fall outside question 13's twelve, which are rocks under the holder's own ability weather. Ian approved the swap for both on 2026-11-02.
 
-| Trainer | Member and set | Rock now | Possible item | Why |
+| Trainer | Member and set | Rock it held | New item | Why |
 |---|---|---|---|---|
 | Camper Zackary, Route 205 South (Gardenia) | Castform 20, Quirky, Forecast: Icy Wind, Shock Wave, Water Pulse, Amnesia, beside a Snow Warning Snover | Icy Rock | Sitrus Berry | It sets up Amnesia, so a heal at half keeps it in; the team holds Never-Melt Ice and Eviolite. |
 | Swimmer Katelyn, Route 220 (Byron) | Ludicolo 46, Calm, Swift Swim: Fake Out, Hydro Pump, Giga Drain, Ice Beam, on a team with no rain | Damp Rock | Mystic Water | Hydro Pump is its strongest hit; the team holds Black Belt and Soft Sand. |
