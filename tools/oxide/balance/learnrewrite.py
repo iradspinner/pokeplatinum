@@ -400,6 +400,10 @@ IAN_EGG_MOVES = {
                                              "at 52, a draft"),
                         ("MOVE_TAILWIND", "the egg-list rule (Ian, 2026-10-29): Saturn 1's Tropius "
                                           "at 52, a draft")],
+    # Byron's Kartana (Ian, 2026-11-03, set K2 on byron-ian.md): Kartana has
+    # no pre-evolution, so its own list is the first stage's.
+    "SPECIES_KARTANA": [("MOVE_SACRED_SWORD", "Ian, 2026-11-03: Byron's Kartana at 51"),
+                        ("MOVE_LEAF_BLADE", "Ian, 2026-11-03: Byron's Kartana at 51")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
