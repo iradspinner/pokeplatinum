@@ -433,6 +433,17 @@ double is won by `FLAG_MAP_LOCAL_0x01`, a map-local flag the game clears on
 every map change, which the lobby's load sets while the double is still to
 come; it takes no flag of its own.
 
+## The Veilstone man's two flags fall idle (2026-11-02)
+
+Nothing moves. The man in Veilstone City's northeast house no longer gives
+an Elekid (Ian, 2026-11-02), so his script no longer reads or sets
+`FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON` or
+`FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M`, and no other
+Oxide script does. A save that took the gift keeps both set, and nothing
+reads them. They keep their names, so the reward placer does not count them
+as spare; the base ROM's script still uses both, so a later change that
+claims one says so here.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:

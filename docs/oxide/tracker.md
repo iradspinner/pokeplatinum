@@ -24,7 +24,7 @@ Before alpha 1, Ian decides which bosses besides Roark get the full redesign; th
 - The alternate forms' stats (`alternate-forms-stats.md`): Ian's answers are being applied on `overseer-alternate-stats`, five spreads, judged in his playtest.
 - From the split pass of 2026-10-29 (landed; the archive, Finished on 2026-10-29): the in-game checks of the moved trainers (`ingame-checklist.md`), Route 210 South's way in from Solaceon among them, where Rancher Marco and Teri and Tia now stand within four rows. 
 - The line tester's checks 1 and 4 by eye, once now (Ian, 2026-11-02): the check 4 snippet reran on 2026-11-02 and still prints Solrock's Stealth Rock 75 and Zen Headbutt 25 percent.
-- The Veilstone Elekid's future, put off by Ian on 2026-10-21: keep the gift and fix the man's Porygon lines, or remove the Elekid line on purpose (the QA pass's item, finding 13).
+- Decided and placed (Ian, 2026-11-02, finding 13): the Veilstone man's Elekid gift is removed and the line's home is Route 222, Electivire at 10%, with goal 3's boxes re-rolled from Maylene on.
 - QA itself, and the in-game checks (`ingame-checklist.md`; add new ones there).
 - The weather rocks (Ian, 2026-11-02): ten swapped for working items now, the list going to him first on `overseer-weather-rocks`; Flint's Torkoal waits for the League's pass and Moira's Abomasnow on Mt. Coronet 5F for her next pass.
 
