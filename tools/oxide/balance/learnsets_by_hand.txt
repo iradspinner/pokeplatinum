@@ -161,5 +161,5 @@ SPECIES_JOLTEON     Buzzy Buzz at 70, Eevee's partner move (Ian, 2026-10-21, on 
 SPECIES_INFERNAPE   Raging Fury at 65, a signature move's home for trainers, the species not obtainable (Ian, 2026-10-21, on signature-moves.md)
 SPECIES_MAROWAK     Shadow Bone at 28, a signature move's home for trainers, the species not obtainable (Ian, 2026-10-21, on signature-moves.md)
 SPECIES_MAGCARGO    Torch Song at 63, a signature move's home, kept late after Shell Smash (48) (Ian, 2026-10-21, on signature-moves.md)
-SPECIES_EEVEE       Baton Pass and Substitute on its egg list, for Dahlia's Leafeon, and Leaf Blade, for Ruin Maniac Bryan's Leafeon (Ian, 2026-10-31); held here, not in learnrewrite.py, because Eevee is a held-out line the generator may not name
+SPECIES_EEVEE       Baton Pass and Substitute on its egg list, for Dahlia's Leafeon, and Leaf Blade, for Ruin Maniac Bryan's Leafeon (Ian, 2026-10-31), and Protect, for Officer Moira 2's Glaceon (the egg-list rule, 2026-11-02); held here, not in learnrewrite.py, because Eevee is a held-out line the generator may not name
 SPECIES_KOFFING     Strange Steam and Toxic Spikes on its egg list, for Jupiter 1's Galarian Weezing (Ian, 2026-10-31); held here, not in learnrewrite.py, because Koffing is a held-out line the generator may not name
