@@ -1,6 +1,6 @@
-# Byron: Ian's redraft and a pick for Galvantula's slot
+# Byron: Ian's redraft, and why Galvantula stays
 
-Ian redrafted Byron (Canalave Gym, cap 53) himself on 2026-11-02. This branch, `overseer-byron-ian`, holds his six for the full scorer reading he asked for. Ian answered this page's one question on 2026-11-02: Vikavolt takes Galvantula's slot, at 51, with Levitate, Occa Berry, Modest, Sticky Web, Thunderbolt, Energy Ball and Bug Buzz. That six is now in the branch's file, ready for the reading. No scorer reading was run here and the simulator was not touched.
+Ian redrafted Byron (Canalave Gym, cap 53) himself on 2026-11-02. This branch, `overseer-byron-ian`, holds his six for the full scorer reading he asked for. Ian's last answer, on 2026-11-02 after the Vikavolt rows below: "Galvantula, change Deimos." Byron keeps Galvantula exactly as he drafted it, and Officer Deimos's Pal Park lead changes instead, on its own branch (`overseer-deimos-lead`). His six is in the branch's file as he drafted it, and the Overseer reads it as it stands (Ian: "No, read it as it is", to tuning box 2 first). This page keeps the replacement question and the Vikavolt check as the record of why Vikavolt was not taken. No scorer reading was run here and the simulator was not touched.
 
 ## Summary
 
@@ -12,8 +12,10 @@ Ian's answers of 2026-11-02:
 4. Empoleon stays, though it is Barry 5's ace for a Scorbunny player.
 5. "Propose any galvantula replacements": Galvantula with Sticky Web is Deimos's lead at Pal Park, a few fights earlier in the same split.
 6. Vikavolt takes the slot, from the options below (Ian's pick, later the same day).
+7. After the counterpiece check read Vikavolt easier: "Galvantula, change Deimos." Galvantula is back, and Deimos's lead changes.
+8. "No, read it as it is": the full reading goes ahead without tuning box 2 first.
 
-His six as drafted, flags Basic, Evaluate Attack and Expert; Vikavolt now holds slot 2:
+His six, as the branch now holds it, flags Basic, Evaluate Attack and Expert:
 
 | Member | Level | Item | Nature | Moves |
 |---|---:|---|---|---|
@@ -24,7 +26,7 @@ His six as drafted, flags Basic, Evaluate Attack and Expert; Vikavolt now holds 
 | Empoleon | 52 | Mystic Water | Jolly | Aqua Jet, Flip Turn, Triple Axel, Drill Peck |
 | Celesteela (ace) | 53 | Power Herb | Hardy | Flamethrower, Meteor Beam, Air Slash, Flash Cannon |
 
-The question was which Pokemon takes Galvantula's slot, each option keeping the other five as he built them. Ian picked the first.
+The question was which Pokemon takes Galvantula's slot, each option keeping the other five as he built them. Ian picked the first, then kept Galvantula once the check below read Vikavolt easier.
 
 1. Vikavolt (recommended). Bug and Electric, with Galvantula's own four moves (Thunderbolt for Thunder), Occa Berry, Modest, Levitate. It keeps the whole job and does it better on the cheap checks, but it is slow, and it keeps the Sticky Web that Deimos also leads with.
 2. Magnezone. Electric and Steel, Byron's own line (his Magneton in vanilla Platinum): Thunderbolt, Flash Cannon, Thunder Wave, Tri Attack, Occa Berry, Modest, Levitate. The best fit for a Steel gym. It drops the Sticky Web and the Grass hit, so Thunder Wave is its only Speed control and Quagsire goes to Empoleon and Metagross.
@@ -36,16 +38,16 @@ The counterpiece check, Ian's draft (run `ian-final`) and the Vikavolt pick (run
 
 | Box (starter) | Ian's draft: won, faints, clean | Very unlucky: won, faints | With Vikavolt: won, faints, clean | Very unlucky: won, faints |
 |---|---|---|---|---|
-| 1 (Turtwig) | 79, 3.24, 1 | 88, 3.48 | running | running |
-| 2 (Scorbunny) | 93, 2.56, 4 | 88, 2.48 | running | running |
-| 3 (Piplup) | 88, 2.55, 15 | 60, 4.04 | running | running |
-| All | 87, 2.78, 7 | 79, 3.33 | running | running |
+| 1 (Turtwig) | 79, 3.24, 1 | 88, 3.48 | 92, 3.44, 0 | 96, 3.44 |
+| 2 (Scorbunny) | 93, 2.56, 4 | 88, 2.48 | 96, 2.20, 7 | 100, 2.40 |
+| 3 (Piplup) | 88, 2.55, 15 | 60, 4.04 | 87, 2.81, 0 | 76, 3.40 |
+| All | 87, 2.78, 7 | 79, 3.33 | 92, 2.82, 2 | 91, 3.08 |
 
-The check plays the old reading's sixes only, with no team search, so a number over the target means too easy for certain, and a lower one leaves the decision to the full reading. Box 2 at 93 is over the target on Ian's draft.
+The check plays the old reading's sixes only, with no team search, so a number over the target means too easy for certain, and a lower one leaves the decision to the full reading. Box 2 at 93 is over the target on Ian's draft. With Vikavolt, boxes 1 and 2 are over it, at 92 and 96, so that six is too easy for certain on those two boxes, and only box 3 (87) leaves the decision to the reading. This runs against the cheap checks, which read Vikavolt as the harder pick on every box. Vikavolt itself made more knockouts than Galvantula did (94, 52 and 80 over each box's 75 fights, against 47, 19 and 40), but the rest of the six made fewer: on box 1 Hisuian Goodra's fell from 64 to 16. The check does not say why; the likeliest cause is the Speed Vikavolt gives up, since Galvantula laid Sticky Web before the player moved and Vikavolt lays it after taking a hit. On these rows Ian kept Galvantula.
 
-Action items for Ian: none. His answers are applied, Vikavolt is in the file, and the four off-list moves of his draft are on egg lists by the rule. Vikavolt's own four need none.
+Action items for Ian on Byron: none. His answers are applied, Galvantula is in the file, and the four off-list moves of his draft are on egg lists by the rule. Deimos's new lead is a question of its own, on `overseer-deimos-lead`.
 
-Next step. The Overseer runs the full scorer reading on this branch, two and a half to four hours of machine time.
+Next step. The Overseer runs the full scorer reading of this six on this branch, two and a half to four hours of machine time.
 
 ## The slot's job
 
