@@ -27,6 +27,8 @@ Ian's answer on the legendary count, 2026-11-03: "This was before we started run
 
 Two notes. These rows are on the old type chart, where Steel resists Ghost and Dark; Steel's later chart, landing on `oxide` now, makes both neutral on Steel, which softens Byron a little on every version. And one finding, recorded only: Fleur Cannon's data gives it 100 accuracy, where the later games give 90; whether to change it is the Overseer's call, as its own commit.
 
+Ian's picks, 2026-11-03: Kartana's set K2 and Magearna in for Metagross, both together (92 percent won and 2.57 faints a fight over the three boxes, on the old Steel chart). They are written into `leader_byron.json`: Magearna leads at 50 (Soul-Heart, Sitrus Berry, Modest; Fleur Cannon, Flash Cannon, Thunderbolt, Calm Mind), and Kartana keeps its Focus Sash as Adamant with Sacred Sword, Leaf Blade, Night Slash and Aerial Ace. Sacred Sword and Leaf Blade went on Kartana's egg list, in its data and in the generator's Ian list, since it has no pre-evolution; every one of the 24 moves is now legal at its level. Fleur Cannon's accuracy went from 100 to 90, as the later games have it, in its own commit; Magearna is the only user of the move on any trainer.
+
 Next step. Once Ian picks, the Overseer or a helper writes his pick into `leader_byron.json` with the OxiDex's save, puts the egg moves on Kartana's list, and rebuilds; about half an hour. The check plays the draft's sixes only, with no team search, so a full reading could find a better six; Ian asked for none.
 
 ## Kartana
