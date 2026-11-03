@@ -191,7 +191,7 @@ full ruling is in `docs/oxide/rulings-detail.md`.
   later in the game), spiking with the boss's importance, the hardest
   topping out near the easiest of Kaizo's bosses on Oxide's box (about 80
   percent won). The numbers are ordinal, and Oxide is not meant to be beaten
-  on a first run. Since 2026-10-22 teams are tuned by judgement with cheap
+  on a first run. These targets are a perfect player's and no longer gate a fight (Ian, 2026-11-02): the scorer is a ceiling, a boss need only be clearly harder than before, the playtest decides, a reading is asked for only when a fight looks trivial (under about one faint a fight), and the scorer's lines serve after a fight to show what the line could have been. Since 2026-10-22 teams are tuned by judgement with cheap
   checks (speed tiers, the matchup screen, damage numbers, the AI-picks
   probe), and the scorer only spot-checks fights Ian names or that look
   clearly off; the milestone reading before alpha 1 was dropped (Ian,

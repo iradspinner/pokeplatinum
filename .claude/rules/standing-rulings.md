@@ -174,7 +174,16 @@ read, so they are written here too. Each is a standing instruction.
   trainer won cleanly 80 to 85 percent of the time, no boss above 95 percent
   won (the Galactic officers may near 100 so long as their death rate is
   not trivial, and none reads harder than its commander, Hesperid likely
-  excepted; 2026-10-21), the hardest bosses near 80. The
+  excepted; 2026-10-21), the hardest bosses near 80. Those targets are a
+  perfect player's, so they no longer gate a fight (Ian, 2026-11-02): the
+  scorer is a ceiling, since it knows the AI exactly and plays the best six
+  from the whole box, and Ian plays his own lines, generally worse. Every
+  fight built on judgement read 95 to 100 percent won, his hardest Byron
+  included ("I genuinely don't think I could easily conceive a harder
+  team"), so a boss need only be clearly harder than before, the playtest
+  decides, a reading is asked for only when a fight looks trivial (under
+  about one faint a fight), and the scorer's lines serve after a fight to
+  show Ian what the line could have been. The
   scorer's good play must arise from search over the real simulator, never
   from named rules. Since 2026-10-22 it only spot-checks (the second ruling
   above). The full ruling, with the held-back versions, the box rules, the
@@ -314,7 +323,11 @@ read, so they are written here too. Each is a standing instruction.
   not the textbook pick (2026-10-29). A legendary on a trainer team is
   weighed by its base stat total and role like any other member, and
   being legendary raises nothing (Ian, 2026-11-01, on Mars 2's Galarian
-  Zapdos: "no more worrying than salamence or goodra"). The full ruling (luck items, Focus Sash, Custap and enemy priority,
+  Zapdos: "no more worrying than salamence or goodra"). Ultra Beasts and
+  mythicals count with the legendaries, and any boss may carry two or
+  three of them, lifting the limit of one before Cyrus 3 (Ian, 2026-11-03:
+  "This was before we started running into issue pumping up the
+  difficulty... two or 3 in a boss fight is still acceptable"). The full ruling (luck items, Focus Sash, Custap and enemy priority,
   accuracy, conditional moves, members under their evolution level, the
   iv_scale) is in `docs/oxide/rulings-detail.md`; read it before designing a
   team.

@@ -23,11 +23,12 @@ STATS = ("hp", "at", "df", "sa", "sd", "sp")
 # EVs, a neutral nature), and the range it shows for each since the encounter
 # track's Oxide profile applies a dual type's two factors in the game's order
 # (Crunch into Bronzor 43 to 51, as Ian's in-game roll gave, where it was 42
-# to 50). Crunch into Bronzor comes out that low only on this fork's chart,
-# where Steel still resists Dark; a Generation 6 chart would double it.
+# to 50). Since Ghost and Dark hit Steel at neutral (Ian, 2026-11-03), Crunch
+# meets only Bronzor's Psychic type and does exactly twice that, 86 to 102:
+# the engine applies the Psychic row and no longer halves for the Steel one.
 D5 = [("Garchomp", "Clefairy", "Earthquake", (126, 148)),
       ("Garchomp", "Clefairy", "Dragon Claw", (0, 0)),
-      ("Machamp", "Bronzor", "Crunch", (43, 51)),
+      ("Machamp", "Bronzor", "Crunch", (86, 102)),
       ("Machamp", "Bronzor", "Cross Chop", (80, 96)),
       ("Machamp", "Clefairy", "Cross Chop", (63, 74))]
 # Ian's caps: the Level Caps sheet, with HQ 60, Galactic 65 and Volkner 68
@@ -123,6 +124,33 @@ def check_ref_overrides(results, blob):
                     f"Earthquake {plain['Earthquake']['rolls'][0]}-{plain['Earthquake']['rolls'][-1]}, "
                     f"at 200 power {own_row['Earthquake']['rolls'][0]}, "
                     f"into a Flying Clefairy {bird['Earthquake']['rolls'][-1]}"))
+
+
+def check_steel_neutral(results, blob):
+    """Ghost and Dark hit Steel for neutral damage through the calculator,
+    as from Generation 6 on (Ian, 2026-11-03). Gengar's Shadow Ball and
+    Dark Pulse into Registeel give the same rolls as into a Registeel the
+    runner is told is a Water type, a type neither move is strong or weak
+    against, so the Steel type changes nothing."""
+    iv = {k: 31 for k in ("hp", "at", "df", "sa", "sd", "sp")}
+    ev = {k: 0 for k in iv}
+    base = {"level": 50, "nature": "Hardy", "ivs": iv, "evs": ev}
+    reg = blob["poks"]["Registeel"]
+    jobs = {"pokemon": {
+        "gengar": dict(base, species="Gengar"),
+        "steel": dict(base, species="Registeel"),
+        "water": dict(base, species="Registeel",
+                      species_data={"bs": {k: reg["bs"][k] for k in STATS}, "types": ["Water"]}),
+    }, "pairs": [["gengar", "steel", ["Shadow Ball", "Dark Pulse"], None],
+                 ["gengar", "water", ["Shadow Ball", "Dark Pulse"], None]]}
+    out = _run(blob, jobs)
+    steel, water = (r["moves"] for r in out["results"])
+    ok = reg["types"] == ["Steel"] and all(
+        steel[m]["rolls"] == water[m]["rolls"] and steel[m]["rolls"][0] > 0 for m in ("Shadow Ball", "Dark Pulse"))
+    results.append(("Shadow Ball and Dark Pulse hit a pure Steel type at neutral (the later chart)", ok,
+                    "; ".join(f"{m} into Registeel {steel[m]['rolls'][0]}-{steel[m]['rolls'][-1]}, "
+                              f"into a Water one {water[m]['rolls'][0]}-{water[m]['rolls'][-1]}"
+                              for m in ("Shadow Ball", "Dark Pulse"))))
 
 
 def check_engine(results):
@@ -294,6 +322,7 @@ def main():
     blob = calc_export.build()
     check_engine(results)
     check_damage(results, blob)
+    check_steel_neutral(results, blob)
     check_eviolite(results, blob)
     check_ref_overrides(results, blob)
     check_exact_types(results, blob)

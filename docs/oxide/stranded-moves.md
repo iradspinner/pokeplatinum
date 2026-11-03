@@ -99,7 +99,7 @@ Special, 70, 100%, 5 PP; burns every target whose stats rose that turn. Works in
 | Home | Level | Ladder | What it changes | For |
 |---|---|---|---|---|
 | Jupiter's Spiritomb (Spear Pillar, Stark Mountain), or Flint's Houndoom | | | It punishes the player's setup turn, which the player plans around. Material for that fight | trainer |
-| Mismagius | 50, Byron | by hand | Fire coverage for a Ghost type, whose Ghost moves Steel resists on Oxide's chart. Its first Fire move is Mystical Fire at 63. The burn lands only on a turn the foe set up | player; not applied, waits on check 83 |
+| Mismagius | 50, Byron | by hand | Fire coverage for a Ghost type into Byron's Steel types, which Ghost moves have hit at neutral since 2026-11-03 (they were resisted when this was written). Its first Fire move is Mystical Fire at 63. The burn lands only on a turn the foe set up | player; not applied, waits on check 83 |
 
 #### Heat Crash
 Physical; power from the user's weight against the target's, 120 at five times down to 40. A TM for heavy lines in the later games. Gap: the calculator gives it no row, so the readings never let it hurt anything (open).
