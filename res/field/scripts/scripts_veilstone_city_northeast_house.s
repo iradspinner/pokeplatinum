@@ -13,86 +13,30 @@
 @ orphaned pick-menu names. Where the town had no other capture, new grass
 @ outside takes its place.
 
+@ Oxide: the man's gift is gone too (Ian, 2026-11-02, the QA pass of
+@ 2026-10-21, finding 13). Oxide had made it an Elekid in place of vanilla's
+@ Porygon, and his lines still named the Porygon. He now says only vanilla's
+@ own line for after the gift, about the Galactic building nearby;
+@ his two flags are no longer read or set (save-layout.md).
+
 VeilstoneCityNortheastHouse_Entry0:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    CheckFlag FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON
-    GoToIf 1, VeilstoneCityNortheastHouse_007B
-    CheckFlag FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M
-    GoToIf 1, VeilstoneCityNortheastHouse_0084
-    SetFlag FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M
     Message 0
-    GoTo VeilstoneCityNortheastHouse_008D
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
 VeilstoneCityNortheastHouse_Entry1:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    Message 8
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-VeilstoneCityNortheastHouse_007B:
-    Message 7
-    GoTo VeilstoneCityNortheastHouse_0133
-VeilstoneCityNortheastHouse_0084:
     Message 1
-    GoTo VeilstoneCityNortheastHouse_008D
-VeilstoneCityNortheastHouse_008D:
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, VeilstoneCityNortheastHouse_013B
-    GoTo VeilstoneCityNortheastHouse_018C
-VeilstoneCityNortheastHouse_0133:
     WaitButton
     CloseMessage
     ReleaseAll
     End
-VeilstoneCityNortheastHouse_013B:
-    GetPartyCount VAR_0x800C
-    CompareVarToValue VAR_0x800C, 6
-    GoToIf 1, VeilstoneCityNortheastHouse_01A0
-    Message 2
-    PlayFanfare SEQ_FANFA4_sseq
-    BufferPlayerName 0
-    Message 3
-    WaitFanfare
-    GivePokemon SPECIES_ELEKID, 25, 0, VAR_0x800C
-    SetFlag FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON
-    Message 4
-    ShowYesNoMenu VAR_0x800C
-    CompareVarToValue VAR_0x800C, 0
-    GoToIf 1, VeilstoneCityNortheastHouse_01A9
-    CompareVarToValue VAR_0x800C, 1
-    GoToIf 1, VeilstoneCityNortheastHouse_01E4
-    End
-VeilstoneCityNortheastHouse_018C:
-    Message 6
-    GoTo VeilstoneCityNortheastHouse_0133
-VeilstoneCityNortheastHouse_01A0:
-    Message 5
-    GoTo VeilstoneCityNortheastHouse_0133
-VeilstoneCityNortheastHouse_01A9:
-    CloseMessage
-    GetPartyCount VARS_START
-    SubVar VARS_START, 1
-    FadeScreen 6, 1, 0, 0
-    WaitFadeScreen
-    OpenPokemonNamingScreen 16384, VAR_0x800C
-    CompareVarToValue VAR_0x800C, 1
-    CallIf 5, VeilstoneCityNortheastHouse_01EA
-    FadeScreen 6, 1, 1, 0
-    WaitFadeScreen
-    ReleaseAll
-    End
-VeilstoneCityNortheastHouse_01E4:
-    CloseMessage
-    ReleaseAll
-    End
-VeilstoneCityNortheastHouse_01EA:
-    IncrementGameRecord 49
-    Return
 
     .balign 4, 0
 

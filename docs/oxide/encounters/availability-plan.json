@@ -759,8 +759,8 @@
       "note": "Turnback Cave, room 3 of 46 at level 35: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A14."
     },
     "encounters_route_222": {
-      "home": [],
-      "cameo": ["SPECIES_VIKAVOLT", "SPECIES_TOGEDEMARU", "SPECIES_CHATOT", "SPECIES_GALVANTULA", "SPECIES_TOUCANNON", "SPECIES_LUXRAY", "SPECIES_FLOATZEL", "SPECIES_EMOLGA", "SPECIES_PAWMOT", "SPECIES_TALONFLAME", "SPECIES_CORVISQUIRE", "SPECIES_LIEPARD", "SPECIES_HOUNDOOM"],
+      "home": ["SPECIES_ELECTIVIRE"],
+      "cameo": ["SPECIES_VIKAVOLT", "SPECIES_TOGEDEMARU", "SPECIES_CHATOT", "SPECIES_GALVANTULA", "SPECIES_LUXRAY", "SPECIES_FLOATZEL", "SPECIES_EMOLGA", "SPECIES_PAWMOT", "SPECIES_TALONFLAME", "SPECIES_CORVISQUIRE", "SPECIES_LIEPARD", "SPECIES_HOUNDOOM"],
       "tail": ["SPECIES_ARAQUANID", "SPECIES_SHELLOS"],
       "note": "The beach road to Sunyshore, Elekid's home: every electric line at once, the water starters as 1%s."
     },

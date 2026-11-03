@@ -121,16 +121,6 @@
       "pick": "random"
     },
     {
-      "id": "veilstone_elekid",
-      "label": "Veilstone City, the Elekid gift",
-      "kind": "gift",
-      "capture_area": "Veilstone City",
-      "split": "Maylene",
-      "order": 63.6,
-      "from": {"file": "scripts_veilstone_city_northeast_house.s", "level": "25"},
-      "pick": "random"
-    },
-    {
       "id": "manaphy_egg",
       "label": "Pokemon Mansion, Darach's egg",
       "kind": "egg",

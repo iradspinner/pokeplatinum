@@ -943,8 +943,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Oreburgh (middle house), Floaroma Town (middle house), Floaroma Meadow,
   Eterna (condominiums 1F), Solaceon (north-east house), Veilstone (north-east
   house), Pastoria (north house) and Canalave Library 2F, and the Restaurant on
-  Route 213, have no clown; everyone else in them talks as before, and
-  Veilstone's Elekid gift still gives Elekid.
+  Route 213, have no clown; everyone else in them talks as before (the man
+  in Veilstone's north-east house gives nothing since 2026-11-02, the check
+  below).
 - [ ] The new grass (rustle on stepping in it, everywhere): Amity Square's lawn north-east of the pond (x 33 to 43, z 27 to 29) and Verity Lakefront's fenced lawn (x 85 to 95, z 846 to 850) give wild encounters from their tables; in Amity Square a battle with the walking partner out behaves normally. Sandgem's lawn by the beach road, Jubilife's fountain garden, Floaroma's north bed and Solaceon's lawn by the Day Care give encounters from their towns' new tables. Walking the Verity Lakefront lawn before the starter gives no encounter.
 - [ ] The battle backdrop on the new grass (`main-production`, Ian's open bug
   of 2026-09-30): a wild battle in Sandgem's, Jubilife's, Floaroma's or
@@ -953,6 +954,16 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   look the same as ever. A trainer fight on a town's paved ground (the
   Galactic pair in Jubilife with Dawn) keeps the town backdrop.
 - [ ] A Burmy in a Sandy or Trash cloak evolves into a Wormadam with Anticipation, not Snow Cloak.
+- [ ] The man in Veilstone City's north-east house gives nothing
+  (`overseer-elekid-gift`, 2026-11-02): talking to him, once or again, shows
+  only "Team Galactic's building bugs me so much, I can't sleep well. It's
+  so bizarre, like a robot that's about to start moving.", with no yes or no
+  question, no Pokemon and no PORYGON or ELEKID named; the woman beside him
+  still talks about the building's thorny things. On a save that took the
+  Elekid before this ROM he says the same.
+- [ ] Route 222's grass gives a wild Electivire at level 40 now and then
+  (`overseer-elekid-gift`, 2026-11-02; 10%, in Toucannon's old slot), and
+  no Toucannon.
 - [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
   Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.
 - [ ] The Lost Tower: stepping in from Route 209 shows "Lost Tower" in the indoor window, with no new window between

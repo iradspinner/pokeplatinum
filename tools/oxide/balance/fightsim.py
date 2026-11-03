@@ -10903,7 +10903,7 @@ def sure_catches():
         if not split or (len(rows) > 1 and how != "starter"):
             continue
         if "at random" in rows[0]["conditions"]:
-            continue            # the Veilstone clown lists only the roll that is a Pokemon
+            continue            # a gift rolled at random is never sure, even where one roll is listed
         if how == "in-game trade" and "trade away SPECIES_NONE" not in rows[0]["conditions"]:
             continue
         for r in rows:

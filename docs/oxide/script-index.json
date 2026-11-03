@@ -5484,8 +5484,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City",
    "undecoded": {},
    "unreached": []
@@ -5535,8 +5535,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_gym",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Gym",
    "undecoded": {
     "raw data lines": 1
@@ -5557,8 +5557,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_pokecenter_1f",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Pokecenter 1F",
    "undecoded": {},
    "unreached": []
@@ -5576,8 +5576,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_pokecenter_2f",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Pokecenter 2F",
    "undecoded": {},
    "unreached": [
@@ -5761,8 +5761,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_galactic_warehouse",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Galactic Warehouse",
    "undecoded": {},
    "unreached": []
@@ -5793,8 +5793,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_prize_exchange",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Prize Exchange",
    "undecoded": {
     "variables set elsewhere": 1
@@ -5818,32 +5818,28 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_southeast_house",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Southeast House",
    "undecoded": {},
    "unreached": []
   },
   {
-   "entries": {
-    "flags": [
-     {"at": ["scripts_veilstone_city_northeast_house:20"], "daily": false, "flag": 151, "name": "FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city_northeast_house:22"], "daily": false, "flag": 181, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city_northeast_house:62"], "daily": false, "flag": 151, "name": "FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city_northeast_house:24"], "daily": false, "flag": 181, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M", "op": "set", "origin": "vanilla", "reached": true}
-    ],
-    "pokemon": [
-     {"command": "GivePokemon", "commit": "3fb75c2d7", "file": "scripts_veilstone_city_northeast_house", "how": "GivePokemon", "item": [], "level": [{"name": "25", "value": 25, "when": ""}], "line": 61, "mode": "name", "origin": "added", "reached": true, "source": "Oxide", "species": [{"name": "SPECIES_ELEKID", "value": 239, "when": ""}]}
-    ],
-    "vars": [
-     {"at": ["scripts_veilstone_city_northeast_house:82"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_veilstone_city_northeast_house:78", "scripts_veilstone_city_northeast_house:79"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384}
-    ]
-   },
+   "entries": {},
    "events": "events_veilstone_city_northeast_house",
    "gone_from_vanilla": {
+    "flags": [
+     {"at": ["scripts_veilstone_city_northeast_house:13"], "daily": false, "flag": 151, "name": "FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON", "op": "check", "origin": null, "reached": true},
+     {"at": ["scripts_veilstone_city_northeast_house:14"], "daily": false, "flag": 181, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M", "op": "check", "origin": null, "reached": true},
+     {"at": ["scripts_veilstone_city_northeast_house:40"], "daily": false, "flag": 151, "name": "FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON", "op": "set", "origin": null, "reached": true},
+     {"at": ["scripts_veilstone_city_northeast_house:15"], "daily": false, "flag": 181, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M", "op": "set", "origin": null, "reached": true}
+    ],
     "pokemon": [
      {"command": "GivePokemon", "file": "scripts_veilstone_city_northeast_house", "how": "GivePokemon", "item": [], "level": [{"name": "25", "value": 25, "when": ""}], "line": 39, "mode": "name", "reached": true, "species": [{"name": "SPECIES_PORYGON", "value": 137, "when": ""}]}
+    ],
+    "vars": [
+     {"at": ["scripts_veilstone_city_northeast_house:53"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": null, "reached": true, "var": 16384},
+     {"at": ["scripts_veilstone_city_northeast_house:49"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": null, "reached": true, "var": 16384}
     ]
    },
    "header": "MAP_HEADER_VEILSTONE_CITY_NORTHEAST_HOUSE",
@@ -5851,8 +5847,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_northeast_house",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Northeast House",
    "undecoded": {},
    "unreached": []
@@ -5875,8 +5871,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_southwest_house",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Southwest House",
    "undecoded": {},
    "unreached": []
@@ -16514,8 +16510,8 @@
    "location": "Veilstone City",
    "missing": [],
    "scripts": "scripts_veilstone_city_pokecenter_b1f",
-   "split": "Maylene",
-   "split_basis": "its location name",
+   "split": null,
+   "split_basis": null,
    "title": "Veilstone City Pokecenter B1F",
    "undecoded": {},
    "unreached": []
@@ -19330,9 +19326,9 @@
   "flags": {
    "Oxide": 164,
    "base ROM": 214,
-   "gone": 105,
-   "total": 3342,
-   "vanilla": 2964
+   "gone": 109,
+   "total": 3338,
+   "vanilla": 2960
   },
   "hidden_items": {
    "Oxide": 1,
@@ -19355,10 +19351,10 @@
    "vanilla": 102
   },
   "pokemon": {
-   "Oxide": 6,
+   "Oxide": 5,
    "base ROM": 3,
    "gone": 1,
-   "total": 12,
+   "total": 11,
    "vanilla": 3
   },
   "statics": {
@@ -19383,9 +19379,9 @@
   "vars": {
    "Oxide": 23,
    "base ROM": 27,
-   "gone": 36,
-   "total": 1128,
-   "vanilla": 1078
+   "gone": 38,
+   "total": 1126,
+   "vanilla": 1076
   }
  }
 }
