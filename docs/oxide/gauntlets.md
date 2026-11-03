@@ -56,9 +56,25 @@ While a section is open:
   and Teleport were added because two of Mt. Coronet's maps inside a section
   are outdoors, where both work, and Ian kept them (2026-09-29).
 
-Galactic HQ 3F's way back is refused only while the player holds the Galactic
-Key. Its way on is a locked door, and a player who skipped the key on B2F
-would otherwise be shut in.
+Section 6, Galactic HQ 3F, opens on 3F's east side since 2026-11-02 (Ian's
+choice that day). Until then it opened on the stairs up from 2F's west side
+and refused them while the player held the Galactic Key, with 3F's east
+grunts in its list. 3F's west side is a dead end whose only stairs are those,
+and it shares no tile with the east side, so a player who came back there
+with the key could never close the section: the Pocket PC, the Escape Rope
+and the field moves refuse, and the trainers it waited on could not be
+reached. The section now opens on the stairs up from the nap room on 2F's
+north-east side, refuses only those stairs, and lists the two east grunts,
+who stand on the way to the stairs up to 4F. 3F's west side is in no section.
+The walk the first sections were drawn on read the HQ as one climb, with 3F's
+locked door leading on to 4F. In fact that door opens only a room off 3F's
+west side, and the HQ's second half (2F's east side, the hall, the nap room,
+3F's east side and 4F) is reached from the lobby, through its locked inner
+door, once the key is fetched from B2F's north end
+(`docs/oxide/hq-split-map.md`). `test_b1e`'s no-trap check walks every
+section from each way in and from every place inside it, and fails if a
+place has neither a way off the section's maps nor every trainer that
+closes it.
 
 Victory Road 1F holds two sections on one map. A line across a one-tile
 corridor at (13,26) and (13,27) splits them: three coord events run the
@@ -88,7 +104,7 @@ modelled, which matters only on Victory Road 2F.
 | 3 | Galactic HQ B2F | the two B2F grunts | from the Veilstone warehouse | back to the warehouse | on to B1F | |
 | 4 | Galactic HQ 1F | the 1F grunt, Fredrick | from B1F | back to B1F, and the lobby's two front doors | the panels and stairs to 2F | |
 | 5 | Galactic HQ 2F | the four 2F trainers | the stairs from 1F's panel room | those stairs | the stairs to 3F | Fredrick's pocket on 1F, and B2F's dead end past it |
-| 6 | Galactic HQ 3F | the four 3F grunts | the stairs from 2F | those stairs, while the Galactic Key is held | past the key door, the stairs to Cyrus on 4F | 2F's east side and the hall, reached from 3F |
+| 6 | Galactic HQ 3F's east side | the two east grunts (3 and 4), an eye-contact pair | the stairs up from 2F's nap room | those stairs | the stairs to Cyrus on 4F | |
 | 7 | Mt. Coronet 1F's tunnel | the three tunnel grunts | from Route 211's north room | back to that room | out to the north ledge | |
 | 8 | Mt. Coronet 3F and 4F | the 3F and 4F grunts | the stairs from 2F | those stairs, and the north ledge's cave mouth into the tunnel | 4F's third room's stairs to 5F | the outside ledges, 4F's rooms, 2F's pocket |
 | 9 | Victory Road, near half | Bryce, Hana, Mariah | from the League's south gate | back to the gate | north across the line | 2F and B1F |
@@ -103,7 +119,8 @@ five things.
 |---|---|---|
 | Galactic HQ | The warehouse leads into B2F, so the HQ is walked B2F, B1F, 1F, 2F, 3F, and B2F comes first. | Sections 3 to 6 in that order. |
 | Galactic HQ 1F | The route passes only the grunt. Fredrick stands in a pocket reached only by coming down from 2F. | Fredrick stays in section 4's list, so that section closes only when the player moves on to 2F. |
-| Galactic HQ 2F | The route passes only one grunt. Darrius and the other two stand on 2F's east side, reached from 3F through the hall. | They stay in section 5's list; section 6's lock holds on that detour, so a player there cannot heal. |
+| Galactic HQ 2F | The route passes only one grunt. Darrius and the other two stand on 2F's east side, which is reached from the lobby through its locked door once the key is held, not from 3F (corrected 2026-11-02). | They stay in section 5's list. The east side lies in no section today. |
+| Galactic HQ 3F | The west side, off 2F's west stairs, is a dead end holding grunts 1 and 2 and the locked room; the east side, off the nap room's stairs, holds grunts 3 and 4 on the way to 4F. | Section 6 holds the east side only (2026-11-02); grunts 1 and 2 are optional and in no section. |
 | Mt. Coronet | Two climbs meet on the north ledge: the tunnel from Route 211, and the southern route through 3F and 4F. Somnu and Moira on 5F come after both. | Only the southern route opens section 8, and it ends on arrival at 5F (2026-10-31), so both climbs meet the officers outside any section. 5F's arrival at (21,7) is nine rows from the nearer sight line, Somnu's on row 16, so the player can heal first. |
 | Victory Road | 1F alone runs from the entrance to the exit. 2F is a Strength-puzzle loop off 1F's near half; B1F's main part is a dead end off the same stretch; Ondrej stands in a separate B1F pocket off the far half. | Blocking a way back on 2F or B1F could shut a player in, so they are detours inside the 1F sections' locks, not sections of their own, and their eight trainers are optional. The four Victory Road sections become two (Ian, 2026-09-29). |
 
