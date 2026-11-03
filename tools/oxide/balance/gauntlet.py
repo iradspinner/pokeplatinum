@@ -36,7 +36,11 @@ SECTIONS = {
          None, ())],
     "galactic_hq": [
         ("1F", ["GALACTIC_HQ_1F"], None, ()), ("2F", ["GALACTIC_HQ_2F"], None, ()),
-        ("3F", ["GALACTIC_HQ_3F"], None, ()), ("B2F", ["GALACTIC_HQ_B2F"], None, ())],
+        # 3F's section holds only its east side's two grunts since
+        # 2026-11-02: the west side is a dead end outside it.
+        ("3F", ["GALACTIC_HQ_3F"],
+         ("TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3", "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4"), ()),
+        ("B2F", ["GALACTIC_HQ_B2F"], None, ())],
     "mt_coronet": [
         ("1F's tunnel", ["MT_CORONET_1F_TUNNEL_ROOM"], None, ()),
         ("3F and 4F", ["MT_CORONET_3F", "MT_CORONET_4F_ROOMS_1_AND_2"], None, ())],

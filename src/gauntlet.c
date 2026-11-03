@@ -48,8 +48,8 @@ typedef struct GauntletWarp {
     u16 mapHeaderID;
     u16 warpIndex;
     // A way back is refused only while the player holds this item (ITEM_NONE:
-    // always). Galactic HQ 3F's way on is a locked door, so a player without
-    // the Galactic Key must still be able to turn back.
+    // always). No section names an item since section 6 moved to 3F's east
+    // stairs (2026-11-02); the field stays for a way on behind a locked door.
     u16 unlessMissingItem;
 } GauntletWarp;
 
@@ -146,16 +146,21 @@ static const GauntletSection sGauntletSections[GAUNTLET_SECTION_COUNT] = {
             END_TRAINERS,
         },
     },
-    // Past 3F's locked door, the hall leads back into 2F's east side, a detour
-    // with no way out, so the lock holds there as well.
+    // 3F's east side, reached up the stairs from 2F's nap room, after the
+    // hall. Its two grunts stand on the way to the stairs up to Cyrus on 4F,
+    // so a player can always beat them from where the section opens, and
+    // arriving on 4F closes it. 3F's west side, a dead end off 2F's west
+    // stairs, shares no tile with the east, so it is no part of the section.
+    // Until 2026-11-02 the section opened on those west stairs and refused
+    // them while the Galactic Key was held, with the east grunts in its list:
+    // a player who came back to 3F west with the key was shut in (Ian chose
+    // this move the same day; docs/oxide/hq-split-map.md).
     [GAUNTLET_GALACTIC_HQ_3F] = {
-        .maps = { MAP_HEADER_GALACTIC_HQ_3F, MAP_HEADER_GALACTIC_HQ_2F, MAP_HEADER_GALACTIC_HQ_HALL, MAP_HEADER_GALACTIC_HQ_1F, END_MAPS },
-        .waysIn = { { MAP_HEADER_GALACTIC_HQ_3F, 0, ITEM_NONE }, END_WARPS },
-        .waysBack = { { MAP_HEADER_GALACTIC_HQ_3F, 0, ITEM_GALACTIC_KEY }, END_WARPS },
+        .maps = { MAP_HEADER_GALACTIC_HQ_3F, END_MAPS },
+        .waysIn = { { MAP_HEADER_GALACTIC_HQ_3F, 1, ITEM_NONE }, END_WARPS },
+        .waysBack = { { MAP_HEADER_GALACTIC_HQ_3F, 1, ITEM_NONE }, END_WARPS },
         .trainers = {
-            { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_2, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
             { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
-            { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_1, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
             { TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC },
             END_TRAINERS,
         },
