@@ -1,7 +1,7 @@
 """The defensive index pins a few known cases (docs/oxide/defensive-index.md):
 the post's formula reproduces the post's own ranking on the later games'
-chart, Oxide's chart puts Steel at 11, the engine's immunities read as they
-should, and the usage weights keep the post's structure.
+chart, Oxide's chart is the later one since 2026-11-03 and so puts Steel at
+the post's 8.5, the engine's immunities read as they should, and the usage weights keep the post's structure.
 
     PYTHONPATH=. python3 -m tools.oxide.balance.test_defensive_index
 """
@@ -26,11 +26,13 @@ def main():
                     f"off: {off}"))
 
     diffs = {(a, d) for a, d, _o, _l in di.chart_differences()}
-    results.append(("Oxide's chart differs from the later one only in Steel resisting Ghost and Dark",
-                    diffs == {("GHOST", "STEEL"), ("DARK", "STEEL")}, f"{sorted(diffs)}"))
+    # Until 2026-11-03 Steel still resisted Ghost and Dark here, which put it
+    # at +11.0; Ian moved Steel to the later chart that day.
+    results.append(("Oxide's chart is the later games' chart, Ghost and Dark neutral on Steel",
+                    diffs == set(), f"{sorted(diffs)}"))
     ox_steel = di.index(["STEEL"], ox, pw)
-    results.append(("so Steel is +11.0 on Oxide's chart, a resistance to each worth 1 and 1.5",
-                    abs(ox_steel - 11.0) < 1e-9, f"{ox_steel}"))
+    results.append(("so Steel is the post's +8.5 on Oxide's chart too",
+                    abs(ox_steel - 8.5) < 1e-9, f"{ox_steel}"))
 
     ghost = (di.multiplier(ox, "NORMAL", ["GHOST"]), di.multiplier(ox, "FIGHTING", ["GHOST"]))
     results.append(("Ghost is immune to Normal and Fighting on Oxide's chart", ghost == (0.0, 0.0), f"{ghost}"))
