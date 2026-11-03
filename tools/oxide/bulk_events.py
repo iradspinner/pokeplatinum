@@ -84,6 +84,10 @@ DIVERGED.update({
 })
 # The base ROM's free evolution stones are gone (Ian, 2026-09-27): Galactic HQ
 # B2F loses the nine stone balls appended to the end of its object list.
+# Officer Hesperid is a male grunt (Ian, 2026-11-02; docs/oxide/hq-split.md):
+# his Mt. Coronet 6F object wears the male grunt's sprite, as at Lake Valor.
+DIVERGED["events_mt_coronet_6f"] += (
+    "; then Officer Hesperid in the male grunt's sprite (Ian, 2026-11-02)")
 DIVERGED["events_galactic_hq_b2f"] = (
     "the nine evolution stone balls the base ROM added removed (Ian, 2026-09-27)")
 # Ian's approved stone plan (2026-09-27, from the balance track's stone census):

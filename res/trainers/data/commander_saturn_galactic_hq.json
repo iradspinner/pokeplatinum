@@ -19,7 +19,7 @@
                 "MOVE_STEALTH_ROCK",
                 "MOVE_U_TURN",
                 "MOVE_PSYCHIC",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_YAWN"
             ],
             "iv_scale": 255,
             "nature": "NATURE_RELAXED",

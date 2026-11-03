@@ -666,6 +666,9 @@
   "galactic_grunt_lake_verity_4": {
     "party": "edited in the OxiDex team builder, 2026-10-29"
   },
+  "galactic_grunt_mt_coronet_6f": {
+    "class": "Officer Hesperid is a male grunt, as at Lake Valor and in the Galactic HQ (Ian, 2026-11-02; docs/oxide/hq-split.md)"
+  },
   "galactic_grunt_spear_pillar_1": {
     "name": "Ian renamed the Veilstone and Spear Pillar grunts Officers Tyche and Hermes, 2026-10-29",
     "messages": "Tyche's defeat line calls her an officer, not a grunt (Ian, 2026-10-29)"
