@@ -30,7 +30,7 @@
             "species": "SPECIES_MAWILE",
             "form": 0,
             "level": 56,
-            "item": "ITEM_IRON_BALL",
+            "item": "ITEM_OCCA_BERRY",
             "moves": [
                 "MOVE_PLAY_ROUGH",
                 "MOVE_IRON_HEAD",

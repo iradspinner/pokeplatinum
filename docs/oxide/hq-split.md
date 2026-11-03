@@ -6,7 +6,7 @@ HQ's split runs from Candice's badge (cap 56) to Saturn 2 in the Galactic HQ's c
 
 What could not be checked, first. Nothing was seen in game. The scorer read nothing, under the standing ruling. The probe plays single battles only, so the two officer doubles, both HQ grunt pairs and the gauntlet sections as runs were not read. The simulator does not model BrightPowder or Rocky Helmet, so Hesperid's Spiritomb and Cyrus 2's Dusknoir read a little weaker than they play.
 
-Outcome. The split now counts 15 mandatory fights, gym-free, mini-bosses included and a pair counted once: the map's 11 and four officer fights. Ten are this branch's. Six named officers stand in the HQ, outside both gauntlet sections: Phobos and Deimos as a double in the lobby, Boreas and Laverna as a double before Cyrus's door, Argo after Cyrus, and Hesperid by the door to Saturn. The HQ's four gauntlet sections are now two, drawn on the real walk, and `test_b1e`'s no-trap walk passes both with and without the Galactic Key. Eighteen ordinary teams climb from 55 to 58 under the cap, with one ace at 59; the six officer teams are drafts. Cyrus 2 and Saturn 2 have Ian's levels and their repeats fixed. The Ability Capsule lies in 3F west's locked room. On the probe, Saturn 2 reads about as Candice, Cyrus 2 a little easier, and Argo and Hesperid much easier.
+Outcome. The split now counts 15 mandatory fights (it has no gym), mini-bosses included and a pair counted once: the map's 11 and four officer fights. Ten are this branch's. Six named officers stand in the HQ, outside both gauntlet sections: Phobos and Deimos as a double in the lobby, Boreas and Laverna as a double before Cyrus's door, Argo after Cyrus, and Hesperid by the door to Saturn. The HQ's four gauntlet sections are now two, drawn on the real walk, and `test_b1e`'s no-trap walk passes both with and without the Galactic Key. Eighteen ordinary teams climb in play order, their tops from 56 to 58 under the cap and one ace at 59; the six officer teams are drafts. Cyrus 2 and Saturn 2 have Ian's levels and their repeats fixed. The Ability Capsule lies in 3F west's locked room. On the probe, Saturn 2 and Cyrus 2 read in Candice's range, which the probe cannot order further, and Argo and Hesperid much easier, near the officers the scorer read at 94 to 100 percent won.
 
 | Where | Mandatory fights | Of them, this branch's |
 |---|---:|---:|
@@ -32,7 +32,7 @@ The gauntlets. Section 3 is the basement run, from the warehouse to the Galactic
 
 Ian's decisions:
 
-1. The officers: take the six drafts as they stand, or redraft any of them in his team builder (his choice of 2026-11-02 was to redraft). Recommended: look first at Hesperid, whose draft reads easiest of the four singles on the probe though his theme asks for the hardest, and at Argo.
+1. The officers: take the six drafts as they stand, or redraft any of them in his team builder (his choice of 2026-11-02 was to redraft). Recommended: look first at Hesperid, whose draft reads easy on the probe (104 wins of 150) though his theme asks for the weirder and harder, and at Argo, easier still (124).
 2. Tyche and Hermes: leave them out of the HQ (recommended, for the reasons above), or add them as an optional double, which keeps the count at 15.
 3. Saturn 2's Uxie leads with Thunder Wave in about three fights of four, and in his permanent Trick Room a paralysed Pokemon moves sooner, not later. Swap it for Yawn (recommended: reads 33 wins against today's 49, and its sleep threat pushes switches into Stealth Rock), for Memento (43), or keep it? This is a set change, so it is his.
 4. The nap room's refusal line: "There's no time to rest now! / Press on, or beat the Trainers here." (recommended, after the approved gauntlet wording), or his own words.
@@ -86,6 +86,8 @@ A tile is written (x, z).
 | The laboratory's male scientist, made a trainer | (8,13), wandering | (12,10), looking south, sight 1 | The laboratory is crossed between its pillars at x 12, rows 10 and 11. |
 | Officers Phobos and Deimos | none | lobby (21,15) looking east and (24,15) looking west, sight 2 each | The corridor past the key door is entered only at (22,15) and (23,15), which both of them see and nothing else; so it is always one double when two of the player's Pokemon can fight. |
 | Officers Boreas and Laverna | none | 4F (10,15) looking west and (7,15) looking east, sight 2 each | The key door at (8,14) and (9,14) is reached only from (8,15) and (9,15), which both see and nothing else. |
+| Argo, an officer | none | 4F (15,5), looking south, sight 1 | 4F's north side narrows to x 15 and 16 at rows 5 and 6 on the way to the laboratory's panel; he stands on one tile and sees the one below. Cyrus's walk out along row 6 passes beside him, not through his tile. |
+| Hesperid, an officer | none | the laboratory (33,3), looking east, sight 3 | The door to the control room at (36,2) is reached only from (36,3), which he sees along row 3. |
 
 The checks, each on the edited files:
 
@@ -186,7 +188,7 @@ Ian chose to redraft from a helper's drafts (2026-11-02). Flags beyond the base:
 | Pokemon | Level | Item | Nature | Moves |
 |---|---:|---|---|---|
 | Granbull | 56 | Sitrus Berry | Impish | Play Rough, Charm, Close Combat, Thunder Wave |
-| Mawile | 56 | Iron Ball | Brave | Play Rough, Iron Head, Sucker Punch, Knock Off |
+| Mawile | 56 | Occa Berry | Brave | Play Rough, Iron Head, Sucker Punch, Knock Off |
 | Arcanine | 57 | Charcoal | Careful | Flare Blitz, Extreme Speed, Will-O-Wisp, Wild Charge |
 
 ### Officer Deimos
@@ -319,4 +321,4 @@ The trainers came from the map's table of the split (`hq-split-map.md`). The tea
 | `import_base_rom.py --dry-run` | every count 0 |
 | `rewards.py check`; `place_rewards.py check` on the ROM | 0 failures; 169 rows, each found once |
 | `make rom` | builds |
-| `integrate.sh --verify-only` | run after this page was committed; the result is in the commit after it |
+| `integrate.sh --verify-only` | 53 checks pass at 69e8ced314c; sync-docs fails off `oxide` by design; one warning, the tracker at 9,067 words, over 9,000 (this branch's Scheduled entry took it over from 8,992; `oxide` has since trimmed it to 8,699) |
