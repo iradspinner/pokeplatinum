@@ -3648,7 +3648,7 @@ CHART_ORDER = {
     "Poison": ("Grass", "Poison", "Ground", "Rock", "Ghost", "Steel", "Fairy"),
     "Ground": ("Fire", "Electric", "Grass", "Poison", "Flying", "Bug", "Rock", "Steel"),
     "Psychic": ("Fighting", "Poison", "Psychic", "Dark", "Steel"),
-    "Ghost": ("Normal", "Psychic", "Dark", "Steel", "Ghost"),
+    "Ghost": ("Normal", "Psychic", "Dark", "Ghost"),
 }
 
 
