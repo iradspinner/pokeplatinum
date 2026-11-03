@@ -3384,8 +3384,9 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
 
         // Oxide: Spiky Shield hurts an attacker that made contact with it,
         // Baneful Bunker poisons it, Burning Bulwark burns it, Silk Trap
-        // lowers its Speed a stage and Obstruct its Defense two, as in
-        // hg-engine (BtlCmd_checkprotectcontactmoves); the missed subscript
+        // lowers its Speed a stage, Obstruct its Defense two and King's
+        // Shield its Attack one (the later games' drop, Ian, 2026-11-02), as
+        // in hg-engine (BtlCmd_checkprotectcontactmoves); the missed subscript
         // does it once it has said the defender protected itself. The
         // accuracy roll came first, and a miss it rolled would stop the
         // poison or the burn, though the shield stopped the move before any
@@ -3395,7 +3396,8 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
                 || battleCtx->moveProtect[defender] == MOVE_BANEFUL_BUNKER
                 || battleCtx->moveProtect[defender] == MOVE_BURNING_BULWARK
                 || battleCtx->moveProtect[defender] == MOVE_SILK_TRAP
-                || battleCtx->moveProtect[defender] == MOVE_OBSTRUCT)
+                || battleCtx->moveProtect[defender] == MOVE_OBSTRUCT
+                || battleCtx->moveProtect[defender] == MOVE_KINGS_SHIELD)
             && Battler_MoveMakesContact(battleCtx, attacker, move)) {
             battleCtx->msgMoveTemp = battleCtx->moveProtect[defender];
             battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
