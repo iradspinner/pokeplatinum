@@ -208,10 +208,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Shield used every turn works the first time, then about one time in two, then
   one in four, with "But it failed!"; Spiky Shield the same. Before the fix
   both worked every turn.
-- [ ] **One calculator roll** (the encounter tool, M8): in a battle, note an
-  attacker's and a defender's level and stats and the damage a move does, enter
-  the same two in the encounter tool's calculator, and check the damage falls
-  in its range.
+- [ ] **Five recorded hits against the calculator** (the encounter tool, M8):
+  during the alpha run, with the battle recorder on, record five ordinary hits.
+  The Overseer compares each against the calculator's roll range from the
+  recorder's logged stats and HP (Ian, 2026-11-02).
 - [ ] **Element 8, hidden abilities and restored items** (the three Modern
   rules entries before "Kaizo move data"):
   "Hidden ability gift" gives a Lv. 15 Litten whose summary reads
