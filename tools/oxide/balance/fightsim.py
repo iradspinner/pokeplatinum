@@ -9406,21 +9406,20 @@ def _end_of_turn(b):
         # BtlCmd_EndOfTurnWeatherEffect acts only under NO_CLOUD_NINE: with
         # Cloud Nine or Air Lock out no Pokemon is bitten, nor healed by Ice
         # Body (until 2026-10-20 the bite came all the same, Ian approved
-        # the fix).
-        safe = {"Sand": {"Rock", "Ground", "Steel"}, "Hail": {"Ice"}}[b.weather]
-        # The abilities the weather's bite passes over (BtlCmd_EndOfTurnWeatherEffect):
-        # Sand Veil, and Oxide's Sand Rush and Sand Force, in sand; Snow
-        # Cloak in hail; Oxide's Overcoat in both. Sand Rush and Sand Force
-        # were bitten until 2026-10-14, Overcoat until 2026-10-20 (Ian
-        # approved the fixes).
-        shield = {"Sand": ("Sand Veil", "Sand Rush", "Sand Force", "Overcoat"),
-                  "Hail": ("Snow Cloak", "Overcoat")}[b.weather]
+        # the fix). Since snow took hail's place (Ian, 2026-11-03, the Ice
+        # proposal's second lever, with his approval of this change) only the
+        # sandstorm bites; hail bites no one, and Ice Body still heals in it.
+        safe = {"Rock", "Ground", "Steel"}
+        # The abilities the sandstorm's bite passes over (BtlCmd_EndOfTurnWeatherEffect):
+        # Sand Veil, and Oxide's Sand Rush, Sand Force and Overcoat. Sand
+        # Rush and Sand Force were bitten until 2026-10-14, Overcoat until
+        # 2026-10-20 (Ian approved the fixes).
+        shield = ("Sand Veil", "Sand Rush", "Sand Force", "Overcoat")
         for m in order:
-            if b.weather == "Hail" and m.ability == "Ice Body":
+            if b.weather == "Hail":
                 # BtlCmd_EndOfTurnWeatherEffect: Ice Body heals a sixteenth in
-                # hail in place of the hail's bite, below full HP, unless
-                # Cloud Nine or Air Lock is out.
-                if m.alive() and m.hp < m.maxhp and not weather_ignored(b):
+                # hail, below full HP, unless Cloud Nine or Air Lock is out.
+                if m.ability == "Ice Body" and m.alive() and m.hp < m.maxhp and not weather_ignored(b):
                     heal(m, max(1, m.maxhp // 16))
                 continue
             if m.alive() and not set(m.types) & safe and m.ability not in shield and m.ability != "Magic Guard":

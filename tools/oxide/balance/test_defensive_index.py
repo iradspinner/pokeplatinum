@@ -39,6 +39,15 @@ def main():
     results.append(("so Steel is the post's +8.5 on Oxide's chart too",
                     abs(ox_steel - 8.5) < 1e-9, f"{ox_steel}"))
 
+    # Snow in place of hail (Ian, 2026-11-03, the Ice proposal's second
+    # lever): hail bites no one, so no type or ability is immune to it, and
+    # Ice's every-engine-term index is its post's-terms one.
+    ice_all = di.index(["ICE"], ox, pw, count=di.OXIDE_GROUPS)
+    hail_immune = [t for t in di.TYPES if "hail" in di.groups([t])] + [
+        a for a in ("SNOW_CLOAK", "ICE_BODY", "OVERCOAT", "MAGIC_GUARD") if "hail" in di.groups(["NORMAL"], a)]
+    results.append(("no type or ability is immune to hail, which no longer bites (snow)",
+                    not hail_immune and abs(ice_all - ox_ice) < 1e-9, f"immune {hail_immune}; Ice, every term {ice_all}"))
+
     ghost = (di.multiplier(ox, "NORMAL", ["GHOST"]), di.multiplier(ox, "FIGHTING", ["GHOST"]))
     results.append(("Ghost is immune to Normal and Fighting on Oxide's chart", ghost == (0.0, 0.0), f"{ghost}"))
 

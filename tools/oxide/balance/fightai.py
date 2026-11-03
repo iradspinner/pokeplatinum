@@ -2133,8 +2133,9 @@ def _in_the_air(c, shadow_force):
     first takes a Power Herb (+2) and a foe seen using Protect (-1); then a
     resist, -1 (the battle_edits fix); Shadow Force with a Power Herb, +1;
     then the first of these rows that applies gives +1 at 68.75%: the foe
-    under Toxic, Curse or Leech Seed, sand for a user it cannot hurt, hail
-    for an Ice user, and a user that is not slower."""
+    under Toxic, Curse or Leech Seed, sand for a user it cannot hurt, and a
+    user that is not slower. Vanilla's row for an Ice user in hail went
+    when snow took hail's place (Ian, 2026-11-03), since hail bites no one."""
     u, t = c.u, c.t
     if not shadow_force:
         if u.item == "Power Herb":
@@ -2148,8 +2149,6 @@ def _in_the_air(c, shadow_force):
     if t.status == "tox" or t.cursed or t.seeded:
         return 1 if c.roll(68.75) else 0
     if c.b.weather == "Sand" and set(u.types) & {"Ground", "Rock", "Steel"}:
-        return 1 if c.roll(68.75) else 0
-    if c.b.weather == "Hail" and "Ice" in u.types:
         return 1 if c.roll(68.75) else 0
     if c.slow or _prev_effect(t) == "NEXT_ATTACK_ALWAYS_HITS":
         return 0

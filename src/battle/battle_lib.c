@@ -8652,6 +8652,16 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             spDefenseStat = spDefenseStat * 15 / 10;
         }
 
+        // Oxide: snow in place of hail (Ian, 2026-11-03, the Ice proposal's
+        // second lever). In hail an Ice type's Defense is one and a half times
+        // against physical moves, as in the later games' snow and beside
+        // sand's rise for Rock types (hg-engine's CalcBaseDamage does the
+        // same). Psyshock and its kin, which hit Defense, take it too.
+        if ((fieldConditions & FIELD_CONDITION_HAILING)
+            && (defenderParams.type1 == TYPE_ICE || defenderParams.type2 == TYPE_ICE)) {
+            defenseStat = defenseStat * 15 / 10;
+        }
+
         if ((fieldConditions & FIELD_CONDITION_SUNNY)
             && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_FLOWER_GIFT)) {
             attackStat = attackStat * 15 / 10;

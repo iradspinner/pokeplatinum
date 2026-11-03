@@ -9,7 +9,7 @@ The post's formula, run on the later games' chart, gives back the post's own sin
 The four disparities that most change design choices:
 
 1. Steel is in a class of its own. Nine of the ten best typings the player can own have Steel in them (Fighting/Ghost, Annihilape's, is tenth), and the 16 Steel lines average +9.1 in the player's view against +5.9 for Ghost, the next type. Moving Steel to the later chart took 2.8 points off that average (it was +11.8), because Dark is the type trainers attack with most.
-2. Ice's lines still average lowest of the 18 types (-1.3 in the player's view; they were -2.5 before Ice resisted Water), with Rock (-0.5) and Psychic (-0.1) the only others below zero. Ice/Rock (Glalie) and Ice/Psychic (Jynx, Mr. Rime) stay near the bottom of the dual typings, since their trouble is the second type's weaknesses, and Grass/Ice (Abomasnow) and pure Ice (Glaceon) are not far above. Ice is also the second most used attacking type against the player. These lines need their niche from offence or Speed.
+2. Ice's lines still average lowest of the 18 types (-1.35 in the player's view; they were -2.48 before Ice resisted Water, and snow's end to hail immunity costs them 0.03), with Rock (-0.5) and Psychic (-0.1) the only others below zero. Ice/Rock (Glalie) and Ice/Psychic (Jynx, Mr. Rime) stay near the bottom of the dual typings, since their trouble is the second type's weaknesses, and Grass/Ice (Abomasnow) and pure Ice (Glaceon) are not far above. Ice is also the second most used attacking type against the player. These lines need their niche from offence or Speed.
 3. Trainers in Oxide attack with Dark most (about a tenth of all damaging moves, more in the early splits: Bite, Knock Off, Crunch, Sucker Punch), and almost never with Dragon or Fairy (under 2 percent each). So Dragon types defend far better than the post thinks (11th in the post, 5th here), Psychic types worse than the post's figure suggests in the early game, and a Fairy or Dragon weakness costs little.
 4. A few lines pair a top typing with a high stat total: Hisuian Goodra (Steel/Dragon, 600), Metagross (605), Magnezone, Steelix (555 and first owned in Gardenia's split), Empoleon and Dusknoir, with Probopass (555, also from Gardenia's split) just behind. Magnezone, with Levitate in one of its two regular slots, has the highest index of any line in the game (+15.9) when it rolls that slot. At the other end, Beautifly, Sudowoodo, Furret, Medicham, Wormadam, Delibird, Frosmoth, Mothim and Kricketune pair a poor typing with a low total, the lines most at risk of having no niche.
 
@@ -20,7 +20,7 @@ Decisions for Ian:
 1. Decided on 2026-11-03: Steel moves to the later chart, so Ghost and Dark hit it for neutral damage. Steel's index drops from +11.3 to +8.5 in the player's view and it stays first, and every number in this doc is on the new chart.
 2. Keep Levitate in one of Magnezone's two regular slots, or move it to the hidden slot: it lifts Magnezone from +9.6 to +15.9, the highest in the game.
 3. Read the poor-typing, low-total list in part 4 when the next learnset or stat pass looks at niches; nothing here asks for a change.
-4. Say whether the player's hazard terms should run at the post's full 0.5 rather than 0.5 times the share of trainer teams that set each hazard (as built). Full weight moves Fighting from 8th to 5th and Fire from 6th to 9th, and no other type by more than one place.
+4. Say whether the player's hazard terms should run at the post's full 0.5 rather than 0.5 times the share of trainer teams that set each hazard (as built). Full weight moves Fighting from 8th to 5th, Fire from 6th to 9th and Ice from 16th to 18th, and no other type by more than one place.
 
 Next steps: none are required. The script reruns in about 20 seconds after a team, learnset or chart change, and its test could join the gate's balance suites (a few minutes of work) if Ian wants the index kept current.
 
@@ -46,7 +46,7 @@ The status immunities and hazard rules come from Oxide's engine, not the later g
 | Fire types cannot be burned | `subscript_burn.s`, the TYPE_FIRE checks |
 | Poison and Steel types cannot be poisoned or badly poisoned | `subscript_poison.s` and `subscript_badly_poison.s` |
 | Ice types cannot be frozen | `subscript_freeze.s` |
-| Ice types take no hail damage | `src/battle/battle_script.c`, the weather damage command's WEATHER_IS_HAIL block |
+| Hail damages no one, since snow took its place (2026-11-03); Ice types take physical hits on 1.5 times their Defense in it, a stat the index does not count | `src/battle/battle_script.c`, the weather damage command's WEATHER_IS_HAIL block (only Ice Body's heal is left); `battle_lib.c`, the damage formula beside sand's Rock line |
 | Rock, Ground and Steel types take no sand damage | the same command's WEATHER_IS_SAND block (Rock's Sp. Def rise in sand is not counted) |
 | Dark types are immune to a Prankster status move | `battle_controller_player.c`, subscript_prankster_dark_immunity |
 | Ghost types cannot be trapped, by Mean Look and the rest or by Shadow Tag and Arena Trap | `battle_controller_player.c` (the PREVENT_ESCAPE check) and `battle_lib.c` ("a Ghost type cannot be trapped by anything") |
@@ -56,7 +56,7 @@ The status immunities and hazard rules come from Oxide's engine, not the later g
 | Stealth Rock does 1/32 to 1/2 by the Rock matchup | `battle_script.c`, BtlCmd_CheckStealthRock |
 | Magic Guard skips Spikes, Toxic Spikes and Stealth Rock, but not Sticky Web | `subscript_hazards_check.s` |
 
-Each count in the formula follows from one weakness weight per attacking type: the post's w is 1 for an uncommon coverage type and 2 for a common one, a resistance is worth (1 + w) / 2 and an immunity 1 + w, which gives its 1, 1.5, 2 and 3. A 4x weakness counts as two weaknesses, and a quarter resistance as one and a half resistances (the second halving rarely changes an exchange). The "every engine term" column adds what Oxide's engine does that the post does not count: sand and hail immunity, Ghost's trapping immunity and Toxic Spikes immunity, each at 0.5.
+Each count in the formula follows from one weakness weight per attacking type: the post's w is 1 for an uncommon coverage type and 2 for a common one, a resistance is worth (1 + w) / 2 and an immunity 1 + w, which gives its 1, 1.5, 2 and 3. A 4x weakness counts as two weaknesses, and a quarter resistance as one and a half resistances (the second halving rarely changes an exchange). The "every engine term" column adds what Oxide's engine does that the post does not count: sand immunity, Ghost's trapping immunity and Toxic Spikes immunity, each at 0.5. Hail immunity counted here too until snow took hail's place (Ian, 2026-11-03, the Ice proposal's second lever): hail damages no one now, so no type or ability is immune to it, and Ice's every-term figure is its post's-terms one.
 
 | Rank in Oxide | Type | Post's figure | Post's formula, later chart (check) | Oxide's chart, post's terms | Oxide's chart, every engine term | Post's rank |
 |---|---|---|---|---|---|---|
@@ -77,7 +77,7 @@ Each count in the formula follows from one weakness weight per attacking type: t
 | 15 | Grass | -2.0 | -2.5 | -2.5 | -2.5 | 15 |
 | 15 | Psychic | -2.5 | -2.5 | -2.5 | -2.5 | 16 |
 | 15 | Rock | -2.5 | -2.5 | -2.5 | -2.0 | 16 |
-| 18 | Ice | -5.5 | -5.5 | -4.5 | -4.0 | 18 |
+| 18 | Ice | -5.5 | -5.5 | -4.5 | -4.5 | 18 |
 
 ## Part 2: weighted by what is used in Oxide
 
@@ -93,7 +93,7 @@ The player's view is how the player's Pokemon defend, against what trainers atta
 
 The trainers' view is how a trainer's Pokemon defend, against what the player attacks with. For each split, every line the player can own by its end (its most evolved stage then) counts each type it can hit with once: a damaging move of power 40 or more, or one whose power the engine works out, among its level-up moves by the capture rule and the TMs and tutors placed by then. Moves the balance tools already call unreliable or a sacrifice are left out. Normal weighs most here (3.47 overall, 5.07 early), because nearly every line learns a Normal attack, though few would choose it as a main attack; that lifts Ghost, Rock and Steel a little in this view.
 
-The situational terms (Stealth Rock, Spikes and Sticky Web, Toxic Spikes, Prankster, trapping, sand and hail) matter only when the other side brings the thing. In the player's view each is the post's 0.5 times the share of the split's trainer teams that bring it, weighted by kind, as Ian asked: the player switches often, so a hazard on the field costs in full, and the share says how often one is there. A team brings a hazard if any member knows the move, sand or hail if a member sets it or the map's weather does (`splits.trainer_weather`), trapping if a member knows a trapping move or has Shadow Tag or Arena Trap. In the trainers' view each is a flat 0.05, a tenth of the post's figure, and sand and hail are 0. The player rarely spends a turn on a hazard and the AI switches only on a knockout or a pivot, so a hazard meets each trainer Pokemon at most once; a tenth keeps the terms' sign without letting them move a rank alone, and the player sets no weather at all (the standing ruling).
+The situational terms (Stealth Rock, Spikes and Sticky Web, Toxic Spikes, Prankster, trapping, sand and hail) matter only when the other side brings the thing. In the player's view each is the post's 0.5 times the share of the split's trainer teams that bring it, weighted by kind, as Ian asked: the player switches often, so a hazard on the field costs in full, and the share says how often one is there. A team brings a hazard if any member knows the move, sand or hail if a member sets it or the map's weather does (`splits.trainer_weather`; hail's share is still worked out, but since 2026-11-03 no typing is immune to it, so it moves nothing), trapping if a member knows a trapping move or has Shadow Tag or Arena Trap. In the trainers' view each is a flat 0.05, a tenth of the post's figure, and sand and hail are 0. The player rarely spends a turn on a hazard and the AI switches only on a knockout or a pivot, so a hazard meets each trainer Pokemon at most once; a tenth keeps the terms' sign without letting them move a rank alone, and the player sets no weather at all (the standing ruling).
 
 ### What trainers attack with, by split (percent of the kind-weighted damaging moves)
 
@@ -210,11 +210,11 @@ The situational weights that result:
 | Bug | -1.5 | +0.27 (13) | -0.05 (15) | +0.43 (12) | +0.44 (13) | -0.25 (14) | -0.80 (16) | -0.06 (14) | +0.11 (14) |
 | Normal | 0.0 | +0.03 (14) | +0.26 (14) | +0.29 (13) | -0.46 (15) | +0.88 (11) | +0.22 (13) | +1.32 (10) | +1.11 (11) |
 | Grass | -2.5 | -0.26 (15) | +0.35 (13) | -1.27 (14) | +0.15 (14) | -0.36 (15) | +0.49 (12) | -0.83 (15) | -0.74 (15) |
-| Ice | -4.5 | -2.40 (16) | -2.58 (17) | -1.53 (16) | -3.10 (17) | -2.22 (17) | -1.83 (17) | -2.24 (17) | -2.60 (17) |
+| Ice | -4.5 | -2.43 (16) | -2.58 (17) | -1.60 (16) | -3.10 (17) | -2.22 (17) | -1.83 (17) | -2.24 (17) | -2.60 (17) |
 | Psychic | -2.5 | -2.45 (17) | -3.34 (18) | -2.39 (17) | -1.61 (16) | -2.74 (18) | -2.06 (18) | -3.35 (18) | -2.81 (18) |
 | Rock | -2.5 | -2.96 (18) | -2.00 (16) | -3.20 (18) | -3.67 (18) | -1.49 (16) | -0.45 (15) | -1.81 (16) | -2.21 (16) |
 
-Ranks that change with every situational term at the full 0.5: Normal 14 to 13; Fire 6 to 9; Water 9 to 8; Fighting 8 to 5; Bug 13 to 14; Dragon 5 to 6.
+Ranks that change with every situational term at the full 0.5: Normal 14 to 13; Fire 6 to 9; Water 9 to 8; Ice 16 to 18; Fighting 8 to 5; Psychic 17 to 16; Bug 13 to 14; Rock 18 to 17; Dragon 5 to 6.
 
 ## Part 3: dual typings
 
@@ -254,23 +254,23 @@ Typings: 113. Rank correlation (Spearman) of the player's view with the trainers
 | 94 | Psychic/Dark | -1.08 | -1.56 | 103 | -2.5 | 93 | 7 | Gothitelle |
 | 95 | Flying/Bug | -1.21 | -0.34 | 91 | -2.2 | 91 | 30 | Beautifly, Combee, Mothim, Scyther, Vespiquen and 3 more |
 | 96 | Grass/Bug | -1.23 | -1.85 | 105 | -5.2 | 109 | 8 | Leavanny, Sewaddle, Swadloon, Wormadam |
-| 97 | Ice/Dark | -1.24 | -0.91 | 96 | -4.5 | 105 | 15 | Sneasel, Weavile |
+| 97 | Ice/Dark | -1.27 | -0.91 | 96 | -4.5 | 105 | 15 | Sneasel, Weavile |
 | 98 | Fire/Rock | -1.35 | +0.51 | 83 | -0.8 | 84 | 3 | Magcargo |
 | 99 | Water/Rock | -1.45 | +0.30 | 86 | -0.2 | 83 | 23 | Corsola, Relicanth |
 | 100 | Bug/Rock | -1.62 | -0.92 | 97 | -2.5 | 93 | 16 | Crustle, Dwebble, Kleavor |
-| 101 | Ice/Bug | -1.63 | -2.27 | 107 | -5.5 | 110 | 3 | Frosmoth, Snom |
+| 101 | Ice/Bug | -1.65 | -2.27 | 107 | -5.5 | 110 | 3 | Frosmoth, Snom |
 | 102 | Rock/Dark | -1.79 | -0.18 | 87 | -2.5 | 93 | 7 | Tyranitar |
-| 103 | Water/Ice | -1.91 | -1.38 | 101 | -2.2 | 91 | 40 | Cloyster, Dewgong, Lapras, Sealeo, Spheal and 1 more |
+| 103 | Water/Ice | -1.94 | -1.38 | 101 | -2.2 | 91 | 40 | Cloyster, Dewgong, Lapras, Sealeo, Spheal and 1 more |
 | 104 | Grass/Rock | -2.38 | -1.06 | 99 | -4.0 | 104 | 7 | Cradily, Lileep |
-| 105 | Ice | -2.40 | -2.22 | 106 | -4.5 | 105 | 12 | Glaceon, Snorunt |
+| 105 | Ice | -2.43 | -2.22 | 106 | -4.5 | 105 | 12 | Glaceon, Snorunt |
 | 106 | Psychic | -2.45 | -2.74 | 108 | -2.5 | 93 | 54 | Abra, Alakazam, Chimecho, Chingling, Cresselia and 4 more |
-| 107 | Grass/Ice | -2.80 | -3.05 | 109 | -7.0 | 113 | 14 | Abomasnow, Snover |
+| 107 | Grass/Ice | -2.83 | -3.05 | 109 | -7.0 | 113 | 14 | Abomasnow, Snover |
 | 108 | Psychic/Bug | -2.92 | -3.59 | 111 | -4.8 | 108 | 3 | Dottler, Orbeetle |
 | 109 | Rock | -2.96 | -1.49 | 102 | -2.5 | 93 | 29 | Bonsly, Cranidos, Garganacl, Nacli, Naclstack and 3 more |
 | 110 | Ground/Rock | -3.18 | -1.56 | 104 | -2.0 | 89 | 30 | Geodude, Golem, Graveler, Onix, Rhydon and 2 more |
-| 111 | Ice/Psychic | -4.35 | -4.76 | 113 | -6.5 | 111 | 14 | Galarian Mr Mime, Jynx, Mr. Rime, Smoochum |
-| 112 | Ice/Rock | -4.89 | -3.58 | 110 | -6.5 | 111 | 11 | Glalie |
-| 113 | Psychic/Rock | -4.90 | -4.03 | 112 | -4.5 | 105 | 10 | Lunatone, Solrock |
+| 111 | Ice/Psychic | -4.37 | -4.76 | 113 | -6.5 | 111 | 14 | Galarian Mr Mime, Jynx, Mr. Rime, Smoochum |
+| 112 | Psychic/Rock | -4.90 | -4.03 | 112 | -4.5 | 105 | 10 | Lunatone, Solrock |
+| 113 | Ice/Rock | -4.92 | -3.58 | 110 | -6.5 | 111 | 11 | Glalie |
 
 ### Typings that move 15 places or more between the two views
 
@@ -291,7 +291,7 @@ Typings: 113. Rank correlation (Spearman) of the player's view with the trainers
 
 ## Part 4: each line's final stage, against its stats
 
-Each obtainable line's final stage (a branching line has one row a branch; Mega forms are left out), with its abilities. An ability counts only when every regular slot holds it; an ability in one of two regular slots, or in the hidden slot, is listed with the index it would give. The abilities counted, each from Oxide's engine: Levitate, Flash Fire, Water Absorb, Storm Drain, Dry Skin (Water immunity, and Fire at 1.25 times), Volt Absorb, Motor Drive, Lightning Rod and Sap Sipper (BattleSystem_TriggerImmunityAbility in `battle_lib.c`); Thick Fat, Heatproof, Water Bubble, Purifying Salt and Fluffy (the damage formula); Filter and Solid Rock (super-effective damage at three quarters); Wonder Guard; and the status abilities the subscripts check (Limber, Water Veil, Water Bubble, Immunity, Pastel Veil, Magma Armor, Purifying Salt, Overcoat), with the sand and hail abilities and Magic Guard. Of the 219 lines, 37 have a counted ability and 68 have one that does not count.
+Each obtainable line's final stage (a branching line has one row a branch; Mega forms are left out), with its abilities. An ability counts only when every regular slot holds it; an ability in one of two regular slots, or in the hidden slot, is listed with the index it would give. The abilities counted, each from Oxide's engine: Levitate, Flash Fire, Water Absorb, Storm Drain, Dry Skin (Water immunity, and Fire at 1.25 times), Volt Absorb, Motor Drive, Lightning Rod and Sap Sipper (BattleSystem_TriggerImmunityAbility in `battle_lib.c`); Thick Fat, Heatproof, Water Bubble, Purifying Salt and Fluffy (the damage formula); Filter and Solid Rock (super-effective damage at three quarters); Wonder Guard; and the status abilities the subscripts check (Limber, Water Veil, Water Bubble, Immunity, Pastel Veil, Magma Armor, Purifying Salt, Overcoat), with the sand abilities and Magic Guard. Snow Cloak and Ice Body counted until 2026-11-03 as shields from hail's damage, which snow does not do. Of the 219 lines, 34 have a counted ability and 65 have one that does not count.
 
 "Placement" is the line's index and its bulk (HP plus Def plus SpD) added as standard scores across the 219 lines, so a line high on both is the most defensively placed. The index is the player's view with the overall weights.
 
@@ -308,7 +308,7 @@ Each obtainable line's final stage (a branching line has one row a branch; Mega 
 | Probopass | Rock/Steel | +5.79 | +8.48 | 555 | 70 | 145 | 150 | 40 | Gardenia | +3.47 | Solid Rock (counted) |
 | Bastiodon | Rock/Steel | +3.54 | +6.63 | 515 | 80 | 168 | 138 | 30 | Fantina | +3.26 | Solid Rock (one slot, +5.8) |
 | Rotom | Electric/Ghost | +11.23 | +12.17 | 525 | 50 | 107 | 107 | 91 | Fantina | +2.83 | Levitate (counted) |
-| Toxapex | Poison/Water | +5.02 | +5.33 | 495 | 50 | 152 | 142 | 35 | Maylene | +2.75 | Limber (one slot, +5.5) |
+| Toxapex | Poison/Water | +5.02 | +5.33 | 495 | 50 | 152 | 142 | 35 | Maylene | +2.76 | Limber (one slot, +5.5) |
 | Klefki | Steel/Fairy | +12.65 | +14.01 | 470 | 57 | 91 | 87 | 75 | Fantina | +2.60 |  |
 | Empoleon | Water/Steel | +9.37 | +11.67 | 535 | 84 | 93 | 101 | 60 | Maylene | +2.58 |  |
 | Magnezone | Electric/Steel | +9.57 | +11.68 | 535 | 70 | 115 | 90 | 60 | Byron | +2.57 | Levitate (one slot, +15.9) |
@@ -326,23 +326,23 @@ Each obtainable line's final stage (a branching line has one row a branch; Mega 
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Beautifly | Bug/Flying | -1.21 | -0.34 | 395 | 60 | 50 | 50 | 65 | Roark | -3.35 |  |
 | Alakazam | Psychic | -2.45 | -2.74 | 490 | 55 | 45 | 85 | 120 | Wake | -3.16 | Magic Guard (hidden, -2.2) |
-| Glalie | Ice/Rock | -4.89 | -3.58 | 520 | 80 | 80 | 80 | 100 | Wake | -2.65 | Solid Rock (one slot, -1.8) |
-| Jynx | Ice/Psychic | -4.35 | -4.76 | 495 | 65 | 57 | 113 | 95 | Fantina | -2.60 | Snow Cloak (counted); Dry Skin (hidden, -3.4) |
+| Glalie | Ice/Rock | -4.92 | -3.58 | 520 | 80 | 80 | 80 | 100 | Wake | -2.66 | Solid Rock (one slot, -1.9) |
+| Jynx | Ice/Psychic | -4.37 | -4.76 | 495 | 65 | 57 | 113 | 95 | Fantina | -2.61 | Dry Skin (hidden, -3.5) |
 | Pheromosa | Bug/Fighting | +2.43 | +0.86 | 570 | 71 | 37 | 37 | 151 | Volkner | -2.58 |  |
-| Delibird | Ice/Flying | -0.17 | +0.53 | 460 | 65 | 60 | 60 | 100 | Candice | -2.46 |  |
+| Delibird | Ice/Flying | -0.20 | +0.53 | 460 | 65 | 60 | 60 | 100 | Candice | -2.47 |  |
 | Mothim | Bug/Flying | -1.21 | -0.34 | 464 | 80 | 60 | 60 | 76 | Gardenia | -2.44 |  |
 | Chatot | Normal/Flying | +1.74 | +3.50 | 466 | 76 | 45 | 42 | 110 | Maylene | -2.38 |  |
 | Espeon | Psychic | -2.45 | -2.74 | 525 | 65 | 60 | 95 | 110 | Byron | -2.36 |  |
 | Sharpedo | Water/Dark | +2.99 | +3.32 | 460 | 70 | 40 | 40 | 95 | Fantina | -2.29 |  |
-| Cinccino | Normal | +0.03 | +0.88 | 470 | 75 | 60 | 60 | 115 | Wake | -2.18 |  |
-| Mr. Rime | Ice/Psychic | -4.35 | -4.76 | 520 | 80 | 75 | 100 | 70 | Wake | -2.15 |  |
-| Frosmoth | Ice/Bug | -1.63 | -2.27 | 475 | 70 | 60 | 90 | 65 | Candice | -2.11 |  |
+| Cinccino | Normal | +0.03 | +0.88 | 470 | 75 | 60 | 60 | 115 | Wake | -2.17 |  |
+| Mr. Rime | Ice/Psychic | -4.37 | -4.76 | 520 | 80 | 75 | 100 | 70 | Wake | -2.15 |  |
+| Frosmoth | Ice/Bug | -1.65 | -2.27 | 475 | 70 | 60 | 90 | 65 | Candice | -2.12 |  |
 | Minun | Electric | +1.99 | +2.13 | 415 | 65 | 55 | 55 | 105 | Gardenia | -2.03 | Volt Absorb (hidden, +3.4) |
-| Weavile | Dark/Ice | -1.24 | -0.91 | 510 | 70 | 65 | 85 | 125 | HQ | -1.99 |  |
+| Weavile | Dark/Ice | -1.27 | -0.91 | 510 | 70 | 65 | 85 | 125 | HQ | -2.00 |  |
 | Furret | Normal | +0.03 | +0.88 | 425 | 85 | 64 | 55 | 90 | Roark | -1.97 |  |
 | Absol | Dark | +1.16 | +1.31 | 530 | 70 | 60 | 60 | 95 | Wake | -1.94 |  |
-| Rampardos | Rock | -2.96 | -1.49 | 500 | 97 | 80 | 70 | 58 | Fantina | -1.90 |  |
 | Ambipom | Normal | +0.03 | +0.88 | 482 | 75 | 66 | 66 | 115 | Fantina | -1.90 |  |
+| Rampardos | Rock | -2.96 | -1.49 | 500 | 97 | 80 | 70 | 58 | Fantina | -1.90 |  |
 | Liepard | Dark | +1.16 | +1.31 | 496 | 74 | 60 | 60 | 116 | Gardenia | -1.85 | Limber (one slot, +1.7) |
 
 ### A strong typing on a high stat total: the lines most likely too strong
@@ -357,7 +357,7 @@ Both the index and the stat total half a standard deviation or more above the me
 | Steelix | Steel/Ground | +7.75 | +9.73 | 555 | 100 | 200 | 75 | 30 | Gardenia | Solid Rock (one slot, +10.5) |
 | Empoleon | Water/Steel | +9.37 | +11.67 | 535 | 84 | 93 | 101 | 60 | Maylene |  |
 | Dusknoir | Ghost | +7.47 | +8.38 | 555 | 105 | 135 | 135 | 45 | Candice | Levitate (counted) |
-| Ninetales | Fire/Fairy | +5.88 | +5.31 | 555 | 85 | 84 | 117 | 95 | Maylene | Magic Guard (counted) |
+| Ninetales | Fire/Fairy | +5.85 | +5.31 | 555 | 85 | 84 | 117 | 95 | Maylene | Magic Guard (counted) |
 | Probopass | Rock/Steel | +5.79 | +8.48 | 555 | 70 | 145 | 150 | 40 | Gardenia | Solid Rock (counted) |
 | Annihilape | Fighting/Ghost | +6.68 | +6.44 | 535 | 110 | 80 | 90 | 90 | Byron |  |
 | Bronzong | Steel/Psychic | +6.22 | +7.85 | 530 | 77 | 116 | 116 | 33 | Fantina | Levitate (one slot, +10.8); Heatproof (one slot, +7.5) |
@@ -376,14 +376,14 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Beautifly | Bug/Flying | -1.21 | -0.34 | 395 | 60 | 50 | 50 | 65 | Roark |  |
 | Sudowoodo | Rock | -2.96 | -1.49 | 450 | 85 | 115 | 80 | 30 | Fantina |  |
 | Furret | Normal | +0.03 | +0.88 | 425 | 85 | 64 | 55 | 90 | Roark |  |
-| Wormadam | Bug/Grass | -1.23 | -1.85 | 444 | 60 | 85 | 105 | 36 | Gardenia | Overcoat (one slot, -1.2) |
+| Wormadam | Bug/Grass | -1.23 | -1.85 | 444 | 60 | 85 | 105 | 36 | Gardenia |  |
 | Medicham | Fighting/Psychic | +0.57 | -0.94 | 425 | 60 | 75 | 75 | 80 | Maylene |  |
 | Jumpluff | Grass/Flying | -0.35 | +0.43 | 450 | 75 | 70 | 85 | 110 | Fantina |  |
 | Kricketune | Bug | +0.27 | -0.25 | 444 | 87 | 61 | 61 | 75 | Roark |  |
 | Mothim | Bug/Flying | -1.21 | -0.34 | 464 | 80 | 60 | 60 | 76 | Gardenia |  |
 | Chimecho | Psychic | +0.42 | +0.01 | 450 | 65 | 70 | 85 | 75 | Gardenia | Levitate (counted) |
-| Frosmoth | Ice/Bug | -1.63 | -2.27 | 475 | 70 | 60 | 90 | 65 | Candice |  |
-| Delibird | Ice/Flying | -0.17 | +0.53 | 460 | 65 | 60 | 60 | 100 | Candice |  |
+| Frosmoth | Ice/Bug | -1.65 | -2.27 | 475 | 70 | 60 | 90 | 65 | Candice |  |
+| Delibird | Ice/Flying | -0.20 | +0.53 | 460 | 65 | 60 | 60 | 100 | Candice |  |
 | Crustle | Bug/Rock | -1.62 | -0.92 | 485 | 70 | 125 | 75 | 45 | Maylene |  |
 | Relicanth | Water/Rock | -1.45 | +0.30 | 485 | 100 | 130 | 65 | 55 | Byron |  |
 | Cinccino | Normal | +0.03 | +0.88 | 470 | 75 | 60 | 60 | 115 | Wake |  |
@@ -395,8 +395,8 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Type | Lines | Mean index, player's view | Mean index, trainers' view | Mean BST | Mean HP+Def+SpD | Mean Spe |
 |---|---|---|---|---|---|---|
 | Steel | 16 | +9.10 | +11.07 | 520 | 292 | 57 |
-| Ghost | 17 | +5.99 | +7.02 | 510 | 263 | 71 |
-| Fairy | 18 | +5.35 | +5.10 | 503 | 272 | 70 |
+| Ghost | 17 | +5.98 | +7.02 | 510 | 263 | 71 |
+| Fairy | 18 | +5.34 | +5.10 | 503 | 272 | 70 |
 | Electric | 16 | +4.66 | +4.93 | 489 | 230 | 89 |
 | Poison | 17 | +4.62 | +4.86 | 498 | 250 | 81 |
 | Dragon | 12 | +3.89 | +3.41 | 550 | 275 | 82 |
@@ -405,13 +405,13 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Ground | 18 | +3.01 | +3.18 | 514 | 286 | 55 |
 | Flying | 25 | +2.68 | +3.85 | 499 | 245 | 87 |
 | Water | 49 | +2.67 | +2.79 | 504 | 265 | 67 |
-| Dark | 19 | +2.05 | +2.41 | 512 | 236 | 89 |
+| Dark | 19 | +2.04 | +2.41 | 512 | 236 | 89 |
 | Grass | 25 | +1.07 | +1.19 | 506 | 256 | 70 |
 | Bug | 21 | +1.05 | +0.88 | 488 | 232 | 77 |
 | Normal | 19 | +0.37 | +1.39 | 497 | 248 | 84 |
 | Psychic | 23 | -0.06 | -0.20 | 518 | 263 | 79 |
-| Rock | 19 | -0.46 | +0.88 | 508 | 290 | 53 |
-| Ice | 16 | -1.32 | -1.17 | 524 | 258 | 82 |
+| Rock | 19 | -0.47 | +0.88 | 508 | 290 | 53 |
+| Ice | 16 | -1.35 | -1.17 | 524 | 258 | 82 |
 
 ### Every line, by the player's view
 
@@ -445,10 +445,10 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Chandelure | Ghost/Fire | +6.11 | +7.27 | 520 | 60 | 90 | 90 | 80 | Wake | Flash Fire (one slot, +7.3) |
 | Drapion | Poison/Dark | +5.89 | +6.04 | 500 | 70 | 110 | 75 | 95 | Wake |  |
 | Skuntank | Poison/Dark | +5.89 | +6.04 | 499 | 103 | 67 | 61 | 84 | Maylene |  |
-| Ninetales | Fire/Fairy | +5.88 | +5.31 | 555 | 85 | 84 | 117 | 95 | Maylene | Magic Guard (counted) |
 | Alomomola | Water/Fairy | +5.85 | +5.52 | 470 | 165 | 80 | 45 | 65 | Fantina |  |
 | Azumarill | Water/Fairy | +5.85 | +5.52 | 420 | 100 | 80 | 80 | 50 | Gardenia | Sap Sipper (hidden, +9.3) |
 | Primarina | Water/Fairy | +5.85 | +5.52 | 530 | 80 | 74 | 116 | 60 | Maylene |  |
+| Ninetales | Fire/Fairy | +5.85 | +5.31 | 555 | 85 | 84 | 117 | 95 | Maylene | Magic Guard (counted) |
 | Probopass | Rock/Steel | +5.79 | +8.48 | 555 | 70 | 145 | 150 | 40 | Gardenia | Solid Rock (counted) |
 | Galarian Weezing | Poison/Fairy | +5.77 | +5.39 | 490 | 70 | 115 | 105 | 50 | Maylene | Levitate (one slot, +10.4) |
 | Galarian Rapidash | Fairy/Fire | +5.54 | +5.16 | 530 | 80 | 85 | 95 | 95 | Gardenia | Pastel Veil (one slot, +6.1) |
@@ -468,8 +468,8 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Talonflame | Fire/Flying | +4.45 | +5.27 | 499 | 78 | 71 | 69 | 126 | Maylene |  |
 | Palossand | Ghost/Ground | +4.40 | +5.56 | 480 | 85 | 110 | 75 | 35 | Wake |  |
 | Runerigus | Ground/Ghost | +4.40 | +5.56 | 483 | 58 | 145 | 105 | 30 | Candice |  |
-| Clefable | Fairy | +4.32 | +3.56 | 488 | 95 | 73 | 90 | 65 | Gardenia | Magic Guard (counted) |
-| Froslass | Ice/Ghost | +4.20 | +4.81 | 520 | 80 | 70 | 70 | 110 | Byron | Snow Cloak (counted) |
+| Clefable | Fairy | +4.29 | +3.56 | 488 | 95 | 73 | 90 | 65 | Gardenia | Magic Guard (counted) |
+| Froslass | Ice/Ghost | +4.17 | +4.81 | 520 | 80 | 70 | 70 | 110 | Byron |  |
 | Crobat | Poison/Flying | +4.10 | +5.40 | 535 | 85 | 80 | 80 | 130 | Wake |  |
 | Florges | Fairy | +4.09 | +3.46 | 552 | 78 | 68 | 154 | 75 | Wake |  |
 | Granbull | Fairy | +4.09 | +3.46 | 450 | 90 | 75 | 60 | 45 | Gardenia |  |
@@ -513,7 +513,7 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Roserade | Grass/Poison | +2.82 | +2.81 | 505 | 60 | 55 | 105 | 90 | Wake |  |
 | Hawlucha | Fighting/Flying | +2.75 | +2.90 | 500 | 78 | 75 | 63 | 118 | Byron | Limber (one slot, +3.3) |
 | Galvantula | Bug/Electric | +2.56 | +2.41 | 472 | 70 | 60 | 60 | 108 | Fantina |  |
-| Alolan Ninetales | Ice/Fairy | +2.50 | +1.58 | 555 | 79 | 79 | 99 | 100 | Gardenia | Magic Guard (counted) |
+| Alolan Ninetales | Ice/Fairy | +2.47 | +1.58 | 555 | 79 | 79 | 99 | 100 | Gardenia | Magic Guard (counted) |
 | Heracross | Bug/Fighting | +2.43 | +0.86 | 500 | 80 | 75 | 95 | 85 | Gardenia |  |
 | Pheromosa | Bug/Fighting | +2.43 | +0.86 | 570 | 71 | 37 | 37 | 151 | Volkner |  |
 | Dustox | Bug/Poison | +2.43 | +2.08 | 405 | 60 | 70 | 90 | 65 | Roark |  |
@@ -550,7 +550,7 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Seaking | Water | +1.83 | +2.00 | 475 | 85 | 70 | 80 | 70 | Fantina | Water Veil (one slot, +2.3); Lightning Rod (hidden, +6.5) |
 | Suicune | Water | +1.83 | +2.00 | 590 | 110 | 115 | 115 | 85 | Candice |  |
 | Wailord | Water | +1.83 | +2.00 | 555 | 165 | 65 | 100 | 5 | Wake | Water Veil (one slot, +2.3) |
-| Mamoswine | Ice/Ground | +1.78 | +0.84 | 560 | 110 | 80 | 85 | 80 | Maylene | Thick Fat (counted) |
+| Mamoswine | Ice/Ground | +1.75 | +0.84 | 560 | 110 | 80 | 85 | 80 | Maylene | Thick Fat (counted) |
 | Chatot | Normal/Flying | +1.74 | +3.50 | 466 | 76 | 45 | 42 | 110 | Maylene |  |
 | Noctowl | Normal/Flying | +1.74 | +3.50 | 488 | 100 | 50 | 96 | 70 | Gardenia |  |
 | Staraptor | Normal/Flying | +1.74 | +3.50 | 480 | 85 | 70 | 50 | 105 | Maylene |  |
@@ -589,14 +589,14 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Purugly | Normal | +0.03 | +0.88 | 492 | 91 | 74 | 69 | 112 | Maylene | Limber (one slot, +0.5); Thick Fat (one slot, +2.7) |
 | Snorlax | Normal | +0.03 | +0.88 | 540 | 160 | 65 | 110 | 30 | Maylene | Immunity (one slot, +0.6); Thick Fat (one slot, +2.7) |
 | Delphox | Fire/Psychic | -0.10 | -0.22 | 534 | 75 | 72 | 100 | 104 | Maylene |  |
-| Articuno | Ice/Flying | -0.17 | +0.53 | 590 | 90 | 100 | 120 | 85 | Volkner |  |
-| Delibird | Ice/Flying | -0.17 | +0.53 | 460 | 65 | 60 | 60 | 100 | Candice |  |
+| Articuno | Ice/Flying | -0.20 | +0.53 | 590 | 90 | 100 | 120 | 85 | Volkner |  |
+| Delibird | Ice/Flying | -0.20 | +0.53 | 460 | 65 | 60 | 60 | 100 | Candice |  |
 | Arboliva | Grass/Normal | -0.23 | +0.52 | 510 | 78 | 90 | 109 | 39 | Maylene |  |
 | Cherrim | Grass | -0.26 | -0.36 | 517 | 70 | 90 | 98 | 85 | Gardenia |  |
-| Leafeon | Grass | -0.26 | -0.36 | 525 | 65 | 130 | 65 | 95 | Fantina | Magic Guard (one slot, -0.0) |
+| Leafeon | Grass | -0.26 | -0.36 | 525 | 65 | 130 | 65 | 95 | Fantina | Magic Guard (one slot, -0.1) |
 | Lurantis | Grass | -0.26 | -0.36 | 480 | 70 | 90 | 90 | 45 | Maylene |  |
 | Serperior | Grass | -0.26 | -0.36 | 528 | 75 | 95 | 95 | 113 | Maylene |  |
-| Tangrowth | Grass | -0.26 | -0.36 | 535 | 100 | 125 | 90 | 10 | Maylene | Magic Guard (one slot, -0.0) |
+| Tangrowth | Grass | -0.26 | -0.36 | 535 | 100 | 125 | 90 | 10 | Maylene | Magic Guard (one slot, -0.1) |
 | Lunatone | Rock/Psychic | -0.26 | +0.38 | 495 | 90 | 75 | 95 | 70 | Byron | Levitate (counted) |
 | Solrock | Rock/Psychic | -0.26 | +0.38 | 495 | 90 | 95 | 75 | 70 | Byron | Levitate (counted) |
 | Jumpluff | Grass/Flying | -0.35 | +0.43 | 450 | 75 | 70 | 85 | 110 | Fantina |  |
@@ -612,30 +612,30 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Mothim | Bug/Flying | -1.21 | -0.34 | 464 | 80 | 60 | 60 | 76 | Gardenia |  |
 | Vespiquen | Bug/Flying | -1.21 | -0.34 | 558 | 80 | 102 | 102 | 70 | Gardenia |  |
 | Yanmega | Bug/Flying | -1.21 | -0.34 | 515 | 86 | 86 | 56 | 95 | Maylene |  |
-| Leavanny | Bug/Grass | -1.23 | -1.85 | 500 | 75 | 80 | 80 | 92 | Fantina | Overcoat (hidden, -1.2) |
-| Wormadam | Bug/Grass | -1.23 | -1.85 | 444 | 60 | 85 | 105 | 36 | Gardenia | Overcoat (one slot, -1.2) |
-| Weavile | Dark/Ice | -1.24 | -0.91 | 510 | 70 | 65 | 85 | 125 | HQ |  |
+| Leavanny | Bug/Grass | -1.23 | -1.85 | 500 | 75 | 80 | 80 | 92 | Fantina |  |
+| Wormadam | Bug/Grass | -1.23 | -1.85 | 444 | 60 | 85 | 105 | 36 | Gardenia |  |
+| Weavile | Dark/Ice | -1.27 | -0.91 | 510 | 70 | 65 | 85 | 125 | HQ |  |
 | Relicanth | Water/Rock | -1.45 | +0.30 | 485 | 100 | 130 | 65 | 55 | Byron |  |
 | Crustle | Bug/Rock | -1.62 | -0.92 | 485 | 70 | 125 | 75 | 45 | Maylene |  |
 | Kleavor | Bug/Rock | -1.62 | -0.92 | 500 | 70 | 95 | 70 | 85 | Maylene |  |
-| Frosmoth | Ice/Bug | -1.63 | -2.27 | 475 | 70 | 60 | 90 | 65 | Candice |  |
+| Frosmoth | Ice/Bug | -1.65 | -2.27 | 475 | 70 | 60 | 90 | 65 | Candice |  |
 | Tyranitar | Dark/Rock | -1.79 | -0.18 | 600 | 100 | 110 | 100 | 61 | Candice |  |
-| Cloyster | Water/Ice | -1.91 | -1.38 | 555 | 50 | 180 | 75 | 70 | Byron | Overcoat (hidden, -1.4) |
-| Dewgong | Water/Ice | -1.91 | -1.38 | 500 | 100 | 90 | 100 | 70 | Maylene | Thick Fat (one slot, -0.0) |
-| Lapras | Water/Ice | -1.91 | -1.38 | 555 | 130 | 80 | 95 | 60 | Candice |  |
-| Walrein | Ice/Water | -1.91 | -1.38 | 545 | 110 | 90 | 90 | 65 | Wake | Filter (one slot, +0.8) |
-| Glaceon | Ice | -2.40 | -2.22 | 525 | 65 | 110 | 95 | 65 | Candice | Snow Cloak (counted) |
+| Cloyster | Water/Ice | -1.94 | -1.38 | 555 | 50 | 180 | 75 | 70 | Byron | Overcoat (hidden, -1.4) |
+| Dewgong | Water/Ice | -1.94 | -1.38 | 500 | 100 | 90 | 100 | 70 | Maylene | Thick Fat (one slot, -0.0) |
+| Lapras | Water/Ice | -1.94 | -1.38 | 555 | 130 | 80 | 95 | 60 | Candice |  |
+| Walrein | Ice/Water | -1.94 | -1.38 | 545 | 110 | 90 | 90 | 65 | Wake | Filter (one slot, +0.8) |
+| Glaceon | Ice | -2.43 | -2.22 | 525 | 65 | 110 | 95 | 65 | Candice |  |
 | Alakazam | Psychic | -2.45 | -2.74 | 490 | 55 | 45 | 85 | 120 | Wake | Magic Guard (hidden, -2.2) |
 | Espeon | Psychic | -2.45 | -2.74 | 525 | 65 | 60 | 95 | 110 | Byron |  |
-| Abomasnow | Grass/Ice | -2.80 | -3.05 | 494 | 90 | 75 | 85 | 60 | Wake |  |
+| Abomasnow | Grass/Ice | -2.83 | -3.05 | 494 | 90 | 75 | 85 | 60 | Wake |  |
 | Orbeetle | Bug/Psychic | -2.92 | -3.59 | 505 | 60 | 110 | 120 | 90 | Fantina |  |
 | Garganacl | Rock | -2.96 | -1.49 | 500 | 100 | 130 | 90 | 35 | Maylene | Purifying Salt (one slot, +0.1) |
 | Rampardos | Rock | -2.96 | -1.49 | 500 | 97 | 80 | 70 | 58 | Fantina |  |
 | Sudowoodo | Rock | -2.96 | -1.49 | 450 | 85 | 115 | 80 | 30 | Fantina |  |
 | Golem | Rock/Ground | -3.18 | -1.56 | 520 | 85 | 140 | 65 | 45 | Wake |  |
-| Jynx | Ice/Psychic | -4.35 | -4.76 | 495 | 65 | 57 | 113 | 95 | Fantina | Snow Cloak (counted); Dry Skin (hidden, -3.4) |
-| Mr. Rime | Ice/Psychic | -4.35 | -4.76 | 520 | 80 | 75 | 100 | 70 | Wake |  |
-| Glalie | Ice/Rock | -4.89 | -3.58 | 520 | 80 | 80 | 80 | 100 | Wake | Solid Rock (one slot, -1.8) |
+| Jynx | Ice/Psychic | -4.37 | -4.76 | 495 | 65 | 57 | 113 | 95 | Fantina | Dry Skin (hidden, -3.5) |
+| Mr. Rime | Ice/Psychic | -4.37 | -4.76 | 520 | 80 | 75 | 100 | 70 | Wake |  |
+| Glalie | Ice/Rock | -4.92 | -3.58 | 520 | 80 | 80 | 80 | 100 | Wake | Solid Rock (one slot, -1.9) |
 
 ## How to run it
 
