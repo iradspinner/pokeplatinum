@@ -1,8 +1,102 @@
-# Byron: Ian's redraft, and why Galvantula stays
+# Byron: Ian's redraft and its last looks
+
+Ian redrafted Byron (Canalave Gym, cap 53) himself on 2026-11-02, and the scorer read it at 97, 96 and 100 percent won over goal 3's three boxes, with 2.27, 1.71 and 1.17 faints a fight (run `byron-ian-64ad14736`). Today's Byron read 100 with 0.7 faints. Ian, 2026-11-02: "I genuinely don't think I could easily conceive a harder team than the one I made (improving Kartana's moves and maybe adding magearna excepted)." This page answers those two last looks. Under the ruling of 2026-11-02 the scorer is a ceiling and a boss need only be clearly harder than before, so faints a fight count here as much as the percent won. No trainer file changes until Ian picks. No scorer reading was run, and the simulator was not touched.
+
+## Summary
+
+Both looks make Byron harder, and they make it clearly harder together. Kartana's best new set (Sacred Sword, Leaf Blade, Night Slash, Aerial Ace, Adamant) adds about half a faint a fight, nearly all of it on box 2. Magearna in Metagross's place adds about a quarter of a faint on its own. The two together read 89 percent won on boxes 1 and 2, with 3.11 and 2.84 faints a fight, against the draft's 97 and 96 with 2.27 and 1.71; their box 3 was still running when this page was written, and the Overseer adds it from the check's file.
+
+The counterpiece check, the draft against the sixes the scorer chose to beat it (won, faints and clean in percent and faints a fight, 75 fights a box at real odds):
+
+| Version | Box 1 (Turtwig) | Box 2 (Scorbunny) | Box 3 (Piplup) | All three |
+|---|---|---|---|---|
+| Ian's draft, the reading itself | 97, 2.27, 1 | 96, 1.71, 23 | 100, 1.17, 0 | 98, 1.72, 8 |
+| Kartana K1 | 97, 2.29, 0 | 81, 3.23, 4 | 99, 1.15, 0 | 92, 2.22, 1 |
+| Kartana K2 | 97, 2.53, 0 | 88, 2.73, 3 | 100, 1.55, 1 | 95, 2.27, 1 |
+| Magearna for Metagross | 93, 2.56, 1 | 97, 1.96, 15 | 100, 1.49, 19 | 97, 2.00, 12 |
+| K2 and Magearna together | 89, 3.11, 0 | 89, 2.84, 5 | running | after box 3 |
+
+Ian's decisions:
+
+1. Kartana's set. (a) K2: Sacred Sword, Leaf Blade, Night Slash, Aerial Ace, Adamant, Focus Sash (recommended). (b) K1: Sacred Sword, Leaf Blade, Smart Strike, Swords Dance, Adamant, Focus Sash. (c) Keep today's set. I recommend K2 over K1 because the two tie on faints over the three boxes (2.27 and 2.22), and K2 is the one harder on box 3 (1.55 faints against 1.15), where its Kartana made 33 knockouts and K1's almost none. K1 leans on box 2 alone.
+2. Magearna in for Metagross. (a) Yes, with Kartana's new set (recommended). (b) Yes, with today's Kartana. (c) No, Metagross stays. I recommend (a): on boxes 1 and 2 the pair reads clearly harder than either change alone, at 89 percent won and about three faints a fight, and Magearna alone adds only a quarter of a faint. Box 3 is still to come.
+
+Either pick of K1 or K2 puts Sacred Sword and Leaf Blade on Kartana's egg list by the egg-list rule; they are its level 60 and 55 moves, and Night Slash, Aerial Ace, Smart Strike and Swords Dance are already in its palette. Magearna's four are all legal at 50 without any change. Every candidate passes the trainer lint.
+
+Ian's answer on the legendary count, 2026-11-03: "This was before we started running into issue pumping up the difficulty, and I consider ultra beasts approximately similar to mythicals; two or 3 in a boss fight is still acceptable." So Magearna beside Kartana and Celesteela, three in all, is within the limit.
+
+Two notes. These rows are on the old type chart, where Steel resists Ghost and Dark; Steel's later chart, landing on `oxide` now, makes both neutral on Steel, which softens Byron a little on every version. And one finding, recorded only: Fleur Cannon's data gives it 100 accuracy, where the later games give 90; whether to change it is the Overseer's call, as its own commit.
+
+Next step. Once Ian picks, the Overseer or a helper writes his pick into `leader_byron.json` with the OxiDex's save, puts the egg moves on Kartana's list, and rebuilds; about half an hour. The check plays the draft's sixes only, with no team search, so a full reading could find a better six; Ian asked for none.
+
+## Kartana
+
+Kartana's job is a fast physical hitter with a Sash, and in the reading it did the least of the six: 4, 15 and 6 knockouts over each box's fights. In all three traced fights it came in late, on Empoleon's Flip Turn or after a faint, used only Brick Break and Aerial Ace, never Swords Dance, and landed its first hit on a Fire type for 34 to 51 percent (Talonflame on box 1, Cinderace on box 2, Salazzle on box 3) before a Fire hit it is four times weak to finished it. Its set reaches too few of the sixes: on the calculator Ian's set two-hits 3, 1 and 3 of each box's six members at the lowest roll.
+
+| Set | Two-hits, box 1, 2, 3 | Knock-outs in one hit | Kartana's knockouts in the check |
+|---|---|---|---|
+| Today's | 3, 1, 3 | Houndoom, Heracross | 4, 15, 6 |
+| K1 | 4, 5, 4 | Luxray, Houndoom, Manaphy, Wailord, Lucario | 5, 29, 0 |
+| K2 | 4, 6, 5 | the same five and Heracross, and Delphox at the top roll | 5, 56, 33 |
+
+Sacred Sword replaces Brick Break: 90 power against 75, and it ignores Acid Armor, Iron Defense and Bulk Up. It knocks out Luxray (101 to 121), Houndoom (157 to 185) and Lucario (121 to 143), and takes 77 to 92 from Bastiodon. Leaf Blade is the Grass hit the set lacked: Manaphy 110 to 130 and Wailord 115 to 137, and the trainer AI then sends Kartana in against both on box 2, where it was sent in against nothing before. Night Slash, K2's third, hits Delphox for 89 to 105 and Rotom for 78 to 92, and Aerial Ace stays for Heracross (144 to 170) and Hariyama. K1 keeps Smart Strike and Swords Dance in their place; Smart Strike has few targets in these boxes, and the AI never chose Swords Dance in a trace.
+
+Impish raises Defense and lowers Special Attack, which Kartana never uses. The Defense buys almost nothing here: what kills Kartana is a Fire hit it is four times weak to, and the Sash covers the first. Adamant, free in the team, adds a tenth to every hit, and it is what keeps the Luxray knockout. Naive, the only free Speed nature (Jolly is Empoleon's and Hasty Galvantula's), puts Kartana at 144 Speed against 131, past Cinderace (139) and Salazzle (136) but not Talonflame (146), and costs that tenth; with the Sash and the Fire hits it meets, moving first gains little.
+
+## Magearna
+
+Set: Magearna, level 50, Soul-Heart, Sitrus Berry, Modest; Fleur Cannon, Flash Cannon, Thunderbolt, Calm Mind, in Metagross's place as the lead. It is in Oxide's species data (Steel and Fairy, 80, 95, 115, 130, 115, 65). Fleur Cannon is its level 49 move, with the same battle effect as Overheat (the user's Special Attack down two), which the engine and the simulator both run; Flash Cannon, Thunderbolt and Calm Mind are TMs 91, 24 and 04. Sitrus Berry and Modest repeat nothing in the team.
+
+Which member it replaces was judged by each member's job in the reading. Galvantula (the Water and Flying answer, with Sticky Web) and Empoleon (the Flip Turn pivot) stay by Ian's answers of 2026-11-02, Celesteela is the ace, and Kartana is the other look. Hisuian Goodra is the team's bulk against Fire: Earthquake knocks out Houndoom and Magmar, Fire hits it for 24 to 58 percent, and it made 33 knockouts on box 1; Magearna has nothing for Fire and is weak to it. Metagross leads with Stealth Rock, Earthquake and Explosion, and its lead is the job done worst: the player's Fire lead beat it on turn one or two in two traces of three (Houndoom's Flamethrower does 98 to 116 percent to it), and it made 9, 11 and 6 knockouts. Magearna has the same base stat total of 600 and takes Metagross's level, so the swap weighs the same by stats. It takes 61 to 74 percent from the same Fire hits, and Fleur Cannon knocks out Luxray, Heracross and Hariyama and two-hits Houndoom, Lucario, Vikavolt, Rotom and Manaphy. What it gives up is Stealth Rock and the Explosion threat, which matter against these Fire-heavy sixes.
+
+On its own Magearna moves box 1 (93 won, 2.56 faints) and adds about a quarter of a faint on boxes 2 and 3 at an unchanged percent won, with more clean wins there (15 and 19 against 23 and 0). It made 7, 0 and 12 knockouts.
+
+## The boxes and the sixes that played
+
+Every row on this page is the same three boxes and the same three sixes, those the scorer chose against Ian's draft in run `byron-ian-64ad14736`; each six plays with that reading's moves and items.
+
+Box 1 (Turtwig) holds 85 catches, counting each held-back version apart, from 58 lines: Torterra, Whiscash, Luxray, Staraptor, Bibarel, Dustox, Nidorino, Pawmo, Corviknight, Vullaby, Crobat, Talonflame, Probopass, Seaking, Quagsire, Kingler, Tentacruel, Cherrim, Sharpedo, Plusle, Leavanny, Lombre, Ninetales-Alola, Abomasnow, Vespiquen, Gengar, Togetic, Bastiodon, Garganacl, Sylveon, Carbink, Lurantis, Granbull, Glimmora, Crawdaunt, Dhelmise, Floette, Lickilicky, Golem, Arboliva, Drifblim, Jynx, Crustle, Palossand, Altaria, Grapploct, Tangrowth, Seadra, Manaphy, Pachirisu, Jellicent, Houndoom, Magmar, Cinderace, Lumineon, Metagross, Toxapex, Tsareena.
+
+| The six of box 1 | Moves | Item |
+|---|---|---|
+| Luxray | Wild Charge, Fire Fang, Crunch, Double Kick | Black Glasses |
+| Talonflame | Flare Blitz, Tailwind, Aerial Ace, U-turn | Sitrus Berry |
+| Houndoom | Flamethrower, Nasty Plot, Dark Pulse, Mud Shot | Sitrus Berry |
+| Magmar | Flamethrower, Karate Chop, Confuse Ray, Lava Plume | Sitrus Berry |
+| Cinderace | Blaze Kick, Jump Kick, Super Fang, U-turn | Sitrus Berry |
+| Metagross | Hammer Arm, Psychic Fangs, Iron Defense, Take Down | Mind Plate |
+
+Box 2 (Scorbunny) holds 94 catches, counting each held-back version apart, from 59 lines: Cinderace, Whiscash, Staraptor, Masquerain, Lombre, Bibarel, Orbeetle, Liepard, Nidorino, Vullaby, Crobat, Rapidash, Donphan, Seaking, Garganacl, Lumineon, Tentacruel, Vespiquen, Arboliva, Tsareena, Leavanny, Primarina, Ninetales-Alola, Bronzong, Nuzleaf, Rotom, Togetic, Bastiodon, Onix, Sylveon, Glimmora, Heracross, Granbull, Glalie, Pachirisu, Gothitelle, Floette, Murkrow, Golem, Weavile, Mienshao, Rhydon, Hippowdon, Crustle, Absol, Araquanid, Quagsire, Greninja, Seadra, Manaphy, Pikachu, Jellicent, Gliscor, Delphox, Empoleon, Gastrodon, Mantine, Wailord, Palossand.
+
+| The six of box 2 | Moves | Item |
+|---|---|---|
+| Cinderace | Blaze Kick, Jump Kick, Taunt, Super Fang | Sitrus Berry |
+| Rapidash | Overheat, Drill Run, Double Kick, Take Down | Sitrus Berry |
+| Heracross | Close Combat, Rock Tomb, Bulk Up, Pin Missile | Fist Plate |
+| Manaphy | Aura Sphere, Bubble Beam, Icy Wind, Acid Armor | Mystic Water |
+| Delphox | Flamethrower, Will-O-Wisp, Mud Shot, Psyshock | Mind Plate |
+| Wailord | Water Spout, Iron Head, Astonish, Rest | Sitrus Berry |
+
+Box 3 (Piplup) holds 89 catches, counting each held-back version apart, from 59 lines: Empoleon, Seaking, Corviknight, Orbeetle, Dubwool, Bibarel, Nidorino, Machamp, Whiscash, Vullaby, Crobat, Hariyama, Onix, Roselia, Golem, Kingler, Tentacruel, Pachirisu, Pawmo, Vespiquen, Breloom, Lombre, Mothim, Carbink, Vikavolt, Rotom, Togetic, Bastiodon, Salazzle, Leafeon, Crustle, Leavanny, Granbull, Bronzong, Gothitelle, Sinistea, Floette, Happiny, Cofagrigus, Delphox, Drifblim, Masquerain, Hippowdon, Palossand, Absol, Araquanid, Quagsire, Jellicent, Arboliva, Manaphy, Skitty, Milotic, Lucario, Crawdaunt, Cinderace, Octillery, Metagross, Seadra, Toucannon.
+
+| The six of box 3 | Moves | Item |
+|---|---|---|
+| Hariyama (Makuhita held to 43) | Close Combat, Rock Tomb, Belly Drum, Reversal | Sitrus Berry |
+| Vikavolt | Discharge, Bug Buzz, Mud Shot, Sticky Web | Silver Powder |
+| Rotom | Discharge, Signal Beam, Uproar, Substitute | Magnet |
+| Bastiodon | Rock Blast, Bulldoze, Hard Press, Taunt | Rock Incense |
+| Salazzle | Flamethrower, Toxic, Dragon Rage, Mud Shot | Sitrus Berry |
+| Lucario | Close Combat, Swords Dance, Bone Rush, Dragon Pulse | Fist Plate |
+
+## How the numbers were made
+
+The counterpiece check (`tools/oxide/balance/plcounter.py`, on `overseer-counterpiece`) played each candidate against run `byron-ian-64ad14736`'s own boxes and sixes, one trial on the reading's dice, 75 fights a box at real odds and 25 very unlucky, with no team search. Each candidate's tree was made by `plcounter tree` from `~/oxide-trials/goal3/tree-byron-ian` (`tree-byron-last-k1`, `-k2`, `-mag`, `-k2-mag`), and each ran under `tools/oxide/capped --max 10G` with 8 processes, two at a time. The results are `~/oxide-trials/goal3/counterpiece/byron-ian-64ad14736-last-<name>.json`. The calculator rows and the trainer AI's replacement rule came from the scorer's own state for the same boxes, with each party swapped in memory (`~/oxide-trials/goal3/byron-last-looks/calc.py`, `cands.py`, `digest.py`); nothing wrote to `res/`. Legality is from the OxiDex's lists and the Kaizo study's checker, and each candidate file passes the trainer lint.
+
+## The record: the Galvantula question of 2026-11-02
 
 Ian redrafted Byron (Canalave Gym, cap 53) himself on 2026-11-02. This branch, `overseer-byron-ian`, holds his six for the full scorer reading he asked for. Ian's last answer, on 2026-11-02 after the Vikavolt rows below: "Galvantula, change Deimos." Byron keeps Galvantula exactly as he drafted it, and Officer Deimos's Pal Park lead changes instead, on its own branch (`overseer-deimos-lead`). His six is in the branch's file as he drafted it, and the Overseer reads it as it stands (Ian: "No, read it as it is", to tuning box 2 first). This page keeps the replacement question and the Vikavolt check as the record of why Vikavolt was not taken. No scorer reading was run here and the simulator was not touched.
 
-## Summary
+### Summary
 
 Ian's answers of 2026-11-02:
 
@@ -49,7 +143,7 @@ Action items for Ian on Byron: none. His answers are applied, Galvantula is in t
 
 Next step. The Overseer runs the full scorer reading of this six on this branch, two and a half to four hours of machine time.
 
-## The slot's job
+### The slot's job
 
 Galvantula is the team's answer to the Water and Flying walls. Against every likely answer from goal 3's three boxes at 53 (`byron-redesign.md` has how they are chosen), the trainer AI's own replacement rule, `fightai.replacement`, sends Galvantula in against 10 or 11 answers a box, whichever other member leaves: Manaphy, Corviknight, Quagsire, Whiscash, Kingler, Jellicent, Empoleon, Luxray and the Flying types among them. Its Thunder, Energy Ball and Bug Buzz hit each of those for 51 to 153 percent at the lowest roll, and at 143 Speed it moves first against all but one to four Pokemon of each box. Sticky Web then cuts every switch-in's Speed by a stage. The screen and the calculator do not see that, though it may be much of what the slot gives the rest of the six: after one stage down, Manaphy (118 to 79), Houndoom (124 to 83), Luxray (113 to 75), Delphox (123 to 82) and Rapidash (129 to 86) fall under Metagross (90) and Empoleon (91), and Cinderace (139 to 93) only just stays above them.
 
@@ -59,7 +153,7 @@ What a replacement must keep, then: an Electric hit the Water walls cannot answe
 
 Left out: Forretress has hazards and Thunder Wave but no Electric hit, and is four times weak to Fire, which every box carries. Probopass has Thunderbolt and Thunder Wave, but is four times weak to Ground and Fighting and moves at 40 base Speed. Klefki and Heatran are the old team's, which Ian replaced. Durant is not in Oxide. Magearna, Jirachi and Registeel, weighed by their stats as Ian ruled on 2026-11-01, would be a fifth member of 570 or more, and none answers the Water walls better than Magnezone or Vikavolt.
 
-## The options on the cheap checks
+### The options on the cheap checks
 
 Each option was swapped into Ian's six in memory and checked on the same three boxes: each member's best hit on each likely answer and the answer's best hit back, from the scorer's own calculator rows with Byron's items and the player's left out; who the replacement rule sends in, actually run on a battle built by `perfectline.make_battle`; and the matchup screen. A meeting is "beats" when the member two-hits the answer and takes under half back, or one-hits it moving first; "trades" when both sides take half or more.
 
@@ -99,7 +193,7 @@ Speed neighbours, within three points, on each box:
 
 Togedemaru's Adamant ties Manaphy at 118; Hasty, freed by Galvantula, would put it at 129.
 
-## The sets
+### The sets
 
 Each set is legal at 51 on both checkers (the OxiDex's lists and the Kaizo checker), the trainer lint finds nothing in a file with it in place, and none repeats an item or a nature of the other five. Occa Berry is Galvantula's own, and every option is weak to Fire.
 
@@ -109,7 +203,7 @@ Each set is legal at 51 on both checkers (the OxiDex's lists and the Kaizo check
 | Magnezone | Levitate | Occa Berry | Modest | Thunderbolt, Flash Cannon, Thunder Wave, Tri Attack |
 | Togedemaru | Sturdy (hidden) | Occa Berry | Adamant | Nuzzle, Zing Zap, Fake Out, Electroweb |
 
-## What this branch holds and what was checked
+### What this branch holds and what was checked
 
 Ian's draft is saved into `res/trainers/data/leader_byron.json` through the OxiDex's own save, `tools.oxide.encounters.trainers.save`, which lints the file and records the change in the divergence registry. The file matches his snapshot field for field.
 
@@ -131,7 +225,7 @@ Checked on this branch:
 | `make rom` | builds |
 | The gate, `integrate.sh --verify-only` | 53 checks pass with no warning; sync-docs fails, since it refuses to mirror from any branch but `oxide`, by design |
 
-## How the numbers were made
+### How the numbers were made
 
 The cheap checks ran in this branch's worktree, on the tree of `origin/oxide` at 9447ef458, with the redesign helper's `shape.py` and its likely answers (`walls.json`, from the run `byron-redesign-study`, seeds 1 to 3 at 53), copied to the job folder `/home/ian/.claude/jobs/382760ce/tmp/byron-ian/` with this page's parties in `shapes.py`; `digest.py` reads their output. None writes to `res/`. Legality comes from the OxiDex's `learnsets.lists` and the Kaizo checker (`oxide.py check 53`, with `OXIDE_OLD_RES` set to an export of `res/` from before the TM pass).
 
