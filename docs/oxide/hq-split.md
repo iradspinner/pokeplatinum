@@ -30,22 +30,30 @@ Somnu, Moira, Tyche and Hermes are left out. Somnu and Moira have fought three t
 
 The gauntlets. Section 3 is the basement run, from the warehouse to the Galactic Key: its warp back to the warehouse refuses until the key is held. Section 6 is the tower, from the lobby's stairs to 4F, with section 6 of this morning folded into it, since one section for one climb is cleaner. It refuses the lobby's stairs, closes on arrival at 4F, and the nap room's bed refuses while it is open. Sections 4 and 5 are empty.
 
-Ian's decisions:
+Ian's answers (2026-11-02), as applied:
 
-1. The officers: take the six drafts as they stand, or redraft any of them in his team builder (his choice of 2026-11-02 was to redraft). Recommended: look first at Hesperid, whose draft reads easy on the probe (104 wins of 150) though his theme asks for the weirder and harder, and at Argo, easier still (124).
+1. The six officer drafts land as placeholders; Ian redrafts them in his OxiDex, Hesperid first, then Argo.
+2. Tyche and Hermes stay out of the HQ.
+3. Saturn 2's Uxie takes Yawn in place of Thunder Wave (on its lists at 58; Saturn's six still hold six items and six natures).
+4. The nap room's line stands: "There's no time to rest now! / Press on, or beat the Trainers here."
+5. Hesperid is male, as at Lake Valor and in the HQ draft; his Mt. Coronet 6F file's class and sprite now match.
+6. Scientist Oskar's Aerodactyl stays Hasty.
+
+The decisions as they were put:
+
+1. The officers: take the six drafts as they stand, or redraft any of them in his team builder. Recommended: look first at Hesperid, whose draft reads easy on the probe (104 wins of 150) though his theme asks for the weirder and harder, and at Argo, easier still (124).
 2. Tyche and Hermes: leave them out of the HQ (recommended, for the reasons above), or add them as an optional double, which keeps the count at 15.
-3. Saturn 2's Uxie leads with Thunder Wave in about three fights of four, and in his permanent Trick Room a paralysed Pokemon moves sooner, not later. Swap it for Yawn (recommended: reads 33 wins against today's 49, and its sleep threat pushes switches into Stealth Rock), for Memento (43), or keep it? This is a set change, so it is his.
-4. The nap room's refusal line: "There's no time to rest now! / Press on, or beat the Trainers here." (recommended, after the approved gauntlet wording), or his own words.
-5. Hesperid's sprite: the male grunt's, as at Lake Valor (drafted so), or the female grunt's, as his Mt. Coronet 6F file has it? The two files disagree today.
-6. Scientist Oskar's Aerodactyl, the split's only 59, is Hasty, and outspeeds every likely box answer at the cap. Keep it (recommended: it is the last ordinary fight before Saturn), or a slower nature.
+3. Saturn 2's Uxie led with Thunder Wave in about three fights of four, and in his permanent Trick Room a paralysed Pokemon moves sooner, not later. Swap it for Yawn (recommended, read 33 wins against 49 with Thunder Wave), for Memento (43), or keep it?
+4. The nap room's refusal line, as drafted (recommended), or his own words.
+5. Hesperid's sprite: the male grunt's, as at Lake Valor, or the female grunt's, as his Mt. Coronet 6F file had it.
+6. Oskar's Hasty Aerodactyl, the split's only 59, outspeeds every likely box answer at the cap: keep it (recommended), or a slower nature.
 
 Next steps:
 
 | Step | Who | Time |
 |---|---|---|
-| Answer the six questions, and redraft any officer | Ian | 15 minutes, plus any redraft |
-| Apply the answers on this branch, rerun the checks | a helper | about 45 minutes |
-| Land the branch with `merge-branch.sh`, then `sync-docs.sh` on oxide; retire the tracker's Scheduled entries for the HQ's Capsule and the cap push, which this pass settles | the Overseer | 30 minutes |
+| Redraft Hesperid, then Argo, in the OxiDex | Ian | his time |
+| Land the branch with `merge-branch.sh`, then `sync-docs.sh` on oxide | the Overseer | 30 minutes |
 | Walk the split with the test kit, or a save after Candice | Ian | 45 minutes |
 
 ## The mandatory fights
@@ -181,7 +189,7 @@ The old flags the base ROM gave these grunts (Weather on two sun grunts with Sun
 
 ## The officers' drafts
 
-Ian chose to redraft from a helper's drafts (2026-11-02). Flags beyond the base: Harassment for Phobos and Deimos, whose ideas are status and speed drops; Check HP and Baton Pass for Hesperid; none for the rest. Each keeps its theme in `boss-shapes.md` and rises from its last fight; each member holds its own item and has its own nature. Their aces sit at 57 or 58, two or three under the cap, as the boss-level ruling sets for mini-bosses. Each pair fields six between them. The four fights are in `fights.json` as `phobos_deimos_3`, `boreas_laverna_2`, `argo_hq` and `hesperid_hq`, the pairs as doubles, so the OxiDex lists them; Argo's and Hesperid's are named for the HQ, not numbered, since their Mt. Coronet 6F fights already carry the number 2 in the docs.
+**These six teams are placeholders.** Ian chose to redraft from a helper's drafts (2026-11-02), and they land as they stand until he does, Hesperid first, then Argo. Flags beyond the base: Harassment for Phobos and Deimos, whose ideas are status and speed drops; Check HP and Baton Pass for Hesperid; none for the rest. Each keeps its theme in `boss-shapes.md` and rises from its last fight; each member holds its own item and has its own nature. Their aces sit at 57 or 58, two or three under the cap, as the boss-level ruling sets for mini-bosses. Each pair fields six between them. The four fights are in `fights.json` as `phobos_deimos_3`, `boreas_laverna_2`, `argo_hq` and `hesperid_hq`, the pairs as doubles, so the OxiDex lists them; Argo's and Hesperid's are named for the HQ, not numbered, since their Mt. Coronet 6F fights already carry the number 2 in the docs.
 
 ### Officer Phobos
 
@@ -240,12 +248,12 @@ Notes for the redraft. Phobos and Deimos keep Granbull, Mawile, Arcanine, Galvan
 
 ## Cyrus 2 and Saturn 2
 
-Ian's levels (answer 6), each team in Mars 1's shape under its ace, with the repeats fixed and no other set change:
+Ian's levels (answer 6), each team in Mars 1's shape under its ace, with the repeats fixed, and Uxie's Yawn by Ian's answer:
 
 | Fight | Levels | Fixes |
 |---|---|---|
 | Cyrus 2 | Skarmory, Magnezone, Dusknoir, Houndoom 57; Suicune 58; Weavile 59 | Dusknoir holds a Rocky Helmet for its second Leftovers |
-| Saturn 2 | Uxie, Lickilicky, Wobbuffet, Wailord 58; Rhyperior 59; Toxicroak 60 | Wobbuffet holds a Sitrus Berry for its second Leftovers; the natures are now Relaxed (Uxie), Sassy (Lickilicky), Impish (Wobbuffet), Quiet (Wailord), Adamant (Rhyperior) and Brave (Toxicroak), the four that lower Speed kept on the members fastest by base Speed, since his fight is in a permanent Trick Room |
+| Saturn 2 | Uxie, Lickilicky, Wobbuffet, Wailord 58; Rhyperior 59; Toxicroak 60 | Uxie's Thunder Wave becomes Yawn (Ian's answer 3); Wobbuffet holds a Sitrus Berry for its second Leftovers; the natures are now Relaxed (Uxie), Sassy (Lickilicky), Impish (Wobbuffet), Quiet (Wailord), Adamant (Rhyperior) and Brave (Toxicroak), the four that lower Speed kept on the members fastest by base Speed, since his fight is in a permanent Trick Room |
 
 `fights.json` gives their aces as 59 and 60, where it gave the sheet's 58, and `test_b1` pins both. Every move is still legal at its new level.
 
@@ -260,15 +268,15 @@ Each cell is the player's wins in 150 rough fights against the matchup screen's 
 | Candice (56), in the gym's hail | 43, 37 | 51, 56 | 48, 54 | 48 | 17.55, 21.05, 20.05 |
 | Mars 2 (54) | 93, 114 | 42, 67 | 67, 42 | 71 | 16.50, 16.80, 16.65 |
 | Cyrus 2 (59) | 70, 87 | 66, 49 | 60, 59 | 65 | 18.10, 19.15, 17.95 |
-| Saturn 2 (60), in his permanent Trick Room | 39, 35 | 78, 35 | 59, 47 | 49 | 19.60, 19.10, 18.90 |
-| Saturn 2, Uxie's Thunder Wave swapped for Yawn | 31, 33 | 57, 22 | 27, 27 | 33 | as above |
+| Saturn 2 (60), in his permanent Trick Room, with Thunder Wave as drafted | 39, 35 | 78, 35 | 59, 47 | 49 | 19.60, 19.10, 18.90 |
+| Saturn 2 with Yawn, as Ian chose | 31, 33 | 57, 22 | 27, 27 | 33 | as above |
 | Saturn 2, Uxie's Thunder Wave swapped for Memento | 47, 34 | 70, 32 | 33, 40 | 43 | as above |
 | Officer Argo (58) | 126, 136 | 120, 125 | 122, 112 | 124 | 18.40, 18.90, 18.40 |
 | Officer Hesperid (58) | 106, 84 | 121, 105 | 100, 106 | 104 | 19.05, 19.10, 19.70 |
 
-How far to trust them (`probe-ranking.md`): the probe gets the two ends right and fails in the middle. It does not order fights within about 35 wins of each other, so Saturn 2, Candice, Cyrus 2 and the Uxie swaps cannot be ordered among themselves; Saturn 2 is not shown to be harder or easier than Candice. Argo at 124 sits with Moira 1 (122 on the probe, 100 percent won by the scorer), and Hesperid at 104 between Moira 1 and Somnu 1 (81, 94 percent won), so both are likely near or above 95 percent won. Officers may near 100 so long as their deaths are not trivial (the greedy player loses 3.4 to 4.2 Pokemon a fight against Argo and 4.4 to 5.1 against Hesperid), and none may read harder than its commander, which neither does; but Hesperid's theme asks for the weirder and harder, so decision 1 points there first. The probe's bias runs the same way for Hesperid: it reads status and confusion as harder than a careful player finds them, so his Teeter Dance team is likely easier still in play. The Uxie swaps rest on the same bias, since the probe player never switches out of Yawn.
+How far to trust them (`probe-ranking.md`): the probe gets the two ends right and fails in the middle. It does not order fights within about 35 wins of each other, so Saturn 2, Candice, Cyrus 2 and the Uxie swaps cannot be ordered among themselves; Saturn 2 is not shown to be harder or easier than Candice. Argo at 124 sits with Moira 1 (122 on the probe, 100 percent won by the scorer), and Hesperid at 104 between Moira 1 and Somnu 1 (81, 94 percent won), so both are likely near or above 95 percent won. Officers may near 100 so long as their deaths are not trivial (the greedy player loses 3.4 to 4.2 Pokemon a fight against Argo and 4.4 to 5.1 against Hesperid), and none may read harder than its commander, which neither does; but Hesperid's theme asks for the weirder and harder, which is why Ian redrafts him first. The probe's bias runs the same way for Hesperid: it reads status and confusion as harder than a careful player finds them, so his Teeter Dance team is likely easier still in play. The Uxie swaps rest on the same bias, since the probe player never switches out of Yawn.
 
-What each piece does. Cyrus 2's Skarmory lays Spikes first in about half its fights, then Stealth Rock; Dusknoir makes the most knockouts (166 to 283 a six over 150 fights), then Magnezone (148 to 188); Weavile, his ace, makes 74 to 120. Saturn 2's Rhyperior makes the most (165 to 382), then Wailord (150 to 220); under the room Wailord, at Speed 25, moves first. His Uxie leads with Thunder Wave in 95 to 118 fights of 150, and paralysis halves the target's Speed, which in a permanent Trick Room makes it move sooner: that is decision 3. With Yawn, Uxie lays Stealth Rock first instead and the fight reads 16 wins harder; with Memento, 6. Argo's Claydol lays Stealth Rock first in two fights of three and his Polteageist ace makes the most knockouts (124 to 188), its White Herb eaten after Shell Smash in most fights. Hesperid's pieces all fire: Spinda's Teeter Dance 284 to 449 times a six, confusing 174 to 243 times; Baton Pass 87 to 126; the Petaya Berry eaten 14 to 63 times; Explosion 11 to 29, held by Check HP; Pinsir makes the most knockouts (101 to 199); but Spinda itself makes 8 to 16.
+What each piece does. Cyrus 2's Skarmory lays Spikes first in about half its fights, then Stealth Rock; Dusknoir makes the most knockouts (166 to 283 a six over 150 fights), then Magnezone (148 to 188); Weavile, his ace, makes 74 to 120. Saturn 2's Rhyperior makes the most (165 to 382), then Wailord (150 to 220); under the room Wailord, at Speed 25, moves first. His Uxie leads with Thunder Wave in 95 to 118 fights of 150, and paralysis halves the target's Speed, which in a permanent Trick Room makes it move sooner, so Ian swapped it for Yawn. With Yawn, Uxie lays Stealth Rock first instead and the fight reads 16 wins harder; with Memento, 6. Argo's Claydol lays Stealth Rock first in two fights of three and his Polteageist ace makes the most knockouts (124 to 188), its White Herb eaten after Shell Smash in most fights. Hesperid's pieces all fire: Spinda's Teeter Dance 284 to 449 times a six, confusing 174 to 243 times; Baton Pass 87 to 126; the Petaya Berry eaten 14 to 63 times; Explosion 11 to 29, held by Check HP; Pinsir makes the most knockouts (101 to 199); but Spinda itself makes 8 to 16.
 
 The sixes that answer them. Against Cyrus 2 and Saturn 2 the screen's sixes lean on Corviknight (8 of the 12 sixes read), Bastiodon (7), Jellicent and Crobat (6 each); against Argo on Mandibuzz, against Hesperid on Tentacruel. The two officer doubles could not be probed.
 
@@ -282,7 +290,7 @@ Eight fast answers a box is likely to hold, at IV 15 and neutral natures:
 | 58 | Crobat 164, Talonflame 159, Weavile 158, Greninja 155, Mienshao 135, Staraptor 135, Garchomp 132, Lucario 118 |
 | 60 | Crobat 170, Talonflame 165, Weavile 164, Greninja 160, Mienshao 140, Staraptor 140, Garchomp 136, Lucario 122 |
 
-Each team's fastest member, at its own IVs and nature, fastest first: Oskar's Aerodactyl 191; Boreas's Talonflame 179; 3F's Grunt 3's Swellow and B1F's grunt's Crobat 178; Fredrick's Alakazam 172; B2F's Grunt 1's Salazzle and Deimos's Froslass 162; Hesperid's Sceptile 159; 2F's Grunt 3's Mismagius and the 1F grunt's Mienshao 154; 3F's Grunt 4's Galarian Mr. Mime 149; 2F's Grunt 2's Flygon 147; 3F west's Grunt 1's Gengar 143; Darrius's Rotom 136; B2F's Grunt 2's Garchomp 134; Patrick's Flygon 132; Phobos's Arcanine 130; 3F west's Grunt 2's Kommo-o 117; Argo's Claydol 111; 2F west's Grunt 1's Breloom 100; the storage-key grunt's Clefable 92; Gunnar's Sandslash 91, doubled in his sand; Laverna's Incineroar 91; Alexander's Crustle 77, doubled after Shell Smash. So five teams have a member over every answer at 58, Oskar's Aerodactyl over every answer at 60 (decision 6), and most sit under the box's fast answers, as in Candice's split. In battle, Cyrus 2's Weavile runs at 187 and his Houndoom at 156; Saturn 2's six run from Wailord's 25 to Uxie's 119, all slower than the box's fast answers, which his Trick Room turns to his side.
+Each team's fastest member, at its own IVs and nature, fastest first: Oskar's Aerodactyl 191; Boreas's Talonflame 179; 3F's Grunt 3's Swellow and B1F's grunt's Crobat 178; Fredrick's Alakazam 172; B2F's Grunt 1's Salazzle and Deimos's Froslass 162; Hesperid's Sceptile 159; 2F's Grunt 3's Mismagius and the 1F grunt's Mienshao 154; 3F's Grunt 4's Galarian Mr. Mime 149; 2F's Grunt 2's Flygon 147; 3F west's Grunt 1's Gengar 143; Darrius's Rotom 136; B2F's Grunt 2's Garchomp 134; Patrick's Flygon 132; Phobos's Arcanine 130; 3F west's Grunt 2's Kommo-o 117; Argo's Claydol 111; 2F west's Grunt 1's Breloom 100; the storage-key grunt's Clefable 92; Gunnar's Sandslash 91, doubled in his sand; Laverna's Incineroar 91; Alexander's Crustle 77, doubled after Shell Smash. So five teams have a member over every answer at 58, Oskar's Aerodactyl over every answer at 60 (kept Hasty, Ian's answer 6), and most sit under the box's fast answers, as in Candice's split. In battle, Cyrus 2's Weavile runs at 187 and his Houndoom at 156; Saturn 2's six run from Wailord's 25 to Uxie's 119, all slower than the box's fast answers, which his Trick Room turns to his side.
 
 ## The census
 
