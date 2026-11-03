@@ -1,5 +1,28 @@
 # The tracker's older questions, settled or put as decisions (2026-11-02)
 
+## Ian's answers (2026-11-02)
+
+Ian answered all sixteen open questions on 2026-11-02. The numbers are the sheet's.
+
+1. The AI and held items: only the moves that fail (Safety Goggles against powder, the Air Balloon in the AI's Ground checks). Being built on `overseer-ai-items`.
+2. The plain-English account of the AI: after alpha 1 (a Scheduled entry in the tracker).
+3. Element 7's placeholder prices: they stand as they are.
+4. The fourteen item descriptions: they stand as they are.
+5. The seventeen dialogue drafts: they all stand.
+6. The regional dex order: the question is closed, and the national dex stays.
+7. The zone-by-zone land pass and the water re-authoring: both dropped; today's tables stand.
+8. The honey tree tables: they stand as drafted.
+9. The Box sim's line ratings: kept as the tab's interim until the encounter worth is built at Ian's word.
+10. The Amity Square and Snowpoint casts: they stand.
+11. The calculator check: done from the alpha's battle recorder as part of Ian's QA checks (five recorded hits compared with the calculator; `ingame-checklist.md`, section 2).
+12. The line tester: Ian looks once now. The check 4 snippet was rerun on 2026-11-02 and still prints Solrock's Stealth Rock 75 and Zen Headbutt 25 percent.
+13. The weather rocks: swap ten now, the list going to Ian first on `overseer-weather-rocks`. Flint's waits for the League's pass, and Moira's on Mt. Coronet 5F for her next pass.
+14. The Kaizo study's retune list: retired, with its Scheduled entry.
+15. Charjabug's Thunder Stone evolution: kept.
+16. The `plgoal3.py` docstring fix: yes. It is done on `overseer-ai-items`.
+
+The nine the sheet found settled or overtaken (Justified and Rattled, Sand Force and Sand Rush, Wonder Room, Octolock and Teatime, the Kaizo study's six decisions, the QA pass's first decision, the four leftover worktrees, the Veilstone Elekid, the Frontier Brain teams) are closed on the tracker. The Elekid's own line closes when `overseer-elekid-gift` lands.
+
 Ian asked on 2026-11-02 to settle the tracker's older open questions, "a lot has been set in stone since then". This sheet takes every question the tracker's "Waiting on Ian" list names that is older than the current split work, follows each to its entry and its archive wording, and checks it against the standing rulings, the landings since it was asked and today's files on `origin/oxide` (9447ef458). The Overseer puts the open ones to Ian in dialogs from the sections below. Nothing in game data, tools or `res/` changed for this sheet.
 
 ## Summary
