@@ -344,6 +344,10 @@ EXPERT_ROWS = [
     ("ChargeTurnWithInvuln, Bounce slower", "Bounce", _t(slower=True, t_types=["Normal"]), 0, 0),
     ("ChargeTurnWithInvuln, Bounce into a Rock type", "Bounce", _t(t_types=["Rock"]), -1, -1),
     ("ChargeTurnWithInvuln, Fly with a Power Herb", "Fly", _t(u_item="Power Herb"), 2, 2),
+    # Snow in place of hail (Ian, 2026-11-03): hail bites no one, so an Ice
+    # user in hail has no reason of its own to fly; a slower one scores 0.
+    ("ChargeTurnWithInvuln, Bounce slower by an Ice type in hail", "Bounce",
+     _t(slower=True, weather="Hail", u_types=["Ice"], t_types=["Normal"]), 0, 0),
     ("FakeOut, First Impression", "First Impression", None, 2, 2),
     ("SpitUp, two Stockpiles", "Spit Up", _t(u_stockpile=2), 2, 0),
     ("Hail, in rain with Blizzard and Ice Body", "Hail",

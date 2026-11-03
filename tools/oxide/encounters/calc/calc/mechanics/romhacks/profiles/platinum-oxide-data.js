@@ -41,57 +41,57 @@ exports.platinumOxideData = {
  ],
  "chartOrder": {
   "Bug": {
-   "Dark": 81,
-   "Fairy": 115,
-   "Fighting": 76,
-   "Fire": 74,
-   "Flying": 78,
-   "Ghost": 80,
-   "Grass": 75,
-   "Poison": 77,
-   "Psychic": 79,
-   "Steel": 82
+   "Dark": 82,
+   "Fairy": 116,
+   "Fighting": 77,
+   "Fire": 75,
+   "Flying": 79,
+   "Ghost": 81,
+   "Grass": 76,
+   "Poison": 78,
+   "Psychic": 80,
+   "Steel": 83
   },
   "Dark": {
-   "Dark": 99,
-   "Fairy": 116,
-   "Fighting": 96,
-   "Ghost": 98,
-   "Psychic": 97
+   "Dark": 100,
+   "Fairy": 117,
+   "Fighting": 97,
+   "Ghost": 99,
+   "Psychic": 98
   },
   "Dragon": {
-   "Dragon": 94,
-   "Fairy": 117,
-   "Steel": 95
+   "Dragon": 95,
+   "Fairy": 118,
+   "Steel": 96
   },
   "Electric": {
-   "Dragon": 21,
-   "Electric": 17,
-   "Flying": 20,
-   "Grass": 18,
-   "Ground": 19,
-   "Water": 16
+   "Dragon": 22,
+   "Electric": 18,
+   "Flying": 21,
+   "Grass": 19,
+   "Ground": 20,
+   "Water": 17
   },
   "Fairy": {
-   "Dark": 108,
-   "Dragon": 107,
-   "Fighting": 106,
-   "Fire": 109,
-   "Poison": 110,
-   "Steel": 111
+   "Dark": 109,
+   "Dragon": 108,
+   "Fighting": 107,
+   "Fire": 110,
+   "Poison": 111,
+   "Steel": 112
   },
   "Fighting": {
-   "Bug": 45,
-   "Dark": 47,
-   "Fairy": 114,
-   "Flying": 43,
-   "Ghost": 119,
-   "Ice": 41,
-   "Normal": 40,
-   "Poison": 42,
-   "Psychic": 44,
-   "Rock": 46,
-   "Steel": 48
+   "Bug": 46,
+   "Dark": 48,
+   "Fairy": 115,
+   "Flying": 44,
+   "Ghost": 120,
+   "Ice": 42,
+   "Normal": 41,
+   "Poison": 43,
+   "Psychic": 45,
+   "Rock": 47,
+   "Steel": 49
   },
   "Fire": {
    "Bug": 6,
@@ -104,96 +104,97 @@ exports.platinumOxideData = {
    "Water": 3
   },
   "Flying": {
-   "Bug": 66,
-   "Electric": 63,
-   "Fighting": 65,
-   "Grass": 64,
-   "Rock": 67,
-   "Steel": 68
+   "Bug": 67,
+   "Electric": 64,
+   "Fighting": 66,
+   "Grass": 65,
+   "Rock": 68,
+   "Steel": 69
   },
   "Ghost": {
-   "Dark": 92,
-   "Ghost": 93,
-   "Normal": 90,
-   "Psychic": 91
+   "Dark": 93,
+   "Ghost": 94,
+   "Normal": 91,
+   "Psychic": 92
   },
   "Grass": {
-   "Bug": 28,
-   "Dragon": 30,
-   "Fire": 22,
-   "Flying": 27,
-   "Grass": 24,
-   "Ground": 26,
-   "Poison": 25,
-   "Rock": 29,
-   "Steel": 31,
-   "Water": 23
+   "Bug": 29,
+   "Dragon": 31,
+   "Fire": 23,
+   "Flying": 28,
+   "Grass": 25,
+   "Ground": 27,
+   "Poison": 26,
+   "Rock": 30,
+   "Steel": 32,
+   "Water": 24
   },
   "Ground": {
-   "Bug": 60,
-   "Electric": 56,
-   "Fire": 55,
-   "Flying": 59,
-   "Grass": 57,
-   "Poison": 58,
-   "Rock": 61,
-   "Steel": 62
+   "Bug": 61,
+   "Electric": 57,
+   "Fire": 56,
+   "Flying": 60,
+   "Grass": 58,
+   "Poison": 59,
+   "Rock": 62,
+   "Steel": 63
   },
   "Ice": {
-   "Dragon": 37,
-   "Fire": 39,
-   "Flying": 36,
-   "Grass": 33,
-   "Ground": 35,
-   "Ice": 34,
-   "Steel": 38,
-   "Water": 32
+   "Dragon": 38,
+   "Fire": 40,
+   "Flying": 37,
+   "Grass": 34,
+   "Ground": 36,
+   "Ice": 35,
+   "Steel": 39,
+   "Water": 33
   },
   "Normal": {
-   "Ghost": 118,
+   "Ghost": 119,
    "Rock": 0,
    "Steel": 1
   },
   "Poison": {
-   "Fairy": 112,
-   "Ghost": 53,
-   "Grass": 49,
-   "Ground": 51,
-   "Poison": 50,
-   "Rock": 52,
-   "Steel": 54
+   "Fairy": 113,
+   "Ghost": 54,
+   "Grass": 50,
+   "Ground": 52,
+   "Poison": 51,
+   "Rock": 53,
+   "Steel": 55
   },
   "Psychic": {
-   "Dark": 72,
-   "Fighting": 69,
-   "Poison": 70,
-   "Psychic": 71,
-   "Steel": 73
+   "Dark": 73,
+   "Fighting": 70,
+   "Poison": 71,
+   "Psychic": 72,
+   "Steel": 74
   },
   "Rock": {
-   "Bug": 88,
-   "Fighting": 85,
-   "Fire": 83,
-   "Flying": 87,
-   "Ground": 86,
-   "Ice": 84,
-   "Steel": 89
+   "Bug": 89,
+   "Fighting": 86,
+   "Fire": 84,
+   "Flying": 88,
+   "Ground": 87,
+   "Ice": 85,
+   "Steel": 90
   },
   "Steel": {
-   "Electric": 102,
-   "Fairy": 113,
-   "Fire": 100,
-   "Ice": 103,
-   "Rock": 104,
-   "Steel": 105,
-   "Water": 101
+   "Electric": 103,
+   "Fairy": 114,
+   "Fire": 101,
+   "Ice": 104,
+   "Rock": 105,
+   "Steel": 106,
+   "Water": 102
   },
   "Water": {
-   "Dragon": 15,
+   "Dragon": 16,
    "Fire": 10,
    "Grass": 12,
-   "Ground": 13,
-   "Rock": 14,
+   "Ground": 14,
+   "Ice": 13,
+   "Rock": 15,
    "Water": 11
   }
  },

@@ -4750,8 +4750,9 @@ Expert_ChargeTurnWithInvuln:
     // - Curse
     // - Leech Seed
     //
-    // If the current weather is Sand or Hail and the attacker's type makes them immune to the
-    // corresponding damage effect, 68.75% chance of score +1.
+    // If the current weather is Sand and the attacker's type makes them immune to its damage,
+    // 68.75% chance of score +1. (Oxide: vanilla did the same for an Ice type in Hail; since
+    // snow took hail's place, Ian, 2026-11-03, hail damages no one, so that branch is gone.)
     //
     // If the attacker is faster than its opponent and the opponent's last-used move is not an
     // always-hit effect (e.g. Aerial Ace), 68.75% chance of score +1.
@@ -4779,7 +4780,6 @@ Expert_ChargeTurnWithInvuln_CheckConditions:
     IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_LEECH_SEED, Expert_ChargeTurnWithInvuln_TryScorePlus1
     LoadCurrentWeather 
     IfLoadedEqualTo AI_WEATHER_SANDSTORM, Expert_ChargeTurnWithInvuln_CheckSandImmuneType
-    IfLoadedEqualTo AI_WEATHER_HAILING, Expert_ChargeTurnWithInvuln_CheckHailImmuneType
     GoTo Expert_ChargeTurnWithInvuln_CompareSpeed
 
 Expert_ChargeTurnWithInvuln_CheckSandImmuneType:
@@ -4787,13 +4787,6 @@ Expert_ChargeTurnWithInvuln_CheckSandImmuneType:
     IfLoadedInTable Expert_ChargeTurnWithInvuln_SandImmuneTypes, Expert_ChargeTurnWithInvuln_TryScorePlus1
     LoadTypeFrom LOAD_ATTACKER_TYPE_2
     IfLoadedInTable Expert_ChargeTurnWithInvuln_SandImmuneTypes, Expert_ChargeTurnWithInvuln_TryScorePlus1
-    GoTo Expert_ChargeTurnWithInvuln_CompareSpeed
-
-Expert_ChargeTurnWithInvuln_CheckHailImmuneType:
-    LoadTypeFrom LOAD_ATTACKER_TYPE_1
-    IfLoadedEqualTo TYPE_ICE, Expert_ChargeTurnWithInvuln_TryScorePlus1
-    LoadTypeFrom LOAD_ATTACKER_TYPE_2
-    IfLoadedEqualTo TYPE_ICE, Expert_ChargeTurnWithInvuln_TryScorePlus1
     GoTo Expert_ChargeTurnWithInvuln_CompareSpeed
 
 Expert_ChargeTurnWithInvuln_CompareSpeed:
