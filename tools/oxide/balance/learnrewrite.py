@@ -380,6 +380,16 @@ IAN_EGG_MOVES = {
     # Incineroar's Thunder Punch is with Litten's entry above.
     "SPECIES_GALARIAN_ZAPDOS": [("MOVE_HOWL", "the egg-list rule (Ian, 2026-10-29): Mars 2's Galarian "
                                               "Zapdos at 52, a draft")],
+    # Saturn 1's first draft (Ian, 2026-11-02, saturn1-check.md), by the
+    # egg-list rule: Mantine's Hurricane goes on Mantyke's list, its line's
+    # first stage. Tropius is a first stage of its own, and its lists are set
+    # by hand (learnsets_by_hand.txt), so its file holds the same two moves.
+    "SPECIES_MANTYKE": [("MOVE_HURRICANE", "the egg-list rule (Ian, 2026-10-29): Saturn 1's Mantine "
+                                           "at 52, a draft")],
+    "SPECIES_TROPIUS": [("MOVE_DRAGON_TAIL", "the egg-list rule (Ian, 2026-10-29): Saturn 1's Tropius "
+                                             "at 52, a draft"),
+                        ("MOVE_TAILWIND", "the egg-list rule (Ian, 2026-10-29): Saturn 1's Tropius "
+                                          "at 52, a draft")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

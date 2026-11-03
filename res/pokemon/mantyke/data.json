@@ -94,7 +94,8 @@
             "MOVE_MIRROR_COAT",
             "MOVE_WATER_SPORT",
             "MOVE_SPLASH",
-            "MOVE_SIGNAL_BEAM"
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_HURRICANE"
         ]
     },
     "evolutions": [
