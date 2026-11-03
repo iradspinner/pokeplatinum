@@ -5,7 +5,7 @@ the placement tool applies the approved table in step 10.
 
 ## Summary
 
-**Outcome.** The TM list Ian approved on 2026-10-06 has 100 TMs: 66 of vanilla's 92 kept, the six HMs less Cut and Rock Smash as single-use TMs, and 28 new moves, their numbers fixed. 43 are strong (one copy), 46 utility (two copies) and 11 weak (one copy, each the reward for one optional trainer). This version carries Ian's answers of the same day: his four timing notes; an even spread across the splits by their length (62 TMs by the end of Byron's split, where the first draft had 73); and the Department Store's and the Game Corner's 28 TMs sold once each, unlocked by badge count in order of usefulness. Every TM and each of element 7's 24 held items has exactly one place, every vanilla TM ball, gift and shop TM is repointed, and the 46 reward trainers (one flag each, however many items they give) and 0 new balls take 46 of the 85 spare flags. The table's own check passes.
+**Outcome.** The TM list Ian approved on 2026-10-06 has 100 TMs: 66 of vanilla's 92 kept, the six HMs less Cut and Rock Smash as single-use TMs, and 28 new moves, their numbers fixed. 43 are strong (one copy), 46 utility (two copies) and 11 weak (one copy, each the reward for one optional trainer). This version carries Ian's answers of the same day: his four timing notes; an even spread across the splits by their length (62 TMs by the end of Byron's split, where the first draft had 73); and the Department Store's and the Game Corner's 28 TMs sold once each, unlocked by badge count in order of usefulness. Every TM and each of element 7's 24 held items has exactly one place, every vanilla TM ball, gift and shop TM is repointed, and the 46 reward trainers (one flag each, however many items they give) and 1 new ball take 47 of the 85 spare flags. The table's own check passes.
 
 **What can still move.** The move-rework cloud job changes the numbers of Hyper Beam, Giga Impact and the multi-hit moves, so their tiers, and with them their copies and places, are read on today's data. The numbers and moves stay as they are.
 
@@ -137,14 +137,14 @@ TMs by the split they first come in, against each split's share by its length (t
 | Split | Share | Now | First draft |
 |---|---|---|---|
 | Roark | 3.8 | 4 | 3 |
-| Gardenia | 8.8 | 8 | 13 |
+| Gardenia | 8.7 | 8 | 13 |
 | Fantina | 10.4 | 10 | 14 |
-| Maylene | 8.8 | 9 | 17 |
-| Wake | 15.4 | 17 | 9 |
-| Byron | 16.6 | 14 | 17 |
+| Maylene | 8.7 | 9 | 17 |
+| Wake | 14.9 | 17 | 9 |
+| Byron | 16.0 | 14 | 17 |
 | Candice | 5.9 | 7 | 6 |
-| HQ | 3.8 | 2 | 8 |
-| Galactic | 15.4 | 17 | 5 |
+| HQ | 5.2 | 2 | 8 |
+| Galactic | 15.3 | 17 | 5 |
 | Volkner | 4.7 | 4 | 3 |
 | Barry | 6.4 | 8 | 5 |
 | League | 0.0 | 0 | 0 |
@@ -500,10 +500,8 @@ The sections of the gauntlet proposal (balance plan, "The gauntlets, reworked on
 | Area | Section | Split | Trainers | Reading |
 |---|---|---|---|---|
 | Team Galactic's Eterna building | 1F and 2F | Fantina | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt |  |
-| The Galactic HQ | 1F | HQ | Galactic Grunt, Scientist Fredrick |  |
-| The Galactic HQ | 2F | HQ | Galactic Grunt, Galactic Grunt, Galactic Grunt, Scientist Darrius |  |
-| The Galactic HQ | 3F | HQ | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt |  |
-| The Galactic HQ | B2F | HQ | Galactic Grunt, Galactic Grunt |  |
+| The Galactic HQ | the basement run | HQ | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt, Scientist Fredrick |  |
+| The Galactic HQ | the tower | HQ | Galactic Grunt, Galactic Grunt, Scientist Darrius, Galactic Grunt, Galactic Grunt |  |
 | Mt. Coronet | 1F's tunnel | Galactic | Galactic Grunt, Galactic Grunt, Galactic Grunt |  |
 | Mt. Coronet | 3F and 4F | Galactic | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt |  |
 | Victory Road | 1F, the half nearer the entrance | Barry | Psychic Bryce, Bird Keeper Hana, Ace Trainer Mariah |  |
@@ -542,12 +540,12 @@ A strong TM comes no earlier than the split each flagged line that learns it has
 - Hyper Beam: Absol, Alakazam, Alolan Ninetales, Ampharos, Arboliva, Arceus, Armaldo, Articuno and 96 more
 - Ice Beam: Absol, Arceus, Articuno, Blastoise, Castform, Cranidos, Crawdaunt, Darkrai and 34 more
 - Ice Punch: Abra, Alakazam, Ambipom, Ampharos, Annihilape, Blastoise, Electabuzz, Electivire and 32 more
-- Iron Tail: Abra, Absol, Alakazam, Ambipom, Annihilape, Arceus, Armaldo, Azumarill and 44 more
+- Iron Tail: Abra, Absol, Alakazam, Ambipom, Annihilape, Arceus, Armaldo, Azumarill and 43 more
 - Meteor Beam: Ampharos, Arceus, Armaldo, Armarouge, Kabutops, Lunatone, Metagross, Regirock and 1 more
 - Outrage: Ampharos, Annihilape, Arceus, Blastoise, Charizard, Dialga, Feraligatr, Granbull and 14 more
 - Overheat: Annihilape, Arceus, Dialga, Granbull, Moltres, Primeape, Solrock, Toucannon and 1 more
 - Play Rough: Absol, Cinccino, Donphan, Liepard, Lopunny, Luxray, Meloetta, Minun and 5 more
-- Psychic: Abra, Arceus, Chandelure, Darkrai, Electabuzz, Electivire, Florges, Froslass and 15 more
+- Psychic: Abra, Arceus, Chandelure, Darkrai, Electabuzz, Electivire, Florges, Froslass and 14 more
 - Return: Abra, Absol, Alakazam, Ampharos, Arceus, Armaldo, Articuno, Blastoise and 70 more
 - Rock Climb: Ampharos, Arceus, Blastoise, Blaziken, Darkrai, Electabuzz, Electivire, Empoleon and 11 more
 - Sludge Bomb: Arceus, Crawdaunt, Darkrai, Gengar, Glimmet, Goodra, Granbull, Haunter and 7 more
