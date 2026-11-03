@@ -341,6 +341,23 @@ King's Shield and Burning Bulwark now let status moves through in the engine, as
 
 Knock Off. Ian, the same day: "Drop the first-turn rule and make it a chance to fire with an item (66%, completely arbitrarily; makes it less than 50% chance of knock off if another move does more)". `Expert_KnockOff` still gives nothing into a target below 30% HP, no longer skips the attacker's first turn in battle, gives nothing into a target that holds no item (Basic's `Basic_CheckCanRemoveItem` already scores that -10; the test is made here too so the routine reads true on its own), and gives its +1 at 169 in 256, about 66%, where vanilla gave it at 76 in 256 (29.7%). Where another move does more, Evaluate Attack takes a point off Knock Off; the +1 then brings it level two times in three, and a tie is broken at random, so other things equal Knock Off is chosen about a third of the time there, under half, as Ian meant. `fightai.x_knock_off` mirrors it. 87 party members of trainers with the Expert flag know Knock Off on 2026-10-30.
 
+## Safety Goggles and the Air Balloon, 2026-11-02
+
+Ian's answer to the old question of the AI's held-item blind spots: "Only moves that fail". The AI learns two of element 7's items, and the rest (Rocky Helmet, Weakness Policy, the absorbing items, Covert Cloak, Clear Amulet and the others) stay unseen. Both rules read the item through a new command, `IfHoldEffectActive BATTLER, HOLD_EFFECT, JUMP` (`AICmd_IfHoldEffectActive`, appended to the command table so no opcode moves). It asks `Battler_HeldItemEffect`, as the engine's own checks do, so Klutz, Embargo and Magic Room stop the item, and a burst balloon, which the battle removes, is gone. It reads the real item on either side, as `LoadHeldItem` and the type chart do. Each line is marked "Ian, 2026-11-02" in `script.s`, and the simulator's AI mirrors both (`fightai.item_works`), each with a check in `test_fightai` that fails on the code before it.
+
+Safety Goggles. `Basic_CheckPowderImmunity` scores -10 when the target's Safety Goggles work, after the Grass test and before Overcoat's. The test sits outside the Mold Breaker gate, since Mold Breaker does not get past an item. The moves are the powders Basic already lists (Cotton Spore, Poison Powder, Sleep Powder, Stun Spore, Spore, Powder and Magic Powder), which are the engine's `sPowderMoves` less Rage Powder, aimed at its user. The engine refuses the same moves in `BattleControllerPlayer_CheckMoveHitOverrides` (`subscript_safety_goggles`).
+
+The Air Balloon. Every check that goes through the type chart already saw it: `IfMoveEffectivenessEquals` and `IfPartnerEffectivenessEquals` run `BattleSystem_ApplyTypeChart`, whose balloon branch marks a Ground move "no effect" (a flag inside `MOVE_STATUS_IMMUNE`), so Basic's -10 for a Ground attack into a balloon, and every other immunity test, was already in place before this change. What ignored the item were the four routines that test Levitate by name, and each now counts a working balloon beside it:
+
+| Routine | What a balloon now does |
+|---|---|
+| `Basic_CheckMagnetRise` | the AI's own balloon holder takes -10 for Magnet Rise, as a Levitate user does |
+| `Expert_Gravity` (Gravity, Smack Down, Thousand Arrows) | a target on a balloon counts as in the air: +1 at 75% |
+| `TagStrategy_Gravity` | each of the four battlers on a balloon counts as Levitate does (-5 for the AI's side, +3 at 75% for the foes) |
+| `TagStrategy_Earthquake` (Earthquake, Magnitude, Bulldoze) | a partner on a balloon is safe: +2, Mold Breaker or not |
+
+The simulator does not run `TagStrategy_Gravity` at all, so that row has no mirror there. Two Levitate tests are left: Skill Swap's in Tag Strategy, which is about swapping the ability itself, and the roaming Pokemon's escape test, which no trainer reaches. On 2026-11-02 seven trainers hold an Air Balloon (Leader Wake, Ace Trainer Ernest, Cyclist Kayla, Worker Noel, Picnicker Summer, Ninja Boy Brennan and Scientist Shaun), all in single battles, and Ninja Boy Matthew's Shedinja holds Safety Goggles.
+
 ## The parts
 
 | File | Covers |

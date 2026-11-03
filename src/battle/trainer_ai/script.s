@@ -526,6 +526,9 @@ Basic_CheckPowderImmunity:
     IfLoadedEqualTo TYPE_GRASS, ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_GRASS, ScoreMinus10
+    // Oxide: so is a Pokemon whose Safety Goggles work (Ian, 2026-11-02),
+    // Mold Breaker or not, as the engine's own check has it.
+    IfHoldEffectActive AI_BATTLER_DEFENDER, HOLD_EFFECT_SAFETY_GOGGLES, ScoreMinus10
     // Oxide: so is Overcoat (element 5), unless Mold Breaker ignores it.
     IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_ScoreMoveEffectByEffect // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
@@ -1893,6 +1896,8 @@ Basic_CheckMagnetRise:
     // If the attacker's ability is Levitate, score -10.
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_LEVITATE, ScoreMinus10
+    // Oxide: so does a working Air Balloon, as Levitate (Ian, 2026-11-02).
+    IfHoldEffectActive AI_BATTLER_ATTACKER, HOLD_EFFECT_AIR_BALLOON, ScoreMinus10
 
     // If either of the attacker's types are Flying, score -10.
     LoadTypeFrom LOAD_ATTACKER_TYPE_1
@@ -5541,6 +5546,8 @@ Expert_Gravity:
     // If the attacker's HP >= 60%, 37.5% chance of score +1.
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_LEVITATE, Expert_Gravity_TryScorePlus1
+    // Oxide: a working Air Balloon lifts it as Levitate does (Ian, 2026-11-02).
+    IfHoldEffectActive AI_BATTLER_DEFENDER, HOLD_EFFECT_AIR_BALLOON, Expert_Gravity_TryScorePlus1
     IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_MAGNET_RISE, Expert_Gravity_TryScorePlus1
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
     IfLoadedEqualTo TYPE_FLYING, Expert_Gravity_TryScorePlus1
@@ -7995,6 +8002,9 @@ TagStrategy_Gravity:
     FlagBattlerIsType AI_BATTLER_ATTACKER, TYPE_FLYING
     IfLoadedEqualTo AI_HAVE, TagStrategy_Gravity_SelfScoreMinus5
     IfMoveEffect AI_BATTLER_ATTACKER, MOVE_EFFECT_MAGNET_RISE, TagStrategy_Gravity_SelfScoreMinus5
+    // Oxide: a working Air Balloon counts as Levitate does, here and for
+    // the three battlers below (Ian, 2026-11-02).
+    IfHoldEffectActive AI_BATTLER_ATTACKER, HOLD_EFFECT_AIR_BALLOON, TagStrategy_Gravity_SelfScoreMinus5
     GoTo TagStrategy_Gravity_CheckPartner
 
 TagStrategy_Gravity_SelfScoreMinus5:
@@ -8007,6 +8017,7 @@ TagStrategy_Gravity_CheckPartner:
     FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
     IfLoadedEqualTo AI_HAVE, TagStrategy_Gravity_PartnerScoreMinus5
     IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_MAGNET_RISE, TagStrategy_Gravity_PartnerScoreMinus5
+    IfHoldEffectActive AI_BATTLER_ATTACKER_PARTNER, HOLD_EFFECT_AIR_BALLOON, TagStrategy_Gravity_PartnerScoreMinus5
     GoTo TagStrategy_Gravity_CheckTarget
 
 TagStrategy_Gravity_PartnerScoreMinus5:
@@ -8019,6 +8030,7 @@ TagStrategy_Gravity_CheckTarget:
     FlagBattlerIsType AI_BATTLER_DEFENDER, TYPE_FLYING
     IfLoadedEqualTo AI_HAVE, TagStrategy_Gravity_TargetTryScorePlus3
     IfMoveEffect AI_BATTLER_DEFENDER, MOVE_EFFECT_MAGNET_RISE, TagStrategy_Gravity_TargetTryScorePlus3
+    IfHoldEffectActive AI_BATTLER_DEFENDER, HOLD_EFFECT_AIR_BALLOON, TagStrategy_Gravity_TargetTryScorePlus3
     GoTo TagStrategy_Gravity_CheckTargetPartner
 
 TagStrategy_Gravity_TargetTryScorePlus3:
@@ -8032,6 +8044,7 @@ TagStrategy_Gravity_CheckTargetPartner:
     FlagBattlerIsType AI_BATTLER_DEFENDER_PARTNER, TYPE_FLYING
     IfLoadedEqualTo AI_HAVE, TagStrategy_Gravity_TargetPartnerTryScorePlus3
     IfMoveEffect AI_BATTLER_DEFENDER_PARTNER, MOVE_EFFECT_MAGNET_RISE, TagStrategy_Gravity_TargetPartnerTryScorePlus3
+    IfHoldEffectActive AI_BATTLER_DEFENDER_PARTNER, HOLD_EFFECT_AIR_BALLOON, TagStrategy_Gravity_TargetPartnerTryScorePlus3
     GoTo TagStrategy_Gravity_End
 
 TagStrategy_Gravity_TargetPartnerTryScorePlus3:
@@ -8205,6 +8218,9 @@ TagStrategy_Earthquake:
     // last stood there, so a lone Earthquake user took -3, or -10 after a partner weak to it
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_Earthquake_End
     IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_MAGNET_RISE, ScorePlus2
+    // Oxide: so is a partner on a working Air Balloon, as a Levitate one
+    // (Ian, 2026-11-02); Mold Breaker does not get past an item.
+    IfHoldEffectActive AI_BATTLER_ATTACKER_PARTNER, HOLD_EFFECT_AIR_BALLOON, ScorePlus2
     // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
     // gets past the partner's ability, so it gives no protection
     IfMoldBreakerIgnores AI_BATTLER_ATTACKER_PARTNER, TagStrategy_Earthquake_CheckTypes // Oxide: an Ability Shield holds against it
