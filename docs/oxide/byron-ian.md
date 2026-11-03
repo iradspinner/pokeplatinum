@@ -1,6 +1,6 @@
 # Byron: Ian's redraft and a pick for Galvantula's slot
 
-Ian redrafted Byron (Canalave Gym, cap 53) himself on 2026-11-02. This branch, `overseer-byron-ian`, holds his six as he saved it, ready for the full scorer reading he asked for, with Galvantula still in place until he picks its replacement. This page asks that one question and records the checks. No scorer reading was run and the simulator was not touched.
+Ian redrafted Byron (Canalave Gym, cap 53) himself on 2026-11-02. This branch, `overseer-byron-ian`, holds his six for the full scorer reading he asked for. Ian answered this page's one question on 2026-11-02: Vikavolt takes Galvantula's slot, at 51, with Levitate, Occa Berry, Modest, Sticky Web, Thunderbolt, Energy Ball and Bug Buzz. That six is now in the branch's file, ready for the reading. No scorer reading was run here and the simulator was not touched.
 
 ## Summary
 
@@ -11,8 +11,9 @@ Ian's answers of 2026-11-02:
 3. Check HP stays off ("Leave it off"), though Metagross carries Explosion.
 4. Empoleon stays, though it is Barry 5's ace for a Scorbunny player.
 5. "Propose any galvantula replacements": Galvantula with Sticky Web is Deimos's lead at Pal Park, a few fights earlier in the same split.
+6. Vikavolt takes the slot, from the options below (Ian's pick, later the same day).
 
-His six, flags Basic, Evaluate Attack and Expert:
+His six as drafted, flags Basic, Evaluate Attack and Expert; Vikavolt now holds slot 2:
 
 | Member | Level | Item | Nature | Moves |
 |---|---:|---|---|---|
@@ -23,7 +24,7 @@ His six, flags Basic, Evaluate Attack and Expert:
 | Empoleon | 52 | Mystic Water | Jolly | Aqua Jet, Flip Turn, Triple Axel, Drill Peck |
 | Celesteela (ace) | 53 | Power Herb | Hardy | Flamethrower, Meteor Beam, Air Slash, Flash Cannon |
 
-The question for Ian: which Pokemon takes Galvantula's slot. Each option keeps the other five as he built them.
+The question was which Pokemon takes Galvantula's slot, each option keeping the other five as he built them. Ian picked the first.
 
 1. Vikavolt (recommended). Bug and Electric, with Galvantula's own four moves (Thunderbolt for Thunder), Occa Berry, Modest, Levitate. It keeps the whole job and does it better on the cheap checks, but it is slow, and it keeps the Sticky Web that Deimos also leads with.
 2. Magnezone. Electric and Steel, Byron's own line (his Magneton in vanilla Platinum): Thunderbolt, Flash Cannon, Thunder Wave, Tri Attack, Occa Berry, Modest, Levitate. The best fit for a Steel gym. It drops the Sticky Web and the Grass hit, so Thunder Wave is its only Speed control and Quagsire goes to Empoleon and Metagross.
@@ -42,12 +43,9 @@ The counterpiece check, Ian's draft (run `ian-final`) and the Vikavolt pick (run
 
 The check plays the old reading's sixes only, with no team search, so a number over the target means too easy for certain, and a lower one leaves the decision to the full reading. Box 2 at 93 is over the target on Ian's draft.
 
-Action items for Ian:
+Action items for Ian: none. His answers are applied, Vikavolt is in the file, and the four off-list moves of his draft are on egg lists by the rule. Vikavolt's own four need none.
 
-1. Pick the slot's member: Vikavolt, Magnezone, Togedemaru, or Galvantula kept. About five minutes.
-2. Nothing else: his other answers are applied, and the four off-list moves are on egg lists by the rule.
-
-Next steps. A session swaps the pick into this branch and reruns the legality checks, the lint and the tests, about 20 minutes. Then the Overseer runs the full scorer reading on this branch, two and a half to four hours of machine time.
+Next step. The Overseer runs the full scorer reading on this branch, two and a half to four hours of machine time.
 
 ## The slot's job
 
