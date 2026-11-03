@@ -532,11 +532,11 @@ _MULT = {"TYPE_MULTI_IMMUNE": 0.0, "TYPE_MULTI_NOT_VERY_EFF": 0.5,
 def type_chart(root):
     """{(attacking, defending): multiplier} for every entry that is not 1x.
 
-    Worth knowing what this fork's chart actually is, because it is neither
-    generation's: Fairy is in and complete, but Steel still resists Dark and
-    Ghost, which Generation 6 removed. That is deliberate (Ian, 2026-09-22).
-    No stock setting in a damage calculator matches it, so the chart travels
-    with the data.
+    Since 2026-11-03 this fork's chart is the later games' (Ghost and Dark
+    hit Steel for neutral damage, Fairy in and complete); until then Steel
+    kept its Generation 4 resistances to both (Ian, 2026-09-22). The chart
+    still travels with the data, so the calculator reads the engine's table
+    rather than a stock setting.
     """
     with open(os.path.join(root, BATTLE_LIB), encoding="utf-8") as f:
         src = f.read()
