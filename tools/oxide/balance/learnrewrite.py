@@ -354,7 +354,11 @@ IAN_EGG_MOVES = {
     "SPECIES_KARTANA": [("MOVE_SMART_STRIKE", "the egg-list rule (Ian, 2026-10-29): Byron's Kartana at 51, "
                                               "Ian's redraft of 2026-11-02"),
                         ("MOVE_SWORDS_DANCE", "the egg-list rule (Ian, 2026-10-29): Byron's Kartana at 51, "
-                                              "Ian's redraft of 2026-11-02; it learns it at 65")],
+                                              "Ian's redraft of 2026-11-02; it learns it at 65"),
+                        ("MOVE_SACRED_SWORD", "Ian, 2026-11-03: Byron's Kartana at 51, set K2; "
+                                              "it learns it at 60"),
+                        ("MOVE_LEAF_BLADE", "Ian, 2026-11-03: Byron's Kartana at 51, set K2; "
+                                            "it learns it at 55")],
     "SPECIES_FERROSEED": [("MOVE_POWER_WHIP", "Ian, 2026-10-31: Thorton's Ferrothorn at 47")],
     "SPECIES_GUZZLORD": [("MOVE_PROTECT", "Ian, 2026-10-31: Thorton's Guzzlord"),
                          ("MOVE_BODY_PRESS", "Ian, 2026-10-31: Thorton's Guzzlord")],
@@ -400,10 +404,6 @@ IAN_EGG_MOVES = {
                                              "at 52, a draft"),
                         ("MOVE_TAILWIND", "the egg-list rule (Ian, 2026-10-29): Saturn 1's Tropius "
                                           "at 52, a draft")],
-    # Byron's Kartana (Ian, 2026-11-03, set K2 on byron-ian.md): Kartana has
-    # no pre-evolution, so its own list is the first stage's.
-    "SPECIES_KARTANA": [("MOVE_SACRED_SWORD", "Ian, 2026-11-03: Byron's Kartana at 51"),
-                        ("MOVE_LEAF_BLADE", "Ian, 2026-11-03: Byron's Kartana at 51")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
