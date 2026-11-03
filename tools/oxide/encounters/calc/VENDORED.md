@@ -121,6 +121,9 @@ calculator checks fail if the offline ones are lost.
     which moves Reckless raises: upstream asks the move's own recoil and crash flags,
     while Oxide's game raises exactly the moves whose effect scripts set the
     power multiplier for it, its one-turn recoil reworks among them.
+    Since 2026-11-03 one more, `defenseStat` (in `HOOK_NAMES` too), changes
+    the defending stat beside sand's Rock line; Oxide's profile uses it for
+    snow in hail's place, an Ice type's Defense at 1.5 times in hail.
 
 11. **`calc/mechanics/util.js`, Mirror Armor.** Freeze-Dry and Flying Press
     kept their plain type chart under the "Platinum Oxide" title from item 22

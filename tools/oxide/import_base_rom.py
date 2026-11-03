@@ -1395,6 +1395,16 @@ TEXT_ENTRIES_DIVERGED[TEXT_BANK_MOVE_DESCRIPTIONS].update({
 # later games, so its description says so (Ian, 2026-09-29).
 TEXT_ENTRIES_DIVERGED.setdefault(TEXT_BANK_ABILITY_DESCRIPTIONS, {})[5] = (
     "Sturdy's description gives its later-games rule, which Oxide has")
+# Snow took hail's place (Ian, 2026-11-03, the Ice proposal's second lever):
+# hail does no damage and raises an Ice type's Defense, so the Hail move's
+# description and those of Snow Cloak, Ice Body and Snow Warning say
+# "snowstorm" (Slush Rush's, which also does, is a Phase 4 entry the base ROM
+# does not have).
+TEXT_ENTRIES_DIVERGED[TEXT_BANK_MOVE_DESCRIPTIONS][258] = (
+    "Hail summons snow, which raises Ice types' Defense and damages no one (Ian, 2026-11-03)")
+TEXT_ENTRIES_DIVERGED[TEXT_BANK_ABILITY_DESCRIPTIONS].update({
+    entry: "snow took hail's place, so the ability's description says snowstorm (Ian, 2026-11-03)"
+    for entry in (81, 115, 117)})  # Snow Cloak, Ice Body, Snow Warning
 # The TM pass (2026-10-06) gives TM and HM numbers new moves, and a TM's
 # description is its move's (tools/oxide/tm_items.py writes both from the TM
 # list). Item ids 328 to 427 are ITEM_TM01 to ITEM_HM08, unchanged since

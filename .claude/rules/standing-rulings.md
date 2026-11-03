@@ -283,7 +283,9 @@ read, so they are written here too. Each is a standing instruction.
   carries one idea, is genuinely dangerous, and has 3 to 5 Pokemon (6 from
   Gardenia's split on; fewer on Route 202, the first route's early exception,
   Ian, 2026-10-31), sizes varying. No one-hit KO move on any trainer;
-  evasion and trapping are rare; a boss carries at most one forced trade
+  evasion and trapping are rare (Candice excepted, whose hail team may
+  stack evasion freely: Ian, 2026-11-03, "No holds barred for evasion
+  stacking"); a boss carries at most one forced trade
   (none before Fantina) and an ordinary trainer none, though from Wake's
   split on an ordinary trainer may occasionally carry Self-Destruct,
   Explosion or Destiny Bond, or trapping (Ian, 2026-10-31: "at this point
@@ -362,6 +364,12 @@ read, so they are written here too. Each is a standing instruction.
   U-turn, Volt Switch and the like) are high rungs, never early first moves,
   since pivoting is very strong; and a line's ability can set its side of
   the ladder (Huge Power makes Marill a physical attacker) (Ian, 2026-10-06).
+  Team building takes no hard rules either, unless Ian asks for one (Ian,
+  2026-11-03: "stop asking for hard rules, these are all judgement calls. I
+  will not give you hard rules and you should not make hard rules when team
+  building unless I'm explicit in the ask"): a team's mix of types and
+  covers is judged member by member, and a question to him never offers a
+  count or a cap as an option.
 - Every trainer team in the finished ROM is set by hand (Ian, 2026-09-27):
   no trainer keeps default moves, so default movesets carry no weight in any
   argument, about learnsets, level-1 order or anything else.

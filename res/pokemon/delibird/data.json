@@ -41,6 +41,7 @@
             [ 1, "MOVE_PRESENT" ],
             [ 32, "MOVE_DRILL_PECK" ],
             [ 33, "MOVE_ICE_BEAM" ],
+            [ 36, "MOVE_AURORA_VEIL" ],
             [ 54, "MOVE_DRILL_RUN" ],
             [ 56, "MOVE_SWAGGER" ],
             [ 58, "MOVE_ICE_PUNCH" ],

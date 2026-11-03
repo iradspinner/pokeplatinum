@@ -295,6 +295,19 @@ var platinumOxideProfile = (0, helpers_1.makeProfile)({
                 return attack;
             }
         ],
+        // Snow in place of hail (Ian, 2026-11-03, the Ice proposal's second
+        // lever): in hail an Ice type's Defense is one and a half times
+        // against a move that hits Defense, beside sand's Sp. Def rise for
+        // Rock types (battle_lib.c, the damage formula).
+        defenseStat: [
+            function (ctx, defense) {
+                if (ctx.state.hitsDefense && ctx.field.hasWeather("Hail") && ctx.defender.hasType("Ice")) {
+                    ctx.desc.weather = ctx.field.weather;
+                    return Math.floor(defense * 15 / 10);
+                }
+                return defense;
+            }
+        ],
         // After Flash Fire and before the formula's +2: Fluffy halves contact
         // moves and doubles Fire ones, and Ice Scales halves special moves.
         beforeFinalDamage: [

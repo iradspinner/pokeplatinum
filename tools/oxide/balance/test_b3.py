@@ -153,6 +153,68 @@ def check_steel_neutral(results, blob):
                               for m in ("Shadow Ball", "Dark Pulse"))))
 
 
+def check_ice_resists_water(results, blob):
+    """Water hits Ice for half through the calculator (Ian, 2026-11-03, the
+    Ice proposal's first lever). Vaporeon's Surf and Hydro Pump into
+    Glaceon give the same rolls as into a Glaceon the runner is told is a
+    Grass type, which Water already hits for half."""
+    iv = {k: 31 for k in ("hp", "at", "df", "sa", "sd", "sp")}
+    ev = {k: 0 for k in iv}
+    base = {"level": 50, "nature": "Hardy", "ivs": iv, "evs": ev}
+    gla = blob["poks"]["Glaceon"]
+    jobs = {"pokemon": {
+        "vaporeon": dict(base, species="Vaporeon"),
+        "ice": dict(base, species="Glaceon"),
+        "grass": dict(base, species="Glaceon",
+                      species_data={"bs": {k: gla["bs"][k] for k in STATS}, "types": ["Grass"]}),
+    }, "pairs": [["vaporeon", "ice", ["Surf", "Hydro Pump"], None],
+                 ["vaporeon", "grass", ["Surf", "Hydro Pump"], None]]}
+    out = _run(blob, jobs)
+    ice, grass = (r["moves"] for r in out["results"])
+    ok = gla["types"] == ["Ice"] and all(
+        ice[m]["rolls"] == grass[m]["rolls"] and ice[m]["rolls"][0] > 0 for m in ("Surf", "Hydro Pump"))
+    results.append(("Surf and Hydro Pump hit a pure Ice type for half (Ice resists Water)", ok,
+                    "; ".join(f"{m} into Glaceon {ice[m]['rolls'][0]}-{ice[m]['rolls'][-1]}, "
+                              f"into a Grass one {grass[m]['rolls'][0]}-{grass[m]['rolls'][-1]}"
+                              for m in ("Surf", "Hydro Pump"))))
+
+
+def check_snow_defense(results, blob):
+    """Snow in place of hail (Ian, 2026-11-03, the Ice proposal's second
+    lever): in hail an Ice type takes physical hits on one and a half times
+    its Defense, as an Ice type in the later games' snow does, and nothing
+    else changes. Lucario's Close Combat into Glaceon in hail gives the
+    same rolls as into a Glaceon at +1 Defense in clear weather (both floor
+    the stat at 1.5 times), and less than into a plain Glaceon; Aura Sphere,
+    a special move, gives the same rolls in hail as out of it, and so does
+    Close Combat into Snorlax, which is not an Ice type."""
+    iv = {k: 31 for k in ("hp", "at", "df", "sa", "sd", "sp")}
+    ev = {k: 0 for k in iv}
+    base = {"level": 50, "nature": "Hardy", "ivs": iv, "evs": ev}
+    moves = ["Close Combat", "Aura Sphere"]
+    jobs = {"pokemon": {
+        "lucario": dict(base, species="Lucario"),
+        "glaceon": dict(base, species="Glaceon"),
+        "glaceon+1": dict(base, species="Glaceon", boosts={"def": 1}),
+        "snorlax": dict(base, species="Snorlax"),
+    }, "pairs": [["lucario", "glaceon", moves, "Hail"],
+                 ["lucario", "glaceon", moves, None],
+                 ["lucario", "glaceon+1", moves, None],
+                 ["lucario", "snorlax", moves, "Hail"],
+                 ["lucario", "snorlax", moves, None]]}
+    out = _run(blob, jobs)
+    hail, clear, plus1, lax_hail, lax_clear = (
+        {m: r["moves"][m]["rolls"] for m in moves} for r in out["results"])
+    cc, aura = "Close Combat", "Aura Sphere"
+    ok = (hail[cc] == plus1[cc] and hail[cc][-1] < clear[cc][-1]
+          and hail[aura] == clear[aura] and lax_hail == lax_clear)
+    results.append(("in hail an Ice type takes physical hits on 1.5 times its Defense (snow)", ok,
+                    f"Close Combat into Glaceon in hail {hail[cc][0]}-{hail[cc][-1]}, "
+                    f"clear {clear[cc][0]}-{clear[cc][-1]}, at +1 Defense {plus1[cc][0]}-{plus1[cc][-1]}; "
+                    f"Aura Sphere in hail {hail[aura][0]}-{hail[aura][-1]}, clear {clear[aura][0]}-{clear[aura][-1]}; "
+                    f"Snorlax unchanged {lax_hail == lax_clear}"))
+
+
 def check_engine(results):
     """The engine is the page's: the same files, in the page's order."""
     import subprocess
@@ -323,6 +385,8 @@ def main():
     check_engine(results)
     check_damage(results, blob)
     check_steel_neutral(results, blob)
+    check_ice_resists_water(results, blob)
+    check_snow_defense(results, blob)
     check_eviolite(results, blob)
     check_ref_overrides(results, blob)
     check_exact_types(results, blob)

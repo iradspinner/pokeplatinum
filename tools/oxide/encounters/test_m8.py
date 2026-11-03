@@ -114,6 +114,14 @@ def check_chart(results):
                     and chart.get(("GHOST", "STEEL"), 1.0) == 1.0,
                     f"dark {chart.get(('DARK', 'STEEL'))}, "
                     f"ghost {chart.get(('GHOST', 'STEEL'))}"))
+    # Ice resists Water (Ian, 2026-11-03, the Ice proposal's first lever);
+    # Flying and Ground still hit it as before.
+    results.append(("Ice resists Water, and only Water among the new options",
+                    chart.get(("WATER", "ICE")) == 0.5
+                    and chart.get(("FLYING", "ICE"), 1.0) == 1.0
+                    and chart.get(("GROUND", "ICE"), 1.0) == 1.0
+                    and pokedex.effectiveness(chart, "WATER", ["WATER", "ICE"]) == 0.25,
+                    f"water {chart.get(('WATER', 'ICE'))}"))
     results.append(("Fairy is complete: strong on three, weak to two, immune to "
                     "Dragon",
                     chart.get(("FAIRY", "DRAGON")) == 2.0
@@ -673,7 +681,8 @@ def check_calculator(results):
                     chart["Dark"]["Steel"] == 1.0 and chart["Ghost"]["Steel"] == 1.0
                     and chart["Dragon"]["Fairy"] == 0.0
                     and chart["Fairy"]["Dragon"] == 2.0
-                    and chart["Fighting"]["Fairy"] == 0.5, ""))
+                    and chart["Fighting"]["Fairy"] == 0.5
+                    and chart["Water"]["Ice"] == 0.5, ""))
 
     report = calc_export.report()
     known = calc_export.calc_names()["moves"]

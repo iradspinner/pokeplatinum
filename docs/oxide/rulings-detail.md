@@ -230,7 +230,9 @@ level Bebe's Eevee is held at.
 Trainer design at about 6/10 of Platinum Kaizo (Ian's answers to the Kaizo
 team study, 2026-09-29). Bosses keep Kaizo's structure at reduced
 lethality; an ordinary trainer carries one idea. One-hit KO moves never go
-on a trainer, and evasion setups are rare. Trapping (the abilities, Mean
+on a trainer, and evasion setups are rare, Candice excepted: her hail team
+may stack Snow Cloak, the evasion items and Double Team freely (Ian,
+2026-11-03: "No holds barred for evasion stacking"). Trapping (the abilities, Mean
 Look or Block with Perish Song, the binding moves) is allowed but rare. A
 boss carries at most one forced trade (Explosion, Self-Destruct, Destiny
 Bond), none before Fantina, and an ordinary trainer carries none. From

@@ -6389,8 +6389,9 @@ def check_screen_cleaner(results):
 @b11
 def check_overcoat_weather(results):
     """Overcoat (approved 2026-10-14; BtlCmd_EndOfTurnWeatherEffect): its
-    holder takes no sandstorm or hail damage at the turn's end, where
-    another Pokemon loses a sixteenth."""
+    holder takes no sandstorm damage at the turn's end, where another
+    Pokemon loses a sixteenth. Hail bites no one since snow took its place
+    (Ian, 2026-11-03), so in hail neither loses anything."""
     out = {}
     for weather in ("Sand", "Hail"):
         for ab in ("Overcoat", None):
@@ -6398,8 +6399,8 @@ def check_overcoat_weather(results):
             b.weather, p.ability = weather, ab
             fs.end_of_turn(b)
             out[(weather, ab or "other")] = p.maxhp - p.hp
-    want = {("Sand", "Overcoat"): 0, ("Sand", "other"): 10, ("Hail", "Overcoat"): 0, ("Hail", "other"): 10}
-    results.append(("Overcoat keeps sand and hail off at the turn's end", out == want, str(out)))
+    want = {("Sand", "Overcoat"): 0, ("Sand", "other"): 10, ("Hail", "Overcoat"): 0, ("Hail", "other"): 0}
+    results.append(("Overcoat keeps sand off at the turn's end, and hail bites no one", out == want, str(out)))
 
 
 @b11
@@ -9490,9 +9491,46 @@ def check_steel_later_chart(results):
                     f"multipliers {mult}; flags (no effect, super, not very) {flags}"))
 
 
+def check_ice_resists_water(results):
+    """Ice resists Water, so Water hits Ice for half (Ian, 2026-11-03, the
+    Ice proposal's first lever). The simulator reads the engine's chart
+    through calc_export: a Surf into a pure Ice type is 0.5x, into Lapras
+    (Water and Ice) 0.25x, into Mamoswine (Ice and Ground) 1x, and the AI's
+    flags read Surf into an Ice type as not very effective."""
+    from ..encounters import calc_export
+    chart = calc_export.build()["type_chart"]
+    water = fs.move("Surf").type
+    mult = {"Ice": fs.effectiveness(chart, water, ["Ice"]),
+            "Water/Ice": fs.effectiveness(chart, water, ["Water", "Ice"]),
+            "Ice/Ground": fs.effectiveness(chart, water, ["Ice", "Ground"])}
+    b, _p, _foe = battle(["Tackle"], ["Tackle"], {})
+    b.st["chart"] = chart
+    flags = fightai.type_flags(b, water, ["Ice"])
+    ok = mult == {"Ice": 0.5, "Water/Ice": 0.25, "Ice/Ground": 1.0} and flags == (False, False, True)
+    results.append(("Surf into an Ice type is not very effective (Ice resists Water)", ok,
+                    f"multipliers {mult}; flags (no effect, super, not very) {flags}"))
+
+
+def check_snow_no_chip(results):
+    """Snow in place of hail (Ian, 2026-11-03, the Ice proposal's second
+    lever; his approval of the simulator change the same day): at the
+    turn's end hail bites no one, of any type or ability, where the
+    sandstorm still takes a sixteenth from a Normal type. Ice Body still
+    heals a sixteenth (check_ice_body)."""
+    out = {}
+    for weather in ("Hail", "Sand"):
+        for types in (("Normal",), ("Ice",)):
+            b, p, foe = battle(["Tackle"], ["Tackle"], {}, p_types=types, hp=160)
+            b.weather, b.weather_turns = weather, 0
+            fs.end_of_turn(b)
+            out[(weather, types[0])] = p.maxhp - p.hp
+    want = {("Hail", "Normal"): 0, ("Hail", "Ice"): 0, ("Sand", "Normal"): 10, ("Sand", "Ice"): 10}
+    results.append(("hail does no damage at the turn's end (snow); sand still does", out == want, str(out)))
+
+
 def main():
     results = []
-    for check in (check_steel_later_chart, check_damage, check_crit_odds, check_status_immunity, check_item_moves,
+    for check in (check_steel_later_chart, check_ice_resists_water, check_snow_no_chip, check_damage, check_crit_odds, check_status_immunity, check_item_moves,
                   check_weather_rock, check_map_weather_replaced, check_permanent_trick_room,
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
                   check_salt_cure, check_harvest, check_berry_first_hit,
