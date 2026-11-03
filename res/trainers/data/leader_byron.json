@@ -27,18 +27,18 @@
             "gender": null
         },
         {
-            "species": "SPECIES_GALVANTULA",
+            "species": "SPECIES_VIKAVOLT",
             "form": 0,
             "level": 51,
             "item": "ITEM_OCCA_BERRY",
             "moves": [
                 "MOVE_STICKY_WEB",
-                "MOVE_THUNDER",
+                "MOVE_THUNDERBOLT",
                 "MOVE_ENERGY_BALL",
                 "MOVE_BUG_BUZZ"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_HASTY",
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"
