@@ -124,7 +124,8 @@
         ],
         "by_tutor": [],
         "egg_moves": [
-            "MOVE_ACROBATICS"
+            "MOVE_ACROBATICS",
+            "MOVE_AIR_SLASH"
         ]
     },
     "evolutions": [],

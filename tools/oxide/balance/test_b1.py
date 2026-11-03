@@ -396,6 +396,24 @@ def check_weather(results):
     results.append(("boss fights start in the weather their maps set", got == want, str(got)))
 
 
+def check_yearly_weather(results):
+    """The maps that take their weather from the day-of-year table
+    (field_overworld_weather.c) are fought in it: hail every day on Route
+    216 and at Acuity Lakefront, rain on 365 days of 366 on Route 212 South,
+    and none on Route 213, clear on all but ten days. Until 2026-11-03 the
+    census read only plain map weathers, so all of these read clear. One
+    trainer per map, through the calculator's own weather for a fight."""
+    from . import calc, splits
+    ids = splits._trainer_ids()
+    probe = {"TRAINER_ACE_TRAINER_BLAKE": "Hail",     # Route 216
+             "TRAINER_DUMMY_109": "Hail",             # Hiker Gunnar, Acuity Lakefront
+             "TRAINER_FISHERMAN_JUAN": "Rain",        # Route 212 South
+             "TRAINER_SWIMMER_SHELTIN": None}         # Route 213
+    got = {c: calc.fight_weather([ids[c]]) for c in probe}
+    results.append(("day-of-year maps start their fights in the weather of nearly every day",
+                    got == probe, str(got)))
+
+
 # When each way opens (Ian's split definition for the bike; the badge alone
 # for the rest, since main-field-moves), and one item behind each, as the
 # census had them wrong: Lake
@@ -565,7 +583,7 @@ def main():
                   check_league_after_volkner, check_roark, check_megas_folded,
                   check_milestones_resolve,
                   check_split_map, check_split_overrides, check_items_and_marts, check_tm_sources,
-                  check_weather, check_item_reach, check_gated_gifts, check_prize_counter_dahlia, check_testkit):
+                  check_weather, check_yearly_weather, check_item_reach, check_gated_gifts, check_prize_counter_dahlia, check_testkit):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
