@@ -52,6 +52,21 @@ The screen falls by 2 to 6 points a box, about Byron's shape C3 and short of Cyr
 
 What Ian decides is listed at the end. The next step is the Overseer's full reading, two and a half to four hours of machine time. If it reads harder than Ian wants, the dials are listed there too, softest first.
 
+## The reading (2026-11-03)
+
+The scorer read this team on goal 3's three boxes (run `candice-3ff0d0008`, tree at 3ff0d0008a3, on today's hail and the old Steel chart). It reads easier than the aim of 80 to 90 percent won with three or more faints, though harder than anything Ian has drafted:
+
+| Box | Six the scorer chose | Won | Faints | Clean | Very unlucky won, faints |
+|---|---|---:|---:|---:|---|
+| 1 (Turtwig) | Abomasnow, Bastiodon, Houndoom, Manaphy, Snorlax, Mamoswine | 96 | 2.16 | 20 | 96, 3.24 |
+| 2 (Scorbunny) | Cinderace, Arboliva, Bronzong, Glimmora, Heracross, Manaphy | 92 | 2.88 | 0 | 84, 3.00 |
+| 3 (Piplup) | Machamp, Bastiodon, Leavanny, Bronzong, Glimmora, Manaphy | 93 | 2.25 | 15 | 88, 2.64 |
+| All three | | 94 | 2.43 | 12 | |
+
+Her knockouts over each box's 75 fights at real odds, most first: box 1, Lapras 71, Mamoswine 61, Ninetales 20, Gastrodon 8, Chandelure 2; box 2, Mamoswine 83, Ninetales 66, Lapras 31, Chandelure 24, Gastrodon 11, Cloyster 1; box 3, Lapras 44, Mamoswine 41, Chandelure 40, Ninetales 21, Cloyster 18, Gastrodon 5. The lead and the hub do the least: Cloyster's Spikes and Gastrodon's Stealth Rock carry their case, and the knockouts come from Lapras, Mamoswine and Ninetales. Manaphy is in all three sixes, and Bronzong or Bastiodon in each.
+
+Three pending changes would each make her harder without touching her file. Steel's later chart (landed at 04c99bc85) makes Chandelure's Shadow Ball neutral on the two Bronzong sixes. The Ice proposal's Water and Flying resistances would halve Manaphy's Water hits on Lapras, Cloyster and Mamoswine. Snow in place of hail would stop the chip on Chandelure and Gastrodon and give her four Ice types 1.5 times Defense against Machamp, Heracross and the rest.
+
 ## Why each set is as it is
 
 Ian's theme is four or five Ice types and one or two off-types that answer Ice's counters, chosen with the gym's permanent hail in mind. Four of the six are Ice types and take no hail. Of the two off-types, neither has Overcoat, Magic Guard, Ice Body or Snow Cloak, so each takes a sixteenth a turn; Gastrodon has Recover and Chandelure is in for short stays. No Pokemon on the team has Snow Cloak, so the team carries no evasion at all.
