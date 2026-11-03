@@ -444,6 +444,7 @@ static BOOL ScrCmd_TestKitStartWildBattle(ScriptContext *ctx);
 #endif
 static BOOL ScrCmd_RaiseLevelCap(ScriptContext *ctx);
 static BOOL ScrCmd_GauntletStepOnLine(ScriptContext *ctx);
+static BOOL ScrCmd_GauntletIsOpen(ScriptContext *ctx);
 static BOOL ScrCmd_StartLegendaryBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartFatefulEncounter(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
@@ -7186,5 +7187,16 @@ static BOOL ScrCmd_GauntletStepOnLine(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     *destVar = Gauntlet_StepOnLine(ctx->fieldSystem);
+    return FALSE;
+}
+
+// Platinum Oxide: whether a gauntlet section is open where the player
+// stands, for a script that heals, such as the Galactic HQ's nap-room bed,
+// to refuse as the Pocket PC does (src/gauntlet.c).
+static BOOL ScrCmd_GauntletIsOpen(ScriptContext *ctx)
+{
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+
+    *destVar = Gauntlet_IsOpen(ctx->fieldSystem);
     return FALSE;
 }
