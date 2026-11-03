@@ -1059,3 +1059,7 @@ Ian answered the sheet `docs/oxide/old-questions.md` on 2026-11-02 (his answers 
 Ian chose the Attack drop on 2026-11-02 ("Give it the Attack drop"), done on `overseer-kings-shield` in the engine and the simulator; the kit's set for King's Shield is 92, not 93 as the entry had it. The entry as it stood, from the Backlog:
 
 - **King's Shield has no Attack drop, before alpha 1** (Ian, 2026-10-30, noted, not started): Oxide's King's Shield only protects, and since status moves pass it, it now blocks less than Protect. Give it the later games' Attack drop on a contact move, or swap it for Protect wherever it is placed. No trainer or learnset has it today, only test kit set 93. Burning Bulwark already burns on contact.
+
+Ian said on 2026-11-02 "Move it into the repo", done on `overseer-kings-shield`: `tools/oxide/balance/goal3_fights.py` is the outside file unchanged, both importers take it with no fallback, and the outside copy stays in place, unused. The entry as it stood, from "Open work by area", Tidying:
+
+- [x] Goal 3's fight list, `goal3_fights.py`, lives outside the repo in `~/oxide-trials/scorer-stage2` and is imported by `plgoal3.py` and `plniche.py`, so it has no history and a cloud session cannot run goal 3 (found 2026-10-29, Ian asked to hear of such things). Moving it into `tools/oxide/balance/` touches the scorer, so it is Ian's call; the scorer's networks and data (1.7 GB) stay outside.

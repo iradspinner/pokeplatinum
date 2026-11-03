@@ -113,7 +113,6 @@ Items the old status homes and plans held that this tracker lacked or held only 
 - [ ] Long term: a whole-game reading in hours (`scorer-speed-plan.md`, goal 4); a compiled simulator and a cheaper opponent AI are its parked levers.
 
 **Tidying**
-- [ ] Goal 3's fight list, `goal3_fights.py`, lives outside the repo in `~/oxide-trials/scorer-stage2` and is imported by `plgoal3.py` and `plniche.py`, so it has no history and a cloud session cannot run goal 3 (found 2026-10-29, Ian asked to hear of such things). Moving it into `tools/oxide/balance/` touches the scorer, so it is Ian's call; the scorer's networks and data (1.7 GB) stay outside.
 - [ ] Unlanded branches whose purposes landed another way (`study-gardenia-base`, `balance-fight-sim`, `balance-sim-example`, `balance-boxmodel`, `wip-balance-b3b`, `balance-learngen-v2`, `cloud/balance-learnset-pass`, `balance-learnset-review`): delete after a last look.
 - [ ] The 30-box PC dial's thumbnail cache flush, a vanilla oddity reported and never fixed: check once in QA.
 - The docs pass's list for Ian's QA pass was worked by the QA pass of 2026-10-21 (`qa-review-2026-10-21.md`); the list is in the archive (Finished on 2026-10-21, the QA pass), and what is left of it is below and under the scorer.
