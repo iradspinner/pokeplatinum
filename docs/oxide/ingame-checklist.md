@@ -437,22 +437,24 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
     (`overseer-byron-prep`) the section ends on arrival, so the Pocket PC
     works at once, before Scientist Travon and Officer Moira, and the stairs
     back down no longer refuse.
-  - Galactic HQ: the warehouse's stairs lead into B2F, and with a B2F grunt
-    unbeaten the stairs back to the warehouse refuse. Since 2026-11-02
-    section 6 is on 3F's east side, and 3F's west side is in no section.
-    First, the trap that move closed: with 3F's grunts unbeaten, fetch the
-    Galactic Key (up through B1F, 1F and 2F's west side, the panel in 2F's
-    north-west corner, then down through Scientist Fredrick's room to B2F's
-    north end), climb back to 2F's west side and take its stairs up to 3F
-    west. Open the locked room there with the key. The Pocket PC works on 3F
-    west, and its stairs back down to 2F let you go. Then, key in hand,
-    leave by the warehouse, enter the HQ's front door in Veilstone, open the
-    lobby's inner door, and climb to 2F's east side, the hall (Cyrus's
-    speech plays) and the nap room. Take the nap room's stairs up to 3F's
-    east side with grunts 3 and 4 unbeaten: those stairs back down refuse,
-    and so does the Pocket PC. Beat both, and the stairs let you go and the
-    Pocket PC works. Or, with either still unbeaten, go on up to 4F: the
-    Pocket PC works there, before Cyrus.
+  - Galactic HQ, two sections since 2026-11-02 (`overseer-hq-pass`,
+    `docs/oxide/hq-split.md`). The basement run: the warehouse's stairs
+    lead into B2F, and with any of its five trainers unbeaten (B2F's two
+    grunts, B1F's grunt, 1F's grunt, Scientist Fredrick) the stairs back to
+    the warehouse refuse, and so does the Pocket PC, on B1F, 1F, 2F west
+    and 3F west too. Fetch the Galactic Key from B2F's north end: the
+    stairs to the warehouse now let you go even with a basement trainer
+    unbeaten. Come back in with the key, climb to 3F west and open its
+    locked room: the Pocket PC works there, and the stairs back down let
+    you go. The tower: key in hand, enter the HQ's front door in
+    Veilstone, open the lobby's inner door and take the stairs up to 2F's
+    east side. With any of its five trainers unbeaten (2F's grunt pair,
+    Scientist Darrius, 3F's grunt pair) the stairs back to the lobby
+    refuse, the Pocket PC refuses in the hall and on 3F's east side, and
+    the nap room's bed says "There’s no time to rest now! / Press on, or
+    beat the Trainers here." without healing. Go on up to 4F: the Pocket
+    PC works there, before Cyrus, and the bed heals again if you walk back
+    down to it.
   - Coronet 1F: south into the tunnel room, then back north: refused. At the
     far end, out onto the north ledge, the Pocket PC works again.
   - Coronet 3F: up the stairs from 2F, then out onto the south ledge. Fly
@@ -1231,6 +1233,41 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
     north. Two battles one after the other, never one double.
   Also check that the four Rock Climb trainers above Route 216's walls are
   still out of reach before the Icicle Badge.
+- [ ] **Mandatory fights, HQ's split** (`overseer-hq-pass`, Ian, 2026-11-02;
+  `docs/oxide/hq-split.md`). From Candice's badge, walk the story path
+  without dodging anyone. Each trainer below should see you and walk up
+  before you can pass, and after the battle the way on is still open:
+  - A new Hiker, Gunnar, at the foot of Acuity Lakefront's climb, looking
+    east across it, once Rock Climb takes you up the wall; out of reach
+    before the Icicle Badge.
+  - Veilstone's storage-key grunt, by the Galactic building: talking to him
+    starts a battle after "I don’t know anything about any Storage Key!",
+    and only when you win does he drop the key and Looker arrive. Lose, and
+    you black out with the key still his.
+  - B1F's grunt, now a trainer at his own tile, looking west: he battles as
+    you arrive from B2F, with his own lines ("They finally gave me some
+    Pokémon!").
+  - Scientist Fredrick in his 1F room, now at the two-tile gap east of his
+    old spot, looking south; Scientist Darrius on 2F's east side at the gap
+    between the arrival and the grunt pair, looking south. Both fights come
+    before the grunts beyond them.
+  - Officers Phobos and Deimos in the lobby, either side of the corridor
+    beyond the key door, facing each other: one double battle as you step
+    up from the door, never two singles if two of your Pokemon can fight.
+  - Officers Boreas and Laverna on 4F, either side of the row below
+    Cyrus's key door, facing each other: one double battle before the door.
+  - Officer Argo on 4F's north side after Cyrus, at the gap on the way to
+    the laboratory's panel, looking south.
+  - In the laboratory, the male scientist, Oskar, now standing still at the
+    west gap between the pillars, looking south; and Officer Hesperid in the
+    top-left corner of the room by the door to the control room, looking
+    east along the row before it.
+  - Cyrus 2's ace (Weavile) at 59 and Saturn 2's (Toxicroak) at 60.
+  Also check the Ability Capsule: 3F west's locked room, opened with the
+  Galactic Key, holds a ball at its top-left alcove that gives the Ability
+  Capsule once, and the TM ball there still gives its TM. Hiker Alexander
+  (Route 208) and Dragon Tamer Patrick (Route 210 North) are still behind
+  their Rock Climb walls, now at 56 and 57.
 
 ## 5. The ordinary ROM, after the League
 
