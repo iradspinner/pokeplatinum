@@ -68,7 +68,7 @@ Working scope table. Status values: `wanted`, `maybe`, `out`, `undecided`.
 
 | Element | Status | Notes |
 |---|---|---|
-| Type expansion (Fairy, type chart) | wanted | Done in element 1. Fairy is added to Generation 4's chart, and Steel keeps its Generation 4 resistances to Ghost and Dark (Ian, 2026-09-22) |
+| Type expansion (Fairy, type chart) | wanted | Done in element 1. Fairy is added to Generation 4's chart. Ghost and Dark hit Steel for neutral damage, as from Generation 6 on (Ian, 2026-11-03, reversing his ruling of 2026-09-22 that Steel keep both resistances), so the chart is the later games' |
 | Pokedex / species-slot expansion | wanted | Hardlove goes to 1476 slots including forms, megas, regionals |
 | Move expansion (924 move records) | wanted | Includes move effects, animations, text |
 | Ability expansion (u16 IDs to 318+) | wanted | Includes ability effects in the battle engine, not only the table |

@@ -189,6 +189,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Steel move does double, the summary screen reads FAIRY, and the Pokedex info
   page shows the NORMAL plate (the known gap) rather than garbage. The Poketch
   move tester agrees with the battle engine.
+- [ ] **Ghost and Dark hit Steel at neutral** (2026-11-03,
+  `overseer-steel-chart`; Ian moved Steel to the later chart). On move set
+  45, Crunch and Darkest Lariat into the wild Skarmory show no "It's not
+  very effective..." message, and on the Poketch move tester a Ghost or a
+  Dark move into Steel shows the plain result, not the weak one. Before the
+  change both read not very effective.
 - [ ] **The Move Relearner and learnsets.** At the Move Relearner, no move name
   clips beyond the eight known ones, descriptions read sensibly in five lines,
   and a new species' moves are listed. Level a Pokemon through a move it should

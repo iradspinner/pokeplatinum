@@ -42,7 +42,7 @@ exports.platinumOxideData = {
  "chartOrder": {
   "Bug": {
    "Dark": 81,
-   "Fairy": 117,
+   "Fairy": 115,
    "Fighting": 76,
    "Fire": 74,
    "Flying": 78,
@@ -53,17 +53,16 @@ exports.platinumOxideData = {
    "Steel": 82
   },
   "Dark": {
-   "Dark": 100,
-   "Fairy": 118,
-   "Fighting": 97,
-   "Ghost": 99,
-   "Psychic": 98,
-   "Steel": 101
+   "Dark": 99,
+   "Fairy": 116,
+   "Fighting": 96,
+   "Ghost": 98,
+   "Psychic": 97
   },
   "Dragon": {
-   "Dragon": 95,
-   "Fairy": 119,
-   "Steel": 96
+   "Dragon": 94,
+   "Fairy": 117,
+   "Steel": 95
   },
   "Electric": {
    "Dragon": 21,
@@ -74,19 +73,19 @@ exports.platinumOxideData = {
    "Water": 16
   },
   "Fairy": {
-   "Dark": 110,
-   "Dragon": 109,
-   "Fighting": 108,
-   "Fire": 111,
-   "Poison": 112,
-   "Steel": 113
+   "Dark": 108,
+   "Dragon": 107,
+   "Fighting": 106,
+   "Fire": 109,
+   "Poison": 110,
+   "Steel": 111
   },
   "Fighting": {
    "Bug": 45,
    "Dark": 47,
-   "Fairy": 116,
+   "Fairy": 114,
    "Flying": 43,
-   "Ghost": 121,
+   "Ghost": 119,
    "Ice": 41,
    "Normal": 40,
    "Poison": 42,
@@ -114,10 +113,9 @@ exports.platinumOxideData = {
   },
   "Ghost": {
    "Dark": 92,
-   "Ghost": 94,
+   "Ghost": 93,
    "Normal": 90,
-   "Psychic": 91,
-   "Steel": 93
+   "Psychic": 91
   },
   "Grass": {
    "Bug": 28,
@@ -152,12 +150,12 @@ exports.platinumOxideData = {
    "Water": 32
   },
   "Normal": {
-   "Ghost": 120,
+   "Ghost": 118,
    "Rock": 0,
    "Steel": 1
   },
   "Poison": {
-   "Fairy": 114,
+   "Fairy": 112,
    "Ghost": 53,
    "Grass": 49,
    "Ground": 51,
@@ -182,13 +180,13 @@ exports.platinumOxideData = {
    "Steel": 89
   },
   "Steel": {
-   "Electric": 104,
-   "Fairy": 115,
-   "Fire": 102,
-   "Ice": 105,
-   "Rock": 106,
-   "Steel": 107,
-   "Water": 103
+   "Electric": 102,
+   "Fairy": 113,
+   "Fire": 100,
+   "Ice": 103,
+   "Rock": 104,
+   "Steel": 105,
+   "Water": 101
   },
   "Water": {
    "Dragon": 15,

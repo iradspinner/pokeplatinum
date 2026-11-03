@@ -9472,9 +9472,27 @@ def check_custap_any_priority(results):
                     f"(the item left) {out}"))
 
 
+def check_steel_later_chart(results):
+    """Ghost and Dark hit Steel for neutral damage, as from Generation 6 on
+    (Ian, 2026-11-03, reversing his ruling of 2026-09-22). The simulator
+    takes its chart from the engine's table through calc_export, so this
+    reads the real chart, not the hand-built one above: a Shadow Ball and a
+    Dark Pulse into a pure Steel type are 1x, and the AI's effectiveness
+    flags read neither super effective nor not very effective."""
+    from ..encounters import calc_export
+    chart = calc_export.build()["type_chart"]
+    mult = {m: fs.effectiveness(chart, fs.move(m).type, ["Steel"]) for m in ("Shadow Ball", "Dark Pulse")}
+    b, _p, _foe = battle(["Tackle"], ["Tackle"], {})
+    b.st["chart"] = chart
+    flags = {m: fightai.type_flags(b, fs.move(m).type, ["Steel"]) for m in ("Shadow Ball", "Dark Pulse")}
+    ok = mult == {"Shadow Ball": 1.0, "Dark Pulse": 1.0} and set(flags.values()) == {(False, False, False)}
+    results.append(("Shadow Ball and Dark Pulse hit a pure Steel type at neutral (the later chart)", ok,
+                    f"multipliers {mult}; flags (no effect, super, not very) {flags}"))
+
+
 def main():
     results = []
-    for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
+    for check in (check_steel_later_chart, check_damage, check_crit_odds, check_status_immunity, check_item_moves,
                   check_weather_rock, check_map_weather_replaced, check_permanent_trick_room,
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
                   check_salt_cure, check_harvest, check_berry_first_hit,

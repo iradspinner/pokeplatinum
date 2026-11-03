@@ -106,13 +106,12 @@ def check_chart(results):
     types = {a for a, _ in chart} | {d for _, d in chart}
     results.append(("the chart is read out of the battle code, all eighteen types",
                     len(types) == 18 and "FAIRY" in types, f"{len(types)} types"))
-    # This fork's chart is neither generation's, which is why the calculator
-    # cannot use a stock setting: Fairy is in, and Steel still resists Dark and
-    # Ghost the way it did before Generation 6 took that away. Ian ruled to
-    # keep it that way (2026-09-22), so this guards a decision.
-    results.append(("Steel still resists Dark and Ghost, as Generation 4 had it",
-                    chart.get(("DARK", "STEEL")) == 0.5
-                    and chart.get(("GHOST", "STEEL")) == 0.5,
+    # Ghost and Dark hit Steel for neutral damage, as from Generation 6 on
+    # (Ian, 2026-11-03, reversing his ruling of 2026-09-22 that Steel keep
+    # its Generation 4 resistances to both), so this guards a decision.
+    results.append(("Dark and Ghost hit Steel at neutral, as from Generation 6 on",
+                    chart.get(("DARK", "STEEL"), 1.0) == 1.0
+                    and chart.get(("GHOST", "STEEL"), 1.0) == 1.0,
                     f"dark {chart.get(('DARK', 'STEEL'))}, "
                     f"ghost {chart.get(('GHOST', 'STEEL'))}"))
     results.append(("Fairy is complete: strong on three, weak to two, immune to "
@@ -667,11 +666,11 @@ def check_calculator(results):
                     and moves["Breakneck Blitz (Special)"]["basePower"] == 0,
                     f"{len(moves)} of {named}"))
 
-    # The chart is the reason the data travels at all: Generation 4 with
-    # Fairy, Steel keeping its resistances to Ghost and Dark (Ian, 2026-09-22).
+    # The exported chart is the engine's: the later games' since 2026-11-03,
+    # Ghost and Dark neutral on Steel (Ian), and Fairy complete.
     chart = blob["type_chart"]
-    results.append(("the exported chart is this fork's, not a stock one",
-                    chart["Dark"]["Steel"] == 0.5 and chart["Ghost"]["Steel"] == 0.5
+    results.append(("the exported chart is this fork's, read from the engine",
+                    chart["Dark"]["Steel"] == 1.0 and chart["Ghost"]["Steel"] == 1.0
                     and chart["Dragon"]["Fairy"] == 0.0
                     and chart["Fairy"]["Dragon"] == 2.0
                     and chart["Fighting"]["Fairy"] == 0.5, ""))
@@ -844,7 +843,7 @@ def check_calc_mechanics(results):
         "fang": ("Raticate", "Guts", "Garchomp", "", "Super Fang"),
         "crit": ("Frosmoth", "Shield Dust", "Crawdaunt", "Hyper Cutter", "Frost Breath"),
         "armor": ("Frosmoth", "Shield Dust", "Crawdaunt", "Shell Armor", "Frost Breath"),
-        "order": ("Tyranitar", "Sand Stream", "Bronzor", "", "Crunch"),
+        "order": ("Tyranitar", "Sand Stream", "Gardevoir", "", "Crunch"),
         "order2": ("Machamp", "Guts", "Bronzor", "", "Cross Chop"),
         "sniper": ("Frosmoth", "Sniper", "Crawdaunt", "Hyper Cutter", "Frost Breath"),
         "normalize": ("Delcatty", "Normalize", "Blissey", "", "Tackle"),
@@ -1007,9 +1006,11 @@ def check_calc_mechanics(results):
                     str(blob_moves.get("Rage Fist"))))
     # Frost Breath always lands a critical hit unless the target has Shell
     # Armor, and Oxide's critical hit is 1.5x, 2.25x for a Sniper (staples
-    # survey). Crunch into Bronzor applies Psychic's double before Steel's half,
-    # as the chart's rows come; the other way round every roll would be even.
-    # Fighting's rows put Psychic's half first, so Cross Chop's rolls all are.
+    # survey). Crunch into Gardevoir applies Psychic's double before Fairy's
+    # half, as the chart's rows come; the other way round every roll would be
+    # even. (It was Crunch into Bronzor until Dark went neutral on Steel on
+    # 2026-11-03.) Fighting's rows put Psychic's half before Steel's double,
+    # so Cross Chop's rolls into Bronzor all are even.
     results.append(("the always-critical moves crit, and a dual type's factors "
                     "come in chart order",
                     rolls["armor"][-1] * 14 // 10 <= rolls["crit"][-1] <= rolls["armor"][-1] * 16 // 10

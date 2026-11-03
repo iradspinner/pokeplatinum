@@ -2581,6 +2581,10 @@ int Battler_SlotForMove(BattleMon *mon, u16 move)
  *
  * The matchup multiplier is assumed to be divided by 10 at a later stage for
  * any computations which make use of it (hence the values 5 and 20).
+ *
+ * Oxide: Fairy is added, and Ghost and Dark hit Steel for neutral damage, as
+ * from Generation 6 on (Ian, 2026-11-03; until then Steel kept Generation 4's
+ * resistances to both).
  */
 static const u8 sTypeMatchupMultipliers[][3] = {
     { TYPE_NORMAL, TYPE_ROCK, TYPE_MULTI_NOT_VERY_EFF },
@@ -2676,7 +2680,6 @@ static const u8 sTypeMatchupMultipliers[][3] = {
     { TYPE_GHOST, TYPE_NORMAL, TYPE_MULTI_IMMUNE },
     { TYPE_GHOST, TYPE_PSYCHIC, TYPE_MULTI_SUPER_EFF },
     { TYPE_GHOST, TYPE_DARK, TYPE_MULTI_NOT_VERY_EFF },
-    { TYPE_GHOST, TYPE_STEEL, TYPE_MULTI_NOT_VERY_EFF },
     { TYPE_GHOST, TYPE_GHOST, TYPE_MULTI_SUPER_EFF },
     { TYPE_DRAGON, TYPE_DRAGON, TYPE_MULTI_SUPER_EFF },
     { TYPE_DRAGON, TYPE_STEEL, TYPE_MULTI_NOT_VERY_EFF },
@@ -2684,7 +2687,6 @@ static const u8 sTypeMatchupMultipliers[][3] = {
     { TYPE_DARK, TYPE_PSYCHIC, TYPE_MULTI_SUPER_EFF },
     { TYPE_DARK, TYPE_GHOST, TYPE_MULTI_SUPER_EFF },
     { TYPE_DARK, TYPE_DARK, TYPE_MULTI_NOT_VERY_EFF },
-    { TYPE_DARK, TYPE_STEEL, TYPE_MULTI_NOT_VERY_EFF },
     { TYPE_STEEL, TYPE_FIRE, TYPE_MULTI_NOT_VERY_EFF },
     { TYPE_STEEL, TYPE_WATER, TYPE_MULTI_NOT_VERY_EFF },
     { TYPE_STEEL, TYPE_ELECTRIC, TYPE_MULTI_NOT_VERY_EFF },

@@ -4,21 +4,21 @@
 
 A typing's defensive index, from the r/stunfisk post Ian pasted on 2026-11-03, read on Oxide's own type chart and engine and then reweighted by what is used in Oxide. It is a defensive measure only. It says nothing of offence, Speed, a line's moves or its role, so a low index is a reason to look at a line, not a verdict on it.
 
-The post's formula, run on the later games' chart, gives back the post's own single-type ranking for 17 of the 18 types. Grass comes out at -2.5 against the post's -2.0, half a point the post must count somewhere it does not say. On Oxide's chart the order of the 18 types is the post's, except that Steel rises from +8.5 to +11.0, because Oxide's Steel still resists Ghost and Dark (Ian, 2026-09-22). Weighted by what trainers actually attack with in Oxide, Steel is still first by nearly seven points, and Ice is still last.
+The post's formula, run on the later games' chart, gives back the post's own single-type ranking for 17 of the 18 types. Grass comes out at -2.5 against the post's -2.0, half a point the post must count somewhere it does not say. Since 2026-11-03 Oxide's chart is the later games' (Ian moved Steel to it that day, so Ghost and Dark hit Steel for neutral damage), and the order of the 18 types on it is the post's, Steel at the post's +8.5. Until then Steel kept its Generation 4 resistances to Ghost and Dark (Ian, 2026-09-22) and stood at +11.0. Weighted by what trainers actually attack with in Oxide, Steel is still first, by nearly four points, and Ice is still last.
 
 The four disparities that most change design choices:
 
-1. Steel is in a class of its own. Every one of the ten best typings the player can own has Steel in it, and the 16 Steel lines average +11.8 in the player's view against +5.9 for Ghost, the next type. The Ghost and Dark resistances are worth 2.8 points of that, and Dark is the type trainers attack with most.
+1. Steel is in a class of its own. Nine of the ten best typings the player can own have Steel in them (Fighting/Ghost, Annihilape's, is tenth), and the 16 Steel lines average +9.1 in the player's view against +5.9 for Ghost, the next type. Moving Steel to the later chart took 2.8 points off that average (it was +11.8), because Dark is the type trainers attack with most.
 2. Ice is the one type whose lines average below zero (-2.5), and Ice fills the bottom of the dual typings: Ice/Rock (Glalie), Ice/Psychic (Jynx, Mr. Rime), Grass/Ice (Abomasnow), Ice/Bug (Frosmoth) and pure Ice (Glaceon). Ice is also the second most used attacking type against the player. These lines need their niche from offence or Speed.
 3. Trainers in Oxide attack with Dark most (about a tenth of all damaging moves, more in the early splits: Bite, Knock Off, Crunch, Sucker Punch), and almost never with Dragon or Fairy (under 2 percent each). So Dragon types defend far better than the post thinks (11th in the post, 5th here), Psychic types worse than the post's figure suggests in the early game, and a Fairy or Dragon weakness costs little.
-4. A few lines pair a top typing with a high stat total: Hisuian Goodra (Steel/Dragon, 600), Metagross (605), Steelix and Probopass (both 555 and first owned in Gardenia's split), Magnezone, Empoleon and Dusknoir. Magnezone, with Levitate in one of its two regular slots, has the highest index of any line in the game (+18.7) when it rolls that slot. At the other end, Beautifly, Sudowoodo, Furret, Medicham, Wormadam, Delibird, Frosmoth, Mothim and Kricketune pair a poor typing with a low total, the lines most at risk of having no niche.
+4. A few lines pair a top typing with a high stat total: Hisuian Goodra (Steel/Dragon, 600), Metagross (605), Magnezone, Steelix (555 and first owned in Gardenia's split), Empoleon and Dusknoir, with Probopass (555, also from Gardenia's split) just behind. Magnezone, with Levitate in one of its two regular slots, has the highest index of any line in the game (+15.9) when it rolls that slot. At the other end, Beautifly, Sudowoodo, Furret, Medicham, Wormadam, Delibird, Frosmoth, Mothim and Kricketune pair a poor typing with a low total, the lines most at risk of having no niche.
 
-Ian asked whether the player's view and the trainers' view differ. Mostly they do not: the rank correlation of the two views is 0.93 over the 18 single types, 0.97 over the 113 dual typings and 0.95 over the 219 lines. Three single types move four places or more, and Normal moves three. Flying is 10th for the player and 5th for a trainer, because trainers attack with Ice, Electric and Rock far more than the player does. Fighting is 8th for the player and 12th for a trainer, because the player hits it with Flying and Psychic more often. Dragon (5th and 9th) and Normal (14th and 11th) move too. Nine dual typings move 15 places or more, Normal/Flying and Flying/Ghost most. No conclusion above changes: Steel is first and Ice last in both, and the same lines are flagged.
+Ian asked whether the player's view and the trainers' view differ. Mostly they do not: the rank correlation of the two views is 0.93 over the 18 single types, 0.96 over the 113 dual typings and 0.95 over the 219 lines. Three single types move four places or more, and Normal moves three. Flying is 10th for the player and 5th for a trainer, because trainers attack with Ice, Electric and Rock far more than the player does. Fighting is 8th for the player and 12th for a trainer, because the player hits it with Flying and Psychic more often. Dragon (5th and 9th) and Normal (14th and 11th) move too. Ten dual typings move 15 places or more, Normal/Flying and Rock/Steel most. No conclusion above changes: Steel is first and Ice last in both, and the same lines are flagged.
 
 Decisions for Ian:
 
-1. Keep Steel's resistances to Ghost and Dark (your ruling of 2026-09-22), or move Steel to the later chart: Steel's index drops from +11.3 to +8.5 in the player's view, and it stays first either way.
-2. Keep Levitate in one of Magnezone's two regular slots, or move it to the hidden slot: it lifts Magnezone from +12.4 to +18.7, the highest in the game.
+1. Decided on 2026-11-03: Steel moves to the later chart, so Ghost and Dark hit it for neutral damage. Steel's index drops from +11.3 to +8.5 in the player's view and it stays first, and every number in this doc is on the new chart.
+2. Keep Levitate in one of Magnezone's two regular slots, or move it to the hidden slot: it lifts Magnezone from +9.6 to +15.9, the highest in the game.
 3. Read the poor-typing, low-total list in part 4 when the next learnset or stat pass looks at niches; nothing here asks for a change.
 4. Say whether the player's hazard terms should run at the post's full 0.5 rather than 0.5 times the share of trainer teams that set each hazard (as built). Full weight moves Fighting from 8th to 5th and Fire from 6th to 9th, and no other type by more than one place.
 
@@ -34,12 +34,7 @@ The player's lines in parts 3 and 4 are the Box sim's: what a run to the League 
 
 ## Part 1: the post's formula on Oxide's chart
 
-Oxide's chart is the game's own (`pokedex.type_chart`, which reads `sTypeMatchupMultipliers` in `src/battle/battle_lib.c`). It is the later games' chart with Fairy complete, with two entries kept from Generation 4:
-
-| Attacking | Defending | Oxide | Later games |
-|---|---|---|---|
-| Ghost | Steel | 0.5x | 1x |
-| Dark | Steel | 0.5x | 1x |
+Oxide's chart is the game's own (`pokedex.type_chart`, which reads `sTypeMatchupMultipliers` in `src/battle/battle_lib.c`). Since 2026-11-03 it is the later games' chart exactly, Fairy complete. Until then it kept two entries from Generation 4, Ghost and Dark at 0.5x on Steel, which put Steel at +11.0 rather than +8.5 in the table of the 18 types below.
 
 The status immunities and hazard rules come from Oxide's engine, not the later games'. Every one Ian named holds in Oxide:
 
@@ -65,7 +60,7 @@ Each count in the formula follows from one weakness weight per attacking type: t
 
 | Rank in Oxide | Type | Post's figure | Post's formula, later chart (check) | Oxide's chart, post's terms | Oxide's chart, every engine term | Post's rank |
 |---|---|---|---|---|---|---|
-| 1 | Steel | +8.5 | +8.5 | +11.0 | +12.0 | 1 |
+| 1 | Steel | +8.5 | +8.5 | +8.5 | +9.5 | 1 |
 | 2 | Ghost | +4.5 | +4.5 | +4.5 | +5.0 | 2 |
 | 2 | Fairy | +4.5 | +4.5 | +4.5 | +4.5 | 2 |
 | 4 | Poison | +3.5 | +3.5 | +3.5 | +4.0 | 4 |
@@ -200,7 +195,7 @@ The situational weights that result:
 
 | Type | Post's terms | Player, overall | Player, early | Player, middle | Player, late | Trainer, overall | Trainer, early | Trainer, middle | Trainer, late |
 |---|---|---|---|---|---|---|---|---|---|
-| Steel | +11.0 | +11.30 (1) | +13.36 (1) | +11.62 (1) | +8.93 (1) | +13.45 (1) | +13.66 (1) | +13.34 (1) | +13.36 (1) |
+| Steel | +8.5 | +8.50 (1) | +10.13 (1) | +8.75 (1) | +6.61 (1) | +10.68 (1) | +11.08 (1) | +10.39 (1) | +10.58 (1) |
 | Ghost | +4.5 | +4.60 (2) | +4.52 (2) | +3.86 (2) | +5.40 (2) | +5.63 (2) | +7.53 (2) | +4.53 (2) | +4.83 (2) |
 | Fairy | +4.5 | +4.09 (3) | +4.27 (3) | +3.59 (3) | +4.41 (3) | +3.46 (3) | +3.86 (3) | +3.35 (3) | +3.16 (5) |
 | Poison | +3.5 | +3.08 (4) | +4.07 (4) | +2.87 (5) | +2.29 (5) | +3.18 (4) | +3.14 (4) | +3.09 (5) | +3.30 (4) |
@@ -225,32 +220,32 @@ Ranks that change with every situational term at the full 0.5: Normal 14 to 13; 
 
 Every typing an obtainable stage has, scored in both views with the overall weights. "Fielded by trainers" is the kind-weighted count of trainer Pokemon of that typing, so the trainers' view can be read for the typings trainers actually use; the most fielded are pure Normal (186), pure Water (105), pure Fire (86) and pure Fighting (80).
 
-Typings: 113. Rank correlation (Spearman) of the player's view with the trainers' view: 0.97; with the post's formula: 0.95. Typings moving 15 places or more between the views: 9.
+Typings: 113. Rank correlation (Spearman) of the player's view with the trainers' view: 0.96; with the post's formula: 0.95. Typings moving 15 places or more between the views: 10.
 
 ### The best twenty, by the player's view
 
 | Rank | Typing | Player's view | Trainers' view | Trainers' rank | Post's formula | Post's rank | Fielded by trainers (weighted) | Obtainable stages |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Steel/Fairy | +14.56 | +15.97 | 2 | +14.5 | 2 | 24 | Klefki, Mawile |
-| 2 | Flying/Steel | +14.35 | +16.90 | 1 | +15.2 | 1 | 25 | Corviknite, Skarmory |
-| 3 | Dragon/Steel | +12.97 | +14.35 | 6 | +12.0 | 4 | 0 | Hisuian Goodra, Hisuian Sliggoo |
-| 4 | Grass/Steel | +12.44 | +14.41 | 5 | +10.5 | 6 | 13 | Ferroseed, Ferrothorn |
-| 5 | Electric/Steel | +12.38 | +14.45 | 3 | +11.5 | 5 | 26 | Magnemite, Magneton, Magnezone, Togedemaru |
-| 6 | Water/Steel | +12.17 | +14.44 | 4 | +13.2 | 3 | 13 | Empoleon |
-| 7 | Bug/Steel | +12.07 | +13.65 | 7 | +10.5 | 6 | 23 | Scizor |
-| 8 | Fighting/Steel | +10.75 | +12.36 | 9 | +10.5 | 6 | 19 | Lucario |
-| 9 | Ground/Steel | +10.56 | +12.50 | 8 | +10.5 | 6 | 12 | Steelix |
-| 10 | Psychic/Steel | +9.83 | +11.38 | 10 | +9.5 | 10 | 45 | Bronzong, Bronzor, Metagross, Metang |
-| 11 | Fighting/Ghost | +6.68 | +6.44 | 16 | +6.2 | 16 | 3 | Annihilape |
-| 12 | Dragon/Fairy | +6.62 | +5.70 | 20 | +6.0 | 19 | 6 | Altaria |
-| 13 | Electric/Ghost | +6.59 | +7.76 | 12 | +6.0 | 19 | 16 | Rotom |
-| 14 | Water/Ghost | +6.43 | +7.63 | 13 | +7.5 | 11 | 10 | Frillish, Jellicent |
-| 15 | Rock/Steel | +6.35 | +9.40 | 11 | +7.0 | 13 | 24 | Bastiodon, Probopass, Shieldon |
-| 16 | Fire/Ghost | +6.11 | +7.27 | 14 | +6.2 | 16 | 5 | Ceruledge, Chandelure, Lampent, Litwick |
-| 17 | Poison/Dark | +5.89 | +6.04 | 19 | +5.5 | 22 | 30 | Drapion, Skuntank, Stunky |
-| 18 | Water/Fairy | +5.85 | +5.52 | 23 | +7.5 | 11 | 19 | Alomomola, Azumarill, Luvdisc, Marill, Primarina |
-| 19 | Poison/Fairy | +5.77 | +5.39 | 26 | +6.5 | 14 | 5 | Galarian Weezing |
-| 20 | Fire/Fairy | +5.54 | +5.16 | 29 | +6.2 | 16 | 17 | Galarian Rapidash, Ninetales |
+| 1 | Steel/Fairy | +12.65 | +14.01 | 2 | +12.8 | 1 | 24 | Klefki, Mawile |
+| 2 | Flying/Steel | +11.54 | +14.13 | 1 | +12.8 | 1 | 25 | Corviknite, Skarmory |
+| 3 | Dragon/Steel | +10.17 | +11.59 | 6 | +9.5 | 4 | 0 | Hisuian Goodra, Hisuian Sliggoo |
+| 4 | Grass/Steel | +9.63 | +11.64 | 5 | +8.0 | 7 | 13 | Ferroseed, Ferrothorn |
+| 5 | Electric/Steel | +9.57 | +11.68 | 3 | +9.0 | 5 | 26 | Magnemite, Magneton, Magnezone, Togedemaru |
+| 6 | Water/Steel | +9.37 | +11.67 | 4 | +10.8 | 3 | 13 | Empoleon |
+| 7 | Bug/Steel | +9.26 | +10.88 | 7 | +8.0 | 7 | 23 | Scizor |
+| 8 | Fighting/Steel | +8.84 | +10.40 | 8 | +8.8 | 6 | 19 | Lucario |
+| 9 | Ground/Steel | +7.75 | +9.73 | 9 | +8.0 | 7 | 12 | Steelix |
+| 10 | Fighting/Ghost | +6.68 | +6.44 | 16 | +6.2 | 15 | 3 | Annihilape |
+| 11 | Dragon/Fairy | +6.62 | +5.70 | 20 | +6.0 | 18 | 6 | Altaria |
+| 12 | Electric/Ghost | +6.59 | +7.76 | 11 | +6.0 | 18 | 16 | Rotom |
+| 13 | Water/Ghost | +6.43 | +7.63 | 12 | +7.5 | 10 | 10 | Frillish, Jellicent |
+| 14 | Psychic/Steel | +6.22 | +7.85 | 10 | +6.5 | 12 | 45 | Bronzong, Bronzor, Metagross, Metang |
+| 15 | Fire/Ghost | +6.11 | +7.27 | 13 | +6.2 | 15 | 5 | Ceruledge, Chandelure, Lampent, Litwick |
+| 16 | Poison/Dark | +5.89 | +6.04 | 19 | +5.5 | 21 | 30 | Drapion, Skuntank, Stunky |
+| 17 | Water/Fairy | +5.85 | +5.52 | 23 | +7.5 | 10 | 19 | Alomomola, Azumarill, Luvdisc, Marill, Primarina |
+| 18 | Poison/Fairy | +5.77 | +5.39 | 26 | +6.5 | 12 | 5 | Galarian Weezing |
+| 19 | Fire/Fairy | +5.54 | +5.16 | 29 | +6.2 | 15 | 17 | Galarian Rapidash, Ninetales |
+| 20 | Electric/Flying | +5.40 | +6.22 | 17 | +5.5 | 21 | 6 | Emolga |
 
 ### The worst twenty, by the player's view
 
@@ -282,14 +277,15 @@ Typings: 113. Rank correlation (Spearman) of the player's view with the trainers
 | Typing | Player's rank | Trainers' rank | Player's view | Trainers' view |
 |---|---|---|---|---|
 | Normal/Flying | 70 | 40 | +1.74 | +3.50 |
-| Flying/Ghost | 41 | 18 | +3.70 | +6.21 |
-| Fighting/Dragon | 33 | 56 | +4.07 | +2.58 |
+| Rock/Steel | 43 | 14 | +3.54 | +6.63 |
+| Fighting/Dragon | 32 | 56 | +4.07 | +2.58 |
+| Flying/Ghost | 40 | 18 | +3.70 | +6.21 |
 | Fighting/Bug | 56 | 76 | +2.43 | +0.86 |
 | Fighting/Psychic | 79 | 97 | +0.57 | -0.94 |
 | Flying | 74 | 58 | +1.21 | +2.41 |
+| Water/Fighting | 37 | 53 | +3.73 | +2.82 |
+| Water/Dragon | 34 | 50 | +3.82 | +3.00 |
 | Normal/Water | 68 | 52 | +1.86 | +2.89 |
-| Water/Fighting | 38 | 53 | +3.73 | +2.82 |
-| Water/Dragon | 35 | 50 | +3.82 | +3.00 |
 
 ## Part 4: each line's final stage, against its stats
 
@@ -301,51 +297,51 @@ Each obtainable line's final stage (a branching line has one row a branch; Mega 
 
 | Line | Typing | Index, player's view | Index, trainers' view | BST | HP | Def | SpD | Spe | First owned | Placement | Abilities |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Steelix | Steel/Ground | +10.56 | +12.50 | 555 | 100 | 200 | 75 | 30 | Gardenia | +4.77 | Solid Rock (one slot, +13.3) |
-| Skarmory | Steel/Flying | +15.65 | +17.70 | 500 | 85 | 140 | 80 | 70 | Galactic | +4.51 | Filter (counted) |
-| Hisuian Goodra | Steel/Dragon | +12.97 | +14.35 | 600 | 80 | 100 | 150 | 60 | Byron | +4.38 | Sap Sipper (one slot, +13.5) |
-| Ferrothorn | Grass/Steel | +12.44 | +14.41 | 489 | 74 | 131 | 116 | 20 | Wake | +4.04 |  |
-| Probopass | Rock/Steel | +8.59 | +11.25 | 555 | 70 | 145 | 150 | 40 | Gardenia | +4.03 | Solid Rock (counted) |
-| Dusknoir | Ghost | +7.47 | +8.38 | 555 | 105 | 135 | 135 | 45 | Candice | +3.96 | Levitate (counted) |
-| Bastiodon | Rock/Steel | +6.35 | +9.40 | 515 | 80 | 168 | 138 | 30 | Fantina | +3.92 | Solid Rock (one slot, +8.6) |
-| Corviknite | Flying/Steel | +14.35 | +16.90 | 495 | 98 | 105 | 85 | 67 | Wake | +3.79 |  |
-| Bronzong | Steel/Psychic | +9.83 | +11.38 | 530 | 77 | 116 | 116 | 33 | Fantina | +3.08 | Levitate (one slot, +14.4); Heatproof (one slot, +11.1) |
-| Empoleon | Water/Steel | +12.17 | +14.44 | 535 | 84 | 93 | 101 | 60 | Maylene | +2.99 |  |
-| Magnezone | Electric/Steel | +12.38 | +14.45 | 535 | 70 | 115 | 90 | 60 | Byron | +2.97 | Levitate (one slot, +18.7) |
-| Metagross | Steel/Psychic | +9.83 | +11.38 | 605 | 80 | 130 | 90 | 70 | Byron | +2.87 |  |
-| Klefki | Steel/Fairy | +14.56 | +15.97 | 470 | 57 | 91 | 87 | 75 | Fantina | +2.63 |  |
-| Toxapex | Poison/Water | +5.02 | +5.33 | 495 | 50 | 152 | 142 | 35 | Maylene | +2.61 | Limber (one slot, +5.5) |
-| Blissey | Normal | +0.03 | +0.88 | 540 | 255 | 10 | 135 | 55 | Wake | +2.58 |  |
-| Mawile | Steel/Fairy | +14.56 | +15.97 | 440 | 70 | 85 | 75 | 50 | Byron | +2.52 |  |
-| Rotom | Electric/Ghost | +11.23 | +12.17 | 525 | 50 | 107 | 107 | 91 | Fantina | +2.42 | Levitate (counted) |
-| Scizor | Bug/Steel | +12.07 | +13.65 | 500 | 70 | 100 | 80 | 65 | Maylene | +2.32 |  |
-| Cresselia | Psychic | +0.42 | +0.01 | 600 | 120 | 120 | 130 | 85 | Volkner | +2.00 | Levitate (counted) |
-| Carbink | Rock/Fairy | +1.60 | +2.15 | 500 | 50 | 150 | 150 | 50 | Gardenia | +1.85 |  |
+| Steelix | Steel/Ground | +7.75 | +9.73 | 555 | 100 | 200 | 75 | 30 | Gardenia | +4.27 | Solid Rock (one slot, +10.5) |
+| Dusknoir | Ghost | +7.47 | +8.38 | 555 | 105 | 135 | 135 | 45 | Candice | +4.19 | Levitate (counted) |
+| Skarmory | Steel/Flying | +12.84 | +14.93 | 500 | 85 | 140 | 80 | 70 | Galactic | +4.18 | Filter (counted) |
+| Hisuian Goodra | Steel/Dragon | +10.17 | +11.59 | 600 | 80 | 100 | 150 | 60 | Byron | +3.96 | Sap Sipper (one slot, +10.7) |
+| Ferrothorn | Grass/Steel | +9.63 | +11.64 | 489 | 74 | 131 | 116 | 20 | Wake | +3.60 |  |
+| Probopass | Rock/Steel | +5.79 | +8.48 | 555 | 70 | 145 | 150 | 40 | Gardenia | +3.46 | Solid Rock (counted) |
+| Corviknite | Flying/Steel | +11.54 | +14.13 | 495 | 98 | 105 | 85 | 67 | Wake | +3.41 |  |
+| Bastiodon | Rock/Steel | +3.54 | +6.63 | 515 | 80 | 168 | 138 | 30 | Fantina | +3.27 | Solid Rock (one slot, +5.8) |
+| Rotom | Electric/Ghost | +11.23 | +12.17 | 525 | 50 | 107 | 107 | 91 | Fantina | +2.77 | Levitate (counted) |
+| Toxapex | Poison/Water | +5.02 | +5.33 | 495 | 50 | 152 | 142 | 35 | Maylene | +2.75 | Limber (one slot, +5.5) |
+| Blissey | Normal | +0.03 | +0.88 | 540 | 255 | 10 | 135 | 55 | Wake | +2.55 |  |
+| Empoleon | Water/Steel | +9.37 | +11.67 | 535 | 84 | 93 | 101 | 60 | Maylene | +2.54 |  |
+| Magnezone | Electric/Steel | +9.57 | +11.68 | 535 | 70 | 115 | 90 | 60 | Byron | +2.53 | Levitate (one slot, +15.9) |
+| Klefki | Steel/Fairy | +12.65 | +14.01 | 470 | 57 | 91 | 87 | 75 | Fantina | +2.53 |  |
+| Mawile | Steel/Fairy | +12.65 | +14.01 | 440 | 70 | 85 | 75 | 50 | Byron | +2.41 |  |
+| Bronzong | Steel/Psychic | +6.22 | +7.85 | 530 | 77 | 116 | 116 | 33 | Fantina | +2.31 | Levitate (one slot, +10.8); Heatproof (one slot, +7.5) |
+| Metagross | Steel/Psychic | +6.22 | +7.85 | 605 | 80 | 130 | 90 | 70 | Byron | +2.10 |  |
+| Cresselia | Psychic | +0.42 | +0.01 | 600 | 120 | 120 | 130 | 85 | Volkner | +1.98 | Levitate (counted) |
+| Carbink | Rock/Fairy | +1.60 | +2.15 | 500 | 50 | 150 | 150 | 50 | Gardenia | +1.88 |  |
+| Scizor | Bug/Steel | +9.26 | +10.88 | 500 | 70 | 100 | 80 | 65 | Maylene | +1.87 |  |
 
 ### The twenty least defensively placed lines
 
 | Line | Typing | Index, player's view | Index, trainers' view | BST | HP | Def | SpD | Spe | First owned | Placement | Abilities |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Beautifly | Bug/Flying | -1.21 | -0.34 | 395 | 60 | 50 | 50 | 65 | Roark | -3.22 |  |
-| Alakazam | Psychic | -2.45 | -2.74 | 490 | 55 | 45 | 85 | 120 | Wake | -2.98 | Magic Guard (hidden, -2.2) |
-| Glalie | Ice/Rock | -6.53 | -4.97 | 520 | 80 | 80 | 80 | 100 | Wake | -2.79 | Solid Rock (one slot, -2.8) |
-| Delibird | Ice/Flying | -1.49 | -0.67 | 460 | 65 | 60 | 60 | 100 | Candice | -2.73 |  |
-| Jynx | Ice/Psychic | -5.67 | -5.95 | 495 | 65 | 57 | 113 | 95 | Fantina | -2.68 | Snow Cloak (counted); Dry Skin (hidden, -3.4) |
-| Pheromosa | Bug/Fighting | +2.43 | +0.86 | 570 | 71 | 37 | 37 | 151 | Volkner | -2.61 |  |
-| Chatot | Normal/Flying | +1.74 | +3.50 | 466 | 76 | 45 | 42 | 110 | Maylene | -2.38 |  |
-| Sharpedo | Water/Dark | +2.99 | +3.32 | 460 | 70 | 40 | 40 | 95 | Fantina | -2.35 |  |
-| Mothim | Bug/Flying | -1.21 | -0.34 | 464 | 80 | 60 | 60 | 76 | Gardenia | -2.31 |  |
-| Frosmoth | Ice/Bug | -2.94 | -3.46 | 475 | 70 | 60 | 90 | 65 | Candice | -2.31 |  |
-| Mr. Rime | Ice/Psychic | -5.67 | -5.95 | 520 | 80 | 75 | 100 | 70 | Wake | -2.23 |  |
-| Weavile | Dark/Ice | -2.56 | -2.10 | 510 | 70 | 65 | 85 | 125 | HQ | -2.21 |  |
-| Espeon | Psychic | -2.45 | -2.74 | 525 | 65 | 60 | 95 | 110 | Byron | -2.18 |  |
-| Cinccino | Normal | +0.03 | +0.88 | 470 | 75 | 60 | 60 | 115 | Wake | -2.10 |  |
-| Minun | Electric | +1.99 | +2.13 | 415 | 65 | 55 | 55 | 105 | Gardenia | -2.04 | Volt Absorb (hidden, +3.4) |
-| Absol | Dark | +1.16 | +1.31 | 530 | 70 | 60 | 60 | 95 | Wake | -1.92 |  |
-| Furret | Normal | +0.03 | +0.88 | 425 | 85 | 64 | 55 | 90 | Roark | -1.89 |  |
-| Mienshao | Fighting | +1.90 | +0.82 | 510 | 65 | 60 | 60 | 105 | Maylene | -1.84 |  |
-| Ambipom | Normal | +0.03 | +0.88 | 482 | 75 | 66 | 66 | 115 | Fantina | -1.83 |  |
-| Liepard | Dark | +1.16 | +1.31 | 496 | 74 | 60 | 60 | 116 | Gardenia | -1.82 | Limber (one slot, +1.7) |
+| Beautifly | Bug/Flying | -1.21 | -0.34 | 395 | 60 | 50 | 50 | 65 | Roark | -3.29 |  |
+| Alakazam | Psychic | -2.45 | -2.74 | 490 | 55 | 45 | 85 | 120 | Wake | -3.09 | Magic Guard (hidden, -2.2) |
+| Glalie | Ice/Rock | -6.53 | -4.97 | 520 | 80 | 80 | 80 | 100 | Wake | -3.04 | Solid Rock (one slot, -2.8) |
+| Jynx | Ice/Psychic | -5.67 | -5.95 | 495 | 65 | 57 | 113 | 95 | Fantina | -2.90 | Snow Cloak (counted); Dry Skin (hidden, -3.4) |
+| Delibird | Ice/Flying | -1.49 | -0.67 | 460 | 65 | 60 | 60 | 100 | Candice | -2.80 |  |
+| Pheromosa | Bug/Fighting | +2.43 | +0.86 | 570 | 71 | 37 | 37 | 151 | Volkner | -2.56 |  |
+| Mr. Rime | Ice/Psychic | -5.67 | -5.95 | 520 | 80 | 75 | 100 | 70 | Wake | -2.44 |  |
+| Frosmoth | Ice/Bug | -2.94 | -3.46 | 475 | 70 | 60 | 90 | 65 | Candice | -2.44 |  |
+| Mothim | Bug/Flying | -1.21 | -0.34 | 464 | 80 | 60 | 60 | 76 | Gardenia | -2.38 |  |
+| Chatot | Normal/Flying | +1.74 | +3.50 | 466 | 76 | 45 | 42 | 110 | Maylene | -2.35 |  |
+| Weavile | Dark/Ice | -2.56 | -2.10 | 510 | 70 | 65 | 85 | 125 | HQ | -2.32 |  |
+| Espeon | Psychic | -2.45 | -2.74 | 525 | 65 | 60 | 95 | 110 | Byron | -2.29 |  |
+| Sharpedo | Water/Dark | +2.99 | +3.32 | 460 | 70 | 40 | 40 | 95 | Fantina | -2.27 |  |
+| Cinccino | Normal | +0.03 | +0.88 | 470 | 75 | 60 | 60 | 115 | Wake | -2.13 |  |
+| Minun | Electric | +1.99 | +2.13 | 415 | 65 | 55 | 55 | 105 | Gardenia | -2.00 | Volt Absorb (hidden, +3.4) |
+| Furret | Normal | +0.03 | +0.88 | 425 | 85 | 64 | 55 | 90 | Roark | -1.92 |  |
+| Abomasnow | Grass/Ice | -3.46 | -3.64 | 494 | 90 | 75 | 85 | 60 | Wake | -1.90 |  |
+| Absol | Dark | +1.16 | +1.31 | 530 | 70 | 60 | 60 | 95 | Wake | -1.90 |  |
+| Ambipom | Normal | +0.03 | +0.88 | 482 | 75 | 66 | 66 | 115 | Fantina | -1.85 |  |
+| Rampardos | Rock | -2.96 | -1.49 | 500 | 97 | 80 | 70 | 58 | Fantina | -1.82 |  |
 
 ### A strong typing on a high stat total: the lines most likely too strong
 
@@ -353,20 +349,22 @@ Both the index and the stat total half a standard deviation or more above the me
 
 | Line | Typing | Index, player's view | Index, trainers' view | BST | HP | Def | SpD | Spe | First owned | Abilities |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Hisuian Goodra | Steel/Dragon | +12.97 | +14.35 | 600 | 80 | 100 | 150 | 60 | Byron | Sap Sipper (one slot, +13.5) |
-| Metagross | Steel/Psychic | +9.83 | +11.38 | 605 | 80 | 130 | 90 | 70 | Byron |  |
-| Steelix | Steel/Ground | +10.56 | +12.50 | 555 | 100 | 200 | 75 | 30 | Gardenia | Solid Rock (one slot, +13.3) |
-| Magnezone | Electric/Steel | +12.38 | +14.45 | 535 | 70 | 115 | 90 | 60 | Byron | Levitate (one slot, +18.7) |
-| Empoleon | Water/Steel | +12.17 | +14.44 | 535 | 84 | 93 | 101 | 60 | Maylene |  |
-| Probopass | Rock/Steel | +8.59 | +11.25 | 555 | 70 | 145 | 150 | 40 | Gardenia | Solid Rock (counted) |
+| Hisuian Goodra | Steel/Dragon | +10.17 | +11.59 | 600 | 80 | 100 | 150 | 60 | Byron | Sap Sipper (one slot, +10.7) |
+| Metagross | Steel/Psychic | +6.22 | +7.85 | 605 | 80 | 130 | 90 | 70 | Byron |  |
+| Magnezone | Electric/Steel | +9.57 | +11.68 | 535 | 70 | 115 | 90 | 60 | Byron | Levitate (one slot, +15.9) |
+| Steelix | Steel/Ground | +7.75 | +9.73 | 555 | 100 | 200 | 75 | 30 | Gardenia | Solid Rock (one slot, +10.5) |
+| Empoleon | Water/Steel | +9.37 | +11.67 | 535 | 84 | 93 | 101 | 60 | Maylene |  |
 | Dusknoir | Ghost | +7.47 | +8.38 | 555 | 105 | 135 | 135 | 45 | Candice | Levitate (counted) |
-| Bronzong | Steel/Psychic | +9.83 | +11.38 | 530 | 77 | 116 | 116 | 33 | Fantina | Levitate (one slot, +14.4); Heatproof (one slot, +11.1) |
 | Ninetales | Fire/Fairy | +5.88 | +5.31 | 555 | 85 | 84 | 117 | 95 | Maylene | Magic Guard (counted) |
+| Probopass | Rock/Steel | +5.79 | +8.48 | 555 | 70 | 145 | 150 | 40 | Gardenia | Solid Rock (counted) |
 | Annihilape | Fighting/Ghost | +6.68 | +6.44 | 535 | 110 | 80 | 90 | 90 | Byron |  |
+| Bronzong | Steel/Psychic | +6.22 | +7.85 | 530 | 77 | 116 | 116 | 33 | Fantina | Levitate (one slot, +10.8); Heatproof (one slot, +7.5) |
+| Florges | Fairy | +4.09 | +3.46 | 552 | 78 | 68 | 154 | 75 | Wake |  |
 | Primarina | Water/Fairy | +5.85 | +5.52 | 530 | 80 | 74 | 116 | 60 | Maylene |  |
 | Galarian Rapidash | Fairy/Fire | +5.54 | +5.16 | 530 | 80 | 85 | 95 | 95 | Gardenia | Pastel Veil (one slot, +6.1) |
 | Tentacruel | Water/Poison | +5.02 | +5.33 | 535 | 80 | 65 | 120 | 100 | Fantina |  |
 | Swampert | Water/Ground | +4.79 | +3.80 | 535 | 100 | 90 | 90 | 60 | Maylene |  |
+| Crobat | Poison/Flying | +4.10 | +5.40 | 535 | 85 | 80 | 80 | 130 | Wake |  |
 | Decidueye | Grass/Ghost | +4.52 | +5.51 | 530 | 78 | 75 | 100 | 70 | Maylene |  |
 
 ### A poor typing on a low stat total: the lines most likely to have no niche
@@ -378,10 +376,10 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Beautifly | Bug/Flying | -1.21 | -0.34 | 395 | 60 | 50 | 50 | 65 | Roark |  |
 | Sudowoodo | Rock | -2.96 | -1.49 | 450 | 85 | 115 | 80 | 30 | Fantina |  |
 | Furret | Normal | +0.03 | +0.88 | 425 | 85 | 64 | 55 | 90 | Roark |  |
-| Medicham | Fighting/Psychic | +0.57 | -0.94 | 425 | 60 | 75 | 75 | 80 | Maylene |  |
 | Wormadam | Bug/Grass | -1.23 | -1.85 | 444 | 60 | 85 | 105 | 36 | Gardenia | Overcoat (one slot, -1.2) |
-| Delibird | Ice/Flying | -1.49 | -0.67 | 460 | 65 | 60 | 60 | 100 | Candice |  |
+| Medicham | Fighting/Psychic | +0.57 | -0.94 | 425 | 60 | 75 | 75 | 80 | Maylene |  |
 | Frosmoth | Ice/Bug | -2.94 | -3.46 | 475 | 70 | 60 | 90 | 65 | Candice |  |
+| Delibird | Ice/Flying | -1.49 | -0.67 | 460 | 65 | 60 | 60 | 100 | Candice |  |
 | Jumpluff | Grass/Flying | -0.35 | +0.43 | 450 | 75 | 70 | 85 | 110 | Fantina |  |
 | Kricketune | Bug | +0.27 | -0.25 | 444 | 87 | 61 | 61 | 75 | Roark |  |
 | Mothim | Bug/Flying | -1.21 | -0.34 | 464 | 80 | 60 | 60 | 76 | Gardenia |  |
@@ -396,46 +394,43 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 
 | Type | Lines | Mean index, player's view | Mean index, trainers' view | Mean BST | Mean HP+Def+SpD | Mean Spe |
 |---|---|---|---|---|---|---|
-| Steel | 16 | +11.84 | +13.79 | 520 | 292 | 57 |
+| Steel | 16 | +9.10 | +11.07 | 520 | 292 | 57 |
 | Ghost | 17 | +5.91 | +6.95 | 510 | 263 | 71 |
-| Fairy | 18 | +5.49 | +5.25 | 503 | 272 | 70 |
-| Electric | 16 | +5.01 | +5.27 | 489 | 230 | 89 |
+| Fairy | 18 | +5.28 | +5.04 | 503 | 272 | 70 |
+| Electric | 16 | +4.66 | +4.93 | 489 | 230 | 89 |
 | Poison | 17 | +4.62 | +4.86 | 498 | 250 | 81 |
-| Dragon | 12 | +4.12 | +3.64 | 550 | 275 | 82 |
+| Dragon | 12 | +3.89 | +3.41 | 550 | 275 | 82 |
 | Fire | 19 | +3.34 | +3.46 | 524 | 245 | 88 |
-| Fighting | 19 | +3.32 | +2.45 | 512 | 233 | 87 |
-| Ground | 18 | +3.08 | +3.26 | 514 | 286 | 55 |
-| Flying | 25 | +2.80 | +3.98 | 499 | 245 | 87 |
-| Water | 49 | +2.68 | +2.80 | 504 | 265 | 67 |
+| Fighting | 19 | +3.22 | +2.34 | 512 | 233 | 87 |
+| Ground | 18 | +2.92 | +3.11 | 514 | 286 | 55 |
+| Water | 49 | +2.62 | +2.74 | 504 | 265 | 67 |
+| Flying | 25 | +2.58 | +3.76 | 499 | 245 | 87 |
 | Dark | 19 | +1.98 | +2.35 | 512 | 236 | 89 |
-| Grass | 25 | +1.16 | +1.27 | 506 | 256 | 70 |
-| Bug | 21 | +1.12 | +0.95 | 488 | 232 | 77 |
+| Grass | 25 | +1.04 | +1.16 | 506 | 256 | 70 |
+| Bug | 21 | +0.98 | +0.82 | 488 | 232 | 77 |
 | Normal | 19 | +0.37 | +1.39 | 497 | 248 | 84 |
-| Psychic | 23 | +0.14 | +0.00 | 518 | 263 | 79 |
-| Rock | 19 | -0.26 | +1.10 | 508 | 290 | 53 |
+| Psychic | 23 | -0.18 | -0.30 | 518 | 263 | 79 |
+| Rock | 19 | -0.55 | +0.81 | 508 | 290 | 53 |
 | Ice | 16 | -2.48 | -2.20 | 524 | 258 | 82 |
 
 ### Every line, by the player's view
 
 | Line | Typing | Index, player's view | Index, trainers' view | BST | HP | Def | SpD | Spe | First owned | Abilities |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Skarmory | Steel/Flying | +15.65 | +17.70 | 500 | 85 | 140 | 80 | 70 | Galactic | Filter (counted) |
-| Klefki | Steel/Fairy | +14.56 | +15.97 | 470 | 57 | 91 | 87 | 75 | Fantina |  |
-| Mawile | Steel/Fairy | +14.56 | +15.97 | 440 | 70 | 85 | 75 | 50 | Byron |  |
-| Corviknite | Flying/Steel | +14.35 | +16.90 | 495 | 98 | 105 | 85 | 67 | Wake |  |
-| Hisuian Goodra | Steel/Dragon | +12.97 | +14.35 | 600 | 80 | 100 | 150 | 60 | Byron | Sap Sipper (one slot, +13.5) |
-| Ferrothorn | Grass/Steel | +12.44 | +14.41 | 489 | 74 | 131 | 116 | 20 | Wake |  |
-| Magnezone | Electric/Steel | +12.38 | +14.45 | 535 | 70 | 115 | 90 | 60 | Byron | Levitate (one slot, +18.7) |
-| Togedemaru | Electric/Steel | +12.38 | +14.45 | 465 | 75 | 73 | 73 | 96 | Byron | Lightning Rod (one slot, +13.8) |
-| Empoleon | Water/Steel | +12.17 | +14.44 | 535 | 84 | 93 | 101 | 60 | Maylene |  |
-| Scizor | Bug/Steel | +12.07 | +13.65 | 500 | 70 | 100 | 80 | 65 | Maylene |  |
+| Skarmory | Steel/Flying | +12.84 | +14.93 | 500 | 85 | 140 | 80 | 70 | Galactic | Filter (counted) |
+| Klefki | Steel/Fairy | +12.65 | +14.01 | 470 | 57 | 91 | 87 | 75 | Fantina |  |
+| Mawile | Steel/Fairy | +12.65 | +14.01 | 440 | 70 | 85 | 75 | 50 | Byron |  |
+| Corviknite | Flying/Steel | +11.54 | +14.13 | 495 | 98 | 105 | 85 | 67 | Wake |  |
 | Rotom | Electric/Ghost | +11.23 | +12.17 | 525 | 50 | 107 | 107 | 91 | Fantina | Levitate (counted) |
-| Lucario | Fighting/Steel | +10.75 | +12.36 | 525 | 70 | 70 | 70 | 90 | Byron |  |
-| Steelix | Steel/Ground | +10.56 | +12.50 | 555 | 100 | 200 | 75 | 30 | Gardenia | Solid Rock (one slot, +13.3) |
-| Bronzong | Steel/Psychic | +9.83 | +11.38 | 530 | 77 | 116 | 116 | 33 | Fantina | Levitate (one slot, +14.4); Heatproof (one slot, +11.1) |
-| Metagross | Steel/Psychic | +9.83 | +11.38 | 605 | 80 | 130 | 90 | 70 | Byron |  |
+| Hisuian Goodra | Steel/Dragon | +10.17 | +11.59 | 600 | 80 | 100 | 150 | 60 | Byron | Sap Sipper (one slot, +10.7) |
 | Gengar | Ghost/Poison | +9.68 | +10.84 | 500 | 60 | 60 | 75 | 110 | Wake | Levitate (counted) |
-| Probopass | Rock/Steel | +8.59 | +11.25 | 555 | 70 | 145 | 150 | 40 | Gardenia | Solid Rock (counted) |
+| Ferrothorn | Grass/Steel | +9.63 | +11.64 | 489 | 74 | 131 | 116 | 20 | Wake |  |
+| Magnezone | Electric/Steel | +9.57 | +11.68 | 535 | 70 | 115 | 90 | 60 | Byron | Levitate (one slot, +15.9) |
+| Togedemaru | Electric/Steel | +9.57 | +11.68 | 465 | 75 | 73 | 73 | 96 | Byron | Lightning Rod (one slot, +11.0) |
+| Empoleon | Water/Steel | +9.37 | +11.67 | 535 | 84 | 93 | 101 | 60 | Maylene |  |
+| Scizor | Bug/Steel | +9.26 | +10.88 | 500 | 70 | 100 | 80 | 65 | Maylene |  |
+| Lucario | Fighting/Steel | +8.84 | +10.40 | 525 | 70 | 70 | 70 | 90 | Byron |  |
+| Steelix | Steel/Ground | +7.75 | +9.73 | 555 | 100 | 200 | 75 | 30 | Gardenia | Solid Rock (one slot, +10.5) |
 | Weezing | Poison | +7.68 | +7.54 | 510 | 65 | 120 | 85 | 60 | Maylene | Levitate (counted) |
 | Dusknoir | Ghost | +7.47 | +8.38 | 555 | 105 | 135 | 135 | 45 | Candice | Levitate (counted) |
 | Mismagius | Ghost | +7.47 | +8.38 | 505 | 60 | 60 | 105 | 105 | Fantina | Levitate (counted) |
@@ -444,8 +439,9 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Annihilape | Fighting/Ghost | +6.68 | +6.44 | 535 | 110 | 80 | 90 | 90 | Byron |  |
 | Altaria | Dragon/Fairy | +6.62 | +5.70 | 510 | 75 | 90 | 105 | 80 | Maylene |  |
 | Jellicent | Water/Ghost | +6.43 | +7.63 | 480 | 100 | 70 | 105 | 60 | Wake | Water Absorb (one slot, +7.7) |
-| Bastiodon | Rock/Steel | +6.35 | +9.40 | 515 | 80 | 168 | 138 | 30 | Fantina | Solid Rock (one slot, +8.6) |
 | Toxicroak | Poison/Fighting | +6.31 | +5.37 | 490 | 83 | 65 | 65 | 85 | Maylene | Dry Skin (counted) |
+| Bronzong | Steel/Psychic | +6.22 | +7.85 | 530 | 77 | 116 | 116 | 33 | Fantina | Levitate (one slot, +10.8); Heatproof (one slot, +7.5) |
+| Metagross | Steel/Psychic | +6.22 | +7.85 | 605 | 80 | 130 | 90 | 70 | Byron |  |
 | Chandelure | Ghost/Fire | +6.11 | +7.27 | 520 | 60 | 90 | 90 | 80 | Wake | Flash Fire (one slot, +7.3) |
 | Drapion | Poison/Dark | +5.89 | +6.04 | 500 | 70 | 110 | 75 | 95 | Wake |  |
 | Skuntank | Poison/Dark | +5.89 | +6.04 | 499 | 103 | 67 | 61 | 84 | Maylene |  |
@@ -453,6 +449,7 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Alomomola | Water/Fairy | +5.85 | +5.52 | 470 | 165 | 80 | 45 | 65 | Fantina |  |
 | Azumarill | Water/Fairy | +5.85 | +5.52 | 420 | 100 | 80 | 80 | 50 | Gardenia | Sap Sipper (hidden, +9.3) |
 | Primarina | Water/Fairy | +5.85 | +5.52 | 530 | 80 | 74 | 116 | 60 | Maylene |  |
+| Probopass | Rock/Steel | +5.79 | +8.48 | 555 | 70 | 145 | 150 | 40 | Gardenia | Solid Rock (counted) |
 | Galarian Weezing | Poison/Fairy | +5.77 | +5.39 | 490 | 70 | 115 | 105 | 50 | Maylene | Levitate (one slot, +10.4) |
 | Galarian Rapidash | Fairy/Fire | +5.54 | +5.16 | 530 | 80 | 85 | 95 | 95 | Gardenia | Pastel Veil (one slot, +6.1) |
 | Vikavolt | Bug/Electric | +5.43 | +5.17 | 500 | 77 | 90 | 75 | 43 | Gardenia | Levitate (counted) |
@@ -492,6 +489,7 @@ Both half a standard deviation or more below the mean. Several are fast or hit h
 | Mantine | Water/Flying | +3.68 | +4.70 | 495 | 85 | 80 | 140 | 70 | Fantina | Water Absorb (one slot, +5.0); Water Veil (hidden, +4.2) |
 | Pelipper | Water/Flying | +3.68 | +4.70 | 470 | 60 | 100 | 70 | 65 | Gardenia |  |
 | Salazzle | Poison/Fire | +3.67 | +3.80 | 480 | 68 | 60 | 60 | 117 | Fantina |  |
+| Bastiodon | Rock/Steel | +3.54 | +6.63 | 515 | 80 | 168 | 138 | 30 | Fantina | Solid Rock (one slot, +5.8) |
 | Flygon | Bug/Dragon | +3.51 | +2.31 | 550 | 80 | 80 | 80 | 100 | Byron | Levitate (counted) |
 | Hippowdon | Ground | +3.46 | +2.64 | 525 | 108 | 118 | 72 | 47 | Maylene | Thick Fat (counted) |
 | Ampharos | Electric/Dragon | +3.45 | +3.39 | 500 | 90 | 75 | 90 | 55 | Fantina |  |
