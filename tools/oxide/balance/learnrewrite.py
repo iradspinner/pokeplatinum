@@ -390,6 +390,13 @@ IAN_EGG_MOVES = {
                                              "at 52, a draft"),
                         ("MOVE_TAILWIND", "the egg-list rule (Ian, 2026-10-29): Saturn 1's Tropius "
                                           "at 52, a draft")],
+    # Candice's build (2026-11-03, candice-build.md), by the egg-list rule:
+    # Cloyster's Shell Smash goes on Shellder's list, its line's first stage,
+    # and Lapras, a first stage of its own, takes Freeze-Dry on its own list.
+    "SPECIES_SHELLDER": [("MOVE_SHELL_SMASH", "the egg-list rule (Ian, 2026-10-29): Candice's Cloyster "
+                                              "at 53, a helper's build")],
+    "SPECIES_LAPRAS": [("MOVE_FREEZE_DRY", "the egg-list rule (Ian, 2026-10-29): Candice's Lapras "
+                                           "at 55, a helper's build")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

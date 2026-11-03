@@ -119,7 +119,8 @@
             "MOVE_HORN_DRILL",
             "MOVE_ANCIENT_POWER",
             "MOVE_WHIRLPOOL",
-            "MOVE_FISSURE"
+            "MOVE_FISSURE",
+            "MOVE_FREEZE_DRY"
         ]
     },
     "evolutions": [  ],
