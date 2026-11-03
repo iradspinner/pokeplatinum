@@ -442,9 +442,59 @@ BATTLE_WEATHER = {
 }
 
 
+# Five map headers name a column of the day-of-year table instead of a
+# weather (field_overworld_weather.c, FieldSystem_GetWeather): the game
+# looks the column up by the save's date when the player enters the map,
+# and the battle starts in what it finds (field_map_change.c sets the
+# overworld weather, field_battle_data_transfer.c hands it to the battle).
+# The census takes the battle weather that holds on nearly every one of the
+# table's 366 days, or none when no weather does. As the table stands:
+#   Route 212 South: rain on 365 days (raining, heavy rain or a
+#     thunderstorm); April 30 is cloudy, with no battle weather.
+#   Route 213: no weather; clear or cloudy on 356 days, rain on January 24,
+#     March 13, May 11, July 11, August 9 and 20, October 18, November 10,
+#     December 2 and December 31.
+#   Route 216: hail on all 366 days (heavy snow, blizzard or snowing).
+#   Acuity Lakefront: hail on all 366 days (heavy snow or snowing).
+#   Snowpoint City: hail on 356 days (snowing). On January 12, February 27
+#     and 29, March 15 and 31, April 22 and 30, September 2 and 20, and
+#     October 30 it shows the hailing weather (11), which battle_lib.c's
+#     field weather check does not turn into battle hail. No trainer
+#     battles on Snowpoint's own map, so this one changes no fight.
+# A save with a clock penalty is pinned to January 2, which agrees with
+# the census on every map.
+YEARLY_SHARE = 0.95
+
+
+@functools.lru_cache(maxsize=None)
+def yearly_weather():
+    """{day-of-year weather constant: the battle weather of nearly every
+    day, or None}, read from the table itself so a change to it is seen."""
+    const = _read("include", "constants", "overworld_weather.h")
+    column = {name: int(n) for name, n in re.findall(
+        r"#define (OVERWORLD_WEATHER_\w+)\s+\(OVERWORLD_WEATHER_YEARLY_START \+ (\d+)\)", const)}
+    table = _read("src", "field_overworld_weather.c")
+    days = [[w.strip() for w in row.split(",")]
+            for row in re.findall(r"\[DAY_OF_YEAR_\w+ - 1\] = \{([^}]*)\}", table)]
+    out = {}
+    for name, col in column.items():
+        if col >= len(days[0]):
+            continue  # YEARLY_END, which marks the end and is no column
+        counts = collections.Counter(BATTLE_WEATHER.get(d[col]) for d in days)
+        weather, n = counts.most_common(1)[0]
+        out[name] = weather if n >= YEARLY_SHARE * len(days) else None
+    return out
+
+
 def battle_weather(header):
-    """The weather a battle on this map starts in, or None."""
-    return BATTLE_WEATHER.get(headers()[header].get("weather"))
+    """The weather a battle on this map starts in, or None. A day-of-year
+    map takes the weather of nearly every day (yearly_weather); until
+    2026-11-03 those read as clear, and Route 216, Acuity Lakefront and
+    Route 212 South were scored without their hail and rain."""
+    weather = headers()[header].get("weather")
+    if weather in yearly_weather():
+        return yearly_weather()[weather]
+    return BATTLE_WEATHER.get(weather)
 
 
 def trainer_weather(tr_id):
