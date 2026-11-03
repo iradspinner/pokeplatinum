@@ -369,6 +369,15 @@ TRAINER_SPLITS = {
     # Candice's map.
     **{c: "HQ" for c in ("TRAINER_SKIER_BRADLEY", "TRAINER_SKIER_KAITLYN", "TRAINER_SKIER_ANDREA",
                          "TRAINER_BLACK_BELT_PHILIP")},
+    # HQ's split's pass (Ian, 2026-11-02; docs/oxide/hq-split-map.md,
+    # question 7, and docs/oxide/hq-split.md): Hiker Alexander on Route 208
+    # and Dragon Tamer Patrick on Route 210 North stand behind Rock Climb
+    # walls, so they are first met in HQ's split and levelled for it; the new
+    # hiker at the foot of Acuity Lakefront's climb (free slot 109) stands
+    # above its Rock Climb wall; and Veilstone's storage-key grunt (free slot
+    # 101) fights only once Lake Acuity's scene has played.
+    **{c: "HQ" for c in ("TRAINER_HIKER_ALEXANDER", "TRAINER_DRAGON_TAMER_PATRICK",
+                         "TRAINER_DUMMY_109", "TRAINER_DUMMY_101")},
 }
 
 

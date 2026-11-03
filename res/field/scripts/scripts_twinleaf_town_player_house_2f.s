@@ -2153,10 +2153,11 @@ TestKit_MoveSet91:
 /* Set 92: King's Shield lets a status move through (Ian, 2026-10-29: "fix
    king's shield and burning bulwark to let through status moves"). Against
    a wild Rattata that knows Tackle and Tail Whip, picking one at random: a
-   Tackle brings "MEW protected itself!"; a Tail Whip brings "MEW's Defense
-   fell!" as if Mew had not protected. Used two turns running it can fail,
-   as Protect can, so use Splash between. Before the change it stopped the
-   Tail Whip too. */
+   Tackle brings "MEW protected itself!" and, since 2026-11-02, "The wild
+   RATTATA's Attack fell!" (Ian: "Give it the Attack drop"); a Tail Whip
+   brings "MEW's Defense fell!" as if Mew had not protected. Used two turns
+   running it can fail, as Protect can, so use Splash between. Before the
+   change it stopped the Tail Whip too. */
 TestKit_MoveSet92:
     SetVar VAR_0x8000, SPECIES_RATTATA
     SetVar VAR_0x8001, ABILITY_NONE

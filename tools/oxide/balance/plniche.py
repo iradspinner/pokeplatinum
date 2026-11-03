@@ -47,16 +47,15 @@ from . import data, fightsim as fs, pboxes, plscore, plteam, pool
 SEEDS = (1, 2, 3)
 CUT = 30            # the most members a screen enumerates the sixes of
 TOP = 5             # the top sixes a line counts in (the search labels these)
-GOAL3 = os.path.expanduser("~/oxide-trials/scorer-stage2")
 
 
 # ---- the fights ---------------------------------------------------------------------------------
 
 def boss_fights():
     """[(label, split, ids or story key)] for goal 3's kept rows, Ace
-    Trainers left out, from goal3_fights' own list."""
-    sys.path.insert(0, GOAL3)
-    import goal3_fights as g3
+    Trainers left out, from goal3_fights' own list (in this folder since
+    2026-11-02; it lived in ~/oxide-trials/scorer-stage2 before)."""
+    from . import goal3_fights as g3
     rows = []
     g3.write = lambda rs, left: rows.extend(rs)
     g3.main()

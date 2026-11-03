@@ -115,7 +115,9 @@
             "MOVE_LEAF_STORM",
             "MOVE_SYNTHESIS",
             "MOVE_CURSE",
-            "MOVE_LEAF_BLADE"
+            "MOVE_LEAF_BLADE",
+            "MOVE_DRAGON_TAIL",
+            "MOVE_TAILWIND"
         ]
     },
     "evolutions": [  ],

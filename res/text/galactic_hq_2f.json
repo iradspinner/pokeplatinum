@@ -113,6 +113,13 @@
         "The refrigerator is filled with murky,\n",
         "sinister drinks and nothing else..."
       ]
+    },
+    {
+      "id": "GalacticHQ2F_Text_NoTimeToRest",
+      "en_US": [
+        "There’s no time to rest now!\n",
+        "Press on, or beat the Trainers here."
+      ]
     }
   ]
 }

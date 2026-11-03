@@ -93,9 +93,15 @@ def check_scarcity(results):
         got.update(sp for sp in strong - exempt if dex.line_of(root, sp) not in wanted_lines)
         per_box.append(len(strong))
     worst = got.most_common(3)
-    results.append(("with best play no line worth 85 or more lands in over half of 20 League "
-                    "runs (bar the two eggs and Ian's super-wanted lines)",
-                    all(c * 2 <= n for _, c in worst),
+    # The bar is 60 percent of the runs, not half (Ian, 2026-11-02). Removing
+    # the Veilstone gift took one draw out of every seeded run, and the catches
+    # after it re-rolled: Mamoswine came out in 12 of these 20, though over 200
+    # runs it lands about a third of the time on this tree and on the one
+    # before. Ian chose a looser bar over more runs; the seeds stay as they are.
+    results.append(("with best play no line worth 85 or more lands in over 60 percent of 20 "
+                    "League runs (bar the two eggs and Ian's super-wanted lines; the bar was "
+                    "half until the Veilstone gift's removal re-rolled the runs, Ian, 2026-11-02)",
+                    all(c * 10 <= n * 6 for _, c in worst),
                     ", ".join(f"{sp[8:].title()} {c}/{n}" for sp, c in worst)
                     + f"; per box median {sorted(per_box)[n // 2]}"))
 

@@ -13,7 +13,7 @@
             "species": "SPECIES_PELIPPER",
             "form": 0,
             "level": 39,
-            "item": "ITEM_DAMP_ROCK",
+            "item": "ITEM_SHARP_BEAK",
             "moves": [
                 "MOVE_SCALD",
                 "MOVE_AIR_CUTTER",

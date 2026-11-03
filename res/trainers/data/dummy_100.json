@@ -1,34 +1,116 @@
 {
-    "name": "Mickey",
-    "class": "TRAINER_CLASS_YOUNGSTER",
+    "name": "Grunt",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_CROBAT",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 55,
+            "item": "ITEM_SHARP_BEAK",
+            "moves": [
+                "MOVE_CROSS_POISON",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_U_TURN",
+                "MOVE_TAUNT"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_SKUNTANK",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_BLACKGLASSES",
+            "moves": [
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_CRUNCH",
+                "MOVE_POISON_JAB",
+                "MOVE_FIRE_BLAST"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_PURUGLY",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_SILK_SCARF",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_BODY_SLAM",
+                "MOVE_KNOCK_OFF",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_HARDY",
+            "ball_seal": 0,
+            "ability": 2
+        },
+        {
+            "species": "SPECIES_BRONZONG",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_MENTAL_HERB",
+            "moves": [
+                "MOVE_GYRO_BALL",
+                "MOVE_EARTHQUAKE",
+                "MOVE_STEALTH_ROCK",
+                "MOVE_HYPNOSIS"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_SASSY",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_TOXICROAK",
+            "form": 0,
+            "level": 56,
+            "item": "ITEM_POISON_BARB",
+            "moves": [
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_GUNK_SHOT",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [
         {
             "type": "TRMSG_PRE_BATTLE",
-            "garbage": 29
+            "en_US": [
+                "They finally gave me some Pokémon!\n",
+                "I’m not the gruntiest grunt anymore!\r"
+            ]
         },
         {
             "type": "TRMSG_DEFEAT",
-            "garbage": 16
+            "en_US": [
+                "Aww... I’m still the gruntiest\n",
+                "of the grunts...\n"
+            ]
         },
         {
             "type": "TRMSG_POST_BATTLE",
-            "garbage": 35
+            "en_US": [
+                "I still don’t know how the warp\n",
+                "panels connect, either.\n"
+            ]
         }
     ]
 }

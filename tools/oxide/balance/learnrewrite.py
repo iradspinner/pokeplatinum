@@ -132,7 +132,9 @@ IAN_EGG_MOVES = {
     # Two more of the page's homes for trainers: lines the player cannot
     # obtain, whose later-game owners Oxide lacks.
     "SPECIES_STANTLER": [("MOVE_PSYSHIELD_BASH", "Ian, 2026-10-21, on signature-moves.md: Wyrdeer's, and "
-                                                 "Stantler's own in Legends: Arceus, for trainers")],
+                                                 "Stantler's own in Legends: Arceus, for trainers"),
+                         ("MOVE_DREAM_EATER", "the egg-list rule (Ian, 2026-10-29): Officer Somnu 2's "
+                                              "Stantler at 51, a TM in Generation 4 only, a draft")],
     "SPECIES_GROWLITHE": [("MOVE_RAGING_FURY", "Ian, 2026-10-21, on signature-moves.md: Hisuian Arcanine's, "
                                                "for trainers' Arcanine")],
     # Fantina's six (Ian, 2026-10-29, on fantina-redesign.md: "legalise via
@@ -316,7 +318,9 @@ IAN_EGG_MOVES = {
                          ("MOVE_CRUNCH", "Ian, 2026-10-31: Officer Somnu 1's Munchlax at 17")],
     "SPECIES_CHINCHOU": [("MOVE_DISCHARGE", "Ian, 2026-10-31: Jupiter 1's Lanturn at 26, which learns it at 40")],
     "SPECIES_SNOVER": [("MOVE_ICE_SHARD", "Ian, 2026-10-31: the Eterna building 3F grunt's Snover at 25, "
-                                          "which learns it at 26")],
+                                          "which learns it at 26"),
+                       ("MOVE_EARTH_POWER", "the egg-list rule (Ian, 2026-10-29): Officer Moira 2's "
+                                            "Abomasnow at 51, a TM in the latest game only, a draft")],
     "SPECIES_NATU": [("MOVE_FUTURE_SIGHT", "Ian, 2026-10-31: the Eterna building 3F grunt's Xatu at 25"),
                      ("MOVE_AIR_SLASH", "Ian, 2026-10-31: the Eterna building 3F grunt's Xatu at 25")],
     "SPECIES_GALARIAN_MR_MIME": [("MOVE_FREEZE_DRY", "Ian, 2026-10-31: the Eterna building 3F grunt's "
@@ -376,6 +380,16 @@ IAN_EGG_MOVES = {
     # Incineroar's Thunder Punch is with Litten's entry above.
     "SPECIES_GALARIAN_ZAPDOS": [("MOVE_HOWL", "the egg-list rule (Ian, 2026-10-29): Mars 2's Galarian "
                                               "Zapdos at 52, a draft")],
+    # Saturn 1's first draft (Ian, 2026-11-02, saturn1-check.md), by the
+    # egg-list rule: Mantine's Hurricane goes on Mantyke's list, its line's
+    # first stage. Tropius is a first stage of its own, and its lists are set
+    # by hand (learnsets_by_hand.txt), so its file holds the same two moves.
+    "SPECIES_MANTYKE": [("MOVE_HURRICANE", "the egg-list rule (Ian, 2026-10-29): Saturn 1's Mantine "
+                                           "at 52, a draft")],
+    "SPECIES_TROPIUS": [("MOVE_DRAGON_TAIL", "the egg-list rule (Ian, 2026-10-29): Saturn 1's Tropius "
+                                             "at 52, a draft"),
+                        ("MOVE_TAILWIND", "the egg-list rule (Ian, 2026-10-29): Saturn 1's Tropius "
+                                          "at 52, a draft")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian

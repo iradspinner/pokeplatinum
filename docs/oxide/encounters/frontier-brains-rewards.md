@@ -119,11 +119,12 @@ gift and Riley's egg). An item reward adds none.
    Argenta's Battle Hall is one Pokemon against every type, and an egg drawn
    from several baby lines fits it. The thinly sourced babies are Happiny
    (Blissey, 74.8, one cameo slot), Smoochum (Jynx, 55.0, two cameo slots) and
-   Elekid (Electivire, 76.1, today only the Veilstone gift); Mime Jr. has a
-   Trophy Garden home and is left out. All three hatch at level 1 and reach
-   their final stage under Byron's cap with the Pocket PC's Rare Candies, and
-   none passes 85. The one catch is that it is the split's second random egg,
-   after Riley's.
+   Elekid (Electivire, 76.1, wild only as a 10% Electivire on Route 222
+   since its Veilstone gift was removed on 2026-11-02); Mime Jr. has a
+   Trophy Garden home and is left out. All
+   three hatch at level 1 and reach their final stage under Byron's cap
+   with the Pocket PC's Rare Candies, and none passes 85. The one catch is
+   that it is the split's second random egg, after Riley's.
 3. **A static at Pal Park**, level 40, from the same thin lines. It suits Pal
    Park's old role as the place Pokemon from other regions turn up, with
    Tropius or Lickitung as the obvious picks, but a static and an egg do the

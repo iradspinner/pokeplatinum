@@ -1,34 +1,99 @@
 {
-    "name": "Angelica",
-    "class": "TRAINER_CLASS_BATTLE_GIRL",
+    "name": "Gunnar",
+    "class": "TRAINER_CLASS_HIKER",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_HIPPOWDON",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 55,
+            "item": "ITEM_SMOOTH_ROCK",
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_EARTHQUAKE",
+                "MOVE_SLACK_OFF",
+                "MOVE_YAWN"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_SANDSLASH",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_SOFT_SAND",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_NAUGHTY",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_PROBOPASS",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_POWER_GEM",
+                "MOVE_EARTH_POWER",
+                "MOVE_FLASH_CANNON",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_QUIET",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_RHYPERIOR",
+            "form": 0,
+            "level": 56,
+            "item": "ITEM_WACAN_BERRY",
+            "moves": [
+                "MOVE_STONE_EDGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_HAMMER_ARM",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [
         {
             "type": "TRMSG_PRE_BATTLE",
-            "garbage": 16
+            "en_US": [
+                "The lake waits at the top of this\n",
+                "climb. You’ll have to get past me!\r"
+            ]
         },
         {
             "type": "TRMSG_DEFEAT",
-            "garbage": 9
+            "en_US": [
+                "You climb as well as you battle!\n"
+            ]
         },
         {
             "type": "TRMSG_POST_BATTLE",
-            "garbage": 31
+            "en_US": [
+                "Rock Climb opens up a whole new\n",
+                "side of Sinnoh, doesn’t it?\n"
+            ]
         }
     ]
 }

@@ -831,6 +831,10 @@ ADDED = [
         "TRAINER_ACE_TRAINER_JOSE", "",
         "the game's one Ability Patch, a second reward from a six-Pokemon optional fight "
         "(Ian, 2026-10-13: in the Battle Zone)"),
+    Row("ITEM_ABILITY_CAPSULE", "1", "ball", "HQ", "MAP_HEADER_GALACTIC_HQ_3F", "27,10", "", "", "",
+        "the game's second Ability Capsule, a new ball in 3F west's locked room, past both of 3F "
+        "west's optional grunts and the Galactic Key's door, under FLAG_UNUSED_0x03CD (Ian, "
+        "2026-11-02; docs/oxide/hq-split.md)"),
 ]
 
 

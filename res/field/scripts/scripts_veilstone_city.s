@@ -175,6 +175,12 @@ VeilstoneCity_Entry12:
     WaitMovement
     Message 37
     CloseMessage
+    @ Platinum Oxide: he fights, as free trainer slot 101, before he drops
+    @ the Storage Key, so HQ's split counts one more mandatory fight (Ian,
+    @ 2026-11-02; docs/oxide/hq-split.md).
+    StartTrainerBattle TRAINER_DUMMY_101
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, VeilstoneCity_StorageKeyGruntBlackOut
     SetFlag FLAG_VEILSTONE_CITY_GRUNT_DROPPED_STORAGE_KEY
     SetObjectEventPos 26, 723, 601
     SetObjectEventMovementType 26, 14
@@ -190,6 +196,10 @@ VeilstoneCity_Entry12:
     GoToIf 1, VeilstoneCity_0803
     CompareVarToValue VAR_0x800C, 3
     GoToIf 1, VeilstoneCity_0829
+    End
+VeilstoneCity_StorageKeyGruntBlackOut:
+    BlackOutFromBattle
+    ReleaseAll
     End
 VeilstoneCity_Entry13:
     PlaySE SE_CONFIRM_sseq_3

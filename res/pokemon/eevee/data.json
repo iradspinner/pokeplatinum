@@ -86,7 +86,8 @@
             "MOVE_COVET",
             "MOVE_BATON_PASS",
             "MOVE_SUBSTITUTE",
-            "MOVE_LEAF_BLADE"
+            "MOVE_LEAF_BLADE",
+            "MOVE_PROTECT"
         ]
     },
     "evolutions": [
