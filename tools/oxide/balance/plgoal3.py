@@ -139,9 +139,10 @@ Catch = collections.namedtuple("Catch", "species split place area")
 def all_rows():
     """[{name, kind, split, ids, story, slug, single}] for every row goal3.csv
     lists, in goal3_fights' order: its kept rows and those dropped only as
-    doubles. A row is single unless it is a tag battle or a double."""
-    sys.path.insert(0, plniche.GOAL3)
-    import goal3_fights as g3
+    doubles. A row is single unless it is a tag battle or a double.
+    goal3_fights is in this folder since 2026-11-02; it lived in
+    ~/oxide-trials/scorer-stage2 before."""
+    from . import goal3_fights as g3
     rows = []
     g3.write = lambda rs, left: rows.extend(rs)
     g3.main()

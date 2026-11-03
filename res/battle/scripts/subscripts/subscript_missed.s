@@ -29,13 +29,14 @@ _058:
 _063:
     // Oxide: a side guard names itself; the C leaves MOVE_NONE here when the
     // defender's own Protect stopped the move, or names the defender's
-    // Spiky Shield, Baneful Bunker, Burning Bulwark, Silk Trap or Obstruct
-    // when the move made contact with it.
+    // Spiky Shield, Baneful Bunker, Burning Bulwark, Silk Trap, Obstruct or
+    // King's Shield when the move made contact with it.
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_SPIKY_SHIELD, _spiky_shield
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_BANEFUL_BUNKER, _baneful_bunker
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_BURNING_BULWARK, _burning_bulwark
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_SILK_TRAP, _silk_trap
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_OBSTRUCT, _obstruct
+    CompareVarToValue OPCODE_EQU, BTLVAR_MSG_MOVE_TEMP, MOVE_KINGS_SHIELD, _kings_shield
     CompareVarToValue OPCODE_NEQ, BTLVAR_MSG_MOVE_TEMP, MOVE_NONE, _side_guard
     // {0} protected itself!
     PrintMessage BattleStrings_Text_PokemonProtectedItself_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
@@ -110,6 +111,18 @@ _obstruct:
     // nothing happens once it is at -6.
     CompareMonDataToValue OPCODE_EQU, BTLSCR_ATTACKER, BATTLEMON_DEFENSE_STAGE, 0, _179
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_PARAM, MOVE_SUBSCRIPT_PTR_DEFENSE_DOWN_2_STAGES
+    GoTo _contact_stat_drop
+
+_kings_shield:
+    // {0} protected itself!
+    PrintMessage BattleStrings_Text_PokemonProtectedItself_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
+    Wait 
+    WaitButtonABTime 30
+    // Oxide: the attacker's Attack falls a stage, as in the later games and
+    // hg-engine past Generation 7 (Ian, 2026-11-02: "Give it the Attack
+    // drop"); nothing happens once it is at -6.
+    CompareMonDataToValue OPCODE_EQU, BTLSCR_ATTACKER, BATTLEMON_ATTACK_STAGE, 0, _179
+    UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_PARAM, MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_1_STAGE
 
 _contact_stat_drop:
     // Oxide: the drop is the protecting battler's doing, so it stands as the

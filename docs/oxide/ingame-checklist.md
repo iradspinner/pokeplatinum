@@ -27,7 +27,7 @@ real save at that point. The times are rough, for one try each.
 | 1 | Section 2, **Soft level caps** | Test kit, Level caps menu | 10 min |
 | 2 | Section 2, **Silk Trap's Speed drop** and **Obstruct's Defense drop** | Test kit, move sets 89 and 90 | 5 min |
 | 3 | Section 2, **Corrosion through Baneful Bunker** | Test kit, move set 91 | 3 min |
-| 4 | Section 2, **King's Shield lets status moves through** and **Burning Bulwark lets status moves through** | Test kit, move sets 92 and 93 | 5 min |
+| 4 | Section 2, **King's Shield lets status moves through**, **King's Shield's Attack drop** and **Burning Bulwark lets status moves through** | Test kit, move sets 92 and 93 | 5 min |
 | 5 | Section 3, Rare Candy chaining past the level cap | Test kit's Items menu, or the first candy of a run | 3 min |
 | 6 | Section 3, **Mandatory fights, Roark's split** | A new game, or the kit's Sandgem warp | 20 min |
 | 7 | Section 3, Roark's new team | A real save at Roark's gym | 10 min |
@@ -375,6 +375,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Tackle brings "MEW protected itself!" and then "The wild RATTATA was
   burned!"; a Tail Whip gets through ("MEW's Defense fell!"). Before the
   change the Tail Whip was stopped too.
+- [ ] **King's Shield's Attack drop** (set 92 again, `overseer-kings-shield`;
+  Ian, 2026-11-02: "Give it the Attack drop"). Play set 92 as above. When a
+  Tackle meets the shield, "MEW protected itself!" is now followed by "The
+  wild RATTATA's Attack fell!", and Rattata's next Tackle that lands does
+  clearly less. A Tail Whip still gets through and lowers nothing on
+  Rattata. Before the change King's Shield only protected.
 - [ ] **A Corrosion holder uses Toxic on a Steel type** (normal play,
   `overseer-protect-ai`; Ian, 2026-10-29). The trainer AI no longer refuses
   a Corrosion holder's Toxic, Poison Powder and the like, a flung Toxic Orb
