@@ -86,8 +86,12 @@ outlier, is fine while it approximates its band (Ian, 2026-10-06).
 Cyrus 3, the biggest boss but Cynthia, may read harder than the rest
 (Ian, 2026-10-06: "if any fight can be excused for being too hard, the
 biggest boss fight of the game (save Cynthia) surely has that claim").
-From about Cyrus 3 on, a boss may carry two or three legendaries where its
-team needs them, against one before (Ian, 2026-10-06).
+Any boss may carry two or three legendaries where its team needs them,
+Ultra Beasts and mythicals counted with them (Ian, 2026-11-03, lifting
+the limit of one before Cyrus 3 set on 2026-10-06: "This was before we
+started running into issue pumping up the difficulty, and I consider ultra
+beasts approximately similar to mythicals; two or 3 in a boss fight is
+still acceptable").
 Two soft guides, for judging a reading and never as bars or gate checks
 (Ian, 2026-10-13). The barometer for "unsolvably hard" is box 3 of the
 first reading of Ian's six-member Gardenia (27 percent won, difficulty

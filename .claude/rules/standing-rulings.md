@@ -323,7 +323,11 @@ read, so they are written here too. Each is a standing instruction.
   not the textbook pick (2026-10-29). A legendary on a trainer team is
   weighed by its base stat total and role like any other member, and
   being legendary raises nothing (Ian, 2026-11-01, on Mars 2's Galarian
-  Zapdos: "no more worrying than salamence or goodra"). The full ruling (luck items, Focus Sash, Custap and enemy priority,
+  Zapdos: "no more worrying than salamence or goodra"). Ultra Beasts and
+  mythicals count with the legendaries, and any boss may carry two or
+  three of them, lifting the limit of one before Cyrus 3 (Ian, 2026-11-03:
+  "This was before we started running into issue pumping up the
+  difficulty... two or 3 in a boss fight is still acceptable"). The full ruling (luck items, Focus Sash, Custap and enemy priority,
   accuracy, conditional moves, members under their evolution level, the
   iv_scale) is in `docs/oxide/rulings-detail.md`; read it before designing a
   team.
