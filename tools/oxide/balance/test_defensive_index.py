@@ -28,11 +28,25 @@ def main():
     diffs = {(a, d) for a, d, _o, _l in di.chart_differences()}
     # Until 2026-11-03 Steel still resisted Ghost and Dark here, which put it
     # at +11.0; Ian moved Steel to the later chart that day.
-    results.append(("Oxide's chart is the later games' chart, Ghost and Dark neutral on Steel",
-                    diffs == set(), f"{sorted(diffs)}"))
+    # Since 2026-11-03 Ice also resists Water (the Ice proposal's first
+    # lever), the one place Oxide's chart leaves the later games'.
+    results.append(("Oxide's chart is the later games' but for Ice resisting Water",
+                    diffs == {("WATER", "ICE")}, f"{sorted(diffs)}"))
+    ox_ice = di.index(["ICE"], ox, pw)
+    results.append(("so Ice is -4.5 on the post's weights, the post's -5.5 and a resistance worth 1",
+                    abs(ox_ice - (-4.5)) < 1e-9, f"{ox_ice}"))
     ox_steel = di.index(["STEEL"], ox, pw)
     results.append(("so Steel is the post's +8.5 on Oxide's chart too",
                     abs(ox_steel - 8.5) < 1e-9, f"{ox_steel}"))
+
+    # Snow in place of hail (Ian, 2026-11-03, the Ice proposal's second
+    # lever): hail bites no one, so no type or ability is immune to it, and
+    # Ice's every-engine-term index is its post's-terms one.
+    ice_all = di.index(["ICE"], ox, pw, count=di.OXIDE_GROUPS)
+    hail_immune = [t for t in di.TYPES if "hail" in di.groups([t])] + [
+        a for a in ("SNOW_CLOAK", "ICE_BODY", "OVERCOAT", "MAGIC_GUARD") if "hail" in di.groups(["NORMAL"], a)]
+    results.append(("no type or ability is immune to hail, which no longer bites (snow)",
+                    not hail_immune and abs(ice_all - ox_ice) < 1e-9, f"immune {hail_immune}; Ice, every term {ice_all}"))
 
     ghost = (di.multiplier(ox, "NORMAL", ["GHOST"]), di.multiplier(ox, "FIGHTING", ["GHOST"]))
     results.append(("Ghost is immune to Normal and Fighting on Oxide's chart", ghost == (0.0, 0.0), f"{ghost}"))

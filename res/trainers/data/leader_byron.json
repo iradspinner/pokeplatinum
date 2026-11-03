@@ -5,94 +5,93 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT",
-        "AI_FLAG_CHECK_HP"
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_KLEFKI",
-            "form": 0,
-            "level": 51,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_THUNDER_WAVE",
-                "MOVE_PLAY_ROUGH",
-                "MOVE_FOUL_PLAY",
-                "MOVE_SPIKES"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_RELAXED",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_HEATRAN",
+            "species": "SPECIES_MAGEARNA",
             "form": 0,
             "level": 50,
-            "item": "ITEM_SHUCA_BERRY",
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_FLAMETHROWER",
-                "MOVE_EARTH_POWER",
+                "MOVE_FLEUR_CANNON",
                 "MOVE_FLASH_CANNON",
-                "MOVE_WILL_O_WISP"
+                "MOVE_THUNDERBOLT",
+                "MOVE_CALM_MIND"
             ],
             "iv_scale": 255,
             "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": null
         },
         {
-            "species": "SPECIES_BASTIODON",
+            "species": "SPECIES_GALVANTULA",
             "form": 0,
             "level": 51,
-            "item": "ITEM_FOCUS_SASH",
+            "item": "ITEM_OCCA_BERRY",
             "moves": [
-                "MOVE_STEALTH_ROCK",
-                "MOVE_ROAR",
-                "MOVE_STONE_EDGE",
-                "MOVE_IRON_HEAD"
+                "MOVE_STICKY_WEB",
+                "MOVE_THUNDER",
+                "MOVE_ENERGY_BALL",
+                "MOVE_BUG_BUZZ"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_SASSY",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"
         },
         {
-            "species": "SPECIES_DHELMISE",
+            "species": "SPECIES_HISUIAN_GOODRA",
             "form": 0,
-            "level": 52,
-            "item": "ITEM_IRON_BALL",
+            "level": 50,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_GYRO_BALL",
-                "MOVE_PAYBACK",
-                "MOVE_ANCHOR_SHOT",
-                "MOVE_POWER_WHIP"
+                "MOVE_DRAGON_CLAW",
+                "MOVE_EARTHQUAKE",
+                "MOVE_MUDDY_WATER",
+                "MOVE_CURSE"
             ],
             "iv_scale": 255,
             "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_KARTANA",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_SACRED_SWORD",
+                "MOVE_LEAF_BLADE",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_AERIAL_ACE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_METAGROSS",
+            "species": "SPECIES_EMPOLEON",
             "form": 0,
-            "level": 50,
-            "item": "ITEM_ASSAULT_VEST",
+            "level": 52,
+            "item": "ITEM_MYSTIC_WATER",
             "moves": [
-                "MOVE_METEOR_MASH",
-                "MOVE_PSYCHIC_FANGS",
-                "MOVE_EXPLOSION",
-                "MOVE_PURSUIT"
+                "MOVE_AQUA_JET",
+                "MOVE_FLIP_TURN",
+                "MOVE_TRIPLE_AXEL",
+                "MOVE_DRILL_PECK"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_IMPISH",
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 2,
             "gender": null
         },
         {
@@ -101,9 +100,9 @@
             "level": 53,
             "item": "ITEM_POWER_HERB",
             "moves": [
-                "MOVE_AUTOTOMIZE",
+                "MOVE_FLAMETHROWER",
                 "MOVE_METEOR_BEAM",
-                "MOVE_ACROBATICS",
+                "MOVE_AIR_SLASH",
                 "MOVE_FLASH_CANNON"
             ],
             "iv_scale": 255,

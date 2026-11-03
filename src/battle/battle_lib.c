@@ -2584,7 +2584,9 @@ int Battler_SlotForMove(BattleMon *mon, u16 move)
  *
  * Oxide: Fairy is added, and Ghost and Dark hit Steel for neutral damage, as
  * from Generation 6 on (Ian, 2026-11-03; until then Steel kept Generation 4's
- * resistances to both).
+ * resistances to both). Ice resists Water, so Water hits Ice for half (Ian,
+ * 2026-11-03, the Ice proposal's first lever); the row sits with Water's
+ * others, in the order the Fire row meets its defenders.
  */
 static const u8 sTypeMatchupMultipliers[][3] = {
     { TYPE_NORMAL, TYPE_ROCK, TYPE_MULTI_NOT_VERY_EFF },
@@ -2600,6 +2602,7 @@ static const u8 sTypeMatchupMultipliers[][3] = {
     { TYPE_WATER, TYPE_FIRE, TYPE_MULTI_SUPER_EFF },
     { TYPE_WATER, TYPE_WATER, TYPE_MULTI_NOT_VERY_EFF },
     { TYPE_WATER, TYPE_GRASS, TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_WATER, TYPE_ICE, TYPE_MULTI_NOT_VERY_EFF },
     { TYPE_WATER, TYPE_GROUND, TYPE_MULTI_SUPER_EFF },
     { TYPE_WATER, TYPE_ROCK, TYPE_MULTI_SUPER_EFF },
     { TYPE_WATER, TYPE_DRAGON, TYPE_MULTI_NOT_VERY_EFF },
@@ -8647,6 +8650,16 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         if ((fieldConditions & FIELD_CONDITION_SANDSTORM)
             && (defenderParams.type1 == TYPE_ROCK || defenderParams.type2 == TYPE_ROCK)) {
             spDefenseStat = spDefenseStat * 15 / 10;
+        }
+
+        // Oxide: snow in place of hail (Ian, 2026-11-03, the Ice proposal's
+        // second lever). In hail an Ice type's Defense is one and a half times
+        // against physical moves, as in the later games' snow and beside
+        // sand's rise for Rock types (hg-engine's CalcBaseDamage does the
+        // same). Psyshock and its kin, which hit Defense, take it too.
+        if ((fieldConditions & FIELD_CONDITION_HAILING)
+            && (defenderParams.type1 == TYPE_ICE || defenderParams.type2 == TYPE_ICE)) {
+            defenseStat = defenseStat * 15 / 10;
         }
 
         if ((fieldConditions & FIELD_CONDITION_SUNNY)

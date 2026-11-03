@@ -259,7 +259,7 @@ The gym trainers fight in the same hail (goal 3 reads Hail for Brenna, Isaiah an
 
 - Ace Trainer Brenna's Alolan Ninetales brought Snow Warning and an Icy Rock for a hail that is already up and never ends, so both did nothing. The Icy Rock is now a Light Clay, which makes her Aurora Veil last eight turns (Ian, 2026-11-01); Snow Warning stays, since Snow Cloak would add evasion.
 - Ace Trainer Isaiah's Quagsire and Swampert, Ace Trainer Savannah's Jellicent and Mismagius, Ace Trainer Sergio's Jynx and Ace Trainer Alicia's Lapras take the hail's chip every turn, and Alicia's Cloyster and Dewgong, Ice types, do not. Isaiah's two Water and Ground members fit the gym least; an Ice type in one slot would suit it better.
-- Ace Trainer Dalton's Abomasnow on Route 217 and Skier Edward's on Route 216 bring their own hail with Snow Warning; those routes have no weather of their own, so theirs still does its job.
+- Ace Trainer Dalton's Abomasnow on Route 217 and Skier Edward's on Route 216 bring their own hail with Snow Warning. Both routes are in hail already: Route 217's header carries a blizzard, and Route 216 takes heavy snow or a blizzard from the day-of-year table on every day, which the census read as clear until 2026-11-03. So Snow Warning adds little on either route, beyond bringing hail back after the player sets another weather.
 - The members with Ice Body heal in the gym every turn: Brenna's Glaceon and Walrein, Sergio's Mr. Rime, Anton's Glalie. That is a reason to keep them, not to change them.
 
 ## The census

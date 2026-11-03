@@ -6090,6 +6090,9 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             }
         }
 
+        // Oxide: snow in place of hail (Ian, 2026-11-03, the Ice proposal's
+        // second lever). Hail no longer damages anyone at the turn's end, as
+        // the later games' snow does not; Ice Body still heals in it.
         if (WEATHER_IS_HAIL
             && battleCtx->battleMons[battler].curHP
             && (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_NO_WEATHER_DAMAGE) == FALSE) {
@@ -6097,13 +6100,6 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
                 if (battleCtx->battleMons[battler].curHP < battleCtx->battleMons[battler].maxHP) {
                     battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, 16);
                 }
-            } else if (type1 != TYPE_ICE
-                && type2 != TYPE_ICE
-                && Battler_Ability(battleCtx, battler) != ABILITY_SNOW_CLOAK
-                && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT // Oxide
-                && Battler_HeldItemEffect(battleCtx, battler) != HOLD_EFFECT_SAFETY_GOGGLES) { // Oxide, element 7
-                battleCtx->msgMoveTemp = MOVE_HAIL;
-                battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
             }
         }
 

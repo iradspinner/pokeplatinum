@@ -106,7 +106,9 @@ TYPE_GROUPS = {
     "prankster": {"DARK"},               # battle_controller_player.c, subscript_prankster_dark_immunity
     "trap": {"GHOST"},                   # battle_lib.c, "a Ghost type cannot be trapped by anything"
     "sand": {"ROCK", "GROUND", "STEEL"},  # battle_script.c, the weather damage command
-    "hail": {"ICE"},                     # the same command
+    # Hail: no type, since snow took hail's place and hail damages no one
+    # (Ian, 2026-11-03, the Ice proposal's second lever). Ice was immune.
+    "hail": set(),
 }
 # The groups the post's own numbers count: its single-type ranking is
 # reproduced with these and not with sand, hail, trapping or Toxic Spikes
@@ -140,10 +142,11 @@ ABILITY_GROUPS = {                        # the status subscripts' ability check
     "IMMUNITY": {"poison"}, "PASTEL_VEIL": {"poison"},
     "MAGMA_ARMOR": {"freeze"},
     "PURIFYING_SALT": {"burn", "poison", "paralysis", "freeze"},
-    "OVERCOAT": {"powder", "sand", "hail"},
+    "OVERCOAT": {"powder", "sand"},
     "SAND_VEIL": {"sand"}, "SAND_RUSH": {"sand"}, "SAND_FORCE": {"sand"},
-    "SNOW_CLOAK": {"hail"}, "ICE_BODY": {"hail"},
-    "MAGIC_GUARD": {"sand", "hail"},
+    # Snow Cloak and Ice Body shielded their holder from hail's damage, which
+    # snow does not do (2026-11-03), so they no longer count here.
+    "MAGIC_GUARD": {"sand"},
 }
 MATCHUP_ABILITIES = (set(IMMUNE_ABILITY) | set(SCALE_ABILITY) | FILTERS | set(ABILITY_GROUPS)
                      | {"WONDER_GUARD"})

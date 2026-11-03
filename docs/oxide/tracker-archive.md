@@ -1067,3 +1067,7 @@ Ian chose the Attack drop on 2026-11-02 ("Give it the Attack drop"), done on `ov
 Ian said on 2026-11-02 "Move it into the repo", done on `overseer-kings-shield`: `tools/oxide/balance/goal3_fights.py` is the outside file unchanged, both importers take it with no fallback, and the outside copy stays in place, unused. The entry as it stood, from "Open work by area", Tidying:
 
 - [x] Goal 3's fight list, `goal3_fights.py`, lives outside the repo in `~/oxide-trials/scorer-stage2` and is imported by `plgoal3.py` and `plniche.py`, so it has no history and a cloud session cannot run goal 3 (found 2026-10-29, Ian asked to hear of such things). Moving it into `tools/oxide/balance/` touches the scorer, so it is Ian's call; the scorer's networks and data (1.7 GB) stay outside.
+
+## Finished on 2026-11-03 (late)
+
+- [x] Finding (2026-11-03, the Ice proposal): the maps whose weather comes from the day-of-year table (Route 216 and Acuity Lakefront in hail every day, Route 212 South in rain 365 days of 366) read as clear in `splits.battle_weather`, so the simulator plays nine hail fights and eleven rain fights without their weather. Ian approved the fix on 2026-11-03; landed at acfcd61d6: `splits.yearly_weather` reads the table, so 21 trainers are scored in their weather (ten in hail on Route 216 and Acuity Lakefront, eleven in rain on Route 212 South; Route 213 resolves to none, clear on 356 days).

@@ -564,6 +564,10 @@ function calculateDPP(gen, attacker, defender, move, field) {
             defense = Math.floor(defense * 1.5);
             desc.weather = field.weather;
         }
+        // Oxide patch: a profile's defending-stat modifiers, beside sand's
+        // (Platinum Oxide: an Ice type's Defense in hail, its snow).
+        ctx.state.hitsDefense = hitsDefense;
+        defense = (0, romhack_helpers_1.applyValueHooks)(profile, "defenseStat", ctx, defense);
         if (move.named('Explosion') || move.named('Self-Destruct')) {
             defense = Math.floor(defense * 0.5);
         }
