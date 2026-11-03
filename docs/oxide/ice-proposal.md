@@ -2,6 +2,8 @@
 
 ## Summary
 
+Ian answered on 2026-11-03: "Only the water resist, the others are approved." So Ice resists Water alone (option A, not B), snow replaces hail in place, and Delibird learns Aurora Veil at 36 while Alolan Ninetales learns it at 40 in place of level 1, with no TM. Snow Warning stays in its hidden slots. All three landed on `overseer-ice-levers`, one commit each; the text below is the proposal as it stood when he answered.
+
 Ian asked on 2026-11-03 to change the chart for Ice, the one type whose lines average below zero on the [defensive index](defensive-index.md), and named two more levers to try: snow in place of hail, as in Generation 9, and wider access to Aurora Veil. This is the proposal. Nothing in the game, the engine or the simulator has changed.
 
 What could not be checked comes first. No lever was played, in the game or on the simulator; every measure of a lever below is the defensive index, which reads typing only, and every engine rule is read from the source. The repo records no other hack that changed Ice's chart: the [staples survey](staples-survey.md) of seven hacks records only Steel's Generation 6 loss, the expansion engines' default, and it never read their charts directly. I did not browse. Candice's new team is being read on the scorer now under today's mechanics, so all three levers would stale that reading.

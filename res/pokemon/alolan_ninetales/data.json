@@ -90,10 +90,6 @@
             ],
             [
                 1,
-                "MOVE_AURORA_VEIL"
-            ],
-            [
-                1,
                 "MOVE_BLIZZARD"
             ],
             [
@@ -147,6 +143,10 @@
             [
                 37,
                 "MOVE_TRIPLE_AXEL"
+            ],
+            [
+                40,
+                "MOVE_AURORA_VEIL"
             ],
             [
                 43,
