@@ -210,6 +210,7 @@ static void AICmd_IfPartnerEffectivenessEquals(BattleSystem *battleSys, BattleCo
 static void AICmd_IfMoveCanBeReflected(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfMoldBreakerIgnores(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfBattlerKnowsPriorityMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfHoldEffectActive(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2973,6 +2974,35 @@ static void AICmd_IfBattlerKnowsPriorityMove(BattleSystem *battleSys, BattleCont
             AIScript_Iter(battleCtx, jump);
             return;
         }
+    }
+}
+
+/**
+ * @brief Oxide: jump if the given battler's held item has the given hold
+ * effect and works now.
+ *
+ * The item is read as the battle reads it (Battler_HeldItemEffect), so Klutz,
+ * Embargo and Magic Room stop it, and a burst Air Balloon, which the battle
+ * removes, is gone. The real item is read for either side, as LoadHeldItem
+ * and the type chart read it. Ian approved two uses on 2026-11-02, both
+ * cases where the engine makes a move fail or a Pokemon float: Safety
+ * Goggles against powder moves, and the Air Balloon wherever the script
+ * counts Levitate as lifting a Pokemon off the ground.
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+static void AICmd_IfHoldEffectActive(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int inBattler = AIScript_Read(battleCtx);
+    int expected = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+
+    if (Battler_HeldItemEffect(battleCtx, battler) == expected) {
+        AIScript_Iter(battleCtx, jump);
     }
 }
 

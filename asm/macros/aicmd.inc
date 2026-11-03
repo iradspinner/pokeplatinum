@@ -683,6 +683,16 @@
     .long (\jump-.) / 4 - 1
     .endm
 
+    // Oxide: jump if the given battler's held item has the given hold effect
+    // and works, as the battle reads it (Klutz, Embargo and Magic Room stop
+    // it). For Safety Goggles and the Air Balloon (Ian, 2026-11-02).
+    .macro IfHoldEffectActive battler:req, effect:req, jump:req
+    .long AICMD_IFHOLDEFFECTACTIVE
+    .long \battler
+    .long \effect
+    .long (\jump-.) / 4 - 1
+    .endm
+
     .equ TABLE_END, 0xFFFFFFFF
 
     .macro TableEntry entry:req
