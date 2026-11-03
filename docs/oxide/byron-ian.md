@@ -4,7 +4,7 @@ Ian redrafted Byron (Canalave Gym, cap 53) himself on 2026-11-02, and the scorer
 
 ## Summary
 
-Both looks make Byron harder, and they make it clearly harder together. Kartana's best new set (Sacred Sword, Leaf Blade, Night Slash, Aerial Ace, Adamant) adds about half a faint a fight, nearly all of it on box 2. Magearna in Metagross's place adds about a quarter of a faint on its own. The two together read 89 percent won on boxes 1 and 2, with 3.11 and 2.84 faints a fight, against the draft's 97 and 96 with 2.27 and 1.71; their box 3 was still running when this page was written, and the Overseer adds it from the check's file.
+Both looks make Byron harder, and they make it clearly harder together. Kartana's best new set (Sacred Sword, Leaf Blade, Night Slash, Aerial Ace, Adamant) adds about half a faint a fight, nearly all of it on box 2. Magearna in Metagross's place adds about a quarter of a faint on its own. The two together read 92 percent won with 2.57 faints a fight over the three boxes, against the draft's 98 and 1.72, and are the only version harder on every box.
 
 The counterpiece check, the draft against the sixes the scorer chose to beat it (won, faints and clean in percent and faints a fight, 75 fights a box at real odds):
 
@@ -14,12 +14,12 @@ The counterpiece check, the draft against the sixes the scorer chose to beat it 
 | Kartana K1 | 97, 2.29, 0 | 81, 3.23, 4 | 99, 1.15, 0 | 92, 2.22, 1 |
 | Kartana K2 | 97, 2.53, 0 | 88, 2.73, 3 | 100, 1.55, 1 | 95, 2.27, 1 |
 | Magearna for Metagross | 93, 2.56, 1 | 97, 1.96, 15 | 100, 1.49, 19 | 97, 2.00, 12 |
-| K2 and Magearna together | 89, 3.11, 0 | 89, 2.84, 5 | running | after box 3 |
+| K2 and Magearna together | 89, 3.11, 0 | 89, 2.84, 5 | 99, 1.76, 13 | 92, 2.57, 6 |
 
 Ian's decisions:
 
 1. Kartana's set. (a) K2: Sacred Sword, Leaf Blade, Night Slash, Aerial Ace, Adamant, Focus Sash (recommended). (b) K1: Sacred Sword, Leaf Blade, Smart Strike, Swords Dance, Adamant, Focus Sash. (c) Keep today's set. I recommend K2 over K1 because the two tie on faints over the three boxes (2.27 and 2.22), and K2 is the one harder on box 3 (1.55 faints against 1.15), where its Kartana made 33 knockouts and K1's almost none. K1 leans on box 2 alone.
-2. Magearna in for Metagross. (a) Yes, with Kartana's new set (recommended). (b) Yes, with today's Kartana. (c) No, Metagross stays. I recommend (a): on boxes 1 and 2 the pair reads clearly harder than either change alone, at 89 percent won and about three faints a fight, and Magearna alone adds only a quarter of a faint. Box 3 is still to come.
+2. Magearna in for Metagross. (a) Yes, with Kartana's new set (recommended). (b) Yes, with today's Kartana. (c) No, Metagross stays. I recommend (a): the pair adds 0.85 faints a fight over the three boxes and is harder on every box, where K2 alone adds 0.55 and Magearna alone 0.28. Together Kartana made 24, 51 and 22 knockouts and Magearna 11, 6 and 3.
 
 Either pick of K1 or K2 puts Sacred Sword and Leaf Blade on Kartana's egg list by the egg-list rule; they are its level 60 and 55 moves, and Night Slash, Aerial Ace, Smart Strike and Swords Dance are already in its palette. Magearna's four are all legal at 50 without any change. Every candidate passes the trainer lint.
 
