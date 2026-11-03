@@ -25,7 +25,7 @@ from . import data, required, splits
 # difficulty"), so Mt. Coronet's climb ends on arrival at 5F, before Somnu
 # and Moira, and the Eterna building's 3F, with Travon and its Officer Moira,
 # is no section at all: 1F and 2F's section ends on arrival at 3F's main side.
-# The nine sections
+# The seven sections
 # are the built ones (src/gauntlet.c, main-gauntlets): Victory Road's 2F and
 # B1F are detours inside 1F's locks, not sections, so their eight trainers
 # are optional (Ian, 2026-09-29, restated 2026-10-07), and 1F's halves hold
@@ -34,13 +34,20 @@ SECTIONS = {
     "galactic_eterna": [
         ("1F and 2F", ["TEAM_GALACTIC_ETERNA_BUILDING_1F", "TEAM_GALACTIC_ETERNA_BUILDING_2F"],
          None, ())],
+    # The HQ's two halves (Ian, 2026-11-02; docs/oxide/hq-split-map.md):
+    # the basement run from the warehouse to the Galactic Key, and the
+    # tower from the lobby's stairs to 4F. 2F's and 3F's west sides are the
+    # basement's, their east sides the tower's, so each half names its
+    # trainers; 2F west's Grunt 1 and 3F west's Grunts 1 and 2 are optional
+    # and in neither list.
     "galactic_hq": [
-        ("1F", ["GALACTIC_HQ_1F"], None, ()), ("2F", ["GALACTIC_HQ_2F"], None, ()),
-        # 3F's section holds only its east side's two grunts since
-        # 2026-11-02: the west side is a dead end outside it.
-        ("3F", ["GALACTIC_HQ_3F"],
-         ("TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3", "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4"), ()),
-        ("B2F", ["GALACTIC_HQ_B2F"], None, ())],
+        ("the basement run", ["GALACTIC_HQ_B2F", "GALACTIC_HQ_B1F", "GALACTIC_HQ_1F"],
+         ("TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_1", "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_2",
+          "TRAINER_DUMMY_100", "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_1F", "TRAINER_SCIENTIST_FREDRICK"), ()),
+        ("the tower", ["GALACTIC_HQ_2F", "GALACTIC_HQ_3F"],
+         ("TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_2", "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_3",
+          "TRAINER_SCIENTIST_DARRIUS", "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3",
+          "TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4"), ())],
     "mt_coronet": [
         ("1F's tunnel", ["MT_CORONET_1F_TUNNEL_ROOM"], None, ()),
         ("3F and 4F", ["MT_CORONET_3F", "MT_CORONET_4F_ROOMS_1_AND_2"], None, ())],

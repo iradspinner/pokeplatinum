@@ -85,8 +85,12 @@ def check_fights_resolve(results):
                                 or (f["key"].startswith("tyche_hermes") and ("Tyche" in n or "Hermes" in n))
                                 # Officers Phobos and Deimos, in Jubilife and at
                                 # Pal Park (Ian, 2026-10-31).
-                                or (f["key"] in ("phobos_deimos_1", "pal_park_double")
+                                or (f["key"] in ("phobos_deimos_1", "pal_park_double", "phobos_deimos_3")
                                     and ("Phobos" in n or "Deimos" in n))
+                                # Officers Boreas and Laverna at the HQ's 4F
+                                # door (Ian, 2026-11-02).
+                                or (f["key"] == "boreas_laverna_2"
+                                    and ("Boreas" in n or "Laverna" in n))
                                 or (f["key"].startswith("lucas_dawn")
                                     and ("Lucas" in n or "Dawn" in n)))
         # A hack whose override lists no trainers has no seat for that fight
@@ -116,9 +120,12 @@ def check_fights_resolve(results):
 # the scorer cannot read a tag battle, and Ian may raise it in the alpha.
 # Under the soft caps (Ian, 2026-10-29) a mini-boss with an honour cap of its
 # own keeps its ace at that cap: Barry 3's is 36, "for fully evolved starters".
+# Saturn 2 closes HQ's split at its cap of 60, and Cyrus 2, fought just
+# before him, sits at 59 (Ian, 2026-11-02: "Saturn 2 is at 60, Cyrus is
+# immediately beforehand at 59"; docs/oxide/hq-split.md).
 AT_CAP = ("roark", "gardenia", "fantina", "maylene", "wake", "byron", "candice", "volkner",
-          "barry_6", "cyrus_2", "cyrus_3")
-UNDER_CAP = ("saturn_1", "mars_2", "somnu_moira", "saturn_2", "mars_jupiter", "lucas_dawn_3")
+          "barry_6", "saturn_2", "cyrus_3")
+UNDER_CAP = ("saturn_1", "mars_2", "somnu_moira", "mars_jupiter", "lucas_dawn_3")
 # Officers Tyche and Hermes at Veilstone keep their aces at 41 (Ian,
 # 2026-10-29), under the honour cap of 42 that runs to Barry 4 (Ian, 2026-10-31:
 # no cap of their own); their Spear Pillar fight is left out, as drafted.
@@ -143,6 +150,11 @@ FIXED_ACES = {"aaron": 72, "bertha": 73, "flint": 74, "lucian": 75, "cynthia": 7
               # ace at 44 under Cyrus 1's 47 (cyrus-argo-check.md), and
               # Hesperid's at 53, no higher than Saturn 1's (Ian, 2026-11-01).
               "argo_1": 44, "hesperid_1": 53,
+              # HQ's split (Ian, 2026-11-02; docs/oxide/hq-split.md): Cyrus 2
+              # at 59, one under Saturn 2's 60, and the four officer fights'
+              # aces 2 to 3 under the cap of 60, as drafted for Ian.
+              "cyrus_2": 59, "phobos_deimos_3": 57, "boreas_laverna_2": 57,
+              "argo_hq": 58, "hesperid_hq": 58,
               **{f["key"]: f["honour_cap"] for f in data.fights()["fights"] if "honour_cap" in f}}
 MINI_BOSS_UNDER = range(2, 5)
 

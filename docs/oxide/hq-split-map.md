@@ -14,7 +14,7 @@ What was found. The HQ is two halves. The basement run goes from the warehouse t
 
 The split holds 5 mandatory fights, all in the HQ, against Ian's 10 to 15. Rock Climb opens six optional trainers outside it: Route 216's four, which Candice's pass levelled for 60, and Hiker Alexander (Route 208) and Dragon Tamer Patrick (Route 210 North), still tagged Byron's and at 45 and 43. No officer, rival or mini-boss is fought in the split. Jupiter's scene at Lake Acuity has no battle.
 
-The levels have room and the experience does not. The ordinary band is wide, 55 to 59. But every fight in the split together gives 108,700 experience, against 242,300 for six Pokemon to climb from 56 to 60, so today a party of six meets Cyrus 2's level-60 ace at 56 or 57. The pass's team sizes (three to six Pokemon where the HQ's grunts have two) and the added fights should bring it to roughly 215,000.
+The levels have room, and the experience needs none. The ordinary band is wide, 55 to 59. The experience sums below were first read as a shortfall, a party of six meeting Cyrus 2 two or three levels under him; Ian corrected that on 2026-11-02: "we aren't counting exp up, we're counting exp down from max". Under the soft-cap ruling the player stands at the cap when the split closes, and a mid-split ordinary fight's box rides the cap less the split's trainer experience still to come, so the split cannot be short of experience and nothing is built to make it up. The sums say only where a mid-split box stands. Ian answered the ten questions the same day; the pass that applies them is `hq-split.md`.
 
 | Stretch | Areas, in play order | Closed by | Ordinary band | Experience today |
 |---|---|---|---|---|
@@ -46,7 +46,7 @@ Action items for Ian: answer the ten questions below; and do not run the HQ step
 
 ## Ian's decisions
 
-1. Push every cap from Candice's on back by two (Candice 58, HQ 62, Galactic 67, Volkner 70, Barry 73, the League 80), or keep 56, 60, 65, 68, 71 and 78? Recommended: keep them. HQ's split is short of experience, not of room in its levels, so a push would leave HQ just as short and make Candice's split a little short too, and it would re-level every landed team from Candice's on (section 2 has the sums and everything the push would move).
+1. Push every cap from Candice's on back by two (Candice 58, HQ 62, Galactic 67, Volkner 70, Barry 73, the League 80), or keep 56, 60, 65, 68, 71 and 78? Recommended: keep them; a push would re-level every landed team from Candice's on (section 2 has everything it would move). Ian kept them (2026-11-02), and corrected this question's experience framing: experience is counted down from the cap, not up to it.
 2. An honour cap inside the split: none (recommended, since no player's experience can reach one), or 58 when the player leaves the basement with the Galactic Key?
 3. The count: the recommended 11 (today's 5; B1F's talking grunt made a trainer; Fredrick and Darrius moved to necks; Veilstone's storage-key grunt fought before he drops the key; a new trainer at the foot of Acuity Lakefront's climb; one lab scientist made a trainer), or the moves alone for 7 or 8, or more of section 3's list, up to 16?
 4. The HQ's gauntlets (section 6 already moved to 3F's east stairs on Ian's word, 2026-11-02): two sections drawn on the real walk, the basement run (its way back to the warehouse refused until the key is held) and the tower (its stairs back to the lobby refused, closing on arrival at 4F, the nap-room bed refusing while it is open) (recommended); or only section 6 moved to 3F's east stairs, sections 3 to 5 kept; or sections 4 to 6 dropped?
@@ -117,7 +117,7 @@ The one choice is when the player fights the Rock Climb trainers, and it does no
 
 The band is not the constraint. Candice's split's last ordinary fight is at 55, and the cap is 60, so ordinary trainers have 55 to 59, with 59 rare: one level more than Candice's split had. The bosses sit at 60 and 57.
 
-Experience is the constraint. The sums use Generation 4's formula (base experience times level over seven, half again for a trainer's Pokemon), shared by six.
+Experience sets where a mid-split box stands, not whether the split has enough (Ian, 2026-11-02: "we aren't counting exp up, we're counting exp down from max"). The player is at the cap of 60 when Saturn 2 closes the split, and a fight earlier in it is met at 60 less the trainer experience still to come after it. The sums use Generation 4's formula (base experience times level over seven, half again for a trainer's Pokemon), shared by six, on the teams as they stood before the pass.
 
 | Fights | Experience | Running total |
 |---|---:|---:|
@@ -134,9 +134,9 @@ Experience is the constraint. The sums use Generation 4's formula (base experien
 | 56 to 58 | 116,976 | 121,050 | 146,220 |
 | 56 to 60 | 242,304 | 251,406 | 302,880 |
 
-So a party of six that fights everything before Cyrus 2 reaches about 57.4; one that takes only the mandatory fights, about 56.5. Wild Pokemon here are 36 to 41 and give about 1,100 a knockout. No maid trains a party past 56: the base ROM's maids follow its old caps (Snowpoint's to 56, Sunyshore's to 62), and HQ's and Galactic's splits, added by Oxide, have none.
+Counted down from the cap on the Medium Fast curve, a party of six that fights everything stands about 1.7 levels under 60 at the split's first fight on today's teams, and about half a level under it when it meets Cyrus 2, with Cyrus 2's and Saturn 2's experience still to come. Wild Pokemon here are 36 to 41 and give about 1,100 a knockout. No maid trains a party past 56: the base ROM's maids follow its old caps (Snowpoint's to 56, Sunyshore's to 62), and HQ's and Galactic's splits, added by Oxide, have none.
 
-The pass changes this. Every HQ trainer has one or two Pokemon, against the rule of three to six, and none holds an item or a nature. Rebuilt at four Pokemon each around 57, and with the six fights question 3 adds to the count (four of them new trainers), the mandatory path and the bosses give about 140,000 (a party of six near 58.3 at Saturn) and everything about 215,000 (near 59.6). That estimate is the case for question 1's answer: the experience gap closes inside the split, without moving any cap.
+The pass rebuilds every HQ trainer at three to six Pokemon with items and natures, and adds trainers, so more experience is still to come at each early fight, which puts the split's first boxes lower under the cap; that is the climb the ordinary teams follow, never reaching 60 and very rarely 59.
 
 ### What the push by two would move
 
@@ -151,7 +151,7 @@ The pass changes this. Every HQ trainer has one or two Pokemon, against the rule
 
 It would move the engine's caps in `src/system_vars.c`, the tools' copies (`pool.caps`, `progression.DEFAULT_CAPS`, `fights.json`), every gym's cap message from Candice's on, and the Snowpoint, Sunyshore and League maids' thresholds. It would re-level what has landed: Candice's ace to 58 and her gym's six, the split's ordinary band from 52 to 55 up to as much as 57, and Route 216's four to 58 to 59. It moves the later bosses' aces: Cyrus 2 to 62, Saturn 2 to 59, Cyrus 3 to 67, Volkner to 70, Barry 6 to 73, and the Battle Zone's 52 route trainers from 55 to 64 up to 57 to 66. The honour caps already set are all earlier (Cyrus 1's 47 and Barry 5's 50 are the latest) and stay. The Elite Four's aces would run 74 to 80, past the League's 78, so either the League's cap moves to 80, or the push stops at Barry and the gap from Barry to the League shrinks from seven levels to five. The learnset rule that nothing is placed past 78 (the rewrite's check 22) is tied to the League's cap: with a League of 80 it may stay at 78, which leaves levels 79 and 80 empty, or move to 80, which reopens the 51 species' Kaizo moves listed as past the League. Every fight from Candice's on would be re-read against it, so the push is material for all of them.
 
-It does not buy room where room is short. Candice's split would need 277,400 for six to climb 53 to 58, against the 269,500 its rebuilt teams offer with everything fought; HQ's would need 259,300 for 58 to 62.
+Ian kept the caps (2026-11-02), so nothing here moves.
 
 ### Where an honour cap would fit
 

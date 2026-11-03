@@ -56,25 +56,45 @@ While a section is open:
   and Teleport were added because two of Mt. Coronet's maps inside a section
   are outdoors, where both work, and Ian kept them (2026-09-29).
 
-Section 6, Galactic HQ 3F, opens on 3F's east side since 2026-11-02 (Ian's
-choice that day). Until then it opened on the stairs up from 2F's west side
-and refused them while the player held the Galactic Key, with 3F's east
-grunts in its list. 3F's west side is a dead end whose only stairs are those,
-and it shares no tile with the east side, so a player who came back there
-with the key could never close the section: the Pocket PC, the Escape Rope
-and the field moves refuse, and the trainers it waited on could not be
-reached. The section now opens on the stairs up from the nap room on 2F's
-north-east side, refuses only those stairs, and lists the two east grunts,
-who stand on the way to the stairs up to 4F. 3F's west side is in no section.
-The walk the first sections were drawn on read the HQ as one climb, with 3F's
-locked door leading on to 4F. In fact that door opens only a room off 3F's
-west side, and the HQ's second half (2F's east side, the hall, the nap room,
-3F's east side and 4F) is reached from the lobby, through its locked inner
-door, once the key is fetched from B2F's north end
-(`docs/oxide/hq-split-map.md`). `test_b1e`'s no-trap check walks every
-section from each way in and from every place inside it, and fails if a
-place has neither a way off the section's maps nor every trainer that
-closes it.
+The Galactic HQ holds two sections since 2026-11-02 (Ian's answer that day
+to `docs/oxide/hq-split-map.md`, question 4), drawn on the HQ's real walk.
+The HQ is two halves that share no tile. The basement run goes from the
+warehouse down into B2F, then B1F, 1F's back rooms, 2F's west side (3F's
+west side a detour off it), Fredrick's room and B2F's north end, where the
+Galactic Key lies; its way on is back out through the warehouse. With the
+key the player walks round to the HQ's front door in Veilstone and opens the
+lobby's inner door, which leads up into the tower: 2F's east side, the hall
+and Cyrus's speech, the nap room on 2F's north-east side, 3F's east side,
+and the stairs to Cyrus on 4F.
+
+Section 3 is the basement run. It opens on arrival in B2F from the
+warehouse, lists B2F's two grunts, B1F's grunt, 1F's grunt and Scientist
+Fredrick, and holds all five floors, so every pocket the run reaches keeps
+the lock. Its way back, the warp to the warehouse, is refused only until the
+player holds the Galactic Key: the reverse of the item test the code had,
+written as a second field on the warp (`untilHeldItem`). A player who comes
+back in with the key, for 3F west's locked room, can always walk out.
+Arriving in the warehouse closes it.
+
+Section 6 is the tower. It was 3F's east side alone from earlier on
+2026-11-02 and grew down to the lobby's stairs, so the two sections for the
+tower became one. It opens on arrival on 2F from the lobby's stairs, refuses
+those stairs, and lists 2F's grunt pair, Scientist Darrius and 3F's grunt
+pair. Arriving on 4F closes it. While it is open the nap room's bed refuses
+too, as the Pocket PC does, through a new script command, `GauntletIsOpen`.
+Sections 4 and 5 are empty, so that the later sections keep their numbers.
+The named officers stand outside both sections: Phobos and Deimos in the
+lobby before the tower opens, Boreas and Laverna on 4F before Cyrus, Argo on
+4F after him, and Hesperid in the laboratory.
+
+Until 2026-11-02 the HQ was read as one climb, B2F to 3F, with 3F's locked
+door leading on to 4F. In fact that door opens only a room off 3F's west
+side. Section 6 then opened on 2F's west stairs and refused them while the
+player held the Galactic Key, with 3F's east grunts in its list, so a player
+who came back to 3F west with the key could never close it.
+`test_b1e`'s no-trap check walks every section from each way in and from
+every place inside it, with and without the key, and fails if a place has
+neither a way off the section's maps nor every trainer that closes it.
 
 Victory Road 1F holds two sections on one map. A line across a one-tile
 corridor at (13,26) and (13,27) splits them: three coord events run the
@@ -101,10 +121,10 @@ modelled, which matters only on Victory Road 2F.
 |---|---|---|---|---|---|---|
 | 1 | Eterna building 1F and 2F | the 1F grunts, the 2F grunts | the front door from Eterna City | the front door | 2F's stairs to 3F's main side, which close it on arrival | 3F's dead-end pocket, Rotom's room |
 | 2 | none since 2026-10-31 (it was the Eterna building's 3F, with Travon and Officer Moira) | | | | | |
-| 3 | Galactic HQ B2F | the two B2F grunts | from the Veilstone warehouse | back to the warehouse | on to B1F | |
-| 4 | Galactic HQ 1F | the 1F grunt, Fredrick | from B1F | back to B1F, and the lobby's two front doors | the panels and stairs to 2F | |
-| 5 | Galactic HQ 2F | the four 2F trainers | the stairs from 1F's panel room | those stairs | the stairs to 3F | Fredrick's pocket on 1F, and B2F's dead end past it |
-| 6 | Galactic HQ 3F's east side | the two east grunts (3 and 4), an eye-contact pair | the stairs up from 2F's nap room | those stairs | the stairs to Cyrus on 4F | |
+| 3 | Galactic HQ, the basement run | B2F's two grunts, B1F's grunt, 1F's grunt, Fredrick | from the Veilstone warehouse | back to the warehouse, until the Galactic Key is held | back out to the warehouse with the key | B1F, 1F's back rooms, 2F and 3F's west sides, B2F's north end |
+| 4 | none since 2026-11-02 (it was 1F) | | | | | |
+| 5 | none since 2026-11-02 (it was 2F) | | | | | |
+| 6 | Galactic HQ, the tower | 2F's grunt pair (2 and 3), Darrius, 3F's grunt pair (3 and 4) | the lobby's stairs up to 2F | those stairs | the stairs to Cyrus on 4F | the hall, the nap room (whose bed refuses), 3F's east side |
 | 7 | Mt. Coronet 1F's tunnel | the three tunnel grunts | from Route 211's north room | back to that room | out to the north ledge | |
 | 8 | Mt. Coronet 3F and 4F | the 3F and 4F grunts | the stairs from 2F | those stairs, and the north ledge's cave mouth into the tunnel | 4F's third room's stairs to 5F | the outside ledges, 4F's rooms, 2F's pocket |
 | 9 | Victory Road, near half | Bryce, Hana, Mariah | from the League's south gate | back to the gate | north across the line | 2F and B1F |
@@ -117,10 +137,9 @@ five things.
 
 | Area | What the walk shows | What was built |
 |---|---|---|
-| Galactic HQ | The warehouse leads into B2F, so the HQ is walked B2F, B1F, 1F, 2F, 3F, and B2F comes first. | Sections 3 to 6 in that order. |
-| Galactic HQ 1F | The route passes only the grunt. Fredrick stands in a pocket reached only by coming down from 2F. | Fredrick stays in section 4's list, so that section closes only when the player moves on to 2F. |
-| Galactic HQ 2F | The route passes only one grunt. Darrius and the other two stand on 2F's east side, which is reached from the lobby through its locked door once the key is held, not from 3F (corrected 2026-11-02). | They stay in section 5's list. The east side lies in no section today. |
-| Galactic HQ 3F | The west side, off 2F's west stairs, is a dead end holding grunts 1 and 2 and the locked room; the east side, off the nap room's stairs, holds grunts 3 and 4 on the way to 4F. | Section 6 holds the east side only (2026-11-02); grunts 1 and 2 are optional and in no section. |
+| Galactic HQ | Two halves sharing no tile: the basement run from the warehouse to the Galactic Key and back out, and the tower from the lobby to 4F (corrected 2026-11-02). | Section 3 for the basement run, section 6 for the tower; sections 4 and 5 empty. |
+| Galactic HQ 1F and 2F | Fredrick and Darrius stood off the path; since 2026-11-02 each stands at a neck of his room, so both are required. | Fredrick in section 3's list, Darrius in section 6's. |
+| Galactic HQ 3F | The west side, off 2F's west stairs, is a dead end holding grunts 1 and 2 and the locked room with the Ability Capsule; the east side, off the nap room's stairs, holds grunts 3 and 4 on the way to 4F. | Grunts 1 and 2 are optional and in no list; the west side keeps section 3's lock while it is open. |
 | Mt. Coronet | Two climbs meet on the north ledge: the tunnel from Route 211, and the southern route through 3F and 4F. Somnu and Moira on 5F come after both. | Only the southern route opens section 8, and it ends on arrival at 5F (2026-10-31), so both climbs meet the officers outside any section. 5F's arrival at (21,7) is nine rows from the nearer sight line, Somnu's on row 16, so the player can heal first. |
 | Victory Road | 1F alone runs from the entrance to the exit. 2F is a Strength-puzzle loop off 1F's near half; B1F's main part is a dead end off the same stretch; Ondrej stands in a separate B1F pocket off the far half. | Blocking a way back on 2F or B1F could shut a player in, so they are detours inside the 1F sections' locks, not sections of their own, and their eight trainers are optional. The four Victory Road sections become two (Ian, 2026-09-29). |
 
@@ -146,7 +165,8 @@ Each line fits the widest line its window already shows.
 
 A section is one entry in `sGauntletSections`: its maps, its ways in, its ways
 back (each with an optional item the player must hold for the refusal to
-apply), and up to five trainers with the flags that hide them. A warp is named
+apply, and another whose holding lifts it), and up to five trainers with the
+flags that hide them. A warp is named
 by its map and its index in the map's events file. `tools/oxide/mapreach.py`
 walks a map, or a set of them, and prints which warps and trainers each pocket
 reaches, so a change can be checked against the geometry first.

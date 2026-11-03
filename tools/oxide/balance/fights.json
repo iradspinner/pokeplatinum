@@ -10,12 +10,12 @@
         "vanilla": {
             "_note": "Oxide's Lucas and Dawn fights live in slots vanilla leaves unused, so vanilla has no seat for them. Somnu and Moira are Oxide's officers in vanilla's Lake Verity grunt slots, compared with nothing, and so are Tyche and Hermes in the Veilstone and Spear Pillar grunt slots, and Phobos and Deimos in the Jubilife grunt slots, and Officers Argo and Hesperid in the Celestic Town and Lake Valor grunt slots. Thorton, a Frontier Brain, is in a free slot, so no hack has a seat for him.",
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": [], "argo_1": [], "hesperid_1": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": [], "argo_1": [], "hesperid_1": [], "phobos_deimos_3": [], "boreas_laverna_2": [], "argo_hq": [], "hesperid_hq": []
         },
         "renegade": {
             "_note": "As vanilla: no Lucas and Dawn fights.",
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": [], "argo_1": [], "hesperid_1": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": [], "argo_1": [], "hesperid_1": [], "phobos_deimos_3": [], "boreas_laverna_2": [], "argo_hq": [], "hesperid_hq": []
         },
         "_comment": "Where a Platinum-based hack keeps a fight under a different trainer id than Platinum's, fight key to the ids it really uses. Found by comparing names and levels across the hacks' data (2026-09-22), not from their scripts.",
         "redux": {
@@ -23,20 +23,20 @@
             "cyrus_2": [409], "saturn_2": [403],
             "aaron": [791], "bertha": [787], "flint": [788], "lucian": [789], "cynthia": [790],
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": [], "argo_1": [], "hesperid_1": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": [], "argo_1": [], "hesperid_1": [], "phobos_deimos_3": [], "boreas_laverna_2": [], "argo_hq": [], "hesperid_hq": []
         },
         "redux_hc": {
             "_note": "Same data layout as redux.",
             "cyrus_2": [409], "saturn_2": [403],
             "aaron": [791], "bertha": [787], "flint": [788], "lucian": [789], "cynthia": [790],
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": [], "argo_1": [], "hesperid_1": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": [], "argo_1": [], "hesperid_1": [], "phobos_deimos_3": [], "boreas_laverna_2": [], "argo_hq": [], "hesperid_hq": []
         },
         "kaizo": {
             "_note": "Kaizo's League is at level 100 in Platinum's rematch slots, after an 84 Volkner; the first-fight slots hold vanilla's unchanged sets.",
             "aaron": [866], "bertha": [867], "flint": [868], "lucian": [869], "cynthia": [870],
             "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
-            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": [], "argo_1": [], "hesperid_1": []
+            "somnu_moira": [], "tyche_hermes_1": [], "tyche_hermes_2": [], "pal_park_double": [], "phobos_deimos_1": [], "thorton": [], "dahlia": [], "darach": [], "argenta": [], "argo_1": [], "hesperid_1": [], "phobos_deimos_3": [], "boreas_laverna_2": [], "argo_hq": [], "hesperid_hq": []
         }
     },
     "milestones": {
@@ -158,10 +158,23 @@
          "trainers": ["TRAINER_COMMANDER_MARS_LAKE_VERITY"]},
         {"key": "candice", "label": "Candice", "split": "Candice", "sheet_ace": 56,
          "trainers": ["TRAINER_LEADER_CANDICE"]},
-        {"key": "cyrus_2", "label": "Cyrus 2", "split": "HQ", "sheet_ace": 58,
+        {"key": "phobos_deimos_3", "label": "Phobos and Deimos 3", "split": "HQ", "sheet_ace": null, "tag": true,
+         "note": "Officers Phobos and Deimos at the Galactic HQ lobby's key door, an eye-contact double against both at once with no partner, in free slots 116 and 117: three each, their aces at 57, three under HQ's cap of 60, with no cap of their own (Ian, 2026-11-02: \"I want most of the named officers in this split too\"; docs/oxide/hq-split.md). Fought before the tower's gauntlet section opens, so the player may heal first. Marked tag so every reader takes it as a double.",
+         "trainers": ["TRAINER_DUMMY_116", "TRAINER_DUMMY_117"]},
+        {"key": "boreas_laverna_2", "label": "Boreas and Laverna 2", "split": "HQ", "sheet_ace": null, "tag": true,
+         "note": "Officers Boreas and Laverna at 4F's key door before Cyrus 2, an eye-contact double against both at once with no partner, in free slots 118 and 122: three each, their aces at 57, with no cap of their own (Ian, 2026-11-02; docs/oxide/hq-split.md). Their first fight was the tag battle beside Riley on Iron Island B2F. Fought after the tower's section closes on arrival at 4F, so the player may heal first. Marked tag so every reader takes it as a double.",
+         "trainers": ["TRAINER_DUMMY_118", "TRAINER_DUMMY_122"]},
+        {"key": "cyrus_2", "label": "Cyrus 2", "split": "HQ", "sheet_ace": 59,
+         "note": "Cyrus 2's ace is at 59, fought just before Saturn 2 at 60 (Ian, 2026-11-02: \"Saturn 2 is at 60, Cyrus is immediately beforehand at 59\"), the rest in Mars 1's shape under it (docs/oxide/hq-split.md). The Level Caps sheet gives 58.",
          "trainers": ["TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ"]},
-        {"key": "saturn_2", "label": "Saturn 2", "split": "HQ", "sheet_ace": 58, "trick_room": true,
-         "note": "Ian's ruling of 2026-09-25: the fight opens in a Trick Room that lasts the whole battle and that no move can end, so the slower side moves first within each priority bracket.",
+        {"key": "argo_hq", "label": "Argo (HQ)", "split": "HQ", "sheet_ace": null,
+         "note": "Officer Argo on the HQ's 4F, between Cyrus 2 and the laboratory, a single battle in free slot 123: five, his ace at 58, with no cap of his own (Ian, 2026-11-02; docs/oxide/hq-split.md). Between Argo 1 at Celestic and his fight on Mt. Coronet 6F.",
+         "trainers": ["TRAINER_DUMMY_123"]},
+        {"key": "hesperid_hq", "label": "Hesperid (HQ)", "split": "HQ", "sheet_ace": null,
+         "note": "Officer Hesperid by the laboratory's door to the control room, a single battle in free slot 124: six, his ace at 58, with no cap of his own (Ian, 2026-11-02; docs/oxide/hq-split.md). Between Hesperid 1 at Lake Valor and his fight on Mt. Coronet 6F; his theme names BrightPowder and Choice items, and his Spiritomb holds a BrightPowder, which the simulator does not model.",
+         "trainers": ["TRAINER_DUMMY_124"]},
+        {"key": "saturn_2", "label": "Saturn 2", "split": "HQ", "sheet_ace": 60, "trick_room": true,
+         "note": "Ian's ruling of 2026-09-25: the fight opens in a Trick Room that lasts the whole battle and that no move can end, so the slower side moves first within each priority bracket. His ace is at 60, the split's cap, closing it (Ian, 2026-11-02), the rest in Mars 1's shape under it (docs/oxide/hq-split.md). The Level Caps sheet gives 58.",
          "trainers": ["TRAINER_COMMANDER_SATURN_GALACTIC_HQ"]},
         {"key": "tyche_hermes_2", "label": "Tyche and Hermes 2", "split": "Galactic", "sheet_ace": null, "tag": true,
          "note": "Officers Tyche and Hermes at Spear Pillar, a double against both at once before Mars and Jupiter; the script starts it with both opponents and no partner. A story fight like Somnu and Moira's, so goal 3 counts it as one double (Ian, 2026-10-29).",

@@ -1,34 +1,85 @@
 {
-    "name": "Mickey",
-    "class": "TRAINER_CLASS_VETERAN",
+    "name": "Officer Phobos",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_HARRASSMENT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_GRANBULL",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 56,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_PLAY_ROUGH",
+                "MOVE_CHARM",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_MAWILE",
+            "form": 0,
+            "level": 56,
+            "item": "ITEM_OCCA_BERRY",
+            "moves": [
+                "MOVE_PLAY_ROUGH",
+                "MOVE_IRON_HEAD",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_ARCANINE",
+            "form": 0,
+            "level": 57,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_EXTREME_SPEED",
+                "MOVE_WILL_O_WISP",
+                "MOVE_WILD_CHARGE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [
         {
             "type": "TRMSG_PRE_BATTLE",
-            "garbage": 17
+            "en_US": [
+                "Fear is the first thing we teach\n",
+                "every new grunt. Lesson time!\r"
+            ]
         },
         {
             "type": "TRMSG_DEFEAT",
-            "garbage": 16
+            "en_US": [
+                "You’re not afraid of anything,\n",
+                "are you?\n"
+            ]
         },
         {
             "type": "TRMSG_POST_BATTLE",
-            "garbage": 28
+            "en_US": [
+                "Commander Mars will hear of this,\n",
+                "and that frightens even me.\n"
+            ]
         }
     ]
 }

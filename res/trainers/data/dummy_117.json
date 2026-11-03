@@ -1,34 +1,84 @@
 {
-    "name": "Mickey",
-    "class": "TRAINER_CLASS_CAMPER",
+    "name": "Officer Deimos",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_HARRASSMENT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RATTATA",
+            "species": "SPECIES_GALVANTULA",
             "form": 0,
-            "level": 5,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
+            "level": 56,
+            "item": "ITEM_WIDE_LENS",
+            "moves": [
+                "MOVE_ELECTROWEB",
+                "MOVE_STICKY_WEB",
+                "MOVE_THUNDER",
+                "MOVE_BUG_BUZZ"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1
+        },
+        {
+            "species": "SPECIES_ARBOK",
+            "form": 0,
+            "level": 56,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_GLARE",
+                "MOVE_GUNK_SHOT",
+                "MOVE_CRUNCH",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3
+        },
+        {
+            "species": "SPECIES_FROSLASS",
+            "form": 0,
+            "level": 57,
+            "item": "ITEM_NEVERMELTICE",
+            "moves": [
+                "MOVE_ICY_WIND",
+                "MOVE_SHADOW_BALL",
+                "MOVE_ICE_BEAM",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 3
         }
     ],
     "messages": [
         {
             "type": "TRMSG_PRE_BATTLE",
-            "garbage": 26
+            "en_US": [
+                "Dread is slower than fear,\n",
+                "but it never lets go!\r"
+            ]
         },
         {
             "type": "TRMSG_DEFEAT",
-            "garbage": 16
+            "en_US": [
+                "Too fast... You were too fast...\n"
+            ]
         },
         {
             "type": "TRMSG_POST_BATTLE",
-            "garbage": 24
+            "en_US": [
+                "Go on up, then.\n",
+                "Master Cyrus is waiting for you.\n"
+            ]
         }
     ]
 }

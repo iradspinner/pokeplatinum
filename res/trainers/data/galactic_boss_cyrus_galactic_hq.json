@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_SKARMORY",
             "form": 0,
-            "level": 58,
+            "level": 57,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_STEALTH_ROCK",
@@ -30,7 +30,7 @@
         {
             "species": "SPECIES_MAGNEZONE",
             "form": 0,
-            "level": 58,
+            "level": 57,
             "item": "ITEM_SHUCA_BERRY",
             "moves": [
                 "MOVE_THUNDERBOLT",
@@ -47,8 +47,8 @@
         {
             "species": "SPECIES_DUSKNOIR",
             "form": 0,
-            "level": 58,
-            "item": "ITEM_LEFTOVERS",
+            "level": 57,
+            "item": "ITEM_ROCKY_HELMET",
             "moves": [
                 "MOVE_SHADOW_PUNCH",
                 "MOVE_EARTHQUAKE",
@@ -64,7 +64,7 @@
         {
             "species": "SPECIES_HOUNDOOM",
             "form": 0,
-            "level": 58,
+            "level": 57,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_FLAMETHROWER",
@@ -98,7 +98,7 @@
         {
             "species": "SPECIES_WEAVILE",
             "form": 0,
-            "level": 60,
+            "level": 59,
             "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_NIGHT_SLASH",
