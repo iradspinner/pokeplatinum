@@ -62,7 +62,7 @@ The balance pass of step 12 erased most of these themes, and Ian restated them o
 | Cyrus | Celestic ruins, Galactic HQ, Distortion World | Power: 18 different Pokemon over the three fights, no repeats, with his canon picks (Weavile, Honchkrow, Houndoom, Gyarados, Crobat) spread among them |
 | Mars | Valley Windworks, Lake Verity, Spear Pillar, Stark Mountain | The crazy cat lady: mostly cats, with her canon bat |
 | Jupiter | Eterna building, Spear Pillar, Stark Mountain | Nuisance and storm together, around Tangela (Tangrowth later) and Skuntank. Ian's idea for her last fight: a Drizzle Zapdos. He hesitates over Drapion and Spiritomb, Aaron's and Cynthia's keys |
-| Saturn | Valor Cavern, Galactic HQ | Slow giants; the HQ fight in permanent Trick Room |
+| Saturn | Valor Cavern, Galactic HQ | Valor Cavern: poison and hazards (Ian, 2026-11-02, [saturn1-check.md](saturn1-check.md)); the HQ fight in permanent Trick Room |
 | Officer Somnu | Valley Windworks, Lake Verity, Mt. Coronet 5F | Sleep |
 | Officer Moira | Eterna 3F, Lake Verity, Mt. Coronet 5F | Future Sight on every member that can learn it, with Ice and hail |
 | Somnu and Moira | Lake Verity, one battle against both | Three each: sleep beside Future Sight and hail |
