@@ -437,11 +437,22 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
     (`overseer-byron-prep`) the section ends on arrival, so the Pocket PC
     works at once, before Scientist Travon and Officer Moira, and the stairs
     back down no longer refuse.
-  - Galactic HQ: the warehouse's stairs lead into B2F. Leave the Galactic Key
-    on B2F at first, and climb through 1F and 2F to 3F: its stairs back down
-    let you go. Then fetch the key and come back: the same stairs refuse.
-    1F's front doors to Veilstone refuse too, once the key has opened its
-    lobby.
+  - Galactic HQ: the warehouse's stairs lead into B2F, and with a B2F grunt
+    unbeaten the stairs back to the warehouse refuse. Since 2026-11-02
+    section 6 is on 3F's east side, and 3F's west side is in no section.
+    First, the trap that move closed: with 3F's grunts unbeaten, fetch the
+    Galactic Key (up through B1F, 1F and 2F's west side, the panel in 2F's
+    north-west corner, then down through Scientist Fredrick's room to B2F's
+    north end), climb back to 2F's west side and take its stairs up to 3F
+    west. Open the locked room there with the key. The Pocket PC works on 3F
+    west, and its stairs back down to 2F let you go. Then, key in hand,
+    leave by the warehouse, enter the HQ's front door in Veilstone, open the
+    lobby's inner door, and climb to 2F's east side, the hall (Cyrus's
+    speech plays) and the nap room. Take the nap room's stairs up to 3F's
+    east side with grunts 3 and 4 unbeaten: those stairs back down refuse,
+    and so does the Pocket PC. Beat both, and the stairs let you go and the
+    Pocket PC works. Or, with either still unbeaten, go on up to 4F: the
+    Pocket PC works there, before Cyrus.
   - Coronet 1F: south into the tunnel room, then back north: refused. At the
     far end, out onto the north ledge, the Pocket PC works again.
   - Coronet 3F: up the stairs from 2F, then out onto the south ledge. Fly
