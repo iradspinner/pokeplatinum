@@ -153,6 +153,32 @@ def check_steel_neutral(results, blob):
                               for m in ("Shadow Ball", "Dark Pulse"))))
 
 
+def check_ice_resists_water(results, blob):
+    """Water hits Ice for half through the calculator (Ian, 2026-11-03, the
+    Ice proposal's first lever). Vaporeon's Surf and Hydro Pump into
+    Glaceon give the same rolls as into a Glaceon the runner is told is a
+    Grass type, which Water already hits for half."""
+    iv = {k: 31 for k in ("hp", "at", "df", "sa", "sd", "sp")}
+    ev = {k: 0 for k in iv}
+    base = {"level": 50, "nature": "Hardy", "ivs": iv, "evs": ev}
+    gla = blob["poks"]["Glaceon"]
+    jobs = {"pokemon": {
+        "vaporeon": dict(base, species="Vaporeon"),
+        "ice": dict(base, species="Glaceon"),
+        "grass": dict(base, species="Glaceon",
+                      species_data={"bs": {k: gla["bs"][k] for k in STATS}, "types": ["Grass"]}),
+    }, "pairs": [["vaporeon", "ice", ["Surf", "Hydro Pump"], None],
+                 ["vaporeon", "grass", ["Surf", "Hydro Pump"], None]]}
+    out = _run(blob, jobs)
+    ice, grass = (r["moves"] for r in out["results"])
+    ok = gla["types"] == ["Ice"] and all(
+        ice[m]["rolls"] == grass[m]["rolls"] and ice[m]["rolls"][0] > 0 for m in ("Surf", "Hydro Pump"))
+    results.append(("Surf and Hydro Pump hit a pure Ice type for half (Ice resists Water)", ok,
+                    "; ".join(f"{m} into Glaceon {ice[m]['rolls'][0]}-{ice[m]['rolls'][-1]}, "
+                              f"into a Grass one {grass[m]['rolls'][0]}-{grass[m]['rolls'][-1]}"
+                              for m in ("Surf", "Hydro Pump"))))
+
+
 def check_engine(results):
     """The engine is the page's: the same files, in the page's order."""
     import subprocess
@@ -323,6 +349,7 @@ def main():
     check_engine(results)
     check_damage(results, blob)
     check_steel_neutral(results, blob)
+    check_ice_resists_water(results, blob)
     check_eviolite(results, blob)
     check_ref_overrides(results, blob)
     check_exact_types(results, blob)

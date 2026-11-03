@@ -9490,9 +9490,29 @@ def check_steel_later_chart(results):
                     f"multipliers {mult}; flags (no effect, super, not very) {flags}"))
 
 
+def check_ice_resists_water(results):
+    """Ice resists Water, so Water hits Ice for half (Ian, 2026-11-03, the
+    Ice proposal's first lever). The simulator reads the engine's chart
+    through calc_export: a Surf into a pure Ice type is 0.5x, into Lapras
+    (Water and Ice) 0.25x, into Mamoswine (Ice and Ground) 1x, and the AI's
+    flags read Surf into an Ice type as not very effective."""
+    from ..encounters import calc_export
+    chart = calc_export.build()["type_chart"]
+    water = fs.move("Surf").type
+    mult = {"Ice": fs.effectiveness(chart, water, ["Ice"]),
+            "Water/Ice": fs.effectiveness(chart, water, ["Water", "Ice"]),
+            "Ice/Ground": fs.effectiveness(chart, water, ["Ice", "Ground"])}
+    b, _p, _foe = battle(["Tackle"], ["Tackle"], {})
+    b.st["chart"] = chart
+    flags = fightai.type_flags(b, water, ["Ice"])
+    ok = mult == {"Ice": 0.5, "Water/Ice": 0.25, "Ice/Ground": 1.0} and flags == (False, False, True)
+    results.append(("Surf into an Ice type is not very effective (Ice resists Water)", ok,
+                    f"multipliers {mult}; flags (no effect, super, not very) {flags}"))
+
+
 def main():
     results = []
-    for check in (check_steel_later_chart, check_damage, check_crit_odds, check_status_immunity, check_item_moves,
+    for check in (check_steel_later_chart, check_ice_resists_water, check_damage, check_crit_odds, check_status_immunity, check_item_moves,
                   check_weather_rock, check_map_weather_replaced, check_permanent_trick_room,
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
                   check_salt_cure, check_harvest, check_berry_first_hit,

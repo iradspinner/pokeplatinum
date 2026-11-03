@@ -28,8 +28,13 @@ def main():
     diffs = {(a, d) for a, d, _o, _l in di.chart_differences()}
     # Until 2026-11-03 Steel still resisted Ghost and Dark here, which put it
     # at +11.0; Ian moved Steel to the later chart that day.
-    results.append(("Oxide's chart is the later games' chart, Ghost and Dark neutral on Steel",
-                    diffs == set(), f"{sorted(diffs)}"))
+    # Since 2026-11-03 Ice also resists Water (the Ice proposal's first
+    # lever), the one place Oxide's chart leaves the later games'.
+    results.append(("Oxide's chart is the later games' but for Ice resisting Water",
+                    diffs == {("WATER", "ICE")}, f"{sorted(diffs)}"))
+    ox_ice = di.index(["ICE"], ox, pw)
+    results.append(("so Ice is -4.5 on the post's weights, the post's -5.5 and a resistance worth 1",
+                    abs(ox_ice - (-4.5)) < 1e-9, f"{ox_ice}"))
     ox_steel = di.index(["STEEL"], ox, pw)
     results.append(("so Steel is the post's +8.5 on Oxide's chart too",
                     abs(ox_steel - 8.5) < 1e-9, f"{ox_steel}"))

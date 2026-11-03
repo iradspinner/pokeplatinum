@@ -195,6 +195,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   very effective..." message, and on the Poketch move tester a Ghost or a
   Dark move into Steel shows the plain result, not the weak one. Before the
   change both read not very effective.
+- [ ] **Water is not very effective on Ice** (2026-11-03,
+  `overseer-ice-levers`; Ian gave Ice a resistance to Water, the Ice
+  proposal's first lever). In normal play, a Water move into a pure Ice type
+  (Snorunt, Glaceon) shows "It's not very effective...", one into Lapras or
+  Cloyster (Water and Ice) does about a quarter of its neutral damage, and one
+  into Mamoswine (Ice and Ground) shows neither message. On the Poketch move
+  tester, Water into Ice shows the weak result. Before the change a Water move
+  was neutral on Ice.
 - [ ] **The Move Relearner and learnsets.** At the Move Relearner, no move name
   clips beyond the eight known ones, descriptions read sensibly in five lines,
   and a new species' moves are listed. Level a Pokemon through a move it should
