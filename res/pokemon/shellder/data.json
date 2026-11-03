@@ -87,8 +87,7 @@
             "MOVE_RAPID_SPIN",
             "MOVE_SCREECH",
             "MOVE_ICICLE_SPEAR",
-            "MOVE_MUD_SHOT",
-            "MOVE_SHELL_SMASH"
+            "MOVE_MUD_SHOT"
         ]
     },
     "evolutions": [

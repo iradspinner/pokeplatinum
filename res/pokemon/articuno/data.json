@@ -90,6 +90,10 @@
             "MOVE_SIGNAL_BEAM",
             "MOVE_TWISTER",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_HURRICANE",
+            "MOVE_FREEZE_DRY"
         ]
     },
     "evolutions": [  ],
