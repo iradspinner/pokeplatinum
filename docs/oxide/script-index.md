@@ -14,11 +14,11 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 0 | 2 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 603 | 506 | 71 | 26 | 0 | 15 |
+| Trainer battles | 613 | 506 | 71 | 36 | 0 | 15 |
 | Items given | 214 | 102 | 30 | 82 | 0 | 34 |
-| Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
+| Item balls | 333 | 260 | 62 | 11 | 0 | 69 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
-| Flags | 3338 | 2960 | 214 | 164 | 0 | 109 |
+| Flags | 3339 | 2960 | 214 | 165 | 0 | 109 |
 | Variables | 1126 | 1076 | 27 | 23 | 0 | 38 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
@@ -35,7 +35,7 @@ What the tool could not read, counted rather than guessed:
 | numbers no table holds | 0 | 0 |
 | variables set elsewhere | 29 | 8 |
 
-Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src/` starts them): 239 numbered scripts and 66 stretches of code, listed in each section. The Villa's furniture and the Distortion World are started by the engine by number and are marked so; a few other map scripts are too (the Union Room's script 5), which the tool does not see. The shared files indexed by trainer, item or hidden item are not checked this way.
+Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src/` starts them): 241 numbered scripts and 66 stretches of code, listed in each section. The Villa's furniture and the Distortion World are started by the engine by number and are marked so; a few other map scripts are too (the Union Room's script 5), which the tool does not see. The shared files indexed by trainer, item or hidden item are not checked this way.
 
 ### Maps by split
 
@@ -46,8 +46,8 @@ Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src
 - Wake's split: [Route 214](#route-214), [Route 214 Gate To Veilstone City](#route-214-gate-to-veilstone-city), [Maniac Tunnel](#maniac-tunnel), [Ruin Maniac Cave Short](#ruin-maniac-cave-short), [Ruin Maniac Cave Long](#ruin-maniac-cave-long), [Valor Lakefront](#valor-lakefront), [Route 213](#route-213), [Pastoria City](#pastoria-city), [Pastoria City East House](#pastoria-city-east-house), [Pastoria City Gym](#pastoria-city-gym), [Pastoria City Mart](#pastoria-city-mart), [Pastoria City Middle House](#pastoria-city-middle-house), [Pastoria City Northeast House](#pastoria-city-northeast-house), [Pastoria City Observatory Gate 1F](#pastoria-city-observatory-gate-1f), [Pastoria City Pokecenter 1F](#pastoria-city-pokecenter-1f), [Pastoria City Pokecenter 2F](#pastoria-city-pokecenter-2f), [Pastoria City Pokecenter B1F](#pastoria-city-pokecenter-b1f), [Pastoria City Southwest House](#pastoria-city-southwest-house), [Great Marsh 1](#great-marsh-1), [Great Marsh 2](#great-marsh-2), [Great Marsh 3](#great-marsh-3), [Great Marsh 4](#great-marsh-4), [Great Marsh 5](#great-marsh-5), [Great Marsh 6](#great-marsh-6), [Route 212 Gate To Hearthome City](#route-212-gate-to-hearthome-city), [Route 212 House](#route-212-house), [Route 212 North](#route-212-north), [Pokemon Mansion](#pokemon-mansion), [Pokemon Mansion Maids Room](#pokemon-mansion-maids-room), [Pokemon Mansion Office](#pokemon-mansion-office), [Route 212 South](#route-212-south).
 - Byron's split: [Route 210 North](#route-210-north), [Route 211 East](#route-211-east), [Celestic Town](#celestic-town), [Celestic Town Cave](#celestic-town-cave), [Celestic Town North House](#celestic-town-north-house), [Celestic Town Northwest House](#celestic-town-northwest-house), [Celestic Town Pokecenter 1F](#celestic-town-pokecenter-1f), [Celestic Town Pokecenter 2F](#celestic-town-pokecenter-2f), [Celestic Town Pokecenter B1F](#celestic-town-pokecenter-b1f), [Fuego Ironworks Outside](#fuego-ironworks-outside), [Fuego Ironworks Building](#fuego-ironworks-building), [Route 218](#route-218), [Route 218 Gate To Canalave City](#route-218-gate-to-canalave-city), [Route 218 Gate To Jubilife City](#route-218-gate-to-jubilife-city), [Canalave City](#canalave-city), [Canalave City East House](#canalave-city-east-house), [Canalave City Gym](#canalave-city-gym), [Canalave City Harbor Inn](#canalave-city-harbor-inn), [Canalave City Mart](#canalave-city-mart), [Canalave City Pokecenter 1F](#canalave-city-pokecenter-1f), [Canalave City Pokecenter 2F](#canalave-city-pokecenter-2f), [Canalave City Pokecenter B1F](#canalave-city-pokecenter-b1f), [Canalave City Sailor Eldritch House](#canalave-city-sailor-eldritch-house), [Canalave City Southeast House](#canalave-city-southeast-house), [Canalave City West House](#canalave-city-west-house), [Iron Island](#iron-island), [Iron Island House](#iron-island-house), [Iron Island Iron Ruins](#iron-island-iron-ruins), [Iron Island 1F](#iron-island-1f), [Iron Island B1F Left Room](#iron-island-b1f-left-room), [Iron Island B1F Right Room](#iron-island-b1f-right-room), [Iron Island B2F Right Room](#iron-island-b2f-right-room), [Iron Island B2F Left Room](#iron-island-b2f-left-room), [Iron Island B3F](#iron-island-b3f), [Route 220](#route-220), [Route 221](#route-221), [Route 221 House](#route-221-house).
 - Candice's split: [Mt Coronet B1F](#mt-coronet-b1f), [Mt Coronet 1F North Room 2](#mt-coronet-1f-north-room-2), [Route 216](#route-216), [Route 217](#route-217), [Route 217 Northeast House](#route-217-northeast-house), [Route 217 West House](#route-217-west-house), [Acuity Lakefront](#acuity-lakefront), [Snowpoint City](#snowpoint-city), [Snowpoint City East House](#snowpoint-city-east-house), [Snowpoint City Gym](#snowpoint-city-gym), [Snowpoint City Mart](#snowpoint-city-mart), [Snowpoint City Pokecenter 1F](#snowpoint-city-pokecenter-1f), [Snowpoint City Pokecenter 2F](#snowpoint-city-pokecenter-2f), [Snowpoint City Pokecenter B1F](#snowpoint-city-pokecenter-b1f), [Snowpoint City West House](#snowpoint-city-west-house).
-- HQ's split: [Lake Acuity](#lake-acuity), [Lake Acuity Low Water](#lake-acuity-low-water).
-- Galactic's split: [Route 225](#route-225), [Route 225 House](#route-225-house), [Route 226](#route-226), [Route 226 House](#route-226-house), [Route 227](#route-227), [Stark Mountain Outside](#stark-mountain-outside), [Stark Mountain Room 3](#stark-mountain-room-3), [Stark Mountain Room 1](#stark-mountain-room-1), [Stark Mountain Room 2](#stark-mountain-room-2), [Route 228](#route-228), [Route 228 North House](#route-228-north-house), [Route 228 Rock Peak Ruins](#route-228-rock-peak-ruins), [Route 229](#route-229), [Distortion World 1F](#distortion-world-1f), [Distortion World B1F](#distortion-world-b1f), [Distortion World B2F](#distortion-world-b2f), [Distortion World B3F](#distortion-world-b3f), [Distortion World B4F](#distortion-world-b4f), [Distortion World B5F](#distortion-world-b5f), [Distortion World B6F](#distortion-world-b6f), [Distortion World B7F](#distortion-world-b7f), [Distortion World Giratina Room](#distortion-world-giratina-room), [Distortion World Turnback Cave Room](#distortion-world-turnback-cave-room), [Resort Area](#resort-area), [Resort Area Pokecenter 1F](#resort-area-pokecenter-1f), [Resort Area Pokecenter 2F](#resort-area-pokecenter-2f), [Resort Area Pokecenter B1F](#resort-area-pokecenter-b1f), [Resort Area Ribbon Syndicate 1F](#resort-area-ribbon-syndicate-1f), [Resort Area Ribbon Syndicate 2F](#resort-area-ribbon-syndicate-2f), [Resort Area Ribbon Syndicate Elevator](#resort-area-ribbon-syndicate-elevator), [Unknown 578](#unknown-578), [Unused Resort Area Mart](#unused-resort-area-mart), [Route 230](#route-230), [Mt Coronet 1F Tunnel Room](#mt-coronet-1f-tunnel-room), [Mt Coronet 2F](#mt-coronet-2f), [Mt Coronet 3F](#mt-coronet-3f), [Mt Coronet Outside South](#mt-coronet-outside-south), [Mt Coronet 4F Rooms 1 And 2](#mt-coronet-4f-rooms-1-and-2), [Mt Coronet 4F Room 3](#mt-coronet-4f-room-3), [Mt Coronet Outside North](#mt-coronet-outside-north), [Mt Coronet 5F](#mt-coronet-5f), [Mt Coronet 6F](#mt-coronet-6f).
+- HQ's split: [Lake Acuity](#lake-acuity), [Lake Acuity Low Water](#lake-acuity-low-water), [Mt Coronet 2F](#mt-coronet-2f).
+- Galactic's split: [Route 225](#route-225), [Route 225 House](#route-225-house), [Route 226](#route-226), [Route 226 House](#route-226-house), [Route 227](#route-227), [Stark Mountain Outside](#stark-mountain-outside), [Stark Mountain Room 3](#stark-mountain-room-3), [Stark Mountain Room 1](#stark-mountain-room-1), [Stark Mountain Room 2](#stark-mountain-room-2), [Route 228](#route-228), [Route 228 North House](#route-228-north-house), [Route 228 Rock Peak Ruins](#route-228-rock-peak-ruins), [Route 229](#route-229), [Distortion World 1F](#distortion-world-1f), [Distortion World B1F](#distortion-world-b1f), [Distortion World B2F](#distortion-world-b2f), [Distortion World B3F](#distortion-world-b3f), [Distortion World B4F](#distortion-world-b4f), [Distortion World B5F](#distortion-world-b5f), [Distortion World B6F](#distortion-world-b6f), [Distortion World B7F](#distortion-world-b7f), [Distortion World Giratina Room](#distortion-world-giratina-room), [Distortion World Turnback Cave Room](#distortion-world-turnback-cave-room), [Resort Area](#resort-area), [Resort Area Pokecenter 1F](#resort-area-pokecenter-1f), [Resort Area Pokecenter 2F](#resort-area-pokecenter-2f), [Resort Area Pokecenter B1F](#resort-area-pokecenter-b1f), [Resort Area Ribbon Syndicate 1F](#resort-area-ribbon-syndicate-1f), [Resort Area Ribbon Syndicate 2F](#resort-area-ribbon-syndicate-2f), [Resort Area Ribbon Syndicate Elevator](#resort-area-ribbon-syndicate-elevator), [Unknown 578](#unknown-578), [Unused Resort Area Mart](#unused-resort-area-mart), [Route 230](#route-230), [Mt Coronet 1F Tunnel Room](#mt-coronet-1f-tunnel-room), [Mt Coronet 3F](#mt-coronet-3f), [Mt Coronet Outside South](#mt-coronet-outside-south), [Mt Coronet 4F Rooms 1 And 2](#mt-coronet-4f-rooms-1-and-2), [Mt Coronet 4F Room 3](#mt-coronet-4f-room-3), [Mt Coronet Outside North](#mt-coronet-outside-north), [Mt Coronet 5F](#mt-coronet-5f), [Mt Coronet 6F](#mt-coronet-6f).
 - Volkner's split: [Lake Valor](#lake-valor), [Lake Valor Drained](#lake-valor-drained), [Acuity Cavern](#acuity-cavern), [Valor Cavern](#valor-cavern), [Route 222](#route-222), [Route 222 East House](#route-222-east-house), [Route 222 West House](#route-222-west-house), [Sunyshore City](#sunyshore-city), [Sunyshore City East House](#sunyshore-city-east-house), [Sunyshore City Gym Room 1](#sunyshore-city-gym-room-1), [Sunyshore City Gym Room 2](#sunyshore-city-gym-room-2), [Sunyshore City Gym Room 3](#sunyshore-city-gym-room-3), [Sunyshore City Mart](#sunyshore-city-mart), [Sunyshore City Northeast House](#sunyshore-city-northeast-house), [Sunyshore City Pokecenter 1F](#sunyshore-city-pokecenter-1f), [Sunyshore City Pokecenter 2F](#sunyshore-city-pokecenter-2f), [Sunyshore City Pokecenter B1F](#sunyshore-city-pokecenter-b1f), [Unused Sunyshore City House 1](#unused-sunyshore-city-house-1), [Unused Sunyshore City House 2](#unused-sunyshore-city-house-2).
 - Barry's split: [Sendoff Spring](#sendoff-spring), [Route 223](#route-223), [Victory Road 1F](#victory-road-1f), [Victory Road 2F](#victory-road-2f), [Victory Road B1F](#victory-road-b1f), [Pokemon League](#pokemon-league), [Pokemon League Aaron Room](#pokemon-league-aaron-room), [Pokemon League Bertha Room](#pokemon-league-bertha-room), [Pokemon League Champion Room](#pokemon-league-champion-room), [Pokemon League Elevator To Aaron Room](#pokemon-league-elevator-to-aaron-room), [Pokemon League Elevator To Bertha Room](#pokemon-league-elevator-to-bertha-room), [Pokemon League Elevator To Champion Room](#pokemon-league-elevator-to-champion-room), [Pokemon League Elevator To Flint Room](#pokemon-league-elevator-to-flint-room), [Pokemon League Elevator To Lucian Room](#pokemon-league-elevator-to-lucian-room), [Pokemon League Flint Room](#pokemon-league-flint-room), [Pokemon League Hall Of Fame](#pokemon-league-hall-of-fame), [Pokemon League Hallway To Hall Of Fame](#pokemon-league-hallway-to-hall-of-fame), [Pokemon League Lucian Room](#pokemon-league-lucian-room), [Pokemon League North Pokecenter 1F](#pokemon-league-north-pokecenter-1f), [Pokemon League North Pokecenter 2F](#pokemon-league-north-pokecenter-2f), [Pokemon League North Pokecenter B1F](#pokemon-league-north-pokecenter-b1f), [Pokemon League South Pokecenter 1F](#pokemon-league-south-pokecenter-1f), [Pokemon League South Pokecenter 2F](#pokemon-league-south-pokecenter-2f), [Pokemon League South Pokecenter B1F](#pokemon-league-south-pokecenter-b1f).
 - Post's split: [Turnback Cave Entrance](#turnback-cave-entrance), [Turnback Cave Giratina Room](#turnback-cave-giratina-room), [Turnback Cave Pillar 1 Room 1](#turnback-cave-pillar-1-room-1), [Turnback Cave Pillar 3 Room 6](#turnback-cave-pillar-3-room-6), [Turnback Cave Pillar Room](#turnback-cave-pillar-room), [Turnback Cave Pillar 1 Room 2](#turnback-cave-pillar-1-room-2), [Turnback Cave Pillar 1 Room 3](#turnback-cave-pillar-1-room-3), [Turnback Cave Pillar 1 Room 4](#turnback-cave-pillar-1-room-4), [Turnback Cave Pillar 1 Room 5](#turnback-cave-pillar-1-room-5), [Turnback Cave Pillar 1 Room 6](#turnback-cave-pillar-1-room-6), [Turnback Cave Pillar 2 Room 1](#turnback-cave-pillar-2-room-1), [Turnback Cave Pillar 2 Room 2](#turnback-cave-pillar-2-room-2), [Turnback Cave Pillar 2 Room 3](#turnback-cave-pillar-2-room-3), [Turnback Cave Pillar 2 Room 4](#turnback-cave-pillar-2-room-4), [Turnback Cave Pillar 2 Room 5](#turnback-cave-pillar-2-room-5), [Turnback Cave Pillar 2 Room 6](#turnback-cave-pillar-2-room-6), [Turnback Cave Pillar 3 Room 1](#turnback-cave-pillar-3-room-1), [Turnback Cave Pillar 3 Room 2](#turnback-cave-pillar-3-room-2), [Turnback Cave Pillar 3 Room 3](#turnback-cave-pillar-3-room-3), [Turnback Cave Pillar 3 Room 4](#turnback-cave-pillar-3-room-4), [Turnback Cave Pillar 3 Room 5](#turnback-cave-pillar-3-room-5), [Victory Road 1F Room 2](#victory-road-1f-room-2), [Spear Pillar](#spear-pillar), [Spear Pillar Dialga](#spear-pillar-dialga), [Spear Pillar Distorted](#spear-pillar-distorted), [Spear Pillar Palkia](#spear-pillar-palkia), [Rock Peak Ruins](#rock-peak-ruins), [Route 224](#route-224), [Iceberg Ruins](#iceberg-ruins), [Iron Ruins](#iron-ruins), [Snowpoint Temple 1F](#snowpoint-temple-1f), [Snowpoint Temple B1F](#snowpoint-temple-b1f), [Snowpoint Temple B2F](#snowpoint-temple-b2f), [Snowpoint Temple B3F](#snowpoint-temple-b3f), [Snowpoint Temple B4F](#snowpoint-temple-b4f), [Snowpoint Temple B5F](#snowpoint-temple-b5f).
@@ -2132,7 +2132,7 @@ Flags:
 Trainer battles:
 
 - TRAINER_HIKER_ROBERT (Robert, level 30, 3 Pokemon), sees the player. Vanilla. `events_route_208.json:27`
-- TRAINER_HIKER_ALEXANDER (Alexander, level 45, 2 Pokemon), sees the player. Vanilla. `events_route_208.json:44`
+- TRAINER_HIKER_ALEXANDER (Alexander, level 57, 4 Pokemon), sees the player. Vanilla. `events_route_208.json:44`
 - TRAINER_HIKER_JONATHAN (Jonathan, level 29, 4 Pokemon), sees the player. Vanilla. `events_route_208.json:61`
 - TRAINER_BLACK_BELT_KYLE (Kyle, level 29, 3 Pokemon), sees the player. Vanilla. `events_route_208.json:78`
 - TRAINER_FISHERMAN_CODY (Cody, level 46, 3 Pokemon), sees the player. Vanilla. `events_route_208.json:95`
@@ -3415,7 +3415,7 @@ Trainer battles:
 - TRAINER_NINJA_BOY_JOEL (Joel, level 43, 3 Pokemon), sees the player. Vanilla. `events_route_210_north.json:53`
 - TRAINER_NINJA_BOY_NATHAN (Nathan, level 44, 3 Pokemon), sees the player. Vanilla. `events_route_210_north.json:70`
 - TRAINER_NINJA_BOY_DAVIDO (Davido, level 44, 3 Pokemon), sees the player. Vanilla. `events_route_210_north.json:87`
-- TRAINER_DRAGON_TAMER_PATRICK (Patrick, level 43, 1 Pokemon), sees the player. Vanilla. `events_route_210_north.json:104`
+- TRAINER_DRAGON_TAMER_PATRICK (Patrick, level 57, 3 Pokemon), sees the player. Vanilla. `events_route_210_north.json:104`
 - TRAINER_BIRD_KEEPER_BRIANNA (Brianna, level 44, 4 Pokemon), sees the player. Vanilla. `events_route_210_north.json:121`
 - TRAINER_DOUBLE_TEAM_ZAC_AND_JEN (Zac & Jen, level 44, 5 Pokemon), sees the player. Vanilla. `events_route_210_north.json:138`
 - TRAINER_DOUBLE_TEAM_ZAC_AND_JEN (Zac & Jen, level 44, 5 Pokemon), sees the player, double battle. Vanilla. `events_route_210_north.json:154`
@@ -4346,6 +4346,10 @@ Flags:
 
 `MAP_HEADER_ACUITY_LAKEFRONT`: scripts `scripts_acuity_lakefront`, events `events_acuity_lakefront`, init scripts `scripts_init_acuity_lakefront`. Location name Acuity Lakefront. In Candice's split, placed by its encounter table.
 
+Trainer battles:
+
+- TRAINER_DUMMY_109 (Gunnar, level 56, 4 Pokemon), sees the player. Added by Oxide (610527338). `events_acuity_lakefront.json:72`
+
 Item balls:
 
 - ITEM_ULTRA_BALL x1, one time, flag FLAG_OBTAINED_ACUITY_LAKEFRONT_ULTRA_BALL. Vanilla. `events_acuity_lakefront.json:10`
@@ -4523,6 +4527,41 @@ Flags:
 - Hide an object: FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL, FLAG_OBTAINED_LAKE_ACUITY_TM14.
 
 Gone from vanilla: ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14.
+
+### Mt Coronet 2F
+
+`MAP_HEADER_MT_CORONET_2F`: scripts `scripts_mt_coronet_2f`, events `events_mt_coronet_2f`, init scripts `scripts_init_mt_coronet_2f`. Location name Mt. Coronet. In HQ's split, placed by its encounter table.
+
+Items given:
+
+- ITEM_BLACK_FLUTE x1. Vanilla. `scripts_mt_coronet_2f.s:45`
+- ITEM_BLACK_FLUTE x1. Vanilla. `scripts_mt_coronet_2f.s:147`
+
+Item balls:
+
+- ITEM_MAX_REVIVE x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_MAX_REVIVE. Vanilla. `events_mt_coronet_2f.json:27`
+- ITEM_MAX_REPEL x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_MAX_REPEL. Vanilla. `events_mt_coronet_2f.json:42`
+- ITEM_TM75 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_TM80. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM80 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_TM80. `events_mt_coronet_2f.json:57`
+- ITEM_TM58 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE. Added by Oxide (2f5fc736c). Replaces vanilla's ITEM_ESCAPE_ROPE x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE. `events_mt_coronet_2f.json:72`
+
+Hidden items:
+
+- ITEM_STAR_PIECE x1, one time, flag FLAG_OBTAINED_HIDDEN_MT_CORONET_2F_STAR_PIECE. Vanilla. `events_mt_coronet_2f.json:4`
+- ITEM_RED_SHARD x1, one time, flag FLAG_OBTAINED_HIDDEN_MT_CORONET_2F_RED_SHARD. Vanilla. `events_mt_coronet_2f.json:12`
+
+Flags:
+
+- Set: FLAG_RECEIVED_MT_CORONET_2F_BLACK_FLUTE.
+- Cleared: FLAG_HIDE_MT_CORONET_2F_LOOKER.
+- Checked: FLAG_RECEIVED_MT_CORONET_2F_BLACK_FLUTE.
+- Hide an object: FLAG_MAP_LOCAL_HIDE_OBSTACLE_2, FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING_SHARDS, FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING, FLAG_HIDE_MT_CORONET_2F_LOOKER, FLAG_OBTAINED_MT_CORONET_2F_MAX_REVIVE, FLAG_OBTAINED_MT_CORONET_2F_TM80, FLAG_OBTAINED_MT_CORONET_2F_MAX_REPEL, FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE.
+
+Variables:
+
+- Set: VAR_MT_CORONET_2F_STATE.
+- Checked: VAR_MT_CORONET_2F_STATE.
+
+Gone from vanilla: ITEM_TM80 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_TM80; ITEM_ESCAPE_ROPE x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE.
 
 ## Galactic's split
 
@@ -5169,41 +5208,6 @@ Hidden items:
 Flags:
 
 - Hide an object: FLAG_MAP_LOCAL_HIDE_OBSTACLE_1, FLAG_MAP_LOCAL_HIDE_OBSTACLE_2, FLAG_MAP_LOCAL_HIDE_OBSTACLE_3, FLAG_MAP_LOCAL_HIDE_OBSTACLE_4, FLAG_MAP_LOCAL_HIDE_OBSTACLE_5, FLAG_MAP_LOCAL_HIDE_OBSTACLE_6, FLAG_MAP_LOCAL_HIDE_OBSTACLE_7, FLAG_MAP_LOCAL_HIDE_OBSTACLE_8, FLAG_MAP_LOCAL_HIDE_OBSTACLE_9, FLAG_MAP_LOCAL_HIDE_OBSTACLE_10, FLAG_MAP_LOCAL_HIDE_OBSTACLE_11, FLAG_MAP_LOCAL_HIDE_OBSTACLE_12, FLAG_MAP_LOCAL_HIDE_OBSTACLE_13, FLAG_HIDE_MT_CORONET_GALACTIC_GRUNTS.
-
-### Mt Coronet 2F
-
-`MAP_HEADER_MT_CORONET_2F`: scripts `scripts_mt_coronet_2f`, events `events_mt_coronet_2f`, init scripts `scripts_init_mt_coronet_2f`. Location name Mt. Coronet. In Galactic's split, placed by its encounter table.
-
-Items given:
-
-- ITEM_BLACK_FLUTE x1. Vanilla. `scripts_mt_coronet_2f.s:45`
-- ITEM_BLACK_FLUTE x1. Vanilla. `scripts_mt_coronet_2f.s:147`
-
-Item balls:
-
-- ITEM_MAX_REVIVE x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_MAX_REVIVE. Vanilla. `events_mt_coronet_2f.json:27`
-- ITEM_MAX_REPEL x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_MAX_REPEL. Vanilla. `events_mt_coronet_2f.json:42`
-- ITEM_TM75 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_TM80. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM80 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_TM80. `events_mt_coronet_2f.json:57`
-- ITEM_TM58 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE. Added by Oxide (2f5fc736c). Replaces vanilla's ITEM_ESCAPE_ROPE x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE. `events_mt_coronet_2f.json:72`
-
-Hidden items:
-
-- ITEM_STAR_PIECE x1, one time, flag FLAG_OBTAINED_HIDDEN_MT_CORONET_2F_STAR_PIECE. Vanilla. `events_mt_coronet_2f.json:4`
-- ITEM_RED_SHARD x1, one time, flag FLAG_OBTAINED_HIDDEN_MT_CORONET_2F_RED_SHARD. Vanilla. `events_mt_coronet_2f.json:12`
-
-Flags:
-
-- Set: FLAG_RECEIVED_MT_CORONET_2F_BLACK_FLUTE.
-- Cleared: FLAG_HIDE_MT_CORONET_2F_LOOKER.
-- Checked: FLAG_RECEIVED_MT_CORONET_2F_BLACK_FLUTE.
-- Hide an object: FLAG_MAP_LOCAL_HIDE_OBSTACLE_2, FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING_SHARDS, FLAG_HIDE_MT_CORONET_2F_CAVE_PAINTING, FLAG_HIDE_MT_CORONET_2F_LOOKER, FLAG_OBTAINED_MT_CORONET_2F_MAX_REVIVE, FLAG_OBTAINED_MT_CORONET_2F_TM80, FLAG_OBTAINED_MT_CORONET_2F_MAX_REPEL, FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE.
-
-Variables:
-
-- Set: VAR_MT_CORONET_2F_STATE.
-- Checked: VAR_MT_CORONET_2F_STATE.
-
-Gone from vanilla: ITEM_TM80 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_TM80; ITEM_ESCAPE_ROPE x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE.
 
 ### Mt Coronet 3F
 
@@ -7268,13 +7272,15 @@ Scripts nothing reaches: script 1 `FullmoonIslandForest_Dummy1` (line 10).
 
 Trainer battles:
 
-- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_1F (Grunt, level 54, 2 Pokemon), sees the player. Vanilla. `events_galactic_hq_1f.json:72`
-- TRAINER_SCIENTIST_FREDRICK (Fredrick, level 53, 2 Pokemon), sees the player. Vanilla. `events_galactic_hq_1f.json:89`
+- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_1F (Grunt, level 57, 4 Pokemon), sees the player. Vanilla. `events_galactic_hq_1f.json:72`
+- TRAINER_SCIENTIST_FREDRICK (Fredrick, level 57, 5 Pokemon), sees the player. Vanilla. `events_galactic_hq_1f.json:89`
+- TRAINER_DUMMY_116 (Officer Phobos, level 57, 3 Pokemon), sees the player. Added by Oxide (610527338). `events_galactic_hq_1f.json:194`
+- TRAINER_DUMMY_117 (Officer Deimos, level 57, 3 Pokemon), sees the player. Added by Oxide (610527338). `events_galactic_hq_1f.json:209`
 
 Item balls:
 
 - ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_1F_TM49. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM49 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_1F_TM49. `events_galactic_hq_1f.json:57`
-- ITEM_DUBIOUS_DISC x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_1F_DUBIOUS_DISC. Vanilla. `events_galactic_hq_1f.json:181`
+- ITEM_DUBIOUS_DISC x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_1F_DUBIOUS_DISC. Vanilla. `events_galactic_hq_1f.json:179`
 
 Hidden items:
 
@@ -7294,15 +7300,15 @@ Gone from vanilla: ITEM_TM49 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_1F_TM4
 
 Trainer battles:
 
-- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_1 (Grunt, level 54, 2 Pokemon), sees the player. Vanilla. `events_galactic_hq_2f.json:122`
-- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_2 (Grunt, level 54, 2 Pokemon), sees the player. Vanilla. `events_galactic_hq_2f.json:139`
-- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_3 (Grunt, level 54, 2 Pokemon), sees the player. Vanilla. `events_galactic_hq_2f.json:156`
-- TRAINER_SCIENTIST_DARRIUS (Darrius, level 55, 1 Pokemon), sees the player. Vanilla. `events_galactic_hq_2f.json:173`
+- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_1 (Grunt, level 57, 3 Pokemon), sees the player. Vanilla. `events_galactic_hq_2f.json:122`
+- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_2 (Grunt, level 57, 3 Pokemon), sees the player. Vanilla. `events_galactic_hq_2f.json:139`
+- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_2F_3 (Grunt, level 57, 3 Pokemon), sees the player. Vanilla. `events_galactic_hq_2f.json:156`
+- TRAINER_SCIENTIST_DARRIUS (Darrius, level 58, 5 Pokemon), sees the player. Vanilla. `events_galactic_hq_2f.json:173`
 
 Item balls:
 
 - ITEM_MAX_REVIVE x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_2F_REVIVE. Vanilla. `events_galactic_hq_2f.json:107`
-- ITEM_GREEN_SHARD x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_2F_GREEN_SHARD. Vanilla. `events_galactic_hq_2f.json:190`
+- ITEM_GREEN_SHARD x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_2F_GREEN_SHARD. Vanilla. `events_galactic_hq_2f.json:188`
 
 Hidden items:
 
@@ -7319,16 +7325,17 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_2 (Grunt, level 53, 2 Pokemon), sees the player. Vanilla. `events_galactic_hq_3f.json:73`
-- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3 (Grunt, level 54, 2 Pokemon), sees the player. Vanilla. `events_galactic_hq_3f.json:91`
-- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4 (Grunt, level 54, 2 Pokemon), sees the player. Vanilla. `events_galactic_hq_3f.json:108`
-- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_1 (Grunt, level 54, 2 Pokemon), sees the player. Vanilla. `events_galactic_hq_3f.json:155`
+- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_2 (Grunt, level 57, 3 Pokemon), sees the player. Vanilla. `events_galactic_hq_3f.json:73`
+- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_3 (Grunt, level 58, 3 Pokemon), sees the player. Vanilla. `events_galactic_hq_3f.json:91`
+- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_4 (Grunt, level 58, 3 Pokemon), sees the player. Vanilla. `events_galactic_hq_3f.json:108`
+- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_3F_1 (Grunt, level 57, 4 Pokemon), sees the player. Vanilla. `events_galactic_hq_3f.json:155`
 
 Item balls:
 
 - ITEM_TM56 x2, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_TM21. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM21 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_TM21. `events_galactic_hq_3f.json:58`
 - ITEM_MAX_ELIXIR x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_MAX_ELIXIR. Vanilla. `events_galactic_hq_3f.json:172`
 - ITEM_PROTEIN x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_PROTEIN. Vanilla. `events_galactic_hq_3f.json:187`
+- ITEM_ABILITY_CAPSULE x1, one time, flag FLAG_UNUSED_0x03CD. Added by Oxide (cccdc088f). `events_galactic_hq_3f.json:202`
 
 Hidden items:
 
@@ -7339,7 +7346,7 @@ Hidden items:
 Flags:
 
 - Set: FLAG_HIDE_GALACTIC_HQ_3F_DOOR.
-- Hide an object: FLAG_HIDE_GALACTIC_HQ_3F_DOOR, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC, FLAG_OBTAINED_GALACTIC_HQ_3F_TM21, FLAG_OBTAINED_GALACTIC_HQ_3F_MAX_ELIXIR, FLAG_OBTAINED_GALACTIC_HQ_3F_PROTEIN.
+- Hide an object: FLAG_HIDE_GALACTIC_HQ_3F_DOOR, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC, FLAG_UNUSED_0x03CD (added, Oxide), FLAG_OBTAINED_GALACTIC_HQ_3F_TM21, FLAG_OBTAINED_GALACTIC_HQ_3F_MAX_ELIXIR, FLAG_OBTAINED_GALACTIC_HQ_3F_PROTEIN.
 
 Gone from vanilla: ITEM_TM21 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_TM21.
 
@@ -7349,7 +7356,10 @@ Gone from vanilla: ITEM_TM21 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_TM2
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ (Cyrus, level 60, 6 Pokemon), by name. Vanilla. `scripts_galactic_hq_4f.s:39`
+- TRAINER_DUMMY_118 (Officer Boreas, level 57, 3 Pokemon), sees the player. Added by Oxide (610527338). `events_galactic_hq_4f.json:110`
+- TRAINER_DUMMY_122 (Officer Laverna, level 57, 3 Pokemon), sees the player. Added by Oxide (610527338). `events_galactic_hq_4f.json:125`
+- TRAINER_DUMMY_123 (Officer Argo, level 58, 5 Pokemon), sees the player. Added by Oxide (610527338). `events_galactic_hq_4f.json:140`
+- StartTrainerBattle: against TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ (Cyrus, level 59, 6 Pokemon), by name. Vanilla. `scripts_galactic_hq_4f.s:39`
 
 Items given:
 
@@ -7373,9 +7383,15 @@ Variables:
 
 `MAP_HEADER_GALACTIC_HQ_B1F`: scripts `scripts_galactic_hq_b1f`, events `events_galactic_hq_b1f`, init scripts `scripts_init_galactic_hq_b1f`. Location name Galactic HQ. The encounter tool does not place it in a split.
 
+Trainer battles:
+
+- TRAINER_DUMMY_100 (Grunt, level 56, 5 Pokemon), sees the player. Added by Oxide (610527338). `events_galactic_hq_b1f.json:10`
+
 Flags:
 
 - Hide an object: FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC.
+
+Scripts nothing reaches: script 1 `GalacticHQB1F_GruntM` (line 8).
 
 ### Galactic HQ B2F
 
@@ -7383,8 +7399,8 @@ Flags:
 
 Trainer battles:
 
-- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_1 (Grunt, level 54, 2 Pokemon), sees the player. Vanilla. `events_galactic_hq_b2f.json:55`
-- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_2 (Grunt, level 54, 2 Pokemon), sees the player. Vanilla. `events_galactic_hq_b2f.json:70`
+- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_1 (Grunt, level 56, 4 Pokemon), sees the player. Vanilla. `events_galactic_hq_b2f.json:55`
+- TRAINER_GALACTIC_GRUNT_GALACTIC_HQ_B2F_2 (Grunt, level 56, 3 Pokemon), sees the player. Vanilla. `events_galactic_hq_b2f.json:70`
 
 Item balls:
 
@@ -7406,7 +7422,7 @@ Gone from vanilla: ITEM_TM36 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_B2F_TM
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_COMMANDER_SATURN_GALACTIC_HQ (Saturn, level 57, 6 Pokemon), by name. Vanilla. `scripts_galactic_hq_control_room.s:43`
+- StartTrainerBattle: against TRAINER_COMMANDER_SATURN_GALACTIC_HQ (Saturn, level 60, 6 Pokemon), by name. Vanilla. `scripts_galactic_hq_control_room.s:43`
 
 Flags:
 
@@ -7440,6 +7456,11 @@ Variables:
 
 `MAP_HEADER_GALACTIC_HQ_LABORATORY`: scripts `scripts_galactic_hq_laboratory`, events `events_galactic_hq_laboratory`, init scripts `scripts_init_galactic_hq_laboratory`. Location name Galactic HQ. The encounter tool does not place it in a split.
 
+Trainer battles:
+
+- TRAINER_DUMMY_115 (Oskar, level 59, 5 Pokemon), sees the player. Added by Oxide (610527338). `events_galactic_hq_laboratory.json:91`
+- TRAINER_DUMMY_124 (Officer Hesperid, level 58, 6 Pokemon), sees the player. Added by Oxide (610527338). `events_galactic_hq_laboratory.json:136`
+
 Item balls:
 
 - ITEM_FULL_RESTORE x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_LABORATORY_FULL_RESTORE. Vanilla. `events_galactic_hq_laboratory.json:121`
@@ -7447,6 +7468,8 @@ Item balls:
 Flags:
 
 - Hide an object: FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC, FLAG_OBTAINED_GALACTIC_HQ_LABORATORY_FULL_RESTORE.
+
+Scripts nothing reaches: script 1 `GalacticHQLaboratory_ScientistM` (line 10).
 
 ### Game Corner
 
@@ -8142,8 +8165,9 @@ Scripts nothing reaches: script 1 `GateBetweenEternaCityRoute206_Dummy1` (line 7
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_DUMMY_211 (Experiencia, level 49, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_veilstone_city.s:807`
-- StartTagBattle: partner TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG (Lucas, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR (Lucas, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP (Lucas, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1, TRAINER_DAWN_VEILSTONE_CITY_TURTWIG (Dawn, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR (Dawn, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_VEILSTONE_CITY_PIPLUP (Dawn, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0, through a variable; against TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1 (Officer Tyche, level 41, 5 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2 (Officer Hermes, level 41, 5 Pokemon), by number. Vanilla. `scripts_veilstone_city.s:860`
+- StartTrainerBattle: against TRAINER_DUMMY_101 (Grunt, level 56, 3 Pokemon), by name. Added by Oxide (610527338). `scripts_veilstone_city.s:181`
+- StartTrainerBattle: against TRAINER_DUMMY_211 (Experiencia, level 49, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_veilstone_city.s:817`
+- StartTagBattle: partner TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG (Lucas, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR (Lucas, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP (Lucas, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1, TRAINER_DAWN_VEILSTONE_CITY_TURTWIG (Dawn, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR (Dawn, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_VEILSTONE_CITY_PIPLUP (Dawn, level 41, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0, through a variable; against TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1 (Officer Tyche, level 41, 5 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2 (Officer Hermes, level 41, 5 Pokemon), by number. Vanilla. `scripts_veilstone_city.s:870`
 
 Items given:
 
