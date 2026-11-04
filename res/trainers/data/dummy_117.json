@@ -43,18 +43,18 @@
             "ability": 3
         },
         {
-            "species": "SPECIES_FROSLASS",
+            "species": "SPECIES_BANETTE",
             "form": 0,
             "level": 57,
-            "item": "ITEM_NEVERMELTICE",
+            "item": "ITEM_SPELL_TAG",
             "moves": [
                 "MOVE_ICY_WIND",
-                "MOVE_SHADOW_BALL",
-                "MOVE_ICE_BEAM",
+                "MOVE_SHADOW_CLAW",
+                "MOVE_SUCKER_PUNCH",
                 "MOVE_WILL_O_WISP"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_NAIVE",
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 3
         }

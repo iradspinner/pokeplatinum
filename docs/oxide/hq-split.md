@@ -205,7 +205,7 @@ The old flags the base ROM gave these grunts (Weather on two sun grunts with Sun
 |---|---:|---|---|---|
 | Galvantula | 56 | Wide Lens | Timid | Electroweb, Sticky Web, Thunder, Bug Buzz |
 | Arbok | 56 | Black Sludge | Impish | Glare, Gunk Shot, Crunch, Earthquake |
-| Froslass | 57 | Never-Melt Ice | Naive | Icy Wind, Shadow Ball, Ice Beam, Will-O-Wisp |
+| Banette | 57 | Spell Tag | Adamant | Icy Wind, Shadow Claw, Sucker Punch, Will-O-Wisp |
 
 ### Officer Boreas
 
@@ -244,7 +244,7 @@ The old flags the base ROM gave these grunts (Weather on two sun grunts with Sun
 | Sceptile | 57 | Petaya Berry | Rash | Leaf Storm, Dragon Pulse, Focus Blast, Earthquake |
 | Pinsir | 58 | Choice Band | Jolly | Close Combat, X-Scissor, Stone Edge, Earthquake |
 
-Notes for the redraft. Phobos and Deimos keep Granbull, Mawile, Arcanine, Galvantula, Arbok and Froslass from their Pal Park sixes, trimmed to three each for a double without a partner. Boreas keeps Talonflame, Pidgeot and Yanmega, and Laverna Sableye, Kecleon and Incineroar, from Iron Island. Argo keeps Argo 1's relics, Claydol, Cofagrigus, Bronzong, Relicanth and the Polteageist ace, without the Aerodactyl, which the laboratory's fossils take. Hesperid keeps Weezing, Girafarig and Sceptile from his fights; his Spiritomb holds a BrightPowder and his Pinsir a Choice Band, both named by his theme, and the trainer lint warns of the Choice Band as it should. His Mt. Coronet 6F six shares Weezing, Girafarig and Sceptile with this draft.
+Notes for the redraft. Phobos and Deimos keep Granbull, Mawile, Arcanine, Galvantula and Arbok from their Pal Park sixes, trimmed to three each for a double without a partner. Deimos's Froslass gave way to a Cursed Body Banette on 2026-11-03, since Ian gave Froslass back to Candice as her signature (`candice-build.md`); it keeps the Icy Wind and Will-O-Wisp. Boreas keeps Talonflame, Pidgeot and Yanmega, and Laverna Sableye, Kecleon and Incineroar, from Iron Island. Argo keeps Argo 1's relics, Claydol, Cofagrigus, Bronzong, Relicanth and the Polteageist ace, without the Aerodactyl, which the laboratory's fossils take. Hesperid keeps Weezing, Girafarig and Sceptile from his fights; his Spiritomb holds a BrightPowder and his Pinsir a Choice Band, both named by his theme, and the trainer lint warns of the Choice Band as it should. His Mt. Coronet 6F six shares Weezing, Girafarig and Sceptile with this draft.
 
 ## Cyrus 2 and Saturn 2
 
@@ -290,7 +290,7 @@ Eight fast answers a box is likely to hold, at IV 15 and neutral natures:
 | 58 | Crobat 164, Talonflame 159, Weavile 158, Greninja 155, Mienshao 135, Staraptor 135, Garchomp 132, Lucario 118 |
 | 60 | Crobat 170, Talonflame 165, Weavile 164, Greninja 160, Mienshao 140, Staraptor 140, Garchomp 136, Lucario 122 |
 
-Each team's fastest member, at its own IVs and nature, fastest first: Oskar's Aerodactyl 191; Boreas's Talonflame 179; 3F's Grunt 3's Swellow and B1F's grunt's Crobat 178; Fredrick's Alakazam 172; B2F's Grunt 1's Salazzle and Deimos's Froslass 162; Hesperid's Sceptile 159; 2F's Grunt 3's Mismagius and the 1F grunt's Mienshao 154; 3F's Grunt 4's Galarian Mr. Mime 149; 2F's Grunt 2's Flygon 147; 3F west's Grunt 1's Gengar 143; Darrius's Rotom 136; B2F's Grunt 2's Garchomp 134; Patrick's Flygon 132; Phobos's Arcanine 130; 3F west's Grunt 2's Kommo-o 117; Argo's Claydol 111; 2F west's Grunt 1's Breloom 100; the storage-key grunt's Clefable 92; Gunnar's Sandslash 91, doubled in his sand; Laverna's Incineroar 91; Alexander's Crustle 77, doubled after Shell Smash. So five teams have a member over every answer at 58, Oskar's Aerodactyl over every answer at 60 (kept Hasty, Ian's answer 6), and most sit under the box's fast answers, as in Candice's split. In battle, Cyrus 2's Weavile runs at 187 and his Houndoom at 156; Saturn 2's six run from Wailord's 25 to Uxie's 119, all slower than the box's fast answers, which his Trick Room turns to his side.
+Each team's fastest member, at its own IVs and nature, fastest first: Oskar's Aerodactyl 191; Boreas's Talonflame 179; 3F's Grunt 3's Swellow and B1F's grunt's Crobat 178; Fredrick's Alakazam 172; B2F's Grunt 1's Salazzle 162; Hesperid's Sceptile 159; Deimos's Galvantula 157; 2F's Grunt 3's Mismagius and the 1F grunt's Mienshao 154; 3F's Grunt 4's Galarian Mr. Mime 149; 2F's Grunt 2's Flygon 147; 3F west's Grunt 1's Gengar 143; Darrius's Rotom 136; B2F's Grunt 2's Garchomp 134; Patrick's Flygon 132; Phobos's Arcanine 130; 3F west's Grunt 2's Kommo-o 117; Argo's Claydol 111; 2F west's Grunt 1's Breloom 100; the storage-key grunt's Clefable 92; Gunnar's Sandslash 91, doubled in his sand; Laverna's Incineroar 91; Alexander's Crustle 77, doubled after Shell Smash. So five teams have a member over every answer at 58, Oskar's Aerodactyl over every answer at 60 (kept Hasty, Ian's answer 6), and most sit under the box's fast answers, as in Candice's split. In battle, Cyrus 2's Weavile runs at 187 and his Houndoom at 156; Saturn 2's six run from Wailord's 25 to Uxie's 119, all slower than the box's fast answers, which his Trick Room turns to his side.
 
 ## The census
 
