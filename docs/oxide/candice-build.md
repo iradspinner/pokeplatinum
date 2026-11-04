@@ -53,6 +53,25 @@ Next steps:
 | Ian's answers to the six decisions | Ian | 10 minutes |
 | The playtest, with nerfs from the dials if it is too hard | Ian | the fight itself |
 
+## The full reading (2026-11-03)
+
+The scorer read the rebuild on goal 3's three boxes on the Ice levers (run `candice-rebuild-5c0fa6b0e`, tree `tree-candice-rebuild-5c0fa6b0e`, oxide at 10d22b3da merged). Its own search found much stronger answers than the first build's sixes that the counterpiece check played: every six is built on Bastiodon, whose Taunt stops Quiver Dance, Curse, Double Team and Aurora Veil, and Glimmora, with a Steel type beside them.
+
+| Box | Six the scorer chose | Won | Faints | Clean | Very unlucky won, faints |
+|---|---|---:|---:|---:|---|
+| 1 (Turtwig) | Abomasnow, Bastiodon, Glimmora, Houndoom, Snorlax, Metagross | 97 | 2.80 | 1 | 88, 3.16 |
+| 2 (Scorbunny) | Rapidash, Bronzong (Bronzor held to 52), Bastiodon, Glaceon, Glimmora, Gothitelle | 97 | 2.33 | 5 | 68, 3.40 |
+| 3 (Piplup) | Bastiodon, Bronzong, Gothitelle, Glimmora, Glalie, Weavile | 96 | 2.43 | 1 | 72, 3.88 |
+| All three | | 97 | 2.52 | 4 | 76, 3.48 |
+
+The first build read 94 won and 2.43 faints on the old mechanics, so on the scorer the rebuild is about as hard by faints and a little easier by win rate; the very unlucky fights, at 76 won, are where it bites. The sixes' sets and items:
+
+Box 1 (Turtwig): Abomasnow (Miracle Seed): Leaf Storm, Rock Tomb, Ice Beam, Hammer Arm; Bastiodon (Rock Incense): Rock Blast, Hard Press, Taunt, Zen Headbutt; Glimmora (Poison Barb): Power Gem, Energy Ball, Flash Cannon, Sludge Wave; Houndoom (Black Glasses): Flamethrower, Fiery Wrath, Mud Shot, Smog; Snorlax (Silk Scarf): Giga Impact, Crunch, Belly Drum, Rollout; Metagross (Mind Plate): Meteor Mash, Psychic, Iron Defense, Hammer Arm. Her knockouts over the 75 fights at real odds: Mamoswine 117, Articuno 36, Walrein 30, Froslass 15, Castform 9, Frosmoth 3.
+
+Box 2 (Scorbunny): Rapidash (Sitrus Berry): Flare Blitz, Take Down, Double Kick, Poison Jab; Bronzong (Metal Coat): Iron Head, Future Sight, Heal Block, Payback; Bastiodon (Rock Incense): Rock Blast, Hard Press, Taunt, Zen Headbutt; Glaceon (Never-Melt Ice): Shadow Ball, Freeze-Dry, Wish, Alluring Voice; Glimmora (Poison Barb): Power Gem, Energy Ball, Flash Cannon, Sludge Wave; Gothitelle (Mind Plate): Dark Pulse, Energy Ball, Thunderbolt, Psychic. Her knockouts over the 75 fights at real odds: Walrein 48, Froslass 47, Articuno 40, Mamoswine 30, Castform 10.
+
+Box 3 (Piplup): Bastiodon (Sitrus Berry): Rock Blast, Hard Press, Taunt, Zen Headbutt; Bronzong (Metal Coat): Mirror Shot, Future Sight, Iron Defense, Feint Attack; Gothitelle (Mind Plate): Dark Pulse, Energy Ball, Thunderbolt, Psychic; Glimmora (Poison Barb): Power Gem, Energy Ball, Flash Cannon, Sludge Wave; Glalie (Rock Incense): Power Gem, Shadow Ball, Dark Pulse, Frost Breath; Weavile (Black Glasses): Metal Claw, Revenge, Dark Pulse, Nasty Plot. Her knockouts over the 75 fights at real odds: Mamoswine 83, Froslass 53, Articuno 17, Frosmoth 14, Castform 11, Walrein 4.
+
 ## Ian's answers (2026-11-03)
 
 Ian, on seeing the six: "Now that... is an ice type team. That is a gorgeous looking fight." He kept the full evasion stack (his earlier "No holds barred for evasion stacking"), Castform in Kaizo's Regice seat, Frosmoth as the Aurora Veil lead beside Brenna's Ninetales, and Banette in Deimos 3's Froslass seat. Deimos 2's Froslass at Pal Park stays. He approved fixing the simulator's own accuracy check so it counts Snow Cloak, Sand Veil and the evasion items as the scorer's check already does (on `overseer-sim-evasion`).
