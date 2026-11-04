@@ -53,6 +53,10 @@ Next steps:
 | Ian's answers to the six decisions | Ian | 10 minutes |
 | The playtest, with nerfs from the dials if it is too hard | Ian | the fight itself |
 
+## Ian's answers (2026-11-03)
+
+Ian, on seeing the six: "Now that... is an ice type team. That is a gorgeous looking fight." He kept the full evasion stack (his earlier "No holds barred for evasion stacking"), Castform in Kaizo's Regice seat, Frosmoth as the Aurora Veil lead beside Brenna's Ninetales, and Banette in Deimos 3's Froslass seat. Deimos 2's Froslass at Pal Park stays. He approved fixing the simulator's own accuracy check so it counts Snow Cloak, Sand Veil and the evasion items as the scorer's check already does (on `overseer-sim-evasion`).
+
 ## Why each set is as it is
 
 Kaizo's Candice, for reference, is Froslass (Spikes, Sheer Cold), a Dragon Dance Lapras, Articuno (Sheer Cold), Regice (Rock Polish, Explosion), Mamoswine (Head Smash) and Bronzor. The rebuild keeps her structure, an all-Ice six with Froslass, Articuno and Mamoswine kept, and translates it twice. Into Oxide's Generation 5 and later pool: Freeze-Dry and Hurricane on Articuno, Aurora Veil and Frosmoth, Weather Ball and Forecast, Curse on Walrein in the Dragon Dance Lapras's setup seat, Life Orb, Expert Belt and the Chople Berry. Down to Oxide's difficulty: no Sheer Cold, no Head Smash, Destiny Bond as the one trade. Regice's seat went to Castform, and Bronzor's to Frosmoth, the Veil setter. Kaizo's Froslass carried Snow Cloak, and Ian's ruling of 2026-11-03 frees evasion for Candice, so Froslass keeps it and Articuno takes its own hidden one, each with an evasion item.
