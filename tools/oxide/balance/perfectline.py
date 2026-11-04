@@ -328,39 +328,11 @@ def accuracy_hits(b, att, dfn, mv, first=True, later=False):
     `later`: a later hit of a rising move's or Population Bomb's, whose
     check skips the hit overrides, No Guard and Lock-On (fightsim.RISING,
     fightsim.TEN_HITS)."""
-    if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or (
-            not later and (fs.no_guard(att, dfn, mv) or (dfn.rare and fs.lands_sure(att, dfn, mv)))):
-        return True
-    acc = mv.acc
-    if dfn.ability == "Wonder Skin" and mv.cat == "Status":
-        acc = fs.wonder_skin(att, dfn, acc)      # half at most, before the stages (fightsim.wonder_skin)
-    weather = fs.weather_now(b)          # none while Cloud Nine or Air Lock is out (NO_CLOUD_NINE)
-    if weather == "Rain" and mv.effect in fs.RAIN_SURE:
-        return True          # never a miss in the rain, past every stage (fightsim.RAIN_SURE)
-    if mv.effect in ("THUNDER", "HURRICANE") and weather == "Sun":
-        acc = 50             # Oxide: Hurricane as Thunder in the sun
-    if mv.effect == "BLIZZARD" and weather == "Hail":
-        return True
-    # The stages, with Unaware, Keen Eye and Sacred Sword's kind, Tangled
-    # Feet and the Zoom Lens (fightsim.accuracy_scale).
-    acc *= fs.accuracy_scale(att, dfn, mv, first)
-    if att.ability == "Compound Eyes":
-        acc *= 1.3
-    if att.item == "Wide Lens":
-        acc *= 1.1
-    if att.ability == "Hustle" and mv.cat == "Physical":
-        acc *= 0.8
-    if dfn.item in ("Bright Powder", "BrightPowder", "Lax Incense"):
-        acc *= 0.9
-    if dfn.ability in ("Sand Veil",) and weather == "Sand" and not fs.mold(att, dfn):
-        acc *= 0.8
-    if dfn.ability in ("Snow Cloak",) and weather == "Hail" and not fs.mold(att, dfn):
-        acc *= 0.8               # Mold Breaker gets past both (Battler_IgnorableAbility)
-    if b.fog:
-        acc *= fs.fog_cut(b)     # deep fog's six tenths (fightsim.fog_cut)
-    if b.gravity:
-        acc = acc * 10 / 6       # Gravity's ten sixths, last (fightsim.gravity_start)
-    if acc >= 100:
+    # The chance, with the stages, abilities, items, weather and field the
+    # simulator models, is the one fightsim's own check reads
+    # (fightsim.hit_chance); None is a move that cannot miss.
+    acc = fs.hit_chance(b, att, dfn, mv, first, later)
+    if acc is None or acc >= 100:
         return True
     if player(att):
         return not b.dice.bad("miss", 1 - acc / 100)

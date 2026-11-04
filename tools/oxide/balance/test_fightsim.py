@@ -9528,9 +9528,60 @@ def check_snow_no_chip(results):
     results.append(("hail does no damage at the turn's end (snow); sand still does", out == want, str(out)))
 
 
+def check_evasion_items_abilities(results):
+    """The defender's evasion items and weather abilities in fightsim's own
+    accuracy check (Ian, 2026-11-03; BattleControllerPlayer_CheckMoveHitAccuracy):
+    BrightPowder and Lax Incense take a tenth off, Sand Veil in sand and
+    Snow Cloak in hail (snow) a fifth, each ability nothing out of its
+    weather, under Cloud Nine, or against Mold Breaker. A 100-accuracy
+    Tackle is rolled at five fixed rolls, 79.5 to 99.5, so it lands at all
+    five at 100, at three at 90 and at one at 80. The readings' check
+    (perfectline.accuracy_hits) has applied all four since before this, and
+    the two must agree on the chance."""
+    from . import perfectline as pl
+    rolls = (0.795, 0.805, 0.895, 0.905, 0.995)
+
+    def landed(item=None, ability=None, weather=None, att_ability=None):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {})
+        foe.item, foe.ability, p.ability, b.weather = item, ability, att_ability, weather
+        if "Cloud Nine" in (ability, att_ability):
+            b.cloudy = True
+        n = 0
+        for r in rolls:
+            b.rng = FixedDice(r)
+            n += b.accuracy_hits(p, foe, fs.move("Tackle"))
+        # The readings' dice: the player's miss is asked of bad() at its
+        # chance, so dice that note what they were asked, and never miss,
+        # tell the chance the readings used (none asked: it cannot miss).
+        asked = []
+
+        class Ask(pl.RunDice):
+            def bad(self, kind, q):
+                asked.append(q)
+                return False
+
+        b.dice = Ask(random.Random(1), True)
+        pl.accuracy_hits(b, p, foe, fs.move("Tackle"))
+        readings = round(100 - 100 * asked[0]) if asked else 100
+        return n, readings
+    cases = {"BrightPowder": dict(item="BrightPowder"), "Lax Incense": dict(item="Lax Incense"),
+             "Sand Veil in sand": dict(ability="Sand Veil", weather="Sand"),
+             "Snow Cloak in hail": dict(ability="Snow Cloak", weather="Hail"),
+             "Sand Veil, no weather": dict(ability="Sand Veil"),
+             "Snow Cloak in sand": dict(ability="Snow Cloak", weather="Sand"),
+             "Sand Veil in sand, Mold Breaker": dict(ability="Sand Veil", weather="Sand", att_ability="Mold Breaker"),
+             "Snow Cloak in hail, Cloud Nine": dict(ability="Snow Cloak", weather="Hail", att_ability="Cloud Nine")}
+    out = {label: landed(**kw) for label, kw in cases.items()}
+    want = {"BrightPowder": (3, 90), "Lax Incense": (3, 90), "Sand Veil in sand": (1, 80),
+            "Snow Cloak in hail": (1, 80), "Sand Veil, no weather": (5, 100), "Snow Cloak in sand": (5, 100),
+            "Sand Veil in sand, Mold Breaker": (5, 100), "Snow Cloak in hail, Cloud Nine": (5, 100)}
+    results.append(("BrightPowder, Lax Incense, Sand Veil and Snow Cloak in fightsim's accuracy check",
+                    out == want, f"(landed of 5 rolls, the readings' chance) {out}"))
+
+
 def main():
     results = []
-    for check in (check_steel_later_chart, check_ice_resists_water, check_snow_no_chip, check_damage, check_crit_odds, check_status_immunity, check_item_moves,
+    for check in (check_steel_later_chart, check_ice_resists_water, check_snow_no_chip, check_evasion_items_abilities, check_damage, check_crit_odds, check_status_immunity, check_item_moves,
                   check_weather_rock, check_map_weather_replaced, check_permanent_trick_room,
                   check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
                   check_salt_cure, check_harvest, check_berry_first_hit,

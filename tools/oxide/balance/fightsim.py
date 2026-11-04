@@ -1347,33 +1347,67 @@ class Battle:
         and the hit overrides). `first`: whether the target has yet to move
         this turn, for the Zoom Lens. `later`: a later hit of a rising
         move's or Population Bomb's, whose check skips the overrides, No
-        Guard and Lock-On among them (RISING, TEN_HITS)."""
-        if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or (
-                not later and (no_guard(att, dfn, mv) or (dfn.rare and lands_sure(att, dfn, mv)))):
+        Guard and Lock-On among them (RISING, TEN_HITS). The chance itself
+        is hit_chance's, which the readings' check shares
+        (perfectline.accuracy_hits); this one rolls it on the battle's own
+        random source."""
+        acc = hit_chance(self, att, dfn, mv, first, later)
+        if acc is None:
             return True
-        acc = mv.acc
-        if dfn.ability == "Wonder Skin" and mv.cat == "Status":
-            acc = wonder_skin(att, dfn, acc)
-        weather = weather_now(self)          # none under Cloud Nine or Air Lock
-        if weather == "Rain" and mv.effect in RAIN_SURE:
-            return True      # never a miss in the rain, past every stage (RAIN_SURE)
-        if mv.effect in ("THUNDER", "HURRICANE") and weather == "Sun":
-            acc = 50         # Oxide: Hurricane as Thunder in the sun
-        if mv.effect == "BLIZZARD" and weather == "Hail":
-            return True
-        acc *= accuracy_scale(att, dfn, mv, first)
-        if att.ability == "Compound Eyes":
-            acc *= 1.3
-        if att.item == "Wide Lens":
-            acc *= 1.1
-        if self.fog:
-            acc *= fog_cut(self)         # deep fog's six tenths (fog_cut)
-        if att.ability == "Hustle" and mv.cat == "Physical":
-            acc *= 0.8
-        if self.gravity:
-            acc = acc * 10 / 6           # Gravity's ten sixths, after everything else
         return self.rng.random() * 100 < acc
 
+
+def hit_chance(b, att, dfn, mv, first=True, later=False):
+    """The percent chance that att's move lands on dfn, or None for a move
+    that cannot miss here (BattleControllerPlayer_CheckMoveHitAccuracy and
+    the hit overrides). Battle.accuracy_hits and the readings' check
+    (perfectline.accuracy_hits) both read it and roll it on their own dice.
+    `first` and `later` are as Battle.accuracy_hits takes them.
+
+    The order of the factors is the readings' own, so that sharing this
+    function left their results as they were. The engine's order differs,
+    and it rounds down after each factor, but every factor multiplies, so
+    the order changes nothing but a fraction of a percent. Until 2026-11-03
+    fightsim's own check left out the defender's BrightPowder and Lax
+    Incense (HOLD_EFFECT_ACC_REDUCE, each a tenth off in Oxide's item data)
+    and its Sand Veil in sand and Snow Cloak in hail (a fifth off each,
+    which snow reads as hail since it replaced it), which the readings'
+    check already applied (Ian approved the fix)."""
+    if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY" or (
+            not later and (no_guard(att, dfn, mv) or (dfn.rare and lands_sure(att, dfn, mv)))):
+        return None
+    acc = mv.acc
+    if dfn.ability == "Wonder Skin" and mv.cat == "Status":
+        acc = wonder_skin(att, dfn, acc)     # half at most, before the stages
+    weather = weather_now(b)             # none under Cloud Nine or Air Lock
+    if weather == "Rain" and mv.effect in RAIN_SURE:
+        return None      # never a miss in the rain, past every stage (RAIN_SURE)
+    if mv.effect in ("THUNDER", "HURRICANE") and weather == "Sun":
+        acc = 50         # Oxide: Hurricane as Thunder in the sun
+    if mv.effect == "BLIZZARD" and weather == "Hail":
+        return None
+    # The stages, with Unaware, Keen Eye and Sacred Sword's kind, Tangled
+    # Feet and the Zoom Lens (accuracy_scale).
+    acc *= accuracy_scale(att, dfn, mv, first)
+    if att.ability == "Compound Eyes":
+        acc *= 1.3
+    if att.item == "Wide Lens":
+        acc *= 1.1
+    if att.ability == "Hustle" and mv.cat == "Physical":
+        acc *= 0.8
+    if dfn.item in ("Bright Powder", "BrightPowder", "Lax Incense"):
+        acc *= 0.9
+    # Sand Veil and Snow Cloak only in their weather, and Mold Breaker gets
+    # past both (Battler_IgnorableAbility).
+    if dfn.ability == "Sand Veil" and weather == "Sand" and not mold(att, dfn):
+        acc *= 0.8
+    if dfn.ability == "Snow Cloak" and weather == "Hail" and not mold(att, dfn):
+        acc *= 0.8
+    if b.fog:
+        acc *= fog_cut(b)            # deep fog's six tenths (fog_cut)
+    if b.gravity:
+        acc = acc * 10 / 6           # Gravity's ten sixths, after everything else
+    return acc
 
 # The moves that never miss in the rain: BattleControllerPlayer_CheckMoveHitOverrides
 # clears the miss the accuracy roll made, unless Cloud Nine or Air Lock is

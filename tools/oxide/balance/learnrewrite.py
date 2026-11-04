@@ -404,6 +404,14 @@ IAN_EGG_MOVES = {
                                              "at 52, a draft"),
                         ("MOVE_TAILWIND", "the egg-list rule (Ian, 2026-10-29): Saturn 1's Tropius "
                                           "at 52, a draft")],
+    # Candice's rebuild (2026-11-03, candice-build.md), by the egg-list rule:
+    # Articuno, a first stage of its own, takes the two moves its set needs
+    # and no list of its gives. The first build's Shell Smash for Shellder
+    # and Freeze-Dry for Lapras left with the Cloyster and Lapras they served.
+    "SPECIES_ARTICUNO": [("MOVE_HURRICANE", "the egg-list rule (Ian, 2026-10-29): Candice's Articuno "
+                                            "at 54, a helper's rebuild"),
+                         ("MOVE_FREEZE_DRY", "the egg-list rule (Ian, 2026-10-29): Candice's Articuno "
+                                             "at 54, a helper's rebuild")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
