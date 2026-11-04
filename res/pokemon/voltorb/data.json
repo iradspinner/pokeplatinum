@@ -81,6 +81,9 @@
             "MOVE_MAGNET_RISE",
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_VOLT_SWITCH"
         ]
     },
     "evolutions": [
