@@ -1,6 +1,6 @@
 # Candice's rebuild: Froslass in the hail
 
-Ian rejected the first build on 2026-11-03: "it doesn't scream of being either and ice gym or having Candice's iconic froslass. No hail-specific abilities, two of the ice types are ice/water, a full 3 water types, etc." This is the rebuild from scratch, erring on the side of too hard, aimed at about 80 to 90 percent won with three or more faints on the scorer. It is saved in her file on the branch `overseer-candice-build`. Nothing on this page has been played or read: the cheap checks (Speed tiers, the matchup screen, the counterpiece check) wait for the Ice levers to land on `oxide` from `overseer-ice-levers`, since the screen and the counterpiece check read the chart and the snow that the levers change. The first build and its reading stay below as the record.
+Ian rejected the first build on 2026-11-03: "it doesn't scream of being either and ice gym or having Candice's iconic froslass. No hail-specific abilities, two of the ice types are ice/water, a full 3 water types, etc." This is the rebuild from scratch, erring on the side of too hard, aimed at about 80 to 90 percent won with three or more faints on the scorer. It is saved in her file on the branch `overseer-candice-build`. Nothing on this page has been played in game, and the scorer has not given it a full reading. Its cheap checks ran after the Ice levers landed on `oxide` (10d22b3da29), and their results are in the stage 2 section. Against the six the scorer chose to beat the first build on each box, the rebuild is won 55 percent of the time with 4.58 faints. The first build on the same levers is won 96 percent of the time with 2.31 faints. The check is one-sided, so only the Overseer's full reading can say where she lands. The first build and its reading stay below as the record.
 
 ## Summary
 
@@ -17,7 +17,7 @@ Every member is an Ice type in her room's permanent hail, and four of the six re
 
 The AI flags are Basic, Evaluate Attack, Expert and Check HP. No item or nature repeats, and no move is a one-hit KO.
 
-Each member's job, and what it is built to draw in. The draws are the design's intent; the trainer AI's replacement trace checks them in stage 2, once the chart and the snow are in.
+Each member's job, and what it is built to draw in. The trainer AI's replacement trace in stage 2 bore out the draws but two: the AI sends Froslass at Bronzong and Rotom, and Walrein at Corviknight, where the design meant Castform.
 
 | Member | Job | The player's answers it draws in or beats |
 |---|---|---|
@@ -39,7 +39,7 @@ Ian's decisions:
 3. Frosmoth leading with Aurora Veil, beside Ace Trainer Brenna's Veil Ninetales in the same gym (recommended: a different setter, with Ice Scales and Quiver Dance behind it), or Alolan Ninetales leading as Brenna's does, or Delibird, which the Ice proposal gives Veil at 36.
 4. Deimos 3's ace: Banette (recommended), or Absol, Deimos's own disaster Pokemon from Pal Park, with Icy Wind by tutor.
 5. Deimos 2 at Pal Park still carries a Froslass at 48, two splits before Candice. Keep it, since Froslass is the one exception to the nearby-boss rule (recommended), or replace it too.
-6. A simulator gap, which needs Ian's approval to fix. The simulator's own accuracy check (`fightsim.Battle.accuracy_hits`) leaves out Snow Cloak, Sand Veil, the BrightPowder and the Lax Incense; the scorer's (`perfectline.accuracy_hits`) applies all four. A full reading sees this team's evasion; any check that plays battles on the simulator's own path does not, so it would read this team easier than it is. Fix it with a test that fails first (recommended), or leave it and read the stage 2 numbers with that in mind.
+6. A simulator gap, which needs Ian's approval to fix. The simulator's own accuracy check (`fightsim.Battle.accuracy_hits`) leaves out Snow Cloak, Sand Veil, the BrightPowder and the Lax Incense; the scorer's (`perfectline.accuracy_hits`) applies all four. None of this page's checks plays through the simulator's path. The full reading, the counterpiece check and the AI-picks probe all play through the scorer's, which applies the evasion. The matchup screen and the replacement trace roll no accuracy at all. Fix it with a test that fails first (recommended), or leave it, since no check of Candice's reaches it.
 
 If the reading comes back harder than Ian wants, the dials, softest first: Double Team out for Will-O-Wisp; the Lax Incense for Leftovers; Walrein's Curse for Surf; Mamoswine's Life Orb for the Never-Melt Ice.
 
@@ -48,7 +48,7 @@ Next steps:
 | Step | Who | Time |
 |---|---|---|
 | The Ice levers land on `oxide` | the Overseer | already under way |
-| Stage 2: merge, Speed tiers, the matchup screen, the counterpiece check against the first build's reading on a tree rebuilt for the levers, each box's catches and sixes | this helper | 1 to 2 hours |
+| Stage 2: Speed tiers, the matchup screen, the probe, the counterpiece check on a tree rebuilt for the levers | this helper | done (2026-11-03) |
 | The full reading on goal 3's three boxes | the Overseer, on the scorer | 2.5 to 4 hours of machine time |
 | Ian's answers to the six decisions | Ian | 10 minutes |
 | The playtest, with nerfs from the dials if it is too hard | Ian | the fight itself |
@@ -82,7 +82,88 @@ No member repeats a species from the bosses near her (the table in the first bui
 | Trainer lint and packer, both files | no findings; packed |
 | `make rom` | built |
 | test_trainers, test_learncheck, test_learnrewrite, test_learnstudy, test_b1 | 44/44, 18/18, 6/6, 2/2, 50/50 |
-| Speed tiers, matchup screen, counterpiece check | wait for the Ice levers |
+| Speed tiers, matchup screen, probe, counterpiece check | the stage 2 section |
+
+## Stage 2: the cheap checks on the Ice levers (2026-11-03)
+
+Every check here ran on `overseer-candice-build` after it merged `oxide` at 10d22b3da29. That tree carries the three levers: Ice resists Water, snow replaces hail (no chip, and Ice types take physical hits on half again their Defense), and Delibird and Alolan Ninetales learn Aurora Veil. Each check used goal 3's three boxes as the first build's reading built them (run `candice-3ff0d0008`), so the rebuild and the first build were measured on the same boxes. The scripts are in `/tmp/candice-rebuild/` and their outputs in `/tmp/candice-rebuild/out/`. Each ran under `tools/oxide/capped`, and none wrote to `res/`.
+
+### The counterpiece check
+
+The check plays a team against the six the scorer chose to beat the first build on each box. It uses the scorer's own planner on each box: 75 fights at real odds and 25 very unlucky. The old reading's tree, `tree-candice-3ff0d0008`, could not be reused, since it predates the levers. Two trees were made instead. `~/oxide-trials/goal3/tree-candice-rebuild-5c0fa6b0e` is a `git archive` of this branch at 5c0fa6b0e6c, so it holds the levers and the rebuild. `~/oxide-trials/goal3/tree-candice-first-on-levers` is a `plcounter tree` copy of the first with the first build's file (3ff0d0008a3) put back. The driver refuses a box whose members, level, starter or history differ from the reading's, and every box rebuilt without a refusal.
+
+| Box | The old reading (first build, before the levers): won, faints, clean | First build on the levers: won, faints, clean; very unlucky won, faints | Rebuild on the levers: won, faints, clean; very unlucky won, faints |
+|---|---|---|---|
+| 1 (Turtwig) | 96, 2.16, 20 | 97, 2.48, 19; 72, 4.08 | 88, 3.52, 4; 60, 4.44 |
+| 2 (Scorbunny) | 92, 2.88, 0 | 92, 2.97, 0; 76, 3.64 | 16, 5.69, 0; 16, 5.76 |
+| 3 (Piplup) | 93, 2.25, 15 | 100, 1.47, 25; 92, 2.04 | 61, 4.52, 0; 32, 5.60 |
+| All three | 94, 2.43, 12 | 96, 2.31, 15 | 55, 4.58, 1 |
+
+The levers alone barely moved the first build. Against these sixes it reads the same or easier, and the check marks all three of its boxes "too easy (old six wins as often)". The rebuild reads far harder against the same sixes, and the check gives "reading decides" on all three boxes. The check is one-sided, so these numbers are a floor for the player, not Candice's reading. A full team search can only find the player a stronger six than these, which were chosen against Cloyster, Chandelure and Gastrodon. Box 2's six leans on Manaphy, Heracross and Cinderace, which Walrein and Articuno meet, and those two made most of her knockouts there. The six the screen prefers for box 2 against the rebuild (below) is a different one. A full reading may still land under 80 percent won. If it does, the dials are on the summary page.
+
+Her knockouts over each box's 75 fights at real odds, most first:
+
+| Box | Her knockouts | The player's six, and what it lost |
+|---|---|---|
+| 1 | Mamoswine 101, Articuno 67, Froslass 54, Walrein 30, Castform 11, Frosmoth 1 | Manaphy 59, Abomasnow 51, Mamoswine 41, Bastiodon 38, Snorlax 38, Houndoom 37 |
+| 2 | Walrein 108, Articuno 79, Frosmoth 78, Mamoswine 68, Froslass 59, Castform 35 | Glimmora 73, Arboliva 72, Bronzong 72, Cinderace 71, Heracross 70, Manaphy 69 |
+| 3 | Froslass 75, Frosmoth 73, Articuno 62, Mamoswine 56, Walrein 47, Castform 26 | Leavanny 73, Machamp 57, Glimmora 56, Bronzong 56, Manaphy 50, Bastiodon 47 |
+
+The six that played on each box, with the reading's moves and items:
+
+| Box | Six (item; moves) |
+|---|---|
+| 1 | Abomasnow (Miracle Seed; Wood Hammer, Hammer Arm, Ice Punch, Rock Tomb), Bastiodon (Rock Incense; Rock Blast, Hard Press, Take Down, Taunt), Houndoom (Black Glasses; Fiery Wrath, Flamethrower, Mud Shot, Smog), Manaphy (Mystic Water; Aura Sphere, Bubble Beam, Signal Beam, Icy Wind), Snorlax (Silk Scarf; Giga Impact, Crunch, Belly Drum, Bulldoze), Mamoswine (Soft Sand; Earthquake, Brick Break, Take Down, Ancient Power) |
+| 2 | Cinderace (Sitrus Berry; Flare Blitz, Bounce, Super Fang, Taunt), Arboliva (Miracle Seed; Energy Ball, Mud Shot, Strength Sap, Alluring Voice), Bronzong (Mind Plate; Mirror Shot, Future Sight, Bulldoze, Iron Defense), Glimmora (Poison Barb; Power Gem, Energy Ball, Flash Cannon, Sludge Wave), Heracross (Fist Plate; Close Combat, Bulldoze, Bulk Up, Megahorn), Manaphy (Mystic Water; Aura Sphere, Bubble Beam, Signal Beam, Icy Wind) |
+| 3 | Machamp (Fist Plate; Close Combat, Throat Chop, Fire Punch, Bulk Up), Bastiodon (Rock Incense; Rock Blast, Hard Press, Take Down, Taunt), Leavanny (Miracle Seed; Leaf Blade, Throat Chop, Sticky Web, X-Scissor), Bronzong (Mind Plate; Mirror Shot, Future Sight, Bulldoze, Iron Defense), Glimmora (Poison Barb; Power Gem, Energy Ball, Flash Cannon, Sludge Wave), Manaphy (Mystic Water; Aura Sphere, Bubble Beam, Signal Beam, Icy Wind) |
+
+### The matchup screen and the probe
+
+Both teams were run on the same three boxes on the levers. The screen is the best six's score, and lower is harder. The probe is the rough wins of 150 greedy fights against the screen's best six and against the six its top 20 take most.
+
+| Team | Screen, boxes 1 to 3 | Probe wins, boxes 1 to 3 (best six / common six) |
+|---|---|---|
+| First build | 16.55, 15.80, 15.80 | 31 / 26, 28 / 17, 23 (one six) |
+| Rebuild | 16.65, 14.85, 14.85 | 36 / 33, 66 / 64, 40 / 21 |
+
+These two disagree with the counterpiece check, and both have known blind spots here. The screen scores each move at its listed accuracy. It cannot see Snow Cloak, the evasion items, Double Team or Blizzard's sure hit in hail, and Aurora Veil, Curse and Roost are not in it either. The probe's greedy player never switches and attacks with its hardest hit 85 percent of the time. So it never plays round Destiny Bond or a Curse. Its numbers mean nothing alone, as on every page that uses it. The screen and the probe would read her easier than she is. The counterpiece check plays the scorer's planner and sees all of it.
+
+The screen's best six against the rebuild: box 1, Probopass, Alolan Ninetales, Abomasnow, Bastiodon, Houndoom, Snorlax; box 2, Rapidash, Alolan Ninetales, Bronzong, Bastiodon, Glimmora, Glalie; box 3, Hariyama, Bastiodon, Bronzong, Gothitelle, Frosmoth, Glalie. The six its top 20 take most: box 1, Abomasnow, Houndoom, Probopass, Bastiodon, Garganacl, Metagross; box 2, Rapidash, Bronzong, Bastiodon, Glalie, Glimmora, Glaceon; box 3, Hariyama, Bronzong, Glalie, Bastiodon, Frosmoth, Rotom. Houndoom on box 1 and Rapidash on box 2 are in all 20 of the top sixes. Each beats Frosmoth, Castform, Articuno and Froslass one on one, and only Walrein and Mamoswine beat them back. Bronzong is in all 20 on boxes 2 and 3. It walls everything but Castform's Fire Blast (76 to 90 percent) and Froslass's Shadow Ball (64 to 75 percent).
+
+In the probe, Frosmoth opened with Aurora Veil in 113 to 120 of each 150 fights. Its Sash was used in 8 to 45. Froslass used Double Team 86 to 192 times over 150 fights, and Destiny Bond 51 to 117 times. On box 3 Froslass lost its BrightPowder in about one fight in five (32 and 30 of 150).
+
+### What each answer draws in
+
+The trainer AI's own replacement rule (`fightai.replacement`), on every catch the top 20 sixes take, bore out the design. The Rock and Steel walls (Probopass, Bastiodon, Glimmora, Metagross, Empoleon, Glalie) draw Mamoswine. The Fire attackers (Houndoom, Rapidash, Cinderace, Talonflame), Corviknight, Garganacl, Golem, Carbink and Crustle draw Walrein. The Fighting types (Heracross, Hariyama, Machamp, Breloom, Mienshao) draw Articuno. The Waters (Manaphy, Octillery) draw Castform. Abomasnow, Snorlax and the Grass types draw Frosmoth while it stands. Two draws differ from the design. Bronzong and Rotom draw Froslass, not Castform, and Corviknight draws Walrein, not Castform.
+
+### Speed tiers
+
+Each member against every catch of the whole box, held-back versions included.
+
+| Member | Speed | Outspeeds, boxes 1 to 3 (of 87, 93, 96) | At +1 |
+|---|---:|---|---|
+| Frosmoth | 90 | 42, 46, 42 | 135 after Quiver Dance: 80, 85, 88 |
+| Castform | 129 | 76, 83, 87 | |
+| Walrein | 91 | 42, 46, 42, ties 7, 6, 11 | falls a stage with each Curse |
+| Articuno | 113 | 66, 60, 64 | |
+| Mamoswine | 121 | 73, 79, 83 | Ice Shard for the rest |
+| Froslass | 159 | 86, 92, 95, and ties Crobat at 159 | |
+
+Faster than Mamoswine on every box are Crobat, Cinderace, Tentacruel and Manaphy. The others are Talonflame, Liepard, Gengar, Staraptor, Scyther, Mienshao, Houndoom and Alolan Ninetales on box 1; Liepard, Floatzel, Rapidash, Staraptor, Lopunny, Alolan Ninetales and Glalie on box 2; and Weavile (153), Salazzle, Floatzel, Lopunny, Castform and Glalie on box 3.
+
+### Which checks meet the simulator's accuracy gap
+
+None of these checks plays through the simulator's own accuracy check (`fightsim.Battle.accuracy_hits`), the one that leaves out Snow Cloak and the evasion items. The probe plays `perfectline.play_turn`. The counterpiece check and the full reading play `plteam.full_reading`. Both route every attack and status move through `perfectline`'s own `attack` and `status_move`, which call `perfectline.accuracy_hits`, and that check applies Snow Cloak, the BrightPowder and the Lax Incense. So the counterpiece numbers above and the Overseer's full reading both see her evasion. The matchup screen and the replacement trace roll no accuracy at all, so their blindness is their own and not this gap. The Speed tiers read no accuracy. The gap's fix is not approved, and nothing here changed it.
+
+### The boxes
+
+Box 1 (Turtwig), 63 catches: Torterra, Whiscash, Luxray, Staraptor, Bibarel, Dustox, Nidorino, Pawmo, Corviknight, Mandibuzz, Crobat, Talonflame, Probopass, Seaking, Quagsire, Kingler, Tentacruel, Cherrim, Sharpedo, Plusle, Leavanny, Lombre, Alolan Ninetales, Abomasnow, Vespiquen, Gengar, Togetic, Bastiodon, Garganacl, Sylveon, Carbink, Lurantis, Granbull, Glimmora, Crawdaunt, Dhelmise, Floette, Lickilicky, Golem, Scyther, Mienshao, Masquerain, Crustle, Onix, Houndoom, Liepard, Toxicroak, Jellicent, Manaphy, Snorlax, Milotic, Altaria, Gastrodon, Cinderace, Octillery, Metagross, Seadra, Corsola, Goodra, Frosmoth, Mamoswine, Jynx, Dewgong. Held-back versions of Torterra, Dustox, Corviknight (two), Talonflame (two), Seaking, Kingler, Sharpedo, Leavanny (two), Lurantis, Granbull, Crawdaunt, Masquerain (two), Snorlax (two), Altaria, Octillery, Metagross, Seadra, Goodra and Mamoswine.
+
+Box 2 (Scorbunny), 64 catches: Cinderace, Whiscash, Staraptor, Masquerain, Lombre, Bibarel, Orbeetle, Liepard, Nidorino, Mandibuzz, Crobat, Rapidash, Donphan, Seaking, Garganacl, Lumineon, Tentacruel, Vespiquen, Arboliva, Tsareena, Leavanny, Primarina, Alolan Ninetales, Bronzong, Nuzleaf, Rotom, Togetic, Bastiodon, Onix, Glaceon, Glimmora, Heracross, Granbull, Glalie, Pachirisu, Gothitelle, Floette, Murkrow, Golem, Vikavolt, Drifblim, Magcargo, Hippowdon, Palossand, Tropius, Floatzel, Sharpedo, Drapion, Lopunny, Manaphy, Skitty, Jellicent, Toxicroak, Ceruledge, Empoleon, Gastrodon, Corsola, Octillery, Lurantis, Milotic, Frosmoth, Mr. Rime, Absol, Dewgong. Held-back versions of Cinderace, Masquerain (three), Orbeetle (three), Liepard (two), Donphan (two), Seaking, Lumineon, Tsareena, Leavanny (two), Bronzong (two), Nuzleaf, Granbull, Gothitelle, Vikavolt (two), Magcargo (two), Palossand, Sharpedo, Drapion and Lurantis.
+
+Box 3 (Piplup), 64 catches: Empoleon, Seaking, Corviknight, Orbeetle, Dubwool, Bibarel, Nidorino, Machamp, Whiscash, Mandibuzz, Crobat, Hariyama, Onix, Roselia, Golem, Kingler, Tentacruel, Pachirisu, Pawmo, Vespiquen, Breloom, Lombre, Mothim, Carbink, Vikavolt, Rotom, Togetic, Bastiodon, Salazzle, Glaceon, Crustle, Leavanny, Granbull, Bronzong, Gothitelle, Sinistea, Floette, Happiny, Glimmora, Yanmega, Castform, Quagsire, Garganacl, Palossand, Lopunny, Grapploct, Sharpedo, Gliscor, Qwilfish, Manaphy, Pikachu, Crawdaunt, Altaria, Gastrodon, Cinderace, Lumineon, Metagross, Octillery, Nuzleaf, Floatzel, Frosmoth, Glalie, Weavile, Dewgong. Held-back versions of Empoleon, Seaking, Corviknight (two), Orbeetle (three), Hariyama, Kingler, Breloom (three), Vikavolt (two), Leavanny (two), Granbull, Bronzong (two), Gothitelle, Yanmega, Palossand, Sharpedo, Gliscor (two), Crawdaunt, Altaria, Lumineon, Metagross and Weavile (three).
+
+These are the boxes the first build's page lists below, rebuilt identically: 87, 93 and 96 entries counting the held-back versions.
 
 ## The first build, for the record
 
