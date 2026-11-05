@@ -62,6 +62,25 @@ Next steps:
 | The four questions | Ian | answered 2026-11-04 |
 | The playtest, with nerfs from the dials if it plays too hard | Ian | the fight itself |
 
+## The full reading (2026-11-04)
+
+The scorer read the build with Psycho Boost on goal 3's three boxes (run `cyrus2-53c447c57`, tree `tree-cyrus2-53c447c57`, at 53c447c57d1). It lands in Ian's aim for a hard build, 80 to 90 percent won with three or more faints, the first hard build to do so:
+
+| Box | Six the scorer chose | Won | Faints | Clean | Very unlucky won, faints |
+|---|---|---:|---:|---:|---|
+| 1 (Turtwig) | Torterra, Corviknight (Corvisquire held to 55), Seaking, Sylveon, Snorlax, Mamoswine | 91 | 2.52 | 17 | 60, 3.96 |
+| 2 (Scorbunny) | Rapidash, Garganacl, Tsareena, Primarina (Popplio held to 57), Gothitelle, Hippowdon | 79 | 3.44 | 3 | 52, 4.36 |
+| 3 (Piplup) | Corviknight (Rookidee held to 50), Vespiquen, Carbink, Garganacl, Cinderace, Weavile (Sneasel held to 51) | 81 | 3.55 | 0 | 92, 2.92 |
+| All three | | 84 | 3.17 | 7 | 68, 3.75 |
+
+Box 3's very unlucky fights read easier than its real-odds fights (92 against 81); with 25 fights that is noise, not a sign. Xurkitree makes the most knockouts on boxes 2 and 3 and Weavile on box 1; Deoxys makes the fewest on boxes 1 and 3, its job being the lead's first hits behind the Sash. The first box of the stopped reading with Psychic read 79 won and 3.85 faints, so Psycho Boost moved little either way. The sixes' sets and items:
+
+Box 1 (Turtwig): Torterra (Miracle Seed): Headlong Rush, Rock Blast, Curse, Drum Beating; Corviknight (Sitrus Berry): Brave Bird, Body Press, Taunt, Roost; Seaking (Mystic Water): Liquidation, Poison Jab, Throat Chop, Scale Shot; Sylveon (Fairy Feather): Moonblast, Light Screen, Swift, Shadow Ball; Snorlax (Silk Scarf): Giga Impact, Belly Drum, Heat Crash, Crunch; Mamoswine (Soft Sand): Earthquake, Icicle Spear, Brick Break, Take Down. Cyrus's knockouts over the 75 fights at real odds: Weavile 55, Xurkitree 33, Tyranitar 31, Yveltal 29, Houndoom 27, Deoxys-Attack 14.
+
+Box 2 (Scorbunny): Rapidash (Sitrus Berry): Flare Blitz, Drill Run, Take Down, Double Kick; Garganacl (Rock Incense): Diamond Storm, Earthquake, Recover, Heavy Slam; Tsareena (Fist Plate): High Jump Kick, Play Rough, Taunt, Petal Blizzard; Primarina (Fairy Feather): Moonblast, Scald, Encore, Hyper Voice; Gothitelle (Mind Plate): Future Sight, Energy Ball, Thunderbolt, Dark Pulse; Hippowdon (Soft Sand): Earthquake, Ice Fang, Fire Fang, Yawn. Cyrus's knockouts over the 75 fights at real odds: Xurkitree 64, Yveltal 54, Tyranitar 42, Deoxys-Attack 36, Houndoom 33, Weavile 29.
+
+Box 3 (Piplup): Corviknight (Sitrus Berry): Brave Bird, Body Press, Scary Face, Roost; Vespiquen (Silver Powder): Bug Bite, Low Sweep, Pursuit, Secret Power; Carbink (Rock Incense): Diamond Storm, Moonblast, Reflect, Iron Head; Garganacl (Sitrus Berry): Diamond Storm, Earthquake, Recover, Heavy Slam; Cinderace (Sitrus Berry): Jump Kick, Flare Blitz, U-turn, Iron Head; Weavile (Never-Melt Ice): Triple Axel, Revenge, Nasty Plot, Aerial Ace. Cyrus's knockouts over the 75 fights at real odds: Xurkitree 113, Tyranitar 63, Yveltal 51, Weavile 14, Houndoom 13, Deoxys-Attack 12.
+
 ## Why each set is as it is
 
 Kaizo's HQ Cyrus, for reference, fields Palkia, Dialga, Deoxys-Defense (Psycho Boost, Superpower, Pursuit, ExtremeSpeed), Weavile (Triple Axel, Close Combat, Avalanche, Pursuit), Heatran and Regigigas, at 92 to 97 in a permanent Trick Room. The build keeps his structure: a Weavile ace with Pursuit, a Deoxys, and the gods he means to bend. Translated into Oxide's Generation 5 and later pool: Triple Axel and Technician, Oblivion Wing, Fiery Wrath, Dark Aura, Beast Boost, the Expert Belt and the Life Orb. Scaled to Oxide's difficulty: one 680 legendary in place of Dialga and Palkia, Deoxys's Attack Forme in place of its Normal Forme (680 on Oxide's stats), no ExtremeSpeed, no Trick Room, and levels of 57 to 59. Heatran stays with Cyrus 3, which carries it now, and Regigigas (670 on Oxide's stats) was left out.
