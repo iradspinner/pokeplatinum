@@ -99,7 +99,8 @@
             "MOVE_PROTECT",
             "MOVE_DYNAMIC_PUNCH",
             "MOVE_FLARE_BLITZ",
-            "MOVE_BRAVE_BIRD"
+            "MOVE_BRAVE_BIRD",
+            "MOVE_SWORDS_DANCE"
         ]
     },
     "evolutions": [

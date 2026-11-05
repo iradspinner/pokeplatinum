@@ -7358,7 +7358,7 @@ Trainer battles:
 
 - TRAINER_DUMMY_118 (Officer Boreas, level 57, 3 Pokemon), sees the player. Added by Oxide (610527338). `events_galactic_hq_4f.json:110`
 - TRAINER_DUMMY_122 (Officer Laverna, level 57, 3 Pokemon), sees the player. Added by Oxide (610527338). `events_galactic_hq_4f.json:125`
-- TRAINER_DUMMY_123 (Officer Argo, level 58, 5 Pokemon), sees the player. Added by Oxide (610527338). `events_galactic_hq_4f.json:140`
+- TRAINER_DUMMY_123 (Officer Argo, level 58, 6 Pokemon), sees the player. Added by Oxide (610527338). `events_galactic_hq_4f.json:140`
 - StartTrainerBattle: against TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ (Cyrus, level 59, 6 Pokemon), by name. Vanilla. `scripts_galactic_hq_4f.s:39`
 
 Items given:
