@@ -5,7 +5,9 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_CHECK_HP",
+        "AI_FLAG_RISKY"
     ],
     "double_battle": false,
     "party": [
@@ -101,7 +103,7 @@
                 "MOVE_FIRE_PUNCH"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_LONELY",
             "ball_seal": 0,
             "ability": 1
         }

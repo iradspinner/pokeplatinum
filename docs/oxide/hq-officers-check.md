@@ -2,6 +2,10 @@
 
 Ian redrafted the two HQ officers in his OxiDex on 2026-11-04. Both are named Galactic officers, so mini-bosses, each a single battle in HQ's split (cap 60, no honour cap): Hesperid in the laboratory by the control room's door, Argo on 4F after Cyrus. Both teams are saved on branch `overseer-hq-officers` exactly as drafted. Nothing in either team was changed; what I think should change is asked below. No scorer reading was run, and nothing was seen in game.
 
+## Ian's answers (2026-11-04)
+
+Ian answered both questions and approved landing both officers. Rampardos becomes Lonely and Sinistcha stays Modest (question 1). Argo's flags gain Check HP and Risky, so they are now Basic, Evaluate Attack, Expert, Check HP and Risky (question 2). Hesperid stays exactly as drafted. Both edits went through `trainers.save`: the lint finds nothing, the packer packs the file, `make rom` builds, test_trainers passes 44 of 44 and test_learncheck 18 of 18, and `scriptindex.py --check` finds the committed index current. No nature now repeats on Argo's team. The probe was not rerun on the two answers together; each was read alone below (90 wins with Lonely, 78 with the two flags, against 72 as drafted, all inside the blur). Argo's table below shows the team as it now stands; the rest of the page is the check as it was put to Ian, before these answers.
+
 ## Summary
 
 Both fights read much harder than the helper's drafts they replace, and both still read easier than their commanders on the same boxes. Neither looks trivial. One rule breaks: Argo's Rampardos and Sinistcha share a Modest nature, and Modest also lowers Rampardos's Attack, which every one of its moves uses. Argo's Runerigus has Mean Look and Destiny Bond, but at Speed 49 the AI almost never picks Destiny Bond on Argo's flags. Nine moves were on no list at their levels and are now on egg lists.
@@ -21,7 +25,7 @@ Flags: Basic, Evaluate Attack, Expert, Risky, Check HP.
 
 ### Officer Argo, 4F after Cyrus
 
-Flags: Basic, Evaluate Attack, Expert.
+Flags: Basic, Evaluate Attack, Expert, Check HP, Risky (Ian's answer 2; drafted with the first three).
 
 | Pokemon | Level | Ability | Item | Nature | Moves |
 |---|---:|---|---|---|---|
@@ -30,7 +34,7 @@ Flags: Basic, Evaluate Attack, Expert.
 | Blastoise | 56 | Shell Armor | Leftovers | Bold | Shell Smash, Hydro Cannon, Blizzard, Aura Sphere |
 | Crustle | 57 | Weak Armor | Custap Berry | Adamant | Shell Smash, Leech Life, Stone Edge, Earthquake |
 | Sinistcha | 58 | Heatproof | White Herb | Modest | Shell Smash, Shadow Ball, Giga Drain, Strength Sap |
-| Rampardos | 58 | Rock Head | Hard Stone | Modest | Rock Polish, Head Smash, Zen Headbutt, Fire Punch |
+| Rampardos | 58 | Rock Head | Hard Stone | Lonely (Ian's answer 1; drafted Modest) | Rock Polish, Head Smash, Zen Headbutt, Fire Punch |
 
 ### What the checks found
 
@@ -69,7 +73,7 @@ Under Ian's rule of 2026-10-29, each move no list gives at its member's level we
 | Hesperid's Exploud 58 | Boomburst, Circle Throw | Whismur's |
 | Argo's Blastoise 56 | Hydro Cannon | Squirtle's |
 
-### Ian's questions
+### Ian's questions, as they were put (both answered above)
 
 1. Argo's Rampardos and Sinistcha are both Modest, and each member is to have its own nature. Modest also lowers Rampardos's Attack, so its Head Smash runs from 207 Attack where it would have 254 with an Attack-raising nature. Recommended: Rampardos Lonely (Attack up, Defense down), which keeps its Speed for Rock Polish and leaves Sinistcha Modest; Adamant is taken by Crustle. Read on the same boxes, Lonely gives 90 against 72, inside the blur, and the change is that the screen picked other sixes, not anything Rampardos did (its knockouts were 116 to 163 a six against 110 to 151). Or Naughty (Attack up, Sp. Def down), or keep Rampardos Modest and give Sinistcha another nature.
 2. Argo's Runerigus carries Mean Look and Destiny Bond, a trap and a trade. At Speed 49 it is slower than nearly every box answer, and Expert never picks Destiny Bond from a slower user, so it picked Destiny Bond 0 to 112 times a six and used it 0 to 69 times, and three of the five sixes saw it picked 10 times or fewer. Recommended: add Check HP and Risky. Risky lifts Destiny Bond for the slower user, and with both flags it was picked 74 to 159 times a six and used 20 to 93 times. Check HP is the guide's flag for a trade move, keeps a healthy Runerigus off Destiny Bond, and times the three Shell Smashes and Strength Sap. Risky also lifts Crustle's Stone Edge, which was already its top pick (203 to 305 picks with Risky, 118 to 259 without). The fight reads 78 with both flags against 72, the same within the blur. Or Check HP alone, the guide's rule, which changed nothing here (Destiny Bond 2 to 84 uses, the fight 77). Or keep the base flags, leaving Destiny Bond as a threat the AI rarely uses.
@@ -80,8 +84,8 @@ Nothing on Hesperid's team needs an answer.
 
 | Step | Who | Time |
 |---|---|---|
-| Answer the two questions, a line each | Ian | 5 minutes |
-| Apply the answers through `trainers.save` and rerun the probe | a session | 30 minutes |
+| Answer the two questions, a line each | Ian | done, 2026-11-04 |
+| Apply the answers through `trainers.save` | a session | done, 2026-11-04 |
 | Land the branch with `merge-branch.sh`, then `sync-docs.sh` on oxide | the Overseer | 30 minutes |
 | Play both fights in the HQ | Ian | his time |
 
