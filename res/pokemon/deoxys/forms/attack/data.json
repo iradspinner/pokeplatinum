@@ -113,6 +113,9 @@
             "MOVE_TRICK",
             "MOVE_KNOCK_OFF",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_PSYCHO_BOOST"
         ]
     },
     "evolutions": [  ]

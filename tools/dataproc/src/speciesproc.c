@@ -88,7 +88,7 @@ static SpeciesSpriteData proc_spritedata(datafile_t *df);
 static SpeciesDexData proc_dexdata(datafile_t *df, size_t i, const char *base_dir);
 
 static void emit_tutorables(datafile_t *df, size_t i);
-static void emit_eggmoves(datafile_t *df, const char *species_upper);
+static void emit_eggmoves(datafile_t *df, size_t i, const char *species_upper);
 static void emit_footprints(datafile_t *df, size_t i, const char *species_upper);
 static void emit_iconpalettes(datafile_t *df, size_t i, const char *species);
 static void emit_textbanks(datafile_t *df, size_t i, const char *species, SpeciesDexIndex *index);
@@ -288,7 +288,7 @@ int main(int argc, char **argv) {
             }
 
             emit_tutorables(&df_d, i);
-            emit_eggmoves(&df_d, capped);
+            emit_eggmoves(&df_d, i, capped);
             emit_footprints(&df_d, i, capped);
             emit_iconpalettes(&df_d, i, registry[i]);
             emit_textbanks(&df_d, i, registry[i], &species.dexdata.index);
@@ -927,7 +927,14 @@ static void emit_tutorables(datafile_t *df, size_t i) {
     fputs("},\n", *f_tutor_sets);
 }
 
-static void emit_eggmoves(datafile_t *df, const char *species_upper) {
+static void emit_eggmoves(datafile_t *df, size_t i, const char *species_upper) {
+    // Platinum Oxide: the game's egg move table is keyed by species, so an
+    // alternate form's record never enters it. A form may still carry an egg
+    // list as the trainers' palette, which the OxiDex's legality check reads
+    // (Deoxys's Attack Forme's Psycho Boost, Ian, 2026-11-04); without this
+    // guard the form's folder path was written out as a species name.
+    if (i >= NATIONAL_DEX_MAX) return;
+
     datanode_t dn = dp_try(df, ".learnset.egg_moves");
     if (dn.type == DATAPROC_T_ERR) return;
 

@@ -15,7 +15,7 @@
             "level": 57,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_PSYCHIC",
+                "MOVE_PSYCHO_BOOST",
                 "MOVE_DRAIN_PUNCH",
                 "MOVE_SHADOW_BALL",
                 "MOVE_ICE_BEAM"
