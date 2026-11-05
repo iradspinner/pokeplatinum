@@ -5,36 +5,38 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT"
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_CHECK_HP",
+        "AI_FLAG_RISKY"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CLAYDOL",
+            "species": "SPECIES_TYRANITAR",
             "form": 0,
             "level": 56,
-            "item": "ITEM_LEFTOVERS",
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_STEALTH_ROCK",
-                "MOVE_EARTH_POWER",
-                "MOVE_PSYCHIC",
-                "MOVE_RAPID_SPIN"
+                "MOVE_CRUNCH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_AERIAL_ACE",
+                "MOVE_STEALTH_ROCK"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_BOLD",
+            "nature": "NATURE_SASSY",
             "ball_seal": 0,
-            "ability": 1
+            "ability": 3
         },
         {
-            "species": "SPECIES_COFAGRIGUS",
+            "species": "SPECIES_RUNERIGUS",
             "form": 0,
             "level": 56,
             "item": "ITEM_COLBUR_BERRY",
             "moves": [
+                "MOVE_DESTINY_BOND",
+                "MOVE_MEAN_LOOK",
                 "MOVE_WILL_O_WISP",
-                "MOVE_SHADOW_BALL",
-                "MOVE_CALM_MIND",
-                "MOVE_PAIN_SPLIT"
+                "MOVE_EARTHQUAKE"
             ],
             "iv_scale": 255,
             "nature": "NATURE_RELAXED",
@@ -42,39 +44,39 @@
             "ability": 1
         },
         {
-            "species": "SPECIES_BRONZONG",
+            "species": "SPECIES_BLASTOISE",
             "form": 0,
             "level": 56,
-            "item": "ITEM_SHED_SHELL",
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_GYRO_BALL",
-                "MOVE_EARTHQUAKE",
-                "MOVE_PSYCHIC",
-                "MOVE_TOXIC"
+                "MOVE_SHELL_SMASH",
+                "MOVE_HYDRO_CANNON",
+                "MOVE_BLIZZARD",
+                "MOVE_AURA_SPHERE"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_SASSY",
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 2
+            "ability": 1
         },
         {
-            "species": "SPECIES_RELICANTH",
+            "species": "SPECIES_CRUSTLE",
             "form": 0,
             "level": 57,
-            "item": "ITEM_MUSCLE_BAND",
+            "item": "ITEM_CUSTAP_BERRY",
             "moves": [
-                "MOVE_HEAD_SMASH",
-                "MOVE_WATERFALL",
-                "MOVE_EARTHQUAKE",
-                "MOVE_YAWN"
+                "MOVE_SHELL_SMASH",
+                "MOVE_LEECH_LIFE",
+                "MOVE_STONE_EDGE",
+                "MOVE_EARTHQUAKE"
             ],
             "iv_scale": 255,
             "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 2
+            "ability": 3
         },
         {
-            "species": "SPECIES_POLTEAGEIST",
+            "species": "SPECIES_SINISTCHA",
             "form": 0,
             "level": 58,
             "item": "ITEM_WHITE_HERB",
@@ -88,6 +90,22 @@
             "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 3
+        },
+        {
+            "species": "SPECIES_RAMPARDOS",
+            "form": 0,
+            "level": 58,
+            "item": "ITEM_HARD_STONE",
+            "moves": [
+                "MOVE_ROCK_POLISH",
+                "MOVE_HEAD_SMASH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_LONELY",
+            "ball_seal": 0,
+            "ability": 1
         }
     ],
     "messages": [

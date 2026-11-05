@@ -86,7 +86,8 @@
             "MOVE_TAKE_DOWN",
             "MOVE_AMNESIA",
             "MOVE_CONFUSION",
-            "MOVE_SUCKER_PUNCH"
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SLUDGE_WAVE"
         ]
     },
     "evolutions": [

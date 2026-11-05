@@ -180,7 +180,9 @@ IAN_EGG_MOVES = {
     "SPECIES_TORCHIC": [("MOVE_PROTECT", "Ian, 2026-10-29: Breeder Kahlil's Blaziken"),
                         ("MOVE_DYNAMIC_PUNCH", "Ian, 2026-10-31: Krystal's Blaziken"),
                         ("MOVE_FLARE_BLITZ", "Ian, 2026-10-31: Krystal's Blaziken"),
-                        ("MOVE_BRAVE_BIRD", "Ian, 2026-10-31: Krystal's Blaziken")],
+                        ("MOVE_BRAVE_BIRD", "Ian, 2026-10-31: Krystal's Blaziken"),
+                        ("MOVE_SWORDS_DANCE", "the egg-list rule (Ian, 2026-10-29): Officer Hesperid's "
+                                              "Blaziken at 56 in the Galactic HQ, Ian's draft of 2026-11-04")],
     "SPECIES_CROAGUNK": [("MOVE_LOW_KICK", "Ian, 2026-10-29: Black Belt Nathaniel's Croagunk")],
     "SPECIES_MAGNEMITE": [("MOVE_SCREECH", "Ian, 2026-10-29: Twins Emma and Lil's Magneton"),
                           ("MOVE_MIRROR_SHOT", "Ian, 2026-10-29: Twins Emma and Lil's Magneton"),
@@ -412,6 +414,27 @@ IAN_EGG_MOVES = {
                                             "at 54, a helper's rebuild"),
                          ("MOVE_FREEZE_DRY", "the egg-list rule (Ian, 2026-10-29): Candice's Articuno "
                                              "at 54, a helper's rebuild")],
+    # Officers Hesperid and Argo in the Galactic HQ, Ian's drafts of
+    # 2026-11-04 (hq-officers-check.md), by the egg-list rule: each move no
+    # list gives at its member's level goes on its line's first stage.
+    # Blaziken's Swords Dance is with Torchic's entry above. Nacli's lists are
+    # set by hand (learnsets_by_hand.txt), so its file holds Protect as well.
+    "SPECIES_VOLTORB": [("MOVE_VOLT_SWITCH", "the egg-list rule (Ian, 2026-10-29): Officer Hesperid's "
+                                             "Electrode at 56 in the Galactic HQ")],
+    "SPECIES_NACLI": [("MOVE_PROTECT", "the egg-list rule (Ian, 2026-10-29): Officer Hesperid's Garganacl "
+                                       "at 57 in the Galactic HQ")],
+    "SPECIES_NIDORAN_M": [("MOVE_SLUDGE_WAVE", "the egg-list rule (Ian, 2026-10-29): Officer Hesperid's "
+                                               "Nidoking at 57 in the Galactic HQ")],
+    "SPECIES_SPRIGATITO": [("MOVE_WILL_O_WISP", "the egg-list rule (Ian, 2026-10-29): Officer Hesperid's "
+                                                "Meowscarada at 56 in the Galactic HQ"),
+                           ("MOVE_SUCKER_PUNCH", "the egg-list rule (Ian, 2026-10-29): Officer Hesperid's "
+                                                 "Meowscarada at 56 in the Galactic HQ")],
+    "SPECIES_WHISMUR": [("MOVE_BOOMBURST", "the egg-list rule (Ian, 2026-10-29): Officer Hesperid's "
+                                           "Exploud at 58 in the Galactic HQ"),
+                        ("MOVE_CIRCLE_THROW", "the egg-list rule (Ian, 2026-10-29): Officer Hesperid's "
+                                              "Exploud at 58 in the Galactic HQ")],
+    "SPECIES_SQUIRTLE": [("MOVE_HYDRO_CANNON", "the egg-list rule (Ian, 2026-10-29): Officer Argo's "
+                                               "Blastoise at 56 in the Galactic HQ")],
 }
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
